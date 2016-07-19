@@ -449,7 +449,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="204"/>
         <source>All addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsi naslovi</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="239"/>
@@ -512,7 +512,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="337"/>
         <source>Optional IP Address to bind to (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbiren IP naslov za povezavo (zahteva ponovni zagon)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="340"/>
@@ -598,45 +598,45 @@ Napaka: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="259"/>
         <source>Torrent: %1, running external program, command: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: %1, zagon zunanjega programa, ukaz: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="266"/>
+        <location filename="../app/application.cpp" line="273"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: %1, ukaz za zagon zunanjega programa predolg (dolžina &gt; %2), izvedba spodletela.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="316"/>
+        <location filename="../app/application.cpp" line="323"/>
         <source>Torrent: %1, sending mail notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: %1, pošilja E-poštno obvestilo</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="420"/>
+        <location filename="../app/application.cpp" line="427"/>
         <source>Information</source>
         <translation>Podatki</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="421"/>
+        <location filename="../app/application.cpp" line="428"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Za nadziranje qBittorenta, pojdite na http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="422"/>
+        <location filename="../app/application.cpp" line="429"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Skrbniško ime spletnega vmesnika je: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="425"/>
+        <location filename="../app/application.cpp" line="432"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Skrbniško geslo spletnega vmesnika je: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="426"/>
+        <location filename="../app/application.cpp" line="433"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>To je varnostno tveganje, zato premislite o zamenjavi gesla v možnostih programa.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="598"/>
+        <location filename="../app/application.cpp" line="605"/>
         <source>Saving torrent progress...</source>
         <translation>Shranjujem napredek torrenta ...</translation>
     </message>
@@ -1041,68 +1041,68 @@ Napaka: %2</translation>
         <translation>%1 je dosegel najvišje nastavljeno razmerje. Premor ...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Status sistemskega omrežja spremenjen v %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>ONLINE</source>
         <translation>POVEZANI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>OFFLINE</source>
         <translation>NEPOVEZANI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1726"/>
+        <location filename="../base/bittorrent/session.cpp" line="1720"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Nastavitve omrežja %1 so se spremenile, osveževanje povezave za sejo</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1744"/>
+        <location filename="../base/bittorrent/session.cpp" line="1738"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nastavljen naslov mrežnega vmesnika %1 ni veljaven.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2039"/>
+        <location filename="../base/bittorrent/session.cpp" line="2033"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Ni mogoče odkodirati &apos;%1&apos; torrent datoteke.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2154"/>
+        <location filename="../base/bittorrent/session.cpp" line="2148"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Rekurzivni prejem datoteke &apos;%1&apos; vdelane v torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2482"/>
+        <location filename="../base/bittorrent/session.cpp" line="2476"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Ni bilo mogoče shraniti &apos;%1. torrenta&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2603"/>
+        <location filename="../base/bittorrent/session.cpp" line="2597"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>ker je %1 onemogočen.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2606"/>
+        <location filename="../base/bittorrent/session.cpp" line="2600"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>ker je %1 onemogočen.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2624"/>
+        <location filename="../base/bittorrent/session.cpp" line="2618"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Spodletelo iskanje URL naslova za seme: &apos;%1&apos;, sporočilo: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2664"/>
+        <location filename="../base/bittorrent/session.cpp" line="2658"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent je spodletel pri poslušanju na  vratih: %2/%3 vmesnika %1. Razlog: %4.</translation>
@@ -1126,152 +1126,152 @@ Napaka: %2</translation>
         <translation>Prejemanje &apos;%1&apos;, prosim počakajte ...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1578"/>
+        <location filename="../base/bittorrent/session.cpp" line="1572"/>
         <source>DHT support [ON]</source>
         <translation>Podpora DHT [vključena]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1583"/>
+        <location filename="../base/bittorrent/session.cpp" line="1577"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Podpora DHT [izključena]. Razlog: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1591"/>
+        <location filename="../base/bittorrent/session.cpp" line="1585"/>
         <source>DHT support [OFF]</source>
         <translation>Podpora DHT [izključena]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="218"/>
-        <location filename="../base/bittorrent/session.cpp" line="1820"/>
+        <location filename="../base/bittorrent/session.cpp" line="1814"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent poskuša poslušati na vseh vratih vmesnika: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1763"/>
+        <location filename="../base/bittorrent/session.cpp" line="1757"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Določeni omrežni vmesnik je neveljaven: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="222"/>
-        <location filename="../base/bittorrent/session.cpp" line="1831"/>
+        <location filename="../base/bittorrent/session.cpp" line="1825"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent poskuša poslušati na vmesniku %1 in vratih: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1797"/>
+        <location filename="../base/bittorrent/session.cpp" line="1791"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent ni našel krajevnega naslova %1 za poslušanje</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1824"/>
+        <location filename="../base/bittorrent/session.cpp" line="1818"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent je spodletel pri poslušanju na vseh vratih vmesnika: %1. Razlog: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1950"/>
+        <location filename="../base/bittorrent/session.cpp" line="1944"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Sledilnik &apos;%1&apos; je bil dodan h torrentu &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1960"/>
+        <location filename="../base/bittorrent/session.cpp" line="1954"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Sledilnik &apos;%1&apos; je bil odstranjen iz torrenta &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1975"/>
+        <location filename="../base/bittorrent/session.cpp" line="1969"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL seme &apos;%1&apos; je bil dodan h torrentu &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1981"/>
+        <location filename="../base/bittorrent/session.cpp" line="1975"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL seme &apos;%1&apos; je bil odstranjen iz torrenta &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2249"/>
+        <location filename="../base/bittorrent/session.cpp" line="2243"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Ni mogoče nadaljevati torrenta &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2308"/>
+        <location filename="../base/bittorrent/session.cpp" line="2302"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2314"/>
+        <location filename="../base/bittorrent/session.cpp" line="2308"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Napaka: Spodletelo razčlenjevanje filtra IP.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2519"/>
+        <location filename="../base/bittorrent/session.cpp" line="2513"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Ni bilo mogoče dodati torrenta. Razlog: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2465"/>
+        <location filename="../base/bittorrent/session.cpp" line="2459"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; se nadaljuje. (hitro nadaljevanje)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2496"/>
+        <location filename="../base/bittorrent/session.cpp" line="2490"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; je bil dodan na seznam prejemov.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2567"/>
+        <location filename="../base/bittorrent/session.cpp" line="2561"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Zgodila se je napaka I/O, &apos;%1&apos; v premoru. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2575"/>
+        <location filename="../base/bittorrent/session.cpp" line="2569"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Spodletela preslikava vrat, sporočilo: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2581"/>
+        <location filename="../base/bittorrent/session.cpp" line="2575"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Uspešna preslikava vrat, sporočilo: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2591"/>
+        <location filename="../base/bittorrent/session.cpp" line="2585"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>zaradi filtra IP.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2594"/>
+        <location filename="../base/bittorrent/session.cpp" line="2588"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>zaradi filtra vrat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2597"/>
+        <location filename="../base/bittorrent/session.cpp" line="2591"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>zaradi I2P omejitev mešanega načina.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2600"/>
+        <location filename="../base/bittorrent/session.cpp" line="2594"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>ker ima prenizka vrata.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2638"/>
+        <location filename="../base/bittorrent/session.cpp" line="2632"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent uspešno posluša na vmesniku %1 in vratih: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2673"/>
+        <location filename="../base/bittorrent/session.cpp" line="2667"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Zunanji IP: %1</translation>
@@ -1280,17 +1280,17 @@ Napaka: %2</translation>
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1392"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1388"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Ni bilo mogoče premakniti torrenta: &apos;%1&apos;. Razlog: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1544"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1540"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Neusklajene velikosti datotek za torrent &apos;%1&apos;, v premoru.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1550"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1546"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Hitro nadaljevanje je bilo zavrnjeno za torrent &apos;%1&apos;. Razlog: %2. Preverjam znova ...</translation>
     </message>
@@ -2169,22 +2169,22 @@ Ime kategorije ne sme vsebovati zaporedja &apos;//&apos;.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="352"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation>&amp;Končaj qBittorrent</translation>
+        <translation>&amp;Zapri qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="360"/>
         <source>&amp;Suspend System</source>
-        <translation>Sistem v &amp;pripravljenost</translation>
+        <translation>Stanje &amp;pripravljenost</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="368"/>
         <source>&amp;Hibernate System</source>
-        <translation>Sistem v &amp;mirovanje</translation>
+        <translation>Stanje &amp;mirovanje</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="376"/>
         <source>S&amp;hutdown System</source>
-        <translation>I&amp;zklopi sistem</translation>
+        <translation>Zau&amp;stavi sistem</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="384"/>
@@ -2480,7 +2480,7 @@ Ali želite qBittorrent povezati z datotekami torrent in magnetnimi povezavami?<
         <location filename="../gui/mainwindow.cpp" line="1506"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaša različica Pythona (%1) je zastarela. Za delovanje iskalnikov morate Python nadgraditi na zadnjo različico. Najmanjša zahteva je: 2.7.0/3.3.0</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1571"/>
@@ -2528,10 +2528,6 @@ Razlog: %2</translation>
         <location filename="../gui/mainwindow.cpp" line="817"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Datoteke na URL-ju &apos;%1&apos; ni mogoče prejeti. Razlog: %2.</translation>
-    </message>
-    <message>
-        <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation type="obsolete">Vaša različica Pythona %1 je zastarela. Za delovanje iskalnikov morate nadgraditi Python na zadnjo različico. Najmanjša zahtevana je: 2.7.0/3.3.0</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1516"/>
@@ -4053,980 +4049,980 @@ Ali ste prepričani, da želite končati qBittorrent?</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Možnosti</translation>
+        <translation>Možnosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="49"/>
+        <location filename="../gui/optionsdlg.ui" line="52"/>
         <source>Behavior</source>
-        <translation type="unfinished">Obnašanje</translation>
+        <translation>Obnašanje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="54"/>
+        <location filename="../gui/optionsdlg.ui" line="57"/>
         <source>Downloads</source>
-        <translation type="unfinished">Prejemi</translation>
+        <translation>Prejemi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="59"/>
+        <location filename="../gui/optionsdlg.ui" line="62"/>
         <source>Connection</source>
-        <translation type="unfinished">Povezava</translation>
+        <translation>Povezava</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="64"/>
+        <location filename="../gui/optionsdlg.ui" line="67"/>
         <source>Speed</source>
-        <translation type="unfinished">Hitrost</translation>
+        <translation>Hitrost</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="69"/>
+        <location filename="../gui/optionsdlg.ui" line="72"/>
         <source>BitTorrent</source>
-        <translation type="unfinished">BitTorrent</translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="74"/>
+        <location filename="../gui/optionsdlg.ui" line="77"/>
         <source>Web UI</source>
-        <translation type="unfinished">Spletni vmesnik</translation>
+        <translation>Spletni vmesnik</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="79"/>
+        <location filename="../gui/optionsdlg.ui" line="82"/>
         <source>Advanced</source>
-        <translation type="unfinished">Napredno</translation>
+        <translation>Napredno</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="125"/>
+        <location filename="../gui/optionsdlg.ui" line="128"/>
         <source>Language</source>
-        <translation type="unfinished">Jezik</translation>
+        <translation>Jezik</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="133"/>
+        <location filename="../gui/optionsdlg.ui" line="136"/>
         <source>User Interface Language:</source>
-        <translation type="unfinished">Jezik uporabniškega vmesnika:</translation>
+        <translation>Jezik uporabniškega vmesnika:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="161"/>
+        <location filename="../gui/optionsdlg.ui" line="164"/>
         <source>(Requires restart)</source>
-        <translation type="unfinished">(Zahteva ponovni zagon)</translation>
+        <translation>(Zahteva ponovni zagon)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="189"/>
+        <location filename="../gui/optionsdlg.ui" line="192"/>
         <source>Transfer List</source>
-        <translation type="unfinished">Seznam prenosov</translation>
+        <translation>Seznam prenosov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="195"/>
+        <location filename="../gui/optionsdlg.ui" line="198"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished">Potrdi ob brisanju torrenta</translation>
+        <translation>Potrdi ob brisanju torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="205"/>
+        <location filename="../gui/optionsdlg.ui" line="208"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished">Uporabi izmenične barve vrstice</translation>
+        <translation>Uporabi izmenične barve vrstic</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="217"/>
+        <location filename="../gui/optionsdlg.ui" line="220"/>
         <source>Hide zero and infinity values</source>
-        <translation type="unfinished">Skrij ničelne in neskončne vrednosti</translation>
+        <translation>Skrij ničelne in neskončne vrednosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="225"/>
+        <location filename="../gui/optionsdlg.ui" line="228"/>
         <source>Always</source>
-        <translation type="unfinished">Vedno</translation>
+        <translation>Vedno</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="230"/>
+        <location filename="../gui/optionsdlg.ui" line="233"/>
         <source>Paused torrents only</source>
-        <translation type="unfinished">Samo ustavljeni torrenti</translation>
+        <translation>Samo ustavljeni torrenti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="259"/>
+        <location filename="../gui/optionsdlg.ui" line="262"/>
         <source>Action on double-click</source>
-        <translation type="unfinished">Dejanje ob dvojnem kliku</translation>
+        <translation>Dejanje ob dvojnem kliku</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="268"/>
+        <location filename="../gui/optionsdlg.ui" line="271"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished">Prejemanje torrentov:</translation>
+        <translation>Prejemanje torrentov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="285"/>
-        <location filename="../gui/optionsdlg.ui" line="311"/>
+        <location filename="../gui/optionsdlg.ui" line="288"/>
+        <location filename="../gui/optionsdlg.ui" line="314"/>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished">Začni / Ustavi torrent</translation>
+        <translation>Začni / Ustavi torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="290"/>
-        <location filename="../gui/optionsdlg.ui" line="316"/>
+        <location filename="../gui/optionsdlg.ui" line="293"/>
+        <location filename="../gui/optionsdlg.ui" line="319"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Odpri ciljno mapo</translation>
+        <translation>Odpri ciljno mapo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="295"/>
-        <location filename="../gui/optionsdlg.ui" line="321"/>
+        <location filename="../gui/optionsdlg.ui" line="298"/>
+        <location filename="../gui/optionsdlg.ui" line="324"/>
         <source>No action</source>
-        <translation type="unfinished">Brez dejanja</translation>
+        <translation>Brez dejanja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="303"/>
+        <location filename="../gui/optionsdlg.ui" line="306"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished">Končani torrenti:</translation>
+        <translation>Končani torrenti:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="335"/>
+        <location filename="../gui/optionsdlg.ui" line="338"/>
         <source>Desktop</source>
-        <translation type="unfinished">Namizje</translation>
+        <translation>Namizje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="341"/>
+        <location filename="../gui/optionsdlg.ui" line="344"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished">Zaženi qBittorrent ob zagonu Windowsov</translation>
+        <translation>Zaženi qBittorrent ob zagonu Windowsov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="348"/>
+        <location filename="../gui/optionsdlg.ui" line="351"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished">Pokaži pozdravno okno ob zagonu</translation>
+        <translation>Pokaži pozdravno okno ob zagonu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="358"/>
+        <location filename="../gui/optionsdlg.ui" line="361"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished">Začni qBittorrent skrčen</translation>
+        <translation>Začni qBittorrent skrčen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="365"/>
+        <location filename="../gui/optionsdlg.ui" line="368"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation type="unfinished">Zahtevaj potrditev ob izhodu, če so torrenti dejavni</translation>
+        <translation>Zahtevaj potrditev ob izhodu, če so torrenti dejavni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="375"/>
+        <location filename="../gui/optionsdlg.ui" line="378"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="unfinished">Zahtevaj potrditev ob avtomatskem izhodu, ko so prejemi končani.</translation>
+        <translation>Zahtevaj potrditev ob avtomatskem izhodu, ko so prejemi končani.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="385"/>
+        <location filename="../gui/optionsdlg.ui" line="388"/>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished">Pokaži qBittorrent v obvestilnem področju</translation>
+        <translation>Pokaži qBittorrent v obvestilnem področju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="394"/>
+        <location filename="../gui/optionsdlg.ui" line="397"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished">Skrči qBittorrent v obvestilno področje</translation>
+        <translation>Skrči qBittorrent v obvestilno področje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="404"/>
+        <location filename="../gui/optionsdlg.ui" line="407"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished">Zapri qBittorrent v obvestilno področje</translation>
+        <translation>Zapri qBittorrent v obvestilno področje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="413"/>
+        <location filename="../gui/optionsdlg.ui" line="416"/>
         <source>Tray icon style:</source>
-        <translation type="unfinished">Slog ikone sistemske vrstice:</translation>
+        <translation>Slog ikone sistemske vrstice:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="421"/>
+        <location filename="../gui/optionsdlg.ui" line="424"/>
         <source>Normal</source>
-        <translation type="unfinished">Normalno</translation>
+        <translation>Normalen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="426"/>
+        <location filename="../gui/optionsdlg.ui" line="429"/>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished">Monochrome (Temna tema)</translation>
+        <translation>Monokromatski (Temna tema)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="431"/>
+        <location filename="../gui/optionsdlg.ui" line="434"/>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished">Monochrome (Svetla tema)</translation>
+        <translation>Monokromatski (Svetla tema)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="444"/>
+        <location filename="../gui/optionsdlg.ui" line="447"/>
         <source>File association</source>
-        <translation type="unfinished">Povezava datoteke</translation>
+        <translation>Povezava datoteke</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="450"/>
+        <location filename="../gui/optionsdlg.ui" line="453"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished">Uporabi qBittorrent za datoteke .torrent</translation>
+        <translation>Uporabi qBittorrent za datoteke .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="457"/>
+        <location filename="../gui/optionsdlg.ui" line="460"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished">Uporabi qBittorrent za magnetne povezave</translation>
+        <translation>Uporabi qBittorrent za magnetne povezave</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="470"/>
+        <location filename="../gui/optionsdlg.ui" line="473"/>
         <source>Power Management</source>
-        <translation type="unfinished">Upravljanje s porabo</translation>
+        <translation>Upravljanje s porabo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="476"/>
+        <location filename="../gui/optionsdlg.ui" line="479"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished">Prepreči prehod v stanje pripravljenosti, če so torrenti dejavni</translation>
+        <translation>Prepreči prehod v stanje pripravljenosti, če so torrenti dejavni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="486"/>
+        <location filename="../gui/optionsdlg.ui" line="489"/>
         <source>Log file</source>
-        <translation type="unfinished">Dnevnik</translation>
+        <translation>Dnevnik</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="500"/>
+        <location filename="../gui/optionsdlg.ui" line="503"/>
         <source>Save path:</source>
-        <translation type="unfinished">Mesto shranjevanja:</translation>
+        <translation>Mesto shranjevanja:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="530"/>
+        <location filename="../gui/optionsdlg.ui" line="533"/>
         <source>Backup the log file after:</source>
-        <translation type="unfinished">Varnostno kopiraj dnevnik po:</translation>
+        <translation>Varnostno kopiraj dnevnik po:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="537"/>
+        <location filename="../gui/optionsdlg.ui" line="540"/>
         <source> MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="573"/>
+        <location filename="../gui/optionsdlg.ui" line="576"/>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished">Izbriši varnostne kopije dnevnikov starejše od:</translation>
+        <translation>Izbriši varnostne kopije dnevnikov starejše od:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="597"/>
+        <location filename="../gui/optionsdlg.ui" line="600"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished">dni</translation>
+        <translation>dni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="602"/>
+        <location filename="../gui/optionsdlg.ui" line="605"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished">mesecev</translation>
+        <translation>mesecev</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="607"/>
+        <location filename="../gui/optionsdlg.ui" line="610"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
-        <translation type="unfinished">let</translation>
+        <translation>let</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="681"/>
+        <location filename="../gui/optionsdlg.ui" line="684"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished">Ob dodajanju torrenta</translation>
+        <translation>Ob dodajanju torrenta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="687"/>
+        <location filename="../gui/optionsdlg.ui" line="690"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished">Pokaži vsebino torrenta in nekaj možnosti</translation>
+        <translation>Pokaži vsebino torrenta in nekaj možnosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="699"/>
+        <location filename="../gui/optionsdlg.ui" line="702"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished">Prikaži torrent pogovorno okno v ospredje</translation>
+        <translation>Prikaži torrent pogovorno okno v ospredju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="712"/>
+        <location filename="../gui/optionsdlg.ui" line="715"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished">Ne začni samodejni prejem</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="719"/>
-        <source>Should the .torrent file be deleted after adding it</source>
-        <translation type="unfinished">Ali naj bo .torrent datoteka po dodajanju izbrisana</translation>
+        <translation>Prejema ne začni samodejno</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="722"/>
-        <source>Delete .torrent files afterwards </source>
-        <translation type="unfinished">Po tem izbriši .torrent datoteke</translation>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation>Ali naj bo .torrent datoteka po dodajanju izbrisana</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="734"/>
-        <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished">Izbriši tudi .torrent datoteke katerih dodajanje je bilo preklicano</translation>
+        <location filename="../gui/optionsdlg.ui" line="725"/>
+        <source>Delete .torrent files afterwards </source>
+        <translation>Po tem izbriši .torrent datoteke</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="737"/>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation>Izbriši tudi .torrent datoteke katerih dodajanje je bilo preklicano</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="740"/>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished">Tudi ko je dodajanje preklicano</translation>
+        <translation>Tudi ko je dodajanje preklicano</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="759"/>
+        <location filename="../gui/optionsdlg.ui" line="762"/>
         <source>Warning! Data loss possible!</source>
-        <translation type="unfinished">Pozor! Možna je izguba podatkov!</translation>
+        <translation>Pozor! Možna je izguba podatkov!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="774"/>
+        <location filename="../gui/optionsdlg.ui" line="777"/>
         <source>Saving Management</source>
-        <translation type="unfinished">Upravljanje shranjevanja</translation>
+        <translation>Upravljanje shranjevanja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="782"/>
+        <location filename="../gui/optionsdlg.ui" line="785"/>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished">Privzet Način Upravljanja Torrentov:</translation>
+        <translation>Privzet Način Upravljanja Torrentov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="794"/>
+        <location filename="../gui/optionsdlg.ui" line="797"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Avtomatski način pomeni, da so različne lastnosti torrenta (npr. pot za shranjevanje), določene z dodeljeno kategorijo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="798"/>
+        <location filename="../gui/optionsdlg.ui" line="801"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Ročni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="803"/>
+        <location filename="../gui/optionsdlg.ui" line="806"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Samodejni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="826"/>
+        <location filename="../gui/optionsdlg.ui" line="829"/>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished">Ko je kategorija torrenta spremenjena:</translation>
+        <translation>Ko je kategorija torrenta spremenjena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="836"/>
+        <location filename="../gui/optionsdlg.ui" line="839"/>
         <source>Relocate torrent</source>
-        <translation type="unfinished">Premakni torrent</translation>
+        <translation>Premakni torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="841"/>
+        <location filename="../gui/optionsdlg.ui" line="844"/>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished">Preklopi torrent na Ročni Način</translation>
+        <translation>Preklopi torrent na Ročni Način</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="864"/>
+        <location filename="../gui/optionsdlg.ui" line="867"/>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished">Ko je privzeta pot za shranjevanje spremenjena:</translation>
+        <translation>Ko je privzeta pot za shranjevanje spremenjena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="877"/>
-        <location filename="../gui/optionsdlg.ui" line="918"/>
+        <location filename="../gui/optionsdlg.ui" line="880"/>
+        <location filename="../gui/optionsdlg.ui" line="921"/>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished">Premakni aficirane torrente</translation>
+        <translation>Premakni dotične torrente</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="882"/>
-        <location filename="../gui/optionsdlg.ui" line="923"/>
+        <location filename="../gui/optionsdlg.ui" line="885"/>
+        <location filename="../gui/optionsdlg.ui" line="926"/>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished">Preklopi aficirane torrente na Ročni Način</translation>
+        <translation>Preklopi dotične torrente na Ročni Način</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="905"/>
+        <location filename="../gui/optionsdlg.ui" line="908"/>
         <source>When Category changed:</source>
-        <translation type="unfinished">Ko je Kategorija spremenjena:</translation>
+        <translation>Ko je Kategorija spremenjena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="948"/>
+        <location filename="../gui/optionsdlg.ui" line="951"/>
         <source>Use Subcategories</source>
-        <translation type="unfinished">Uporabi Podkategorije</translation>
+        <translation>Uporabi Podkategorije</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="957"/>
+        <location filename="../gui/optionsdlg.ui" line="960"/>
         <source>Default Save Path:</source>
-        <translation type="unfinished">Privzeta pot za shranjevanje:</translation>
+        <translation>Privzeta pot za shranjevanje:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1003"/>
+        <location filename="../gui/optionsdlg.ui" line="1006"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished">Hrani nedokončane torrente v:</translation>
+        <translation>Hrani nedokončane torrente v:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1042"/>
+        <location filename="../gui/optionsdlg.ui" line="1045"/>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished">Kopiraj datoteke .torrent v:</translation>
+        <translation>Kopiraj datoteke .torrent v:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1075"/>
+        <location filename="../gui/optionsdlg.ui" line="1078"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished">Za zaključene prejeme kopiraj datoteke .torrent v:</translation>
+        <translation>Za zaključene prejeme kopiraj datoteke .torrent v:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1110"/>
+        <location filename="../gui/optionsdlg.ui" line="1113"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished">Predhodno dodeli prostor na disku za vse datoteke</translation>
+        <translation>Predhodno dodeli prostor na disku za vse datoteke</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1117"/>
+        <location filename="../gui/optionsdlg.ui" line="1120"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished">Pripni .!qB nedokončanim datotekam</translation>
+        <translation>Dodaj pripono .!qB nedokončanim datotekam</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1127"/>
+        <location filename="../gui/optionsdlg.ui" line="1130"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished">Samodejno dodaj torrente iz:</translation>
+        <translation>Samodejno dodaj torrente iz:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1174"/>
+        <location filename="../gui/optionsdlg.ui" line="1177"/>
         <source>Add entry</source>
-        <translation type="unfinished">Dodaj vnos</translation>
+        <translation>Dodaj vnos</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1184"/>
+        <location filename="../gui/optionsdlg.ui" line="1187"/>
         <source>Remove entry</source>
-        <translation type="unfinished">Odstrani vnos</translation>
+        <translation>Odstrani vnos</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1211"/>
+        <location filename="../gui/optionsdlg.ui" line="1214"/>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished">Pošlji e-poštno obvestilo ob zaključku prejema</translation>
+        <translation>Pošlji e-poštno obvestilo ob zaključku prejema</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1228"/>
+        <location filename="../gui/optionsdlg.ui" line="1231"/>
         <source>Destination email:</source>
-        <translation type="unfinished">Ciljni e-poštni naslov:</translation>
+        <translation>Ciljni e-poštni naslov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1235"/>
+        <location filename="../gui/optionsdlg.ui" line="1238"/>
         <source>SMTP server:</source>
-        <translation type="unfinished">Strežnik SMTP:</translation>
+        <translation>Strežnik SMTP:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1247"/>
+        <location filename="../gui/optionsdlg.ui" line="1250"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished">Ta strežnik  zahteva varno povezavo (SSL)</translation>
+        <translation>Ta strežnik  zahteva varno povezavo (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1254"/>
-        <location filename="../gui/optionsdlg.ui" line="1666"/>
-        <location filename="../gui/optionsdlg.ui" line="2803"/>
+        <location filename="../gui/optionsdlg.ui" line="1257"/>
+        <location filename="../gui/optionsdlg.ui" line="1669"/>
+        <location filename="../gui/optionsdlg.ui" line="2806"/>
         <source>Authentication</source>
-        <translation type="unfinished">Overitev</translation>
+        <translation>Overitev</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1266"/>
-        <location filename="../gui/optionsdlg.ui" line="1680"/>
-        <location filename="../gui/optionsdlg.ui" line="2842"/>
-        <location filename="../gui/optionsdlg.ui" line="2917"/>
+        <location filename="../gui/optionsdlg.ui" line="1269"/>
+        <location filename="../gui/optionsdlg.ui" line="1683"/>
+        <location filename="../gui/optionsdlg.ui" line="2845"/>
+        <location filename="../gui/optionsdlg.ui" line="2920"/>
         <source>Username:</source>
-        <translation type="unfinished">Uporabniško ime:</translation>
+        <translation>Uporabniško ime:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1276"/>
-        <location filename="../gui/optionsdlg.ui" line="1690"/>
-        <location filename="../gui/optionsdlg.ui" line="2849"/>
-        <location filename="../gui/optionsdlg.ui" line="2931"/>
+        <location filename="../gui/optionsdlg.ui" line="1279"/>
+        <location filename="../gui/optionsdlg.ui" line="1693"/>
+        <location filename="../gui/optionsdlg.ui" line="2852"/>
+        <location filename="../gui/optionsdlg.ui" line="2934"/>
         <source>Password:</source>
-        <translation type="unfinished">Geslo:</translation>
+        <translation>Geslo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1296"/>
+        <location filename="../gui/optionsdlg.ui" line="1299"/>
         <source>Run external program on torrent completion</source>
-        <translation type="unfinished">Ko se torrent zaključi zaženi zunanji program</translation>
+        <translation>Ko se torrent zaključi zaženi zunanji program</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1356"/>
+        <location filename="../gui/optionsdlg.ui" line="1359"/>
         <source>Listening Port</source>
-        <translation type="unfinished">Vrata za poslušanje</translation>
+        <translation>Vrata za poslušanje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1364"/>
+        <location filename="../gui/optionsdlg.ui" line="1367"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished">Uporabljena vrata za dohodne povezave:</translation>
+        <translation>Uporabljena vrata za dohodne povezave:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1384"/>
+        <location filename="../gui/optionsdlg.ui" line="1387"/>
         <source>Random</source>
-        <translation type="unfinished">Naključno</translation>
+        <translation>Naključno</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1406"/>
+        <location filename="../gui/optionsdlg.ui" line="1409"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished">Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
+        <translation>Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1416"/>
+        <location filename="../gui/optionsdlg.ui" line="1419"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished">Uporabi druga vrata ob vsakem zagonu</translation>
+        <translation>Uporabi druga vrata ob vsakem zagonu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1426"/>
+        <location filename="../gui/optionsdlg.ui" line="1429"/>
         <source>Connections Limits</source>
-        <translation type="unfinished">Omejitve povezav</translation>
+        <translation>Omejitve povezav</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1442"/>
+        <location filename="../gui/optionsdlg.ui" line="1445"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished">Najvišje število povezav na torrent:</translation>
+        <translation>Najvišje število povezav na torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1452"/>
+        <location filename="../gui/optionsdlg.ui" line="1455"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished">Najvišje splošno število povezav:</translation>
+        <translation>Najvišje splošno število povezav:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1491"/>
+        <location filename="../gui/optionsdlg.ui" line="1494"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished">Najvišje število povezav za pošiljanje na torrent:</translation>
+        <translation>Najvišje število povezav za pošiljanje na torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1501"/>
+        <location filename="../gui/optionsdlg.ui" line="1504"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished">Najvišje splošno število povezav za pošiljanje na torrent:</translation>
+        <translation>Najvišje splošno število povezav za pošiljanje na torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1540"/>
+        <location filename="../gui/optionsdlg.ui" line="1543"/>
         <source>Proxy Server</source>
-        <translation type="unfinished">Posredniški strežnik</translation>
+        <translation>Posredniški strežnik</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1548"/>
+        <location filename="../gui/optionsdlg.ui" line="1551"/>
         <source>Type:</source>
-        <translation type="unfinished">Vrsta:</translation>
+        <translation>Tip:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1556"/>
+        <location filename="../gui/optionsdlg.ui" line="1559"/>
         <source>(None)</source>
-        <translation type="unfinished">(Brez)</translation>
+        <translation>(Brez)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1561"/>
+        <location filename="../gui/optionsdlg.ui" line="1564"/>
         <source>SOCKS4</source>
-        <translation type="unfinished">SOCKS4</translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1566"/>
+        <location filename="../gui/optionsdlg.ui" line="1569"/>
         <source>SOCKS5</source>
-        <translation type="unfinished">SOCKS5</translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1571"/>
+        <location filename="../gui/optionsdlg.ui" line="1574"/>
         <source>HTTP</source>
-        <translation type="unfinished">HTTP</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1582"/>
+        <location filename="../gui/optionsdlg.ui" line="1585"/>
         <source>Host:</source>
-        <translation type="unfinished">Gostitelj:</translation>
+        <translation>Gostitelj:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1602"/>
-        <location filename="../gui/optionsdlg.ui" line="2627"/>
+        <location filename="../gui/optionsdlg.ui" line="1605"/>
+        <location filename="../gui/optionsdlg.ui" line="2630"/>
         <source>Port:</source>
-        <translation type="unfinished">Vrata:</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="1630"/>
-        <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished">Drugače je posredniški strežnik uporabljen samo za povezave s sledilnikom</translation>
+        <translation>Vrata:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1633"/>
+        <source>Otherwise, the proxy server is only used for tracker connections</source>
+        <translation>Drugače je posredniški strežnik uporabljen samo za povezave s sledilnikom</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1636"/>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished">Uporabi posredniški strežnik za povezave s soležniki</translation>
+        <translation>Uporabi posredniški strežnik za povezave s soležniki</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1640"/>
+        <location filename="../gui/optionsdlg.ui" line="1643"/>
         <source>Disable connections not supported by proxies</source>
-        <translation type="unfinished">Onemogoči povezave, ki ne podpirajo posredniških strežnikov</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="1650"/>
-        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation type="unfinished">Za Vire RSS, iskalnik, posodobitve in ostalo kar ni torrent prenos ali s tem povezano dejanje (kot npr. izmenjava soležnikov) bo uporabljena neposredna povezava</translation>
+        <translation>Onemogoči povezave, ki ne podpirajo posredniških strežnikov</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1653"/>
+        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
+        <translation>Za Vire RSS, iskalnik, posodobitve in ostalo kar ni torrent prenos ali s tem povezano dejanje (kot npr. izmenjava soležnikov) bo uporabljena neposredna povezava</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1656"/>
         <source>Use proxy only for torrents</source>
-        <translation type="unfinished">Uporabi posredniški strežnik le za torrente</translation>
+        <translation>Uporabi posredniški strežnik le za torrente</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1706"/>
+        <location filename="../gui/optionsdlg.ui" line="1709"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished">Obvestilo: Geslo je shranjeno nešifrirano</translation>
+        <translation>Obvestilo: Geslo je shranjeno nešifrirano</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1719"/>
+        <location filename="../gui/optionsdlg.ui" line="1722"/>
         <source>IP Filtering</source>
-        <translation type="unfinished">Filtriranje IP</translation>
+        <translation>Filtriranje IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1733"/>
+        <location filename="../gui/optionsdlg.ui" line="1736"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished">Filter poti (.dat, .p2p, .p2b):</translation>
+        <translation>Filter poti (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1762"/>
+        <location filename="../gui/optionsdlg.ui" line="1765"/>
         <source>Reload the filter</source>
-        <translation type="unfinished">Ponovno naloži filter</translation>
+        <translation>Ponovno naloži filter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1771"/>
+        <location filename="../gui/optionsdlg.ui" line="1774"/>
         <source>Apply to trackers</source>
-        <translation type="unfinished">Uveljavi pri sledilcem</translation>
+        <translation>Uveljavi pri sledilcem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1829"/>
+        <location filename="../gui/optionsdlg.ui" line="1832"/>
         <source>Global Rate Limits</source>
-        <translation type="unfinished">Splošne omejitve hitrosti</translation>
+        <translation>Splošne omejitve hitrosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1851"/>
-        <location filename="../gui/optionsdlg.ui" line="2042"/>
+        <location filename="../gui/optionsdlg.ui" line="1854"/>
+        <location filename="../gui/optionsdlg.ui" line="2045"/>
         <source>Upload:</source>
-        <translation type="unfinished">Pošiljanje:</translation>
+        <translation>Pošiljanje:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1858"/>
-        <location filename="../gui/optionsdlg.ui" line="1881"/>
-        <location filename="../gui/optionsdlg.ui" line="2088"/>
-        <location filename="../gui/optionsdlg.ui" line="2095"/>
+        <location filename="../gui/optionsdlg.ui" line="1861"/>
+        <location filename="../gui/optionsdlg.ui" line="1884"/>
+        <location filename="../gui/optionsdlg.ui" line="2091"/>
+        <location filename="../gui/optionsdlg.ui" line="2098"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1895"/>
-        <location filename="../gui/optionsdlg.ui" line="2049"/>
+        <location filename="../gui/optionsdlg.ui" line="1898"/>
+        <location filename="../gui/optionsdlg.ui" line="2052"/>
         <source>Download:</source>
-        <translation type="unfinished">Prejem:</translation>
+        <translation>Prejem:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1918"/>
+        <location filename="../gui/optionsdlg.ui" line="1921"/>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished">Nadomestne omejitve hitrosti</translation>
+        <translation>Nadomestne omejitve hitrosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1924"/>
+        <location filename="../gui/optionsdlg.ui" line="1927"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished">Načrtujte uporabo nadomestnih omejitev hitrosti</translation>
+        <translation>Načrtujte uporabo nadomestnih omejitev hitrosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1936"/>
+        <location filename="../gui/optionsdlg.ui" line="1939"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished">Od:</translation>
+        <translation>Od:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1960"/>
+        <location filename="../gui/optionsdlg.ui" line="1963"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished">Do:</translation>
+        <translation>Do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1987"/>
+        <location filename="../gui/optionsdlg.ui" line="1990"/>
         <source>When:</source>
-        <translation type="unfinished">Ko:</translation>
+        <translation>Kdaj:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2001"/>
+        <location filename="../gui/optionsdlg.ui" line="2004"/>
         <source>Every day</source>
-        <translation type="unfinished">Vsak dan</translation>
+        <translation>Vsak dan</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2006"/>
+        <location filename="../gui/optionsdlg.ui" line="2009"/>
         <source>Weekdays</source>
-        <translation type="unfinished">Med tednom</translation>
+        <translation>Med tednom</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2011"/>
+        <location filename="../gui/optionsdlg.ui" line="2014"/>
         <source>Weekends</source>
-        <translation type="unfinished">Vikend</translation>
+        <translation>Vikendi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2118"/>
+        <location filename="../gui/optionsdlg.ui" line="2121"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished">Nastavitve omejitev hitrosti</translation>
+        <translation>Nastavitve omejitev hitrosti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2124"/>
+        <location filename="../gui/optionsdlg.ui" line="2127"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished">Uveljavi omejitve hitrosti za soležnike na krajevnem omrežju</translation>
+        <translation>Uveljavi omejitve hitrosti za soležnike na krajevnem omrežju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2131"/>
+        <location filename="../gui/optionsdlg.ui" line="2134"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished">Uveljavi omejitev razmerja v slepi prenos</translation>
+        <translation>Uveljavi omejitev razmerja v slepi prenos</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2138"/>
+        <location filename="../gui/optionsdlg.ui" line="2141"/>
         <source>Enable µTP protocol</source>
-        <translation type="unfinished">Omogoči µTP protokol</translation>
+        <translation>Omogoči µTP protokol</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2145"/>
+        <location filename="../gui/optionsdlg.ui" line="2148"/>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished">Uveljavi omejitve hitrosti za µTP protokol</translation>
+        <translation>Uveljavi omejitve hitrosti za µTP protokol</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2216"/>
+        <location filename="../gui/optionsdlg.ui" line="2219"/>
         <source>Privacy</source>
-        <translation type="unfinished">Zasebnost</translation>
+        <translation>Zasebnost</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2222"/>
+        <location filename="../gui/optionsdlg.ui" line="2225"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished">Omogočite DHT (decentralizirano omrežje) da najdete več soležnikov</translation>
+        <translation>Omogočite DHT (decentralizirano omrežje) da najdete več soležnikov</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2232"/>
-        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished">Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze, ...)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2235"/>
-        <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished">Omogočite Izmenjavo soležnikov (PeX) da najdete več soležnikov</translation>
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation>Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2245"/>
-        <source>Look for peers on your local network</source>
-        <translation type="unfinished">Poišči soležnike na krajevnem omrežju</translation>
+        <location filename="../gui/optionsdlg.ui" line="2238"/>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation>Omogočite Izmenjavo soležnikov (PeX) da najdete več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2248"/>
+        <source>Look for peers on your local network</source>
+        <translation>Poišči soležnike na krajevnem omrežju</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2251"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished">Omogočite odkrivanje krajevnih soležnikov za iskanje več soležnikov</translation>
+        <translation>Omogočite odkrivanje krajevnih soležnikov za iskanje več soležnikov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2260"/>
+        <location filename="../gui/optionsdlg.ui" line="2263"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished">Način šifriranja:</translation>
+        <translation>Način šifriranja:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2268"/>
+        <location filename="../gui/optionsdlg.ui" line="2271"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished">Prednostno šifriraj</translation>
+        <translation>Prednostno šifriraj</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2273"/>
+        <location filename="../gui/optionsdlg.ui" line="2276"/>
         <source>Require encryption</source>
-        <translation type="unfinished">Zahtevaj šifriranje</translation>
+        <translation>Zahtevaj šifriranje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2278"/>
+        <location filename="../gui/optionsdlg.ui" line="2281"/>
         <source>Disable encryption</source>
-        <translation type="unfinished">Onemogoči šifriranje</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="2303"/>
-        <source>Enable when using a proxy or a VPN connection</source>
-        <translation type="unfinished">Omogoči, ko se uporablja posredniški strežnik ali povezava VPN</translation>
+        <translation>Onemogoči šifriranje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2306"/>
+        <source>Enable when using a proxy or a VPN connection</source>
+        <translation>Omogoči, ko se uporablja posredniški strežnik ali povezava VPN</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2309"/>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished">Omogoči brezimni način</translation>
+        <translation>Omogoči anonimen način</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2313"/>
+        <location filename="../gui/optionsdlg.ui" line="2316"/>
         <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Več informacij&lt;/a&gt;)</translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Več informacij&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2341"/>
+        <location filename="../gui/optionsdlg.ui" line="2344"/>
         <source>Torrent Queueing</source>
-        <translation type="unfinished">Čakalna vrsta torrentov</translation>
+        <translation>Čakalna vrsta torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2356"/>
+        <location filename="../gui/optionsdlg.ui" line="2359"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished">Največ dejavnih prejemov:</translation>
+        <translation>Največ dejavnih prejemov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2376"/>
+        <location filename="../gui/optionsdlg.ui" line="2379"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished">Največ dejavnih pošiljanj:</translation>
+        <translation>Največ dejavnih pošiljanj:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2396"/>
+        <location filename="../gui/optionsdlg.ui" line="2399"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished">Največ dejavnih torrentov:</translation>
+        <translation>Največ dejavnih torrentov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2455"/>
+        <location filename="../gui/optionsdlg.ui" line="2458"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished">Ne štej počasnih torrentov ob teh omejitvah</translation>
+        <translation>V teh omejitvah ne štej počasnih torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2465"/>
+        <location filename="../gui/optionsdlg.ui" line="2468"/>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished">Souporaba omejitve razmerja</translation>
+        <translation>Souporaba omejitve razmerja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2476"/>
+        <location filename="../gui/optionsdlg.ui" line="2479"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished">Sejaj torrente, dokler razmerje ne doseže</translation>
+        <translation>Pošiljaj torrente, dokler razmerje ne doseže</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2505"/>
+        <location filename="../gui/optionsdlg.ui" line="2508"/>
         <source>then</source>
-        <translation type="unfinished">nato</translation>
+        <translation>nato</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2516"/>
+        <location filename="../gui/optionsdlg.ui" line="2519"/>
         <source>Pause them</source>
-        <translation type="unfinished">Jih daj v premor</translation>
+        <translation>Jih ustavi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2521"/>
+        <location filename="../gui/optionsdlg.ui" line="2524"/>
         <source>Remove them</source>
-        <translation type="unfinished">Jih odstrani</translation>
+        <translation>Jih odstrani</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2540"/>
+        <location filename="../gui/optionsdlg.ui" line="2543"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation type="unfinished">Samodejno dodaj te sledilnike novim prenosom:</translation>
+        <translation>Samodejno dodaj te sledilnike novim prenosom:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2613"/>
+        <location filename="../gui/optionsdlg.ui" line="2616"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished">Omogoči spletni uporabniški vmesnik (Oddaljen nadzor)</translation>
+        <translation>Omogoči spletni uporabniški vmesnik (Oddaljen nadzor)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2662"/>
+        <location filename="../gui/optionsdlg.ui" line="2665"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished">Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
+        <translation>Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2672"/>
+        <location filename="../gui/optionsdlg.ui" line="2675"/>
         <source>Use HTTPS instead of HTTP</source>
-        <translation type="unfinished">Uporabi HTTPS namesto HTTP</translation>
+        <translation>Uporabi HTTPS namesto HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2703"/>
+        <location filename="../gui/optionsdlg.ui" line="2706"/>
         <source>Certificate:</source>
-        <translation type="unfinished">Potrdilo:</translation>
+        <translation>Potrdilo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2715"/>
+        <location filename="../gui/optionsdlg.ui" line="2718"/>
         <source>Import SSL Certificate</source>
-        <translation type="unfinished">Uvozi potrdilo SSL</translation>
+        <translation>Uvozi potrdilo SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2756"/>
+        <location filename="../gui/optionsdlg.ui" line="2759"/>
         <source>Key:</source>
-        <translation type="unfinished">Ključ:</translation>
+        <translation>Ključ:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2768"/>
+        <location filename="../gui/optionsdlg.ui" line="2771"/>
         <source>Import SSL Key</source>
-        <translation type="unfinished">Uvozi ključ SSL</translation>
+        <translation>Uvozi ključ SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2790"/>
+        <location filename="../gui/optionsdlg.ui" line="2793"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Podrobnosti o potrdilih&lt;/a&gt;</translation>
+        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Podrobnosti o potrdilih&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2835"/>
+        <location filename="../gui/optionsdlg.ui" line="2838"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished">Obidi overitev za lokalnega gostitelja</translation>
+        <translation>Obidi overitev za lokalnega gostitelja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2859"/>
+        <location filename="../gui/optionsdlg.ui" line="2862"/>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished">Posodobi mojo dinamično ime domene</translation>
+        <translation>Posodobi mojo dinamično ime domene</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2871"/>
+        <location filename="../gui/optionsdlg.ui" line="2874"/>
         <source>Service:</source>
-        <translation type="unfinished">Storitev:</translation>
+        <translation>Storitev:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2894"/>
+        <location filename="../gui/optionsdlg.ui" line="2897"/>
         <source>Register</source>
-        <translation type="unfinished">Vpis</translation>
+        <translation>Vpis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2903"/>
+        <location filename="../gui/optionsdlg.ui" line="2906"/>
         <source>Domain name:</source>
-        <translation type="unfinished">Ime domene:</translation>
+        <translation>Ime domene:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="99"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="unfinished">Z omogočanjem teh možnosti lahko &lt;strong&gt;nepreklicno izgubite&lt;/strong&gt; vaše .torrent datoteke!</translation>
+        <translation>Z omogočanjem teh možnosti lahko &lt;strong&gt;nepreklicno izgubite&lt;/strong&gt; vaše .torrent datoteke!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="101"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="unfinished">Ko so te možnosti omogočene, bo qBittorent &lt;strong&gt;izbrisal&lt;/strong&gt; .torrent datoteke po uspešnem (prva možnost) ali neuspešnem (druga možnost) dodajanju na čakalno vrsto. To bo uveljavljeno &lt;strong&gt;ne le&lt;/strong&gt; pri datotekah odprtih z ukaznim menijem &amp;ldquo;Dodaj torrent&amp;rdquo;, ampak tudi pri odprtih s &lt;strong&gt;povezavo tipa datoteke&lt;/strong&gt;</translation>
+        <translation>Ko so te možnosti omogočene, bo qBittorent &lt;strong&gt;izbrisal&lt;/strong&gt; .torrent datoteke po uspešnem (prva možnost) ali neuspešnem (druga možnost) dodajanju na čakalno vrsto. To bo uveljavljeno &lt;strong&gt;ne le&lt;/strong&gt; pri datotekah odprtih z ukaznim menijem &amp;ldquo;Dodaj torrent&amp;rdquo;, ampak tudi pri odprtih s &lt;strong&gt;povezavo tipa datoteke&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="106"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="unfinished">Če omogočite drugo možnost (&amp;ldquo;Tudi ko je dodajanje preklicano&amp;rdquo;) bodo .torrent datoteke &lt;strong&gt;izbrisane&lt;/strong&gt;, tudi če pritisnete &amp;ldquo;&lt;strong&gt;Prekliči&lt;/strong&gt;&amp;rdquo;, v &amp;ldquo;Dodaj torrent&amp;rdquo; meniju</translation>
+        <translation>Če omogočite drugo možnost (&amp;ldquo;Tudi ko je dodajanje preklicano&amp;rdquo;) bodo .torrent datoteke &lt;strong&gt;izbrisane&lt;/strong&gt;, tudi če pritisnete &amp;ldquo;&lt;strong&gt;Prekliči&lt;/strong&gt;&amp;rdquo;, v &amp;ldquo;Dodaj torrent&amp;rdquo; meniju</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="244"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished">Podprti parametri (razlikovanje velikosti črk):</translation>
+        <translation>Podprti parametri (razlikovanje velikosti črk):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="245"/>
         <source>%N: Torrent name</source>
-        <translation type="unfinished">%N: Ime torrenta</translation>
+        <translation>%N: Ime torrenta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="246"/>
         <source>%L: Category</source>
-        <translation type="unfinished">%L: Kategorija</translation>
+        <translation>%L: Kategorija</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="247"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished">%F: Pot vsebine (enaka kot korenska pot za večdatotečni torrent)</translation>
+        <translation>%F: Pot vsebine (enaka kot korenska pot za večdatotečni torrent)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="248"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished">%R: Korenska pot (pot podmape prvega torrenta)</translation>
+        <translation>%R: Korenska pot (pot podmape prvega torrenta)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="249"/>
         <source>%D: Save path</source>
-        <translation type="unfinished">%D: Mesto za shranjevanje</translation>
+        <translation>%D: Mesto za shranjevanje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="250"/>
         <source>%C: Number of files</source>
-        <translation type="unfinished">%C: Število datotek</translation>
+        <translation>%C: Število datotek</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="251"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished">%Z: Velikost torrenta (bajti)</translation>
+        <translation>%Z: Velikost torrenta (bajti)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="252"/>
         <source>%T: Current tracker</source>
-        <translation type="unfinished">%T: Trenutni sledilnik</translation>
+        <translation>%T: Trenutni sledilnik</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="253"/>
         <source>%I: Info hash</source>
-        <translation type="unfinished">%I: Info šifra</translation>
+        <translation>%I: Info šifra</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="254"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation type="unfinished">Namig: Omeji parameter z narekovaji, da preprečiš lomljenje besedila pri presledkih (npr., &quot;%N&quot;)</translation>
+        <translation>Namig: Postavi parameter med narekovaje da se izogneš prelomu teksta na presledku (npr., &quot;%N&quot;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1336"/>
         <source>Select folder to monitor</source>
-        <translation type="unfinished">Izberite mapo za nadzorovanje</translation>
+        <translation>Izberite mapo za nadzorovanje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1343"/>
         <source>Folder is already being monitored:</source>
-        <translation type="unfinished">Mapa se že nadzaruje:</translation>
+        <translation>Mapa se že nadzaruje:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1346"/>
         <source>Folder does not exist:</source>
-        <translation type="unfinished">Mapa ne obstaja:</translation>
+        <translation>Mapa ne obstaja:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1349"/>
         <source>Folder is not readable:</source>
-        <translation type="unfinished">Mapa ni berljiva:</translation>
+        <translation>Mapa ni berljiva:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Adding entry failed</source>
-        <translation type="unfinished">Dodajanje vnosa je spodletelo</translation>
+        <translation>Dodajanje vnosa je spodletelo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1388"/>
         <location filename="../gui/optionsdlg.cpp" line="1390"/>
         <source>Choose export directory</source>
-        <translation type="unfinished">Izberite mapo za izvoz</translation>
+        <translation>Izberite mapo za izvoz</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1400"/>
@@ -5036,94 +5032,94 @@ Ali ste prepričani, da želite končati qBittorrent?</translation>
         <location filename="../gui/optionsdlg.cpp" line="1450"/>
         <location filename="../gui/optionsdlg.cpp" line="1452"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished">Izberite mapo za shranjevanje</translation>
+        <translation>Izberite mapo za shranjevanje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1425"/>
         <source>Choose an IP filter file</source>
-        <translation type="unfinished">Izberite datoteko s filtri IP</translation>
+        <translation>Izberite datoteko s filtri IP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1425"/>
         <source>All supported filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsi podprti filtri</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1492"/>
         <source>SSL Certificate</source>
-        <translation type="unfinished">Potrdilo SSL</translation>
+        <translation>Potrdilo SSL</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1504"/>
         <source>SSL Key</source>
-        <translation type="unfinished">Ključ SSL</translation>
+        <translation>Ključ SSL</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1537"/>
         <source>Parsing error</source>
-        <translation type="unfinished">Napaka razčlenjevanja</translation>
+        <translation>Napaka razčlenjevanja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1537"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished">Spodletelo razčlenjevanje filtra IP.</translation>
+        <translation>Spodletelo razčlenjevanje filtra IP.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished">Uspešno osveženo</translation>
+        <translation>Uspešno osveženo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished">Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
+        <translation>Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1626"/>
         <source>Invalid key</source>
-        <translation type="unfinished">Neveljaven ključ</translation>
+        <translation>Neveljaven ključ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1626"/>
         <source>This is not a valid SSL key.</source>
-        <translation type="unfinished">To ni veljaven ključ SSL.</translation>
+        <translation>To ni veljaven ključ SSL.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1642"/>
         <source>Invalid certificate</source>
-        <translation type="unfinished">Neveljavno potrdilo</translation>
+        <translation>Neveljavno potrdilo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1642"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation type="unfinished">To ni veljavno potrdilo SSL.</translation>
+        <translation>To ni veljavno potrdilo SSL.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1650"/>
         <source>Time Error</source>
-        <translation type="unfinished">Napaka časa</translation>
+        <translation>Napaka časa</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1650"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished">Čas začetka in konca ne smeta biti enaka.</translation>
+        <translation>Čas začetka in konca ne smeta biti enaka.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1659"/>
         <location filename="../gui/optionsdlg.cpp" line="1663"/>
         <source>Length Error</source>
-        <translation type="unfinished">Napaka dolžine</translation>
+        <translation>Napaka dolžine</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1659"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished">Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
+        <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1663"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="unfinished">Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
+        <translation>Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
     </message>
 </context>
 <context>
@@ -5383,22 +5379,22 @@ Ali ste prepričani, da želite končati qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="265"/>
         <source>Files in this piece:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke v tem kosu:</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="269"/>
         <source>File in this piece</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka v tem kosu</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="271"/>
         <source>File in these pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka v teh kosih</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="289"/>
         <source>Hold Shift key for detailed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Drži tipko Shift za podrobnejše informacije</translation>
     </message>
 </context>
 <context>
@@ -5596,697 +5592,6 @@ Tisti vstavki so bili onemogočeni.</translation>
         <location filename="../gui/search/pluginsourcedlg.ui" line="43"/>
         <source>Web link</source>
         <translation>Spletna povezava</translation>
-    </message>
-</context>
-<context>
-    <name>Preferences</name>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Prejemi</translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation type="obsolete">Povezava</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation type="obsolete">Hitrost</translation>
-    </message>
-    <message>
-        <source>Web UI</source>
-        <translation type="obsolete">Spletni vmesnik</translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="obsolete">Napredno</translation>
-    </message>
-    <message>
-        <source>(Requires restart)</source>
-        <translation type="obsolete">(Zahteva ponovni zagon)</translation>
-    </message>
-    <message>
-        <source>Use alternating row colors</source>
-        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="obsolete">Uporabi izmenične barve vrstice</translation>
-    </message>
-    <message>
-        <source>Start / Stop Torrent</source>
-        <translation type="obsolete">Začni / Ustavi torrent</translation>
-    </message>
-    <message>
-        <source>No action</source>
-        <translation type="obsolete">Brez dejanja</translation>
-    </message>
-    <message>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation type="obsolete">Pripni .!qB nedokončanim datotekam</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="obsolete">Kopiraj datoteke .torrent v:</translation>
-    </message>
-    <message>
-        <source>Connections Limits</source>
-        <translation type="obsolete">Omejitve povezav</translation>
-    </message>
-    <message>
-        <source>Proxy Server</source>
-        <translation type="obsolete">Posredniški strežnik</translation>
-    </message>
-    <message>
-        <source>Global Rate Limits</source>
-        <translation type="obsolete">Splošne omejitve hitrosti</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to transport overhead</source>
-        <translation type="obsolete">Uveljavi omejitev razmerja v slepi prenos</translation>
-    </message>
-    <message>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation type="obsolete">Načrtujte uporabo nadomestnih omejitev hitrosti</translation>
-    </message>
-    <message>
-        <source>From:</source>
-        <extracomment>from (time1 to time2)</extracomment>
-        <translation type="obsolete">Od:</translation>
-    </message>
-    <message>
-        <source>To:</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation type="obsolete">Do:</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="obsolete">Omogočite odkrivanje krajevnih soležnikov za iskanje več soležnikov</translation>
-    </message>
-    <message>
-        <source>Encryption mode:</source>
-        <translation type="obsolete">Način šifriranja:</translation>
-    </message>
-    <message>
-        <source>Prefer encryption</source>
-        <translation type="obsolete">Prednostno šifriraj</translation>
-    </message>
-    <message>
-        <source>Require encryption</source>
-        <translation type="obsolete">Zahtevaj šifriranje</translation>
-    </message>
-    <message>
-        <source>Disable encryption</source>
-        <translation type="obsolete">Onemogoči šifriranje</translation>
-    </message>
-    <message>
-        <source>Maximum active downloads:</source>
-        <translation type="obsolete">Največ dejavnih prejemov:</translation>
-    </message>
-    <message>
-        <source>Maximum active uploads:</source>
-        <translation type="obsolete">Največ dejavnih pošiljanj:</translation>
-    </message>
-    <message>
-        <source>Maximum active torrents:</source>
-        <translation type="obsolete">Največ dejavnih torrentov:</translation>
-    </message>
-    <message>
-        <source>When adding a torrent</source>
-        <translation type="obsolete">Ob dodajanju torrenta</translation>
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="obsolete">Obnašanje</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Jezik</translation>
-    </message>
-    <message>
-        <source>Display torrent content and some options</source>
-        <translation type="obsolete">Pokaži vsebino torrenta in nekaj možnosti</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="obsolete">Ko se torrent zaključi zaženi zunanji program</translation>
-    </message>
-    <message>
-        <source>Port used for incoming connections:</source>
-        <translation type="obsolete">Uporabljena vrata za dohodne povezave:</translation>
-    </message>
-    <message>
-        <source>Random</source>
-        <translation type="obsolete">Naključno</translation>
-    </message>
-    <message>
-        <source>Global maximum number of connections:</source>
-        <translation type="obsolete">Najvišje splošno število povezav:</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent:</source>
-        <translation type="obsolete">Najvišje število povezav na torrent:</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent:</source>
-        <translation type="obsolete">Najvišje število povezav za pošiljanje na torrent:</translation>
-    </message>
-    <message>
-        <source>Upload:</source>
-        <translation type="obsolete">Pošiljanje:</translation>
-    </message>
-    <message>
-        <source>Download:</source>
-        <translation type="obsolete">Prejem:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <source>Every day</source>
-        <translation type="obsolete">Vsak dan</translation>
-    </message>
-    <message utf8="true">
-        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="obsolete">Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze, ...)</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="obsolete">Gostitelj:</translation>
-    </message>
-    <message>
-        <source>SOCKS4</source>
-        <translation type="obsolete">SOCKS4</translation>
-    </message>
-    <message>
-        <source>Type:</source>
-        <translation type="obsolete">Vrsta:</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Možnosti</translation>
-    </message>
-    <message>
-        <source>Action on double-click</source>
-        <translation type="obsolete">Dejanje ob dvojnem kliku</translation>
-    </message>
-    <message>
-        <source>Downloading torrents:</source>
-        <translation type="obsolete">Prejemanje torrentov:</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="obsolete">Odpri ciljno mapo</translation>
-    </message>
-    <message>
-        <source>Completed torrents:</source>
-        <translation type="obsolete">Končani torrenti:</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <translation type="obsolete">Namizje</translation>
-    </message>
-    <message>
-        <source>Show splash screen on start up</source>
-        <translation type="obsolete">Pokaži pozdravno okno ob zagonu</translation>
-    </message>
-    <message>
-        <source>Start qBittorrent minimized</source>
-        <translation type="obsolete">Začni qBittorrent skrčen</translation>
-    </message>
-    <message>
-        <source>Minimize qBittorrent to notification area</source>
-        <translation type="obsolete">Skrči qBittorrent v obvestilno področje</translation>
-    </message>
-    <message>
-        <source>Close qBittorrent to notification area</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">Zapri qBittorrent v obvestilno področje</translation>
-    </message>
-    <message>
-        <source>Tray icon style:</source>
-        <translation type="obsolete">Slog ikone sistemske vrstice:</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Normalno</translation>
-    </message>
-    <message>
-        <source>Monochrome (Dark theme)</source>
-        <translation type="obsolete">Monochrome (Temna tema)</translation>
-    </message>
-    <message>
-        <source>Monochrome (Light theme)</source>
-        <translation type="obsolete">Monochrome (Svetla tema)</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="obsolete">Jezik uporabniškega vmesnika:</translation>
-    </message>
-    <message>
-        <source>Transfer List</source>
-        <translation type="obsolete">Seznam prenosov</translation>
-    </message>
-    <message>
-        <source>Confirm when deleting torrents</source>
-        <translation type="obsolete">Potrdi ob brisanju torrenta</translation>
-    </message>
-    <message>
-        <source>Start qBittorrent on Windows start up</source>
-        <translation type="obsolete">Zaženi qBittorrent ob zagonu Windowsov</translation>
-    </message>
-    <message>
-        <source>Confirmation on exit when torrents are active</source>
-        <translation type="obsolete">Zahtevaj potrditev ob izhodu, če so torrenti dejavni</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent in notification area</source>
-        <translation type="obsolete">Pokaži qBittorrent v obvestilnem področju</translation>
-    </message>
-    <message>
-        <source>File association</source>
-        <translation type="obsolete">Povezava datoteke</translation>
-    </message>
-    <message>
-        <source>Use qBittorrent for .torrent files</source>
-        <translation type="obsolete">Uporabi qBittorrent za datoteke .torrent</translation>
-    </message>
-    <message>
-        <source>Use qBittorrent for magnet links</source>
-        <translation type="obsolete">Uporabi qBittorrent za magnetne povezave</translation>
-    </message>
-    <message>
-        <source>Power Management</source>
-        <translation type="obsolete">Upravljanje s porabo</translation>
-    </message>
-    <message>
-        <source>Inhibit system sleep when torrents are active</source>
-        <translation type="obsolete">Prepreči prehod v stanje pripravljenosti, če so torrenti dejavni</translation>
-    </message>
-    <message>
-        <source>Do not start the download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">Ne začni samodejni prejem</translation>
-    </message>
-    <message>
-        <source>Bring torrent dialog to the front</source>
-        <translation type="obsolete">Prikaži torrent pogovorno okno v ospredje</translation>
-    </message>
-    <message>
-        <source>Should the .torrent file be deleted after adding it</source>
-        <translation type="obsolete">Ali naj bo .torrent datoteka po dodajanju izbrisana</translation>
-    </message>
-    <message>
-        <source>Delete .torrent files afterwards </source>
-        <translation type="obsolete">Po tem izbriši .torrent datoteke</translation>
-    </message>
-    <message>
-        <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="obsolete">Izbriši tudi .torrent datoteke katerih dodajanje je bilo preklicano</translation>
-    </message>
-    <message>
-        <source>Also when addition is cancelled</source>
-        <translation type="obsolete">Tudi ko je dodajanje preklicano</translation>
-    </message>
-    <message>
-        <source>Warning! Data loss possible!</source>
-        <translation type="obsolete">Pozor! Možna je izguba podatkov!</translation>
-    </message>
-    <message>
-        <source>Default Torrent Management Mode:</source>
-        <translation type="obsolete">Privzet Način Upravljanja Torrentov:</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="obsolete">Avtomatski način pomeni, da so različne lastnosti torrenta (npr. pot za shranjevanje), določene z dodeljeno kategorijo</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="obsolete">Ročno</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="obsolete">Samodejno</translation>
-    </message>
-    <message>
-        <source>When Torrent Category changed:</source>
-        <translation type="obsolete">Ko je kategorija torrenta spremenjena:</translation>
-    </message>
-    <message>
-        <source>Switch torrent to Manual Mode</source>
-        <translation type="obsolete">Preklopi torrent na Ročni Način</translation>
-    </message>
-    <message>
-        <source>When Default Save Path changed:</source>
-        <translation type="obsolete">Ko je privzeta pot za shranjevanje spremenjena:</translation>
-    </message>
-    <message>
-        <source>Switch affected torrents to Manual Mode</source>
-        <translation type="obsolete">Preklopi aficirane torrente na Ročni Način</translation>
-    </message>
-    <message>
-        <source>When Category changed:</source>
-        <translation type="obsolete">Ko je Kategorija spremenjena:</translation>
-    </message>
-    <message>
-        <source>Use Subcategories</source>
-        <translation type="obsolete">Uporabi Podkategorije</translation>
-    </message>
-    <message>
-        <source>Default Save Path:</source>
-        <translation type="obsolete">Privzeta pot za shranjevanje:</translation>
-    </message>
-    <message>
-        <source>Pre-allocate disk space for all files</source>
-        <translation type="obsolete">Predhodno dodeli prostor na disku za vse datoteke</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="obsolete">Hrani nedokončane torrente v:</translation>
-    </message>
-    <message>
-        <source>Automatically add torrents from:</source>
-        <translation type="obsolete">Samodejno dodaj torrente iz:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="obsolete">Za zaključene prejeme kopiraj datoteke .torrent v:</translation>
-    </message>
-    <message>
-        <source>Add entry</source>
-        <translation type="obsolete">Dodaj vnos</translation>
-    </message>
-    <message>
-        <source>Remove entry</source>
-        <translation type="obsolete">Odstrani vnos</translation>
-    </message>
-    <message>
-        <source>Email notification upon download completion</source>
-        <translation type="obsolete">Pošlji e-poštno obvestilo ob zaključku prejema</translation>
-    </message>
-    <message>
-        <source>Destination email:</source>
-        <translation type="obsolete">Ciljni e-poštni naslov:</translation>
-    </message>
-    <message>
-        <source>SMTP server:</source>
-        <translation type="obsolete">Strežnik SMTP:</translation>
-    </message>
-    <message>
-        <source>This server requires a secure connection (SSL)</source>
-        <translation type="obsolete">Ta strežnik  zahteva varno povezavo (SSL)</translation>
-    </message>
-    <message>
-        <source>Listening Port</source>
-        <translation type="obsolete">Vrata za poslušanje</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="obsolete">Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="obsolete">Uporabi druga vrata ob vsakem zagonu</translation>
-    </message>
-    <message>
-        <source>Global maximum number of upload slots:</source>
-        <translation type="obsolete">Najvišje splošno število povezav za pošiljanje na torrent:</translation>
-    </message>
-    <message>
-        <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="obsolete">Drugače je posredniški strežnik uporabljen samo za povezave s sledilnikom</translation>
-    </message>
-    <message>
-        <source>Use proxy for peer connections</source>
-        <translation type="obsolete">Uporabi posredniški strežnik za povezave s soležniki</translation>
-    </message>
-    <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="obsolete">Onemogoči povezave, ki ne podpirajo posredniških strežnikov</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="obsolete">Uporabi posredniški strežnik le za torrente</translation>
-    </message>
-    <message>
-        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation type="obsolete">Za Vire RSS, iskalnik, posodobitve in ostalo kar ni torrent prenos ali s tem povezano dejanje (kot npr. izmenjava soležnikov) bo uporabljena neposredna povezava</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="obsolete">Obvestilo: Geslo je shranjeno nešifrirano</translation>
-    </message>
-    <message>
-        <source>IP Filtering</source>
-        <translation type="obsolete">Filtriranje IP</translation>
-    </message>
-    <message>
-        <source>Reload the filter</source>
-        <translation type="obsolete">Ponovno naloži filter</translation>
-    </message>
-    <message>
-        <source>Apply to trackers</source>
-        <translation type="obsolete">Uveljavi pri sledilcem</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to peers on LAN</source>
-        <translation type="obsolete">Uveljavi omejitve hitrosti za soležnike na krajevnem omrežju</translation>
-    </message>
-    <message>
-        <source>When:</source>
-        <translation type="obsolete">Ko:</translation>
-    </message>
-    <message>
-        <source>Hide zero and infinity values</source>
-        <translation type="obsolete">Skrij ničelne in neskončne vrednosti</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="obsolete">Vedno</translation>
-    </message>
-    <message>
-        <source>Paused torrents only</source>
-        <translation type="obsolete">Samo ustavljeni torrenti</translation>
-    </message>
-    <message>
-        <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="obsolete">Zahtevaj potrditev ob avtomatskem izhodu, ko so prejemi končani.</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="obsolete">Dnevnik</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Mesto shranjevanja:</translation>
-    </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="obsolete">Varnostno kopiraj dnevnik po:</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation type="obsolete">MB</translation>
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="obsolete">Izbriši varnostne kopije dnevnikov starejše od:</translation>
-    </message>
-    <message>
-        <source>days</source>
-        <comment>Delete backup logs older than 10 months</comment>
-        <translation type="obsolete">dni</translation>
-    </message>
-    <message>
-        <source>months</source>
-        <comment>Delete backup logs older than 10 months</comment>
-        <translation type="obsolete">mesecev</translation>
-    </message>
-    <message>
-        <source>years</source>
-        <comment>Delete backup logs older than 10 years</comment>
-        <translation type="obsolete">let</translation>
-    </message>
-    <message>
-        <source>Saving Management</source>
-        <translation type="obsolete">Upravljanje shranjevanja</translation>
-    </message>
-    <message>
-        <source>Relocate torrent</source>
-        <translation type="obsolete">Premakni torrent</translation>
-    </message>
-    <message>
-        <source>Relocate affected torrents</source>
-        <translation type="obsolete">Premakni aficirane torrente</translation>
-    </message>
-    <message>
-        <source>Weekdays</source>
-        <translation type="obsolete">Med tednom</translation>
-    </message>
-    <message>
-        <source>Weekends</source>
-        <translation type="obsolete">Vikend</translation>
-    </message>
-    <message>
-        <source>Rate Limits Settings</source>
-        <translation type="obsolete">Nastavitve omejitev hitrosti</translation>
-    </message>
-    <message utf8="true">
-        <source>Enable µTP protocol</source>
-        <translation type="obsolete">Omogoči µTP protokol</translation>
-    </message>
-    <message utf8="true">
-        <source>Apply rate limit to µTP protocol</source>
-        <translation type="obsolete">Uveljavi omejitve hitrosti za µTP protokol</translation>
-    </message>
-    <message>
-        <source>Privacy</source>
-        <translation type="obsolete">Zasebnost</translation>
-    </message>
-    <message>
-        <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="obsolete">Omogočite DHT (decentralizirano omrežje) da najdete več soležnikov</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="obsolete">Omogočite Izmenjavo soležnikov (PeX) da najdete več soležnikov</translation>
-    </message>
-    <message>
-        <source>Look for peers on your local network</source>
-        <translation type="obsolete">Poišči soležnike na krajevnem omrežju</translation>
-    </message>
-    <message>
-        <source>Enable when using a proxy or a VPN connection</source>
-        <translation type="obsolete">Omogoči, ko se uporablja posredniški strežnik ali povezava VPN</translation>
-    </message>
-    <message>
-        <source>Enable anonymous mode</source>
-        <translation type="obsolete">Omogoči brezimni način</translation>
-    </message>
-    <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Več informacij&lt;/a&gt;)</translation>
-    </message>
-    <message>
-        <source>Do not count slow torrents in these limits</source>
-        <translation type="obsolete">Ne štej počasnih torrentov ob teh omejitvah</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="obsolete">Sejaj torrente, dokler razmerje ne doseže</translation>
-    </message>
-    <message>
-        <source>then</source>
-        <translation type="obsolete">nato</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="obsolete">Jih daj v premor</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="obsolete">Jih odstrani</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="obsolete">Samodejno dodaj te sledilnike novim prenosom:</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="obsolete">Uporabi UPnP / NAT-PMP za posredovanje vrat od mojega usmerjevalnika</translation>
-    </message>
-    <message>
-        <source>Use HTTPS instead of HTTP</source>
-        <translation type="obsolete">Uporabi HTTPS namesto HTTP</translation>
-    </message>
-    <message>
-        <source>Import SSL Certificate</source>
-        <translation type="obsolete">Uvozi potrdilo SSL</translation>
-    </message>
-    <message>
-        <source>Import SSL Key</source>
-        <translation type="obsolete">Uvozi ključ SSL</translation>
-    </message>
-    <message>
-        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="obsolete">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Podrobnosti o potrdilih&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Certificate:</source>
-        <translation type="obsolete">Potrdilo:</translation>
-    </message>
-    <message>
-        <source>Alternative Rate Limits</source>
-        <translation type="obsolete">Nadomestne omejitve hitrosti</translation>
-    </message>
-    <message>
-        <source>Key:</source>
-        <translation type="obsolete">Ključ:</translation>
-    </message>
-    <message>
-        <source>Bypass authentication for localhost</source>
-        <translation type="obsolete">Obidi overitev za lokalnega gostitelja</translation>
-    </message>
-    <message>
-        <source>Update my dynamic domain name</source>
-        <translation type="obsolete">Posodobi mojo dinamično ime domene</translation>
-    </message>
-    <message>
-        <source>Service:</source>
-        <translation type="obsolete">Storitev:</translation>
-    </message>
-    <message>
-        <source>Register</source>
-        <translation type="obsolete">Vpis</translation>
-    </message>
-    <message>
-        <source>Domain name:</source>
-        <translation type="obsolete">Ime domene:</translation>
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation type="obsolete">(Brez)</translation>
-    </message>
-    <message>
-        <source>BitTorrent</source>
-        <translation type="obsolete">BitTorrent</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="obsolete">Vrata:</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation type="obsolete">Overitev</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="obsolete">Uporabniško ime:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="obsolete">Geslo:</translation>
-    </message>
-    <message>
-        <source>Torrent Queueing</source>
-        <translation type="obsolete">Čakalna vrsta torrentov</translation>
-    </message>
-    <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="obsolete">Souporaba omejitve razmerja</translation>
-    </message>
-    <message>
-        <source>Enable Web User Interface (Remote control)</source>
-        <translation type="obsolete">Omogoči spletni uporabniški vmesnik (Oddaljen nadzor)</translation>
-    </message>
-    <message>
-        <source>SOCKS5</source>
-        <translation type="obsolete">SOCKS5</translation>
-    </message>
-    <message>
-        <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="obsolete">Filter poti (.dat, .p2p, .p2b):</translation>
     </message>
 </context>
 <context>
@@ -6861,33 +6166,33 @@ Ne bo nadaljnjih obvestil.</translation>
         <translation>Se strinjam</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>Torrent name: %1</source>
         <translation>Ime torrenta: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="291"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent size: %1</source>
         <translation>Velikost torrenta: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="292"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Save path: %1</source>
         <translation>Mesto: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="293"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent je bil prejet v %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="296"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Hvala, ker uporabljate qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="309"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &apos;%1&apos; je zaključil prejemanje</translation>
     </message>
@@ -9423,162 +8728,6 @@ Ime kategorije ne sme vsebovati zaporedja &apos;//&apos;.</translation>
         <location filename="../webui/btjson.cpp" line="465"/>
         <source>Not contacted yet</source>
         <translation>Še ni bilo stika</translation>
-    </message>
-</context>
-<context>
-    <name>options_imp</name>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="obsolete">Izberite mapo za izvoz</translation>
-    </message>
-    <message>
-        <source>Choose a save directory</source>
-        <translation type="obsolete">Izberite mapo za shranjevanje</translation>
-    </message>
-    <message>
-        <source>Supported parameters (case sensitive):</source>
-        <translation type="obsolete">Podprti parametri (razlikovanje velikosti črk):</translation>
-    </message>
-    <message>
-        <source>%N: Torrent name</source>
-        <translation type="obsolete">%N: Ime torrenta</translation>
-    </message>
-    <message>
-        <source>%L: Category</source>
-        <translation type="obsolete">%L: Kategorija</translation>
-    </message>
-    <message>
-        <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="obsolete">%F: Pot vsebine (enaka kot korenska pot za večdatotečni torrent)</translation>
-    </message>
-    <message>
-        <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="obsolete">%R: Korenska pot (pot podmape prvega torrenta)</translation>
-    </message>
-    <message>
-        <source>%D: Save path</source>
-        <translation type="obsolete">%D: Mesto za shranjevanje</translation>
-    </message>
-    <message>
-        <source>%C: Number of files</source>
-        <translation type="obsolete">%C: Število datotek</translation>
-    </message>
-    <message>
-        <source>%Z: Torrent size (bytes)</source>
-        <translation type="obsolete">%Z: Velikost torrenta (bajti)</translation>
-    </message>
-    <message>
-        <source>%T: Current tracker</source>
-        <translation type="obsolete">%T: Trenutni sledilnik</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="obsolete">%I: Info šifra</translation>
-    </message>
-    <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation type="obsolete">Namig: Omeji parameter z narekovaji, da preprečiš lomljenje besedila pri presledkih (npr., &quot;%N&quot;)</translation>
-    </message>
-    <message>
-        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="obsolete">Z omogočanjem teh možnosti lahko &lt;strong&gt;nepreklicno izgubite&lt;/strong&gt; vaše .torrent datoteke!</translation>
-    </message>
-    <message>
-        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="obsolete">Ko so te možnosti omogočene, bo qBittorent &lt;strong&gt;izbrisal&lt;/strong&gt; .torrent datoteke po uspešnem (prva možnost) ali neuspešnem (druga možnost) dodajanju na čakalno vrsto. To bo uveljavljeno &lt;strong&gt;ne le&lt;/strong&gt; pri datotekah odprtih z ukaznim menijem &amp;ldquo;Dodaj torrent&amp;rdquo;, ampak tudi pri odprtih s &lt;strong&gt;povezavo tipa datoteke&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="obsolete">Če omogočite drugo možnost (&amp;ldquo;Tudi ko je dodajanje preklicano&amp;rdquo;) bodo .torrent datoteke &lt;strong&gt;izbrisane&lt;/strong&gt;, tudi če pritisnete &amp;ldquo;&lt;strong&gt;Prekliči&lt;/strong&gt;&amp;rdquo;, v &amp;ldquo;Dodaj torrent&amp;rdquo; meniju</translation>
-    </message>
-    <message>
-        <source>Select folder to monitor</source>
-        <translation type="obsolete">Izberite mapo za nadzorovanje</translation>
-    </message>
-    <message>
-        <source>Folder is already being monitored:</source>
-        <translation type="obsolete">Mapa se že nadzaruje:</translation>
-    </message>
-    <message>
-        <source>Folder does not exist:</source>
-        <translation type="obsolete">Mapa ne obstaja:</translation>
-    </message>
-    <message>
-        <source>Folder is not readable:</source>
-        <translation type="obsolete">Mapa ni berljiva:</translation>
-    </message>
-    <message>
-        <source>Adding entry failed</source>
-        <translation type="obsolete">Dodajanje vnosa je spodletelo</translation>
-    </message>
-    <message>
-        <source>Filters</source>
-        <translation type="obsolete">Filtri</translation>
-    </message>
-    <message>
-        <source>Choose an IP filter file</source>
-        <translation type="obsolete">Izberite datoteko s filtri IP</translation>
-    </message>
-    <message>
-        <source>SSL Certificate</source>
-        <translation type="obsolete">Potrdilo SSL</translation>
-    </message>
-    <message>
-        <source>SSL Key</source>
-        <translation type="obsolete">Ključ SSL</translation>
-    </message>
-    <message>
-        <source>Parsing error</source>
-        <translation type="obsolete">Napaka razčlenjevanja</translation>
-    </message>
-    <message>
-        <source>Failed to parse the provided IP filter</source>
-        <translation type="obsolete">Spodletelo razčlenjevanje filtra IP.</translation>
-    </message>
-    <message>
-        <source>Successfully refreshed</source>
-        <translation type="obsolete">Uspešno osveženo</translation>
-    </message>
-    <message>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
-    </message>
-    <message>
-        <source>Invalid key</source>
-        <translation type="obsolete">Neveljaven ključ</translation>
-    </message>
-    <message>
-        <source>This is not a valid SSL key.</source>
-        <translation type="obsolete">To ni veljaven ključ SSL.</translation>
-    </message>
-    <message>
-        <source>Invalid certificate</source>
-        <translation type="obsolete">Neveljavno potrdilo</translation>
-    </message>
-    <message>
-        <source>This is not a valid SSL certificate.</source>
-        <translation type="obsolete">To ni veljavno potrdilo SSL.</translation>
-    </message>
-    <message>
-        <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="obsolete">Čas začetka in konca ne smeta biti enaka.</translation>
-    </message>
-    <message>
-        <source>Time Error</source>
-        <translation type="obsolete">Napaka časa</translation>
-    </message>
-    <message>
-        <source>Length Error</source>
-        <translation type="obsolete">Napaka dolžine</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="obsolete">Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="obsolete">Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
     </message>
 </context>
 <context>

@@ -449,7 +449,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="204"/>
         <source>All addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi adresai</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="239"/>
@@ -512,7 +512,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="337"/>
         <source>Optional IP Address to bind to (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebūtinas IP adresas su kuriuo susieti (būtina paleisti iš naujo)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="340"/>
@@ -598,45 +598,45 @@ Klaida: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="259"/>
         <source>Torrent: %1, running external program, command: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentas: %1, vykdoma išorinė programa, komanda: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="266"/>
+        <location filename="../app/application.cpp" line="273"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentas: %1, išorinės programos komanda buvo vykdoma per ilgai (trukmė &gt; %2), vykdymas nepavyko.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="316"/>
+        <location filename="../app/application.cpp" line="323"/>
         <source>Torrent: %1, sending mail notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentas: %1, siunčiamas pašto pranešimas</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="420"/>
+        <location filename="../app/application.cpp" line="427"/>
         <source>Information</source>
         <translation>Informacija</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="421"/>
+        <location filename="../app/application.cpp" line="428"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Kad valdytumėte qBittorrent, prisijunkite prie tinklo naudotojo sąsajos adresu http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="422"/>
+        <location filename="../app/application.cpp" line="429"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Tinklo naudotojo sąsajos administratoriaus naudotojo vardas yra: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="425"/>
+        <location filename="../app/application.cpp" line="432"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Tinklo naudotojo sąsajos administratoriaus slaptažodis vis dar yra numatytasis: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="426"/>
+        <location filename="../app/application.cpp" line="433"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Yra saugumo spragos rizika, pasikeiskite savo slaptažodį programos nustatymuose.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="598"/>
+        <location filename="../app/application.cpp" line="605"/>
         <source>Saving torrent progress...</source>
         <translation>Išsaugoma torento eiga...</translation>
     </message>
@@ -717,7 +717,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="284"/>
         <source>Use global settings</source>
-        <translation>Naudoti globalius nustatymus</translation>
+        <translation>Naudoti visuotinius nustatymus</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="289"/>
@@ -1041,68 +1041,68 @@ Klaida: %2</translation>
         <translation>&quot;%1&quot; pasiekė didžiausią jūsų nustatytą dalinimosi santykį. Pristabdoma...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Sistemos tinklo būsena pasikeitė į %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>ONLINE</source>
         <translation>PRISIJUNGTA</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1708"/>
         <source>OFFLINE</source>
         <translation>ATSIJUNGTA</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1726"/>
+        <location filename="../base/bittorrent/session.cpp" line="1720"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Pasikeitė %1 tinklo konfigūracija, iš naujo įkeliamas seanso susiejimas</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1744"/>
+        <location filename="../base/bittorrent/session.cpp" line="1738"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sukonfigūruotos tinklo sąsajos adresas %1 nėra teisingas.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2039"/>
+        <location filename="../base/bittorrent/session.cpp" line="2033"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Nepavyko iškoduoti &quot;%1&quot; torento failo.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2154"/>
+        <location filename="../base/bittorrent/session.cpp" line="2148"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Rekursyvus failo &quot;%1&quot;, įdėto į torentą &quot;%2&quot;, atsiuntimas</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2482"/>
+        <location filename="../base/bittorrent/session.cpp" line="2476"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Nepavyko išsaugoti &quot;%1.torrent&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2603"/>
+        <location filename="../base/bittorrent/session.cpp" line="2597"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>nes %1 yra išjungta.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2606"/>
+        <location filename="../base/bittorrent/session.cpp" line="2600"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>nes %1 yra išjungta.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2624"/>
+        <location filename="../base/bittorrent/session.cpp" line="2618"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL skleidėjo patikrinimas nepavyko adresu: &quot;%1&quot;, pranešimas: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2664"/>
+        <location filename="../base/bittorrent/session.cpp" line="2658"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent nepavyko klausytis ties įrenginio %1 prievadu: %2/%3. Priežastis: %4.</translation>
@@ -1126,152 +1126,152 @@ Klaida: %2</translation>
         <translation>Atsiunčiamas &apos;%1&apos;, luktelkite...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1578"/>
+        <location filename="../base/bittorrent/session.cpp" line="1572"/>
         <source>DHT support [ON]</source>
         <translation>DHT palaikymas [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1583"/>
+        <location filename="../base/bittorrent/session.cpp" line="1577"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>DHT palaikymas [IŠJUNGTAS]. Priežastis: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1591"/>
+        <location filename="../base/bittorrent/session.cpp" line="1585"/>
         <source>DHT support [OFF]</source>
         <translation>DHT palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="218"/>
-        <location filename="../base/bittorrent/session.cpp" line="1820"/>
+        <location filename="../base/bittorrent/session.cpp" line="1814"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent bando klausytis ties visų įrenginių prievadu: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1763"/>
+        <location filename="../base/bittorrent/session.cpp" line="1757"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Ši tinklo sąsaja yra netinkama: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="222"/>
-        <location filename="../base/bittorrent/session.cpp" line="1831"/>
+        <location filename="../base/bittorrent/session.cpp" line="1825"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent bando klausytis ties įrenginio %1 prievadu: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1797"/>
+        <location filename="../base/bittorrent/session.cpp" line="1791"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorent nepavyko rasti %1 vietinio adreso klausymuisi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1824"/>
+        <location filename="../base/bittorrent/session.cpp" line="1818"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent nepavyko pasiklausyti ties visų sąsajų prievadu: %1. Priežastis: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1950"/>
+        <location filename="../base/bittorrent/session.cpp" line="1944"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Seklys &apos;%1&apos; buvo pridėtas prie torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1960"/>
+        <location filename="../base/bittorrent/session.cpp" line="1954"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Seklys &apos;%1&apos; buvo ištrintas iš torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1975"/>
+        <location filename="../base/bittorrent/session.cpp" line="1969"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL šaltinis &apos;%1&apos; buvo pridėtas prie torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1981"/>
+        <location filename="../base/bittorrent/session.cpp" line="1975"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL šaltinis &apos;%1&apos; buvo pašalintas iš torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2249"/>
+        <location filename="../base/bittorrent/session.cpp" line="2243"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Nepavyko pratęsti torento &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2308"/>
+        <location filename="../base/bittorrent/session.cpp" line="2302"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Nurodytas IP filtras sėkmingai įkeltas. %1 taisyklės pritaikytos.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2314"/>
+        <location filename="../base/bittorrent/session.cpp" line="2308"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Klaida: Nepavyko įkelti nurodyto IP filtro.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2519"/>
+        <location filename="../base/bittorrent/session.cpp" line="2513"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Nepavyko pridėti torento. Priežastis: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2465"/>
+        <location filename="../base/bittorrent/session.cpp" line="2459"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; buvo pratęstas (spartus pratęsimas)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2496"/>
+        <location filename="../base/bittorrent/session.cpp" line="2490"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; buvo pridėtas į siuntimų sąrašą.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2567"/>
+        <location filename="../base/bittorrent/session.cpp" line="2561"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Įvyko I/O klaida, &apos;%1&apos; pristabdytas. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2575"/>
+        <location filename="../base/bittorrent/session.cpp" line="2569"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Prievadų išdėstymas nesėkmingas, žinutė: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2581"/>
+        <location filename="../base/bittorrent/session.cpp" line="2575"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Prievadų išdėstymas sėkmingas, žinutė: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2591"/>
+        <location filename="../base/bittorrent/session.cpp" line="2585"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>dėl IP filtro.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2594"/>
+        <location filename="../base/bittorrent/session.cpp" line="2588"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>dėl prievadų filtro.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2597"/>
+        <location filename="../base/bittorrent/session.cpp" line="2591"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>dėl i2p maišytos veiksenos apribojimų.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2600"/>
+        <location filename="../base/bittorrent/session.cpp" line="2594"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>nes jo žemas prievadas.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2638"/>
+        <location filename="../base/bittorrent/session.cpp" line="2632"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent sėkmingai klausosi ties įrenginio %1 prievadu: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2673"/>
+        <location filename="../base/bittorrent/session.cpp" line="2667"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Išorinis IP: %1</translation>
@@ -1280,17 +1280,17 @@ Klaida: %2</translation>
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1392"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1388"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Nepavyko perkelti torento: &apos;%1&apos;. Priežastis: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1544"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1540"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Failų dydžio nesutapimas torente &quot;%1&quot;, jis pristabdomas.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1550"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1546"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Spartaus pratęsimo duomenys torentui &quot;%1&quot; buvo atmesti. Priežastis: %2. Tikrinama iš naujo...</translation>
     </message>
@@ -1599,12 +1599,12 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
     <message>
         <location filename="../webui/extra_translations.h" line="47"/>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Globalaus išsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
+        <translation>Visuotinio išsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="48"/>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Globalaus atsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
+        <translation>Visuotinio atsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="49"/>
@@ -1800,7 +1800,7 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
     <message>
         <location filename="../webui/extra_translations.h" line="93"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Alternatyvūs globalūs greičio apribojimai</translation>
+        <translation>Alternatyvūs visuotiniai greičio apribojimai</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="94"/>
@@ -1810,7 +1810,7 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
     <message>
         <location filename="../webui/extra_translations.h" line="95"/>
         <source>Information about certificates</source>
-        <translation>Informacija apie sertifikatus</translation>
+        <translation>Informacija apie liudijimus</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="96"/>
@@ -2053,12 +2053,12 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="229"/>
         <source>Set Global Download Limit...</source>
-        <translation>Nustatyti globalią atsiuntimo greičio ribą...</translation>
+        <translation>Nustatyti visuotinę atsiuntimo greičio ribą...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="234"/>
         <source>Set Global Upload Limit...</source>
-        <translation>Nustatyti globalią išsiuntimo greičio ribą...</translation>
+        <translation>Nustatyti visuotinę išsiuntimo greičio ribą...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="239"/>
@@ -2444,12 +2444,12 @@ Ar norite susieti .torrent failus bei Magnet nuorodas su qBittorrent?</translati
     <message>
         <location filename="../gui/mainwindow.cpp" line="825"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Globalus išsiuntimo greičio apribojimas</translation>
+        <translation>Visuotinis išsiuntimo greičio apribojimas</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="841"/>
         <source>Global Download Speed Limit</source>
-        <translation>Globalus atsiuntimo greičio apribojimas</translation>
+        <translation>Visuotinis atsiuntimo greičio apribojimas</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="991"/>
@@ -2480,7 +2480,8 @@ Ar norite susieti .torrent failus bei Magnet nuorodas su qBittorrent?</translati
         <location filename="../gui/mainwindow.cpp" line="1506"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūsų Python versija (%1) yra pasenusi. Tam, kad veiktų paieškos sistemos, prašome atnaujinti iki naujausios versijos.
+Minimalūs reikalavimai: 2.7.9 / 3.3.0.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1571"/>
@@ -2528,10 +2529,6 @@ Ar norite atsisiųsti %1?</translation>
         <location filename="../gui/mainwindow.cpp" line="817"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Nepavyko atsisiųsti failo iš URL &quot;%1&quot;, prežastis: %2.</translation>
-    </message>
-    <message>
-        <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation type="obsolete">Jūsų Python versija %1 yra pasenusi. Kad veiktų paieškos sistemos, prašome atnaujinti iki naujausios versijos. Minimalūs reikalavimai: 2.7.0/3.3.0.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1516"/>
@@ -4053,980 +4050,980 @@ Ar tikrai norite uždaryti qBittorrent?</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Parinktys</translation>
+        <translation>Parinktys</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="49"/>
+        <location filename="../gui/optionsdlg.ui" line="52"/>
         <source>Behavior</source>
-        <translation type="unfinished">Elgsena</translation>
+        <translation>Elgsena</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="54"/>
+        <location filename="../gui/optionsdlg.ui" line="57"/>
         <source>Downloads</source>
-        <translation type="unfinished">Atsiuntimai</translation>
+        <translation>Atsiuntimai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="59"/>
+        <location filename="../gui/optionsdlg.ui" line="62"/>
         <source>Connection</source>
-        <translation type="unfinished">Jungiamumas</translation>
+        <translation>Jungiamumas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="64"/>
+        <location filename="../gui/optionsdlg.ui" line="67"/>
         <source>Speed</source>
-        <translation type="unfinished">Greitis</translation>
+        <translation>Greitis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="69"/>
+        <location filename="../gui/optionsdlg.ui" line="72"/>
         <source>BitTorrent</source>
-        <translation type="unfinished">BitTorrent</translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="74"/>
+        <location filename="../gui/optionsdlg.ui" line="77"/>
         <source>Web UI</source>
-        <translation type="unfinished">Tinklo sąsaja</translation>
+        <translation>Tinklo sąsaja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="79"/>
+        <location filename="../gui/optionsdlg.ui" line="82"/>
         <source>Advanced</source>
-        <translation type="unfinished">Sudėtingiau</translation>
+        <translation>Išplėstinės</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="125"/>
+        <location filename="../gui/optionsdlg.ui" line="128"/>
         <source>Language</source>
-        <translation type="unfinished">Kalba</translation>
+        <translation>Kalba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="133"/>
+        <location filename="../gui/optionsdlg.ui" line="136"/>
         <source>User Interface Language:</source>
-        <translation type="unfinished">Naudotojo sąsajos kalba:</translation>
+        <translation>Naudotojo sąsajos kalba:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="161"/>
+        <location filename="../gui/optionsdlg.ui" line="164"/>
         <source>(Requires restart)</source>
-        <translation type="unfinished">(būtina paleisti iš naujo)</translation>
+        <translation>(būtina paleisti iš naujo)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="189"/>
+        <location filename="../gui/optionsdlg.ui" line="192"/>
         <source>Transfer List</source>
-        <translation type="unfinished">Siuntimų sąrašas</translation>
+        <translation>Siuntimų sąrašas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="195"/>
+        <location filename="../gui/optionsdlg.ui" line="198"/>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished">Patvirtinti, kai ištrinama torentus</translation>
+        <translation>Patvirtinti, kai ištrinama torentus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="205"/>
+        <location filename="../gui/optionsdlg.ui" line="208"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="unfinished">Naudoti skirtingas eilučių spalvas</translation>
+        <translation>Naudoti skirtingas eilučių spalvas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="217"/>
+        <location filename="../gui/optionsdlg.ui" line="220"/>
         <source>Hide zero and infinity values</source>
-        <translation type="unfinished">Slėpti nulio ir begalybės reikšmes</translation>
+        <translation>Slėpti nulio ir begalybės reikšmes</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="225"/>
+        <location filename="../gui/optionsdlg.ui" line="228"/>
         <source>Always</source>
-        <translation type="unfinished">Visada</translation>
+        <translation>Visada</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="230"/>
+        <location filename="../gui/optionsdlg.ui" line="233"/>
         <source>Paused torrents only</source>
-        <translation type="unfinished">Tik pristabdytus torentus</translation>
+        <translation>Tik pristabdytuose torentuose</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="259"/>
+        <location filename="../gui/optionsdlg.ui" line="262"/>
         <source>Action on double-click</source>
-        <translation type="unfinished">Veiksmai dvigubam paspaudimui</translation>
+        <translation>Veiksmas, atliekamas du kartus spustelėjus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="268"/>
+        <location filename="../gui/optionsdlg.ui" line="271"/>
         <source>Downloading torrents:</source>
-        <translation type="unfinished">Atsiunčiamiems torentams:</translation>
+        <translation>Atsiunčiamus torentus:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="285"/>
-        <location filename="../gui/optionsdlg.ui" line="311"/>
+        <location filename="../gui/optionsdlg.ui" line="288"/>
+        <location filename="../gui/optionsdlg.ui" line="314"/>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished">Pratęsti / pristabdyti torentą</translation>
+        <translation>Pratęsti / pristabdyti torentą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="290"/>
-        <location filename="../gui/optionsdlg.ui" line="316"/>
+        <location filename="../gui/optionsdlg.ui" line="293"/>
+        <location filename="../gui/optionsdlg.ui" line="319"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">Atverti atsiuntimo aplanką</translation>
+        <translation>Atverti paskirties aplanką</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="295"/>
-        <location filename="../gui/optionsdlg.ui" line="321"/>
+        <location filename="../gui/optionsdlg.ui" line="298"/>
+        <location filename="../gui/optionsdlg.ui" line="324"/>
         <source>No action</source>
-        <translation type="unfinished">Jokio veiksmo</translation>
+        <translation>Jokio veiksmo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="303"/>
+        <location filename="../gui/optionsdlg.ui" line="306"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished">Užbaigtiems torentams:</translation>
+        <translation>Užbaigtus torentus:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="335"/>
+        <location filename="../gui/optionsdlg.ui" line="338"/>
         <source>Desktop</source>
-        <translation type="unfinished">Darbalaukis</translation>
+        <translation>Darbalaukis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="341"/>
+        <location filename="../gui/optionsdlg.ui" line="344"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished">Paleisti qBittorrent Windows starto metu</translation>
+        <translation>Paleisti qBittorrent Windows paleidimo metu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="348"/>
+        <location filename="../gui/optionsdlg.ui" line="351"/>
         <source>Show splash screen on start up</source>
-        <translation type="unfinished">Paleidžiant programą rodyti pradžios langą</translation>
+        <translation>Paleidžiant programą rodyti prisistatymo langą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="358"/>
+        <location filename="../gui/optionsdlg.ui" line="361"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished">Paleisti qBittorrent sumažintą</translation>
+        <translation>Paleisti qBittorrent suskleistą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="365"/>
+        <location filename="../gui/optionsdlg.ui" line="368"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation type="unfinished">Išeinant, klausti patvirtinimo, kai yra aktyvių siuntimų</translation>
+        <translation>Išeinant, klausti patvirtinimo, kai yra aktyvių siuntimų</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="375"/>
+        <location filename="../gui/optionsdlg.ui" line="378"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="unfinished">Užbaigus atsiuntimus ir automatiškai išeinant, klausti patvirtinimo</translation>
+        <translation>Užbaigus atsiuntimus ir automatiškai išeinant, klausti patvirtinimo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="385"/>
+        <location filename="../gui/optionsdlg.ui" line="388"/>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished">Rodyti qBittorrent piktogramą pranešimų srityje</translation>
+        <translation>Rodyti qBittorrent piktogramą pranešimų srityje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="394"/>
+        <location filename="../gui/optionsdlg.ui" line="397"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished">Sumažinti qBittorrent langą į pranešimų sritį</translation>
+        <translation>Suskleisti qBittorrent į pranešimų sritį</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="404"/>
+        <location filename="../gui/optionsdlg.ui" line="407"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="unfinished">Užverti qBittorrent į pranešimų sritį</translation>
+        <translation>Užverti qBittorrent į pranešimų sritį</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="413"/>
+        <location filename="../gui/optionsdlg.ui" line="416"/>
         <source>Tray icon style:</source>
-        <translation type="unfinished">Dėklo piktogramos stilius:</translation>
+        <translation>Dėklo piktogramos stilius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="421"/>
+        <location filename="../gui/optionsdlg.ui" line="424"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Įprasta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="426"/>
+        <location filename="../gui/optionsdlg.ui" line="429"/>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished">Vienspalvė (Tamsi)</translation>
+        <translation>Vienspalvė (Tamsi)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="431"/>
+        <location filename="../gui/optionsdlg.ui" line="434"/>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished">Vienspalvė (Šviesi)</translation>
+        <translation>Vienspalvė (Šviesi)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="444"/>
+        <location filename="../gui/optionsdlg.ui" line="447"/>
         <source>File association</source>
-        <translation type="unfinished">Failų susiejimas</translation>
+        <translation>Failų susiejimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="450"/>
+        <location filename="../gui/optionsdlg.ui" line="453"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished">Naudoti qBittorrent .torrent failams</translation>
+        <translation>Naudoti qBittorrent .torrent failams</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="457"/>
+        <location filename="../gui/optionsdlg.ui" line="460"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished">Naudoti qBittorrent Magnet nuorodoms</translation>
+        <translation>Naudoti qBittorrent Magnet nuorodoms</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="470"/>
+        <location filename="../gui/optionsdlg.ui" line="473"/>
         <source>Power Management</source>
-        <translation type="unfinished">Energijos valdymas</translation>
+        <translation>Energijos valdymas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="476"/>
+        <location filename="../gui/optionsdlg.ui" line="479"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished">Neleisti užmigdyti sistemos kai yra aktyvių siuntimų</translation>
+        <translation>Neleisti užmigdyti sistemos, kai yra aktyvių siuntimų</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="486"/>
+        <location filename="../gui/optionsdlg.ui" line="489"/>
         <source>Log file</source>
-        <translation type="unfinished">Žurnalo failas</translation>
+        <translation>Žurnalo failas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="500"/>
+        <location filename="../gui/optionsdlg.ui" line="503"/>
         <source>Save path:</source>
-        <translation type="unfinished">Atsiuntimo vieta:</translation>
+        <translation>Išsaugojimo kelias:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="530"/>
+        <location filename="../gui/optionsdlg.ui" line="533"/>
         <source>Backup the log file after:</source>
-        <translation type="unfinished">Daryti atsarginę žurnalo failo kopiją po:</translation>
+        <translation>Daryti atsarginę žurnalo failo kopiją po:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="537"/>
+        <location filename="../gui/optionsdlg.ui" line="540"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="573"/>
+        <location filename="../gui/optionsdlg.ui" line="576"/>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished">Ištrinti atsargines žurnalo kopijas, senesnes nei:</translation>
+        <translation>Ištrinti atsargines žurnalo kopijas, senesnes nei:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="597"/>
+        <location filename="../gui/optionsdlg.ui" line="600"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished">dienų</translation>
+        <translation>dienų</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="602"/>
+        <location filename="../gui/optionsdlg.ui" line="605"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation type="unfinished">mėnesių</translation>
+        <translation>mėnesių</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="607"/>
+        <location filename="../gui/optionsdlg.ui" line="610"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
-        <translation type="unfinished">metų</translation>
+        <translation>metų</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="681"/>
+        <location filename="../gui/optionsdlg.ui" line="684"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished">Kai pridedamas torentas</translation>
+        <translation>Kai pridedamas torentas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="687"/>
+        <location filename="../gui/optionsdlg.ui" line="690"/>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished">Rodyti torento turinį ir keletą parinkčių</translation>
+        <translation>Rodyti torento turinį ir keletą parinkčių</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="699"/>
+        <location filename="../gui/optionsdlg.ui" line="702"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished">Iškelti torento dialogo langą į priekį</translation>
+        <translation>Iškelti torento dialogo langą į priekį</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="712"/>
+        <location filename="../gui/optionsdlg.ui" line="715"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished">Nepradėti atsiuntimų automatiškai</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="719"/>
-        <source>Should the .torrent file be deleted after adding it</source>
-        <translation type="unfinished">Ar .torrent failas po pridėjimo turėtų būti ištrinamas</translation>
+        <translation>Nepradėti atsiuntimų automatiškai</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="722"/>
-        <source>Delete .torrent files afterwards </source>
-        <translation type="unfinished">Po to ištrinti .torrent failus</translation>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation>Ar .torrent failas po pridėjimo turėtų būti ištrinamas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="734"/>
-        <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished">Taip pat ištrinti .torrent failus, kurių pridėjimas buvo atšauktas</translation>
+        <location filename="../gui/optionsdlg.ui" line="725"/>
+        <source>Delete .torrent files afterwards </source>
+        <translation>Po to ištrinti .torrent failus</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="737"/>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation>Taip pat ištrinti .torrent failus, kurių pridėjimas buvo atšauktas</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="740"/>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished">Taip pat kai pridėjimas yra atšaukiamas</translation>
+        <translation>Taip pat, kai pridėjimas yra atšaukiamas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="759"/>
+        <location filename="../gui/optionsdlg.ui" line="762"/>
         <source>Warning! Data loss possible!</source>
-        <translation type="unfinished">Įspėjimas! Galimas duomenų praradimas!</translation>
+        <translation>Įspėjimas! Galimas duomenų praradimas!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="774"/>
+        <location filename="../gui/optionsdlg.ui" line="777"/>
         <source>Saving Management</source>
-        <translation type="unfinished">Išsaugojimo tvarkymas</translation>
+        <translation>Išsaugojimo tvarkymas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="782"/>
+        <location filename="../gui/optionsdlg.ui" line="785"/>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished">Numatytoji torento tvarkymo veiksena:</translation>
+        <translation>Numatytoji torento tvarkymo veiksena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="794"/>
+        <location filename="../gui/optionsdlg.ui" line="797"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatinė veiksena reiškia, kad įvairios torento savybės (pvz., išsaugojimo kelias) bus nuspręstos pagal priskirtą kategoriją.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="798"/>
+        <location filename="../gui/optionsdlg.ui" line="801"/>
         <source>Manual</source>
-        <translation type="unfinished">Rankinė</translation>
+        <translation>Rankinė</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="803"/>
+        <location filename="../gui/optionsdlg.ui" line="806"/>
         <source>Automatic</source>
-        <translation type="unfinished">Automatinė</translation>
+        <translation>Automatinė</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="826"/>
+        <location filename="../gui/optionsdlg.ui" line="829"/>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished">Kai pakeičiama torento kategorija:</translation>
+        <translation>Kai pakeičiama torento kategorija:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="836"/>
+        <location filename="../gui/optionsdlg.ui" line="839"/>
         <source>Relocate torrent</source>
-        <translation type="unfinished">Perkelti torentą</translation>
+        <translation>Perkelti torentą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="841"/>
+        <location filename="../gui/optionsdlg.ui" line="844"/>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished">Perjungti torentą į rankinę veikseną</translation>
+        <translation>Perjungti torentą į rankinę veikseną</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="864"/>
+        <location filename="../gui/optionsdlg.ui" line="867"/>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished">Kai pakeičiamas numatytasis išsaugojimo kelias:</translation>
+        <translation>Kai pakeičiamas numatytasis išsaugojimo kelias:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="877"/>
-        <location filename="../gui/optionsdlg.ui" line="918"/>
+        <location filename="../gui/optionsdlg.ui" line="880"/>
+        <location filename="../gui/optionsdlg.ui" line="921"/>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished">Perkelti paveiktus torentus</translation>
+        <translation>Perkelti paveiktus torentus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="882"/>
-        <location filename="../gui/optionsdlg.ui" line="923"/>
+        <location filename="../gui/optionsdlg.ui" line="885"/>
+        <location filename="../gui/optionsdlg.ui" line="926"/>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished">Perjungti paveiktus torentus į rankinę veikseną</translation>
+        <translation>Perjungti paveiktus torentus į rankinę veikseną</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="905"/>
+        <location filename="../gui/optionsdlg.ui" line="908"/>
         <source>When Category changed:</source>
-        <translation type="unfinished">Kai pakeičiama kategorija:</translation>
+        <translation>Kai pakeičiama kategorija:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="948"/>
+        <location filename="../gui/optionsdlg.ui" line="951"/>
         <source>Use Subcategories</source>
-        <translation type="unfinished">Naudoti subkategorijas</translation>
+        <translation>Naudoti subkategorijas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="957"/>
+        <location filename="../gui/optionsdlg.ui" line="960"/>
         <source>Default Save Path:</source>
-        <translation type="unfinished">Numatytasis išsaugojimo kelias:</translation>
+        <translation>Numatytasis išsaugojimo kelias:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1003"/>
+        <location filename="../gui/optionsdlg.ui" line="1006"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished">Nebaigtus siuntimus laikyti čia:</translation>
+        <translation>Nebaigtus siuntimus laikyti čia:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1042"/>
+        <location filename="../gui/optionsdlg.ui" line="1045"/>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished">Kopijuoti .torrent failus į:</translation>
+        <translation>Kopijuoti .torrent failus į:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1075"/>
+        <location filename="../gui/optionsdlg.ui" line="1078"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished">Kopijuoti baigtų atsiuntimų .torrent failus į:</translation>
+        <translation>Kopijuoti baigtų atsiuntimų .torrent failus į:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1110"/>
+        <location filename="../gui/optionsdlg.ui" line="1113"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished">Priskirti disko vietą visiems failams</translation>
+        <translation>Iš anksto priskirti disko vietą visiems failams</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1117"/>
+        <location filename="../gui/optionsdlg.ui" line="1120"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished">Pridėti .!qB plėtinį nebaigtiems siųsti failams</translation>
+        <translation>Pridėti .!qB plėtinį nebaigtiems siųsti failams</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1127"/>
+        <location filename="../gui/optionsdlg.ui" line="1130"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished">Automatiškai pridėti torentus iš:</translation>
+        <translation>Automatiškai pridėti torentus iš:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1174"/>
+        <location filename="../gui/optionsdlg.ui" line="1177"/>
         <source>Add entry</source>
-        <translation type="unfinished">Pridėti įrašą</translation>
+        <translation>Pridėti įrašą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1184"/>
+        <location filename="../gui/optionsdlg.ui" line="1187"/>
         <source>Remove entry</source>
-        <translation type="unfinished">Šalinti įrašą</translation>
+        <translation>Šalinti įrašą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1211"/>
+        <location filename="../gui/optionsdlg.ui" line="1214"/>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished">Pabaigus atsiuntimą, pranešti el. paštu</translation>
+        <translation>Pabaigus atsiuntimą, pranešti el. paštu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1228"/>
+        <location filename="../gui/optionsdlg.ui" line="1231"/>
         <source>Destination email:</source>
-        <translation type="unfinished">Gavėjo el. pašto adresas:</translation>
+        <translation>Gavėjo el. pašto adresas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1235"/>
+        <location filename="../gui/optionsdlg.ui" line="1238"/>
         <source>SMTP server:</source>
-        <translation type="unfinished">SMTP serveris:</translation>
+        <translation>SMTP serveris:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1247"/>
+        <location filename="../gui/optionsdlg.ui" line="1250"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished">Šis serveris reikalauja saugaus susijungimo (SSL)</translation>
+        <translation>Šis serveris reikalauja saugaus susijungimo (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1254"/>
-        <location filename="../gui/optionsdlg.ui" line="1666"/>
-        <location filename="../gui/optionsdlg.ui" line="2803"/>
+        <location filename="../gui/optionsdlg.ui" line="1257"/>
+        <location filename="../gui/optionsdlg.ui" line="1669"/>
+        <location filename="../gui/optionsdlg.ui" line="2806"/>
         <source>Authentication</source>
-        <translation type="unfinished">Atpažinimas</translation>
+        <translation>Atpažinimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1266"/>
-        <location filename="../gui/optionsdlg.ui" line="1680"/>
-        <location filename="../gui/optionsdlg.ui" line="2842"/>
-        <location filename="../gui/optionsdlg.ui" line="2917"/>
+        <location filename="../gui/optionsdlg.ui" line="1269"/>
+        <location filename="../gui/optionsdlg.ui" line="1683"/>
+        <location filename="../gui/optionsdlg.ui" line="2845"/>
+        <location filename="../gui/optionsdlg.ui" line="2920"/>
         <source>Username:</source>
-        <translation type="unfinished">Naudotojo vardas:</translation>
+        <translation>Naudotojo vardas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1276"/>
-        <location filename="../gui/optionsdlg.ui" line="1690"/>
-        <location filename="../gui/optionsdlg.ui" line="2849"/>
-        <location filename="../gui/optionsdlg.ui" line="2931"/>
+        <location filename="../gui/optionsdlg.ui" line="1279"/>
+        <location filename="../gui/optionsdlg.ui" line="1693"/>
+        <location filename="../gui/optionsdlg.ui" line="2852"/>
+        <location filename="../gui/optionsdlg.ui" line="2934"/>
         <source>Password:</source>
-        <translation type="unfinished">Slaptažodis:</translation>
+        <translation>Slaptažodis:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1296"/>
+        <location filename="../gui/optionsdlg.ui" line="1299"/>
         <source>Run external program on torrent completion</source>
-        <translation type="unfinished">Užbaigus torento siuntimą, paleisti išorinę programą</translation>
+        <translation>Užbaigus torento siuntimą, paleisti išorinę programą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1356"/>
+        <location filename="../gui/optionsdlg.ui" line="1359"/>
         <source>Listening Port</source>
-        <translation type="unfinished">Klausymosi prievadas</translation>
+        <translation>Klausymosi prievadas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1364"/>
+        <location filename="../gui/optionsdlg.ui" line="1367"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished">Prievadas, naudojamas įeinantiems sujungimams:</translation>
+        <translation>Prievadas, naudojamas įeinantiems sujungimams:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1384"/>
+        <location filename="../gui/optionsdlg.ui" line="1387"/>
         <source>Random</source>
-        <translation type="unfinished">Atsitiktinis</translation>
+        <translation>Atsitiktinis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1406"/>
+        <location filename="../gui/optionsdlg.ui" line="1409"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished">Naudoti UPnP / NAT-PMP prievadų nukreipimą mašrutizatoriuje</translation>
+        <translation>Naudoti UPnP / NAT-PMP prievadų nukreipimą mašrutizatoriuje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1416"/>
+        <location filename="../gui/optionsdlg.ui" line="1419"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished">Kiekvieno paleidimo metu naudoti skirtingą prievadą</translation>
+        <translation>Kiekvieno paleidimo metu naudoti skirtingą prievadą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1426"/>
+        <location filename="../gui/optionsdlg.ui" line="1429"/>
         <source>Connections Limits</source>
-        <translation type="unfinished">Prisijungimų apribojimai</translation>
+        <translation>Prisijungimų apribojimai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1442"/>
+        <location filename="../gui/optionsdlg.ui" line="1445"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished">Didžiausias prisijungimų kiekis vienam torentui:</translation>
+        <translation>Didžiausias prisijungimų skaičius vienam torentui:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1452"/>
+        <location filename="../gui/optionsdlg.ui" line="1455"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished">Globalus didžiausias prisijungimų skaičius:</translation>
+        <translation>Visuotinis didžiausias prisijungimų skaičius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1491"/>
+        <location filename="../gui/optionsdlg.ui" line="1494"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished">Didžiausias išsiuntimo prisijungimų kiekis vienam torentui:</translation>
+        <translation>Didžiausias išsiuntimo prisijungimų skaičius vienam torentui:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1501"/>
+        <location filename="../gui/optionsdlg.ui" line="1504"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished">Globalus didžiausias leistinas išsiuntimo prisijungimų kiekis:</translation>
+        <translation>Visuotinis didžiausias leistinas išsiuntimo prisijungimų skaičius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1540"/>
+        <location filename="../gui/optionsdlg.ui" line="1543"/>
         <source>Proxy Server</source>
-        <translation type="unfinished">Proxy serveris</translation>
+        <translation>Įgaliotasis serveris</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1548"/>
+        <location filename="../gui/optionsdlg.ui" line="1551"/>
         <source>Type:</source>
-        <translation type="unfinished">Tipas:</translation>
+        <translation>Tipas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1556"/>
+        <location filename="../gui/optionsdlg.ui" line="1559"/>
         <source>(None)</source>
-        <translation type="unfinished">(jokio)</translation>
+        <translation>(jokio)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1561"/>
+        <location filename="../gui/optionsdlg.ui" line="1564"/>
         <source>SOCKS4</source>
-        <translation type="unfinished">SOCKS4</translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1566"/>
+        <location filename="../gui/optionsdlg.ui" line="1569"/>
         <source>SOCKS5</source>
-        <translation type="unfinished">SOCKS5</translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1571"/>
+        <location filename="../gui/optionsdlg.ui" line="1574"/>
         <source>HTTP</source>
-        <translation type="unfinished">HTTP</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1582"/>
+        <location filename="../gui/optionsdlg.ui" line="1585"/>
         <source>Host:</source>
-        <translation type="unfinished">Stotis:</translation>
+        <translation>Serveris:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1602"/>
-        <location filename="../gui/optionsdlg.ui" line="2627"/>
+        <location filename="../gui/optionsdlg.ui" line="1605"/>
+        <location filename="../gui/optionsdlg.ui" line="2630"/>
         <source>Port:</source>
-        <translation type="unfinished">Prievadas:</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="1630"/>
-        <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished">Kitais atvejais proxy serveris naudojamas tik prisijungimams prie seklių</translation>
+        <translation>Prievadas:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1633"/>
+        <source>Otherwise, the proxy server is only used for tracker connections</source>
+        <translation>Kitais atvejais įgaliotasis serveris naudojamas tik prisijungimams prie seklių</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1636"/>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished">Naudoti proxy susijungimams su siuntėjais</translation>
+        <translation>Naudoti įgaliotąjį serverį susijungimams su siuntėjais</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1640"/>
+        <location filename="../gui/optionsdlg.ui" line="1643"/>
         <source>Disable connections not supported by proxies</source>
-        <translation type="unfinished">Išjungti proxy serverių nepalaikomus ryšius</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="1650"/>
-        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation type="unfinished">RSS kanalai, paieškos sistemos, programinės įrangos atnaujinimai ar bet kas kita nei torentų persiuntimai ar su jais susijusios operacijos (pvz., apsikeitimai su kitais siuntėjais) naudos tiesioginį susijungimą</translation>
+        <translation>Išjungti įgaliotųjų serverių nepalaikomus ryšius</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1653"/>
+        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
+        <translation>RSS kanalai, paieškos sistemos, programinės įrangos atnaujinimai ar bet kas kita, nei torentų persiuntimai ar su jais susijusios operacijos (pvz., apsikeitimai su kitais siuntėjais) naudos tiesioginį susijungimą</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1656"/>
         <source>Use proxy only for torrents</source>
-        <translation type="unfinished">Naudoti proxy tik torentams</translation>
+        <translation>Naudoti įgaliotąjį serverį tik torentams</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1706"/>
+        <location filename="../gui/optionsdlg.ui" line="1709"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished">Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
+        <translation>Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1719"/>
+        <location filename="../gui/optionsdlg.ui" line="1722"/>
         <source>IP Filtering</source>
-        <translation type="unfinished">IP filtravimas</translation>
+        <translation>IP filtravimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1733"/>
+        <location filename="../gui/optionsdlg.ui" line="1736"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished">Kelias iki filtro (.dat, .p2p, .p2b):</translation>
+        <translation>Kelias iki filtro (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1762"/>
+        <location filename="../gui/optionsdlg.ui" line="1765"/>
         <source>Reload the filter</source>
-        <translation type="unfinished">Įkelti filtrą iš naujo</translation>
+        <translation>Įkelti filtrą iš naujo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1771"/>
+        <location filename="../gui/optionsdlg.ui" line="1774"/>
         <source>Apply to trackers</source>
-        <translation type="unfinished">Taikyti sekliams</translation>
+        <translation>Taikyti sekliams</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1829"/>
+        <location filename="../gui/optionsdlg.ui" line="1832"/>
         <source>Global Rate Limits</source>
-        <translation type="unfinished">Globalus greičio ribojimas</translation>
+        <translation>Visuotinis greičio ribojimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1851"/>
-        <location filename="../gui/optionsdlg.ui" line="2042"/>
+        <location filename="../gui/optionsdlg.ui" line="1854"/>
+        <location filename="../gui/optionsdlg.ui" line="2045"/>
         <source>Upload:</source>
-        <translation type="unfinished">Išsiuntimo:</translation>
+        <translation>Išsiuntimo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1858"/>
-        <location filename="../gui/optionsdlg.ui" line="1881"/>
-        <location filename="../gui/optionsdlg.ui" line="2088"/>
-        <location filename="../gui/optionsdlg.ui" line="2095"/>
+        <location filename="../gui/optionsdlg.ui" line="1861"/>
+        <location filename="../gui/optionsdlg.ui" line="1884"/>
+        <location filename="../gui/optionsdlg.ui" line="2091"/>
+        <location filename="../gui/optionsdlg.ui" line="2098"/>
         <source>KiB/s</source>
-        <translation type="unfinished">KiB/s</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1895"/>
-        <location filename="../gui/optionsdlg.ui" line="2049"/>
+        <location filename="../gui/optionsdlg.ui" line="1898"/>
+        <location filename="../gui/optionsdlg.ui" line="2052"/>
         <source>Download:</source>
-        <translation type="unfinished">Atsiuntimo:</translation>
+        <translation>Atsiuntimo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1918"/>
+        <location filename="../gui/optionsdlg.ui" line="1921"/>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished">Alternatyvūs greičio apribojimai</translation>
+        <translation>Alternatyvūs greičio apribojimai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1924"/>
+        <location filename="../gui/optionsdlg.ui" line="1927"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished">Planuoti alternatyvių greičio apribojimų naudojimą</translation>
+        <translation>Planuoti alternatyvių greičio apribojimų naudojimą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1936"/>
+        <location filename="../gui/optionsdlg.ui" line="1939"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished">Nuo:</translation>
+        <translation>Nuo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1960"/>
+        <location filename="../gui/optionsdlg.ui" line="1963"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished">Iki:</translation>
+        <translation>Iki:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="1987"/>
+        <location filename="../gui/optionsdlg.ui" line="1990"/>
         <source>When:</source>
-        <translation type="unfinished">Kada:</translation>
+        <translation>Kada:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2001"/>
+        <location filename="../gui/optionsdlg.ui" line="2004"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasdieną</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2006"/>
+        <location filename="../gui/optionsdlg.ui" line="2009"/>
         <source>Weekdays</source>
-        <translation type="unfinished">Darbo dienomis</translation>
+        <translation>Darbo dienomis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2011"/>
+        <location filename="../gui/optionsdlg.ui" line="2014"/>
         <source>Weekends</source>
-        <translation type="unfinished">Savaitgaliais</translation>
+        <translation>Savaitgaliais</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2118"/>
+        <location filename="../gui/optionsdlg.ui" line="2121"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished">Greičio apribojimų nustatymai</translation>
+        <translation>Greičio apribojimų nustatymai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2124"/>
+        <location filename="../gui/optionsdlg.ui" line="2127"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished">Taikyti greičio apribojimus siuntėjams LAN tinkle</translation>
+        <translation>Taikyti greičio apribojimus siuntėjams LAN tinkle</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2131"/>
+        <location filename="../gui/optionsdlg.ui" line="2134"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished">Taikyti santykio apribojimą perdavimo lygio duomenims</translation>
+        <translation>Taikyti santykio apribojimą perdavimo pertekliui</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2138"/>
+        <location filename="../gui/optionsdlg.ui" line="2141"/>
         <source>Enable µTP protocol</source>
-        <translation type="unfinished">Įjungti µTP protokolą</translation>
+        <translation>Įjungti µTP protokolą</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2145"/>
+        <location filename="../gui/optionsdlg.ui" line="2148"/>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished">Taikyti greičio apribojimus µTP protokolui</translation>
+        <translation>Taikyti greičio apribojimus µTP protokolui</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2216"/>
+        <location filename="../gui/optionsdlg.ui" line="2219"/>
         <source>Privacy</source>
-        <translation type="unfinished">Privatumas</translation>
+        <translation>Privatumas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2222"/>
+        <location filename="../gui/optionsdlg.ui" line="2225"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished">Įjungti DHT (išcentruotą tinklą), kad rasti daugiau siuntėjų</translation>
+        <translation>Įjungti DHT (decentralizuotą tinklą), kad būtų rasta daugiau siuntėjų</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/optionsdlg.ui" line="2232"/>
-        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished">Keistis siuntėjais su suderinamais BitTorrent klientais (µTorrent, Vuze, ...)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2235"/>
-        <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished">Įjungti siuntėjų apsikeitimą (PeX), kad rasti daugiau siuntėjų</translation>
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation>Keistis siuntėjais su suderinamais BitTorrent klientais (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2245"/>
-        <source>Look for peers on your local network</source>
-        <translation type="unfinished">Ieškoti siuntėjų vietiniame tinkle</translation>
+        <location filename="../gui/optionsdlg.ui" line="2238"/>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation>Įjungti apsikeitimą siuntėjais (PeX), kad būtų rasta daugiau siuntėjų</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2248"/>
+        <source>Look for peers on your local network</source>
+        <translation>Ieškoti siuntėjų vietiniame tinkle</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2251"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished">Įjungti vietinių siuntėjų aptikimą, kad rasti daugiau siuntėjų</translation>
+        <translation>Įjungti vietinių siuntėjų aptikimą, kad būtų rasta daugiau siuntėjų</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2260"/>
+        <location filename="../gui/optionsdlg.ui" line="2263"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished">Šifravimo veiksena:</translation>
+        <translation>Šifravimo veiksena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2268"/>
+        <location filename="../gui/optionsdlg.ui" line="2271"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished">Teikti pirmenybę šifravimui</translation>
+        <translation>Teikti pirmenybę šifravimui</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2273"/>
+        <location filename="../gui/optionsdlg.ui" line="2276"/>
         <source>Require encryption</source>
-        <translation type="unfinished">Reikalauti šifravimo</translation>
+        <translation>Reikalauti šifravimo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2278"/>
+        <location filename="../gui/optionsdlg.ui" line="2281"/>
         <source>Disable encryption</source>
-        <translation type="unfinished">Išjungti šifravimą</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdlg.ui" line="2303"/>
-        <source>Enable when using a proxy or a VPN connection</source>
-        <translation type="unfinished">Įgalinkite, naudodami proxy ar VPN ryšį</translation>
+        <translation>Išjungti šifravimą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2306"/>
+        <source>Enable when using a proxy or a VPN connection</source>
+        <translation>Įjunkite, kai naudojate įgaliotąjį serverį ar VPN ryšį</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2309"/>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished">Įjungti anoniminę veikseną</translation>
+        <translation>Įjungti anoniminę veikseną</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2313"/>
+        <location filename="../gui/optionsdlg.ui" line="2316"/>
         <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
+        <translation> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2341"/>
+        <location filename="../gui/optionsdlg.ui" line="2344"/>
         <source>Torrent Queueing</source>
-        <translation type="unfinished">Siuntimų eilė</translation>
+        <translation>Siuntimų eilė</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2356"/>
+        <location filename="../gui/optionsdlg.ui" line="2359"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished">Didžiausias aktyvių atsiuntimų kiekis:</translation>
+        <translation>Didžiausias aktyvių atsiuntimų skaičius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2376"/>
+        <location filename="../gui/optionsdlg.ui" line="2379"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished">Didžiausias aktyvių išsiuntimų kiekis:</translation>
+        <translation>Didžiausias aktyvių išsiuntimų skaičius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2396"/>
+        <location filename="../gui/optionsdlg.ui" line="2399"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished">Didžiausias aktyvių torentų kiekis:</translation>
+        <translation>Didžiausias aktyvių torentų skaičius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2455"/>
+        <location filename="../gui/optionsdlg.ui" line="2458"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished">Šiuose apribojimuose neįskaičiuoti lėtų torentų</translation>
+        <translation>Į šiuos apribojimus neįskaičiuoti lėtus torentus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2465"/>
+        <location filename="../gui/optionsdlg.ui" line="2468"/>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished">Dalinimosi santykio ribojimas</translation>
+        <translation>Dalinimosi santykio ribojimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2476"/>
+        <location filename="../gui/optionsdlg.ui" line="2479"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished">Skleisti torentus, kol jų dalinimosi santykis pasieks</translation>
+        <translation>Skleisti torentus, kol jų dalinimosi santykis pasieks</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2505"/>
+        <location filename="../gui/optionsdlg.ui" line="2508"/>
         <source>then</source>
-        <translation type="unfinished">o tada</translation>
+        <translation>, o tuomet</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2516"/>
+        <location filename="../gui/optionsdlg.ui" line="2519"/>
         <source>Pause them</source>
-        <translation type="unfinished">juos pristabdyti</translation>
+        <translation>juos pristabdyti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2521"/>
+        <location filename="../gui/optionsdlg.ui" line="2524"/>
         <source>Remove them</source>
-        <translation type="unfinished">juos pašalinti</translation>
+        <translation>juos pašalinti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2540"/>
+        <location filename="../gui/optionsdlg.ui" line="2543"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation type="unfinished">Į naujus atsiuntimus, automatiškai pridėti šiuos seklius:</translation>
+        <translation>Į naujus atsiuntimus, automatiškai pridėti šiuos seklius:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2613"/>
+        <location filename="../gui/optionsdlg.ui" line="2616"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished">Įjungti Tinklo naudotojo sąsają (nuotolinis valdymas)</translation>
+        <translation>Įjungti tinklo naudotojo sąsają (nuotolinis valdymas)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2662"/>
+        <location filename="../gui/optionsdlg.ui" line="2665"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished">Naudoti UPnP / NAT-PMP, kad nukreipti prievadą iš maršrutizatoriaus</translation>
+        <translation>Naudoti UPnP / NAT-PMP, siekiant nukreipti prievadą iš maršrutizatoriaus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2672"/>
+        <location filename="../gui/optionsdlg.ui" line="2675"/>
         <source>Use HTTPS instead of HTTP</source>
-        <translation type="unfinished">Naudoti HTTPS vietoje HTTP</translation>
+        <translation>Vietoj HTTP naudoti HTTPS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2703"/>
+        <location filename="../gui/optionsdlg.ui" line="2706"/>
         <source>Certificate:</source>
-        <translation type="unfinished">Sertifikatas:</translation>
+        <translation>Liudijimas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2715"/>
+        <location filename="../gui/optionsdlg.ui" line="2718"/>
         <source>Import SSL Certificate</source>
-        <translation type="unfinished">Įkelti SSL sertifikatą</translation>
+        <translation>Importuoti SSL liudijimą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2756"/>
+        <location filename="../gui/optionsdlg.ui" line="2759"/>
         <source>Key:</source>
-        <translation type="unfinished">Raktas:</translation>
+        <translation>Raktas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2768"/>
+        <location filename="../gui/optionsdlg.ui" line="2771"/>
         <source>Import SSL Key</source>
-        <translation type="unfinished">Įkelti SSL raktą</translation>
+        <translation>Importuoti SSL raktą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2790"/>
+        <location filename="../gui/optionsdlg.ui" line="2793"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informacija apie sertifikatus&lt;/a&gt;</translation>
+        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informacija apie liudijimus&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2835"/>
+        <location filename="../gui/optionsdlg.ui" line="2838"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished">Apeiti vietinio serverio autentifikaciją</translation>
+        <translation>Apeiti vietinio serverio atpažinimą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2859"/>
+        <location filename="../gui/optionsdlg.ui" line="2862"/>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished">Atnaujinti mano dinaminį domeno vardą</translation>
+        <translation>Atnaujinti mano dinaminį domeno vardą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2871"/>
+        <location filename="../gui/optionsdlg.ui" line="2874"/>
         <source>Service:</source>
-        <translation type="unfinished">Paslauga:</translation>
+        <translation>Paslauga:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2894"/>
+        <location filename="../gui/optionsdlg.ui" line="2897"/>
         <source>Register</source>
-        <translation type="unfinished">Registruotis</translation>
+        <translation>Registruotis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2903"/>
+        <location filename="../gui/optionsdlg.ui" line="2906"/>
         <source>Domain name:</source>
-        <translation type="unfinished">Domeno vardas:</translation>
+        <translation>Domeno vardas:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="99"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="unfinished">Įjungdami šias parinktis, jūs galite &lt;strong&gt;neatšaukiamai prarasti&lt;/strong&gt; savo .torrent failus!</translation>
+        <translation>Įjungdami šias parinktis, jūs galite &lt;strong&gt;neatšaukiamai prarasti&lt;/strong&gt; savo .torrent failus!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="101"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="unfinished">Kai šios parinktys yra įjungtos, qBittorent &lt;strong&gt;ištrins&lt;/strong&gt; .torrent failus po to kai jie bus sėkmingai (pirmas variantas) arba nesėkmingai (antras variantas) pridėti į atsiuntimų eilę. Tai bus taikoma &lt;strong&gt;ne tik&lt;/strong&gt; failams, kurie bus atveriami per meniu veiksmą &amp;ldquo;Pridėti torentą&amp;rdquo;, tačiau ir tiems failams, kurie bus atveriami per &lt;strong&gt;failo tipo susiejimus&lt;/strong&gt;</translation>
+        <translation>Kai šios parinktys yra įjungtos, qBittorent &lt;strong&gt;ištrins&lt;/strong&gt; .torrent failus po to kai jie bus sėkmingai (pirmas variantas) arba nesėkmingai (antras variantas) pridėti į atsiuntimų eilę. Tai bus taikoma &lt;strong&gt;ne tik&lt;/strong&gt; failams, kurie bus atveriami per meniu veiksmą &amp;ldquo;Pridėti torentą&amp;rdquo;, tačiau ir tiems failams, kurie bus atveriami per &lt;strong&gt;failo tipo susiejimus&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="106"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="unfinished">Jeigu įjungsite antrą parinktį (&amp;ldquo;Taip pat kai pridėjimas yra atšaukiamas&amp;rdquo;), tuomet .torrent failas &lt;strong&gt;bus ištrinamas&lt;/strong&gt; netgi tuo atveju, jei dialoge &amp;ldquo;Pridėti torentą&amp;rdquo; nuspausite &amp;ldquo;&lt;strong&gt;Atsisakyti&lt;/strong&gt;&amp;rdquo;</translation>
+        <translation>Jeigu įjungsite antrą parinktį (&amp;ldquo;Taip pat kai pridėjimas yra atšaukiamas&amp;rdquo;), tuomet .torrent failas &lt;strong&gt;bus ištrinamas&lt;/strong&gt; netgi tuo atveju, jei dialoge &amp;ldquo;Pridėti torentą&amp;rdquo; nuspausite &amp;ldquo;&lt;strong&gt;Atsisakyti&lt;/strong&gt;&amp;rdquo;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="244"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished">Palaikomi parametrai (skiriant raidžių dydį):</translation>
+        <translation>Palaikomi parametrai (skiriant raidžių dydį):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="245"/>
         <source>%N: Torrent name</source>
-        <translation type="unfinished">%N: Torento pavadinimas</translation>
+        <translation>%N: Torento pavadinimas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="246"/>
         <source>%L: Category</source>
-        <translation type="unfinished">%L: Kategorija</translation>
+        <translation>%L: Kategorija</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="247"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished">%F: Turinio kelias (toks pats kaip šaknies kelias kelių failų torente)</translation>
+        <translation>%F: Turinio kelias (toks pats kaip šaknies kelias kelių failų torente)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="248"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished">%R: Šaknies kelias (pirmas torento pakatalogio kelias)</translation>
+        <translation>%R: Šaknies kelias (pirmas torento pakatalogio kelias)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="249"/>
         <source>%D: Save path</source>
-        <translation type="unfinished">%D: Atsiuntimo vieta</translation>
+        <translation>%D: Išsaugojimo kelias</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="250"/>
         <source>%C: Number of files</source>
-        <translation type="unfinished">%C: Failų skaičius</translation>
+        <translation>%C: Failų skaičius</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="251"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished">%Z: Torento dydis (baitais)</translation>
+        <translation>%Z: Torento dydis (baitais)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="252"/>
         <source>%T: Current tracker</source>
-        <translation type="unfinished">%T: Esamas seklys</translation>
+        <translation>%T: Esamas seklys</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="253"/>
         <source>%I: Info hash</source>
-        <translation type="unfinished">%I: Informacijos maiša</translation>
+        <translation>%I: Informacijos maiša</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="254"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation type="unfinished">Patarimas: Tam, kad tekstas nebūtų apkirptas ties tarpais, rašykite parametrą kabutėse (pvz., &quot;%N&quot;)</translation>
+        <translation>Patarimas: Tam, kad tekstas nebūtų apkirptas ties tarpais, rašykite parametrą kabutėse (pvz., &quot;%N&quot;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1336"/>
         <source>Select folder to monitor</source>
-        <translation type="unfinished">Pasirinkite aplanką, kurį stebėti</translation>
+        <translation>Pasirinkite aplanką, kurį stebėti</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1343"/>
         <source>Folder is already being monitored:</source>
-        <translation type="unfinished">Aplankas jau yra stebimas:</translation>
+        <translation>Aplankas jau yra stebimas:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1346"/>
         <source>Folder does not exist:</source>
-        <translation type="unfinished">Aplanko nėra:</translation>
+        <translation>Aplanko nėra:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1349"/>
         <source>Folder is not readable:</source>
-        <translation type="unfinished">Aplanko skaityti nepavyko:</translation>
+        <translation>Aplanko skaityti nepavyko:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Adding entry failed</source>
-        <translation type="unfinished">Įrašo pridėjimas nepavyko</translation>
+        <translation>Įrašo pridėjimas nepavyko</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1388"/>
         <location filename="../gui/optionsdlg.cpp" line="1390"/>
         <source>Choose export directory</source>
-        <translation type="unfinished">Pasirinkite eksportavimo katalogą</translation>
+        <translation>Pasirinkite eksportavimo katalogą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1400"/>
@@ -5036,94 +5033,94 @@ Ar tikrai norite uždaryti qBittorrent?</translation>
         <location filename="../gui/optionsdlg.cpp" line="1450"/>
         <location filename="../gui/optionsdlg.cpp" line="1452"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished">Pasirinkite išsaugojimo aplanką</translation>
+        <translation>Pasirinkite išsaugojimo katalogą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1425"/>
         <source>Choose an IP filter file</source>
-        <translation type="unfinished">Pasirinkite IP filtrų failą</translation>
+        <translation>Pasirinkite IP filtrų failą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1425"/>
         <source>All supported filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi palaikomi filtrai</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1492"/>
         <source>SSL Certificate</source>
-        <translation type="unfinished">SSL sertifikatas</translation>
+        <translation>SSL liudijimas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1504"/>
         <source>SSL Key</source>
-        <translation type="unfinished">SSL raktas</translation>
+        <translation>SSL raktas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1537"/>
         <source>Parsing error</source>
-        <translation type="unfinished">Įkėlimo klaida</translation>
+        <translation>Analizavimo klaida</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1537"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished">Nepavyko įkelti nurodyto IP filtro</translation>
+        <translation>Nepavyko išanalizuoti pateikto IP filtro</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished">Sėkmingai atnaujinta</translation>
+        <translation>Sėkmingai atnaujinta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished">Nurodytas IP filtras sėkmingai įkeltas. %1 taisyklės pritaikytos.</translation>
+        <translation>Pateiktas IP filtras sėkmingai išanalizuotas. Pritaikytos %1 taisyklės.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1626"/>
         <source>Invalid key</source>
-        <translation type="unfinished">Netaisyklingas raktas</translation>
+        <translation>Netaisyklingas raktas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1626"/>
         <source>This is not a valid SSL key.</source>
-        <translation type="unfinished">Šis raktas nėra taisyklingas SSL raktas.</translation>
+        <translation>Šis raktas nėra taisyklingas SSL raktas.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1642"/>
         <source>Invalid certificate</source>
-        <translation type="unfinished">Netaisyklingas sertifikatas</translation>
+        <translation>Netaisyklingas liudijimas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1642"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation type="unfinished">Šis sertifikatas nėra taisyklingas SSL sertifikatas.</translation>
+        <translation>Šis liudijimas nėra taisyklingas SSL liudijimas.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1650"/>
         <source>Time Error</source>
-        <translation type="unfinished">Laiko klaida</translation>
+        <translation>Laiko klaida</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1650"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished">Pradžios bei pabaigos laikai negali sutapti.</translation>
+        <translation>Pradžios bei pabaigos laikai negali sutapti.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1659"/>
         <location filename="../gui/optionsdlg.cpp" line="1663"/>
         <source>Length Error</source>
-        <translation type="unfinished">Ilgio klaida</translation>
+        <translation>Ilgio klaida</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1659"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished">Tinklo sąsajos naudotojo vardas privalo būti bent 3 simbolių ilgio.</translation>
+        <translation>Tinklo sąsajos naudotojo vardas privalo būti bent 3 simbolių ilgio.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1663"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="unfinished">Tinklo sąsajos naudotojo slaptažodis privalo būti bent 6 simbolių ilgio.</translation>
+        <translation>Tinklo sąsajos naudotojo slaptažodis privalo būti bent 6 simbolių ilgio.</translation>
     </message>
 </context>
 <context>
@@ -5383,22 +5380,22 @@ Ar tikrai norite uždaryti qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="265"/>
         <source>Files in this piece:</source>
-        <translation type="unfinished"></translation>
+        <translation>Failų šioje dalyje:</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="269"/>
         <source>File in this piece</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas šioje dalyje</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="271"/>
         <source>File in these pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas šiose dalyse</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="289"/>
         <source>Hold Shift key for detailed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsamesnei informacijai, laikykite nuspaudę Shift klavišą</translation>
     </message>
 </context>
 <context>
@@ -5596,697 +5593,6 @@ Tie papildiniai buvo išjungti.</translation>
         <location filename="../gui/search/pluginsourcedlg.ui" line="43"/>
         <source>Web link</source>
         <translation>Tinklo nuoroda</translation>
-    </message>
-</context>
-<context>
-    <name>Preferences</name>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Atsiuntimai</translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation type="obsolete">Jungiamumas</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation type="obsolete">Greitis</translation>
-    </message>
-    <message>
-        <source>Web UI</source>
-        <translation type="obsolete">Tinklo sąsaja</translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="obsolete">Sudėtingiau</translation>
-    </message>
-    <message>
-        <source>(Requires restart)</source>
-        <translation type="obsolete">(būtina paleisti iš naujo)</translation>
-    </message>
-    <message>
-        <source>Use alternating row colors</source>
-        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation type="obsolete">Naudoti skirtingas eilučių spalvas</translation>
-    </message>
-    <message>
-        <source>Start / Stop Torrent</source>
-        <translation type="obsolete">Pratęsti / pristabdyti torentą</translation>
-    </message>
-    <message>
-        <source>No action</source>
-        <translation type="obsolete">Jokio veiksmo</translation>
-    </message>
-    <message>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation type="obsolete">Pridėti .!qB plėtinį nebaigtiems siųsti failams</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="obsolete">Kopijuoti .torrent failus į:</translation>
-    </message>
-    <message>
-        <source>Connections Limits</source>
-        <translation type="obsolete">Prisijungimų apribojimai</translation>
-    </message>
-    <message>
-        <source>Proxy Server</source>
-        <translation type="obsolete">Proxy serveris</translation>
-    </message>
-    <message>
-        <source>Global Rate Limits</source>
-        <translation type="obsolete">Globalus greičio ribojimas</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to transport overhead</source>
-        <translation type="obsolete">Taikyti santykio apribojimą perdavimo lygio duomenims</translation>
-    </message>
-    <message>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation type="obsolete">Planuoti alternatyvių greičio apribojimų naudojimą</translation>
-    </message>
-    <message>
-        <source>From:</source>
-        <extracomment>from (time1 to time2)</extracomment>
-        <translation type="obsolete">Nuo:</translation>
-    </message>
-    <message>
-        <source>To:</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation type="obsolete">Iki:</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="obsolete">Įjungti vietinių siuntėjų aptikimą, kad rasti daugiau siuntėjų</translation>
-    </message>
-    <message>
-        <source>Encryption mode:</source>
-        <translation type="obsolete">Šifravimo veiksena:</translation>
-    </message>
-    <message>
-        <source>Prefer encryption</source>
-        <translation type="obsolete">Teikti pirmenybę šifravimui</translation>
-    </message>
-    <message>
-        <source>Require encryption</source>
-        <translation type="obsolete">Reikalauti šifravimo</translation>
-    </message>
-    <message>
-        <source>Disable encryption</source>
-        <translation type="obsolete">Išjungti šifravimą</translation>
-    </message>
-    <message>
-        <source>Maximum active downloads:</source>
-        <translation type="obsolete">Didžiausias aktyvių atsiuntimų kiekis:</translation>
-    </message>
-    <message>
-        <source>Maximum active uploads:</source>
-        <translation type="obsolete">Didžiausias aktyvių išsiuntimų kiekis:</translation>
-    </message>
-    <message>
-        <source>Maximum active torrents:</source>
-        <translation type="obsolete">Didžiausias aktyvių torentų kiekis:</translation>
-    </message>
-    <message>
-        <source>When adding a torrent</source>
-        <translation type="obsolete">Kai pridedamas torentas</translation>
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="obsolete">Elgsena</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Kalba</translation>
-    </message>
-    <message>
-        <source>Display torrent content and some options</source>
-        <translation type="obsolete">Rodyti torento turinį ir keletą parinkčių</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="obsolete">Užbaigus torento siuntimą, paleisti išorinę programą</translation>
-    </message>
-    <message>
-        <source>Port used for incoming connections:</source>
-        <translation type="obsolete">Prievadas, naudojamas įeinantiems sujungimams:</translation>
-    </message>
-    <message>
-        <source>Random</source>
-        <translation type="obsolete">Atsitiktinis</translation>
-    </message>
-    <message>
-        <source>Global maximum number of connections:</source>
-        <translation type="obsolete">Globalus didžiausias prisijungimų skaičius:</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent:</source>
-        <translation type="obsolete">Didžiausias prisijungimų kiekis vienam torentui:</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent:</source>
-        <translation type="obsolete">Didžiausias išsiuntimo prisijungimų kiekis vienam torentui:</translation>
-    </message>
-    <message>
-        <source>Upload:</source>
-        <translation type="obsolete">Išsiuntimo:</translation>
-    </message>
-    <message>
-        <source>Download:</source>
-        <translation type="obsolete">Atsiuntimo:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
-        <source>Every day</source>
-        <translation type="obsolete">Kasdien</translation>
-    </message>
-    <message utf8="true">
-        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="obsolete">Keistis siuntėjais su suderinamais BitTorrent klientais (µTorrent, Vuze, ...)</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="obsolete">Stotis:</translation>
-    </message>
-    <message>
-        <source>SOCKS4</source>
-        <translation type="obsolete">SOCKS4</translation>
-    </message>
-    <message>
-        <source>Type:</source>
-        <translation type="obsolete">Tipas:</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Parinktys</translation>
-    </message>
-    <message>
-        <source>Action on double-click</source>
-        <translation type="obsolete">Veiksmai dvigubam paspaudimui</translation>
-    </message>
-    <message>
-        <source>Downloading torrents:</source>
-        <translation type="obsolete">Atsiunčiamiems torentams:</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="obsolete">Atverti atsiuntimo aplanką</translation>
-    </message>
-    <message>
-        <source>Completed torrents:</source>
-        <translation type="obsolete">Užbaigtiems torentams:</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <translation type="obsolete">Darbalaukis</translation>
-    </message>
-    <message>
-        <source>Show splash screen on start up</source>
-        <translation type="obsolete">Paleidžiant programą rodyti pradžios langą</translation>
-    </message>
-    <message>
-        <source>Start qBittorrent minimized</source>
-        <translation type="obsolete">Paleisti qBittorrent sumažintą</translation>
-    </message>
-    <message>
-        <source>Minimize qBittorrent to notification area</source>
-        <translation type="obsolete">Sumažinti qBittorrent langą į pranešimų sritį</translation>
-    </message>
-    <message>
-        <source>Close qBittorrent to notification area</source>
-        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation type="obsolete">Užverti qBittorrent į pranešimų sritį</translation>
-    </message>
-    <message>
-        <source>Tray icon style:</source>
-        <translation type="obsolete">Dėklo piktogramos stilius:</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Įprasta</translation>
-    </message>
-    <message>
-        <source>Monochrome (Dark theme)</source>
-        <translation type="obsolete">Vienspalvė (Tamsi)</translation>
-    </message>
-    <message>
-        <source>Monochrome (Light theme)</source>
-        <translation type="obsolete">Vienspalvė (Šviesi)</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="obsolete">Naudotojo sąsajos kalba:</translation>
-    </message>
-    <message>
-        <source>Transfer List</source>
-        <translation type="obsolete">Siuntimų sąrašas</translation>
-    </message>
-    <message>
-        <source>Confirm when deleting torrents</source>
-        <translation type="obsolete">Patvirtinti, kai ištrinama torentus</translation>
-    </message>
-    <message>
-        <source>Start qBittorrent on Windows start up</source>
-        <translation type="obsolete">Paleisti qBittorrent Windows starto metu</translation>
-    </message>
-    <message>
-        <source>Confirmation on exit when torrents are active</source>
-        <translation type="obsolete">Išeinant, klausti patvirtinimo, kai yra aktyvių siuntimų</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent in notification area</source>
-        <translation type="obsolete">Rodyti qBittorrent piktogramą pranešimų srityje</translation>
-    </message>
-    <message>
-        <source>File association</source>
-        <translation type="obsolete">Failų susiejimas</translation>
-    </message>
-    <message>
-        <source>Use qBittorrent for .torrent files</source>
-        <translation type="obsolete">Naudoti qBittorrent .torrent failams</translation>
-    </message>
-    <message>
-        <source>Use qBittorrent for magnet links</source>
-        <translation type="obsolete">Naudoti qBittorrent Magnet nuorodoms</translation>
-    </message>
-    <message>
-        <source>Power Management</source>
-        <translation type="obsolete">Energijos valdymas</translation>
-    </message>
-    <message>
-        <source>Inhibit system sleep when torrents are active</source>
-        <translation type="obsolete">Neleisti užmigdyti sistemos kai yra aktyvių siuntimų</translation>
-    </message>
-    <message>
-        <source>Do not start the download automatically</source>
-        <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="obsolete">Nepradėti atsiuntimų automatiškai</translation>
-    </message>
-    <message>
-        <source>Bring torrent dialog to the front</source>
-        <translation type="obsolete">Iškelti torento dialogo langą į priekį</translation>
-    </message>
-    <message>
-        <source>Should the .torrent file be deleted after adding it</source>
-        <translation type="obsolete">Ar .torrent failas po pridėjimo turėtų būti ištrinamas</translation>
-    </message>
-    <message>
-        <source>Delete .torrent files afterwards </source>
-        <translation type="obsolete">Po to ištrinti .torrent failus</translation>
-    </message>
-    <message>
-        <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="obsolete">Taip pat ištrinti .torrent failus, kurių pridėjimas buvo atšauktas</translation>
-    </message>
-    <message>
-        <source>Also when addition is cancelled</source>
-        <translation type="obsolete">Taip pat kai pridėjimas yra atšaukiamas</translation>
-    </message>
-    <message>
-        <source>Warning! Data loss possible!</source>
-        <translation type="obsolete">Įspėjimas! Galimas duomenų praradimas!</translation>
-    </message>
-    <message>
-        <source>Default Torrent Management Mode:</source>
-        <translation type="obsolete">Numatytoji torento tvarkymo veiksena:</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="obsolete">Automatinė veiksena reiškia, kad įvairios torento savybės (pvz., išsaugojimo kelias) bus nuspręstos pagal priskirtą kategoriją.</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="obsolete">Rankinė</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="obsolete">Automatinė</translation>
-    </message>
-    <message>
-        <source>When Torrent Category changed:</source>
-        <translation type="obsolete">Kai pakeičiama torento kategorija:</translation>
-    </message>
-    <message>
-        <source>Switch torrent to Manual Mode</source>
-        <translation type="obsolete">Perjungti torentą į rankinę veikseną</translation>
-    </message>
-    <message>
-        <source>When Default Save Path changed:</source>
-        <translation type="obsolete">Kai pakeičiamas numatytasis išsaugojimo kelias:</translation>
-    </message>
-    <message>
-        <source>Switch affected torrents to Manual Mode</source>
-        <translation type="obsolete">Perjungti paveiktus torentus į rankinę veikseną</translation>
-    </message>
-    <message>
-        <source>When Category changed:</source>
-        <translation type="obsolete">Kai pakeičiama kategorija:</translation>
-    </message>
-    <message>
-        <source>Use Subcategories</source>
-        <translation type="obsolete">Naudoti subkategorijas</translation>
-    </message>
-    <message>
-        <source>Default Save Path:</source>
-        <translation type="obsolete">Numatytasis išsaugojimo kelias:</translation>
-    </message>
-    <message>
-        <source>Pre-allocate disk space for all files</source>
-        <translation type="obsolete">Priskirti disko vietą visiems failams</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="obsolete">Nebaigtus siuntimus laikyti čia:</translation>
-    </message>
-    <message>
-        <source>Automatically add torrents from:</source>
-        <translation type="obsolete">Automatiškai pridėti torentus iš:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="obsolete">Kopijuoti baigtų atsiuntimų .torrent failus į:</translation>
-    </message>
-    <message>
-        <source>Add entry</source>
-        <translation type="obsolete">Pridėti įrašą</translation>
-    </message>
-    <message>
-        <source>Remove entry</source>
-        <translation type="obsolete">Šalinti įrašą</translation>
-    </message>
-    <message>
-        <source>Email notification upon download completion</source>
-        <translation type="obsolete">Pabaigus atsiuntimą, pranešti el. paštu</translation>
-    </message>
-    <message>
-        <source>Destination email:</source>
-        <translation type="obsolete">Gavėjo el. pašto adresas:</translation>
-    </message>
-    <message>
-        <source>SMTP server:</source>
-        <translation type="obsolete">SMTP serveris:</translation>
-    </message>
-    <message>
-        <source>This server requires a secure connection (SSL)</source>
-        <translation type="obsolete">Šis serveris reikalauja saugaus susijungimo (SSL)</translation>
-    </message>
-    <message>
-        <source>Listening Port</source>
-        <translation type="obsolete">Klausymosi prievadas</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="obsolete">Naudoti UPnP / NAT-PMP prievadų nukreipimą mašrutizatoriuje</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="obsolete">Kiekvieno paleidimo metu naudoti skirtingą prievadą</translation>
-    </message>
-    <message>
-        <source>Global maximum number of upload slots:</source>
-        <translation type="obsolete">Globalus didžiausias leistinas išsiuntimo prisijungimų kiekis:</translation>
-    </message>
-    <message>
-        <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="obsolete">Kitais atvejais proxy serveris naudojamas tik prisijungimams prie seklių</translation>
-    </message>
-    <message>
-        <source>Use proxy for peer connections</source>
-        <translation type="obsolete">Naudoti proxy susijungimams su siuntėjais</translation>
-    </message>
-    <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="obsolete">Išjungti proxy serverių nepalaikomus ryšius</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="obsolete">Naudoti proxy tik torentams</translation>
-    </message>
-    <message>
-        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation type="obsolete">RSS kanalai, paieškos sistemos, programinės įrangos atnaujinimai ar bet kas kita nei torentų persiuntimai ar su jais susijusios operacijos (pvz., apsikeitimai su kitais siuntėjais) naudos tiesioginį susijungimą</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="obsolete">Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
-    </message>
-    <message>
-        <source>IP Filtering</source>
-        <translation type="obsolete">IP filtravimas</translation>
-    </message>
-    <message>
-        <source>Reload the filter</source>
-        <translation type="obsolete">Įkelti filtrą iš naujo</translation>
-    </message>
-    <message>
-        <source>Apply to trackers</source>
-        <translation type="obsolete">Taikyti sekliams</translation>
-    </message>
-    <message>
-        <source>Apply rate limit to peers on LAN</source>
-        <translation type="obsolete">Taikyti greičio apribojimus siuntėjams LAN tinkle</translation>
-    </message>
-    <message>
-        <source>When:</source>
-        <translation type="obsolete">Kada:</translation>
-    </message>
-    <message>
-        <source>Hide zero and infinity values</source>
-        <translation type="obsolete">Slėpti nulio ir begalybės reikšmes</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="obsolete">Visada</translation>
-    </message>
-    <message>
-        <source>Paused torrents only</source>
-        <translation type="obsolete">Tik pristabdytus torentus</translation>
-    </message>
-    <message>
-        <source>Confirmation on auto-exit when downloads finish</source>
-        <translation type="obsolete">Užbaigus atsiuntimus ir automatiškai išeinant, klausti patvirtinimo</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="obsolete">Žurnalo failas</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Atsiuntimo vieta:</translation>
-    </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="obsolete">Daryti atsarginę žurnalo failo kopiją po:</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation type="obsolete"> MB</translation>
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="obsolete">Ištrinti atsargines žurnalo kopijas, senesnes nei:</translation>
-    </message>
-    <message>
-        <source>days</source>
-        <comment>Delete backup logs older than 10 months</comment>
-        <translation type="obsolete">dienų</translation>
-    </message>
-    <message>
-        <source>months</source>
-        <comment>Delete backup logs older than 10 months</comment>
-        <translation type="obsolete">mėnesių</translation>
-    </message>
-    <message>
-        <source>years</source>
-        <comment>Delete backup logs older than 10 years</comment>
-        <translation type="obsolete">metų</translation>
-    </message>
-    <message>
-        <source>Saving Management</source>
-        <translation type="obsolete">Išsaugojimo tvarkymas</translation>
-    </message>
-    <message>
-        <source>Relocate torrent</source>
-        <translation type="obsolete">Perkelti torentą</translation>
-    </message>
-    <message>
-        <source>Relocate affected torrents</source>
-        <translation type="obsolete">Perkelti paveiktus torentus</translation>
-    </message>
-    <message>
-        <source>Weekdays</source>
-        <translation type="obsolete">Darbo dienomis</translation>
-    </message>
-    <message>
-        <source>Weekends</source>
-        <translation type="obsolete">Savaitgaliais</translation>
-    </message>
-    <message>
-        <source>Rate Limits Settings</source>
-        <translation type="obsolete">Greičio apribojimų nustatymai</translation>
-    </message>
-    <message utf8="true">
-        <source>Enable µTP protocol</source>
-        <translation type="obsolete">Įjungti µTP protokolą</translation>
-    </message>
-    <message utf8="true">
-        <source>Apply rate limit to µTP protocol</source>
-        <translation type="obsolete">Taikyti greičio apribojimus µTP protokolui</translation>
-    </message>
-    <message>
-        <source>Privacy</source>
-        <translation type="obsolete">Privatumas</translation>
-    </message>
-    <message>
-        <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="obsolete">Įjungti DHT (išcentruotą tinklą), kad rasti daugiau siuntėjų</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="obsolete">Įjungti siuntėjų apsikeitimą (PeX), kad rasti daugiau siuntėjų</translation>
-    </message>
-    <message>
-        <source>Look for peers on your local network</source>
-        <translation type="obsolete">Ieškoti siuntėjų vietiniame tinkle</translation>
-    </message>
-    <message>
-        <source>Enable when using a proxy or a VPN connection</source>
-        <translation type="obsolete">Įgalinkite, naudodami proxy ar VPN ryšį</translation>
-    </message>
-    <message>
-        <source>Enable anonymous mode</source>
-        <translation type="obsolete">Įjungti anoniminę veikseną</translation>
-    </message>
-    <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
-    </message>
-    <message>
-        <source>Do not count slow torrents in these limits</source>
-        <translation type="obsolete">Šiuose apribojimuose neįskaičiuoti lėtų torentų</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="obsolete">Skleisti torentus, kol jų dalinimosi santykis pasieks</translation>
-    </message>
-    <message>
-        <source>then</source>
-        <translation type="obsolete">o tada</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="obsolete">juos pristabdyti</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="obsolete">juos pašalinti</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="obsolete">Į naujus atsiuntimus, automatiškai pridėti šiuos seklius:</translation>
-    </message>
-    <message>
-        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="obsolete">Naudoti UPnP / NAT-PMP, kad nukreipti prievadą iš maršrutizatoriaus</translation>
-    </message>
-    <message>
-        <source>Use HTTPS instead of HTTP</source>
-        <translation type="obsolete">Naudoti HTTPS vietoje HTTP</translation>
-    </message>
-    <message>
-        <source>Import SSL Certificate</source>
-        <translation type="obsolete">Įkelti SSL sertifikatą</translation>
-    </message>
-    <message>
-        <source>Import SSL Key</source>
-        <translation type="obsolete">Įkelti SSL raktą</translation>
-    </message>
-    <message>
-        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="obsolete">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informacija apie sertifikatus&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Certificate:</source>
-        <translation type="obsolete">Sertifikatas:</translation>
-    </message>
-    <message>
-        <source>Alternative Rate Limits</source>
-        <translation type="obsolete">Alternatyvūs greičio apribojimai</translation>
-    </message>
-    <message>
-        <source>Key:</source>
-        <translation type="obsolete">Raktas:</translation>
-    </message>
-    <message>
-        <source>Bypass authentication for localhost</source>
-        <translation type="obsolete">Apeiti vietinio serverio autentifikaciją</translation>
-    </message>
-    <message>
-        <source>Update my dynamic domain name</source>
-        <translation type="obsolete">Atnaujinti mano dinaminį domeno vardą</translation>
-    </message>
-    <message>
-        <source>Service:</source>
-        <translation type="obsolete">Paslauga:</translation>
-    </message>
-    <message>
-        <source>Register</source>
-        <translation type="obsolete">Registruotis</translation>
-    </message>
-    <message>
-        <source>Domain name:</source>
-        <translation type="obsolete">Domeno vardas:</translation>
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation type="obsolete">(jokio)</translation>
-    </message>
-    <message>
-        <source>BitTorrent</source>
-        <translation type="obsolete">BitTorrent</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="obsolete">Prievadas:</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation type="obsolete">Atpažinimas</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="obsolete">Naudotojo vardas:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="obsolete">Slaptažodis:</translation>
-    </message>
-    <message>
-        <source>Torrent Queueing</source>
-        <translation type="obsolete">Siuntimų eilė</translation>
-    </message>
-    <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="obsolete">Dalinimosi santykio ribojimas</translation>
-    </message>
-    <message>
-        <source>Enable Web User Interface (Remote control)</source>
-        <translation type="obsolete">Įjungti Tinklo naudotojo sąsają (nuotolinis valdymas)</translation>
-    </message>
-    <message>
-        <source>SOCKS5</source>
-        <translation type="obsolete">SOCKS5</translation>
-    </message>
-    <message>
-        <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="obsolete">Kelias iki filtro (.dat, .p2p, .p2b):</translation>
     </message>
 </context>
 <context>
@@ -6861,33 +6167,33 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <translation>Sutinku</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>Torrent name: %1</source>
         <translation>Torento pavadinimas: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="291"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent size: %1</source>
         <translation>Torento dydis: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="292"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Save path: %1</source>
         <translation>Atsiuntimo vieta: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="293"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torentas atsiųstas per %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="296"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Ačiū, kad naudojatės qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="309"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &quot;%1&quot; atsiuntimas užbaigtas</translation>
     </message>
@@ -7779,7 +7085,7 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="66"/>
         <source>Period:</source>
-        <translation>Periodas:</translation>
+        <translation>Laikotarpis:</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="69"/>
@@ -7877,7 +7183,7 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation>Bendras santykis:</translation>
+        <translation>Visuotinis santykis:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="47"/>
@@ -8015,12 +7321,12 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     <message>
         <location filename="../gui/statusbar.cpp" line="256"/>
         <source>Global Download Speed Limit</source>
-        <translation>Globalus atsiuntimo greičio apribojimas</translation>
+        <translation>Visuotinis atsiuntimo greičio apribojimas</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="284"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Globalus išsiuntimo greičio apribojimas</translation>
+        <translation>Visuotinis išsiuntimo greičio apribojimas</translation>
     </message>
 </context>
 <context>
@@ -8034,17 +7340,17 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="120"/>
         <source>Downloading (0)</source>
-        <translation>Atsiunčiama (0)</translation>
+        <translation>Atsiunčiami (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="123"/>
         <source>Seeding (0)</source>
-        <translation>Skleidžiama (0)</translation>
+        <translation>Skleidžiami (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="126"/>
         <source>Completed (0)</source>
-        <translation>Užbaigta (0)</translation>
+        <translation>Užbaigti (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="129"/>
@@ -8079,17 +7385,17 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="159"/>
         <source>Downloading (%1)</source>
-        <translation>Atsiunčiama (%1)</translation>
+        <translation>Atsiunčiami (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="160"/>
         <source>Seeding (%1)</source>
-        <translation>Skleidžiama (%1)</translation>
+        <translation>Skleidžiami (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="161"/>
         <source>Completed (%1)</source>
-        <translation>Užbaigta (%1)</translation>
+        <translation>Užbaigti (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="162"/>
@@ -8955,7 +8261,7 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Naudoti globalų santykio apribojimą</translation>
+        <translation>Naudoti visuotinį santykio apribojimą</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodlg.ui" line="23"/>
@@ -9423,162 +8729,6 @@ Kategorijos pavadinime negali būti &quot;//&quot; sekos.</translation>
         <location filename="../webui/btjson.cpp" line="465"/>
         <source>Not contacted yet</source>
         <translation>Dar nesusisiekta</translation>
-    </message>
-</context>
-<context>
-    <name>options_imp</name>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="obsolete">Pasirinkite eksportavimo katalogą</translation>
-    </message>
-    <message>
-        <source>Choose a save directory</source>
-        <translation type="obsolete">Pasirinkite išsaugojimo aplanką</translation>
-    </message>
-    <message>
-        <source>Supported parameters (case sensitive):</source>
-        <translation type="obsolete">Palaikomi parametrai (skiriant raidžių dydį):</translation>
-    </message>
-    <message>
-        <source>%N: Torrent name</source>
-        <translation type="obsolete">%N: Torento pavadinimas</translation>
-    </message>
-    <message>
-        <source>%L: Category</source>
-        <translation type="obsolete">%L: Kategorija</translation>
-    </message>
-    <message>
-        <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="obsolete">%F: Turinio kelias (toks pats kaip šaknies kelias kelių failų torente)</translation>
-    </message>
-    <message>
-        <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="obsolete">%R: Šaknies kelias (pirmas torento pakatalogio kelias)</translation>
-    </message>
-    <message>
-        <source>%D: Save path</source>
-        <translation type="obsolete">%D: Atsiuntimo vieta</translation>
-    </message>
-    <message>
-        <source>%C: Number of files</source>
-        <translation type="obsolete">%C: Failų skaičius</translation>
-    </message>
-    <message>
-        <source>%Z: Torrent size (bytes)</source>
-        <translation type="obsolete">%Z: Torento dydis (baitais)</translation>
-    </message>
-    <message>
-        <source>%T: Current tracker</source>
-        <translation type="obsolete">%T: Esamas seklys</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="obsolete">%I: Informacijos maiša</translation>
-    </message>
-    <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation type="obsolete">Patarimas: Tam, kad tekstas nebūtų apkirptas ties tarpais, rašykite parametrą kabutėse (pvz., &quot;%N&quot;)</translation>
-    </message>
-    <message>
-        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="obsolete">Įjungdami šias parinktis, jūs galite &lt;strong&gt;neatšaukiamai prarasti&lt;/strong&gt; savo .torrent failus!</translation>
-    </message>
-    <message>
-        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="obsolete">Kai šios parinktys yra įjungtos, qBittorent &lt;strong&gt;ištrins&lt;/strong&gt; .torrent failus po to kai jie bus sėkmingai (pirmas variantas) arba nesėkmingai (antras variantas) pridėti į atsiuntimų eilę. Tai bus taikoma &lt;strong&gt;ne tik&lt;/strong&gt; failams, kurie bus atveriami per meniu veiksmą &amp;ldquo;Pridėti torentą&amp;rdquo;, tačiau ir tiems failams, kurie bus atveriami per &lt;strong&gt;failo tipo susiejimus&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="obsolete">Jeigu įjungsite antrą parinktį (&amp;ldquo;Taip pat kai pridėjimas yra atšaukiamas&amp;rdquo;), tuomet .torrent failas &lt;strong&gt;bus ištrinamas&lt;/strong&gt; netgi tuo atveju, jei dialoge &amp;ldquo;Pridėti torentą&amp;rdquo; nuspausite &amp;ldquo;&lt;strong&gt;Atsisakyti&lt;/strong&gt;&amp;rdquo;</translation>
-    </message>
-    <message>
-        <source>Select folder to monitor</source>
-        <translation type="obsolete">Pasirinkite aplanką, kurį stebėti</translation>
-    </message>
-    <message>
-        <source>Folder is already being monitored:</source>
-        <translation type="obsolete">Aplankas jau yra stebimas:</translation>
-    </message>
-    <message>
-        <source>Folder does not exist:</source>
-        <translation type="obsolete">Aplanko nėra:</translation>
-    </message>
-    <message>
-        <source>Folder is not readable:</source>
-        <translation type="obsolete">Aplanko skaityti nepavyko:</translation>
-    </message>
-    <message>
-        <source>Adding entry failed</source>
-        <translation type="obsolete">Įrašo pridėjimas nepavyko</translation>
-    </message>
-    <message>
-        <source>Filters</source>
-        <translation type="obsolete">Filtrai</translation>
-    </message>
-    <message>
-        <source>Choose an IP filter file</source>
-        <translation type="obsolete">Pasirinkite IP filtrų failą</translation>
-    </message>
-    <message>
-        <source>SSL Certificate</source>
-        <translation type="obsolete">SSL sertifikatas</translation>
-    </message>
-    <message>
-        <source>SSL Key</source>
-        <translation type="obsolete">SSL raktas</translation>
-    </message>
-    <message>
-        <source>Parsing error</source>
-        <translation type="obsolete">Įkėlimo klaida</translation>
-    </message>
-    <message>
-        <source>Failed to parse the provided IP filter</source>
-        <translation type="obsolete">Nepavyko įkelti nurodyto IP filtro</translation>
-    </message>
-    <message>
-        <source>Successfully refreshed</source>
-        <translation type="obsolete">Sėkmingai atnaujinta</translation>
-    </message>
-    <message>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Nurodytas IP filtras sėkmingai įkeltas. %1 taisyklės pritaikytos.</translation>
-    </message>
-    <message>
-        <source>Invalid key</source>
-        <translation type="obsolete">Netaisyklingas raktas</translation>
-    </message>
-    <message>
-        <source>This is not a valid SSL key.</source>
-        <translation type="obsolete">Šis raktas nėra taisyklingas SSL raktas.</translation>
-    </message>
-    <message>
-        <source>Invalid certificate</source>
-        <translation type="obsolete">Netaisyklingas sertifikatas</translation>
-    </message>
-    <message>
-        <source>This is not a valid SSL certificate.</source>
-        <translation type="obsolete">Šis sertifikatas nėra taisyklingas SSL sertifikatas.</translation>
-    </message>
-    <message>
-        <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="obsolete">Pradžios bei pabaigos laikai negali sutapti.</translation>
-    </message>
-    <message>
-        <source>Time Error</source>
-        <translation type="obsolete">Laiko klaida</translation>
-    </message>
-    <message>
-        <source>Length Error</source>
-        <translation type="obsolete">Ilgio klaida</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="obsolete">Tinklo sąsajos naudotojo vardas privalo būti bent 3 simbolių ilgio.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="obsolete">Tinklo sąsajos naudotojo slaptažodis privalo būti bent 6 simbolių ilgio.</translation>
     </message>
 </context>
 <context>
