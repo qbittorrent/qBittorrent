@@ -1,3 +1,10 @@
+* Wed Jul 20 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.6
+    - BUGFIX: Do not create save folder in advance (glassez)
+    - BUGFIX: Fix upper-bound limit of command line for "Run External Program" in Windows. Closes #5399. (Chocobo1)
+    - BUGFIX: Invoke system's cmd.exe directly. (Chocobo1)
+    - BUGFIX: Workaround space issues in file path for running external program on Windows. (Chocobo1)
+    - BUGFIX: Fix icons are missing when using RTL languages in Options dialog. Closes #5398. (Chocobo1)
+
 * Mon Jun 20 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.5
     - FEATURE: Implement Torrent Management Mode(TMM) (glassez)
     - FEATURE: New cookies management dialog and various related fixes (glassez)
