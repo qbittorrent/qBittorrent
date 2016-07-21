@@ -122,6 +122,7 @@ install:
       brew install colormake ccache ;
       # libtorrent-rasterbar 1.0.9
       brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/477d5060fa093883204d70323965375353e03084/Formula/libtorrent-rasterbar.rb ;
+      brew outdated "pkg-config" || brew upgrade "pkg-config" ;
 
       # Qt
       if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
