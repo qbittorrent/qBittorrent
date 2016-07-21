@@ -120,6 +120,7 @@ install:
       # dependencies
       brew update > /dev/null ;
       brew install colormake ccache ;
+      brew outdated "pkg-config" || brew upgrade "pkg-config" ;
       # libtorrent-rasterbar 1.0.9
       brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/477d5060fa093883204d70323965375353e03084/Formula/libtorrent-rasterbar.rb ;
 
