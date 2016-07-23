@@ -1772,7 +1772,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    installer.start("msiexec.exe /passive /i " + Utils::Fs::toNativePath(filePath) + ".msi");
+    installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i " + Utils::Fs::toNativePath(filePath) + ".msi");
     // Wait for setup to complete
     installer.waitForFinished();
 
