@@ -670,3 +670,15 @@ QString Utils::Misc::libtorrentVersionString()
     static const QString ver = LIBTORRENT_VERSION;
     return ver;
 }
+
+#ifdef Q_OS_WIN
+QString Utils::Misc::windowsSystemPath()
+{
+    static const QString path = []() -> QString {
+        WCHAR systemPath[64] = {0};
+        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
+        return QString::fromWCharArray(systemPath);
+    }();
+    return path;
+}
+#endif
