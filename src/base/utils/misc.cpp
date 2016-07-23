@@ -52,6 +52,7 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <powrprof.h>
+#include <Shlobj.h>
 const int UNLEN = 256;
 #else
 #include <unistd.h>
@@ -578,35 +579,14 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
         return;
     }
 #ifdef Q_OS_WIN
-    // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
-    // Dir separators MUST be win-style slashes
-
-    // QProcess::startDetached() has an obscure bug. If the path has
-    // no spaces and a comma(and maybe other special characters) it doesn't
-    // get wrapped in quotes. So explorer.exe can't find the correct path and
-    // displays the default one. If we wrap the path in quotes and pass it to
-    // QProcess::startDetached() explorer.exe still shows the default path. In
-    // this case QProcess::startDetached() probably puts its own quotes around ours.
-
-    STARTUPINFO startupInfo;
-    ::ZeroMemory(&startupInfo, sizeof(startupInfo));
-    startupInfo.cb = sizeof(startupInfo);
-
-    PROCESS_INFORMATION processInfo;
-    ::ZeroMemory(&processInfo, sizeof(processInfo));
-
-    QString cmd = QString("explorer.exe /select,\"%1\"").arg(Utils::Fs::toNativePath(absolutePath));
-    LPWSTR lpCmd = new WCHAR[cmd.size() + 1];
-    cmd.toWCharArray(lpCmd);
-    lpCmd[cmd.size()] = 0;
-
-    bool ret = ::CreateProcessW(NULL, lpCmd, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo);
-    delete [] lpCmd;
-
-    if (ret) {
-        ::CloseHandle(processInfo.hProcess);
-        ::CloseHandle(processInfo.hThread);
+    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+    ITEMIDLIST *pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
+    if (pidl) {
+        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+        ::ILFree(pidl);
     }
+    if ((hresult == S_OK) || (hresult == S_FALSE))
+        ::CoUninitialize();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
     QProcess proc;
     proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
