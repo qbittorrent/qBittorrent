@@ -49,7 +49,9 @@ HEADERS += \
     $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/cookiesmodel.h \
-    $$PWD/cookiesdialog.h
+    $$PWD/cookiesdialog.h \
+    $$PWD/categoryfiltermodel.h \
+    $$PWD/categoryfilterwidget.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -89,7 +91,9 @@ SOURCES += \
     $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/cookiesmodel.cpp \
-    $$PWD/cookiesdialog.cpp
+    $$PWD/cookiesdialog.cpp \
+    $$PWD/categoryfiltermodel.cpp \
+    $$PWD/categoryfilterwidget.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h

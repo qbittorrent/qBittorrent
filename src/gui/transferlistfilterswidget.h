@@ -90,40 +90,6 @@ private:
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const);
 };
 
-class CategoryFiltersList: public FiltersBase
-{
-    Q_OBJECT
-
-public:
-    CategoryFiltersList(QWidget *parent, TransferListWidget *transferList);
-
-private slots:
-    // Redefine addItem() to make sure the list stays sorted
-    void addItem(const QString &category, bool hasTorrent = false);
-    void removeItem(const QString &category);
-    void removeSelectedCategory();
-    void removeUnusedCategories();
-    void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
-    void categoryRemoved(const QString &category);
-    void subcategoriesSupportChanged();
-
-private:
-    // These 4 methods are virtual slots in the base class.
-    // No need to redeclare them here as slots.
-    virtual void showMenu(QPoint);
-    virtual void applyFilter(int row);
-    virtual void handleNewTorrent(BitTorrent::TorrentHandle *const torrent);
-    virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent);
-    QString categoryFromRow(int row) const;
-    int rowFromCategory(const QString &category) const;
-    void refresh();
-
-private:
-    QHash<QString, int> m_categories;
-    int m_totalTorrents;
-    int m_totalCategorized;
-};
-
 class TrackerFiltersList: public FiltersBase
 {
     Q_OBJECT
@@ -169,6 +135,8 @@ private:
     bool m_downloadTrackerFavicon;
 };
 
+class CategoryFilterWidget;
+
 class TransferListFiltersWidget: public QFrame
 {
     Q_OBJECT
@@ -190,8 +158,13 @@ signals:
     void trackerError(const QString &hash, const QString &tracker);
     void trackerWarning(const QString &hash, const QString &tracker);
 
+private slots:
+    void onCategoryFilterStateChanged(bool enabled);
+
 private:
-    TrackerFiltersList *trackerFilters;
+    TransferListWidget *m_transferList;
+    TrackerFiltersList *m_trackerFilters;
+    CategoryFilterWidget *m_categoryFilterWidget;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

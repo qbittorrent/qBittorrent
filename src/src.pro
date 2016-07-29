@@ -7,6 +7,8 @@ CONFIG += c++11
 DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 greaterThan(QT_MAJOR_VERSION, 4): greaterThan(QT_MINOR_VERSION, 1): DEFINES += QBT_USES_QT5
 
+lessThan(QT_MAJOR_VERSION, 5): DEFINES += QStringLiteral=QLatin1String
+
 # Windows specific configuration
 win32: include(../winconf.pri)
 
