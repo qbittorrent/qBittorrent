@@ -81,7 +81,7 @@ void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
 void SpeedPlotView::pushPoint(SpeedPlotView::PointData point)
 {
     m_counter30Min = (m_counter30Min + 1) % 3;
-    m_counter6Hour = (m_counter6Hour + 1) % 6;
+    m_counter6Hour = (m_counter6Hour + 1) % 18;
 
     m_data5Min.push_back(point);
 
@@ -131,7 +131,7 @@ void SpeedPlotView::replot()
     if ((m_period == MIN1)
         || (m_period == MIN5)
         || ((m_period == MIN30) && (m_counter30Min == 2))
-        || ((m_period == HOUR6) && (m_counter6Hour == 5)))
+        || ((m_period == HOUR6) && (m_counter6Hour == 17)))
         viewport()->update();
 }
 
