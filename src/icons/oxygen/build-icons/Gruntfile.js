@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 		svg2png: {
 			all: {
 				options:{
-					size: 32
+					size: 256
 				},
 				files: [
 					{ 
