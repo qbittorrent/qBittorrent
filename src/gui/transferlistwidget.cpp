@@ -155,7 +155,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
-    deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    permDeleteHotkey = new QShortcut(QKeySequence("Shift+Delete"), this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
 
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
@@ -309,19 +310,28 @@ void TransferListWidget::pauseVisibleTorrents()
     }
 }
 
-void TransferListWidget::deleteSelectedTorrents()
+void TransferListWidget::softDeleteSelectedTorrents()
+{
+    deleteSelectedTorrents(false);
+}
+
+void TransferListWidget::permDeleteSelectedTorrents()
+{
+    deleteSelectedTorrents(true);
+}
+
+void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
 {
     if (main_window->currentTabWidget() != this) return;
 
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
-    bool delete_local_files = false;
     if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, torrents.size(), torrents[0]->name()))
+        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), delete_local_files);
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
 }
 
 void TransferListWidget::deleteVisibleTorrents()
@@ -332,12 +342,12 @@ void TransferListWidget::deleteVisibleTorrents()
     for (int i = 0; i < nameFilterModel->rowCount(); ++i)
         torrents << listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
 
-    bool delete_local_files = false;
+    bool deleteLocalFiles = false;
     if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(delete_local_files, torrents.size(), torrents[0]->name()))
+        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), delete_local_files);
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
 }
 
 void TransferListWidget::increasePrioSelectedTorrents()

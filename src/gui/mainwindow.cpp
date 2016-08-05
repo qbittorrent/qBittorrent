@@ -248,7 +248,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionStartAll, SIGNAL(triggered()), m_transferListWidget, SLOT(resumeAllTorrents()));
     connect(m_ui->actionPause, SIGNAL(triggered()), m_transferListWidget, SLOT(pauseSelectedTorrents()));
     connect(m_ui->actionPauseAll, SIGNAL(triggered()), m_transferListWidget, SLOT(pauseAllTorrents()));
-    connect(m_ui->actionDelete, SIGNAL(triggered()), m_transferListWidget, SLOT(deleteSelectedTorrents()));
+    connect(m_ui->actionDelete, SIGNAL(triggered()), m_transferListWidget, SLOT(softDeleteSelectedTorrents()));
     connect(m_ui->actionTopPriority, SIGNAL(triggered()), m_transferListWidget, SLOT(topPrioSelectedTorrents()));
     connect(m_ui->actionIncreasePriority, SIGNAL(triggered()), m_transferListWidget, SLOT(increasePrioSelectedTorrents()));
     connect(m_ui->actionDecreasePriority, SIGNAL(triggered()), m_transferListWidget, SLOT(decreasePrioSelectedTorrents()));
