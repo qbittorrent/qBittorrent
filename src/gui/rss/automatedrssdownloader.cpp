@@ -119,7 +119,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager>&
   Q_ASSERT(ok);
   ok = connect(ui->listRules, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRule()));
   Q_ASSERT(ok);
-  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), ui->listRules, 0, 0, Qt::WidgetShortcut);
+  deleteHotkey = new QShortcut(QKeySequence::Delete, ui->listRules, 0, 0, Qt::WidgetShortcut);
   ok = connect(deleteHotkey, SIGNAL(activated()), SLOT(on_removeRuleBtn_clicked()));
   Q_ASSERT(ok);
   updateRuleDefinitionBox();
