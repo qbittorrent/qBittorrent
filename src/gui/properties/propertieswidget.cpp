@@ -164,7 +164,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
     connect(editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
     connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
-    deleteHotkeyWeb = new QShortcut(QKeySequence(QKeySequence::Delete), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+    deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, listWebSeeds, 0, 0, Qt::WidgetShortcut);
     connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
     openHotkeyFile = new QShortcut(QKeySequence("Return"), filesList, 0, 0, Qt::WidgetShortcut);
     connect(openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
