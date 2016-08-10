@@ -709,7 +709,7 @@ RSSImp::RSSImp(QWidget *parent):
     editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
     connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
-    deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), m_feedList, 0, 0, Qt::WidgetShortcut);
+    deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(deleteHotkey, SIGNAL(activated()), SLOT(deleteSelectedItems()));
 
     m_rssManager->loadStreamList();

@@ -743,8 +743,8 @@ void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString
 
 void MainWindow::createKeyboardShortcuts()
 {
-    m_ui->actionCreateTorrent->setShortcut(QKeySequence("Ctrl+N"));
-    m_ui->actionOpen->setShortcut(QKeySequence("Ctrl+O"));
+    m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
+    m_ui->actionOpen->setShortcut(QKeySequence::Open);
     m_ui->actionDownloadFromURL->setShortcut(QKeySequence("Ctrl+Shift+O"));
     m_ui->actionExit->setShortcut(QKeySequence("Ctrl+Q"));
 
@@ -752,12 +752,12 @@ void MainWindow::createKeyboardShortcuts()
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
     QShortcut *switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
     connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    QShortcut *switchSearchShortcut2 = new QShortcut(QKeySequence("Ctrl+F"), this);
+    QShortcut *switchSearchShortcut2 = new QShortcut(QKeySequence::Find, this);
     connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
     QShortcut *switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
     connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
 
-    m_ui->actionDocumentation->setShortcut(QKeySequence("F1"));
+    m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(QKeySequence("Alt+O"));
     m_ui->actionStart->setShortcut(QKeySequence("Ctrl+S"));
     m_ui->actionStartAll->setShortcut(QKeySequence("Ctrl+Shift+S"));
