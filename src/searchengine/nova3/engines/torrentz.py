@@ -1,4 +1,4 @@
-#VERSION: 2.20
+#VERSION: 2.21
 #AUTHORS: Diego de las Heras (ngosang@hotmail.es)
 
 # Redistribution and use in source and binary forms, with or without
@@ -32,8 +32,8 @@ from urllib.parse import urlencode
 
 class torrentz(object):
     # mandatory properties
-    url  = 'https://torrentz.eu'
-    name = 'Torrentz'
+    url  = 'https://torrentz2.eu'
+    name = 'Torrentz2'
     supported_categories = {'all': ''}
 
     trackers_list = ['udp://tracker.coppersurfer.tk:6969/announce',
