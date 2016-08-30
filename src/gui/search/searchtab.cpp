@@ -130,9 +130,7 @@ SearchTab::SearchTab(SearchWidget *parent)
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
     connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
-
-    // Sort by Seeds
-    m_ui->resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
+    connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
     fillFilterComboBoxes();
 
