@@ -361,6 +361,8 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
         else if (!downloadInDefaultFolder(file))
             params.savePath = downloadPathTorrentFolder(file);
 
+        params.addPaused = BitTorrent::Session::instance()->isAddTorrentPaused();
+
         if (file.endsWith(".magnet")) {
             QFile f(file);
             if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {

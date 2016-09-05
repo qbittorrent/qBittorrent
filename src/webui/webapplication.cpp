@@ -392,6 +392,7 @@ void WebApplication::action_command_download()
     BitTorrent::AddTorrentParams params;
     params.savePath = savepath;
     params.category = category;
+    params.addPaused = BitTorrent::Session::instance()->isAddTorrentPaused();
 
     foreach (QString url, list) {
         url = url.trimmed();
@@ -425,6 +426,7 @@ void WebApplication::action_command_upload()
                 BitTorrent::AddTorrentParams params;
                 params.savePath = savepath;
                 params.category = category;
+                params.addPaused = BitTorrent::Session::instance()->isAddTorrentPaused();
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                     status(500, "Internal Server Error");
                     print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
