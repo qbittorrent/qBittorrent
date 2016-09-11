@@ -1,3 +1,13 @@
+* Sun Sep 11 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.7
+    - FEATURE: Delete torrent+files with Shift+Delete (pieniacy)
+    - BUGFIX: Fix 6-hour speedplot point push rate. Close #5545 (Daniel Segesdi)
+    - BUGFIX: Avoid spawning a new explorer.exe process when selecting "Open containing folder". Closes #5564. (Chocobo1)
+    - BUGFIX: Fix loading of new geoip db due to an artificial size limit. (SagePtr)
+    - BUGFIX: Better error handling and logging with smtp communication. (Brian Kendall)
+    - SEARCH: Remove KickassTorrents search engine (ngosang)
+    - SEARCH: Remove BTDigg search engine (ngosang)
+    - SEARCH: Update Torrentz search engine (ngosang)
+    
 * Wed Jul 20 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.6
     - BUGFIX: Do not create save folder in advance (glassez)
     - BUGFIX: Fix upper-bound limit of command line for "Run External Program" in Windows. Closes #5399. (Chocobo1)
