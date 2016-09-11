@@ -70,7 +70,7 @@ PortForwarder *PortForwarder::instance()
     return m_instance;
 }
 
-void PortForwarder::addPort(qint16 port)
+void PortForwarder::addPort(quint16 port)
 {
     if (!m_mappedPorts.contains(port)) {
         m_mappedPorts.insert(port, 0);
@@ -79,7 +79,7 @@ void PortForwarder::addPort(qint16 port)
     }
 }
 
-void PortForwarder::deletePort(qint16 port)
+void PortForwarder::deletePort(quint16 port)
 {
     if (m_mappedPorts.contains(port)) {
         if (m_active)
@@ -104,7 +104,7 @@ void PortForwarder::start()
     qDebug("Enabling UPnP / NAT-PMP");
     m_provider->start_upnp();
     m_provider->start_natpmp();
-    foreach (qint16 port, m_mappedPorts.keys())
+    foreach (quint16 port, m_mappedPorts.keys())
         m_mappedPorts[port] = m_provider->add_port_mapping(libt::session::tcp, port, port);
     m_active = true;
     Logger::instance()->addMessage(tr("UPnP / NAT-PMP support [ON]"), Log::INFO);
