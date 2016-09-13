@@ -49,8 +49,8 @@ namespace Net
         static void freeInstance();
         static PortForwarder *instance();
 
-        void addPort(qint16 port);
-        void deletePort(qint16 port);
+        void addPort(quint16 port);
+        void deletePort(quint16 port);
 
     private slots:
         void configure();
@@ -64,7 +64,7 @@ namespace Net
 
         bool m_active;
         libtorrent::session *m_provider;
-        QHash<qint16, int> m_mappedPorts;
+        QHash<quint16, int> m_mappedPorts;
 
         static PortForwarder *m_instance;
     };
