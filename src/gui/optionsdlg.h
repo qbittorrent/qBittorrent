@@ -128,6 +128,7 @@ private:
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsInPause() const;
+    bool isEditableSavePath() const;
     QString getTorrentExportDir() const;
     QString getFinishedTorrentExportDir() const;
     QString askForExportDir(const QString& currentExportPath);

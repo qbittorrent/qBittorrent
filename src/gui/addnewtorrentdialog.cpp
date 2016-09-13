@@ -65,6 +65,7 @@ const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
 const QString KEY_POSITION = SETTINGS_KEY("Position");
 const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
 const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
+const QString KEY_EDITABLESAVEPATH = SETTINGS_KEY("EditableSavePath");
 
 namespace
 {
@@ -91,6 +92,12 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     ui->comboTTM->blockSignals(true); //the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     ui->comboTTM->blockSignals(false);
+    
+    if (settings()->loadValue(KEY_EDITABLESAVEPATH).toBool())
+    {
+	ui->savePathComboBox->setEditable(true);
+    }
+    
     populateSavePathComboBox();
     connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
