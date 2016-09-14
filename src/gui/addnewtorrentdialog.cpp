@@ -419,8 +419,10 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
 
     updateDiskSpaceLabel();
 
-    // Clear red background in case onSavePathTextEdited modified it
-    ui->savePathComboBox->lineEdit()->setStyleSheet("");
+    if (ui->savePathComboBox->isEditable()) {
+	// Clear red background in case onSavePathTextEdited modified it
+	ui->savePathComboBox->lineEdit()->setStyleSheet("");
+    }
 }
 
 void AddNewTorrentDialog::onSavePathTextEdited()
@@ -435,8 +437,10 @@ void AddNewTorrentDialog::onSavePathTextEdited()
 	ui->savePathComboBox->lineEdit()->setStyleSheet("QLineEdit {background: #FF9090;}");
     }
     else {
-	// Clear red background
-	ui->savePathComboBox->lineEdit()->setStyleSheet("");
+	if (ui->savePathComboBox->isEditable()) {
+	    // Clear red background
+	    ui->savePathComboBox->lineEdit()->setStyleSheet("");    
+	}
 	updateDiskSpaceLabel();
     }
 }
@@ -466,7 +470,7 @@ void AddNewTorrentDialog::browseButton_clicked()
         newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
 
     if (!newPath.isEmpty()) {
-	ui->savePathComboBox->lineEdit()->setText(newPath);
+	addPathToHistory(newPath);
     }
 
     ui->savePathComboBox->blockSignals(false);
