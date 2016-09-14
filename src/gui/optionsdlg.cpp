@@ -214,6 +214,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkEditableSavePath, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -512,6 +513,7 @@ void OptionsDialog::saveOptions()
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
+    pref->setEditableSavePath(isEditableSavePath());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
@@ -709,6 +711,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
+    m_ui->checkEditableSavePath->setChecked(pref->getEditableSavePath());
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -1231,6 +1234,11 @@ bool OptionsDialog::preAllocateAllFiles() const
 bool OptionsDialog::addTorrentsInPause() const
 {
     return m_ui->checkStartPaused->isChecked();
+}
+
+bool OptionsDialog::isEditableSavePath() const
+{
+    return m_ui->checkEditableSavePath->isChecked();
 }
 
 // Proxy settings

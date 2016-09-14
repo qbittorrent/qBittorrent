@@ -34,6 +34,8 @@
 #include <QUrl>
 #include <QMenu>
 #include <QFileDialog>
+#include <QCompleter>
+#include <QDirModel>
 
 #include "base/settingsstorage.h"
 #include "base/net/downloadmanager.h"
@@ -66,6 +68,7 @@ const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
 const QString KEY_POSITION = SETTINGS_KEY("Position");
 const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
 const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
+const QString KEY_EDITABLESAVEPATH = SETTINGS_KEY("EditableSavePath");
 
 namespace
 {
@@ -92,8 +95,27 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     ui->comboTTM->blockSignals(true); //the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     ui->comboTTM->blockSignals(false);
+    
+    if (settings()->loadValue(KEY_EDITABLESAVEPATH).toBool())
+    {
+	ui->savePathComboBox->setEditable(true);
+	
+	// Autocomplete folder names
+	QCompleter* completer = new QCompleter(this);
+	completer->setCaseSensitivity(Qt::CaseInsensitive);
+	
+	QDirModel *fileSystemModel = new QDirModel(completer);
+	fileSystemModel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+        
+	completer->setModel(fileSystemModel);
+
+	ui->savePathComboBox->lineEdit()->setCompleter(completer);
+	
+        connect(ui->savePathComboBox->lineEdit(), SIGNAL(textEdited(const QString &)), SLOT(onSavePathTextEdited()));
+    }
+    
     populateSavePathComboBox();
-    connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
+    connect(ui->savePathComboBox, SIGNAL(activated(int)), SLOT(onSavePathChanged(int)));
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
@@ -334,7 +356,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
 
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
-    QDir selectedSavePath(ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString());
+    QDir selectedSavePath(ui->savePathComboBox->currentText());
     // Get current history
     QStringList history = settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList();
     QList<QDir> historyDirs;
@@ -382,8 +404,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
     size_string += " (";
     size_string += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
-                                                                   ui->savePathComboBox->itemData(
-                                                                       ui->savePathComboBox->currentIndex()).toString())));
+                                                                   ui->savePathComboBox->currentText())));
     size_string += ")";
     ui->size_lbl->setText(size_string);
 }
@@ -391,15 +412,33 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 void AddNewTorrentDialog::onSavePathChanged(int index)
 {
     // Toggle default save path setting checkbox visibility
-    ui->defaultSavePathCheckBox->setChecked(false);
-    ui->defaultSavePathCheckBox->setVisible(
-                QDir(ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString())
-                != QDir(defaultSavePath()));
+    ui->defaultSavePathCheckBox->setVisible(QDir(ui->savePathComboBox->currentText()) != QDir(defaultSavePath()));
 
     // Remember index
     m_oldIndex = index;
 
     updateDiskSpaceLabel();
+
+    // Clear red background in case onSavePathTextEdited modified it
+    ui->savePathComboBox->lineEdit()->setStyleSheet("");
+}
+
+void AddNewTorrentDialog::onSavePathTextEdited()
+{
+    const QString &path = ui->savePathComboBox->currentText();
+
+    // Show "Default Save Path" check box
+    ui->defaultSavePathCheckBox->setVisible(QDir(path) != QDir(defaultSavePath()));
+    
+    if (!isSavePathValid(path)) { 
+	// Red background indicating invalid save path
+	ui->savePathComboBox->lineEdit()->setStyleSheet("QLineEdit {background: #FF9090;}");
+    }
+    else {
+	// Clear red background
+	ui->savePathComboBox->lineEdit()->setStyleSheet("");
+	updateDiskSpaceLabel();
+    }
 }
 
 void AddNewTorrentDialog::categoryChanged(int index)
@@ -415,7 +454,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
 
 void AddNewTorrentDialog::browseButton_clicked()
 {
-    disconnect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathChanged(int)));
+    ui->savePathComboBox->blockSignals(true);
 
     // User is asking for a new save path
     QString curSavePath = ui->savePathComboBox->itemText(m_oldIndex);
@@ -427,24 +466,34 @@ void AddNewTorrentDialog::browseButton_clicked()
         newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
 
     if (!newPath.isEmpty()) {
-        const int existingIndex = indexOfSavePath(newPath);
-        if (existingIndex >= 0) {
-            ui->savePathComboBox->setCurrentIndex(existingIndex);
-        }
-        else {
-            // New path, prepend to combo box
-            ui->savePathComboBox->insertItem(0, Utils::Fs::toNativePath(newPath), newPath);
-            ui->savePathComboBox->setCurrentIndex(0);
-        }
+	ui->savePathComboBox->lineEdit()->setText(newPath);
+    }
 
-        onSavePathChanged(0);
+    ui->savePathComboBox->blockSignals(false);
+}
+
+bool AddNewTorrentDialog::isSavePathValid(const QString& path) const
+{
+    return !path.isEmpty() &&
+	Utils::Fs::isValidFileSystemName(path, true) &&
+	QDir::isAbsolutePath(path);
+}
+
+void AddNewTorrentDialog::addPathToHistory(QString &path)
+{
+    int existingPathIndex = ui->savePathComboBox->findText(path);
+    
+    ui->savePathComboBox->blockSignals(true);
+    
+    if (existingPathIndex == -1) {	
+	ui->savePathComboBox->insertItem(0, Utils::Fs::toNativePath(path), path);
+	ui->savePathComboBox->setCurrentIndex(0);
     }
     else {
-        // Restore index
-        ui->savePathComboBox->setCurrentIndex(m_oldIndex);
+	ui->savePathComboBox->setCurrentIndex(existingPathIndex);
     }
-
-    connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
+    
+    ui->savePathComboBox->blockSignals(false);
 }
 
 void AddNewTorrentDialog::renameSelectedFile()
@@ -641,7 +690,21 @@ void AddNewTorrentDialog::accept()
 
     params.addPaused = !ui->startTorrentCheckBox->isChecked();
 
-    QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
+    QString savePath = ui->savePathComboBox->currentText();
+
+    // If save path is editable, check if is a valid path
+    if (settings()->loadValue(KEY_EDITABLESAVEPATH).toBool()) {
+	if (!isSavePathValid(savePath)) {
+	    ui->savePathComboBox->lineEdit()->setFocus();
+	    return;
+	}
+	else {
+	    savePath = QDir::cleanPath(savePath);
+	    QDir(savePath).mkpath(".");
+	    addPathToHistory(savePath);
+	}
+    }
+    
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         params.savePath = savePath;
         saveSavePathHistory();
