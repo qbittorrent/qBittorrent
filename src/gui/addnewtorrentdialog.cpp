@@ -645,8 +645,10 @@ void AddNewTorrentDialog::accept()
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         params.savePath = savePath;
         saveSavePathHistory();
-        if (ui->defaultSavePathCheckBox->isChecked())
+        if (ui->defaultSavePathCheckBox->isChecked()) {
             settings()->storeValue(KEY_DEFAULTSAVEPATH, savePath);
+            BitTorrent::Session::instance()->setDefaultSavePath(savePath);
+        }
     }
 
     setEnabled(!ui->never_show_cb->isChecked());
