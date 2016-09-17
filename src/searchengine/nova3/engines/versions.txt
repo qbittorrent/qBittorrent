@@ -1,5 +1,5 @@
 demonoid: 1.21
-extratorrent: 2.04
+extratorrent: 2.05
 legittorrents: 2.01
 mininova: 2.02
 piratebay: 2.15
