@@ -91,6 +91,7 @@ void Server::incomingConnection(int socketDescriptor)
 #else
             static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificates.first());
 #endif
+            static_cast<QSslSocket*>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
             static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
         }
 #endif
