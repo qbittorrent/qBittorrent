@@ -1,4 +1,4 @@
-#VERSION: 2.04
+#VERSION: 2.05
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -125,9 +125,7 @@ class extratorrent(object):
 
         def handle_data(self, data):
             if self.cur_item_name:
-                temp = self.current_item[self.cur_item_name]
-                self.current_item[self.cur_item_name] = " ".join((temp, data))
-                #Due to utf-8 we need to handle data two times if there is space
+                self.current_item[self.cur_item_name] = data
                 if not self.cur_item_name == "size":
                     self.cur_item_name = None
 
