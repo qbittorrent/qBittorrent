@@ -62,7 +62,7 @@ static inline void removePythonScriptIfExists(const QString &scriptPath)
 const QHash<QString, QString> SearchEngine::m_categoryNames = SearchEngine::initializeCategoryNames();
 
 SearchEngine::SearchEngine()
-    : m_updateUrl(QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
+    : m_updateUrl(QString("http://searchplugins.qbittorrent.org/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
     , m_searchStopped(false)
 {
     updateNova();
