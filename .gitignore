@@ -30,3 +30,5 @@ src/qbittorrent.app
 aclocal.m4
 autom4te.cache/*
 config.status
+
+.vscode/settings.json
