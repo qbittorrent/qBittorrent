@@ -397,10 +397,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-#ifdef Q_OS_MAC
-    // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
-    setUnifiedTitleAndToolBarOnMac(false);
-#endif
     delete m_ui;
 }
 
