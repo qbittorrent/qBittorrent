@@ -97,7 +97,6 @@ private:
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
-    QString defaultSavePath() const;
     void setCommentText(const QString &str) const;
 
     void showEvent(QShowEvent *event) override;
