@@ -39,7 +39,8 @@
 #include "utils/fs.h"
 
 #ifdef Q_OS_MAC
-#define QSETTINGS_SYNC_IS_SAVE // whether QSettings::sync() is "atomic"
+// now mac uses ini
+//#define QSETTINGS_SYNC_IS_SAVE // whether QSettings::sync() is "atomic"
 #endif
 
 namespace
@@ -69,7 +70,7 @@ namespace
         using SettingsPtr = std::unique_ptr<QSettings>;
         SettingsPtr createSettings(const QString &name)
         {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
             return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", name));
 #else
             return SettingsPtr(new QSettings("qBittorrent", name));

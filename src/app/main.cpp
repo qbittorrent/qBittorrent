@@ -135,6 +135,12 @@ int main(int argc, char *argv[])
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
+#ifdef Q_OS_MAC
+    // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
+    // Due to this, we have to move from native plist to IniFormat
+    macSalvagePlists();
+#endif
+
     // Create Application
     QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
     QScopedPointer<Application> app(new Application(appId, argc, argv));
