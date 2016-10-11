@@ -7722,7 +7722,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="624"/>
         <source>Warning (%1)</source>
-        <translation>Z ostrzeżeniem (&amp;1)</translation>
+        <translation>Z ostrzeżeniem (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="654"/>
