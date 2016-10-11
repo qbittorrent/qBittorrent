@@ -4,5 +4,4 @@ legittorrents: 2.01
 mininova: 2.02
 piratebay: 2.15
 torlock: 2.0
-torrentreactor: 1.42
 torrentz: 2.22
