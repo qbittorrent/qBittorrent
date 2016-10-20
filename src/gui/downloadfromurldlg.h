@@ -96,9 +96,9 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
         QMessageBox::warning(0, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }
-      close();
       emit urlsReadyToBeDownloaded(url_list_cleaned);
       qDebug("Emitted urlsReadytobedownloaded signal");
+      close();
     }
 
     void on_cancelButton_clicked() {
