@@ -4257,6 +4257,17 @@ else
 $as_echo "no" >&6; }
 fi
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is macOS" >&5
+$as_echo_n "checking whether OS is macOS... " >&6; }
+if expr "$host_os" : ".*darwin.*" > /dev/null; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+      enable_qt_dbus=no
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
 # Require 0.23 pkg-config
 
 
