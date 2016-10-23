@@ -5917,12 +5917,12 @@ Les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="582"/>
         <source>Open</source>
-        <translation>Ouvert</translation>
+        <translation>Ouvrir</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="583"/>
         <source>Open Containing Folder</source>
-        <translation>Ouvrir le contenu du dossier</translation>
+        <translation>Ouvrir le dossier parent</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
