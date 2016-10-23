@@ -87,7 +87,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabOptionPage1">
+      <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <property name="leftMargin">
          <number>0</number>
@@ -649,7 +649,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage2">
+      <widget class="QWidget" name="tabDownloadsPage">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <property name="leftMargin">
          <number>0</number>
@@ -2184,7 +2184,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage4">
+      <widget class="QWidget" name="tabBitTorrentPage">
        <layout class="QVBoxLayout" name="verticalLayout_15">
         <property name="leftMargin">
          <number>0</number>
