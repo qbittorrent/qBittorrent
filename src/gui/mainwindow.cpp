@@ -1600,7 +1600,7 @@ void MainWindow::showConnectionSettings()
 
 void MainWindow::minimizeWindow()
 {
-    setWindowState(windowState() ^ Qt::WindowMinimized);
+    setWindowState(windowState() | Qt::WindowMinimized);
 }
 
 void MainWindow::on_actionExecutionLogs_triggered(bool checked)
