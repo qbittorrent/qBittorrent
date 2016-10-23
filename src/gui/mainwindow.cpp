@@ -920,7 +920,7 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
                     return;
             }
             // Make sure the window is not minimized
-            setWindowState(windowState() & (~Qt::WindowMinimized | Qt::WindowActive));
+            setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
             // Then show it
             show();
             raise();
