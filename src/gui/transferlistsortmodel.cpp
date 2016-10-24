@@ -80,7 +80,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         if (!vL.isValid() || !vR.isValid() || (vL == vR))
             return lowerPositionThan(left, right);
 
-        return Utils::String::naturalCompareCaseSensitive(vL.toString(), vR.toString());
+        return Utils::String::naturalCompareCaseInsensitive(vL.toString(), vR.toString());
     }
 
     case TorrentModel::TR_ADD_DATE:
