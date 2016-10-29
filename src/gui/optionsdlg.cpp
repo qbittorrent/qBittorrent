@@ -588,7 +588,7 @@ void OptionsDialog::saveOptions()
 
     // Misc preferences
     // * IPFilter
-    session->setFilteringEnabled(isFilteringEnabled());
+    session->setIPFilteringEnabled(isIPFilteringEnabled());
     session->setTrackerFilteringEnabled(m_ui->checkIpFilterTrackers->isChecked());
     session->setIPFilterFile(m_ui->textFilterPath->text());
     // End IPFilter preferences
@@ -628,7 +628,7 @@ void OptionsDialog::saveOptions()
     pref->apply();
 }
 
-bool OptionsDialog::isFilteringEnabled() const
+bool OptionsDialog::isIPFilteringEnabled() const
 {
     return m_ui->checkIPFilter->isChecked();
 }
@@ -869,7 +869,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyDisabled());
 
-    m_ui->checkIPFilter->setChecked(session->isFilteringEnabled());
+    m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
     m_ui->textFilterPath->setText(Utils::Fs::toNativePath(session->IPFilterFile()));
     // End Connection preferences
@@ -1534,7 +1534,7 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     m_refreshingIpFilter = true;
     // Updating program preferences
     BitTorrent::Session *const session = BitTorrent::Session::instance();
-    session->setFilteringEnabled(true);
+    session->setIPFilteringEnabled(true);
     session->setIPFilterFile(""); // forcing Session reload filter file
     session->setIPFilterFile(getFilter());
     connect(session, SIGNAL(IPFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));

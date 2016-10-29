@@ -156,7 +156,7 @@ private:
     QString getProxyPassword() const;
     Net::ProxyType getProxyType() const;
     // IP Filter
-    bool isFilteringEnabled() const;
+    bool isIPFilteringEnabled() const;
     QString getFilter() const;
     bool m_refreshingIpFilter;
     // Queueing system

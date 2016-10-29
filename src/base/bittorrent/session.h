@@ -273,8 +273,8 @@ namespace BitTorrent
         void setAddTrackersEnabled(bool enabled);
         QString additionalTrackers() const;
         void setAdditionalTrackers(const QString &trackers);
-        bool isFilteringEnabled() const;
-        void setFilteringEnabled(bool enabled);
+        bool isIPFilteringEnabled() const;
+        void setIPFilteringEnabled(bool enabled);
         QString IPFilterFile() const;
         void setIPFilterFile(QString path);
         bool announceToAllTrackers() const;
@@ -505,7 +505,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
         CachedSettingValue<bool> m_isTrackerExchangeEnabled;
-        CachedSettingValue<bool> m_isFilteringEnabled;
+        CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
         CachedSettingValue<QString> m_IPFilterFile;
         CachedSettingValue<bool> m_announceToAllTrackers;
