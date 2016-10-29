@@ -563,7 +563,7 @@ void OptionsDialog::saveOptions()
     proxyConf.port = getProxyPort();
     proxyConf.username = getProxyUsername();
     proxyConf.password = getProxyPassword();
-    proxyConfigManager->setProxyDisabled(m_ui->isProxyOnlyForTorrents->isChecked());
+    proxyConfigManager->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
@@ -858,7 +858,6 @@ void OptionsDialog::loadOptions()
     default:
         m_ui->comboProxyType->setCurrentIndex(0);
     }
-    enableProxy(m_ui->comboProxyType->currentIndex() > 0);
     m_ui->textProxyIP->setText(proxyConf.ip);
     m_ui->spinProxyPort->setValue(proxyConf.port);
     m_ui->checkProxyAuth->setChecked(useProxyAuth);
@@ -867,7 +866,8 @@ void OptionsDialog::loadOptions()
 
     m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
     m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
-    m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyDisabled());
+    m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
+    enableProxy(m_ui->comboProxyType->currentIndex() > 0);
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
@@ -1194,13 +1194,15 @@ void OptionsDialog::enableProxy(int index)
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
         m_ui->checkForceProxy->setEnabled(true);
-        m_ui->isProxyOnlyForTorrents->setEnabled(true);
         if (index > 1) {
             m_ui->checkProxyAuth->setEnabled(true);
+            m_ui->isProxyOnlyForTorrents->setEnabled(true);
         }
         else {
             m_ui->checkProxyAuth->setEnabled(false);
             m_ui->checkProxyAuth->setChecked(false);
+            m_ui->isProxyOnlyForTorrents->setEnabled(false);
+            m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
     }
     else {

@@ -156,7 +156,7 @@ namespace
             {"BitTorrent/Session/uTPEnabled", "Preferences/Bittorrent/uTP"},
             {"BitTorrent/Session/uTPRateLimited", "Preferences/Bittorrent/uTP_rate_limited"},
             {"BitTorrent/TrackerEnabled", "Preferences/Advanced/trackerEnabled"},
-            {"Network/Proxy/Disabled", "Preferences/Connection/ProxyOnlyForTorrents"},
+            {"Network/Proxy/OnlyForTorrents", "Preferences/Connection/ProxyOnlyForTorrents"},
             {"Network/Proxy/Type", "Preferences/Connection/ProxyType"},
             {"Network/Proxy/Authentication", "Preferences/Connection/Proxy/Authentication"},
             {"Network/Proxy/Username", "Preferences/Connection/Proxy/Username"},
