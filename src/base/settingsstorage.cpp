@@ -155,7 +155,7 @@ namespace
             {"BitTorrent/Session/MaxHalfOpenConnections", "Preferences/Connection/MaxHalfOpenConnec"},
             {"BitTorrent/Session/uTPEnabled", "Preferences/Bittorrent/uTP"},
             {"BitTorrent/Session/uTPRateLimited", "Preferences/Bittorrent/uTP_rate_limited"},
-            {"BitTorrent/TrackerEnabled", "Preferences/TrackerEnabled"},
+            {"BitTorrent/TrackerEnabled", "Preferences/Advanced/trackerEnabled"},
             {"Network/Proxy/Disabled", "Preferences/Connection/ProxyOnlyForTorrents"},
             {"Network/Proxy/Type", "Preferences/Connection/ProxyType"},
             {"Network/Proxy/Authentication", "Preferences/Connection/Proxy/Authentication"},

@@ -236,7 +236,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 void AdvancedSettings::loadAdvancedSettings()
 {
     const Preferences* const pref = Preferences::instance();
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // add section headers
     QFont boldFont;

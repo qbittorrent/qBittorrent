@@ -34,7 +34,6 @@ const QString KEY_DISABLED = SETTINGS_KEY("Disabled");
 const QString KEY_TYPE = SETTINGS_KEY("Type");
 const QString KEY_IP = SETTINGS_KEY("IP");
 const QString KEY_PORT = SETTINGS_KEY("Port");
-const QString KEY_AUTHENTICATION = SETTINGS_KEY("Authentication");
 const QString KEY_USERNAME = SETTINGS_KEY("Username");
 const QString KEY_PASSWORD = SETTINGS_KEY("Password");
 
@@ -68,6 +67,7 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     m_config.port = static_cast<ushort>(settings()->loadValue(KEY_PORT, 8080).toUInt());
     m_config.username = settings()->loadValue(KEY_USERNAME).toString();
     m_config.password = settings()->loadValue(KEY_PASSWORD).toString();
+    configureProxy();
 }
 
 void ProxyConfigurationManager::initInstance()
@@ -78,7 +78,10 @@ void ProxyConfigurationManager::initInstance()
 
 void ProxyConfigurationManager::freeInstance()
 {
-    delete m_instance;
+    if (m_instance) {
+        delete m_instance;
+        m_instance = 0;
+    }
 }
 
 ProxyConfigurationManager *ProxyConfigurationManager::instance()
