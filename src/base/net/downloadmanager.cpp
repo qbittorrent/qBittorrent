@@ -213,7 +213,7 @@ void DownloadManager::applyProxySettings()
     ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     QNetworkProxy proxy;
 
-    if (!proxyManager->isProxyDisabled() && (proxyConfig.type != ProxyType::None)) {
+    if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None)) {
         // Proxy enabled
         proxy.setHostName(proxyConfig.ip);
         proxy.setPort(proxyConfig.port);

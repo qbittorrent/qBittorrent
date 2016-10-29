@@ -30,7 +30,7 @@
 #include "base/settingsstorage.h"
 
 #define SETTINGS_KEY(name) "Network/Proxy/" name
-const QString KEY_DISABLED = SETTINGS_KEY("Disabled");
+const QString KEY_ONLY_FOR_TORRENTS = SETTINGS_KEY("OnlyForTorrents");
 const QString KEY_TYPE = SETTINGS_KEY("Type");
 const QString KEY_IP = SETTINGS_KEY("IP");
 const QString KEY_PORT = SETTINGS_KEY("Port");
@@ -58,7 +58,7 @@ ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     : QObject(parent)
 {
-    m_proxyDisabled = settings()->loadValue(KEY_DISABLED, false).toBool();
+    m_isProxyOnlyForTorrents = settings()->loadValue(KEY_ONLY_FOR_TORRENTS, false).toBool();
     m_config.type = static_cast<ProxyType>(
                 settings()->loadValue(KEY_TYPE, static_cast<int>(ProxyType::None)).toInt());
     if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
@@ -109,16 +109,16 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
     }
 }
 
-bool ProxyConfigurationManager::isProxyDisabled() const
+bool ProxyConfigurationManager::isProxyOnlyForTorrents() const
 {
-    return m_proxyDisabled;
+    return m_isProxyOnlyForTorrents || (m_config.type == ProxyType::SOCKS4);
 }
 
-void ProxyConfigurationManager::setProxyDisabled(bool disabled)
+void ProxyConfigurationManager::setProxyOnlyForTorrents(bool onlyForTorrents)
 {
-    if (m_proxyDisabled != disabled) {
-        settings()->storeValue(KEY_DISABLED, disabled);
-        m_proxyDisabled = disabled;
+    if (m_isProxyOnlyForTorrents != onlyForTorrents) {
+        settings()->storeValue(KEY_ONLY_FOR_TORRENTS, onlyForTorrents);
+        m_isProxyOnlyForTorrents = onlyForTorrents;
     }
 }
 
@@ -132,7 +132,7 @@ void ProxyConfigurationManager::configureProxy()
 {
     // Define environment variables for urllib in search engine plugins
     QString proxyStrHTTP, proxyStrSOCK;
-    if (!m_proxyDisabled) {
+    if (!m_isProxyOnlyForTorrents) {
         switch (m_config.type) {
         case ProxyType::HTTP_PW:
             proxyStrHTTP = QString("http://%1:%2@%3:%4").arg(m_config.username)

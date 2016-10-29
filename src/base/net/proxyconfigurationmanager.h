@@ -67,8 +67,8 @@ namespace Net
 
         ProxyConfiguration proxyConfiguration() const;
         void setProxyConfiguration(const ProxyConfiguration &config);
-        bool isProxyDisabled() const;
-        void setProxyDisabled(bool disabled);
+        bool isProxyOnlyForTorrents() const;
+        void setProxyOnlyForTorrents(bool onlyForTorrents);
 
         bool isAuthenticationRequired() const;
 
@@ -80,7 +80,7 @@ namespace Net
 
         static ProxyConfigurationManager *m_instance;
         ProxyConfiguration m_config;
-        bool m_proxyDisabled;
+        bool m_isProxyOnlyForTorrents;
     };
 }
 
