@@ -254,9 +254,9 @@ Session::Session(QObject *parent)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
-    , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(0))
-    , m_maxActiveUploads(BITTORRENT_SESSION_KEY("MaxActiveUploads"), 3, lowerLimited(0))
-    , m_maxActiveTorrents(BITTORRENT_SESSION_KEY("MaxActiveTorrents"), 5, lowerLimited(0))
+    , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
+    , m_maxActiveUploads(BITTORRENT_SESSION_KEY("MaxActiveUploads"), 3, lowerLimited(-1))
+    , m_maxActiveTorrents(BITTORRENT_SESSION_KEY("MaxActiveTorrents"), 5, lowerLimited(-1))
     , m_ignoreSlowTorrentsForQueueing(BITTORRENT_SESSION_KEY("IgnoreSlowTorrentsForQueueing"), false)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY("OutgoingPortsMin"), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY("OutgoingPortsMax"), 0)
@@ -1129,18 +1129,11 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 void Session::adjustLimits(libt::session_settings &sessionSettings)
 {
     //Internally increase the queue limits to ensure that the magnet is started
-    int maxDownloading = maxActiveDownloads();
+    int maxDownloads = maxActiveDownloads();
     int maxActive = maxActiveTorrents();
 
-    if (maxDownloading > -1)
-        sessionSettings.active_downloads = maxDownloading + m_extraLimit;
-    else
-        sessionSettings.active_downloads = maxDownloading;
-
-    if (maxActive > -1)
-        sessionSettings.active_limit = maxActive + m_extraLimit;
-    else
-        sessionSettings.active_limit = maxActive;
+    sessionSettings.active_downloads = maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads;
+    sessionSettings.active_limit = maxActive > -1 ? maxActive + m_extraLimit : maxActive;
 }
 
 void Session::configure(libtorrent::session_settings &sessionSettings)
