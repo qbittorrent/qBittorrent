@@ -41,6 +41,7 @@
 #endif
 #include <QNetworkConfigurationManager>
 #include <QPointer>
+#include <QReadWriteLock>
 #include <QStringList>
 #include <QVector>
 #include <QWaitCondition>
@@ -603,6 +604,8 @@ namespace BitTorrent
 #endif
 
         QNetworkConfigurationManager m_networkManager;
+
+        mutable QReadWriteLock m_lock;
 
         static Session *m_instance;
     };

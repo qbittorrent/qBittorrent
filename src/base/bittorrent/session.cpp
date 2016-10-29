@@ -911,6 +911,9 @@ void Session::adjustLimits()
 void Session::configure()
 {
     qDebug("Configuring session");
+    if (!m_deferredConfigureScheduled) return; // Obtaining the lock is expensive, let's check early
+    QWriteLocker locker(&m_lock);
+    if (!m_deferredConfigureScheduled) return; // something might have changed while we were getting the lock
 #if LIBTORRENT_VERSION_NUM < 10100
     libt::session_settings sessionSettings = m_nativeSession->settings();
     configure(sessionSettings);
@@ -2957,10 +2960,12 @@ void Session::initResumeFolder()
 
 void Session::configureDeferred()
 {
-    if (!m_deferredConfigureScheduled) {
-        QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);
-        m_deferredConfigureScheduled = true;
-    }
+    if (m_deferredConfigureScheduled) return; // Obtaining the lock is expensive, let's check early
+    QWriteLocker locker(&m_lock);
+    if (m_deferredConfigureScheduled) return; // something might have changed while we were getting the lock
+
+    QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);
+    m_deferredConfigureScheduled = true;
 }
 
 // Enable IP Filtering
