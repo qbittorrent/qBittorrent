@@ -445,11 +445,6 @@ Session::Session(QObject *parent)
     populateAdditionalTrackers();
 
     enableTracker(isTrackerEnabled());
-    if (!torrentExportDirectory().isEmpty()) {
-        qDebug("Torrent export is enabled, exporting the current torrents");
-        foreach (TorrentHandle *const torrent, m_torrents)
-            exportTorrentFile(torrent);
-    }
 
     connect(Net::ProxyConfigurationManager::instance(), SIGNAL(proxyConfigurationChanged()), SLOT(configureDeferred()));
 
@@ -599,16 +594,7 @@ QString Session::torrentExportDirectory() const
 
 void Session::setTorrentExportDirectory(const QString &path)
 {
-    if (path != torrentExportDirectory()) {
-        const bool wasDisabled = torrentExportDirectory().isEmpty();
-        m_torrentExportDirectory = path;
-
-        if (wasDisabled) {
-            qDebug("Torrent export is enabled, exporting the current torrents");
-            foreach (TorrentHandle *const torrent, m_torrents)
-                exportTorrentFile(torrent);
-        }
-    }
+    m_torrentExportDirectory = path;
 }
 
 QString Session::finishedTorrentExportDirectory() const
