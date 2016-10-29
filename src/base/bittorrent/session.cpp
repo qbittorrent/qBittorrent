@@ -245,7 +245,7 @@ Session::Session(QObject *parent)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY("LSDEnabled"), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY("PeXEnabled"), true)
     , m_isTrackerExchangeEnabled(BITTORRENT_SESSION_KEY("TrackerExchangeEnabled"), false)
-    , m_isFilteringEnabled(BITTORRENT_SESSION_KEY("FilteringEnabled"), false)
+    , m_isIPFilteringEnabled(BITTORRENT_SESSION_KEY("IPFilteringEnabled"), false)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY("TrackerFilteringEnabled"), false)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), true)
@@ -417,7 +417,7 @@ Session::Session(QObject *parent)
                        , Log::INFO);
 
     m_nativeSession->set_ip_filter({});
-    if (isFilteringEnabled())
+    if (isIPFilteringEnabled())
         enableIPFilter();
     // Add the banned IPs
     processBannedIPs();
@@ -923,7 +923,7 @@ void Session::configure()
 #endif
 
     if (m_IPFilteringChanged) {
-        if (isFilteringEnabled())
+        if (isIPFilteringEnabled())
             enableIPFilter();
         else
             disableIPFilter();
@@ -2347,15 +2347,15 @@ void Session::setAdditionalTrackers(const QString &trackers)
     }
 }
 
-bool Session::isFilteringEnabled() const
+bool Session::isIPFilteringEnabled() const
 {
-    return m_isFilteringEnabled;
+    return m_isIPFilteringEnabled;
 }
 
-void Session::setFilteringEnabled(bool enabled)
+void Session::setIPFilteringEnabled(bool enabled)
 {
-    if (enabled != m_isFilteringEnabled) {
-        m_isFilteringEnabled = enabled;
+    if (enabled != m_isIPFilteringEnabled) {
+        m_isIPFilteringEnabled = enabled;
         m_IPFilteringChanged = true;
         configureDeferred();
     }

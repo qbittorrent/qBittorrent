@@ -111,7 +111,7 @@ QByteArray prefjson::getPreferences()
     data["force_proxy"] = session->isForceProxyEnabled();
 
     // IP Filtering
-    data["ip_filter_enabled"] = session->isFilteringEnabled();
+    data["ip_filter_enabled"] = session->isIPFilteringEnabled();
     data["ip_filter_path"] = Utils::Fs::toNativePath(session->IPFilterFile());
     data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
 
@@ -304,7 +304,7 @@ void prefjson::setPreferences(const QString& json)
 
     // IP Filtering
     if (m.contains("ip_filter_enabled"))
-        session->setFilteringEnabled(m["ip_filter_enabled"].toBool());
+        session->setIPFilteringEnabled(m["ip_filter_enabled"].toBool());
     if (m.contains("ip_filter_path"))
         session->setIPFilterFile(m["ip_filter_path"].toString());
     if (m.contains("ip_filter_trackers"))

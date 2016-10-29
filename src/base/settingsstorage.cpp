@@ -132,7 +132,7 @@ namespace
             {"BitTorrent/Session/TrackerExchangeEnabled", "Preferences/Advanced/LtTrackerExchange"},
             {"BitTorrent/Session/AddTrackersEnabled", "Preferences/Bittorrent/AddTrackers"},
             {"BitTorrent/Session/AdditionalTrackers", "Preferences/Bittorrent/TrackersList"},
-            {"BitTorrent/Session/FilteringEnabled", "Preferences/IPFilter/Enabled"},
+            {"BitTorrent/Session/IPFilteringEnabled", "Preferences/IPFilter/Enabled"},
             {"BitTorrent/Session/TrackerFilteringEnabled", "Preferences/IPFilter/FilterTracker"},
             {"BitTorrent/Session/IPFilter", "Preferences/IPFilter/File"},
             {"BitTorrent/Session/GlobalMaxRatio", "Preferences/Bittorrent/MaxRatio"},
