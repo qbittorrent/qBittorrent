@@ -90,9 +90,9 @@
 #include "tracker.h"
 #include "trackerentry.h"
 
-const char PEER_ID[] = "qB";
-const char RESUME_FOLDER[] = "BT_backup";
-const char USER_AGENT[] = "qBittorrent " VERSION;
+static const char PEER_ID[] = "qB";
+static const char RESUME_FOLDER[] = "BT_backup";
+static const char USER_AGENT[] = "qBittorrent " VERSION;
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -416,7 +416,6 @@ Session::Session(QObject *parent)
                        .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
                        , Log::INFO);
 
-    m_nativeSession->set_ip_filter({});
     if (isIPFilteringEnabled())
         enableIPFilter();
     // Add the banned IPs
@@ -901,7 +900,7 @@ void Session::adjustLimits()
         adjustLimits(sessionSettings);
         m_nativeSession->set_settings(sessionSettings);
 #else
-        libt::settings_pack settingsPack;
+        libt::settings_pack settingsPack = m_nativeSession->get_settings();
         adjustLimits(settingsPack);
         m_nativeSession->apply_settings(settingsPack);
 #endif
@@ -917,7 +916,7 @@ void Session::configure()
     configure(sessionSettings);
     m_nativeSession->set_settings(sessionSettings);
 #else
-    libt::settings_pack settingsPack;
+    libt::settings_pack settingsPack = m_nativeSession->get_settings();
     configure(settingsPack);
     m_nativeSession->apply_settings(settingsPack);
 #endif
@@ -942,7 +941,8 @@ void Session::processBannedIPs()
         boost::system::error_code ec;
         libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
-        filter.add_rule(addr, addr, libt::ip_filter::blocked);
+        if (!ec)
+            filter.add_rule(addr, addr, libt::ip_filter::blocked);
     }
 
     m_nativeSession->set_ip_filter(filter);
@@ -1206,7 +1206,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.announce_to_all_trackers = announceToAll;
     sessionSettings.announce_to_all_tiers = announceToAll;
     int cacheSize = diskCacheSize();
-    sessionSettings.cache_size = cacheSize ? cacheSize * 64 : -1;
+    sessionSettings.cache_size = (cacheSize > 0) ? cacheSize * 64 : -1;
     sessionSettings.cache_expiry = diskCacheTTL();
     qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
     libt::session_settings::io_buffer_mode_t mode = useOSCache() ? libt::session_settings::enable_os_cache
@@ -1254,10 +1254,9 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.enable_outgoing_utp = isUTPEnabled();
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
-    if (sessionSettings.rate_limit_utp)
-        sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
-    else
-        sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
+    sessionSettings.mixed_mode_algorithm = isUTPRateLimited()
+                                           ? libt::session_settings::prefer_tcp
+                                           : libt::session_settings::peer_proportional;
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
@@ -1402,6 +1401,7 @@ void Session::banIP(const QString &ip)
         boost::system::error_code ec;
         libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
+        if (ec) return;
         filter.add_rule(addr, addr, libt::ip_filter::blocked);
         m_nativeSession->set_ip_filter(filter);
 

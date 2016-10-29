@@ -36,7 +36,7 @@
 #include "base/logger.h"
 #include "base/settingsstorage.h"
 
-const QString KEY_ENABLED = QLatin1String("Network/PortForwardingEnabled");
+static const QString KEY_ENABLED = QLatin1String("Network/PortForwardingEnabled");
 
 namespace libt = libtorrent;
 using namespace Net;
@@ -86,6 +86,8 @@ void PortForwarder::setEnabled(bool enabled)
             start();
         else
             stop();
+
+        SettingsStorage::instance()->storeValue(KEY_ENABLED, enabled);
     }
 }
 
