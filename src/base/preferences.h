@@ -228,8 +228,6 @@ public:
     void resolvePeerHostNames(bool resolve);
     QString getNetworkInterfaceName() const;
     void setNetworkInterfaceName(const QString& iface);
-    QString getNetworkInterfaceAddress() const;
-    void setNetworkInterfaceAddress(const QString& addr);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);

@@ -156,11 +156,11 @@ void AdvancedSettings::saveAdvancedSettings()
     // Interface address
     if (combo_iface_address.currentIndex() == 0) {
         // All addresses (default)
-        pref->setNetworkInterfaceAddress(QString::null);
+        session->setNetworkInterfaceAddress(QString::null);
     }
     else {
         QHostAddress ifaceAddr(combo_iface_address.currentText().trimmed());
-        ifaceAddr.isNull() ? pref->setNetworkInterfaceAddress(QString::null) : pref->setNetworkInterfaceAddress(ifaceAddr.toString());
+        ifaceAddr.isNull() ? session->setNetworkInterfaceAddress(QString::null) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
     }
     session->setIPv6Enabled(cb_listen_ipv6.isChecked());
     // Announce IP
@@ -200,7 +200,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 {
     // Try to get the currently selected interface name
     const QString ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString(); // Empty string for the first element
-    const QString currentAddress = Preferences::instance()->getNetworkInterfaceAddress();
+    const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
 
     //Clear all items and reinsert them, default to all
     combo_iface_address.clear();

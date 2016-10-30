@@ -118,6 +118,7 @@ namespace
             {"BitTorrent/Session/UseRandomPort", "Preferences/General/UseRandomPort"},
             {"BitTorrent/Session/IPv6Enabled", "Preferences/Connection/InterfaceListenIPv6"},
             {"BitTorrent/Session/Interface", "Preferences/Connection/Interface"},
+            {"BitTorrent/Session/InterfaceAddress", "Preferences/Connection/InterfaceAddress"},
             {"BitTorrent/Session/SaveResumeDataInterval", "Preferences/Downloads/SaveResumeDataInterval"},
             {"BitTorrent/Session/Encryption", "Preferences/Bittorrent/Encryption"},
             {"BitTorrent/Session/ForceProxy", "Preferences/Connection/ProxyForce"},

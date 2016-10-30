@@ -711,16 +711,6 @@ void Preferences::setNetworkInterfaceName(const QString& iface)
     setValue("Preferences/Connection/InterfaceName", iface);
 }
 
-void Preferences::setNetworkInterfaceAddress(const QString& addr)
-{
-    setValue("Preferences/Connection/InterfaceAddress", addr);
-}
-
-QString Preferences::getNetworkInterfaceAddress() const
-{
-    return value("Preferences/Connection/InterfaceAddress").toString();
-}
-
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 bool Preferences::useSystemIconTheme() const
 {
