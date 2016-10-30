@@ -226,8 +226,6 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-    QString getNetworkInterfaceName() const;
-    void setNetworkInterfaceName(const QString& iface);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);

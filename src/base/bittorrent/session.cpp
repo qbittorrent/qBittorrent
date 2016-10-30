@@ -290,6 +290,7 @@ Session::Session(QObject *parent)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
+    , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
     , m_isIPv6Enabled(BITTORRENT_SESSION_KEY("IPv6Enabled"), false)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
@@ -2249,6 +2250,16 @@ void Session::setNetworkInterface(const QString &interface)
         m_networkInterface = interface;
         configureListeningInterface();
     }
+}
+
+QString Session::networkInterfaceName() const
+{
+    return m_networkInterfaceName;
+}
+
+void Session::setNetworkInterfaceName(const QString &name)
+{
+    m_networkInterfaceName = name;
 }
 
 QString Session::networkInterfaceAddress() const

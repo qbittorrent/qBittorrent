@@ -146,11 +146,11 @@ void AdvancedSettings::saveAdvancedSettings()
     if (combo_iface.currentIndex() == 0) {
         // All interfaces (default)
         session->setNetworkInterface(QString());
-        pref->setNetworkInterfaceName(QString());
+        session->setNetworkInterfaceName(QString());
     }
     else {
         session->setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
-        pref->setNetworkInterfaceName(combo_iface.currentText());
+        session->setNetworkInterfaceName(combo_iface.currentText());
     }
 
     // Interface address
@@ -333,7 +333,7 @@ void AdvancedSettings::loadAdvancedSettings()
     }
     // Saved interface does not exist, show it anyway
     if (!interface_exists) {
-        combo_iface.addItem(pref->getNetworkInterfaceName(), current_iface);
+        combo_iface.addItem(session->networkInterfaceName(), current_iface);
         combo_iface.setCurrentIndex(i);
     }
     addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);

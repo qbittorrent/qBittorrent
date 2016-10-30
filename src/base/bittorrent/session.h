@@ -260,6 +260,8 @@ namespace BitTorrent
         void setUseRandomPort(bool value);
         QString networkInterface() const;
         void setNetworkInterface(const QString &interface);
+        QString networkInterfaceName() const;
+        void setNetworkInterfaceName(const QString &name);
         QString networkInterfaceAddress() const;
         void setNetworkInterfaceAddress(const QString &address);
         bool isIPv6Enabled() const;
@@ -551,6 +553,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;
         CachedSettingValue<QString> m_networkInterface;
+        CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
         CachedSettingValue<bool> m_isIPv6Enabled;
         CachedSettingValue<int> m_encryption;
