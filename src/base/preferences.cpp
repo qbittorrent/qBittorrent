@@ -701,16 +701,6 @@ void Preferences::resolvePeerHostNames(bool resolve)
     setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
 }
 
-QString Preferences::getNetworkInterfaceName() const
-{
-    return value("Preferences/Connection/InterfaceName").toString();
-}
-
-void Preferences::setNetworkInterfaceName(const QString& iface)
-{
-    setValue("Preferences/Connection/InterfaceName", iface);
-}
-
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 bool Preferences::useSystemIconTheme() const
 {
