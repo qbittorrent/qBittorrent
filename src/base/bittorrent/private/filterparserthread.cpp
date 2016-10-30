@@ -55,10 +55,10 @@ FilterParserThread::~FilterParserThread()
 }
 
 // Parser for eMule ip filter in DAT format
-int FilterParserThread::parseDATFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseDATFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -149,10 +149,10 @@ int FilterParserThread::parseDATFilterFile(QString m_filePath, libt::ip_filter &
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2PFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseP2PFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -257,10 +257,10 @@ int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, 
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseP2BFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -369,7 +369,7 @@ int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &
 //  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
 //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
 //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
-void FilterParserThread::processFilterFile(QString _filePath)
+void FilterParserThread::processFilterFile(QString filePath)
 {
     if (isRunning()) {
         // Already parsing a filter, m_abort first
@@ -378,7 +378,7 @@ void FilterParserThread::processFilterFile(QString _filePath)
     }
 
     m_abort = false;
-    m_filePath = _filePath;
+    m_filePath = filePath;
     // Run it
     start();
 }
