@@ -544,7 +544,8 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             updateGeometry();
             return;
         }
-        trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
+        if (trackerItem != nullptr)
+            trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
     }
     else {
         row = 1;
