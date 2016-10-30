@@ -131,7 +131,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         const bool seedingR = (prioR < 0);
 
         bool activeR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
-        bool activeL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
+        bool activeL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(left.row())));
 
         // Sorting rules prioritized.
         // 1. Active torrents at the top
