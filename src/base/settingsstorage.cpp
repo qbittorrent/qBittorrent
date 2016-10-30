@@ -150,7 +150,7 @@ namespace
             {"BitTorrent/Session/OutgoingPortsMax", "Preferences/Advanced/OutgoingPortsMax"},
             {"BitTorrent/Session/IgnoreLimitsOnLAN", "Preferences/Advanced/IgnoreLimitsLAN"},
             {"BitTorrent/Session/IncludeOverheadInLimits", "Preferences/Advanced/IncludeOverhead"},
-            {"BitTorrent/Session/NetworkAddress", "Preferences/Connection/InetAddress"},
+            {"BitTorrent/Session/AnnounceIP", "Preferences/Connection/InetAddress"},
             {"BitTorrent/Session/SuperSeedingEnabled", "Preferences/Advanced/SuperSeeding"},
             {"BitTorrent/Session/MaxHalfOpenConnections", "Preferences/Connection/MaxHalfOpenConnec"},
             {"BitTorrent/Session/uTPEnabled", "Preferences/Bittorrent/uTP"},

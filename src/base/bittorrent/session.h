@@ -300,8 +300,8 @@ namespace BitTorrent
         void setIgnoreLimitsOnLAN(bool ignore);
         bool includeOverheadInLimits() const;
         void setIncludeOverheadInLimits(bool include);
-        QString networkAddress() const;
-        void setNetworkAddress(const QString &addr);
+        QString announceIP() const;
+        void setAnnounceIP(const QString &ip);
         bool isSuperSeedingEnabled() const;
         void setSuperSeedingEnabled(bool enabled);
         int maxConnections() const;
@@ -523,7 +523,7 @@ namespace BitTorrent
         CachedSettingValue<uint> m_outgoingPortsMax;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
-        CachedSettingValue<QString> m_networkAddress;
+        CachedSettingValue<QString> m_announceIP;
         CachedSettingValue<bool> m_isSuperSeedingEnabled;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxHalfOpenConnections;

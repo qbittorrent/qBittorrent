@@ -88,7 +88,7 @@ enum AdvSettingsRows
     // tracker
     TRACKER_EXCHANGE,
     ANNOUNCE_ALL_TRACKERS,
-    NETWORK_ADDRESS,
+    ANNOUNCE_IP,
 
     ROW_COUNT
 };
@@ -163,9 +163,9 @@ void AdvancedSettings::saveAdvancedSettings()
         ifaceAddr.isNull() ? pref->setNetworkInterfaceAddress(QString::null) : pref->setNetworkInterfaceAddress(ifaceAddr.toString());
     }
     session->setIPv6Enabled(cb_listen_ipv6.isChecked());
-    // Network address
-    QHostAddress addr(txt_network_address.text().trimmed());
-    session->setNetworkAddress(addr.isNull() ? "" : addr.toString());
+    // Announce IP
+    QHostAddress addr(txtAnnounceIP.text().trimmed());
+    session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
 
     // Program notification
     MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
@@ -343,9 +343,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(session->isIPv6Enabled());
     addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
-    // Announce address
-    txt_network_address.setText(session->networkAddress());
-    addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
+    // Announce IP
+    txtAnnounceIP.setText(session->announceIP());
+    addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &txtAnnounceIP);
 
     // Program notifications
     const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();

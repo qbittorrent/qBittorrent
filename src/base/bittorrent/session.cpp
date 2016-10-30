@@ -262,7 +262,7 @@ Session::Session(QObject *parent)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY("OutgoingPortsMax"), 0)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), true)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
-    , m_networkAddress(BITTORRENT_SESSION_KEY("NetworkAddress"))
+    , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_isSuperSeedingEnabled(BITTORRENT_SESSION_KEY("SuperSeedingEnabled"), false)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxHalfOpenConnections(BITTORRENT_SESSION_KEY("MaxHalfOpenConnections"), 20, lowerLimited(0, -1))
@@ -1103,7 +1103,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // Include overhead in transfer limits
     settingsPack.set_bool(libt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
-    settingsPack.set_str(libt::settings_pack::announce_ip, Utils::String::toStdString(networkAddress()));
+    settingsPack.set_str(libt::settings_pack::announce_ip, Utils::String::toStdString(announceIP()));
     // Super seeding
     settingsPack.set_bool(libt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
     // * Max Half-open connections
@@ -1243,7 +1243,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = includeOverheadInLimits();
     // IP address to announce to trackers
-    sessionSettings.announce_ip = Utils::String::toStdString(networkAddress());
+    sessionSettings.announce_ip = Utils::String::toStdString(announceIP());
     // Super seeding
     sessionSettings.strict_super_seeding = isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -2619,15 +2619,15 @@ void Session::setIncludeOverheadInLimits(bool include)
     }
 }
 
-QString Session::networkAddress() const
+QString Session::announceIP() const
 {
-    return m_networkAddress;
+    return m_announceIP;
 }
 
-void Session::setNetworkAddress(const QString &addr)
+void Session::setAnnounceIP(const QString &ip)
 {
-    if (addr != m_networkAddress) {
-        m_networkAddress = addr;
+    if (ip != m_announceIP) {
+        m_announceIP = ip;
         configureDeferred();
     }
 }
