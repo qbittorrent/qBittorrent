@@ -67,7 +67,7 @@ void FeedListWidget::itemAboutToBeRemoved(QTreeWidgetItem *item) {
   Rss::FilePtr file = m_rssMapping.take(item);
   if (Rss::FeedPtr feed = qSharedPointerDynamicCast<Rss::Feed>(file)) {
     m_feedsItems.remove(feed->id());
-  } if (Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(file)) {
+  } else if (Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(file)) {
     Rss::FeedList feeds = folder->getAllFeeds();
     foreach (const Rss::FeedPtr& feed, feeds) {
       m_feedsItems.remove(feed->id());
