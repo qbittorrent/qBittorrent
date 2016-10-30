@@ -1056,7 +1056,7 @@ bool OptionsDialog::isUPnPEnabled() const
 // [download,upload]
 QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 {
-    int DL = -1, UP = -1;
+    int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimit->isChecked())
         DL = m_ui->spinDownloadLimit->value();
     if (m_ui->checkUploadLimit->isChecked())
@@ -1068,7 +1068,7 @@ QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 // [download,upload]
 QPair<int, int> OptionsDialog::getAltGlobalBandwidthLimits() const
 {
-    int DL = -1, UP = -1;
+    int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimitAlt->isChecked())
         DL = m_ui->spinDownloadLimitAlt->value();
     if (m_ui->checkUploadLimitAlt->isChecked())

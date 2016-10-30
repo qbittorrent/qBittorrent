@@ -56,7 +56,7 @@ long SpeedLimitDialog::askSpeedLimit(bool *ok, QString title, long default_value
         *ok = true;
         int val = dlg.getSpeedLimit();
         if (val <= 0)
-            return -1;
+            return 0;
         return val * 1024;
     }
     else {
