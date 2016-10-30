@@ -205,13 +205,13 @@ void StatusBar::updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus
 {
     QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true);
     int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
-    if (speedLimit >= 0)
+    if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
     speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload()) + ")";
     m_dlSpeedLbl->setText(speedLbl);
     speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
     speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true);
-    if (speedLimit >= 0)
+    if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
     speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload()) + ")";
     m_upSpeedLbl->setText(speedLbl);
@@ -252,17 +252,11 @@ void StatusBar::capDownloadSpeed()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
-    long newLimit = SpeedLimitDialog::askSpeedLimit(
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
                 &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
     if (ok) {
-        if (newLimit <= 0) {
-            qDebug("Setting global download rate limit to Unlimited");
-            session->setDownloadSpeedLimit(-1);
-        }
-        else {
-            qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
-            session->setDownloadSpeedLimit(newLimit);
-        }
+        qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
+        session->setDownloadSpeedLimit(newLimit);
         refreshStatusBar();
     }
 }
@@ -271,17 +265,11 @@ void StatusBar::capUploadSpeed()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
-    long newLimit = SpeedLimitDialog::askSpeedLimit(
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
                 &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
     if (ok) {
-        if (newLimit <= 0) {
-            qDebug("Setting global upload rate limit to Unlimited");
-            session->setUploadSpeedLimit(-1);
-        }
-        else {
-            qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
-            session->setUploadSpeedLimit(newLimit);
-        }
+        qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
+        session->setUploadSpeedLimit(newLimit);
         refreshStatusBar();
     }
 }
