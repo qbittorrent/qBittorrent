@@ -523,7 +523,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
 {
     QString host = getHost(tracker);
-    QListWidgetItem *trackerItem = 0;
+    QListWidgetItem *trackerItem = nullptr;
     QStringList tmp = m_trackers.value(host);
     int row = 0;
 
@@ -531,7 +531,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
         return;
     tmp.removeAll(hash);
 
-    if (host != "") {
+    if (!host.isEmpty()) {
         // Remove from 'Error' and 'Warning' view
         trackerSuccess(hash, tracker);
         row = rowFromTracker(host);
