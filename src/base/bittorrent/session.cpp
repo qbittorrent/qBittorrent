@@ -45,7 +45,6 @@
 #include <QTimer>
 
 #include <cstdlib>
-#include <sstream>
 #include <queue>
 #include <vector>
 
@@ -195,36 +194,6 @@ namespace
 
     template <typename T>
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
-
-#if LIBTORRENT_VERSION_NUM >= 10100
-    std::string makeFingerprint(const char* peerId, int major, int minor, int revision, int tag)
-    {
-        Q_ASSERT(peerId);
-        Q_ASSERT(major >= 0);
-        Q_ASSERT(minor >= 0);
-        Q_ASSERT(revision >= 0);
-        Q_ASSERT(tag >= 0);
-        Q_ASSERT(std::strlen(peerId) == 2);
-
-        auto versionToChar = [](int v) -> char
-        {
-            if (v >= 0 && v < 10) return static_cast<char>('0' + v);
-            if (v >= 10) return static_cast<char>('A' + (v - 10));
-            Q_ASSERT(false);
-            return '0';
-        };
-
-        std::ostringstream buf;
-        buf << '-'
-            << peerId
-            << versionToChar(major)
-            << versionToChar(minor)
-            << versionToChar(revision)
-            << versionToChar(tag)
-            << '-';
-        return buf.str();
-    }
-#endif
 }
 
 // Session
@@ -365,7 +334,7 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr);
     });
 #else
-    std::string peerId = makeFingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+    std::string peerId = libt::generate_fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
