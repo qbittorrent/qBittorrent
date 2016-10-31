@@ -259,8 +259,13 @@ bool Feed::hasCustomIcon() const
 
 void Feed::setIconPath(const QString &path)
 {
-    if (!path.isEmpty() && QFile::exists(path))
-        m_icon = path;
+    QString nativePath = Utils::Fs::fromNativePath(path);
+    if (nativePath == m_icon || nativePath.isEmpty() || !QFile::exists(nativePath)) return;
+
+    if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
+        Utils::Fs::forceRemove(m_icon);
+
+    m_icon = nativePath;
 }
 
 ArticlePtr Feed::getItem(const QString &guid) const
@@ -322,7 +327,7 @@ QString Feed::iconUrl() const
 void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
 {
     Q_UNUSED(url);
-    m_icon = filePath;
+    setIconPath(filePath);
     qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
     m_manager->forwardFeedIconChanged(m_url, m_icon);
 }
