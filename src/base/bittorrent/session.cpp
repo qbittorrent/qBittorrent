@@ -589,32 +589,36 @@ void Session::setPreallocationEnabled(bool enabled)
 
 QString Session::torrentExportDirectory() const
 {
-    return m_torrentExportDirectory;
+    return Utils::Fs::fromNativePath(m_torrentExportDirectory);
 }
 
-void Session::setTorrentExportDirectory(const QString &path)
+void Session::setTorrentExportDirectory(QString path)
 {
-    m_torrentExportDirectory = path;
+    path = Utils::Fs::fromNativePath(path);
+    if (path != torrentExportDirectory())
+        m_torrentExportDirectory = path;
 }
 
 QString Session::finishedTorrentExportDirectory() const
 {
-    return m_finishedTorrentExportDirectory;
+    return Utils::Fs::fromNativePath(m_finishedTorrentExportDirectory);
 }
 
-void Session::setFinishedTorrentExportDirectory(const QString &path)
+void Session::setFinishedTorrentExportDirectory(QString path)
 {
-    m_finishedTorrentExportDirectory = path;
+    path = Utils::Fs::fromNativePath(path);
+    if (path != finishedTorrentExportDirectory())
+        m_finishedTorrentExportDirectory = path;
 }
 
 QString Session::defaultSavePath() const
 {
-    return m_defaultSavePath;
+    return Utils::Fs::fromNativePath(m_defaultSavePath);
 }
 
 QString Session::tempPath() const
 {
-    return m_tempPath;
+    return Utils::Fs::fromNativePath(m_tempPath);
 }
 
 QString Session::torrentTempPath(const InfoHash &hash) const

@@ -231,9 +231,9 @@ namespace BitTorrent
         bool isPreallocationEnabled() const;
         void setPreallocationEnabled(bool enabled);
         QString torrentExportDirectory() const;
-        void setTorrentExportDirectory(const QString &path);
+        void setTorrentExportDirectory(QString path);
         QString finishedTorrentExportDirectory() const;
-        void setFinishedTorrentExportDirectory(const QString &path);
+        void setFinishedTorrentExportDirectory(QString path);
 
         int globalDownloadSpeedLimit() const;
         void setGlobalDownloadSpeedLimit(int limit);
