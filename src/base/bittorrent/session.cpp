@@ -308,6 +308,8 @@ Session::Session(QObject *parent)
     , m_isDisableAutoTMMWhenCategorySavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategorySavePathChanged"), true)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
     , m_bannedIPs("State/BannedIPs")
+    , m_wasPexEnabled(m_isPeXEnabled)
+    , m_wasTrackerExchangeEnabled(m_wasTrackerExchangeEnabled)
     , m_numResumeData(0)
     , m_extraLimit(0)
     , m_useProxy(false)
@@ -515,10 +517,9 @@ bool Session::isPeXEnabled() const
 
 void Session::setPeXEnabled(bool enabled)
 {
-    if (enabled != isPeXEnabled()) {
-        m_isPeXEnabled = enabled;
+    m_isPeXEnabled = enabled;
+    if (m_wasPexEnabled != enabled)
         Logger::instance()->addMessage(tr("Restart is required to toggle PeX support"), Log::WARNING);
-    }
 }
 
 bool Session::isTrackerExchangeEnabled() const
@@ -528,10 +529,9 @@ bool Session::isTrackerExchangeEnabled() const
 
 void Session::setTrackerExchangeEnabled(bool enabled)
 {
-    if (enabled != isTrackerExchangeEnabled()) {
-        m_isTrackerExchangeEnabled = enabled;
+    m_isTrackerExchangeEnabled = enabled;
+    if (m_wasTrackerExchangeEnabled != enabled)
         Logger::instance()->addMessage(tr("Restart is required to toggle Tracker Exchange support"), Log::WARNING);
-    }
 }
 
 bool Session::isTempPathEnabled() const
