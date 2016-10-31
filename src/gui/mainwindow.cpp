@@ -44,6 +44,7 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#include <QSysInfo>
 #include <QMimeData>
 #include <QCryptographicHash>
 #include <QProcess>
@@ -1749,7 +1750,11 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.3/python-3.4.3.msi", true);
+    Net::DownloadHandler *handler = nullptr;
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+        handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe", true);
+    else
+        handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi", true);
     connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pythonDownloadSuccess(QString, QString)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pythonDownloadFailure(QString, QString)));
 }
@@ -1758,19 +1763,29 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
 {
     Q_UNUSED(url)
     setCursor(QCursor(Qt::ArrowCursor));
-    QFile::rename(filePath, filePath + ".msi");
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i " + Utils::Fs::toNativePath(filePath) + ".msi");
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
+        QFile::rename(filePath, filePath + ".exe");
+        installer.start("\"" + Utils::Fs::toNativePath(filePath) + ".exe\" /passive");
+    }
+    else {
+        QFile::rename(filePath, filePath + ".msi");
+        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(filePath) + ".msi\"");
+    }
+
     // Wait for setup to complete
-    installer.waitForFinished();
+    installer.waitForFinished(10 * 60 * 1000);
 
     qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
     // Delete temp file
-    Utils::Fs::forceRemove(filePath);
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+        Utils::Fs::forceRemove(filePath + ".exe");
+    else
+        Utils::Fs::forceRemove(filePath + ".msi");
     // Reload search engine
     m_hasPython = addPythonPathToEnv();
     if (m_hasPython) {
