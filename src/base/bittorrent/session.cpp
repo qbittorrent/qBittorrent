@@ -1086,7 +1086,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 
     settingsPack.set_bool(libt::settings_pack::enable_dht, isDHTEnabled());
     if (isDHTEnabled())
-        settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
+        settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "dht.libtorrent.org:25401,router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
 }
 
@@ -1228,6 +1228,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
 
     if (isDHTEnabled()) {
         // Add first the routers and then start DHT.
+        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.libtorrent.org"), 25401));
         m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
         m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
         m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
