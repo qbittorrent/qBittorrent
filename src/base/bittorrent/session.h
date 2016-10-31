@@ -572,6 +572,12 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
 
+        // Order is important. These need to be declared after their CachedSettingsValue
+        // counterparts, because they use them for initialization in the constructor
+        // initialization list.
+        const bool m_wasPexEnabled;
+        const bool m_wasTrackerExchangeEnabled;
+
         int m_numResumeData;
         int m_extraLimit;
         QList<BitTorrent::TrackerEntry> m_additionalTrackerList;
