@@ -362,13 +362,6 @@ Session::Session(QObject *parent)
     });
 #endif
 
-    if (isDHTEnabled()) {
-        m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-        m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
-        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
-    }
-
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
@@ -454,12 +447,6 @@ void Session::setDHTEnabled(bool enabled)
         configureDeferred();
         Logger::instance()->addMessage(
                     tr("DHT support [%1]").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
-        if (enabled) {
-            m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
-            m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-            m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
-            m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
-        }
     }
 }
 
@@ -1098,6 +1085,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
     settingsPack.set_bool(libt::settings_pack::enable_dht, isDHTEnabled());
+    if (isDHTEnabled())
+        settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
 }
 
@@ -1237,10 +1226,17 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
-    if (isDHTEnabled())
+    if (isDHTEnabled()) {
+        // Add first the routers and then start DHT.
+        m_nativeSession->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
+        m_nativeSession->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
         m_nativeSession->start_dht();
-    else
+    }
+    else {
         m_nativeSession->stop_dht();
+    }
 
     if (isLSDEnabled())
         m_nativeSession->start_lsd();
