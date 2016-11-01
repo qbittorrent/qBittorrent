@@ -31,13 +31,13 @@
 #include <QTime>
 #include <QDateTime>
 
+#include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "bandwidthscheduler.h"
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QTimer(parent)
 {
-    Q_ASSERT(Preferences::instance()->isSchedulerEnabled());
     // Single shot, we call start() again manually
     setSingleShot(true);
     // Connect Signals/Slots
@@ -47,8 +47,7 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 void BandwidthScheduler::start()
 {
     const Preferences* const pref = Preferences::instance();
-    Q_ASSERT(pref->isSchedulerEnabled());
-    bool alt_bw_enabled = pref->isAltBandwidthEnabled();
+    bool alt_bw_enabled = BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled();
 
     QTime start = pref->getSchedulerStartTime();
     QTime end = pref->getSchedulerEndTime();

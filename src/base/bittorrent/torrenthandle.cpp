@@ -752,7 +752,7 @@ void TorrentHandle::updateState()
             m_state = isSeed() ? TorrentState::PausedUploading : TorrentState::PausedDownloading;
     }
     else {
-        if (m_session->isQueueingEnabled() && isQueued() && !isChecking()) {
+        if (m_session->isQueueingSystemEnabled() && isQueued() && !isChecking()) {
             m_state = isSeed() ? TorrentState::QueuedUploading : TorrentState::QueuedDownloading;
         }
         else {

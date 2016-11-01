@@ -364,7 +364,9 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     QVariantMap data;
     QVariantHash torrents;
 
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+
+    foreach (BitTorrent::TorrentHandle *const torrent, session->torrents()) {
         QVariantMap map = toMap(torrent);
         map.remove(KEY_TORRENT_HASH);
         torrents[torrent->hash()] = map;
@@ -373,15 +375,15 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     data["torrents"] = torrents;
 
     QVariantList categories;
-    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+    foreach (const QString &category, session->categories())
         categories << category;
 
     data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfoMap();
-    serverState[KEY_SYNC_MAINDATA_QUEUEING] = BitTorrent::Session::instance()->isQueueingEnabled();
-    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
-    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
+    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
     data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
@@ -669,8 +671,8 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
     map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
     map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
-    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadRateLimit();
-    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadRateLimit();
+    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
+    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";

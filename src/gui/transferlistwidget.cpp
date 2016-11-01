@@ -447,7 +447,9 @@ void TransferListWidget::setDlLimitSelectedTorrents()
     int default_limit = -1;
     if (all_same_limit)
         default_limit = selected_torrents.first()->downloadLimit();
-    const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Download Speed Limiting"), default_limit, Preferences::instance()->getGlobalDownloadLimit() * 1024.);
+    const long new_limit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Torrent Download Speed Limiting"), default_limit
+                , BitTorrent::Session::instance()->globalDownloadSpeedLimit());
     if (ok) {
         foreach (BitTorrent::TorrentHandle *const torrent, selected_torrents) {
             qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit / 1024.), qPrintable(torrent->hash()));
@@ -476,7 +478,9 @@ void TransferListWidget::setUpLimitSelectedTorrents()
     int default_limit = -1;
     if (all_same_limit)
         default_limit = selected_torrents.first()->uploadLimit();
-    const long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Torrent Upload Speed Limiting"), default_limit, Preferences::instance()->getGlobalUploadLimit() * 1024.);
+    const long new_limit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Torrent Upload Speed Limiting"), default_limit
+                , BitTorrent::Session::instance()->globalUploadSpeedLimit());
     if (ok) {
         foreach (BitTorrent::TorrentHandle *const torrent, selected_torrents) {
             qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit / 1024.), qPrintable(torrent->hash()));
@@ -522,7 +526,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
     hideshowColumn.setTitle(tr("Column visibility"));
     QList<QAction*> actions;
     for (int i = 0; i < listModel->columnCount(); ++i) {
-        if (!BitTorrent::Session::instance()->isQueueingEnabled() && i == TorrentModel::TR_PRIORITY) {
+        if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && i == TorrentModel::TR_PRIORITY) {
             actions.append(0);
             continue;
         }
@@ -837,7 +841,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         listMenu.addSeparator();
     }
     listMenu.addAction(&actionOpen_destination_folder);
-    if (BitTorrent::Session::instance()->isQueueingEnabled() && one_not_seed) {
+    if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && one_not_seed) {
         listMenu.addSeparator();
         QMenu *prioMenu = listMenu.addMenu(tr("Priority"));
         prioMenu->addAction(&actionTopPriority);

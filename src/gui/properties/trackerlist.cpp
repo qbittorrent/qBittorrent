@@ -224,7 +224,7 @@ void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
     dht_item->setText(COL_STATUS, disabled);
 
   // Load PeX Information
-  if (BitTorrent::Session::instance()->isPexEnabled() && !torrent->isPrivate())
+  if (BitTorrent::Session::instance()->isPeXEnabled() && !torrent->isPrivate())
     pex_item->setText(COL_STATUS, working);
   else
     pex_item->setText(COL_STATUS, disabled);

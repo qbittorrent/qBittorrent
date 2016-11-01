@@ -383,22 +383,6 @@ void FilterParserThread::processFilterFile(QString _filePath)
     start();
 }
 
-void FilterParserThread::processFilterList(libt::session *s, const QStringList &IPs)
-{
-    // First, import current filter
-    libt::ip_filter filter = s->get_ip_filter();
-    foreach (const QString &ip, IPs) {
-        qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
-        boost::system::error_code ec;
-        libt::address addr = libt::address::from_string(ip.toLocal8Bit().constData(), ec);
-        Q_ASSERT(!ec);
-        if (!ec)
-            filter.add_rule(addr, addr, libt::ip_filter::blocked);
-    }
-
-    s->set_ip_filter(filter);
-}
-
 QString FilterParserThread::cleanupIPAddress(QString _ip)
 {
     _ip = _ip.trimmed();

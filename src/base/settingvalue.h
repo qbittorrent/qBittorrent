@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christian Kandeler, Christophe Dumez
+ * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,56 +24,50 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include "updownratiodlg.h"
+#ifndef SETTINGVALUE_H
+#define SETTINGVALUE_H
 
-#include "base/bittorrent/session.h"
-#include "ui_updownratiodlg.h"
+#include <functional>
+#include <QString>
 
-UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
-                               qreal maxValue, QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::UpDownRatioDlg)
+#include "settingsstorage.h"
+
+template <typename T>
+class CachedSettingValue
 {
-    ui->setupUi(this);
+    using ProxyFunc = std::function<T (const T&)>;
 
-    if (useDefault) {
-        ui->useDefaultButton->setChecked(true);
+public:
+    explicit CachedSettingValue(const char *keyName, const T &defaultValue = T()
+            , ProxyFunc proxyFunc = [](const T &value) { return value; })
+        : m_keyName(QLatin1String(keyName))
+        , m_value(proxyFunc(SettingsStorage::instance()->loadValue(
+                                m_keyName, defaultValue).template value<T>()))
+    {
     }
-    else if (initialValue == -1) {
-        ui->noLimitButton->setChecked(true);
-        initialValue = BitTorrent::Session::instance()->globalMaxRatio();
-    }
-    else {
-        ui->torrentLimitButton->setChecked(true);
+
+    T value() const
+    {
+        return m_value;
     }
 
-    ui->ratioSpinBox->setMinimum(0);
-    ui->ratioSpinBox->setMaximum(maxValue);
-    ui->ratioSpinBox->setValue(initialValue);
-    connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), SLOT(handleRatioTypeChanged()));
-    handleRatioTypeChanged();
-}
+    CachedSettingValue<T> &operator=(const T &newValue)
+    {
+        m_value = newValue;
+        SettingsStorage::instance()->storeValue(m_keyName, m_value);
+        return *this;
+    }
 
-bool UpDownRatioDlg::useDefault() const
-{
-    return ui->useDefaultButton->isChecked();
-}
+    operator T() const
+    {
+        return value();
+    }
 
-qreal UpDownRatioDlg::ratio() const
-{
-    return ui->noLimitButton->isChecked() ? -1 : ui->ratioSpinBox->value();
-}
+private:
+    const QString m_keyName;
+    T m_value;
+};
 
-void UpDownRatioDlg::handleRatioTypeChanged()
-{
-    ui->ratioSpinBox->setEnabled(ui->torrentLimitButton->isChecked());
-}
-
-UpDownRatioDlg::~UpDownRatioDlg()
-{
-    delete ui;
-}
+#endif // SETTINGVALUE_H

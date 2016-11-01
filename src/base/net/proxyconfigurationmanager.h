@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,48 +26,62 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PORTFORWARDER_H
-#define NET_PORTFORWARDER_H
+#ifndef NET_PROXYCONFIGURATIONMANAGER_H
+#define NET_PROXYCONFIGURATIONMANAGER_H
 
 #include <QObject>
-#include <QHash>
-
-namespace libtorrent
-{
-    class session;
-}
 
 namespace Net
 {
-    class PortForwarder : public QObject
+    enum class ProxyType
+    {
+        None = 0,
+        HTTP = 1,
+        SOCKS5 = 2,
+        HTTP_PW = 3,
+        SOCKS5_PW = 4,
+        SOCKS4 = 5
+    };
+
+    struct ProxyConfiguration
+    {
+        ProxyType type = ProxyType::None;
+        QString ip = "0.0.0.0";
+        ushort port = 8080;
+        QString username;
+        QString password;
+    };
+
+    class ProxyConfigurationManager: public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(PortForwarder)
+        Q_DISABLE_COPY(ProxyConfigurationManager)
+
+        explicit ProxyConfigurationManager(QObject *parent = nullptr);
+        ~ProxyConfigurationManager() = default;
 
     public:
-        static void initInstance(libtorrent::session *const provider);
+        static void initInstance();
         static void freeInstance();
-        static PortForwarder *instance();
+        static ProxyConfigurationManager *instance();
 
-        bool isEnabled() const;
-        void setEnabled(bool enabled);
+        ProxyConfiguration proxyConfiguration() const;
+        void setProxyConfiguration(const ProxyConfiguration &config);
+        bool isProxyDisabled() const;
+        void setProxyDisabled(bool disabled);
 
-        void addPort(quint16 port);
-        void deletePort(quint16 port);
+        bool isAuthenticationRequired() const;
+
+    signals:
+        void proxyConfigurationChanged();
 
     private:
-        explicit PortForwarder(libtorrent::session *const provider, QObject *parent = 0);
-        ~PortForwarder();
+        void configureProxy();
 
-        void start();
-        void stop();
-
-        bool m_active;
-        libtorrent::session *m_provider;
-        QHash<quint16, int> m_mappedPorts;
-
-        static PortForwarder *m_instance;
+        static ProxyConfigurationManager *m_instance;
+        ProxyConfiguration m_config;
+        bool m_proxyDisabled;
     };
 }
 
-#endif // NET_PORTFORWARDER_H
+#endif // NET_PROXYCONFIGURATIONMANAGER_H

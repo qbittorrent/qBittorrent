@@ -816,32 +816,26 @@ void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 void MainWindow::on_actionSetGlobalUploadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok;
-    int curLimit = BitTorrent::Session::instance()->uploadRateLimit();
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), curLimit);
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
-        BitTorrent::Session::instance()->setUploadRateLimit(newLimit);
-        if (newLimit <= 0)
-            Preferences::instance()->setGlobalUploadLimit(-1);
-        else
-            Preferences::instance()->setGlobalUploadLimit(newLimit / 1024.);
+        session->setUploadSpeedLimit(newLimit);
     }
 }
 
 void MainWindow::on_actionSetGlobalDownloadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok;
-    int curLimit = BitTorrent::Session::instance()->downloadRateLimit();
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), curLimit);
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
-        BitTorrent::Session::instance()->setDownloadRateLimit(newLimit);
-        if (newLimit <= 0)
-            Preferences::instance()->setGlobalDownloadLimit(-1);
-        else
-            Preferences::instance()->setGlobalDownloadLimit(newLimit / 1024.);
+        session->setDownloadSpeedLimit(newLimit);
     }
 }
 
@@ -1217,7 +1211,7 @@ void MainWindow::loadPreferences(bool configureSession)
     m_propertiesWidget->getPeerList()->setAlternatingRowColors(pref->useAlternatingRowColors());
 
     // Queueing System
-    if (pref->isQueueingSystemEnabled()) {
+    if (BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
         if (!m_ui->actionDecreasePriority->isVisible()) {
             m_transferListWidget->hidePriorityColumn(false);
             m_ui->actionDecreasePriority->setVisible(true);
@@ -1408,7 +1402,7 @@ QMenu* MainWindow::trayIconMenu()
     m_trayIconMenu->addAction(m_ui->actionOpen);
     m_trayIconMenu->addAction(m_ui->actionDownloadFromURL);
     m_trayIconMenu->addSeparator();
-    const bool isAltBWEnabled = Preferences::instance()->isAltBandwidthEnabled();
+    const bool isAltBWEnabled = BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled();
     updateAltSpeedsBtn(isAltBWEnabled);
     m_ui->actionUseAlternativeSpeedLimits->setChecked(isAltBWEnabled);
     m_trayIconMenu->addAction(m_ui->actionUseAlternativeSpeedLimits);
