@@ -875,7 +875,7 @@ void OptionsDialog::loadOptions()
     // End Connection preferences
 
     // Speed preferences
-    intValue = session->globalDownloadSpeedLimit();
+    intValue = session->globalDownloadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkDownloadLimit->setChecked(true);
@@ -887,7 +887,7 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimit->setChecked(false);
         m_ui->spinDownloadLimit->setEnabled(false);
     }
-    intValue = session->globalUploadSpeedLimit();
+    intValue = session->globalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimit->setChecked(true);
@@ -900,7 +900,7 @@ void OptionsDialog::loadOptions()
         m_ui->spinUploadLimit->setEnabled(false);
     }
 
-    intValue = session->altGlobalDownloadSpeedLimit();
+    intValue = session->altGlobalDownloadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkDownloadLimitAlt->setChecked(true);
@@ -912,7 +912,7 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
     }
-    intValue = session->altGlobalUploadSpeedLimit();
+    intValue = session->altGlobalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimitAlt->setChecked(true);
@@ -1058,9 +1058,9 @@ QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 {
     int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimit->isChecked())
-        DL = m_ui->spinDownloadLimit->value();
+        DL = m_ui->spinDownloadLimit->value() * 1024;
     if (m_ui->checkUploadLimit->isChecked())
-        UP = m_ui->spinUploadLimit->value();
+        UP = m_ui->spinUploadLimit->value() * 1024;
     return qMakePair(DL, UP);
 }
 
@@ -1070,9 +1070,9 @@ QPair<int, int> OptionsDialog::getAltGlobalBandwidthLimits() const
 {
     int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimitAlt->isChecked())
-        DL = m_ui->spinDownloadLimitAlt->value();
+        DL = m_ui->spinDownloadLimitAlt->value() * 1024;
     if (m_ui->checkUploadLimitAlt->isChecked())
-        UP = m_ui->spinUploadLimitAlt->value();
+        UP = m_ui->spinUploadLimitAlt->value() * 1024;
     return qMakePair(DL, UP);
 }
 
