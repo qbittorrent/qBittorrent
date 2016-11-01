@@ -2052,11 +2052,16 @@ void Session::configureListeningInterface()
 
 int Session::globalDownloadSpeedLimit() const
 {
-    return m_globalDownloadSpeedLimit;
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    return m_globalDownloadSpeedLimit * 1024;
 }
 
 void Session::setGlobalDownloadSpeedLimit(int limit)
 {
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    limit /= 1024;
     if (limit < 0) limit = 0;
     if (limit == globalDownloadSpeedLimit()) return;
 
@@ -2067,11 +2072,16 @@ void Session::setGlobalDownloadSpeedLimit(int limit)
 
 int Session::globalUploadSpeedLimit() const
 {
-    return m_globalUploadSpeedLimit;
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    return m_globalUploadSpeedLimit * 1024;
 }
 
 void Session::setGlobalUploadSpeedLimit(int limit)
 {
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    limit /= 1024;
     if (limit < 0) limit = 0;
     if (limit == globalUploadSpeedLimit()) return;
 
@@ -2082,11 +2092,16 @@ void Session::setGlobalUploadSpeedLimit(int limit)
 
 int Session::altGlobalDownloadSpeedLimit() const
 {
-    return m_altGlobalDownloadSpeedLimit;
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    return m_altGlobalDownloadSpeedLimit * 1024;
 }
 
 void Session::setAltGlobalDownloadSpeedLimit(int limit)
 {
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    limit /= 1024;
     if (limit < 0) limit = 0;
     if (limit == altGlobalDownloadSpeedLimit()) return;
 
@@ -2097,11 +2112,16 @@ void Session::setAltGlobalDownloadSpeedLimit(int limit)
 
 int Session::altGlobalUploadSpeedLimit() const
 {
-    return m_altGlobalUploadSpeedLimit;
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    return m_altGlobalUploadSpeedLimit * 1024;
 }
 
 void Session::setAltGlobalUploadSpeedLimit(int limit)
 {
+    // Unfortunately the value was saved as KiB instead of B.
+    // But it is better to pass it around internally(+ webui) as Bytes.
+    limit /= 1024;
     if (limit < 0) limit = 0;
     if (limit == altGlobalUploadSpeedLimit()) return;
 
