@@ -912,7 +912,7 @@ loadPreferences = function() {
 
                     // Speed tab
                     // Global Rate Limits
-                    var up_limit = pref.up_limit.toInt();
+                    var up_limit = pref.up_limit.toInt() / 1024;
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -920,7 +920,7 @@ loadPreferences = function() {
                       $('up_limit_value').setProperty('value', up_limit);
                     }
                     updateUpLimitEnabled();
-                    var dl_limit = pref.dl_limit.toInt();
+                    var dl_limit = pref.dl_limit.toInt() / 1024;
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -934,7 +934,7 @@ loadPreferences = function() {
                     updateUTPEnabled();
 
                     // Alternative Global Rate Limits
-                    var alt_up_limit = pref.alt_up_limit.toInt();
+                    var alt_up_limit = pref.alt_up_limit.toInt() / 1024;
                     if(alt_up_limit <= 0) {
                       $('alt_up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -942,7 +942,7 @@ loadPreferences = function() {
                       $('alt_up_limit_value').setProperty('value', alt_up_limit);
                     }
                     updateAltUpLimitEnabled();
-                    var alt_dl_limit = pref.alt_dl_limit.toInt();
+                    var alt_dl_limit = pref.alt_dl_limit.toInt() / 1024;
                     if(alt_dl_limit <= 0) {
                       $('alt_dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -1146,7 +1146,7 @@ applyPreferences = function() {
   // Global Rate Limits
   var up_limit = -1;
   if($('up_limit_checkbox').getProperty('checked')) {
-    up_limit = $('up_limit_value').getProperty('value').toInt();
+    up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(up_limit) || up_limit <= 0) {
       alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1155,7 +1155,7 @@ applyPreferences = function() {
   settings.set('up_limit', up_limit);
   var dl_limit = -1;
   if($('dl_limit_checkbox').getProperty('checked')) {
-    dl_limit = $('dl_limit_value').getProperty('value').toInt();
+    dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(dl_limit) || dl_limit <= 0) {
       alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1169,7 +1169,7 @@ applyPreferences = function() {
   // Alternative Global Rate Limits
   var alt_up_limit = -1;
   if($('alt_up_limit_checkbox').getProperty('checked')) {
-    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt();
+    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_up_limit) || alt_up_limit <= 0) {
       alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1178,7 +1178,7 @@ applyPreferences = function() {
   settings.set('alt_up_limit', alt_up_limit);
   var alt_dl_limit = -1;
   if($('alt_dl_limit_checkbox').getProperty('checked')) {
-    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt();
+    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_dl_limit) || alt_dl_limit <= 0) {
       alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
