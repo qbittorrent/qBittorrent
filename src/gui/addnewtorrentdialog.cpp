@@ -689,7 +689,6 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
 
     // Update UI
     setupTreeview();
-    TMMChanged(ui->comboTTM->currentIndex());
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
 }
 
