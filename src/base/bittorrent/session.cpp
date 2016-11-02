@@ -1104,8 +1104,6 @@ void Session::adjustLimits(libt::session_settings &sessionSettings)
 
 void Session::configure(libtorrent::session_settings &sessionSettings)
 {
-    Logger* const logger = Logger::instance();
-
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     sessionSettings.download_rate_limit = altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit();
     sessionSettings.upload_rate_limit = altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit();
