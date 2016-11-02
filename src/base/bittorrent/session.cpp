@@ -1289,7 +1289,8 @@ void Session::processBigRatios()
 
     qreal globalMaxRatio = this->globalMaxRatio();
     foreach (TorrentHandle *const torrent, m_torrents) {
-        if (torrent->isSeed() && (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT)) {
+        if (torrent->isSeed()
+            && ((torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT) || !torrent->isForced())) {
             const qreal ratio = torrent->realRatio();
             qreal ratioLimit = torrent->ratioLimit();
             if (ratioLimit == TorrentHandle::USE_GLOBAL_RATIO) {
