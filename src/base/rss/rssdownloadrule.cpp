@@ -31,6 +31,8 @@
 #include <QRegExp>
 #include <QDebug>
 #include <QDir>
+#include <QStringRef>
+#include <QVector>
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
@@ -154,9 +156,15 @@ bool DownloadRule::matches(const QString &articleTitle) const
         QString expStr;
         expStr += "s0?" + s + "[ -_\\.]?" + "e0?";
 
-        foreach (const QString &ep, eps) {
-            if (ep.isEmpty())
+        foreach (const QString &epStr, eps) {
+            if (epStr.isEmpty())
                 continue;
+
+            QStringRef ep( &epStr);
+
+            // We need to trim leading zeroes, but if it's all zeros then we want episode zero.
+            while (ep.size() > 1 && ep.startsWith("0"))
+                ep = ep.right(ep.size() - 1);
 
             if (ep.indexOf('-') != -1) { // Range detected
                 QString partialPattern = "s0?" + s + "[ -_\\.]?" + "e(0?\\d{1,4})";
@@ -177,7 +185,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     }
                 }
                 else { // Normal range
-                    QStringList range = ep.split('-');
+                    QVector<QStringRef> range = ep.split('-');
                     Q_ASSERT(range.size() == 2);
                     if (range.first().toInt() > range.last().toInt())
                         continue; // Ignore this subrule completely
