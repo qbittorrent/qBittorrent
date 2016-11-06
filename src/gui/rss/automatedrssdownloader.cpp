@@ -78,7 +78,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
-           + "<li>" + tr("Episode number is a mandatory non-zero value") + "</li>"
+           + "<li>" + tr("Episode number is a mandatory positive value") + "</li>"
            + "<li>" + tr("Filter must end with semicolon") + "</li>"
            + "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
            "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>"
