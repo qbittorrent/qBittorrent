@@ -67,6 +67,12 @@ AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
 
+AC_MSG_CHECKING([whether OS is macOS])
+AS_IF([expr "$host_os" : ".*darwin.*" > /dev/null],
+      [AC_MSG_RESULT([yes])
+      enable_qt_dbus=no],
+      [AC_MSG_RESULT([no])])
+
 # Require 0.23 pkg-config
 PKG_PROG_PKG_CONFIG([0.23])
 AS_IF([test "x$PKG_CONFIG" = "x"],
