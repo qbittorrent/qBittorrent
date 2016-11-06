@@ -96,6 +96,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
         QString s = f.cap(1);
         QStringList eps = f.cap(2).split(";");
+        int sOurs = s.toInt();
 
         foreach (const QString &epStr, eps) {
             if (epStr.isEmpty())
@@ -108,8 +109,8 @@ bool DownloadRule::matches(const QString &articleTitle) const
                 ep = ep.right(ep.size() - 1);
 
             if (ep.indexOf('-') != -1) { // Range detected
-                QString partialPattern1 = "\\bs0?" + s + "[ -_\\.]?" + "e(0?\\d{1,4})(?:\\D|\\b)";
-                QString partialPattern2 = "\\b" + s + "x" + "(0?\\d{1,4})(?:\\D|\\b)";
+                QString partialPattern1 = "\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)";
+                QString partialPattern2 = "\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)";
                 QRegExp reg(partialPattern1, Qt::CaseInsensitive);
 
                 if (ep.endsWith('-')) { // Infinite range
@@ -124,8 +125,9 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     }
 
                     if (pos != -1) {
-                        int epTheirs = reg.cap(1).toInt();
-                        if (epTheirs >= epOurs) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
+                        if (((sTheirs == sOurs) && (epTheirs >= epOurs)) || (sTheirs > sOurs)) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
@@ -150,8 +152,9 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     }
 
                     if (pos != -1) {
-                        int epTheirs = reg.cap(1).toInt();
-                        if ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs)) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
+                        if ((sTheirs == sOurs) && ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
