@@ -1,6 +1,7 @@
 /* This file is part of QJson
  *
  * Copyright (C) 2008 Flavio Castelli <flavio.castelli@gmail.com>
+ * Copyright (C) 2016 Anton Kudryavtsev <a.kudryavtsev@netris.ru>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -31,9 +32,9 @@
 using namespace QJson;
 
 ParserPrivate::ParserPrivate() :
-  m_scanner(0)
+  m_scanner(0),
+  m_specialNumbersAllowed(false)
 {
-  m_specialNumbersAllowed = false;
   reset();
 }
 
@@ -43,7 +44,7 @@ ParserPrivate::~ParserPrivate()
     delete m_scanner;
 }
 
-void ParserPrivate::setError(QString errorMsg, int errorLine) {
+void ParserPrivate::setError(const QString &errorMsg, int errorLine) {
   m_error = true;
   m_errorMsg = errorMsg;
   m_errorLine = errorLine;
@@ -116,7 +117,7 @@ QVariant Parser::parse (QIODevice* io, bool* ok)
 
 QVariant Parser::parse(const QByteArray& jsonString, bool* ok) {
   QBuffer buffer;
-  buffer.open(QBuffer::ReadWrite);
+  buffer.open(QBuffer::ReadWrite | QBuffer::Text);
   buffer.write(jsonString);
   buffer.seek(0);
   return parse (&buffer, ok);

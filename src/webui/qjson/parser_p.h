@@ -43,7 +43,7 @@ namespace QJson {
 
       void reset();
 
-      void setError(QString errorMsg, int line);
+      void setError(const QString &errorMsg, int line);
 
       JSonScanner* m_scanner;
       bool m_error;
