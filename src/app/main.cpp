@@ -141,6 +141,10 @@ int main(int argc, char *argv[])
     macMigratePlists();
 #endif
 
+#ifndef DISABLE_GUI
+    migrateRSS();
+#endif
+
     // Create Application
     QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
     QScopedPointer<Application> app(new Application(appId, argc, argv));
