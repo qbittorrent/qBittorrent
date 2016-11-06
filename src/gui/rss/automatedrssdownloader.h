@@ -67,6 +67,7 @@ protected slots:
     void loadSettings();
     void saveSettings();
     void loadRulesList();
+    void handleRuleCheckStateChange(QListWidgetItem *rule_item);
     void handleFeedCheckStateChange(QListWidgetItem *feed_item);
     void updateRuleDefinitionBox();
     void clearRuleDefinitionBox();
