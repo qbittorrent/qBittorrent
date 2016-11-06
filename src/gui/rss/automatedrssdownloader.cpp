@@ -92,6 +92,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
     Q_ASSERT(ok);
+    ok = connect(ui->listRules, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(handleRuleCheckStateChange(QListWidgetItem *)));
+    Q_ASSERT(ok);
     ok = connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(handleFeedCheckStateChange(QListWidgetItem *)));
     Q_ASSERT(ok);
     // Update matching articles when necessary
@@ -490,6 +492,18 @@ void AutomatedRssDownloader::renameSelectedRule()
             return;
         }
     }
+}
+
+void AutomatedRssDownloader::handleRuleCheckStateChange(QListWidgetItem *rule_item)
+{
+    if (ui->ruleDefBox->isEnabled())
+        // Make sure the current rule is saved
+        saveEditedRule();
+
+    // Make sure we save the rule that was enabled or disabled - it might not be the current selection.
+    m_editedRule = rule_item;
+    saveEditedRule();
+    m_editedRule = 0;
 }
 
 void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_item)
