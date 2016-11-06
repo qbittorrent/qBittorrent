@@ -1258,7 +1258,7 @@ void Session::enableTracker(bool enable)
             logger->addMessage(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
     }
     else {
-        logger->addMessage(tr("Embedded Tracker [OFF]"));
+        logger->addMessage(tr("Embedded Tracker [OFF]"), Log::INFO);
         if (m_tracker)
             delete m_tracker;
     }
