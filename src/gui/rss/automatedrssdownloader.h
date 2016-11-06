@@ -86,6 +86,7 @@ private slots:
     void updateFieldsToolTips(bool regex);
     void updateMustLineValidity();
     void updateMustNotLineValidity();
+    void updateEpisodeFilterValidity();
     void onFinished(int result);
 
 private:
@@ -100,7 +101,6 @@ private:
     Rss::DownloadRuleList *m_ruleList;
     Rss::DownloadRuleList *m_editableRuleList;
     QRegExp *m_episodeRegex;
-    QRegExpValidator *m_episodeValidator;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
 };

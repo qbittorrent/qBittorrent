@@ -73,8 +73,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
     m_episodeRegex = new QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
                                  Qt::CaseInsensitive);
-    m_episodeValidator = new QRegExpValidator(*m_episodeRegex, ui->lineEFilter);
-    ui->lineEFilter->setValidator(m_episodeValidator);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
@@ -102,6 +100,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
     ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMustNotLineValidity()));
+    Q_ASSERT(ok);
+    ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateEpisodeFilterValidity()));
     Q_ASSERT(ok);
     ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
@@ -132,7 +132,6 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
     delete deleteHotkey;
     delete ui;
     delete m_editableRuleList;
-    delete m_episodeValidator;
     delete m_episodeRegex;
 }
 
@@ -639,6 +638,20 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     else {
         ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
         ui->lbl_mustnot_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+    }
+}
+
+void AutomatedRssDownloader::updateEpisodeFilterValidity()
+{
+    const QString text = ui->lineEFilter->text();
+    bool valid = m_episodeRegex->indexIn(text) != -1;
+    if (valid) {
+        ui->lineEFilter->setStyleSheet("");
+        ui->lbl_epfilter_stat->setPixmap(QPixmap());
+    }
+    else {
+        ui->lineEFilter->setStyleSheet("QLineEdit { color: #ff0000; }");
+        ui->lbl_epfilter_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
     }
 }
 
