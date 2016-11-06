@@ -71,7 +71,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
-    m_episodeRegex = new QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
+    m_episodeRegex = new QRegExp("^(^\\d{1,4}x(\\d{1,4}(-(\\d{1,4})?)?;){1,}){1,1}",
                                  Qt::CaseInsensitive);
     m_episodeValidator = new QRegExpValidator(*m_episodeRegex, ui->lineEFilter);
     ui->lineEFilter->setValidator(m_episodeValidator);
