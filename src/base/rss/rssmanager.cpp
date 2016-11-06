@@ -54,6 +54,10 @@ Manager::Manager(QObject *parent)
     connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
     m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
     m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
+
+    m_deferredDownloadTimer.setInterval(1);
+    m_deferredDownloadTimer.setSingleShot(true);
+    connect(&m_deferredDownloadTimer, SIGNAL(timeout()), SLOT(downloadNextArticleTorrentIfMatching()));
 }
 
 Manager::~Manager()
@@ -72,7 +76,7 @@ void Manager::updateRefreshInterval(uint val)
 {
     if (m_refreshInterval != val) {
         m_refreshInterval = val;
-        m_refreshTimer.start(m_refreshInterval*60000);
+        m_refreshTimer.start(m_refreshInterval * 60000);
         qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
     }
 }
@@ -81,7 +85,7 @@ void Manager::loadStreamList()
 {
     const Preferences *const pref = Preferences::instance();
     const QStringList streamsUrl = pref->getRssFeedsUrls();
-    const QStringList aliases =  pref->getRssFeedsAliases();
+    const QStringList aliases = pref->getRssFeedsAliases();
     if (streamsUrl.size() != aliases.size()) {
         Logger::instance()->addMessage("Corrupted RSS list, not loading it.", Log::WARNING);
         return;
@@ -187,4 +191,28 @@ QThread *Manager::workingThread() const
 void Manager::refresh()
 {
     m_rootFolder->refresh();
+}
+
+void Manager::downloadArticleTorrentIfMatching(const QString &url, const ArticlePtr &article)
+{
+    m_deferredDownloads.append(qMakePair(url, article));
+    m_deferredDownloadTimer.start();
+}
+
+void Manager::downloadNextArticleTorrentIfMatching()
+{
+    if (m_deferredDownloads.empty())
+        return;
+
+    // Schedule to process the next article (if any)
+    m_deferredDownloadTimer.start();
+
+    QPair<QString, ArticlePtr> urlArticle(m_deferredDownloads.takeFirst());
+    FeedList streams = m_rootFolder->getAllFeeds();
+    foreach (const FeedPtr &stream, streams) {
+        if (stream->url() == urlArticle.first) {
+            stream->deferredDownloadArticleTorrentIfMatching(urlArticle.second);
+            break;
+        }
+    }
 }

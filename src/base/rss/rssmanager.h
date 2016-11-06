@@ -32,19 +32,23 @@
 #ifndef RSSMANAGER_H
 #define RSSMANAGER_H
 
+#include <QList>
 #include <QObject>
+#include <QPair>
 #include <QTimer>
 #include <QSharedPointer>
 #include <QThread>
 
 namespace Rss
 {
+    class Article;
     class DownloadRuleList;
     class File;
     class Folder;
     class Feed;
     class Manager;
 
+    typedef QSharedPointer<Article> ArticlePtr;
     typedef QSharedPointer<File> FilePtr;
     typedef QSharedPointer<Folder> FolderPtr;
     typedef QSharedPointer<Feed> FeedPtr;
@@ -62,6 +66,7 @@ namespace Rss
         DownloadRuleList *downloadRules() const;
         FolderPtr rootFolder() const;
         QThread *workingThread() const;
+        void downloadArticleTorrentIfMatching(const QString &url, const ArticlePtr &article);
 
     public slots:
         void refresh();
@@ -78,12 +83,17 @@ namespace Rss
         void feedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
         void feedIconChanged(const QString &url, const QString &iconPath);
 
+    private slots:
+        void downloadNextArticleTorrentIfMatching();
+
     private:
         QTimer m_refreshTimer;
         uint m_refreshInterval;
         DownloadRuleList *m_downloadRules;
         FolderPtr m_rootFolder;
         QThread *m_workingThread;
+        QTimer m_deferredDownloadTimer;
+        QList<QPair<QString, ArticlePtr>> m_deferredDownloads;
     };
 }
 
