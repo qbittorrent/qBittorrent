@@ -1476,7 +1476,8 @@ void MainWindow::on_actionSearchWidget_triggered()
 
         // Check if python is already in PATH
         if (pythonVersion > 0)
-            Logger::instance()->addMessage(tr("Python found in %1").arg("PATH"), Log::INFO); // Prevent translators from messing with PATH
+            // Prevent translators from messing with PATH
+            Logger::instance()->addMessage(tr("Python found in %1: %2", "Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin").arg("PATH").arg(qgetenv("PATH").constData()), Log::INFO);
 #ifdef Q_OS_WIN
         else if (addPythonPathToEnv())
             pythonVersion = Utils::Misc::pythonVersion();
