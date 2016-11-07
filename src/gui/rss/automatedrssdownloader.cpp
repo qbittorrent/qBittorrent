@@ -578,14 +578,18 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
 {
     QString tip;
     if (regex) {
-        tip = tr("Regex mode: use Perl-like regular expressions");
+        tip = "<p>" + tr("Regex mode: use Perl-like regular expressions") + "</p>";
         ui->lineContains->setToolTip(tip);
         ui->lineNotContains->setToolTip(tip);
     }
     else {
-        tip = tr("Wildcard mode: you can use<ul><li>? to match any single character</li><li>* to match zero or more of any characters</li><li>Whitespaces count as AND operators</li></ul>");
+        tip = "<p>" + tr("Wildcard mode: you can use") + "<ul>"
+              + "<li>" + tr("? to match any single character") + "</li>"
+              + "<li>" + tr("* to match zero or more of any characters") + "</li>"
+              + "<li>" + tr("Whitespaces count as AND operators (all words, any order)") + "</li>"
+              + "<li>" + tr("| is used as OR operator") + "</li></ul></p>"
+              + "<p>" + tr("If word order is important use * instead of whitespace.") + "</p>";
         ui->lineContains->setToolTip(tip);
-        tip = tr("Wildcard mode: you can use<ul><li>? to match any single character</li><li>* to match zero or more of any characters</li><li>| is used as OR operator</li></ul>");
         ui->lineNotContains->setToolTip(tip);
     }
 }
