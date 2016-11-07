@@ -127,7 +127,7 @@ install:
 
       # Qt
       if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
-      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local ; fi ;
+      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.7.0/plugins /usr/local ; fi ;
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
