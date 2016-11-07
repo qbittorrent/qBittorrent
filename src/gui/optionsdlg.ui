@@ -426,12 +426,12 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Dark theme)</string>
+                        <string>Monochrome (Light theme)</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Light theme)</string>
+                        <string>Monochrome (Dark theme)</string>
                        </property>
                       </item>
                      </widget>
