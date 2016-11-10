@@ -1305,18 +1305,18 @@ void Preferences::setRssHSplitterState(const QByteArray &state)
 QByteArray Preferences::getRssVSplitterState() const
 {
 #ifdef QBT_USES_QT5
-    return value("Rss/qt5/splitter_v").toByteArray();
+    return value("Rss/qt5/splitterV").toByteArray();
 #else
-    return value("Rss/splitter_v").toByteArray();
+    return value("Rss/splitterV").toByteArray();
 #endif
 }
 
 void Preferences::setRssVSplitterState(const QByteArray &state)
 {
 #ifdef QBT_USES_QT5
-    setValue("Rss/qt5/splitter_v", state);
+    setValue("Rss/qt5/splitterV", state);
 #else
-    setValue("Rss/splitter_v", state);
+    setValue("Rss/splitterV", state);
 #endif
 }
 
