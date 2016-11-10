@@ -5101,7 +5101,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 int
 main ()
 {
-boost::system::system_category
+boost::system::error_category *a = 0;
   ;
   return 0;
 }
