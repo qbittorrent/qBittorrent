@@ -126,6 +126,7 @@ private slots:
     void displayTransferTab() const;
     void displaySearchTab() const;
     void displayRSSTab() const;
+    void focusSearchFilter();
     void updateGUI();
     void loadPreferences(bool configureSession = true);
     void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *, QString> &tracker);
