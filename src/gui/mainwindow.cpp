@@ -634,6 +634,12 @@ void MainWindow::displaySearchTab(bool enable)
     }
 }
 
+void MainWindow::focusSearchFilter()
+{
+    m_searchFilter->setFocus();
+    m_searchFilter->selectAll();
+}
+
 void MainWindow::updateNbTorrents()
 {
     m_tabs->setTabText(0, tr("Transfers (%1)").arg(m_transferListWidget->getSourceModel()->rowCount()));
@@ -759,10 +765,11 @@ void MainWindow::createKeyboardShortcuts()
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
     QShortcut *switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
     connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    QShortcut *switchSearchShortcut2 = new QShortcut(QKeySequence::Find, this);
-    connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
     QShortcut *switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
     connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
+
+    QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, this);
+    connect(switchSearchFilterShortcut, SIGNAL(activated()), this, SLOT(focusSearchFilter()));
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(QKeySequence("Alt+O"));
