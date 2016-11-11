@@ -683,8 +683,9 @@ void RSSImp::updateRefreshInterval(uint val)
 }
 
 RSSImp::RSSImp(QWidget *parent)
-    : QWidget(parent),
-    m_rssManager(new Rss::Manager)
+    : QWidget(parent)
+    , m_rssManager(new Rss::Manager)
+    , m_rssDownloaderDlg(new AutomatedRssDownloader(m_rssManager, this))
 {
     setupUi(this);
     // Icons
@@ -749,6 +750,8 @@ RSSImp::RSSImp(QWidget *parent)
     connect(splitterMain, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
     connect(splitterSide, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
 
+    connect(m_rssDownloaderDlg, SIGNAL(finished(int)), this, SLOT(onFinished(int)));
+
     qDebug("RSSImp constructed");
 }
 
@@ -756,6 +759,7 @@ RSSImp::~RSSImp()
 {
     qDebug("Deleting RSSImp...");
     saveFoldersOpenState();
+    delete m_rssDownloaderDlg;
     delete editHotkey;
     delete deleteHotkey;
     delete m_feedList;
@@ -771,9 +775,16 @@ void RSSImp::on_settingsButton_clicked()
 
 void RSSImp::displayRssDownloader()
 {
-    AutomatedRssDownloader dlg(m_rssManager, this);
-    dlg.exec();
-    if (dlg.isRssDownloaderEnabled()) {
+    m_rssDownloaderDlg->show();
+    m_rssDownloaderDlg->raise();
+    m_rssDownloaderDlg->activateWindow();
+}
+
+void RSSImp::onFinished(int result)
+{
+    Q_UNUSED(result);
+
+    if (m_rssDownloaderDlg->isRssDownloaderEnabled()) {
         m_rssManager->rootFolder()->recheckRssItemsForDownload();
         refreshAllFeeds();
     }

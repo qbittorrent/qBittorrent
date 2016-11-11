@@ -226,6 +226,7 @@ void Feed::rename(const QString &newName)
 {
     qDebug() << "Renaming stream to" << newName;
     m_alias = newName;
+    m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
 }
 
 // Return the alias if the stream has one, the url if it has no alias

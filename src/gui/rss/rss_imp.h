@@ -45,6 +45,8 @@ QT_BEGIN_NAMESPACE
 class QTreeWidgetItem;
 QT_END_NAMESPACE
 
+class AutomatedRssDownloader;
+
 class RSSImp: public QWidget, public Ui::RSS
 {
     Q_OBJECT
@@ -86,6 +88,7 @@ private slots:
     void saveFoldersOpenState();
     void loadFoldersOpenState();
     void on_settingsButton_clicked();
+    void onFinished(int);
 
 private:
     static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
@@ -97,6 +100,7 @@ private:
     QListWidgetItem *m_currentArticle;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    AutomatedRssDownloader *m_rssDownloaderDlg;
 };
 
 #endif

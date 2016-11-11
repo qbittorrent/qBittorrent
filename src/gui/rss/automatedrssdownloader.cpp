@@ -60,6 +60,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     // Ui Settings
     ui->listRules->setSortingEnabled(true);
     ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    ui->listRules->clearSelection();
     ui->treeMatchingArticles->setSortingEnabled(true);
     ui->hsplitter->setCollapsible(0, false);
     ui->hsplitter->setCollapsible(1, false);
@@ -89,6 +90,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
+    Q_ASSERT(ok);
+    ok = connect(m_manager.data(), SIGNAL(feedInfosChanged(QString,QString,unsigned int)), SLOT(updateFeedInfos(QString,QString,unsigned int)));
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(handleRuleCheckStateChange(QListWidgetItem *)));
     Q_ASSERT(ok);
@@ -224,6 +227,23 @@ void AutomatedRssDownloader::updateFeedList()
     ui->listFeeds->setEnabled(!ui->listRules->selectedItems().isEmpty());
     connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(handleFeedCheckStateChange(QListWidgetItem *)));
     updateMatchingArticles();
+}
+
+void AutomatedRssDownloader::updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread)
+{
+    Q_UNUSED(nbUnread);
+    disconnect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(handleFeedCheckStateChange(QListWidgetItem *)));
+
+    for (int i = 0; i < ui->listFeeds->count(); ++i) {
+        QListWidgetItem *item = ui->listFeeds->item(i);
+
+        if (item->data(Qt::UserRole) == url) {
+            item->setText(display_name);
+            break;
+        }
+    }
+
+    connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(handleFeedCheckStateChange(QListWidgetItem *)));
 }
 
 bool AutomatedRssDownloader::isRssDownloaderEnabled() const
@@ -675,6 +695,7 @@ void AutomatedRssDownloader::onFinished(int result)
     Q_UNUSED(result);
     // Save current item on exit
     saveEditedRule();
+    ui->listRules->clearSelection();
     m_ruleList->replace(m_editableRuleList);
     m_ruleList->saveRulesToStorage();
     saveSettings();

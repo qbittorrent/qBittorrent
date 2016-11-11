@@ -89,6 +89,7 @@ private slots:
     void updateMustNotLineValidity();
     void updateEpisodeFilterValidity();
     void onFinished(int result);
+    void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread = 0);
 
 private:
     Rss::DownloadRulePtr getCurrentRule() const;
