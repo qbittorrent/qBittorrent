@@ -66,6 +66,7 @@ enum AdvSettingsRows
     RESOLVE_COUNTRIES,
     PROGRAM_NOTIFICATIONS,
     TORRENT_ADDED_NOTIFICATIONS,
+    DOWNLOAD_TRACKER_FAVICON,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
@@ -171,6 +172,8 @@ void AdvancedSettings::saveAdvancedSettings()
     MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(cb_program_notifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(cb_torrent_added_notifications.isChecked());
+    // Misc GUI properties
+    mainWindow->setDownloadTrackerFavicon(cb_tracker_favicon.isChecked());
 
     // Tracker
     session->setTrackerEnabled(cb_tracker_status.isChecked());
@@ -354,6 +357,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent added notifications
     cb_torrent_added_notifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &cb_torrent_added_notifications);
+    // Download tracker's favicon
+    cb_tracker_favicon.setChecked(mainWindow->isDownloadTrackerFavicon());
+    addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &cb_tracker_favicon);
 
     // Tracker State
     cb_tracker_status.setChecked(session->isTrackerEnabled());

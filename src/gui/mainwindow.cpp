@@ -114,6 +114,9 @@ namespace
     const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
 
+    // Misc
+    const QString KEY_DOWNLOAD_TRACKER_FAVICON = NOTIFICATIONS_SETTINGS_KEY("DownloadTrackerFavicon");
+
     //just a shortcut
     inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
 }
@@ -220,6 +223,7 @@ MainWindow::MainWindow(QWidget *parent)
     //transferList->setStyleSheet("QTreeView {border: none;}");  // borderless
     m_propertiesWidget = new PropertiesWidget(hSplitter, this, m_transferListWidget);
     m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget);
+    m_transferListFiltersWidget->setDownloadTrackerFavicon(isDownloadTrackerFavicon());
     hSplitter->addWidget(m_transferListWidget);
     hSplitter->addWidget(m_propertiesWidget);
     m_splitter->addWidget(m_transferListFiltersWidget);
@@ -442,6 +446,17 @@ bool MainWindow::isTorrentAddedNotificationsEnabled() const
 void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
 {
     settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
+}
+
+bool MainWindow::isDownloadTrackerFavicon() const
+{
+    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, true).toBool();
+}
+
+void MainWindow::setDownloadTrackerFavicon(bool value)
+{
+    m_transferListFiltersWidget->setDownloadTrackerFavicon(value);
+    settings()->storeValue(KEY_DOWNLOAD_TRACKER_FAVICON, value);
 }
 
 void MainWindow::addToolbarContextMenu()

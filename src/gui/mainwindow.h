@@ -94,6 +94,10 @@ public:
     bool isTorrentAddedNotificationsEnabled() const;
     void setTorrentAddedNotificationsEnabled(bool value);
 
+    // Misc properties
+    bool isDownloadTrackerFavicon() const;
+    void setDownloadTrackerFavicon(bool value);
+
     void activate();
     void cleanup();
 
