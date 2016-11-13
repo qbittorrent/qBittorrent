@@ -356,6 +356,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkLoadFavicons">
+                 <property name="text">
+                  <string>Load tracker favicons</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkStartMinimized">
                  <property name="text">
                   <string>Start qBittorrent minimized</string>

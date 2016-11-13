@@ -120,6 +120,7 @@ private:
     bool closeToTray() const;
     bool startMinimized() const;
     bool isSlashScreenDisabled() const;
+    bool isFaviconsLoadingEnabled() const;
     bool preventFromSuspend() const;
 #ifdef Q_OS_WIN
     bool WinStartup() const;
