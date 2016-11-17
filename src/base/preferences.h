@@ -300,10 +300,10 @@ public:
     void setRssHSplitterSizes(const QByteArray &sizes);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
-    QByteArray getRssHSplitterState() const;
-    void setRssHSplitterState(const QByteArray &state);
-    QByteArray getRssVSplitterState() const;
-    void setRssVSplitterState(const QByteArray &state);
+    QByteArray getRssSideSplitterState() const;
+    void setRssSideSplitterState(const QByteArray &state);
+    QByteArray getRssMainSplitterState() const;
+    void setRssMainSplitterState(const QByteArray &state);
     QString getSearchColsWidth() const;
     void setSearchColsWidth(const QString &width);
     QStringList getSearchEngDisabled() const;
