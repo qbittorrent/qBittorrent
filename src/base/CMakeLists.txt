@@ -30,6 +30,7 @@ net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
 net/private/geoipdatabase.h
+net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
 rss/private/rssparser.h
@@ -88,6 +89,7 @@ net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp
 net/private/geoipdatabase.cpp
+net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
 rss/private/rssparser.cpp
