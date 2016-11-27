@@ -115,6 +115,8 @@ signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     TransferListDelegate *listDelegate;
     TorrentModel *listModel;
     TransferListSortModel *nameFilterModel;

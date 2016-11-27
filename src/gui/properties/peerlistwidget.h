@@ -85,6 +85,8 @@ private slots:
     void handleResolved(const QString &ip, const QString &hostname);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     QStandardItemModel *m_listModel;
     PeerListDelegate *m_listDelegate;
     PeerListSortModel *m_proxyModel;
