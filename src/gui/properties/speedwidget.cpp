@@ -73,7 +73,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
 
-    m_graphsMenu = new QMenu();
+    m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
     m_graphsMenu->addAction(tr("Total Download"));
     m_graphsMenu->addAction(tr("Payload Upload"));
