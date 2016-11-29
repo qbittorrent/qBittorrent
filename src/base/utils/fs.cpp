@@ -518,3 +518,10 @@ QString Utils::Fs::cacheLocation()
         locationDir.mkpath(locationDir.absolutePath());
     return location;
 }
+
+QString Utils::Fs::tempPath()
+{
+    static const QString path = QDir::tempPath() + "/.qBittorrent/";
+    QDir().mkdir(path);
+    return path;
+}

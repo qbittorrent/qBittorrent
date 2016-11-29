@@ -67,6 +67,7 @@ namespace Utils
         /* End of Qt4 code */
 
         QString cacheLocation();
+        QString tempPath();
     }
 }
 
