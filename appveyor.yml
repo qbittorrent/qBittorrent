@@ -9,8 +9,8 @@ environment:
   REPO_DIR: &REPO_DIR c:\qbittorrent
   CACHE_DIR: &CACHE_DIR c:\qbt_cache
 
-  QBT_VER_URL: http://builds.shiki.hu/appveyor/version
-  QBT_LIB_URL: http://builds.shiki.hu/appveyor/qbt_libraries.7z
+  QBT_VER_URL: https://builds.shiki.hu/appveyor/version
+  QBT_LIB_URL: https://builds.shiki.hu/appveyor/qbt_libraries.7z
 
 # project directory
 clone_folder: *REPO_DIR
