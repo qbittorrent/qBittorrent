@@ -121,15 +121,15 @@ install:
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       mkdir -p "$HOME/hombebrew_cache" ;
-      wget http://builds.shiki.hu/homebrew/version ;
+      wget https://builds.shiki.hu/homebrew/version ;
       if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
         echo "Cached files are different from server. Downloading new ones." ;
         cp "version" $HOME/hombebrew_cache ;
         cd "$HOME/hombebrew_cache" ;
-        wget http://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb ;
-        wget http://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.10.yosemite.bottle.tar.gz ;
+        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb ;
+        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.10.yosemite.bottle.tar.gz ;
       fi
-      
+
       # dependencies
       brew update > /dev/null ;
       brew install colormake ccache ;
