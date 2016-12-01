@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QMessageBox>
+#include <QWheelEvent>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
@@ -455,3 +456,16 @@ void PeerListWidget::handleSortColumnChanged(int col)
     }
 }
 
+void PeerListWidget::wheelEvent(QWheelEvent *event)
+{
+    event->accept();
+
+    if(event->modifiers() & Qt::ShiftModifier) {
+        // Shift + scroll = horizontal scroll
+        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
+}

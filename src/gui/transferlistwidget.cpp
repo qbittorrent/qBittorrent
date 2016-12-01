@@ -40,6 +40,7 @@
 #include <QRegExp>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QWheelEvent>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
@@ -931,6 +932,20 @@ bool TransferListWidget::loadSettings()
     if (!ok)
         header()->resizeSection(0, 200); // Default
     return ok;
+}
+
+void TransferListWidget::wheelEvent(QWheelEvent *event)
+{
+    event->accept();
+
+    if(event->modifiers() & Qt::ShiftModifier) {
+        // Shift + scroll = horizontal scroll
+        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
 }
 
 QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents)
