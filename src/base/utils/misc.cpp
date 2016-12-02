@@ -580,7 +580,7 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
     }
 #ifdef Q_OS_WIN
     HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    ITEMIDLIST *pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
+    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
     if (pidl) {
         ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
         ::ILFree(pidl);

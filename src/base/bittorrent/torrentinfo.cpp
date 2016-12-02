@@ -239,7 +239,7 @@ QVector<int> TorrentInfo::fileIndicesForPiece(int pieceIndex) const
     std::vector<libt::file_slice> files(
         nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
     QVector<int> res;
-    res.reserve(files.size());
+    res.reserve(int(files.size()));
     std::transform(files.begin(), files.end(), std::back_inserter(res),
         [](const libt::file_slice &s) { return s.file_index; });
 
