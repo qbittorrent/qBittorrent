@@ -363,8 +363,8 @@ QString Utils::Fs::QDesktopServicesDataLocation()
 {
     QString result;
 #ifdef Q_OS_WIN
-    LPWSTR path=new WCHAR[256];
-    if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
+    wchar_t path[MAX_PATH + 1] = {L'\0'};
+    if (SHGetSpecialFolderPathW(0, path, CSIDL_LOCAL_APPDATA, FALSE))
         result = fromNativePath(QString::fromWCharArray(path));
     if (!QCoreApplication::applicationName().isEmpty())
         result += QLatin1String("/") + qApp->applicationName();
