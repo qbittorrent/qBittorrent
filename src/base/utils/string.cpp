@@ -175,7 +175,7 @@ bool Utils::String::naturalCompareCaseInsensitive(const QString &left, const QSt
 
 QString Utils::String::fromStdString(const std::string &str)
 {
-    return QString::fromUtf8(str.c_str());
+    return QString::fromUtf8(str.c_str(), str.size());
 }
 
 std::string Utils::String::toStdString(const QString &str)

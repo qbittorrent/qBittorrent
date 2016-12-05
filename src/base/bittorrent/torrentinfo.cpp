@@ -46,7 +46,11 @@ using namespace BitTorrent;
 
 TorrentInfo::TorrentInfo(NativeConstPtr nativeInfo)
 {
+#if LIBTORRENT_VERSION_NUM >= 10200
+    m_nativeInfo = std::const_pointer_cast<libt::torrent_info>(nativeInfo);
+#else
     m_nativeInfo = boost::const_pointer_cast<libt::torrent_info>(nativeInfo);
+#endif
 }
 
 TorrentInfo::TorrentInfo(const TorrentInfo &other)
@@ -99,8 +103,13 @@ QString TorrentInfo::name() const
 QDateTime TorrentInfo::creationDate() const
 {
     if (!isValid()) return QDateTime();
+#if LIBTORRENT_VERSION_NUM >= 10200
+    time_t t = m_nativeInfo->creation_date();
+    return t ? QDateTime::fromTime_t(t) : QDateTime();
+#else
     boost::optional<time_t> t = m_nativeInfo->creation_date();
     return t ? QDateTime::fromTime_t(*t) : QDateTime();
+#endif
 }
 
 QString TorrentInfo::creator() const
@@ -186,7 +195,11 @@ qlonglong TorrentInfo::fileSize(int index) const
 qlonglong TorrentInfo::fileOffset(int index) const
 {
     if (!isValid()) return -1;
+#if LIBTORRENT_VERSION_NUM < 10200
     return m_nativeInfo->file_at(index).offset;
+#else
+    return m_nativeInfo->files().file_offset(index);
+#endif
 }
 
 QList<TrackerEntry> TorrentInfo::trackers() const

@@ -51,6 +51,8 @@
 #include "base/types.h"
 #include "torrentinfo.h"
 
+#include "config.h"
+
 namespace libtorrent
 {
     class session;
@@ -218,8 +220,10 @@ namespace BitTorrent
         void setLSDEnabled(bool enabled);
         bool isPeXEnabled() const;
         void setPeXEnabled(bool enabled);
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
         bool isTrackerExchangeEnabled() const;
         void setTrackerExchangeEnabled(bool enabled);
+#endif
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
         bool isTrackerEnabled() const;
@@ -507,7 +511,9 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
         CachedSettingValue<bool> m_isTrackerExchangeEnabled;
+#endif
         CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
         CachedSettingValue<QString> m_IPFilterFile;
@@ -576,7 +582,9 @@ namespace BitTorrent
         // counterparts, because they use them for initialization in the constructor
         // initialization list.
         const bool m_wasPexEnabled;
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
         const bool m_wasTrackerExchangeEnabled;
+#endif
 
         int m_numResumeData;
         int m_extraLimit;

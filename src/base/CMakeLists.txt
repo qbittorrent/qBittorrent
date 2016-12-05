@@ -140,3 +140,5 @@ if (APPLE)
     find_library(Carbon_LIBRARY Carbon)
     target_link_libraries(qbt_base ${Carbon_LIBRARY} ${IOKit_LIBRARY})
 endif (APPLE)
+
+# target_compile_options(qbt_base PUBLIC "-Werror=deprecated-declarations")

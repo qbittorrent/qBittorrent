@@ -55,9 +55,12 @@ namespace BitTorrent
 #if LIBTORRENT_VERSION_NUM < 10100
         typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
         typedef boost::intrusive_ptr<libtorrent::torrent_info> NativePtr;
-#else
+#elif LIBTORRENT_VERSION_NUM < 10200
         typedef boost::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
         typedef boost::shared_ptr<libtorrent::torrent_info> NativePtr;
+#else
+        typedef std::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
+        typedef std::shared_ptr<libtorrent::torrent_info> NativePtr;
 #endif
 
         explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());

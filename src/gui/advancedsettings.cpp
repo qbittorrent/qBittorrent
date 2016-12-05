@@ -186,8 +186,10 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
     // Tracker exchange
     session->setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
+#endif
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
@@ -380,9 +382,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
     // Tracker exchange
     cb_enable_tracker_ext.setChecked(session->isTrackerExchangeEnabled());
     addRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
+#endif
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
     addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
