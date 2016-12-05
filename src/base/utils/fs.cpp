@@ -283,9 +283,13 @@ qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)
     }
     Q_ASSERT(dir_path.exists());
 
-#ifndef Q_OS_WIN
+#if defined(Q_OS_WIN)
+    ULARGE_INTEGER bytesFree;
+    if (GetDiskFreeSpaceExW((LPCTSTR)(toNativePath(dir_path.path())).utf16(), &bytesFree, NULL, NULL) == 0)
+        return -1;
+    return qlonglong(bytesFree.QuadPart);
+#elif defined(Q_OS_HAIKU)
     unsigned long long available;
-#ifdef Q_OS_HAIKU
     const QString statfs_path = dir_path.path() + "/.";
     dev_t device = dev_for_path (qPrintable(statfs_path));
     if (device >= 0) {
@@ -297,6 +301,7 @@ qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)
     }
     return -1;
 #else
+    unsigned long long available;
     struct statfs stats;
     const QString statfs_path = dir_path.path() + "/.";
     const int ret = statfs(qPrintable(statfs_path), &stats);
@@ -308,12 +313,6 @@ qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)
     else {
         return -1;
     }
-#endif
-#else
-    ULARGE_INTEGER bytesFree;
-    if (GetDiskFreeSpaceExW((LPCTSTR)(toNativePath(dir_path.path())).utf16(), &bytesFree, NULL, NULL) == 0)
-        return -1;
-    return qlonglong(bytesFree.QuadPart);
 #endif
 }
 
@@ -362,14 +361,13 @@ QString Utils::Fs::expandPathAbs(const QString& path)
 QString Utils::Fs::QDesktopServicesDataLocation()
 {
     QString result;
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
     wchar_t path[MAX_PATH + 1] = {L'\0'};
     if (SHGetSpecialFolderPathW(0, path, CSIDL_LOCAL_APPDATA, FALSE))
         result = fromNativePath(QString::fromWCharArray(path));
     if (!QCoreApplication::applicationName().isEmpty())
         result += QLatin1String("/") + qApp->applicationName();
-#else
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     FSRef ref;
     OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
     if (err)
@@ -386,7 +384,6 @@ QString Utils::Fs::QDesktopServicesDataLocation()
     xdgDataHome += QLatin1String("/data/")
             + qApp->applicationName();
     result = xdgDataHome;
-#endif
 #endif
     if (!result.endsWith("/"))
         result += "/";
