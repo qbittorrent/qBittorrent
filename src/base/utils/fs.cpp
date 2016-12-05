@@ -310,26 +310,10 @@ qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)
     }
 #endif
 #else
-    typedef BOOL (WINAPI *GetDiskFreeSpaceEx_t)(LPCTSTR,
-                                                PULARGE_INTEGER,
-                                                PULARGE_INTEGER,
-                                                PULARGE_INTEGER);
-    GetDiskFreeSpaceEx_t pGetDiskFreeSpaceEx =
-            (GetDiskFreeSpaceEx_t)::GetProcAddress(::GetModuleHandleW(L"kernel32.dll"), "GetDiskFreeSpaceExW");
-    if (pGetDiskFreeSpaceEx) {
-        ULARGE_INTEGER bytesFree, bytesTotal;
-        unsigned long long *ret;
-        if (pGetDiskFreeSpaceEx((LPCTSTR)(toNativePath(dir_path.path())).utf16(), &bytesFree, &bytesTotal, NULL)) {
-            ret = (unsigned long long*)&bytesFree;
-            return *ret;
-        }
-        else {
-            return -1;
-        }
-    }
-    else {
+    ULARGE_INTEGER bytesFree;
+    if (GetDiskFreeSpaceExW((LPCTSTR)(toNativePath(dir_path.path())).utf16(), &bytesFree, NULL, NULL) == 0)
         return -1;
-    }
+    return qlonglong(bytesFree.QuadPart);
 #endif
 }
 
