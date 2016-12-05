@@ -372,7 +372,6 @@ QString Utils::Fs::QDesktopServicesDataLocation()
     OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
     if (err)
         return QString();
-    QString path;
     QByteArray ba(2048, 0);
     if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
         result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
