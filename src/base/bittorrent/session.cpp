@@ -412,9 +412,6 @@ Session::Session(QObject *parent)
 
     connect(Net::ProxyConfigurationManager::instance(), SIGNAL(proxyConfigurationChanged()), SLOT(configureDeferred()));
 
-    if (isBandwidthSchedulerEnabled())
-        enableBandwidthScheduler();
-
     // Network configuration monitor
     connect(&m_networkManager, SIGNAL(onlineStateChanged(bool)), SLOT(networkOnlineStateChanged(bool)));
     connect(&m_networkManager, SIGNAL(configurationAdded(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
@@ -836,8 +833,13 @@ Session::~Session()
 
 void Session::initInstance()
 {
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new Session;
+
+        // BandwidthScheduler::start() depends on Session being fully constructed
+        if (m_instance->isBandwidthSchedulerEnabled())
+            m_instance->enableBandwidthScheduler();
+    }
 }
 
 void Session::freeInstance()
