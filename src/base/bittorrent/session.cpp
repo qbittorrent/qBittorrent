@@ -334,7 +334,13 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr);
     });
 #else
+#if LIBTORRENT_VERSION_NUM >= 10101
+    // exact libtorrent version with new method of fingerprint generation have to be clarified
+    // version  1.1.1 already is missing of libt::generate_fingerprint()
+    std::string peerId( libt::fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD).to_string() );
+#else
     std::string peerId = libt::generate_fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+#endif
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
