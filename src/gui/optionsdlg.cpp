@@ -1638,6 +1638,9 @@ void OptionsDialog::setSslKey(const QByteArray &key, bool interactive)
         if (interactive)
             QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
     }
+#else
+    Q_UNUSED(key);
+    Q_UNUSED(interactive);
 #endif
 }
 
@@ -1654,6 +1657,9 @@ void OptionsDialog::setSslCertificate(const QByteArray &cert, bool interactive)
         if (interactive)
             QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
     }
+#else
+    Q_UNUSED(cert);
+    Q_UNUSED(interactive);
 #endif
 }
 

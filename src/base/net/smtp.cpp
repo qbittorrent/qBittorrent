@@ -53,7 +53,9 @@
 namespace
 {
     const short DEFAULT_PORT = 25;
+#ifndef QT_NO_OPENSSL
     const short DEFAULT_PORT_SSL = 465;
+#endif
 
     QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
     {
@@ -98,12 +100,12 @@ Smtp::Smtp(QObject *parent)
     , m_authType(AuthPlain)
 {
     static bool needToRegisterMetaType = true;
-    
+
     if (needToRegisterMetaType) {
         qRegisterMetaType<QAbstractSocket::SocketError>();
         needToRegisterMetaType = false;
     }
-    
+
 #ifndef QT_NO_OPENSSL
     m_socket = new QSslSocket(this);
 #else
