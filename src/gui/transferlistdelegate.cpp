@@ -31,7 +31,7 @@
 #include "transferlistdelegate.h"
 
 #include <QModelIndex>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionViewItem>
 #include <QApplication>
 #include <QPainter>
 #include "base/utils/misc.h"
@@ -67,7 +67,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
 
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
     switch (index.column()) {
     case TorrentModel::TR_AMOUNT_DOWNLOADED:
@@ -162,7 +162,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_PROGRESS: {
-        QStyleOptionProgressBarV2 newopt;
+        QStyleOptionProgressBar newopt;
         qreal progress = index.data().toDouble() * 100.;
         newopt.rect = opt.rect;
         newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
