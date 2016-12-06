@@ -1284,7 +1284,7 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
     setValue("Rss/open_folders", folders);
 }
 
-QByteArray Preferences::getRssHSplitterState() const
+QByteArray Preferences::getRssSideSplitterState() const
 {
 #ifdef QBT_USES_QT5
     return value("Rss/qt5/splitter_h").toByteArray();
@@ -1293,7 +1293,7 @@ QByteArray Preferences::getRssHSplitterState() const
 #endif
 }
 
-void Preferences::setRssHSplitterState(const QByteArray &state)
+void Preferences::setRssSideSplitterState(const QByteArray &state)
 {
 #ifdef QBT_USES_QT5
     setValue("Rss/qt5/splitter_h", state);
@@ -1302,21 +1302,21 @@ void Preferences::setRssHSplitterState(const QByteArray &state)
 #endif
 }
 
-QByteArray Preferences::getRssVSplitterState() const
+QByteArray Preferences::getRssMainSplitterState() const
 {
 #ifdef QBT_USES_QT5
-    return value("Rss/qt5/splitter_v").toByteArray();
+    return value("Rss/qt5/splitterMain").toByteArray();
 #else
-    return value("Rss/splitter_v").toByteArray();
+    return value("Rss/splitterMain").toByteArray();
 #endif
 }
 
-void Preferences::setRssVSplitterState(const QByteArray &state)
+void Preferences::setRssMainSplitterState(const QByteArray &state)
 {
 #ifdef QBT_USES_QT5
-    setValue("Rss/qt5/splitter_v", state);
+    setValue("Rss/qt5/splitterMain", state);
 #else
-    setValue("Rss/splitter_v", state);
+    setValue("Rss/splitterMain", state);
 #endif
 }
 

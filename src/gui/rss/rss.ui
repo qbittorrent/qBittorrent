@@ -73,7 +73,13 @@
     </layout>
    </item>
    <item>
-    <widget class="QSplitter" name="splitter_h">
+    <widget class="QSplitter" name="splitterSide">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -93,9 +99,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QSplitter" name="splitter_v">
+        <widget class="QSplitter" name="splitterMain">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <widget class="QListWidget" name="listArticles">
           <property name="contextMenuPolicy">
