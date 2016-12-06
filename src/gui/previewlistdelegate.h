@@ -32,8 +32,8 @@
 #define PREVIEWLISTDELEGATE_H
 
 #include <QItemDelegate>
-#include <QStyleOptionProgressBarV2>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionProgressBar>
+#include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QPainter>
 #include <QApplication>
@@ -59,7 +59,7 @@ class PreviewListDelegate: public QItemDelegate {
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
       painter->save();
-      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
       switch(index.column()) {
         case PreviewSelect::SIZE:
@@ -67,7 +67,7 @@ class PreviewListDelegate: public QItemDelegate {
           QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
           break;
         case PreviewSelect::PROGRESS:{
-          QStyleOptionProgressBarV2 newopt;
+          QStyleOptionProgressBar newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
           newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
