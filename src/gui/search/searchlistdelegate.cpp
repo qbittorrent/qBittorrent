@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
@@ -46,7 +46,7 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 {
     painter->save();
 
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     switch(index.column()) {
     case SearchSortModel::SIZE:
         QItemDelegate::drawBackground(painter, opt, index);

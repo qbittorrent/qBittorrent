@@ -28,8 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionProgressBarV2>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionProgressBar>
+#include <QStyleOptionViewItem>
 #include <QStyleOptionComboBox>
 #include <QComboBox>
 #include <QModelIndex>
@@ -60,7 +60,7 @@ PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent
 void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
     switch(index.column()) {
     case PCSIZE:
@@ -78,7 +78,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case PROGRESS:
         if (index.data().toDouble() >= 0) {
-            QStyleOptionProgressBarV2 newopt;
+            QStyleOptionProgressBar newopt;
             qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
             newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
