@@ -50,7 +50,7 @@ namespace Utils
         bool sameFiles(const QString& path1, const QString& path2);
         QString toValidFileSystemName(const QString &name, bool allowSeparators = false);
         bool isValidFileSystemName(const QString& name, bool allowSeparators = false);
-        qlonglong freeDiskSpaceOnPath(QString path);
+        qulonglong freeDiskSpaceOnPath(const QString &path);
         QString branchPath(const QString& file_path, QString* removed = 0);
         bool sameFileNames(const QString& first, const QString& second);
         QString expandPath(const QString& path);
