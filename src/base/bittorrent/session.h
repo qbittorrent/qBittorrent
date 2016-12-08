@@ -492,7 +492,7 @@ namespace BitTorrent
         void saveResumeData();
 
 #if LIBTORRENT_VERSION_NUM < 10100
-        void dispatchAlerts(std::auto_ptr<libtorrent::alert> alertPtr);
+        void dispatchAlerts(libtorrent::alert *alertPtr);
 #endif
         void getPendingAlerts(std::vector<libtorrent::alert *> &out, ulong time = 0);
 
