@@ -430,7 +430,7 @@ void AddNewTorrentDialog::onSavePathTextEdited()
     const QString &path = ui->savePathComboBox->currentText();
 
     // Show "Default Save Path" check box
-    ui->defaultSavePathCheckBox->setVisible(QDir(path) != QDir(defaultSavePath()));
+    ui->defaultSavePathCheckBox->setVisible(QDir(path) != QDir(BitTorrent::Session::instance()->defaultSavePath())); 
     
     if (!isSavePathValid(path)) { 
 	// Red background indicating invalid save path
