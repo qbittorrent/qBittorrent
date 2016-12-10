@@ -331,7 +331,7 @@ Session::Session(QObject *parent)
     configureListeningInterface();
     m_nativeSession->set_alert_dispatch([this](std::auto_ptr<libt::alert> alertPtr)
     {
-        dispatchAlerts(alertPtr);
+        dispatchAlerts(alertPtr.release());
     });
 #else
     std::string peerId = libt::generate_fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
@@ -3125,13 +3125,13 @@ void Session::handleIPFilterError()
 }
 
 #if LIBTORRENT_VERSION_NUM < 10100
-void Session::dispatchAlerts(std::auto_ptr<libt::alert> alertPtr)
+void Session::dispatchAlerts(libt::alert *alertPtr)
 {
     QMutexLocker lock(&m_alertsMutex);
 
     bool wasEmpty = m_alerts.empty();
 
-    m_alerts.push_back(alertPtr.release());
+    m_alerts.push_back(alertPtr);
 
     if (wasEmpty) {
         m_alertsWaitCondition.wakeAll();
