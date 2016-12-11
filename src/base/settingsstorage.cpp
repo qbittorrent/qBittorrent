@@ -38,11 +38,6 @@
 #include "logger.h"
 #include "utils/fs.h"
 
-#ifdef Q_OS_MAC
-// now mac uses ini
-//#define QSETTINGS_SYNC_IS_SAVE // whether QSettings::sync() is "atomic"
-#endif
-
 namespace
 {
     // Encapsulates serialization of settings in "atomic" way.
@@ -267,9 +262,6 @@ void SettingsStorage::removeValue(const QString &key)
 QVariantHash TransactionalSettings::read()
 {
     QVariantHash res;
-#ifdef QSETTINGS_SYNC_IS_SAVE
-    deserialize(m_name, res);
-#else
     bool writeBackNeeded = false;
     QString newPath = deserialize(m_name + QLatin1String("_new"), res);
     if (!newPath.isEmpty()) { // "_new" file is NOT empty
@@ -288,15 +280,12 @@ QVariantHash TransactionalSettings::read()
 
     if (writeBackNeeded)
         write(res);
-#endif
+
     return res;
 }
 
 bool TransactionalSettings::write(const QVariantHash &data)
 {
-#ifdef QSETTINGS_SYNC_IS_SAVE
-    serialize(m_name, data);
-#else
     // QSettings delete the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
     // between deleting the file and recreating it. This is a safety measure.
@@ -313,7 +302,7 @@ bool TransactionalSettings::write(const QVariantHash &data)
     finalPath.remove(index, 4);
     Utils::Fs::forceRemove(finalPath);
     QFile::rename(newPath, finalPath);
-#endif
+
     return true;
 }
 

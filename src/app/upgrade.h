@@ -230,25 +230,30 @@ bool upgrade(bool ask = true)
 
 
 #ifdef Q_OS_MAC
-bool copyPlistToIni(const char *application)
+void migratePlistToIni(const QString &application)
 {
-    QSettings iniFile(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", application);
-    if (QFile::exists(iniFile.fileName())) return false; // We copy the contents of plist, only if inifile does not exist.
-    QSettings plistFile("qBittorrent", application);
-    if (!QFile::exists(plistFile.fileName())) return false;
-    plistFile.setFallbacksEnabled(false);
-    const QStringList plist = plistFile.allKeys();
-    foreach (const QString &key, plist) {
-        iniFile.setValue(key, plistFile.value(key));
+    QIniSettings iniFile("qBittorrent", application);
+    if (iniFile.allKeys().isEmpty()) return; // We copy the contents of plist, only if inifile does not exist(is empty).
+
+    QSettings *plistFile = new QSettings("qBittorrent", application);
+    plistFile->setFallbacksEnabled(false);
+    const QStringList plist = plistFile->allKeys();
+    if (!plist.isEmpty()) {
+        foreach (const QString &key, plist)
+            iniFile.setValue(key, plistFile->value(key));
+        plistFile->clear();
     }
-    return true;
+
+    QString plistPath = plistFile->fileName();
+    delete plistFile;
+    Utils::Fs::forceRemove(plistPath);
 }
 
-void macSalvagePlists()
+void macMigratePlists()
 {
-    copyPlistToIni("qBittorrent-data");
-    copyPlistToIni("qBittorrent-rss");
-    copyPlistToIni("qBittorrent");
+    migratePlistToIni("qBittorrent-data");
+    migratePlistToIni("qBittorrent-rss");
+    migratePlistToIni("qBittorrent");
 }
 #endif  // Q_OS_MAC
 

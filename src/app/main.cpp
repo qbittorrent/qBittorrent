@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_MAC
     // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
     // Due to this, we have to move from native plist to IniFormat
-    macSalvagePlists();
+    macMigratePlists();
 #endif
 
     // Create Application
