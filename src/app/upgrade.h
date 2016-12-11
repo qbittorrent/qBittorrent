@@ -156,7 +156,12 @@ bool upgrade(bool ask = true)
         upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
     // ****************************************************************************************
 
+#ifdef Q_OS_MAC
+    // native .plist
+    QSettings *oldResumeSettings = new QSettings("qBittorrent", "qBittorrent-resume");
+#else
     QIniSettings *oldResumeSettings = new QIniSettings("qBittorrent", "qBittorrent-resume");
+#endif
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
     delete oldResumeSettings;
@@ -222,5 +227,30 @@ bool upgrade(bool ask = true)
 
     return true;
 }
+
+
+#ifdef Q_OS_MAC
+bool copyPlistToIni(const char *application)
+{
+    QSettings iniFile(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", application);
+    if (QFile::exists(iniFile.fileName())) return false; // We copy the contents of plist, only if inifile does not exist.
+    QSettings plistFile("qBittorrent", application);
+    if (!QFile::exists(plistFile.fileName())) return false;
+    plistFile.setFallbacksEnabled(false);
+    const QStringList plist = plistFile.allKeys();
+    foreach (const QString &key, plist) {
+        iniFile.setValue(key, plistFile.value(key));
+    }
+    return true;
+}
+
+void macSalvagePlists()
+{
+    copyPlistToIni("qBittorrent-data");
+    copyPlistToIni("qBittorrent-rss");
+    copyPlistToIni("qBittorrent");
+}
+#endif  // Q_OS_MAC
+
 
 #endif // UPGRADE_H
