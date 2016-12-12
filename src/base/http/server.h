@@ -39,6 +39,8 @@
 #include <QSslKey>
 #endif
 
+#include "config.h"
+
 namespace Http
 {
     class IRequestHandler;

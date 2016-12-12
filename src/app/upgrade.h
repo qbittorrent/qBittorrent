@@ -39,6 +39,7 @@
 #include <libtorrent/lazy_entry.hpp>
 #endif
 
+#include "config.h"
 
 #include <QDir>
 #include <QFile>

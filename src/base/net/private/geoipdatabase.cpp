@@ -36,6 +36,8 @@
 #include "base/types.h"
 #include "geoipdatabase.h"
 
+#include "config.h"
+
 namespace
 {
     const quint32 __ENDIAN_TEST__ = 0x00000001;

@@ -64,6 +64,8 @@
 #include "transferlistwidget.h"
 #include "autoexpandabledialog.h"
 
+#include "config.h"
+
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, TransferListWidget *transferList)
     : QWidget(parent), transferList(transferList), main_window(main_window), m_torrent(0)
 {

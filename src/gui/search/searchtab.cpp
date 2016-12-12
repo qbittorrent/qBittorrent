@@ -38,6 +38,9 @@
 #include <QLabel>
 #include <QPalette>
 #include <QVBoxLayout>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif

@@ -65,6 +65,8 @@
 
 #include "ui_optionsdlg.h"
 
+#include "config.h"
+
 // Constructor
 OptionsDialog::OptionsDialog(QWidget *parent)
     : QDialog(parent)

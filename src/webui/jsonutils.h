@@ -29,6 +29,8 @@
 #ifndef JSONUTILS_H
 #define JSONUTILS_H
 
+#include "config.h"
+
 #include <QVariant>
 #ifdef QBT_USES_QT5
 #include <QJsonDocument>

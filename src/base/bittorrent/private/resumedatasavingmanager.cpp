@@ -27,6 +27,9 @@
  */
 
 #include <QDebug>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QSaveFile>
 #else

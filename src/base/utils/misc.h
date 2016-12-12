@@ -42,6 +42,8 @@
 #include <QSize>
 #include "base/types.h"
 
+#include "config.h"
+
 /*  Miscellaneous functions that can be useful */
 
 namespace Utils

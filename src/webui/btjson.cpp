@@ -44,6 +44,9 @@
 
 #include <QDebug>
 #include <QVariant>
+
+#include "config.h"
+
 #ifndef QBT_USES_QT5
 #include <QMetaType>
 #endif

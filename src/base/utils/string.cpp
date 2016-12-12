@@ -34,6 +34,9 @@
 #include <QByteArray>
 #include <QtGlobal>
 #include <QLocale>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QCollator>
 #endif

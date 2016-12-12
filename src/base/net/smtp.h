@@ -42,6 +42,8 @@
 #include <QAbstractSocket>
 #include <QMetaType>
 
+#include "config.h"
+
 QT_BEGIN_NAMESPACE
 class QTextStream;
 #ifndef QT_NO_OPENSSL

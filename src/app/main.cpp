@@ -32,6 +32,8 @@
 #include <QDebug>
 #include <QScopedPointer>
 
+#include "config.h"
+
 #ifndef DISABLE_GUI
 // GUI-only includes
 #include <QFont>

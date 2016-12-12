@@ -31,6 +31,9 @@
 
 #include <QStringList>
 #include <QUrl>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QUrlQuery>
 #endif

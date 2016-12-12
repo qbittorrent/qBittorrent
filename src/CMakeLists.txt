@@ -9,7 +9,6 @@ find_package(LibtorrentRasterbar REQUIRED)
 
 # Qt
 if (QT5)
-    add_definitions(-DQBT_USES_QT5)
     list(APPEND QBT_QT_COMPONENTS Core Network Xml)
     if (GUI)
         list (APPEND QBT_QT_COMPONENTS Concurrent Gui Widgets)
@@ -42,14 +41,6 @@ add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 if (WIN32)
     add_definitions(-DNOMINMAX)
 endif (WIN32)
-
-if (NOT GUI)
-    add_definitions(-DDISABLE_GUI -DDISABLE_COUNTRIES_RESOLUTION)
-endif (NOT GUI)
-
-if (NOT WEBUI)
-    add_definitions(-DDISABLE_WEBUI)
-endif (NOT WEBUI)
 
 if (STACKTRACE_WIN)
     add_definitions(-DSTACKTRACE_WIN)

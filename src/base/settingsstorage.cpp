@@ -38,6 +38,8 @@
 #include "logger.h"
 #include "utils/fs.h"
 
+#include "config.h"
+
 namespace
 {
     // Encapsulates serialization of settings in "atomic" way.

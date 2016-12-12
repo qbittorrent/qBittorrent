@@ -19,6 +19,8 @@
 #include <QVector>
 #include <QDesktopWidget>
 
+#include "config.h"
+
 namespace
 {
     // Global header (see http://www.daubnet.com/formats/ICO.html)

@@ -35,6 +35,8 @@
 #include <QProcess>
 #include <QAtomicInt>
 
+#include "config.h"
+
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN

@@ -12,6 +12,8 @@
 
 #include <QLineEdit>
 
+#include "config.h"
+
 class QToolButton;
 
 class LineEdit : public QLineEdit
