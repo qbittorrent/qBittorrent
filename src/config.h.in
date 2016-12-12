@@ -1,0 +1,15 @@
+#undef QBT_USES_QT5
+#undef QBT_USE_GUI
+
+#ifndef QBT_USE_GUI
+#define DISABLE_GUI
+#define DISABLE_COUNTRIES_RESOLUTION
+#endif
+
+#undef QBT_USE_WEBUI
+
+#ifndef QBT_USE_WEBUI
+#define DISABLE_WEBUI
+#endif
+
+#undef STACKTRACE_WIN
