@@ -13,3 +13,13 @@
 #endif
 
 #cmakedefine STACKTRACE_WIN
+
+/* Define as 1 if you have libtorrent/extensions/lt_trackers.hpp */
+#cmakedefine HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP
+/* Define as 1 if you have libtorrent/string_view.hpp */
+#cmakedefine HAVE_LIBTORRENT_STRING_VIEW_HPP
+
+
+#if defined HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP
+#define BACKEND_HAS_LT_TRACKERS_EXTENSION
+#endif

@@ -210,6 +210,8 @@ PKG_CHECK_MODULES(libtorrent,
                   [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
+AC_CHECK_HEADERS([libtorrent/extensions/lt_trackers.hpp libtorrent/string_view.hpp], [], [], [])
+
 PKG_CHECK_MODULES(zlib,
                  [zlib],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"

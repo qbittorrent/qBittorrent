@@ -2,10 +2,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD "11")
 add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 
+include(CheckIncludeFileCXX)
 include(MacroLinkQtComponents)
 include(QbtTargetSources)
 
 find_package(LibtorrentRasterbar REQUIRED)
+
+set(CMAKE_REQUIRED_INCLUDES ${LibtorrentRasterbar_INCLUDE_DIR})
+check_include_file_cxx(libtorrent/extensions/lt_trackers.hpp HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP)
+check_include_file_cxx(libtorrent/string_view.hpp HAVE_LIBTORRENT_STRING_VIEW_HPP)
 
 # Qt
 if (QT5)
