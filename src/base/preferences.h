@@ -41,6 +41,10 @@
 #include <QNetworkCookie>
 #include <QVariant>
 
+#ifndef DISABLE_GUI
+#include <QFont>
+#endif
+
 #include "types.h"
 
 enum scheduler_days
@@ -277,6 +281,10 @@ public:
 #ifndef DISABLE_GUI
     QSize getPrefSize(const QSize &defaultSize) const;
     void setPrefSize(const QSize &size);
+    QFont getTransferListFont(const QFont &defaultFont) const;
+    void setTransferListFont(const QFont &font);
+    QFont getLogListFont(const QFont &defaultFont) const;
+    void setLogListFont(const QFont &font);
 #endif
     QPoint getPrefPos() const;
     void setPrefPos(const QPoint &pos);
@@ -364,6 +372,9 @@ public slots:
     void setTrackerFilterState(bool checked);
 
     void apply();
+
+private:
+    QFont loadFont(const QString &settingName, const QFont &defaultFont) const;
 };
 
 #endif // PREFERENCES_H

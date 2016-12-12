@@ -51,6 +51,8 @@ public slots:
 
 protected slots:
     void copySelection();
+    void resetFont();
+    void showChangeFontDialog();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
@@ -58,6 +60,9 @@ protected:
 private:
     int m_maxLines;
     Log::MsgTypes m_types;
+    QFont m_font;
+
+    void applyNewFont(const QFont &font);
 };
 
 #endif // LOGLISTWIDGET_H

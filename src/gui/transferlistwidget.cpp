@@ -29,6 +29,7 @@
  */
 
 #include <QDebug>
+#include <QFontDialog>
 #include <QShortcut>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -630,7 +631,21 @@ void TransferListWidget::displayListMenu(const QPoint&)
 {
     QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.size() == 0)
-        return;
+        displayListMenuEmpty();
+    else
+        displayListMenuSelection();
+}
+
+void TransferListWidget::displayListMenuEmpty()
+{
+    QMenu listMenu(this);
+    addChangeFontActionsToMenu(listMenu);
+    listMenu.exec(QCursor::pos());
+}
+
+void TransferListWidget::displayListMenuSelection()
+{
+    QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
     connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
@@ -843,6 +858,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     listMenu.addSeparator();
     listMenu.addAction(&actionCopy_name);
     listMenu.addAction(&actionCopy_magnet_link);
+    listMenu.addSeparator();
+    addChangeFontActionsToMenu(listMenu);
     // Call menu
     QAction *act = 0;
     act = listMenu.exec(QCursor::pos());
@@ -863,6 +880,43 @@ void TransferListWidget::displayListMenu(const QPoint&)
                 setSelectionCategory(category);
             }
         }
+    }
+}
+
+void TransferListWidget::addChangeFontActionsToMenu(QMenu &menu)
+{
+    QAction *actionChangeFont = new QAction(GuiIconProvider::instance()->getIcon("preferences-desktop-font"), tr("Change Font", "Change font in the torrent list"), &menu);
+    connect(actionChangeFont, SIGNAL(triggered()), this, SLOT(showChangeFontDialog()));
+    menu.addAction(actionChangeFont);
+
+    QAction *actionResetFont = new QAction(GuiIconProvider::instance()->getIcon("preferences-desktop-font"), tr("Reset Font", "Reset font in the torrent list"), &menu);
+    connect(actionResetFont, SIGNAL(triggered()), this, SLOT(resetFont()));
+    menu.addAction(actionResetFont);
+}
+
+void TransferListWidget::showChangeFontDialog()
+{
+    bool ok = false;
+    QFont newFont = QFontDialog::getFont(&ok, Preferences::instance()->getTransferListFont(font()), this);
+    if (ok)
+    {
+        applyNewFont(newFont);
+    }
+}
+
+void TransferListWidget::resetFont()
+{
+    applyNewFont(QFont());
+}
+
+void TransferListWidget::applyNewFont(const QFont &font)
+{
+    Preferences::instance()->setTransferListFont(font);
+    setFont(font);
+    header()->setFont(font);
+    foreach (QWidget *widget, header()->findChildren<QWidget*>())
+    {
+        widget->setFont(font);
     }
 }
 
@@ -921,6 +975,7 @@ bool TransferListWidget::loadSettings()
     bool ok = header()->restoreState(Preferences::instance()->getTransHeaderState());
     if (!ok)
         header()->resizeSection(0, 200); // Default
+    setFont(Preferences::instance()->getTransferListFont(font()));
     return ok;
 }
 

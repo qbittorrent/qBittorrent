@@ -1141,6 +1141,34 @@ void Preferences::setPrefSize(const QSize &size)
 {
     setValue("Preferences/State/size", size);
 }
+
+QFont Preferences::getTransferListFont(const QFont &defaultFont) const
+{
+    return loadFont("TransferList/Font", defaultFont);
+}
+
+void Preferences::setTransferListFont(const QFont &font)
+{
+    setValue("TransferList/Font", font.toString());
+}
+
+QFont Preferences::getLogListFont(const QFont &defaultFont) const
+{
+    return loadFont("LogList/Font", defaultFont);
+}
+
+void Preferences::setLogListFont(const QFont &font)
+{
+    setValue("LogList/Font", font.toString());
+}
+
+QFont Preferences::loadFont(const QString &settingName, const QFont &defaultFont) const
+{
+    QString fontDescription = value(settingName, defaultFont.toString()).toString();
+    QFont font;
+    bool ok = font.fromString(fontDescription);
+    return ok ? font : defaultFont;
+}
 #endif
 
 QPoint Preferences::getPrefPos() const
