@@ -119,6 +119,8 @@ tristatebool.cpp
 add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
 target_link_libraries(qbt_base ZLIB::ZLIB LibtorrentRasterbar::LibTorrent)
 target_link_qt_components(qbt_base Core Network Xml)
+target_include_directories(qbt_base PUBLIC "${qBittorrent_BINARY_DIR}/src") # for config.h
+
 if (QT4_FOUND)
     if (GUI)
         target_link_libraries(qbt_base Qt4::QtGui)
