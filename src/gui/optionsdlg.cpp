@@ -1294,7 +1294,10 @@ void OptionsDialog::setLocale(const QString &localeStr)
     }
     else {
         QLocale locale(localeStr);
-        name = locale.name();
+        if (locale.language() == QLocale::Uzbek)
+            name = "uz@Latn";
+        else
+            name = locale.name();
     }
     // Attempt to find exact match
     int index = m_ui->comboI18n->findData(name, Qt::UserRole);
@@ -1567,19 +1570,23 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
     case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
     case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
+    case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
     case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
     case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
     case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
     case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
     case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
     case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
+    case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
     case QLocale::Portuguese: {
         if (locale.country() == QLocale::Brazil)
             return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
         return QString::fromUtf8(C_LOCALE_PORTUGUESE);
     }
     case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+    case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
     case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
+    case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
     case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
     case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
     case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
@@ -1595,6 +1602,7 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
     case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
     case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
+    case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
     case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
     case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
     case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
