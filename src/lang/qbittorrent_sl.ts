@@ -4977,130 +4977,130 @@ Ali ste prepričani, da želite končati qBittorrent?</translation>
         <translation>Namig: Postavi parameter med narekovaje da se izogneš prelomu teksta na presledku (npr., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1350"/>
+        <location filename="../gui/optionsdlg.cpp" line="1353"/>
         <source>Select folder to monitor</source>
         <translation>Izberite mapo za nadzorovanje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1357"/>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Folder is already being monitored:</source>
         <translation>Mapa se že nadzaruje:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <location filename="../gui/optionsdlg.cpp" line="1363"/>
         <source>Folder does not exist:</source>
         <translation>Mapa ne obstaja:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1363"/>
+        <location filename="../gui/optionsdlg.cpp" line="1366"/>
         <source>Folder is not readable:</source>
         <translation>Mapa ni berljiva:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1374"/>
+        <location filename="../gui/optionsdlg.cpp" line="1377"/>
         <source>Adding entry failed</source>
         <translation>Dodajanje vnosa je spodletelo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1402"/>
-        <location filename="../gui/optionsdlg.cpp" line="1404"/>
+        <location filename="../gui/optionsdlg.cpp" line="1405"/>
+        <location filename="../gui/optionsdlg.cpp" line="1407"/>
         <source>Choose export directory</source>
         <translation>Izberite mapo za izvoz</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1414"/>
-        <location filename="../gui/optionsdlg.cpp" line="1416"/>
-        <location filename="../gui/optionsdlg.cpp" line="1451"/>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
-        <location filename="../gui/optionsdlg.cpp" line="1464"/>
-        <location filename="../gui/optionsdlg.cpp" line="1466"/>
+        <location filename="../gui/optionsdlg.cpp" line="1417"/>
+        <location filename="../gui/optionsdlg.cpp" line="1419"/>
+        <location filename="../gui/optionsdlg.cpp" line="1454"/>
+        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1469"/>
         <source>Choose a save directory</source>
         <translation>Izberite mapo za shranjevanje</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>Choose an IP filter file</source>
         <translation>Izberite datoteko s filtri IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>All supported filters</source>
         <translation>Vsi podprti filtri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1506"/>
+        <location filename="../gui/optionsdlg.cpp" line="1509"/>
         <source>SSL Certificate</source>
         <translation>Potrdilo SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1518"/>
+        <location filename="../gui/optionsdlg.cpp" line="1521"/>
         <source>SSL Key</source>
         <translation>Ključ SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Parsing error</source>
         <translation>Napaka razčlenjevanja</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Spodletelo razčlenjevanje filtra IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully refreshed</source>
         <translation>Uspešno osveženo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Uspešno razčlenjen filter IP: %1 pravil je bilo uveljavljenih.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>Invalid key</source>
         <translation>Neveljaven ključ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
         <translation>To ni veljaven ključ SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>Invalid certificate</source>
         <translation>Neveljavno potrdilo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>To ni veljavno potrdilo SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>Time Error</source>
         <translation>Napaka v času</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Čas začetka in konca ne smeta biti enaka.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>Length Error</source>
         <translation>Napaka v dolžini</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
     </message>

@@ -4974,130 +4974,130 @@ Biztos, hogy bezárod a qBittorrentet?</translation>
         <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1350"/>
+        <location filename="../gui/optionsdlg.cpp" line="1353"/>
         <source>Select folder to monitor</source>
         <translation>Válassz egy megfigyelni kívánt könyvtárat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1357"/>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Folder is already being monitored:</source>
         <translation>A könyvtár már megfigyelés alatt van:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <location filename="../gui/optionsdlg.cpp" line="1363"/>
         <source>Folder does not exist:</source>
         <translation>A könyvtár nem létezik:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1363"/>
+        <location filename="../gui/optionsdlg.cpp" line="1366"/>
         <source>Folder is not readable:</source>
         <translation>A könyvtár nem olvasható:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1374"/>
+        <location filename="../gui/optionsdlg.cpp" line="1377"/>
         <source>Adding entry failed</source>
         <translation>Bejegyzés hozzáadása sikertelen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1402"/>
-        <location filename="../gui/optionsdlg.cpp" line="1404"/>
+        <location filename="../gui/optionsdlg.cpp" line="1405"/>
+        <location filename="../gui/optionsdlg.cpp" line="1407"/>
         <source>Choose export directory</source>
         <translation>Export könyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1414"/>
-        <location filename="../gui/optionsdlg.cpp" line="1416"/>
-        <location filename="../gui/optionsdlg.cpp" line="1451"/>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
-        <location filename="../gui/optionsdlg.cpp" line="1464"/>
-        <location filename="../gui/optionsdlg.cpp" line="1466"/>
+        <location filename="../gui/optionsdlg.cpp" line="1417"/>
+        <location filename="../gui/optionsdlg.cpp" line="1419"/>
+        <location filename="../gui/optionsdlg.cpp" line="1454"/>
+        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1469"/>
         <source>Choose a save directory</source>
         <translation>Mentési könyvtár választása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>Choose an IP filter file</source>
         <translation>Válassz egy IP-szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>All supported filters</source>
         <translation>Minden támogatott szűrő</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1506"/>
+        <location filename="../gui/optionsdlg.cpp" line="1509"/>
         <source>SSL Certificate</source>
         <translation>SSL tanúsítvány</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1518"/>
+        <location filename="../gui/optionsdlg.cpp" line="1521"/>
         <source>SSL Key</source>
         <translation>SSL kulcs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Parsing error</source>
         <translation>Feldolgozási hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Megadott IP szűrő feldogozása sikertelen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully refreshed</source>
         <translation>Sikeresen frissítve</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>A következő IP szűrő sikeresen feldolgozva: %1 szabály alkalmazva.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>Invalid key</source>
         <translation>Érvénytelen kulcs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
         <translation>Ez egy érvénytelen SSL kulcs.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>Invalid certificate</source>
         <translation>Érvénytelen tanúsítvány</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ez egy érvénytelen SSL tanúsítvány.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>Time Error</source>
         <translation>Idő hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>A kezdés és befejezés ideje nem lehet ugyanaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>Length Error</source>
         <translation>Hossz hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>A webes felület felhasználónevének legalább 3 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>A webes felület jelszavának legalább 6 karakter hosszúnak kell lennie.</translation>
     </message>

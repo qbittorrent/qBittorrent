@@ -4976,130 +4976,130 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1350"/>
+        <location filename="../gui/optionsdlg.cpp" line="1353"/>
         <source>Select folder to monitor</source>
         <translation>Избиране на директория за наблюдение</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1357"/>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Folder is already being monitored:</source>
         <translation>Директорията вече се наблюдава:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <location filename="../gui/optionsdlg.cpp" line="1363"/>
         <source>Folder does not exist:</source>
         <translation>Директорията не съществува:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1363"/>
+        <location filename="../gui/optionsdlg.cpp" line="1366"/>
         <source>Folder is not readable:</source>
         <translation>Директорията е нечетима:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1374"/>
+        <location filename="../gui/optionsdlg.cpp" line="1377"/>
         <source>Adding entry failed</source>
         <translation>Добавянето на запис е неуспешно</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1402"/>
-        <location filename="../gui/optionsdlg.cpp" line="1404"/>
+        <location filename="../gui/optionsdlg.cpp" line="1405"/>
+        <location filename="../gui/optionsdlg.cpp" line="1407"/>
         <source>Choose export directory</source>
         <translation>Избиране на директория за експорт</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1414"/>
-        <location filename="../gui/optionsdlg.cpp" line="1416"/>
-        <location filename="../gui/optionsdlg.cpp" line="1451"/>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
-        <location filename="../gui/optionsdlg.cpp" line="1464"/>
-        <location filename="../gui/optionsdlg.cpp" line="1466"/>
+        <location filename="../gui/optionsdlg.cpp" line="1417"/>
+        <location filename="../gui/optionsdlg.cpp" line="1419"/>
+        <location filename="../gui/optionsdlg.cpp" line="1454"/>
+        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1469"/>
         <source>Choose a save directory</source>
         <translation>Избиране на директория за запис</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>Choose an IP filter file</source>
         <translation>Избиране файл на IP филтър</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>All supported filters</source>
         <translation>Всички подържани филтри</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1506"/>
+        <location filename="../gui/optionsdlg.cpp" line="1509"/>
         <source>SSL Certificate</source>
         <translation>SSL Сертификат</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1518"/>
+        <location filename="../gui/optionsdlg.cpp" line="1521"/>
         <source>SSL Key</source>
         <translation>SSL Ключ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Parsing error</source>
         <translation>Грешка при обработване</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Неуспешно обработване на дадения IP филтър</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully refreshed</source>
         <translation>Успешно обновен</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Успешно обработване на дадения IP филтър: %1 правила бяха приложени.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>Invalid key</source>
         <translation>Невалиден ключ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
         <translation>Това е невалиден SSL ключ.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>Invalid certificate</source>
         <translation>Невалиден сертификат</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Това не е валиден SSL сертификат.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>Time Error</source>
         <translation>Времева грешка</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Времето на стартиране и приключване не може да бъде едно и също.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>Length Error</source>
         <translation>Дължинна Грешка</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Потребителското име на Web UI трябва да е поне от 3 символа.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Паролата на Web UI трябва да е поне от 6 символа.</translation>
     </message>

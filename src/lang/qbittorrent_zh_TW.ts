@@ -4976,130 +4976,130 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>提示：將參數以引號包起來以避免被空白切斷 (例如：&quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1350"/>
+        <location filename="../gui/optionsdlg.cpp" line="1353"/>
         <source>Select folder to monitor</source>
         <translation>選取資料夾以監視</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1357"/>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Folder is already being monitored:</source>
         <translation>資料夾已在監視中：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <location filename="../gui/optionsdlg.cpp" line="1363"/>
         <source>Folder does not exist:</source>
         <translation>資料夾不存在：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1363"/>
+        <location filename="../gui/optionsdlg.cpp" line="1366"/>
         <source>Folder is not readable:</source>
         <translation>資料夾無法讀取：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1374"/>
+        <location filename="../gui/optionsdlg.cpp" line="1377"/>
         <source>Adding entry failed</source>
         <translation>新增項目失敗</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1402"/>
-        <location filename="../gui/optionsdlg.cpp" line="1404"/>
+        <location filename="../gui/optionsdlg.cpp" line="1405"/>
+        <location filename="../gui/optionsdlg.cpp" line="1407"/>
         <source>Choose export directory</source>
         <translation>選擇輸出目錄</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1414"/>
-        <location filename="../gui/optionsdlg.cpp" line="1416"/>
-        <location filename="../gui/optionsdlg.cpp" line="1451"/>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
-        <location filename="../gui/optionsdlg.cpp" line="1464"/>
-        <location filename="../gui/optionsdlg.cpp" line="1466"/>
+        <location filename="../gui/optionsdlg.cpp" line="1417"/>
+        <location filename="../gui/optionsdlg.cpp" line="1419"/>
+        <location filename="../gui/optionsdlg.cpp" line="1454"/>
+        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1469"/>
         <source>Choose a save directory</source>
         <translation>選擇儲存的目錄</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>Choose an IP filter file</source>
         <translation>選擇一個 IP 過濾器檔案</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>All supported filters</source>
         <translation>所有支援的過濾器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1506"/>
+        <location filename="../gui/optionsdlg.cpp" line="1509"/>
         <source>SSL Certificate</source>
         <translation>SSL 憑證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1518"/>
+        <location filename="../gui/optionsdlg.cpp" line="1521"/>
         <source>SSL Key</source>
         <translation>SSL 金鑰</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Parsing error</source>
         <translation>解析錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>所提供的 IP 過濾器解析失敗</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully refreshed</source>
         <translation>重新更新成功</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>成功分析所提供的 IP 過濾器：套用 %1 個規則。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>Invalid key</source>
         <translation>無效的鍵值</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
         <translation>這不是一個有效的 SSL 金鑰。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>Invalid certificate</source>
         <translation>無效的憑證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>這不是一個有效的 SSL 憑證。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>Time Error</source>
         <translation>時間錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>起始時間與終止時間不能相同。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>Length Error</source>
         <translation>長度錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web UI 使用者名稱必須至少 3 字元長。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Web UI 密碼必須至少 6 字元長。</translation>
     </message>

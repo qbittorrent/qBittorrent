@@ -4977,130 +4977,130 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1350"/>
+        <location filename="../gui/optionsdlg.cpp" line="1353"/>
         <source>Select folder to monitor</source>
         <translation>Seleccione una carpeta para monitorear</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1357"/>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
         <source>Folder is already being monitored:</source>
         <translation>Esta carpeta ya está monitoreada:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <location filename="../gui/optionsdlg.cpp" line="1363"/>
         <source>Folder does not exist:</source>
         <translation>La carpeta no existe:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1363"/>
+        <location filename="../gui/optionsdlg.cpp" line="1366"/>
         <source>Folder is not readable:</source>
         <translation>La carpeta no es legible:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1374"/>
+        <location filename="../gui/optionsdlg.cpp" line="1377"/>
         <source>Adding entry failed</source>
         <translation>Fallo al agregar entrada </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1402"/>
-        <location filename="../gui/optionsdlg.cpp" line="1404"/>
+        <location filename="../gui/optionsdlg.cpp" line="1405"/>
+        <location filename="../gui/optionsdlg.cpp" line="1407"/>
         <source>Choose export directory</source>
         <translation>Selecciona una ruta de exportación</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1414"/>
-        <location filename="../gui/optionsdlg.cpp" line="1416"/>
-        <location filename="../gui/optionsdlg.cpp" line="1451"/>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
-        <location filename="../gui/optionsdlg.cpp" line="1464"/>
-        <location filename="../gui/optionsdlg.cpp" line="1466"/>
+        <location filename="../gui/optionsdlg.cpp" line="1417"/>
+        <location filename="../gui/optionsdlg.cpp" line="1419"/>
+        <location filename="../gui/optionsdlg.cpp" line="1454"/>
+        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1469"/>
         <source>Choose a save directory</source>
         <translation>Seleccione una ruta para guardar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>Choose an IP filter file</source>
         <translation>Seleccione un archivo de filtro IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1442"/>
         <source>All supported filters</source>
         <translation>Todos los filtros soportados</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1506"/>
+        <location filename="../gui/optionsdlg.cpp" line="1509"/>
         <source>SSL Certificate</source>
         <translation>Certificado SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1518"/>
+        <location filename="../gui/optionsdlg.cpp" line="1521"/>
         <source>SSL Key</source>
         <translation>Clave SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Parsing error</source>
         <translation>Error de análisis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1550"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>No se ha podido analizar el filtro IP proporcionado</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully refreshed</source>
         <translation>Actualizado correctamente</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1552"/>
+        <location filename="../gui/optionsdlg.cpp" line="1555"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Filtro IP analizado correctamente: %1 reglas fueron aplicadas.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>Invalid key</source>
         <translation>Clave no válida</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1639"/>
+        <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
         <translation>Esta no es una clave SSL válida.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>Invalid certificate</source>
         <translation>Certificado no válido</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1658"/>
+        <location filename="../gui/optionsdlg.cpp" line="1666"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Este no es un Certificado SSL válido.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>Time Error</source>
         <translation>Error de tiempo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1669"/>
+        <location filename="../gui/optionsdlg.cpp" line="1677"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Los tiempos de inicio y finalización no pueden ser iguales.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>Length Error</source>
         <translation>Error de longitud</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1678"/>
+        <location filename="../gui/optionsdlg.cpp" line="1686"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>El nombre de usuario de la interfaz Web debe ser de al menos 3 caracteres.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1682"/>
+        <location filename="../gui/optionsdlg.cpp" line="1690"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>La contraseña de Interfaz de Usuario Web debe ser de al menos 6 caracteres.</translation>
     </message>
