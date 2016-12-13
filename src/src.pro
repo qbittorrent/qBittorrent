@@ -54,7 +54,18 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # Fast concatenation (Qt >= 4.6)
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
-win32: DEFINES += NOMINMAX
+win32 {
+    DEFINES += NOMINMAX
+    QBT_USES_QT5 = 0
+    QBT_NOGUI = 0
+    QBT_NOWEBUI = 0
+    greaterThan(QT_MAJOR_VERSION, 4): greaterThan(QT_MINOR_VERSION, 1): QBT_USES_QT5 = 1
+    nogui: QBT_NOGUI = 1
+    nowebui: QBT_NOWEBUI = 1
+    configh.input = config.h.win.in
+    configh.output = config.h
+    QMAKE_SUBSTITUTES += configh
+}
 
 INCLUDEPATH += $$PWD
 

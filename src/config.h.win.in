@@ -1,0 +1,50 @@
+/* these come from qmake */
+#define _QBT_USES_QT5 $$QBT_USES_QT5
+#define _QBT_NOGUI $$QBT_NOGUI
+#define _QBT_NOWEBUI $$QBT_NOWEBUI
+
+/* these we initialize to be on-pair with the other config methods */
+#if _QBT_USES_QT5
+#define QBT_USES_QT5
+#else
+#undef QBT_USES_QT5
+#endif
+
+#if _QBT_NOGUI
+#undef QBT_USE_GUI
+#else
+#define QBT_USE_GUI
+#endif
+
+#if _QBT_NOWEBUI
+#undef QBT_USE_WEBUI
+#else
+#define QBT_USE_WEBUI
+#endif
+
+
+#ifndef QBT_USE_GUI
+#define DISABLE_GUI
+#define DISABLE_COUNTRIES_RESOLUTION
+#endif
+
+#ifndef QBT_USE_WEBUI
+#define DISABLE_WEBUI
+#endif
+
+#define STACKTRACE_WIN
+
+// on Windows we don't have any configure script, and as such:
+#include <libtorrent/version.hpp>
+
+#if LIBTORRENT_VERSION_NUM < 10200
+/* Define as 1 if you have libtorrent/extensions/lt_trackers.hpp */
+#define HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP
+#else
+/* Define as 1 if you have libtorrent/string_view.hpp */
+#define HAVE_LIBTORRENT_STRING_VIEW_HPP
+#endif
+
+#if defined HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP
+#define BACKEND_HAS_LT_TRACKERS_EXTENSION
+#endif
