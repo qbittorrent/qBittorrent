@@ -867,7 +867,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
     m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
-    enableProxy(m_ui->comboProxyType->currentIndex() > 0);
+    enableProxy(m_ui->comboProxyType->currentIndex());
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
