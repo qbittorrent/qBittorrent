@@ -233,7 +233,7 @@ bool upgrade(bool ask = true)
 void migratePlistToIni(const QString &application)
 {
     QIniSettings iniFile("qBittorrent", application);
-    if (iniFile.allKeys().isEmpty()) return; // We copy the contents of plist, only if inifile does not exist(is empty).
+    if (!iniFile.allKeys().isEmpty()) return; // We copy the contents of plist, only if inifile does not exist(is empty).
 
     QSettings *plistFile = new QSettings("qBittorrent", application);
     plistFile->setFallbacksEnabled(false);
