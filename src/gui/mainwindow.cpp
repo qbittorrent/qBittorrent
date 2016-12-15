@@ -174,12 +174,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
-    QMenu *startAllMenu = new QMenu(this);
-    startAllMenu->addAction(m_ui->actionStartAll);
-    m_ui->actionStart->setMenu(startAllMenu);
-    QMenu *pauseAllMenu = new QMenu(this);
-    pauseAllMenu->addAction(m_ui->actionPauseAll);
-    m_ui->actionPause->setMenu(pauseAllMenu);
     QMenu *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
     connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
