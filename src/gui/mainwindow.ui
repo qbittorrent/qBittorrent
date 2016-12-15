@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -44,6 +44,8 @@
     </property>
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
+    <addaction name="actionStartAll"/>
+    <addaction name="actionPauseAll"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
     <addaction name="actionTopPriority"/>
@@ -191,6 +193,16 @@
     <string>&amp;Pause</string>
    </property>
   </action>
+  <action name="actionStartAll">
+   <property name="text">
+    <string>R&amp;esume All</string>
+   </property>
+  </action>
+  <action name="actionPauseAll">
+   <property name="text">
+    <string>P&amp;ause All</string>
+   </property>
+  </action>
   <action name="actionDelete">
    <property name="text">
     <string>&amp;Delete</string>
@@ -332,16 +344,6 @@
    </property>
    <property name="toolTip">
     <string>If you like qBittorrent, please donate!</string>
-   </property>
-  </action>
-  <action name="actionStartAll">
-   <property name="text">
-    <string>R&amp;esume All</string>
-   </property>
-  </action>
-  <action name="actionPauseAll">
-   <property name="text">
-    <string>P&amp;ause All</string>
    </property>
   </action>
   <action name="actionAutoExit">
