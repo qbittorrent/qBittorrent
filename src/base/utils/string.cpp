@@ -184,14 +184,7 @@ std::string Utils::String::toStdString(const QString &str)
 // to send numbers instead of strings with suffixes
 QString Utils::String::fromDouble(double n, int precision)
 {
-    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
-    ** the number has more digits after the decimal than we want AND the digit after
-    ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
-    ** precision we add an extra 0 behind 1 in the below algorithm. */
-
-    double prec = std::pow(10.0, precision);
-    return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
+    return QLocale::system().toString(n, 'f', precision);
 }
 
 // Implements constant-time comparison to protect against timing attacks
