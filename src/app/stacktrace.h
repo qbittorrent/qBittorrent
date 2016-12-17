@@ -33,6 +33,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
     size_t funcnamesize = 256;
     char *funcname = (char *)malloc(funcnamesize);
 
+    int functionNamesFound = 0;
     // iterate over the returned symbol lines. skip the first, it is the
     // address of this function.
     for (int i = 2; i < addrlen; i++) {
@@ -78,6 +79,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
                 fprintf(out, "  %s : %s()+%s %s\n",
                         symbollist[i], begin_name, begin_offset, ++end_offset);
             }
+            ++functionNamesFound;
         }
         else {
             // couldn't parse the line? print the whole line.
@@ -85,6 +87,14 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
         }
     }
 
+    if (!functionNamesFound) {
+        fprintf(out, "There were no function names found in the stack trace\n."
+            "Seems like debug symbols are not installed, and the stack trace is useless.\n");
+    }
+    if (functionNamesFound < addrlen - 2) {
+        fprintf(out, "Consider installing debug symbols for packages containing files with empty"
+            " function names (i.e. empty braces \"()\") to make your stack trace more useful\n");
+    }
     free(funcname);
     free(symbollist);
 }
