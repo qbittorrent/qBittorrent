@@ -1,3 +1,9 @@
+* Sat Dec 17 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.10
+    - BUGFIX: Fix share ratio limiting. Broken by commit 259b5e51c49b744. Closes #6039 #6048. (sledgehammer999)
+    - BUGFIX: Case insensitive sort for client column. Closes #6054. (Oke Atime)
+    - BUGFIX: Make resume/pause menu items clickable. Closes #6040. (Oke Atime)
+    - WINDOWS: Make the updater to look for the x64 installer if running x64 version. (sledgehammer999)
+
 * Wed Dec 14 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.9
     - BUGFIX: Fix slider for per torrent speed limits when no global speed limit has been set. Closes #6046. (sledgehammer999)
     - BUGFIX: Fix GUI for proxy settings. Closes #6045. (sledgehammer999)
