@@ -511,36 +511,26 @@ void Application::initializeTranslation()
 {
     Preferences* const pref = Preferences::instance();
     // Load translation
-    QString locale = pref->getLocale();
+    QString localeStr = pref->getLocale();
 
-    if (locale.isEmpty()) {
-        locale = QLocale::system().name();
-        pref->setLocale(locale);
-    }
-
-    if (m_qtTranslator.load(
+    if (
 #ifdef QBT_USES_QT5
-            QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load(
+        m_qtTranslator.load(QString::fromUtf8("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
 #endif
-            QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
-            qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
-    }
-    else {
-        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
-    }
+        m_qtTranslator.load(QString::fromUtf8("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+            qDebug("Qt %s locale recognized, using translation.", qPrintable(localeStr));
+    else
+        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(localeStr));
     installTranslator(&m_qtTranslator);
 
-    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
-        qDebug("%s locale recognized, using translation.", qPrintable(locale));
-    }
-    else {
-        qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
-    }
+    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + localeStr))
+        qDebug("%s locale recognized, using translation.", qPrintable(localeStr));
+    else
+        qDebug("%s locale unrecognized, using default (en).", qPrintable(localeStr));
     installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI
-    if (locale.startsWith("ar") || locale.startsWith("he")) {
+    if (localeStr.startsWith("ar") || localeStr.startsWith("he")) {
         qDebug("Right to Left mode");
         setLayoutDirection(Qt::RightToLeft);
     }
