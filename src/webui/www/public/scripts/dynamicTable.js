@@ -344,6 +344,7 @@ var DynamicTable = new Class({
             column['updateTd'] = function (td, row) {
                 td.innerHTML = this.getRowValue(row);
             };
+            column['onResize'] = null;
             this.columns.push(column);
             this.columns[name] = column;
 
@@ -429,6 +430,10 @@ var DynamicTable = new Class({
                 fths[pos].addClass('invisible');
                 for (var i = 0; i < trs.length; i++)
                     trs[i].getElements('td')[pos].addClass('invisible');
+            }
+            if (this.columns[pos].onResize !== null)
+            {
+                this.columns[pos].onResize(columnName);
             }
         },
 
@@ -846,14 +851,22 @@ var TorrentsTable = new Class({
 
                 if (td.getChildren('div').length) {
                     var div = td.getChildren('div')[0];
+                    div.setWidth(td.offsetWidth - 5);
                     if (div.getValue() != progressFormated)
                         div.setValue(progressFormated);
                 }
                 else
                     td.adopt(new ProgressBar(progressFormated.toFloat(), {
-                        'width' : 80
+                        'width' : td.offsetWidth - 5
                     }));
             };
+
+            this.columns['progress'].onResize = function (columnName) {
+                var pos = this.getColumnPos(columnName);
+                var trs = this.tableBody.getElements('tr');
+                for (var i = 0; i < trs.length; i++)
+                    this.columns[columnName].updateTd(trs[i].getElements('td')[pos], this.rows.get(trs[i].rowId));
+            }.bind(this);
 
             // num_seeds
 

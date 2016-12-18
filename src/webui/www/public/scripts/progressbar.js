@@ -59,6 +59,7 @@ var ProgressBar = new Class({
         obj.appendChild(obj.vals.light);
         obj.getValue = ProgressBar_getValue;
         obj.setValue = ProgressBar_setValue;
+        obj.setWidth = ProgressBar_setWidth;
         if (vals.width) obj.setValue(vals.value);
         else setTimeout('ProgressBar_checkForParent("' + obj.id + '")', 1);
         return obj;
@@ -82,6 +83,16 @@ function ProgressBar_setValue(value) {
     var r = parseInt(this.vals.width * (value / 100));
     this.vals.dark.setStyle('clip', 'rect(0,' + r + 'px,' + this.vals.height + 'px,0)');
     this.vals.light.setStyle('clip', 'rect(0,' + this.vals.width + 'px,' + this.vals.height + 'px,' + r + 'px)');
+}
+
+function ProgressBar_setWidth(value) {
+    if (this.vals.width !== value) {
+        this.vals.width = value;
+        this.setStyle('width', value);
+        this.vals.dark.setStyle('width', value);
+        this.vals.light.setStyle('width', value);
+        this.setValue(this.vals.value);
+    }
 }
 
 function ProgressBar_checkForParent(id) {
