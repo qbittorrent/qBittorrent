@@ -36,6 +36,11 @@
 #include "base/utils/misc.h"
 #include "base/unicodestrings.h"
 
+#define SIXTYFOUR ""
+#if (QT_POINTER_SIZE == 8)
+# define SIXTYFOUR " (64 bit)"
+#endif
+
 class about: public QDialog, private Ui::AboutDlg
 {
     Q_OBJECT
@@ -47,7 +52,7 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-        lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
+        lb_name->setText("<b><h2>qBittorrent " VERSION SIXTYFOUR "</h2></b>");
 
         // About
         QString aboutText = QString(
