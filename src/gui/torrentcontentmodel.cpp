@@ -199,7 +199,9 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
         return Qt::Checked;
     }
 
-    if ((role == Qt::ForegroundRole) && (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)) {
+    if ((index.column() != 3) // PRIORITY
+        && (role == Qt::ForegroundRole)
+        && (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)) {
         QPalette pal = QApplication::palette();
         return pal.color(QPalette::Disabled, QPalette::Text);
     }
