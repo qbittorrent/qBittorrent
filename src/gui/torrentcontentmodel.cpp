@@ -124,7 +124,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     if (!index.isValid())
         return false;
 
-    if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
         TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d", qPrintable(item->name()), value.toInt());
         if (item->priority() != value.toInt()) {
@@ -184,14 +184,14 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
 
     TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
 
-    if ((index.column() == 0) && (role == Qt::DecorationRole)) {
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
         else
             return getFileIcon();
     }
 
-    if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
             return Qt::Unchecked;
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::MIXED)
@@ -199,7 +199,7 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
         return Qt::Checked;
     }
 
-    if ((index.column() != 3) // PRIORITY
+    if ((index.column() != TorrentContentModelItem::COL_PRIO)
         && (role == Qt::ForegroundRole)
         && (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)) {
         QPalette pal = QApplication::palette();
