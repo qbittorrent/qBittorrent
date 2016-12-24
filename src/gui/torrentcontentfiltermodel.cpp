@@ -31,6 +31,7 @@
 #include "base/utils/string.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
+#include "proplistdelegate.h"
 
 TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent):
   QSortFilterProxyModel(parent), m_model(new TorrentContentModel(this))
