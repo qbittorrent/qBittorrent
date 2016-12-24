@@ -85,8 +85,11 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             newopt.progress = (int)progress;
             newopt.maximum = 100;
             newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
+            if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED)
+                newopt.state &= ~QStyle::State_Enabled;
+            else
+                newopt.state |= QStyle::State_Enabled;
 #ifndef Q_OS_WIN
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
