@@ -181,12 +181,14 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
         else
             return getFileIcon();
     }
+
     if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
             return Qt::Unchecked;
@@ -194,10 +196,11 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
             return Qt::PartiallyChecked;
         return Qt::Checked;
     }
-    if (role != Qt::DisplayRole)
-        return QVariant();
 
-    return item->data(index.column());
+    if (role == Qt::DisplayRole)
+        return item->data(index.column());
+
+    return QVariant();
 }
 
 Qt::ItemFlags TorrentContentModel::flags(const QModelIndex& index) const

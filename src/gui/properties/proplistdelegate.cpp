@@ -28,14 +28,12 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionProgressBar>
-#include <QStyleOptionViewItem>
-#include <QStyleOptionComboBox>
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
+#include <QPalette>
 #include <QProgressBar>
-#include <QApplication>
+#include <QStyleOptionProgressBar>
 
 #ifdef Q_OS_WIN
 #ifndef QBT_USES_QT5
@@ -50,6 +48,23 @@
 #include "propertieswidget.h"
 #include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"
+
+namespace {
+
+    QPalette progressBarDisabledPalette()
+    {
+        auto getPalette = []()
+        {
+            QProgressBar bar;
+            bar.setEnabled(false);
+            QStyleOptionProgressBar opt;
+            opt.initFrom(&bar);
+            return opt.palette;
+        };
+        static QPalette palette = getPalette();
+        return palette;
+    }
+}
 
 PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent)
     : QItemDelegate(parent)
@@ -85,8 +100,13 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             newopt.progress = (int)progress;
             newopt.maximum = 100;
             newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
+            if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
+                newopt.state &= ~QStyle::State_Enabled;
+                newopt.palette = progressBarDisabledPalette();
+            }
+            else
+                newopt.state |= QStyle::State_Enabled;
 #ifndef Q_OS_WIN
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
