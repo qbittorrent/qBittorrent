@@ -154,14 +154,17 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     switch(index.data().toInt()) {
-    case prio::HIGH:
-        combobox->setCurrentIndex(1);
+    case prio::IGNORED:
+        combobox->setCurrentIndex(0);
         break;
-    case prio::MAXIMUM:
+    case prio::HIGH:
         combobox->setCurrentIndex(2);
         break;
+    case prio::MAXIMUM:
+        combobox->setCurrentIndex(3);
+        break;
     default:
-        combobox->setCurrentIndex(0);
+        combobox->setCurrentIndex(1);
         break;
     }
 }
@@ -176,13 +179,12 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
             return 0;
     }
 
-    if (index.data().toInt() <= 0) {
-        // IGNORED or MIXED
+    if (index.data().toInt() == prio::MIXED)
         return 0;
-    }
 
     QComboBox* editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
+    editor->addItem(tr("Do not download", "Do not download (priority)"));
     editor->addItem(tr("Normal", "Normal (priority)"));
     editor->addItem(tr("High", "High (priority)"));
     editor->addItem(tr("Maximum", "Maximum (priority)"));
@@ -196,10 +198,13 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     qDebug("PropListDelegate: setModelData(%d)", value);
 
     switch(value)  {
-    case 1:
-        model->setData(index, prio::HIGH); // HIGH
+    case 0:
+        model->setData(index, prio::IGNORED); // IGNORED
         break;
     case 2:
+        model->setData(index, prio::HIGH); // HIGH
+        break;
+    case 3:
         model->setData(index, prio::MAXIMUM); // MAX
         break;
     default:
