@@ -1280,7 +1280,7 @@ void TorrentHandle::moveStorage(const QString &newPath)
         m_queuedPath = newPath;
     }
     else {
-        QString oldPath = nativeActualSavePath();
+        const QString oldPath = nativeActualSavePath();
         if (QDir(oldPath) == QDir(newPath)) return;
 
         qDebug("move storage: %s to %s", qPrintable(oldPath), qPrintable(newPath));
@@ -1347,7 +1347,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
-    QString newPath = Utils::String::fromStdString(p->path);
+    const QString newPath = Utils::String::fromStdString(p->path);
     if (newPath != m_newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
