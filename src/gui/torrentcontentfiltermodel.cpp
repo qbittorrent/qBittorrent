@@ -83,7 +83,7 @@ bool TorrentContentFilterModel::filterAcceptsRow(int source_row, const QModelInd
 
 bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
   switch (sortColumn()) {
-  case NAME: {  // PropColumn::NAME
+  case TorrentContentModelItem::COL_NAME: {
     QString vL = left.data().toString();
     QString vR = right.data().toString();
     TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
