@@ -1367,13 +1367,6 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         m_session->handleTorrentSavePathChanged(this);
     }
 
-    // Attempt to remove old folder if empty
-    QDir oldSaveDir(Utils::Fs::fromNativePath(m_oldPath));
-    if (oldSaveDir != QDir(m_session->defaultSavePath())) {
-        qDebug("Attempting to remove %s", qPrintable(m_oldPath));
-        QDir().rmpath(m_oldPath);
-    }
-
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 }
