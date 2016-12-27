@@ -707,9 +707,9 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
     ret[KEY_TORRENT_PRIORITY] = torrent->queuePosition();
     ret[KEY_TORRENT_SEEDS] = torrent->seedsCount();
-    ret[KEY_TORRENT_NUM_COMPLETE] = torrent->completeCount();
+    ret[KEY_TORRENT_NUM_COMPLETE] = torrent->totalSeedsCount();
     ret[KEY_TORRENT_LEECHS] = torrent->leechsCount();
-    ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->incompleteCount();
+    ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
     const qreal ratio = torrent->realRatio();
     ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = torrent->state().toString();
