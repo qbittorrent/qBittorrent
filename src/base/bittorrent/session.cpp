@@ -1853,6 +1853,9 @@ void Session::saveResumeData()
 
     // Pause session
     m_nativeSession->pause();
+    while (!m_nativeSession->is_paused()) {
+        readAlerts(10);
+    }
 
     generateResumeData(true);
 
@@ -3168,10 +3171,10 @@ void Session::getPendingAlerts(std::vector<libt::alert *> &out, ulong time)
 }
 
 // Read alerts sent by the BitTorrent session
-void Session::readAlerts()
+void Session::readAlerts(ulong time)
 {
     std::vector<libt::alert *> alerts;
-    getPendingAlerts(alerts);
+    getPendingAlerts(alerts, time);
 
     for (const auto a: alerts) {
         handleAlert(a);
