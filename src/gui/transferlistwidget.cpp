@@ -427,65 +427,56 @@ void TransferListWidget::previewSelectedTorrents()
 
 void TransferListWidget::setDlLimitSelectedTorrents()
 {
-    QList<BitTorrent::TorrentHandle *> selected_torrents;
-    bool first = true;
-    bool all_same_limit = true;
+    QList<BitTorrent::TorrentHandle *> TorrentsList;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        if (!torrent->isSeed()) {
-            selected_torrents << torrent;
-            // Determine current limit for selected torrents
-            if (first)
-                first = false;
-            else if (all_same_limit && (torrent->downloadLimit() != selected_torrents.first()->downloadLimit()))
-                all_same_limit = false;
+        if (torrent->isSeed())
+            continue;
+        TorrentsList += torrent;
+    }
+    if (TorrentsList.empty()) return;
+
+    int oldLimit = TorrentsList.first()->downloadLimit();
+    foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
+        if (torrent->downloadLimit() != oldLimit) {
+            oldLimit = -1;
+            break;
         }
     }
 
-    if (selected_torrents.empty()) return;
-
     bool ok = false;
-    int default_limit = -1;
-    if (all_same_limit)
-        default_limit = selected_torrents.first()->downloadLimit();
-    const long new_limit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Download Speed Limiting"), default_limit
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Torrent Download Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalDownloadSpeedLimit());
-    if (ok) {
-        foreach (BitTorrent::TorrentHandle *const torrent, selected_torrents) {
-            qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long)(new_limit / 1024.), qPrintable(torrent->hash()));
-            torrent->setDownloadLimit(new_limit);
-        }
+    if (!ok) return;
+
+    foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
+        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        torrent->setDownloadLimit(newLimit);
     }
 }
 
 void TransferListWidget::setUpLimitSelectedTorrents()
 {
-    QList<BitTorrent::TorrentHandle *> selected_torrents;
-    bool first = true;
-    bool all_same_limit = true;
-    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        selected_torrents << torrent;
-        // Determine current limit for selected torrents
-        if (first)
-            first = false;
-        else if (all_same_limit && (torrent->uploadLimit() != selected_torrents.first()->uploadLimit()))
-            all_same_limit = false;
+    QList<BitTorrent::TorrentHandle *> TorrentsList = getSelectedTorrents();
+    if (TorrentsList.empty()) return;
+
+    int oldLimit = TorrentsList.first()->uploadLimit();
+    foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
+        if (torrent->uploadLimit() != oldLimit) {
+            oldLimit = -1;
+            break;
+        }
     }
 
-    if (selected_torrents.empty()) return;
-
     bool ok = false;
-    int default_limit = -1;
-    if (all_same_limit)
-        default_limit = selected_torrents.first()->uploadLimit();
-    const long new_limit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Upload Speed Limiting"), default_limit
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Torrent Upload Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalUploadSpeedLimit());
-    if (ok) {
-        foreach (BitTorrent::TorrentHandle *const torrent, selected_torrents) {
-            qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long)(new_limit / 1024.), qPrintable(torrent->hash()));
-            torrent->setUploadLimit(new_limit);
-        }
+    if (!ok) return;
+
+    foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
+        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        torrent->setUploadLimit(newLimit);
     }
 }
 
