@@ -29,7 +29,15 @@
  */
 
 #include <QDir>
+#include <QFileIconProvider>
+#include <QFileInfo>
 #include <QIcon>
+
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#include <Shellapi.h>
+#include <QtWin>
+#endif
 
 #include "guiiconprovider.h"
 #include "base/utils/misc.h"
@@ -47,21 +55,53 @@ namespace
         return cached;
     }
 
-    QIcon getFileIcon()
+    class UnifiedFileIconProvider: public QFileIconProvider
     {
-        static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
-        return cached;
-    }
+    public:
+        using QFileIconProvider::icon;
+        QIcon icon(const QFileInfo &info) const override
+        {
+            Q_UNUSED(info);
+            static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
+            return cached;
+        }
+    };
+#ifdef Q_OS_WIN
+    // See QTBUG-25319 for explanation why this is required
+    class WinShellFileIconProvider: public UnifiedFileIconProvider
+    {
+    public:
+        using QFileIconProvider::icon;
+        QIcon icon(const QFileInfo &info) const override
+        {
+            SHFILEINFO sfi = { 0 };
+            HRESULT hr = ::SHGetFileInfoW(info.absoluteFilePath().toStdWString().c_str(),
+                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
+            if (FAILED(hr))
+                return UnifiedFileIconProvider::icon(info);
+
+            QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
+            ::DestroyIcon(sfi.hIcon);
+            return QIcon(iconPixmap);
+        }
+    };
+#endif
 }
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
+#ifdef Q_OS_WIN
+    m_fileIconProvider = new WinShellFileIconProvider();
+#else
+    m_fileIconProvider = new QFileIconProvider();
+#endif
 }
 
 TorrentContentModel::~TorrentContentModel()
 {
+    delete m_fileIconProvider;
     delete m_rootItem;
 }
 
@@ -202,7 +242,7 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
         else
-            return getFileIcon();
+            return m_fileIconProvider->icon(QFileInfo(item->name()));
     }
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {

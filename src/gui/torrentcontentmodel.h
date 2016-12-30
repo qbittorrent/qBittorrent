@@ -39,6 +39,7 @@
 #include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
+class QFileIconProvider;
 class TorrentContentModelFile;
 
 class TorrentContentModel: public QAbstractItemModel
@@ -77,6 +78,7 @@ public slots:
 private:
     TorrentContentModelFolder *m_rootItem;
     QVector<TorrentContentModelFile *> m_filesIndex;
+    QFileIconProvider *m_fileIconProvider;
 };
 
 #endif // TORRENTCONTENTMODEL_H

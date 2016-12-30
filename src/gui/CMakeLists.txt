@@ -150,3 +150,6 @@ target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_prope
     ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
     QtSingleApplication::QtSingleApplication
 )
+if(WIN32)
+    target_link_libraries(qbt_gui Qt5::WinExtras)
+endif(WIN32)
