@@ -233,7 +233,7 @@ void CategoryFiltersList::addItem(const QString &category, bool hasTorrent)
         ++torrentsInCategory;
 
     m_categories.insert(category, torrentsInCategory);
-    categoryItem->setText(tr("%1 (%2)", "category_name (10)").arg(category).arg(torrentsInCategory));
+    categoryItem->setText(QString("%1 (%2)").arg(category).arg(torrentsInCategory));
     if (exists) return;
 
     Q_ASSERT(count() >= 2);
@@ -257,7 +257,7 @@ void CategoryFiltersList::removeItem(const QString &category)
     if (row < 2) return;
 
     QListWidgetItem *categoryItem = item(row);
-    categoryItem->setText(tr("%1 (%2)", "category_name (10)").arg(category).arg(torrentsInCategory));
+    categoryItem->setText(QString("%1 (%2)").arg(category).arg(torrentsInCategory));
     m_categories.insert(category, torrentsInCategory);
 }
 
@@ -502,7 +502,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         return;
     }
 
-    trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
+    trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
     if (exists) {
         if (currentRow() == rowFromTracker(host))
             applyFilter(currentRow());
