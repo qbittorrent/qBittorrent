@@ -46,6 +46,7 @@ DownloadRuleList::DownloadRuleList()
 DownloadRulePtr DownloadRuleList::findMatchingRule(const QString &feedUrl, const QString &articleTitle) const
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
+    qDebug() << "Matching article:" << articleTitle;
     QStringList ruleNames = m_feedRules.value(feedUrl);
     foreach (const QString &rule_name, ruleNames) {
         DownloadRulePtr rule = m_rules[rule_name];
