@@ -99,6 +99,7 @@ private:
     QListWidgetItem *m_editedRule;
     Rss::DownloadRuleList *m_ruleList;
     Rss::DownloadRuleList *m_editableRuleList;
+    QRegExp *m_episodeRegex;
     QRegExpValidator *m_episodeValidator;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
