@@ -21,9 +21,13 @@ DEFINES += VERSION_MINOR=$${VER_MINOR}
 DEFINES += VERSION_BUGFIX=$${VER_BUGFIX}
 DEFINES += VERSION_BUILD=$${VER_BUILD}
 
-os2 {
-    DEFINES += VERSION=\'\"v$${PROJECT_VERSION}\"\'
+win32: contains(QMAKE_TARGET.arch, x86_64) {
+# append (64-bit) for Windows 64-bit version
+    DEFINES += VERSION=\\\"v$${PROJECT_VERSION}\040(64-bit)\\\"
 } else {
-    DEFINES += VERSION=\\\"v$${PROJECT_VERSION}\\\"
+    os2 {
+        DEFINES += VERSION=\'\"v$${PROJECT_VERSION}\"\'
+    } else {
+        DEFINES += VERSION=\\\"v$${PROJECT_VERSION}\\\"
+    }
 }
-
