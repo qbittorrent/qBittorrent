@@ -253,13 +253,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
             ui->checkRegex->blockSignals(true);
             ui->checkRegex->setChecked(rule->useRegex());
             ui->checkRegex->blockSignals(false);
-            if (rule->category().isEmpty()) {
-                ui->comboCategory->setCurrentIndex(-1);
+            ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
+            if (rule->category().isEmpty())
                 ui->comboCategory->clearEditText();
-            }
-            else {
-                ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
-            }
             ui->comboAddPaused->setCurrentIndex(rule->addPaused());
             ui->spinIgnorePeriod->setValue(rule->ignoreDays());
             QDateTime dateTime = rule->lastMatch();
@@ -317,6 +313,7 @@ void AutomatedRssDownloader::initCategoryCombobox()
     // Load torrent categories
     QStringList categories = BitTorrent::Session::instance()->categories();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
+    ui->comboCategory->addItem(QString(""));
     ui->comboCategory->addItems(categories);
 }
 
