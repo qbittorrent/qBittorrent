@@ -262,6 +262,7 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
 #if defined(Q_OS_UNIX)
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
 #elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
+    program.replace(QRegExp("(?=[^\\\\]*)\\\\\""), QLatin1String("\\\\\""));  // prevent users accidentally escape the double quote
     program.prepend(QLatin1String("\"")).append(QLatin1String("\""));
     program.prepend(Utils::Misc::windowsSystemPath() + QLatin1String("\\cmd.exe /C "));
     const int cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
