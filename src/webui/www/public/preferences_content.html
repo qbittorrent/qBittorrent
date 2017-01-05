@@ -1110,7 +1110,7 @@ applyPreferences = function() {
 
   // Proxy Server
   var proxy_type_str = $('peer_proxy_type_select').getProperty('value');
-  var proxy_type = -1;
+  var proxy_type = 0;
   var proxy_auth_enabled = false;
   if(proxy_type_str == "socks5") {
     if($('peer_proxy_auth_checkbox').getProperty('checked')) {
