@@ -132,7 +132,7 @@ install:
       fi ;
       if [ "$qt" = 5 ]; then
          brew install -v https://github.com/okeatime/qBittorrent/releases/download/depend.tar.ball/qt5.rb ;
-         export QT_QMAKE=/usr/local/opt/qt5/bin ;
+         brew link --force qt5 ;
       fi ;
 
       # ccache
@@ -158,8 +158,7 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-       if [ "$qt" = 4 ]; then export QT_QMAKE=/usr/local/bin ; fi ;
-       $QT_QMAKE/macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app" ;
+       macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app" ;
        cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS" ;
     fi
   - ./$qbt_exe --version
