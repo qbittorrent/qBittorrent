@@ -56,7 +56,7 @@ long SpeedLimitDialog::askSpeedLimit(bool *ok, QString title, long default_value
         *ok = true;
         int val = dlg.getSpeedLimit();
         if (val <= 0)
-            return -1;
+            return 0;
         return val * 1024;
     }
     else {
@@ -103,7 +103,7 @@ void SpeedLimitDialog::setupDialog(long max_slider, long val) const
 {
     if (val < 0)
         val = 0;
-    if (max_slider < 0)
+    if (max_slider <= 0)
         max_slider = 1000;
     // This can happen for example if global rate limit is lower
     // than torrent rate limit.

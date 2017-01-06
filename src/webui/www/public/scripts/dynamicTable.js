@@ -300,7 +300,6 @@ var DynamicTable = new Class({
                 else { // else create a new row in the table
                     var tr = new Element('tr');
 
-                    tr.addClass("menu-target");
                     tr['rowId'] = rows[rowPos]['rowId'];
 
                     tr._this = this;
@@ -358,7 +357,7 @@ var DynamicTable = new Class({
                         return false;
                     });
 
-                    this.setupTrEvents(tr);
+                    this.setupTr(tr);
 
                     for (var j = 0 ; j < this.columns.length; j++) {
                         var td = new Element('td');
@@ -393,7 +392,7 @@ var DynamicTable = new Class({
             }
         },
 
-        setupTrEvents : function (tr) {},
+        setupTr : function (tr) {},
 
         updateRow : function (tr, fullUpdate) {
             var row = this.rows.get(tr.rowId);
@@ -453,6 +452,7 @@ var TorrentsTable = new Class({
             this.newColumn('eta', 'width: 100px', 'QBT_TR(ETA)QBT_TR');
             this.newColumn('ratio', 'width: 100px', 'QBT_TR(Ratio)QBT_TR');
             this.newColumn('category', 'width: 100px', 'QBT_TR(Category)QBT_TR');
+            this.newColumn('added_on', 'width: 100px', 'QBT_TR(Added on)QBT_TR');
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -524,11 +524,12 @@ var TorrentsTable = new Class({
                 else return 0;
             };
 
-            // name
+            // name, category
 
             this.columns['name'].updateTd = function (td, row) {
                 td.set('html', escapeHtml(this.getRowValue(row)));
             };
+            this.columns['category'].updateTd = this.columns['name'].updateTd;
 
             // size
 
@@ -618,9 +619,16 @@ var TorrentsTable = new Class({
                     html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
                 td.set('html', html);
             };
+
+            // added on
+
+            this.columns['added_on'].updateTd = function (td, row) {
+                var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                td.set('html', date);
+            };
         },
 
-        applyFilter : function (row, filterName, categoryName) {
+        applyFilter : function (row, filterName, categoryHash) {
             var state = row['full_data'].state;
             var inactive = false;
             var r;
@@ -662,26 +670,36 @@ var TorrentsTable = new Class({
                     break;
             }
 
-            if (categoryName == CATEGORIES_ALL)
+            if (categoryHash == CATEGORIES_ALL)
                 return true;
 
-            if (categoryName == CATEGORIES_UNCATEGORIZED && row['full_data'].category.length === 0)
+            if (categoryHash == CATEGORIES_UNCATEGORIZED && row['full_data'].category.length === 0)
                 return true;
 
-            if (categoryName != genHash(row['full_data'].category))
+            if (categoryHash != genHash(row['full_data'].category))
                 return false;
 
             return true;
         },
 
-        getFilteredTorrentsNumber : function (filterName) {
+        getFilteredTorrentsNumber : function (filterName, categoryHash) {
             var cnt = 0;
             var rows = this.rows.getValues();
 
             for (i = 0; i < rows.length; i++)
-                if (this.applyFilter(rows[i], filterName, CATEGORIES_ALL)) cnt++;
-
+                if (this.applyFilter(rows[i], filterName, categoryHash)) cnt++;
             return cnt;
+        },
+
+        getFilteredTorrentsHashes : function (filterName, categoryHash) {
+            var rowsHashes = [];
+            var rows = this.rows.getValues();
+
+            for (i = 0; i < rows.length; i++)
+                if (this.applyFilter(rows[i], filterName, categoryHash))
+                    rowsHashes.push(rows[i]['rowId']);
+
+            return rowsHashes;
         },
 
         getFilteredAndSortedRows : function () {
@@ -706,7 +724,7 @@ var TorrentsTable = new Class({
             return filteredRows;
         },
 
-        setupTrEvents : function (tr) {
+        setupTr : function (tr) {
             tr.addEvent('dblclick', function (e) {
                 e.stop();
                 this._this.selectRow(this.rowId);
@@ -718,6 +736,7 @@ var TorrentsTable = new Class({
                     pauseFN();
                 return true;
             });
+            tr.addClass("torrentsTableContextMenuTarget");
         },
 
         getCurrentTorrentHash : function () {

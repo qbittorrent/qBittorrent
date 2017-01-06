@@ -16,7 +16,8 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/pieceavailabilitybar.h \
            $$PWD/proptabbar.h \
            $$PWD/speedwidget.h \
-           $$PWD/speedplotview.h
+           $$PWD/speedplotview.h \
+           $$PWD/piecesbar.h
 
 SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/proplistdelegate.cpp \
@@ -28,4 +29,5 @@ SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/pieceavailabilitybar.cpp \
            $$PWD/proptabbar.cpp \
            $$PWD/speedwidget.cpp \
-           $$PWD/speedplotview.cpp
+           $$PWD/speedplotview.cpp \
+           $$PWD/piecesbar.cpp

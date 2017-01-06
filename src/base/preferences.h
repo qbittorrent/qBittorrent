@@ -57,18 +57,6 @@ enum scheduler_days
     SUN
 };
 
-namespace Proxy
-{
-    enum ProxyType
-    {
-        HTTP = 1,
-        SOCKS5 = 2,
-        HTTP_PW = 3,
-        SOCKS5_PW = 4,
-        SOCKS4 = 5
-    };
-}
-
 namespace TrayIcon
 {
     enum Style
@@ -102,7 +90,6 @@ class Preferences: public QObject
     void setValue(const QString &key, const QVariant &value);
 
     static Preferences* m_instance;
-    int m_randomPort;
 
 signals:
     void changed();
@@ -115,8 +102,6 @@ public:
     // General options
     QString getLocale() const;
     void setLocale(const QString &locale);
-    bool useProgramNotification() const;
-    void useProgramNotification(bool use);
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;
@@ -129,8 +114,6 @@ public:
     void setHideZeroValues(bool b);
     int getHideZeroComboValues() const;
     void setHideZeroComboValues(int n);
-    bool useRandomPort() const;
-    void setRandomPort(bool b);
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
     bool isToolbarDisplayed() const;
@@ -151,22 +134,12 @@ public:
 #endif
 
     // Downloads
-    bool useIncompleteFilesExtension() const;
-    void useIncompleteFilesExtension(bool enabled);
     QString lastLocationPath() const;
     void setLastLocationPath(const QString &path);
-    bool preAllocateAllFiles() const;
-    void preAllocateAllFiles(bool enabled);
     QVariantHash getScanDirs() const;
     void setScanDirs(const QVariantHash &dirs);
     QString getScanDirsLastPath() const;
     void setScanDirsLastPath(const QString &path);
-    bool isTorrentExportEnabled() const;
-    QString getTorrentExportDir() const;
-    void setTorrentExportDir(QString path);
-    bool isFinishedTorrentExportEnabled() const;
-    QString getFinishedTorrentExportDir() const;
-    void setFinishedTorrentExportDir(QString path);
     bool isMailNotificationEnabled() const;
     void setMailNotificationEnabled(bool enabled);
     QString getMailNotificationEmail() const;
@@ -187,22 +160,6 @@ public:
     void setActionOnDblClOnTorrentFn(int act);
 
     // Connection options
-    int getSessionPort() const;
-    void setSessionPort(int port);
-    bool isUPnPEnabled() const;
-    void setUPnPEnabled(bool enabled);
-    int getGlobalDownloadLimit() const;
-    void setGlobalDownloadLimit(int limit);
-    int getGlobalUploadLimit() const;
-    void setGlobalUploadLimit(int limit);
-    int getAltGlobalDownloadLimit() const;
-    void setAltGlobalDownloadLimit(int limit);
-    int getAltGlobalUploadLimit() const;
-    void setAltGlobalUploadLimit(int limit);
-    bool isAltBandwidthEnabled() const;
-    void setAltBandwidthEnabled(bool enabled);
-    bool isSchedulerEnabled() const;
-    void setSchedulerEnabled(bool enabled);
     QTime getSchedulerStartTime() const;
     void setSchedulerStartTime(const QTime &time);
     QTime getSchedulerEndTime() const;
@@ -210,80 +167,10 @@ public:
     scheduler_days getSchedulerDays() const;
     void setSchedulerDays(scheduler_days days);
 
-    // Proxy options
-    bool isProxyEnabled() const;
-    bool isProxyAuthEnabled() const;
-    void setProxyAuthEnabled(bool enabled);
-    QString getProxyIp() const;
-    void setProxyIp(const QString &ip);
-    unsigned short getProxyPort() const;
-    void setProxyPort(unsigned short port);
-    QString getProxyUsername() const;
-    void setProxyUsername(const QString &username);
-    QString getProxyPassword() const;
-    void setProxyPassword(const QString &password);
-    int getProxyType() const;
-    void setProxyType(int type);
-    bool proxyPeerConnections() const;
-    void setProxyPeerConnections(bool enabled);
-    bool getForceProxy() const;
-    void setForceProxy(bool enabled);
-    void setProxyOnlyForTorrents(bool enabled);
-    bool isProxyOnlyForTorrents() const;
-
-    // Bittorrent options
-    int getMaxConnecs() const;
-    void setMaxConnecs(int val);
-    int getMaxConnecsPerTorrent() const;
-    void setMaxConnecsPerTorrent(int val);
-    int getMaxUploads() const;
-    void setMaxUploads(int val);
-    int getMaxUploadsPerTorrent() const;
-    void setMaxUploadsPerTorrent(int val);
-    bool isuTPEnabled() const;
-    void setuTPEnabled(bool enabled);
-    bool isuTPRateLimited() const;
-    void setuTPRateLimited(bool enabled);
-    bool isDHTEnabled() const;
-    void setDHTEnabled(bool enabled);
-    bool isPeXEnabled() const;
-    void setPeXEnabled(bool enabled);
-    bool isLSDEnabled() const;
-    void setLSDEnabled(bool enabled);
-    int getEncryptionSetting() const;
-    void setEncryptionSetting(int val);
-    bool isAddTrackersEnabled() const;
-    void setAddTrackersEnabled(bool enabled);
-    QString getTrackersList() const;
-    void setTrackersList(const QString &val);
-    qreal getGlobalMaxRatio() const;
-    void setGlobalMaxRatio(qreal ratio);
-
-    // IP Filter
-    bool isFilteringEnabled() const;
-    void setFilteringEnabled(bool enabled);
-    bool isFilteringTrackerEnabled() const;
-    void setFilteringTrackerEnabled(bool enabled);
-    QString getFilter() const;
-    void setFilter(const QString &path);
-    QStringList bannedIPs() const;
-    void banIP(const QString &ip);
-
     // Search
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);
 
-    // Queueing system
-    bool isQueueingSystemEnabled() const;
-    void setQueueingSystemEnabled(bool enabled);
-    int getMaxActiveDownloads() const;
-    void setMaxActiveDownloads(int val);
-    int getMaxActiveUploads() const;
-    void setMaxActiveUploads(int val);
-    int getMaxActiveTorrents() const;
-    void setMaxActiveTorrents(int val);
-    bool ignoreSlowTorrentsForQueueing() const;
-    void setIgnoreSlowTorrentsForQueueing(bool ignore);
     bool isWebUiEnabled() const;
     void setWebUiEnabled(bool enabled);
     bool isWebUiLocalAuthEnabled() const;
@@ -333,48 +220,12 @@ public:
     void setShutdownqBTWhenDownloadsComplete(bool shutdown);
     bool dontConfirmAutoExit() const;
     void setDontConfirmAutoExit(bool dontConfirmAutoExit);
-    uint diskCacheSize() const;
-    void setDiskCacheSize(uint size);
-    uint diskCacheTTL() const;
-    void setDiskCacheTTL(uint ttl);
-    bool osCache() const;
-    void setOsCache(bool enable);
-    uint saveResumeDataInterval() const;
-    void setSaveResumeDataInterval(uint m);
-    uint outgoingPortsMin() const;
-    void setOutgoingPortsMin(uint val);
-    uint outgoingPortsMax() const;
-    void setOutgoingPortsMax(uint val);
-    bool getIgnoreLimitsOnLAN() const;
-    void setIgnoreLimitsOnLAN(bool ignore);
-    bool includeOverheadInLimits() const;
-    void includeOverheadInLimits(bool include);
-    bool trackerExchangeEnabled() const;
-    void setTrackerExchangeEnabled(bool enable);
     bool recheckTorrentsOnCompletion() const;
     void recheckTorrentsOnCompletion(bool recheck);
-    unsigned int getRefreshInterval() const;
-    void setRefreshInterval(uint interval);
     bool resolvePeerCountries() const;
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-    int getMaxHalfOpenConnections() const;
-    void setMaxHalfOpenConnections(int value);
-    QString getNetworkInterface() const;
-    void setNetworkInterface(const QString& iface);
-    QString getNetworkInterfaceName() const;
-    void setNetworkInterfaceName(const QString& iface);
-    bool getListenIPv6() const;
-    void setListenIPv6(bool enable);
-    QString getNetworkAddress() const;
-    void setNetworkAddress(const QString& addr);
-    bool isAnonymousModeEnabled() const;
-    void enableAnonymousMode(bool enabled);
-    bool isSuperSeedingEnabled() const;
-    void enableSuperSeeding(bool enabled);
-    bool announceToAllTrackers() const;
-    void setAnnounceToAllTrackers(bool enabled);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);
@@ -396,8 +247,6 @@ public:
     static void setTorrentFileAssoc();
     static void setMagnetLinkAssoc();
 #endif
-    bool isTrackerEnabled() const;
-    void setTrackerEnabled(bool enabled);
     int getTrackerPort() const;
     void setTrackerPort(int port);
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -451,10 +300,10 @@ public:
     void setRssHSplitterSizes(const QByteArray &sizes);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
-    QByteArray getRssHSplitterState() const;
-    void setRssHSplitterState(const QByteArray &state);
-    QByteArray getRssVSplitterState() const;
-    void setRssVSplitterState(const QByteArray &state);
+    QByteArray getRssSideSplitterState() const;
+    void setRssSideSplitterState(const QByteArray &state);
+    QByteArray getRssMainSplitterState() const;
+    void setRssMainSplitterState(const QByteArray &state);
     QString getSearchColsWidth() const;
     void setSearchColsWidth(const QString &width);
     QStringList getSearchEngDisabled() const;

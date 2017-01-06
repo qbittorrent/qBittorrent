@@ -28,14 +28,12 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionProgressBarV2>
-#include <QStyleOptionViewItemV2>
-#include <QStyleOptionComboBox>
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
+#include <QPalette>
 #include <QProgressBar>
-#include <QApplication>
+#include <QStyleOptionProgressBar>
 
 #ifdef Q_OS_WIN
 #ifndef QBT_USES_QT5
@@ -51,6 +49,23 @@
 #include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"
 
+namespace {
+
+    QPalette progressBarDisabledPalette()
+    {
+        auto getPalette = []()
+        {
+            QProgressBar bar;
+            bar.setEnabled(false);
+            QStyleOptionProgressBar opt;
+            opt.initFrom(&bar);
+            return opt.palette;
+        };
+        static QPalette palette = getPalette();
+        return palette;
+    }
+}
+
 PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent)
     : QItemDelegate(parent)
     , m_properties(properties)
@@ -60,7 +75,7 @@ PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent
 void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
     switch(index.column()) {
     case PCSIZE:
@@ -69,24 +84,24 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case REMAINING:
         QItemDelegate::drawBackground(painter, opt, index);
-        if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
-            QItemDelegate::drawDisplay(painter, opt, option.rect, tr("N/A"));
-        }
-        else {
-            QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
-        }
+        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case PROGRESS:
         if (index.data().toDouble() >= 0) {
-            QStyleOptionProgressBarV2 newopt;
+            QStyleOptionProgressBar newopt;
             qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
             newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
             newopt.progress = (int)progress;
             newopt.maximum = 100;
             newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
+            if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
+                newopt.state &= ~QStyle::State_Enabled;
+                newopt.palette = progressBarDisabledPalette();
+            }
+            else
+                newopt.state |= QStyle::State_Enabled;
 #ifndef Q_OS_WIN
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
@@ -139,14 +154,17 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     switch(index.data().toInt()) {
-    case prio::HIGH:
-        combobox->setCurrentIndex(1);
+    case prio::IGNORED:
+        combobox->setCurrentIndex(0);
         break;
-    case prio::MAXIMUM:
+    case prio::HIGH:
         combobox->setCurrentIndex(2);
         break;
+    case prio::MAXIMUM:
+        combobox->setCurrentIndex(3);
+        break;
     default:
-        combobox->setCurrentIndex(0);
+        combobox->setCurrentIndex(1);
         break;
     }
 }
@@ -161,13 +179,12 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
             return 0;
     }
 
-    if (index.data().toInt() <= 0) {
-        // IGNORED or MIXED
+    if (index.data().toInt() == prio::MIXED)
         return 0;
-    }
 
     QComboBox* editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
+    editor->addItem(tr("Do not download", "Do not download (priority)"));
     editor->addItem(tr("Normal", "Normal (priority)"));
     editor->addItem(tr("High", "High (priority)"));
     editor->addItem(tr("Maximum", "Maximum (priority)"));
@@ -181,10 +198,13 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     qDebug("PropListDelegate: setModelData(%d)", value);
 
     switch(value)  {
-    case 1:
-        model->setData(index, prio::HIGH); // HIGH
+    case 0:
+        model->setData(index, prio::IGNORED); // IGNORED
         break;
     case 2:
+        model->setData(index, prio::HIGH); // HIGH
+        break;
+    case 3:
         model->setData(index, prio::MAXIMUM); // MAX
         break;
     default:

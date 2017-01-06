@@ -54,6 +54,8 @@ class QBitArray;
 class QStringList;
 template<typename T, typename U> struct QPair;
 
+extern const QString QB_EXT;
+
 namespace libtorrent
 {
     class alert;
@@ -227,8 +229,8 @@ namespace BitTorrent
         QString rootPath(bool actual = false) const;
         QString contentPath(bool actual = false) const;
 
-        bool isASMEnabled() const;
-        void setASMEnabled(bool enabled);
+        bool isAutoTMMEnabled() const;
+        void setAutoTMMEnabled(bool enabled);
         QString category() const;
         bool belongsToCategory(const QString &category) const;
         bool setCategory(const QString &category);
@@ -245,7 +247,6 @@ namespace BitTorrent
         qlonglong fileSize(int index) const;
         QStringList absoluteFilePaths() const;
         QStringList absoluteFilePathsUnwanted() const;
-        QPair<int, int> fileExtremityPieces(int index) const;
         QVector<int> filePriorities() const;
 
         TorrentInfo info() const;
@@ -386,8 +387,7 @@ namespace BitTorrent
         void adjustActualSavePath_impl();
         void move_impl(QString path);
         void moveStorage(const QString &newPath);
-        void appendExtensionsToIncompleteFiles();
-        void removeExtensionsFromIncompleteFiles();
+        void manageIncompleteFiles();
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
@@ -411,7 +411,7 @@ namespace BitTorrent
         QQueue<EventTrigger> m_moveFinishedTriggers;
         int m_renameCount;
 
-        bool m_useASM;
+        bool m_useAutoTMM;
 
         // Persistent data
         QString m_name;

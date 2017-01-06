@@ -29,24 +29,31 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
 
-#include <libtorrent/lazy_entry.hpp>
-#include <libtorrent/entry.hpp>
+#include <libtorrent/version.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/bdecode.hpp>
+#endif
 #include <libtorrent/bencode.hpp>
+#include <libtorrent/entry.hpp>
+#if LIBTORRENT_VERSION_NUM < 10100
+#include <libtorrent/lazy_entry.hpp>
+#endif
 
-#include <QString>
+
 #include <QDir>
 #include <QFile>
-#include <QRegExp>
 #ifndef DISABLE_GUI
 #include <QMessageBox>
 #endif
+#include <QRegExp>
+#include <QString>
 
 #include "base/logger.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "base/qinisettings.h"
 #include "base/preferences.h"
+#include "base/qinisettings.h"
 
 bool userAcceptsUpgrade()
 {
@@ -86,10 +93,16 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     QByteArray data = file1.readAll();
     file1.close();
 
-    libtorrent::lazy_entry fastOld;
     libtorrent::error_code ec;
-    libtorrent::lazy_bdecode(data.constData(), data.constData() + data.size(), fastOld, ec);
-    if (ec || (fastOld.type() != libtorrent::lazy_entry::dict_t)) return false;
+#if LIBTORRENT_VERSION_NUM < 10100
+        libtorrent::lazy_entry fastOld;
+        libtorrent::lazy_bdecode(data.constData(), data.constData() + data.size(), fastOld, ec);
+        if (ec || (fastOld.type() != libtorrent::lazy_entry::dict_t)) return false;
+#else
+        libtorrent::bdecode_node fastOld;
+        libtorrent::bdecode(data.constData(), data.constData() + data.size(), fastOld, ec);
+        if (ec || (fastOld.type() != libtorrent::bdecode_node::dict_t)) return false;
+#endif
 
     libtorrent::entry fastNew;
     fastNew = fastOld;
@@ -143,7 +156,12 @@ bool upgrade(bool ask = true)
         upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
     // ****************************************************************************************
 
+#ifdef Q_OS_MAC
+    // native .plist
+    QSettings *oldResumeSettings = new QSettings("qBittorrent", "qBittorrent-resume");
+#else
     QIniSettings *oldResumeSettings = new QIniSettings("qBittorrent", "qBittorrent-resume");
+#endif
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
     delete oldResumeSettings;
@@ -209,5 +227,35 @@ bool upgrade(bool ask = true)
 
     return true;
 }
+
+
+#ifdef Q_OS_MAC
+void migratePlistToIni(const QString &application)
+{
+    QIniSettings iniFile("qBittorrent", application);
+    if (!iniFile.allKeys().isEmpty()) return; // We copy the contents of plist, only if inifile does not exist(is empty).
+
+    QSettings *plistFile = new QSettings("qBittorrent", application);
+    plistFile->setFallbacksEnabled(false);
+    const QStringList plist = plistFile->allKeys();
+    if (!plist.isEmpty()) {
+        foreach (const QString &key, plist)
+            iniFile.setValue(key, plistFile->value(key));
+        plistFile->clear();
+    }
+
+    QString plistPath = plistFile->fileName();
+    delete plistFile;
+    Utils::Fs::forceRemove(plistPath);
+}
+
+void macMigratePlists()
+{
+    migratePlistToIni("qBittorrent-data");
+    migratePlistToIni("qBittorrent-rss");
+    migratePlistToIni("qBittorrent");
+}
+#endif  // Q_OS_MAC
+
 
 #endif // UPGRADE_H

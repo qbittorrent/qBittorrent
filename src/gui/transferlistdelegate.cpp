@@ -31,7 +31,7 @@
 #include "transferlistdelegate.h"
 
 #include <QModelIndex>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionViewItem>
 #include <QApplication>
 #include <QPainter>
 #include "base/utils/misc.h"
@@ -67,7 +67,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
 
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
     switch (index.column()) {
     case TorrentModel::TR_AMOUNT_DOWNLOADED:
@@ -162,7 +162,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_PROGRESS: {
-        QStyleOptionProgressBarV2 newopt;
+        QStyleOptionProgressBar newopt;
         qreal progress = index.data().toDouble() * 100.;
         newopt.rect = opt.rect;
         newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
@@ -215,17 +215,19 @@ QWidget* TransferListDelegate::createEditor(QWidget*, const QStyleOptionViewItem
 
 QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-    static int iconHeight = -1;
-    if (iconHeight == -1) {
-        QIcon icon(":/icons/skin/downloading.png");
-        QList<QSize> icSizes(icon.availableSizes());
-        iconHeight = icSizes[0].height();
+    // Reimplementing sizeHint() because the 'name' column contains text+icon.
+    // When that WHOLE column goes out of view(eg user scrolls horizontally)
+    // the rows shrink if the text's height is smaller than the icon's height.
+    // This happens because icon from the 'name' column is no longer drawn.
+
+    static int nameColHeight = -1;
+    if (nameColHeight == -1) {
+        QModelIndex nameColumn = index.sibling(index.row(), TorrentModel::TR_NAME);
+        nameColHeight = QItemDelegate::sizeHint(option, nameColumn).height();
     }
 
     QSize size = QItemDelegate::sizeHint(option, index);
-    if (size.height() < iconHeight)
-        size.setHeight(iconHeight);
-
+    size.setHeight(std::max(nameColHeight, size.height()));
     return size;
 }
 

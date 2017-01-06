@@ -76,6 +76,10 @@ public:
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
 
+#ifndef DISABLE_GUI
+    QPointer<MainWindow> mainWindow();
+#endif
+
     // FileLogger properties
     bool isFileLoggerEnabled() const;
     void setFileLoggerEnabled(bool value);
@@ -111,10 +115,10 @@ private slots:
 
 private:
     bool m_running;
+    ShutdownDialogAction m_shutdownAct;
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
-    ShutdownAction m_shutdownAct;
 #endif
 
 #ifndef DISABLE_WEBUI
@@ -130,6 +134,7 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
+    void runExternalProgram(BitTorrent::TorrentHandle *const torrent) const;
     void sendNotificationEmail(BitTorrent::TorrentHandle *const torrent);
 };
 

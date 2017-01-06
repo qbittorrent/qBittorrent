@@ -85,6 +85,8 @@ private slots:
     void handleResolved(const QString &ip, const QString &hostname);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     QStandardItemModel *m_listModel;
     PeerListDelegate *m_listDelegate;
     PeerListSortModel *m_proxyModel;
@@ -94,7 +96,6 @@ private:
     QPointer<Net::ReverseResolution> m_resolver;
     PropertiesWidget *m_properties;
     bool m_resolveCountries;
-    bool m_wasCountryColHidden;
     QShortcut *m_copyHotkey;
 };
 

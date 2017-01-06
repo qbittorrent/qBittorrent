@@ -29,14 +29,18 @@
 #ifndef SPEEDPLOTVIEW_H
 #define SPEEDPLOTVIEW_H
 
+#ifndef Q_MOC_RUN
+#include <boost/circular_buffer.hpp>
+#endif
+
 #include <QGraphicsView>
 #include <QMap>
-#include <QQueue>
 class QPen;
 
-class SpeedPlotView : public QGraphicsView
+class SpeedPlotView: public QGraphicsView
 {
     Q_OBJECT
+
 public:
     enum GraphID
     {
@@ -61,14 +65,18 @@ public:
         HOUR6
     };
 
+    struct PointData
+    {
+        uint x;
+        int y[NB_GRAPHS];
+    };
+
     explicit SpeedPlotView(QWidget *parent = 0);
 
     void setGraphEnable(GraphID id, bool enable);
-
-    void pushXPoint(double x);
-    void pushYPoint(GraphID id, double y);
-
     void setViewableLastPoints(TimePeriod period);
+
+    void pushPoint(PointData point);
 
     void replot();
 
@@ -84,24 +92,37 @@ private:
         HOUR6_SEC = 6 * 60 * 60
     };
 
+    enum PointsToSave
+    {
+        MIN5_BUF_SIZE = 5 * 60,
+        MIN30_BUF_SIZE = 10 * 60,
+        HOUR6_BUF_SIZE = 20 * 60
+    };
+
     struct GraphProperties
     {
         GraphProperties();
         GraphProperties(const QString &name, const QPen &pen, bool enable = false);
 
-        QString m_name;
-        QPen m_pen;
-        bool m_enable;
+        QString name;
+        QPen pen;
+        bool enable;
     };
 
-    QQueue<double> m_xData;
-    QMap<GraphID, QQueue<double> > m_yData;
+    boost::circular_buffer<PointData> m_data5Min;
+    boost::circular_buffer<PointData> m_data30Min;
+    boost::circular_buffer<PointData> m_data6Hour;
     QMap<GraphID, GraphProperties> m_properties;
 
-    PeriodInSeconds m_viewablePointsCount;
-    PeriodInSeconds m_maxCapacity;
+    TimePeriod m_period;
+    int m_viewablePointsCount;
 
-    double maxYValue();
+    int m_counter30Min;
+    int m_counter6Hour;
+
+    int maxYValue();
+
+    boost::circular_buffer<PointData> &getCurrentData();
 };
 
 #endif // SPEEDPLOTVIEW_H

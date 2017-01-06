@@ -1,5 +1,4 @@
 find_package(ZLIB REQUIRED)
-include_directories(SYSTEM ${ZLIB_INCLUDE_DIRS})
 
 set(QBT_BASE_HEADERS
 bittorrent/cachestatus.h
@@ -31,6 +30,7 @@ net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
 net/private/geoipdatabase.h
+net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
 rss/private/rssparser.h
@@ -47,12 +47,14 @@ utils/misc.h
 utils/string.h
 filesystemwatcher.h
 iconprovider.h
+indexrange.h
 logger.h
 preferences.h
 qinisettings.h
 scanfoldersmodel.h
 searchengine.h
 settingsstorage.h
+torrentfileguard.h
 torrentfilter.h
 tristatebool.h
 types.h
@@ -87,6 +89,7 @@ net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp
 net/private/geoipdatabase.cpp
+net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
 rss/private/rssparser.cpp
@@ -108,12 +111,13 @@ preferences.cpp
 scanfoldersmodel.cpp
 searchengine.cpp
 settingsstorage.cpp
+torrentfileguard.cpp
 torrentfilter.cpp
 tristatebool.cpp
 )
 
 add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
-target_link_libraries(qbt_base ${ZLIB_LIBRARIES} ${LibtorrentRasterbar_LIBRARIES})
+target_link_libraries(qbt_base ZLIB::ZLIB LibtorrentRasterbar::LibTorrent)
 target_link_qt_components(qbt_base Core Network Xml)
 if (QT4_FOUND)
     if (GUI)
@@ -124,3 +128,13 @@ else (QT4_FOUND)
         target_link_libraries(qbt_base Qt5::Gui Qt5::Widgets)
     endif (GUI)
 endif (QT4_FOUND)
+
+if (DBUS)
+    target_link_qt_components(qbt_base DBus)
+endif ()
+
+if (APPLE)
+    find_library(IOKit_LIBRARY IOKit)
+    find_library(Carbon_LIBRARY Carbon)
+    target_link_libraries(qbt_base ${Carbon_LIBRARY} ${IOKit_LIBRARY})
+endif (APPLE)

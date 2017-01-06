@@ -306,6 +306,9 @@
   <file>icons/oxygen/services.png</file>
   <file>icons/oxygen/tab-close.png</file>
   <file>icons/oxygen/task-attention.png</file>
+  <file>icons/oxygen/task-complete.png</file>
+  <file>icons/oxygen/task-ongoing.png</file>
+  <file>icons/oxygen/task-reject.png</file>
   <file>icons/oxygen/text-plain.png</file>
   <file>icons/oxygen/tools-report-bug.png</file>
   <file>icons/oxygen/unavailable.png</file>

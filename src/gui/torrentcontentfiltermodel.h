@@ -33,7 +33,6 @@
 
 #include <QSortFilterProxyModel>
 #include "torrentcontentmodelitem.h"
-#include "proplistdelegate.h"
 
 class TorrentContentModel;
 

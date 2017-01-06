@@ -68,7 +68,9 @@ public slots:
     void startVisibleTorrents();
     void pauseSelectedTorrents();
     void pauseVisibleTorrents();
-    void deleteSelectedTorrents();
+    void softDeleteSelectedTorrents();
+    void permDeleteSelectedTorrents();
+    void deleteSelectedTorrents(bool deleteLocalFiles);
     void deleteVisibleTorrents();
     void increasePrioSelectedTorrents();
     void decreasePrioSelectedTorrents();
@@ -105,7 +107,7 @@ protected slots:
     void toggleSelectedTorrentsSuperSeeding() const;
     void toggleSelectedTorrentsSequentialDownload() const;
     void toggleSelectedFirstLastPiecePrio() const;
-    void setSelectedASMEnabled(bool enabled) const;
+    void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
     void saveSettings();
 
@@ -113,12 +115,15 @@ signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     TransferListDelegate *listDelegate;
     TorrentModel *listModel;
     TransferListSortModel *nameFilterModel;
     MainWindow *main_window;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    QShortcut *permDeleteHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

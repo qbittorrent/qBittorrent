@@ -31,13 +31,9 @@
 #define UTILS_STRING_H
 
 #include <string>
-#include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-#include <QCollator>
-#endif
 
-class QString;
 class QByteArray;
+class QString;
 
 namespace Utils
 {
@@ -51,19 +47,8 @@ namespace Utils
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
 
-        bool naturalSort(const QString &left, const QString &right, bool &result);
-
-        class NaturalCompare
-        {
-        public:
-            NaturalCompare();
-            bool operator()(const QString &l, const QString &r);
-            bool lessThan(const QString &left, const QString &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-        private:
-            QCollator m_collator;
-#endif
-        };
+        bool naturalCompareCaseSensitive(const QString &left, const QString &right);
+        bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
     }
 }
 

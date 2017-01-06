@@ -39,7 +39,7 @@ class QIniSettings : public QSettings {
 
 public:
   QIniSettings(const QString &organization = "qBittorrent", const QString &application = "qBittorrent", QObject *parent = 0 ):
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
       QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
 #else
       QSettings(organization, application, parent)

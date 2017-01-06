@@ -41,7 +41,6 @@
 #include "feedlistwidget.h"
 #include "base/bittorrent/session.h"
 #include "base/net/downloadmanager.h"
-#include "cookiesdlg.h"
 #include "base/preferences.h"
 #include "rsssettingsdlg.h"
 #include "base/rss/rssmanager.h"
@@ -84,8 +83,6 @@ void RSSImp::displayRSSListMenu(const QPoint& pos)
                 myRSSListMenu.addSeparator();
                 if (m_feedList->isFolder(selectedItems.first()))
                     myRSSListMenu.addAction(actionNew_folder);
-                else
-                    myRSSListMenu.addAction(actionManage_cookies);
             }
         }
         else {
@@ -136,25 +133,6 @@ void RSSImp::displayItemsListMenu(const QPoint&)
         myItemListMenu.addAction(actionOpen_news_URL);
     if (hasTorrent || hasLink)
         myItemListMenu.exec(QCursor::pos());
-}
-
-void RSSImp::on_actionManage_cookies_triggered()
-{
-    Q_ASSERT(!m_feedList->selectedItems().empty());
-
-    // TODO: Create advanced application wide Cookie dialog and use it everywhere.
-    QUrl feedUrl = QUrl::fromEncoded(m_feedList->getItemID(m_feedList->selectedItems().first()).toUtf8());
-    QList<QNetworkCookie> cookies;
-    if (CookiesDlg::askForCookies(this, feedUrl, cookies)) {
-        auto downloadManager = Net::DownloadManager::instance();
-        QList<QNetworkCookie> oldCookies = downloadManager->cookiesForUrl(feedUrl);
-        foreach (const QNetworkCookie &oldCookie, oldCookies) {
-            if (!cookies.contains(oldCookie))
-                downloadManager->deleteCookie(oldCookie);
-        }
-
-        downloadManager->setCookiesFromUrl(cookies, feedUrl);
-    }
 }
 
 void RSSImp::askNewFolder()
@@ -625,20 +603,20 @@ void RSSImp::saveSlidersPosition()
 {
     // Remember sliders positions
     Preferences* const pref = Preferences::instance();
-    pref->setRssHSplitterState(splitter_h->saveState());
-    pref->setRssVSplitterState(splitter_v->saveState());
+    pref->setRssSideSplitterState(splitterSide->saveState());
+    pref->setRssMainSplitterState(splitterMain->saveState());
     qDebug("Splitters position saved");
 }
 
 void RSSImp::restoreSlidersPosition()
 {
     const Preferences* const pref = Preferences::instance();
-    const QByteArray pos_h = pref->getRssHSplitterState();
-    if (!pos_h.isEmpty())
-        splitter_h->restoreState(pos_h);
-    const QByteArray pos_v = pref->getRssVSplitterState();
-    if (!pos_v.isEmpty())
-        splitter_v->restoreState(pos_v);
+    const QByteArray stateSide = pref->getRssSideSplitterState();
+    if (!stateSide.isEmpty())
+        splitterSide->restoreState(stateSide);
+    const QByteArray stateMain = pref->getRssMainSplitterState();
+    if (!stateMain.isEmpty())
+        splitterMain->restoreState(stateMain);
 }
 
 void RSSImp::updateItemsInfos(const QList<QTreeWidgetItem*>& items)
@@ -713,7 +691,6 @@ RSSImp::RSSImp(QWidget *parent):
     actionCopy_feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
     actionDelete->setIcon(GuiIconProvider::instance()->getIcon("edit-delete"));
     actionDownload_torrent->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    actionManage_cookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
     actionMark_items_read->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
     actionNew_folder->setIcon(GuiIconProvider::instance()->getIcon("folder-new"));
     actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
@@ -727,12 +704,12 @@ RSSImp::RSSImp(QWidget *parent):
     rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
     settingsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system"));
 
-    m_feedList = new FeedListWidget(splitter_h, m_rssManager);
-    splitter_h->insertWidget(0, m_feedList);
+    m_feedList = new FeedListWidget(splitterSide, m_rssManager);
+    splitterSide->insertWidget(0, m_feedList);
     editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
     connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
-    deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), m_feedList, 0, 0, Qt::WidgetShortcut);
+    deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(deleteHotkey, SIGNAL(activated()), SLOT(deleteSelectedItems()));
 
     m_rssManager->loadStreamList();
@@ -770,8 +747,8 @@ RSSImp::RSSImp(QWidget *parent):
     // Restore sliders position
     restoreSlidersPosition();
     // Bind saveSliders slots
-    connect(splitter_v, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
-    connect(splitter_h, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
+    connect(splitterMain, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
+    connect(splitterSide, SIGNAL(splitterMoved(int, int)), this, SLOT(saveSlidersPosition()));
 
     qDebug("RSSImp constructed");
 }

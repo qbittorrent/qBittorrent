@@ -45,6 +45,8 @@ namespace
 
 #ifdef Q_OS_MAC
     const QString OS_TYPE("Mac OS X");
+#elif defined(Q_OS_WIN) && (defined(__x86_64__) || defined(_M_X64))
+    const QString OS_TYPE("Windows x64");
 #else
     const QString OS_TYPE("Windows");
 #endif

@@ -135,6 +135,12 @@ int main(int argc, char *argv[])
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
+#ifdef Q_OS_MAC
+    // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
+    // Due to this, we have to move from native plist to IniFormat
+    macMigratePlists();
+#endif
+
     // Create Application
     QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
     QScopedPointer<Application> app(new Application(appId, argc, argv));
@@ -228,6 +234,17 @@ int main(int argc, char *argv[])
     // 3. https://bugreports.qt.io/browse/QTBUG-46015
 
     qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
+#endif
+
+#if defined(Q_OS_MAC)
+{
+    // Since Apple made difficult for users to set PATH, we set here for convenience.
+    // Users are supposed to install Homebrew Python for search function.
+    // For more info see issue #5571.
+    QByteArray path = "/usr/local/bin:";
+    path += qgetenv("PATH");
+    qputenv("PATH", path.constData());
+}
 #endif
 
 #ifndef DISABLE_GUI

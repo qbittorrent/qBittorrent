@@ -29,6 +29,7 @@
  */
 
 #include "btjson.h"
+#include "base/logger.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/preferences.h"
@@ -198,6 +199,15 @@ static const char KEY_FULL_UPDATE[] = "full_update";
 static const char KEY_RESPONSE_ID[] = "rid";
 static const char KEY_SUFFIX_REMOVED[] = "_removed";
 
+// Log keys
+static const char KEY_LOG_ID[] = "id";
+static const char KEY_LOG_TIMESTAMP[] = "timestamp";
+static const char KEY_LOG_MSG_TYPE[] = "type";
+static const char KEY_LOG_MSG_MESSAGE[] = "message";
+static const char KEY_LOG_PEER_IP[] = "ip";
+static const char KEY_LOG_PEER_BLOCKED[] = "blocked";
+static const char KEY_LOG_PEER_REASON[] = "reason";
+
 QVariantMap getTranserInfoMap();
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent);
 void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
@@ -354,7 +364,9 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     QVariantMap data;
     QVariantHash torrents;
 
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+
+    foreach (BitTorrent::TorrentHandle *const torrent, session->torrents()) {
         QVariantMap map = toMap(torrent);
         map.remove(KEY_TORRENT_HASH);
         torrents[torrent->hash()] = map;
@@ -363,15 +375,15 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     data["torrents"] = torrents;
 
     QVariantList categories;
-    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+    foreach (const QString &category, session->categories())
         categories << category;
 
     data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfoMap();
-    serverState[KEY_SYNC_MAINDATA_QUEUEING] = BitTorrent::Session::instance()->isQueueingEnabled();
-    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
-    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
+    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
     data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
@@ -659,8 +671,8 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
     map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
     map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
-    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadRateLimit();
-    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadRateLimit();
+    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
+    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
@@ -709,8 +721,8 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
     ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
-    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime();
-    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime();
+    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
+    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
 
     return ret;
 }
@@ -765,7 +777,10 @@ void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
                 syncData[key] = data[key];
             break;
         default:
-            Q_ASSERT(0);
+            Q_ASSERT_X(false, "processMap"
+                       , QString("Unexpected type: %1")
+                       .arg(QMetaType::typeName(static_cast<QMetaType::Type>(data[key].type())))
+                       .toUtf8().constData());
         }
     }
 }
@@ -886,4 +901,65 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     syncData[KEY_RESPONSE_ID] = lastResponseId;
 
     return syncData;
+}
+
+/**
+ * Returns the log in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "id": id of the message
+ *   - "timestamp": milliseconds since epoch
+ *   - "type": type of the message (int, see MsgType)
+ *   - "message": text of the message
+ */
+QByteArray btjson::getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId)
+{
+    Logger* const logger = Logger::instance();
+    QVariantList msgList;
+
+    foreach (const Log::Msg& msg, logger->getMessages(lastKnownId)) {
+        if (!((msg.type == Log::NORMAL && normal)
+              || (msg.type == Log::INFO && info)
+              || (msg.type == Log::WARNING && warning)
+              || (msg.type == Log::CRITICAL && critical)))
+            continue;
+        QVariantMap map;
+        map[KEY_LOG_ID] = msg.id;
+        map[KEY_LOG_TIMESTAMP] = msg.timestamp;
+        map[KEY_LOG_MSG_TYPE] = msg.type;
+        map[KEY_LOG_MSG_MESSAGE] = msg.message;
+        msgList.append(map);
+    }
+
+    return json::toJson(msgList);
+}
+
+/**
+ * Returns the peer log in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "id": id of the message
+ *   - "timestamp": milliseconds since epoch
+ *   - "ip": IP of the peer
+ *   - "blocked": whether or not the peer was blocked
+ *   - "reason": reason of the block
+ */
+QByteArray btjson::getPeerLog(int lastKnownId)
+{
+    Logger* const logger = Logger::instance();
+    QVariantList peerList;
+
+    foreach (const Log::Peer& peer, logger->getPeers(lastKnownId)) {
+        QVariantMap map;
+        map[KEY_LOG_ID] = peer.id;
+        map[KEY_LOG_TIMESTAMP] = peer.timestamp;
+        map[KEY_LOG_PEER_IP] = peer.ip;
+        map[KEY_LOG_PEER_BLOCKED] = peer.blocked;
+        map[KEY_LOG_PEER_REASON] = peer.reason;
+        peerList.append(map);
+    }
+
+    return json::toJson(peerList);
 }

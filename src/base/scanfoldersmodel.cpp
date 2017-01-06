@@ -28,20 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "scanfoldersmodel.h"
+
 #include <QDir>
 #include <QFileInfo>
-#include <QString>
 #include <QStringList>
-#include <QTemporaryFile>
 #include <QTextStream>
 
-#include "utils/misc.h"
-#include "utils/fs.h"
-#include "preferences.h"
-#include "logger.h"
-#include "filesystemwatcher.h"
 #include "bittorrent/session.h"
-#include "scanfoldersmodel.h"
+#include "filesystemwatcher.h"
+#include "preferences.h"
+#include "utils/fs.h"
 
 struct ScanFoldersModel::PathData
 {
@@ -128,10 +125,8 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
         else if (role == Qt::DisplayRole) {
             switch (pathData->downloadType) {
             case DOWNLOAD_IN_WATCH_FOLDER:
-                value = tr("Watch Folder");
-                break;
             case DEFAULT_LOCATION:
-                value = tr("Default Folder");
+                value = pathTypeDisplayName(pathData->downloadType);
                 break;
             case CUSTOM_LOCATION:
                 value = pathData->downloadPath;
@@ -153,10 +148,10 @@ QVariant ScanFoldersModel::headerData(int section, Qt::Orientation orientation, 
 
     switch (section) {
     case WATCH:
-        title = tr("Watched Folder");
+        title = tr("Monitored Folder");
         break;
     case DOWNLOAD:
-        title = tr("Save Files to");
+        title = tr("Override Save Location");
         break;
     }
 
@@ -391,4 +386,19 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
             }
         }
     }
+}
+
+QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
+{
+    switch(type) {
+    case DOWNLOAD_IN_WATCH_FOLDER:
+        return tr("Monitored folder");
+    case DEFAULT_LOCATION:
+        return tr("Default save location");
+    case CUSTOM_LOCATION:
+        return tr("Browse...");
+    default:
+        qDebug("Invalid PathType: %d", type);
+    };
+    return QString();
 }

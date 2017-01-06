@@ -269,67 +269,43 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
     return !name.contains(regex);
 }
 
-qlonglong Utils::Fs::freeDiskSpaceOnPath(QString path)
+qulonglong Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 {
-    if (path.isEmpty()) return -1;
-    QDir dir_path(path);
-    if (!dir_path.exists()) {
-        QStringList parts = path.split("/");
-        while (parts.size() > 1 && !QDir(parts.join("/")).exists()) {
-            parts.removeLast();
-        }
-        dir_path = QDir(parts.join("/"));
-        if (!dir_path.exists()) return -1;
-    }
-    Q_ASSERT(dir_path.exists());
+    if (path.isEmpty()) return 0;
 
-#ifndef Q_OS_WIN
-    unsigned long long available;
-#ifdef Q_OS_HAIKU
-    const QString statfs_path = dir_path.path() + "/.";
-    dev_t device = dev_for_path (qPrintable(statfs_path));
-    if (device >= 0) {
-        fs_info info;
-        if (fs_stat_dev(device, &info) == B_OK) {
-            available = ((unsigned long long)(info.free_blocks * info.block_size));
-            return available;
-        }
+    QDir dirPath(path);
+    if (!dirPath.exists()) {
+        QStringList parts = path.split("/");
+        while (parts.size() > 1 && !QDir(parts.join("/")).exists())
+            parts.removeLast();
+
+        dirPath = QDir(parts.join("/"));
+        if (!dirPath.exists()) return 0;
     }
-    return -1;
+    Q_ASSERT(dirPath.exists());
+
+#if defined(Q_OS_WIN)
+    ULARGE_INTEGER bytesFree;
+    LPCWSTR nativePath = reinterpret_cast<LPCWSTR>((toNativePath(dirPath.path())).utf16());
+    if (GetDiskFreeSpaceExW(nativePath, &bytesFree, NULL, NULL) == 0)
+        return 0;
+    return bytesFree.QuadPart;
+#elif defined(Q_OS_HAIKU)
+    const QString statfsPath = dirPath.path() + "/.";
+    dev_t device = dev_for_path(qPrintable(statfsPath));
+    if (device < 0)
+        return 0;
+    fs_info info;
+    if (fs_stat_dev(device, &info) != B_OK)
+        return 0;
+    return ((qulonglong) info.free_blocks * (qulonglong) info.block_size);
 #else
     struct statfs stats;
-    const QString statfs_path = dir_path.path() + "/.";
-    const int ret = statfs(qPrintable(statfs_path), &stats);
-    if (ret == 0) {
-        available = ((unsigned long long)stats.f_bavail)
-                * ((unsigned long long)stats.f_bsize);
-        return available;
-    }
-    else {
-        return -1;
-    }
-#endif
-#else
-    typedef BOOL (WINAPI *GetDiskFreeSpaceEx_t)(LPCTSTR,
-                                                PULARGE_INTEGER,
-                                                PULARGE_INTEGER,
-                                                PULARGE_INTEGER);
-    GetDiskFreeSpaceEx_t pGetDiskFreeSpaceEx =
-            (GetDiskFreeSpaceEx_t)::GetProcAddress(::GetModuleHandleW(L"kernel32.dll"), "GetDiskFreeSpaceExW");
-    if (pGetDiskFreeSpaceEx) {
-        ULARGE_INTEGER bytesFree, bytesTotal;
-        unsigned long long *ret;
-        if (pGetDiskFreeSpaceEx((LPCTSTR)(toNativePath(dir_path.path())).utf16(), &bytesFree, &bytesTotal, NULL)) {
-            ret = (unsigned long long*)&bytesFree;
-            return *ret;
-        }
-        else {
-            return -1;
-        }
-    }
-    else {
-        return -1;
-    }
+    const QString statfsPath = dirPath.path() + "/.";
+    const int ret = statfs(qPrintable(statfsPath), &stats);
+    if (ret != 0)
+        return 0;
+    return ((qulonglong) stats.f_bavail * (qulonglong) stats.f_bsize);
 #endif
 }
 
@@ -378,19 +354,17 @@ QString Utils::Fs::expandPathAbs(const QString& path)
 QString Utils::Fs::QDesktopServicesDataLocation()
 {
     QString result;
-#ifdef Q_OS_WIN
-    LPWSTR path=new WCHAR[256];
-    if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
+#if defined(Q_OS_WIN)
+    wchar_t path[MAX_PATH + 1] = {L'\0'};
+    if (SHGetSpecialFolderPathW(0, path, CSIDL_LOCAL_APPDATA, FALSE))
         result = fromNativePath(QString::fromWCharArray(path));
     if (!QCoreApplication::applicationName().isEmpty())
         result += QLatin1String("/") + qApp->applicationName();
-#else
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     FSRef ref;
     OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
     if (err)
         return QString();
-    QString path;
     QByteArray ba(2048, 0);
     if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
         result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
@@ -402,7 +376,6 @@ QString Utils::Fs::QDesktopServicesDataLocation()
     xdgDataHome += QLatin1String("/data/")
             + qApp->applicationName();
     result = xdgDataHome;
-#endif
 #endif
     if (!result.endsWith("/"))
         result += "/";

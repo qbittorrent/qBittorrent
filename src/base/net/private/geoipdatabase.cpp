@@ -40,7 +40,7 @@ namespace
 {
     const quint32 __ENDIAN_TEST__ = 0x00000001;
     const bool __IS_LITTLE_ENDIAN__ = (reinterpret_cast<const uchar *>(&__ENDIAN_TEST__)[0] == 0x01);
-    const int MAX_FILE_SIZE = 10485760; // 10MB
+    const qint32 MAX_FILE_SIZE = 67108864; // 64MB
     const char DB_TYPE[] = "GeoLite2-Country";
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
     const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";

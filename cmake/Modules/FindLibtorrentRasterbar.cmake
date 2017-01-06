@@ -91,3 +91,16 @@ find_package_handle_standard_args(LibtorrentRasterbar DEFAULT_MSG
 mark_as_advanced(LibtorrentRasterbar_INCLUDE_DIR LibtorrentRasterbar_LIBRARY
     LibtorrentRasterbar_ORIG_CMAKE_FIND_LIBRARY_SUFFIXES
     LibtorrentRasterbar_ENCRYPTION_INDEX)
+
+if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::LibTorrent)
+    add_library(LibtorrentRasterbar::LibTorrent UNKNOWN IMPORTED)
+
+    set_target_properties(LibtorrentRasterbar::LibTorrent PROPERTIES
+        IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
+        IMPORTED_LOCATION "${LibtorrentRasterbar_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"
+        INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"
+        INTERFACE_LINK_LIBRARIES "${LibtorrentRasterbar_LIBRARIES}"
+        INTERFACE_COMPILE_OPTIONS "${LibtorrentRasterbar_DEFINITIONS}"
+    )
+endif()

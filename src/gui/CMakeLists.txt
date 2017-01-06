@@ -8,6 +8,7 @@ add_subdirectory(properties)
 add_subdirectory(powermanagement)
 add_subdirectory(rss)
 add_subdirectory(search)
+
 if (UNIX AND NOT APPLE AND DBUS)
    add_subdirectory(qtnotify)
    include_directories(qtnotify)
@@ -31,6 +32,8 @@ addnewtorrentdialog.h
 advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
+cookiesdialog.h
+cookiesmodel.h
 deletionconfirmationdlg.h
 downloadfromurldlg.h
 executionlog.h
@@ -40,11 +43,11 @@ ico.h
 loglistwidget.h
 mainwindow.h
 messageboxraised.h
-options_imp.h
+optionsdlg.h
 previewlistdelegate.h
 previewselect.h
 scanfoldersdelegate.h
-shutdownconfirm.h
+shutdownconfirmdlg.h
 speedlimitdlg.h
 statsdialog.h
 statusbar.h
@@ -55,7 +58,6 @@ torrentcontentmodelfolder.h
 torrentcontentmodelitem.h
 torrentcontenttreeview.h
 torrentcreatordlg.h
-torrentimportdlg.h
 torrentmodel.h
 trackerlogin.h
 transferlistdelegate.h
@@ -69,16 +71,18 @@ set(QBT_GUI_SOURCES
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
+cookiesdialog.cpp
+cookiesmodel.cpp
 executionlog.cpp
 guiiconprovider.cpp
 ico.cpp
 loglistwidget.cpp
 mainwindow.cpp
 messageboxraised.cpp
-options_imp.cpp
+optionsdlg.cpp
 previewselect.cpp
 scanfoldersdelegate.cpp
-shutdownconfirm.cpp
+shutdownconfirmdlg.cpp
 speedlimitdlg.cpp
 statsdialog.cpp
 statusbar.cpp
@@ -89,7 +93,6 @@ torrentcontentmodelfolder.cpp
 torrentcontentmodelitem.cpp
 torrentcontenttreeview.cpp
 torrentcreatordlg.cpp
-torrentimportdlg.cpp
 torrentmodel.cpp
 trackerlogin.cpp
 transferlistdelegate.cpp
@@ -107,22 +110,26 @@ endif (WIN32 OR APPLE)
 set(QBT_GUI_FORMS
 mainwindow.ui
 about.ui
+cookiesdialog.ui
 preview.ui
 login.ui
 downloadfromurldlg.ui
 bandwidth_limit.ui
 updownratiodlg.ui
 confirmdeletiondlg.ui
-torrentimportdlg.ui
 executionlog.ui
 addnewtorrentdialog.ui
 autoexpandabledialog.ui
 statsdialog.ui
-options.ui
+optionsdlg.ui
 torrentcreatordlg.ui
+shutdownconfirmdlg.ui
 )
 
-set(QBT_GUI_RESOURCES about.qrc)
+qbt_target_sources(about.qrc)
 
-add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_RESOURCES})
-target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base)
+add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES})
+target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
+    ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
+    QtSingleApplication::QtSingleApplication
+)

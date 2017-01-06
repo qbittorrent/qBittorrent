@@ -55,10 +55,10 @@ FilterParserThread::~FilterParserThread()
 }
 
 // Parser for eMule ip filter in DAT format
-int FilterParserThread::parseDATFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseDATFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -149,10 +149,10 @@ int FilterParserThread::parseDATFilterFile(QString m_filePath, libt::ip_filter &
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2PFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseP2PFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -257,10 +257,10 @@ int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, 
 }
 
 // Parser for PeerGuardian ip filter in p2p format
-int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &filter)
+int FilterParserThread::parseP2BFilterFile(QString filePath, libt::ip_filter &filter)
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file(filePath);
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -369,7 +369,7 @@ int FilterParserThread::parseP2BFilterFile(QString m_filePath, libt::ip_filter &
 //  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
 //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
 //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
-void FilterParserThread::processFilterFile(QString _filePath)
+void FilterParserThread::processFilterFile(QString filePath)
 {
     if (isRunning()) {
         // Already parsing a filter, m_abort first
@@ -378,30 +378,37 @@ void FilterParserThread::processFilterFile(QString _filePath)
     }
 
     m_abort = false;
-    m_filePath = _filePath;
+    m_filePath = filePath;
     // Run it
     start();
 }
 
-void FilterParserThread::processFilterList(libt::session *s, const QStringList &IPs)
-{
-    // First, import current filter
-    libt::ip_filter filter = s->get_ip_filter();
-    foreach (const QString &ip, IPs) {
-        qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
-        boost::system::error_code ec;
-        libt::address addr = libt::address::from_string(ip.toLocal8Bit().constData(), ec);
-        Q_ASSERT(!ec);
-        if (!ec)
-            filter.add_rule(addr, addr, libt::ip_filter::blocked);
-    }
-
-    s->set_ip_filter(filter);
-}
-
 QString FilterParserThread::cleanupIPAddress(QString _ip)
 {
-    QHostAddress ip(_ip.trimmed());
+    _ip = _ip.trimmed();
+
+    // Emule .DAT files contain leading zeroes in IPv4 addresses
+    // eg 001.009.106.186
+    // We need to remove them because both QHostAddress and Boost.Asio fail to parse them.
+    QStringList octets = _ip.split('.', QString::SkipEmptyParts);
+    if (octets.size() == 4) {
+        QString octet; // it is faster to not recreate this object in the loop
+        for (int i = 0; i < 4; i++) {
+            octet = octets[i];
+            if ((octet[0] == QChar('0')) && (octet.count() > 1)) {
+                if ((octet[1] == QChar('0')) && (octet.count() > 2))
+                    octet.remove(0, 2);
+                else
+                    octet.remove(0, 1);
+
+                octets[i] = octet;
+            }
+        }
+
+        _ip = octets.join(".");
+    }
+
+    QHostAddress ip(_ip);
     if (ip.isNull()) return QString();
 
     return ip.toString();

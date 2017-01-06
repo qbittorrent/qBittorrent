@@ -52,6 +52,7 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <powrprof.h>
+#include <Shlobj.h>
 const int UNLEN = 256;
 #else
 #include <unistd.h>
@@ -86,20 +87,21 @@ static struct { const char *source; const char *comment; } units[] = {
     QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
     QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
     QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
+    QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)"),
+    QT_TRANSLATE_NOOP3("misc", "PiB", "pebibytes (1024 tebibytes)"),
+    QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
 };
 
-#ifndef DISABLE_GUI
-void Utils::Misc::shutdownComputer(ShutdownAction action)
+void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     // Use dbus to power off / suspend the system
-    if (action != ShutdownAction::Shutdown) {
+    if (action != ShutdownDialogAction::Shutdown) {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
         if (login1Iface.isValid()) {
-            if (action == ShutdownAction::Suspend)
+            if (action == ShutdownDialogAction::Suspend)
                 login1Iface.call("Suspend", false);
             else
                 login1Iface.call("Hibernate", false);
@@ -109,7 +111,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
         QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                    "org.freedesktop.UPower", QDBusConnection::systemBus());
         if (upowerIface.isValid()) {
-            if (action == ShutdownAction::Suspend)
+            if (action == ShutdownDialogAction::Suspend)
                 upowerIface.call("Suspend");
             else
                 upowerIface.call("Hibernate");
@@ -119,7 +121,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
         QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
                                 "org.freedesktop.Hal.Device.SystemPowerManagement",
                                 QDBusConnection::systemBus());
-        if (action == ShutdownAction::Suspend)
+        if (action == ShutdownDialogAction::Suspend)
             halIface.call("Suspend", 5);
         else
             halIface.call("Hibernate");
@@ -148,7 +150,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
 #endif
 #ifdef Q_OS_MAC
     AEEventID EventToSend;
-    if (action != ShutdownAction::Shutdown)
+    if (action != ShutdownDialogAction::Shutdown)
         EventToSend = kAESleep;
     else
         EventToSend = kAEShutDown;
@@ -158,7 +160,7 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
     AppleEvent appleEventToSend = {typeNull, NULL};
 
     OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
-                         sizeof(kPSNOfSystemProcess), &targetDesc);
+                                  sizeof(kPSNOfSystemProcess), &targetDesc);
 
     if (error != noErr)
         return;
@@ -201,9 +203,9 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == ShutdownAction::Suspend)
+    if (action == ShutdownDialogAction::Suspend)
         SetSuspendState(false, false, false);
-    else if (action == ShutdownAction::Hibernate)
+    else if (action == ShutdownDialogAction::Hibernate)
         SetSuspendState(true, false, false);
     else
         InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
@@ -214,7 +216,6 @@ void Utils::Misc::shutdownComputer(ShutdownAction action)
                           (PTOKEN_PRIVILEGES) NULL, 0);
 #endif
 }
-#endif // DISABLE_GUI
 
 #ifndef DISABLE_GUI
 // Get screen center
@@ -233,6 +234,7 @@ QPoint Utils::Misc::screenCenter(QWidget *win)
     QRect desk(QApplication::desktop()->availableGeometry(scrn));
     return QPoint((desk.width() - win->frameGeometry().width()) / 2, (desk.height() - win->frameGeometry().height()) / 2);
 }
+
 #endif
 
 /**
@@ -267,12 +269,12 @@ QString Utils::Misc::pythonExecutable()
          * http://legacy.python.org/dev/peps/pep-0394/
          */
         pythonProc.start("python3", QStringList() << "--version", QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && pythonProc.exitCode() == 0) {
+        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
             executable = "python3";
             return executable;
         }
         pythonProc.start("python2", QStringList() << "--version", QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && pythonProc.exitCode() == 0) {
+        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
             executable = "python2";
             return executable;
         }
@@ -280,7 +282,7 @@ QString Utils::Misc::pythonExecutable()
         // Look for "python" in Windows and in UNIX if "python2" and "python3" are
         // not detected.
         pythonProc.start("python", QStringList() << "--version", QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && pythonProc.exitCode() == 0)
+        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0))
             executable = "python";
         else
             Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python not detected"), Log::INFO);
@@ -293,14 +295,15 @@ QString Utils::Misc::pythonExecutable()
  * eg 2.7.9
  * Make sure to have setup python first
  */
-QString Utils::Misc::pythonVersionComplete() {
+QString Utils::Misc::pythonVersionComplete()
+{
     static QString version;
     if (version.isEmpty()) {
         if (pythonExecutable().isEmpty())
             return version;
         QProcess pythonProc;
         pythonProc.start(pythonExecutable(), QStringList() << "--version", QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && pythonProc.exitCode() == 0) {
+        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
             QByteArray output = pythonProc.readAllStandardOutput();
             if (output.isEmpty())
                 output = pythonProc.readAllStandardError();
@@ -318,31 +321,57 @@ QString Utils::Misc::pythonVersionComplete() {
     return version;
 }
 
-// return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
+QString Utils::Misc::unitString(Utils::Misc::SizeUnit unit)
+{
+    return QCoreApplication::translate("misc",
+                                       units[static_cast<int>(unit)].source, units[static_cast<int>(unit)].comment);
+}
+
+// return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
 // use Binary prefix standards from IEC 60027-2
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
 // to send numbers instead of strings with suffixes
-QString Utils::Misc::friendlyUnit(qreal val, bool is_speed)
+bool Utils::Misc::friendlyUnit(qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)
 {
-    if (val < 0)
-        return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
+    if (sizeInBytes < 0) return false;
+
     int i = 0;
-    while(val >= 1024. && i < 4) {
-        val /= 1024.;
+    qreal rawVal = static_cast<qreal>(sizeInBytes);
+
+    while ((rawVal >= 1024.) && (i <= static_cast<int>(SizeUnit::ExbiByte))) {
+        rawVal /= 1024.;
         ++i;
     }
+    val = rawVal;
+    unit = static_cast<SizeUnit>(i);
+    return true;
+}
+
+QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
+{
+    SizeUnit unit;
+    qreal friendlyVal;
+    if (!friendlyUnit(bytesValue, friendlyVal, unit))
+        return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
     QString ret;
-    if (i == 0)
-        ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
+    if (unit == SizeUnit::Byte)
+        ret = QString::number(bytesValue) + " " + unitString(unit);
     else
-        ret = Utils::String::fromDouble(val, 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
-    if (is_speed)
+        ret = Utils::String::fromDouble(friendlyVal, 1) + " " + unitString(unit);
+    if (isSpeed)
         ret += QCoreApplication::translate("misc", "/s", "per second");
     return ret;
 }
 
-bool Utils::Misc::isPreviewable(const QString& extension)
+qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)
+{
+    for (int i = 0; i < static_cast<int>(unit); ++i)
+        size *= 1024;
+    return size;
+}
+
+bool Utils::Misc::isPreviewable(const QString &extension)
 {
     static QSet<QString> multimedia_extensions;
     if (multimedia_extensions.empty()) {
@@ -399,7 +428,7 @@ bool Utils::Misc::isPreviewable(const QString& extension)
 // time duration like "1d 2h 10m".
 QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
 {
-    if (seconds < 0 || seconds >= MAX_ETA)
+    if ((seconds < 0) || (seconds >= MAX_ETA))
         return QString::fromUtf8(C_INFINITY);
     if (seconds == 0)
         return "0";
@@ -407,7 +436,7 @@ QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
     int minutes = seconds / 60;
     if (minutes < 60)
-        return QCoreApplication::translate("misc", "%1m","e.g: 10minutes").arg(QString::number(minutes));
+        return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
     int hours = minutes / 60;
     minutes = minutes - hours * 60;
     if (hours < 24)
@@ -424,7 +453,7 @@ QString Utils::Misc::getUserIDString()
     QString uid = "0";
 #ifdef Q_OS_WIN
     WCHAR buffer[UNLEN + 1] = {0};
-    DWORD buffer_len = sizeof(buffer)/sizeof(*buffer);
+    DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
     if (GetUserNameW(buffer, &buffer_len))
         uid = QString::fromWCharArray(buffer);
 #else
@@ -468,18 +497,18 @@ QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
 {
     QString result = raw_text;
     static QRegExp reURL(
-        "(\\s|^)"                                             //start with whitespace or beginning of line
+        "(\\s|^)"                                             // start with whitespace or beginning of line
         "("
-        "("                                              //case 1 -- URL with scheme
-        "(http(s?))\\://"                            //start with scheme
+        "("                                              // case 1 -- URL with scheme
+        "(http(s?))\\://"                            // start with scheme
         "([a-zA-Z0-9_-]+\\.)+"                       //  domainpart.  at least one of these must exist
         "([a-zA-Z0-9\\?%=&/_\\.:#;-]+)"              //  everything to 1st non-URI char, must be at least one char after the previous dot (cannot use ".*" because it can be too greedy)
         ")"
         "|"
-        "("                                             //case 2a -- no scheme, contains common TLD  example.com
+        "("                                             // case 2a -- no scheme, contains common TLD  example.com
         "([a-zA-Z0-9_-]+\\.)+"                      //  domainpart.  at least one of these must exist
         "(?="                                       //  must be followed by TLD
-        "AERO|aero|"                          //N.B. assertions are non-capturing
+        "AERO|aero|"                          // N.B. assertions are non-capturing
         "ARPA|arpa|"
         "ASIA|asia|"
         "BIZ|biz|"
@@ -507,8 +536,8 @@ QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
         ")"
         "|"
         "("                                             // case 2b no scheme, no TLD, must have at least 2 alphanum strings plus uncommon TLD string  --> del.icio.us
-        "([a-zA-Z0-9_-]+\\.) {2,}"                   //2 or more domainpart.   --> del.icio.
-        "[a-zA-Z]{2,}"                              //one ab  (2 char or longer) --> us
+        "([a-zA-Z0-9_-]+\\.) {2,}"                   // 2 or more domainpart.   --> del.icio.
+        "[a-zA-Z]{2,}"                              // one ab  (2 char or longer) --> us
         "([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"             // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
         ")"
         ")"
@@ -529,7 +558,7 @@ QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
 
 #ifndef DISABLE_GUI
 // Open the given path with an appropriate application
-void Utils::Misc::openPath(const QString& absolutePath)
+void Utils::Misc::openPath(const QString &absolutePath)
 {
     const QString path = Utils::Fs::fromNativePath(absolutePath);
     // Hack to access samba shares with QDesktopServices::openUrl
@@ -541,79 +570,51 @@ void Utils::Misc::openPath(const QString& absolutePath)
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Misc::openFolderSelect(const QString& absolutePath)
+void Utils::Misc::openFolderSelect(const QString &absolutePath)
 {
     const QString path = Utils::Fs::fromNativePath(absolutePath);
+    // If the item to select doesn't exist, try to open its parent
+    if (!QFileInfo(path).exists()) {
+        openPath(path.left(path.lastIndexOf("/")));
+        return;
+    }
 #ifdef Q_OS_WIN
-    if (QFileInfo(path).exists()) {
-        // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
-        // Dir separators MUST be win-style slashes
-
-        // QProcess::startDetached() has an obscure bug. If the path has
-        // no spaces and a comma(and maybe other special characters) it doesn't
-        // get wrapped in quotes. So explorer.exe can't find the correct path and
-        // displays the default one. If we wrap the path in quotes and pass it to
-        // QProcess::startDetached() explorer.exe still shows the default path. In
-        // this case QProcess::startDetached() probably puts its own quotes around ours.
-
-        STARTUPINFO startupInfo;
-        ::ZeroMemory(&startupInfo, sizeof(startupInfo));
-        startupInfo.cb = sizeof(startupInfo);
-
-        PROCESS_INFORMATION processInfo;
-        ::ZeroMemory(&processInfo, sizeof(processInfo));
-
-        QString cmd = QString("explorer.exe /select,\"%1\"").arg(Utils::Fs::toNativePath(absolutePath));
-        LPWSTR lpCmd = new WCHAR[cmd.size() + 1];
-        cmd.toWCharArray(lpCmd);
-        lpCmd[cmd.size()] = 0;
-
-        bool ret = ::CreateProcessW(NULL, lpCmd, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo);
-        delete [] lpCmd;
-
-        if (ret) {
-            ::CloseHandle(processInfo.hProcess);
-            ::CloseHandle(processInfo.hThread);
-        }
+    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
+    if (pidl) {
+        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+        ::ILFree(pidl);
     }
-    else {
-        // If the item to select doesn't exist, try to open its parent
-        openPath(path.left(path.lastIndexOf("/")));
-    }
+    if ((hresult == S_OK) || (hresult == S_FALSE))
+        ::CoUninitialize();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    if (QFileInfo(path).exists()) {
-        QProcess proc;
-        proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
-        proc.waitForFinished();
-        QString output = proc.readLine().simplified();
-        if (output == "dolphin.desktop" || output == "org.kde.dolphin.desktop")
-            proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
-        else if (output == "nautilus.desktop" || output == "org.gnome.Nautilus.desktop"
-                 || output == "nautilus-folder-handler.desktop")
-            proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
-        else if (output == "nemo.desktop")
-            proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
-        else if (output == "konqueror.desktop" || output == "kfmclient_dir.desktop")
-            proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(path));
-        else {
-            // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-            openPath(path.left(path.lastIndexOf("/")));
-        }
-    }
-    else {
-        // If the item to select doesn't exist, try to open its parent
+    QProcess proc;
+    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
+    proc.waitForFinished();
+    QString output = proc.readLine().simplified();
+    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
+        proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
+    else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
+             || (output == "nautilus-folder-handler.desktop"))
+        proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+    else if (output == "nemo.desktop")
+        proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
+        proc.startDetached("konqueror", QStringList() << "--select" << Utils::Fs::toNativePath(path));
+    else
+        // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
         openPath(path.left(path.lastIndexOf("/")));
-    }
 #else
     openPath(path.left(path.lastIndexOf("/")));
 #endif
 }
+
 #endif // DISABLE_GUI
 
 namespace
 {
     //  Trick to get a portable sleep() function
-    class SleeperThread : public QThread
+    class SleeperThread: public QThread
     {
     public:
         static void msleep(unsigned long msecs)
@@ -635,6 +636,7 @@ QSize Utils::Misc::smallIconSize()
     int s = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
     return QSize(s, s);
 }
+
 #endif
 
 QString Utils::Misc::osName()
@@ -642,12 +644,12 @@ QString Utils::Misc::osName()
     // static initialization for usage in signal handler
     static const QString name =
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-    QString("%1 %2 %3")
-    .arg(QSysInfo::prettyProductName())
-    .arg(QSysInfo::kernelVersion())
-    .arg(QSysInfo::currentCpuArchitecture());
+        QString("%1 %2 %3")
+        .arg(QSysInfo::prettyProductName())
+        .arg(QSysInfo::kernelVersion())
+        .arg(QSysInfo::currentCpuArchitecture());
 #else
-    "<Input OS name here>";
+        "<Input OS name here>";
 #endif
     return name;
 }
@@ -656,9 +658,9 @@ QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
     static const QString ver = QString("%1.%2.%3")
-                 .arg(BOOST_VERSION / 100000)
-                 .arg((BOOST_VERSION / 100) % 1000)
-                 .arg(BOOST_VERSION % 100);
+                               .arg(BOOST_VERSION / 100000)
+                               .arg((BOOST_VERSION / 100) % 1000)
+                               .arg(BOOST_VERSION % 100);
     return ver;
 }
 
@@ -668,3 +670,15 @@ QString Utils::Misc::libtorrentVersionString()
     static const QString ver = LIBTORRENT_VERSION;
     return ver;
 }
+
+#ifdef Q_OS_WIN
+QString Utils::Misc::windowsSystemPath()
+{
+    static const QString path = []() -> QString {
+        WCHAR systemPath[64] = {0};
+        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
+        return QString::fromWCharArray(systemPath);
+    }();
+    return path;
+}
+#endif

@@ -34,12 +34,15 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
+#include "base/indexrange.h"
+
 class QString;
 class QUrl;
 class QDateTime;
 class QStringList;
 class QByteArray;
 template<typename T> class QList;
+template<typename T> class QVector;
 
 namespace BitTorrent
 {
@@ -75,6 +78,7 @@ namespace BitTorrent
         qlonglong totalSize() const;
         int filesCount() const;
         int pieceLength() const;
+        int pieceLength(int index) const;
         int piecesCount() const;
         QString filePath(int index) const;
         QStringList filePaths() const;
@@ -86,12 +90,21 @@ namespace BitTorrent
         QList<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;
+        QVector<int> fileIndicesForPiece(int pieceIndex) const;
+
+        using PieceRange = IndexRange<int>;
+        // returns pair of the first and the last pieces into which
+        // the given file extends (maybe partially).
+        PieceRange filePieces(const QString &file) const;
+        PieceRange filePieces(int fileIndex) const;
 
         void renameFile(uint index, const QString &newPath);
 
         NativePtr nativeInfo() const;
 
     private:
+        // returns file index or -1 if fileName is not found
+        int fileIndex(const QString &fileName) const;
         NativePtr m_nativeInfo;
     };
 }

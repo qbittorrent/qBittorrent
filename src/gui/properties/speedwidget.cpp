@@ -45,8 +45,7 @@
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
     , m_menu(menu)
-{
-}
+{}
 
 void ComboBoxMenuButton::showPopup()
 {
@@ -54,7 +53,6 @@ void ComboBoxMenuButton::showPopup()
     m_menu->exec(p);
     QComboBox::hidePopup();
 }
-
 
 SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     : QWidget(parent)
@@ -75,7 +73,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
 
-    m_graphsMenu = new QMenu();
+    m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
     m_graphsMenu->addAction(tr("Total Download"));
     m_graphsMenu->addAction(tr("Payload Upload"));
@@ -138,17 +136,20 @@ void SpeedWidget::update()
 
         BitTorrent::SessionStatus btStatus = BitTorrent::Session::instance()->status();
 
-        m_plot->pushXPoint(QDateTime::currentDateTime().toTime_t());
-        m_plot->pushYPoint(SpeedPlotView::UP, btStatus.uploadRate());
-        m_plot->pushYPoint(SpeedPlotView::DOWN, btStatus.downloadRate());
-        m_plot->pushYPoint(SpeedPlotView::PAYLOAD_UP, btStatus.payloadUploadRate());
-        m_plot->pushYPoint(SpeedPlotView::PAYLOAD_DOWN, btStatus.payloadDownloadRate());
-        m_plot->pushYPoint(SpeedPlotView::OVERHEAD_UP, btStatus.ipOverheadUploadRate());
-        m_plot->pushYPoint(SpeedPlotView::OVERHEAD_DOWN, btStatus.ipOverheadDownloadRate());
-        m_plot->pushYPoint(SpeedPlotView::DHT_UP, btStatus.dhtUploadRate());
-        m_plot->pushYPoint(SpeedPlotView::DHT_DOWN, btStatus.dhtDownloadRate());
-        m_plot->pushYPoint(SpeedPlotView::TRACKER_UP, btStatus.trackerUploadRate());
-        m_plot->pushYPoint(SpeedPlotView::TRACKER_DOWN, btStatus.trackerDownloadRate());
+        SpeedPlotView::PointData point;
+        point.x = QDateTime::currentDateTime().toTime_t();
+        point.y[SpeedPlotView::UP] = btStatus.uploadRate();
+        point.y[SpeedPlotView::DOWN] = btStatus.downloadRate();
+        point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate();
+        point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate();
+        point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate();
+        point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate();
+        point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate();
+        point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate();
+        point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate();
+        point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate();
+
+        m_plot->pushPoint(point);
 
         QMetaObject::invokeMethod(this, "graphUpdate", Qt::QueuedConnection);
         Utils::Misc::msleep(1000);
@@ -163,15 +164,12 @@ void SpeedWidget::graphUpdate()
 void SpeedWidget::onPeriodChange(int period)
 {
     m_plot->setViewableLastPoints(static_cast<SpeedPlotView::TimePeriod>(period));
-    graphUpdate();
 }
 
 void SpeedWidget::onGraphChange(int id)
 {
     QAction *action = m_graphsMenuActions.at(id);
     m_plot->setGraphEnable(static_cast<SpeedPlotView::GraphID>(id), action->isChecked());
-
-    graphUpdate();
 }
 
 void SpeedWidget::loadSettings()
@@ -202,4 +200,3 @@ void SpeedWidget::saveSettings() const
         preferences->setSpeedWidgetGraphEnable(id, action->isChecked());
     }
 }
-

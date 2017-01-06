@@ -5,7 +5,9 @@ HEADERS += \
     $$PWD/qinisettings.h \
     $$PWD/logger.h \
     $$PWD/settingsstorage.h \
+    $$PWD/settingvalue.h \
     $$PWD/preferences.h \
+    $$PWD/indexrange.h \
     $$PWD/iconprovider.h \
     $$PWD/http/irequesthandler.h \
     $$PWD/http/connection.h \
@@ -19,6 +21,7 @@ HEADERS += \
     $$PWD/net/downloadhandler.h \
     $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
+    $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/net/private/geoipdatabase.h \
@@ -51,6 +54,7 @@ HEADERS += \
     $$PWD/utils/misc.h \
     $$PWD/utils/string.h \
     $$PWD/unicodestrings.h \
+    $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h \
     $$PWD/searchengine.h
@@ -72,6 +76,7 @@ SOURCES += \
     $$PWD/net/downloadhandler.cpp \
     $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
+    $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
     $$PWD/net/private/geoipdatabase.cpp \
@@ -103,6 +108,7 @@ SOURCES += \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/string.cpp \
+    $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/scanfoldersmodel.cpp \
     $$PWD/searchengine.cpp

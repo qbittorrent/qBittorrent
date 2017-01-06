@@ -309,6 +309,12 @@
     <option value="1">QBT_TR(Remove them)QBT_TR</option>
   </select>
 </fieldset>
+
+<fieldset class="settings">
+  <legend><input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();"/>
+  <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR</label></legend>
+  <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
+</fieldset>
 </div>
 
 <div id="WebUITab" class="PrefTab invisible">
@@ -323,16 +329,20 @@
       <option value="fr_FR">Français</option>
       <option value="de_DE">Deutsch</option>
       <option value="hu_HU">Magyar</option>
+      <option value="is">Íslenska</option>
       <option value="id">Bahasa Indonesia</option>
       <option value="it_IT">Italiano</option>
       <option value="nl_NL">Nederlands</option>
       <option value="es_ES">Español</option>
       <option value="ca_ES">Català</option>
       <option value="gl_ES">Galego</option>
+      <option value="oc">lenga d'òc</option>
       <option value="pt_BR">Português brasileiro</option>
       <option value="pt_PT">Português</option>
       <option value="pl_PL">Polski</option>
+      <option value="lv_LV">latviešu valoda</option>
       <option value="lt_LT">Lietuvių</option>
+      <option value="ms_MY">بهاس ملايو</option>
       <option value="cs_CZ">Čeština</option>
       <option value="sk_SK">Slovenčina</option>
       <option value="sl_SI">Slovenščina</option>
@@ -349,6 +359,7 @@
       <option value="da_DK">Dansk</option>
       <option value="bg_BG">Български</option>
       <option value="uk_UA">Українська</option>
+      <option value="uz@Latn">أۇزبېك</option>
       <option value="ru_RU">Русский</option>
       <option value="ja_JP">日本語</option>
       <option value="he_IL">עברית</option>
@@ -714,6 +725,14 @@ updateMaxRatioEnabled = function() {
   }
 }
 
+updateAddTrackersEnabled = function() {
+  if($('add_trackers_checkbox').getProperty('checked')) {
+    $('add_trackers_textarea').setProperty('disabled', false);
+  } else {
+    $('add_trackers_textarea').setProperty('disabled', true);
+  }
+}
+
 // Web UI tab
 updateHttpsSettings = function() {
   if($('use_https_checkbox').getProperty('checked')) {
@@ -898,7 +917,7 @@ loadPreferences = function() {
 
                     // Speed tab
                     // Global Rate Limits
-                    var up_limit = pref.up_limit.toInt();
+                    var up_limit = pref.up_limit.toInt() / 1024;
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -906,7 +925,7 @@ loadPreferences = function() {
                       $('up_limit_value').setProperty('value', up_limit);
                     }
                     updateUpLimitEnabled();
-                    var dl_limit = pref.dl_limit.toInt();
+                    var dl_limit = pref.dl_limit.toInt() / 1024;
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -920,7 +939,7 @@ loadPreferences = function() {
                     updateUTPEnabled();
 
                     // Alternative Global Rate Limits
-                    var alt_up_limit = pref.alt_up_limit.toInt();
+                    var alt_up_limit = pref.alt_up_limit.toInt() / 1024;
                     if(alt_up_limit <= 0) {
                       $('alt_up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -928,7 +947,7 @@ loadPreferences = function() {
                       $('alt_up_limit_value').setProperty('value', alt_up_limit);
                     }
                     updateAltUpLimitEnabled();
-                    var alt_dl_limit = pref.alt_dl_limit.toInt();
+                    var alt_dl_limit = pref.alt_dl_limit.toInt() / 1024;
                     if(alt_dl_limit <= 0) {
                       $('alt_dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -972,6 +991,11 @@ loadPreferences = function() {
                     var max_ratio_act = pref.max_ratio_act.toInt();
                     $('max_ratio_act').getChildren('option')[max_ratio_act].setAttribute('selected', '');
                     updateMaxRatioEnabled();
+
+                    // Add trackers
+                    $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
+                    $('add_trackers_textarea').setProperty('value', pref.add_trackers);
+                    updateAddTrackersEnabled();
 
                     // Web UI tab
                     // Language
@@ -1127,7 +1151,7 @@ applyPreferences = function() {
   // Global Rate Limits
   var up_limit = -1;
   if($('up_limit_checkbox').getProperty('checked')) {
-    up_limit = $('up_limit_value').getProperty('value').toInt();
+    up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(up_limit) || up_limit <= 0) {
       alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1136,7 +1160,7 @@ applyPreferences = function() {
   settings.set('up_limit', up_limit);
   var dl_limit = -1;
   if($('dl_limit_checkbox').getProperty('checked')) {
-    dl_limit = $('dl_limit_value').getProperty('value').toInt();
+    dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(dl_limit) || dl_limit <= 0) {
       alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1150,7 +1174,7 @@ applyPreferences = function() {
   // Alternative Global Rate Limits
   var alt_up_limit = -1;
   if($('alt_up_limit_checkbox').getProperty('checked')) {
-    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt();
+    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_up_limit) || alt_up_limit <= 0) {
       alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1159,7 +1183,7 @@ applyPreferences = function() {
   settings.set('alt_up_limit', alt_up_limit);
   var alt_dl_limit = -1;
   if($('alt_dl_limit_checkbox').getProperty('checked')) {
-    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt();
+    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_dl_limit) || alt_dl_limit <= 0) {
       alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1222,6 +1246,10 @@ applyPreferences = function() {
   settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
   settings.set('max_ratio', max_ratio);
   settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+
+  // Add trackers
+  settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
+  settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
 
   // Web UI tab
   // Language

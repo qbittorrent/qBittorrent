@@ -28,216 +28,153 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <cmath>
-#include <QDebug>
 #include "downloadedpiecesbar.h"
 
-DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent): QWidget(parent)
+#include <cmath>
+
+#include <QDebug>
+
+DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
+    : base {parent}
+    , m_dlPieceColor {0, 0xd0, 0}
 {
-  setToolTip(QString("%1\n%2\n%3").arg(tr("White: Missing pieces")).arg(tr("Green: Partial pieces")).arg(tr("Blue: Completed pieces")));
-
-  m_bgColor = 0xffffff;
-  m_borderColor = palette().color(QPalette::Dark).rgb();
-  m_pieceColor = 0x0000ff;
-  m_dlPieceColor = 0x00d000;
-
-  updatePieceColors();
 }
 
 QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)
 {
-  QVector<float> result(reqSize, 0.0);
-  if (vecin.isEmpty()) return result;
+    QVector<float> result(reqSize, 0.0);
+    if (vecin.isEmpty()) return result;
 
-  const float ratio = vecin.size() / (float)reqSize;
+    const float ratio = vecin.size() / static_cast<float>(reqSize);
 
-  // simple linear transformation algorithm
-  // for example:
-  // image.x(0) = pieces.x(0.0 >= x < 1.7)
-  // image.x(1) = pieces.x(1.7 >= x < 3.4)
+    // simple linear transformation algorithm
+    // for example:
+    // image.x(0) = pieces.x(0.0 >= x < 1.7)
+    // image.x(1) = pieces.x(1.7 >= x < 3.4)
 
-  for (int x = 0; x < reqSize; ++x) {
-    // R - real
-    const float fromR = x * ratio;
-    const float toR = (x + 1) * ratio;
+    for (int x = 0; x < reqSize; ++x) {
+        // R - real
+        const float fromR = x * ratio;
+        const float toR = (x + 1) * ratio;
 
-    // C - integer
-    int fromC = fromR;// std::floor not needed
-    int toC = std::ceil(toR);
-    if (toC > vecin.size())
-        --toC;
+        // C - integer
+        int fromC = fromR; // std::floor not needed
+        int toC = std::ceil(toR);
+        if (toC > vecin.size())
+            --toC;
 
-    // position in pieces table
-    int x2 = fromC;
+        // position in pieces table
+        int x2 = fromC;
 
-    // little speed up for really big pieces table, 10K+ size
-    const int toCMinusOne = toC - 1;
+        // little speed up for really big pieces table, 10K+ size
+        const int toCMinusOne = toC - 1;
 
-    // value in returned vector
-    float value = 0;
+        // value in returned vector
+        float value = 0;
 
-    // case when calculated range is (15.2 >= x < 15.7)
-    if (x2 == toCMinusOne) {
-      if (vecin[x2]) {
-        value += ratio;
-      }
-      ++x2;
+        // case when calculated range is (15.2 >= x < 15.7)
+        if (x2 == toCMinusOne) {
+            if (vecin[x2])
+                value += ratio;
+            ++x2;
+        }
+        // case when (15.2 >= x < 17.8)
+        else {
+            // subcase (15.2 >= x < 16)
+            if (x2 != fromR) {
+                if (vecin[x2])
+                    value += 1.0 - (fromR - fromC);
+                ++x2;
+            }
+
+            // subcase (16 >= x < 17)
+            for (; x2 < toCMinusOne; ++x2)
+                if (vecin[x2])
+                    value += 1.0;
+
+            // subcase (17 >= x < 17.8)
+            if (x2 == toCMinusOne) {
+                if (vecin[x2])
+                    value += 1.0 - (toC - toR);
+                ++x2;
+            }
+        }
+
+        // normalization <0, 1>
+        value /= ratio;
+
+        // float precision sometimes gives > 1, because in not possible to store irrational numbers
+        value = qMin(value, 1.0f);
+
+        result[x] = value;
     }
-    // case when (15.2 >= x < 17.8)
-    else {
-      // subcase (15.2 >= x < 16)
-      if (x2 != fromR) {
-        if (vecin[x2]) {
-          value += 1.0 - (fromR - fromC);
-        }
-        ++x2;
-      }
 
-      // subcase (16 >= x < 17)
-      for (; x2 < toCMinusOne; ++x2) {
-        if (vecin[x2]) {
-          value += 1.0;
-        }
-      }
-
-      // subcase (17 >= x < 17.8)
-      if (x2 == toCMinusOne) {
-        if (vecin[x2]) {
-          value += 1.0 - (toC - toR);
-        }
-        ++x2;
-      }
-    }
-
-    // normalization <0, 1>
-    value /= ratio;
-
-    // float precision sometimes gives > 1, because in not possible to store irrational numbers
-    value = qMin(value, (float)1.0);
-
-    result[x] = value;
-  }
-
-  return result;
+    return result;
 }
 
-
-int DownloadedPiecesBar::mixTwoColors(int &rgb1, int &rgb2, float ratio)
+bool DownloadedPiecesBar::updateImage(QImage &image)
 {
-  int r1 = qRed(rgb1);
-  int g1 = qGreen(rgb1);
-  int b1 = qBlue(rgb1);
-
-  int r2 = qRed(rgb2);
-  int g2 = qGreen(rgb2);
-  int b2 = qBlue(rgb2);
-
-  float ratio_n = 1.0 - ratio;
-  int r = (r1 * ratio_n) + (r2 * ratio);
-  int g = (g1 * ratio_n) + (g2 * ratio);
-  int b = (b1 * ratio_n) + (b2 * ratio);
-
-  return qRgb(r, g, b);
-}
-
-void DownloadedPiecesBar::updateImage()
-{
-  //  qDebug() << "updateImage";
-  QImage image2(width() - 2, 1, QImage::Format_RGB888);
-  if (image2.isNull()) {
-      qDebug() << "QImage image2() allocation failed, width():" << width();
-      return;
-  }
-
-  if (m_pieces.isEmpty()) {
-    image2.fill(0xffffff);
-    m_image = image2;
-    update();
-    return;
-  }
-
-  QVector<float> scaled_pieces = bitfieldToFloatVector(m_pieces, image2.width());
-  QVector<float> scaled_pieces_dl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
-
-  // filling image
-  for (int x = 0; x < scaled_pieces.size(); ++x)
-  {
-    float pieces2_val = scaled_pieces.at(x);
-    float pieces2_val_dl = scaled_pieces_dl.at(x);
-    if (pieces2_val_dl != 0)
-    {
-      float fill_ratio = pieces2_val + pieces2_val_dl;
-      float ratio = pieces2_val_dl / fill_ratio;
-
-      int mixedColor = mixTwoColors(m_pieceColor, m_dlPieceColor, ratio);
-      mixedColor = mixTwoColors(m_bgColor, mixedColor, fill_ratio);
-
-      image2.setPixel(x, 0, mixedColor);
+    //  qDebug() << "updateImage";
+    QImage image2(width() - 2 * borderWidth, 1, QImage::Format_RGB888);
+    if (image2.isNull()) {
+        qDebug() << "QImage image2() allocation failed, width():" << width();
+        return false;
     }
-    else
-    {
-      image2.setPixel(x, 0, m_pieceColors[pieces2_val * 255]);
+
+    if (m_pieces.isEmpty()) {
+        image2.fill(Qt::white);
+        image = image2;
+        return true;
     }
-  }
-  m_image = image2;
+
+    QVector<float> scaled_pieces = bitfieldToFloatVector(m_pieces, image2.width());
+    QVector<float> scaled_pieces_dl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
+
+    // filling image
+    for (int x = 0; x < scaled_pieces.size(); ++x) {
+        float pieces2_val = scaled_pieces.at(x);
+        float pieces2_val_dl = scaled_pieces_dl.at(x);
+        if (pieces2_val_dl != 0) {
+            float fill_ratio = pieces2_val + pieces2_val_dl;
+            float ratio = pieces2_val_dl / fill_ratio;
+
+            QRgb mixedColor = mixTwoColors(pieceColor().rgb(), m_dlPieceColor.rgb(), ratio);
+            mixedColor = mixTwoColors(backgroundColor().rgb(), mixedColor, fill_ratio);
+
+            image2.setPixel(x, 0, mixedColor);
+        }
+        else {
+            image2.setPixel(x, 0, pieceColors()[pieces2_val * 255]);
+        }
+    }
+    image = image2;
+    return true;
 }
 
 void DownloadedPiecesBar::setProgress(const QBitArray &pieces, const QBitArray &downloadedPieces)
 {
-  m_pieces = pieces;
-  m_downloadedPieces = downloadedPieces;
+    m_pieces = pieces;
+    m_downloadedPieces = downloadedPieces;
 
-  updateImage();
-  update();
+    requestImageUpdate();
 }
 
-void DownloadedPiecesBar::updatePieceColors()
+void DownloadedPiecesBar::setColors(const QColor &background, const QColor &border, const QColor &complete, const QColor &incomplete)
 {
-  m_pieceColors = QVector<int>(256);
-  for (int i = 0; i < 256; ++i) {
-    float ratio = (i / 255.0);
-    m_pieceColors[i] = mixTwoColors(m_bgColor, m_pieceColor, ratio);
-  }
+    m_dlPieceColor = incomplete;
+    base::setColors(background, border, complete);
 }
 
 void DownloadedPiecesBar::clear()
 {
-  m_image = QImage();
-  update();
+    m_pieces.clear();
+    m_downloadedPieces.clear();
+    base::clear();
 }
 
-void DownloadedPiecesBar::paintEvent(QPaintEvent *)
+QString DownloadedPiecesBar::simpleToolTipText() const
 {
-  QPainter painter(this);
-  QRect imageRect(1, 1, width() - 2, height() - 2);
-  if (m_image.isNull())
-  {
-    painter.setBrush(Qt::white);
-    painter.drawRect(imageRect);
-  }
-  else
-  {
-    if (m_image.width() != imageRect.width())
-      updateImage();
-    painter.drawImage(imageRect, m_image);
-  }
-  QPainterPath border;
-  border.addRect(0, 0, width() - 1, height() - 1);
-
-  painter.setPen(m_borderColor);
-  painter.drawPath(border);
+    return tr("White: Missing pieces") + '\n'
+           + tr("Green: Partial pieces") + '\n'
+           + tr("Blue: Completed pieces") + '\n';
 }
-
-void DownloadedPiecesBar::setColors(int background, int border, int complete, int incomplete)
-{
-  m_bgColor = background;
-  m_borderColor = border;
-  m_pieceColor = complete;
-  m_dlPieceColor = incomplete;
-
-  updatePieceColors();
-  updateImage();
-  update();
-}
-
-

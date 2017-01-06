@@ -27,20 +27,21 @@
  * exception statement from your version.
  */
 
+#include "downloadmanager.h"
+
 #include <QDateTime>
-#include <QNetworkRequest>
-#include <QNetworkProxy>
-#include <QNetworkCookieJar>
-#include <QNetworkReply>
+#include <QDebug>
 #include <QNetworkCookie>
 #include <QNetworkCookieJar>
+#include <QNetworkProxy>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QSslError>
 #include <QUrl>
-#include <QDebug>
 
 #include "base/preferences.h"
 #include "downloadhandler.h"
-#include "downloadmanager.h"
+#include "proxyconfigurationmanager.h"
 
 // Spoof Firefox 38 user agent to avoid web server banning
 const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0";
@@ -74,6 +75,9 @@ namespace
 
             Preferences::instance()->setNetworkCookies(cookies);
         }
+
+        using QNetworkCookieJar::allCookies;
+        using QNetworkCookieJar::setAllCookies;
 
 #ifndef QBT_USES_QT5
         virtual bool deleteCookie(const QNetworkCookie &cookie)
@@ -188,6 +192,16 @@ bool DownloadManager::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList,
     return m_networkManager.cookieJar()->setCookiesFromUrl(cookieList, url);
 }
 
+QList<QNetworkCookie> DownloadManager::allCookies() const
+{
+    return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->allCookies();
+}
+
+void DownloadManager::setAllCookies(const QList<QNetworkCookie> &cookieList)
+{
+    static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->setAllCookies(cookieList);
+}
+
 bool DownloadManager::deleteCookie(const QNetworkCookie &cookie)
 {
     return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->deleteCookie(cookie);
@@ -195,16 +209,16 @@ bool DownloadManager::deleteCookie(const QNetworkCookie &cookie)
 
 void DownloadManager::applyProxySettings()
 {
+    auto proxyManager = ProxyConfigurationManager::instance();
+    ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     QNetworkProxy proxy;
-    const Preferences* const pref = Preferences::instance();
 
-    if (pref->isProxyEnabled() && !pref->isProxyOnlyForTorrents()) {
+    if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None)) {
         // Proxy enabled
-        proxy.setHostName(pref->getProxyIp());
-        proxy.setPort(pref->getProxyPort());
+        proxy.setHostName(proxyConfig.ip);
+        proxy.setPort(proxyConfig.port);
         // Default proxy type is HTTP, we must change if it is SOCKS5
-        const int proxyType = pref->getProxyType();
-        if ((proxyType == Proxy::SOCKS5) || (proxyType == Proxy::SOCKS5_PW)) {
+        if ((proxyConfig.type == ProxyType::SOCKS5) || (proxyConfig.type == ProxyType::SOCKS5_PW)) {
             qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
             proxy.setType(QNetworkProxy::Socks5Proxy);
         }
@@ -213,10 +227,10 @@ void DownloadManager::applyProxySettings()
             proxy.setType(QNetworkProxy::HttpProxy);
         }
         // Authentication?
-        if (pref->isProxyAuthEnabled()) {
+        if (proxyManager->isAuthenticationRequired()) {
             qDebug("Proxy requires authentication, authenticating");
-            proxy.setUser(pref->getProxyUsername());
-            proxy.setPassword(pref->getProxyPassword());
+            proxy.setUser(proxyConfig.username);
+            proxy.setPassword(proxyConfig.password);
         }
     }
     else {

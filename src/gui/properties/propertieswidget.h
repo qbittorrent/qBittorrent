@@ -55,80 +55,81 @@ class QAction;
 class QTimer;
 QT_END_NAMESPACE
 
-class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(PropertiesWidget)
+class PropertiesWidget: public QWidget, private Ui::PropertiesWidget
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(PropertiesWidget)
 
 public:
-  enum SlideState {REDUCED, VISIBLE};
+    enum SlideState {REDUCED, VISIBLE};
 
 public:
-  PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList);
-  ~PropertiesWidget();
-  BitTorrent::TorrentHandle *getCurrentTorrent() const;
-  TrackerList* getTrackerList() const { return trackerList; }
-  PeerListWidget* getPeerList() const { return peersList; }
-  QTreeView* getFilesList() const { return filesList; }
-  SpeedWidget* getSpeedWidget() const { return speedWidget; }
+    PropertiesWidget(QWidget *parent, MainWindow *main_window, TransferListWidget *transferList);
+    ~PropertiesWidget();
+    BitTorrent::TorrentHandle *getCurrentTorrent() const;
+    TrackerList *getTrackerList() const { return trackerList; }
+    PeerListWidget *getPeerList() const { return peersList; }
+    QTreeView *getFilesList() const { return filesList; }
+    SpeedWidget *getSpeedWidget() const { return speedWidget; }
 
 protected:
-  QPushButton* getButtonFromIndex(int index);
-  bool applyPriorities();
+    QPushButton *getButtonFromIndex(int index);
+    bool applyPriorities();
 
 protected slots:
-  void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
-  void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
-  void loadUrlSeeds();
-  void askWebSeed();
-  void deleteSelectedUrlSeeds();
-  void copySelectedWebSeedsToClipboard() const;
-  void editWebSeed();
-  void displayFilesListMenu(const QPoint& pos);
-  void displayWebSeedListMenu(const QPoint& pos);
-  void filteredFilesChanged();
-  void showPiecesDownloaded(bool show);
-  void showPiecesAvailability(bool show);
-  void renameSelectedFile();
-  void openSelectedFile();
+    void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void loadUrlSeeds();
+    void askWebSeed();
+    void deleteSelectedUrlSeeds();
+    void copySelectedWebSeedsToClipboard() const;
+    void editWebSeed();
+    void displayFilesListMenu(const QPoint &pos);
+    void displayWebSeedListMenu(const QPoint &pos);
+    void filteredFilesChanged();
+    void showPiecesDownloaded(bool show);
+    void showPiecesAvailability(bool show);
+    void renameSelectedFile();
+    void openSelectedFile();
 
 public slots:
-  void setVisibility(bool visible);
-  void loadDynamicData();
-  void clear();
-  void readSettings();
-  void saveSettings();
-  void reloadPreferences();
-  void openDoubleClickedFile(const QModelIndex &);
-  void loadTrackers(BitTorrent::TorrentHandle *const torrent);
+    void setVisibility(bool visible);
+    void loadDynamicData();
+    void clear();
+    void readSettings();
+    void saveSettings();
+    void reloadPreferences();
+    void openDoubleClickedFile(const QModelIndex &);
+    void loadTrackers(BitTorrent::TorrentHandle *const torrent);
 
 private:
-  void openFile(const QModelIndex &index);
-  void openFolder(const QModelIndex &index, bool containing_folder);
+    void openFile(const QModelIndex &index);
+    void openFolder(const QModelIndex &index, bool containing_folder);
 
 private:
-  TransferListWidget *transferList;
-  MainWindow *main_window;
-  BitTorrent::TorrentHandle *m_torrent;
-  QTimer *refreshTimer;
-  SlideState state;
-  TorrentContentFilterModel *PropListModel;
-  PropListDelegate *PropDelegate;
-  PeerListWidget *peersList;
-  TrackerList *trackerList;
-  SpeedWidget *speedWidget;
-  QList<int> slideSizes;
-  DownloadedPiecesBar *downloaded_pieces;
-  PieceAvailabilityBar *pieces_availability;
-  PropTabBar *m_tabBar;
-  LineEdit *m_contentFilterLine;
-  QShortcut *editHotkeyFile;
-  QShortcut *editHotkeyWeb;
-  QShortcut *deleteHotkeyWeb;
-  QShortcut *openHotkeyFile;
+    TransferListWidget *transferList;
+    MainWindow *main_window;
+    BitTorrent::TorrentHandle *m_torrent;
+    QTimer *refreshTimer;
+    SlideState state;
+    TorrentContentFilterModel *PropListModel;
+    PropListDelegate *PropDelegate;
+    PeerListWidget *peersList;
+    TrackerList *trackerList;
+    SpeedWidget *speedWidget;
+    QList<int> slideSizes;
+    DownloadedPiecesBar *downloaded_pieces;
+    PieceAvailabilityBar *pieces_availability;
+    PropTabBar *m_tabBar;
+    LineEdit *m_contentFilterLine;
+    QShortcut *editHotkeyFile;
+    QShortcut *editHotkeyWeb;
+    QShortcut *deleteHotkeyWeb;
+    QShortcut *openHotkeyFile;
 
 private slots:
-  void filterText(const QString& filter);
-  void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+    void filterText(const QString &filter);
+    void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 };
 
 #endif // PROPERTIESWIDGET_H

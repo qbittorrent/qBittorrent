@@ -27,11 +27,16 @@
  */
 
 #include "advancedsettings.h"
+
 #include <QFont>
 #include <QHeaderView>
 #include <QHostAddress>
 #include <QNetworkInterface>
+
+#include "app/application.h"
+#include "base/bittorrent/session.h"
 #include "base/preferences.h"
+#include "gui/mainwindow.h"
 
 enum AdvSettingsCols
 {
@@ -45,6 +50,8 @@ enum AdvSettingsRows
     QBITTORRENT_HEADER,
     // network interface
     NETWORK_IFACE,
+    //Optional network address
+    NETWORK_IFACE_ADDRESS,
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
@@ -58,6 +65,8 @@ enum AdvSettingsRows
     RESOLVE_HOSTS,
     RESOLVE_COUNTRIES,
     PROGRAM_NOTIFICATIONS,
+    TORRENT_ADDED_NOTIFICATIONS,
+    DOWNLOAD_TRACKER_FAVICON,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
@@ -80,7 +89,7 @@ enum AdvSettingsRows
     // tracker
     TRACKER_EXCHANGE,
     ANNOUNCE_ALL_TRACKERS,
-    NETWORK_ADDRESS,
+    ANNOUNCE_IP,
 
     ROW_COUNT
 };
@@ -101,6 +110,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
     connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
+    connect(&combo_iface, SIGNAL(currentIndexChanged(int)), SLOT(updateInterfaceAddressCombo()));
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -110,49 +120,63 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 void AdvancedSettings::saveAdvancedSettings()
 {
     Preferences* const pref = Preferences::instance();
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+
     // Disk write cache
-    pref->setDiskCacheSize(spin_cache.value());
-    pref->setDiskCacheTTL(spin_cache_ttl.value());
+    session->setDiskCacheSize(spin_cache.value());
+    session->setDiskCacheTTL(spin_cache_ttl.value());
     // Enable OS cache
-    pref->setOsCache(cb_os_cache.isChecked());
+    session->setUseOSCache(cb_os_cache.isChecked());
     // Save resume data interval
-    pref->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
+    session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
-    pref->setOutgoingPortsMin(outgoing_ports_min.value());
-    pref->setOutgoingPortsMax(outgoing_ports_max.value());
+    session->setOutgoingPortsMin(outgoing_ports_min.value());
+    session->setOutgoingPortsMax(outgoing_ports_max.value());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
-    pref->setRefreshInterval(spin_list_refresh.value());
+    session->setRefreshInterval(spin_list_refresh.value());
     // Peer resolution
     pref->resolvePeerCountries(cb_resolve_countries.isChecked());
     pref->resolvePeerHostNames(cb_resolve_hosts.isChecked());
     // Max Half-Open connections
-    pref->setMaxHalfOpenConnections(spin_maxhalfopen.value());
+    session->setMaxHalfOpenConnections(spin_maxhalfopen.value());
     // Super seeding
-    pref->enableSuperSeeding(cb_super_seeding.isChecked());
+    session->setSuperSeedingEnabled(cb_super_seeding.isChecked());
     // Network interface
     if (combo_iface.currentIndex() == 0) {
         // All interfaces (default)
-        pref->setNetworkInterface(QString::null);
-        pref->setNetworkInterfaceName(QString::null);
+        session->setNetworkInterface(QString());
+        session->setNetworkInterfaceName(QString());
     }
     else {
-        pref->setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
-        pref->setNetworkInterfaceName(combo_iface.currentText());
+        session->setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
+        session->setNetworkInterfaceName(combo_iface.currentText());
     }
-    // Listen on IPv6 address
-    pref->setListenIPv6(cb_listen_ipv6.isChecked());
-    // Network address
-    QHostAddress addr(txt_network_address.text().trimmed());
-    if (addr.isNull())
-        pref->setNetworkAddress("");
-    else
-        pref->setNetworkAddress(addr.toString());
+
+    // Interface address
+    if (combo_iface_address.currentIndex() == 0) {
+        // All addresses (default)
+        session->setNetworkInterfaceAddress(QString::null);
+    }
+    else {
+        QHostAddress ifaceAddr(combo_iface_address.currentText().trimmed());
+        ifaceAddr.isNull() ? session->setNetworkInterfaceAddress(QString::null) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
+    }
+    session->setIPv6Enabled(cb_listen_ipv6.isChecked());
+    // Announce IP
+    QHostAddress addr(txtAnnounceIP.text().trimmed());
+    session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
+
     // Program notification
-    pref->useProgramNotification(cb_program_notifications.isChecked());
+    MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    mainWindow->setNotificationsEnabled(cb_program_notifications.isChecked());
+    mainWindow->setTorrentAddedNotificationsEnabled(cb_torrent_added_notifications.isChecked());
+    // Misc GUI properties
+    mainWindow->setDownloadTrackerFavicon(cb_tracker_favicon.isChecked());
+
     // Tracker
-    pref->setTrackerEnabled(cb_tracker_status.isChecked());
+    session->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     pref->setUpdateCheckEnabled(cb_update_check.isChecked());
@@ -163,8 +187,8 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
     // Tracker exchange
-    pref->setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
-    pref->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
+    session->setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
+    session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
 void AdvancedSettings::updateCacheSpinSuffix(int value)
@@ -175,9 +199,48 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
         spin_cache.setSuffix(tr(" MiB"));
 }
 
+void AdvancedSettings::updateInterfaceAddressCombo()
+{
+    // Try to get the currently selected interface name
+    const QString ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString(); // Empty string for the first element
+    const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
+
+    //Clear all items and reinsert them, default to all
+    combo_iface_address.clear();
+    combo_iface_address.addItem(tr("All addresses"));
+    combo_iface_address.setCurrentIndex(0);
+
+    auto populateCombo = [this, &currentAddress](const QString &ip, const QAbstractSocket::NetworkLayerProtocol &protocol)
+    {
+        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
+        //Only take ipv4 for now?
+        if (protocol != QAbstractSocket::IPv4Protocol && protocol != QAbstractSocket::IPv6Protocol)
+            return;
+        combo_iface_address.addItem(ip);
+        //Try to select the last added one
+        if (ip == currentAddress)
+            combo_iface_address.setCurrentIndex(combo_iface_address.count() - 1);
+    };
+
+    if (ifaceName.isEmpty()) {
+        foreach (const QHostAddress &ip, QNetworkInterface::allAddresses())
+            populateCombo(ip.toString(), ip.protocol());
+    }
+    else {
+        const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
+        const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
+        foreach (const QNetworkAddressEntry &entry, addresses) {
+            const QHostAddress ip = entry.ip();
+            populateCombo(ip.toString(), ip.protocol());
+        }
+    }
+}
+
 void AdvancedSettings::loadAdvancedSettings()
 {
     const Preferences* const pref = Preferences::instance();
+    const BitTorrent::Session *const session = BitTorrent::Session::instance();
+
     // add section headers
     QFont boldFont;
     boldFont.setBold(true);
@@ -200,33 +263,33 @@ void AdvancedSettings::loadAdvancedSettings()
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
     spin_cache.setMaximum(1536);
 #endif
-    spin_cache.setValue(pref->diskCacheSize());
+    spin_cache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     addRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);
-    spin_cache_ttl.setValue(pref->diskCacheTTL());
+    spin_cache_ttl.setValue(session->diskCacheTTL());
     spin_cache_ttl.setSuffix(tr(" s", " seconds"));
     addRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
     // Enable OS cache
-    cb_os_cache.setChecked(pref->osCache());
+    cb_os_cache.setChecked(session->useOSCache());
     addRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
-    spin_save_resume_data_interval.setValue(pref->saveResumeDataInterval());
+    spin_save_resume_data_interval.setValue(session->saveResumeDataInterval());
     spin_save_resume_data_interval.setSuffix(tr(" m", " minutes"));
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &spin_save_resume_data_interval);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);
-    outgoing_ports_min.setValue(pref->outgoingPortsMin());
+    outgoing_ports_min.setValue(session->outgoingPortsMin());
     addRow(OUTGOING_PORT_MIN, tr("Outgoing ports (Min) [0: Disabled]"), &outgoing_ports_min);
     // Outgoing port Min
     outgoing_ports_max.setMinimum(0);
     outgoing_ports_max.setMaximum(65535);
-    outgoing_ports_max.setValue(pref->outgoingPortsMax());
+    outgoing_ports_max.setValue(session->outgoingPortsMax());
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref->recheckTorrentsOnCompletion());
@@ -234,7 +297,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // Transfer list refresh interval
     spin_list_refresh.setMinimum(30);
     spin_list_refresh.setMaximum(99999);
-    spin_list_refresh.setValue(pref->getRefreshInterval());
+    spin_list_refresh.setValue(session->refreshInterval());
     spin_list_refresh.setSuffix(tr(" ms", " milliseconds"));
     addRow(LIST_REFRESH, tr("Transfer list refresh interval"), &spin_list_refresh);
     // Resolve Peer countries
@@ -246,17 +309,23 @@ void AdvancedSettings::loadAdvancedSettings()
     // Max Half Open connections
     spin_maxhalfopen.setMinimum(0);
     spin_maxhalfopen.setMaximum(99999);
-    spin_maxhalfopen.setValue(pref->getMaxHalfOpenConnections());
+    spin_maxhalfopen.setValue(session->maxHalfOpenConnections());
     addRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spin_maxhalfopen);
     // Super seeding
-    cb_super_seeding.setChecked(pref->isSuperSeedingEnabled());
+    cb_super_seeding.setChecked(session->isSuperSeedingEnabled());
     addRow(SUPER_SEEDING, tr("Strict super seeding"), &cb_super_seeding);
     // Network interface
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
-    const QString current_iface = pref->getNetworkInterface();
+    const QString current_iface = session->networkInterface();
     bool interface_exists = current_iface.isEmpty();
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
+        // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
+        // Tested in Qt 5.6.0. For more info see:
+        // https://github.com/qbittorrent/qBittorrent/issues/5131
+        // https://github.com/qbittorrent/qBittorrent/pull/5135
+        if (iface.addressEntries().isEmpty()) continue;
+
         if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
         combo_iface.addItem(iface.humanReadableName(), iface.name());
         if (!current_iface.isEmpty() && (iface.name() == current_iface)) {
@@ -267,21 +336,33 @@ void AdvancedSettings::loadAdvancedSettings()
     }
     // Saved interface does not exist, show it anyway
     if (!interface_exists) {
-        combo_iface.addItem(pref->getNetworkInterfaceName(), current_iface);
+        combo_iface.addItem(session->networkInterfaceName(), current_iface);
         combo_iface.setCurrentIndex(i);
     }
     addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
+    // Network interface address
+    updateInterfaceAddressCombo();
+    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &combo_iface_address);
     // Listen on IPv6 address
-    cb_listen_ipv6.setChecked(pref->getListenIPv6());
+    cb_listen_ipv6.setChecked(session->isIPv6Enabled());
     addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
-    // Network address
-    txt_network_address.setText(pref->getNetworkAddress());
-    addRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
+    // Announce IP
+    txtAnnounceIP.setText(session->announceIP());
+    addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &txtAnnounceIP);
+
     // Program notifications
-    cb_program_notifications.setChecked(pref->useProgramNotification());
-    addRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
+    const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    cb_program_notifications.setChecked(mainWindow->isNotificationsEnabled());
+    addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &cb_program_notifications);
+    // Torrent added notifications
+    cb_torrent_added_notifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
+    addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &cb_torrent_added_notifications);
+    // Download tracker's favicon
+    cb_tracker_favicon.setChecked(mainWindow->isDownloadTrackerFavicon());
+    addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &cb_tracker_favicon);
+
     // Tracker State
-    cb_tracker_status.setChecked(pref->isTrackerEnabled());
+    cb_tracker_status.setChecked(session->isTrackerEnabled());
     addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);
     // Tracker port
     spin_tracker_port.setMinimum(1);
@@ -300,10 +381,10 @@ void AdvancedSettings::loadAdvancedSettings()
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
     // Tracker exchange
-    cb_enable_tracker_ext.setChecked(pref->trackerExchangeEnabled());
+    cb_enable_tracker_ext.setChecked(session->isTrackerExchangeEnabled());
     addRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
     // Announce to all trackers
-    cb_announce_all_trackers.setChecked(pref->announceToAllTrackers());
+    cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
     addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
 }
 

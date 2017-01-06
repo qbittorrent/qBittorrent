@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>502</width>
-    <height>137</height>
+    <width>415</width>
+    <height>123</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,41 +18,26 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0" rowspan="2">
       <widget class="QLabel" name="label_4">
-       <property name="minimumSize">
-        <size>
-         <width>48</width>
-         <height>48</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>48</width>
-         <height>48</height>
-        </size>
-       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../icons.qrc">:/icons/oxygen/application-rss+xml.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
+        <pixmap resource="../../icons.qrc">:/icons/oxygen/application-rss+xml.png</pixmap>
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="1">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>RSS feeds refresh interval:</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item row="0" column="2">
       <widget class="QSpinBox" name="spinRSSRefresh">
+       <property name="suffix">
+        <string> min</string>
+       </property>
        <property name="minimum">
         <number>1</number>
        </property>
@@ -64,24 +49,14 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>minutes</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
+     <item row="1" column="1">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Maximum number of articles per feed:</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="1" column="2">
       <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
        <property name="maximum">
         <number>9999</number>
@@ -91,20 +66,20 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -119,7 +94,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="../../icons.qrc"/>
  </resources>
  <connections>
   <connection>

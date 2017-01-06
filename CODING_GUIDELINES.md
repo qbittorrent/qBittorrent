@@ -29,8 +29,10 @@ class MyOtherClass
 {
 public:
     //code
+    
 protected:
     //code
+    
 private:
     //code
 };
@@ -87,10 +89,14 @@ default:
 }
 ```
 
-#### d. single-line blocks (lambdas, initializer lists etc.) ####
+#### d. Brace enclosed initializers ####
+Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
+But you must insert a space between the variable name and initializer.
 ```c++
- {} // empty - space before {
- { body } // spaces around { and before }
+Class obj {}; // empty
+Class obj {expr};
+Class obj {expr1, /*...,*/ exprN};
+QVariantMap map {{"key1", 5}, {"key2", 10}};
 ```
 
 ### 2. If blocks ###
@@ -173,11 +179,11 @@ All names should be camelCased.
 #### a. Type names and namespaces ####
 Type names and namespaces start with Upper case letter (except POD types).
 ```c++
-class ClassName {}
+class ClassName {};
 
-struct StructName {}
+struct StructName {};
 
-enum EnumName {}
+enum EnumName {};
 
 typedef QList<ClassName> SomeList;
 
@@ -201,7 +207,40 @@ class MyClass
 }
 ```
 
-### 8. Misc.###
+### 8. Header inclusion order.###
+The headers should be placed in the following order:
+ 1. Module header (in .cpp)
+ 2. System/Qt/Boost etc. headers (splitted in subcategories if you have many).
+ 3. Application headers, starting from *Base* headers.
+
+The headers should be ordered alphabetically within each group (subgroup).<br/>
+<br/>
+Example:
+```c++
+// examplewidget.cpp
+
+#include "examplewidget.h"
+
+#include <cmath>
+#include <cstdio>
+
+#include <QDateTime>
+#include <QList>
+#include <QString>
+#include <QUrl>
+
+#include <libtorrent/version.hpp>
+
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/infohash.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "ui_examplewidget.h"
+
+```
+
+### 9. Misc.###
 
 * Line breaks for long lines with operation:
 
@@ -211,47 +250,18 @@ a += "b"
   + "d";
 ```
 
-* Initializers
-
-We allow brace enclosed initializers only for aggregates and arrays/containers.<br />
-Brace enclosed initializer MUST be used with equality sign if it follows the variable declaration.<br />
-Brace enclosed initializer MUST be additionally enclosed in parentheses if it is used in constructor initialization list.<br />
-Some valid use cases:
-```c++
-// aggregate
-Person john = { "John", "Smith", 21 };
-Person *john = new Person { "John", "Smith", 21 };
-
-// array
-int array[] = { 1, 2, 3, 4 };
-
-// container
-QHash<QString, QString> map = {
-    { "key1", "value1" },
-    { "key2", "value2" }
-);
-
-// member array
-SomeClass::SomeClass(BaseClass *parent)
-    : BaseClass(parent)
-    , m_someArrayMember({ 1, 2, 3, 4 })
-{
-}
-
-// return from function
-Person getPersonByName(const QString &name)
-{
-    // do something
-    return { name, surname, age };
-}
-
-// function argument
-doSomething({ name, surname, age }, someOtherArg);
-```
-
 * **auto** keyword
 
-We allow the use of the **auto** keyword only where it doesn't break the readability of the code (i.e. either we can gather enough information about the type from the right part of the expression, or we do not need to know the exact type), or where it is strictly necessary (for example, to compute the type of a lambda, etc.).<br />
+We allow the use of the **auto** keyword only where it is strictly necessary 
+(for example, to declare a lambda object, etc.), or where it **enhances** the readability of the code.
+Declarations for which one can gather enough information about the object interface (type) from its name 
+or the usage pattern (an iterator or a loop variable are good examples of clear patterns) 
+or the right part of the expression nicely fit here.<br/>
+<br/>
+When weighing whether to use an auto-typed variable please think about potential reviewers of your code, 
+who will read it as a plain diff (on github.com, for instance). Please make sure that such reviewers can 
+understand the code completely and without excessive effort.<br/>
+<br/>
 Some valid use cases:
 ```c++
 template <typename List>
@@ -274,9 +284,17 @@ auto spinBox = static_cast<QSpinBox*>(sender());
 
 * Space around operations eg `a = b + c` or `a=b+c`:
 
-Before and after the assignment there should be a space. One exception could be: for loops.
+Before and after the assignment and other binary (and ternary) operators there should be a space.<br/>
+There should not be a space between increment/decrement and its operand.<br/>
+Some valid use cases:
 ```c++
-for (int a=0; a<b; ++b) {
+a += 20;
+a = (b <= MAX_B ? b : MAX_B);
+++a;
+b--;
+
+for (int a = 0; a < b; ++b) {
+    // code
 }
 ```
 
@@ -286,5 +304,5 @@ for (int a=0; a<b; ++b) {
 
 * Method definitions aren't allowed in header files
 
-### 9. Not covered above###
+###10. Not covered above###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.

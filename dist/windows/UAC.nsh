@@ -228,6 +228,8 @@ pop $_LOGICLIB_TEMP
 !undef _UAC_ParseDefineFlags_orin_this
 !ifdef _UAC_ParseDefineFlags_orin_f1
 	!undef _UAC_ParseDefineFlags_orin_f1
+!endif
+!ifdef _UAC_ParseDefineFlags_orin_f2
 	!undef _UAC_ParseDefineFlags_orin_f2
 !endif
 !macroend

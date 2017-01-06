@@ -63,9 +63,9 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
     QComboBox* editor = new QComboBox(parent);
 
     editor->setFocusPolicy(Qt::StrongFocus);
-    editor->addItem(tr("Watch Folder"));
-    editor->addItem(tr("Default Folder"));
-    editor->addItem(tr("Browse..."));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DEFAULT_LOCATION));
+    editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::CUSTOM_LOCATION));
     if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION) {
         editor->insertSeparator(3);
         editor->addItem(index.data().toString());
@@ -99,7 +99,7 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
         model->setData(
                     index,
                     QFileDialog::getExistingDirectory(
-                        0, tr("Choose save path"),
+                        0, tr("Select save location"),
                         index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
                             index.data().toString() :
                             BitTorrent::Session::instance()->defaultSavePath()),

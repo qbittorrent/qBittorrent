@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QMessageBox>
+#include <QWheelEvent>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
@@ -57,7 +58,6 @@
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
     , m_properties(parent)
-    , m_resolveCountries(false)
 {
     // Load settings
     loadSettings();
@@ -91,9 +91,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setModel(m_proxyModel);
     hideColumn(PeerListDelegate::IP_HIDDEN);
     hideColumn(PeerListDelegate::COL_COUNT);
-    if (!Preferences::instance()->resolvePeerCountries())
+    m_resolveCountries = Preferences::instance()->resolvePeerCountries();
+    if (!m_resolveCountries)
         hideColumn(PeerListDelegate::COUNTRY);
-    m_wasCountryColHidden = isColumnHidden(PeerListDelegate::COUNTRY);
     //Ensure that at least one column is visible at all times
     bool atLeastOne = false;
     for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++) {
@@ -108,7 +108,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     //its size is 0, because explicitly 'showing' the column isn't enough
     //in the above scenario.
     for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++)
-        if (!columnWidth(i))
+        if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -125,8 +125,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
     connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
     handleSortColumnChanged(header()->sortIndicatorSection());
-    m_copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
-	
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
+
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -208,14 +208,12 @@ void PeerListWidget::updatePeerCountryResolutionState()
         m_resolveCountries = !m_resolveCountries;
         if (m_resolveCountries) {
             loadPeers(m_properties->getCurrentTorrent());
-            if (!m_wasCountryColHidden) {
-                showColumn(PeerListDelegate::COUNTRY);
+            showColumn(PeerListDelegate::COUNTRY);
+            if (columnWidth(PeerListDelegate::COUNTRY) <= 0)
                 resizeColumnToContents(PeerListDelegate::COUNTRY);
-            }
         }
         else {
             hideColumn(PeerListDelegate::COUNTRY);
-            m_wasCountryColHidden = false; // to forcefully enable that column if the user decides to resolve countries again
         }
     }
 }
@@ -236,7 +234,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     QAction *banAct = 0;
     QAction *copyPeerAct = 0;
     if (!selectionModel()->selectedRows().isEmpty()) {
-        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy selected"));
+        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
         menu.addSeparator();
         banAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
         emptyMenu = false;
@@ -458,3 +456,16 @@ void PeerListWidget::handleSortColumnChanged(int col)
     }
 }
 
+void PeerListWidget::wheelEvent(QWheelEvent *event)
+{
+    event->accept();
+
+    if(event->modifiers() & Qt::ShiftModifier) {
+        // Shift + scroll = horizontal scroll
+        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
+}

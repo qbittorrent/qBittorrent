@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christian Kandeler, Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -29,28 +29,32 @@
  */
 
 #include "updownratiodlg.h"
+
+#include "base/bittorrent/session.h"
 #include "ui_updownratiodlg.h"
 
-#include "base/preferences.h"
-
 UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
-    qreal maxValue, QWidget *parent)
-        : QDialog(parent), ui(new Ui::UpDownRatioDlg)
+                               qreal maxValue, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::UpDownRatioDlg)
 {
     ui->setupUi(this);
+
     if (useDefault) {
         ui->useDefaultButton->setChecked(true);
-    } else if (initialValue == -1) {
+    }
+    else if (initialValue == -1) {
         ui->noLimitButton->setChecked(true);
-        initialValue = Preferences::instance()->getGlobalMaxRatio();
-    } else {
+        initialValue = BitTorrent::Session::instance()->globalMaxRatio();
+    }
+    else {
         ui->torrentLimitButton->setChecked(true);
     }
+
     ui->ratioSpinBox->setMinimum(0);
     ui->ratioSpinBox->setMaximum(maxValue);
     ui->ratioSpinBox->setValue(initialValue);
-    connect(ui->buttonGroup, SIGNAL(buttonClicked(int)),
-        SLOT(handleRatioTypeChanged()));
+    connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), SLOT(handleRatioTypeChanged()));
     handleRatioTypeChanged();
 }
 

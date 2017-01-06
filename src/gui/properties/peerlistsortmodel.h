@@ -43,21 +43,16 @@ public:
 
 protected:
   bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
-    if (sortColumn() == PeerListDelegate::IP || sortColumn() == PeerListDelegate::CLIENT) {
-      QVariant vL = sourceModel()->data(left);
-      QVariant vR = sourceModel()->data(right);
-      if (!(vL.isValid() && vR.isValid()))
-        return QSortFilterProxyModel::lessThan(left, right);
-      Q_ASSERT(vL.isValid());
-      Q_ASSERT(vR.isValid());
+  switch (sortColumn()) {
+  case PeerListDelegate::IP:
+  case PeerListDelegate::CLIENT: {
+    QString vL = left.data().toString();
+    QString vR = right.data().toString();
+    return Utils::String::naturalCompareCaseInsensitive(vL, vR);
+  }
+  };
 
-      bool res = false;
-      if (Utils::String::naturalSort(vL.toString(), vR.toString(), res))
-        return res;
-
-      return QSortFilterProxyModel::lessThan(left, right);
-    }
-    return QSortFilterProxyModel::lessThan(left, right);
+  return QSortFilterProxyModel::lessThan(left, right);
   }
 };
 

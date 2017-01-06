@@ -136,6 +136,7 @@ public:
     void addItem(const QString &tracker, const QString &hash);
     void removeItem(const QString &tracker, const QString &hash);
     void changeTrackerless(bool trackerless, const QString &hash);
+    void setDownloadTrackerFavicon(bool value);
 
 public slots:
     void trackerSuccess(const QString &hash, const QString &tracker);
@@ -165,6 +166,7 @@ private:
     QHash<QString, QStringList> m_warnings;
     QStringList m_iconPaths;
     int m_totalTorrents;
+    bool m_downloadTrackerFavicon;
 };
 
 class TransferListFiltersWidget: public QFrame
@@ -173,6 +175,7 @@ class TransferListFiltersWidget: public QFrame
 
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
+    void setDownloadTrackerFavicon(bool value);
 
 public slots:
     void addTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);

@@ -33,6 +33,7 @@
 #include <QLibraryInfo>
 #include <QSysInfo>
 #include <QProcess>
+#include <QAtomicInt>
 
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
@@ -48,7 +49,7 @@
 #endif // Q_OS_MAC
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
-#include "shutdownconfirm.h"
+#include "shutdownconfirmdlg.h"
 #else // DISABLE_GUI
 #include <iostream>
 #endif // DISABLE_GUI
@@ -69,6 +70,7 @@
 #include "base/net/smtp.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 
@@ -96,9 +98,7 @@ namespace
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
-#ifndef DISABLE_GUI
-    , m_shutdownAct(ShutdownAction::None)
-#endif
+    , m_shutdownAct(ShutdownDialogAction::Exit)
 {
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -131,6 +131,13 @@ Application::Application(const QString &id, int &argc, char **argv)
 
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
 }
+
+#ifndef DISABLE_GUI
+QPointer<MainWindow> Application::mainWindow()
+{
+    return m_window;
+}
+#endif
 
 bool Application::isFileLoggerEnabled() const
 {
@@ -236,6 +243,50 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
+void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) const
+{
+    QString program = Preferences::instance()->getAutoRunProgram();
+    program.replace("%N", torrent->name());
+    program.replace("%L", torrent->category());
+    program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
+    program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
+    program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
+    program.replace("%C", QString::number(torrent->filesCount()));
+    program.replace("%Z", QString::number(torrent->totalSize()));
+    program.replace("%T", torrent->currentTracker());
+    program.replace("%I", torrent->hash());
+
+    Logger *logger = Logger::instance();
+    logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name()).arg(program));
+
+#if defined(Q_OS_UNIX)
+    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
+#elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
+    program.prepend(QLatin1String("\"")).append(QLatin1String("\""));
+    program.prepend(Utils::Misc::windowsSystemPath() + QLatin1String("\\cmd.exe /C "));
+    const int cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
+    if ((program.size() + 1) > cmdMaxLength) {
+        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(cmdMaxLength), Log::CRITICAL);
+        return;
+    }
+
+    STARTUPINFOW si = {0};
+    si.cb = sizeof(si);
+    PROCESS_INFORMATION pi = {0};
+
+    WCHAR *arg = new WCHAR[program.size() + 1];
+    program.toWCharArray(arg);
+    arg[program.size()] = L'\0';
+    if (CreateProcessW(NULL, arg, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)) {
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+    delete[] arg;
+#else
+    QProcess::startDetached(program);
+#endif
+}
+
 void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent)
 {
     // Prepare mail content
@@ -260,75 +311,58 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
     Preferences *const pref = Preferences::instance();
 
     // AutoRun program
-    if (pref->isAutoRunEnabled()) {
-        QString program = pref->getAutoRunProgram();
-
-        program.replace("%N", torrent->name());
-        program.replace("%L", torrent->category());
-        program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
-        program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
-        program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
-        program.replace("%C", QString::number(torrent->filesCount()));
-        program.replace("%Z", QString::number(torrent->totalSize()));
-        program.replace("%T", torrent->currentTracker());
-        program.replace("%I", torrent->hash());
-
-        QProcess::startDetached(program);
-    }
+    if (pref->isAutoRunEnabled())
+        runExternalProgram(torrent);
 
     // Mail notification
-    if (pref->isMailNotificationEnabled())
+    if (pref->isMailNotificationEnabled()) {
+        Logger::instance()->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
+    }
 }
 
 void Application::allTorrentsFinished()
 {
-#ifndef DISABLE_GUI
     Preferences *const pref = Preferences::instance();
+    bool isExit = pref->shutdownqBTWhenDownloadsComplete();
+    bool isShutdown = pref->shutdownWhenDownloadsComplete();
+    bool isSuspend = pref->suspendWhenDownloadsComplete();
+    bool isHibernate = pref->hibernateWhenDownloadsComplete();
 
-    bool will_shutdown = (pref->shutdownWhenDownloadsComplete()
-                          || pref->shutdownqBTWhenDownloadsComplete()
-                          || pref->suspendWhenDownloadsComplete()
-                          || pref->hibernateWhenDownloadsComplete());
+    bool haveAction = isExit || isShutdown || isSuspend || isHibernate;
+    if (!haveAction) return;
 
-    // Auto-Shutdown
-    if (will_shutdown) {
-        bool suspend = pref->suspendWhenDownloadsComplete();
-        bool hibernate = pref->hibernateWhenDownloadsComplete();
-        bool shutdown = pref->shutdownWhenDownloadsComplete();
+    ShutdownDialogAction action = ShutdownDialogAction::Exit;
+    if (isSuspend)
+        action = ShutdownDialogAction::Suspend;
+    else if (isHibernate)
+        action = ShutdownDialogAction::Hibernate;
+    else if (isShutdown)
+        action = ShutdownDialogAction::Shutdown;
 
-        // Confirm shutdown
-        ShutdownAction action = ShutdownAction::None;
-        if (suspend)
-            action = ShutdownAction::Suspend;
-        else if (hibernate)
-            action = ShutdownAction::Hibernate;
-        else if (shutdown)
-            action = ShutdownAction::Shutdown;
-
-        if ((action == ShutdownAction::None) && (!pref->dontConfirmAutoExit())) {
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-        else { //exit and shutdown
-            if (!ShutdownConfirmDlg::askForConfirmation(action))
-                return;
-        }
-
-        // Actually shut down
-        if (suspend || hibernate || shutdown) {
-            qDebug("Preparing for auto-shutdown because all downloads are complete!");
-            // Disabling it for next time
-            pref->setShutdownWhenDownloadsComplete(false);
-            pref->setSuspendWhenDownloadsComplete(false);
-            pref->setHibernateWhenDownloadsComplete(false);
-            // Make sure preferences are synced before exiting
-            m_shutdownAct = action;
-        }
-        qDebug("Exiting the application");
-        exit();
+#ifndef DISABLE_GUI
+    // ask confirm
+    if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit())) {
+        // do nothing & skip confirm
+    }
+    else {
+        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
     }
 #endif // DISABLE_GUI
+
+    // Actually shut down
+    if (action != ShutdownDialogAction::Exit) {
+        qDebug("Preparing for auto-shutdown because all downloads are complete!");
+        // Disabling it for next time
+        pref->setShutdownWhenDownloadsComplete(false);
+        pref->setSuspendWhenDownloadsComplete(false);
+        pref->setHibernateWhenDownloadsComplete(false);
+        // Make sure preferences are synced before exiting
+        m_shutdownAct = action;
+    }
+
+    qDebug("Exiting the application");
+    exit();
 }
 
 bool Application::sendParams(const QStringList &params)
@@ -362,6 +396,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+    Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
 #ifdef DISABLE_GUI
     IconProvider::initInstance();
@@ -371,7 +406,7 @@ int Application::exec(const QStringList &params)
 
     BitTorrent::Session::initInstance();
     connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()));
+    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()), Qt::QueuedConnection);
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::initInstance();
@@ -548,11 +583,9 @@ void Application::cleanup()
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     // cleanup() can be called multiple times during shutdown. We only need it once.
-    static bool alreadyDone = false;
-
-    if (alreadyDone)
+    static QAtomicInt alreadyDone;
+    if (!alreadyDone.testAndSetAcquire(0, 1))
         return;
-    alreadyDone = true;
 #endif // Q_OS_WIN
 
     // Hide the window and not leave it on screen as
@@ -590,11 +623,13 @@ void Application::cleanup()
     Net::GeoIPManager::freeInstance();
 #endif
     Net::DownloadManager::freeInstance();
+    Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
     delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
+
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
     typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
@@ -604,9 +639,10 @@ void Application::cleanup()
         shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
     delete m_window;
-    if (m_shutdownAct != ShutdownAction::None) {
+#endif // DISABLE_GUI
+
+    if (m_shutdownAct != ShutdownDialogAction::Exit) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
-#endif
 }

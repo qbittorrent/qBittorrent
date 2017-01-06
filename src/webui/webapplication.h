@@ -54,6 +54,8 @@ private:
     void action_query_propertiesTrackers();
     void action_query_propertiesWebSeeds();
     void action_query_propertiesFiles();
+    void action_query_getLog();
+    void action_query_getPeerLog();
     void action_sync_maindata();
     void action_sync_torrent_peers();
     void action_command_shutdown();
@@ -88,6 +90,8 @@ private:
     void action_command_bottomPrio();
     void action_command_recheck();
     void action_command_setCategory();
+    void action_command_addCategory();
+    void action_command_removeCategories();
     void action_command_getSavePath();
     void action_version_api();
     void action_version_api_min();

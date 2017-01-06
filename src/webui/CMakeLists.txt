@@ -26,10 +26,11 @@ if (QT4_FOUND)
     endif(NOT SYSTEM_QJSON)
 endif (QT4_FOUND)
 
-set(QBT_WEBUI_RESOURCES webui.qrc)
-add_library(qbt_webui STATIC ${QBT_WEBUI_HEADERS} ${QBT_WEBUI_SOURCES} ${QBT_WEBUI_RESOURCES})
+qbt_target_sources(webui.qrc)
+
+add_library(qbt_webui STATIC ${QBT_WEBUI_HEADERS} ${QBT_WEBUI_SOURCES})
 target_link_libraries(qbt_webui qbt_base)
 
 if (QT4_FOUND)
-	target_link_libraries(qbt_webui qjson)
+    target_link_libraries(qbt_webui qjson)
 endif (QT4_FOUND)

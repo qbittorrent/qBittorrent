@@ -237,17 +237,14 @@ void CategoryFiltersList::addItem(const QString &category, bool hasTorrent)
     if (exists) return;
 
     Q_ASSERT(count() >= 2);
+    int insPos = count();
     for (int i = 2; i < count(); ++i) {
-        bool less = false;
-        if (!(Utils::String::naturalSort(category, item(i)->text(), less)))
-            less = (category.localeAwareCompare(item(i)->text()) < 0);
-        if (less) {
-            insertItem(i, categoryItem);
-            updateGeometry();
-            return;
+        if (Utils::String::naturalCompareCaseSensitive(category, item(i)->text())) {
+            insPos = i;
+            break;
         }
     }
-    QListWidget::addItem(categoryItem);
+    QListWidget::insertItem(insPos, categoryItem);
     updateGeometry();
 }
 
@@ -443,6 +440,7 @@ int CategoryFiltersList::rowFromCategory(const QString &category) const
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
     , m_totalTorrents(0)
+    , m_downloadTrackerFavicon(true)
 {
     QListWidgetItem *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
@@ -512,24 +510,21 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
 
     Q_ASSERT(count() >= 4);
-    for (int i = 4; i<count(); ++i) {
-        bool less = false;
-        if (!(Utils::String::naturalSort(host, item(i)->text(), less)))
-            less = (host.localeAwareCompare(item(i)->text()) < 0);
-        if (less) {
-            insertItem(i, trackerItem);
-            updateGeometry();
-            return;
+    int insPos = count();
+    for (int i = 4; i < count(); ++i) {
+        if (Utils::String::naturalCompareCaseSensitive(host, item(i)->text())) {
+            insPos = i;
+            break;
         }
     }
-    QListWidget::addItem(trackerItem);
+    QListWidget::insertItem(insPos, trackerItem);
     updateGeometry();
 }
 
 void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
 {
     QString host = getHost(tracker);
-    QListWidgetItem *trackerItem = 0;
+    QListWidgetItem *trackerItem = nullptr;
     QStringList tmp = m_trackers.value(host);
     int row = 0;
 
@@ -537,7 +532,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
         return;
     tmp.removeAll(hash);
 
-    if (host != "") {
+    if (!host.isEmpty()) {
         // Remove from 'Error' and 'Warning' view
         trackerSuccess(hash, tracker);
         row = rowFromTracker(host);
@@ -550,7 +545,8 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             updateGeometry();
             return;
         }
-        trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
+        if (trackerItem != nullptr)
+            trackerItem->setText(tr("%1 (%2)", "openbittorrent.com (10)").arg(host).arg(tmp.size()));
     }
     else {
         row = 1;
@@ -569,6 +565,19 @@ void TrackerFiltersList::changeTrackerless(bool trackerless, const QString &hash
         addItem("", hash);
     else
         removeItem("", hash);
+}
+
+void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
+{
+    if (value == m_downloadTrackerFavicon) return;
+    m_downloadTrackerFavicon = value;
+
+    if (m_downloadTrackerFavicon) {
+        foreach (const QString &tracker, m_trackers.keys()) {
+            if (!tracker.isEmpty())
+                downloadFavicon(QString("http://%1/favicon.ico").arg(tracker));
+        }
+    }
 }
 
 void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &tracker)
@@ -635,6 +644,7 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 
 void TrackerFiltersList::downloadFavicon(const QString& url)
 {
+    if (!m_downloadTrackerFavicon) return;
     Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
     connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
     connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
@@ -656,14 +666,8 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid) {
-        if (url.endsWith(".ico", Qt::CaseInsensitive)) {
-            Logger::instance()->addMessage(tr("Couldn't decode favicon for URL '%1'. Trying to download favicon in PNG format.").arg(url),
-                                           Log::WARNING);
+        if (url.endsWith(".ico", Qt::CaseInsensitive))
             downloadFavicon(url.left(url.size() - 4) + ".png");
-        }
-        else {
-            Logger::instance()->addMessage(tr("Couldn't decode favicon for URL '%1'.").arg(url), Log::WARNING);
-        }
         Utils::Fs::forceRemove(filePath);
     }
     else {
@@ -674,10 +678,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
 
 void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& error)
 {
-    // Don't use getHost() on the url here. Print the full url. The error might relate to
-    // that.
-    Logger::instance()->addMessage(tr("Couldn't download favicon for URL '%1'. Reason: %2").arg(url).arg(error),
-                                   Log::WARNING);
+    Q_UNUSED(error)
     if (url.endsWith(".ico", Qt::CaseInsensitive))
         downloadFavicon(url.left(url.size() - 4) + ".png");
 }
@@ -847,6 +848,11 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));
     connect(this, SIGNAL(trackerError(const QString &, const QString &)), trackerFilters, SLOT(trackerError(const QString &, const QString &)));
     connect(this, SIGNAL(trackerWarning(const QString &, const QString &)), trackerFilters, SLOT(trackerWarning(const QString &, const QString &)));
+}
+
+void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
+{
+    trackerFilters->setDownloadTrackerFavicon(value);
 }
 
 void TransferListFiltersWidget::addTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers)

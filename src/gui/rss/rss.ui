@@ -20,71 +20,38 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QToolButton" name="newFeedButton">
-       <property name="minimumSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="newFeedButton">
        <property name="text">
         <string>New subscription</string>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="markReadButton">
-       <property name="minimumSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="markReadButton">
        <property name="text">
         <string>Mark items read</string>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="updateAllButton">
-       <property name="minimumSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="updateAllButton">
        <property name="toolTip">
         <string>Refresh RSS streams</string>
        </property>
        <property name="text">
         <string>Update all</string>
        </property>
-       <property name="iconSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <spacer>
+      <spacer name="spacer1">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>0</width>
+         <height>0</height>
         </size>
        </property>
       </spacer>
@@ -106,7 +73,13 @@
     </layout>
    </item>
    <item>
-    <widget class="QSplitter" name="splitter_h">
+    <widget class="QSplitter" name="splitterSide">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -126,9 +99,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QSplitter" name="splitter_v">
+        <widget class="QSplitter" name="splitterMain">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <widget class="QListWidget" name="listArticles">
           <property name="contextMenuPolicy">
@@ -136,9 +115,6 @@
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::ExtendedSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectItems</enum>
           </property>
          </widget>
          <widget class="HtmlBrowser" name="textBrowser">
@@ -216,11 +192,6 @@
   <action name="actionNew_folder">
    <property name="text">
     <string>New folder...</string>
-   </property>
-  </action>
-  <action name="actionManage_cookies">
-   <property name="text">
-    <string>Manage cookies...</string>
    </property>
   </action>
  </widget>

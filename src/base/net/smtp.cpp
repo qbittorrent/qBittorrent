@@ -53,7 +53,9 @@
 namespace
 {
     const short DEFAULT_PORT = 25;
+#ifndef QT_NO_OPENSSL
     const short DEFAULT_PORT_SSL = 465;
+#endif
 
     QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
     {
@@ -97,6 +99,13 @@ Smtp::Smtp(QObject *parent)
     , m_useSsl(false)
     , m_authType(AuthPlain)
 {
+    static bool needToRegisterMetaType = true;
+
+    if (needToRegisterMetaType) {
+        qRegisterMetaType<QAbstractSocket::SocketError>();
+        needToRegisterMetaType = false;
+    }
+
 #ifndef QT_NO_OPENSSL
     m_socket = new QSslSocket(this);
 #else
@@ -105,6 +114,7 @@ Smtp::Smtp(QObject *parent)
 
     connect(m_socket, SIGNAL(readyRead()), SLOT(readyRead()));
     connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
+    connect(m_socket, SIGNAL(error(QAbstractSocket::SocketError)), SLOT(error(QAbstractSocket::SocketError)));
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()
@@ -524,4 +534,12 @@ QString Smtp::getCurrentDateTime() const
 
     QString ret = weekDayStr + ", " + dayStr + " " + monthStr + " " + yearStr + " " + timeStr + " " + timeOffsetStr;
     return ret;
+}
+
+void Smtp::error(QAbstractSocket::SocketError socketError)
+{
+    // Getting a remote host closed error is apparently normal, even when successfully sending
+    // an email
+    if (socketError != QAbstractSocket::RemoteHostClosedError)
+        logError(m_socket->errorString());
 }

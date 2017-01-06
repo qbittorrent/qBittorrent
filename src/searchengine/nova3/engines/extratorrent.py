@@ -1,4 +1,4 @@
-#VERSION: 2.04
+#VERSION: 2.06
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -68,19 +68,15 @@ class extratorrent(object):
                     params = dict(attrs)
                     link = params['href']
 
-                    if not link.startswith("/torrent"):
-                        return
-
-                    if link[8] == "/":
+                    if link.startswith("/torrent/"):
                         #description
                         self.current_item["desc_link"] = "".join((self.url, link))
                         #remove view at the beginning
                         self.current_item["name"] = params["title"][5:-8].replace("&amp;", "&")
                         self.pending_size = True
-                    elif link[8] == "_":
-                        #download link
-                        link = link.replace("torrent_", "", 1)
-                        self.current_item["link"] = "".join((self.url, link))
+                    elif link.startswith("magnet"):
+                        #magnet link
+                        self.current_item["link"] = link
 
                 elif tag == "td":
                     if self.pending_size:
@@ -125,9 +121,7 @@ class extratorrent(object):
 
         def handle_data(self, data):
             if self.cur_item_name:
-                temp = self.current_item[self.cur_item_name]
-                self.current_item[self.cur_item_name] = " ".join((temp, data))
-                #Due to utf-8 we need to handle data two times if there is space
+                self.current_item[self.cur_item_name] = data
                 if not self.cur_item_name == "size":
                     self.cur_item_name = None
 

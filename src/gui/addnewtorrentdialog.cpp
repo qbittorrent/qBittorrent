@@ -45,6 +45,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
@@ -57,7 +58,6 @@
 
 #define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
 const QString KEY_ENABLED = SETTINGS_KEY("Enabled");
-const QString KEY_DEFAULTSAVEPATH = SETTINGS_KEY("DefaultSavePath");
 const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
 const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
 const QString KEY_WIDTH = SETTINGS_KEY("Width");
@@ -88,15 +88,19 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     auto session = BitTorrent::Session::instance();
 
     ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
-    (session->isASMDisabledByDefault() ? ui->simpleModeRadioButton : ui->advancedModeRadioButton)->setChecked(true);
+    ui->comboTTM->blockSignals(true); //the TreeView size isn't correct if the slot does it job at this point
+    ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
+    ui->comboTTM->blockSignals(false);
     populateSavePathComboBox();
     connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
     connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
+    ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
+
     // Load categories
     QStringList categories = session->categories();
-    std::sort(categories.begin(), categories.end(), Utils::String::NaturalCompare());
+    std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
     QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
 
     if (!defaultCategory.isEmpty())
@@ -112,6 +116,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     loadState();
     // Signal / slots
     connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
+    connect(ui->doNotDeleteTorrentCheckBox, SIGNAL(clicked(bool)), SLOT(doNotDeleteTorrentClicked(bool)));
     editHotkey = new QShortcut(QKeySequence("F2"), ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
@@ -203,13 +208,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
+        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
     QFileInfo fileinfo(m_filePath);
     if (!fileinfo.isReadable()) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file cannot be read from the disk. Probably you don't have enough permissions."));
+        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
@@ -217,10 +222,11 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, error);
     if (!m_torrentInfo.isValid()) {
-        MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(error));
+        MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
         return false;
     }
 
+    m_torrentGuard.reset(new TorrentFileGuard(m_filePath));
     m_hash = m_torrentInfo.hash();
 
     // Prevent showing the dialog if download is already present
@@ -244,6 +250,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
 
     ui->lblhash->setText(m_hash);
     setupTreeview();
+    TMMChanged(ui->comboTTM->currentIndex());
     return true;
 }
 
@@ -254,6 +261,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
+    m_torrentGuard.reset(new TorrentFileGuard(QString()));
     m_hash = magnetUri.hash();
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(m_hash)) {
@@ -281,6 +289,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
 
     setupTreeview();
+    TMMChanged(ui->comboTTM->currentIndex());
     // Set dialog position
     setdialogPosition();
 
@@ -384,7 +393,7 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
     ui->defaultSavePathCheckBox->setChecked(false);
     ui->defaultSavePathCheckBox->setVisible(
                 QDir(ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString())
-                != QDir(defaultSavePath()));
+                != QDir(BitTorrent::Session::instance()->defaultSavePath()));
 
     // Remember index
     m_oldIndex = index;
@@ -396,7 +405,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
 {
     Q_UNUSED(index);
 
-    if (ui->advancedModeRadioButton->isChecked()) {
+    if (ui->comboTTM->currentIndex() == 1) {
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->setItemText(0, Utils::Fs::toNativePath(savePath));
         ui->savePathComboBox->setItemData(0, savePath);
@@ -557,7 +566,7 @@ void AddNewTorrentDialog::setdialogPosition()
 
 void AddNewTorrentDialog::populateSavePathComboBox()
 {
-    QString defSavePath = defaultSavePath();
+    QString defSavePath = BitTorrent::Session::instance()->defaultSavePath();
 
     ui->savePathComboBox->clear();
     ui->savePathComboBox->addItem(Utils::Fs::toNativePath(defSavePath), defSavePath);
@@ -632,11 +641,11 @@ void AddNewTorrentDialog::accept()
     params.addPaused = !ui->startTorrentCheckBox->isChecked();
 
     QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
-    if (ui->simpleModeRadioButton->isChecked()) {
+    if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         params.savePath = savePath;
         saveSavePathHistory();
         if (ui->defaultSavePathCheckBox->isChecked())
-            settings()->storeValue(KEY_DEFAULTSAVEPATH, savePath);
+            BitTorrent::Session::instance()->setDefaultSavePath(savePath);
     }
 
     setEnabled(!ui->never_show_cb->isChecked());
@@ -647,6 +656,7 @@ void AddNewTorrentDialog::accept()
     else
         BitTorrent::Session::instance()->addTorrent(m_torrentInfo, params);
 
+    m_torrentGuard->markAsAddedToSession();
     QDialog::accept();
 }
 
@@ -732,13 +742,6 @@ void AddNewTorrentDialog::setupTreeview()
     setdialogPosition();
 }
 
-QString AddNewTorrentDialog::defaultSavePath() const
-{
-    return Utils::Fs::fromNativePath(
-                settings()->loadValue(KEY_DEFAULTSAVEPATH,
-                                      BitTorrent::Session::instance()->defaultSavePath()).toString());
-}
-
 void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
 {
     MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
@@ -763,25 +766,25 @@ void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QStri
         this->deleteLater();
 }
 
-void AddNewTorrentDialog::savingModeChanged(bool enabled)
+void AddNewTorrentDialog::TMMChanged(int index)
 {
-    if (!enabled) return;
-
-    if (ui->simpleModeRadioButton->isChecked()) {
+    if (index != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         populateSavePathComboBox();
-        ui->savePathComboBox->setEnabled(true);
-        ui->browseButton->setEnabled(true);
+        ui->groupBoxSavePath->setEnabled(true);
         ui->savePathComboBox->blockSignals(false);
         ui->savePathComboBox->setCurrentIndex(m_oldIndex < ui->savePathComboBox->count() ? m_oldIndex : ui->savePathComboBox->count() - 1);
+        ui->adv_button->setEnabled(true);
     }
     else {
+        ui->groupBoxSavePath->setEnabled(false);
         ui->savePathComboBox->blockSignals(true);
         ui->savePathComboBox->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
         ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
-        ui->savePathComboBox->setEnabled(false);
-        ui->browseButton->setEnabled(false);
         ui->defaultSavePathCheckBox->setVisible(false);
+        ui->adv_button->setChecked(true);
+        ui->adv_button->setEnabled(false);
+        showAdvancedSettings(true);
     }
 }
 
@@ -794,4 +797,9 @@ void AddNewTorrentDialog::setCommentText(const QString &str) const
     int lines = 1 + str.count("\n");
     int height = lineHeight * lines;
     ui->scrollArea->setMaximumHeight(height);
+}
+
+void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
+{
+    m_torrentGuard->setAutoRemove(!checked);
 }

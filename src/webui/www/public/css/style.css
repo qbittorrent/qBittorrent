@@ -167,14 +167,14 @@ a.propButton img {
 
 /* context menu specific */
 
-#contextmenu { border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
-#contextmenu .separator { border-top:1px solid #999; }
-#contextmenu li { margin:0; padding:0;}
-#contextmenu li a { display:block; padding:5px 10px 5px 5px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; }
-#contextmenu li a:hover { background-color:#ddd; }
-#contextmenu li a.disabled { color:#ccc; font-style:italic; }
-#contextmenu li a.disabled:hover { background-color:#eee; }
-#contextmenu li ul {
+.contextMenu { border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
+.contextMenu .separator { border-top:1px solid #999; }
+.contextMenu li { margin:0; padding:0;}
+.contextMenu li a { display:block; padding:5px 10px 5px 5px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; }
+.contextMenu li a:hover { background-color:#ddd; }
+.contextMenu li a.disabled { color:#ccc; font-style:italic; }
+.contextMenu li a.disabled:hover { background-color:#eee; }
+.contextMenu li ul {
     padding: 0;
     border:1px solid #999; padding:0; background:#eee;
     list-style-type:none;
@@ -184,24 +184,24 @@ a.propButton img {
     margin: -29px 0 0 100%;
     width: 164px;
 }
-#contextmenu li ul li a {
+.contextMenu li ul li a {
     position: relative;
 }
-#contextmenu li a.arrow-right, #contextmenu li a:hover.arrow-right {
+.contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
     background-image: url(../images/skin/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right center;
 }
-#contextmenu li:hover ul,
-#contextmenu li.ieHover ul,
-#contextmenu li li.ieHover ul,
-#contextmenu li li li.ieHover ul,
-#contextmenu li li:hover ul,
-#contextmenu li li li:hover ul { /* lists nested under hovered list items */
+.contextMenu li:hover ul,
+.contextMenu li.ieHover ul,
+.contextMenu li li.ieHover ul,
+.contextMenu li li li.ieHover ul,
+.contextMenu li li:hover ul,
+.contextMenu li li li:hover ul { /* lists nested under hovered list items */
     left: auto;
 }
 
-#contextmenu li img {
+.contextMenu li img {
     width: 16px;
     height: 16px;
     margin-bottom: -4px;
