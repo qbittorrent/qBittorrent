@@ -194,7 +194,11 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
             ok = dlg->loadTorrent(source);
 
         if (ok)
+#ifdef Q_OS_MAC
+            dlg->exec();
+#else
             dlg->open();
+#endif
         else
             delete dlg;
     }
