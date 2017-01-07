@@ -132,6 +132,7 @@ install:
       fi ;
       if [ "$qt" = 5 ]; then
          brew install -v https://github.com/okeatime/qBittorrent/releases/download/depend.tar.ball/qt5.rb ;
+         brew link --force qt5 ;
       fi ;
 
       # ccache
