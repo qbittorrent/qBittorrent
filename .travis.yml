@@ -83,10 +83,6 @@ before_install:
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
     fi
-  - |
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      qbtconf="$qbtconf --disable-qt-dbus" ;
-    fi
 
   # print settings
   - echo $lt_branch
@@ -120,29 +116,20 @@ install:
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      mkdir -p "$HOME/hombebrew_cache" ;
-      wget https://builds.shiki.hu/homebrew/version ;
-      if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
-        echo "Cached files are different from server. Downloading new ones." ;
-        cp "version" $HOME/hombebrew_cache ;
-        cd "$HOME/hombebrew_cache" ;
-        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb ;
-        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz ;
-      fi
-
       # dependencies
       brew update > /dev/null ;
       brew install colormake ccache ;
       brew outdated "pkg-config" || brew upgrade "pkg-config" ;
-      # Copy custom libtorrent bottle to homebrew's cache so it can find and install it
-      # Also install our custom libtorrent formula by passing the local path to it
-      # These 2 files are restored from Travis' cache.
-      cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
-      brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb" ;
+      brew install -v https://github.com/okeatime/qBittorrent/releases/download/depend.tar.ball/libtorrent-rasterbar.rb ;
 
       # Qt
-      if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
-      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.7.0/plugins /usr/local ; fi ;
+      if [ "$qt" = 4 ]; then
+         brew install -v https://github.com/okeatime/qBittorrent/releases/download/depend.tar.ball/qt.rb ;
+      fi ;
+      if [ "$qt" = 5 ]; then
+         brew install -v https://github.com/okeatime/qBittorrent/releases/download/depend.tar.ball/qt5.rb ;
+         brew link --force qt5 ;
+      fi ;
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -165,7 +152,11 @@ script:
 after_success:
   - if [ "$gui" = true ]; then qbt_exe="qbittorrent" ; else qbt_exe="qbittorrent-nox" ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cd "$TRAVIS_BUILD_DIR/src/" && macdeployqt "$qbt_exe.app" && cd "$qbt_exe.app/Contents/MacOS" ; fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+       macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app" ;
+       cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS" ;
+    fi
   - ./$qbt_exe --version
 
 after_script:
