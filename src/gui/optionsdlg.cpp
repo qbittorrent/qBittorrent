@@ -1637,11 +1637,11 @@ void OptionsDialog::setSslKey(const QByteArray &key, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!key.isEmpty() && !QSslKey(key, QSsl::Rsa).isNull()) {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey.clear();
         if (interactive)
             QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
@@ -1656,11 +1656,11 @@ void OptionsDialog::setSslCertificate(const QByteArray &cert, bool interactive)
 {
 #ifndef QT_NO_OPENSSL
     if (!cert.isEmpty() && !QSslCertificate(cert).isNull()) {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert.clear();
         if (interactive)
             QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));

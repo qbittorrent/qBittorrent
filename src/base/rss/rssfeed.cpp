@@ -61,7 +61,7 @@ using namespace Rss;
 Feed::Feed(const QString &url, Manager *manager)
     : m_manager(manager)
     , m_url (QUrl::fromEncoded(url.toUtf8()).toString())
-    , m_icon(":/icons/oxygen/application-rss+xml.png")
+    , m_icon(":/icons/qbt-theme/application-rss+xml.png")
     , m_unreadCount(0)
     , m_dirty(false)
     , m_inErrorState(false)
@@ -247,7 +247,7 @@ QString Feed::url() const
 QString Feed::iconPath() const
 {
     if (m_inErrorState)
-        return QLatin1String(":/icons/oxygen/unavailable.png");
+        return QLatin1String(":/icons/qbt-theme/unavailable.png");
 
     return m_icon;
 }

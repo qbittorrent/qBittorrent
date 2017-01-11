@@ -155,7 +155,7 @@ void StatusBar::showRestartRequired()
     // Restart required notification
     const QString restartText = tr("qBittorrent needs to be restarted");
     QLabel *restartIconLbl = new QLabel(m_bar);
-    restartIconLbl->setPixmap(QPixmap(":/icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
+    restartIconLbl->setPixmap(QPixmap(":/icons/qbt-theme/dialog-warning.png").scaled(QSize(24,24)));
     restartIconLbl->setToolTip(restartText);
     m_bar->insertWidget(0, restartIconLbl);
     QLabel *restartLbl = new QLabel(m_bar);

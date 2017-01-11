@@ -37,7 +37,7 @@ trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const tor
 {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/oxygen/encrypted.png")));
+  login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/qbt-theme/encrypted.png")));
   tracker_url->setText(torrent->currentTracker());
   connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle*, QString>)));
   show();

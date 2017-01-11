@@ -58,7 +58,7 @@ IconProvider *IconProvider::instance()
 
 QString IconProvider::getIconPath(const QString &iconId)
 {
-    return ":/icons/oxygen/" + iconId + ".png";
+    return ":/icons/qbt-theme/" + iconId + ".png";
 }
 
 IconProvider *IconProvider::m_instance = 0;
