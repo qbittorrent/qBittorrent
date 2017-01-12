@@ -92,9 +92,11 @@ void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 
 QMetaEnum TorrentFileGuard::modeMetaEnum()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
     return QMetaEnum::fromType<AutoDeleteMode>();
 #else
-    return staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("AutoDeleteMode"));
+    const int enumeratorIndex = staticMetaObject.indexOfEnumerator("AutoDeleteMode");
+    Q_ASSERT(enumeratorIndex >= 0);
+    return staticMetaObject.enumerator(enumeratorIndex);
 #endif
 }

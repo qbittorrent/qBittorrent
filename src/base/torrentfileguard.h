@@ -26,6 +26,9 @@
  * exception statement from your version.
  */
 
+#ifndef TOFFENTFILEGURAD_H
+#define TOFFENTFILEGURAD_H
+
 #include <QString>
 #include <QMetaType>
 
@@ -50,6 +53,10 @@ private:
 class TorrentFileGuard
 {
     Q_GADGET
+    // moc from Qt4 ignores Q_ENUMS when it is behind #if QT_VERSION check
+    // this declaration is needed for Qt 4 only
+    // TODO Qt5: remove when dropping Qt4 support
+    Q_ENUMS(AutoDeleteMode)
 
 public:
     TorrentFileGuard(const QString &path = QString());
@@ -72,9 +79,7 @@ public:
 
 private:
     static QMetaEnum modeMetaEnum();
-#if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
-    Q_ENUMS(AutoDeleteMode)
-#else
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
     Q_ENUM(AutoDeleteMode)
 #endif
     AutoDeleteMode m_mode;
@@ -87,9 +92,12 @@ private:
     // This problem is NOT present in Qt 5.7.0 and maybe in some older Qt 5 versions too
     // Qt 4.8.7 has it.
     // Therefore, we can't inherit FileGuard :(
+    // TODO Qt5: port to private inheritance when dropping Qt 4 support
     FileGuard m_guard;
 };
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
 Q_DECLARE_METATYPE(TorrentFileGuard::AutoDeleteMode)
 #endif
+
+#endif // TOFFENTFILEGURAD_H
