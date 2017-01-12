@@ -125,16 +125,18 @@ install:
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      mkdir -p "$HOME/hombebrew_cache" ;
       wget https://builds.shiki.hu/homebrew/version ;
       if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
         echo "Cached files are different from server. Downloading new ones." ;
+        # First delete old files
+        rm -r "$HOME/hombebrew_cache" ;
+        mkdir "$HOME/hombebrew_cache";
         cp "version" $HOME/hombebrew_cache ;
         cd "$HOME/hombebrew_cache" ;
         wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb ;
         wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz ;
         wget https://builds.shiki.hu/homebrew/qt5.rb ;
-        wget https://builds.shiki.hu/homebrew/qt5-5.7.1_1.el_capitan.bottle.1.tar.gz ;
+        wget https://builds.shiki.hu/homebrew/qt5-5.7.1_1.el_capitan.bottle.tar.gz ;
       fi
 
       # dependencies
@@ -153,7 +155,7 @@ install:
         # Copy custom qt5 bottle to homebrew's cache so it can find and install it
         # Also install our custom qt5 formula by passing the local path to it
         # These 2 files are restored from Travis' cache.
-        cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.1.tar.gz" "$(brew --cache)" ;
+        cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
         brew install "$HOME/hombebrew_cache/qt5.rb" ;
         brew link --force qt5 ;
       fi
