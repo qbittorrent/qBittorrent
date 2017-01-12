@@ -281,9 +281,11 @@ public:
 #ifndef DISABLE_GUI
     QSize getPrefSize(const QSize &defaultSize) const;
     void setPrefSize(const QSize &size);
-    QFont getTransferListFont(const QFont &defaultFont) const;
+    QFont getTransferListFont(const QFont &defaultFont = QFont()) const;
     void setTransferListFont(const QFont &font);
-    QFont getLogListFont(const QFont &defaultFont) const;
+    QFont getTorrentPropertiesFont(const QFont &defaultFont = QFont()) const;
+    void setTorrentPropertiesFont(const QFont &font);
+    QFont getLogListFont(const QFont &defaultFont = QFont()) const;
     void setLogListFont(const QFont &font);
 #endif
     QPoint getPrefPos() const;
@@ -374,7 +376,9 @@ public slots:
     void apply();
 
 private:
+#ifndef DISABLE_GUI
     QFont loadFont(const QString &settingName, const QFont &defaultFont) const;
+#endif
 };
 
 #endif // PREFERENCES_H

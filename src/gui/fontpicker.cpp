@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2017  Zalewa
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,45 +25,48 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : zalewapl@gmail.com
  */
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#include "fontpicker.h"
 
-#include <QListWidget>
-#include "base/logger.h"
+#include "fontbutton.h"
+#include "guiiconprovider.h"
 
-QT_BEGIN_NAMESPACE
-class QKeyEvent;
-QT_END_NAMESPACE
+#include <QHBoxLayout>>
 
-class LogListWidget: public QListWidget
+FontPicker::FontPicker(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
+    setLayout(new QHBoxLayout(this));
+    layout()->setContentsMargins(0, 0, 0, 0);
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
+    fontButton = new FontButton(this);
+    fontButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+    layout()->addWidget(fontButton);
+    this->connect(fontButton, SIGNAL(fontUpdated(QFont, QFont)), SIGNAL(fontUpdated(QFont, QFont)));
 
-    void showMsgTypes(const Log::MsgTypes &types);
+    resetButton = new QPushButton(this);
+    resetButton->setToolTip(tr("Reset to default"));
+    resetButton->setIcon(GuiIconProvider::instance()->getIcon("edit-delete"));
+    resetButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+    this->connect(resetButton, SIGNAL(clicked()), SLOT(resetFont()));
+    layout()->addWidget(resetButton);
+}
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+void FontPicker::resetFont()
+{
+    QFont oldFont = fontButton->selectedFont();
+    fontButton->resetFont();
+    QFont newFont = fontButton->selectedFont();
+    emit fontUpdated(newFont, oldFont);
+}
 
-protected slots:
-    void copySelection();
+QFont FontPicker::selectedFont() const
+{
+    return fontButton->selectedFont();
+}
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
-
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-
-    QFont configFont() const;
-
-private slots:
-    void applyConfigFont();
-};
-
-#endif // LOGLISTWIDGET_H
+void FontPicker::setSelectedFont(const QFont &font)
+{
+    fontButton->setSelectedFont(font);
+}

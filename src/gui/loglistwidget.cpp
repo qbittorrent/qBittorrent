@@ -45,23 +45,19 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     , m_maxLines(maxLines)
     , m_types(types)
 {
-    m_font = Preferences::instance()->getLogListFont(QFont());
+    applyConfigFont();
     // Allow multiple selections
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     // Context menu
     QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
     QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
-    QAction *changeFontAct = new QAction(GuiIconProvider::instance()->getIcon("preferences-desktop-font"), tr("Change Font"), this);
-    QAction *resetFontAct = new QAction(GuiIconProvider::instance()->getIcon("preferences-desktop-font"), tr("Reset Font"), this);
     connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
     connect(clearAct, SIGNAL(triggered()), SLOT(clear()));
-    connect(changeFontAct, SIGNAL(triggered()), SLOT(showChangeFontDialog()));
-    connect(resetFontAct, SIGNAL(triggered()), SLOT(resetFont()));
     addAction(copyAct);
     addAction(clearAct);
-    addAction(changeFontAct);
-    addAction(resetFontAct);
     setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    this->connect(Preferences::instance(), SIGNAL(changed()), SLOT(applyConfigFont()));
 }
 
 void LogListWidget::showMsgTypes(const Log::MsgTypes &types)
@@ -90,7 +86,7 @@ void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
     // We need to use QLabel here to support rich text
     QLabel *lbl = new QLabel(line);
     lbl->setContentsMargins(4, 2, 4, 2);
-    lbl->setFont(m_font);
+    lbl->setFont(configFont());
     item->setSizeHint(lbl->sizeHint());
     item->setData(Qt::UserRole, type);
     insertItem(0, item);
@@ -113,30 +109,19 @@ void LogListWidget::copySelection()
     QApplication::clipboard()->setText(strings.join("\n"));
 }
 
-void LogListWidget::resetFont()
+void LogListWidget::applyConfigFont()
 {
-    applyNewFont(QFont());
-}
-
-void LogListWidget::showChangeFontDialog()
-{
-    bool ok = false;
-    QFont newFont = QFontDialog::getFont(&ok, Preferences::instance()->getLogListFont(font()), this);
-    if (ok)
-    {
-        applyNewFont(newFont);
-    }
-}
-
-void LogListWidget::applyNewFont(const QFont &font)
-{
-    Preferences::instance()->setLogListFont(font);
-    m_font = font;
+    QFont font = configFont();
     for (int row = 0; row < count(); ++row)
     {
         QListWidgetItem *item = this->item(row);
         QLabel *label = qobject_cast<QLabel*>(this->itemWidget(item));
-        label->setFont(m_font);
+        label->setFont(font);
         item->setSizeHint(label->sizeHint());
     }
+}
+
+QFont LogListWidget::configFont() const
+{
+    return Preferences::instance()->getLogListFont();
 }

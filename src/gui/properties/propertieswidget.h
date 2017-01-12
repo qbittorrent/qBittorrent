@@ -127,7 +127,10 @@ private:
     QShortcut *deleteHotkeyWeb;
     QShortcut *openHotkeyFile;
 
+    QFont configFont() const;
+
 private slots:
+    void applyConfigFont();
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 };

@@ -110,17 +110,12 @@ protected slots:
     void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
     void saveSettings();
-    void showChangeFontDialog();
-    void resetFont();
 
 signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
 private:
-    void addChangeFontActionsToMenu(QMenu &menu);
-    void applyNewFont(const QFont &font);
-    void displayListMenuEmpty();
-    void displayListMenuSelection();
+    QFont configFont() const;
     void wheelEvent(QWheelEvent *event) override;
 
     TransferListDelegate *listDelegate;
@@ -130,6 +125,9 @@ private:
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
     QShortcut *permDeleteHotkey;
+
+private slots:
+    void applyConfigFont();
 };
 
 #endif // TRANSFERLISTWIDGET_H

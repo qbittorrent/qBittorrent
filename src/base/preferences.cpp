@@ -1152,6 +1152,16 @@ void Preferences::setTransferListFont(const QFont &font)
     setValue("TransferList/Font", font.toString());
 }
 
+QFont Preferences::getTorrentPropertiesFont(const QFont &defaultFont) const
+{
+    return loadFont("TorrentProperties/Font", defaultFont);
+}
+
+void Preferences::setTorrentPropertiesFont(const QFont &font)
+{
+    setValue("TorrentProperties/Font", font.toString());
+}
+
 QFont Preferences::getLogListFont(const QFont &defaultFont) const
 {
     return loadFont("LogList/Font", defaultFont);

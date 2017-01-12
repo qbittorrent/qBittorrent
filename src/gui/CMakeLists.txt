@@ -39,6 +39,8 @@ cookiesmodel.h
 deletionconfirmationdlg.h
 downloadfromurldlg.h
 executionlog.h
+fontbutton.h
+fontpicker.h
 guiiconprovider.h
 hidabletabwidget.h
 ico.h
@@ -78,6 +80,8 @@ categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
 executionlog.cpp
+fontbutton.cpp
+fontpicker.cpp
 guiiconprovider.cpp
 ico.cpp
 loglistwidget.cpp

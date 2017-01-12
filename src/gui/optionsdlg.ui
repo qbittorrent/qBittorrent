@@ -631,6 +631,45 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBox_3">
+              <property name="title">
+               <string>Fonts</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Transfer list:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="FontPicker" name="transferListFontPicker" native="true"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_24">
+                 <property name="text">
+                  <string>Torrent properties:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="FontPicker" name="torrentPropertiesFontPicker" native="true"/>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>Execution log:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="FontPicker" name="executionLogFontPicker" native="true"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -2998,6 +3037,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FontPicker</class>
+   <extends>QWidget</extends>
+   <header>fontpicker.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>

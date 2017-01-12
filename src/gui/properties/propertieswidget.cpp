@@ -101,6 +101,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     connect(filesList->header(), SIGNAL(sectionMoved(int,int,int)), this, SLOT(saveSettings()));
     connect(filesList->header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(saveSettings()));
     connect(filesList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this, SLOT(saveSettings()));
+    connect(Preferences::instance(), SIGNAL(changed()), this, SLOT(applyConfigFont()));
 
 #ifdef QBT_USES_QT5
     // set bar height relative to screen dpi
@@ -168,6 +169,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
     openHotkeyFile = new QShortcut(QKeySequence("Return"), filesList, 0, 0, Qt::WidgetShortcut);
     connect(openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
+
+    applyConfigFont();
 }
 
 PropertiesWidget::~PropertiesWidget()
@@ -890,4 +893,22 @@ void PropertiesWidget::filterText(const QString &filter)
     else {
         filesList->expandAll();
     }
+}
+
+void PropertiesWidget::applyConfigFont()
+{
+    QFont font = configFont();
+    foreach (QWidget *widget, findChildren<QGroupBox*>())
+    {
+        widget->setFont(font);
+    }
+    foreach (QWidget *widget, findChildren<QLabel*>())
+    {
+        widget->setFont(font);
+    }
+}
+
+QFont PropertiesWidget::configFont() const
+{
+    return Preferences::instance()->getTorrentPropertiesFont();
 }

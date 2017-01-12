@@ -203,6 +203,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinFileLogSize, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->spinFileLogAge, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+    connect(m_ui->torrentPropertiesFontPicker, SIGNAL(fontUpdated(QFont, QFont)), this, SLOT(enableApplyButton()));
+    connect(m_ui->transferListFontPicker, SIGNAL(fontUpdated(QFont, QFont)), this, SLOT(enableApplyButton()));
+    connect(m_ui->executionLogFontPicker, SIGNAL(fontUpdated(QFont, QFont)), this, SLOT(enableApplyButton()));
     // Downloads tab
     connect(m_ui->textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -470,6 +473,9 @@ void OptionsDialog::saveOptions()
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
+    pref->setTransferListFont(m_ui->transferListFontPicker->selectedFont());
+    pref->setTorrentPropertiesFont(m_ui->torrentPropertiesFontPicker->selectedFont());
+    pref->setLogListFont(m_ui->executionLogFontPicker->selectedFont());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
     // Windows: file association settings
@@ -681,6 +687,9 @@ void OptionsDialog::loadOptions()
     }
 
     m_ui->checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
+    m_ui->torrentPropertiesFontPicker->setSelectedFont(pref->getTorrentPropertiesFont());
+    m_ui->transferListFontPicker->setSelectedFont(pref->getTransferListFont());
+    m_ui->executionLogFontPicker->setSelectedFont(pref->getLogListFont());
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());

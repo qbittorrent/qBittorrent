@@ -51,7 +51,9 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
-    $$PWD/categoryfilterwidget.h
+    $$PWD/categoryfilterwidget.h \
+    $$PWD/fontbutton.h \
+    $$PWD/fontpicker.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -93,7 +95,9 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
-    $$PWD/categoryfilterwidget.cpp
+    $$PWD/categoryfilterwidget.cpp \
+    $$PWD/fontbutton.cpp \
+    $$PWD/fontpicker.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h

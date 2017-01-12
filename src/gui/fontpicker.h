@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2017  Zalewa
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,45 +25,46 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : zalewapl@gmail.com
  */
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#ifndef FONTPICKER_H
+#define FONTPICKER_H
 
-#include <QListWidget>
-#include "base/logger.h"
+#include <QFont>
+#include <QPushButton>
+#include <QWidget>
 
-QT_BEGIN_NAMESPACE
-class QKeyEvent;
-QT_END_NAMESPACE
+class FontButton;
 
-class LogListWidget: public QListWidget
+/**
+ * @brief Font picker widget with buttons to pick and reset font.
+ *
+ * This widget shows two buttons in horizontal layout - FontButton and
+ * a normal push button to reset the picked custom font back to QFont().
+ *
+ * Whenever font is changed by user action (pick or reset), fontUpdated()
+ * signal is emitted. Changing the font programmatically will *not* cause
+ * the signal to be emitted.
+ */
+class FontPicker : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
+    FontPicker(QWidget *parent = NULL);
 
-    void showMsgTypes(const Log::MsgTypes &types);
+    QFont selectedFont() const;
+    void setSelectedFont(const QFont &font);
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
-
-protected slots:
-    void copySelection();
-
-protected:
-    void keyPressEvent(QKeyEvent *event);
+signals:
+    void fontUpdated(QFont newFont, QFont oldFont);
 
 private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-
-    QFont configFont() const;
+    FontButton *fontButton;
+    QPushButton *resetButton;
 
 private slots:
-    void applyConfigFont();
+    void resetFont();
 };
 
-#endif // LOGLISTWIDGET_H
+#endif
