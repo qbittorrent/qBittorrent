@@ -44,6 +44,7 @@ public:
     static GuiIconProvider *instance();
 
     QIcon getIcon(const QString &iconId);
+    QIcon getIcon(const QString &iconId, const QString &fallback);
     QIcon getFlagIcon(const QString &countryIsoCode);
     QString getIconPath(const QString &iconId);
 

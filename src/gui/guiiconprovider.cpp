@@ -58,9 +58,16 @@ GuiIconProvider *GuiIconProvider::instance()
 
 QIcon GuiIconProvider::getIcon(const QString &iconId)
 {
+    return getIcon(iconId, iconId);
+}
+
+QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
+{
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(iconId, QIcon(IconProvider::getIconPath(iconId)));
+        QIcon icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::getIconPath(iconId)));
         icon = generateDifferentSizes(icon);
         return icon;
     }
