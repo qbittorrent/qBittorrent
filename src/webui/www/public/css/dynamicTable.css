@@ -74,7 +74,8 @@
 }
 
 #transferList img.statusIcon {
-  margin-bottom: -4px;
+	height: 1.3em;
+	vertical-align: middle;
 }
 
 #trackers th,
