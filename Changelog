@@ -1,3 +1,5 @@
+    - BUGFIX: Fix fast resume missing UI representation of loaded torrents if there are more then 1000 torrents
+
 * Sat Dec 17 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.10
     - BUGFIX: Fix share ratio limiting. Broken by commit 259b5e51c49b744. Closes #6039 #6048. (sledgehammer999)
     - BUGFIX: Case insensitive sort for client column. Closes #6054. (Oke Atime)

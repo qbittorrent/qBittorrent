@@ -319,6 +319,7 @@ Session::Session(QObject *parent)
     sessionSettings.ssl_listen = 0;
     // To prevent ISPs from blocking seeding
     sessionSettings.lazy_bitfields = true;
+
     // Speed up exit
     sessionSettings.stop_tracker_timeout = 1;
     sessionSettings.auto_scrape_interval = 1200; // 20 minutes
@@ -346,6 +347,7 @@ Session::Session(QObject *parent)
     pack.set_int(libt::settings_pack::ssl_listen, 0);
     // To prevent ISPs from blocking seeding
     pack.set_bool(libt::settings_pack::lazy_bitfields, true);
+    pack.set_int(libt::settings_pack::alert_queue_size, 10000);
     // Speed up exit
     pack.set_int(libt::settings_pack::stop_tracker_timeout, 1);
     pack.set_int(libt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
@@ -3068,6 +3070,8 @@ void Session::startUpTorrents()
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
             logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                                .arg(params.hash), Log::CRITICAL);
+        // don't waste memory with to many unprocessed queue entries
+        readAlerts();
     };
 
     qDebug("Starting up torrents");
