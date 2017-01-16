@@ -172,8 +172,6 @@ void AutomatedRssDownloader::loadRulesList()
         else
             item->setCheckState(Qt::Unchecked);
     }
-    if (( ui->listRules->count() > 0) && !ui->listRules->currentItem())
-        ui->listRules->setCurrentRow(0);
 }
 
 void AutomatedRssDownloader::loadFeedList()
