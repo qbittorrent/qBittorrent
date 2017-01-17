@@ -1711,7 +1711,7 @@ QIcon MainWindow::getSystrayIcon() const
     QIcon icon;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
-        icon = QIcon::fromTheme("qbittorrent");
+        icon = QIcon::fromTheme("qbittorrent-tray");
 
 #endif
     if (icon.isNull()) {
