@@ -150,10 +150,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_ui->actionOpen->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     m_ui->actionDownloadFromURL->setIcon(GuiIconProvider::instance()->getIcon("insert-link"));
-    m_ui->actionSetUploadLimit->setIcon(QIcon(":/icons/skin/uploadLimit.png"));
-    m_ui->actionSetDownloadLimit->setIcon(QIcon(":/icons/skin/downloadLimit.png"));
-    m_ui->actionSetGlobalUploadLimit->setIcon(QIcon(":/icons/skin/uploadLimit.png"));
-    m_ui->actionSetGlobalDownloadLimit->setIcon(QIcon(":/icons/skin/downloadLimit.png"));
+    m_ui->actionSetUploadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"));
+    m_ui->actionSetDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
+    m_ui->actionSetGlobalUploadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"));
+    m_ui->actionSetGlobalDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
     m_ui->actionCreateTorrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
     m_ui->actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
     m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
@@ -166,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
     m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
-    m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("preferences-system"));
+    m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("configure", "open-menu"));
     m_ui->actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
     m_ui->actionPauseAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
     m_ui->actionStart->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));

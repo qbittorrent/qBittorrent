@@ -4,7 +4,6 @@
   <file>icons/3-state-checkbox.gif</file>
   <file>icons/L.gif</file>
   <file>icons/loading.png</file>
-  <file>icons/magnet.png</file>
   <file>icons/slow.png</file>
   <file>icons/slow_off.png</file>
   <file>icons/sphere.png</file>
@@ -254,7 +253,7 @@
   <file>icons/qbt-theme/application-exit.png</file>
   <file>icons/qbt-theme/application-rss+xml.png</file>
   <file>icons/qbt-theme/application-x-mswinurl.png</file>
-  <file>icons/qbt-theme/chronometer.png</file>
+  <file>icons/qbt-theme/configure.png</file>
   <file>icons/qbt-theme/dialog-cancel.png</file>
   <file>icons/qbt-theme/dialog-information.png</file>
   <file>icons/qbt-theme/dialog-warning.png</file>
@@ -276,6 +275,7 @@
   <file>icons/qbt-theme/edit-paste.png</file>
   <file>icons/qbt-theme/edit-rename.png</file>
   <file>icons/qbt-theme/folder-documents.png</file>
+  <file>icons/qbt-theme/folder-download.png</file>
   <file>icons/qbt-theme/folder-new.png</file>
   <file>icons/qbt-theme/folder-remote.png</file>
   <file>icons/qbt-theme/gear.png</file>
@@ -286,6 +286,9 @@
   <file>icons/qbt-theme/help-contents.png</file>
   <file>icons/qbt-theme/inode-directory.png</file>
   <file>icons/qbt-theme/insert-link.png</file>
+  <file>icons/qbt-theme/kt-magnet.png</file>
+  <file>icons/qbt-theme/kt-set-max-download-speed.png</file>
+  <file>icons/qbt-theme/kt-set-max-upload-speed.png</file>
   <file>icons/qbt-theme/list-add.png</file>
   <file>icons/qbt-theme/list-remove.png</file>
   <file>icons/qbt-theme/mail-folder-inbox.png</file>
@@ -299,11 +302,11 @@
   <file>icons/qbt-theme/preferences-desktop.png</file>
   <file>icons/qbt-theme/preferences-other.png</file>
   <file>icons/qbt-theme/preferences-system-network.png</file>
-  <file>icons/qbt-theme/preferences-system.png</file>
   <file>icons/qbt-theme/preferences-web-browser-cookies.png</file>
   <file>icons/qbt-theme/security-high.png</file>
   <file>icons/qbt-theme/security-low.png</file>
   <file>icons/qbt-theme/services.png</file>
+  <file>icons/qbt-theme/speedometer.png</file>
   <file>icons/qbt-theme/tab-close.png</file>
   <file>icons/qbt-theme/task-attention.png</file>
   <file>icons/qbt-theme/task-complete.png</file>
@@ -373,7 +376,5 @@
   <file>icons/qbt-theme/go-top.png</file>
   <file>icons/qbt-theme/checked.png</file>
   <file>icons/qbt-theme/office-chart-line.png</file>
-  <file>icons/skin/downloadLimit.png</file>
-  <file>icons/skin/uploadLimit.png</file>
 </qresource>
 </RCC>
