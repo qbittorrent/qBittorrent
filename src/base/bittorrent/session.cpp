@@ -1858,7 +1858,7 @@ void Session::generateResumeData(bool final)
         if (torrent->isChecking() || torrent->hasError()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
 
-        saveTorrentResumeData(torrent);
+        saveTorrentResumeData(torrent, final);
         qDebug("Saving fastresume data for %s", qPrintable(torrent->name()));
     }
 }
@@ -2782,9 +2782,9 @@ void Session::handleTorrentRatioLimitChanged(TorrentHandle *const torrent)
     updateRatioTimer();
 }
 
-void Session::saveTorrentResumeData(TorrentHandle *const torrent)
+void Session::saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave)
 {
-    torrent->saveResumeData();
+    torrent->saveResumeData(finalSave);
     ++m_numResumeData;
 }
 
