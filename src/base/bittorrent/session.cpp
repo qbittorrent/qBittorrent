@@ -3077,6 +3077,7 @@ void Session::startUpTorrents()
     // Resume downloads
     QMap<int, TorrentResumeData> queuedResumeData;
     int nextQueuePosition = 1;
+    int numOfRemappedFiles = 0;
     QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (const QString &fastresumeName, fastresumes) {
         if (rx.indexIn(fastresumeName) == -1) continue;
@@ -3100,9 +3101,21 @@ void Session::startUpTorrents()
                 }
             }
             else {
-                queuedResumeData[queuePosition] = { hash, magnetUri, resumeData, data };
+                int q = queuePosition;
+                for(; queuedResumeData.contains(q); ++q) {
+                }
+                if (q != queuePosition) {
+                    ++numOfRemappedFiles;
+                }
+                queuedResumeData[q] = { hash, magnetUri, resumeData, data };
             }
         }
+    }
+
+    if (numOfRemappedFiles > 0) {
+        logger->addMessage(
+            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
+            Log::CRITICAL);
     }
 
     // starting up downloading torrents (queue position > 0)
