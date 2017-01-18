@@ -94,7 +94,73 @@ static struct { const char *source; const char *comment; } units[] = {
 
 void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if defined(Q_OS_WIN)
+    HANDLE hToken;            // handle to process token
+    TOKEN_PRIVILEGES tkp;     // pointer to token structure
+    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+        return;
+    // Get the LUID for shutdown privilege.
+    LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
+                         &tkp.Privileges[0].Luid);
+
+    tkp.PrivilegeCount = 1; // one privilege to set
+    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    // Get shutdown privilege for this process.
+
+    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
+                          (PTOKEN_PRIVILEGES) NULL, 0);
+
+    // Cannot test the return value of AdjustTokenPrivileges.
+
+    if (GetLastError() != ERROR_SUCCESS)
+        return;
+
+    if (action == ShutdownDialogAction::Suspend)
+        SetSuspendState(false, false, false);
+    else if (action == ShutdownDialogAction::Hibernate)
+        SetSuspendState(true, false, false);
+    else
+        InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+
+    // Disable shutdown privilege.
+    tkp.Privileges[0].Attributes = 0;
+    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
+
+#elif defined(Q_OS_MAC)
+    AEEventID EventToSend;
+    if (action != ShutdownDialogAction::Shutdown)
+        EventToSend = kAESleep;
+    else
+        EventToSend = kAEShutDown;
+    AEAddressDesc targetDesc;
+    static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
+    AppleEvent eventReply = {typeNull, NULL};
+    AppleEvent appleEventToSend = {typeNull, NULL};
+
+    OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
+                                  sizeof(kPSNOfSystemProcess), &targetDesc);
+
+    if (error != noErr)
+        return;
+
+    error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
+                               kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
+
+    AEDisposeDesc(&targetDesc);
+    if (error != noErr)
+        return;
+
+    error = AESend(&appleEventToSend, &eventReply, kAENoReply,
+                   kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
+
+    AEDisposeDesc(&appleEventToSend);
+    if (error != noErr)
+        return;
+
+    AEDisposeDesc(&eventReply);
+
+#elif (defined(Q_OS_UNIX) && defined(QT_DBUS_LIB))
     // Use dbus to power off / suspend the system
     if (action != ShutdownDialogAction::Shutdown) {
         // Some recent systems use systemd's logind
@@ -147,73 +213,9 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
                                 QDBusConnection::systemBus());
         halIface.call("Shutdown");
     }
-#endif
-#ifdef Q_OS_MAC
-    AEEventID EventToSend;
-    if (action != ShutdownDialogAction::Shutdown)
-        EventToSend = kAESleep;
-    else
-        EventToSend = kAEShutDown;
-    AEAddressDesc targetDesc;
-    static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
-    AppleEvent eventReply = {typeNull, NULL};
-    AppleEvent appleEventToSend = {typeNull, NULL};
 
-    OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
-                                  sizeof(kPSNOfSystemProcess), &targetDesc);
-
-    if (error != noErr)
-        return;
-
-    error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
-                               kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
-
-    AEDisposeDesc(&targetDesc);
-    if (error != noErr)
-        return;
-
-    error = AESend(&appleEventToSend, &eventReply, kAENoReply,
-                   kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
-
-    AEDisposeDesc(&appleEventToSend);
-    if (error != noErr)
-        return;
-
-    AEDisposeDesc(&eventReply);
-#endif
-#ifdef Q_OS_WIN
-    HANDLE hToken;            // handle to process token
-    TOKEN_PRIVILEGES tkp;     // pointer to token structure
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-        return;
-    // Get the LUID for shutdown privilege.
-    LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
-                         &tkp.Privileges[0].Luid);
-
-    tkp.PrivilegeCount = 1; // one privilege to set
-    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    // Get shutdown privilege for this process.
-
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                          (PTOKEN_PRIVILEGES) NULL, 0);
-
-    // Cannot test the return value of AdjustTokenPrivileges.
-
-    if (GetLastError() != ERROR_SUCCESS)
-        return;
-
-    if (action == ShutdownDialogAction::Suspend)
-        SetSuspendState(false, false, false);
-    else if (action == ShutdownDialogAction::Hibernate)
-        SetSuspendState(true, false, false);
-    else
-        InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
-
-    // Disable shutdown privilege.
-    tkp.Privileges[0].Attributes = 0;
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                          (PTOKEN_PRIVILEGES) NULL, 0);
+#else
+    Q_UNUSED(action);
 #endif
 }
 
