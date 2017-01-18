@@ -218,8 +218,6 @@ namespace BitTorrent
         void setLSDEnabled(bool enabled);
         bool isPeXEnabled() const;
         void setPeXEnabled(bool enabled);
-        bool isTrackerExchangeEnabled() const;
-        void setTrackerExchangeEnabled(bool enabled);
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
         bool isTrackerEnabled() const;
@@ -507,7 +505,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
-        CachedSettingValue<bool> m_isTrackerExchangeEnabled;
         CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
         CachedSettingValue<QString> m_IPFilterFile;
@@ -572,11 +569,10 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
 
-        // Order is important. These need to be declared after their CachedSettingsValue
-        // counterparts, because they use them for initialization in the constructor
+        // Order is important. This needs to be declared after its CachedSettingsValue
+        // counterpart, because it uses it for initialization in the constructor
         // initialization list.
         const bool m_wasPexEnabled;
-        const bool m_wasTrackerExchangeEnabled;
 
         int m_numResumeData;
         int m_extraLimit;

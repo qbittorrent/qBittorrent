@@ -127,7 +127,6 @@ namespace
             {"BitTorrent/Session/DHTEnabled", "Preferences/Bittorrent/DHT"},
             {"BitTorrent/Session/LSDEnabled", "Preferences/Bittorrent/LSD"},
             {"BitTorrent/Session/PeXEnabled", "Preferences/Bittorrent/PeX"},
-            {"BitTorrent/Session/TrackerExchangeEnabled", "Preferences/Advanced/LtTrackerExchange"},
             {"BitTorrent/Session/AddTrackersEnabled", "Preferences/Bittorrent/AddTrackers"},
             {"BitTorrent/Session/AdditionalTrackers", "Preferences/Bittorrent/TrackersList"},
             {"BitTorrent/Session/IPFilteringEnabled", "Preferences/IPFilter/Enabled"},
