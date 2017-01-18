@@ -33,6 +33,8 @@
 
 #include "peersadditiondlg.h"
 
+#include "config.h"
+
 PeersAdditionDlg::PeersAdditionDlg(QWidget *parent)
     : QDialog(parent)
 {

@@ -8,7 +8,7 @@ AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
 
-
+AC_CONFIG_HEADERS([src/config.h])
 
 # Define --wth-* and --enable-* arguments
 
@@ -97,6 +97,7 @@ AS_CASE(["x$enable_gui"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
                enable_systemd=[no]
+               AC_DEFINE([QBT_USE_GUI])
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nogui"],
         ["xno"],
               [AC_MSG_RESULT([no])
@@ -120,6 +121,7 @@ AC_MSG_CHECKING([whether to enable the WebUI])
 AS_CASE(["x$enable_webui"],
         ["xyes"],
                [AC_MSG_RESULT([yes])
+               AC_DEFINE([QBT_USE_WEBUI])
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG nowebui"],
         ["xno"],
               [AC_MSG_RESULT([no])
@@ -131,7 +133,8 @@ AC_MSG_CHECKING([whether Qt4 should be enabled])
 AS_CASE(["x$with_qt4"],
         ["xno"],
               [AC_MSG_RESULT([no])
-              FIND_QT5()],
+              FIND_QT5()
+              AC_DEFINE([QBT_USES_QT5])],
         ["xyes"],
                [AC_MSG_RESULT([yes])
                FIND_QT4()],
@@ -207,6 +210,8 @@ PKG_CHECK_MODULES(libtorrent,
                   [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
+AC_CHECK_HEADERS([libtorrent/extensions/lt_trackers.hpp libtorrent/string_view.hpp], [], [], [])
+
 PKG_CHECK_MODULES(zlib,
                  [zlib],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
@@ -258,11 +263,12 @@ AC_SUBST(QBT_REMOVE_CONFIG)
 AC_SUBST(QBT_ADD_DEFINES)
 AC_SUBST(QBT_REMOVE_DEFINES)
 
-AC_OUTPUT(conf.pri)
 AS_IF([test "x$enable_systemd" = "xyes"],
-      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox.service)])
+      [AC_CONFIG_FILES(dist/unix/systemd/qbittorrent-nox.service)])
 
+AC_CONFIG_FILES([conf.pri])
 
+AC_OUTPUT()
 
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 CONFDIR="$( cd "$( dirname "$0" )" && pwd )"

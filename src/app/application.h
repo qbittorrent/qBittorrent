@@ -34,6 +34,8 @@
 #include <QStringList>
 #include <QTranslator>
 
+#include "config.h"
+
 #ifndef DISABLE_GUI
 #include "qtsingleapplication.h"
 typedef QtSingleApplication BaseApplication;

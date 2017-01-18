@@ -35,6 +35,8 @@
 #include <QDir>
 #include <QSettings>
 
+#include "config.h"
+
 #ifndef DISABLE_GUI
 #include <QApplication>
 #else

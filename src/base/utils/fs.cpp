@@ -55,6 +55,8 @@
 #include <winbase.h>
 #endif
 
+#include "config.h"
+
 #ifndef QBT_USES_QT5
 
 #ifndef DISABLE_GUI

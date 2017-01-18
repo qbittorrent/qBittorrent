@@ -41,6 +41,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QWheelEvent>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif

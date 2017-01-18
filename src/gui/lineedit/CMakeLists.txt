@@ -10,6 +10,8 @@ set(QBT_LINEEDIT_RESOURCES
 resources/lineeditimages.qrc
 )
 
+include_directories(${qBittorrent_BINARY_DIR}/src)
+
 add_library(qbt_lineedit STATIC ${QBT_LINEEDIT_SOURCES} ${QBT_LINEEDIT_HEADERS})
 if (QT4_FOUND)
     target_link_libraries(qbt_lineedit Qt4::QtGui)

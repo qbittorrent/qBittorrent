@@ -35,6 +35,8 @@
 #include <QBitArray>
 #include <QCoreApplication>
 
+#include "config.h"
+
 namespace BitTorrent
 {
     class TorrentHandle;

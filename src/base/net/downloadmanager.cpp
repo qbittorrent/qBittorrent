@@ -43,6 +43,8 @@
 #include "downloadhandler.h"
 #include "proxyconfigurationmanager.h"
 
+#include "config.h"
+
 // Spoof Firefox 38 user agent to avoid web server banning
 const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0";
 

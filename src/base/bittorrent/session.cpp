@@ -45,8 +45,11 @@
 #include <QTimer>
 
 #include <cstdlib>
+#include <iostream>
 #include <queue>
 #include <vector>
+
+#include <boost/lexical_cast.hpp>
 
 #include <libtorrent/alert_types.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
@@ -55,7 +58,9 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
+#ifdef HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP
 #include <libtorrent/extensions/lt_trackers.hpp>
+#endif
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/identify_client.hpp>
@@ -194,6 +199,20 @@ namespace
 
     template <typename T>
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
+
+    // we declare this shortcut here, because...
+    inline QString fromStdString(const std::string& str)
+    {
+        return Utils::String::fromStdString(str);
+    }
+#ifdef HAVE_LIBTORRENT_STRING_VIEW_HPP
+    // ... if libtorrent uses string_view, we need a second overload
+    // only in this file.
+    inline QString fromStdString(const libtorrent::string_view& str)
+    {
+        return QString::fromUtf8(str.data(), str.size());
+    }
+#endif
 }
 
 // Session
@@ -213,7 +232,9 @@ Session::Session(QObject *parent)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY("DHTEnabled"), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY("LSDEnabled"), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY("PeXEnabled"), true)
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
     , m_isTrackerExchangeEnabled(BITTORRENT_SESSION_KEY("TrackerExchangeEnabled"), false)
+#endif
     , m_isIPFilteringEnabled(BITTORRENT_SESSION_KEY("IPFilteringEnabled"), false)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY("TrackerFilteringEnabled"), false)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
@@ -278,7 +299,9 @@ Session::Session(QObject *parent)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
     , m_bannedIPs("State/BannedIPs")
     , m_wasPexEnabled(m_isPeXEnabled)
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
     , m_wasTrackerExchangeEnabled(m_isTrackerExchangeEnabled)
+#endif
     , m_numResumeData(0)
     , m_extraLimit(0)
     , m_useProxy(false)
@@ -365,8 +388,10 @@ Session::Session(QObject *parent)
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
     if (isTrackerExchangeEnabled())
         m_nativeSession->add_extension(&libt::create_lt_trackers_plugin);
+#endif
     if (isPeXEnabled())
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
@@ -475,6 +500,7 @@ void Session::setPeXEnabled(bool enabled)
         Logger::instance()->addMessage(tr("Restart is required to toggle PeX support"), Log::WARNING);
 }
 
+#ifdef BACKEND_HAS_LT_TRACKERS_EXTENSION
 bool Session::isTrackerExchangeEnabled() const
 {
     return m_isTrackerExchangeEnabled;
@@ -486,6 +512,7 @@ void Session::setTrackerExchangeEnabled(bool enabled)
     if (m_wasTrackerExchangeEnabled != enabled)
         Logger::instance()->addMessage(tr("Restart is required to toggle Tracker Exchange support"), Log::WARNING);
 }
+#endif
 
 bool Session::isTempPathEnabled() const
 {
@@ -3417,32 +3444,33 @@ void Session::handlePortmapAlert(libt::portmap_alert *p)
 
 void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
 {
-    boost::system::error_code ec;
-    std::string ip = p->ip.to_string(ec);
-    QString reason;
-    switch (p->reason) {
-    case libt::peer_blocked_alert::ip_filter:
-        reason = tr("due to IP filter.", "this peer was blocked due to ip filter.");
-        break;
-    case libt::peer_blocked_alert::port_filter:
-        reason = tr("due to port filter.", "this peer was blocked due to port filter.");
-        break;
-    case libt::peer_blocked_alert::i2p_mixed:
-        reason = tr("due to i2p mixed mode restrictions.", "this peer was blocked due to i2p mixed mode restrictions.");
-        break;
-    case libt::peer_blocked_alert::privileged_ports:
-        reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
-        break;
-    case libt::peer_blocked_alert::utp_disabled:
-        reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
-        break;
-    case libt::peer_blocked_alert::tcp_disabled:
-        reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
-        break;
-    }
+    try {
+        std::string ip = boost::lexical_cast<std::string>(p->ip);
+        QString reason;
+        switch (p->reason) {
+        case libt::peer_blocked_alert::ip_filter:
+            reason = tr("due to IP filter.", "this peer was blocked due to ip filter.");
+            break;
+        case libt::peer_blocked_alert::port_filter:
+            reason = tr("due to port filter.", "this peer was blocked due to port filter.");
+            break;
+        case libt::peer_blocked_alert::i2p_mixed:
+            reason = tr("due to i2p mixed mode restrictions.", "this peer was blocked due to i2p mixed mode restrictions.");
+            break;
+        case libt::peer_blocked_alert::privileged_ports:
+            reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
+            break;
+        case libt::peer_blocked_alert::utp_disabled:
+            reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
+            break;
+        case libt::peer_blocked_alert::tcp_disabled:
+            reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
+            break;
+        }
 
-    if (!ec)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
+    }
+    catch (boost::bad_lexical_cast&){}
 }
 
 void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
@@ -3569,20 +3597,20 @@ namespace
         if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
 #endif
 
-        torrentData.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
-        torrentData.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+        torrentData.savePath = Utils::Fs::fromNativePath(fromStdString(fast.dict_find_string_value("qBt-savePath")));
+        torrentData.ratioLimit = fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
+        torrentData.category = fromStdString(fast.dict_find_string_value("qBt-label"));
         if (torrentData.category.isEmpty())
         // **************************************************************************************
-            torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-category"));
-        torrentData.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
+            torrentData.category = fromStdString(fast.dict_find_string_value("qBt-category"));
+        torrentData.name = fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
 
-        magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
+        magnetUri = MagnetUri(fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
         torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
         torrentData.addForced = fast.dict_find_int_value("qBt-forced");
 

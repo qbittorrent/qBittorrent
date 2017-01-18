@@ -37,6 +37,9 @@
 #include <QDebug>
 #include <QUrl>
 #include <QMessageBox>
+
+#include "config.h"
+
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #include <QHeaderView>

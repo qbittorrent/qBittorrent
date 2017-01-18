@@ -35,6 +35,8 @@
 #include <QProgressBar>
 #include <QStyleOptionProgressBar>
 
+#include "config.h"
+
 #ifdef Q_OS_WIN
 #ifndef QBT_USES_QT5
 #include <QPlastiqueStyle>

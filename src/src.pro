@@ -5,7 +5,6 @@ CONFIG += qt thread silent
 # C++11 support
 CONFIG += c++11
 DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
-greaterThan(QT_MAJOR_VERSION, 4): greaterThan(QT_MINOR_VERSION, 1): DEFINES += QBT_USES_QT5
 
 # Windows specific configuration
 win32: include(../winconf.pri)
@@ -21,7 +20,6 @@ os2: include(../os2conf.pri)
 
 nogui {
     QT -= gui
-    DEFINES += DISABLE_GUI
     TARGET = qbittorrent-nox
 } else {
     QT += xml
@@ -32,7 +30,6 @@ nogui {
     }
     TARGET = qbittorrent
 }
-nowebui: DEFINES += DISABLE_WEBUI
 strace_win {
     DEFINES += STACKTRACE_WIN
     DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
@@ -57,7 +54,18 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # Fast concatenation (Qt >= 4.6)
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
-win32: DEFINES += NOMINMAX
+win32 {
+    DEFINES += NOMINMAX
+    QBT_USES_QT5 = 0
+    QBT_NOGUI = 0
+    QBT_NOWEBUI = 0
+    greaterThan(QT_MAJOR_VERSION, 4): greaterThan(QT_MINOR_VERSION, 1): QBT_USES_QT5 = 1
+    nogui: QBT_NOGUI = 1
+    nowebui: QBT_NOWEBUI = 1
+    configh.input = config.h.win.in
+    configh.output = config.h
+    QMAKE_SUBSTITUTES += configh
+}
 
 INCLUDEPATH += $$PWD
 

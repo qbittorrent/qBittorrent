@@ -43,6 +43,8 @@
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 
+#include "config.h"
+
 #ifdef Q_OS_WIN
 #ifndef QBT_USES_QT5
 #include <QPlastiqueStyle>

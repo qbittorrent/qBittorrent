@@ -41,6 +41,8 @@
 #include <boost/version.hpp>
 #include <libtorrent/version.hpp>
 
+#include "config.h"
+
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
 #else

@@ -44,6 +44,9 @@
 
 #include <QDebug>
 #include <QVariant>
+
+#include "config.h"
+
 #ifndef QBT_USES_QT5
 #include <QMetaType>
 #endif
@@ -882,7 +885,7 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
         lastAcceptedData.clear();
         syncData = data;
 
-#if (QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
+#if defined QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
         // QJsonDocument::fromVariant() supports QVariantHash only
         // since Qt5.5, so manually convert data["torrents"]
         QVariantMap torrentsMap;

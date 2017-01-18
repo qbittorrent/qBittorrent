@@ -43,6 +43,8 @@
 
 #include "types.h"
 
+#include "config.h"
+
 enum scheduler_days
 {
     EVERY_DAY,

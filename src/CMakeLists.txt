@@ -2,14 +2,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD "11")
 add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 
+include(CheckIncludeFileCXX)
 include(MacroLinkQtComponents)
 include(QbtTargetSources)
 
 find_package(LibtorrentRasterbar REQUIRED)
 
+set(CMAKE_REQUIRED_INCLUDES ${LibtorrentRasterbar_INCLUDE_DIR})
+check_include_file_cxx(libtorrent/extensions/lt_trackers.hpp HAVE_LIBTORRENT_EXTENSIONS_LT_TRACKERS_HPP)
+check_include_file_cxx(libtorrent/string_view.hpp HAVE_LIBTORRENT_STRING_VIEW_HPP)
+
 # Qt
 if (QT5)
-    add_definitions(-DQBT_USES_QT5)
     list(APPEND QBT_QT_COMPONENTS Core Network Xml)
     if (GUI)
         list (APPEND QBT_QT_COMPONENTS Concurrent Gui Widgets)
@@ -42,14 +46,6 @@ add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 if (WIN32)
     add_definitions(-DNOMINMAX)
 endif (WIN32)
-
-if (NOT GUI)
-    add_definitions(-DDISABLE_GUI -DDISABLE_COUNTRIES_RESOLUTION)
-endif (NOT GUI)
-
-if (NOT WEBUI)
-    add_definitions(-DDISABLE_WEBUI)
-endif (NOT WEBUI)
 
 if (STACKTRACE_WIN)
     add_definitions(-DSTACKTRACE_WIN)

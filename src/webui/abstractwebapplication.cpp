@@ -39,6 +39,8 @@
 #include "websessiondata.h"
 #include "abstractwebapplication.h"
 
+#include "config.h"
+
 // UnbanTimer
 
 class UnbanTimer: public QTimer
