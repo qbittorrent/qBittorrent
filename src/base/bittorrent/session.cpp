@@ -1870,9 +1870,7 @@ void Session::saveResumeData()
             switch (a->type()) {
             case libt::save_resume_data_failed_alert::alert_type:
             case libt::save_resume_data_alert::alert_type:
-                TorrentHandle *torrent = m_torrents.take(static_cast<libt::torrent_alert *>(a)->handle.info_hash());
-                if (torrent)
-                    torrent->handleAlert(a);
+                dispatchTorrentAlert(a);
                 break;
             }
 #if LIBTORRENT_VERSION_NUM < 10100
