@@ -1576,8 +1576,10 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
     }
     else {
         TorrentFileGuard guard(source);
-        guard.markAsAddedToSession();
-        return addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source));
+        if (addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source))) {
+            guard.markAsAddedToSession();
+            return true;
+        }
     }
 
     return false;
