@@ -31,7 +31,6 @@
 
 #include <QHeaderView>
 #include <QMessageBox>
-#include <QTemporaryFile>
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QDir>

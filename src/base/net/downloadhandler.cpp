@@ -142,7 +142,7 @@ void DownloadHandler::init()
 
 bool DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)
 {
-    QTemporaryFile *tmpfile = new QTemporaryFile;
+    QTemporaryFile *tmpfile = new QTemporaryFile(Utils::Fs::tempPath() + "XXXXXX");
     if (!tmpfile->open()) {
         delete tmpfile;
         return false;

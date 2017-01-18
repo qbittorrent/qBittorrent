@@ -35,7 +35,6 @@
 #include <QUrlQuery>
 #endif
 #include <QDir>
-#include <QTemporaryFile>
 #include <QDebug>
 #include "requestparser.h"
 

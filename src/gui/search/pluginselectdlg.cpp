@@ -34,7 +34,6 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDropEvent>
-#include <QTemporaryFile>
 #include <QMimeData>
 #include <QClipboard>
 #ifdef QBT_USES_QT5

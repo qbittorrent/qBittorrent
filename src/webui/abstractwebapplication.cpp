@@ -36,6 +36,7 @@
 #include <QTimer>
 
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 #include "websessiondata.h"
 #include "abstractwebapplication.h"
 
@@ -382,7 +383,7 @@ bool AbstractWebApplication::sessionEnd()
 
 QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
 {
-    QTemporaryFile tmpfile(QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+    QTemporaryFile tmpfile(Utils::Fs::tempPath() + "XXXXXX.torrent");
     tmpfile.setAutoRemove(false);
     if (tmpfile.open()) {
         tmpfile.write(data);
