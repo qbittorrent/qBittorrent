@@ -485,8 +485,11 @@ bool TorrentHandle::needSaveResumeData() const
     SAFE_RETURN(bool, need_save_resume_data, false);
 }
 
-void TorrentHandle::saveResumeData()
+void TorrentHandle::saveResumeData(bool updateStatus)
 {
+    if (updateStatus) // to update queue_position, see discussion in PR #6154
+        this->updateStatus();
+
     SAFE_CALL(save_resume_data);
     m_needSaveResumeData = false;
 }

@@ -1858,7 +1858,7 @@ void Session::generateResumeData(bool final)
         if (torrent->isChecking() || torrent->hasError()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
 
-        saveTorrentResumeData(torrent);
+        saveTorrentResumeData(torrent, final);
         qDebug("Saving fastresume data for %s", qPrintable(torrent->name()));
     }
 }
@@ -2782,9 +2782,9 @@ void Session::handleTorrentRatioLimitChanged(TorrentHandle *const torrent)
     updateRatioTimer();
 }
 
-void Session::saveTorrentResumeData(TorrentHandle *const torrent)
+void Session::saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave)
 {
-    torrent->saveResumeData();
+    torrent->saveResumeData(finalSave);
     ++m_numResumeData;
 }
 
@@ -3077,6 +3077,7 @@ void Session::startUpTorrents()
     // Resume downloads
     QMap<int, TorrentResumeData> queuedResumeData;
     int nextQueuePosition = 1;
+    int numOfRemappedFiles = 0;
     QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (const QString &fastresumeName, fastresumes) {
         if (rx.indexIn(fastresumeName) == -1) continue;
@@ -3100,9 +3101,21 @@ void Session::startUpTorrents()
                 }
             }
             else {
-                queuedResumeData[queuePosition] = { hash, magnetUri, resumeData, data };
+                int q = queuePosition;
+                for(; queuedResumeData.contains(q); ++q) {
+                }
+                if (q != queuePosition) {
+                    ++numOfRemappedFiles;
+                }
+                queuedResumeData[q] = { hash, magnetUri, resumeData, data };
             }
         }
+    }
+
+    if (numOfRemappedFiles > 0) {
+        logger->addMessage(
+            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
+            Log::CRITICAL);
     }
 
     // starting up downloading torrents (queue position > 0)

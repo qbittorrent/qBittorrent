@@ -351,7 +351,7 @@ namespace BitTorrent
         void handleTempPathChanged();
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
-        void saveResumeData();
+        void saveResumeData(bool updateStatus = false);
 
     private:
         typedef boost::function<void ()> EventTrigger;
