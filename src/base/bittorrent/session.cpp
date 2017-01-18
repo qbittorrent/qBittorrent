@@ -55,7 +55,6 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
-#include <libtorrent/extensions/lt_trackers.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/identify_client.hpp>
@@ -213,7 +212,6 @@ Session::Session(QObject *parent)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY("DHTEnabled"), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY("LSDEnabled"), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY("PeXEnabled"), true)
-    , m_isTrackerExchangeEnabled(BITTORRENT_SESSION_KEY("TrackerExchangeEnabled"), false)
     , m_isIPFilteringEnabled(BITTORRENT_SESSION_KEY("IPFilteringEnabled"), false)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY("TrackerFilteringEnabled"), false)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
@@ -278,7 +276,6 @@ Session::Session(QObject *parent)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
     , m_bannedIPs("State/BannedIPs")
     , m_wasPexEnabled(m_isPeXEnabled)
-    , m_wasTrackerExchangeEnabled(m_isTrackerExchangeEnabled)
     , m_numResumeData(0)
     , m_extraLimit(0)
     , m_useProxy(false)
@@ -365,8 +362,6 @@ Session::Session(QObject *parent)
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
-    if (isTrackerExchangeEnabled())
-        m_nativeSession->add_extension(&libt::create_lt_trackers_plugin);
     if (isPeXEnabled())
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
@@ -473,18 +468,6 @@ void Session::setPeXEnabled(bool enabled)
     m_isPeXEnabled = enabled;
     if (m_wasPexEnabled != enabled)
         Logger::instance()->addMessage(tr("Restart is required to toggle PeX support"), Log::WARNING);
-}
-
-bool Session::isTrackerExchangeEnabled() const
-{
-    return m_isTrackerExchangeEnabled;
-}
-
-void Session::setTrackerExchangeEnabled(bool enabled)
-{
-    m_isTrackerExchangeEnabled = enabled;
-    if (m_wasTrackerExchangeEnabled != enabled)
-        Logger::instance()->addMessage(tr("Restart is required to toggle Tracker Exchange support"), Log::WARNING);
 }
 
 bool Session::isTempPathEnabled() const

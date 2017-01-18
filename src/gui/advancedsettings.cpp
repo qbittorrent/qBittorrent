@@ -87,7 +87,6 @@ enum AdvSettingsRows
     // seeding
     SUPER_SEEDING,
     // tracker
-    TRACKER_EXCHANGE,
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_IP,
 
@@ -186,8 +185,6 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
-    // Tracker exchange
-    session->setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
@@ -380,9 +377,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
-    // Tracker exchange
-    cb_enable_tracker_ext.setChecked(session->isTrackerExchangeEnabled());
-    addRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
     addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
