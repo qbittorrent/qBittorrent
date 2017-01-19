@@ -37,7 +37,7 @@
 		</dict>
 	</array>
 	<key>CFBundleName</key>
-	<string>qBittorrent</string>
+	<string>@EXECUTABLE@</string>
 	<key>CFBundleIconFile</key>
 	<string>qbittorrent_mac.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -49,7 +49,7 @@
 	<key>CFBundleSignature</key>
 	<string>qBit</string>
 	<key>CFBundleExecutable</key>
-	<string>qbittorrent</string>
+	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent</string>
 	<key>NSPrincipalClass</key>
