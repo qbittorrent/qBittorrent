@@ -36,9 +36,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QClipboard>
-#ifdef QBT_USES_QT5
 #include <QTableView>
-#endif
 
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -69,14 +67,13 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(pluginsTree->header());
     pluginsTree->header()->setParent(pluginsTree);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
+
     pluginsTree->setRootIsDecorated(false);
     pluginsTree->header()->resizeSection(0, 160);
     pluginsTree->header()->resizeSection(1, 80);

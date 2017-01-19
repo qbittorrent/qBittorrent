@@ -32,12 +32,9 @@
 #include <cmath>
 
 #include <QByteArray>
+#include <QCollator>
 #include <QtGlobal>
 #include <QLocale>
-
-#ifdef QBT_USES_QT5
-#include <QCollator>
-#endif
 #ifdef Q_OS_MAC
 #include <QThreadStorage>
 #endif
@@ -50,7 +47,6 @@ namespace
         explicit NaturalCompare(const bool caseSensitive = true)
             : m_caseSensitive(caseSensitive)
         {
-#ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
             // Without ICU library, QCollator uses the native API on Windows 7+. But that API
             // sorts older versions of μTorrent differently than the newer ones because the
@@ -63,12 +59,10 @@ namespace
 #endif
             m_collator.setNumericMode(true);
             m_collator.setCaseSensitivity(caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
-#endif
         }
 
         bool operator()(const QString &left, const QString &right) const
         {
-#ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
             // Without ICU library, QCollator uses the native API on Windows 7+. But that API
             // sorts older versions of μTorrent differently than the newer ones because the
@@ -80,9 +74,6 @@ namespace
                 return lessThan(left, right);
 #endif
             return (m_collator.compare(left, right) < 0);
-#else
-            return lessThan(left, right);
-#endif
         }
 
         bool lessThan(const QString &left, const QString &right) const
@@ -111,20 +102,12 @@ namespace
                 int startL = posL;
                 while ((posL < left.size()) && left[posL].isDigit())
                     ++posL;
-#ifdef QBT_USES_QT5
                 int numL = left.midRef(startL, posL - startL).toInt();
-#else
-                int numL = left.mid(startL, posL - startL).toInt();
-#endif
 
                 int startR = posR;
                 while ((posR < right.size()) && right[posR].isDigit())
                     ++posR;
-#ifdef QBT_USES_QT5
                 int numR = right.midRef(startR, posR - startR).toInt();
-#else
-                int numR = right.mid(startR, posR - startR).toInt();
-#endif
 
                 if (numL != numR)
                     return (numL < numR);
@@ -136,9 +119,7 @@ namespace
         }
 
     private:
-#ifdef QBT_USES_QT5
         QCollator m_collator;
-#endif
         const bool m_caseSensitive;
     };
 }

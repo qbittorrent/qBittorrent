@@ -44,11 +44,7 @@
 #include "base/unicodestrings.h"
 
 #ifdef Q_OS_WIN
-#ifndef QBT_USES_QT5
-#include <QPlastiqueStyle>
-#else
 #include <QProxyStyle>
-#endif
 #endif
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
@@ -175,11 +171,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar
-#ifndef QBT_USES_QT5
-        QPlastiqueStyle st;
-#else
         QProxyStyle st("fusion");
-#endif
         st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         break;

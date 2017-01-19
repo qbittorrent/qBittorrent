@@ -424,9 +424,7 @@ bool ICOHandler::canRead(QIODevice *device)
 
 class ICOPlugin : public QImageIOPlugin
 {
-#ifdef QBT_USES_QT5
     Q_PLUGIN_METADATA(IID "org.qbittorrent.ICOPlugin")
-#endif
 public:
     QStringList keys() const;
     Capabilities capabilities(QIODevice *device, const QByteArray &format) const;
@@ -460,8 +458,3 @@ QImageIOHandler *ICOPlugin::create(QIODevice *device, const QByteArray &format) 
     handler->setFormat(format);
     return handler;
 }
-
-#ifndef QBT_USES_QT5
-Q_EXPORT_STATIC_PLUGIN(ICOPlugin)
-Q_EXPORT_PLUGIN2(ico, ICOPlugin)
-#endif

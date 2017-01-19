@@ -62,15 +62,10 @@ namespace Http
     private:
         IRequestHandler *m_requestHandler;
 
-#ifdef QBT_USES_QT5
         void incomingConnection(qintptr socketDescriptor);
-#else
-        void incomingConnection(int socketDescriptor);
-#endif
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;
-
         bool m_https;
         QList<QSslCertificate> m_certificates;
         QSslKey m_key;

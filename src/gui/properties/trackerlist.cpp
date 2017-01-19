@@ -37,10 +37,8 @@
 #include <QDebug>
 #include <QUrl>
 #include <QMessageBox>
-#ifdef QBT_USES_QT5
 #include <QTableView>
 #include <QHeaderView>
-#endif
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -88,14 +86,12 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
   copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(this->header());
     this->header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
 
   loadSettings();
 }

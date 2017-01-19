@@ -102,15 +102,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     connect(filesList->header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(saveSettings()));
     connect(filesList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this, SLOT(saveSettings()));
 
-#ifdef QBT_USES_QT5
     // set bar height relative to screen dpi
     int barHeight = devicePixelRatio() * 18;
-#else
-    // set bar height relative to font height
-    QFont defFont;
-    QFontMetrics fMetrics(defFont, 0); // need to be device-dependent
-    int barHeight = fMetrics.height() * 5 / 4;
-#endif
 
     // Downloaded pieces progress bar
     tempProgressBarArea->setVisible(false);
