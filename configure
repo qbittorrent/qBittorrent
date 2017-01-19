@@ -1407,7 +1407,7 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
-  QT_QMAKE    value of host_bins for Qt5Core >= 5.2.0, overriding pkg-config
+  QT_QMAKE    value of host_bins for Qt5Core >= 5.5.1, overriding pkg-config
   libtorrent_CFLAGS
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
@@ -4424,8 +4424,8 @@ $as_echo "$enable_webui" >&6; }
 esac
 
 if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.5.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.5.1") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
@@ -4434,12 +4434,12 @@ if test -n "$QT_QMAKE"; then
     pkg_cv_QT_QMAKE="$QT_QMAKE"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.2.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.5.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.5.1") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.2.0" 2>/dev/null`
+  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.5.1" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -4466,8 +4466,8 @@ fi
 
 fi
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
-$as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.5.1" >&5
+$as_echo_n "checking for Qt5 qmake >= 5.5.1... " >&6; }
 if test "x$QT_QMAKE" != "x"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
 $as_echo "$QT_QMAKE" >&6; }
@@ -4483,11 +4483,11 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-               { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.2.0" >&5
-$as_echo_n "checking for Qt5DBus >= 5.2.0... " >&6; }
+               { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.5.1" >&5
+$as_echo_n "checking for Qt5DBus >= 5.5.1... " >&6; }
        if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5DBus >= 5.2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5DBus >= 5.2.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5DBus >= 5.5.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5DBus >= 5.5.1") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then

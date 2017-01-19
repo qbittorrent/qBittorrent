@@ -15,7 +15,7 @@ endif (GUI)
 if (DBUS)
     list (APPEND QBT_QT_COMPONENTS DBus)
 endif (DBUS)
-find_package(Qt5 5.2.0 COMPONENTS ${QBT_QT_COMPONENTS} REQUIRED)
+find_package(Qt5 5.5.1 COMPONENTS ${QBT_QT_COMPONENTS} REQUIRED)
 
 
 set(CMAKE_AUTOMOC True)
