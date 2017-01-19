@@ -249,18 +249,17 @@ void TransferListWidget::setSelectedTorrentsLocation()
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.isEmpty()) return;
 
-    QString dir;
-    const QDir saveDir(torrents[0]->savePath());
-    qDebug("Old save path is %s", qPrintable(saveDir.absolutePath()));
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
+    const QString oldLocation = torrents[0]->savePath();
+    qDebug("Old location is %s", qPrintable(oldLocation));
+
+    const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
                                             QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
-    if (!dir.isNull()) {
-        qDebug("New path is %s", qPrintable(dir));
-        foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
-            // Actually move storage
-            torrent->move(Utils::Fs::expandPathAbs(dir));
-        }
-    }
+    if (!QDir(newLocation).exists()) return;
+    qDebug("New location is %s", qPrintable(newLocation));
+
+    // Actually move storage
+    foreach (BitTorrent::TorrentHandle *const torrent, torrents)
+        torrent->move(Utils::Fs::expandPathAbs(newLocation));
 }
 
 void TransferListWidget::pauseAllTorrents()

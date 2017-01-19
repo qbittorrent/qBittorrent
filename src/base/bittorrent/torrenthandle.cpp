@@ -1286,7 +1286,7 @@ void TorrentHandle::moveStorage(const QString &newPath)
         m_queuedPath = newPath;
     }
     else {
-        QString oldPath = nativeActualSavePath();
+        const QString oldPath = nativeActualSavePath();
         if (QDir(oldPath) == QDir(newPath)) return;
 
         qDebug("move storage: %s to %s", qPrintable(oldPath), qPrintable(newPath));
@@ -1353,7 +1353,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
-    QString newPath = Utils::String::fromStdString(p->path);
+    const QString newPath = Utils::String::fromStdString(p->path);
     if (newPath != m_newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
@@ -1371,13 +1371,6 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
     if (!useTempPath()) {
         m_savePath = newPath;
         m_session->handleTorrentSavePathChanged(this);
-    }
-
-    // Attempt to remove old folder if empty
-    QDir oldSaveDir(Utils::Fs::fromNativePath(m_oldPath));
-    if (oldSaveDir != QDir(m_session->defaultSavePath())) {
-        qDebug("Attempting to remove %s", qPrintable(m_oldPath));
-        QDir().rmpath(m_oldPath);
     }
 
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
