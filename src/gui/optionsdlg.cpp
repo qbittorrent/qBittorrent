@@ -1311,7 +1311,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     }
     if (index < 0) {
         // Unrecognized, use US English
-        index = m_ui->comboI18n->findData(QLocale("en").name(), Qt::UserRole);
+        index = m_ui->comboI18n->findData("en", Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
     m_ui->comboI18n->setCurrentIndex(index);
