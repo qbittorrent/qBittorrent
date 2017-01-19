@@ -395,13 +395,28 @@ void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
         connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
 
     BitTorrent::AddTorrentParams params;
-    params.savePath = matchingRule->savePath();
+    params.savePath = generateSavePath(matchingRule->savePath(), article);
     params.category = matchingRule->category();
     if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
         params.addPaused = TriStateBool::True;
     else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)
         params.addPaused = TriStateBool::False;
     BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
+}
+
+QString Feed::generateSavePath(const QString &savePathTpl, const ArticlePtr &article)
+{
+    QRegExp rx("<(.+)>");
+    rx.setMinimal(true);
+    QString result = savePathTpl;
+    int pos = 0;
+    while ((pos = rx.indexIn(result, pos)) != -1) {
+        QString value = article->getValue(rx.cap(1));
+        result.replace(rx.cap(0), value);
+        pos += value.length();
+    }
+
+    return result;
 }
 
 void Feed::recheckRssItemsForDownload()

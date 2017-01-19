@@ -257,6 +257,7 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
     while(!xml.atEnd()) {
         xml.readNext();
 
+
         if(xml.isEndElement() && xml.name() == "item")
             break;
 
@@ -286,6 +287,11 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
             }
             else if (xml.name() == "guid") {
                 article["id"] = xml.readElementText().trimmed();
+            }
+
+            const QString name = xml.name().toString();
+            if (!article.contains(name)) {
+                article[name] = xml.readElementText().trimmed();
             }
         }
     }
