@@ -14,14 +14,15 @@ env:
     - lt_branch=RC_1_0 qt=5 gui=false
     - lt_branch=RC_1_0 qt=4 gui=true
     - lt_branch=RC_1_0 qt=4 gui=false
+  global:
+    - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
+    - coverity_branch: coverity_scan
+matrix:
   allow_failures:
     - os: osx
       env: lt_branch=RC_1_0 qt=4 gui=true
     - os: osx
       env: lt_branch=RC_1_0 qt=4 gui=false
-  global:
-    - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
-    - coverity_branch: coverity_scan
 
 branches:
   except:
