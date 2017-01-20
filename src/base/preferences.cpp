@@ -31,8 +31,9 @@
  */
 
 #include <QCryptographicHash>
-#include <QPair>
 #include <QDir>
+#include <QLocale>
+#include <QPair>
 #include <QSettings>
 
 #ifndef DISABLE_GUI
@@ -92,7 +93,7 @@ void Preferences::setValue(const QString &key, const QVariant &value)
 // General options
 QString Preferences::getLocale() const
 {
-    return value("Preferences/General/Locale").toString();
+    return value("Preferences/General/Locale", QLocale::system().name()).toString();
 }
 
 void Preferences::setLocale(const QString &locale)
