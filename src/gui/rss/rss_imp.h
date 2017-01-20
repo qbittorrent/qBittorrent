@@ -50,7 +50,7 @@ class RSSImp: public QWidget, public Ui::RSS
     Q_OBJECT
 
 public:
-    RSSImp(QWidget *parent);
+    RSSImp(QWidget * parent);
     ~RSSImp();
 
 public slots:
@@ -64,21 +64,21 @@ private slots:
     void on_newFeedButton_clicked();
     void refreshAllFeeds();
     void on_markReadButton_clicked();
-    void displayRSSListMenu(const QPoint&);
-    void displayItemsListMenu(const QPoint&);
+    void displayRSSListMenu(const QPoint &);
+    void displayItemsListMenu(const QPoint &);
     void renameSelectedRssFile();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
-    void populateArticleList(QTreeWidgetItem* item);
+    void populateArticleList(QTreeWidgetItem *item);
     void refreshTextBrowser();
     void updateFeedIcon(const QString &url, const QString &icon_path);
     void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
-    void onFeedContentChanged(const QString& url);
-    void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
+    void onFeedContentChanged(const QString &url);
+    void updateItemsInfos(const QList<QTreeWidgetItem *> &items);
     void updateItemInfos(QTreeWidgetItem *item);
     void openSelectedArticlesUrls();
     void downloadSelectedTorrents();
-    void fillFeedsList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr& rss_parent = Rss::FolderPtr());
+    void fillFeedsList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void askNewFolder();
@@ -88,16 +88,15 @@ private slots:
     void on_rssDownloaderBtn_clicked();
 
 private:
-    static QListWidgetItem* createArticleListItem(const Rss::ArticlePtr& article);
-    static QTreeWidgetItem* createFolderListItem(const Rss::FilePtr& rssFile);
+    static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
+    static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
 
 private:
     Rss::ManagerPtr m_rssManager;
     FeedListWidget *m_feedList;
-    QListWidgetItem* m_currentArticle;
+    QListWidgetItem *m_currentArticle;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
-
 };
 
 #endif

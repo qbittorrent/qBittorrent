@@ -64,7 +64,7 @@ namespace Rss
         Q_OBJECT
 
     public:
-        Feed(const QString &url, Manager *manager);
+        Feed(const QString &url, Manager * manager);
         ~Feed();
 
         bool refresh();

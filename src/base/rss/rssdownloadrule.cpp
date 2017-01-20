@@ -110,7 +110,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     pos = reg.indexIn(articleTitle);
                     if (pos != -1) {
                         int epTheirs = reg.cap(1).toInt();
-                        if (epOursFirst <= epTheirs && epOursLast >= epTheirs)
+                        if ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))
                             return true;
                     }
                 }
@@ -300,7 +300,7 @@ QStringList DownloadRule::findMatchingArticles(const FeedPtr &feed) const
 
     ArticleHash::ConstIterator artIt = feedArticles.begin();
     ArticleHash::ConstIterator artItend = feedArticles.end();
-    for ( ; artIt != artItend ; ++artIt) {
+    for (; artIt != artItend; ++artIt) {
         const QString title = artIt.value()->title();
         if (matches(title))
             ret << title;

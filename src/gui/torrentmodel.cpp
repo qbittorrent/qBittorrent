@@ -65,15 +65,15 @@ TorrentModel::TorrentModel(QObject *parent)
         addTorrent(torrent);
 
     // Listen for torrent changes
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(addTorrent(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle * const)), SLOT(addTorrent(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle * const)));
     connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), SLOT(handleTorrentsUpdated()));
 
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentMetadataLoaded(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentResumed(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentPaused(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinishedChecking(BitTorrent::TorrentHandle *const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentMetadataLoaded(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentResumed(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentPaused(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinishedChecking(BitTorrent::TorrentHandle * const)), SLOT(handleTorrentStatusUpdated(BitTorrent::TorrentHandle * const)));
 }
 
 int TorrentModel::rowCount(const QModelIndex &index) const
@@ -92,7 +92,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation, int 
 {
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
-            switch(section) {
+            switch (section) {
             case TR_PRIORITY: return "#";
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
@@ -127,7 +127,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation, int 
             }
         }
         else if (role == Qt::TextAlignmentRole) {
-            switch(section) {
+            switch (section) {
             case TR_AMOUNT_DOWNLOADED:
             case TR_AMOUNT_UPLOADED:
             case TR_AMOUNT_DOWNLOADED_SESSION:
@@ -173,7 +173,7 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
         return QVariant();
 
-    switch(index.column()) {
+    switch (index.column()) {
     case TR_NAME:
         return torrent->name();
     case TR_PRIORITY:
@@ -233,7 +233,7 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
             return -1;
         return torrent->timeSinceActivity();
     case TR_TOTAL_SIZE:
-        return  torrent->totalSize();
+        return torrent->totalSize();
     default:
         return QVariant();
     }
@@ -251,7 +251,7 @@ bool TorrentModel::setData(const QModelIndex &index, const QVariant &value, int 
     if (!torrent) return false;
 
     // Category, seed date and Name columns can be edited
-    switch(index.column()) {
+    switch (index.column()) {
     case TR_NAME:
         torrent->setName(value.toString());
         break;
