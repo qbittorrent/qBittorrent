@@ -291,27 +291,6 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
 
 #if defined(Q_OS_UNIX)
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
-#elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
-    program.prepend(QLatin1String("\"")).append(QLatin1String("\""));
-    program.prepend(Utils::Misc::windowsSystemPath() + QLatin1String("\\cmd.exe /C "));
-    const int cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
-    if ((program.size() + 1) > cmdMaxLength) {
-        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(cmdMaxLength), Log::CRITICAL);
-        return;
-    }
-
-    STARTUPINFOW si = {0};
-    si.cb = sizeof(si);
-    PROCESS_INFORMATION pi = {0};
-
-    WCHAR *arg = new WCHAR[program.size() + 1];
-    program.toWCharArray(arg);
-    arg[program.size()] = L'\0';
-    if (CreateProcessW(NULL, arg, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)) {
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-    }
-    delete[] arg;
 #else
     QProcess::startDetached(program);
 #endif
