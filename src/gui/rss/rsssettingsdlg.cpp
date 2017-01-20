@@ -30,13 +30,17 @@
 
 #include "rsssettingsdlg.h"
 #include "ui_rsssettingsdlg.h"
+
 #include "base/preferences.h"
+#include "base/utils/misc.h"
+#include "guiiconprovider.h"
 
 RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::RssSettingsDlg)
 {
   ui->setupUi(this);
+  ui->rssIcon->setPixmap(GuiIconProvider::instance()->getIcon("application-rss+xml").pixmap(Utils::Misc::largeIconSize()));
   // Load settings
   const Preferences* const pref = Preferences::instance();
   ui->spinRSSRefresh->setValue(pref->getRSSRefreshInterval());

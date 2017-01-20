@@ -16,16 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0" rowspan="2">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../../icons.qrc">:/icons/qbt-theme/application-rss+xml.png</pixmap>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QLabel" name="label">
        <property name="text">
@@ -65,6 +55,9 @@
         <number>100</number>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0" rowspan="2">
+      <widget class="QLabel" name="rssIcon"/>
      </item>
     </layout>
    </item>

@@ -69,11 +69,6 @@ namespace Utils
 
         void shutdownComputer(const ShutdownDialogAction &action);
 
-#ifndef DISABLE_GUI
-        // Get screen center
-        QPoint screenCenter(QWidget *win);
-        QSize smallIconSize();
-#endif
         QString osName();
         QString boostVersionString();
         QString libtorrentVersionString();
@@ -107,6 +102,10 @@ namespace Utils
 #ifndef DISABLE_GUI
         void openPath(const QString& absolutePath);
         void openFolderSelect(const QString& absolutePath);
+
+        QPoint screenCenter(QWidget *win);
+        QSize smallIconSize();
+        QSize largeIconSize();
 #endif
 
 #ifdef Q_OS_WIN
