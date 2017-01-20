@@ -32,6 +32,8 @@ addnewtorrentdialog.h
 advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
+categoryfiltermodel.h
+categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
 deletionconfirmationdlg.h
@@ -71,6 +73,8 @@ set(QBT_GUI_SOURCES
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
+categoryfiltermodel.cpp
+categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
 executionlog.cpp
