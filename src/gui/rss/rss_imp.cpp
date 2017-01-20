@@ -702,7 +702,7 @@ RSSImp::RSSImp(QWidget *parent):
     markReadButton->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
     updateAllButton->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    settingsButton->setIcon(GuiIconProvider::instance()->getIcon("configure", "open-menu"));
+    settingsButton->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
 
     m_feedList = new FeedListWidget(splitterSide, m_rssManager);
     splitterSide->insertWidget(0, m_feedList);
