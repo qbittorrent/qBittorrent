@@ -851,7 +851,11 @@ var TorrentsTable = new Class({
 
                 if (td.getChildren('div').length) {
                     var div = td.getChildren('div')[0];
-                    div.setWidth(td.offsetWidth - 5);
+                    var newWidth = td.offsetWidth - 5;
+                    if (div.lastWidth !== newWidth) {
+                        div.setWidth(newWidth);
+                        div.lastWidth = newWidth;
+                    }
                     if (div.getValue() != progressFormated)
                         div.setValue(progressFormated);
                 }
