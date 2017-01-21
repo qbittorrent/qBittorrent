@@ -49,7 +49,7 @@
 
 <div id="prop_trackers" class="invisible">
     <div id="trackers">
-        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+        <table class="dynamicTable" style="width: 100%">
             <thead>
                 <tr>
                     <th style="width: 30%;">QBT_TR(URL)QBT_TR <img src="theme/list-add" id="addTrackersPlus"/></th>
@@ -65,19 +65,27 @@
 
 <div id="prop_peers" class="invisible">
     <div id="peers">
-        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
-            <thead>
-                <tr id="torrentPeersTableHeader" class="dynamicTableHeader">
-                </tr>
-            </thead>
-            <tbody id="torrentPeersTable"></tbody>
-        </table>
+        <div id="torrentPeersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentPeersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <div id="prop_webseeds" class="invisible">
     <div id="webseeds">
-        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+        <table class="dynamicTable" style="width: 100%">
             <thead>
                 <tr>
                     <th>QBT_TR(URL)QBT_TR</th>
@@ -90,7 +98,7 @@
 
 <div id="prop_files" class="invisible">
     <div id="torrentFiles">
-        <table class="torrentTable" cellpadding="0" cellspacing="0" style="width: 100%">
+        <table class="dynamicTable" style="width: 100%">
             <thead>
                 <tr>
                     <th style="width: 30px; border-right: 0"><input type="checkbox" id="tristate_cb" style="display: none;" onclick="javascript:switchCBState()" /><label id="all_files_cb" class="tristate" for="tristate_cb"></label></th>
@@ -106,6 +114,6 @@
 </div>
 
 <script type="text/javascript">
-    torrentPeersTable.setup('torrentPeersTable', 'torrentPeersTableHeader', null);
+    torrentPeersTable.setup('torrentPeersTableDiv', 'torrentPeersTableFixedHeaderDiv', null);
     $(getLocalStorageItem('selected_tab', 'PropGeneralLink')).click();
 </script>

@@ -2,94 +2,93 @@
 
 /**************************************************************
 
-	Dynamic Table
-	v 0.4
+    Dynamic Table
+    v 0.4
 
 **************************************************************/
-
-#properties #torrentFiles table,
-#properties #trackers table,
-#transferList table {
-	border: 1px solid #ccc;
-	width: 100%;
+.dynamicTable tbody tr {
+    background-color: #fff;
 }
 
-#properties #torrentFiles th,
-#properties #trackers th,
-#transferList th {
-	background-color: #eee;
-	padding: 4px;
+.dynamicTable tbody tr:nth-child(even),
+.dynamicTable tbody tr.alt {
+    background-color: #eee;
 }
 
-#properties #torrentFiles tr,
-#properties #trackers tr,
-#transferList tr {
-	background-color: #fff;
-	padding: 4px;
+#transferList .dynamicTable td {
+    padding: 0 2px;
 }
 
-
-#torrentsTable tr:nth-child(even),
-#torrentPeersTable tr:nth-child(even),
-#filesTable tr:nth-child(even),
-#properties #torrentFiles tr.alt,
-#properties #trackers tr.alt,
-#transferList tr.alt {
-	background-color: #eee;
-	padding: 4px;
+.dynamicTable tbody tr.selected {
+    background-color: #354158;
+    color: #fff;
 }
 
-#properties #torrentFiles td,
-#properties #trackers td,
-#transferList td {
-	padding: 0 2px;
+.dynamicTable tbody tr:hover {
+    background-color: #ee6600;
+    color: #fff;
 }
 
-#properties #torrentFiles tr.selected,
-#properties #trackers tr.selected,
-#transferList tr.selected {
-	background-color: #415A8D;
-	color: #fff;
-}
-#torrentPeersTable tr.selected {
-	background-color: #354158;
-	color: #fff;
-}
-
-#torrentsTable tr:hover,
-#torrentPeersTable tr:hover,
-#filesTable tr:hover,
-#properties #torrentFiles tr.over,
-#properties #trackers tr.over,
-#transferList tr.over {
-	background-color: #ee6600;
-	color: #fff;
-}
-
-#torrentsTable tr:hover,
-#properties #torrentFiles tr.over,
-#properties #trackers tr.over,
-#transferList tr.over {
-	cursor: pointer;
+#transferList tr:hover {
+    cursor: pointer;
 }
 
 #transferList img.statusIcon {
 	height: 1.3em;
 	vertical-align: middle;
-}
-
-#trackers th,
-#trackers td,
-#torrentFiles th,
-#torrentFiles td,
-#transferList th,
-#transferList td {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	max-width: 300px;
+    margin-bottom: -1px;
 }
 
 tr.dynamicTableHeader {
     cursor: pointer;
+}
+
+.dynamicTable {
+    table-layout: fixed;
+    width :1%;
+    padding: 0;
+    border-spacing: 0;
+}
+
+.dynamicTable th {
+    background-color: #eee;
+    padding: 4px;
+    white-space: nowrap;
+    border-right-color: #ccc;
+    border-right-style: solid;
+    border-right-width: 1px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.dynamicTable td {
+    padding:0px 4px;
+    white-space: nowrap;
+}
+
+.dynamicTable thead tr {
+    background-color: #eee;
+}
+
+.dynamicTable th,
+.dynamicTable td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dynamicTableFixedHeaderDiv {
+    overflow: hidden;
+}
+
+.dynamicTableDiv {
+    overflow: auto;
+}
+
+.dynamicTableDiv thead th {
+    line-height: 0px !important;
+    height: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }

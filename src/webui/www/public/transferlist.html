@@ -1,10 +1,19 @@
-<table class="torrentTable" cellpadding="0" cellspacing="0">
-    <thead>
-        <tr id="torrentsTableHeader" class="dynamicTableHeader">
-        </tr>
-    </thead>
-    <tbody id="torrentsTable"></tbody>
-</table>
+<div id="torrentsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+    <table class="dynamicTable unselectable" style="position:relative;">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+    </table>
+</div>
+
+<div id="torrentsTableDiv" class="dynamicTableDiv">
+    <table class="dynamicTable unselectable">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 
 <script type="text/javascript">
 
@@ -62,5 +71,5 @@
         }
     });
 
-    torrentsTable.setup('torrentsTable', 'torrentsTableHeader', torrentsTableContextMenu);
+    torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', torrentsTableContextMenu);
 </script>

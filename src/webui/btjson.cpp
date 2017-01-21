@@ -109,6 +109,19 @@ static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
 static const char KEY_TORRENT_ADDED_ON[] = "added_on";
 static const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
+static const char KEY_TORRENT_TRACKER[] = "tracker";
+static const char KEY_TORRENT_DL_LIMIT[] = "dl_limit";
+static const char KEY_TORRENT_UP_LIMIT[] = "up_limit";
+static const char KEY_TORRENT_AMOUNT_DOWNLOADED[] = "downloaded";
+static const char KEY_TORRENT_AMOUNT_UPLOADED[] = "uploaded";
+static const char KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION[] = "downloaded_session";
+static const char KEY_TORRENT_AMOUNT_UPLOADED_SESSION[] = "uploaded_session";
+static const char KEY_TORRENT_AMOUNT_LEFT[] = "remaining";
+static const char KEY_TORRENT_AMOUNT_COMPLETED[] = "completed";
+static const char KEY_TORRENT_RATIO_LIMIT[] = "ratio_limit";
+static const char KEY_TORRENT_LAST_SEEN_COMPLETE_TIME[] = "seen_complete";
+static const char KEY_TORRENT_LAST_ACTIVITY_TIME[] = "last_activity";
+static const char KEY_TORRENT_TOTAL_SIZE[] = "total_size";
 
 // Peer keys
 static const char KEY_PEER_IP[] = "ip";
@@ -125,6 +138,7 @@ static const char KEY_PEER_CONNECTION_TYPE[] = "connection";
 static const char KEY_PEER_FLAGS[] = "flags";
 static const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
 static const char KEY_PEER_RELEVANCE[] = "relevance";
+static const char KEY_PEER_FILES[] = "files";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -347,6 +361,21 @@ QByteArray btjson::getTorrents(QString filter, QString category,
  *  - "state": Torrent state
  *  - "seq_dl": Torrent sequential download state
  *  - "f_l_piece_prio": Torrent first last piece priority state
+ *  - "completion_on": Torrent copletion time
+ *  - "tracker": Torrent tracker
+ *  - "dl_limit": Torrent download limit
+ *  - "up_limit": Torrent upload limit
+ *  - "downloaded": Amount of data downloaded
+ *  - "uploaded": Amount of data uploaded
+ *  - "downloaded_session": Amount of data downloaded since program open
+ *  - "uploaded_session": Amount of data uploaded since program open
+ *  - "amount_left": Amount of data left to download
+ *  - "save_path": Torrent save path
+ *  - "completed": Amount of data completed
+ *  - "ratio_limit": Upload share ratio limit
+ *  - "seen_complete": Indicates the time when the torrent was last seen complete/whole
+ *  - "last_activity": Last time when a chunk was downloaded/uploaded
+ *  - "total_size": Size including unwanted data
  * Server state map may contain the following keys:
  *  - "connection_status": connection status
  *  - "dht_nodes": DHT nodes count
@@ -369,6 +398,16 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     foreach (BitTorrent::TorrentHandle *const torrent, session->torrents()) {
         QVariantMap map = toMap(torrent);
         map.remove(KEY_TORRENT_HASH);
+
+        // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
+        // So we don't need unnecessary updates of last activity time in response.
+        if (lastData.contains("torrents") && lastData["torrents"].toHash().contains(torrent->hash()) &&
+                lastData["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
+            uint lastValue = lastData["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
+            if (qAbs((int)(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
+                map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+        }
+
         torrents[torrent->hash()] = map;
     }
 
@@ -429,6 +468,8 @@ QByteArray btjson::getSyncTorrentPeersData(int acceptedResponseId, QString hash,
         peer[KEY_PEER_FLAGS] = pi.flags();
         peer[KEY_PEER_FLAGS_DESCRIPTION] = pi.flagsDescription();
         peer[KEY_PEER_RELEVANCE] = pi.relevance();
+        peer[KEY_PEER_FILES] = torrent->info().filesForPiece(pi.downloadingPieceIndex()).join(QLatin1String("\n"));
+
         peers[pi.address().ip.toString() + ":" + QString::number(pi.address().port)] = peer;
     }
 
@@ -723,6 +764,27 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
     ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
     ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
+    ret[KEY_TORRENT_TRACKER] = torrent->currentTracker();
+    ret[KEY_TORRENT_DL_LIMIT] = torrent->downloadLimit();
+    ret[KEY_TORRENT_UP_LIMIT] = torrent->uploadLimit();
+    ret[KEY_TORRENT_AMOUNT_DOWNLOADED] = torrent->totalDownload();
+    ret[KEY_TORRENT_AMOUNT_UPLOADED] = torrent->totalUpload();
+    ret[KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
+    ret[KEY_TORRENT_AMOUNT_UPLOADED_SESSION] = torrent->totalPayloadUpload();
+    ret[KEY_TORRENT_AMOUNT_LEFT] = torrent->incompletedSize();
+    ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent->completedSize();
+    ret[KEY_TORRENT_RATIO_LIMIT] = torrent->maxRatio();
+    ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent->lastSeenComplete().toTime_t();
+
+    if (torrent->isPaused() || torrent->isChecking())
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
+    else {
+        QDateTime dt = QDateTime::currentDateTime();
+        dt = dt.addSecs(-torrent->timeSinceActivity());
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
+    }
+
+    ret[KEY_TORRENT_TOTAL_SIZE] = torrent->totalSize();
 
     return ret;
 }
