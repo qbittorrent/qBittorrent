@@ -69,13 +69,13 @@ set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIR})
 
 # Without pkg-config, we can't possibly figure out the correct boost dependencies
 if (LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
-    string(REPLACE ";" " " _boost_components "${LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES}")
+    set(_boost_components "${LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES}")
 else(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
     if(PC_LIBTORRENT_RASTERBAR_FOUND)
-        _detect_boost_components(_boost_cmpnts "${PC_LIBTORRENT_RASTERBAR_LIBRARIES}")
+        _detect_boost_components(_boost_components "${PC_LIBTORRENT_RASTERBAR_LIBRARIES}")
     else()
         # all possible boost dependencies
-        set(_boost_cmpnts
+        set(_boost_components
             date_time
             system
             chrono
@@ -83,11 +83,10 @@ else(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
             thread
         )
     endif()
-    list(SORT _boost_cmpnts)
-    message(STATUS "Libtorrent Boost dependencies: ${_boost_cmpnts}")
-    string(REPLACE ";" " " _boost_components "${_boost_cmpnts}")
 endif(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
 
+list(SORT _boost_components)
+message(STATUS "Libtorrent Boost dependencies: ${_boost_components}")
 find_package(Boost REQUIRED COMPONENTS ${_boost_components})
 set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 foreach(_boost_cmpnt IN LISTS _boost_components)
