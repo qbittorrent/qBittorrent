@@ -5,11 +5,23 @@
 macro (target_link_qt_components target)
 if (QT4_FOUND)
     foreach(_cmp ${ARGN})
-        list(APPEND _QT_CMPNTS "Qt4::Qt${_cmp}")
+        if ("${_cmp}" STREQUAL "PRIVATE" OR
+            "${_cmp}" STREQUAL "PUBLIC" OR
+            "${_cmp}" STREQUAL "INTERFACE")
+             list(APPEND _QT_CMPNTS "${_cmp}")
+        else()
+            list(APPEND _QT_CMPNTS "Qt4::Qt${_cmp}")
+        endif()
     endforeach()
 else (QT4_FOUND)
     foreach(_cmp ${ARGN})
-        list(APPEND _QT_CMPNTS "Qt5::${_cmp}")
+        if ("${_cmp}" STREQUAL "PRIVATE" OR
+            "${_cmp}" STREQUAL "PUBLIC" OR
+            "${_cmp}" STREQUAL "INTERFACE")
+             list(APPEND _QT_CMPNTS "${_cmp}")
+        else()
+            list(APPEND _QT_CMPNTS "Qt5::${_cmp}")
+        endif()
     endforeach()
 endif (QT4_FOUND)
     target_link_libraries(${target} ${_QT_CMPNTS})
