@@ -1324,18 +1324,18 @@ void Preferences::setRssMainSplitterState(const QByteArray &state)
 QByteArray Preferences::getSearchTabHeaderState() const
 {
 #ifdef QBT_USES_QT5
-    return value("SearchTab/qt5/SearchTabHeaderState").toByteArray();
+    return value("SearchTab/qt5/HeaderState").toByteArray();
 #else
-    return value("SearchTab/SearchTabHeaderState").toByteArray();
+    return value("SearchTab/HeaderState").toByteArray();
 #endif
 }
 
 void Preferences::setSearchTabHeaderState(const QByteArray &state)
 {
 #ifdef QBT_USES_QT5
-    setValue("SearchTab/qt5/SearchTabHeaderState", state);
+    setValue("SearchTab/qt5/HeaderState", state);
 #else
-    setValue("SearchTab/SearchTabHeaderState", state);
+    setValue("SearchTab/HeaderState", state);
 #endif
 }
 

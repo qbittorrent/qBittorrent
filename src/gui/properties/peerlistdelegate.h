@@ -54,7 +54,8 @@ public:
         DOWN_SPEED,
         UP_SPEED,
         TOT_DOWN,
-        TOT_UP, RELEVANCE,
+        TOT_UP,
+        RELEVANCE,
         DOWNLOADING_PIECE,
         IP_HIDDEN,
 
