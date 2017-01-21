@@ -83,6 +83,7 @@ namespace Utils
         // value must be given in bytes
         bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
+        int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
 
         bool isPreviewable(const QString& extension);

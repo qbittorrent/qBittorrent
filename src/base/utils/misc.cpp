@@ -358,12 +358,20 @@ QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
     QString ret;
     if (unit == SizeUnit::Byte)
-        ret = QString::number(bytesValue) + " " + unitString(unit);
+        ret = QString::number(bytesValue) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
     else
-        ret = Utils::String::fromDouble(friendlyVal, 1) + " " + unitString(unit);
+        ret = Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit)) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
     if (isSpeed)
         ret += QCoreApplication::translate("misc", "/s", "per second");
     return ret;
+}
+
+int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
+{
+    // friendlyUnit's number of digits after the decimal point
+    if (unit <= SizeUnit::MebiByte) return 1;
+    else if (unit == SizeUnit::GibiByte) return 2;
+    else return 3;
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)
