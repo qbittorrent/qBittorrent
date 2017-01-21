@@ -75,7 +75,6 @@ public:
     QTreeView* getCurrentTreeView() const;
     QHeaderView* header() const;
 
-    bool loadColWidthResultsList();
     void setRowColor(int row, const QColor &color);
 
     enum class Status
@@ -96,7 +95,10 @@ public slots:
     void downloadItem(const QModelIndex &index);
 
 private slots:
+    void loadSettings();
+    void saveSettings() const;
     void updateFilter();
+    void displayToggleColumnsMenu(const QPoint&);
 
 private:
     void fillFilterComboBoxes();

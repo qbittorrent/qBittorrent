@@ -141,7 +141,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     //end up being size 0 when the new version is launched with
     //a conf file from the previous version.
     for (unsigned int i = 0; i<TorrentModel::NB_COLUMNS; i++)
-        if (!columnWidth(i))
+        if ((columnWidth(i) <= 0) && (!isColumnHidden(i)))
             resizeColumnToContents(i);
 
     setContextMenuPolicy(Qt::CustomContextMenu);

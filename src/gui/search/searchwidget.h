@@ -74,7 +74,6 @@ private slots:
 
     void addTorrentToSession(const QString &source);
 
-    void saveResultsColumnsWidth();
     void fillCatCombobox();
     void fillPluginComboBox();
     void searchTextEdited(QString);
