@@ -99,7 +99,7 @@ void Feed::saveItemsToDisk()
 
     m_dirty = false;
 
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
     QVariantList oldItems;
 
     ArticleHash::ConstIterator it = m_articles.begin();
@@ -107,15 +107,16 @@ void Feed::saveItemsToDisk()
     for (; it != itend; ++it)
         oldItems << it.value()->toHash();
     qDebug("Saving %d old items for feed %s", oldItems.size(), qPrintable(displayName()));
-    QHash<QString, QVariant> allOldItems = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> allOldItems = qBTRSSFeeds.value("old_items", QHash<QString, QVariant>()).toHash();
     allOldItems[m_url] = oldItems;
-    qBTRSS.setValue("old_items", allOldItems);
+    qBTRSSFeeds.setValue("old_items", allOldItems);
 }
 
 void Feed::loadItemsFromDisk()
 {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QHash<QString, QVariant> allOldItems = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
+    QHash<QString, QVariant> allOldItems = qBTRSSFeeds.value("old_items", QHash<QString, QVariant>()).toHash();
+
     const QVariantList oldItems = allOldItems.value(m_url, QVariantList()).toList();
     qDebug("Loading %d old items for feed %s", oldItems.size(), qPrintable(displayName()));
 
@@ -203,10 +204,11 @@ void Feed::removeAllSettings()
         allFeedsFilters.remove(m_url);
         qBTRSS.setValue("feed_filters", allFeedsFilters);
     }
-    QVariantHash allOldItems = qBTRSS.value("old_items", QVariantHash()).toHash();
+    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
+    QVariantHash allOldItems = qBTRSSFeeds.value("old_items", QVariantHash()).toHash();
     if (allOldItems.contains(m_url)) {
         allOldItems.remove(m_url);
-        qBTRSS.setValue("old_items", allOldItems);
+        qBTRSSFeeds.setValue("old_items", allOldItems);
     }
 }
 

@@ -228,7 +228,6 @@ bool upgrade(bool ask = true)
     return true;
 }
 
-
 #ifdef Q_OS_MAC
 void migratePlistToIni(const QString &application)
 {
@@ -257,5 +256,22 @@ void macMigratePlists()
 }
 #endif  // Q_OS_MAC
 
+#ifndef DISABLE_GUI
+void migrateRSS()
+{
+    // Copy old feed items to new file if needed
+    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss-feeds");
+    if (!qBTRSS.allKeys().isEmpty()) return; // We move the contents of RSS old_items only if inifile does not exist (is empty).
+
+    QIniSettings qBTRSSLegacy("qBittorrent", "qBittorrent-rss");
+    QHash<QString, QVariant> allOldItems = qBTRSSLegacy.value("old_items", QHash<QString, QVariant>()).toHash();
+
+    if (!allOldItems.empty()) {
+        qDebug("Moving %d old items for feeds to qBittorrent-rss-feeds", allOldItems.size());
+        qBTRSS.setValue("old_items", allOldItems);
+        qBTRSSLegacy.remove("old_items");
+    }
+}
+#endif
 
 #endif // UPGRADE_H
