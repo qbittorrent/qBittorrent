@@ -164,6 +164,7 @@ void RSSImp::askNewFolder()
     // Expand parent folder to display new folder
     if (parent_item)
         parent_item->setExpanded(true);
+    m_feedList->setCurrentItem(folderItem);
     m_rssManager->saveStreamList();
 }
 
@@ -219,7 +220,10 @@ void RSSImp::on_newFeedButton_clicked()
         m_feedList->addTopLevelItem(item);
     // Notify TreeWidget
     m_feedList->itemAdded(item, stream);
-
+    // Expand parent folder to display new feed
+    if (parent_item)
+        parent_item->setExpanded(true);
+    m_feedList->setCurrentItem(item);
     m_rssManager->saveStreamList();
 }
 
@@ -238,6 +242,8 @@ void RSSImp::deleteSelectedItems()
     if (answer == QMessageBox::No)
         return;
 
+    QList<QString> deleted;
+
     foreach (QTreeWidgetItem *item, selectedItems) {
         if (item == m_feedList->stickyUnreadItem())
             continue;
@@ -247,6 +253,7 @@ void RSSImp::deleteSelectedItems()
         m_feedList->itemAboutToBeRemoved(item);
         // Actually delete the item
         rss_item->parentFolder()->removeChild(rss_item->id());
+        deleted << rss_item->id();
         delete item;
         // Update parents count
         while (parent && (parent != m_feedList->invisibleRootItem())) {
@@ -255,6 +262,10 @@ void RSSImp::deleteSelectedItems()
         }
     }
     m_rssManager->saveStreamList();
+
+    foreach (const QString &feed_id, deleted)
+        m_rssManager->forwardFeedInfosChanged(feed_id, "", 0);
+
     // Update Unread items
     updateItemInfos(m_feedList->stickyUnreadItem());
     if (m_feedList->currentItem() == m_feedList->stickyUnreadItem())
@@ -393,6 +404,7 @@ void RSSImp::renameSelectedRssFile()
     } while (!ok);
     // Rename item
     rss_item->rename(newName);
+    m_rssManager->saveStreamList();
     // Update TreeWidget
     updateItemInfos(item);
 }
@@ -647,20 +659,26 @@ void RSSImp::updateItemInfos(QTreeWidgetItem *item)
 void RSSImp::updateFeedIcon(const QString &url, const QString &iconPath)
 {
     QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
-    item->setData(0, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+
+    if (item != 0)
+        item->setData(0, Qt::DecorationRole, QVariant(QIcon(iconPath)));
 }
 
 void RSSImp::updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread)
 {
     qDebug() << Q_FUNC_INFO << display_name;
     QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
-    Rss::FeedPtr stream = qSharedPointerCast<Rss::Feed>(m_feedList->getRSSItem(item));
-    item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread) + QString(")"));
-    if (!stream->isLoading())
-        item->setData(0, Qt::DecorationRole, QIcon(stream->iconPath()));
-    // Update parent
-    if (item->parent())
-        updateItemInfos(item->parent());
+
+    if (item != 0) {
+        Rss::FeedPtr stream = qSharedPointerCast<Rss::Feed>(m_feedList->getRSSItem(item));
+        item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread) + QString(")"));
+        if (!stream->isLoading())
+            item->setData(0, Qt::DecorationRole, QIcon(stream->iconPath()));
+        // Update parent
+        if (item->parent())
+            updateItemInfos(item->parent());
+    }
+
     // Update Unread item
     updateItemInfos(m_feedList->stickyUnreadItem());
 }
@@ -713,7 +731,9 @@ RSSImp::RSSImp(QWidget *parent)
     connect(deleteHotkey, SIGNAL(activated()), SLOT(deleteSelectedItems()));
 
     m_rssManager->loadStreamList();
+    m_feedList->setSortingEnabled(false);
     fillFeedsList();
+    m_feedList->setSortingEnabled(true);
     populateArticleList(m_feedList->currentItem());
 
     loadFoldersOpenState();
