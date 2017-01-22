@@ -33,6 +33,9 @@
 #include <QDebug>
 #include <QMenu>
 #include <QCursor>
+#include <QPair>
+#include <QSet>
+#include <QString>
 
 #include "base/preferences.h"
 #include "base/bittorrent/session.h"
@@ -47,11 +50,36 @@
 #include "ui_automatedrssdownloader.h"
 #include "automatedrssdownloader.h"
 
+class AutomatedRssDownloader::DownloadRuleListMatchState
+{
+public:
+    DownloadRuleListMatchState();
+    ~DownloadRuleListMatchState();
+    void clear();
+
+public:
+    QSet<QPair<QString, QString >> m_treeListEntries;
+};
+
+AutomatedRssDownloader::DownloadRuleListMatchState::DownloadRuleListMatchState()
+{
+}
+
+AutomatedRssDownloader::DownloadRuleListMatchState::~DownloadRuleListMatchState()
+{
+}
+
+void AutomatedRssDownloader::DownloadRuleListMatchState::clear()
+{
+    m_treeListEntries.clear();
+}
+
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AutomatedRssDownloader)
     , m_manager(manager)
     , m_editedRule(0)
+    , m_ruleMatcher(new AutomatedRssDownloader::DownloadRuleListMatchState())
 {
     ui->setupUi(this);
     // Icons
@@ -137,6 +165,7 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
     delete ui;
     delete m_editableRuleList;
     delete m_episodeRegex;
+    delete m_ruleMatcher;
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -552,6 +581,8 @@ void AutomatedRssDownloader::updateMatchingArticles()
                 addFeedArticlesToTree(feed, matching_articles);
         }
     }
+
+    m_ruleMatcher->clear();
 }
 
 void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles)
@@ -578,9 +609,14 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, con
     }
     // Insert the articles
     foreach (const QString &art, articles) {
-        QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
-        item->setToolTip(0, art);
-        treeFeedItem->addChild(item);
+        QPair<QString, QString> key(feed->displayName(), art);
+
+        if (!m_ruleMatcher->m_treeListEntries.contains(key)) {
+            m_ruleMatcher->m_treeListEntries << key;
+            QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
+            item->setToolTip(0, art);
+            treeFeedItem->addChild(item);
+        }
     }
     ui->treeMatchingArticles->expandItem(treeFeedItem);
 }

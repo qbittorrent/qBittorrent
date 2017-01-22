@@ -96,6 +96,8 @@ private:
     void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
 
 private:
+    class DownloadRuleListMatchState;
+
     Ui::AutomatedRssDownloader *ui;
     QWeakPointer<Rss::Manager> m_manager;
     QListWidgetItem *m_editedRule;
@@ -104,6 +106,7 @@ private:
     QRegExp *m_episodeRegex;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    DownloadRuleListMatchState *m_ruleMatcher;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H
