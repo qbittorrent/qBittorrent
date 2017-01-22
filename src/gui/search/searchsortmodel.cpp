@@ -112,7 +112,7 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
     case ENGINE_URL: {
         QString vL = left.data().toString();
         QString vR = right.data().toString();
-        return Utils::String::naturalCompareCaseSensitive(vL, vR);
+        return Utils::String::naturalCompareCaseInsensitive(vL, vR);
     }
 
     default:
