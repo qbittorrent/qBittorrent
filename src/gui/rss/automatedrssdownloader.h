@@ -32,6 +32,11 @@
 #define AUTOMATEDRSSDOWNLOADER_H
 
 #include <QDialog>
+#include <QHideEvent>
+#include <QPair>
+#include <QSet>
+#include <QShowEvent>
+#include <QString>
 #include <QWeakPointer>
 #include <QShortcut>
 #include <QRegExpValidator>
@@ -63,17 +68,21 @@ public:
     ~AutomatedRssDownloader();
     bool isRssDownloaderEnabled() const;
 
+protected:
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
+
 protected slots:
     void loadSettings();
     void saveSettings();
     void loadRulesList();
     void handleRuleCheckStateChange(QListWidgetItem *rule_item);
     void handleFeedCheckStateChange(QListWidgetItem *feed_item);
-    void updateRuleDefinitionBox();
+    void updateRuleDefinitionBox(QListWidgetItem *selected = 0);
     void clearRuleDefinitionBox();
     void saveEditedRule();
     void loadFeedList();
-    void updateFeedList();
+    void updateFeedList(QListWidgetItem *selected = 0);
 
 private slots:
     void displayRulesListMenu(const QPoint &pos);
@@ -94,6 +103,8 @@ private:
     Rss::DownloadRulePtr getCurrentRule() const;
     void initCategoryCombobox();
     void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
+    void disconnectRuleFeedSlots();
+    void connectRuleFeedSlots();
 
 private:
     Ui::AutomatedRssDownloader *ui;
@@ -104,6 +115,7 @@ private:
     QRegExp *m_episodeRegex;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    QSet<QPair<QString, QString >> m_treeListEntries;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H

@@ -249,11 +249,17 @@
             </item>
             <item>
              <widget class="QSpinBox" name="spinIgnorePeriod">
+              <property name="specialValueText">
+               <string>Disabled</string>
+              </property>
               <property name="enabled">
                <bool>true</bool>
               </property>
               <property name="suffix">
                <string> days</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
               </property>
               <property name="maximum">
                <number>365</number>
@@ -314,7 +320,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="lblListFeeds">
            <property name="font">
             <font>
              <weight>50</weight>
