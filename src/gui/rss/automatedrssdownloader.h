@@ -84,6 +84,7 @@ private slots:
     void on_importBtn_clicked();
     void renameSelectedRule();
     void updateMatchingArticles();
+    void deferredUpdateMatchingArticles();
     void updateFieldsToolTips(bool regex);
     void updateMustLineValidity();
     void updateMustNotLineValidity();

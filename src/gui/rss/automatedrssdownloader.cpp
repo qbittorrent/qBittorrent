@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QCoreApplication>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
@@ -36,6 +37,7 @@
 #include <QPair>
 #include <QSet>
 #include <QString>
+#include <QTimer>
 
 #include "base/preferences.h"
 #include "base/bittorrent/session.h"
@@ -56,13 +58,17 @@ public:
     DownloadRuleListMatchState();
     ~DownloadRuleListMatchState();
     void clear();
+    void start(int timeout);
 
 public:
+    QTimer m_deferredMatchingTimer;
     QSet<QPair<QString, QString >> m_treeListEntries;
 };
 
 AutomatedRssDownloader::DownloadRuleListMatchState::DownloadRuleListMatchState()
 {
+    m_deferredMatchingTimer.setInterval(1);
+    m_deferredMatchingTimer.setSingleShot(true);
 }
 
 AutomatedRssDownloader::DownloadRuleListMatchState::~DownloadRuleListMatchState()
@@ -71,7 +77,13 @@ AutomatedRssDownloader::DownloadRuleListMatchState::~DownloadRuleListMatchState(
 
 void AutomatedRssDownloader::DownloadRuleListMatchState::clear()
 {
+    m_deferredMatchingTimer.stop();
     m_treeListEntries.clear();
+}
+
+void AutomatedRssDownloader::DownloadRuleListMatchState::start(int timeout)
+{
+    m_deferredMatchingTimer.start(timeout);
 }
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent)
@@ -116,6 +128,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     initCategoryCombobox();
     loadFeedList();
     loadSettings();
+    ok = connect(&m_ruleMatcher->m_deferredMatchingTimer, SIGNAL(timeout()), SLOT(deferredUpdateMatchingArticles()));
+    Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
@@ -561,12 +575,41 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
 void AutomatedRssDownloader::updateMatchingArticles()
 {
     ui->treeMatchingArticles->clear();
-    Rss::ManagerPtr manager = m_manager.toStrongRef();
-    if (!manager)
+    saveEditedRule();
+    m_ruleMatcher->start(1000);
+}
+
+void AutomatedRssDownloader::deferredUpdateMatchingArticles()
+{
+    QStringList ruleNames;
+
+    foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
+        Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
+        if (rule)
+            ruleNames.append(rule->name());
+    }
+
+    if (ruleNames.empty())
         return;
+
+    qDebug() << Q_FUNC_INFO << "Matching articles for RSS rules:" << ruleNames.join(", ");
+
+    ui->treeMatchingArticles->clear();
+
+    Rss::ManagerPtr manager = m_manager.toStrongRef();
+    if (!manager) {
+        ui->treeMatchingLoading->setPixmap(QPixmap());
+        return;
+    }
+
+    if ((ui->treeMatchingLoading->pixmap() == 0) || ui->treeMatchingLoading->pixmap()->isNull()) {
+        // Set the loading icon and allow it to be displayed
+        ui->treeMatchingLoading->setPixmap(QIcon(":/icons/loading.png").pixmap(16, 16));
+        QCoreApplication::instance()->processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+    }
+
     const QHash<QString, Rss::FeedPtr> all_feeds = manager->rootFolder()->getAllFeedsAsHash();
 
-    saveEditedRule();
     foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
         Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
         if (!rule) continue;
@@ -582,6 +625,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
         }
     }
 
+    ui->treeMatchingLoading->setPixmap(QPixmap());
     m_ruleMatcher->clear();
 }
 
