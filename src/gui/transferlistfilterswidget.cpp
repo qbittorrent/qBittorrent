@@ -580,7 +580,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             , transferList, SLOT(startVisibleTorrents()));
     connect(m_categoryFilterWidget, SIGNAL(categoryChanged(QString))
             , transferList, SLOT(applyCategoryFilter(QString)));
-    onCategoryFilterStateChanged(pref->getCategoryFilterState());
+    toggleCategoryFilter(pref->getCategoryFilterState());
     frameLayout->addWidget(m_categoryFilterWidget);
 
     QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
@@ -638,6 +638,12 @@ void TransferListFiltersWidget::trackerError(BitTorrent::TorrentHandle *const to
 }
 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)
+{
+    toggleCategoryFilter(enabled);
+    Preferences::instance()->setCategoryFilterState(enabled);
+}
+
+void TransferListFiltersWidget::toggleCategoryFilter(bool enabled)
 {
     m_categoryFilterWidget->setVisible(enabled);
     m_transferList->applyCategoryFilter(enabled ? m_categoryFilterWidget->currentCategory() : QString());
