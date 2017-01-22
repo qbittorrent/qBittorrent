@@ -403,19 +403,3 @@ void DownloadRule::setEpisodeFilter(const QString &e)
 {
     m_episodeFilter = e;
 }
-
-QStringList DownloadRule::findMatchingArticles(const FeedPtr &feed) const
-{
-    QStringList ret;
-    const ArticleHash &feedArticles = feed->articleHash();
-
-    ArticleHash::ConstIterator artIt = feedArticles.begin();
-    ArticleHash::ConstIterator artItend = feedArticles.end();
-    for (; artIt != artItend; ++artIt) {
-        const QString title = artIt.value()->title();
-        qDebug() << "Matching article:" << title;
-        if (matches(title))
-            ret << title;
-    }
-    return ret;
-}

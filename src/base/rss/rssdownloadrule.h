@@ -83,7 +83,6 @@ namespace Rss
         void setUseRegex(bool enabled);
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
-        QStringList findMatchingArticles(const FeedPtr &feed) const;
         // Operators
         bool operator==(const DownloadRule &other) const;
 

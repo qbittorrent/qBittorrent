@@ -32,6 +32,8 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
+#include <QElapsedTimer>
+#include <QList>
 #include <QMenu>
 #include <QCursor>
 #include <QPair>
@@ -41,6 +43,7 @@
 
 #include "base/preferences.h"
 #include "base/bittorrent/session.h"
+#include "base/rss/rssarticle.h"
 #include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
@@ -59,16 +62,28 @@ public:
     ~DownloadRuleListMatchState();
     void clear();
     void start(int timeout);
+    void nextBatch();
 
 public:
     QTimer m_deferredMatchingTimer;
+    QTimer m_nextBatchTimer;
     QSet<QPair<QString, QString >> m_treeListEntries;
+    QList<Rss::DownloadRulePtr> m_updateMatchingArticlesRules;
+    QList<Rss::DownloadRulePtr>::ConstIterator m_updateMatchingArticlesRulesIter;
+    bool m_updateMatchingArticlesHasCurrentRule;
+    QList<Rss::FeedPtr> m_updateMatchingArticlesFeeds;
+    QList<Rss::FeedPtr>::ConstIterator m_updateMatchingArticlesFeedsIter;
+    bool m_updateMatchingArticlesHasCurrentFeed;
+    Rss::ArticleHash::ConstIterator m_updateMatchingArticlesCurrentFeedArticlesIter;
+    QSet<QString> m_updateMatchingArticlesMatches;
 };
 
 AutomatedRssDownloader::DownloadRuleListMatchState::DownloadRuleListMatchState()
 {
     m_deferredMatchingTimer.setInterval(1);
     m_deferredMatchingTimer.setSingleShot(true);
+    m_nextBatchTimer.setInterval(1);
+    m_nextBatchTimer.setSingleShot(true);
 }
 
 AutomatedRssDownloader::DownloadRuleListMatchState::~DownloadRuleListMatchState()
@@ -78,12 +93,23 @@ AutomatedRssDownloader::DownloadRuleListMatchState::~DownloadRuleListMatchState(
 void AutomatedRssDownloader::DownloadRuleListMatchState::clear()
 {
     m_deferredMatchingTimer.stop();
+    m_nextBatchTimer.stop();
     m_treeListEntries.clear();
+    m_updateMatchingArticlesRules.clear();
+    m_updateMatchingArticlesFeeds.clear();
+    m_updateMatchingArticlesMatches.clear();
+    m_updateMatchingArticlesHasCurrentRule = false;
+    m_updateMatchingArticlesHasCurrentFeed = false;
 }
 
 void AutomatedRssDownloader::DownloadRuleListMatchState::start(int timeout)
 {
     m_deferredMatchingTimer.start(timeout);
+}
+
+void AutomatedRssDownloader::DownloadRuleListMatchState::nextBatch()
+{
+    m_nextBatchTimer.start();
 }
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent)
@@ -129,6 +155,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     loadFeedList();
     loadSettings();
     ok = connect(&m_ruleMatcher->m_deferredMatchingTimer, SIGNAL(timeout()), SLOT(deferredUpdateMatchingArticles()));
+    Q_ASSERT(ok);
+    ok = connect(&m_ruleMatcher->m_nextBatchTimer, SIGNAL(timeout()), SLOT(updateNextMatchingArticles()));
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
     Q_ASSERT(ok);
@@ -583,21 +611,43 @@ void AutomatedRssDownloader::deferredUpdateMatchingArticles()
 {
     QStringList ruleNames;
 
-    foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
-        Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
-        if (rule)
+    if (m_ruleMatcher->m_updateMatchingArticlesHasCurrentRule && !m_ruleMatcher->m_updateMatchingArticlesRules.empty()) {
+        QStringList ruleNames;
+
+        foreach (const Rss::DownloadRulePtr &rule, m_ruleMatcher->m_updateMatchingArticlesRules)
             ruleNames.append(rule->name());
+
+        qDebug() << Q_FUNC_INFO << "Interrupted matching articles for RSS rules:" << ruleNames.join(", ");
     }
 
-    if (ruleNames.empty())
+    ui->treeMatchingArticles->clear();
+    m_ruleMatcher->clear();
+    ruleNames.clear();
+
+    foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
+        Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
+        if (rule) {
+            m_ruleMatcher->m_updateMatchingArticlesRules.append(rule);
+            ruleNames.append(rule->name());
+        }
+    }
+
+    if (m_ruleMatcher->m_updateMatchingArticlesRules.empty())
         return;
 
     qDebug() << Q_FUNC_INFO << "Matching articles for RSS rules:" << ruleNames.join(", ");
+    m_ruleMatcher->nextBatch();
+}
 
-    ui->treeMatchingArticles->clear();
+void AutomatedRssDownloader::updateNextMatchingArticles()
+{
+    if (!m_ruleMatcher->m_updateMatchingArticlesHasCurrentRule) {
+        m_ruleMatcher->m_updateMatchingArticlesRulesIter = m_ruleMatcher->m_updateMatchingArticlesRules.begin();
+        m_ruleMatcher->m_updateMatchingArticlesHasCurrentRule = true;
+    }
 
-    Rss::ManagerPtr manager = m_manager.toStrongRef();
-    if (!manager) {
+    if (m_ruleMatcher->m_updateMatchingArticlesRulesIter == m_ruleMatcher->m_updateMatchingArticlesRules.end()) {
+        m_ruleMatcher->clear();
         ui->treeMatchingLoading->setPixmap(QPixmap());
         return;
     }
@@ -608,28 +658,101 @@ void AutomatedRssDownloader::deferredUpdateMatchingArticles()
         QCoreApplication::instance()->processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
     }
 
-    const QHash<QString, Rss::FeedPtr> all_feeds = manager->rootFolder()->getAllFeedsAsHash();
+    Rss::DownloadRulePtr rule = *(m_ruleMatcher->m_updateMatchingArticlesRulesIter);
+    Rss::FeedPtr feed;
 
-    foreach (const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
-        Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
-        if (!rule) continue;
+    if (m_ruleMatcher->m_updateMatchingArticlesHasCurrentFeed) {
+        feed = *(m_ruleMatcher->m_updateMatchingArticlesFeedsIter);
+    }
+    else {
+        m_ruleMatcher->m_updateMatchingArticlesFeeds.clear();
+
+        Rss::ManagerPtr manager = m_manager.toStrongRef();
+        if (!manager) {
+            m_ruleMatcher->clear();
+            ui->treeMatchingLoading->setPixmap(QPixmap());
+            return;
+        }
+
+        const QHash<QString, Rss::FeedPtr> all_feeds = manager->rootFolder()->getAllFeedsAsHash();
+
         foreach (const QString &feed_url, rule->rssFeeds()) {
             qDebug() << Q_FUNC_INFO << feed_url;
             if (!all_feeds.contains(feed_url)) continue; // Feed was removed
             Rss::FeedPtr feed = all_feeds.value(feed_url);
             Q_ASSERT(feed);
-            if (!feed) continue;
-            const QStringList matching_articles = rule->findMatchingArticles(feed);
-            if (!matching_articles.isEmpty())
-                addFeedArticlesToTree(feed, matching_articles);
+            if (feed)
+                m_ruleMatcher->m_updateMatchingArticlesFeeds.append(feed);
+        }
+
+        m_ruleMatcher->m_updateMatchingArticlesFeedsIter = m_ruleMatcher->m_updateMatchingArticlesFeeds.begin();
+
+        if (m_ruleMatcher->m_updateMatchingArticlesFeedsIter == m_ruleMatcher->m_updateMatchingArticlesFeeds.end()) {
+            m_ruleMatcher->m_updateMatchingArticlesHasCurrentFeed = false;
+            ++m_ruleMatcher->m_updateMatchingArticlesRulesIter;
+            m_ruleMatcher->nextBatch();
+            return;
+        }
+
+        feed = *(m_ruleMatcher->m_updateMatchingArticlesFeedsIter);
+        m_ruleMatcher->m_updateMatchingArticlesHasCurrentFeed = true;
+        m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter = feed->articleHash().begin();
+        m_ruleMatcher->m_updateMatchingArticlesMatches.clear();
+        qDebug().nospace() << Q_FUNC_INFO << " Matching articles for " << rule->name() << " from " << feed->displayName() << " RSS feed";
+    }
+
+    // Process up to 250ms to allow the UI to be reasonably responsive
+    Rss::ArticleHash::ConstIterator artItend = feed->articleHash().end();
+    int processed = 0;
+    int matched = 0;
+    QElapsedTimer timer;
+    timer.start();
+
+    for (; m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter != artItend; ++m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter) {
+        const QString &title = m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter.value()->title();
+        qDebug() << Q_FUNC_INFO << "Matching article:" << title;
+        ++processed;
+
+        QPair<QString, QString> key(feed->displayName(), title);
+
+        if (!m_ruleMatcher->m_treeListEntries.contains(key)) {
+            m_ruleMatcher->m_treeListEntries << key;
+
+            if (rule->matches(title)) {
+                m_ruleMatcher->m_updateMatchingArticlesMatches << title;
+                ++matched;
+            }
+        }
+
+        if (timer.hasExpired(250))
+            break;
+    }
+
+    qDebug().nospace() << Q_FUNC_INFO << " Matched articles for " << rule->name() << " from " << feed->displayName() << " RSS feed " << matched << "/" << processed;
+
+    if (m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter == artItend) {
+        if (!m_ruleMatcher->m_updateMatchingArticlesMatches.empty()) {
+            addFeedArticlesToTree(feed, m_ruleMatcher->m_updateMatchingArticlesMatches);
+            m_ruleMatcher->m_updateMatchingArticlesMatches.clear();
+        }
+
+        ++m_ruleMatcher->m_updateMatchingArticlesFeedsIter;
+
+        if (m_ruleMatcher->m_updateMatchingArticlesFeedsIter == m_ruleMatcher->m_updateMatchingArticlesFeeds.end()) {
+            m_ruleMatcher->m_updateMatchingArticlesHasCurrentFeed = false;
+            ++m_ruleMatcher->m_updateMatchingArticlesRulesIter;
+        }
+        else {
+            feed = *(m_ruleMatcher->m_updateMatchingArticlesFeedsIter);
+            m_ruleMatcher->m_updateMatchingArticlesCurrentFeedArticlesIter = feed->articleHash().begin();
+            m_ruleMatcher->m_updateMatchingArticlesMatches.clear();
         }
     }
 
-    ui->treeMatchingLoading->setPixmap(QPixmap());
-    m_ruleMatcher->clear();
+    m_ruleMatcher->nextBatch();
 }
 
-void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles)
+void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, const QSet<QString> &articles)
 {
     // Check if this feed is already in the tree
     QTreeWidgetItem *treeFeedItem = 0;
@@ -651,17 +774,16 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, con
         treeFeedItem->setData(0, Qt::UserRole, feed->url());
         ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
     }
+    // Turn off sorting while inserting
+    ui->treeMatchingArticles->setSortingEnabled(false);
     // Insert the articles
     foreach (const QString &art, articles) {
-        QPair<QString, QString> key(feed->displayName(), art);
-
-        if (!m_ruleMatcher->m_treeListEntries.contains(key)) {
-            m_ruleMatcher->m_treeListEntries << key;
-            QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
-            item->setToolTip(0, art);
-            treeFeedItem->addChild(item);
-        }
+        QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
+        item->setToolTip(0, art);
+        treeFeedItem->addChild(item);
     }
+
+    ui->treeMatchingArticles->setSortingEnabled(true);
     ui->treeMatchingArticles->expandItem(treeFeedItem);
 }
 
@@ -756,7 +878,20 @@ void AutomatedRssDownloader::onFinished(int result)
     Q_UNUSED(result);
     // Save current item on exit
     saveEditedRule();
+    ui->listRules->clearSelection();
     m_ruleList->replace(m_editableRuleList);
     m_ruleList->saveRulesToStorage();
     saveSettings();
+
+    if (m_ruleMatcher->m_updateMatchingArticlesHasCurrentRule && !m_ruleMatcher->m_updateMatchingArticlesRules.empty()) {
+        QStringList ruleNames;
+
+        foreach (const Rss::DownloadRulePtr &rule, m_ruleMatcher->m_updateMatchingArticlesRules)
+            ruleNames.append(rule->name());
+
+        qDebug() << Q_FUNC_INFO << "Interrupted matching articles for RSS feeds:" << ruleNames.join(", ");
+    }
+
+    ui->treeMatchingArticles->clear();
+    m_ruleMatcher->clear();
 }

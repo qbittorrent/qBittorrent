@@ -85,6 +85,7 @@ private slots:
     void renameSelectedRule();
     void updateMatchingArticles();
     void deferredUpdateMatchingArticles();
+    void updateNextMatchingArticles();
     void updateFieldsToolTips(bool regex);
     void updateMustLineValidity();
     void updateMustNotLineValidity();
@@ -94,7 +95,7 @@ private slots:
 private:
     Rss::DownloadRulePtr getCurrentRule() const;
     void initCategoryCombobox();
-    void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
+    void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QSet<QString> &articles);
 
 private:
     class DownloadRuleListMatchState;
