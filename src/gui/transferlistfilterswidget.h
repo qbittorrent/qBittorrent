@@ -162,6 +162,8 @@ private slots:
     void onCategoryFilterStateChanged(bool enabled);
 
 private:
+    void toggleCategoryFilter(bool enabled);
+
     TransferListWidget *m_transferList;
     TrackerFiltersList *m_trackerFilters;
     CategoryFilterWidget *m_categoryFilterWidget;
