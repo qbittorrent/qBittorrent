@@ -62,6 +62,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     ui->listRules->setSortingEnabled(true);
     ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->treeMatchingArticles->setSortingEnabled(true);
+    ui->treeMatchingArticles->sortByColumn(0, Qt::AscendingOrder);
     ui->hsplitter->setCollapsible(0, false);
     ui->hsplitter->setCollapsible(1, false);
     ui->hsplitter->setCollapsible(2, true); // Only the preview list is collapsible
