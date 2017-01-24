@@ -147,7 +147,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     // Listen for list events
-    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
+    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked()));
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayListMenu(const QPoint &)));
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
@@ -208,9 +208,14 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
     return nameFilterModel->mapFromSource(index);
 }
 
-void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
+void TransferListWidget::torrentDoubleClicked()
 {
-    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(index));
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+    if (selectedIndexes.size() != 1) return;
+    if (!selectedIndexes.first().isValid()) return;
+
+    const QModelIndex index = listModel->index(mapToSource(selectedIndexes.first()).row());
+    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(index);
     if (!torrent) return;
 
     int action;

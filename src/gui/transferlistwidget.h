@@ -101,7 +101,7 @@ protected:
     QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 protected slots:
-    void torrentDoubleClicked(const QModelIndex& index);
+    void torrentDoubleClicked();
     void displayListMenu(const QPoint&);
     void currentChanged(const QModelIndex& current, const QModelIndex&);
     void toggleSelectedTorrentsSuperSeeding() const;
