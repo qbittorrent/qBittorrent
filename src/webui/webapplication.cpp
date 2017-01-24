@@ -115,6 +115,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, decreasePrio);
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
+    ADD_ACTION(command, setPrioPos);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setCategory);
     ADD_ACTION(command, addCategory);
@@ -719,6 +720,21 @@ void WebApplication::action_command_topPrio()
 
     QStringList hashes = request().posts["hashes"].split("|");
     BitTorrent::Session::instance()->topTorrentsPriority(hashes);
+}
+
+void WebApplication::action_command_setPrioPos()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "pos");
+
+    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
+        status(403, "Torrent queueing must be enabled");
+        return;
+    }
+
+    QStringList hashes = request().posts["hashes"].split("|");
+    uint pos = request().posts["pos"].toUInt();
+    BitTorrent::Session::instance()->setTorrentsPriority(hashes, pos);
 }
 
 void WebApplication::action_command_bottomPrio()

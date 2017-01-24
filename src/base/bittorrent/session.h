@@ -355,6 +355,7 @@ namespace BitTorrent
         void recursiveTorrentDownload(const InfoHash &hash);
         void increaseTorrentsPriority(const QStringList &hashes);
         void decreaseTorrentsPriority(const QStringList &hashes);
+        void setTorrentsPriority(const QStringList &hashes, uint = 0);
         void topTorrentsPriority(const QStringList &hashes);
         void bottomTorrentsPriority(const QStringList &hashes);
 

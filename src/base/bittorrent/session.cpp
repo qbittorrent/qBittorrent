@@ -1505,6 +1505,23 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(hash));
 }
 
+void Session::setTorrentsPriority(const QStringList &hashes, uint pos)
+{
+    // Prio torrents by hash order
+    foreach (const InfoHash &hash, hashes) {
+        TorrentHandle *const torrent = m_torrents.value(hash);
+        if (torrent && !torrent->isSeed()) {
+            try {
+                torrent->nativeHandle().queue_position_top();
+                pos++;
+            }
+            catch (std::exception &exc) {
+                qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+            }
+        }
+    }
+}
+
 void Session::topTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
