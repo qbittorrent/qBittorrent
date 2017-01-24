@@ -338,6 +338,7 @@ namespace BitTorrent
         void addUrlSeeds(const QList<QUrl> &urlSeeds);
         void removeUrlSeeds(const QList<QUrl> &urlSeeds);
         bool connectPeer(const PeerAddress &peerAddress);
+        void setQueuePosition(int pos);
 
         QString toMagnetUri() const;
 

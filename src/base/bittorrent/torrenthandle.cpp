@@ -1828,6 +1828,16 @@ void TorrentHandle::flushCache()
     SAFE_CALL(flush_cache)
 }
 
+void TorrentHandle::setQueuePosition(int pos)
+{
+#if LIBTORRENT_VERSION_NUM >= 10102
+    SAFE_CALL(queue_position_set, pos < 0 ? 0 : pos);
+#else
+    qWarning("%s queue_position_set(%d) is not implemented in libtorrent < 1.1.2",
+		qPrintable(name()), pos);
+#endif
+}
+
 QString TorrentHandle::toMagnetUri() const
 {
     return Utils::String::fromStdString(libt::make_magnet_uri(m_nativeHandle));
