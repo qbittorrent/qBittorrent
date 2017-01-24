@@ -1512,7 +1512,7 @@ void Session::setTorrentsPriority(const QStringList &hashes, uint pos)
         TorrentHandle *const torrent = m_torrents.value(hash);
         if (torrent && !torrent->isSeed()) {
             try {
-                torrent->nativeHandle().queue_position_top();
+                torrent->nativeHandle().queue_position_set(pos);
                 pos++;
             }
             catch (std::exception &exc) {
