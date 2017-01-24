@@ -873,8 +873,7 @@ void TransferListWidget::applyConfigFont()
     QFont font = configFont();
     setFont(font);
     header()->setFont(font);
-    foreach (QWidget *widget, header()->findChildren<QWidget*>())
-    {
+    foreach (QWidget *widget, header()->findChildren<QWidget*>()) {
         widget->setFont(font);
     }
 }

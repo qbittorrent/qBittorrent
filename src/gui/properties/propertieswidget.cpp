@@ -898,12 +898,10 @@ void PropertiesWidget::filterText(const QString &filter)
 void PropertiesWidget::applyConfigFont()
 {
     QFont font = configFont();
-    foreach (QWidget *widget, findChildren<QGroupBox*>())
-    {
+    foreach (QWidget *widget, findChildren<QGroupBox*>()) {
         widget->setFont(font);
     }
-    foreach (QWidget *widget, findChildren<QLabel*>())
-    {
+    foreach (QWidget *widget, findChildren<QLabel*>()) {
         widget->setFont(font);
     }
 }

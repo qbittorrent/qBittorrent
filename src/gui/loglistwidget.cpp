@@ -112,8 +112,7 @@ void LogListWidget::copySelection()
 void LogListWidget::applyConfigFont()
 {
     QFont font = configFont();
-    for (int row = 0; row < count(); ++row)
-    {
+    for (int row = 0; row < count(); ++row) {
         QListWidgetItem *item = this->item(row);
         QLabel *label = qobject_cast<QLabel*>(this->itemWidget(item));
         label->setFont(font);
