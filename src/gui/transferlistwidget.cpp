@@ -213,26 +213,8 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
     BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(index));
     if (!torrent) return;
 
-    int action;
-    if (torrent->isSeed())
-        action = Preferences::instance()->getActionOnDblClOnTorrentFn();
-    else
-        action = Preferences::instance()->getActionOnDblClOnTorrentDl();
-
-    switch(action) {
-    case TOGGLE_PAUSE:
-        if (torrent->isPaused())
-            torrent->resume();
-        else
-            torrent->pause();
-        break;
-    case OPEN_DEST:
-        if (torrent->filesCount() == 1)
-            Utils::Misc::openFolderSelect(torrent->contentPath(true));
-        else
-            Utils::Misc::openPath(torrent->contentPath(true));
-        break;
-    }
+    if (torrent->hasMetadata())
+        new PreviewSelect(this, torrent);
 }
 
 QList<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
