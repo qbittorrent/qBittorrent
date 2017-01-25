@@ -114,7 +114,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
-    editHotkey = new QShortcut(QKeySequence("F2"), ui->listRules, 0, 0, Qt::WidgetShortcut);
+    editHotkey = new QShortcut(Qt::Key_F2, ui->listRules, 0, 0, Qt::WidgetShortcut);
     ok = connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRule()));
     Q_ASSERT(ok);
     ok = connect(ui->listRules, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRule()));
