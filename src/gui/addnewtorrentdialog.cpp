@@ -194,7 +194,7 @@ void AddNewTorrentDialog::show(QString source, QWidget *parent)
             ok = dlg->loadTorrent(source);
 
         if (ok)
-            dlg->open();
+            dlg->QWidget::show();
         else
             delete dlg;
     }
