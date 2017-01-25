@@ -31,6 +31,8 @@
 #include <QRegExp>
 #include <QDebug>
 #include <QDir>
+#include <QStringRef>
+#include <QVector>
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
@@ -151,25 +153,38 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
         QString s = f.cap(1);
         QStringList eps = f.cap(2).split(";");
-        QString expStr;
-        expStr += "s0?" + s + "[ -_\\.]?" + "e0?";
+        int sOurs = s.toInt();
 
-        foreach (const QString &ep, eps) {
-            if (ep.isEmpty())
+        foreach (const QString &epStr, eps) {
+            if (epStr.isEmpty())
                 continue;
 
+            QStringRef ep( &epStr);
+
+            // We need to trim leading zeroes, but if it's all zeros then we want episode zero.
+            while (ep.size() > 1 && ep.startsWith("0"))
+                ep = ep.right(ep.size() - 1);
+
             if (ep.indexOf('-') != -1) { // Range detected
-                QString partialPattern = "s0?" + s + "[ -_\\.]?" + "e(0?\\d{1,4})";
-                QRegExp reg(partialPattern, Qt::CaseInsensitive);
+                QString partialPattern1 = "\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)";
+                QString partialPattern2 = "\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)";
+                QRegExp reg(partialPattern1, Qt::CaseInsensitive);
 
                 if (ep.endsWith('-')) { // Infinite range
                     int epOurs = ep.left(ep.size() - 1).toInt();
 
                     // Extract partial match from article and compare as digits
                     pos = reg.indexIn(articleTitle);
+
+                    if (pos == -1) {
+                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
+                        pos = reg.indexIn(articleTitle);
+                    }
+
                     if (pos != -1) {
-                        int epTheirs = reg.cap(1).toInt();
-                        if (epTheirs >= epOurs) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
+                        if (((sTheirs == sOurs) && (epTheirs >= epOurs)) || (sTheirs > sOurs)) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
@@ -177,7 +192,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     }
                 }
                 else { // Normal range
-                    QStringList range = ep.split('-');
+                    QVector<QStringRef> range = ep.split('-');
                     Q_ASSERT(range.size() == 2);
                     if (range.first().toInt() > range.last().toInt())
                         continue; // Ignore this subrule completely
@@ -187,9 +202,16 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
                     // Extract partial match from article and compare as digits
                     pos = reg.indexIn(articleTitle);
+
+                    if (pos == -1) {
+                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
+                        pos = reg.indexIn(articleTitle);
+                    }
+
                     if (pos != -1) {
-                        int epTheirs = reg.cap(1).toInt();
-                        if ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs)) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
+                        if ((sTheirs == sOurs) && ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
@@ -198,7 +220,8 @@ bool DownloadRule::matches(const QString &articleTitle) const
                 }
             }
             else { // Single number
-                QRegExp reg(expStr + ep + "\\D", Qt::CaseInsensitive);
+                QString expStr("\\b(?:s0?" + s + "[ -_\\.]?" + "e0?" + ep + "|" + s + "x" + "0?" + ep + ")(?:\\D|\\b)");
+                QRegExp reg(expStr, Qt::CaseInsensitive);
                 if (reg.indexIn(articleTitle) != -1) {
                     qDebug() << "Matched episode:" << ep;
                     qDebug() << "Matched article:" << articleTitle;

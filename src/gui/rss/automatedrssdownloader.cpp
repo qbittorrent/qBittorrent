@@ -71,17 +71,17 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
-    m_episodeRegex = new QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
+    m_episodeRegex = new QRegExp("^(^\\d{1,4}x(\\d{1,4}(-(\\d{1,4})?)?;){1,}){1,1}",
                                  Qt::CaseInsensitive);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
-           + "<li>" + tr("Episode number is a mandatory non-zero value") + "</li>"
+           + "<li>" + tr("Episode number is a mandatory positive value") + "</li>"
            + "<li>" + tr("Filter must end with semicolon") + "</li>"
            + "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
            "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>"
            + "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>"
-           + "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one") + "</li>" + "</ul></li></ul>";
+           + "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons") + "</li>" + "</ul></li></ul>";
     ui->lineEFilter->setToolTip(tip);
     initCategoryCombobox();
     loadFeedList();
