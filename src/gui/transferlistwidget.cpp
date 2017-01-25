@@ -158,6 +158,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
     permDeleteHotkey = new QShortcut(QKeySequence("Shift+Delete"), this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    doubleClickHotkey = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(torrentDoubleClicked()), 0, Qt::WidgetShortcut);
+    recheckHotkey = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_R), this, SLOT(recheckSelectedTorrents()), 0, Qt::WidgetShortcut);
 
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.

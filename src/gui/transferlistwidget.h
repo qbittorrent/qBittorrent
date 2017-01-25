@@ -124,6 +124,8 @@ private:
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
     QShortcut *permDeleteHotkey;
+    QShortcut *doubleClickHotkey;
+    QShortcut *recheckHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H
