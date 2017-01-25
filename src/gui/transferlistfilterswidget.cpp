@@ -187,6 +187,7 @@ CategoryFiltersList::CategoryFiltersList(QWidget *parent, TransferListWidget *tr
 
     refresh();
     toggleFilter(Preferences::instance()->getCategoryFilterState());
+    setCurrentRow(1);
 }
 
 void CategoryFiltersList::refresh()
