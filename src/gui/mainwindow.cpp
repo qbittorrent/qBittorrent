@@ -767,6 +767,8 @@ void MainWindow::createKeyboardShortcuts()
     connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
     QShortcut *switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
     connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
+    QShortcut *switchExecutionLogShortcut = new QShortcut(QKeySequence(Qt::ALT + Qt::Key_4), this);
+    connect(switchExecutionLogShortcut, SIGNAL(activated()), this, SLOT(displayExecutionLogTab()));
 
     QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, this);
     connect(switchSearchFilterShortcut, SIGNAL(activated()), this, SLOT(focusSearchFilter()));
@@ -803,6 +805,12 @@ void MainWindow::displayRSSTab() const
 {
     if (m_rssWidget)
         m_tabs->setCurrentWidget(m_rssWidget);
+}
+
+void MainWindow::displayExecutionLogTab() const
+{
+    if (m_executionLog)
+        m_tabs->setCurrentWidget(m_executionLog);
 }
 
 // End of keyboard shortcuts slots
