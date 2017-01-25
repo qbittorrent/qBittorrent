@@ -148,6 +148,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
 
     // Listen for list events
     connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
+    connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayListMenu(const QPoint &)));
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
