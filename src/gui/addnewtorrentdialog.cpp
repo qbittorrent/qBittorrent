@@ -624,6 +624,8 @@ void AddNewTorrentDialog::accept()
 
     BitTorrent::AddTorrentParams params;
 
+    params.sequential = true;
+
     if (ui->skip_check_cb->isChecked())
         // TODO: Check if destination actually exists
         params.skipChecking = true;
