@@ -83,9 +83,9 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **" << "" << "" << "0" << "0" << "0");
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
-  editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
+  editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
   connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
-  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
+  deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
   copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
 
 #ifdef QBT_USES_QT5

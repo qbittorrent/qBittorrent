@@ -758,33 +758,33 @@ void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
-    m_ui->actionDownloadFromURL->setShortcut(QKeySequence("Ctrl+Shift+O"));
-    m_ui->actionExit->setShortcut(QKeySequence("Ctrl+Q"));
+    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
+    m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
 
-    QShortcut *switchTransferShortcut = new QShortcut(QKeySequence("Alt+1"), this);
+    QShortcut *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
     connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
-    QShortcut *switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
+    QShortcut *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
     connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    QShortcut *switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
+    QShortcut *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
     connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-    QShortcut *switchExecutionLogShortcut = new QShortcut(QKeySequence(Qt::ALT + Qt::Key_4), this);
+    QShortcut *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
     connect(switchExecutionLogShortcut, SIGNAL(activated()), this, SLOT(displayExecutionLogTab()));
 
     QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, this);
     connect(switchSearchFilterShortcut, SIGNAL(activated()), this, SLOT(focusSearchFilter()));
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
-    m_ui->actionOptions->setShortcut(QKeySequence("Alt+O"));
-    m_ui->actionStart->setShortcut(QKeySequence("Ctrl+S"));
-    m_ui->actionStartAll->setShortcut(QKeySequence("Ctrl+Shift+S"));
-    m_ui->actionPause->setShortcut(QKeySequence("Ctrl+P"));
-    m_ui->actionPauseAll->setShortcut(QKeySequence("Ctrl+Shift+P"));
-    m_ui->actionBottomPriority->setShortcut(QKeySequence("Ctrl+Shift+-"));
-    m_ui->actionDecreasePriority->setShortcut(QKeySequence("Ctrl+-"));
-    m_ui->actionIncreasePriority->setShortcut(QKeySequence("Ctrl++"));
-    m_ui->actionTopPriority->setShortcut(QKeySequence("Ctrl+Shift++"));
+    m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
+    m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
+    m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT +Qt::Key_S);
+    m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
+    m_ui->actionPauseAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
+    m_ui->actionBottomPriority->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
+    m_ui->actionDecreasePriority->setShortcut(Qt::CTRL + Qt::Key_Minus);
+    m_ui->actionIncreasePriority->setShortcut(Qt::CTRL + Qt::Key_Plus);
+    m_ui->actionTopPriority->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
 #ifdef Q_OS_MAC
-    m_ui->actionMinimize->setShortcut(QKeySequence("Ctrl+M"));
+    m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
     addAction(m_ui->actionMinimize);
 #endif
 }
