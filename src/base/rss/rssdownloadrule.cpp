@@ -50,26 +50,45 @@ DownloadRule::DownloadRule()
 
 bool DownloadRule::matches(const QString &articleTitle) const
 {
-    foreach (const QString &token, m_mustContain) {
-        if (!token.isEmpty()) {
-            QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-            if (reg.indexIn(articleTitle) < 0)
-                return false;
+    if (!m_mustContain.empty()) {
+        bool logged = false;
+
+        foreach (const QString &token, m_mustContain) {
+            if (!token.isEmpty()) {
+                if (!logged) {
+                    qDebug() << "Checking matching expressions:" << m_mustContain.join("|");
+                    logged = true;
+                }
+
+                QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+                if (reg.indexIn(articleTitle) < 0)
+                    return false;
+            }
         }
     }
-    qDebug("Checking not matching tokens");
-    // Checking not matching
-    foreach (const QString &token, m_mustNotContain) {
-        if (!token.isEmpty()) {
-            QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-            if (reg.indexIn(articleTitle) > -1)
-                return false;
+
+    if (!m_mustNotContain.empty()) {
+        bool logged = false;
+
+        foreach (const QString &token, m_mustNotContain) {
+            if (!token.isEmpty()) {
+                if (!logged) {
+                    qDebug() << "Checking not matching expressions:" << m_mustNotContain.join("|");
+                    logged = true;
+                }
+
+                QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+                if (reg.indexIn(articleTitle) > -1)
+                    return false;
+            }
         }
     }
+
     if (!m_episodeFilter.isEmpty()) {
-        qDebug("Checking episode filter");
+        qDebug() << "Checking episode filter:" << m_episodeFilter;
         QRegExp f("(^\\d{1,4})x(.*;$)");
         int pos = f.indexIn(m_episodeFilter);
+
         if (pos < 0)
             return false;
 
@@ -93,8 +112,11 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     pos = reg.indexIn(articleTitle);
                     if (pos != -1) {
                         int epTheirs = reg.cap(1).toInt();
-                        if (epTheirs >= epOurs)
+                        if (epTheirs >= epOurs) {
+                            qDebug() << "Matched episode:" << ep;
+                            qDebug() << "Matched article:" << articleTitle;
                             return true;
+                        }
                     }
                 }
                 else { // Normal range
@@ -110,19 +132,28 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     pos = reg.indexIn(articleTitle);
                     if (pos != -1) {
                         int epTheirs = reg.cap(1).toInt();
-                        if ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))
+                        if ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs)) {
+                            qDebug() << "Matched episode:" << ep;
+                            qDebug() << "Matched article:" << articleTitle;
                             return true;
+                        }
                     }
                 }
             }
             else { // Single number
                 QRegExp reg(expStr + ep + "\\D", Qt::CaseInsensitive);
-                if (reg.indexIn(articleTitle) != -1)
+                if (reg.indexIn(articleTitle) != -1) {
+                    qDebug() << "Matched episode:" << ep;
+                    qDebug() << "Matched article:" << articleTitle;
                     return true;
+                }
             }
         }
+
         return false;
     }
+
+    qDebug() << "Matched article:" << articleTitle;
     return true;
 }
 
@@ -302,6 +333,7 @@ QStringList DownloadRule::findMatchingArticles(const FeedPtr &feed) const
     ArticleHash::ConstIterator artItend = feedArticles.end();
     for (; artIt != artItend; ++artIt) {
         const QString title = artIt.value()->title();
+        qDebug() << "Matching article:" << title;
         if (matches(title))
             ret << title;
     }

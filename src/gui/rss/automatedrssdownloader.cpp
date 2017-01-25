@@ -71,10 +71,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
-    m_episodeValidator = new QRegExpValidator(
-        QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
-                Qt::CaseInsensitive),
-        ui->lineEFilter);
+    m_episodeRegex = new QRegExp("^(^[1-9]{1,1}\\d{0,3}x([1-9]{1,1}\\d{0,3}(-([1-9]{1,1}\\d{0,3})?)?;){1,}){1,1}",
+                                 Qt::CaseInsensitive);
+    m_episodeValidator = new QRegExpValidator(*m_episodeRegex, ui->lineEFilter);
     ui->lineEFilter->setValidator(m_episodeValidator);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
@@ -134,6 +133,7 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
     delete ui;
     delete m_editableRuleList;
     delete m_episodeValidator;
+    delete m_episodeRegex;
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -253,13 +253,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
             ui->checkRegex->blockSignals(true);
             ui->checkRegex->setChecked(rule->useRegex());
             ui->checkRegex->blockSignals(false);
-            if (rule->category().isEmpty()) {
-                ui->comboCategory->setCurrentIndex(-1);
+            ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
+            if (rule->category().isEmpty())
                 ui->comboCategory->clearEditText();
-            }
-            else {
-                ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
-            }
             ui->comboAddPaused->setCurrentIndex(rule->addPaused());
             ui->spinIgnorePeriod->setValue(rule->ignoreDays());
             QDateTime dateTime = rule->lastMatch();
@@ -317,6 +313,7 @@ void AutomatedRssDownloader::initCategoryCombobox()
     // Load torrent categories
     QStringList categories = BitTorrent::Session::instance()->categories();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
+    ui->comboCategory->addItem(QString(""));
     ui->comboCategory->addItems(categories);
 }
 
