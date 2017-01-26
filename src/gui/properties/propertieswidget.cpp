@@ -866,11 +866,17 @@ void PropertiesWidget::editWebSeed()
 
 bool PropertiesWidget::applyPriorities()
 {
+    qreal previousProgress = m_torrent->progress();
     qDebug("Saving files priorities");
     const QVector<int> priorities = PropListModel->model()->getFilePriorities();
     // Prioritize the files
     qDebug("prioritize files: %d", priorities[0]);
     m_torrent->prioritizeFiles(priorities);
+    // Auto-resume paused torrent if previously unchecked/ignored files
+    // have now been marked for downloading.
+    if (m_torrent->progress() < previousProgress && m_torrent->isPaused()) {
+        m_torrent->resume();
+    }
     return true;
 }
 
