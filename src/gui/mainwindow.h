@@ -124,9 +124,9 @@ private slots:
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayTransferTab() const;
-    void displaySearchTab() const;
-    void displayRSSTab() const;
-    void displayExecutionLogTab() const;
+    void displaySearchTab();
+    void displayRSSTab();
+    void displayExecutionLogTab();
     void focusSearchFilter();
     void updateGUI();
     void loadPreferences(bool configureSession = true);

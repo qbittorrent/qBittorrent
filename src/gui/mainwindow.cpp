@@ -795,22 +795,34 @@ void MainWindow::displayTransferTab() const
     m_tabs->setCurrentWidget(m_transferListWidget);
 }
 
-void MainWindow::displaySearchTab() const
+void MainWindow::displaySearchTab()
 {
-    if (m_searchWidget)
-        m_tabs->setCurrentWidget(m_searchWidget);
+    if (!m_searchWidget) {
+        m_ui->actionSearchWidget->setChecked(true);
+        displaySearchTab(true);
+    }
+
+    m_tabs->setCurrentWidget(m_searchWidget);
 }
 
-void MainWindow::displayRSSTab() const
+void MainWindow::displayRSSTab()
 {
-    if (m_rssWidget)
-        m_tabs->setCurrentWidget(m_rssWidget);
+    if (!m_rssWidget) {
+        m_ui->actionRSSReader->setChecked(true);
+        displayRSSTab(true);
+    }
+
+    m_tabs->setCurrentWidget(m_rssWidget);
 }
 
-void MainWindow::displayExecutionLogTab() const
+void MainWindow::displayExecutionLogTab()
 {
-    if (m_executionLog)
-        m_tabs->setCurrentWidget(m_executionLog);
+    if (!m_executionLog) {
+        m_ui->actionExecutionLogs->setChecked(true);
+        on_actionExecutionLogs_triggered(true);
+    }
+
+    m_tabs->setCurrentWidget(m_executionLog);
 }
 
 // End of keyboard shortcuts slots
