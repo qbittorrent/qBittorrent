@@ -48,9 +48,10 @@
 #include "automatedrssdownloader.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent)
-    : QDialog(parent),
-    ui(new Ui::AutomatedRssDownloader),
-    m_manager(manager), m_editedRule(0)
+    : QDialog(parent)
+    , ui(new Ui::AutomatedRssDownloader)
+    , m_manager(manager)
+    , m_editedRule(0)
 {
     ui->setupUi(this);
     // Icons
@@ -516,8 +517,9 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
             if (!affected_feeds.contains(feed_url))
                 affected_feeds << feed_url;
         }
-        else if (affected_feeds.contains(feed_url))
+        else if (affected_feeds.contains(feed_url)) {
             affected_feeds.removeOne(feed_url);
+        }
         // Save the updated rule
         if (affected_feeds.size() != rule->rssFeeds().size()) {
             rule->setRssFeeds(affected_feeds);
