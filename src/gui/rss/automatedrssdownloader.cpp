@@ -28,14 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QDebug>
-#include <QMenu>
 #include <QCursor>
+#include <QDebug>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QMenu>
 
-#include "base/preferences.h"
 #include "base/bittorrent/session.h"
+#include "base/preferences.h"
 #include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
@@ -48,9 +48,10 @@
 #include "automatedrssdownloader.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent)
-    : QDialog(parent),
-    ui(new Ui::AutomatedRssDownloader),
-    m_manager(manager), m_editedRule(0)
+    : QDialog(parent)
+    , ui(new Ui::AutomatedRssDownloader)
+    , m_manager(manager)
+    , m_editedRule(0)
 {
     ui->setupUi(this);
     // Icons

@@ -32,14 +32,15 @@
 #define AUTOMATEDRSSDOWNLOADER_H
 
 #include <QDialog>
-#include <QWeakPointer>
-#include <QShortcut>
 #include <QRegExpValidator>
+#include <QShortcut>
+#include <QWeakPointer>
 
 #include "base/rss/rssdownloadrule.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
     class AutomatedRssDownloader;
 }
 QT_END_NAMESPACE
