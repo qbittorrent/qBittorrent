@@ -77,6 +77,7 @@
      <addaction name="actionAutoHibernate"/>
      <addaction name="actionAutoShutdown"/>
     </widget>
+    <addaction name="actionRssDownloader"/>
     <addaction name="actionCreateTorrent"/>
     <addaction name="separator"/>
     <addaction name="actionManageCookies"/>
@@ -156,6 +157,7 @@
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionBottomPriority"/>
    <addaction name="separator"/>
+   <addaction name="actionRssDownloader"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
   </widget>
@@ -214,6 +216,14 @@
    </property>
    <property name="iconText">
     <string>Open URL</string>
+   </property>
+  </action>
+  <action name="actionRssDownloader">
+   <property name="text">
+    <string>RSS Downloader...</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+R</string>
    </property>
   </action>
   <action name="actionCreateTorrent">

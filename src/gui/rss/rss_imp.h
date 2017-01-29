@@ -52,6 +52,7 @@ class RSSImp: public QWidget, public Ui::RSS
 public:
     RSSImp(QWidget * parent);
     ~RSSImp();
+    void displayRssDownloader();
 
 public slots:
     void deleteSelectedItems();
@@ -85,7 +86,6 @@ private slots:
     void saveFoldersOpenState();
     void loadFoldersOpenState();
     void on_settingsButton_clicked();
-    void on_rssDownloaderBtn_clicked();
 
 private:
     static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);

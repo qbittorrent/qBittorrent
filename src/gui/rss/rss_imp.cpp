@@ -701,7 +701,6 @@ RSSImp::RSSImp(QWidget *parent)
     newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     markReadButton->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
     updateAllButton->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
-    rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
     settingsButton->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
 
     m_feedList = new FeedListWidget(splitterSide, m_rssManager);
@@ -770,7 +769,7 @@ void RSSImp::on_settingsButton_clicked()
         updateRefreshInterval(Preferences::instance()->getRSSRefreshInterval());
 }
 
-void RSSImp::on_rssDownloaderBtn_clicked()
+void RSSImp::displayRssDownloader()
 {
     AutomatedRssDownloader dlg(m_rssManager, this);
     dlg.exec();

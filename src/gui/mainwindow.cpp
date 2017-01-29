@@ -157,6 +157,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionSetDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
     m_ui->actionSetGlobalUploadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"));
     m_ui->actionSetGlobalDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
+    m_ui->actionRssDownloader->setIcon(GuiIconProvider::instance()->getIcon("application-rss+xml"));
     m_ui->actionCreateTorrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
     m_ui->actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
     m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
@@ -295,6 +296,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionTopToolBar->setChecked(pref->isToolbarDisplayed());
     m_ui->actionSpeedInTitleBar->setChecked(pref->speedInTitleBar());
     m_ui->actionRSSReader->setChecked(pref->isRSSEnabled());
+    m_ui->actionRssDownloader->setEnabled(m_ui->actionRSSReader->isChecked());
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
     m_ui->actionExecutionLogs->setChecked(isExecutionLogEnabled());
 
@@ -1025,6 +1027,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qApp->exit();
 }
 
+// Display the RSS Downloader
+void MainWindow::on_actionRssDownloader_triggered()
+{
+    if (m_rssWidget)
+        m_rssWidget->displayRssDownloader();
+}
+
 // Display window to create a torrent
 void MainWindow::on_actionCreateTorrent_triggered()
 {
@@ -1481,6 +1490,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
 void MainWindow::on_actionRSSReader_triggered()
 {
     Preferences::instance()->setRSSEnabled(m_ui->actionRSSReader->isChecked());
+    m_ui->actionRssDownloader->setEnabled(m_ui->actionRSSReader->isChecked());
     displayRSSTab(m_ui->actionRSSReader->isChecked());
 }
 

@@ -57,13 +57,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="rssDownloaderBtn">
-       <property name="text">
-        <string>RSS Downloader...</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="settingsButton">
        <property name="text">
         <string>Settings...</string>
