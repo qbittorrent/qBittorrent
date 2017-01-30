@@ -210,7 +210,7 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
 
 void PropertiesWidget::setVisibility(bool visible)
 {
-    if (!visible && ( state == VISIBLE) ) {
+    if (!visible && (state == VISIBLE)) {
         QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
         m_ui->stackedProperties->setVisible(false);
         slideSizes = hSplitter->sizes();
@@ -222,7 +222,7 @@ void PropertiesWidget::setVisibility(bool visible)
         return;
     }
 
-    if (visible && ( state == REDUCED) ) {
+    if (visible && (state == REDUCED)) {
         m_ui->stackedProperties->setVisible(true);
         QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->handle(1)->setDisabled(false);
@@ -363,7 +363,7 @@ void PropertiesWidget::readSettings()
 void PropertiesWidget::saveSettings()
 {
     Preferences *const pref = Preferences::instance();
-    pref->setPropVisible(state==VISIBLE);
+    pref->setPropVisible(state == VISIBLE);
     // Splitter sizes
     QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
     QList<int> sizes;
@@ -397,10 +397,10 @@ void PropertiesWidget::loadDynamicData()
         m_ui->wasted->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
 
         m_ui->upTotal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload()))
-                         .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())));
+                               .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())));
 
         m_ui->dlTotal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload()))
-                         .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
+                               .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
 
         m_ui->lbl_uplimit->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
 
@@ -416,8 +416,8 @@ void PropertiesWidget::loadDynamicData()
         m_ui->lbl_elapsed->setText(elapsed_txt);
 
         m_ui->lbl_connections->setText(tr("%1 (%2 max)", "%1 and %2 are numbers, e.g. 3 (10 max)")
-                                 .arg(m_torrent->connectionsCount())
-                                 .arg(m_torrent->connectionsLimit() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsLimit())));
+                                       .arg(m_torrent->connectionsCount())
+                                       .arg(m_torrent->connectionsLimit() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsLimit())));
 
         m_ui->label_eta_val->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta()));
 
@@ -429,20 +429,20 @@ void PropertiesWidget::loadDynamicData()
         m_ui->shareRatio->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
         m_ui->label_seeds_val->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
-                                 .arg(QString::number(m_torrent->seedsCount()))
-                                 .arg(QString::number(m_torrent->totalSeedsCount())));
+                                       .arg(QString::number(m_torrent->seedsCount()))
+                                       .arg(QString::number(m_torrent->totalSeedsCount())));
 
         m_ui->label_peers_val->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
-                                 .arg(QString::number(m_torrent->leechsCount()))
-                                 .arg(QString::number(m_torrent->totalLeechersCount())));
+                                       .arg(QString::number(m_torrent->leechsCount()))
+                                       .arg(QString::number(m_torrent->totalLeechersCount())));
 
         m_ui->label_dl_speed_val->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                                    .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true))
-                                    .arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
+                                          .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true))
+                                          .arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
 
         m_ui->label_upload_speed_val->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                                        .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true))
-                                        .arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
+                                              .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true))
+                                              .arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
 
         m_ui->label_last_complete_val->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
 
@@ -674,117 +674,120 @@ void PropertiesWidget::renameSelectedFile()
     const QModelIndexList selectedIndexes = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedIndexes.size() != 1)
         return;
+
     const QModelIndex index = selectedIndexes.first();
     if (!index.isValid())
         return;
+
     // Ask for new name
-    bool ok;
+    bool ok = false;
     QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
                                                           tr("New name:"), QLineEdit::Normal,
                                                           index.data().toString(), &ok).trimmed();
-    if (ok && !new_name_last.isEmpty()) {
-        if (!Utils::Fs::isValidFileSystemName(new_name_last)) {
-            MessageBoxRaised::warning(this, tr("The file could not be renamed"),
-                                      tr("This file name contains forbidden characters, please choose a different one."),
-                                      QMessageBox::Ok);
+    if (!ok || new_name_last.isEmpty())
+        return;
+
+    if (!Utils::Fs::isValidFileSystemName(new_name_last)) {
+        MessageBoxRaised::warning(this, tr("The file could not be renamed"),
+                                  tr("This file name contains forbidden characters, please choose a different one."),
+                                  QMessageBox::Ok);
+        return;
+    }
+    if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
+        // File renaming
+        const int file_index = PropListModel->getFileIndex(index);
+        if (!m_torrent || !m_torrent->hasMetadata()) return;
+        QString old_name = m_torrent->filePath(file_index);
+        if (old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB"))
+            new_name_last += ".!qB";
+        QStringList path_items = old_name.split("/");
+        path_items.removeLast();
+        path_items << new_name_last;
+        QString new_name = path_items.join("/");
+        if (old_name == new_name) {
+            qDebug("Name did not change");
             return;
         }
-        if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
-            // File renaming
-            const int file_index = PropListModel->getFileIndex(index);
-            if (!m_torrent || !m_torrent->hasMetadata()) return;
-            QString old_name = m_torrent->filePath(file_index);
-            if (old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB"))
-                new_name_last += ".!qB";
-            QStringList path_items = old_name.split("/");
-            path_items.removeLast();
-            path_items << new_name_last;
-            QString new_name = path_items.join("/");
-            if (old_name == new_name) {
-                qDebug("Name did not change");
+        new_name = Utils::Fs::expandPath(new_name);
+        qDebug("New name: %s", qPrintable(new_name));
+        // Check if that name is already used
+        for (int i = 0; i < m_torrent->filesCount(); ++i) {
+            if (i == file_index) continue;
+            if (Utils::Fs::sameFileNames(m_torrent->filePath(i), new_name)) {
+                // Display error message
+                MessageBoxRaised::warning(this, tr("The file could not be renamed"),
+                                          tr("This name is already in use in this folder. Please use a different name."),
+                                          QMessageBox::Ok);
                 return;
             }
-            new_name = Utils::Fs::expandPath(new_name);
-            qDebug("New name: %s", qPrintable(new_name));
-            // Check if that name is already used
-            for (int i = 0; i < m_torrent->filesCount(); ++i) {
-                if (i == file_index) continue;
-                if (Utils::Fs::sameFileNames(m_torrent->filePath(i), new_name)) {
-                    // Display error message
-                    MessageBoxRaised::warning(this, tr("The file could not be renamed"),
-                                              tr("This name is already in use in this folder. Please use a different name."),
-                                              QMessageBox::Ok);
-                    return;
-                }
-            }
-            const bool force_recheck = QFile::exists(m_torrent->savePath(true) + "/" + new_name);
-            qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
-            m_torrent->renameFile(file_index, new_name);
-            // Force recheck
-            if (force_recheck) m_torrent->forceRecheck();
-            // Rename if torrent files model too
-            if (new_name_last.endsWith(".!qB"))
-                new_name_last.chop(4);
-            PropListModel->setData(index, new_name_last);
         }
-        else {
-            // Folder renaming
-            QStringList path_items;
-            path_items << index.data().toString();
-            QModelIndex parent = PropListModel->parent(index);
-            while (parent.isValid()) {
-                path_items.prepend(parent.data().toString());
-                parent = PropListModel->parent(parent);
-            }
-            const QString old_path = path_items.join("/");
-            path_items.removeLast();
-            path_items << new_name_last;
-            QString new_path = path_items.join("/");
-            if (Utils::Fs::sameFileNames(old_path, new_path)) {
-                qDebug("Name did not change");
+        const bool force_recheck = QFile::exists(m_torrent->savePath(true) + "/" + new_name);
+        qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
+        m_torrent->renameFile(file_index, new_name);
+        // Force recheck
+        if (force_recheck) m_torrent->forceRecheck();
+        // Rename if torrent files model too
+        if (new_name_last.endsWith(".!qB"))
+            new_name_last.chop(4);
+        PropListModel->setData(index, new_name_last);
+    }
+    else {
+        // Folder renaming
+        QStringList path_items;
+        path_items << index.data().toString();
+        QModelIndex parent = PropListModel->parent(index);
+        while (parent.isValid()) {
+            path_items.prepend(parent.data().toString());
+            parent = PropListModel->parent(parent);
+        }
+        const QString old_path = path_items.join("/");
+        path_items.removeLast();
+        path_items << new_name_last;
+        QString new_path = path_items.join("/");
+        if (Utils::Fs::sameFileNames(old_path, new_path)) {
+            qDebug("Name did not change");
+            return;
+        }
+        if (!new_path.endsWith("/")) new_path += "/";
+        // Check for overwriting
+        for (int i = 0; i < m_torrent->filesCount(); ++i) {
+            const QString &current_name = m_torrent->filePath(i);
+#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
+            if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
+#else
+            if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
+#endif
+                QMessageBox::warning(this, tr("The folder could not be renamed"),
+                                     tr("This name is already in use in this folder. Please use a different name."),
+                                     QMessageBox::Ok);
                 return;
             }
-            if (!new_path.endsWith("/")) new_path += "/";
-            // Check for overwriting
-            for (int i = 0; i < m_torrent->filesCount(); ++i) {
-                const QString &current_name = m_torrent->filePath(i);
-#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-                if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
-#else
-                if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
-#endif
-                    QMessageBox::warning(this, tr("The folder could not be renamed"),
-                                         tr("This name is already in use in this folder. Please use a different name."),
-                                         QMessageBox::Ok);
-                    return;
-                }
+        }
+        bool force_recheck = false;
+        // Replace path in all files
+        for (int i = 0; i < m_torrent->filesCount(); ++i) {
+            const QString current_name = m_torrent->filePath(i);
+            if (current_name.startsWith(old_path)) {
+                QString new_name = current_name;
+                new_name.replace(0, old_path.length(), new_path);
+                if (!force_recheck && QDir(m_torrent->savePath(true)).exists(new_name))
+                    force_recheck = true;
+                new_name = Utils::Fs::expandPath(new_name);
+                qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
+                m_torrent->renameFile(i, new_name);
             }
-            bool force_recheck = false;
-            // Replace path in all files
-            for (int i = 0; i < m_torrent->filesCount(); ++i) {
-                const QString current_name = m_torrent->filePath(i);
-                if (current_name.startsWith(old_path)) {
-                    QString new_name = current_name;
-                    new_name.replace(0, old_path.length(), new_path);
-                    if (!force_recheck && QDir(m_torrent->savePath(true)).exists(new_name))
-                        force_recheck = true;
-                    new_name = Utils::Fs::expandPath(new_name);
-                    qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
-                    m_torrent->renameFile(i, new_name);
-                }
-            }
-            // Force recheck
-            if (force_recheck) m_torrent->forceRecheck();
-            // Rename folder in torrent files model too
-            PropListModel->setData(index, new_name_last);
-            // Remove old folder
-            const QDir old_folder(m_torrent->savePath(true) + "/" + old_path);
-            int timeout = 10;
-            while (!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
-                // FIXME: We should not sleep here (freezes the UI for 1 second)
-                QThread::msleep(100);
-                --timeout;
-            }
+        }
+        // Force recheck
+        if (force_recheck) m_torrent->forceRecheck();
+        // Rename folder in torrent files model too
+        PropListModel->setData(index, new_name_last);
+        // Remove old folder
+        const QDir old_folder(m_torrent->savePath(true) + "/" + old_path);
+        int timeout = 10;
+        while (!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
+            // FIXME: We should not sleep here (freezes the UI for 1 second)
+            QThread::msleep(100);
+            --timeout;
         }
     }
 }
