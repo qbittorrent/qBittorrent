@@ -705,7 +705,7 @@ void PropertiesWidget::renameSelectedFile()
             path_items.removeLast();
             path_items << new_name_last;
             QString new_name = path_items.join("/");
-            if (Utils::Fs::sameFileNames(old_name, new_name)) {
+            if (old_name == new_name) {
                 qDebug("Name did not change");
                 return;
             }
