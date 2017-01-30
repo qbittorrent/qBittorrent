@@ -681,18 +681,18 @@ void PropertiesWidget::renameSelectedFile()
 
     // Ask for new name
     bool ok = false;
-    QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
+    QString new_name_last = AutoExpandableDialog::getText(this, tr("Renaming"),
                                                           tr("New name:"), QLineEdit::Normal,
                                                           index.data().toString(), &ok).trimmed();
-    if (!ok || new_name_last.isEmpty())
+    if (!ok)
         return;
-
-    if (!Utils::Fs::isValidFileSystemName(new_name_last)) {
-        MessageBoxRaised::warning(this, tr("The file could not be renamed"),
-                                  tr("This file name contains forbidden characters, please choose a different one."),
+    if (new_name_last.isEmpty() || !Utils::Fs::isValidFileSystemName(new_name_last)) {
+        MessageBoxRaised::warning(this, tr("Rename error"),
+                                  tr("The name is empty or contains forbidden characters, please choose a different one."),
                                   QMessageBox::Ok);
         return;
     }
+
     if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
         // File renaming
         const int file_index = PropListModel->getFileIndex(index);
