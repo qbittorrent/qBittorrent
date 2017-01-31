@@ -116,6 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui_locked = pref->isUILocked();
     setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
     displaySpeedInTitle = pref->speedInTitleBar();
+
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
@@ -123,6 +124,10 @@ MainWindow::MainWindow(QWidget *parent)
     else
 #endif
     setWindowIcon(QIcon(QString::fromUtf8(":/icons/skin/qbittorrent32.png")));
+
+#if (defined(Q_OS_UNIX))
+    actionOptions->setText(tr("Preferences"));
+#endif
 
     addToolbarContextMenu();
 
