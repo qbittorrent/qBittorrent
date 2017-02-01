@@ -54,13 +54,14 @@ public:
     bool hasFeed(const QString &url) const;
     QList<QTreeWidgetItem *> getAllFeedItems() const;
     QTreeWidgetItem *stickyUnreadItem() const;
-    QStringList getItemPath(QTreeWidgetItem *item) const;
+    QStringList getItemPath(const QTreeWidgetItem *item) const;
     QList<QTreeWidgetItem *> getAllOpenFolders(QTreeWidgetItem *parent = 0) const;
     QList<QTreeWidgetItem *> getAllFeedItems(QTreeWidgetItem *folder);
-    Rss::FilePtr getRSSItem(QTreeWidgetItem *item) const;
-    bool isFeed(QTreeWidgetItem *item) const;
-    bool isFolder(QTreeWidgetItem *item) const;
-    QString getItemID(QTreeWidgetItem *item) const;
+    QTreeWidgetItem *createListItem(const Rss::FilePtr &rssFile);
+    Rss::FilePtr getRSSItem(const QTreeWidgetItem *item) const;
+    bool isFeed(const QTreeWidgetItem *item) const;
+    bool isFolder(const QTreeWidgetItem *item) const;
+    QString getItemID(const QTreeWidgetItem *item) const;
     QTreeWidgetItem *getTreeItemFromUrl(const QString &url) const;
     Rss::FeedPtr getRSSItemFromUrl(const QString &url) const;
     QTreeWidgetItem *currentItem() const;
@@ -81,8 +82,11 @@ protected:
     void dropEvent(QDropEvent *event);
 
 private:
+    class FeedListWidgetItem;
+    friend class FeedListWidgetItem;
+
     Rss::ManagerPtr m_rssManager;
-    QHash<QTreeWidgetItem *, Rss::FilePtr> m_rssMapping;
+    QHash<const QTreeWidgetItem *, Rss::FilePtr> m_rssMapping;
     QHash<QString, QTreeWidgetItem *> m_feedsItems;
     QTreeWidgetItem *m_currentFeed;
     QTreeWidgetItem *m_unreadStickyItem;

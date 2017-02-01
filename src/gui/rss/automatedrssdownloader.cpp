@@ -42,6 +42,7 @@
 #include "base/rss/rssfeed.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
+#include "gui/sortablewidgetitems.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include "ui_automatedrssdownloader.h"
@@ -173,7 +174,7 @@ void AutomatedRssDownloader::loadRulesList()
     ui->listRules->clear();
 
     foreach (const QString &rule_name, m_editableRuleList->ruleNames()) {
-        QListWidgetItem *item = new QListWidgetItem(rule_name, ui->listRules);
+        QListWidgetItem *item = new SortableListWidgetItem(rule_name, ui->listRules);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
         if (m_editableRuleList->getRule(rule_name)->isEnabled())
             item->setCheckState(Qt::Checked);
@@ -428,7 +429,7 @@ void AutomatedRssDownloader::on_addRuleBtn_clicked()
     disconnectRuleFeedSlots();
 
     // Add the new rule to the list
-    QListWidgetItem *item = new QListWidgetItem(rule_name, ui->listRules);
+    QListWidgetItem *item = new SortableListWidgetItem(rule_name, ui->listRules);
     item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
     item->setCheckState(Qt::Checked); // Enable as a default
     m_editedRule = 0;
@@ -641,7 +642,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, con
 
     // If there is none, create it
     if (!treeFeedItem) {
-        treeFeedItem = new QTreeWidgetItem(QStringList() << feed->displayName());
+        treeFeedItem = new SortableTreeWidgetItem(QStringList() << feed->displayName());
         treeFeedItem->setToolTip(0, feed->displayName());
         QFont f = treeFeedItem->font(0);
         f.setBold(true);
@@ -657,7 +658,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const Rss::FeedPtr &feed, con
 
         if (!m_treeListEntries.contains(key)) {
             m_treeListEntries << key;
-            QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
+            QTreeWidgetItem *item = new SortableTreeWidgetItem(QStringList() << art);
             item->setToolTip(0, art);
             treeFeedItem->addChild(item);
         }

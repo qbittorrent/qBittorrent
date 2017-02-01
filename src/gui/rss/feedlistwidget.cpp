@@ -31,8 +31,50 @@
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
 #include "base/rss/rssfeed.h"
+#include "base/utils/string.h"
+#include "gui/sortablewidgetitems.h"
 #include "guiiconprovider.h"
 #include "feedlistwidget.h"
+
+class FeedListWidget::FeedListWidgetItem: public SortableTreeWidgetItem
+{
+public:
+    FeedListWidgetItem(FeedListWidget *parent);
+    ~FeedListWidgetItem();
+
+    bool operator<(const QTreeWidgetItem &other) const;
+
+private:
+    FeedListWidget *m_parent;
+};
+
+FeedListWidget::FeedListWidgetItem::FeedListWidgetItem(FeedListWidget *parent)
+    : SortableTreeWidgetItem(static_cast<FeedListWidget *>(0))
+    , m_parent(parent)
+{
+}
+
+FeedListWidget::FeedListWidgetItem::~FeedListWidgetItem()
+{
+}
+
+bool FeedListWidget::FeedListWidgetItem::operator<(const QTreeWidgetItem &other) const
+{
+    // If either is the sticky unread it sorts first
+    if (this == m_parent->m_unreadStickyItem)
+        return true;
+    else if (&other == m_parent->m_unreadStickyItem)
+        return false;
+
+    bool isFolder = m_parent->isFolder(this);
+    bool otherIsFolder = m_parent->isFolder(&other);
+
+    // Folders sort first
+    if (isFolder != otherIsFolder)
+        return isFolder;
+
+    return SortableTreeWidgetItem::operator<(other);
+}
 
 FeedListWidget::FeedListWidget(QWidget *parent, const Rss::ManagerPtr &rssmanager)
     : QTreeWidget(parent)
@@ -43,10 +85,13 @@ FeedListWidget::FeedListWidget(QWidget *parent, const Rss::ManagerPtr &rssmanage
     setDragDropMode(QAbstractItemView::InternalMove);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(1);
+    setSortingEnabled(true);
+    sortByColumn(0, Qt::AscendingOrder);
     headerItem()->setText(0, tr("RSS feeds"));
-    m_unreadStickyItem = new QTreeWidgetItem(this);
+    m_unreadStickyItem = new FeedListWidgetItem(this);
     m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->rootFolder()->unreadCount()) + QString(")"));
-    m_unreadStickyItem->setData(0,Qt::DecorationRole, GuiIconProvider::instance()->getIcon("mail-folder-inbox"));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, GuiIconProvider::instance()->getIcon("mail-folder-inbox"));
+    addTopLevelItem(m_unreadStickyItem);
     itemAdded(m_unreadStickyItem, rssmanager->rootFolder());
     connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem *,QTreeWidgetItem *)), SLOT(updateCurrentFeed(QTreeWidgetItem *)));
     setCurrentItem(m_unreadStickyItem);
@@ -55,6 +100,15 @@ FeedListWidget::FeedListWidget(QWidget *parent, const Rss::ManagerPtr &rssmanage
 FeedListWidget::~FeedListWidget()
 {
     delete m_unreadStickyItem;
+}
+
+QTreeWidgetItem *FeedListWidget::createListItem(const Rss::FilePtr &rssFile)
+{
+    Q_ASSERT(rssFile);
+    QTreeWidgetItem *item = new FeedListWidget::FeedListWidgetItem(this);
+    item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName() + QString::fromUtf8("  (") + QString::number(rssFile->unreadCount()) + QString(")")));
+    item->setData(0, Qt::DecorationRole, QIcon(rssFile->iconPath()));
+    return item;
 }
 
 void FeedListWidget::itemAdded(QTreeWidgetItem *item, const Rss::FilePtr &file)
@@ -92,7 +146,7 @@ QTreeWidgetItem *FeedListWidget::stickyUnreadItem() const
     return m_unreadStickyItem;
 }
 
-QStringList FeedListWidget::getItemPath(QTreeWidgetItem *item) const
+QStringList FeedListWidget::getItemPath(const QTreeWidgetItem *item) const
 {
     QStringList path;
     if (item) {
@@ -142,22 +196,22 @@ QList<QTreeWidgetItem *> FeedListWidget::getAllFeedItems(QTreeWidgetItem *folder
     return feeds;
 }
 
-Rss::FilePtr FeedListWidget::getRSSItem(QTreeWidgetItem *item) const
+Rss::FilePtr FeedListWidget::getRSSItem(const QTreeWidgetItem *item) const
 {
     return m_rssMapping.value(item, Rss::FilePtr());
 }
 
-bool FeedListWidget::isFeed(QTreeWidgetItem *item) const
+bool FeedListWidget::isFeed(const QTreeWidgetItem *item) const
 {
     return (qSharedPointerDynamicCast<Rss::Feed>(m_rssMapping.value(item)) != NULL);
 }
 
-bool FeedListWidget::isFolder(QTreeWidgetItem *item) const
+bool FeedListWidget::isFolder(const QTreeWidgetItem *item) const
 {
     return (qSharedPointerDynamicCast<Rss::Folder>(m_rssMapping.value(item)) != NULL);
 }
 
-QString FeedListWidget::getItemID(QTreeWidgetItem *item) const
+QString FeedListWidget::getItemID(const QTreeWidgetItem *item) const
 {
     return m_rssMapping.value(item)->id();
 }

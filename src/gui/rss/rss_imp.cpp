@@ -154,7 +154,7 @@ void RSSImp::askNewFolder()
 
     Rss::FolderPtr newFolder(new Rss::Folder(new_name));
     rss_parent->addFile(newFolder);
-    QTreeWidgetItem *folderItem = createFolderListItem(newFolder);
+    QTreeWidgetItem *folderItem = m_feedList->createListItem(newFolder);
     if (parent_item)
         parent_item->addChild(folderItem);
     else
@@ -213,7 +213,7 @@ void RSSImp::on_newFeedButton_clicked()
     Rss::FeedPtr stream(new Rss::Feed(newUrl, m_rssManager.data()));
     rss_parent->addFile(stream);
     // Create TreeWidget item
-    QTreeWidgetItem *item = createFolderListItem(stream);
+    QTreeWidgetItem *item = m_feedList->createListItem(stream);
     if (parent_item)
         parent_item->addChild(item);
     else
@@ -461,16 +461,6 @@ void RSSImp::on_markReadButton_clicked()
         populateArticleList(m_feedList->currentItem());
 }
 
-QTreeWidgetItem *RSSImp::createFolderListItem(const Rss::FilePtr &rssFile)
-{
-    Q_ASSERT(rssFile);
-    QTreeWidgetItem *item = new QTreeWidgetItem;
-    item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName() + QString::fromUtf8("  (") + QString::number(rssFile->unreadCount()) + QString(")")));
-    item->setData(0, Qt::DecorationRole, QIcon(rssFile->iconPath()));
-
-    return item;
-}
-
 void RSSImp::fillFeedsList(QTreeWidgetItem *parent, const Rss::FolderPtr &rss_parent)
 {
     QList<Rss::FilePtr> children;
@@ -479,7 +469,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, const Rss::FolderPtr &rss_pa
     else
         children = m_rssManager->rootFolder()->getContent();
     foreach (const Rss::FilePtr &rssFile, children) {
-        QTreeWidgetItem *item = createFolderListItem(rssFile);
+        QTreeWidgetItem *item = m_feedList->createListItem(rssFile);
         Q_ASSERT(item);
         if (parent)
             parent->addChild(item);

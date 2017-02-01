@@ -89,7 +89,6 @@ private slots:
 
 private:
     static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
-    static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
 
 private:
     Rss::ManagerPtr m_rssManager;
