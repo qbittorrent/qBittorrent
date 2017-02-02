@@ -51,7 +51,8 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
-    $$PWD/categoryfilterwidget.h
+    $$PWD/categoryfilterwidget.h \
+    $$PWD/sortablewidgetitems.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -93,7 +94,8 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
-    $$PWD/categoryfilterwidget.cpp
+    $$PWD/categoryfilterwidget.cpp \
+    $$PWD/sortablewidgetitems.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
