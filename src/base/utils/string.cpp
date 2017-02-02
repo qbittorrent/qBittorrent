@@ -65,7 +65,7 @@ namespace
 #endif
         }
 
-        bool operator()(const QString &left, const QString &right) const
+        int operator()(const QString &left, const QString &right) const
         {
 #ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
@@ -76,23 +76,23 @@ namespace
             // See #5238 and #5240
             // Without ICU library, QCollator doesn't support `setNumericMode(true)` on OS older than Win7
             // if (QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
-                return lessThan(left, right);
+                return compare(left, right);
 #endif
-            return (m_collator.compare(left, right) < 0);
+            return m_collator.compare(left, right);
 #else
-            return lessThan(left, right);
+            return compare(left, right);
 #endif
         }
 
-        bool lessThan(const QString &left, const QString &right) const
+        int compare(const QString &left, const QString &right) const
         {
-            // Return value `false` indicates `right` should go before `left`, otherwise, after
+            // Return value `-1` indicates left less than right, `0` indicates equal, `1` indicates left greater than right
             int posL = 0;
             int posR = 0;
             while (true) {
                 while (true) {
                     if ((posL == left.size()) || (posR == right.size()))
-                        return (left.size() < right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+                        return (left.size() < right.size()) ? -1 : 1;  // when a shorter string is another string's prefix, shorter string place before longer string
 
                     QChar leftChar = m_caseSensitive ? left[posL] : left[posL].toLower();
                     QChar rightChar = m_caseSensitive ? right[posR] : right[posR].toLower();
@@ -101,7 +101,7 @@ namespace
                     else if (leftChar.isDigit() && rightChar.isDigit())
                         break; // Both are digits, break this loop and compare numbers
                     else
-                        return leftChar < rightChar;
+                        return (leftChar < rightChar) ? -1 : 1;
 
                     ++posL;
                     ++posR;
@@ -126,12 +126,40 @@ namespace
 #endif
 
                 if (numL != numR)
-                    return (numL < numR);
+                    return (numL < numR) ? -1 : 1;
 
                 // Strings + digits do match and we haven't hit string end
                 // Do another round
             }
-            return false;
+            return 0;
+        }
+
+        static int naturalCompareCaseSensitive(const QString &left, const QString &right)
+        {
+            // provide a single `NaturalCompare` instance for easy use
+            // https://doc.qt.io/qt-5/threads-reentrancy.html
+#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+            static QThreadStorage<NaturalCompare> nCmp;
+            if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(true));
+            return (nCmp.localData())(left, right);
+#else
+            thread_local NaturalCompare nCmp(true);
+            return nCmp(left, right);
+#endif
+        }
+
+        static int naturalCompareCaseInsensitive(const QString &left, const QString &right)
+        {
+            // provide a single `NaturalCompare` instance for easy use
+            // https://doc.qt.io/qt-5/threads-reentrancy.html
+#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+            static QThreadStorage<NaturalCompare> nCmp;
+            if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(false));
+            return (nCmp.localData())(left, right);
+#else
+            thread_local NaturalCompare nCmp(false);
+            return nCmp(left, right);
+#endif
         }
 
     private:
@@ -144,30 +172,43 @@ namespace
 
 bool Utils::String::naturalCompareCaseSensitive(const QString &left, const QString &right)
 {
-    // provide a single `NaturalCompare` instance for easy use
-    // https://doc.qt.io/qt-5/threads-reentrancy.html
-#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
-    static QThreadStorage<NaturalCompare> nCmp;
-    if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(true));
-    return (nCmp.localData())(left, right);
-#else
-    thread_local NaturalCompare nCmp(true);
-    return nCmp(left, right);
-#endif
+    return NaturalCompare::naturalCompareCaseSensitive(left, right) < 0;
 }
 
 bool Utils::String::naturalCompareCaseInsensitive(const QString &left, const QString &right)
 {
-    // provide a single `NaturalCompare` instance for easy use
-    // https://doc.qt.io/qt-5/threads-reentrancy.html
-#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
-    static QThreadStorage<NaturalCompare> nCmp;
-    if (!nCmp.hasLocalData()) nCmp.setLocalData(NaturalCompare(false));
-    return (nCmp.localData())(left, right);
-#else
-    thread_local NaturalCompare nCmp(false);
-    return nCmp(left, right);
-#endif
+    return NaturalCompare::naturalCompareCaseInsensitive(left, right) < 0;
+}
+
+bool Utils::String::naturalCompareCaseSemiSensitive(const QString &left, const QString &right)
+{
+    // Case-insensitive ordering, except when equal ignoring case, in which case switch
+    // to case-sensitive to get a consistent overall order. Note that this could require
+    // 2 comparisons.
+    int cmp = NaturalCompare::naturalCompareCaseInsensitive(left, right);
+
+    if (cmp != 0)
+        return cmp < 0;
+
+    return NaturalCompare::naturalCompareCaseSensitive(left, right) < 0;
+}
+
+bool Utils::String::naturalCompare(const QString &left, const QString &right, Utils::String::CaseSensitivity cs)
+{
+    switch (cs)
+    {
+    case Utils::String::CaseSensitive:
+        return naturalCompareCaseSensitive(left, right);
+    case Utils::String::CaseInsensitive:
+        return naturalCompareCaseInsensitive(left, right);
+    case Utils::String::CaseSemiSensitive:
+        return naturalCompareCaseSemiSensitive(left, right);
+    default:
+        break;
+    }
+
+    Q_ASSERT(false);
+    return false;
 }
 
 QString Utils::String::fromStdString(const std::string &str)

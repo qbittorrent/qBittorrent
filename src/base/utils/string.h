@@ -32,6 +32,8 @@
 
 #include <string>
 
+#include <Qt>
+
 class QByteArray;
 class QString;
 
@@ -47,8 +49,17 @@ namespace Utils
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
 
+        enum CaseSensitivity
+        {
+            CaseInsensitive = Qt::CaseInsensitive,  // 0
+            CaseSensitive = Qt::CaseSensitive,      // 1
+            CaseSemiSensitive = 2
+        };
+
         bool naturalCompareCaseSensitive(const QString &left, const QString &right);
         bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
+        bool naturalCompareCaseSemiSensitive(const QString &left, const QString &right);
+        bool naturalCompare(const QString &left, const QString &right, CaseSensitivity cs);
     }
 }
 
