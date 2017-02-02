@@ -187,23 +187,42 @@ void AutomatedRssDownloader::loadFeedList()
 {
     disconnectRuleFeedSlots();
 
-    const Preferences *const pref = Preferences::instance();
-    const QStringList feed_aliases = pref->getRssFeedsAliases();
-    const QStringList feed_urls = pref->getRssFeedsUrls();
     ui->listFeeds->clear();
-
-    for (int i = 0; i < feed_aliases.size(); ++i) {
-        QString feed_url = feed_urls.at(i);
-        feed_url = feed_url.split("\\").last();
-        qDebug() << Q_FUNC_INFO << feed_url;
-
-        QListWidgetItem *item = new QListWidgetItem(feed_aliases.at(i), ui->listFeeds);
-        item->setData(Qt::UserRole, feed_url);
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-    }
+    fillFeedList();
+    ui->listFeeds->sortItems();
 
     // Reconnects slots
     updateFeedList();
+}
+
+void AutomatedRssDownloader::fillFeedList(const Rss::FolderPtr &rss_parent)
+{
+    Rss::ManagerPtr manager = m_manager.toStrongRef();
+
+    if (!manager)
+        return;
+
+    QList<Rss::FilePtr> children;
+
+    if (rss_parent)
+        children = rss_parent->getContent();
+    else
+        children = manager->rootFolder()->getContent();
+
+    foreach (const Rss::FilePtr &rssFile, children) {
+        Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(rssFile);
+        qDebug() << Q_FUNC_INFO << (folder ? "Folder" : "Feed") << rssFile->pathHierarchy();
+
+        if (!folder) {
+            QListWidgetItem *item = new SortableListWidgetItem(rssFile->displayName(), ui->listFeeds);
+            item->setData(Qt::UserRole, rssFile->id());
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+        }
+
+        // Recursive call if this is a folder.
+        if (folder)
+            fillFeedList(folder);
+    }
 }
 
 void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)

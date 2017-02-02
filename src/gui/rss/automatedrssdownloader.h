@@ -42,6 +42,7 @@
 #include <QWeakPointer>
 
 #include "base/rss/rssdownloadrule.h"
+#include "base/rss/rssfolder.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -104,6 +105,7 @@ private:
     Rss::DownloadRulePtr getCurrentRule() const;
     void initCategoryCombobox();
     void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
+    void fillFeedList(const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
     void disconnectRuleFeedSlots();
     void connectRuleFeedSlots();
 
