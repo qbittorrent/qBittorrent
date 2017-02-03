@@ -90,7 +90,7 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
     TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
 
     if (leftType == rightType)
-      return Utils::String::naturalCompareCaseSensitive(vL, vR);
+      return Utils::String::naturalCompareCaseInsensitive(vL, vR);
     else if (leftType == TorrentContentModelItem::FolderType && sortOrder() == Qt::AscendingOrder)
       return true;
     else
