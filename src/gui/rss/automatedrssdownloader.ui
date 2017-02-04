@@ -333,7 +333,16 @@
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="listFeeds"/>
+          <widget class="QTreeWidget" name="listFeeds">
+           <attribute name="headerVisible">
+            <bool>false</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
          </item>
         </layout>
        </item>

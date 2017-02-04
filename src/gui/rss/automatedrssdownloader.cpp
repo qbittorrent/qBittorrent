@@ -33,6 +33,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMenu>
+#include <QTreeWidgetItemIterator>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
@@ -62,6 +63,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     // Ui Settings
     ui->listRules->setSortingEnabled(true);
     ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    ui->listFeeds->sortByColumn(0);
+    ui->listFeeds->setSortingEnabled(true);
+    ui->treeMatchingArticles->sortByColumn(0);
     ui->treeMatchingArticles->setSortingEnabled(true);
     ui->treeMatchingArticles->sortByColumn(0, Qt::AscendingOrder);
     ui->hsplitter->setCollapsible(0, false);
@@ -136,7 +140,7 @@ void AutomatedRssDownloader::connectRuleFeedSlots()
     qDebug() << Q_FUNC_INFO << "Connecting rule and feed slots";
     connect(ui->listRules, SIGNAL(itemSelectionChanged()), this, SLOT(updateRuleDefinitionBox()), Qt::UniqueConnection);
     connect(ui->listRules, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(handleRuleCheckStateChange(QListWidgetItem *)), Qt::UniqueConnection);
-    connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(handleFeedCheckStateChange(QListWidgetItem *)), Qt::UniqueConnection);
+    connect(ui->listFeeds, SIGNAL(itemChanged(QTreeWidgetItem *,int)), this, SLOT(handleFeedCheckStateChange(QTreeWidgetItem *,int)), Qt::UniqueConnection);
 }
 
 void AutomatedRssDownloader::disconnectRuleFeedSlots()
@@ -144,7 +148,7 @@ void AutomatedRssDownloader::disconnectRuleFeedSlots()
     qDebug() << Q_FUNC_INFO << "Disconnecting rule and feed slots";
     disconnect(ui->listRules, SIGNAL(itemSelectionChanged()), this, SLOT(updateRuleDefinitionBox()));
     disconnect(ui->listRules, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(handleRuleCheckStateChange(QListWidgetItem *)));
-    disconnect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(handleFeedCheckStateChange(QListWidgetItem *)));
+    disconnect(ui->listFeeds, SIGNAL(itemChanged(QTreeWidgetItem *,int)), this, SLOT(handleFeedCheckStateChange(QTreeWidgetItem *,int)));
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -183,19 +187,65 @@ void AutomatedRssDownloader::loadRulesList()
     }
 }
 
+class AutomatedRssDownloader::FeedListWidgetItem: public SortableTreeWidgetItem
+{
+public:
+    enum FeedItemRoles
+    {
+        ItemIdRole = Qt::UserRole,
+        IsFolderRole = Qt::UserRole + 1
+    };
+
+    FeedListWidgetItem(const Rss::FilePtr &rssFile);
+    ~FeedListWidgetItem();
+
+    bool operator<(const QTreeWidgetItem &other) const;
+};
+
+AutomatedRssDownloader::FeedListWidgetItem::FeedListWidgetItem(const Rss::FilePtr &rssFile)
+    : SortableTreeWidgetItem(QStringList() << rssFile->displayName())
+{
+    bool folder = qSharedPointerDynamicCast<Rss::Folder>(rssFile) != 0;
+
+    if (folder)
+        setData(0, Qt::DecorationRole, QIcon(rssFile->iconPath()));
+
+    setData(0, Qt::UserRole, rssFile->id());
+    setData(0, FeedListWidgetItem::IsFolderRole, QVariant(folder));
+    setToolTip(0, rssFile->displayName());
+    setFlags(flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+    setFlags(flags() & ~Qt::ItemIsSelectable & ~Qt::ItemIsDragEnabled & ~Qt::ItemIsDropEnabled);
+}
+
+AutomatedRssDownloader::FeedListWidgetItem::~FeedListWidgetItem()
+{
+}
+
+bool AutomatedRssDownloader::FeedListWidgetItem::operator<(const QTreeWidgetItem &other) const
+{
+    bool isFolder = data(0, FeedListWidgetItem::IsFolderRole).toBool();
+    bool otherIsFolder = other.data(0, FeedListWidgetItem::IsFolderRole).toBool();
+
+    // Folders sort first
+    if (isFolder != otherIsFolder)
+        return isFolder;
+
+    return SortableTreeWidgetItem::operator<(other);
+}
+
 void AutomatedRssDownloader::loadFeedList()
 {
     disconnectRuleFeedSlots();
 
+    ui->listFeeds->setSortingEnabled(false);
     ui->listFeeds->clear();
     fillFeedList();
-    ui->listFeeds->sortItems();
 
     // Reconnects slots
     updateFeedList();
 }
 
-void AutomatedRssDownloader::fillFeedList(const Rss::FolderPtr &rss_parent)
+void AutomatedRssDownloader::fillFeedList(QTreeWidgetItem *parent, const Rss::FolderPtr &rss_parent)
 {
     Rss::ManagerPtr manager = m_manager.toStrongRef();
 
@@ -213,15 +263,18 @@ void AutomatedRssDownloader::fillFeedList(const Rss::FolderPtr &rss_parent)
         Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(rssFile);
         qDebug() << Q_FUNC_INFO << (folder ? "Folder" : "Feed") << rssFile->pathHierarchy();
 
-        if (!folder) {
-            QListWidgetItem *item = new SortableListWidgetItem(rssFile->displayName(), ui->listFeeds);
-            item->setData(Qt::UserRole, rssFile->id());
-            item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-        }
+        QTreeWidgetItem *item = new FeedListWidgetItem(rssFile);
+        item->setData(0, FeedListWidgetItem::ItemIdRole, rssFile->id());
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+
+        if (parent)
+            parent->addChild(item);
+        else
+            ui->listFeeds->addTopLevelItem(item);
 
         // Recursive call if this is a folder.
         if (folder)
-            fillFeedList(folder);
+            fillFeedList(item, folder);
     }
 }
 
@@ -237,16 +290,33 @@ void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)
         selection = ui->listRules->selectedItems();
 
     bool enable = !selection.isEmpty();
+    bool anyFolderVisible = false;
+    QTreeWidgetItemIterator it(ui->listFeeds);
 
-    for (int i = 0; i<ui->listFeeds->count(); ++i) {
-        QListWidgetItem *item = ui->listFeeds->item(i);
-        const QString feed_url = item->data(Qt::UserRole).toString();
-        item->setHidden(!enable);
+    while (*it) {
+        QTreeWidgetItem *item = *it;
+        ++it;
 
+        bool isFolder = item->data(0, FeedListWidgetItem::IsFolderRole).toBool();
+
+        if (isFolder) {
+            item->setHidden(true);
+        }
+        else {
+            QTreeWidgetItem *parent = item;
+
+            while (parent != 0 && parent != ui->listFeeds->invisibleRootItem()) {
+                anyFolderVisible |= parent->data(0, FeedListWidgetItem::IsFolderRole).toBool();
+                parent->setHidden(!enable);
+                parent = parent->parent();
+            }
+        }
+
+        const QString feed_url = item->data(0, FeedListWidgetItem::ItemIdRole).toString();
         bool allEnabled = true;
         bool anyEnabled = false;
 
-        foreach (const QListWidgetItem *ruleItem, selection) {
+        foreach (const QListWidgetItem *ruleItem, ui->listRules->selectedItems()) {
             Rss::DownloadRulePtr rule = m_editableRuleList->getRule(ruleItem->text());
             if (!rule) continue;
             qDebug() << "Rule" << rule->name() << "affects" << rule->rssFeeds().size() << "feeds.";
@@ -263,14 +333,16 @@ void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)
         }
 
         if (anyEnabled && allEnabled)
-            item->setCheckState(Qt::Checked);
+            item->setCheckState(0, Qt::Checked);
         else if (anyEnabled)
-            item->setCheckState(Qt::PartiallyChecked);
+            item->setCheckState(0, Qt::PartiallyChecked);
         else
-            item->setCheckState(Qt::Unchecked);
+            item->setCheckState(0, Qt::Unchecked);
     }
 
-    ui->listFeeds->sortItems();
+    ui->listFeeds->sortItems(0, Qt::AscendingOrder);
+    ui->listFeeds->setSortingEnabled(true);
+    ui->listFeeds->setRootIsDecorated(anyFolderVisible);
     ui->lblListFeeds->setEnabled(enable);
     ui->listFeeds->setEnabled(enable);
 
@@ -594,18 +666,19 @@ void AutomatedRssDownloader::handleRuleCheckStateChange(QListWidgetItem *rule_it
     updateRuleDefinitionBox();
 }
 
-void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_item)
+void AutomatedRssDownloader::handleFeedCheckStateChange(QTreeWidgetItem *feed_item, int column)
 {
+    Q_UNUSED(column);
     // Make sure the current rule is saved
     saveEditedRule();
-    const QString feed_url = feed_item->data(Qt::UserRole).toString();
+    const QString feed_url = feed_item->data(0, FeedListWidgetItem::ItemIdRole).toString();
     foreach (QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
         Rss::DownloadRulePtr rule = m_editableRuleList->getRule(rule_item->text());
         Q_ASSERT(rule);
         QStringList affected_feeds = rule->rssFeeds();
-        if ((feed_item->checkState() == Qt::Checked) && !affected_feeds.contains(feed_url))
+        if ((feed_item->checkState(0) == Qt::Checked) && !affected_feeds.contains(feed_url))
             affected_feeds << feed_url;
-        else if ((feed_item->checkState() == Qt::Unchecked) && affected_feeds.contains(feed_url))
+        else if ((feed_item->checkState(0) == Qt::Unchecked) && affected_feeds.contains(feed_url))
             affected_feeds.removeOne(feed_url);
         // Save the updated rule
         if (affected_feeds.size() != rule->rssFeeds().size()) {

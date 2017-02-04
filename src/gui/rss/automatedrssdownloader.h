@@ -59,6 +59,7 @@ namespace Rss
 
 QT_BEGIN_NAMESPACE
 class QListWidgetItem;
+class QTreeWidgetItem;
 QT_END_NAMESPACE
 
 class AutomatedRssDownloader: public QDialog
@@ -79,7 +80,7 @@ protected slots:
     void saveSettings();
     void loadRulesList();
     void handleRuleCheckStateChange(QListWidgetItem *rule_item);
-    void handleFeedCheckStateChange(QListWidgetItem *feed_item);
+    void handleFeedCheckStateChange(QTreeWidgetItem *feed_item, int column);
     void updateRuleDefinitionBox(QListWidgetItem *selected = 0);
     void clearRuleDefinitionBox();
     void saveEditedRule();
@@ -105,11 +106,14 @@ private:
     Rss::DownloadRulePtr getCurrentRule() const;
     void initCategoryCombobox();
     void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
-    void fillFeedList(const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
+    void fillFeedList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
     void disconnectRuleFeedSlots();
     void connectRuleFeedSlots();
 
 private:
+    class FeedListWidgetItem;
+    friend class FeedListWidgetItem;
+
     Ui::AutomatedRssDownloader *ui;
     QWeakPointer<Rss::Manager> m_manager;
     QListWidgetItem *m_editedRule;
