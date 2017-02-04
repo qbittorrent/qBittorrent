@@ -88,6 +88,8 @@ namespace Rss
         bool operator==(const DownloadRule &other) const;
 
     private:
+        bool matches(const QString &articleTitle, const QString &expression) const;
+
         QString m_name;
         QStringList m_mustContain;
         QStringList m_mustNotContain;

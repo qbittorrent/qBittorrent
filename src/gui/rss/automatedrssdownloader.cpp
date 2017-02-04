@@ -672,8 +672,6 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
     QString tip;
     if (regex) {
         tip = "<p>" + tr("Regex mode: use Perl-like regular expressions") + "</p>";
-        ui->lineContains->setToolTip(tip);
-        ui->lineNotContains->setToolTip(tip);
     }
     else {
         tip = "<p>" + tr("Wildcard mode: you can use") + "<ul>"
@@ -682,9 +680,18 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
               + "<li>" + tr("Whitespaces count as AND operators (all words, any order)") + "</li>"
               + "<li>" + tr("| is used as OR operator") + "</li></ul></p>"
               + "<p>" + tr("If word order is important use * instead of whitespace.") + "</p>";
-        ui->lineContains->setToolTip(tip);
-        ui->lineNotContains->setToolTip(tip);
     }
+
+    // Whether regex or wildcard, warn about a potential gotcha for users.
+    // Explanatory string broken over multiple lines for readability (and multiple
+    // statements to prevent uncrustify indenting excessively.
+    tip += "<p>";
+    tip += tr("An expression with an empty %1 clause (e.g. %2)",
+              "We talk about regex/wildcards in the RSS filters section here."
+              " So a valid sentence would be: An expression with an empty | clause (e.g. expr|)"
+              ).arg("<tt>|</tt>").arg("<tt>expr|</tt>");
+    ui->lineContains->setToolTip(tip + tr(" will match all articles.") + "</p>");
+    ui->lineNotContains->setToolTip(tip + tr(" will exclude all articles.") + "</p>");
 }
 
 void AutomatedRssDownloader::updateMustLineValidity()
