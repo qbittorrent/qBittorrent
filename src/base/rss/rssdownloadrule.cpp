@@ -50,48 +50,51 @@ DownloadRule::DownloadRule()
 {
 }
 
+bool DownloadRule::matches(const QString &articleTitle, const QString &expression) const
+{
+    static QRegExp whitespace("\\s+");
+
+    if (expression.isEmpty()) {
+        // A regex of the form "expr|" will always match, so do the same for wildcards
+        return true;
+    }
+    else if (m_useRegex) {
+        QRegExp reg(expression, Qt::CaseInsensitive, QRegExp::RegExp);
+        return reg.indexIn(articleTitle) > -1;
+    }
+    else {
+        // Only match if every wildcard token (separated by spaces) is present in the article name.
+        // Order of wildcard tokens is unimportant (if order is important, they should have used *).
+        foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
+            QRegExp reg(wildcard, Qt::CaseInsensitive, QRegExp::Wildcard);
+
+            if (reg.indexIn(articleTitle) == -1)
+                return false;
+        }
+    }
+
+    return true;
+}
+
 bool DownloadRule::matches(const QString &articleTitle) const
 {
-    QRegExp whitespace("\\s+");
-
     if (!m_mustContain.empty()) {
         bool logged = false;
-        bool foundMustContain = true;
+        bool foundMustContain = false;
 
         // Each expression is either a regex, or a set of wildcards separated by whitespace.
         // Accept if any complete expression matches.
         foreach (const QString &expression, m_mustContain) {
-            if (expression.isEmpty())
-                continue;
-
             if (!logged) {
-                qDebug() << "Checking matching expressions:" << m_mustContain.join("|");
+                qDebug() << "Checking matching" << (m_useRegex ? "regex:" : "wildcard expressions:") << m_mustContain.join("|");
                 logged = true;
             }
 
-            if (m_useRegex) {
-                QRegExp reg(expression, Qt::CaseInsensitive, QRegExp::RegExp);
-
-                if (reg.indexIn(articleTitle) > -1)
-                    foundMustContain = true;
-            }
-            else {
-                // Only accept if every wildcard token (separated by spaces) is present in the article name.
-                // Order of wildcard tokens is unimportant (if order is important, they should have used *).
-                foundMustContain = true;
-
-                foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
-                    QRegExp reg(wildcard, Qt::CaseInsensitive, QRegExp::Wildcard);
-
-                    if (reg.indexIn(articleTitle) == -1) {
-                        foundMustContain = false;
-                        break;
-                    }
-                }
-            }
+            // A regex of the form "expr|" will always match, so do the same for wildcards
+            foundMustContain = matches(articleTitle, expression);
 
             if (foundMustContain) {
-                qDebug() << "Found matching expression:" << expression;
+                qDebug() << "Found matching" << (m_useRegex ? "regex:" : "wildcard expression:") << expression;
                 break;
             }
         }
@@ -106,38 +109,14 @@ bool DownloadRule::matches(const QString &articleTitle) const
         // Each expression is either a regex, or a set of wildcards separated by whitespace.
         // Reject if any complete expression matches.
         foreach (const QString &expression, m_mustNotContain) {
-            if (expression.isEmpty())
-                continue;
-
             if (!logged) {
-                qDebug() << "Checking not matching expressions:" << m_mustNotContain.join("|");
+                qDebug() << "Checking not matching" << (m_useRegex ? "regex:" : "wildcard expressions:") << m_mustNotContain.join("|");
                 logged = true;
             }
 
-            if (m_useRegex) {
-                QRegExp reg(expression, Qt::CaseInsensitive, QRegExp::RegExp);
-
-                if (reg.indexIn(articleTitle) > -1) {
-                    qDebug() << "Found not matching expression:" << expression;
-                    return false;
-                }
-            }
-
-            // Only reject if every wildcard token (separated by spaces) is present in the article name.
-            // Order of wildcard tokens is unimportant (if order is important, they should have used *).
-            bool foundMustNotContain = true;
-
-            foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
-                QRegExp reg(wildcard, Qt::CaseInsensitive, QRegExp::Wildcard);
-
-                if (reg.indexIn(articleTitle) == -1) {
-                    foundMustNotContain = false;
-                    break;
-                }
-            }
-
-            if (foundMustNotContain) {
-                qDebug()<< "Found not matching expression:" << expression;
+            // A regex of the form "expr|" will always match, so do the same for wildcards
+            if (matches(articleTitle, expression)) {
+                qDebug() << "Found not matching" << (m_useRegex ? "regex:" : "wildcard expression:") << expression;
                 return false;
             }
         }
@@ -241,6 +220,10 @@ void DownloadRule::setMustContain(const QString &tokens)
         m_mustContain = QStringList() << tokens;
     else
         m_mustContain = tokens.split("|");
+
+    // Check for single empty string - if so, no condition
+    if ((m_mustContain.size() == 1) && m_mustContain[0].isEmpty())
+        m_mustContain.clear();
 }
 
 void DownloadRule::setMustNotContain(const QString &tokens)
@@ -249,6 +232,10 @@ void DownloadRule::setMustNotContain(const QString &tokens)
         m_mustNotContain = QStringList() << tokens;
     else
         m_mustNotContain = tokens.split("|");
+
+    // Check for single empty string - if so, no condition
+    if ((m_mustNotContain.size() == 1) && m_mustNotContain[0].isEmpty())
+        m_mustNotContain.clear();
 }
 
 QStringList DownloadRule::rssFeeds() const
