@@ -50,7 +50,7 @@ class RSSImp: public QWidget, public Ui::RSS
     Q_OBJECT
 
 public:
-    RSSImp(QWidget * parent);
+    RSSImp(QWidget *parent);
     ~RSSImp();
 
 public slots:
