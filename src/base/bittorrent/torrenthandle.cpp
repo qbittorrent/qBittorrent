@@ -1819,6 +1819,8 @@ void TorrentHandle::setDownloadLimit(int limit)
 void TorrentHandle::setSuperSeeding(bool enable)
 {
     SAFE_CALL(super_seeding, enable)
+    if (superSeeding() != enable)
+        updateStatus();
 }
 
 void TorrentHandle::flushCache()
