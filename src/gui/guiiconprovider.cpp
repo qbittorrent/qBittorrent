@@ -71,6 +71,8 @@ QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
         icon = generateDifferentSizes(icon);
         return icon;
     }
+#else
+    Q_UNUSED(fallback)
 #endif
     return QIcon(IconProvider::getIconPath(iconId));
 }
