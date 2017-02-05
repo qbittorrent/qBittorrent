@@ -44,7 +44,7 @@ namespace Http
     class IRequestHandler;
     class Connection;
 
-    class Server : public QTcpServer
+    class Server: public QTcpServer
     {
         Q_OBJECT
         Q_DISABLE_COPY(Server)
@@ -53,25 +53,25 @@ namespace Http
         Server(IRequestHandler *requestHandler, QObject *parent = 0);
         ~Server();
 
-    #ifndef QT_NO_OPENSSL
+#ifndef QT_NO_OPENSSL
         void enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key);
         void disableHttps();
-    #endif
-
-    private:
-    #ifdef QBT_USES_QT5
-        void incomingConnection(qintptr socketDescriptor);
-    #else
-        void incomingConnection(int socketDescriptor);
-    #endif
+#endif
 
     private:
         IRequestHandler *m_requestHandler;
-    #ifndef QT_NO_OPENSSL
+
+#ifdef QBT_USES_QT5
+        void incomingConnection(qintptr socketDescriptor);
+#else
+        void incomingConnection(int socketDescriptor);
+#endif
+
+#ifndef QT_NO_OPENSSL
         bool m_https;
         QList<QSslCertificate> m_certificates;
         QSslKey m_key;
-    #endif
+#endif
     };
 }
 
