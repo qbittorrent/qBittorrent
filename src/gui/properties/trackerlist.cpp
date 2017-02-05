@@ -74,13 +74,13 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   header << tr("Downloaded");
   header << tr("Message");
   setHeaderItem(new QTreeWidgetItem(header));
-  dht_item = new QTreeWidgetItem(QStringList() << "" << "** [DHT] **" << "" << "" << "0" << "0" << "0");
+  dht_item = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
-  pex_item = new QTreeWidgetItem(QStringList() << "" << "** [PeX] **" << "" << "" << "0" << "0" << "0");
+  pex_item = new QTreeWidgetItem({ "",  "** [PeX] **", "", "0", "", "", "0" });
   insertTopLevelItem(1, pex_item);
   setRowColor(1, QColor("grey"));
-  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **" << "" << "" << "0" << "0" << "0");
+  lsd_item = new QTreeWidgetItem({ "",  "** [LSD] **", "", "0", "", "", "0" });
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
   editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
@@ -202,18 +202,22 @@ void TrackerList::moveSelectionDown() {
     torrent->forceReannounce();
 }
 
-void TrackerList::clear() {
-  qDeleteAll(tracker_items.values());
-  tracker_items.clear();
-  dht_item->setText(COL_RECEIVED, "");
-  dht_item->setText(COL_STATUS, "");
-  dht_item->setText(COL_MSG, "");
-  pex_item->setText(COL_RECEIVED, "");
-  pex_item->setText(COL_STATUS, "");
-  pex_item->setText(COL_MSG, "");
-  lsd_item->setText(COL_RECEIVED, "");
-  lsd_item->setText(COL_STATUS, "");
-  lsd_item->setText(COL_MSG, "");
+void TrackerList::clear()
+{
+    qDeleteAll(tracker_items.values());
+    tracker_items.clear();
+    dht_item->setText(COL_STATUS, "");
+    dht_item->setText(COL_SEEDS, "");
+    dht_item->setText(COL_PEERS, "");
+    dht_item->setText(COL_MSG, "");
+    pex_item->setText(COL_STATUS, "");
+    pex_item->setText(COL_SEEDS, "");
+    pex_item->setText(COL_PEERS, "");
+    pex_item->setText(COL_MSG, "");
+    lsd_item->setText(COL_STATUS, "");
+    lsd_item->setText(COL_SEEDS, "");
+    lsd_item->setText(COL_PEERS, "");
+    lsd_item->setText(COL_MSG, "");
 }
 
 void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
@@ -245,20 +249,38 @@ void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
     lsd_item->setText(COL_MSG, privateMsg);
   }
 
-  // XXX: libtorrent should provide this info...
-  // Count peers from DHT, LSD, PeX
-  uint nb_dht = 0, nb_lsd = 0, nb_pex = 0;
-  foreach (const BitTorrent::PeerInfo &peer, torrent->peers()) {
-    if (peer.fromDHT())
-      ++nb_dht;
-    if (peer.fromLSD())
-      ++nb_lsd;
-    if (peer.fromPeX())
-      ++nb_pex;
-  }
-  dht_item->setText(COL_RECEIVED, QString::number(nb_dht));
-  pex_item->setText(COL_RECEIVED, QString::number(nb_pex));
-  lsd_item->setText(COL_RECEIVED, QString::number(nb_lsd));
+    // XXX: libtorrent should provide this info...
+    // Count peers from DHT, PeX, LSD
+    uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
+    foreach (const BitTorrent::PeerInfo &peer, torrent->peers()) {
+        if (peer.isConnecting()) continue;
+
+        if (peer.fromDHT()) {
+            if (peer.isSeed())
+                ++seedsDHT;
+            else
+                ++peersDHT;
+        }
+        if (peer.fromPeX()) {
+            if (peer.isSeed())
+                ++seedsPeX;
+            else
+                ++peersPeX;
+        }
+        if (peer.fromLSD()) {
+            if (peer.isSeed())
+                ++seedsLSD;
+            else
+                ++peersLSD;
+        }
+    }
+
+    dht_item->setText(COL_SEEDS, QString::number(seedsDHT));
+    dht_item->setText(COL_PEERS, QString::number(peersDHT));
+    pex_item->setText(COL_SEEDS, QString::number(seedsPeX));
+    pex_item->setText(COL_PEERS, QString::number(peersPeX));
+    lsd_item->setText(COL_SEEDS, QString::number(seedsLSD));
+    lsd_item->setText(COL_PEERS, QString::number(peersLSD));
 }
 
 void TrackerList::loadTrackers() {
