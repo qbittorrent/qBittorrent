@@ -36,6 +36,7 @@
 #include <QTcpServer>
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
+#include <QSslCipher>
 #include <QSslKey>
 #endif
 
@@ -68,6 +69,8 @@ namespace Http
 #endif
 
 #ifndef QT_NO_OPENSSL
+        QList<QSslCipher> safeCipherList() const;
+
         bool m_https;
         QList<QSslCertificate> m_certificates;
         QSslKey m_key;
