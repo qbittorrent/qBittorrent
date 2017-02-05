@@ -43,7 +43,9 @@ GuiIconProvider::GuiIconProvider(QObject *parent)
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
 }
 
-GuiIconProvider::~GuiIconProvider() {}
+GuiIconProvider::~GuiIconProvider()
+{
+}
 
 void GuiIconProvider::initInstance()
 {
@@ -117,6 +119,7 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
 
     return newIcon;
 }
+
 #endif
 
 QString GuiIconProvider::getIconPath(const QString &iconId)
@@ -137,7 +140,6 @@ QString GuiIconProvider::getIconPath(const QString &iconId)
 #endif
     return IconProvider::getIconPath(iconId);
 }
-
 
 void GuiIconProvider::configure()
 {

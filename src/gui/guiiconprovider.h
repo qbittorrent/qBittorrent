@@ -34,7 +34,7 @@
 
 class QIcon;
 
-class GuiIconProvider : public IconProvider
+class GuiIconProvider: public IconProvider
 {
     Q_DISABLE_COPY(GuiIconProvider)
     Q_OBJECT

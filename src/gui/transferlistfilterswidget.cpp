@@ -78,8 +78,8 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
     connect(this, SIGNAL(currentRowChanged(int)), SLOT(applyFilter(int)));
 
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle * const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle * const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle * const)));
 }
 
 QSize FiltersBase::sizeHint() const
@@ -142,7 +142,7 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
     errored->setData(Qt::DisplayRole, QVariant(tr("Errored (0)")));
     errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.png"));
 
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
     toggleFilter(pref->getStatusFilterState());
 }
@@ -167,16 +167,22 @@ void StatusFiltersWidget::updateTorrentNumbers()
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, QVariant(tr("Errored (%1)").arg(report.nbErrored)));
 }
 
-void StatusFiltersWidget::showMenu(QPoint) {}
+void StatusFiltersWidget::showMenu(QPoint)
+{
+}
 
 void StatusFiltersWidget::applyFilter(int row)
 {
     transferList->applyStatusFilter(row);
 }
 
-void StatusFiltersWidget::handleNewTorrent(BitTorrent::TorrentHandle *const) {}
+void StatusFiltersWidget::handleNewTorrent(BitTorrent::TorrentHandle *const)
+{
+}
 
-void StatusFiltersWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) {}
+void StatusFiltersWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const)
+{
+}
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
@@ -219,12 +225,10 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         if (tmp.contains(hash))
             return;
 
-        if (host != "") {
+        if (host != "")
             trackerItem = item(rowFromTracker(host));
-        }
-        else {
+        else
             trackerItem = item(1);
-        }
     }
     else {
         trackerItem = new QListWidgetItem();
@@ -314,10 +318,9 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     m_downloadTrackerFavicon = value;
 
     if (m_downloadTrackerFavicon) {
-        foreach (const QString &tracker, m_trackers.keys()) {
+        foreach (const QString &tracker, m_trackers.keys())
             if (!tracker.isEmpty())
                 downloadFavicon(QString("http://%1/favicon.ico").arg(tracker));
-        }
     }
 }
 
@@ -383,15 +386,15 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
         applyFilter(3);
 }
 
-void TrackerFiltersList::downloadFavicon(const QString& url)
+void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
-    connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
-    connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+    connect(h, SIGNAL(downloadFinished(QString,QString)), this, SLOT(handleFavicoDownload(QString,QString)));
+    connect(h, SIGNAL(downloadFailed(QString,QString)), this, SLOT(handleFavicoFailure(QString,QString)));
 }
 
-void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
+void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString &filePath)
 {
     QString host = getHost(url);
     if (!m_trackers.contains(host)) {
@@ -403,7 +406,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     if (!trackerItem) return;
 
     QIcon icon(filePath);
-    //Detect a non-decodable icon
+    // Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid) {
@@ -417,7 +420,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     }
 }
 
-void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& error)
+void TrackerFiltersList::handleFavicoFailure(const QString &url, const QString &error)
 {
     Q_UNUSED(error)
     if (url.endsWith(".ico", Qt::CaseInsensitive))
@@ -459,7 +462,7 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torre
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         addItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.size() == 0)
         addItem("", hash);
 
@@ -473,7 +476,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
     foreach (const BitTorrent::TrackerEntry &tracker, trackers)
         removeItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.size() == 0)
         removeItem("", hash);
 
@@ -531,7 +534,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     , m_transferList(transferList)
     , m_trackerFilters(0)
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
 
     // Construct lists
     QVBoxLayout *vLayout = new QVBoxLayout(this);
@@ -557,7 +560,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->addWidget(scroll);
     setLayout(vLayout);
 
-    QCheckBox * statusLabel = new QCheckBox(tr("Status"), this);
+    QCheckBox *statusLabel = new QCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
     frameLayout->addWidget(statusLabel);
@@ -595,9 +598,9 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), m_trackerFilters, SLOT(toggleFilter(bool)));
     connect(trackerLabel, SIGNAL(toggled(bool)), pref, SLOT(setTrackerFilterState(const bool)));
-    connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), m_trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));
-    connect(this, SIGNAL(trackerError(const QString &, const QString &)), m_trackerFilters, SLOT(trackerError(const QString &, const QString &)));
-    connect(this, SIGNAL(trackerWarning(const QString &, const QString &)), m_trackerFilters, SLOT(trackerWarning(const QString &, const QString &)));
+    connect(this, SIGNAL(trackerSuccess(const QString&,const QString&)), m_trackerFilters, SLOT(trackerSuccess(const QString&,const QString&)));
+    connect(this, SIGNAL(trackerError(const QString&,const QString&)), m_trackerFilters, SLOT(trackerError(const QString&,const QString&)));
+    connect(this, SIGNAL(trackerWarning(const QString&,const QString&)), m_trackerFilters, SLOT(trackerWarning(const QString&,const QString&)));
 }
 
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)

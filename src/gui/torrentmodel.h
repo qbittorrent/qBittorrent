@@ -41,7 +41,7 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class TorrentModel : public QAbstractListModel
+class TorrentModel: public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(TorrentModel)
@@ -84,8 +84,8 @@ public:
 
     explicit TorrentModel(QObject *parent = 0);
 
-    int rowCount(const QModelIndex& index = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent=QModelIndex()) const;
+    int rowCount(const QModelIndex &index = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
