@@ -86,15 +86,15 @@ void Server::incomingConnection(int socketDescriptor)
     if (serverSocket->setSocketDescriptor(socketDescriptor)) {
 #ifndef QT_NO_OPENSSL
         if (m_https) {
-            static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::SecureProtocols);
-            static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
+            static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
+            static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
 #ifdef QBT_USES_QT5
-            static_cast<QSslSocket*>(serverSocket)->setLocalCertificateChain(m_certificates);
+            static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
 #else
-            static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificates.first());
+            static_cast<QSslSocket *>(serverSocket)->setLocalCertificate(m_certificates.first());
 #endif
-            static_cast<QSslSocket*>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
-            static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
+            static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
+            static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
         }
 #endif
         new Connection(serverSocket, m_requestHandler, this);
