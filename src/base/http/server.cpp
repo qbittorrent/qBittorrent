@@ -47,6 +47,9 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 #endif
 {
     setProxy(QNetworkProxy::NoProxy);
+#ifndef QT_NO_OPENSSL
+    QSslSocket::setDefaultCiphers(safeCipherList());
+#endif
 }
 
 Server::~Server()
@@ -103,3 +106,26 @@ void Server::incomingConnection(int socketDescriptor)
         serverSocket->deleteLater();
     }
 }
+
+#ifndef QT_NO_OPENSSL
+QList<QSslCipher> Server::safeCipherList() const
+{
+    const QStringList badCiphers = {"idea", "rc4"};
+    const QList<QSslCipher> allCiphers = QSslSocket::supportedCiphers();
+    QList<QSslCipher> safeCiphers;
+    foreach (const QSslCipher &cipher, allCiphers) {
+        bool isSafe = true;
+        foreach (const QString &badCipher, badCiphers) {
+            if (cipher.name().contains(badCipher, Qt::CaseInsensitive)) {
+                isSafe = false;
+                break;
+            }
+        }
+
+        if (isSafe)
+            safeCiphers += cipher;
+    }
+
+    return safeCiphers;
+}
+#endif
