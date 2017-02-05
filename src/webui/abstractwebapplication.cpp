@@ -106,6 +106,9 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
 
     // avoid clickjacking attacks
     header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
+    header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
+    header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
+    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self' 'unsafe-inline' 'unsafe-eval';");
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
