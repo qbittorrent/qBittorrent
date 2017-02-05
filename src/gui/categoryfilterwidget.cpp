@@ -78,6 +78,7 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     setContextMenuPolicy(Qt::CustomContextMenu);
+    setCurrentIndex(model()->index(0, 0));
 
     connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(callUpdateGeometry()));
     connect(this, SIGNAL(expanded(QModelIndex)), SLOT(callUpdateGeometry()));
