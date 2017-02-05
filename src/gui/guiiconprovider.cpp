@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Tim Delaney <timothy.c.delaney@gmail.com>
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -27,10 +28,20 @@
  * exception statement from your version.
  */
 
-#include "guiiconprovider.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
+#include "guiiconprovider.h"
+#include "torrentmodel.h"
 
+#include <QApplication>
+#include <QBitmap>
+#include <QDebug>
+#include <QHash>
 #include <QIcon>
+#include <QPair>
+#include <QPalette>
+#include <QPixmap>
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>
 #include <QFile>
@@ -38,6 +49,7 @@
 
 GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)
+    , m_iconCache(new QHash<QPair<QString, BitTorrent::TorrentState>, QIcon>)
 {
     configure();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
@@ -45,6 +57,7 @@ GuiIconProvider::GuiIconProvider(QObject *parent)
 
 GuiIconProvider::~GuiIconProvider()
 {
+    delete m_iconCache;
 }
 
 void GuiIconProvider::initInstance()
@@ -66,7 +79,7 @@ QIcon GuiIconProvider::getIcon(const QString &iconId)
 QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (m_useSystemTheme) {
+    if (m_themeFlags & SystemTheme) {
         QIcon icon = QIcon::fromTheme(iconId);
         if (icon.name() != iconId)
             icon = QIcon::fromTheme(fallback, QIcon(IconProvider::getIconPath(iconId)));
@@ -125,7 +138,7 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
 QString GuiIconProvider::getIconPath(const QString &iconId)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (m_useSystemTheme) {
+    if (m_themeFlags & SystemTheme) {
         QString path = QDir::temp().absoluteFilePath(iconId + ".png");
         if (!QFile::exists(path)) {
             const QIcon icon = QIcon::fromTheme(iconId);
@@ -143,7 +156,66 @@ QString GuiIconProvider::getIconPath(const QString &iconId)
 
 void GuiIconProvider::configure()
 {
+    ThemeFlags themeFlags = 0;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    m_useSystemTheme = Preferences::instance()->useSystemIconTheme();
+    if (Preferences::instance()->useSystemIconTheme())
+        themeFlags |= SystemTheme;
 #endif
+
+    // QPalette::Base is used for the background of widgets like list and tree views
+    QPalette pal = QApplication::palette();
+    QColor color = pal.color(QPalette::Active, QPalette::Base);
+    bool darkTheme = (color.lightness() < 127);
+
+    if (darkTheme)
+        themeFlags |= DarkTheme;
+
+    if (themeFlags != m_themeFlags) {
+        m_iconCache->clear();
+        m_themeFlags = themeFlags;
+    }
+}
+
+GuiIconProvider::ThemeFlags GuiIconProvider::getThemeFlags()
+{
+    return m_themeFlags;
+}
+
+QIcon GuiIconProvider::getStatusIcon(const QString &iconId)
+{
+    return getStatusIcon(iconId, BitTorrent::TorrentState::Unknown, true);
+}
+
+QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::TorrentState &state)
+{
+    return getStatusIcon(iconId, state, false);
+}
+
+QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::TorrentState &state, bool ignoreState)
+{
+    QString path(":/icons/skin/" + iconId + ".png");
+    QPair<QString, BitTorrent::TorrentState> key(path, state);
+    QIcon icon((*m_iconCache)[key]);
+
+    if (!icon.isNull())
+        return icon;
+
+    QPixmap pixmap(path);
+
+    if (!ignoreState) {
+        QPixmap colored(pixmap.size());
+        colored.fill(TorrentModel::getColorByState(state));
+        colored.setMask(pixmap.createMaskFromColor(Qt::transparent));
+        pixmap = colored;
+    }
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    icon = generateDifferentSizes(QIcon(pixmap));
+#else
+    icon = QIcon(pixmap);
+#endif
+
+    (*m_iconCache)[key] = icon;
+    return icon;
 }

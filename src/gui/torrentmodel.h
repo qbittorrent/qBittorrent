@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Tim Delaney <timothy.c.delaney@gmail.com>
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -35,10 +36,15 @@
 #include <QAbstractListModel>
 #include <QList>
 
+class QColor;
+class QIcon;
+class QString;
+
 namespace BitTorrent
 {
     class InfoHash;
     class TorrentHandle;
+    class TorrentState;
 }
 
 class TorrentModel: public QAbstractListModel
@@ -93,11 +99,16 @@ public:
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
+    static QIcon getIconByState(const BitTorrent::TorrentState &state);
+    static QColor getColorByState(const BitTorrent::TorrentState &state);
+
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentsUpdated();
+
+    static QString getIconId(const BitTorrent::TorrentState &state);
 
 private:
     QList<BitTorrent::TorrentHandle *> m_torrents;

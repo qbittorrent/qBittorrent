@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Tim Delaney <timothy.c.delaney@gmail.com>
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -30,9 +31,20 @@
 #ifndef GUIICONPROVIDER_H
 #define GUIICONPROVIDER_H
 
+#include <QFlags>
+
 #include "base/iconprovider.h"
 
+class QEvent;
+template <class T, class U> class QHash;
 class QIcon;
+template <class T, class U> class QPair;
+class QString;
+
+namespace BitTorrent
+{
+    class TorrentState;
+}
 
 class GuiIconProvider: public IconProvider
 {
@@ -40,12 +52,25 @@ class GuiIconProvider: public IconProvider
     Q_OBJECT
 
 public:
+
+    enum ThemeFlag
+    {
+        SystemTheme = 1,
+        DarkTheme = 2,
+    };
+
+    Q_DECLARE_FLAGS(ThemeFlags, ThemeFlag)
+
     static void initInstance();
     static GuiIconProvider *instance();
+
+    ThemeFlags getThemeFlags();
 
     QIcon getIcon(const QString &iconId);
     QIcon getIcon(const QString &iconId, const QString &fallback);
     QIcon getFlagIcon(const QString &countryIsoCode);
+    QIcon getStatusIcon(const QString &iconId);
+    QIcon getStatusIcon(const QString &iconId, const BitTorrent::TorrentState &state);
     QString getIconPath(const QString &iconId);
 
 private slots:
@@ -54,11 +79,15 @@ private slots:
 private:
     explicit GuiIconProvider(QObject *parent = 0);
     ~GuiIconProvider();
+    QIcon getStatusIcon(const QString &path, const BitTorrent::TorrentState &state, bool ignoreState);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     QIcon generateDifferentSizes(const QIcon &icon);
-
-    bool m_useSystemTheme;
 #endif
+
+    ThemeFlags m_themeFlags;
+    QHash<QPair<QString, BitTorrent::TorrentState>, QIcon> *m_iconCache;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(GuiIconProvider::ThemeFlags)
 
 #endif // GUIICONPROVIDER_H
