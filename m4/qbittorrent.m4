@@ -12,9 +12,9 @@ AC_DEFUN([FIND_QT4],
                                 [QT_QMAKE=`AS_DIRNAME(["$QT_QMAKE"])`])
                  ])
 
-AS_IF([$QT_QMAKE/qmake],
+AS_IF([test -f "$QT_QMAKE/qmake"],
               [QT_QMAKE="$QT_QMAKE/qmake"],
-              [AS_IF([$QT_QMAKE/qmake-qt4],
+              [AS_IF([test -f "$QT_QMAKE/qmake-qt4"],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt4"],
                              [QT_QMAKE=""])
               ])
@@ -38,7 +38,7 @@ AC_DEFUN([FIND_QT5],
 
 AS_IF([test -f "$QT_QMAKE/qmake"],
               [QT_QMAKE="$QT_QMAKE/qmake"],
-              [AS_IF([test -f "$QT_QMAKE/qmake-qt5"]
+              [AS_IF([test -f "$QT_QMAKE/qmake-qt5"],
                              [QT_QMAKE="$QT_QMAKE/qmake-qt5"],
                              [QT_QMAKE=""])
               ])
