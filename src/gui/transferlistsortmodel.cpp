@@ -86,14 +86,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
     case TorrentModel::TR_SEEN_COMPLETE_DATE: {
-        QDateTime vL = left.data().toDateTime();
-        QDateTime vR = right.data().toDateTime();
-
-        //not valid dates should be sorted at the bottom.
-        if (!vL.isValid()) return false;
-        if (!vR.isValid()) return true;
-
-        return vL < vR;
+        return dateLessThan(column, left, right);
     }
 
     case TorrentModel::TR_PRIORITY: {
@@ -146,14 +139,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
         if (invalidL && invalidR) {
             if (seedingL) { //Both seeding
-                QDateTime dateL = model->data(model->index(left.row(), TorrentModel::TR_SEED_DATE)).toDateTime();
-                QDateTime dateR = model->data(model->index(right.row(), TorrentModel::TR_SEED_DATE)).toDateTime();
-
-                //not valid dates should be sorted at the bottom.
-                if (!dateL.isValid()) return false;
-                if (!dateR.isValid()) return true;
-
-                return dateL < dateR;
+                return dateLessThan(TorrentModelItem::TR_SEED_DATE, left, right);
             }
             else {
                 return prioL < prioR;
@@ -210,8 +196,17 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
     }
 
     // Sort according to TR_SEED_DATE
-    const QDateTime dateL = model->data(model->index(left.row(), TorrentModel::TR_SEED_DATE)).toDateTime();
-    const QDateTime dateR = model->data(model->index(right.row(), TorrentModel::TR_SEED_DATE)).toDateTime();
+    return dateLessThan(TorrentModelItem::TR_SEED_DATE, left, right);
+}
+
+// Every time we compare QDateTimes we need a fallback comparison in case both
+// values are empty. This is a workaround for unstable sort in QSortFilterProxyModel
+// (detailed discussion in #2526 and #2158).
+bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right) const
+{
+    const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
+    const QDateTime dateL = model->data(model->index(left.row(), dateColumn)).toDateTime();
+    const QDateTime dateR = model->data(model->index(right.row(), dateColumn)).toDateTime();
     if (dateL.isValid() && dateR.isValid()) {
         if (dateL != dateR)
             return dateL < dateR;
