@@ -213,6 +213,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkLargeStatusIcons">
+                 <property name="text">
+                  <string extracomment="Use large status icons in the transfer and filter lists.">Use large status icons</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout">
                  <item>
                   <widget class="QCheckBox" name="checkHideZero">

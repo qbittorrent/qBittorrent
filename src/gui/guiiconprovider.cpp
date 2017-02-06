@@ -176,8 +176,14 @@ void GuiIconProvider::configure(bool firstRun)
     if (darkTheme)
         themeFlags |= DarkTheme;
 
+    const Preferences *const pref = Preferences::instance();
+
+    if (pref->useLargeStatusIcons())
+        themeFlags |= LargeStatusIcons;
+
     if (firstRun || (themeFlags != m_themeFlags)) {
-        qDebug().nospace() << "Changing status icon theme to " << ((themeFlags & DarkTheme) ? "dark" : "light");
+        qDebug().nospace() << "Changing status icon theme to " << ((themeFlags & DarkTheme) ? "dark" : "light")
+                           << ", " << ((themeFlags & LargeStatusIcons) ? "large" : "small") << " icons";
         m_iconCache->clear();
         m_themeFlags = themeFlags;
         emit themeChanged();
@@ -215,6 +221,15 @@ QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::To
         colored.fill(TorrentModel::getColorByState(state));
         colored.setMask(pixmap.createMaskFromColor(Qt::transparent));
         pixmap = colored;
+    }
+
+    if (m_themeFlags & LargeStatusIcons) {
+        // The icon files have a fair amount of whitespace that we can crop off
+        int wInset = pixmap.width() / 8;
+        int hInset = pixmap.height() / 8;
+        QRect rect(wInset, hInset, pixmap.width() - (wInset * 2), pixmap.height() - (hInset * 2));
+        qDebug() << "Resizing icon" << pixmap.rect() << "->" << rect;
+        pixmap = pixmap.copy(rect);
     }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))

@@ -171,6 +171,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkLargeStatusIcons, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), m_ui->comboHideZero, SLOT(setEnabled(bool)));
     connect(m_ui->comboHideZero, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
@@ -459,6 +460,7 @@ void OptionsDialog::saveOptions()
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+    pref->setLargeStatusIcons(m_ui->checkLargeStatusIcons->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
     pref->setSystrayIntegration(systrayIntegration());
@@ -664,6 +666,7 @@ void OptionsDialog::loadOptions()
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+    m_ui->checkLargeStatusIcons->setChecked(pref->useLargeStatusIcons());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());

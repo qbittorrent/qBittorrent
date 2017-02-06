@@ -56,6 +56,7 @@ public:
     {
         SystemTheme = 1,
         DarkTheme = 2,
+        LargeStatusIcons = 4,
     };
 
     Q_DECLARE_FLAGS(ThemeFlags, ThemeFlag)

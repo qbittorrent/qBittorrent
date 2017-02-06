@@ -143,6 +143,16 @@ void Preferences::setAlternatingRowColors(bool b)
     setValue("Preferences/General/AlternatingRowColors", b);
 }
 
+bool Preferences::useLargeStatusIcons() const
+{
+    return value("Preferences/General/LargeStatusIcons", false).toBool();
+}
+
+void Preferences::setLargeStatusIcons(bool b)
+{
+    setValue("Preferences/General/LargeStatusIcons", b);
+}
+
 bool Preferences::getHideZeroValues() const
 {
     return value("Preferences/General/HideZeroValues", false).toBool();
