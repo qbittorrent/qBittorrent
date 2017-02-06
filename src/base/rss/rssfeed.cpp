@@ -361,6 +361,14 @@ void Feed::handleFeedTitle(const QString &title)
 void Feed::downloadArticleTorrentIfMatching(const ArticlePtr &article)
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
+    qDebug().nospace() << Q_FUNC_INFO << " Deferring matching of " << article->title() << " from " << displayName() << " RSS feed";
+    m_manager->downloadArticleTorrentIfMatching(m_url, article);
+}
+
+void Feed::deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article)
+{
+    qDebug().nospace() << Q_FUNC_INFO << " Matching of " << article->title() << " from " << displayName() << " RSS feed";
+
     DownloadRuleList *rules = m_manager->downloadRules();
     DownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
     if (!matchingRule) return;
