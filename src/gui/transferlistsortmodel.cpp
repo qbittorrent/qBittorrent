@@ -138,7 +138,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         }
 
         if (invalidL && invalidR) {
-            if (seedingL) //Both seeding
+            if (seedingL) // Both seeding
                 return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, true);
             else
                 return prioL < prioR;
@@ -176,12 +176,13 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             return lowerPositionThan(left, right);
         return QSortFilterProxyModel::lessThan(left, right);
     }
-    };
+    }
+    ;
 }
 
 bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    const TorrentModel *model = static_cast<TorrentModel*>(sourceModel());
+    const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
 
     // Sort according to TR_PRIORITY
     const int queueL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();
@@ -202,17 +203,19 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
 // (detailed discussion in #2526 and #2158).
 bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const
 {
-    const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
+    const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
     const QDateTime dateL = model->data(model->index(left.row(), dateColumn)).toDateTime();
     const QDateTime dateR = model->data(model->index(right.row(), dateColumn)).toDateTime();
     if (dateL.isValid() && dateR.isValid()) {
         if (dateL != dateR)
             return dateL < dateR;
     }
-    else if (dateL.isValid())
+    else if (dateL.isValid()) {
         return sortInvalidInBottom;
-    else if (dateR.isValid())
+    }
+    else if (dateR.isValid()) {
         return !sortInvalidInBottom;
+    }
 
     // Finally, sort by hash
     const QString hashL(model->torrentHandle(model->index(left.row()))->hash());
@@ -223,7 +226,7 @@ bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex
 bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     return matchFilter(sourceRow, sourceParent)
-            && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
+           && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
 bool TransferListSortModel::matchFilter(int sourceRow, const QModelIndex &sourceParent) const
