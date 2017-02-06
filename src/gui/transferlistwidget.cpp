@@ -213,8 +213,7 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
 void TransferListWidget::torrentDoubleClicked()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() != 1) return;
-    if (!selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
 
     const QModelIndex index = listModel->index(mapToSource(selectedIndexes.first()).row());
     BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(index);
@@ -334,8 +333,8 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
-    if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+    if (Preferences::instance()->confirmTorrentDeletion()
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -350,8 +349,8 @@ void TransferListWidget::deleteVisibleTorrents()
         torrents << listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
 
     bool deleteLocalFiles = false;
-    if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+    if (Preferences::instance()->confirmTorrentDeletion()
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -610,8 +609,7 @@ void TransferListWidget::askNewCategoryForSelection()
 void TransferListWidget::renameSelectedTorrent()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() != 1) return;
-    if (!selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
 
     const QModelIndex mi = listModel->index(mapToSource(selectedIndexes.first()).row(), TorrentModel::TR_NAME);
     BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mi);
@@ -636,8 +634,8 @@ void TransferListWidget::setSelectionCategory(QString category)
 void TransferListWidget::displayListMenu(const QPoint&)
 {
     QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() == 0)
-        return;
+    if (selectedIndexes.size() == 0) return;
+
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
     connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
@@ -935,7 +933,7 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
 {
     event->accept();
 
-    if(event->modifiers() & Qt::ShiftModifier) {
+    if (event->modifiers() & Qt::ShiftModifier) {
         // Shift + scroll = horizontal scroll
         QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
         QTreeView::wheelEvent(&scrollHEvent);
