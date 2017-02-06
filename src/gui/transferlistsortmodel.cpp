@@ -177,7 +177,6 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         return QSortFilterProxyModel::lessThan(left, right);
     }
     }
-    ;
 }
 
 bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
