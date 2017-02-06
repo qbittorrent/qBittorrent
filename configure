@@ -4504,52 +4504,16 @@ fi
 
 fi
 
-as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+if test -f "$QT_QMAKE/qmake"; then :
   QT_QMAKE="$QT_QMAKE/qmake"
 else
-  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt5" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt5" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake-qt5... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake-qt5"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  if test -f "$QT_QMAKE/qmake-qt5"; then :
   QT_QMAKE="$QT_QMAKE/qmake-qt5"
 else
   QT_QMAKE=""
 fi
 
-
 fi
-
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.2.0" >&5
 $as_echo_n "checking for Qt5 qmake >= 5.2.0... " >&6; }
@@ -4621,52 +4585,16 @@ fi
 
 fi
 
-as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+if test -f "$QT_QMAKE/qmake"; then :
   QT_QMAKE="$QT_QMAKE/qmake"
 else
-  as_ac_File=`$as_echo "ac_cv_file_$QT_QMAKE/qmake-qt4" | $as_tr_sh`
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $QT_QMAKE/qmake-qt4" >&5
-$as_echo_n "checking for $QT_QMAKE/qmake-qt4... " >&6; }
-if eval \${$as_ac_File+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  test "$cross_compiling" = yes &&
-  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
-if test -r "$QT_QMAKE/qmake-qt4"; then
-  eval "$as_ac_File=yes"
-else
-  eval "$as_ac_File=no"
-fi
-fi
-eval ac_res=\$$as_ac_File
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  if test -f "$QT_QMAKE/qmake-qt4"; then :
   QT_QMAKE="$QT_QMAKE/qmake-qt4"
 else
   QT_QMAKE=""
 fi
 
-
 fi
-
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt4 qmake >= 4.8.0" >&5
 $as_echo_n "checking for Qt4 qmake >= 4.8.0... " >&6; }
@@ -5044,8 +4972,8 @@ fi
 if test "x$BOOST_CPPFLAGS" = "x"; then :
   as_fn_error $? "Could not find Boost" "$LINENO" 5
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&5
-$as_echo "$as_me: Boost CPPFLGAS: $BOOST_CPPFLAGS" >&6;}
+  { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLAGS: $BOOST_CPPFLAGS" >&5
+$as_echo "$as_me: Boost CPPFLAGS: $BOOST_CPPFLAGS" >&6;}
       CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
       LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 fi
@@ -5094,6 +5022,7 @@ ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ex
 ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 			 CXXFLAGS_SAVE=$CXXFLAGS
+			 CXXFLAGS=
 
 			 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
