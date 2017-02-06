@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
 cmake_policy(VERSION 3.5)
 
-project(qBittorrent VERSION 3.4.0.0)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
+include(FunctionReadVersion)
 
-set(VER_MAJOR ${qBittorrent_VERSION_MAJOR})
-set(VER_MINOR ${qBittorrent_VERSION_MINOR})
-set(VER_BUGFIX ${qBittorrent_VERSION_PATCH})
-set(VER_BUILD ${qBittorrent_VERSION_TWEAK})
-set(VER_STATUS "alpha") # Should be empty for stable releases!
+read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_BUGFIX VER_BUILD VER_STATUS)
+# message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
 
-# Don't touch the rest part
+project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
+
 set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
 
 if (NOT VER_BUILD EQUAL 0)
@@ -28,7 +27,6 @@ add_definitions(-DVERSION_BUILD=${VER_BUILD})
 # } else {
 add_definitions(-DVERSION="v${PROJECT_VERSION}")
 # }
-list(APPEND CMAKE_MODULE_PATH ${qBittorrent_SOURCE_DIR}/cmake/Modules)
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")
 if (UNIX AND NOT APPLE)
