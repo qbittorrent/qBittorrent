@@ -147,7 +147,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     // Listen for list events
-    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
+    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked()));
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayListMenu(const QPoint &)));
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
@@ -155,9 +155,11 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
     connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
-    editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
+    editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
     deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
-    permDeleteHotkey = new QShortcut(QKeySequence("Shift+Delete"), this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    doubleClickHotkey = new QShortcut(Qt::Key_Return, this, SLOT(torrentDoubleClicked()), 0, Qt::WidgetShortcut);
+    recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, SLOT(recheckSelectedTorrents()), 0, Qt::WidgetShortcut);
 
 #ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
@@ -208,9 +210,13 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
     return nameFilterModel->mapFromSource(index);
 }
 
-void TransferListWidget::torrentDoubleClicked(const QModelIndex& index)
+void TransferListWidget::torrentDoubleClicked()
 {
-    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(index));
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+
+    const QModelIndex index = listModel->index(mapToSource(selectedIndexes.first()).row());
+    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(index);
     if (!torrent) return;
 
     int action;
@@ -327,8 +333,8 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
-    if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+    if (Preferences::instance()->confirmTorrentDeletion()
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -343,8 +349,8 @@ void TransferListWidget::deleteVisibleTorrents()
         torrents << listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
 
     bool deleteLocalFiles = false;
-    if (Preferences::instance()->confirmTorrentDeletion() &&
-        !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+    if (Preferences::instance()->confirmTorrentDeletion()
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -603,8 +609,7 @@ void TransferListWidget::askNewCategoryForSelection()
 void TransferListWidget::renameSelectedTorrent()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() != 1) return;
-    if (!selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
 
     const QModelIndex mi = listModel->index(mapToSource(selectedIndexes.first()).row(), TorrentModel::TR_NAME);
     BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mi);
@@ -629,8 +634,8 @@ void TransferListWidget::setSelectionCategory(QString category)
 void TransferListWidget::displayListMenu(const QPoint&)
 {
     QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() == 0)
-        return;
+    if (selectedIndexes.size() == 0) return;
+
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
     connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
@@ -928,7 +933,7 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
 {
     event->accept();
 
-    if(event->modifiers() & Qt::ShiftModifier) {
+    if (event->modifiers() & Qt::ShiftModifier) {
         // Shift + scroll = horizontal scroll
         QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
         QTreeView::wheelEvent(&scrollHEvent);

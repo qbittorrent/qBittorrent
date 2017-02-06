@@ -706,7 +706,7 @@ RSSImp::RSSImp(QWidget *parent)
 
     m_feedList = new FeedListWidget(splitterSide, m_rssManager);
     splitterSide->insertWidget(0, m_feedList);
-    editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
+    editHotkey = new QShortcut(Qt::Key_F2, m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
     connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
     deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedList, 0, 0, Qt::WidgetShortcut);
