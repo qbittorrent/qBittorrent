@@ -101,7 +101,11 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     request_ = request;
     env_ = env;
 
-    clear(); // clear response
+    // clear response
+    clear();
+
+    // avoid clickjacking attacks
+    header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
