@@ -362,6 +362,7 @@ static const QColor darkBlue(0, 0, 139);
 static const QColor forestGreen(34, 139, 34);
 static const QColor gray80(204, 204, 204);
 static const QColor limeGreen(50, 205, 50);
+static const QColor maroon(128, 0, 0);
 static const QColor red(255, 0, 0);
 static const QColor royalBlue(65, 105, 225);
 static const QColor salmon(250, 128, 114);
@@ -383,19 +384,22 @@ QColor TorrentModel::getColorByState(const BitTorrent::TorrentState &state)
             return limeGreen;
     case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
-    case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
-            return black;
+            return maroon;
         else
-            return gray80;
+            return salmon;
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
+    case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
             return royalBlue;
         else
             return steelBlue1;
     case BitTorrent::TorrentState::PausedDownloading:
-        return salmon;
+        if (!dark)
+            return black;
+        else
+            return gray80;
     case BitTorrent::TorrentState::PausedUploading:
         if (!dark)
             return darkBlue;
