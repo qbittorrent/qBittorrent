@@ -35,8 +35,9 @@
 #include <QFrame>
 
 QT_BEGIN_NAMESPACE
-class QResizeEvent;
 class QCheckBox;
+class QResizeEvent;
+class QPaintEvent;
 QT_END_NAMESPACE
 
 class TransferListWidget;
@@ -79,6 +80,7 @@ public:
     ~StatusFiltersWidget();
 
 private slots:
+    void updateStatusIcons();
     void updateTorrentNumbers();
 
 private:

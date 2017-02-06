@@ -35,7 +35,6 @@
 
 #include "base/iconprovider.h"
 
-class QEvent;
 template <class T, class U> class QHash;
 class QIcon;
 template <class T, class U> class QPair;
@@ -65,6 +64,7 @@ public:
     static GuiIconProvider *instance();
 
     ThemeFlags getThemeFlags();
+    void updateTheme();
 
     QIcon getIcon(const QString &iconId);
     QIcon getIcon(const QString &iconId, const QString &fallback);
@@ -73,8 +73,11 @@ public:
     QIcon getStatusIcon(const QString &iconId, const BitTorrent::TorrentState &state);
     QString getIconPath(const QString &iconId);
 
+signals:
+    void themeChanged();
+
 private slots:
-    void configure();
+    void configure(bool firstRun = false);
 
 private:
     explicit GuiIconProvider(QObject *parent = 0);

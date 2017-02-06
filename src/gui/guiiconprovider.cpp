@@ -51,7 +51,7 @@ GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)
     , m_iconCache(new QHash<QPair<QString, BitTorrent::TorrentState>, QIcon>)
 {
-    configure();
+    configure(true);
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
 }
 
@@ -154,7 +154,12 @@ QString GuiIconProvider::getIconPath(const QString &iconId)
     return IconProvider::getIconPath(iconId);
 }
 
-void GuiIconProvider::configure()
+void GuiIconProvider::updateTheme()
+{
+    configure();
+}
+
+void GuiIconProvider::configure(bool firstRun)
 {
     ThemeFlags themeFlags = 0;
 
@@ -171,9 +176,11 @@ void GuiIconProvider::configure()
     if (darkTheme)
         themeFlags |= DarkTheme;
 
-    if (themeFlags != m_themeFlags) {
+    if (firstRun || (themeFlags != m_themeFlags)) {
+        qDebug().nospace() << "Changing status icon theme to " << ((themeFlags & DarkTheme) ? "dark" : "light");
         m_iconCache->clear();
         m_themeFlags = themeFlags;
+        emit themeChanged();
     }
 }
 

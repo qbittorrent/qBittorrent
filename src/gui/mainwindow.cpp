@@ -1094,6 +1094,12 @@ bool MainWindow::event(QEvent *e)
         return ret;
     }
 #endif
+    case QEvent::ApplicationPaletteChange: {
+        qDebug("Palette change event");
+        // Will notify if there was an actual theme change
+        GuiIconProvider::instance()->updateTheme();
+        break;
+    }
     default:
         break;
     }
