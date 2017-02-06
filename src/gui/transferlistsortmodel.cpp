@@ -86,7 +86,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
     case TorrentModel::TR_SEEN_COMPLETE_DATE: {
-        return dateLessThan(column, left, right);
+        return dateLessThan(sortColumn(), left, right, true);
     }
 
     case TorrentModel::TR_PRIORITY: {
@@ -138,12 +138,10 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         }
 
         if (invalidL && invalidR) {
-            if (seedingL) { //Both seeding
-                return dateLessThan(TorrentModelItem::TR_SEED_DATE, left, right);
-            }
-            else {
+            if (seedingL) //Both seeding
+                return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, true);
+            else
                 return prioL < prioR;
-            }
         }
         else if (!invalidL && !invalidR) {
             return etaL < etaR;
@@ -196,13 +194,13 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
     }
 
     // Sort according to TR_SEED_DATE
-    return dateLessThan(TorrentModelItem::TR_SEED_DATE, left, right);
+    return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, false);
 }
 
 // Every time we compare QDateTimes we need a fallback comparison in case both
 // values are empty. This is a workaround for unstable sort in QSortFilterProxyModel
 // (detailed discussion in #2526 and #2158).
-bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right) const
+bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const
 {
     const TorrentModel *model = dynamic_cast<TorrentModel*>(sourceModel());
     const QDateTime dateL = model->data(model->index(left.row(), dateColumn)).toDateTime();
@@ -212,9 +210,9 @@ bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex
             return dateL < dateR;
     }
     else if (dateL.isValid())
-        return false;
+        return sortInvalidInBottom;
     else if (dateR.isValid())
-        return true;
+        return !sortInvalidInBottom;
 
     // Finally, sort by hash
     const QString hashL(model->torrentHandle(model->index(left.row()))->hash());
