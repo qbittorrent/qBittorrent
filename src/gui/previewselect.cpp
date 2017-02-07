@@ -69,7 +69,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   int nbFiles = torrent->filesCount();
   for (int i = 0; i < nbFiles; ++i) {
     QString fileName = torrent->fileName(i);
-    if (fileName.endsWith(".!qB"))
+    if (fileName.endsWith(QB_EXT))
       fileName.chop(4);
     QString extension = Utils::Fs::fileExtension(fileName).toUpper();
     if (Utils::Misc::isPreviewable(extension)) {

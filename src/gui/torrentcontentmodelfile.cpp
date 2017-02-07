@@ -29,6 +29,8 @@
  */
 
 #include "torrentcontentmodelfile.h"
+
+#include "base/bittorrent/torrenthandle.h"
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
@@ -41,7 +43,7 @@ TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulong
     m_name = fileName;
 
     // Do not display incomplete extensions
-    if (m_name.endsWith(".!qB"))
+    if (m_name.endsWith(QB_EXT))
         m_name.chop(4);
 
     m_size = fileSize;
