@@ -33,3 +33,5 @@ config.status
 src/icons/qbt-theme/build-icons/node_modules/
 src/icons/skin/build-icons/node_modules/
 src/icons/skin/build-icons/icons/*.png
+src/icons/status/build-icons/node_modules/
+

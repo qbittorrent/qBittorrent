@@ -330,17 +330,11 @@
   <file>icons/skin/bg-handle-horizontal.gif</file>
   <file>icons/skin/bg-header.gif</file>
   <file>icons/skin/bg-panel-header.gif</file>
-  <file>icons/skin/checking.png</file>
   <file>icons/skin/collapse-expand.gif</file>
   <file>icons/skin/connected.png</file>
   <file>icons/skin/disconnected.png</file>
   <file>icons/skin/dock-tabs.gif</file>
   <file>icons/skin/download.png</file>
-  <file>icons/skin/downloading.png</file>
-  <file>icons/skin/error.png</file>
-  <file>icons/skin/filteractive.png</file>
-  <file>icons/skin/filterall.png</file>
-  <file>icons/skin/filterinactive.png</file>
   <file>icons/skin/firewalled.png</file>
   <file>icons/skin/handle-icon-horizontal.gif</file>
   <file>icons/skin/handle-icon.gif</file>
@@ -349,13 +343,11 @@
   <file>icons/skin/logo.gif</file>
   <file>icons/skin/logo2.gif</file>
   <file>icons/skin/mascot.png</file>
-  <file>icons/skin/paused.png</file>
   <file>icons/skin/qbittorrent16.png</file>
   <file>icons/skin/qbittorrent22.png</file>
   <file>icons/skin/qbittorrent32.png</file>
   <file>icons/skin/qbittorrent_mono_dark.png</file>
   <file>icons/skin/qbittorrent_mono_light.png</file>
-  <file>icons/skin/queued.png</file>
   <file>icons/skin/ratio.png</file>
   <file>icons/skin/seeding.png</file>
   <file>icons/skin/slider-area.gif</file>
@@ -363,18 +355,26 @@
   <file>icons/skin/spinner-placeholder.gif</file>
   <file>icons/skin/spinner.gif</file>
   <file>icons/skin/splash.png</file>
-  <file>icons/skin/stalledDL.png</file>
-  <file>icons/skin/stalledUP.png</file>
   <file>icons/skin/tabs.gif</file>
   <file>icons/skin/toolbox-divider.gif</file>
   <file>icons/skin/toolbox-divider2.gif</file>
-  <file>icons/skin/resumed.png</file>
-  <file>icons/skin/uploading.png</file>
-  <file>icons/skin/completed.png</file>
   <file>icons/qbt-theme/system-log-out.png</file>
   <file>icons/qbt-theme/go-bottom.png</file>
   <file>icons/qbt-theme/go-top.png</file>
   <file>icons/qbt-theme/checked.png</file>
   <file>icons/qbt-theme/office-chart-line.png</file>
+  <file>icons/status/checking.png</file>
+  <file>icons/status/completed.png</file>
+  <file>icons/status/downloading.png</file>
+  <file>icons/status/error.png</file>
+  <file>icons/status/filteractive.png</file>
+  <file>icons/status/filterall.png</file>
+  <file>icons/status/filterinactive.png</file>
+  <file>icons/status/paused.png</file>
+  <file>icons/status/queued.png</file>
+  <file>icons/status/resumed.png</file>
+  <file>icons/status/stalledDL.png</file>
+  <file>icons/status/stalledUP.png</file>
+  <file>icons/status/uploading.png</file>
 </qresource>
 </RCC>

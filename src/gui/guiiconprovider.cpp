@@ -207,7 +207,7 @@ QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::To
 
 QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::TorrentState &state, bool ignoreState)
 {
-    QString path(":/icons/skin/" + iconId + ".png");
+    QString path(":/icons/status/" + iconId + ".png");
     QPair<QString, BitTorrent::TorrentState> key(path, state);
     QIcon icon((*m_iconCache)[key]);
 
