@@ -70,6 +70,11 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
     switch (index.column()) {
+    case TorrentModel::TR_NAME:
+    case TorrentModel::TR_SAVE_PATH:
+        opt.textElideMode = Qt::ElideMiddle;
+        QItemDelegate::paint(painter, opt, index);
+        break;
     case TorrentModel::TR_AMOUNT_DOWNLOADED:
     case TorrentModel::TR_AMOUNT_UPLOADED:
     case TorrentModel::TR_AMOUNT_DOWNLOADED_SESSION:
@@ -231,7 +236,7 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const 
     return size;
 }
 
-QString TransferListDelegate::getStatusString(const int state) const
+QString TransferListDelegate::getStatusString(const int state)
 {
     QString str;
 

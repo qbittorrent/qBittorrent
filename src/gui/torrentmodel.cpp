@@ -36,9 +36,15 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/preferences.h"
 #include "base/torrentfilter.h"
+#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "torrentmodel.h"
+#include "transferlistdelegate.h"
+#include "transferlistwidget.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
 static QColor getColorByState(BitTorrent::TorrentState state);
@@ -59,6 +65,7 @@ static bool isDarkTheme();
 
 TorrentModel::TorrentModel(QObject *parent)
     : QAbstractListModel(parent)
+    , m_parent(parent)
 {
     // Load the torrents
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
@@ -163,6 +170,9 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
 
     BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
     if (!torrent) return QVariant();
+
+    if (Qt::ToolTipRole == role)
+        return getTooltip(index, torrent);
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
         return getIconByState(torrent->state());
@@ -281,6 +291,132 @@ Qt::ItemFlags TorrentModel::flags(const QModelIndex &index) const
 
     // Explicitly mark as editable
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
+}
+
+QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::TorrentHandle *torrent) const
+{
+    TransferListWidget *pWdiget = dynamic_cast<TransferListWidget *>(m_parent);
+
+    if (!pWdiget || !m_parent) return QVariant(""); // with QVariant() any currently visible tooltip does not go away
+
+    bool isHideState = true;
+    if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
+        QModelIndex statusIndex = idx.sibling(idx.row(), TorrentModel::TR_STATUS);
+        if (statusIndex.data().toInt() != BitTorrent::TorrentState::PausedDownloading)
+            isHideState = false;
+    }
+    const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
+    QFontMetrics fontmetrics(pWdiget->font());
+    int textw = 0;
+    QVariant text;
+
+    switch (idx.column()) {
+    case TorrentModel::TR_NAME:
+        textw += pWdiget->style()->pixelMetric(QStyle::PM_ListViewIconSize) + fontmetrics.width(" "); // icon width + margin
+        // fall through
+    case TorrentModel::TR_SAVE_PATH:
+    case TorrentModel::TR_TRACKER:
+        text = idx.data();
+        break;
+    case TorrentModel::TR_AMOUNT_DOWNLOADED:
+    case TorrentModel::TR_AMOUNT_UPLOADED:
+    case TorrentModel::TR_AMOUNT_DOWNLOADED_SESSION:
+    case TorrentModel::TR_AMOUNT_UPLOADED_SESSION:
+    case TorrentModel::TR_AMOUNT_LEFT:
+    case TorrentModel::TR_COMPLETED:
+    case TorrentModel::TR_SIZE:
+    case TorrentModel::TR_TOTAL_SIZE: {
+        qlonglong size = idx.data().toLongLong();
+        if (hideValues && !size)
+            return QVariant("");
+        text = Utils::Misc::friendlyUnit(size);
+        break;
+    }
+    case TorrentModel::TR_ETA: {
+        text = Utils::Misc::userFriendlyDuration(idx.data().toLongLong());
+        break;
+    }
+    case TorrentModel::TR_SEEDS:
+    case TorrentModel::TR_PEERS: {
+        qlonglong value = idx.data().toLongLong();
+        qlonglong total = idx.data(Qt::UserRole).toLongLong();
+        if (hideValues && (!value && !total))
+            return QVariant("");
+        text = QString("%1 (%2)").arg(value).arg(total);
+        break;
+    }
+    case TorrentModel::TR_STATUS: {
+        text = TransferListDelegate::getStatusString(idx.data().toInt());
+        break;
+    }
+    case TorrentModel::TR_UPSPEED:
+    case TorrentModel::TR_DLSPEED: {
+        const qulonglong speed = idx.data().toULongLong();
+        if (hideValues && !speed)
+            return QVariant("");
+        text = speed;
+        break;
+    }
+    case TorrentModel::TR_UPLIMIT:
+    case TorrentModel::TR_DLLIMIT: {
+        const qlonglong limit = idx.data().toLongLong();
+        if (hideValues && !limit)
+            return QVariant("");
+        text = limit;
+        break;
+    }
+    case TorrentModel::TR_TIME_ELAPSED: {
+        qlonglong elapsedTime = idx.data().toLongLong();
+        qlonglong seedingTime = idx.data(Qt::UserRole).toLongLong();
+        if (seedingTime > 0)
+            text = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
+                   .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
+                   .arg(Utils::Misc::userFriendlyDuration(seedingTime));
+        else
+            return QVariant("");
+        break;
+    }
+    case TorrentModel::TR_ADD_DATE:
+    case TorrentModel::TR_SEED_DATE:
+    case TorrentModel::TR_SEEN_COMPLETE_DATE:
+        text = idx.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        break;
+    case TorrentModel::TR_RATIO_LIMIT:
+    case TorrentModel::TR_RATIO: {
+        const qreal ratio = idx.data().toDouble();
+        if (hideValues && (ratio <= 0))
+            return QVariant("");
+        text = ((ratio == -1) || (ratio > BitTorrent::TorrentHandle::MAX_RATIO)) ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2);
+        break;
+    }
+    case TorrentModel::TR_PRIORITY: {
+        text = idx.data();
+        break;
+    }
+    case TorrentModel::TR_LAST_ACTIVITY: {
+        qlonglong elapsed = idx.data().toLongLong();
+        if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
+            return QVariant("");
+
+        if (elapsed == 0)
+            elapsed = 1; // Show '< 1m ago' when elapsed time is 0
+        else if (elapsed < 0)
+            text = Utils::Misc::userFriendlyDuration(elapsed);
+        else
+            text = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
+        break;
+    }
+    default:
+        return QVariant("");
+    }
+
+    // TODO QFontMetrics::width() function below seems to be unreliable width edge values when the column width is
+    // set so the text was just elided however calculated witdh by fontmetrics is telling us the text should still fit
+    // into that column
+    textw += fontmetrics.width(" " + text.toString());
+
+    bool textFits = textw < pWdiget->columnWidth(idx.column());
+    return textFits ? QVariant("") : text;
 }
 
 BitTorrent::TorrentHandle *TorrentModel::torrentHandle(const QModelIndex &index) const

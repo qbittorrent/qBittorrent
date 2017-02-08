@@ -90,6 +90,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant getTooltip(const QModelIndex& idx, const BitTorrent::TorrentHandle *torrent) const;
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
@@ -101,6 +102,7 @@ private slots:
 
 private:
     QList<BitTorrent::TorrentHandle *> m_torrents;
+    QObject *m_parent;
 };
 
 #endif // TORRENTMODEL_H
