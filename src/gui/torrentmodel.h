@@ -100,6 +100,7 @@ public:
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
     static QIcon getIconByState(const BitTorrent::TorrentState &state);
+    static QColor getIconColorByState(const BitTorrent::TorrentState &state);
     static QColor getColorByState(const BitTorrent::TorrentState &state);
 
 private slots:

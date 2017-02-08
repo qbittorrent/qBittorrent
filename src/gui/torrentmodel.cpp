@@ -372,6 +372,18 @@ static const QColor teal(0, 128, 128);
 
 QColor TorrentModel::getColorByState(const BitTorrent::TorrentState &state)
 {
+    Q_UNUSED(state);
+
+    bool dark = GuiIconProvider::instance()->getThemeFlags() & GuiIconProvider::DarkTheme;
+
+    if (!dark)
+        return black;
+    else
+        return gray80;
+}
+
+QColor TorrentModel::getIconColorByState(const BitTorrent::TorrentState &state)
+{
     bool dark = GuiIconProvider::instance()->getThemeFlags() & GuiIconProvider::DarkTheme;
 
     switch (state) {

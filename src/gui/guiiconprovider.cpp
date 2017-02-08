@@ -218,7 +218,7 @@ QIcon GuiIconProvider::getStatusIcon(const QString &iconId, const BitTorrent::To
 
     if (!ignoreState) {
         QPixmap colored(pixmap.size());
-        colored.fill(TorrentModel::getColorByState(state));
+        colored.fill(TorrentModel::getIconColorByState(state));
         colored.setMask(pixmap.createMaskFromColor(Qt::transparent));
         pixmap = colored;
     }
