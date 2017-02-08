@@ -440,21 +440,27 @@ QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
 {
     if ((seconds < 0) || (seconds >= MAX_ETA))
         return QString::fromUtf8(C_INFINITY);
+
     if (seconds == 0)
         return "0";
+
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
-    int minutes = seconds / 60;
+
+    qlonglong minutes = seconds / 60;
     if (minutes < 60)
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
-    int hours = minutes / 60;
-    minutes = minutes - hours * 60;
+
+    qlonglong hours = minutes / 60;
+    minutes -= hours * 60;
     if (hours < 24)
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
-    int days = hours / 24;
-    hours = hours - days * 24;
+
+    qlonglong days = hours / 24;
+    hours -= days * 24;
     if (days < 100)
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
+
     return QString::fromUtf8(C_INFINITY);
 }
 
