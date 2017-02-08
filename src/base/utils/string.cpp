@@ -177,8 +177,12 @@ QString Utils::String::fromStdString(const std::string &str)
 
 std::string Utils::String::toStdString(const QString &str)
 {
+#ifdef QBT_USES_QT5
+    return str.toStdString();
+#else
     QByteArray utf8 = str.toUtf8();
     return std::string(utf8.constData(), utf8.length());
+#endif
 }
 
 // to send numbers instead of strings with suffixes
