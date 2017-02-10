@@ -76,6 +76,7 @@
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "cachestatus.h"
 #include "magneturi.h"
@@ -2200,7 +2201,7 @@ void Session::setSaveResumeDataInterval(uint value)
 
 int Session::port() const
 {
-    static int randomPort = rand() % 64512 + 1024;
+    static int randomPort = Utils::Random::rand(1024, 65535);
     if (useRandomPort())
         return randomPort;
     return m_port;
