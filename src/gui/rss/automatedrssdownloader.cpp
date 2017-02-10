@@ -74,15 +74,12 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
-    m_episodeRegex = new QRegularExpression("^(^\\d{1,4}x(\\d{1,4}(-(\\d{1,4})?)?;){1,}){1,1}",
-                                 QRegularExpression::CaseInsensitiveOption);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
            + "<li>" + tr("Episode number is a mandatory positive value") + "</li>"
-           + "<li>" + tr("Filter must end with semicolon") + "</li>"
            + "<li>" + tr("Three range types for episodes are supported: ") + "</li>" + "<li><ul>"
-           "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>"
+           + "<li>" + tr("Single number: <b>1x25;</b> matches episode 25 of season one") + "</li>"
            + "<li>" + tr("Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one") + "</li>"
            + "<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons") + "</li>" + "</ul></li></ul>";
     ui->lineEFilter->setToolTip(tip);
@@ -91,13 +88,15 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     // Update matching articles when necessary
     ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
-    ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMustLineValidity()));
-    Q_ASSERT(ok);
     ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
-    ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMustNotLineValidity()));
+    ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
-    ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateEpisodeFilterValidity()));
+    ok = connect(ui->lineContains, SIGNAL(textChanged(QString)), SLOT(updateMustLineValidity()));
+    Q_ASSERT(ok);
+    ok = connect(ui->lineNotContains, SIGNAL(textChanged(QString)), SLOT(updateMustNotLineValidity()));
+    Q_ASSERT(ok);
+    ok = connect(ui->lineEFilter, SIGNAL(textChanged(QString)), SLOT(updateEpisodeFilterValidity()));
     Q_ASSERT(ok);
     ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
@@ -106,8 +105,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMustNotLineValidity()));
     Q_ASSERT(ok);
     ok = connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
-    Q_ASSERT(ok);
-    ok = connect(ui->lineEFilter, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
     Q_ASSERT(ok);
     editHotkey = new QShortcut(Qt::Key_F2, ui->listRules, 0, 0, Qt::WidgetShortcut);
     ok = connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRule()));
@@ -128,7 +125,6 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
     delete deleteHotkey;
     delete ui;
     delete m_editableRuleList;
-    delete m_episodeRegex;
 }
 
 void AutomatedRssDownloader::connectRuleFeedSlots()
@@ -316,9 +312,6 @@ void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem *selected)
             else
                 lMatch = tr("Last Match: Unknown");
             ui->lblLastMatch->setText(lMatch);
-            updateMustLineValidity();
-            updateMustNotLineValidity();
-            updateEpisodeFilterValidity();
         }
         else {
             // New rule
@@ -355,9 +348,6 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
     ui->comboAddPaused->clearEditText();
     ui->comboAddPaused->setCurrentIndex(-1);
     updateFieldsToolTips(ui->checkRegex->isChecked());
-    updateMustLineValidity();
-    updateMustNotLineValidity();
-    updateEpisodeFilterValidity();
 }
 
 Rss::DownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
@@ -598,6 +588,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
     updateMatchingArticles();
 }
 
+// FIXME: This should return early if any of the filters are invalid
 void AutomatedRssDownloader::updateMatchingArticles()
 {
     ui->treeMatchingArticles->clear();
@@ -774,8 +765,11 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
 
 void AutomatedRssDownloader::updateEpisodeFilterValidity()
 {
+    static const QRegularExpression EPISODE_FILTER_REGEX(R"(\A\d{1,4}x(\d{1,4}(-(\d{1,4})?)?)(;(\d{1,4}(-(\d{1,4})?)?))*;?\z)",
+            QRegularExpression::CaseInsensitiveOption | QRegularExpression::DontCaptureOption | QRegularExpression::OptimizeOnFirstUsageOption);
+
     const QString text = ui->lineEFilter->text();
-    bool valid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
+    bool valid = text.isEmpty() || EPISODE_FILTER_REGEX.match(text).hasMatch();
 
     if (valid) {
         ui->lineEFilter->setStyleSheet("");

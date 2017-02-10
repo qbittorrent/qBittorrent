@@ -147,7 +147,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
     if (!m_episodeFilter.isEmpty()) {
         qDebug() << "Checking episode filter:" << m_episodeFilter;
-        QRegularExpression f(cachedRegex("(^\\d{1,4})x(.*;$)"));
+        QRegularExpression f(cachedRegex("(^\\d{1,4})x(.+;$)"));
         QRegularExpressionMatch matcher = f.match(m_episodeFilter);
         bool matched = matcher.hasMatch();
 
@@ -188,7 +188,9 @@ bool DownloadRule::matches(const QString &articleTitle) const
                         int sTheirs = matcher.captured(1).toInt();
                         int epTheirs = matcher.captured(2).toInt();
                         if (((sTheirs == sOurs) && (epTheirs >= epOurs)) || (sTheirs > sOurs)) {
-                            qDebug() << "Matched episode:" << ep;
+                            qDebug() << "Matched episode:";
+                            qDebug() << "    Filter: " << s << "x" << ep;
+                            qDebug() << "    Article:" << sTheirs << "x" << epTheirs;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
                         }
@@ -217,7 +219,9 @@ bool DownloadRule::matches(const QString &articleTitle) const
                         int sTheirs = matcher.captured(1).toInt();
                         int epTheirs = matcher.captured(2).toInt();
                         if ((sTheirs == sOurs) && ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))) {
-                            qDebug() << "Matched episode:" << ep;
+                            qDebug() << "Matched episode:";
+                            qDebug() << "    Filter: " << s << "x" << ep;
+                            qDebug() << "    Article:" << sTheirs << "x" << epTheirs;
                             qDebug() << "Matched article:" << articleTitle;
                             return true;
                         }
@@ -228,7 +232,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                 QString expStr("\\b(?:s0?" + s + "[ -_\\.]?" + "e0?" + ep + "|" + s + "x" + "0?" + ep + ")(?:\\D|\\b)");
                 QRegularExpression reg(cachedRegex(expStr));
                 if (reg.match(articleTitle).hasMatch()) {
-                    qDebug() << "Matched episode:" << ep;
+                    qDebug() << "Matched episode:" << s << "x" << ep;
                     qDebug() << "Matched article:" << articleTitle;
                     return true;
                 }
