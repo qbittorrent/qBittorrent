@@ -211,3 +211,12 @@ bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
 
     return (diff == 0);
 }
+
+QString Utils::String::toHtmlEscaped(const QString &str)
+{
+#ifdef QBT_USES_QT5
+    return str.toHtmlEscaped();
+#else
+    return Qt::escape(str);
+#endif
+}
