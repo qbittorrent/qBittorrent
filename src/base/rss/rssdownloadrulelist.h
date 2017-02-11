@@ -58,6 +58,7 @@ namespace Rss
         bool serialize(const QString &path);
         bool unserialize(const QString &path);
         void replace(DownloadRuleList *other);
+        void updateFeedURL(const QString &oldUrl, const QString &newUrl);
 
     private:
         void loadRulesFromStorage();

@@ -136,6 +136,19 @@ void DownloadRuleList::renameRule(const QString &oldName, const QString &newName
     }
 }
 
+void DownloadRuleList::updateFeedURL(const QString &oldUrl, const QString &newUrl)
+{
+    if (m_feedRules.contains(oldUrl)) {
+        QStringList feedRules = m_feedRules.take(oldUrl);
+        m_feedRules.insert(newUrl, feedRules);
+        foreach (const QString &ruleName, feedRules) {
+            QStringList ruleFeeds = m_rules[ruleName]->rssFeeds();
+            ruleFeeds.replace(ruleFeeds.indexOf(oldUrl), newUrl);
+            m_rules[ruleName]->setRssFeeds(ruleFeeds);
+        }
+    }
+}
+
 DownloadRulePtr DownloadRuleList::getRule(const QString &name) const
 {
     return m_rules.value(name);

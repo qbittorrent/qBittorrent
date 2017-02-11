@@ -588,7 +588,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
     updateMatchingArticles();
 }
 
-// FIXME: This should return early if any of the filters are invalid
+// FIXME: This should skip rules with any invalid filters
 void AutomatedRssDownloader::updateMatchingArticles()
 {
     ui->treeMatchingArticles->clear();

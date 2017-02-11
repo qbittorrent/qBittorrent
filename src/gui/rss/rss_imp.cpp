@@ -43,6 +43,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "rsssettingsdlg.h"
+#include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
 #include "base/rss/rssarticle.h"
@@ -480,9 +481,13 @@ void RSSImp::changeSelectedFeedURL()
         }
     } while (!ok);
 
+    m_rssManager->downloadRules()->updateFeedURL(feed->url(), newUrl);
+    m_rssManager->downloadRules()->saveRulesToStorage();
+
     m_feedList->itemAboutToBeRemoved(item);
     feed->setURL(newUrl);
     m_feedList->itemAdded(item, feed);
+
     m_rssManager->saveStreamList();
     updateItemInfos(item);
 }
