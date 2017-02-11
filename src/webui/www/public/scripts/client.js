@@ -629,6 +629,10 @@ var loadTorrentPeersData = function(){
                 if (response['peers']) {
                     for (var key in response['peers']) {
                         response['peers'][key]['rowId'] = key;
+
+                        if (response['peers'][key]['client'])
+                            response['peers'][key]['client'] = escapeHtml(response['peers'][key]['client']);
+
                         torrentPeersTable.updateRowData(response['peers'][key]);
                     }
                 }
