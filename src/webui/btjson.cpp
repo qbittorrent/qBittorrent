@@ -29,27 +29,30 @@
  */
 
 #include "btjson.h"
-#include "base/logger.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#include "base/preferences.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "base/bittorrent/trackerentry.h"
-#include "base/bittorrent/peerinfo.h"
-#include "base/torrentfilter.h"
-#include "base/net/geoipmanager.h"
-#include "jsonutils.h"
 
 #include <QDebug>
 #include <QVariant>
+
 #ifndef QBT_USES_QT5
 #include <QMetaType>
 #endif
+
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
 #endif
+
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/logger.h"
+#include "base/net/geoipmanager.h"
+#include "base/preferences.h"
+#include "base/torrentfilter.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "jsonutils.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 
@@ -740,9 +743,9 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
 {
     QVariantMap ret;
-    ret[KEY_TORRENT_HASH] =  QString(torrent->hash());
-    ret[KEY_TORRENT_NAME] =  torrent->name();
-    ret[KEY_TORRENT_SIZE] =  torrent->wantedSize();
+    ret[KEY_TORRENT_HASH] = QString(torrent->hash());
+    ret[KEY_TORRENT_NAME] = torrent->name();
+    ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
     ret[KEY_TORRENT_PROGRESS] = torrent->progress();
     ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();
     ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
