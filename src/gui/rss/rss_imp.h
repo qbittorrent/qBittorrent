@@ -69,6 +69,7 @@ private slots:
     void renameSelectedRssFile();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
+    void changeSelectedFeedURL();
     void populateArticleList(QTreeWidgetItem *item);
     void refreshTextBrowser();
     void updateFeedIcon(const QString &url, const QString &icon_path);

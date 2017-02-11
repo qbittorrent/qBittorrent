@@ -77,7 +77,7 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
         myRSSListMenu.addAction(actionMark_items_read);
         myRSSListMenu.addSeparator();
         if (selectedItems.size() == 1) {
-            if (m_feedList->getRSSItem(selectedItems.first()) != m_rssManager->rootFolder()) {
+            if (selectedItems.first() != m_feedList->stickyUnreadItem()) {
                 myRSSListMenu.addAction(actionRename);
                 myRSSListMenu.addAction(actionDelete);
                 myRSSListMenu.addSeparator();
@@ -93,6 +93,7 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
         if (m_feedList->isFeed(selectedItems.first())) {
             myRSSListMenu.addSeparator();
             myRSSListMenu.addAction(actionCopy_feed_URL);
+            myRSSListMenu.addAction(actionChange_Feed_URL);
         }
     }
     else {
@@ -447,6 +448,45 @@ void RSSImp::copySelectedFeedsURL()
     qApp->clipboard()->setText(URLs.join("\n"));
 }
 
+void RSSImp::changeSelectedFeedURL()
+{
+    QList<QTreeWidgetItem * > selectedItems = m_feedList->selectedItems();
+    if (selectedItems.size() != 1)
+        return;
+    QTreeWidgetItem *item = selectedItems.first();
+    if (item == m_feedList->stickyUnreadItem())
+        return;
+
+    Rss::FeedPtr feed = qSharedPointerDynamicCast<Rss::Feed>(m_feedList->getRSSItem(item));
+    if (!feed)
+        return;
+
+    bool ok;
+    QString newUrl = feed->url();
+    do {
+        newUrl = AutoExpandableDialog::getText(this, tr("Please type a RSS stream URL"), tr("Stream URL:"), QLineEdit::Normal, newUrl, &ok);
+        if (!ok)
+            return;
+
+        newUrl = newUrl.trimmed();
+        if (newUrl.isEmpty() || newUrl == feed->url())
+            return;
+
+        if (m_feedList->hasFeed(newUrl)) {
+            QMessageBox::warning(this, "qBittorrent",
+                                 tr("This RSS feed is already in the list."),
+                                 QMessageBox::Ok);
+            ok = false;
+        }
+    } while (!ok);
+
+    m_feedList->itemAboutToBeRemoved(item);
+    feed->setURL(newUrl);
+    m_feedList->itemAdded(item, feed);
+    m_rssManager->saveStreamList();
+    updateItemInfos(item);
+}
+
 void RSSImp::on_markReadButton_clicked()
 {
     QList<QTreeWidgetItem * > selectedItems = m_feedList->selectedItems();
@@ -714,6 +754,7 @@ RSSImp::RSSImp(QWidget *parent)
     actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     actionOpen_news_URL->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     actionRename->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
+    actionChange_Feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
     actionUpdate->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     actionUpdate_all_feeds->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
