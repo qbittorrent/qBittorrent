@@ -311,7 +311,7 @@ var loadTorrentFilesData = function() {
                     var row = new Array();
                     row.length = 4;
                     row[0] = file.priority;
-                    row[1] = file.name;
+                    row[1] = escapeHtml(file.name);
                     row[2] = friendlyUnit(file.size, false);
                     row[3] = (file.progress * 100).round(1);
                     if (row[3] == 100.0 && file.progress < 1.0)
