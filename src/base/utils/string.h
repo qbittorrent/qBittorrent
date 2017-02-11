@@ -49,6 +49,8 @@ namespace Utils
 
         bool naturalCompareCaseSensitive(const QString &left, const QString &right);
         bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
+
+        QString wildcardToRegex(const QString &pattern);
     }
 }
 
