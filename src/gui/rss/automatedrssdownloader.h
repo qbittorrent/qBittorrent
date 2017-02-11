@@ -57,6 +57,7 @@ namespace Rss
 
 QT_BEGIN_NAMESPACE
 class QListWidgetItem;
+class QRegularExpression;
 QT_END_NAMESPACE
 
 class AutomatedRssDownloader: public QDialog
@@ -112,7 +113,7 @@ private:
     QListWidgetItem *m_editedRule;
     Rss::DownloadRuleList *m_ruleList;
     Rss::DownloadRuleList *m_editableRuleList;
-    QRegExp *m_episodeRegex;
+    QRegularExpression *m_episodeRegex;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
     QSet<QPair<QString, QString >> m_treeListEntries;
