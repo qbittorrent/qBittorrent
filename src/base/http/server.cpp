@@ -30,9 +30,8 @@
 
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
-#else
-#include <QTcpSocket>
 #endif
+#include <QTcpSocket>
 #include "connection.h"
 #include "server.h"
 
