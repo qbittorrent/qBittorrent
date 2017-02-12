@@ -59,7 +59,7 @@
 
 Preferences *Preferences::m_instance = 0;
 
-Preferences::Preferences() {}
+Preferences::Preferences() = default;
 
 Preferences *Preferences::instance()
 {
