@@ -1842,6 +1842,8 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     for (int i = 0; i < oldPriorities.size(); ++i) {
         if ((oldPriorities[i] == 0) && (priorities[i] > 0) && (progress[i] < 1.0)) {
             m_hasSeedStatus = false;
+            // Also auto-resume the torrent.
+            resume();
             break;
         }
     }
