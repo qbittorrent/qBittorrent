@@ -60,6 +60,7 @@ namespace Ui
 class OptionsDialog: public QDialog
 {
     Q_OBJECT
+
 private:
     enum Tabs
     {
@@ -85,9 +86,9 @@ private slots:
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);
     void on_buttonBox_rejected();
-    void applySettings(QAbstractButton* button);
+    void applySettings(QAbstractButton *button);
     void enableApplyButton();
-    void changePage(QListWidgetItem*, QListWidgetItem*);
+    void changePage(QListWidgetItem *, QListWidgetItem *);
     void loadWindowState();
     void saveWindowState() const;
     void handleScanFolderViewSelectionChanged();
@@ -130,7 +131,7 @@ private:
     bool addTorrentsInPause() const;
     QString getTorrentExportDir() const;
     QString getFinishedTorrentExportDir() const;
-    QString askForExportDir(const QString& currentExportPath);
+    QString askForExportDir(const QString &currentExportPath);
     int getActionOnDblClOnTorrentDl() const;
     int getActionOnDblClOnTorrentFn() const;
     // Connection options
