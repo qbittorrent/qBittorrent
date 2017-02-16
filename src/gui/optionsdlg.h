@@ -171,8 +171,8 @@ private:
     QSize sizeFittingScreen() const;
 
 private:
-    void setSslKey(const QByteArray &key, bool interactive = true);
-    void setSslCertificate(const QByteArray &cert, bool interactive = true);
+    bool setSslKey(const QByteArray &key);
+    bool setSslCertificate(const QByteArray &cert);
     bool schedTimesOk();
     bool webUIAuthenticationOk();
 

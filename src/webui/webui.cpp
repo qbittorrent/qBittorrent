@@ -26,13 +26,14 @@
  * exception statement from your version.
  */
 
-#include "base/preferences.h"
-#include "base/logger.h"
+#include "webui.h"
+
 #include "base/http/server.h"
+#include "base/logger.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
+#include "base/preferences.h"
 #include "webapplication.h"
-#include "webui.h"
 
 WebUI::WebUI(QObject *parent)
     : QObject(parent)
@@ -65,11 +66,15 @@ void WebUI::init()
 
 #ifndef QT_NO_OPENSSL
         if (pref->isWebUiHttpsEnabled()) {
-            QList<QSslCertificate> certs = QSslCertificate::fromData(pref->getWebUiHttpsCertificate());
-            QSslKey key;
-            key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
-            bool certsIsNull = std::any_of(certs.begin(), certs.end(), [](QSslCertificate c) { return c.isNull(); });
-            if (!certsIsNull && !certs.empty() && !key.isNull())
+            const QByteArray keyRaw = pref->getWebUiHttpsKey();
+            QSslKey key(keyRaw, QSsl::Rsa);
+            if (key.isNull())
+                key = QSslKey(keyRaw, QSsl::Ec);
+
+            const QList<QSslCertificate> certs = QSslCertificate::fromData(pref->getWebUiHttpsCertificate());
+            const bool areCertsValid = !certs.empty() && std::all_of(certs.begin(), certs.end(), [](QSslCertificate c) { return !c.isNull(); });
+
+            if (!key.isNull() && areCertsValid)
                 httpServer_->enableHttps(certs, key);
             else
                 httpServer_->disableHttps();
