@@ -55,13 +55,17 @@ DownloadRulePtr DownloadRuleList::findMatchingRule(const QString &feedUrl, const
     return DownloadRulePtr();
 }
 
-void DownloadRuleList::replace(DownloadRuleList *other)
+void DownloadRuleList::replace(const DownloadRuleList &other)
 {
     m_rules.clear();
     m_feedRules.clear();
-    foreach (const QString &name, other->ruleNames()) {
-        saveRule(other->getRule(name));
-    }
+    merge(other);
+}
+
+void DownloadRuleList::merge(const DownloadRuleList &other)
+{
+    foreach (const QString &name, other.ruleNames())
+        saveRule(other.getRule(name));
 }
 
 void DownloadRuleList::saveRulesToStorage()
@@ -101,6 +105,12 @@ void DownloadRuleList::saveRule(const DownloadRulePtr &rule)
     qDebug() << Q_FUNC_INFO << rule->name();
     Q_ASSERT(rule);
     if (m_rules.contains(rule->name())) {
+        if (m_rules[rule->name()] == rule)
+        {
+            qDebug("Rule already exists, and is unchanged. Skipping");
+            return;
+        }
+
         qDebug("This is an update, removing old rule first");
         removeRule(rule->name());
     }

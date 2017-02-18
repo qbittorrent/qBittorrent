@@ -73,7 +73,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     ok = connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
-    m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
+    m_editableRuleList = new Rss::DownloadRuleList(*m_ruleList);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
@@ -181,25 +181,14 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-    disconnectRuleFeedSlots();
-
-    const Preferences *const pref = Preferences::instance();
-    const QStringList feed_aliases = pref->getRssFeedsAliases();
-    const QStringList feed_urls = pref->getRssFeedsUrls();
-    ui->listFeeds->clear();
-
-    for (int i = 0; i < feed_aliases.size(); ++i) {
-        QString feed_url = feed_urls.at(i);
-        feed_url = feed_url.split("\\").last();
-        qDebug() << Q_FUNC_INFO << feed_url;
-
-        QListWidgetItem *item = new QListWidgetItem(feed_aliases.at(i), ui->listFeeds);
-        item->setData(Qt::UserRole, feed_url);
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+    if (Rss::ManagerPtr manager = m_manager.toStrongRef()) {
+        for (const Rss::FeedPtr &feed : manager->rootFolder()->getAllFeeds()) {
+            QListWidgetItem *item = new QListWidgetItem(feed->displayName(), ui->listFeeds);
+            item->setData(Qt::UserRole, feed->url());
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+        }
+        ui->listFeeds->sortItems();
     }
-
-    // Reconnects slots
-    updateFeedList();
 }
 
 void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)
@@ -247,7 +236,6 @@ void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)
             item->setCheckState(Qt::Unchecked);
     }
 
-    ui->listFeeds->sortItems();
     ui->lblListFeeds->setEnabled(enable);
     ui->listFeeds->setEnabled(enable);
 
@@ -268,8 +256,6 @@ bool AutomatedRssDownloader::isRssDownloaderEnabled() const
 
 void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem *selected)
 {
-    disconnectRuleFeedSlots();
-
     qDebug() << Q_FUNC_INFO;
     // Save previous rule first
     saveEditedRule();
@@ -297,9 +283,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem *selected)
                 ui->lineEFilter->clear();
             ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
             ui->lineSavePath->setText(Utils::Fs::toNativePath(rule->savePath()));
-            ui->checkRegex->blockSignals(true);
             ui->checkRegex->setChecked(rule->useRegex());
-            ui->checkRegex->blockSignals(false);
             ui->comboCategory->setCurrentIndex(ui->comboCategory->findText(rule->category()));
             if (rule->category().isEmpty())
                 ui->comboCategory->clearEditText();
@@ -321,7 +305,6 @@ void AutomatedRssDownloader::updateRuleDefinitionBox(QListWidgetItem *selected)
             ui->spinIgnorePeriod->setValue(0);
         }
 
-        updateFieldsToolTips(ui->checkRegex->isChecked());
         ui->ruleDefBox->setEnabled(true);
     }
     else {
@@ -802,7 +785,7 @@ void AutomatedRssDownloader::onFinished(int result)
     // Save current item on exit
     saveEditedRule();
     ui->listRules->clearSelection();
-    m_ruleList->replace(m_editableRuleList);
+    m_ruleList->replace(*m_editableRuleList);
     m_ruleList->saveRulesToStorage();
     saveSettings();
 

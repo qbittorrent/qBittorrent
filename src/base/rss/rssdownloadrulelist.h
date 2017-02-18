@@ -41,8 +41,6 @@ namespace Rss
 {
     class DownloadRuleList
     {
-        Q_DISABLE_COPY(DownloadRuleList)
-
     public:
         DownloadRuleList();
 
@@ -57,7 +55,8 @@ namespace Rss
         void saveRulesToStorage();
         bool serialize(const QString &path);
         bool unserialize(const QString &path);
-        void replace(DownloadRuleList *other);
+        void replace(const DownloadRuleList& other);
+        void merge(const DownloadRuleList& other);
         void updateFeedURL(const QString &oldUrl, const QString &newUrl);
 
     private:
