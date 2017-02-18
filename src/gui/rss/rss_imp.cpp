@@ -815,29 +815,27 @@ void RSSImp::on_rssDownloaderBtn_clicked()
 QTreeWidgetItem* RSSImp::addItem(const Rss::FilePtr &file, QTreeWidgetItem *parent)
 {
     qDebug() << Q_FUNC_INFO << file->id();
+    if (m_feedList->hasFeed(file->id()))
+        return nullptr;
 
-    QTreeWidgetItem *item = nullptr;
-    if (!m_feedList->hasFeed(file->id())) {
-        item = createFolderListItem(file);
-        Q_ASSERT(item);
+    QTreeWidgetItem *item = createFolderListItem(file);
 
-        Rss::FolderPtr rssParent = qSharedPointerDynamicCast<Rss::Folder>(m_feedList->getRSSItem(parent));
-        if (!rssParent)
-            rssParent = m_rssManager->rootFolder();
-        rssParent->addFile(file);
+    Rss::FolderPtr rssParent = qSharedPointerDynamicCast<Rss::Folder>(m_feedList->getRSSItem(parent));
+    if (!rssParent)
+        rssParent = m_rssManager->rootFolder();
+    rssParent->addFile(file);
 
-        if (parent) {
-            parent->addChild(item);
-            parent->setExpanded(true);
-        }
-        else {
-            m_feedList->addTopLevelItem(item);
-        }
-
-        // Notify TreeWidget of item addition
-        m_feedList->itemAdded(item, file);
-        m_feedList->setCurrentItem(item);
+    if (parent) {
+        parent->addChild(item);
+        parent->setExpanded(true);
     }
+    else {
+        m_feedList->addTopLevelItem(item);
+    }
+
+    // Notify TreeWidget of item addition
+    m_feedList->itemAdded(item, file);
+    m_feedList->setCurrentItem(item);
 
     return item;
 }

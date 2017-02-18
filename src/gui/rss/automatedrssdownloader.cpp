@@ -181,14 +181,16 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-    if (Rss::ManagerPtr manager = m_manager.toStrongRef()) {
-        for (const Rss::FeedPtr &feed : manager->rootFolder()->getAllFeeds()) {
-            QListWidgetItem *item = new QListWidgetItem(feed->displayName(), ui->listFeeds);
-            item->setData(Qt::UserRole, feed->url());
-            item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
-        }
-        ui->listFeeds->sortItems();
+    Rss::ManagerPtr manager = m_manager.toStrongRef();
+    if (!manager)
+        return;
+
+    for (const Rss::FeedPtr &feed : manager->rootFolder()->getAllFeeds()) {
+        QListWidgetItem *item = new QListWidgetItem(feed->displayName(), ui->listFeeds);
+        item->setData(Qt::UserRole, feed->url());
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
     }
+    ui->listFeeds->sortItems();
 }
 
 void AutomatedRssDownloader::updateFeedList(QListWidgetItem *selected)

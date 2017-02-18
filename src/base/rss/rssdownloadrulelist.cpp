@@ -105,8 +105,7 @@ void DownloadRuleList::saveRule(const DownloadRulePtr &rule)
     qDebug() << Q_FUNC_INFO << rule->name();
     Q_ASSERT(rule);
     if (m_rules.contains(rule->name())) {
-        if (m_rules[rule->name()] == rule)
-        {
+        if (m_rules[rule->name()] == rule) {
             qDebug("Rule already exists, and is unchanged. Skipping");
             return;
         }
