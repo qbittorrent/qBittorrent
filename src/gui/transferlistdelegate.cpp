@@ -58,7 +58,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     bool isHideState = true;
     if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
         QModelIndex stateIndex = index.sibling(index.row(), TorrentModel::TR_STATUS);
-        if (stateIndex.data().toInt() != BitTorrent::TorrentState::PausedDownloading)
+        if (stateIndex.data().value<BitTorrent::TorrentState>() != BitTorrent::TorrentState::PausedDownloading)
             isHideState = false;
     }
     const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
@@ -98,7 +98,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_STATUS: {
-        const int state = index.data().toInt();
+        const auto state = index.data().value<BitTorrent::TorrentState>();
         QString display = getStatusString(state);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         break;
@@ -223,7 +223,7 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem & option, const 
     return size;
 }
 
-QString TransferListDelegate::getStatusString(const int state) const
+QString TransferListDelegate::getStatusString(const BitTorrent::TorrentState state) const
 {
     QString str;
 

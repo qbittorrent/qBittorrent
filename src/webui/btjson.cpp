@@ -34,6 +34,8 @@
 #include <QElapsedTimer>
 #include <QVariant>
 
+#include <libtorrent/version.hpp>
+
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
@@ -227,6 +229,52 @@ static const char KEY_LOG_PEER_REASON[] = "reason";
 
 namespace
 {
+    QString torrentStateToString(const BitTorrent::TorrentState state)
+    {
+        switch (state) {
+        case BitTorrent::TorrentState::Error:
+            return QLatin1String("error");
+        case BitTorrent::TorrentState::MissingFiles:
+            return QLatin1String("missingFiles");
+        case BitTorrent::TorrentState::Uploading:
+            return QLatin1String("uploading");
+        case BitTorrent::TorrentState::PausedUploading:
+            return QLatin1String("pausedUP");
+        case BitTorrent::TorrentState::QueuedUploading:
+            return QLatin1String("queuedUP");
+        case BitTorrent::TorrentState::StalledUploading:
+            return QLatin1String("stalledUP");
+        case BitTorrent::TorrentState::CheckingUploading:
+            return QLatin1String("checkingUP");
+        case BitTorrent::TorrentState::ForcedUploading:
+            return QLatin1String("forcedUP");
+        case BitTorrent::TorrentState::Allocating:
+            return QLatin1String("allocating");
+        case BitTorrent::TorrentState::Downloading:
+            return QLatin1String("downloading");
+        case BitTorrent::TorrentState::DownloadingMetadata:
+            return QLatin1String("metaDL");
+        case BitTorrent::TorrentState::PausedDownloading:
+            return QLatin1String("pausedDL");
+        case BitTorrent::TorrentState::QueuedDownloading:
+            return QLatin1String("queuedDL");
+        case BitTorrent::TorrentState::StalledDownloading:
+            return QLatin1String("stalledDL");
+        case BitTorrent::TorrentState::CheckingDownloading:
+            return QLatin1String("checkingDL");
+        case BitTorrent::TorrentState::ForcedDownloading:
+            return QLatin1String("forcedDL");
+#if LIBTORRENT_VERSION_NUM < 10100
+        case BitTorrent::TorrentState::QueuedForChecking:
+            return QLatin1String("queuedForChecking");
+#endif
+        case BitTorrent::TorrentState::CheckingResumeData:
+            return QLatin1String("checkingResumeData");
+        default:
+            return QLatin1String("unknown");
+        }
+    }
+
     class QTorrentCompare
     {
     public:
@@ -315,7 +363,7 @@ namespace
         ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
         const qreal ratio = torrent->realRatio();
         ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
-        ret[KEY_TORRENT_STATE] = torrent->state().toString();
+        ret[KEY_TORRENT_STATE] = torrentStateToString(torrent->state());
         ret[KEY_TORRENT_ETA] = torrent->eta();
         ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
         if (torrent->hasMetadata())
