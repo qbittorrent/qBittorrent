@@ -37,7 +37,6 @@ typedef QSet<QString> QStringSet;
 namespace BitTorrent
 {
     class TorrentHandle;
-    class TorrentState;
 }
 
 class TorrentFilter

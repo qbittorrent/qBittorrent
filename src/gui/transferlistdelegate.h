@@ -39,6 +39,10 @@ class QStyleOptionViewItem;
 class QModelIndex;
 QT_END_NAMESPACE
 
+namespace BitTorrent
+{
+    enum class TorrentState;
+}
 // Defines for download list list columns
 
 class TransferListDelegate: public QItemDelegate
@@ -52,7 +56,7 @@ public:
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
 
 private:
-    QString getStatusString(const int state) const;
+    QString getStatusString(const BitTorrent::TorrentState state) const;
 };
 
 #endif // TRANSFERLISTDELEGATE_H

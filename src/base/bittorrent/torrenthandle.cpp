@@ -131,64 +131,6 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
         savePath = Session::instance()->defaultSavePath();
 }
 
-// TorrentState
-
-TorrentState::TorrentState(int value)
-    : m_value(value)
-{
-}
-
-QString TorrentState::toString() const
-{
-    switch (m_value) {
-    case Error:
-        return QLatin1String("error");
-    case MissingFiles:
-        return QLatin1String("missingFiles");
-    case Uploading:
-        return QLatin1String("uploading");
-    case PausedUploading:
-        return QLatin1String("pausedUP");
-    case QueuedUploading:
-        return QLatin1String("queuedUP");
-    case StalledUploading:
-        return QLatin1String("stalledUP");
-    case CheckingUploading:
-        return QLatin1String("checkingUP");
-    case ForcedUploading:
-        return QLatin1String("forcedUP");
-    case Allocating:
-        return QLatin1String("allocating");
-    case Downloading:
-        return QLatin1String("downloading");
-    case DownloadingMetadata:
-        return QLatin1String("metaDL");
-    case PausedDownloading:
-        return QLatin1String("pausedDL");
-    case QueuedDownloading:
-        return QLatin1String("queuedDL");
-    case StalledDownloading:
-        return QLatin1String("stalledDL");
-    case CheckingDownloading:
-        return QLatin1String("checkingDL");
-    case ForcedDownloading:
-        return QLatin1String("forcedDL");
-#if LIBTORRENT_VERSION_NUM < 10100
-    case QueuedForChecking:
-        return QLatin1String("queuedForChecking");
-#endif
-    case CheckingResumeData:
-        return QLatin1String("checkingResumeData");
-    default:
-        return QLatin1String("unknown");
-    }
-}
-
-TorrentState::operator int() const
-{
-    return m_value;
-}
-
 // TorrentHandle
 
 const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
