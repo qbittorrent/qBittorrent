@@ -94,7 +94,7 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
 {
     auto item = mapRSSArticle(rssArticle);
-    item->setData(Qt::ForegroundRole, QColor("grey"));
+    item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
     item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
 
     checkInvariant();
@@ -119,11 +119,11 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     item->setData(Qt::DisplayRole, article->title());
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
     if (article->isRead()) {
-        item->setData(Qt::ForegroundRole, QColor("grey"));
+        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
         item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
     }
     else {
-        item->setData(Qt::ForegroundRole, QColor("blue"));
+        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Active, QPalette::Link));
         item->setData(Qt::DecorationRole, QIcon(":/icons/sphere2.png"));
     }
 
