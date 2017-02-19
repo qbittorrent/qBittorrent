@@ -52,13 +52,13 @@ namespace Rss
         signals:
             void newArticle(const QVariantHash &rssArticle);
             void feedTitle(const QString &title);
-            void finished(const QString &error);
+            void finished(const QString &error, int count = 0);
 
         private:
             void parseRssArticle(QXmlStreamReader &xml);
-            void parseRSSChannel(QXmlStreamReader &xml);
+            size_t parseRSSChannel(QXmlStreamReader &xml);
             void parseAtomArticle(QXmlStreamReader &xml);
-            void parseAtomChannel(QXmlStreamReader &xml);
+            size_t parseAtomChannel(QXmlStreamReader &xml);
 
             QString m_lastBuildDate; // Optimization
             QString m_baseUrl;

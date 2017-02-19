@@ -48,34 +48,37 @@ namespace Rss
     typedef QSharedPointer<Folder> FolderPtr;
     typedef QList<FeedPtr> FeedList;
 
-    class Folder: public File
+    class Folder : public File
     {
     public:
         explicit Folder(const QString &name = QString());
 
-        uint unreadCount() const;
-        uint getNbFeeds() const;
         FileList getContent() const;
         FeedList getAllFeeds() const;
         QHash<QString, FeedPtr> getAllFeedsAsHash() const;
-        QString displayName() const;
-        QString id() const;
-        QString iconPath() const;
-        bool hasChild(const QString &childId);
-        ArticleList articleListByDateDesc() const;
-        ArticleList unreadArticleListByDateDesc() const;
-
-        void rename(const QString &newName);
-        void markAsRead();
-        bool refresh();
-        void removeAllSettings();
-        void saveItemsToDisk();
-        void recheckRssItemsForDownload();
-        void removeAllItems();
+        bool addFile(const FilePtr &item);
+        bool hasChild(const QString &childId) const;
         FilePtr child(const QString &childId);
         FilePtr takeChild(const QString &childId);
-        bool addFile(const FilePtr &item);
         void removeChild(const QString &childId);
+
+        // File interface
+        virtual QString id() const override;
+        virtual QString displayName() const override;
+        virtual uint count() const override;
+        virtual uint unreadCount() const override;
+        virtual QString iconPath() const override;
+        virtual ArticleList articleListByDateDesc() const override;
+        virtual ArticleList unreadArticleListByDateDesc() const override;
+        // slots
+        virtual void markAsRead() override;
+        virtual bool refresh() override;
+        virtual void removeAllSettings() override;
+        virtual void saveItemsToDisk() override;
+        virtual void recheckRssItemsForDownload() override;
+
+    protected:
+        bool doRename(const QString &newName) override;
 
     private:
         QString m_name;

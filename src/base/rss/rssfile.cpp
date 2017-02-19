@@ -49,3 +49,25 @@ QStringList File::pathHierarchy() const
     path << id();
     return path;
 }
+
+void File::rename(const QString &newName)
+{
+    if (doRename(newName))
+        emit nameChanged(newName);
+}
+
+void File::becomeParent(File *child, FolderKey)
+{
+    Q_ASSERT(child);
+
+    if (child->m_parent) {
+        child->disconnect(child->m_parent);
+        child->m_parent->takeChild(child->id());
+    }
+
+    child->m_parent = static_cast<Folder*>(this);
+
+    // Propogate child change signals up
+    connect(child, SIGNAL(countChanged()), SIGNAL(countChanged()));
+    connect(child, SIGNAL(unreadCountChanged()), SIGNAL(unreadCountChanged()));
+}

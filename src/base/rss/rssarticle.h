@@ -62,8 +62,6 @@ namespace Rss
         QString description() const;
         const QDateTime &date() const;
         bool isRead() const;
-        // Setters
-        void markAsRead();
 
         // Serialization
         QVariantHash toHash() const;
@@ -74,6 +72,7 @@ namespace Rss
 
     public slots:
         void handleTorrentDownloadSuccess(const QString &url);
+        void markAsRead();
 
     private:
         Feed *m_parent;

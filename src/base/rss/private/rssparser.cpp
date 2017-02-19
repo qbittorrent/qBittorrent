@@ -215,12 +215,13 @@ void Parser::parse(const QByteArray &feedData)
 
     QXmlStreamReader xml(feedData);
     bool foundChannel = false;
+    size_t count = 0;
     while (xml.readNextStartElement()) {
         if (xml.name() == "rss") {
             // Find channels
             while (xml.readNextStartElement()) {
                 if (xml.name() == "channel") {
-                    parseRSSChannel(xml);
+                    count += parseRSSChannel(xml);
                     foundChannel = true;
                     break;
                 }
@@ -232,7 +233,7 @@ void Parser::parse(const QByteArray &feedData)
             break;
         }
         else if (xml.name() == "feed") { // Atom feed
-            parseAtomChannel(xml);
+            count += parseAtomChannel(xml);
             foundChannel = true;
             break;
         }
@@ -247,7 +248,7 @@ void Parser::parse(const QByteArray &feedData)
     else if (!foundChannel)
         emit finished(tr("Invalid RSS feed."));
     else
-        emit finished(QString());
+        emit finished(QString(), count);
 }
 
 void Parser::parseRssArticle(QXmlStreamReader &xml)
@@ -314,11 +315,12 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
     emit newArticle(article);
 }
 
-void Parser::parseRSSChannel(QXmlStreamReader &xml)
+size_t Parser::parseRSSChannel(QXmlStreamReader &xml)
 {
     qDebug() << Q_FUNC_INFO;
     Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
 
+    size_t count = 0;
     while(!xml.atEnd()) {
         xml.readNext();
 
@@ -332,16 +334,18 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
                 if (!lastBuildDate.isEmpty()) {
                     if (m_lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
-                        return;
+                        return 0;
                     }
                     m_lastBuildDate = lastBuildDate;
                 }
             }
             else if (xml.name() == "item") {
                 parseRssArticle(xml);
+                ++count;
             }
         }
     }
+    return count;
 }
 
 void Parser::parseAtomArticle(QXmlStreamReader &xml)
@@ -434,13 +438,14 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
     emit newArticle(article);
 }
 
-void Parser::parseAtomChannel(QXmlStreamReader &xml)
+size_t Parser::parseAtomChannel(QXmlStreamReader &xml)
 {
     qDebug() << Q_FUNC_INFO;
     Q_ASSERT(xml.isStartElement() && xml.name() == "feed");
 
     m_baseUrl = xml.attributes().value("xml:base").toString();
 
+    size_t count = 0;
     while (!xml.atEnd()) {
         xml.readNext();
 
@@ -454,14 +459,16 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
                 if (!lastBuildDate.isEmpty()) {
                     if (m_lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
-                        return;
+                        return 0;
                     }
                     m_lastBuildDate = lastBuildDate;
                 }
             }
             else if (xml.name() == "entry") {
                 parseAtomArticle(xml);
+                ++count;
             }
         }
     }
+    return count;
 }

@@ -59,34 +59,42 @@ namespace Rss
 
     bool articleDateRecentThan(const ArticlePtr &left, const ArticlePtr &right);
 
-    class Feed: public QObject, public File
+    class Feed : public File
     {
         Q_OBJECT
 
     public:
-        Feed(const QString &url, Manager * manager);
-        ~Feed();
+        Feed(const QString &url, Manager *manager);
+        virtual ~Feed();
 
-        bool refresh();
-        QString id() const;
-        void removeAllSettings();
-        void saveItemsToDisk();
         bool isLoading() const;
         QString title() const;
-        void rename(const QString &newName);
-        QString displayName() const;
         QString url() const;
-        QString iconPath() const;
         bool hasCustomIcon() const;
         void setIconPath(const QString &pathHierarchy);
         ArticlePtr getItem(const QString &guid) const;
-        uint count() const;
-        void markAsRead();
-        uint unreadCount() const;
-        ArticleList articleListByDateDesc() const;
         const ArticleHash &articleHash() const;
-        ArticleList unreadArticleListByDateDesc() const;
-        void recheckRssItemsForDownload();
+
+        // File interface
+        virtual QString id() const override;
+        virtual QString displayName() const override;
+        virtual uint count() const override;
+        virtual uint unreadCount() const override;
+        virtual QString iconPath() const override;
+        virtual ArticleList articleListByDateDesc() const override;
+        virtual ArticleList unreadArticleListByDateDesc() const override;
+        // slots
+        virtual void markAsRead() override;
+        virtual bool refresh() override;
+        virtual void removeAllSettings() override;
+        virtual void saveItemsToDisk() override;
+        virtual void recheckRssItemsForDownload() override;
+
+    signals:
+        void iconChanged() const;
+
+    protected:
+        bool doRename(const QString &newName) override;
 
     private slots:
         void handleIconDownloadFinished(const QString &url, const QString &filePath);
@@ -94,17 +102,13 @@ namespace Rss
         void handleRssDownloadFailed(const QString &url, const QString &error);
         void handleFeedTitle(const QString &title);
         void handleNewArticle(const QVariantHash &article);
-        void handleParsingFinished(const QString &error);
+        void handleParsingFinished(const QString &error, int count);
         void handleArticleRead();
 
     private:
-        friend class Manager;
-
         QString iconUrl() const;
         void loadItemsFromDisk();
         void addArticle(const ArticlePtr &article);
-        void downloadArticleTorrentIfMatching(const ArticlePtr &article);
-        void deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article);
 
     private:
         Manager *m_manager;

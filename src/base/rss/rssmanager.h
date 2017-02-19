@@ -66,7 +66,7 @@ namespace Rss
         DownloadRuleList *downloadRules() const;
         FolderPtr rootFolder() const;
         QThread *workingThread() const;
-        void downloadArticleTorrentIfMatching(const QString &url, const ArticlePtr &article);
+        void downloadArticleTorrentIfMatching(const QString &feedId, const ArticlePtr &article);
 
     public slots:
         void refresh();
