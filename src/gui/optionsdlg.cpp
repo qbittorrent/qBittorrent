@@ -88,7 +88,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
+    m_ui->tabSelection->item(TAB_APPEARANCE)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop-theme"));
+    m_ui->tabSelection->item(TAB_BEHAVIOUR)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
@@ -141,6 +142,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
             break;
         }
     }
+
+#if !((defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+    m_ui->checkUseSystemTheme->setHidden(true);
+#endif
+
+    // Hide the Appearance/Desktop section if it doesn't contain any visible children.
+    m_ui->groupBoxAppearanceDesktop->setHidden(m_ui->groupBoxAppearanceDesktop->childrenRect().isEmpty());
 
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
@@ -200,6 +208,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // General tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    connect(m_ui->checkUseSystemTheme, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
@@ -482,7 +493,7 @@ void OptionsDialog::loadSplitterState()
 
     // width has been modified, use height as width reference instead
     const int width = Utils::Gui::scaledSize(this
-        , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+        , (m_ui->tabSelection->item(TAB_APPEARANCE)->sizeHint().height() * 2));
     QList<int> sizes {width, (m_ui->hsplitter->width() - width)};
     if (sizesStr.size() == 2)
         sizes = {sizesStr.first().toInt(), sizesStr.last().toInt()};
@@ -522,6 +533,9 @@ void OptionsDialog::saveOptions()
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    pref->setSystemIconTheme(m_ui->checkUseSystemTheme->isChecked());
+#endif
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MAC
@@ -749,6 +763,9 @@ void OptionsDialog::loadOptions()
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    m_ui->checkUseSystemTheme->setChecked(pref->useSystemIconTheme());
+#endif
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
