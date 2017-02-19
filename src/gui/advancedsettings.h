@@ -73,10 +73,6 @@ private:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     QCheckBox checkBoxUpdateCheck;
 #endif
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QCheckBox checkBoxUseIconTheme;
-#endif
 };
 
 #endif // ADVANCEDSETTINGS_H

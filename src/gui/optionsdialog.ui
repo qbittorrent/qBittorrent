@@ -49,6 +49,11 @@
       </property>
       <item>
        <property name="text">
+        <string>Appearance</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Behavior</string>
        </property>
       </item>
@@ -92,8 +97,8 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabBehaviorPage">
-       <layout class="QVBoxLayout" name="verticalLayout_10">
+      <widget class="QWidget" name="tabAppearancePage">
+       <layout class="QVBoxLayout" name="verticalLayout_21">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -107,7 +112,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QScrollArea" name="scrollArea">
+         <widget class="QScrollArea" name="scrollArea_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -117,7 +122,7 @@
           <property name="widgetResizable">
            <bool>true</bool>
           </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
+          <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -126,7 +131,7 @@
              <height>893</height>
             </rect>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <layout class="QVBoxLayout" name="verticalLayout_25">
             <item>
              <widget class="QGroupBox" name="UISettingsBox">
               <property name="title">
@@ -192,6 +197,95 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBoxAppearanceDesktop">
+              <property name="title">
+               <string>Desktop</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_27">
+               <item>
+                <widget class="QCheckBox" name="checkUseSystemTheme">
+                 <property name="text">
+                  <string>Use system icon theme</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>Transfer List</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_26">
+               <item>
+                <widget class="QCheckBox" name="checkAltRowColors">
+                 <property name="text">
+                  <string extracomment="In transfer list, every other row will have a grey background.">Use alternating row colors</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabBehaviorPage">
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>504</width>
+             <height>849</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
              <widget class="QGroupBox" name="groupBox_4">
               <property name="title">
                <string>Transfer List</string>
@@ -201,16 +295,6 @@
                 <widget class="QCheckBox" name="confirmDeletion">
                  <property name="text">
                   <string>Confirm when deleting torrents</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkAltRowColors">
-                 <property name="text">
-                  <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -3341,7 +3425,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
-  <tabstop>comboI18n</tabstop>
+  <tabstop>textSavePath</tabstop>
+  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>

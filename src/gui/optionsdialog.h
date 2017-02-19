@@ -63,7 +63,8 @@ class OptionsDialog : public QDialog
 private:
     enum Tabs
     {
-        TAB_UI,
+        TAB_APPEARANCE,
+        TAB_BEHAVIOUR,
         TAB_DOWNLOADS,
         TAB_CONNECTION,
         TAB_SPEED,
