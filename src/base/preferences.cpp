@@ -31,6 +31,7 @@
  */
 
 #include <QCryptographicHash>
+#include <QDebug>
 #include <QDir>
 #include <QLocale>
 #include <QPair>
@@ -92,17 +93,41 @@ void Preferences::setValue(const QString &key, const QVariant &value)
     SettingsStorage::instance()->storeValue(key, value);
 }
 
-// General options
+// Appearance/Language options
 QString Preferences::getLocale() const
 {
-    return value("Preferences/General/Locale", QLocale::system().name()).toString();
+    return value("Preferences/Appearance/Locale", QLocale::system().name()).toString();
 }
 
 void Preferences::setLocale(const QString &locale)
 {
-    setValue("Preferences/General/Locale", locale);
+    setValue("Preferences/Appearance/Locale", locale);
 }
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+bool Preferences::useSystemIconTheme() const
+{
+    return value("Preferences/Appearance/useSystemIconTheme", true).toBool();
+}
+
+void Preferences::setSystemIconTheme(bool enabled)
+{
+    setValue("Preferences/Appearance/useSystemIconTheme", enabled);
+}
+
+#endif
+
+bool Preferences::useAlternatingRowColors() const
+{
+    return value("Preferences/Appearance/AlternatingRowColors", true).toBool();
+}
+
+void Preferences::setAlternatingRowColors(bool b)
+{
+    setValue("Preferences/Appearance/AlternatingRowColors", b);
+}
+
+// General options
 bool Preferences::deleteTorrentFilesAsDefault() const
 {
     return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
@@ -131,16 +156,6 @@ bool Preferences::speedInTitleBar() const
 void Preferences::showSpeedInTitleBar(bool show)
 {
     setValue("Preferences/General/SpeedInTitleBar", show);
-}
-
-bool Preferences::useAlternatingRowColors() const
-{
-    return value("Preferences/General/AlternatingRowColors", true).toBool();
-}
-
-void Preferences::setAlternatingRowColors(bool b)
-{
-    setValue("Preferences/General/AlternatingRowColors", b);
 }
 
 bool Preferences::getHideZeroValues() const
@@ -705,18 +720,6 @@ void Preferences::resolvePeerHostNames(bool resolve)
     setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-bool Preferences::useSystemIconTheme() const
-{
-    return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
-}
-
-void Preferences::useSystemIconTheme(bool enabled)
-{
-    setValue("Preferences/Advanced/useSystemIconTheme", enabled);
-}
-
-#endif
 
 bool Preferences::recursiveDownloadDisabled() const
 {
@@ -1598,6 +1601,26 @@ void Preferences::setSpeedWidgetGraphEnable(int id, const bool enable)
 
 void Preferences::upgrade()
 {
+    // Migrate single-value prefs to new section/name
+    QList<QPair<QString, QString>> prefsToMigrate = {
+        { "Preferences/General/Locale", "Preferences/Appearance/Locale" },
+        { "Preferences/General/AlternatingRowColors", "Preferences/Appearance/AlternatingRowColors" },
+        { "Preferences/Advanced/useSystemIconTheme", "Preferences/Appearance/useSystemIconTheme" },
+    };
+
+    for (auto iter = prefsToMigrate.begin(); iter != prefsToMigrate.end(); ++iter) {
+        QString pre(iter->first);
+        QString post(iter->second);
+
+        QVariant preValue = value(pre);
+
+        if (!preValue.isNull()) {
+            qDebug() << "Migrating preference" << pre << "->" << post;
+            setValue(post, pre);
+            SettingsStorage::instance()->removeValue(pre);
+        }
+    }
+
     // Move RSS cookies to global storage
     QList<QNetworkCookie> cookies = getNetworkCookies();
     QVariantMap hostsTable = value("Rss/hosts_cookies").toMap();

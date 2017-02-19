@@ -77,7 +77,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     setModal(true);
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
+    // TODO fix up icons
+    m_ui->tabSelection->item(TAB_APPEARANCE)->setIcon(QIcon());
+    m_ui->tabSelection->item(TAB_BEHAVIOUR)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
@@ -120,6 +122,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
             break;
         }
     }
+
+#if !((defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+    m_ui->checkUseSystemTheme->setHidden(true);
+#endif
+
+    // Hide the Appearance/Desktop section if it doesn't contain any visible children.
+    m_ui->groupBoxAppearanceDesktop->setHidden(m_ui->groupBoxAppearanceDesktop->childrenRect().isEmpty());
 
 #ifndef QBT_USES_QT5
     m_ui->scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
@@ -170,6 +179,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // General tab
     connect(m_ui->comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->confirmDeletion, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    connect(m_ui->checkUseSystemTheme, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
     connect(m_ui->checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkHideZero, SIGNAL(toggled(bool)), m_ui->comboHideZero, SLOT(setEnabled(bool)));
@@ -459,6 +471,9 @@ void OptionsDialog::saveOptions()
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    pref->setSystemIconTheme(m_ui->checkUseSystemTheme->isChecked());
+#endif
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
     pref->setSystrayIntegration(systrayIntegration());
@@ -664,6 +679,9 @@ void OptionsDialog::loadOptions()
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    m_ui->checkUseSystemTheme->setChecked(pref->useSystemIconTheme());
+#endif
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
