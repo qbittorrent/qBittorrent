@@ -100,17 +100,23 @@ public:
     static void freeInstance();
     static Preferences *instance();
 
-    // General options
+    // Appearance options
     QString getLocale() const;
     void setLocale(const QString &locale);
+    bool useAlternatingRowColors() const;
+    void setAlternatingRowColors(bool b);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    bool useSystemIconTheme() const;
+    void setSystemIconTheme(bool enabled);
+#endif
+
+    // General options
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;
     void setConfirmOnExit(bool confirm);
     bool speedInTitleBar() const;
     void showSpeedInTitleBar(bool show);
-    bool useAlternatingRowColors() const;
-    void setAlternatingRowColors(bool b);
     bool getHideZeroValues() const;
     void setHideZeroValues(bool b);
     int getHideZeroComboValues() const;
@@ -225,10 +231,6 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    bool useSystemIconTheme() const;
-    void useSystemIconTheme(bool enabled);
-#endif
     bool recursiveDownloadDisabled() const;
     void disableRecursiveDownload(bool disable = true);
 #ifdef Q_OS_WIN
