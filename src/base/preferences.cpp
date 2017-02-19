@@ -451,7 +451,11 @@ void Preferences::setWebUiPort(quint16 port)
 
 bool Preferences::useUPnPForWebUIPort() const
 {
+#ifdef DISABLE_GUI
     return value("Preferences/WebUI/UseUPnP", true).toBool();
+#else
+    return value("Preferences/WebUI/UseUPnP", false).toBool();
+#endif
 }
 
 void Preferences::setUPnPForWebUIPort(bool enabled)
