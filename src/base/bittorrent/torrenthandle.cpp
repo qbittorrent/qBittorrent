@@ -27,6 +27,8 @@
  * exception statement from your version.
  */
 
+#include <type_traits>
+
 #include <QDebug>
 #include <QStringList>
 #include <QFile>
@@ -191,6 +193,31 @@ const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
 const qreal TorrentHandle::NO_RATIO_LIMIT = -1.;
 
 const qreal TorrentHandle::MAX_RATIO = 9999.;
+
+// The new libtorrent::create_torrent constructor appeared after 1.0.11 in RC_1_0
+// and after 1.1.1 in RC_1_1. Since it fixed an ABI incompatibility with previous versions
+// distros might choose to backport it onto 1.0.11 and 1.1.1 respectively.
+// So we need a way to detect its presence without relying solely on the LIBTORRENT_VERSION_NUM.
+// Relevant links:
+// 1. https://github.com/arvidn/libtorrent/issues/1696
+// 2. https://github.com/qbittorrent/qBittorrent/issues/6406
+// The following can be removed after one or two libtorrent releases on each branch.
+namespace
+{
+    // new constructor is available
+    template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
+    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    {
+        return T(ti, true);
+    }
+
+    // new constructor isn't available
+    template<typename T, typename std::enable_if<!std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
+    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    {
+        return T(ti);
+    }
+}
 
 TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
                                      const AddTorrentData &data)
@@ -1318,7 +1345,7 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
 {
     if (!m_torrentInfo.isValid()) return false;
 
-    libt::create_torrent torrentCreator(*(m_torrentInfo.nativeInfo()));
+    libt::create_torrent torrentCreator = makeTorrentCreator<libt::create_torrent>(*(m_torrentInfo.nativeInfo()));
     libt::entry torrentEntry = torrentCreator.generate();
 
     QVector<char> out;
