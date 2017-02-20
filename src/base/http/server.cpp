@@ -33,6 +33,7 @@
 #else
 #include <QTcpSocket>
 #endif
+#include <QNetworkProxy>
 #include "connection.h"
 #include "server.h"
 
@@ -45,6 +46,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     , m_https(false)
 #endif
 {
+    setProxy(QNetworkProxy::NoProxy);
 }
 
 Server::~Server()
