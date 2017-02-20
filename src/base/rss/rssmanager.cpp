@@ -126,21 +126,6 @@ void Manager::loadStreamList()
     qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
-void Manager::forwardFeedContentChanged(const QString &url)
-{
-    emit feedContentChanged(url);
-}
-
-void Manager::forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount)
-{
-    emit feedInfosChanged(url, displayName, unreadCount);
-}
-
-void Manager::forwardFeedIconChanged(const QString &url, const QString &iconPath)
-{
-    emit feedIconChanged(url, iconPath);
-}
-
 void Manager::moveFile(const FilePtr &file, const FolderPtr &destinationFolder)
 {
     Folder *srcFolder = file->parentFolder();

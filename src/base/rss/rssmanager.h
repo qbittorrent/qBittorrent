@@ -72,16 +72,8 @@ namespace Rss
         void refresh();
         void loadStreamList();
         void saveStreamList() const;
-        void forwardFeedContentChanged(const QString &url);
-        void forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
-        void forwardFeedIconChanged(const QString &url, const QString &iconPath);
         void moveFile(const FilePtr &file, const FolderPtr &destinationFolder);
         void updateRefreshInterval(uint val);
-
-    signals:
-        void feedContentChanged(const QString &url);
-        void feedInfosChanged(const QString &url, const QString &displayName, uint unreadCount);
-        void feedIconChanged(const QString &url, const QString &iconPath);
 
     private slots:
         void downloadNextArticleTorrentIfMatching();

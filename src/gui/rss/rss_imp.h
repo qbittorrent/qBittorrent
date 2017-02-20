@@ -54,49 +54,40 @@ public:
     ~RSSImp();
 
 public slots:
-    void deleteSelectedItems();
     void updateRefreshInterval(uint val);
 
 signals:
     void updateRSSCount(int);
 
 private slots:
-    void on_newFeedButton_clicked();
-    void refreshAllFeeds();
-    void on_markReadButton_clicked();
     void displayRSSListMenu(const QPoint &);
     void displayItemsListMenu(const QPoint &);
-    void renameSelectedRssFile();
-    void refreshSelectedItems();
     void copySelectedFeedsURL();
     void populateArticleList(QTreeWidgetItem *item);
     void refreshTextBrowser();
-    void updateFeedIcon(const QString &url, const QString &icon_path);
-    void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
-    void onFeedContentChanged(const QString &url);
-    void updateItemsInfos(const QList<QTreeWidgetItem *> &items);
-    void updateItemInfos(QTreeWidgetItem *item);
     void openSelectedArticlesUrls();
     void downloadSelectedTorrents();
-    void fillFeedsList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void askNewFolder();
-    void saveFoldersOpenState();
     void loadFoldersOpenState();
+
     void on_settingsButton_clicked();
     void on_rssDownloaderBtn_clicked();
+    void on_newFeedButton_clicked();
+    void on_markReadButton_clicked();
 
 private:
     static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
-    static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
+    QStringList getOpenFolderPaths() const;
+    RssFeedListWidgetItem* addItemToSelected(const Rss::FilePtr &file);
 
 private:
     Rss::ManagerPtr m_rssManager;
-    FeedListWidget *m_feedList;
     QListWidgetItem *m_currentArticle;
-    QShortcut *editHotkey;
-    QShortcut *deleteHotkey;
+    QShortcut *m_editHotkey;
+    QShortcut *m_deleteHotkey;
+    QShortcut *m_refreshHotkey;
 };
 
 #endif
