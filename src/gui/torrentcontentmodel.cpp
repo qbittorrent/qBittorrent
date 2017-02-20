@@ -32,6 +32,7 @@
 #include <QIcon>
 
 #include "guiiconprovider.h"
+#include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "torrentcontentmodel.h"
@@ -57,6 +58,7 @@ namespace
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining") })))
+    , m_fileAutoPrio (BitTorrent::FileAutoPriority::NameAsc)
 {
 }
 
@@ -145,9 +147,11 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
         TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         switch (index.column()) {
         case TorrentContentModelItem::COL_NAME:
+            if (value.toString() == item->name()) return false;
             item->setName(value.toString());
             break;
         case TorrentContentModelItem::COL_PRIO:
+            if (value.toInt() == item->priority()) return false;
             item->setPriority(value.toInt());
             break;
         default:
@@ -282,10 +286,11 @@ void TorrentContentModel::clear()
     beginResetModel();
     m_filesIndex.clear();
     m_rootItem->deleteAllChildren();
+    m_fileAutoPrio = Preferences::instance()->getAutoFilePriorities() ? BitTorrent::FileAutoPriority::NameAsc : BitTorrent::FileAutoPriority::None;
     endResetModel();
 }
 
-void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
+void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info, BitTorrent::FileAutoPriority prioType)
 {
     qDebug("setup model data called");
     const int filesCount = info.filesCount();
@@ -296,6 +301,9 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     // Initialize files_index array
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
+
+    BitTorrent::AutoFilePrioritizer filePrioritizer;
+    m_fileAutoPrio = Preferences::instance()->getAutoFilePriorities() ? prioType : BitTorrent::FileAutoPriority::None;
 
     TorrentContentModelFolder* currentParent;
     // Iterate over files
@@ -319,7 +327,19 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         TorrentContentModelFile* fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), currentParent, i);
         currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
+
+        if (BitTorrent::FileAutoPriority::None == m_fileAutoPrio)
+            continue;
+        else
+            filePrioritizer.AddFile(path, fileItem->size(), 0);
     }
+
+    if (BitTorrent::FileAutoPriority::None != m_fileAutoPrio) {
+        auto priorities = filePrioritizer.GetPriorities(m_fileAutoPrio);
+        for (int i = 0; i < priorities.size(); ++i)
+            m_filesIndex[i]->setPriority(priorities[i]);
+    }
+
     emit layoutChanged();
 }
 
@@ -338,4 +358,14 @@ void TorrentContentModel::selectNone()
     for (int i = 0; i < m_rootItem->childCount(); ++i)
         m_rootItem->child(i)->setPriority(prio::IGNORED);
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+}
+
+BitTorrent::FileAutoPriority TorrentContentModel::getAutoPriorityType() const
+{
+    return m_fileAutoPrio;
+}
+
+void TorrentContentModel::setAutoPriorityType(BitTorrent::FileAutoPriority autoPrio)
+{
+    m_fileAutoPrio = autoPrio;
 }

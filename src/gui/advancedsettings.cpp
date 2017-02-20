@@ -64,6 +64,7 @@ enum AdvSettingsRows
     LIST_REFRESH,
     RESOLVE_HOSTS,
     RESOLVE_COUNTRIES,
+    AUTO_FILE_PRIORITY,
     PROGRAM_NOTIFICATIONS,
     TORRENT_ADDED_NOTIFICATIONS,
     DOWNLOAD_TRACKER_FAVICON,
@@ -166,6 +167,9 @@ void AdvancedSettings::saveAdvancedSettings()
     // Announce IP
     QHostAddress addr(txtAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
+
+    // Auto file priorities
+    pref->setAutoFilePriorities(cb_auto_file_priority.isChecked());
 
     // Program notification
     MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
@@ -346,6 +350,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     txtAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &txtAnnounceIP);
+    // Auto file priority
+    cb_auto_file_priority.setChecked(pref->getAutoFilePriorities());
+    addRow(AUTO_FILE_PRIORITY, tr("Auto prioritize first files in the torrent's list"), &cb_auto_file_priority);
 
     // Program notifications
     const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();

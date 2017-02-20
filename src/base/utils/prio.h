@@ -28,51 +28,11 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TORRENTCONTENTMODELITEM_H
-#define TORRENTCONTENTMODELITEM_H
+#ifndef PRIO_H
+#define PRIO_H
 
-#include <QList>
-#include <QVariant>
-#include "base/utils/prio.h"
+namespace prio {
+enum FilePriority {IGNORED=0, NORMAL=1, HIGH=6, MAXIMUM=7, MIXED=-1};
+}
 
-class TorrentContentModelFolder;
-
-class TorrentContentModelItem {
-public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, COL_REMAINING, NB_COL};
-  enum ItemType { FileType, FolderType };
-
-  TorrentContentModelItem(TorrentContentModelFolder* parent);
-  virtual ~TorrentContentModelItem();
-
-  inline bool isRootItem() const { return !m_parentItem; }
-  TorrentContentModelFolder* parent() const;
-  virtual ItemType itemType() const = 0;
-
-  QString name() const;
-  void setName(const QString& name);
-
-  qulonglong size() const;
-  qreal progress() const;
-  qulonglong remaining() const;
-
-  int priority() const;
-  virtual void setPriority(int new_prio, bool update_parent = true) = 0;
-
-  int columnCount() const;
-  QVariant data(int column) const;
-  int row() const;
-
-protected:
-  TorrentContentModelFolder* m_parentItem;
-  // Root item members
-  QList<QVariant> m_itemData;
-  // Non-root item members
-  QString m_name;
-  qulonglong m_size;
-  qulonglong m_remaining;
-  int m_priority;
-  qreal m_progress;
-};
-
-#endif // TORRENTCONTENTMODELITEM_H
+#endif

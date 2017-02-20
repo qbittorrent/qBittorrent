@@ -46,6 +46,7 @@
 #include <QVector>
 #include <QWaitCondition>
 
+#include "base/bittorrent/torrenthandle.h"
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
 #include "base/types.h"
@@ -146,6 +147,7 @@ namespace BitTorrent
         QVector<int> filePriorities; // used if TorrentInfo is set
         bool ignoreShareRatio = false;
         bool skipChecking = false;
+        BitTorrent::FileAutoPriority autoPrioType;
     };
 
     struct TorrentStatusReport

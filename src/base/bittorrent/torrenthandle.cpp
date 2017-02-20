@@ -74,6 +74,7 @@ AddTorrentData::AddTorrentData()
     , hasSeedStatus(false)
     , skipChecking(false)
     , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
+    , autoPrioType(BitTorrent::FileAutoPriority::NameAsc)
 {
 }
 
@@ -90,7 +91,79 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , addPaused(params.addPaused)
     , filePriorities(params.filePriorities)
     , ratioLimit(params.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
+    , autoPrioType(params.autoPrioType)
 {
+}
+
+// AutoFilePrioritizer
+
+void AutoFilePrioritizer::AddFile(QString name, qlonglong size, qreal progress) {
+    m_entries.push_back({name, size, m_entries.size(), progress, prio::NORMAL});
+}
+
+QVector<int> AutoFilePrioritizer::GetPriorities(FileAutoPriority type)
+{
+    QVector<int> priorities;
+    if (m_entries.size() < 2) return priorities;
+
+    qSort(m_entries.begin(), m_entries.end(), [&type](const Entry& e1, const Entry& e2) {
+        using AutoPrio = BitTorrent::FileAutoPriority;
+        switch (type) {
+        case AutoPrio::NameAsc:
+            return e1.name.compare(e2.name, Qt::CaseInsensitive) < 0;
+        case AutoPrio::NameDesc:
+            return e1.name.compare(e2.name, Qt::CaseInsensitive) > 0;
+        case AutoPrio::SizeAsc:
+            return e1.size < e2.size;
+        case AutoPrio::SizeDesc:
+            return e1.size > e2.size;
+        default:
+            return e1.index < e2.index;
+        }
+    });
+
+    QVector<int> increased;
+    switch (m_entries.size()) {
+    case 2:
+        increased.push_back(prio::HIGH);
+        break;
+    case 3:
+        increased = QVector<int>({prio::MAXIMUM, prio::HIGH});
+        break;
+    default:
+        increased = QVector<int>({prio::MAXIMUM, prio::HIGH, prio::HIGH});
+    }
+
+    for (int i = 0; increased.size() && i < m_entries.size(); ++i) {
+        if (prio::IGNORED == m_entries[i].priority) continue;
+
+        if (1.0 == m_entries[i].progress) {
+            m_entries[i].priority = prio::NORMAL;
+            continue;
+        }
+
+        m_entries[i].priority = increased[0];
+        increased.pop_front();
+    }
+
+    qSort(m_entries.begin(), m_entries.end(), [&type](const Entry& e1, const Entry& e2) {
+        return e1.index < e2.index;
+    });
+
+    for (auto e : m_entries)
+        priorities.push_back(e.priority);
+
+    return priorities;
+}
+
+QVector<int> AutoFilePrioritizer::GetPriorities(FileAutoPriority type, const TorrentHandle* h)
+{
+    auto fileProgress = h->filesProgress();
+    AutoFilePrioritizer prioritizer;
+    for (int i = 0; i < h->filesCount(); ++i)
+        prioritizer.AddFile(h->fileName(i), h->fileSize(i), fileProgress[i]);
+
+    return prioritizer.GetPriorities(type);
 }
 
 // TorrentState
@@ -209,6 +282,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasMissingFiles(false)
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
+    , m_fileAutoPriority(data.autoPrioType)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -1598,6 +1672,14 @@ void TorrentHandle::handleFileCompletedAlert(libtorrent::file_completed_alert *p
             renameFile(p->index, name);
         }
     }
+
+    if (m_fileAutoPriority != FileAutoPriority::None && Preferences::instance()->getAutoFilePriorities()) {
+        auto priorities = AutoFilePrioritizer::GetPriorities(m_fileAutoPriority, this);
+        for (int i = 0; i < filesCount(); ++i)
+            setFilePriority(i, priorities[i]);
+    }
+
+    updateStatus();
 }
 
 void TorrentHandle::handleStatsAlert(libtorrent::stats_alert *p)
@@ -1915,4 +1997,12 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
         setFirstLastPiecePriority(true);
 
     updateStatus();
+}
+
+FileAutoPriority TorrentHandle::getFileAutoPriority() {
+    return m_fileAutoPriority;
+}
+
+void TorrentHandle::setFileAutoPriority(FileAutoPriority autoPrio) {
+    m_fileAutoPriority = autoPrio;
 }

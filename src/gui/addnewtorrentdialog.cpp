@@ -41,7 +41,8 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/preferences.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -120,6 +121,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent)
     editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
+
+    if (Preferences::instance()->getAutoFilePriorities())
+        connect(ui->contentTreeView->header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged()));
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
 }
@@ -613,6 +617,8 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&)
                 qDebug("Setting priority(%d) for file at row %d", prio, index.row());
                 m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), prio);
             }
+
+            m_contentModel->model()->setAutoPriorityType(BitTorrent::FileAutoPriority::None);
         }
     }
 }
@@ -717,6 +723,7 @@ void AddNewTorrentDialog::setupTreeview()
         // Prepare content tree
         m_contentModel = new TorrentContentFilterModel(this);
         connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
+        connect(m_contentModel->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), SLOT(dataChanged(const QModelIndex&, const QModelIndex&)));
         ui->contentTreeView->setModel(m_contentModel);
         m_contentDelegate = new PropListDelegate();
         ui->contentTreeView->setItemDelegate(m_contentDelegate);
@@ -724,7 +731,7 @@ void AddNewTorrentDialog::setupTreeview()
         connect(ui->contentTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContentTreeMenu(const QPoint &)));
 
         // List files in torrent
-        m_contentModel->model()->setupModelData(m_torrentInfo);
+        m_contentModel->model()->setupModelData(m_torrentInfo, getAutoPrioType());
         if (!m_headerState.isEmpty())
             ui->contentTreeView->header()->restoreState(m_headerState);
 
@@ -802,4 +809,27 @@ void AddNewTorrentDialog::setCommentText(const QString &str) const
 void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
 {
     m_torrentGuard->setAutoRemove(!checked);
+}
+
+void AddNewTorrentDialog::handleSortColumnChanged()
+{
+    m_contentModel->model()->clear();
+    m_contentModel->model()->setupModelData(m_torrentInfo, getAutoPrioType());
+    ui->contentTreeView->setExpanded(m_contentModel->index(0, 0), true);
+}
+
+BitTorrent::FileAutoPriority AddNewTorrentDialog::getAutoPrioType() const
+{
+    Qt::SortOrder order = ui->contentTreeView->header()->sortIndicatorOrder();
+    int column = ui->contentTreeView->header()->sortIndicatorSection();
+
+    if (column > 1) return BitTorrent::FileAutoPriority::None;
+
+    return static_cast<BitTorrent::FileAutoPriority>((column << 1) | order);
+}
+
+void AddNewTorrentDialog::dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+{
+    if (3 == topLeft.column() && m_contentModel)
+        m_contentModel->model()->setAutoPriorityType( BitTorrent::FileAutoPriority::None);
 }

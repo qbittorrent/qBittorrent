@@ -130,6 +130,7 @@ private:
 private slots:
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+    void dataChanged(const QModelIndex&, const QModelIndex&);
 };
 
 #endif // PROPERTIESWIDGET_H

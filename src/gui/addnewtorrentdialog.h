@@ -38,6 +38,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrenthandle.h"
 
 namespace BitTorrent
 {
@@ -82,9 +83,12 @@ private slots:
     void TMMChanged(int index);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
+    void handleSortColumnChanged();
 
     void accept() override;
     void reject() override;
+
+    void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
 
 private:
     explicit AddNewTorrentDialog(QWidget *parent = 0);
@@ -98,6 +102,7 @@ private:
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
     void setCommentText(const QString &str) const;
+    BitTorrent::FileAutoPriority getAutoPrioType() const;
 
     void showEvent(QShowEvent *event) override;
 
