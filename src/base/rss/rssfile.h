@@ -75,7 +75,11 @@ namespace Rss
     protected:
         friend class Folder;
 
-        Folder *m_parent = nullptr;
+        Folder *m_parent;
+        File()
+        {
+            m_parent = nullptr;
+        }
     };
 }
 

@@ -112,7 +112,11 @@ namespace BitTorrent
     struct TrackerInfo
     {
         QString lastMessage;
-        quint32 numPeers = 0;
+        quint32 numPeers;
+        TrackerInfo()
+        {
+            numPeers = 0;
+        }
     };
 
     class TorrentState
