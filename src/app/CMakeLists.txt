@@ -55,6 +55,7 @@ if (WIN32)
     else (MINGW)
         list (APPEND QBT_APP_SOURCES ../qbittorrent.rc)
     endif (MINGW)
+    list(APPEND QBT_APP_SOURCES ../qbittorent.exe.manifest)
 endif (WIN32)
 
 if (UNIX)
