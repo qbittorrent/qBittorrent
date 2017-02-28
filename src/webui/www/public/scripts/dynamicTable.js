@@ -851,7 +851,7 @@ var TorrentsTable = new Class({
 
                 if (td.getChildren('div').length) {
                     var div = td.getChildren('div')[0];
-                    var newWidth = td.offsetWidth - 5;
+                    var newWidth = 80;
                     if (div.lastWidth !== newWidth) {
                         div.setWidth(newWidth);
                         div.lastWidth = newWidth;
@@ -861,7 +861,7 @@ var TorrentsTable = new Class({
                 }
                 else
                     td.adopt(new ProgressBar(progressFormated.toFloat(), {
-                        'width' : td.offsetWidth - 5
+                        'width' : 80
                     }));
             };
 
