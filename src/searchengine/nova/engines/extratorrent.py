@@ -1,4 +1,4 @@
-#VERSION: 3.00
+#VERSION: 3.10
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -33,7 +33,7 @@ from helpers import download_file, retrieve_url
 
 class extratorrent(object):
     """ Search engine class """
-    url = 'https://extratorrent.cc'
+    url = 'https://extra.to'
     name = 'ExtraTorrent'
     supported_categories = {'all'       : '0',
                             'movies'    : '4',
@@ -59,8 +59,8 @@ class extratorrent(object):
         for item in itemlist:
             current_item = current_item = {"engine_url" : self.url}
             current_item['name'] = item.getElementsByTagName('title')[0].childNodes[0].data
-            current_item["link"] = item.getElementsByTagName('enclosure')[0].attributes['url'].value
-            current_item["desc_link"] = item.getElementsByTagName('link')[0].childNodes[0].data
+            current_item["link"] = item.getElementsByTagName('enclosure')[0].attributes['url'].value.replace('extratorrent.cc', 'extra.to')
+            current_item["desc_link"] = item.getElementsByTagName('link')[0].childNodes[0].data.replace('extratorrent.cc', 'extra.to')
             current_item["size"] = item.getElementsByTagName('size')[0].childNodes[0].data
             current_item["leech"] = item.getElementsByTagName('leechers')[0].childNodes[0].data
             if not current_item["leech"].isdigit():
