@@ -66,7 +66,7 @@ void ProgramUpdater::checkForUpdates()
                 RSS_URL, false, 0, false,
                 // Don't change this User-Agent. In case our updater goes haywire,
                 // the filehost can identify it and contact us.
-                QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION));
+                "qBittorrent/" QBT_VERSION " ProgramUpdater (www.qbittorrent.org)");
     connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(rssDownloadFinished(QString,QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(rssDownloadFailed(QString,QString)));
 }
@@ -137,9 +137,9 @@ void ProgramUpdater::updateProgram()
 bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
     QRegExp regVer("([0-9.]+)");
-    if (regVer.indexIn(QString(VERSION)) >= 0) {
+    if (regVer.indexIn(QBT_VERSION) >= 0) {
         QString localVersion = regVer.cap(1);
-        qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << VERSION;
+        qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
         QStringList remoteParts = remoteVersion.split('.');
         QStringList localParts = localVersion.split('.');
         for (int i = 0; i<qMin(remoteParts.size(), localParts.size()); ++i) {
@@ -153,7 +153,7 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
             return true;
         // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
         QRegExp regDevel("(alpha|beta|rc)");
-        if (regDevel.indexIn(VERSION) >= 0)
+        if (regDevel.indexIn(QBT_VERSION) >= 0)
             return true;
     }
     return false;

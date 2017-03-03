@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
     }
 
     // Set environment variable
-    if (!qputenv("QBITTORRENT", QByteArray(VERSION)))
+    if (!qputenv("QBITTORRENT", QBT_VERSION))
         std::cerr << "Couldn't set environment variable...\n";
 
 #ifndef DISABLE_GUI
@@ -359,7 +359,7 @@ void sigAbnormalHandler(int signum)
     const char str1[] = "\n\n*************************************************************\nCatching signal: ";
     const char *sigName = sysSigName[signum];
     const char str2[] = "\nPlease file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
-    "qBittorrent version: " VERSION "\n";
+    "qBittorrent version: " QBT_VERSION "\n";
     write(STDERR_FILENO, str1, strlen(str1));
     write(STDERR_FILENO, sigName, strlen(sigName));
     write(STDERR_FILENO, str2, strlen(str2));
@@ -380,7 +380,7 @@ void showSplashScreen()
 {
     QPixmap splash_img(":/icons/skin/splash.png");
     QPainter painter(&splash_img);
-    QString version = VERSION;
+    QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
@@ -393,7 +393,7 @@ void showSplashScreen()
 
 void displayVersion()
 {
-    std::cout << qPrintable(qApp->applicationName()) << " " << VERSION << std::endl;
+    std::cout << qPrintable(qApp->applicationName()) << " " << QBT_VERSION << std::endl;
 }
 
 QString makeUsage(const QString &prg_name)
