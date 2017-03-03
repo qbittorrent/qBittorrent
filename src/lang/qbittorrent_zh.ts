@@ -69,7 +69,7 @@
     <message>
         <location filename="../gui/about.ui" line="329"/>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent 基于以下库编译：</translation>
+        <translation>qBittorrent 基于以下库：</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="171"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="125"/>
         <source>Torrent settings</source>
-        <translation>Torrent 设置</translation>
+        <translation>种子设置</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="131"/>
@@ -122,17 +122,17 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
         <source>Start torrent</source>
-        <translation>开始 torrent</translation>
+        <translation>开始种子</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="201"/>
         <source>Torrent information</source>
-        <translation>Torrent 信息</translation>
+        <translation>种子信息信息</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="175"/>
         <source>Skip hash check</source>
-        <translation>跳过哈希检查</translation>
+        <translation>跳过哈希校验</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="254"/>
@@ -157,12 +157,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
         <source>Torrent Management Mode:</source>
-        <translation>Torrent 管理模式：</translation>
+        <translation>种子管理模式：</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>自动模式表示不同的 torrent 的配置信息（例如保存路径）将由相关的分类决定</translation>
+        <translation>自动模式意味不同的种子的配置信息（例如保存路径）将由其相关的分类决定</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="30"/>
@@ -182,7 +182,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
         <source>Do not delete .torrent file</source>
-        <translation>不要删除 .torrent 文件</translation>
+        <translation>不删除 .torrent 文件</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="373"/>
@@ -209,12 +209,12 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="217"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="680"/>
         <source>I/O Error</source>
-        <translation>I/O 错误</translation>
+        <translation>读写错误</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="225"/>
         <source>Invalid torrent</source>
-        <translation>无效 torrent</translation>
+        <translation>无效种子</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="237"/>
@@ -249,12 +249,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="211"/>
         <source>The torrent file &apos;%1&apos; does not exist.</source>
-        <translation>Torrent 文件 &apos;%1&apos; 不存在。</translation>
+        <translation>种子文件 &apos;%1&apos; 不存在。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="217"/>
         <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation>Torrent 文件 &apos;%1&apos; 无法从磁盘中读取，或许你没有足够的权限访问。</translation>
+        <translation>种子文件 &apos;%1&apos; 无法从磁盘中读取，或许你没有足够的权限访问。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="225"/>
@@ -262,45 +262,45 @@
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
 &apos; characters. They insert a newline.</comment>
-        <translation>加载 torrent 失败：%1。
+        <translation>种子加载失败：%1。
 错误：%2</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="237"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
         <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation>此 torrent 已经在下载列表中。Trackers 将不会合并，因为它是一个私有 torrent。</translation>
+        <translation>此种子已经在下载列表中。Trackers 将不会合并，因为它是一个私有 torrent。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="242"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation>此  torrent 已经在下载列表中。Trackers 已合并。</translation>
+        <translation>此种子已经在下载列表中。Trackers 已合并。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="246"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="280"/>
         <source>Cannot add torrent</source>
-        <translation>无法添加 torrent</translation>
+        <translation>无法添加种子</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="246"/>
         <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation>无法添加此 torrent。也许它已是添加状态。</translation>
+        <translation>无法添加此种子。或许它正在被添加。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="260"/>
         <source>This magnet link was not recognized</source>
-        <translation>该磁力链接未被识别</translation>
+        <translation>无法解析该磁力链接</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="276"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation>Magnet 链接已经在下载列表中。Trackers 已合并。</translation>
+        <translation>该磁力链接已经在下载列表中。Trackers 已合并。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="280"/>
         <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation>无法添加此 torrent。也许它已是添加状态。</translation>
+        <translation>无法添加此种子。或许它正在被添加。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
@@ -310,7 +310,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="297"/>
         <source>Retrieving metadata...</source>
-        <translation>检索元数据...</translation>
+        <translation>寻找元数据...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="381"/>
@@ -369,7 +369,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="590"/>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation>优先级</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="681"/>
@@ -384,7 +384,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Metadata retrieval complete</source>
-        <translation>元数据检索完成</translation>
+        <translation>元数据获取完成</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="747"/>
@@ -397,7 +397,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="268"/>
         <source>Disk write cache size</source>
-        <translation>磁盘写入缓存大小</translation>
+        <translation>磁盘缓存大小</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="199"/>
@@ -407,17 +407,17 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="288"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>出端口（最小） [0: 禁用]</translation>
+        <translation>最小传出连接端口 [0: 禁用]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="293"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>出端口（最大） [0: 禁用]</translation>
+        <translation>最大传出连接端口 [0: 禁用]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="296"/>
         <source>Recheck torrents on completion</source>
-        <translation>完成后再次核对 torrent</translation>
+        <translation>完成后再次核对种子</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="302"/>
@@ -476,7 +476,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="274"/>
         <source>Disk cache expiry interval</source>
-        <translation>磁盘缓存到期间隔</translation>
+        <translation>磁盘缓存刷新间隔</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="277"/>
@@ -507,7 +507,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="342"/>
         <source>Network Interface (requires restart)</source>
-        <translation>网络界面（需要重启）</translation>
+        <translation>网络接口（需要重启）</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="345"/>
@@ -527,33 +527,33 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="359"/>
         <source>Display notifications for added torrents</source>
-        <translation>为添加的 torrents 显示通知</translation>
+        <translation>添加种子时显示通知</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="362"/>
         <source>Download tracker&apos;s favicon</source>
-        <translation type="unfinished"></translation>
+        <translation>获取Tracker服务器图标</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="382"/>
         <source>Confirm torrent recheck</source>
-        <translation>确认再次核对 torrent</translation>
+        <translation>确定再次核对 torrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="385"/>
         <source>Exchange trackers with other peers</source>
-        <translation>与其他用户交换 trackers</translation>
+        <translation>与其他用户交换Tracker服务器</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="388"/>
         <source>Always announce to all trackers</source>
-        <translation>总是向所有 trackers 宣布</translation>
+        <translation>总是向所有Trackers发布</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="318"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
-        <translation>任何接口</translation>
+        <translation>所有接口</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="283"/>
@@ -564,22 +564,22 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="313"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation>最大半开放连接数 [0: 无限制]</translation>
+        <translation>最大半开连接数 [0: 无限制]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="351"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>向 trackers 报告 IP 地址（需要重启）</translation>
+        <translation>向Trackers报告的IP地址（需要重启）</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source>Enable embedded tracker</source>
-        <translation>启用内置 tracker</translation>
+        <translation>启用内置Tracker服务器</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="371"/>
         <source>Embedded tracker port</source>
-        <translation>内置 tracker 端口</translation>
+        <translation>内置Tracker服务器端口</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="374"/>
@@ -598,22 +598,22 @@ Error: %2</source>
         <location filename="../app/application.cpp" line="132"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
-        <translation>qBittorrent %1 已开始</translation>
+        <translation>qBittorrent %1 已启动</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="260"/>
         <source>Torrent: %1, running external program, command: %2</source>
-        <translation>Torrent：%1，运行外部程序，指令：%2</translation>
+        <translation>种子：%1，运行外部命令，命令行：%2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="269"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation>Torrent：%1，运行外部程序的指令过长（长度 &gt; %2），执行失败。</translation>
+        <translation>种子：%1，运行外部命令过长（长度 &gt; %2），执行失败。</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="319"/>
         <source>Torrent: %1, sending mail notification</source>
-        <translation>Torrent：%1，发送邮件提醒</translation>
+        <translation>种子：%1，发送邮件提醒</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="424"/>
@@ -623,7 +623,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="425"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>欲通过网页端控制 qBittorrent，你需要访问 http://localhost:%1</translation>
+        <translation>如果想通过网页端控制qBittorrent，你需要访问 http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="426"/>
@@ -633,17 +633,17 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="429"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>网络端管理员密码设置为默认密码：%1</translation>
+        <translation>网页端管理员密码设置为默认密码：%1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="430"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>存在安全风险！请考虑在设置更改密码！</translation>
+        <translation>存在安全风险！请考虑重新更改密码！</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="602"/>
         <source>Saving torrent progress...</source>
-        <translation>保存 torrent 进程...</translation>
+        <translation>保存种子进度...</translation>
     </message>
 </context>
 <context>
@@ -768,7 +768,7 @@ Error: %2</source>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
-        <translation>将匹配第 1 季中的 2、5、8 到 15、30 及之后的剧集</translation>
+        <translation>将匹配第 1 季中的 2、5、8 和 15、30 及之后的剧集</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
@@ -875,7 +875,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
         <source>Where would you like to save the list?</source>
-        <translation>您想将该列表保存在？</translation>
+        <translation>您想将该列表保存到...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
@@ -885,7 +885,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
         <source>I/O Error</source>
-        <translation>I/O 错误</translation>
+        <translation>读写错误</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="418"/>
@@ -963,32 +963,32 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="475"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>更改 PeX 支持状态需要重启</translation>
+        <translation>更改 PeX 支持状态后需要重启</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1258"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>内置 Tracker [开]</translation>
+        <translation>内置 Tracker服务器 [开]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1260"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>无法启动内置 tracker！</translation>
+        <translation>无法启动内置 Tracker服务器！</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1263"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>内置 Tracker [关]</translation>
+        <translation>内置 Tracker服务器 [关]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1309"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removing...</source>
-        <translation>&apos;%1&apos; 达到了您设定的最大比率，正在删除...</translation>
+        <translation>&apos;%1&apos; 达到了您设定的最大分享率，正在删除...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1315"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Pausing...</source>
-        <translation>&apos;%1&apos; 达到了您设定的最大比率，暂停中...</translation>
+        <translation>&apos;%1&apos; 达到了您设定的最大分享率，暂停中...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1927"/>
@@ -1021,28 +1021,28 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2293"/>
         <source>Encryption support [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>加密方式 [%1]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2294"/>
         <source>FORCED</source>
-        <translation type="unfinished"></translation>
+        <translation>强制启用</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2499"/>
         <source>Anonymous mode [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>匿名模式 [%1]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2885"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
-        <translation>无法解析 &apos;%1&apos; torrent 文件。</translation>
+        <translation>无法解析 &apos;%1&apos; 种子文件。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3011"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
-        <translation>递归下载包含在 torrent ‘%2’ 内的文件 &apos;%1&apos;</translation>
+        <translation>递归下载包含在种子 ‘%2’ 内的文件 &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3290"/>
@@ -1070,13 +1070,13 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="3472"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
-        <translation>qBittorrent 监听接口 %1 端口：%2/%3 失败。原因：%4。</translation>
+        <translation>qBittorrent 尝试监听接口 %1 的端口：%2/%3 失败。原因：%4。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1431"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; 从传输列表及硬盘被移除。</translation>
+        <translation>&apos;%1&apos; 从传输列表及硬盘中被移除。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1433"/>
@@ -1095,7 +1095,7 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="2033"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation>qBittorrent 试图监听任何接口上的端口：%1</translation>
+        <translation>qBittorrent 尝试监听所有接口上的端口：%1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1975"/>
@@ -1107,12 +1107,12 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="2044"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>qBittorrent 试图监听接口 %1 端口：%2</translation>
+        <translation>qBittorrent 尝试监听接口 %1 的端口：%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="446"/>
         <source>DHT support [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT支持 [%1]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="446"/>
@@ -1120,7 +1120,7 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="2294"/>
         <location filename="../base/bittorrent/session.cpp" line="2499"/>
         <source>ON</source>
-        <translation type="unfinished"></translation>
+        <translation>开启</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="446"/>
@@ -1128,17 +1128,17 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="2294"/>
         <location filename="../base/bittorrent/session.cpp" line="2499"/>
         <source>OFF</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="461"/>
         <source>Local Peer Discovery support [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>本地种源发现 []</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="487"/>
         <source>Restart is required to toggle Tracker Exchange support</source>
-        <translation type="unfinished"></translation>
+        <translation>更改Tracker交换设置需重启qBittorrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2009"/>
@@ -1176,7 +1176,7 @@ Error: %2</source>
         <location filename="../base/bittorrent/session.cpp" line="3058"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation>无法恢复 torrent：&apos;%1&apos;。</translation>
+        <translation>无法继续种子：&apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3117"/>
@@ -1192,7 +1192,7 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3327"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
-        <translation>不能添加 torrent：&apos;%1&apos;。原因：%2</translation>
+        <translation>不能添加种子：&apos;%1&apos;。原因：%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3273"/>
@@ -1209,7 +1209,7 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3375"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
-        <translation>出现 I/O 错误，&apos;%1&apos; 暂停。%2</translation>
+        <translation>出现读写错误，&apos;%1&apos; 暂停。%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3383"/>
@@ -1263,17 +1263,17 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/torrenthandle.cpp" line="1388"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation>无法移动 torrent：&apos;%1&apos;。原因：%2</translation>
+        <translation>无法移动种子：&apos;%1&apos;。原因：%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandle.cpp" line="1540"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation>文件大小与 torrent &apos;%1&apos; 不匹配，暂停中。</translation>
+        <translation>文件大小与种子 &apos;%1&apos; 不匹配，暂停中。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandle.cpp" line="1546"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation>Torrent &apos;%1&apos; 的快速恢复数据被拒绝，原因：%2。重新检查中...</translation>
+        <translation>种子&apos;%1&apos; 的快速恢复数据被拒绝，原因：%2。重新检查中...</translation>
     </message>
 </context>
 <context>
@@ -1326,12 +1326,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="329"/>
         <source>Pause torrents</source>
-        <translation>暂停 torrents</translation>
+        <translation>暂停种子</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="330"/>
         <source>Delete torrents</source>
-        <translation>删除 torrents</translation>
+        <translation>删除种子</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="357"/>
@@ -1346,7 +1346,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="360"/>
         <source>Invalid category name</source>
-        <translation>无效分类名</translation>
+        <translation>分类名无效</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="361"/>
@@ -1370,7 +1370,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/cookiesdialog.ui" line="14"/>
         <source>Manage Cookies</source>
-        <translation>管理  </translation>
+        <translation>管理Cookies</translation>
     </message>
 </context>
 <context>
@@ -1477,7 +1477,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation>尝试写入日志文件时出现错误。已禁用写入日志。</translation>
+        <translation>尝试写入日志文件时出现错误。写入日志已禁用。</translation>
     </message>
 </context>
 <context>
@@ -1487,7 +1487,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="159"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="267"/>
         <source>I/O Error: Could not open ip filter file in read mode.</source>
-        <translation>I/O 错误：无法在读取模式下打开 IP 过滤规则文件。</translation>
+        <translation>读写错误：无法在读取模式下打开 IP 过滤规则文件。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="278"/>
@@ -1620,17 +1620,17 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="55"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>每个 torrent 的最大连接数限制必须大于 0 或禁用。</translation>
+        <translation>每个种子的最大连接数限制必须大于 0 或禁用。</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="56"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>每个 torrent 的最大上传线程数限制必须大于 0 或禁用。</translation>
+        <translation>每个种子的最大上传线程数限制必须大于 0 或禁用。</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
+        <translation>无法保存程序偏好选项，可能是暂时无法连接到 qBttorrent。</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="58"/>
@@ -1650,7 +1650,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="68"/>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>登录失败，可能是无法连接到 qBttorrent。</translation>
+        <translation>登录失败，可能是暂时无法连接到 qBttorrent。</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="69"/>
@@ -1706,7 +1706,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../webui/extra_translations.h" line="116"/>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>上传 Torrents</translation>
+        <translation>上传种子</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="78"/>
@@ -1741,12 +1741,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="84"/>
         <source>Active</source>
-        <translation>活动</translation>
+        <translation>活跃</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="85"/>
         <source>Inactive</source>
-        <translation>非活动</translation>
+        <translation>非活跃</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="86"/>
@@ -1766,12 +1766,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="90"/>
         <source>Run an external program on torrent completion</source>
-        <translation>Torrent 完成时运行外部程序</translation>
+        <translation>种子完成时运行外部程序</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="91"/>
         <source>Enable bandwidth management (uTP)</source>
-        <translation>启用宽带管理 (uTP)</translation>
+        <translation>启用uTP带宽管理</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="92"/>
@@ -1905,17 +1905,17 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="42"/>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>从 URL 或磁力链接下载 Torrents</translation>
+        <translation>从 URL 或磁力链接获取种子</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="44"/>
         <source>Upload local torrent</source>
-        <translation>上传本地的 torrent</translation>
+        <translation>上传本地的种子</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="46"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>你确定要从传输列表中删除选中的 torrents 吗？</translation>
+        <translation>你确定要从传输列表中删除选中的种子吗？</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="61"/>
@@ -1925,7 +1925,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="62"/>
         <source>qBittorrent client is not reachable</source>
-        <translation>无法访问 qBittorrent 客户端</translation>
+        <translation>无法连接 qBittorrent 客户端</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="63"/>
@@ -1940,12 +1940,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../webui/extra_translations.h" line="65"/>
         <source>Torrent path</source>
-        <translation>Torrent 路径</translation>
+        <translation>种子路径</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="66"/>
         <source>Torrent name</source>
-        <translation>Torrent 名称</translation>
+        <translation>种子名称</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="67"/>
@@ -2120,7 +2120,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="415"/>
         <source>Manage stored network cookies</source>
-        <translation>管理存储的网络  cookies</translation>
+        <translation>管理存储的网络 Cookies</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="431"/>
@@ -2175,7 +2175,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="399"/>
         <source>&amp;Statistics</source>
-        <translation>统计</translation>
+        <translation>统计状态</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="404"/>
@@ -2252,7 +2252,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="201"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation>添加 Torrent 链接...</translation>
+        <translation>添加种子链接...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="334"/>
@@ -2298,8 +2298,8 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/mainwindow.cpp" line="388"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent 不是打开 torrent 文件或磁力链接的默认应用程序。
-您想用 qBittorrent 打开 torrent 文件或磁力链接吗？</translation>
+        <translation>qBittorrent 不是当前打开 torrent 文件或磁力链接的默认应用程序。
+您想用 qBittorrent 来打开 torrent 文件或磁力链接吗？</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="470"/>
@@ -2378,12 +2378,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="734"/>
         <source>Failed to add torrent: %1</source>
-        <translation>无法添加 torrent：%1</translation>
+        <translation>无法添加种子：%1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="741"/>
         <source>Torrent added</source>
-        <translation>Torrent 已添加</translation>
+        <translation>种子已添加</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="741"/>
@@ -2400,7 +2400,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../gui/mainwindow.cpp" line="753"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>I/O 错误</translation>
+        <translation>读写错误</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="814"/>
@@ -2493,13 +2493,13 @@ Do you want to download %1?</source>
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
  Reason: disk is full.</comment>
-        <translation>Torrent &apos;%1&apos; 出现了一个 I/O 错误。
+        <translation>Torrent &apos;%1&apos; 出现了一个读写错误。
  原因: %2</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="814"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
-        <translation>Torrent &apos;%1&apos; 包含多个 torrent 文件，您想用它们下载吗？</translation>
+        <translation>种子&apos;%1&apos; 包含多个种子文件，您想用它们下载吗？</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="829"/>
@@ -2571,7 +2571,7 @@ You are already using the latest version.</source>
         <location filename="../gui/mainwindow.cpp" line="1819"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>不能下载 Python 安装程序，原因：%1。
+        <translation>无法下载 Python 安装程序，原因：%1。
 请手动安装。</translation>
     </message>
     <message>
@@ -2614,7 +2614,7 @@ Please install it manually.</source>
         <location filename="../gui/mainwindow.cpp" line="1312"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1, U: %2] qBittorrent %3</translation>
+        <translation>[↓: %1, ↑: %2] qBittorrent %3</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1407"/>
@@ -2636,12 +2636,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1138"/>
         <source>Open Torrent Files</source>
-        <translation>打开 Torrent 文件</translation>
+        <translation>打开种子文件</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1139"/>
         <source>Torrent Files</source>
-        <translation>Torrent 文件</translation>
+        <translation>种子文件</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1174"/>
@@ -2707,7 +2707,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="104"/>
         <source>I/O Error</source>
-        <translation>I/O 错误</translation>
+        <translation>读写错误</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="117"/>
@@ -2737,7 +2737,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Venezuela, Bolivarian Republic of</source>
-        <translation>委內瑞拉</translation>
+        <translation>委内瑞拉</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="382"/>
@@ -2748,7 +2748,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../base/net/geoipmanager.cpp" line="392"/>
         <location filename="../base/net/geoipmanager.cpp" line="396"/>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation>未知</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="142"/>
@@ -4092,7 +4092,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="198"/>
         <source>Confirm when deleting torrents</source>
-        <translation>删除 torrents 时进行确认</translation>
+        <translation>删除种子时进行确认</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="208"/>
@@ -4171,7 +4171,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="368"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation>当有 torrents 处于活动状态时确认退出</translation>
+        <translation>当有种子处于活动状态时确认退出</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="378"/>
@@ -4237,7 +4237,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="479"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation>当 torrents 处于活动状态时禁止系统休眠</translation>
+        <translation>当有种子处于活动状态时禁止系统休眠</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="489"/>
@@ -4306,7 +4306,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="722"/>
         <source>Should the .torrent file be deleted after adding it</source>
-        <translation>在添加 .torrent 文件后删除该文件</translation>
+        <translation>在添加 .torrent 文件后删除该种子文件</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="725"/>
@@ -5066,7 +5066,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1647"/>
         <source>This is not a valid SSL key.</source>
-        <translation>这不是有效的 SSL 密钥。</translation>
+        <translation>不是有效的 SSL 密钥。</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1666"/>
@@ -7190,7 +7190,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache hits:</source>
-        <translation>读缓存次数：</translation>
+        <translation>读缓存生效率：</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
