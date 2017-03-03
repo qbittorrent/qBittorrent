@@ -269,12 +269,12 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="237"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
         <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation>Torrent 已經在下載清單裡了。追蹤者不會被合併，因為它是一個私人的 torrent。</translation>
+        <translation>Torrent 已經在下載清單裡了。Tracker 不會被合併，因為它是一個私人的 torrent。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="242"/>
         <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation>Torrent 已經在下載清單裡了。追蹤者已被合併。</translation>
+        <translation>Torrent 已經在下載清單裡了。Tracker 已被合併。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="246"/>
@@ -295,7 +295,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="276"/>
         <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation>磁性連結已經在下載清單裡了。追蹤者已被合併。</translation>
+        <translation>磁性連結已經在下載清單裡了。Tracker 已被合併。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="280"/>
@@ -454,18 +454,18 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="247"/>
         <source>qBittorrent Section</source>
-        <translation>qBittorrent 小節</translation>
+        <translation>qBittorrent 部份</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="249"/>
         <location filename="../gui/advancedsettings.cpp" line="254"/>
         <source>Open documentation</source>
-        <translation>開啟文件</translation>
+        <translation>開啟說明文件</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="252"/>
         <source>libtorrent Section</source>
-        <translation>libtorrent 小節</translation>
+        <translation>libtorrent 部份</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="273"/>
@@ -532,7 +532,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="362"/>
         <source>Download tracker&apos;s favicon</source>
-        <translation>下載追蹤者的 favicon</translation>
+        <translation>下載Tracker的圖示</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="382"/>
@@ -542,12 +542,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="385"/>
         <source>Exchange trackers with other peers</source>
-        <translation>和其他下載者交換追蹤者</translation>
+        <translation>和其他下載者交換Tracker</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="388"/>
         <source>Always announce to all trackers</source>
-        <translation>總是發佈到全部的追蹤者</translation>
+        <translation>總是發佈到全部的Tracker</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="318"/>
@@ -569,17 +569,17 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="351"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>回報至追蹤者的 IP 位置 (需要重新啟動)</translation>
+        <translation>回報至Tracker的 IP 位置 (需要重新啟動)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source>Enable embedded tracker</source>
-        <translation>啟用嵌入追蹤者</translation>
+        <translation>啟用嵌入Tracker</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="371"/>
         <source>Embedded tracker port</source>
-        <translation>嵌入追蹤者埠</translation>
+        <translation>嵌入Tracker埠</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="374"/>
@@ -968,17 +968,17 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1258"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>嵌入式追蹤者 [開啟]</translation>
+        <translation>嵌入式Tracker [開啟]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1260"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>無法開始嵌入追蹤者！</translation>
+        <translation>無法開始嵌入Tracker！</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1263"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>嵌入式追蹤者 [關閉]</translation>
+        <translation>嵌入式Tracker [關閉]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1309"/>
@@ -1138,7 +1138,7 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="487"/>
         <source>Restart is required to toggle Tracker Exchange support</source>
-        <translation>切換追蹤者交換支援需要重新啟動</translation>
+        <translation>切換Tracker交換支援需要重新啟動</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2009"/>
@@ -1155,12 +1155,12 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2796"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>追蹤者「%1」已加入到 torrent「%2」中</translation>
+        <translation>Tracker「%1」已加入到 torrent「%2」中</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2806"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
-        <translation>追蹤者「%1」已被從 torrent「%2」中刪除</translation>
+        <translation>Tracker 「%1」已被從 torrent「%2」中刪除</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2821"/>
@@ -4581,7 +4581,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1633"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>除此之外，代理伺服器僅用於追蹤者連線</translation>
+        <translation>除此之外，代理伺服器僅用於 Tracker 連線</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1636"/>
@@ -4626,7 +4626,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1774"/>
         <source>Apply to trackers</source>
-        <translation>套用到追蹤者</translation>
+        <translation>套用到 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1832"/>
@@ -4838,7 +4838,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2543"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>自動新增這些追蹤者到新的下載中：</translation>
+        <translation>自動新增這些 Tracker 到新的下載中：</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2616"/>
@@ -4963,7 +4963,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="255"/>
         <source>%T: Current tracker</source>
-        <translation>%T：目前的追蹤者</translation>
+        <translation>%T：目前的 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="256"/>
@@ -5656,7 +5656,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="51"/>
         <source>Trackers</source>
-        <translation>追蹤者</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="55"/>
@@ -7053,12 +7053,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="71"/>
         <source>Tracker Upload</source>
-        <translation>追蹤者上傳</translation>
+        <translation>Tracker 上傳</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="72"/>
         <source>Tracker Download</source>
-        <translation>追蹤者下載</translation>
+        <translation>Tracker 下載</translation>
     </message>
 </context>
 <context>
@@ -7136,12 +7136,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Tracker Upload</source>
-        <translation>追蹤者上傳</translation>
+        <translation>Tracker上傳</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>Tracker Download</source>
-        <translation>追蹤者下載</translation>
+        <translation>Tracker下載</translation>
     </message>
 </context>
 <context>
@@ -7570,7 +7570,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="110"/>
         <source>Tracker</source>
-        <translation>追蹤者</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="111"/>
@@ -7668,7 +7668,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="449"/>
         <source>Trackerless (0)</source>
-        <translation>缺少追蹤者 (0)</translation>
+        <translation>缺少 Tracker (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="452"/>
@@ -7684,7 +7684,7 @@ No further notices will be issued.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="499"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="554"/>
         <source>Trackerless (%1)</source>
-        <translation>缺少追蹤者 (%1)</translation>
+        <translation>缺少 Tracker (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="505"/>
@@ -7784,58 +7784,58 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <source>Tracker URL:</source>
-        <translation>追蹤者 URL：</translation>
+        <translation>Tracker URL：</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="380"/>
         <source>Tracker editing</source>
-        <translation>編輯追蹤者</translation>
+        <translation>編輯 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="386"/>
         <location filename="../gui/properties/trackerlist.cpp" line="397"/>
         <source>Tracker editing failed</source>
-        <translation>編輯追蹤者失敗</translation>
+        <translation>編輯 Tracker 失敗</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="386"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation>無效的追蹤者 URL</translation>
+        <translation>無效的 Tracker URL</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="397"/>
         <source>The tracker URL already exists.</source>
-        <translation>追蹤者 URL 已經存在</translation>
+        <translation>Tracker URL 已經存在</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="448"/>
         <source>Add a new tracker...</source>
-        <translation>增加新追蹤者…</translation>
+        <translation>增加新的 Tracker…</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="454"/>
         <source>Copy tracker URL</source>
-        <translation>複製追蹤者 URL</translation>
+        <translation>複製 Tracker URL</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="455"/>
         <source>Edit selected tracker URL</source>
-        <translation>編輯選取的追蹤者 URL</translation>
+        <translation>編輯選取的 Tracker URL</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="460"/>
         <source>Force reannounce to selected trackers</source>
-        <translation>強制再次發佈到被選的追蹤者</translation>
+        <translation>強制再次發佈到被選的 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="462"/>
         <source>Force reannounce to all trackers</source>
-        <translation>強制再次發佈到所有追蹤者</translation>
+        <translation>強制再次發佈到所有 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="453"/>
         <source>Remove tracker</source>
-        <translation>移除追蹤者</translation>
+        <translation>移除 Tracker</translation>
     </message>
 </context>
 <context>
@@ -7843,12 +7843,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>增加追蹤者對話框</translation>
+        <translation>增加 Tracker 對話框</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>要增加的追蹤者清單 (一行一個)：</translation>
+        <translation>要增加的 Tracker 清單 (一行一個)：</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/properties/trackersadditiondlg.ui" line="44"/>
@@ -7873,7 +7873,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="117"/>
         <source>No additional trackers were found.</source>
-        <translation>沒有找到額外的追蹤者。</translation>
+        <translation>沒有找到額外的 Tracker。</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
@@ -7883,7 +7883,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondlg.cpp" line="125"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>無法下載追蹤者清單，原因：%1</translation>
+        <translation>無法下載 Tracker 清單，原因：%1</translation>
     </message>
 </context>
 <context>
@@ -8002,7 +8002,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="834"/>
         <source>Trackers</source>
-        <translation>追蹤者</translation>
+        <translation>Tracker</translation>
     </message>
 </context>
 <context>
@@ -8320,12 +8320,12 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/login.ui" line="14"/>
         <location filename="../gui/login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>追蹤者驗證</translation>
+        <translation>Tracker 驗證</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="64"/>
         <source>Tracker:</source>
-        <translation>追蹤者：</translation>
+        <translation>Tracker：</translation>
     </message>
     <message>
         <location filename="../gui/login.ui" line="86"/>
@@ -8414,7 +8414,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="78"/>
         <source>Tracker URLs:</source>
-        <translation>追蹤者 URL：</translation>
+        <translation>Tracker URL：</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="88"/>
@@ -8430,7 +8430,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/torrentcreatordlg.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>您可以用一行空白行分離追蹤者線程╱群組。</translation>
+        <translation>您可以用一行空白行分離 Tracker 階層╱群組。</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="148"/>
