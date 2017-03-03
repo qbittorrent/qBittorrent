@@ -80,7 +80,7 @@ void DNSUpdater::checkPublicIP()
 
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
                 "http://checkip.dyndns.org", false, 0, false,
-                "qBittorrent/" QBT_VERSION);
+                "qBittorrent/" QBT_VERSION_2);
     connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipRequestFinished(QString, QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipRequestFailed(QString, QString)));
 
@@ -127,7 +127,7 @@ void DNSUpdater::updateDNSService()
     m_lastIPCheckTime = QDateTime::currentDateTime();
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
                 getUpdateUrl(), false, 0, false,
-                "qBittorrent/" QBT_VERSION);
+                "qBittorrent/" QBT_VERSION_2);
     connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipUpdateFinished(QString, QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipUpdateFailed(QString, QString)));
 }

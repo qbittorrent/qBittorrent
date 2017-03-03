@@ -91,7 +91,7 @@
 
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
-static const char USER_AGENT[] = "qBittorrent " VERSION;
+static const char USER_AGENT[] = "qBittorrent/" QBT_VERSION;  // to pass trackers whitelists, using the "v" prefixed version string
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
