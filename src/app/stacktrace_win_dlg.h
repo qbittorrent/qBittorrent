@@ -60,7 +60,7 @@ public:
             "</p></font>"
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
-            "qBittorrent version: " VERSION "<br/>"
+            "qBittorrent version: " QBT_VERSION "<br/>"
             "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
             "Boost version: %2<br/>"

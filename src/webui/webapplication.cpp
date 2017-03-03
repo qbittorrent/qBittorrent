@@ -348,7 +348,7 @@ void WebApplication::action_version_api_min()
 void WebApplication::action_version_qbittorrent()
 {
     CHECK_URI(0);
-    print(QString(VERSION), Http::CONTENT_TYPE_TXT);
+    print(QString(QBT_VERSION), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_shutdown()

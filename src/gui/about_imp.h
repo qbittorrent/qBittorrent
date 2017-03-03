@@ -47,7 +47,7 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-        lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
+        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION "</h2></b>");
 
         // About
         QString aboutText = QString(
