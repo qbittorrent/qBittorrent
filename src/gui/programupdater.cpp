@@ -66,7 +66,7 @@ void ProgramUpdater::checkForUpdates()
                 RSS_URL, false, 0, false,
                 // Don't change this User-Agent. In case our updater goes haywire,
                 // the filehost can identify it and contact us.
-                "qBittorrent/" QBT_VERSION " ProgramUpdater (www.qbittorrent.org)");
+                "qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
     connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(rssDownloadFinished(QString,QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(rssDownloadFailed(QString,QString)));
 }
