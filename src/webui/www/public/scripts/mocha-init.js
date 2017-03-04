@@ -503,8 +503,8 @@ initializeWindows = function() {
         new Event(e).stop();
         new MochaUI.Window({
             id: 'statiticspage',
-            title: 'Statistics',
-            loadMethod: 'xhr',
+            title: 'QBT_TR(Statistics)QBT_TR',
+            loadMethod: 'iframe',
             contentURL: 'statistics.html',
             width: 550,
             height: 290,
