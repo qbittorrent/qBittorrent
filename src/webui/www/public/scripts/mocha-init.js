@@ -499,6 +499,19 @@ initializeWindows = function() {
         });
     });
 
+    addClickEvent('statitics', function(e) {
+        new Event(e).stop();
+        new MochaUI.Window({
+            id: 'statiticspage',
+            title: 'Statistics',
+            loadMethod: 'xhr',
+            contentURL: 'statistics.html',
+            width: 550,
+            height: 290,
+            padding: 10
+        });
+    });
+
     addClickEvent('logout', function(e) {
         new Event(e).stop();
         new Request({
