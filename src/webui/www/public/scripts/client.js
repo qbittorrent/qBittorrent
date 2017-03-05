@@ -451,6 +451,8 @@ window.addEvent('load', function () {
         processServerState();
     });
 
+    $('StatisticsLink').addEvent('click', StatisticsLinkFN);
+
     new MochaUI.Panel({
         id : 'transferList',
         title : 'Panel',

@@ -212,6 +212,21 @@ initializeWindows = function() {
         });
     }
 
+    StatisticsLinkFN = function() {
+        new MochaUI.Window({
+            id: 'statiticspage',
+            title: 'QBT_TR(Statistics)QBT_TR',
+            loadMethod: 'iframe',
+            contentURL: 'statistics.html',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            width: 550,
+            height: 290,
+            padding: 10
+        });
+    }
+
     downloadLimitFN = function() {
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
@@ -493,19 +508,6 @@ initializeWindows = function() {
             title: 'QBT_TR(About)QBT_TR',
             loadMethod: 'xhr',
             contentURL: 'about.html',
-            width: 550,
-            height: 290,
-            padding: 10
-        });
-    });
-
-    addClickEvent('statitics', function(e) {
-        new Event(e).stop();
-        new MochaUI.Window({
-            id: 'statiticspage',
-            title: 'QBT_TR(Statistics)QBT_TR',
-            loadMethod: 'iframe',
-            contentURL: 'statistics.html',
             width: 550,
             height: 290,
             padding: 10
