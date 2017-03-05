@@ -367,6 +367,9 @@ window.addEvent('load', function () {
         }else
             document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
+        $('AlltimeDL').set('html', 'Alltime download: %1'.replace("%1", friendlyUnit(serverState.alltime_dl, false)));
+        $('AlltimeUL').set('html', 'Alltime upload: %1'.replace("%1", friendlyUnit(serverState.alltime_ul, false)));
+        $('TotalWastedSession').set('html', 'Total wasted (this session): %1'.replace("%1", friendlyUnit(serverState.total_wasted_session, false)));
         if (serverState.connection_status == "connected")
             $('connectionStatus').src = 'images/skin/connected.png';
         else if (serverState.connection_status == "firewalled")

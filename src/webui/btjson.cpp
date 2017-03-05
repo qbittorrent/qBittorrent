@@ -204,6 +204,12 @@ static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
+// TODO: comment
+// TODO: remaining statistics
+static const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
+static const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
+static const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session"
+
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
 static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
@@ -717,6 +723,11 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
     map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
     map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+
+    map[KEY_TRANSFER_ALLTIME_DL] = BitTorrent::Session::instance()->getAlltimeDL();
+    map[KEY_TRANSFER_ALLTIME_UL] = BitTorrent::Session::instance()->getAlltimeUL();
+    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = BitTorrent::Session::instance()->totalWasted();
+
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
