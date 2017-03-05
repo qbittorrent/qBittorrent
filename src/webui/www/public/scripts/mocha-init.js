@@ -217,7 +217,7 @@ initializeWindows = function() {
         new MochaUI.Window({
             id: 'statiticspage',
             title: 'QBT_TR(Statistics)QBT_TR',
-            loadMethod: 'iframe',
+            loadMethod: 'xhr',
             contentURL: 'statistics.html',
             scrollbars: false,
             resizable: false,
