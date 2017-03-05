@@ -208,7 +208,7 @@ static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 // TODO: remaining statistics
 static const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
 static const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
-static const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session"
+static const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
 
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
@@ -726,7 +726,7 @@ QVariantMap getTranserInfoMap()
 
     map[KEY_TRANSFER_ALLTIME_DL] = BitTorrent::Session::instance()->getAlltimeDL();
     map[KEY_TRANSFER_ALLTIME_UL] = BitTorrent::Session::instance()->getAlltimeUL();
-    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = BitTorrent::Session::instance()->totalWasted();
+    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted();
 
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
