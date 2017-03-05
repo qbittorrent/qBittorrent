@@ -53,6 +53,7 @@
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "jsonutils.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
