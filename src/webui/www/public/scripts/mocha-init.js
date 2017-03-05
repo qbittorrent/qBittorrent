@@ -214,7 +214,7 @@ initializeWindows = function() {
 
     StatisticsLinkFN = function() {
         new MochaUI.Window({
-            id: 'statiticspage',
+            id: 'statisticspage',
             title: 'QBT_TR(Statistics)QBT_TR',
             loadMethod: 'xhr',
             contentURL: 'statistics.html',
