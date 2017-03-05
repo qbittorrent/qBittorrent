@@ -43,6 +43,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -205,10 +206,18 @@ static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
 // TODO: comment
-// TODO: remaining statistics
 static const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
 static const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
 static const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
+static const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
+static const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
+static const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
+static const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
+static const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
+static const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
+static const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
+static const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
+static const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
 
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
@@ -717,6 +726,8 @@ QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
     BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
+    BitTorrent::CacheStatus cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+
     map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate();
     map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
     map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
@@ -724,9 +735,28 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
     map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
 
-    map[KEY_TRANSFER_ALLTIME_DL] = BitTorrent::Session::instance()->getAlltimeDL();
-    map[KEY_TRANSFER_ALLTIME_UL] = BitTorrent::Session::instance()->getAlltimeUL();
+    quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
+    quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+    map[KEY_TRANSFER_ALLTIME_DL] = atd;
+    map[KEY_TRANSFER_ALLTIME_UL] = atu;
     map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted();
+    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) : "-";
+    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount();
+
+    qreal readRatio = cacheStatus.readRatio();
+    map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
+    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers() * 16 * 1024;
+
+    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
+    quint32 peers = 0;
+    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+        peers += torrent->peersCount();
+    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue()) / peers, 2) : "0";
+    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue()) / peers, 2) : "0";
+
+    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength();
+    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime();
+    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes();
 
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
