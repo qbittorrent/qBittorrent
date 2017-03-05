@@ -17,20 +17,8 @@ webapplication.cpp
 webui.cpp
 )
 
-if (QT4_FOUND)
-    if (NOT SYSTEM_QJSON)
-        add_subdirectory(qjson)
-    else (NOT SYSTEM_QJSON)
-        find_package(QJSON REQUIRED)
-        add_definitions(-DUSE_SYSTEM_QJSON)
-    endif(NOT SYSTEM_QJSON)
-endif (QT4_FOUND)
-
 qbt_target_sources(webui.qrc)
 
 add_library(qbt_webui STATIC ${QBT_WEBUI_HEADERS} ${QBT_WEBUI_SOURCES})
 target_link_libraries(qbt_webui qbt_base)
 
-if (QT4_FOUND)
-    target_link_libraries(qbt_webui qjson)
-endif (QT4_FOUND)

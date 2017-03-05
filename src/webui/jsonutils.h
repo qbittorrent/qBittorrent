@@ -30,41 +30,20 @@
 #define JSONUTILS_H
 
 #include <QVariant>
-#ifdef QBT_USES_QT5
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#else
-#include <QString>
-#ifndef USE_SYSTEM_QJSON
-#include "qjson/parser.h"
-#include "qjson/serializer.h"
-#else // USE_SYSTEM_QJSON
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif // USE_SYSTEM_QJSON
-#endif
 
 namespace json {
 
     inline QByteArray toJson(const QVariant& var)
     {
-#ifdef QBT_USES_QT5
         return QJsonDocument::fromVariant(var).toJson(QJsonDocument::Compact);
-#else
-        QJson::Serializer serializer;
-        serializer.setIndentMode(QJson::IndentCompact);
-        return serializer.serialize(var);
-#endif
     }
 
     inline QVariant fromJson(const QString& json)
     {
-#ifdef QBT_USES_QT5
         return QJsonDocument::fromJson(json.toUtf8()).toVariant();
-#else
-        return QJson::Parser().parse(json.toUtf8());
-#endif
     }
 
 }

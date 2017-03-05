@@ -39,10 +39,8 @@ PeersAdditionDlg::PeersAdditionDlg(QWidget *parent)
     setupUi(this);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
 
-#ifdef QBT_USES_QT5
     label_format->hide();
     peers_txt->setPlaceholderText("Format: IPv4:port / [IPv6]:port");
-#endif
 }
 
 QList<BitTorrent::PeerAddress> PeersAdditionDlg::askForPeers()

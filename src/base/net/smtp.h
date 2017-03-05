@@ -126,8 +126,4 @@ namespace Net
     };
 }
 
-#ifndef QBT_USES_QT5
-Q_DECLARE_METATYPE(QAbstractSocket::SocketError)
-#endif
-
 #endif

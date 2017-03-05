@@ -76,11 +76,7 @@ void Server::disableHttps()
 }
 #endif
 
-#ifdef QBT_USES_QT5
 void Server::incomingConnection(qintptr socketDescriptor)
-#else
-void Server::incomingConnection(int socketDescriptor)
-#endif
 {
     QTcpSocket *serverSocket;
 #ifndef QT_NO_OPENSSL
@@ -95,11 +91,7 @@ void Server::incomingConnection(int socketDescriptor)
         if (m_https) {
             static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
             static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
-#ifdef QBT_USES_QT5
             static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
-#else
-            static_cast<QSslSocket *>(serverSocket)->setLocalCertificate(m_certificates.first());
-#endif
             static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
             static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
         }

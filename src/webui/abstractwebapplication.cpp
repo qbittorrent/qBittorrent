@@ -271,20 +271,12 @@ void AbstractWebApplication::translateDocument(QString& data)
             if (isTranslationNeeded) {
                 QString context = regex.cap(4);
                 if (context.length() > 0) {
-#ifndef QBT_USES_QT5
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
                     translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
-#endif
                 }
                 else {
                     size_t context_index = 0;
                     while ((context_index < context_count) && (translation == word)) {
-#ifndef QBT_USES_QT5
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
                         translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
-#endif
                         ++context_index;
                     }
                 }

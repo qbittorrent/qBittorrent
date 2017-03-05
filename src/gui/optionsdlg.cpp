@@ -122,11 +122,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         }
     }
 
-#ifndef QBT_USES_QT5
-    m_ui->scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
-#else
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#endif
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
     m_ui->scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, m_ui->scanFoldersView));
     connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(enableApplyButton()));

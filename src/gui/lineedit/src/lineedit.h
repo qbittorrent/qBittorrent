@@ -24,16 +24,8 @@ public:
 protected:
     void resizeEvent(QResizeEvent *e);
 
-#ifndef QBT_USES_QT5
-private slots:
-    void updateCloseButton(const QString &text);
-#endif
-
 private:
     QToolButton *searchButton;
-#ifndef QBT_USES_QT5
-    QToolButton *clearButton;
-#endif
 };
 
 #endif // LIENEDIT_H

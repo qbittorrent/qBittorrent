@@ -36,9 +36,7 @@
 #include <QClipboard>
 #include <QMessageBox>
 #include <QWheelEvent>
-#ifdef QBT_USES_QT5
 #include <QTableView>
-#endif
 
 #include "base/net/reverseresolution.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -135,14 +133,12 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     handleSortColumnChanged(header()->sortIndicatorSection());
     m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(this->header());
     this->header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
 }
 
 PeerListWidget::~PeerListWidget()

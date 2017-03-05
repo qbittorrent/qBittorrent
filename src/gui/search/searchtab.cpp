@@ -39,9 +39,7 @@
 #include <QLabel>
 #include <QPalette>
 #include <QVBoxLayout>
-#ifdef QBT_USES_QT5
 #include <QTableView>
-#endif
 
 #include "base/utils/misc.h"
 #include "base/preferences.h"
@@ -67,14 +65,13 @@ SearchTab::SearchTab(SearchWidget *parent)
 {
     m_ui->setupUi(this);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(m_ui->resultsBrowser->header());
     m_ui->resultsBrowser->header()->setParent(m_ui->resultsBrowser);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
+
     loadSettings();
     m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false);
