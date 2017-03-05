@@ -212,6 +212,21 @@ initializeWindows = function() {
         });
     }
 
+    StatisticsLinkFN = function() {
+        new MochaUI.Window({
+            id: 'statisticspage',
+            title: 'QBT_TR(Statistics)QBT_TR',
+            loadMethod: 'xhr',
+            contentURL: 'statistics.html',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            width: 275,
+            height: 370,
+            padding: 10
+        });
+    }
+
     downloadLimitFN = function() {
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
