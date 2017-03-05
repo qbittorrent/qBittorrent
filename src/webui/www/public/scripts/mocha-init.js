@@ -212,6 +212,7 @@ initializeWindows = function() {
         });
     }
 
+    // TODO: check xhr vs iframe - disappear on move
     StatisticsLinkFN = function() {
         new MochaUI.Window({
             id: 'statiticspage',
