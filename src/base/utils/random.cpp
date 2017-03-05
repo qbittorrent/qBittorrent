@@ -33,21 +33,43 @@
 #include <chrono>
 #include <random>
 
+#include <QtGlobal>
+
+#ifdef Q_OS_MAC
+#include <QThreadStorage>
+#endif
+
 // on some platform `std::random_device` may generate the same number sequence
 static bool hasTrueRandomDevice{ std::random_device{}() != std::random_device{}() };
-static thread_local std::mt19937 generator{
-    hasTrueRandomDevice
-    ? std::random_device{}()
-    : (std::random_device::result_type) std::chrono::system_clock::now().time_since_epoch().count()
-};
 
 uint32_t Utils::Random::rand(const uint32_t min, const uint32_t max)
 {
+#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+    static QThreadStorage<std::mt19937> generator;
+    if (!generator.hasLocalData())
+        generator.localData().seed(
+            hasTrueRandomDevice
+            ? std::random_device{}()
+            : (std::random_device::result_type) std::chrono::system_clock::now().time_since_epoch().count()
+        );
+#else
+    static thread_local std::mt19937 generator{
+        hasTrueRandomDevice
+        ? std::random_device{}()
+        : (std::random_device::result_type) std::chrono::system_clock::now().time_since_epoch().count()
+    };
+#endif
+
     // better replacement for `std::rand`, don't use this for real cryptography application
     // min <= returned_value <= max
     assert(min <= max);
 
     // new distribution is cheap: http://stackoverflow.com/a/19036349
     std::uniform_int_distribution<uint32_t> uniform(min, max);
+
+#ifdef Q_OS_MAC
+    return uniform(generator.localData());
+#else
     return uniform(generator);
+#endif
 }
