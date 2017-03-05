@@ -221,8 +221,8 @@ initializeWindows = function() {
             scrollbars: false,
             resizable: false,
             maximizable: false,
-            width: 550,
-            height: 400,
+            width: 275,
+            height: 370,
             padding: 10
         });
     }
