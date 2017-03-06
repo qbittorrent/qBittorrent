@@ -1717,21 +1717,15 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="checkIPFilter">
+             <widget class="QGroupBox" name="groupIPFilter">
               <property name="title">
                <string>IP Filtering</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
                  <item>
-                  <widget class="QLabel" name="lblFilterPath">
+                  <widget class="QCheckBox" name="checkIPFilter">
                    <property name="text">
                     <string>Filter path (.dat, .p2p, .p2b):</string>
                    </property>
