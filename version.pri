@@ -1,3 +1,4 @@
+# keep it all lowercase to match program naming convention on *nix systems
 PROJECT_NAME = qbittorrent
 
 # Define version numbers here
