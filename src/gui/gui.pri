@@ -51,7 +51,8 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
-    $$PWD/categoryfilterwidget.h
+    $$PWD/categoryfilterwidget.h \
+    $$PWD/banlistoptions.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -93,7 +94,8 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
-    $$PWD/categoryfilterwidget.cpp
+    $$PWD/categoryfilterwidget.cpp \
+    $$PWD/banlistoptions.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -120,6 +122,7 @@ FORMS += \
     $$PWD/search/pluginselectdlg.ui \
     $$PWD/search/pluginsourcedlg.ui \
     $$PWD/search/searchtab.ui \
-    $$PWD/cookiesdialog.ui
+    $$PWD/cookiesdialog.ui \
+    $$PWD/banlistoptions.ui
 
 RESOURCES += $$PWD/about.qrc

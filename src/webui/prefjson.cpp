@@ -114,6 +114,7 @@ QByteArray prefjson::getPreferences()
     data["ip_filter_enabled"] = session->isIPFilteringEnabled();
     data["ip_filter_path"] = Utils::Fs::toNativePath(session->IPFilterFile());
     data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
+    data["banned_IPs"] = session->bannedIPs().join("\n");
 
     // Speed
     // Global Rate Limits
@@ -309,6 +310,8 @@ void prefjson::setPreferences(const QString& json)
         session->setIPFilterFile(m["ip_filter_path"].toString());
     if (m.contains("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(m["ip_filter_trackers"].toBool());
+    if (m.contains("banned_IPs"))
+        session->setBannedIPs(m["banned_IPs"].toString().split('\n'));
 
     // Speed
     // Global Rate Limits

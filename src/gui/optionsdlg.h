@@ -93,6 +93,7 @@ private slots:
     void handleScanFolderViewSelectionChanged();
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
+    void on_banListButton_clicked();
     void on_browseFileLogDir_clicked();
     void on_browseExportDirButton_clicked();
     void on_browseExportDirFinButton_clicked();

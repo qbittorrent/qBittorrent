@@ -61,6 +61,7 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
+#include "banlistoptions.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 
@@ -1700,4 +1701,11 @@ bool OptionsDialog::webUIAuthenticationOk()
         return false;
     }
     return true;
+}
+
+void OptionsDialog::on_banListButton_clicked()
+{
+    //have to call dialog window
+    BanListOptions bl(this);
+    bl.exec();
 }

@@ -180,6 +180,12 @@
   <input type="text" id="ipfilter_text"/><br/>
   <input type="checkbox" id="ipfilter_trackers_checkbox"/>
   <label for="ipfilter_trackers_checkbox">QBT_TR(Apply to trackers)QBT_TR</label>
+  <div class="formRow">
+    <fieldset class="settings">
+        <legend>QBT_TR(Manually banned IP addresses...)QBT_TR</legend>
+        <textarea id="banned_IPs_textarea" rows="5" cols="70"></textarea>
+    </fieldset>
+  </div>
 </fieldset>
 </div>
 
@@ -637,9 +643,11 @@ updateFilterSettings = function() {
   if($('ipfilter_enabled_checkbox').getProperty('checked')) {
     $('ipfilter_text').setProperty('disabled', false);
     $('ipfilter_trackers_checkbox').setProperty('disabled', false);
+    $('banned_IPs_textarea').setProperty('disabled', false);
   } else {
     $('ipfilter_text').setProperty('disabled', true);
     $('ipfilter_trackers_checkbox').setProperty('disabled', true);
+    $('banned_IPs_textarea').setProperty('disabled', true);
   }
 }
 
@@ -913,6 +921,7 @@ loadPreferences = function() {
                     $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
                     $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                     $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
+                    $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
                     updateFilterSettings();
 
                     // Speed tab
@@ -1146,6 +1155,7 @@ applyPreferences = function() {
   settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
   settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
   settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
+  settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
 
   // Speed tab
   // Global Rate Limits

@@ -1769,6 +1769,19 @@
                 </layout>
                </item>
                <item>
+                <widget class="QPushButton" name="banListButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Manually banned IP addresses...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkIpFilterTrackers">
                  <property name="text">
                   <string>Apply to trackers</string>
