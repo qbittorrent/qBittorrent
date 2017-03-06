@@ -10,6 +10,7 @@ Terminal=false
 Type=Application
 StartupNotify=false
 StartupWMClass=qbittorrent
+Keywords=bittorrent;torrent;magnet;download;p2p;
 
 # Translations
 Comment[ar]=نزّل وشارك الملفات عبر كيوبت‎تورنت
