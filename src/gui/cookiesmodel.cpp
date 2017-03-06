@@ -106,7 +106,7 @@ QVariant CookiesModel::data(const QModelIndex &index, int role) const
     case COL_VALUE:
         return QString::fromLatin1(m_cookies[index.row()].value());
     case COL_EXPDATE:
-        return m_cookies[index.row()].expirationDate();
+        return m_cookies[index.row()].expirationDate().toString(Qt::SystemLocaleShortDate);
     }
 
     return QVariant();

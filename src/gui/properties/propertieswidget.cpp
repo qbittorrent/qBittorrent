@@ -302,7 +302,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
     PropListModel->model()->clear();
     if (m_torrent->hasMetadata()) {
         // Creation date
-        lbl_creationDate->setText(m_torrent->creationDate().toString(Qt::DefaultLocaleShortDate));
+        lbl_creationDate->setText(m_torrent->creationDate().toString(Qt::SystemLocaleShortDate));
 
         label_total_size_val->setText(Utils::Misc::friendlyUnit(m_torrent->totalSize()));
 
@@ -430,11 +430,11 @@ void PropertiesWidget::loadDynamicData()
                                         .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true))
                                         .arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
 
-        label_last_complete_val->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
+        label_last_complete_val->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::SystemLocaleShortDate) : tr("Never"));
 
-        label_completed_on_val->setText(m_torrent->completedTime().isValid() ? m_torrent->completedTime().toString(Qt::DefaultLocaleShortDate) : "");
+        label_completed_on_val->setText(m_torrent->completedTime().isValid() ? m_torrent->completedTime().toString(Qt::SystemLocaleShortDate) : "");
 
-        label_added_on_val->setText(m_torrent->addedTime().toString(Qt::DefaultLocaleShortDate));
+        label_added_on_val->setText(m_torrent->addedTime().toString(Qt::SystemLocaleShortDate));
 
         if (m_torrent->hasMetadata()) {
             label_total_pieces_val->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(m_torrent->piecesCount()).arg(Utils::Misc::friendlyUnit(m_torrent->pieceLength())).arg(m_torrent->piecesHave()));
