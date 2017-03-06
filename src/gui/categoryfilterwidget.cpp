@@ -161,22 +161,7 @@ void CategoryFilterWidget::callUpdateGeometry()
 
 QSize CategoryFilterWidget::sizeHint() const
 {
-#ifdef QBT_USES_QT5
     return viewportSizeHint();
-#else
-    int lastRow = model()->rowCount() - 1;
-    QModelIndex last = model()->index(lastRow, 0);
-    while ((lastRow >= 0) && isExpanded(last)) {
-        lastRow = model()->rowCount(last) - 1;
-        last = model()->index(lastRow, 0, last);
-    }
-    const QRect deepestRect = visualRect(last);
-
-    if (!deepestRect.isValid())
-        return viewport()->sizeHint();
-
-    return QSize(header()->length(), deepestRect.bottom() + 1);
-#endif
 }
 
 QSize CategoryFilterWidget::minimumSizeHint() const
