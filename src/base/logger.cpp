@@ -37,7 +37,7 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&lock);
 
-    Log::Msg temp = { msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, Utils::String::toHtmlEscaped(message) };
+    Log::Msg temp = { msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped() };
     m_messages.push_back(temp);
 
     if (m_messages.size() >= MAX_LOG_MESSAGES)
@@ -50,7 +50,7 @@ void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
 {
     QWriteLocker locker(&lock);
 
-    Log::Peer temp = { peerCounter++, QDateTime::currentMSecsSinceEpoch(), Utils::String::toHtmlEscaped(ip), blocked, Utils::String::toHtmlEscaped(reason) };
+    Log::Peer temp = { peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped() };
     m_peers.push_back(temp);
 
     if (m_peers.size() >= MAX_LOG_MESSAGES)

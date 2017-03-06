@@ -183,8 +183,3 @@ bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
 
     return (diff == 0);
 }
-
-QString Utils::String::toHtmlEscaped(const QString &str)
-{
-    return str.toHtmlEscaped();
-}

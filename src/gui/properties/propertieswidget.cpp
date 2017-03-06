@@ -307,12 +307,12 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
         label_total_size_val->setText(Utils::Misc::friendlyUnit(m_torrent->totalSize()));
 
         // Comment
-        comment_text->setText(Utils::Misc::parseHtmlLinks(Utils::String::toHtmlEscaped(m_torrent->comment())));
+        comment_text->setText(Utils::Misc::parseHtmlLinks(m_torrent->comment().toHtmlEscaped()));
 
         // URL seeds
         loadUrlSeeds();
 
-        label_created_by_val->setText(Utils::String::toHtmlEscaped(m_torrent->creator()));
+        label_created_by_val->setText(m_torrent->creator().toHtmlEscaped());
 
         // List files in torrent
         PropListModel->model()->setupModelData(m_torrent->info());
