@@ -40,7 +40,6 @@ namespace Utils
     namespace String
     {
         QString fromStdString(const std::string &str);
-        std::string toStdString(const QString &str);
         QString fromDouble(double n, int precision);
 
         // Implements constant-time comparison to protect against timing attacks

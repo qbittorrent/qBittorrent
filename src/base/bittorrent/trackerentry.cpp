@@ -35,7 +35,7 @@
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(libtorrent::announce_entry(Utils::String::toStdString(url)))
+    : m_nativeEntry(libtorrent::announce_entry(url.toStdString()))
 {
 }
 

@@ -157,11 +157,6 @@ QString Utils::String::fromStdString(const std::string &str)
     return QString::fromUtf8(str.c_str());
 }
 
-std::string Utils::String::toStdString(const QString &str)
-{
-    return str.toStdString();
-}
-
 // to send numbers instead of strings with suffixes
 QString Utils::String::fromDouble(double n, int precision)
 {

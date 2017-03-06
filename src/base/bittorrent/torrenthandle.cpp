@@ -484,7 +484,7 @@ bool TorrentHandle::addUrlSeed(const QUrl &urlSeed)
     QList<QUrl> seeds = urlSeeds();
     if (seeds.contains(urlSeed)) return false;
 
-    SAFE_CALL_BOOL(add_url_seed, Utils::String::toStdString(urlSeed.toString()));
+    SAFE_CALL_BOOL(add_url_seed, urlSeed.toString().toStdString());
 }
 
 bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
@@ -492,13 +492,13 @@ bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
     QList<QUrl> seeds = urlSeeds();
     if (!seeds.contains(urlSeed)) return false;
 
-    SAFE_CALL_BOOL(remove_url_seed, Utils::String::toStdString(urlSeed.toString()));
+    SAFE_CALL_BOOL(remove_url_seed, urlSeed.toString().toStdString());
 }
 
 bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
 {
     libt::error_code ec;
-    libt::address addr = libt::address::from_string(Utils::String::toStdString(peerAddress.ip.toString()), ec);
+    libt::address addr = libt::address::from_string(peerAddress.ip.toString().toStdString(), ec);
     if (ec) return false;
 
     boost::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
@@ -1338,7 +1338,7 @@ void TorrentHandle::renameFile(int index, const QString &name)
 {
     ++m_renameCount;
     qDebug() << Q_FUNC_INFO << index << name;
-    SAFE_CALL(rename_file, index, Utils::String::toStdString(Utils::Fs::toNativePath(name)));
+    SAFE_CALL(rename_file, index, Utils::Fs::toNativePath(name).toStdString());
 }
 
 bool TorrentHandle::saveTorrentFile(const QString &path)
@@ -1530,14 +1530,14 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
 
     libtorrent::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
     if (useDummyResumeData) {
-        resumeData["qBt-magnetUri"] = Utils::String::toStdString(toMagnetUri());
+        resumeData["qBt-magnetUri"] = toMagnetUri().toStdString();
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
     }
-    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Utils::String::toStdString(m_savePath);
-    resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(m_ratioLimit));
-    resumeData["qBt-category"] = Utils::String::toStdString(m_category);
-    resumeData["qBt-name"] = Utils::String::toStdString(m_name);
+    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : m_savePath.toStdString();
+    resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
+    resumeData["qBt-category"] = m_category.toStdString();
+    resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
     resumeData["qBt-queuePosition"] = queuePosition();

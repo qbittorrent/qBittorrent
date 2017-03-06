@@ -64,7 +64,7 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString &error)
 {
     error.clear();
     libt::error_code ec;
-    TorrentInfo info(NativePtr(new libt::torrent_info(Utils::String::toStdString(Utils::Fs::toNativePath(path)), ec)));
+    TorrentInfo info(NativePtr(new libt::torrent_info(Utils::Fs::toNativePath(path).toStdString(), ec)));
     if (ec) {
         error = QString::fromUtf8(ec.message().c_str());
         qDebug("Cannot load .torrent file: %s", qPrintable(error));
@@ -279,7 +279,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(int fileIndex) const
 void TorrentInfo::renameFile(uint index, const QString &newPath)
 {
     if (!isValid()) return;
-    nativeInfo()->rename_file(index, Utils::String::toStdString(newPath));
+    nativeInfo()->rename_file(index, newPath.toStdString());
 }
 
 int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const

@@ -976,11 +976,11 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
         if (proxyConfig.type != Net::ProxyType::None) {
-            settingsPack.set_str(libt::settings_pack::proxy_hostname, Utils::String::toStdString(proxyConfig.ip));
+            settingsPack.set_str(libt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
             settingsPack.set_int(libt::settings_pack::proxy_port, proxyConfig.port);
             if (proxyManager->isAuthenticationRequired()) {
-                settingsPack.set_str(libt::settings_pack::proxy_username, Utils::String::toStdString(proxyConfig.username));
-                settingsPack.set_str(libt::settings_pack::proxy_password, Utils::String::toStdString(proxyConfig.password));
+                settingsPack.set_str(libt::settings_pack::proxy_username, proxyConfig.username.toStdString());
+                settingsPack.set_str(libt::settings_pack::proxy_password, proxyConfig.password.toStdString());
             }
             settingsPack.set_bool(libt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
         }
@@ -1055,7 +1055,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // Include overhead in transfer limits
     settingsPack.set_bool(libt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
-    settingsPack.set_str(libt::settings_pack::announce_ip, Utils::String::toStdString(announceIP()));
+    settingsPack.set_str(libt::settings_pack::announce_ip, announceIP().toStdString());
     // Super seeding
     settingsPack.set_bool(libt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
     // * Max Half-open connections
@@ -1123,11 +1123,11 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
         libt::proxy_settings proxySettings;
         if (proxyConfig.type != Net::ProxyType::None) {
-            proxySettings.hostname = Utils::String::toStdString(proxyConfig.ip);
+            proxySettings.hostname = proxyConfig.ip.toStdString();
             proxySettings.port = proxyConfig.port;
             if (proxyManager->isAuthenticationRequired()) {
-                proxySettings.username = Utils::String::toStdString(proxyConfig.username);
-                proxySettings.password = Utils::String::toStdString(proxyConfig.password);
+                proxySettings.username = proxyConfig.username.toStdString();
+                proxySettings.password = proxyConfig.password.toStdString();
             }
             proxySettings.proxy_peer_connections = isProxyPeerConnectionsEnabled();
         }
@@ -1200,7 +1200,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     // Include overhead in transfer limits
     sessionSettings.rate_limit_ip_overhead = includeOverheadInLimits();
     // IP address to announce to trackers
-    sessionSettings.announce_ip = Utils::String::toStdString(announceIP());
+    sessionSettings.announce_ip = announceIP().toStdString();
     // Super seeding
     sessionSettings.strict_super_seeding = isSuperSeedingEnabled();
     // * Max Half-open connections
@@ -1699,7 +1699,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
-    p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
+    p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
     m_addingTorrents.insert(hash, addData);
     // Adding torrent to BitTorrent session
@@ -1787,7 +1787,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.max_uploads = maxUploadsPerTorrent();
 
     QString savePath = QString("%1/%2").arg(QDir::tempPath()).arg(hash);
-    p.save_path = Utils::String::toStdString(Utils::Fs::toNativePath(savePath));
+    p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
     // Forced start
     p.flags &= ~libt::add_torrent_params::flag_paused;
