@@ -31,9 +31,7 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
-#ifdef QBT_USES_QT5
 #include <QUrlQuery>
-#endif
 
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -158,15 +156,10 @@ QString DNSUpdater::getUpdateUrl() const
     }
     url.setPath("/nic/update");
 
-#ifndef QBT_USES_QT5
-    url.addQueryItem("hostname", m_domain);
-    url.addQueryItem("myip", m_lastIP.toString());
-#else
     QUrlQuery urlQuery(url);
     urlQuery.addQueryItem("hostname", m_domain);
     urlQuery.addQueryItem("myip", m_lastIP.toString());
     url.setQuery(urlQuery);
-#endif
     Q_ASSERT(url.isValid());
 
     qDebug() << Q_FUNC_INFO << url.toString();

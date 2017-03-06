@@ -47,6 +47,7 @@ nogui:systemd {
     appdata.path = $$DATADIR/appdata/
     INSTALLS += appdata
 
+    # Apps icons
     icon16.files = $$DIST_PATH/menuicons/16x16/apps/qbittorrent.png
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps/
     icon22.files = $$DIST_PATH/menuicons/22x22/apps/qbittorrent.png
@@ -69,6 +70,29 @@ nogui:systemd {
     icon128.path = $$DATADIR/icons/hicolor/128x128/apps/
     icon192.files = $$DIST_PATH/menuicons/192x192/apps/qbittorrent.png
     icon192.path = $$DATADIR/icons/hicolor/192x192/apps/
+    # Status icons
+    statusIcon16.files = $$DIST_PATH/menuicons/16x16/status/qbittorrent-tray.png
+    statusIcon16.path = $$DATADIR/icons/hicolor/16x16/status/
+    statusIcon22.files = $$DIST_PATH/menuicons/22x22/status/qbittorrent-tray.png
+    statusIcon22.path = $$DATADIR/icons/hicolor/22x22/status/
+    statusIcon24.files = $$DIST_PATH/menuicons/24x24/status/qbittorrent-tray.png
+    statusIcon24.path = $$DATADIR/icons/hicolor/24x24/status/
+    statusIcon32.files = $$DIST_PATH/menuicons/32x32/status/qbittorrent-tray.png
+    statusIcon32.path = $$DATADIR/icons/hicolor/32x32/status/
+    statusIcon36.files = $$DIST_PATH/menuicons/36x36/status/qbittorrent-tray.png
+    statusIcon36.path = $$DATADIR/icons/hicolor/36x36/status/
+    statusIcon48.files = $$DIST_PATH/menuicons/48x48/status/qbittorrent-tray.png
+    statusIcon48.path = $$DATADIR/icons/hicolor/48x48/status/
+    statusIcon64.files = $$DIST_PATH/menuicons/64x64/status/qbittorrent-tray.png
+    statusIcon64.path = $$DATADIR/icons/hicolor/64x64/status/
+    statusIcon72.files = $$DIST_PATH/menuicons/72x72/status/qbittorrent-tray.png
+    statusIcon72.path = $$DATADIR/icons/hicolor/72x72/status/
+    statusIcon96.files = $$DIST_PATH/menuicons/96x96/status/qbittorrent-tray.png
+    statusIcon96.path = $$DATADIR/icons/hicolor/96x96/status/
+    statusIcon128.files = $$DIST_PATH/menuicons/128x128/status/qbittorrent-tray.png
+    statusIcon128.path = $$DATADIR/icons/hicolor/128x128/status/
+    statusIcon192.files = $$DIST_PATH/menuicons/192x192/status/qbittorrent-tray.png
+    statusIcon192.path = $$DATADIR/icons/hicolor/192x192/status/
     INSTALLS += \
         icon16 \
         icon22 \
@@ -80,7 +104,18 @@ nogui:systemd {
         icon72 \
         icon96 \
         icon128 \
-        icon192
+        icon192 \
+        statusIcon16 \
+        statusIcon22 \
+        statusIcon24 \
+        statusIcon32 \
+        statusIcon36 \
+        statusIcon48 \
+        statusIcon64 \
+        statusIcon72 \
+        statusIcon96 \
+        statusIcon128 \
+        statusIcon192
 
     pixmap.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
     pixmap.path = $$DATADIR/pixmaps/

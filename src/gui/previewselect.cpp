@@ -32,9 +32,7 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFile>
-#ifdef QBT_USES_QT5
 #include <QTableView>
-#endif
 
 #include "base/utils/misc.h"
 #include "previewlistdelegate.h"
@@ -54,14 +52,12 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
   previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(previewList->header());
     previewList->header()->setParent(previewList);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
   previewList->setModel(previewListModel);
   previewList->hideColumn(FILE_INDEX);
   listDelegate = new PreviewListDelegate(this);

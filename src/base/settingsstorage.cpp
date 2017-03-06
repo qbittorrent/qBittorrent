@@ -75,20 +75,7 @@ namespace
         QString m_name;
     };
 
-#ifdef QBT_USES_QT5
     typedef QHash<QString, QString> MappingTable;
-#else
-    class MappingTable: public QHash<QString, QString>
-    {
-    public:
-        MappingTable(std::initializer_list<std::pair<QString, QString>> list)
-        {
-            reserve(static_cast<int>(list.size()));
-            for (const auto &i : list)
-                insert(i.first, i.second);
-        }
-    };
-#endif
 
     QString mapKey(const QString &key)
     {
@@ -161,11 +148,7 @@ namespace
             {"Network/Proxy/IP", "Preferences/Connection/Proxy/IP"},
             {"Network/Proxy/Port", "Preferences/Connection/Proxy/Port"},
             {"Network/PortForwardingEnabled", "Preferences/Connection/UPnP"},
-#ifdef QBT_USES_QT5
             {"AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/qt5/treeHeaderState"},
-#else
-            {"AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/treeHeaderState"},
-#endif
             {"AddNewTorrentDialog/Width", "AddNewTorrentDialog/width"},
             {"AddNewTorrentDialog/Position", "AddNewTorrentDialog/y"},
             {"AddNewTorrentDialog/Expanded", "AddNewTorrentDialog/expanded"},

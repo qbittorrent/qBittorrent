@@ -29,29 +29,23 @@
  */
 
 #include "btjson.h"
-#include "base/logger.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#include "base/preferences.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "base/bittorrent/trackerentry.h"
-#include "base/bittorrent/peerinfo.h"
-#include "base/torrentfilter.h"
-#include "base/net/geoipmanager.h"
-#include "jsonutils.h"
 
 #include <QDebug>
-#include <QVariant>
-#ifndef QBT_USES_QT5
-#include <QMetaType>
-#endif
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
-#endif
+#include <QVariant>
 
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/logger.h"
+#include "base/net/geoipmanager.h"
+#include "base/preferences.h"
+#include "base/torrentfilter.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "jsonutils.h"
 
 #define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
     static VARTYPE VAR; \
@@ -73,15 +67,6 @@
     cacheTimer.start(); \
     VAR = VARTYPE()
 
-#else
-// We don't support caching for Qt < 4.7 at the moment
-#define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
-    VARTYPE VAR
-
-#define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
-    VARTYPE VAR
-
-#endif
 
 // Numerical constants
 static const int CACHE_DURATION_MS = 1500; // 1500ms
@@ -235,50 +220,18 @@ public:
     QTorrentCompare(QString key, bool greaterThan = false)
         : key_(key)
         , greaterThan_(greaterThan)
-#ifndef QBT_USES_QT5
-        , type_(QVariant::Invalid)
-#endif
     {
     }
 
     bool operator()(QVariant torrent1, QVariant torrent2)
     {
-#ifndef QBT_USES_QT5
-        if (type_ == QVariant::Invalid)
-            type_ = torrent1.toMap().value(key_).type();
-
-        switch (static_cast<QMetaType::Type>(type_)) {
-        case QMetaType::Int:
-            return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
-                   : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
-        case QMetaType::LongLong:
-            return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
-                   : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
-        case QMetaType::ULongLong:
-            return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
-                   : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
-        case QMetaType::Float:
-            return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
-                   : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
-        case QMetaType::Double:
-            return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
-                   : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
-        default:
-            return greaterThan_ ? torrent1.toMap().value(key_).toString() > torrent2.toMap().value(key_).toString()
-                   : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
-        }
-#else
         return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
                : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
-#endif
     }
 
 private:
     QString key_;
     bool greaterThan_;
-#ifndef QBT_USES_QT5
-    QVariant::Type type_;
-#endif
 };
 
 /**
@@ -740,9 +693,9 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
 {
     QVariantMap ret;
-    ret[KEY_TORRENT_HASH] =  QString(torrent->hash());
-    ret[KEY_TORRENT_NAME] =  torrent->name();
-    ret[KEY_TORRENT_SIZE] =  torrent->wantedSize();
+    ret[KEY_TORRENT_HASH] = QString(torrent->hash());
+    ret[KEY_TORRENT_NAME] = torrent->name();
+    ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
     ret[KEY_TORRENT_PROGRESS] = torrent->progress();
     ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();
     ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
@@ -943,17 +896,6 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     if (fullUpdate) {
         lastAcceptedData.clear();
         syncData = data;
-
-#if (QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
-        // QJsonDocument::fromVariant() supports QVariantHash only
-        // since Qt5.5, so manually convert data["torrents"]
-        QVariantMap torrentsMap;
-        QVariantHash torrents = data["torrents"].toHash();
-        foreach (const QString &key, torrents.keys())
-            torrentsMap[key] = torrents[key];
-        syncData["torrents"] = torrentsMap;
-#endif
-
         syncData[KEY_FULL_UPDATE] = true;
     }
 

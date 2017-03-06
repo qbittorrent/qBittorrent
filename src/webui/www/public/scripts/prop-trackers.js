@@ -87,10 +87,10 @@ var loadTrackersData = function() {
                 trackers.each(function(tracker) {
                     var row = new Array();
                     row.length = 4;
-                    row[0] = tracker.url;
+                    row[0] = escapeHtml(tracker.url);
                     row[1] = tracker.status;
                     row[2] = tracker.num_peers;
-                    row[3] = tracker.msg;
+                    row[3] = escapeHtml(tracker.msg);
                     tTable.insertRow(row);
                 });
             }

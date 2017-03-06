@@ -1109,20 +1109,12 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
 
 QByteArray Preferences::getMainVSplitterState() const
 {
-#ifdef QBT_USES_QT5
     return value("MainWindow/qt5/vsplitterState").toByteArray();
-#else
-    return value("MainWindow/vsplitterState").toByteArray();
-#endif
 }
 
 void Preferences::setMainVSplitterState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("MainWindow/qt5/vsplitterState", state);
-#else
-    setValue("MainWindow/vsplitterState", state);
-#endif
 }
 
 QString Preferences::getMainLastDir() const
@@ -1169,20 +1161,12 @@ void Preferences::setPrefHSplitterSizes(const QStringList &sizes)
 
 QByteArray Preferences::getPeerListState() const
 {
-#ifdef QBT_USES_QT5
     return value("TorrentProperties/Peers/qt5/PeerListState").toByteArray();
-#else
-    return value("TorrentProperties/Peers/PeerListState").toByteArray();
-#endif
 }
 
 void Preferences::setPeerListState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("TorrentProperties/Peers/qt5/PeerListState", state);
-#else
-    setValue("TorrentProperties/Peers/PeerListState", state);
-#endif
 }
 
 QString Preferences::getPropSplitterSizes() const
@@ -1197,20 +1181,12 @@ void Preferences::setPropSplitterSizes(const QString &sizes)
 
 QByteArray Preferences::getPropFileListState() const
 {
-#ifdef QBT_USES_QT5
     return value("TorrentProperties/qt5/FilesListState").toByteArray();
-#else
-    return value("TorrentProperties/FilesListState").toByteArray();
-#endif
 }
 
 void Preferences::setPropFileListState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("TorrentProperties/qt5/FilesListState", state);
-#else
-    setValue("TorrentProperties/FilesListState", state);
-#endif
 }
 
 int Preferences::getPropCurTab() const
@@ -1235,20 +1211,12 @@ void Preferences::setPropVisible(const bool visible)
 
 QByteArray Preferences::getPropTrackerListState() const
 {
-#ifdef QBT_USES_QT5
     return value("TorrentProperties/Trackers/qt5/TrackerListState").toByteArray();
-#else
-    return value("TorrentProperties/Trackers/TrackerListState").toByteArray();
-#endif
 }
 
 void Preferences::setPropTrackerListState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("TorrentProperties/Trackers/qt5/TrackerListState", state);
-#else
-    setValue("TorrentProperties/Trackers/TrackerListState", state);
-#endif
 }
 
 QByteArray Preferences::getRssGeometry() const
@@ -1263,20 +1231,12 @@ void Preferences::setRssGeometry(const QByteArray &geometry)
 
 QByteArray Preferences::getRssHSplitterSizes() const
 {
-#ifdef QBT_USES_QT5
     return value("RssFeedDownloader/qt5/hsplitterSizes").toByteArray();
-#else
-    return value("RssFeedDownloader/hsplitterSizes").toByteArray();
-#endif
 }
 
 void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
 {
-#ifdef QBT_USES_QT5
     setValue("RssFeedDownloader/qt5/hsplitterSizes", sizes);
-#else
-    setValue("RssFeedDownloader/hsplitterSizes", sizes);
-#endif
 }
 
 QStringList Preferences::getRssOpenFolders() const
@@ -1291,38 +1251,22 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 
 QByteArray Preferences::getRssSideSplitterState() const
 {
-#ifdef QBT_USES_QT5
     return value("Rss/qt5/splitter_h").toByteArray();
-#else
-    return value("Rss/splitter_h").toByteArray();
-#endif
 }
 
 void Preferences::setRssSideSplitterState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("Rss/qt5/splitter_h", state);
-#else
-    setValue("Rss/splitter_h", state);
-#endif
 }
 
 QByteArray Preferences::getRssMainSplitterState() const
 {
-#ifdef QBT_USES_QT5
     return value("Rss/qt5/splitterMain").toByteArray();
-#else
-    return value("Rss/splitterMain").toByteArray();
-#endif
 }
 
 void Preferences::setRssMainSplitterState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("Rss/qt5/splitterMain", state);
-#else
-    setValue("Rss/splitterMain", state);
-#endif
 }
 
 QByteArray Preferences::getSearchTabHeaderState() const
@@ -1465,20 +1409,12 @@ void Preferences::setTransSelFilter(const int &index)
 
 QByteArray Preferences::getTransHeaderState() const
 {
-#ifdef QBT_USES_QT5
     return value("TransferList/qt5/HeaderState").toByteArray();
-#else
-    return value("TransferList/HeaderState").toByteArray();
-#endif
 }
 
 void Preferences::setTransHeaderState(const QByteArray &state)
 {
-#ifdef QBT_USES_QT5
     setValue("TransferList/qt5/HeaderState", state);
-#else
-    setValue("TransferList/HeaderState", state);
-#endif
 }
 
 //From old RssSettings class

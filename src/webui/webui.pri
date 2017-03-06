@@ -15,10 +15,4 @@ SOURCES += \
     $$PWD/webapplication.cpp \
     $$PWD/abstractwebapplication.cpp
 
-# QJson JSON parser/serializer for using with Qt4
-lessThan(QT_MAJOR_VERSION, 5) {
-    !usesystemqjson: include(qjson/qjson.pri)
-    else: DEFINES += USE_SYSTEM_QJSON
-}
-
 RESOURCES += $$PWD/webui.qrc

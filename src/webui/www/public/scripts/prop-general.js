@@ -130,7 +130,7 @@ var loadTorrentData = function() {
                     temp = "QBT_TR(Unknown)QBT_TR";
                 $('pieces').set('html', temp);
 
-                $('created_by').set('html', data.created_by);
+                $('created_by').set('html', escapeHtml(data.created_by));
                 if (data.addition_date != -1)
                     temp = new Date(data.addition_date * 1000).toLocaleString();
                 else
@@ -152,7 +152,7 @@ var loadTorrentData = function() {
 
                 $('save_path').set('html', data.save_path);
 
-                $('comment').set('html', parseHtmlLinks(data.comment));
+                $('comment').set('html', parseHtmlLinks(escapeHtml(data.comment)));
             }
             else {
                 clearData();

@@ -3,7 +3,7 @@ language: cpp
 os:
   - linux
   - osx
-osx_image: xcode8
+osx_image: xcode7.3
 
 env:
   matrix:
@@ -12,17 +12,9 @@ env:
     #- lt_branch=dist gui=false
     - lt_branch=RC_1_0 qt=5 gui=true
     - lt_branch=RC_1_0 qt=5 gui=false
-    - lt_branch=RC_1_0 qt=4 gui=true
-    - lt_branch=RC_1_0 qt=4 gui=false
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
-matrix:
-  allow_failures:
-    - os: osx
-      env: lt_branch=RC_1_0 qt=4 gui=true
-    - os: osx
-      env: lt_branch=RC_1_0 qt=4 gui=false
 
 branches:
   except:
@@ -79,7 +71,7 @@ before_install:
   #- libt_path="$HOME/libt_install"
   #- ltconf="$ltconf --prefix="$libt_path" --disable-geoip"
   - qbt_path="$HOME/qbt_install"
-  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
+  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
 
   # options for specific branches
   - if [ "$qt" = 4 ]; then qbtconf="$qbtconf --with-qt4" ; fi
@@ -88,6 +80,9 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
+
+      # Qt 5
+      PATH=/opt/qt55/bin:${PATH}
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
@@ -103,20 +98,22 @@ before_install:
 install:
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # libtorrent
+      # repositories
       sudo add-apt-repository --yes ppa:qbittorrent-team/qbittorrent-stable ;
+      sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty ;
       sudo apt-get update -qq ;
+
+      # libtorrent
       sudo apt-get install -qq libtorrent-rasterbar-dev ;
+
+      # Qt 5.5.1
+      sudo apt-get install -qq qt55base qt55tools ;
 
       # build libtorrent from source
       #if [ "$lt_branch" != "dist" ]; then
         #cd "$HOME" && pwd && git clone --depth 1 https://github.com/arvidn/libtorrent.git --branch $lt_branch ;
         #cd libtorrent && ./autotool.sh && ./configure $ltconf && make install ;
       #fi ;
-
-      # Qt
-      if [ "$qt" = 4 ]; then sudo apt-get -qq install qt4-default libqt4-dev ; fi ;
-      if [ "$qt" = 5 ]; then sudo apt-get -qq install qt5-default qtbase5-dev qttools5-dev-tools ; fi ;
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -151,15 +148,12 @@ install:
       brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb" ;
 
       # Qt
-      if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
-      if [ "$qt" = 5 ]; then
-        # Copy custom qt5 bottle to homebrew's cache so it can find and install it
-        # Also install our custom qt5 formula by passing the local path to it
-        # These 2 files are restored from Travis' cache.
-        cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
-        brew install "$HOME/hombebrew_cache/qt5.rb" ;
-        brew link --force qt5 ;
-      fi
+      # Copy custom qt5 bottle to homebrew's cache so it can find and install it
+      # Also install our custom qt5 formula by passing the local path to it
+      # These 2 files are restored from Travis' cache.
+      cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
+      brew install "$HOME/hombebrew_cache/qt5.rb" ;
+      brew link --force qt5 ;
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then

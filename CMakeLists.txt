@@ -40,11 +40,8 @@ endif(WIN32)
 # we need options here, because they are used not only in "src" subdir, but in the "dist" dir too
 include(CMakeDependentOption)
 
-option(QT5 "Compile using Qt5" ON)
 option(SYSTEM_QTSINGLEAPPLICATION
     "Use the system qtsingleapplication library or shipped one otherwise")
-cmake_dependent_option(SYSTEM_QJSON
-    "Use the shipped qjson library or the system one (Qt4 only)" OFF "NOT QT5" OFF)
 
 option(GUI "Allows to disable GUI for headless running. Disables QtDBus and the GeoIP Database" ON)
 

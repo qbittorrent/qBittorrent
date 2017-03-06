@@ -42,11 +42,7 @@
 #include <QSplashScreen>
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
-#ifdef QBT_USES_QT5
 Q_IMPORT_PLUGIN(QICOPlugin)
-#else
-Q_IMPORT_PLUGIN(qico)
-#endif
 #endif // QBT_STATIC_QT
 
 #else
@@ -225,7 +221,7 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
     }
 
-#if defined(Q_OS_WIN) && defined(QBT_USES_QT5)
+#if defined(Q_OS_WIN)
     // This affects only Windows apparently and Qt5.
     // When QNetworkAccessManager is instantiated it regularly starts polling
     // the network interfaces to see what's available and their status.
