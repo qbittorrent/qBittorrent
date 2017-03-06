@@ -385,10 +385,16 @@ Session::Session(QObject *parent)
                        .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
                        , Log::INFO);
 
-    if (isIPFilteringEnabled())
+    if (isIPFilteringEnabled()) {
+        // Manually banned IPs are handled in that function too(in the slots)
         enableIPFilter();
-    // Add the banned IPs
-    processBannedIPs();
+    }
+    else {
+        // Add the banned IPs
+        libt::ip_filter filter;
+        processBannedIPs(filter);
+        m_nativeSession->set_ip_filter(filter);
+    }
 
     m_categories = map_cast(m_storedCategories);
     if (isSubcategoriesEnabled()) {
@@ -891,10 +897,9 @@ void Session::configure()
     qDebug("Session configured");
 }
 
-void Session::processBannedIPs()
+void Session::processBannedIPs(libt::ip_filter &filter)
 {
     // First, import current filter
-    libt::ip_filter filter = m_nativeSession->get_ip_filter();
     foreach (const QString &ip, m_bannedIPs.value()) {
         boost::system::error_code ec;
         libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
@@ -902,8 +907,6 @@ void Session::processBannedIPs()
         if (!ec)
             filter.add_rule(addr, addr, libt::ip_filter::blocked);
     }
-
-    m_nativeSession->set_ip_filter(filter);
 }
 
 #if LIBTORRENT_VERSION_NUM >= 10100
@@ -3028,13 +3031,12 @@ void Session::configureDeferred()
 void Session::enableIPFilter()
 {
     qDebug("Enabling IPFilter");
-    // 1. Clear existing ban list
-    // 2. Add manual ban list
-    // 3. Add 3rd party ban list
-    m_nativeSession->set_ip_filter(libt::ip_filter());
-    processBannedIPs();
+    // 1. Parse the IP filter
+    // 2. In the slot add the manually banned IPs to the provided libtorrent::ip_filter
+    // 3. Set the ip_filter in one go so there isn't a time window where there isn't an ip_filter
+    //    set between clearing the old one and setting the new one.
     if (!m_filterParser) {
-        m_filterParser = new FilterParserThread(m_nativeSession, this);
+        m_filterParser = new FilterParserThread(this);
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
         connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
     }
@@ -3045,7 +3047,6 @@ void Session::enableIPFilter()
 void Session::disableIPFilter()
 {
     qDebug("Disabling IPFilter");
-    m_nativeSession->set_ip_filter(libt::ip_filter());
     if (m_filterParser) {
         disconnect(m_filterParser.data(), 0, this, 0);
         delete m_filterParser;
@@ -3054,7 +3055,9 @@ void Session::disableIPFilter()
     // Add the banned IPs after the IPFilter disabling
     // which creates an empty filter and overrides all previously
     // applied bans.
-    processBannedIPs();
+    libt::ip_filter filter;
+    processBannedIPs(filter);
+    m_nativeSession->set_ip_filter(filter);
 }
 
 void Session::recursiveTorrentDownload(const InfoHash &hash)
@@ -3191,12 +3194,21 @@ void Session::refresh()
 
 void Session::handleIPFilterParsed(int ruleCount)
 {
+    if (!m_filterParser) {
+        libt::ip_filter filter = m_filterParser->IPfilter();
+        processBannedIPs(filter);
+        m_nativeSession->set_ip_filter(filter);
+    }
     Logger::instance()->addMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     emit IPFilterParsed(false, ruleCount);
 }
 
 void Session::handleIPFilterError()
 {
+    libt::ip_filter filter;
+    processBannedIPs(filter);
+    m_nativeSession->set_ip_filter(filter);
+
     Logger::instance()->addMessage(tr("Error: Failed to parse the provided IP filter."), Log::CRITICAL);
     emit IPFilterParsed(true, 0);
 }
