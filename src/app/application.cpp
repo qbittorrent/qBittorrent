@@ -512,7 +512,6 @@ void Application::initializeTranslation()
     Preferences* const pref = Preferences::instance();
     // Load translation
     QString localeStr = pref->getLocale();
-    QLocale::setDefault(QLocale(localeStr));
 
     if (
 #ifdef QBT_USES_QT5
