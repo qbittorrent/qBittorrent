@@ -93,7 +93,7 @@ namespace Rss
 
     private:
         bool matches(const QString &articleTitle, const QString &expression) const;
-        QRegularExpression getRegex(const QString &expression, bool isRegex = true) const;
+        QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
 
         QString m_name;
         QStringList m_mustContain;
