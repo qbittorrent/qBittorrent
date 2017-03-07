@@ -66,7 +66,6 @@ endif (CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 set(QBT_USE_GUI ${GUI})
 set(QBT_USE_WEBUI ${WEBUI})
-set(QBT_USES_QT5 ${QT5})
 
 configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 

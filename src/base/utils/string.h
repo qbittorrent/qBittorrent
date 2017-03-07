@@ -39,15 +39,11 @@ namespace Utils
 {
     namespace String
     {
-        QString fromStdString(const std::string &str);
-        std::string toStdString(const QString &str);
         QString fromDouble(double n, int precision);
 
         // Implements constant-time comparison to protect against timing attacks
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
-
-        QString toHtmlEscaped(const QString &str);
 
         bool naturalCompareCaseSensitive(const QString &left, const QString &right);
         bool naturalCompareCaseInsensitive(const QString &left, const QString &right);

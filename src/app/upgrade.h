@@ -119,7 +119,7 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     }
     else {
         queuePosition = fastOld.dict_find_int_value("qBt-queuePosition", 0);
-        fastNew["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
+        fastNew["qBt-name"] = oldTorrent.value("name").toString().toStdString();
         fastNew["qBt-tempPathDisabled"] = false;
     }
 
@@ -192,14 +192,14 @@ bool upgrade(bool ask = true)
         QVariantHash oldTorrent = oldResumeData[hash].toHash();
         if (oldTorrent.value("is_magnet", false).toBool()) {
             libtorrent::entry resumeData;
-            resumeData["qBt-magnetUri"] = Utils::String::toStdString(oldTorrent.value("magnet_uri").toString());
+            resumeData["qBt-magnetUri"] = oldTorrent.value("magnet_uri").toString().toStdString();
             resumeData["qBt-paused"] = false;
             resumeData["qBt-forced"] = false;
 
-            resumeData["qBt-savePath"] = Utils::String::toStdString(oldTorrent.value("save_path").toString());
-            resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(oldTorrent.value("max_ratio", -2).toReal()));
-            resumeData["qBt-label"] = Utils::String::toStdString(oldTorrent.value("label").toString());
-            resumeData["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
+            resumeData["qBt-savePath"] = oldTorrent.value("save_path").toString().toStdString();
+            resumeData["qBt-ratioLimit"] = QString::number(oldTorrent.value("max_ratio", -2).toReal()).toStdString();
+            resumeData["qBt-label"] = oldTorrent.value("label").toString().toStdString();
+            resumeData["qBt-name"] = oldTorrent.value("name").toString().toStdString();
             resumeData["qBt-seedStatus"] = oldTorrent.value("seed").toBool();
             resumeData["qBt-tempPathDisabled"] = false;
 
