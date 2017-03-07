@@ -103,7 +103,7 @@ void TorrentCreatorThread::run()
 {
     emit updateProgress(0);
 
-    QString creator_str("qBittorrent " VERSION);
+    QString creator_str("qBittorrent " QBT_VERSION);
     try {
         libt::file_storage fs;
         // Adding files to the torrent

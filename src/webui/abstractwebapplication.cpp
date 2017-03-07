@@ -206,7 +206,7 @@ bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QSt
             translateDocument(dataStr);
 
             if (path.endsWith("about.html") || path.endsWith("index.html") || path.endsWith("client.js"))
-                dataStr.replace("${VERSION}", VERSION);
+                dataStr.replace("${VERSION}", QBT_VERSION);
 
             data = dataStr.toUtf8();
             translatedFiles_[path] = data; // cashing translated file
