@@ -305,6 +305,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     // Misc tab
     connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->textFilterPath, SLOT(setEnabled(bool)));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->browseFilterButton, SLOT(setEnabled(bool)));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->IpFilterRefreshBtn, SLOT(setEnabled(bool)));
     connect(m_ui->checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(m_ui->textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -873,8 +876,11 @@ void OptionsDialog::loadOptions()
     enableProxy(m_ui->comboProxyType->currentIndex());
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
-    m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
+    m_ui->textFilterPath->setEnabled(m_ui->checkIPFilter->isChecked());
     m_ui->textFilterPath->setText(Utils::Fs::toNativePath(session->IPFilterFile()));
+    m_ui->browseFilterButton->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->IpFilterRefreshBtn->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
     // End Connection preferences
 
     // Speed preferences
