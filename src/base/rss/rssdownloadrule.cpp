@@ -28,14 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QRegExp>
 #include <QDebug>
 #include <QDir>
+#include <QHash>
+#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "base/utils/string.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrule.h"
@@ -47,28 +50,48 @@ DownloadRule::DownloadRule()
     , m_useRegex(false)
     , m_apstate(USE_GLOBAL)
     , m_ignoreDays(0)
+    , m_cachedRegexes(new QHash<QString, QRegularExpression>)
 {
+}
+
+DownloadRule::~DownloadRule()
+{
+    delete m_cachedRegexes;
+}
+
+QRegularExpression DownloadRule::getRegex(const QString &expression, bool isRegex) const
+{
+    // Use a cache of regexes so we don't have to continually recompile - big performance increase.
+    // The cache is cleared whenever the regex/wildcard, must or must not contain fields or
+    // episode filter are modified.
+    Q_ASSERT(!expression.isEmpty());
+    QRegularExpression regex((*m_cachedRegexes)[expression]);
+
+    if (!regex.pattern().isEmpty())
+        return regex;
+
+    return (*m_cachedRegexes)[expression] = QRegularExpression(isRegex ? expression : Utils::String::wildcardToRegex(expression), QRegularExpression::CaseInsensitiveOption);
 }
 
 bool DownloadRule::matches(const QString &articleTitle, const QString &expression) const
 {
-    static QRegExp whitespace("\\s+");
+    static QRegularExpression whitespace("\\s+");
 
     if (expression.isEmpty()) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         return true;
     }
     else if (m_useRegex) {
-        QRegExp reg(expression, Qt::CaseInsensitive, QRegExp::RegExp);
-        return reg.indexIn(articleTitle) > -1;
+        QRegularExpression reg(getRegex(expression));
+        return reg.match(articleTitle).hasMatch();
     }
     else {
         // Only match if every wildcard token (separated by spaces) is present in the article name.
         // Order of wildcard tokens is unimportant (if order is important, they should have used *).
         foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
-            QRegExp reg(wildcard, Qt::CaseInsensitive, QRegExp::Wildcard);
+            QRegularExpression reg(getRegex(wildcard, false));
 
-            if (reg.indexIn(articleTitle) == -1)
+            if (!reg.match(articleTitle).hasMatch())
                 return false;
         }
     }
@@ -124,14 +147,15 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
     if (!m_episodeFilter.isEmpty()) {
         qDebug() << "Checking episode filter:" << m_episodeFilter;
-        QRegExp f("(^\\d{1,4})x(.*;$)");
-        int pos = f.indexIn(m_episodeFilter);
+        QRegularExpression f(getRegex("(^\\d{1,4})x(.*;$)"));
+        QRegularExpressionMatch matcher = f.match(m_episodeFilter);
+        bool matched = matcher.hasMatch();
 
-        if (pos < 0)
+        if (!matched)
             return false;
 
-        QString s = f.cap(1);
-        QStringList eps = f.cap(2).split(";");
+        QString s = matcher.captured(1);
+        QStringList eps = matcher.captured(2).split(";");
         int sOurs = s.toInt();
 
         foreach (QString ep, eps) {
@@ -145,22 +169,24 @@ bool DownloadRule::matches(const QString &articleTitle) const
             if (ep.indexOf('-') != -1) { // Range detected
                 QString partialPattern1 = "\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)";
                 QString partialPattern2 = "\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)";
-                QRegExp reg(partialPattern1, Qt::CaseInsensitive);
+                QRegularExpression reg(getRegex(partialPattern1));
 
                 if (ep.endsWith('-')) { // Infinite range
                     int epOurs = ep.left(ep.size() - 1).toInt();
 
                     // Extract partial match from article and compare as digits
-                    pos = reg.indexIn(articleTitle);
+                    matcher = reg.match(articleTitle);
+                    matched = matcher.hasMatch();
 
-                    if (pos == -1) {
-                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
-                        pos = reg.indexIn(articleTitle);
+                    if (!matched) {
+                        reg = QRegularExpression(getRegex(partialPattern2));
+                        matcher = reg.match(articleTitle);
+                        matched = matcher.hasMatch();
                     }
 
-                    if (pos != -1) {
-                        int sTheirs = reg.cap(1).toInt();
-                        int epTheirs = reg.cap(2).toInt();
+                    if (matched) {
+                        int sTheirs = matcher.captured(1).toInt();
+                        int epTheirs = matcher.captured(2).toInt();
                         if (((sTheirs == sOurs) && (epTheirs >= epOurs)) || (sTheirs > sOurs)) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
@@ -178,16 +204,18 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     int epOursLast = range.last().toInt();
 
                     // Extract partial match from article and compare as digits
-                    pos = reg.indexIn(articleTitle);
+                    matcher = reg.match(articleTitle);
+                    matched = matcher.hasMatch();
 
-                    if (pos == -1) {
-                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
-                        pos = reg.indexIn(articleTitle);
+                    if (!matched) {
+                        reg = QRegularExpression(getRegex(partialPattern2));
+                        matcher = reg.match(articleTitle);
+                        matched = matcher.hasMatch();
                     }
 
-                    if (pos != -1) {
-                        int sTheirs = reg.cap(1).toInt();
-                        int epTheirs = reg.cap(2).toInt();
+                    if (matched) {
+                        int sTheirs = matcher.captured(1).toInt();
+                        int epTheirs = matcher.captured(2).toInt();
                         if ((sTheirs == sOurs) && ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
@@ -198,8 +226,8 @@ bool DownloadRule::matches(const QString &articleTitle) const
             }
             else { // Single number
                 QString expStr("\\b(?:s0?" + s + "[ -_\\.]?" + "e0?" + ep + "|" + s + "x" + "0?" + ep + ")(?:\\D|\\b)");
-                QRegExp reg(expStr, Qt::CaseInsensitive);
-                if (reg.indexIn(articleTitle) != -1) {
+                QRegularExpression reg(getRegex(expStr));
+                if (reg.match(articleTitle).hasMatch()) {
                     qDebug() << "Matched episode:" << ep;
                     qDebug() << "Matched article:" << articleTitle;
                     return true;
@@ -216,6 +244,8 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
 void DownloadRule::setMustContain(const QString &tokens)
 {
+    m_cachedRegexes->clear();
+
     if (m_useRegex)
         m_mustContain = QStringList() << tokens;
     else
@@ -228,6 +258,8 @@ void DownloadRule::setMustContain(const QString &tokens)
 
 void DownloadRule::setMustNotContain(const QString &tokens)
 {
+    m_cachedRegexes->clear();
+
     if (m_useRegex)
         m_mustNotContain = QStringList() << tokens;
     else
@@ -377,6 +409,7 @@ bool DownloadRule::useRegex() const
 void DownloadRule::setUseRegex(bool enabled)
 {
     m_useRegex = enabled;
+    m_cachedRegexes->clear();
 }
 
 QString DownloadRule::episodeFilter() const
@@ -387,6 +420,7 @@ QString DownloadRule::episodeFilter() const
 void DownloadRule::setEpisodeFilter(const QString &e)
 {
     m_episodeFilter = e;
+    m_cachedRegexes->clear();
 }
 
 QStringList DownloadRule::findMatchingArticles(const FeedPtr &feed) const

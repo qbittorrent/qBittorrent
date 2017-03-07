@@ -35,6 +35,7 @@
 #include <QCollator>
 #include <QtGlobal>
 #include <QLocale>
+#include <QRegExp>
 #ifdef Q_OS_MAC
 #include <QThreadStorage>
 #endif
@@ -178,3 +179,13 @@ bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
 
     return (diff == 0);
 }
+
+// This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to
+// copy the code from QRegExp::wc2rx().
+QString qt_regexp_toCanonical(const QString &pattern, QRegExp::PatternSyntax patternSyntax);
+
+QString Utils::String::wildcardToRegex(const QString &pattern)
+{
+    return qt_regexp_toCanonical(pattern, QRegExp::Wildcard);
+}
+
