@@ -60,7 +60,11 @@ public:
             "</p></font>"
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
-            "qBittorrent version: " QBT_VERSION "<br/>"
+#if defined(__x86_64__) || defined(_M_X64)
+            "qBittorrent version: " QBT_VERSION " (64-bit)<br/>"
+#else
+            "qBittorrent version: " QBT_VERSION " (32-bit)<br/>"
+#endif
             "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
             "Boost version: %2<br/>"
