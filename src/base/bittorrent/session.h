@@ -326,6 +326,8 @@ namespace BitTorrent
         void setUTPRateLimited(bool limited);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
+        QStringList bannedIPs() const;
+        void setBannedIPs(const QStringList &list);
 
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QHash<InfoHash, TorrentHandle *> torrents() const;

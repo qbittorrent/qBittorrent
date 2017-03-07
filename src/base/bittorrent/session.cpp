@@ -1,4 +1,3 @@
-
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
@@ -74,6 +73,7 @@
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
+#include "base/utils/net.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
@@ -275,7 +275,15 @@ Session::Session(QObject *parent)
     , m_isDisableAutoTMMWhenDefaultSavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/DefaultSavePathChanged"), true)
     , m_isDisableAutoTMMWhenCategorySavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategorySavePathChanged"), true)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
-    , m_bannedIPs("State/BannedIPs")
+    , m_bannedIPs("State/BannedIPs"
+                  , QStringList()
+                  , [](const QStringList &value)
+                        {
+                            QStringList tmp = value;
+                            tmp.sort();
+                            return tmp;
+                        }
+                 )
     , m_wasPexEnabled(m_isPeXEnabled)
     , m_numResumeData(0)
     , m_extraLimit(0)
@@ -1376,6 +1384,7 @@ void Session::banIP(const QString &ip)
         m_nativeSession->set_ip_filter(filter);
 
         bannedIPs << ip;
+        bannedIPs.sort();
         m_bannedIPs = bannedIPs;
     }
 }
@@ -2379,6 +2388,45 @@ void Session::setIPFilterFile(QString path)
     }
 }
 
+void Session::setBannedIPs(const QStringList &newList)
+{
+    if (newList == m_bannedIPs)
+        return; // do nothing
+    // here filter out incorrect IP
+    QStringList filteredList;
+    for (const QString &ip : newList) {
+        if (Utils::Net::isValidIP(ip)) {
+            // the same IPv6 addresses could be written in different forms;
+            // QHostAddress::toString() result format follows RFC5952;
+            // thus we avoid duplicate entries pointing to the same address
+            filteredList << QHostAddress(ip).toString();
+        }
+        else {
+            Logger::instance()->addMessage(
+                        tr("%1 is not a valid IP address and was rejected while applying the list of banned addresses.")
+                        .arg(ip)
+                        , Log::WARNING);
+        }
+    }
+    // now we have to sort IPs and make them unique
+    filteredList.sort();
+    filteredList.removeDuplicates();
+    // Again ensure that the new list is different from the stored one.
+    if (filteredList == m_bannedIPs)
+        return; // do nothing
+    // store to session settings
+    // also here we have to recreate filter list including 3rd party ban file
+    // and install it again into m_session
+    m_bannedIPs = filteredList;
+    m_IPFilteringChanged = true;
+    configureDeferred();
+}
+
+QStringList Session::bannedIPs() const
+{
+    return m_bannedIPs;
+}
+
 int Session::maxConnectionsPerTorrent() const
 {
     return m_maxConnectionsPerTorrent;
@@ -2976,15 +3024,20 @@ void Session::configureDeferred()
 }
 
 // Enable IP Filtering
+// this method creates ban list from scratch combining user ban list and 3rd party ban list file
 void Session::enableIPFilter()
 {
     qDebug("Enabling IPFilter");
+    // 1. Clear existing ban list
+    // 2. Add manual ban list
+    // 3. Add 3rd party ban list
+    m_nativeSession->set_ip_filter(libt::ip_filter());
+    processBannedIPs();
     if (!m_filterParser) {
         m_filterParser = new FilterParserThread(m_nativeSession, this);
         connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
         connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
     }
-
     m_filterParser->processFilterFile(IPFilterFile());
 }
 
