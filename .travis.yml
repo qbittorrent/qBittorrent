@@ -89,10 +89,6 @@ before_install:
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
     fi
-  - |
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      qbtconf="$qbtconf --disable-qt-dbus" ;
-    fi
 
   # print settings
   - echo $lt_branch
@@ -182,7 +178,11 @@ script:
 after_success:
   - if [ "$gui" = true ]; then qbt_exe="qbittorrent" ; else qbt_exe="qbittorrent-nox" ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cd "$TRAVIS_BUILD_DIR/src/" && macdeployqt "$qbt_exe.app" && cd "$qbt_exe.app/Contents/MacOS" ; fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app" ;
+      cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS" ;
+    fi
   - ./$qbt_exe --version
 
 after_script:
