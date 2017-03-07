@@ -31,6 +31,9 @@
 
 #include <QDialog>
 
+class QSortFilterProxyModel;
+class QStringListModel;
+
 namespace Ui
 {
     class BanListOptions;
@@ -52,6 +55,8 @@ private slots:
 
 private:
     Ui::BanListOptions *m_ui;
+    QStringListModel *m_model;
+    QSortFilterProxyModel *m_sortFilter;
     bool m_modified;
 };
 

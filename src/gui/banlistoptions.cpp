@@ -31,6 +31,8 @@
 
 #include <QMessageBox>
 #include <QHostAddress>
+#include <QSortFilterProxyModel>
+#include <QStringListModel>
 
 #include "base/bittorrent/session.h"
 #include "base/utils/net.h"
@@ -41,7 +43,14 @@ BanListOptions::BanListOptions(QWidget *parent)
     , m_modified(false)
 {
     m_ui->setupUi(this);
-    m_ui->bannedIPList->addItems(BitTorrent::Session::instance()->bannedIPs());
+    m_model = new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this);
+
+    m_sortFilter = new QSortFilterProxyModel(this);
+    m_sortFilter->setDynamicSortFilter(true);
+    m_sortFilter->setSourceModel(m_model);
+
+    m_ui->bannedIPList->setModel(m_sortFilter);
+    m_ui->bannedIPList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonBanIP->setEnabled(false);
 }
 
@@ -55,8 +64,11 @@ void BanListOptions::on_buttonBox_accepted()
     if (m_modified) {
         // save to session
         QStringList IPList;
-        for (int i = 0; i < m_ui->bannedIPList->count(); ++i)
-            IPList << m_ui->bannedIPList->item(i)->text();
+        // Operate on the m_sortFilter to grab the strings in sorted order
+        for (int i = 0; i < m_sortFilter->rowCount(); ++i) {
+            QModelIndex index = m_sortFilter->index(i, 0);
+            IPList << index.data().toString();
+        }
         BitTorrent::Session::instance()->setBannedIPs(IPList);
     }
     QDialog::accept();
@@ -64,7 +76,7 @@ void BanListOptions::on_buttonBox_accepted()
 
 void BanListOptions::on_buttonBanIP_clicked()
 {
-    QString ip=m_ui->txtIP->text();
+    QString ip = m_ui->txtIP->text();
     if (!Utils::Net::isValidIP(ip)) {
         QMessageBox::warning(this, tr("Warning"), tr("The entered IP address is invalid."));
         return;
@@ -73,23 +85,26 @@ void BanListOptions::on_buttonBanIP_clicked()
     // QHostAddress::toString() result format follows RFC5952;
     // thus we avoid duplicate entries pointing to the same address
     ip = QHostAddress(ip).toString();
-    QList<QListWidgetItem *> findres = m_ui->bannedIPList->findItems(ip, Qt::MatchExactly);
-    if (!findres.isEmpty()) {
-        QMessageBox::warning(this, tr("Warning"), tr("The entered IP is already banned."));
-        return;
+    for (int i = 0; i < m_sortFilter->rowCount(); ++i) {
+        QModelIndex index = m_sortFilter->index(i, 0);
+        if (ip == index.data().toString()) {
+            QMessageBox::warning(this, tr("Warning"), tr("The entered IP is already banned."));
+            return;
+        }
     }
-    m_ui->bannedIPList->addItem(ip);
+
+    m_model->insertRow(m_model->rowCount());
+    m_model->setData(m_model->index(m_model->rowCount() - 1, 0), ip);
     m_ui->txtIP->clear();
     m_modified = true;
 }
 
 void BanListOptions::on_buttonDeleteIP_clicked()
 {
-    QList<QListWidgetItem *> selection = m_ui->bannedIPList->selectedItems();
-    for (auto &i : selection) {
-        m_ui->bannedIPList->removeItemWidget(i);
-        delete i;
-    }
+    QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
+    for (auto &i : selection)
+        m_sortFilter->removeRow(i.row());
+
     m_modified = true;
 }
 
