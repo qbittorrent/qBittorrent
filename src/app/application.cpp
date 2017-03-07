@@ -74,6 +74,8 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/rss/rss_autodownloader.h"
+#include "base/rss/rss_session.h"
 
 namespace
 {
@@ -438,6 +440,9 @@ int Application::exec(const QStringList &params)
     m_webui = new WebUI;
 #endif
 
+    new RSS::Session; // create RSS::Session singleton
+    new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
     Preferences* const pref = Preferences::instance();
@@ -628,6 +633,9 @@ void Application::cleanup()
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
+
+    delete RSS::AutoDownloader::instance();
+    delete RSS::Session::instance();
 
     ScanFoldersModel::freeInstance();
     BitTorrent::Session::freeInstance();

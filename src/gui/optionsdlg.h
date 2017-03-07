@@ -68,6 +68,7 @@ private:
         TAB_CONNECTION,
         TAB_SPEED,
         TAB_BITTORRENT,
+        TAB_RSS,
         TAB_WEBUI,
         TAB_ADVANCED
     };

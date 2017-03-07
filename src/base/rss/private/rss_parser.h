@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
+ * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,52 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
+ * Contact : chris@qbittorrent.org
  */
 
-#include "rssfolder.h"
-#include "rssfile.h"
+#pragma once
 
-using namespace Rss;
+#include <QList>
+#include <QObject>
+#include <QString>
+#include <QVariantHash>
 
-File::~File() {}
+class QXmlStreamReader;
 
-Folder *File::parentFolder() const
+namespace RSS
 {
-    return m_parent;
+    namespace Private
+    {
+        struct ParsingResult
+        {
+            QString error;
+            QString lastBuildDate;
+            QString title;
+            QList<QVariantHash> articles;
+        };
+
+        class Parser: public QObject
+        {
+            Q_OBJECT
+
+        public:
+            explicit Parser(QString lastBuildDate);
+            void parse(const QByteArray &feedData);
+
+        signals:
+            void finished(const RSS::Private::ParsingResult &result);
+
+        private:
+            Q_INVOKABLE void parse_impl(const QByteArray &feedData);
+            void parseRssArticle(QXmlStreamReader &xml);
+            void parseRSSChannel(QXmlStreamReader &xml);
+            void parseAtomArticle(QXmlStreamReader &xml);
+            void parseAtomChannel(QXmlStreamReader &xml);
+
+            QString m_baseUrl;
+            ParsingResult m_result;
+        };
+    }
 }
 
-QStringList File::pathHierarchy() const
-{
-    QStringList path;
-    if (m_parent)
-        path << m_parent->pathHierarchy();
-    path << id();
-    return path;
-}
+Q_DECLARE_METATYPE(RSS::Private::ParsingResult)

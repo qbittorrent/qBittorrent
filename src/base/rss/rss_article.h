@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -25,67 +26,59 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSARTICLE_H
-#define RSSARTICLE_H
+#pragma once
 
 #include <QDateTime>
-#include <QVariantHash>
-#include <QSharedPointer>
+#include <QObject>
+#include <QString>
 
-namespace Rss
+namespace RSS
 {
     class Feed;
-    class Article;
 
-    typedef QSharedPointer<Article> ArticlePtr;
-
-    // Item of a rss stream, single information
     class Article: public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY(Article)
+
+        friend class Feed;
+
+        Article(Feed *feed, QString guid, QDateTime date, QString title, QString author
+                , QString description, QString torrentUrl, QString link, bool isRead = false);
+        static Article *fromJsonObject(Feed *feed, const QJsonObject &jsonObj);
+        static Article *fromVariantHash(Feed *feed, const QVariantHash &varHash);
 
     public:
-        Article(Feed *parent, const QString &guid);
-
-        // Accessors
-        bool hasAttachment() const;
-        const QString &guid() const;
-        Feed *parent() const;
-        const QString &title() const;
-        const QString &author() const;
-        const QString &torrentUrl() const;
-        const QString &link() const;
+        Feed *feed() const;
+        QString guid() const;
+        QDateTime date() const;
+        QString title() const;
+        QString author() const;
         QString description() const;
-        const QDateTime &date() const;
+        QString torrentUrl() const;
+        QString link() const;
         bool isRead() const;
-        // Setters
+
         void markAsRead();
 
-        // Serialization
-        QVariantHash toHash() const;
-        static ArticlePtr fromHash(Feed *parent, const QVariantHash &hash);
+        QJsonObject toJsonObject() const;
+
+        static bool articleDateRecentThan(Article *article, const QDateTime &date);
 
     signals:
-        void articleWasRead();
-
-    public slots:
-        void handleTorrentDownloadSuccess(const QString &url);
+        void read(Article *article = nullptr);
 
     private:
-        Feed *m_parent;
+        Feed *m_feed = nullptr;
         QString m_guid;
-        QString m_title;
-        QString m_torrentUrl;
-        QString m_link;
-        QString m_description;
         QDateTime m_date;
+        QString m_title;
         QString m_author;
-        bool m_read;
+        QString m_description;
+        QString m_torrentURL;
+        QString m_link;
+        bool m_isRead = false;
     };
 }
-
-#endif // RSSARTICLE_H

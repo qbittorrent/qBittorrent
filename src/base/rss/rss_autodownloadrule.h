@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,91 +25,71 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef RSSDOWNLOADRULE_H
-#define RSSDOWNLOADRULE_H
+#pragma once
 
 #include <QDateTime>
-#include <QVariantHash>
-#include <QSharedPointer>
-#include <QStringList>
+#include <QSharedDataPointer>
+#include <QVariant>
 
-template <class T, class U> class QHash;
+class QJsonObject;
 class QRegularExpression;
+class TriStateBool;
 
-namespace Rss
+namespace RSS
 {
-    class Feed;
-    typedef QSharedPointer<Feed> FeedPtr;
+    struct AutoDownloadRuleData;
 
-    class DownloadRule;
-    typedef QSharedPointer<DownloadRule> DownloadRulePtr;
-
-    class DownloadRule
+    class AutoDownloadRule
     {
     public:
-        enum AddPausedState
-        {
-            USE_GLOBAL = 0,
-            ALWAYS_PAUSED,
-            NEVER_PAUSED
-        };
+        explicit AutoDownloadRule(const QString &name = "");
+        AutoDownloadRule(const AutoDownloadRule &other);
+        ~AutoDownloadRule();
 
-        DownloadRule();
-        ~DownloadRule();
-
-        static DownloadRulePtr fromVariantHash(const QVariantHash &ruleHash);
-        QVariantHash toVariantHash() const;
-        bool matches(const QString &articleTitle) const;
-        void setMustContain(const QString &tokens);
-        void setMustNotContain(const QString &tokens);
-        QStringList rssFeeds() const;
-        void setRssFeeds(const QStringList &rssFeeds);
         QString name() const;
         void setName(const QString &name);
-        QString savePath() const;
-        void setSavePath(const QString &savePath);
-        AddPausedState addPaused() const;
-        void setAddPaused(const AddPausedState &aps);
-        QString category() const;
-        void setCategory(const QString &category);
+
         bool isEnabled() const;
         void setEnabled(bool enable);
-        void setLastMatch(const QDateTime &d);
-        QDateTime lastMatch() const;
-        void setIgnoreDays(int d);
-        int ignoreDays() const;
+
         QString mustContain() const;
+        void setMustContain(const QString &tokens);
         QString mustNotContain() const;
+        void setMustNotContain(const QString &tokens);
+        QStringList feedURLs() const;
+        void setFeedURLs(const QStringList &feedURLs);
+        int ignoreDays() const;
+        void setIgnoreDays(int d);
+        QDateTime lastMatch() const;
+        void setLastMatch(const QDateTime &lastMatch);
         bool useRegex() const;
         void setUseRegex(bool enabled);
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
-        QStringList findMatchingArticles(const FeedPtr &feed) const;
-        // Operators
-        bool operator==(const DownloadRule &other) const;
+
+        QString savePath() const;
+        void setSavePath(const QString &savePath);
+        TriStateBool addPaused() const;
+        void setAddPaused(const TriStateBool &addPaused);
+        QString assignedCategory() const;
+        void setCategory(const QString &assignedCategory);
+
+        bool matches(const QString &articleTitle) const;
+
+        AutoDownloadRule &operator=(const AutoDownloadRule &other);
+        bool operator==(const AutoDownloadRule &other) const;
+        bool operator!=(const AutoDownloadRule &other) const;
+
+        QJsonObject toJsonObject() const;
+        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = "");
+        static AutoDownloadRule fromVariantHash(const QVariantHash &varHash);
 
     private:
         bool matches(const QString &articleTitle, const QString &expression) const;
         QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
 
-        QString m_name;
-        QStringList m_mustContain;
-        QStringList m_mustNotContain;
-        QString m_episodeFilter;
-        QString m_savePath;
-        QString m_category;
-        bool m_enabled;
-        QStringList m_rssFeeds;
-        bool m_useRegex;
-        AddPausedState m_apstate;
-        QDateTime m_lastMatch;
-        int m_ignoreDays;
-        mutable QHash<QString, QRegularExpression> *m_cachedRegexes;
+        QSharedDataPointer<AutoDownloadRuleData> m_dataPtr;
     };
 }
-
-#endif // RSSDOWNLOADRULE_H

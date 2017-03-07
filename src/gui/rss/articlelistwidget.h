@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,38 +24,43 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include "rsssettingsdlg.h"
-#include "ui_rsssettingsdlg.h"
+#ifndef ARTICLELISTWIDGET_H
+#define ARTICLELISTWIDGET_H
 
-#include "base/preferences.h"
-#include "base/utils/misc.h"
-#include "guiiconprovider.h"
+#include <QHash>
+#include <QListWidget>
 
-RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::RssSettingsDlg)
+namespace RSS
 {
-  ui->setupUi(this);
-  ui->rssIcon->setPixmap(GuiIconProvider::instance()->getIcon("application-rss+xml").pixmap(Utils::Misc::largeIconSize()));
-  // Load settings
-  const Preferences* const pref = Preferences::instance();
-  ui->spinRSSRefresh->setValue(pref->getRSSRefreshInterval());
-  ui->spinRSSMaxArticlesPerFeed->setValue(pref->getRSSMaxArticlesPerFeed());
+    class Article;
+    class Item;
 }
 
-RssSettingsDlg::~RssSettingsDlg()
+class ArticleListWidget: public QListWidget
 {
-  qDebug("Deleting the RSS settings dialog");
-  delete ui;
-}
+    Q_OBJECT
 
-void RssSettingsDlg::on_buttonBox_accepted() {
-  // Save settings
-  Preferences* const pref = Preferences::instance();
-  pref->setRSSRefreshInterval(ui->spinRSSRefresh->value());
-  pref->setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
-}
+public:
+    explicit ArticleListWidget(QWidget *parent);
+
+    RSS::Article *getRSSArticle(QListWidgetItem *item) const;
+    QListWidgetItem *mapRSSArticle(RSS::Article *rssArticle) const;
+
+    void setRSSItem(RSS::Item *rssItem, bool unreadOnly = false);
+
+private slots:
+    void handleArticleAdded(RSS::Article *rssArticle);
+    void handleArticleRead(RSS::Article *rssArticle);
+    void handleArticleAboutToBeRemoved(RSS::Article *rssArticle);
+
+private:
+    QListWidgetItem *createItem(RSS::Article *article);
+
+    RSS::Item *m_rssItem = nullptr;
+    bool m_unreadOnly = false;
+    QHash<RSS::Article *, QListWidgetItem *> m_rssArticleToListItemMapping;
+};
+
+#endif // ARTICLELISTWIDGET_H

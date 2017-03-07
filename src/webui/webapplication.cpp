@@ -396,7 +396,7 @@ void WebApplication::action_command_download()
     // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
 
-    params.addPaused = addPaused;
+    params.addPaused = TriStateBool(addPaused);
     params.savePath = savepath;
     params.category = category;
 
@@ -436,7 +436,7 @@ void WebApplication::action_command_upload()
                  // TODO: Check if destination actually exists
                 params.skipChecking = skipChecking;
 
-                params.addPaused = addPaused;
+                params.addPaused = TriStateBool(addPaused);
                 params.savePath = savepath;
                 params.category = category;
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {

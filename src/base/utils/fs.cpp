@@ -214,12 +214,12 @@ bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
     return same;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators)
+QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
 {
     QRegExp regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
     QString validName = name.trimmed();
-    validName.replace(regex, " ");
+    validName.replace(regex, pad);
     qDebug() << "toValidFileSystemName:" << name << "=>" << validName;
 
     return validName;

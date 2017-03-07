@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,50 +24,41 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef RSSDOWNLOADRULELIST_H
-#define RSSDOWNLOADRULELIST_H
+#pragma once
 
-#include <QList>
-#include <QHash>
-#include <QVariantHash>
+#include <stdexcept>
 
-#include "rssdownloadrule.h"
+#include <QDir>
+#include <QFile>
+#include <QObject>
 
-namespace Rss
+class AsyncFileStorageError: public std::runtime_error
 {
-    class DownloadRuleList
-    {
-        Q_DISABLE_COPY(DownloadRuleList)
+public:
+    explicit AsyncFileStorageError(const QString &message);
+    QString message() const;
+};
 
-    public:
-        DownloadRuleList();
+class AsyncFileStorage: public QObject
+{
+    Q_OBJECT
 
-        DownloadRulePtr findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
-        // Operators
-        void saveRule(const DownloadRulePtr &rule);
-        void removeRule(const QString &name);
-        void renameRule(const QString &oldName, const QString &newName);
-        DownloadRulePtr getRule(const QString &name) const;
-        QStringList ruleNames() const;
-        bool isEmpty() const;
-        void saveRulesToStorage();
-        bool serialize(const QString &path);
-        bool unserialize(const QString &path);
-        void replace(DownloadRuleList *other);
+public:
+    explicit AsyncFileStorage(const QString &storageFolderPath, QObject *parent = nullptr);
+    ~AsyncFileStorage() override;
 
-    private:
-        void loadRulesFromStorage();
-        void loadRulesFromVariantHash(const QVariantHash &l);
-        QVariantHash toVariantHash() const;
+    void store(const QString &fileName, const QByteArray &data);
 
-    private:
-        QHash<QString, DownloadRulePtr> m_rules;
-        QHash<QString, QStringList> m_feedRules;
-    };
-}
+    QDir storageDir() const;
 
-#endif // RSSDOWNLOADFILTERLIST_H
+signals:
+    void failed(const QString &fileName, const QString &errorString);
+
+private:
+    Q_INVOKABLE void store_impl(const QString &fileName, const QByteArray &data);
+
+    QDir m_storageDir;
+    QFile m_lockFile;
+};

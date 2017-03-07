@@ -35,6 +35,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QThread>
 #include <QSysInfo>
 #include <boost/version.hpp>
@@ -503,9 +504,10 @@ QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
 
 bool Utils::Misc::isUrl(const QString &s)
 {
-    const QString scheme = QUrl(s).scheme();
-    QRegExp is_url("http[s]?|ftp", Qt::CaseInsensitive);
-    return is_url.exactMatch(scheme);
+    static const QRegularExpression reURLScheme(
+                "http[s]?|ftp", QRegularExpression::CaseInsensitiveOption);
+
+    return reURLScheme.match(QUrl(s).scheme()).hasMatch();
 }
 
 QString Utils::Misc::parseHtmlLinks(const QString &raw_text)

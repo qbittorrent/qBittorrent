@@ -2,7 +2,6 @@ INCLUDEPATH += $$PWD
 
 include(lineedit/lineedit.pri)
 include(properties/properties.pri)
-include(rss/rss.pri)
 include(powermanagement/powermanagement.pri)
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
@@ -52,7 +51,12 @@ HEADERS += \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
     $$PWD/categoryfilterwidget.h \
-    $$PWD/banlistoptions.h
+    $$PWD/banlistoptions.h \
+    $$PWD/rss/rsswidget.h \
+    $$PWD/rss/articlelistwidget.h \
+    $$PWD/rss/feedlistwidget.h \
+    $$PWD/rss/automatedrssdownloader.h \
+    $$PWD/rss/htmlbrowser.h
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -95,7 +99,12 @@ SOURCES += \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
     $$PWD/categoryfilterwidget.cpp \
-    $$PWD/banlistoptions.cpp
+    $$PWD/banlistoptions.cpp \
+    $$PWD/rss/rsswidget.cpp \
+    $$PWD/rss/articlelistwidget.cpp \
+    $$PWD/rss/feedlistwidget.cpp \
+    $$PWD/rss/automatedrssdownloader.cpp \
+    $$PWD/rss/htmlbrowser.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -123,6 +132,8 @@ FORMS += \
     $$PWD/search/pluginsourcedlg.ui \
     $$PWD/search/searchtab.ui \
     $$PWD/cookiesdialog.ui \
-    $$PWD/banlistoptions.ui
+    $$PWD/banlistoptions.ui \
+    $$PWD/rss/rsswidget.ui \
+    $$PWD/rss/automatedrssdownloader.ui
 
 RESOURCES += $$PWD/about.qrc
