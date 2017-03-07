@@ -37,7 +37,6 @@
 #include <QComboBox>
 #include <QTableWidget>
 
-
 class WheelEventEater: public QObject
 {
     Q_OBJECT
@@ -90,6 +89,7 @@ private:
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     QCheckBox cb_use_icon_theme;
+    QCheckBox cb_use_color_theme;
 #endif
 };
 

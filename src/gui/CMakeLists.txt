@@ -61,6 +61,7 @@ torrentcontentmodelitem.h
 torrentcontenttreeview.h
 torrentcreatordlg.h
 torrentmodel.h
+torrentmodel_p.h
 trackerlogin.h
 transferlistdelegate.h
 transferlistfilterswidget.h
@@ -98,6 +99,7 @@ torrentcontentmodelitem.cpp
 torrentcontenttreeview.cpp
 torrentcreatordlg.cpp
 torrentmodel.cpp
+torrentmodel_p.cpp
 trackerlogin.cpp
 transferlistdelegate.cpp
 transferlistfilterswidget.cpp
@@ -110,6 +112,17 @@ if (WIN32 OR APPLE)
     list(APPEND QBT_GUI_HEADERS programupdater.h)
     list(APPEND QBT_GUI_SOURCES programupdater.cpp)
 endif (WIN32 OR APPLE)
+
+if (UNIX AND NOT APPLE)
+    list(APPEND QBT_GUI_HEADERS
+        utils/colorutils.h
+        utils/kdecolorscheme.h
+    )
+    list(APPEND QBT_GUI_SOURCES
+        utils/colorutils.cpp
+        utils/kdecolorscheme.cpp
+    )
+endif (UNIX AND NOT APPLE)
 
 set(QBT_GUI_FORMS
 mainwindow.ui

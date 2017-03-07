@@ -716,6 +716,16 @@ void Preferences::useSystemIconTheme(bool enabled)
 {
     setValue("Preferences/Advanced/useSystemIconTheme", enabled);
 }
+
+bool Preferences::useSystemColorTheme() const
+{
+    return value("Preferences/Advanced/SystemColors", true).toBool();
+}
+
+void Preferences::useSystemColorTheme(bool b)
+{
+    setValue("Preferences/Advanced/SystemColors", b);
+}
 #endif
 
 bool Preferences::recursiveDownloadDisabled() const

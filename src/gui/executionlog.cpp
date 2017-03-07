@@ -37,6 +37,9 @@
 #include "ui_executionlog.h"
 #include "guiiconprovider.h"
 #include "loglistwidget.h"
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#include "utils/kdecolorscheme.h"
+#endif
 
 ExecutionLog::ExecutionLog(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
@@ -77,7 +80,28 @@ void ExecutionLog::addLogMessage(const Log::Msg &msg)
 {
     QString text;
     QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+    QColor neutralColor;
     QColor color;
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (KDEColorScheme::instance()->wasLoadedSuccesfuly()) {
+        neutralColor = KDEColorScheme::instance()->color(KDEColorScheme::ForegroundNormal);
+        switch (msg.type) {
+        case Log::INFO:
+            color = KDEColorScheme::instance()->color(KDEColorScheme::ForegroundActive);
+            break;
+        case Log::WARNING:
+            color = KDEColorScheme::instance()->color(KDEColorScheme::ForegroundNeutral);
+            break;
+        case Log::CRITICAL:
+            color = KDEColorScheme::instance()->color(KDEColorScheme::ForegroundNegative);
+            break;
+        default:
+            color = QApplication::palette().color(QPalette::WindowText);
+        }
+    }
+    else {
+#endif
+    neutralColor.setNamedColor("grey");
 
     switch (msg.type) {
     case Log::INFO:
@@ -92,8 +116,12 @@ void ExecutionLog::addLogMessage(const Log::Msg &msg)
     default:
         color = QApplication::palette().color(QPalette::WindowText);
     }
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    }
+#endif
 
-    text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+    text = "<font color='" + neutralColor.name() + "'>" + time.toString(Qt::SystemLocaleShortDate)
+           + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
     m_msgList->appendLine(text, msg.type);
 }
 
