@@ -47,7 +47,11 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION "</h2></b>");
+#if defined(__x86_64__) || defined(_M_X64)
+        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
+#else
+        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
+#endif
 
         // About
         QString aboutText = QString(
