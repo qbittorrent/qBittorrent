@@ -198,7 +198,7 @@ PeerAddress PeerInfo::address() const
 
 QString PeerInfo::client() const
 {
-    return Utils::String::fromStdString(m_nativeInfo.client);
+    return QString::fromStdString(m_nativeInfo.client);
 }
 
 

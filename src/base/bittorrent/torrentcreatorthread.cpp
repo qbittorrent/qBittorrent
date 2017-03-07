@@ -55,7 +55,7 @@ using namespace BitTorrent;
 // name starts with a .
 bool fileFilter(const std::string &f)
 {
-    return !Utils::Fs::fileName(Utils::String::fromStdString(f)).startsWith('.');
+    return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
 }
 
 TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
@@ -163,6 +163,6 @@ void TorrentCreatorThread::run()
         emit creationSuccess(m_savePath, parentPath);
     }
     catch (std::exception& e) {
-        emit creationFailure(Utils::String::fromStdString(e.what()));
+        emit creationFailure(QString::fromStdString(e.what()));
     }
 }

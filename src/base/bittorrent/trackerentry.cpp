@@ -51,7 +51,7 @@ TrackerEntry::TrackerEntry(const TrackerEntry &other)
 
 QString TrackerEntry::url() const
 {
-    return Utils::String::fromStdString(m_nativeEntry.url);
+    return QString::fromStdString(m_nativeEntry.url);
 }
 
 int TrackerEntry::tier() const

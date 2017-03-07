@@ -93,7 +93,7 @@ InfoHash TorrentInfo::hash() const
 QString TorrentInfo::name() const
 {
     if (!isValid()) return QString();
-    return Utils::String::fromStdString(m_nativeInfo->name());
+    return QString::fromStdString(m_nativeInfo->name());
 }
 
 QDateTime TorrentInfo::creationDate() const
@@ -106,13 +106,13 @@ QDateTime TorrentInfo::creationDate() const
 QString TorrentInfo::creator() const
 {
     if (!isValid()) return QString();
-    return Utils::String::fromStdString(m_nativeInfo->creator());
+    return QString::fromStdString(m_nativeInfo->creator());
 }
 
 QString TorrentInfo::comment() const
 {
     if (!isValid()) return QString();
-    return Utils::String::fromStdString(m_nativeInfo->comment());
+    return QString::fromStdString(m_nativeInfo->comment());
 }
 
 bool TorrentInfo::isPrivate() const
@@ -154,7 +154,7 @@ int TorrentInfo::piecesCount() const
 QString TorrentInfo::filePath(int index) const
 {
     if (!isValid()) return QString();
-    return Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeInfo->files().file_path(index)));
+    return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->files().file_path(index)));
 }
 
 QStringList TorrentInfo::filePaths() const
@@ -174,7 +174,7 @@ QString TorrentInfo::fileName(int index) const
 QString TorrentInfo::origFilePath(int index) const
 {
     if (!isValid()) return QString();
-    return Utils::Fs::fromNativePath(Utils::String::fromStdString(m_nativeInfo->orig_files().file_path(index)));
+    return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->orig_files().file_path(index)));
 }
 
 qlonglong TorrentInfo::fileSize(int index) const

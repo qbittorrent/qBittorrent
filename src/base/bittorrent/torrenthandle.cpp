@@ -263,7 +263,7 @@ QString TorrentHandle::name() const
 {
     QString name = m_name;
     if (name.isEmpty())
-        name = Utils::String::fromStdString(m_nativeStatus.name);
+        name = QString::fromStdString(m_nativeStatus.name);
 
     if (name.isEmpty())
         name = m_hash;
@@ -324,7 +324,7 @@ qlonglong TorrentHandle::wastedSize() const
 
 QString TorrentHandle::currentTracker() const
 {
-    return Utils::String::fromStdString(m_nativeStatus.current_tracker);
+    return QString::fromStdString(m_nativeStatus.current_tracker);
 }
 
 QString TorrentHandle::savePath(bool actual) const
@@ -371,7 +371,7 @@ void TorrentHandle::setAutoTMMEnabled(bool enabled)
 
 QString TorrentHandle::nativeActualSavePath() const
 {
-    return Utils::String::fromStdString(m_nativeStatus.save_path);
+    return QString::fromStdString(m_nativeStatus.save_path);
 }
 
 QList<TrackerEntry> TorrentHandle::trackers() const
@@ -858,7 +858,7 @@ int TorrentHandle::queuePosition() const
 
 QString TorrentHandle::error() const
 {
-    return Utils::String::fromStdString(m_nativeStatus.error);
+    return QString::fromStdString(m_nativeStatus.error);
 }
 
 qlonglong TorrentHandle::totalDownload() const
@@ -1380,7 +1380,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
-    const QString newPath = Utils::String::fromStdString(p->path);
+    const QString newPath = QString::fromStdString(p->path);
     if (newPath != m_newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
@@ -1412,7 +1412,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
     }
 
     Logger::instance()->addMessage(tr("Could not move torrent: '%1'. Reason: %2")
-                                   .arg(name()).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+                                   .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
 
     m_newPath.clear();
     if (!m_queuedPath.isEmpty()) {
@@ -1426,7 +1426,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
 
 void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 {
-    QString trackerUrl = Utils::String::fromStdString(p->url);
+    QString trackerUrl = QString::fromStdString(p->url);
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qPrintable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
@@ -1437,8 +1437,8 @@ void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 
 void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert *p)
 {
-    QString trackerUrl = Utils::String::fromStdString(p->url);
-    QString message = Utils::String::fromStdString(p->msg);
+    QString trackerUrl = QString::fromStdString(p->url);
+    QString message = QString::fromStdString(p->msg);
     qDebug("Received a tracker warning for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
@@ -1448,8 +1448,8 @@ void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert 
 
 void TorrentHandle::handleTrackerErrorAlert(libtorrent::tracker_error_alert *p)
 {
-    QString trackerUrl = Utils::String::fromStdString(p->url);
-    QString message = Utils::String::fromStdString(p->msg);
+    QString trackerUrl = QString::fromStdString(p->url);
+    QString message = QString::fromStdString(p->msg);
     qDebug("Received a tracker error for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     m_trackerInfos[trackerUrl].lastMessage = message;
 
@@ -1570,13 +1570,13 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
     }
     else {
         logger->addMessage(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-                           .arg(name()).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+                           .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
     }
 }
 
 void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
 {
-    QString newName = Utils::Fs::fromNativePath(Utils::String::fromStdString(p->name));
+    QString newName = Utils::Fs::fromNativePath(QString::fromStdString(p->name));
 
     // TODO: Check this!
     if (filesCount() > 1) {
@@ -1857,7 +1857,7 @@ void TorrentHandle::flushCache()
 
 QString TorrentHandle::toMagnetUri() const
 {
-    return Utils::String::fromStdString(libt::make_magnet_uri(m_nativeHandle));
+    return QString::fromStdString(libt::make_magnet_uri(m_nativeHandle));
 }
 
 void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)

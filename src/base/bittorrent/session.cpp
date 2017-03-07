@@ -367,7 +367,7 @@ Session::Session(QObject *parent)
         m_nativeSession->add_extension(&libt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&libt::create_smart_ban_plugin);
 
-    logger->addMessage(tr("Peer ID: ") + Utils::String::fromStdString(peerId));
+    logger->addMessage(tr("Peer ID: ") + QString::fromStdString(peerId));
     logger->addMessage(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
     logger->addMessage(tr("DHT support [%1]").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
     logger->addMessage(tr("Local Peer Discovery support [%1]").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
@@ -3265,7 +3265,7 @@ void Session::handleAlert(libt::alert *a)
         }
     }
     catch (std::exception &exc) {
-        qWarning() << "Caught exception in " << Q_FUNC_INFO << ": " << Utils::String::fromStdString(exc.what());
+        qWarning() << "Caught exception in " << Q_FUNC_INFO << ": " << QString::fromStdString(exc.what());
     }
 }
 
@@ -3347,7 +3347,7 @@ void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
 {
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
-        QString msg = Utils::String::fromStdString(p->message());
+        QString msg = QString::fromStdString(p->message());
         Logger::instance()->addMessage(tr("Couldn't add torrent. Reason: %1").arg(msg), Log::WARNING);
         emit addTorrentFailed(msg);
     }
@@ -3395,7 +3395,7 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     // NOTE: Check this function!
     TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
     if (torrent) {
-        QString msg = Utils::String::fromStdString(p->message());
+        QString msg = QString::fromStdString(p->message());
         Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
                            .arg(torrent->name()).arg(msg));
         emit fullDiskError(torrent, msg);
@@ -3404,13 +3404,13 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
 
 void Session::handlePortmapWarningAlert(libt::portmap_error_alert *p)
 {
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handlePortmapAlert(libt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(Utils::String::fromStdString(p->message())), Log::INFO);
+    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
 void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
@@ -3453,7 +3453,7 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2").arg(Utils::String::fromStdString(p->url)).arg(Utils::String::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2").arg(QString::fromStdString(p->url)).arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
@@ -3567,20 +3567,20 @@ namespace
         if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
 #endif
 
-        torrentData.savePath = Utils::Fs::fromNativePath(Utils::String::fromStdString(fast.dict_find_string_value("qBt-savePath")));
-        torrentData.ratioLimit = Utils::String::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+        torrentData.savePath = Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath")));
+        torrentData.ratioLimit = QString::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-label"));
+        torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
         if (torrentData.category.isEmpty())
         // **************************************************************************************
-            torrentData.category = Utils::String::fromStdString(fast.dict_find_string_value("qBt-category"));
-        torrentData.name = Utils::String::fromStdString(fast.dict_find_string_value("qBt-name"));
+            torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
+        torrentData.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
 
-        magnetUri = MagnetUri(Utils::String::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
+        magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
         torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
         torrentData.addForced = fast.dict_find_int_value("qBt-forced");
 
