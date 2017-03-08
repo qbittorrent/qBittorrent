@@ -718,7 +718,7 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentModel = new TorrentContentFilterModel(this);
         connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
         ui->contentTreeView->setModel(m_contentModel);
-        m_contentDelegate = new PropListDelegate();
+        m_contentDelegate = new PropListDelegate(nullptr);
         ui->contentTreeView->setItemDelegate(m_contentDelegate);
         connect(ui->contentTreeView, SIGNAL(clicked(const QModelIndex &)), ui->contentTreeView, SLOT(edit(const QModelIndex &)));
         connect(ui->contentTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContentTreeMenu(const QPoint &)));

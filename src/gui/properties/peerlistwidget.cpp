@@ -71,7 +71,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false);
     // List Model
-    m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
+    m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT, this);
     m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country")); // Country flag column
     m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
     m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
@@ -94,7 +94,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
-    m_proxyModel = new PeerListSortModel();
+    m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -150,12 +150,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
 PeerListWidget::~PeerListWidget()
 {
     saveSettings();
-    delete m_proxyModel;
-    delete m_listModel;
-    delete m_listDelegate;
     if (m_resolver)
         delete m_resolver;
-    delete m_copyHotkey;
 }
 
 void PeerListWidget::displayToggleColumnsMenu(const QPoint&)
