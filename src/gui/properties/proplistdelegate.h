@@ -54,7 +54,7 @@ class PropListDelegate : public QItemDelegate
     Q_OBJECT
 
 public:
-    PropListDelegate(PropertiesWidget *properties = 0, QObject *parent = 0);
+    PropListDelegate(PropertiesWidget *properties);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void setEditorData(QWidget *editor, const QModelIndex &index) const;

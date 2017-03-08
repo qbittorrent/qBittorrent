@@ -62,8 +62,8 @@ namespace {
     }
 }
 
-PropListDelegate::PropListDelegate(PropertiesWidget *properties, QObject *parent)
-    : QItemDelegate(parent)
+PropListDelegate::PropListDelegate(PropertiesWidget *properties)
+    : QItemDelegate(properties)
     , m_properties(properties)
 {
 }
