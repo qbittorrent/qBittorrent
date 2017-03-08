@@ -32,6 +32,8 @@
 
 #include <QDebug>
 
+#include "theme/colortheme.h"
+
 DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
     : base {parent}
     , m_dlPieceColor {0, 0xd0, 0}
@@ -172,7 +174,15 @@ void DownloadedPiecesBar::clear()
 
 QString DownloadedPiecesBar::simpleToolTipText() const
 {
-    return tr("White: Missing pieces") + '\n'
-           + tr("Green: Partial pieces") + '\n'
-           + tr("Blue: Completed pieces") + '\n';
+    return QString(QLatin1String(R"(<table style="width:100%; cellspacing=4">)"
+                                 R"(<tr><td bgcolor="%1">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;: %2</td></tr>)"
+                                 R"(<tr><td bgcolor="%3">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;: %4</td></tr>)"
+                                 R"(<tr><td bgcolor="%5">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;: %6</td></tr>)"
+                                 R"(</table>)"))
+        .arg(Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Background).name())
+        .arg(tr("Missing pieces"))
+        .arg(Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Incomplete).name())
+        .arg(tr("Partial pieces"))
+        .arg(Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Complete).name())
+        .arg(tr("Completed pieces"));
 }

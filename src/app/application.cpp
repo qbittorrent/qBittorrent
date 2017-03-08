@@ -53,6 +53,9 @@
 #endif // Q_OS_MAC
 #include "addnewtorrentdialog.h"
 #include "gui/guiiconprovider.h"
+#include "gui/theme/colorproviders.h"
+#include "gui/theme/fontproviders.h"
+#include "gui/theme/themeprovider.h"
 #include "mainwindow.h"
 #include "shutdownconfirmdialog.h"
 #else // DISABLE_GUI
@@ -488,9 +491,14 @@ int Application::exec(const QStringList &params)
 {
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
+
 #ifdef DISABLE_GUI
     IconProvider::initInstance();
 #else
+    Theme::Serialization::registerColorProviders();
+    Theme::Serialization::registerFontProviders();
+    Theme::ThemeProvider::initInstance();
+
     GuiIconProvider::initInstance();
 #endif
 

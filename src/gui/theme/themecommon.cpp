@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,15 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#include "themecommon.h"
 
-#include <QListWidget>
-#include "base/logger.h"
+#include <QPalette>
 
-class QKeyEvent;
-
-class LogListWidget : public QListWidget
+bool Theme::isDarkTheme()
 {
-    Q_OBJECT
+    return (QPalette().color(QPalette::Active, QPalette::Base).lightness() < 127);
+}
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
+Theme::VisualTheme::~VisualTheme() = default;
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
-
-protected slots:
-    void copySelection();
-
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private slots:
-    void applyFontTheme();
-
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
-
-#endif // LOGLISTWIDGET_H
+Q_LOGGING_CATEGORY(theme, "qbt.theme")

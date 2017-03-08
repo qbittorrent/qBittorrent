@@ -117,6 +117,9 @@ protected slots:
 signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
+private slots:
+    void applyFontTheme();
+
 private:
     void wheelEvent(QWheelEvent *event) override;
     void askAddTagsForSelection();

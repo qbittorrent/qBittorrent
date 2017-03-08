@@ -64,7 +64,21 @@ HEADERS += \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
     $$PWD/updownratiodialog.h \
-    $$PWD/utils.h
+    $$PWD/utils.h \
+    $$PWD/theme/colorprovider_p.h \
+    $$PWD/theme/colorproviders.h \
+    $$PWD/theme/colortheme.h \
+    $$PWD/theme/colortheme_impl.h \
+    $$PWD/theme/fontprovider_p.h \
+    $$PWD/theme/fontproviders.h \
+    $$PWD/theme/fonttheme.h \
+    $$PWD/theme/fonttheme_impl.h \
+    $$PWD/theme/provider_p.h \
+    $$PWD/theme/serializabletheme.h \
+    $$PWD/theme/themecommon.h \
+    $$PWD/theme/themeexceptions.h \
+    $$PWD/theme/themeinfo.h \
+    $$PWD/theme/themeprovider.h \
 
 SOURCES += \
     $$PWD/addnewtorrentdialog.cpp \
@@ -121,7 +135,19 @@ SOURCES += \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
     $$PWD/updownratiodialog.cpp \
-    $$PWD/utils.cpp
+    $$PWD/utils.cpp \
+    $$PWD/theme/colorprovider_p.cpp \
+    $$PWD/theme/colortheme.cpp \
+    $$PWD/theme/fonttheme.cpp \
+    $$PWD/theme/fontprovider_p.cpp \
+    $$PWD/theme/colorproviders.cpp \
+    $$PWD/theme/fontproviders.cpp \
+    $$PWD/theme/provider_p.cpp \
+    $$PWD/theme/serializabletheme.cpp \
+    $$PWD/theme/themecommon.cpp \
+    $$PWD/theme/themeexceptions.cpp \
+    $$PWD/theme/themeinfo.cpp \
+    $$PWD/theme/themeprovider.cpp \
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -160,4 +186,6 @@ FORMS += \
     $$PWD/trackerlogindialog.ui \
     $$PWD/updownratiodialog.ui
 
-RESOURCES += $$PWD/about.qrc
+RESOURCES += \
+    $$PWD/about.qrc \
+    $$PWD/theme/builtinthemes.qrc

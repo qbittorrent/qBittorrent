@@ -60,6 +60,20 @@ transferlistsortmodel.h
 transferlistwidget.h
 updownratiodialog.h
 utils.h
+theme/colorprovider_p.h
+theme/colorproviders.h
+theme/colortheme.h
+theme/colortheme_impl.h
+theme/fontprovider_p.h
+theme/fontproviders.h
+theme/fonttheme.h
+theme/fonttheme_impl.h
+theme/provider_p.h
+theme/serializabletheme.h
+theme/themecommon.h
+theme/themeexceptions.h
+theme/themeinfo.h
+theme/themeprovider.h
 
 # sources
 addnewtorrentdialog.cpp
@@ -106,6 +120,18 @@ transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodialog.cpp
 utils.cpp
+theme/colorprovider_p.cpp
+theme/colorproviders.cpp
+theme/colortheme.cpp
+theme/fonttheme.cpp
+theme/fontprovider_p.cpp
+theme/fontproviders.cpp
+theme/provider_p.cpp
+theme/serializabletheme.cpp
+theme/themecommon.cpp
+theme/themeexceptions.cpp
+theme/themeinfo.cpp
+theme/themeprovider.cpp
 
 # forms
 aboutdialog.ui
@@ -135,6 +161,7 @@ target_link_libraries(qbt_gui
         qbt_base
         QtSingleApplication::QtSingleApplication
 )
+qbt_target_sources(qBittorrent PRIVATE about.qrc theme/builtinthemes.qrc)
 
 target_include_directories(qbt_gui
     PRIVATE ../app

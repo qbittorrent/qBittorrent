@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,41 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#include "fonttheme.h"
 
-#include <QListWidget>
-#include "base/logger.h"
+#include <QMetaEnum>
+#include <QSettings>
 
-class QKeyEvent;
+#include "fonttheme_impl.h"
+#include "themeexceptions.h"
+#include "themeprovider.h"
 
-class LogListWidget : public QListWidget
+namespace
 {
-    Q_OBJECT
+    const QByteArray fontsGroupName("Fonts/");
+}
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
+const Theme::FontTheme &Theme::FontTheme::current()
+{
+    return ThemeProvider::instance().fontTheme();
+}
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+Theme::SerializableFontTheme::SerializableFontTheme(const QString &themeName)
+    : BaseSerializableTheme(themeName, elementNames())
+{
+}
 
-protected slots:
-    void copySelection();
+const Theme::ThemeInfo &Theme::SerializableFontTheme::info() const
+{
+    return BaseSerializableTheme::info();
+}
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private slots:
-    void applyFontTheme();
-
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
-
-#endif // LOGLISTWIDGET_H
+Theme::SerializableFontTheme::BaseSerializableTheme::NamesMap Theme::SerializableFontTheme::elementNames()
+{
+    const QMetaEnum meta = QMetaEnum::fromType<Element>();
+    NamesMap res;
+    for (int i = 0; i < meta.keyCount(); ++i) {
+        res.insert({QByteArray(fontsGroupName + QByteArray(meta.key(i))), meta.value(i)});
+    }
+    return res;
+}

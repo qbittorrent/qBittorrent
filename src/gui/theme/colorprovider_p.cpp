@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,43 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#include "colorprovider_p.h"
 
-#include <QListWidget>
-#include "base/logger.h"
+#include <QGlobalStatic>
 
-class QKeyEvent;
+// -------------------------- Color -----------------------------------------------
 
-class LogListWidget : public QListWidget
+QString Theme::Serialization::Color::explicitSerializedValue() const
 {
-    Q_OBJECT
+    return value().name(QColor::HexRgb);
+}
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
+// -------------------------  ColorsProviderRegistry ------------------------------
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+namespace
+{
+    class ColorsProviderRegistrySignletonImpl : public Theme::Serialization::ColorsProviderRegistry
+    {
+    public:
+        ~ColorsProviderRegistrySignletonImpl() = default;
+    };
 
-protected slots:
-    void copySelection();
+    Q_GLOBAL_STATIC(ColorsProviderRegistrySignletonImpl, colorsProviderRegistrySignletonImpl)
+}
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
+Theme::Serialization::ColorsProviderRegistry &Theme::Serialization::ColorsProviderRegistry::instance()
+{
+    return *colorsProviderRegistrySignletonImpl();
+}
 
-private slots:
-    void applyFontTheme();
+void Theme::Serialization::ColorsProviderRegistry::applicationPaletteChanged() const
+{
+    for (const auto &providerPair : providers())
+        providerPair.second->applicationPaletteChanged();
+}
 
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
+// -------------------------  ColorProvider ------------------------------
 
-#endif // LOGLISTWIDGET_H
+void Theme::Serialization::ColorProvider::applicationPaletteChanged() const
+{
+}

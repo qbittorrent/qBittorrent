@@ -108,6 +108,8 @@ protected slots:
     void openSelectedFile();
 
 private slots:
+    void applyColorTheme();
+    void applyFontTheme();
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,32 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#ifndef QBT_THEME_FONTPROVIDER_P_H
+#define QBT_THEME_FONTPROVIDER_P_H
 
-#include <QListWidget>
-#include "base/logger.h"
+#include "provider_p.h"
 
-class QKeyEvent;
+#include <QFont>
 
-class LogListWidget : public QListWidget
+namespace Theme
 {
-    Q_OBJECT
+    namespace Serialization
+    {
+        using Font = Entity<QFont>;
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
+        class FontProvider : public Provider<Font>
+        {
+        public:
+            using Provider<Font>::Provider;
+        };
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+        class FontProviderRegistry : public ProviderRegistry<FontProvider>
+        {
+        public:
+            static const Kind kind = Kind::Font;
+            static FontProviderRegistry &instance();
+        };
+    }
+}
 
-protected slots:
-    void copySelection();
-
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private slots:
-    void applyFontTheme();
-
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
-
-#endif // LOGLISTWIDGET_H
+#endif // QBT_THEME_FONTPROVIDER_P_H

@@ -10,7 +10,7 @@ const int MAX_LOG_MESSAGES = 20000;
 
 namespace Log
 {
-    enum MsgType
+    enum MsgType: int
     {
         ALL = -1,
         NORMAL = 0x1,
