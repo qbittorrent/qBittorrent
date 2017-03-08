@@ -76,33 +76,34 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
     switch(index.column()) {
     case PCSIZE:
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
-        break;
     case REMAINING:
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
-    case PROGRESS:
-        if (index.data().toDouble() >= 0) {
-            QStyleOptionProgressBar newopt;
-            qreal progress = index.data().toDouble() * 100.;
-            newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
-            newopt.progress = (int)progress;
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.textVisible = true;
-            if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
-                newopt.state &= ~QStyle::State_Enabled;
-                newopt.palette = progressBarDisabledPalette();
-            }
-            else
-                newopt.state |= QStyle::State_Enabled;
+    case PROGRESS: {
+        if (index.data().toDouble() < 0)
+            break;
+
+        QStyleOptionProgressBar newopt;
+        qreal progress = index.data().toDouble() * 100.;
+        newopt.rect = opt.rect;
+        newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+        newopt.progress = int(progress);
+        newopt.maximum = 100;
+        newopt.minimum = 0;
+        newopt.textVisible = true;
+        if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
+            newopt.state &= ~QStyle::State_Enabled;
+            newopt.palette = progressBarDisabledPalette();
+        }
+        else {
+            newopt.state |= QStyle::State_Enabled;
+        }
+
 #ifndef Q_OS_WIN
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-            // XXX: To avoid having the progress text on the right of the bar
-            QProxyStyle st("fusion");
-            st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+        // XXX: To avoid having the progress text on the right of the bar
+        QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         }
         break;
