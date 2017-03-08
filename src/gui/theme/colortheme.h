@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,43 +24,58 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
 
-#include <QListWidget>
-#include "base/logger.h"
+#ifndef QBT_THEME_COLORTHEME_H
+#define QBT_THEME_COLORTHEME_H
 
-QT_BEGIN_NAMESPACE
-class QKeyEvent;
-QT_END_NAMESPACE
+#include <QString>
 
-class LogListWidget: public QListWidget
+#include <memory>
+#include <map>
+
+class QColor;
+class QSettings;
+
+namespace BitTorrent
 {
-    Q_OBJECT
+    enum class TorrentState;
+}
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
-    void showMsgTypes(const Log::MsgTypes &types);
+namespace Log
+{
+    enum MsgType: int;
+}
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+namespace Theme
+{
+    enum class DownloadProgressBarElement
+    {
+        Background,
+        Border,
+        Complete,
+        Incomplete
+    };
 
-protected slots:
-    void copySelection();
+    class ThemeInfo;
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
+    /*! \brief qBittorrent color theme
+     *
+     * Contains all colors that are needed to render a qBt UI, either using widgets or Web
+     */
+    class ColorTheme
+    {
+    public:
+        virtual ~ColorTheme();
 
-private slots:
-    void applyFontTheme();
+        virtual ThemeInfo info() const = 0;
 
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
+        virtual QColor torrentStateColor(const BitTorrent::TorrentState state) const = 0;
+        virtual QColor logMessageColor(const Log::MsgType messageType) const = 0;
+        virtual QColor downloadProgressBarColor(const DownloadProgressBarElement element) const = 0;
 
-#endif // LOGLISTWIDGET_H
+        static const ColorTheme &current();
+    };
+}
+
+#endif // QBT_THEME_COLORTHEME_H

@@ -53,6 +53,9 @@
 #include "downloadedpiecesbar.h"
 #include "guiiconprovider.h"
 #include "lineedit.h"
+#include "theme/colortheme.h"
+#include "theme/fonttheme.h"
+#include "theme/themeprovider.h"
 #include "mainwindow.h"
 #include "messageboxraised.h"
 #include "peerlistwidget.h"
@@ -168,6 +171,14 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
     openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, 0, 0, Qt::WidgetShortcut);
     connect(openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
+
+    applyColorTheme();
+    applyFontTheme();
+
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::colorThemeChanged,
+            this, &PropertiesWidget::applyColorTheme);
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::fontThemeChanged,
+            this, &PropertiesWidget::applyFontTheme);
 }
 
 PropertiesWidget::~PropertiesWidget()
@@ -894,4 +905,27 @@ void PropertiesWidget::filterText(const QString &filter)
     else {
         m_ui->filesList->expandAll();
     }
+}
+
+void PropertiesWidget::applyColorTheme()
+{
+    downloaded_pieces->setColors(
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Background),
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Border),
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Complete),
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Incomplete));
+    pieces_availability->setColors(
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Background),
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Border),
+        Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Complete));
+}
+
+void PropertiesWidget::applyFontTheme()
+{
+    QFont font = Theme::FontTheme::current().font(Theme::FontThemeElement::TorrentProperties);
+    foreach (QWidget *widget, findChildren<QGroupBox*>())
+        widget->setFont(font);
+
+    foreach (QWidget *widget, findChildren<QLabel*>())
+        widget->setFont(font);
 }

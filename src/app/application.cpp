@@ -37,6 +37,9 @@
 
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
+#include "gui/theme/colorproviders.h"
+#include "gui/theme/fontproviders.h"
+#include "gui/theme/themeprovider.h"
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <QSharedMemory>
@@ -466,9 +469,14 @@ int Application::exec(const QStringList &params)
 {
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
+
 #ifdef DISABLE_GUI
     IconProvider::initInstance();
 #else
+    Theme::Serialization::registerColorProviders();
+    Theme::Serialization::registerFontProviders();
+    Theme::ThemeProvider::initInstance();
+
     GuiIconProvider::initInstance();
 #endif
 

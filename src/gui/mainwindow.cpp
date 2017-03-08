@@ -103,6 +103,7 @@
 #include "lineedit.h"
 #include "executionlog.h"
 #include "hidabletabwidget.h"
+
 #include "ui_mainwindow.h"
 
 #ifdef Q_OS_MAC

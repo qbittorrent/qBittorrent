@@ -26,16 +26,22 @@
  * exception statement from your version.
  *
  * Contact : chris@qbittorrent.org
- */
-#include <QKeyEvent>
+*/
+
+#include "loglistwidget.h"
+
+#include <QAction>
 #include <QApplication>
 #include <QClipboard>
-#include <QListWidgetItem>
+#include <QFont>
+#include <QKeyEvent>
 #include <QLabel>
+#include <QListWidgetItem>
 #include <QRegExp>
-#include <QAction>
-#include "loglistwidget.h"
+
 #include "guiiconprovider.h"
+#include "theme/fonttheme.h"
+#include "theme/themeprovider.h"
 
 LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *parent)
     : QListWidget(parent)
@@ -52,6 +58,9 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     addAction(copyAct);
     addAction(clearAct);
     setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::fontThemeChanged,
+            this, &LogListWidget::applyFontTheme);
 }
 
 void LogListWidget::showMsgTypes(const Log::MsgTypes &types)
@@ -74,11 +83,23 @@ void LogListWidget::keyPressEvent(QKeyEvent *event)
         selectAll();
 }
 
+void LogListWidget::applyFontTheme()
+{
+    QFont font = Theme::FontTheme::current().font(Theme::FontThemeElement::ExecutionLog);
+    for (int row = 0; row < count(); ++row) {
+        QListWidgetItem *item = this->item(row);
+        QLabel *label = static_cast<QLabel*>(this->itemWidget(item));
+        label->setFont(font);
+        item->setSizeHint(label->sizeHint());
+    }
+}
+
 void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 {
     QListWidgetItem *item = new QListWidgetItem;
     // We need to use QLabel here to support rich text
     QLabel *lbl = new QLabel(line);
+    lbl->setFont(Theme::FontTheme::current().font(Theme::FontThemeElement::ExecutionLog));
     lbl->setContentsMargins(4, 2, 4, 2);
     item->setSizeHint(lbl->sizeHint());
     item->setData(Qt::UserRole, type);

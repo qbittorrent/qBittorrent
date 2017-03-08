@@ -63,6 +63,20 @@ HEADERS += \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/theme/colorprovider_p.h \
+    $$PWD/theme/colorproviders.h \
+    $$PWD/theme/colortheme.h \
+    $$PWD/theme/fontprovider_p.h \
+    $$PWD/theme/fontproviders.h \
+    $$PWD/theme/fonttheme.h \
+    $$PWD/theme/provider_p.h \
+    $$PWD/theme/serializabletheme.h \
+    $$PWD/theme/serializablecolortheme.h \
+    $$PWD/theme/serializablefonttheme.h \
+    $$PWD/theme/themecommon.h \
+    $$PWD/theme/themeexceptions.h \
+    $$PWD/theme/themeinfo.h \
+    $$PWD/theme/themeprovider.h \
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -117,6 +131,20 @@ SOURCES += \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/theme/colorprovider_p.cpp \
+    $$PWD/theme/colortheme.cpp \
+    $$PWD/theme/fonttheme.cpp \
+    $$PWD/theme/fontprovider_p.cpp \
+    $$PWD/theme/colorproviders.cpp \
+    $$PWD/theme/fontproviders.cpp \
+    $$PWD/theme/provider_p.cpp \
+    $$PWD/theme/serializabletheme.cpp \
+    $$PWD/theme/serializablecolortheme.cpp \
+    $$PWD/theme/serializablefonttheme.cpp \
+    $$PWD/theme/themecommon.cpp \
+    $$PWD/theme/themeexceptions.cpp \
+    $$PWD/theme/themeinfo.cpp \
+    $$PWD/theme/themeprovider.cpp \
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -154,4 +182,6 @@ FORMS += \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/torrentcategorydialog.ui
 
-RESOURCES += $$PWD/about.qrc
+RESOURCES += \
+    $$PWD/about.qrc \
+    $$PWD/theme/builtinthemes.qrc
