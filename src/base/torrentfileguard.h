@@ -60,7 +60,7 @@ public:
 
     /// marks the torrent file as loaded (added) into the BitTorrent::Session
     void markAsAddedToSession();
-    void setAutoRemove(bool remove);
+    using FileGuard::setAutoRemove;
 
     enum AutoDeleteMode     // do not change these names: they are stored in config file
     {

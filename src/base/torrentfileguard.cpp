@@ -77,11 +77,6 @@ void TorrentFileGuard::markAsAddedToSession()
     m_wasAdded = true;
 }
 
-void TorrentFileGuard::setAutoRemove(bool remove)
-{
-    setAutoRemove(remove);
-}
-
 TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
 {
     QMetaEnum meta {modeMetaEnum()};
