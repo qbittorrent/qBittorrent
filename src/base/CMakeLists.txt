@@ -44,6 +44,7 @@ rss/rssmanager.h
 utils/fs.h
 utils/gzip.h
 utils/misc.h
+utils/net.h
 utils/random.h
 utils/string.h
 filesystemwatcher.h
@@ -104,6 +105,7 @@ rss/rssmanager.cpp
 utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
+utils/net.cpp
 utils/random.cpp
 utils/string.cpp
 filesystemwatcher.cpp

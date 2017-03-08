@@ -32,6 +32,7 @@ addnewtorrentdialog.h
 advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
+banlistoptions.h
 categoryfiltermodel.h
 categoryfilterwidget.h
 cookiesdialog.h
@@ -73,6 +74,7 @@ set(QBT_GUI_SOURCES
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
+banlistoptions.cpp
 categoryfiltermodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
@@ -114,6 +116,7 @@ endif (WIN32 OR APPLE)
 set(QBT_GUI_FORMS
 mainwindow.ui
 about.ui
+banlistoptions.ui
 cookiesdialog.ui
 preview.ui
 login.ui
