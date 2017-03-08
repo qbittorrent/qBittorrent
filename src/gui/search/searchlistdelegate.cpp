@@ -69,5 +69,5 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 QWidget *SearchListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
 {
     // No editor here
-    return 0;
+    return nullptr;
 }
