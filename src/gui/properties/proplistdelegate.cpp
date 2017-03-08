@@ -72,14 +72,13 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 {
     painter->save();
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
+    QItemDelegate::drawBackground(painter, opt, index);
 
     switch(index.column()) {
     case PCSIZE:
-        QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case REMAINING:
-        QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case PROGRESS:
@@ -106,13 +105,8 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         }
-        else {
-            // Do not display anything if the file is disabled (progress  == 0)
-            QItemDelegate::drawBackground(painter, opt, index);
-        }
         break;
     case PRIORITY: {
-            QItemDelegate::drawBackground(painter, opt, index);
             QString text = "";
             switch (index.data().toInt()) {
             case prio::MIXED:
