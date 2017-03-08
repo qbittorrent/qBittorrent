@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/theme/">
+        <file>qBittorrentLight.colortheme</file>
+        <file>qBittorrentDark.colortheme</file>
+        <file>qBittorrent.fonttheme</file>
+    </qresource>
+</RCC>

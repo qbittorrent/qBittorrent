@@ -107,6 +107,10 @@ protected slots:
     void renameSelectedFile();
     void openSelectedFile();
 
+private slots:
+    void applyColorTheme();
+    void applyFontTheme();
+
 private:
     void openFile(const QModelIndex &index);
     void openFolder(const QModelIndex &index, bool containingFolder);

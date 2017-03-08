@@ -108,7 +108,11 @@ private slots:
     void on_btnWebUiCrt_clicked();
     void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
-    void setLocale(const QString &localeStr);
+    void setLocale(const QString &locale);
+    void colorThemeActivated(int index);
+    void fontThemeActivated(int index);
+    void exportColorTheme();
+    void exportFontTheme();
 
 private:
     // Methods

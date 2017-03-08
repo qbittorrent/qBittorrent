@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,43 +24,34 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
 
-#include <QListWidget>
-#include "base/logger.h"
+#ifndef QBT_THEME_COLORTHEME_P_H
+#define QBT_THEME_COLORTHEME_P_H
 
-QT_BEGIN_NAMESPACE
-class QKeyEvent;
-QT_END_NAMESPACE
+#include "colorprovider_p.h"
+#include "colortheme.h"
+#include "serializabletheme.h"
 
-class LogListWidget: public QListWidget
+namespace Theme
 {
-    Q_OBJECT
+    class SerializableColorTheme : public ColorTheme,
+                                  protected SerializableTheme<Serialization::ColorsProviderRegistry, ColorTheme::Element>
+    {
+    public:
+        using BaseSerializableTheme = SerializableTheme<Serialization::ColorsProviderRegistry, ColorTheme::Element>;
+        SerializableColorTheme(const QString &name);
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
-    void showMsgTypes(const Log::MsgTypes &types);
+        using BaseSerializableTheme::save;
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+        const ThemeInfo &info() const override;
+        QColor color(Theme::ColorTheme::Element element) const override;
 
-protected slots:
-    void copySelection();
+        void applicationPaletteChanged();
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
+    private:
+        static BaseSerializableTheme::NamesMap elementNames();
+    };
+}
 
-private slots:
-    void applyFontTheme();
-
-private:
-    int m_maxLines;
-    Log::MsgTypes m_types;
-};
-
-#endif // LOGLISTWIDGET_H
+#endif // QBT_THEME_COLORTHEME_P_H

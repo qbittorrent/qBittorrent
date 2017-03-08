@@ -56,6 +56,8 @@
 #include "optionsdlg.h"
 #include "previewselectdialog.h"
 #include "speedlimitdlg.h"
+#include "theme/fonttheme.h"
+#include "theme/themeprovider.h"
 #include "torrentcategorydialog.h"
 #include "torrentmodel.h"
 #include "transferlistdelegate.h"
@@ -300,6 +302,10 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     unused.setVerticalHeader(header());
     header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
+
+    applyFontTheme();
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::fontThemeChanged,
+            this, &TransferListWidget::applyFontTheme);
 }
 
 TransferListWidget::~TransferListWidget()
@@ -1218,4 +1224,14 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     }
 
     QTreeView::wheelEvent(event);  // event delegated to base class
+}
+
+void TransferListWidget::applyFontTheme()
+{
+    QFont font = Theme::FontTheme::current().font(Theme::FontTheme::Element::TransferList);
+    setFont(font);
+    header()->setFont(font);
+    foreach (QWidget *widget, header()->findChildren<QWidget*>()) {
+        widget->setFont(font);
+    }
 }
