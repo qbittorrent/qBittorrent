@@ -31,14 +31,13 @@
 #ifndef TRACKERLIST_H
 #define TRACKERLIST_H
 
+#include <QClipboard>
+#include <QList>
 #include <QShortcut>
 #include <QTreeWidget>
-#include <QList>
-#include <QClipboard>
 
 #include "propertieswidget.h"
 
-enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_RECEIVED, COL_SEEDS, COL_PEERS, COL_DOWNLOADED, COL_MSG};
 #define NB_STICKY_ITEM 3
 
 namespace BitTorrent
@@ -46,45 +45,57 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class TrackerList: public QTreeWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(TrackerList)
-
-private:
-  PropertiesWidget *properties;
-  QHash<QString, QTreeWidgetItem*> tracker_items;
-  QTreeWidgetItem* dht_item;
-  QTreeWidgetItem* pex_item;
-  QTreeWidgetItem* lsd_item;
-  QShortcut *editHotkey;
-  QShortcut *deleteHotkey;
-  QShortcut *copyHotkey;
+class TrackerList: public QTreeWidget
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(TrackerList)
 
 public:
-  TrackerList(PropertiesWidget *properties);
-  ~TrackerList();
+    enum TrackerListColumn
+    {
+        COL_TIER,
+        COL_URL,
+        COL_STATUS,
+        COL_RECEIVED,
+        COL_SEEDS,
+        COL_PEERS,
+        COL_DOWNLOADED,
+        COL_MSG
+    };
 
-protected:
-  QList<QTreeWidgetItem*> getSelectedTrackerItems() const;
+    TrackerList(PropertiesWidget *properties);
+    ~TrackerList();
 
 public slots:
-  void setRowColor(int row, QColor color);
+    void setRowColor(int row, QColor color);
 
-  void moveSelectionUp();
-  void moveSelectionDown();
+    void moveSelectionUp();
+    void moveSelectionDown();
 
-  void clear();
-  void loadStickyItems(BitTorrent::TorrentHandle *const torrent);
-  void loadTrackers();
-  void askForTrackers();
-  void copyTrackerUrl();
-  void reannounceSelected();
-  void deleteSelectedTrackers();
-  void editSelectedTracker();
-  void showTrackerListMenu(QPoint);
-  void loadSettings();
-  void saveSettings() const;
+    void clear();
+    void loadStickyItems(BitTorrent::TorrentHandle *const torrent);
+    void loadTrackers();
+    void askForTrackers();
+    void copyTrackerUrl();
+    void reannounceSelected();
+    void deleteSelectedTrackers();
+    void editSelectedTracker();
+    void showTrackerListMenu(QPoint);
+    void loadSettings();
+    void saveSettings() const;
 
+protected:
+    QList<QTreeWidgetItem *> getSelectedTrackerItems() const;
+
+private:
+    PropertiesWidget *properties;
+    QHash<QString, QTreeWidgetItem *> tracker_items;
+    QTreeWidgetItem *dht_item;
+    QTreeWidgetItem *pex_item;
+    QTreeWidgetItem *lsd_item;
+    QShortcut *editHotkey;
+    QShortcut *deleteHotkey;
+    QShortcut *copyHotkey;
 };
 
 #endif // TRACKERLIST_H

@@ -30,31 +30,34 @@
 
 #include "trackerlist.h"
 
-#include <QApplication>
-#include <QTreeWidgetItem>
-#include <QStringList>
-#include <QMenu>
-#include <QHash>
 #include <QAction>
+#include <QApplication>
 #include <QColor>
 #include <QDebug>
-#include <QUrl>
-#include <QMessageBox>
-#include <QTableView>
+#include <QHash>
 #include <QHeaderView>
+#include <QMenu>
+#include <QMessageBox>
+#include <QStringList>
+#include <QTableView>
+#include <QTreeWidgetItem>
+#include <QUrl>
 
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
-#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/preferences.h"
 #include "base/utils/misc.h"
+#include "autoexpandabledialog.h"
+#include "guiiconprovider.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
-#include "guiiconprovider.h"
-#include "autoexpandabledialog.h"
 
-TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
+TrackerList::TrackerList(PropertiesWidget *properties)
+    : QTreeWidget()
+    , properties(properties)
+{
   // Graphical settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
@@ -98,11 +101,12 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   loadSettings();
 }
 
-TrackerList::~TrackerList() {
-  delete editHotkey;
-  delete deleteHotkey;
-  delete copyHotkey;
-  saveSettings();
+TrackerList::~TrackerList()
+{
+    delete editHotkey;
+    delete deleteHotkey;
+    delete copyHotkey;
+    saveSettings();
 }
 
 QList<QTreeWidgetItem*> TrackerList::getSelectedTrackerItems() const {
@@ -524,13 +528,15 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
 }
 
-void TrackerList::loadSettings() {
-  if (!header()->restoreState(Preferences::instance()->getPropTrackerListState())) {
-    setColumnWidth(0, 30);
-    setColumnWidth(1, 300);
-  }
+void TrackerList::loadSettings()
+{
+    if (!header()->restoreState(Preferences::instance()->getPropTrackerListState())) {
+        setColumnWidth(0, 30);
+        setColumnWidth(1, 300);
+    }
 }
 
-void TrackerList::saveSettings() const {
-  Preferences::instance()->setPropTrackerListState(header()->saveState());
+void TrackerList::saveSettings() const
+{
+    Preferences::instance()->setPropTrackerListState(header()->saveState());
 }
