@@ -483,23 +483,23 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QMenu menu;
   // Add actions
   QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-  QAction *copyAct = 0;
-  QAction *delAct = 0;
-  QAction *editAct = 0;
+  QAction *copyAct = nullptr;
+  QAction *delAct = nullptr;
+  QAction *editAct = nullptr;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
     copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
     editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
-  QAction *reannounceSelAct = NULL;
-  QAction *reannounceAct = NULL;
+  QAction *reannounceSelAct = nullptr;
+  QAction *reannounceAct = nullptr;
   if (!torrent->isPaused()) {
     reannounceSelAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
     menu.addSeparator();
     reannounceAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
   }
   QAction *act = menu.exec(QCursor::pos());
-  if (act == 0) return;
+  if (act == nullptr) return;
   if (act == addAct) {
     askForTrackers();
     return;
