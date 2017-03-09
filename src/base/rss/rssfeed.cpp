@@ -43,6 +43,7 @@
 #include "base/net/downloadhandler.h"
 #include "private/rssparser.h"
 #include "rssdownloadrulelist.h"
+#include "rssdownloadrule_p.h"
 #include "rssarticle.h"
 #include "rssfolder.h"
 #include "rssmanager.h"
@@ -391,20 +392,20 @@ void Feed::deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article)
     qDebug().nospace() << Q_FUNC_INFO << " Matching of " << article->title() << " from " << displayName() << " RSS feed";
 
     DownloadRuleList *rules = m_manager->downloadRules();
-    DownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
+    DownloadRule matchingRule = rules->findMatchingRule(m_url, article->title());
     if (!matchingRule) return;
 
-    if (matchingRule->ignoreDays() > 0) {
-        QDateTime lastMatch = matchingRule->lastMatch();
+    if (matchingRule.ignoreDays() > 0) {
+        QDateTime lastMatch = matchingRule.lastMatch();
         if (lastMatch.isValid()) {
-            if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule->ignoreDays())) {
+            if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule.ignoreDays())) {
                 article->markAsRead();
                 return;
             }
         }
     }
 
-    matchingRule->setLastMatch(QDateTime::currentDateTime());
+    matchingRule.setLastMatch(QDateTime::currentDateTime());
     rules->saveRulesToStorage();
     // Download the torrent
     const QString &torrentUrl = article->torrentUrl();
@@ -421,11 +422,11 @@ void Feed::deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article)
         connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
 
     BitTorrent::AddTorrentParams params;
-    params.savePath = matchingRule->savePath();
-    params.category = matchingRule->category();
-    if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
+    params.savePath = matchingRule.savePath();
+    params.category = matchingRule.category();
+    if (matchingRule.addPaused() == DownloadRule::ALWAYS_PAUSED)
         params.addPaused = TriStateBool::True;
-    else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)
+    else if (matchingRule.addPaused() == DownloadRule::NEVER_PAUSED)
         params.addPaused = TriStateBool::False;
     BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
 }

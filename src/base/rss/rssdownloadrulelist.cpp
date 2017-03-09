@@ -28,13 +28,15 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "rssdownloadrulelist.h"
+
 #include <QFile>
 #include <QDataStream>
 #include <QDebug>
 
 #include "base/preferences.h"
 #include "base/qinisettings.h"
-#include "rssdownloadrulelist.h"
+#include "rssdownloadrule_p.h"
 
 using namespace Rss;
 
@@ -43,16 +45,16 @@ DownloadRuleList::DownloadRuleList()
     loadRulesFromStorage();
 }
 
-DownloadRulePtr DownloadRuleList::findMatchingRule(const QString &feedUrl, const QString &articleTitle) const
+DownloadRule DownloadRuleList::findMatchingRule(const QString &feedUrl, const QString &articleTitle) const
 {
     Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
     qDebug() << "Matching article:" << articleTitle;
     QStringList ruleNames = m_feedRules.value(feedUrl);
     foreach (const QString &rule_name, ruleNames) {
-        DownloadRulePtr rule = m_rules[rule_name];
-        if (rule->isEnabled() && rule->matches(articleTitle)) return rule;
+        DownloadRule rule = m_rules[rule_name];
+        if (rule.isEnabled() && rule.matches(articleTitle)) return rule;
     }
-    return DownloadRulePtr();
+    return DownloadRule();
 }
 
 void DownloadRuleList::replace(const DownloadRuleList &other)
@@ -83,40 +85,37 @@ void DownloadRuleList::loadRulesFromStorage()
 QVariantHash DownloadRuleList::toVariantHash() const
 {
     QVariantHash ret;
-    foreach (const DownloadRulePtr &rule, m_rules.values()) {
-        ret.insert(rule->name(), rule->toVariantHash());
+    foreach (const DownloadRule &rule, m_rules) {
+        ret.insert(rule.name(), rule.toVariantHash());
     }
     return ret;
 }
 
 void DownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 {
-    QVariantHash::ConstIterator it = h.begin();
-    QVariantHash::ConstIterator itend = h.end();
-    for ( ; it != itend; ++it) {
-        DownloadRulePtr rule = DownloadRule::fromVariantHash(it.value().toHash());
-        if (rule && !rule->name().isEmpty())
+    foreach (const QVariant &r, h) {
+        DownloadRule rule = DownloadRule::fromVariantHash(r.toHash());
+        if (!rule.name().isEmpty())
             saveRule(rule);
     }
 }
 
-void DownloadRuleList::saveRule(const DownloadRulePtr &rule)
+void DownloadRuleList::saveRule(const DownloadRule &rule)
 {
-    qDebug() << Q_FUNC_INFO << rule->name();
-    Q_ASSERT(rule);
-    if (m_rules.contains(rule->name())) {
-        if (m_rules[rule->name()] == rule) {
+    qDebug() << Q_FUNC_INFO << rule.name();
+    if (m_rules.contains(rule.name())) {
+        if (m_rules[rule.name()].isSame(rule)) {
             qDebug("Rule already exists, and is unchanged. Skipping");
             return;
         }
 
         qDebug("This is an update, removing old rule first");
-        removeRule(rule->name());
+        removeRule(rule.name());
     }
-    m_rules.insert(rule->name(), rule);
+    m_rules.insert(rule.name(), rule);
     // Update feedRules hashtable
-    foreach (const QString &feedUrl, rule->rssFeeds()) {
-        m_feedRules[feedUrl].append(rule->name());
+    foreach (const QString &feedUrl, rule.rssFeeds()) {
+        m_feedRules[feedUrl].append(rule.name());
     }
     qDebug() << Q_FUNC_INFO << "EXIT";
 }
@@ -125,10 +124,10 @@ void DownloadRuleList::removeRule(const QString &name)
 {
     qDebug() << Q_FUNC_INFO << name;
     if (!m_rules.contains(name)) return;
-    DownloadRulePtr rule = m_rules.take(name);
+    DownloadRule rule = m_rules.take(name);
     // Update feedRules hashtable
-    foreach (const QString &feedUrl, rule->rssFeeds()) {
-        m_feedRules[feedUrl].removeOne(rule->name());
+    foreach (const QString &feedUrl, rule.rssFeeds()) {
+        m_feedRules[feedUrl].removeOne(rule.name());
     }
 }
 
@@ -136,11 +135,11 @@ void DownloadRuleList::renameRule(const QString &oldName, const QString &newName
 {
     if (!m_rules.contains(oldName)) return;
 
-    DownloadRulePtr rule = m_rules.take(oldName);
-    rule->setName(newName);
+    DownloadRule rule = m_rules.take(oldName);
+    rule.setName(newName);
     m_rules.insert(newName, rule);
     // Update feedRules hashtable
-    foreach (const QString &feedUrl, rule->rssFeeds()) {
+    foreach (const QString &feedUrl, rule.rssFeeds()) {
         m_feedRules[feedUrl].replace(m_feedRules[feedUrl].indexOf(oldName), newName);
     }
 }
@@ -151,14 +150,14 @@ void DownloadRuleList::updateFeedURL(const QString &oldUrl, const QString &newUr
         QStringList feedRules = m_feedRules.take(oldUrl);
         m_feedRules.insert(newUrl, feedRules);
         foreach (const QString &ruleName, feedRules) {
-            QStringList ruleFeeds = m_rules[ruleName]->rssFeeds();
+            QStringList ruleFeeds = m_rules[ruleName].rssFeeds();
             ruleFeeds.replace(ruleFeeds.indexOf(oldUrl), newUrl);
-            m_rules[ruleName]->setRssFeeds(ruleFeeds);
+            m_rules[ruleName].setRssFeeds(ruleFeeds);
         }
     }
 }
 
-DownloadRulePtr DownloadRuleList::getRule(const QString &name) const
+DownloadRule DownloadRuleList::getRule(const QString &name) const
 {
     return m_rules.value(name);
 }

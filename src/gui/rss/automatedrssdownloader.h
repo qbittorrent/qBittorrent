@@ -100,7 +100,7 @@ private slots:
     void onFinished(int result);
 
 private:
-    Rss::DownloadRulePtr getCurrentRule() const;
+    Rss::DownloadRule getCurrentRule() const;
     void initCategoryCombobox();
     void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
     void disconnectRuleFeedSlots();
