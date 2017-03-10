@@ -60,11 +60,15 @@ public:
         COL_SEEDS,
         COL_PEERS,
         COL_DOWNLOADED,
-        COL_MSG
+        COL_MSG,
+
+        COL_COUNT
     };
 
     TrackerList(PropertiesWidget *properties);
     ~TrackerList();
+
+    int visibleColumnsCount() const;
 
 public slots:
     void setRowColor(int row, QColor color);
@@ -81,6 +85,7 @@ public slots:
     void deleteSelectedTrackers();
     void editSelectedTracker();
     void showTrackerListMenu(QPoint);
+    void displayToggleColumnsMenu(const QPoint &);
     void loadSettings();
     void saveSettings() const;
 
@@ -96,6 +101,8 @@ private:
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
     QShortcut *copyHotkey;
+
+    static QStringList headerLabels();
 };
 
 #endif // TRACKERLIST_H

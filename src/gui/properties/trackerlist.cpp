@@ -58,25 +58,33 @@ TrackerList::TrackerList(PropertiesWidget *properties)
     : QTreeWidget()
     , properties(properties)
 {
+  // Set header
+  // Must be set before calling loadSettings() otherwise the header is reset on restart
+  setHeaderLabels(headerLabels());
+  // Load settings
+  loadSettings();
   // Graphical settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
   setItemsExpandable(false);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
+  header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
+  // Ensure that at least one column is visible at all times
+  if (visibleColumnsCount() == 0)
+      setColumnHidden(COL_URL, false);
+  // To also mitigate the above issue, we have to resize each column when
+  // its size is 0, because explicitly 'showing' the column isn't enough
+  // in the above scenario.
+  for (unsigned int i = 0; i < COL_COUNT; ++i)
+      if ((columnWidth(i) <= 0) && !isColumnHidden(i))
+          resizeColumnToContents(i);
   // Context menu
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTrackerListMenu(QPoint)));
-  // Set header
-  QStringList header;
-  header << "#";
-  header << tr("URL");
-  header << tr("Status");
-  header << tr("Received");
-  header << tr("Seeds");
-  header << tr("Peers");
-  header << tr("Downloaded");
-  header << tr("Message");
-  setHeaderItem(new QTreeWidgetItem(header));
+  // Header context menu
+  header()->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayToggleColumnsMenu(const QPoint&)));
+  // Set DHT, PeX, LSD items
   dht_item = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
@@ -114,11 +122,9 @@ TrackerList::TrackerList(PropertiesWidget *properties)
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
-    unused.setVerticalHeader(this->header());
-    this->header()->setParent(this);
+    unused.setVerticalHeader(header());
+    header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-
-  loadSettings();
 }
 
 TrackerList::~TrackerList()
@@ -552,13 +558,63 @@ void TrackerList::showTrackerListMenu(QPoint) {
 
 void TrackerList::loadSettings()
 {
-    if (!header()->restoreState(Preferences::instance()->getPropTrackerListState())) {
-        setColumnWidth(0, 30);
-        setColumnWidth(1, 300);
-    }
+    header()->restoreState(Preferences::instance()->getPropTrackerListState());
 }
 
 void TrackerList::saveSettings() const
 {
     Preferences::instance()->setPropTrackerListState(header()->saveState());
+}
+
+QStringList TrackerList::headerLabels()
+{
+    static const QStringList header {
+        "#"
+        , tr("URL")
+        , tr("Status")
+        , tr("Received")
+        , tr("Seeds")
+        , tr("Peers")
+        , tr("Downloaded")
+        , tr("Message")
+    };
+
+    return header;
+}
+
+int TrackerList::visibleColumnsCount() const
+{
+    int visibleCols = 0;
+    for (unsigned int i = 0; i < COL_COUNT; ++i) {
+        if (!isColumnHidden(i))
+            ++visibleCols;
+    }
+
+    return visibleCols;
+}
+
+void TrackerList::displayToggleColumnsMenu(const QPoint &)
+{
+    QMenu hideshowColumn(this);
+    hideshowColumn.setTitle(tr("Column visibility"));
+    for (int i = 0; i < COL_COUNT; ++i) {
+        QAction *myAct = hideshowColumn.addAction(headerLabels().at(i));
+        myAct->setCheckable(true);
+        myAct->setChecked(!isColumnHidden(i));
+        myAct->setData(i);
+    }
+
+    // Call menu
+    QAction *act = hideshowColumn.exec(QCursor::pos());
+    if (!act) return;
+
+    int col = act->data().toInt();
+    Q_ASSERT(visibleColumnsCount() > 0);
+    if (!isColumnHidden(col) && (visibleColumnsCount() == 1))
+        return;
+    qDebug("Toggling column %d visibility", col);
+    setColumnHidden(col, !isColumnHidden(col));
+    if (!isColumnHidden(col) && (columnWidth(col) <= 5))
+        setColumnWidth(col, 100);
+    saveSettings();
 }
