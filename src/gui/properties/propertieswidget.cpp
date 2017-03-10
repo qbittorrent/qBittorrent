@@ -30,40 +30,40 @@
 
 #include "propertieswidget.h"
 
-#include <QDebug>
-#include <QTimer>
-#include <QListWidgetItem>
-#include <QVBoxLayout>
-#include <QStackedWidget>
-#include <QSplitter>
-#include <QHeaderView>
 #include <QAction>
-#include <QMenu>
-#include <QFileDialog>
 #include <QBitArray>
+#include <QDebug>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QListWidgetItem>
+#include <QMenu>
+#include <QSplitter>
+#include <QStackedWidget>
 #include <QThread>
+#include <QTimer>
+#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
+#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "base/unicodestrings.h"
-#include "proplistdelegate.h"
-#include "torrentcontentfiltermodel.h"
-#include "torrentcontentmodel.h"
-#include "peerlistwidget.h"
-#include "speedwidget.h"
-#include "trackerlist.h"
-#include "mainwindow.h"
-#include "messageboxraised.h"
+#include "autoexpandabledialog.h"
 #include "downloadedpiecesbar.h"
-#include "pieceavailabilitybar.h"
-#include "proptabbar.h"
 #include "guiiconprovider.h"
 #include "lineedit.h"
+#include "mainwindow.h"
+#include "messageboxraised.h"
+#include "peerlistwidget.h"
+#include "pieceavailabilitybar.h"
+#include "proplistdelegate.h"
+#include "proptabbar.h"
+#include "speedwidget.h"
+#include "torrentcontentfiltermodel.h"
+#include "torrentcontentmodel.h"
+#include "trackerlist.h"
 #include "transferlistwidget.h"
-#include "autoexpandabledialog.h"
 
 #include "ui_propertieswidget.h"
 
