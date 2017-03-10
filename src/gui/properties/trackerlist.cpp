@@ -86,6 +86,26 @@ TrackerList::TrackerList(PropertiesWidget *properties)
   lsd_item = new QTreeWidgetItem({ "",  "** [LSD] **", "", "0", "", "", "0" });
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
+  // Set static items alignment
+  dht_item->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
+  pex_item->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
+  lsd_item->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
+  dht_item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+  pex_item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+  lsd_item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+  dht_item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+  pex_item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+  lsd_item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+  dht_item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
+  pex_item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
+  lsd_item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
+  // Set header alignment
+  headerItem()->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
+  headerItem()->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
+  headerItem()->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+  headerItem()->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+  headerItem()->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
+  // Set hotkeys
   editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
   connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
   deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
@@ -335,6 +355,11 @@ void TrackerList::loadTrackers() {
     item->setText(COL_DOWNLOADED, "0");
 #endif
 
+    item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
+    item->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
+    item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+    item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+    item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
   }
   // Remove old trackers
   foreach (const QString &tracker, old_trackers_urls) {
