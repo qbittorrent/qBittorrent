@@ -72,7 +72,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     , m_ui(new Ui::PropertiesWidget())
     , transferList(transferList)
     , main_window(main_window)
-    , m_torrent(0)
+    , m_torrent(nullptr)
 {
     m_ui->setupUi(this);
     setAutoFillBackground(true);
@@ -582,9 +582,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     if (selectedRows.empty())
         return;
     QMenu myFilesLlistMenu;
-    QAction *actOpen = 0;
-    QAction *actOpenContainingFolder = 0;
-    QAction *actRename = 0;
+    QAction *actOpen = nullptr;
+    QAction *actOpenContainingFolder = nullptr;
+    QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
         actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
         actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
@@ -644,9 +644,9 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QMenu seedMenu;
     QModelIndexList rows = m_ui->listWebSeeds->selectionModel()->selectedRows();
     QAction *actAdd = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
-    QAction *actDel = 0;
-    QAction *actCpy = 0;
-    QAction *actEdit = 0;
+    QAction *actDel = nullptr;
+    QAction *actCpy = nullptr;
+    QAction *actEdit = nullptr;
 
     if (rows.size()) {
         actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
