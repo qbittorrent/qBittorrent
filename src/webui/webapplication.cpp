@@ -367,6 +367,8 @@ void WebApplication::action_command_download()
     CHECK_URI(0);
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
+    bool skipChecking = request().posts["skip_checking"] == "true";
+    bool addPaused = request().posts["paused"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
     QString cookie = request().posts["cookie"];
@@ -390,6 +392,11 @@ void WebApplication::action_command_download()
     category = category.trimmed();
 
     BitTorrent::AddTorrentParams params;
+
+    // TODO: Check if destination actually exists
+    params.skipChecking = skipChecking;
+
+    params.addPaused = addPaused;
     params.savePath = savepath;
     params.category = category;
 
@@ -406,6 +413,8 @@ void WebApplication::action_command_upload()
 {
     qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
+    bool skipChecking = request().posts["skip_checking"] == "true";
+    bool addPaused = request().posts["paused"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
 
@@ -423,6 +432,11 @@ void WebApplication::action_command_upload()
             }
             else {
                 BitTorrent::AddTorrentParams params;
+
+                 // TODO: Check if destination actually exists
+                params.skipChecking = skipChecking;
+
+                params.addPaused = addPaused;
                 params.savePath = savepath;
                 params.category = category;
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
