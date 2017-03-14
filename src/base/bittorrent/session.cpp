@@ -76,7 +76,6 @@
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
-#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "cachestatus.h"
 #include "magneturi.h"
@@ -1380,6 +1379,11 @@ void Session::banIP(const QString &ip)
     }
 }
 
+void Session::unbanIP()
+{
+    SettingsStorage::instance()->storeValue("Preferences/IPFilter/BannedIPs", QString());
+}
+
 // Delete a torrent from the session, given its hash
 // deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
 bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
@@ -2211,7 +2215,7 @@ void Session::setSaveResumeDataInterval(uint value)
 
 int Session::port() const
 {
-    static int randomPort = Utils::Random::rand(1024, 65535);
+    static int randomPort = rand() % 64512 + 1024;
     if (useRandomPort())
         return randomPort;
     return m_port;

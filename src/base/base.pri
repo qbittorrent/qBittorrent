@@ -52,7 +52,6 @@ HEADERS += \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
-    $$PWD/utils/random.h \
     $$PWD/utils/string.h \
     $$PWD/unicodestrings.h \
     $$PWD/torrentfileguard.h \
@@ -108,7 +107,6 @@ SOURCES += \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
-    $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \

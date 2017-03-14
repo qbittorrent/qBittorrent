@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-#include "abstractwebapplication.h"
-
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -39,8 +37,8 @@
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
-#include "base/utils/random.h"
 #include "websessiondata.h"
+#include "abstractwebapplication.h"
 
 // UnbanTimer
 
@@ -228,12 +226,13 @@ QString AbstractWebApplication::generateSid()
 {
     QString sid;
 
+    qsrand(QDateTime::currentDateTime().toTime_t());
     do {
         const size_t size = 6;
         quint32 tmp[size];
 
         for (size_t i = 0; i < size; ++i)
-            tmp[i] = Utils::Random::rand();
+            tmp[i] = qrand();
 
         sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
     }

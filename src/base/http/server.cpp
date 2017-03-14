@@ -28,18 +28,14 @@
  * exception statement from your version.
  */
 
-#include "server.h"
-
-#include <QNetworkProxy>
-#include <QStringList>
-
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
 #include <QTcpSocket>
 #endif
-
+#include <QNetworkProxy>
 #include "connection.h"
+#include "server.h"
 
 using namespace Http;
 

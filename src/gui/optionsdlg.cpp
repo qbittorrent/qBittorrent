@@ -58,7 +58,6 @@
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
-#include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "guiiconprovider.h"
@@ -1003,7 +1002,7 @@ int OptionsDialog::getPort() const
 void OptionsDialog::on_randomButton_clicked()
 {
     // Range [1024: 65535]
-    m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
+    m_ui->spinPort->setValue(rand() % 64512 + 1024);
 }
 
 int OptionsDialog::getEncryptionSetting() const

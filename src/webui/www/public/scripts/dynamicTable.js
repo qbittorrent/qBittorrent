@@ -32,7 +32,6 @@
  **************************************************************/
 
 var DynamicTableHeaderContextMenuClass = null;
-var ProgressColumnWidth = -1;
 
 var DynamicTable = new Class({
 
@@ -852,34 +851,25 @@ var TorrentsTable = new Class({
 
                 if (td.getChildren('div').length) {
                     var div = td.getChildren('div')[0];
-                    if (td.resized) {
-                        td.resized = false;
-                        div.setWidth(ProgressColumnWidth - 5);
+                    var newWidth = td.offsetWidth - 5;
+                    if (div.lastWidth !== newWidth) {
+                        div.setWidth(newWidth);
+                        div.lastWidth = newWidth;
                     }
                     if (div.getValue() != progressFormated)
                         div.setValue(progressFormated);
                 }
-                else {
-                    if (ProgressColumnWidth < 0)
-                        ProgressColumnWidth = td.offsetWidth;
+                else
                     td.adopt(new ProgressBar(progressFormated.toFloat(), {
-                        'width' : ProgressColumnWidth - 5
+                        'width' : td.offsetWidth - 5
                     }));
-                    td.resized = false;
-                }
             };
 
             this.columns['progress'].onResize = function (columnName) {
                 var pos = this.getColumnPos(columnName);
                 var trs = this.tableBody.getElements('tr');
-                ProgressColumnWidth = -1;
-                for (var i = 0; i < trs.length; i++) {
-                    var td = trs[i].getElements('td')[pos];
-                    if (ProgressColumnWidth < 0)
-                        ProgressColumnWidth = td.offsetWidth;
-                    td.resized = true;
-                    this.columns[columnName].updateTd(td, this.rows.get(trs[i].rowId));
-                }
+                for (var i = 0; i < trs.length; i++)
+                    this.columns[columnName].updateTd(trs[i].getElements('td')[pos], this.rows.get(trs[i].rowId));
             }.bind(this);
 
             // num_seeds

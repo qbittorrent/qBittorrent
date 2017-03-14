@@ -36,6 +36,7 @@
 #include <QClipboard>
 #include <QMessageBox>
 #include <QWheelEvent>
+#include <QRegularExpression>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif
@@ -442,6 +443,47 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
     QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String(";")));
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String("\n")), Qt::ToolTipRole);
+
+    /*Old Method
+    QRegularExpression re("Xunlei");
+    QRegularExpressionMatch match = re.match(peer.client());
+    QRegularExpression re2("XL");
+    QRegularExpressionMatch match2 = re2.match(peer.client());
+    if(peer.client() >= "0.0.0.0" && peer.client() <= "9.99.99.9999" || match.hasMatch() || match2.hasMatch()) {
+        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+        qDebug("Auto Banning Xunlei peer %s...", ip.toLocal8Bit().data());
+        Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...").arg(ip));
+        BitTorrent::Session::instance()->banIP(ip);
+    }
+
+    QRegularExpression re3("Xf");
+    QRegularExpressionMatch match3 = re3.match(peer.client());
+    if(match3.hasMatch()) {
+        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+        qDebug("Auto Banning Xfplay peer %s...", ip.toLocal8Bit().data());
+        Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...").arg(ip));
+        BitTorrent::Session::instance()->banIP(ip);
+    }
+
+    QRegularExpression re4("QQ");
+    QRegularExpressionMatch match4 = re4.match(peer.client());
+    if(match4.hasMatch())
+    {
+        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+        qDebug("Auto Banning QQDownload peer %s...", ip.toLocal8Bit().data());
+        Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...").arg(ip));
+        BitTorrent::Session::instance()->banIP(ip);
+    }
+
+    QRegularExpression re5("Unknown");
+    QRegularExpressionMatch match5 = re5.match(peer.client());
+    if(match5.hasMatch())
+    {
+        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+        qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
+        Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...").arg(ip));
+        BitTorrent::Session::instance()->banIP(ip);
+    }*/
 }
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)

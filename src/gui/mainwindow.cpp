@@ -48,6 +48,7 @@
 #include <QMimeData>
 #include <QCryptographicHash>
 #include <QProcess>
+#include <QRegularExpression>
 
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
@@ -61,6 +62,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/peerinfo.h"
 
 #include "application.h"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -139,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle("qBittorrent " VERSION);
+    setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(VERSION)));
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -886,6 +888,7 @@ void MainWindow::on_actionExit_triggered()
         // Ask for UI lock password
         if (!unlockUI()) return;
 
+    BitTorrent::Session::instance()->unbanIP();
     m_forceExit = true;
     close();
 }
@@ -1028,6 +1031,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             }
             if (confirmBox.clickedButton() == alwaysBtn)
                 // Remember choice
+                BitTorrent::Session::instance()->unbanIP();
                 Preferences::instance()->setConfirmOnExit(false);
         }
     }
@@ -1041,6 +1045,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if (m_systrayIcon)
         m_systrayIcon->hide();
     // Accept exit
+    BitTorrent::Session::instance()->unbanIP();
     e->accept();
     qApp->exit();
 }
@@ -1329,10 +1334,66 @@ void MainWindow::updateGUI()
     }
 
     if (m_displaySpeedInTitle) {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3 (Enhanced Edition)", "D = Download; U = Upload; %3 is qBittorrent version")
                        .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true))
                        .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true))
                        .arg(VERSION));
+    }
+
+    //New Method
+    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+        QList<BitTorrent::PeerInfo> peers = torrent->peers();
+        foreach (const BitTorrent::PeerInfo &peer, peers) {
+            BitTorrent::PeerAddress addr = peer.address();
+            if (addr.ip.isNull()) continue;
+            QString ip = addr.ip.toString();
+            QString client = peer.client();
+
+            QRegularExpression re("Xunlei");
+            QRegularExpressionMatch match = re.match(client);
+            QRegularExpression re2("XL");
+            QRegularExpressionMatch match2 = re2.match(client);
+            if(client >= "0.0.0.0" && client <= "9.99.99.9999" || match.hasMatch() || match2.hasMatch()) {
+                qDebug("Auto Banning Xunlei peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...").arg(ip));
+                BitTorrent::Session::instance()->banIP(ip);
+            }
+
+            QRegularExpression re3("Xf");
+            QRegularExpressionMatch match3 = re3.match(client);
+            if(match3.hasMatch()) {
+                qDebug("Auto Banning Xfplay peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...").arg(ip));
+                BitTorrent::Session::instance()->banIP(ip);
+            }
+
+            QRegularExpression re4("QQ");
+            QRegularExpressionMatch match4 = re4.match(client);
+            if(match4.hasMatch())
+            {
+                qDebug("Auto Banning QQDownload peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...").arg(ip));
+                BitTorrent::Session::instance()->banIP(ip);
+            }
+
+            QRegularExpression re6("Baidu");
+            QRegularExpressionMatch match6 = re6.match(client);
+            if(match6.hasMatch())
+            {
+                qDebug("Auto Banning Baidu peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Baidu peer '%1'...").arg(ip));
+                BitTorrent::Session::instance()->banIP(ip);
+            }
+
+            /*QRegularExpression re5("Unknown");
+            QRegularExpressionMatch match5 = re5.match(client);
+            if(match5.hasMatch())
+            {
+                qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...").arg(ip));
+                BitTorrent::Session::instance()->banIP(ip);
+            }*/
+        }
     }
 }
 

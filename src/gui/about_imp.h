@@ -47,7 +47,7 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-        lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
+        lb_name->setText("<b><h2>qBittorrent " VERSION " (Enhanced Edition)</h2></b>");
 
         // About
         QString aboutText = QString(
@@ -58,13 +58,17 @@ public:
             "<tr><td>%3</td><td><a href=\"http://www.qbittorrent.org\">http://www.qbittorrent.org</a></td></tr>"
             "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
             "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
+            "<tr><td>%6</td><td><a href=\"https://github.com/c0re100/qBittorrent-Enhanced-Edition\">GitHub Repository</a></td></tr>"
+            "<tr><td>%7</td><td><a href=\"https://t.me/husky7x24\">Husky</a></td></tr>"
             "</table>"
             "</p>")
             .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar."))
             .arg(tr("Copyright %1 2006-2017 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
             .arg(tr("Home Page:"))
             .arg(tr("Forum:"))
-            .arg(tr("Bug Tracker:"));
+            .arg(tr("Bug Tracker:"))
+            .arg(tr("Enhanced Edition:"))
+            .arg(tr("Maintainer:"));
         lb_about->setText(aboutText);
 
         // Thanks

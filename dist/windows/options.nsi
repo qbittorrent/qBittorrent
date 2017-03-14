@@ -1,6 +1,6 @@
 ﻿Unicode true
 ;Compress the header too
-!packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
+!packhdr "$%TEMP%\exehead.tmp" 'C:\qBittorrent\qBittorrent\dist\windows\upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
 
 ;Setting the compression
 SetCompressor /SOLID LZMA
@@ -19,7 +19,7 @@ XPStyle on
 !define CSIDL_APPDATA '0x1A' ;Application Data path
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
-!define PROG_VERSION "3.3.11"
+!define PROG_VERSION "3.3.11.1"
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)

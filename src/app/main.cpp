@@ -259,6 +259,7 @@ int main(int argc, char *argv[])
                  && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
 
+    srand(time(0));
 #ifdef DISABLE_GUI
     if (params.shouldDaemonize) {
         app.reset(); // Destroy current application
