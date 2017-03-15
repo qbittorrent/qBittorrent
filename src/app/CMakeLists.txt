@@ -39,11 +39,7 @@ set(QBT_APP_RESOURCES
 
 # With AUTORCC rcc is ran by cmake before language files are generated,
 # and thus we call rcc explicitly
-if (QT5)
-    qt5_add_resources(QBT_APP_RESOURCE_SOURCE ${QBT_APP_RESOURCES})
-else (QT5)
-    qt4_add_resources(QBT_APP_RESOURCE_SOURCE ${QBT_APP_RESOURCES})
-endif (QT5)
+qt5_add_resources(QBT_APP_RESOURCE_SOURCE ${QBT_APP_RESOURCES})
 
 if (WIN32)
     if (MINGW)
