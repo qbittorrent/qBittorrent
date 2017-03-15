@@ -32,7 +32,10 @@
 #include <QCryptographicHash>
 #include <queue>
 #include <vector>
+#include <QStringList>
 
+#include "base/settingvalue.h"
+#include "base/logger.h"
 #include "base/iconprovider.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
@@ -48,6 +51,8 @@
 #include "jsonutils.h"
 #include "websessiondata.h"
 #include "webapplication.h"
+
+#include <boost/asio/ip/address.hpp>
 
 static const int API_VERSION = 12;
 static const int API_VERSION_MIN = 11;
@@ -85,6 +90,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, getPeerLog);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
+    ADD_ACTION(command, banip);
     ADD_ACTION(command, shutdown);
     ADD_ACTION(command, download);
     ADD_ACTION(command, upload);
@@ -187,6 +193,7 @@ void WebApplication::action_public_login()
         QString addr = env().clientAddress.toString();
         increaseFailedAttempts();
         qDebug("client IP: %s (%d failed attempts)", qPrintable(addr), failedAttempts());
+        Logger::instance()->addMessage(tr("client IP: %1 (%2 failed attempts)").arg(addr).arg(failedAttempts()));
         print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
     }
 }
@@ -349,6 +356,38 @@ void WebApplication::action_version_qbittorrent()
 {
     CHECK_URI(0);
     print(QString(VERSION), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_banip()
+{
+    CHECK_URI(0);
+    QString ip = request().posts["ip"];
+    QStringList list = SettingsStorage::instance()->loadValue("Preferences/IPFilter/BannedIPs").toStringList();
+
+    if (ip.isEmpty()) {
+        print(QByteArray("IP field should not be empty."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    boost::system::error_code ec;
+    boost::asio::ip::address::from_string(ip.toStdString(), ec);
+    if (ec) {
+        print(QByteArray("The given IP address is not valid."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (list.contains(ip)) {
+        print(QByteArray("The given IP address already exists."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (!ip.isEmpty() && !list.contains(ip)) {
+        qDebug("Banning peer %s via API...", ip.toLocal8Bit().data());
+        Logger::instance()->addMessage(tr("Manually banning peer '%1' via API...").arg(ip));
+        BitTorrent::Session::instance()->banIP(ip.toLocal8Bit().data());
+        print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
 }
 
 void WebApplication::action_command_shutdown()
