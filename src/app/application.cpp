@@ -133,14 +133,18 @@ Application::Application(const QString &id, int &argc, char **argv)
         QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
     }
 #endif
+
+    setApplicationName("qBittorrent");
     initializeTranslation();
-#ifndef DISABLE_GUI
+
+#if !defined(DISABLE_GUI)
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
     setQuitOnLastWindowClosed(false);
-#ifdef Q_OS_WIN
+#endif
+
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
-#endif // Q_OS_WIN
-#endif // DISABLE_GUI
+#endif
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
