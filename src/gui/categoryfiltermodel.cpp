@@ -211,7 +211,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole)) {
-        return QString(QStringLiteral("%1  (%2)"))
+        return QString(QStringLiteral("%1 (%2)"))
                 .arg(item->name()).arg(item->torrentsCount());
     }
 
