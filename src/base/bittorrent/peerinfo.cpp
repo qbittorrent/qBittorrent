@@ -201,55 +201,6 @@ PeerAddress PeerInfo::address() const
 
 QString PeerInfo::client() const
 {
-    /*Old Method
-    QString ip = QString::fromStdString(m_nativeInfo.ip.address().to_string());
-    QString client = Utils::String::fromStdString(m_nativeInfo.client);
-
-    QRegularExpression re("Xunlei");
-    QRegularExpressionMatch match = re.match(client);
-    QRegularExpression re2("XL");
-    QRegularExpressionMatch match2 = re2.match(client);
-    if(client >= "0.0.0.0" && client <= "9.99.99.9999" || match.hasMatch() || match2.hasMatch()) {
-        qDebug("Auto Banning Xunlei peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip);
-    }
-
-    QRegularExpression re3("Xf");
-    QRegularExpressionMatch match3 = re3.match(client);
-    if(match3.hasMatch()) {
-        qDebug("Auto Banning Xfplay peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip);
-    }
-
-    QRegularExpression re4("QQ");
-    QRegularExpressionMatch match4 = re4.match(client);
-    if(match4.hasMatch())
-    {
-        qDebug("Auto Banning QQDownload peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip);
-    }
-
-    QRegularExpression re6("Baidu");
-    QRegularExpressionMatch match6 = re6.match(client);
-    if(match6.hasMatch())
-    {
-        qDebug("Auto Banning Baidu peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Auto banning Baidu peer '%1'...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip);
-    }
-
-    QRegularExpression re5("Unknown");
-    QRegularExpressionMatch match5 = re5.match(client);
-    if(match5.hasMatch())
-    {
-        qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip);
-    }*/
-
     return Utils::String::fromStdString(m_nativeInfo.client);
 }
 

@@ -136,7 +136,7 @@ private slots:
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
+    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, bool invokedByUser);
 #endif
     void updateRSSTabLabel(int count);
 

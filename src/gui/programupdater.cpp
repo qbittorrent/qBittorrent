@@ -77,6 +77,7 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
     QString version;
+    QString content;
 
     QXmlStreamReader xml(data);
     bool inItem = false;
@@ -95,6 +96,8 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
                 type = getStringValue(xml);
             else if (inItem && xml.name() == "version")
                 version = getStringValue(xml);
+            else if (inItem && xml.name() == "content")
+                content = getStringValue(xml);
         }
         else if (xml.isEndElement()) {
             if (inItem && xml.name() == "item") {
@@ -112,11 +115,12 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
                 updateLink.clear();
                 type.clear();
                 version.clear();
+                content.clear();
             }
         }
     }
 
-    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
+    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, content, m_invokedByUser);
 }
 
 void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
@@ -124,7 +128,7 @@ void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
     Q_UNUSED(url);
 
     qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
-    emit updateCheckFinished(false, QString(), m_invokedByUser);
+    emit updateCheckFinished(false, QString(), QString(), m_invokedByUser);
 }
 
 void ProgramUpdater::updateProgram()

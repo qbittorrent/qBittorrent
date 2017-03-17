@@ -34,7 +34,6 @@
 #include <vector>
 #include <QStringList>
 
-#include "base/settingvalue.h"
 #include "base/logger.h"
 #include "base/iconprovider.h"
 #include "base/utils/misc.h"
@@ -363,14 +362,14 @@ void WebApplication::action_command_banip()
     CHECK_URI(0);
     QString ip = request().posts["ip"];
     QStringList list = SettingsStorage::instance()->loadValue("Preferences/IPFilter/BannedIPs").toStringList();
+    boost::system::error_code ec;
+    boost::asio::ip::address::from_string(ip.toStdString(), ec);
 
     if (ip.isEmpty()) {
         print(QByteArray("IP field should not be empty."), Http::CONTENT_TYPE_TXT);
         return;
     }
 
-    boost::system::error_code ec;
-    boost::asio::ip::address::from_string(ip.toStdString(), ec);
     if (ec) {
         print(QByteArray("The given IP address is not valid."), Http::CONTENT_TYPE_TXT);
         return;
@@ -384,7 +383,7 @@ void WebApplication::action_command_banip()
     if (!ip.isEmpty() && !list.contains(ip)) {
         qDebug("Banning peer %s via API...", ip.toLocal8Bit().data());
         Logger::instance()->addMessage(tr("Manually banning peer '%1' via API...").arg(ip));
-        BitTorrent::Session::instance()->banIP(ip.toLocal8Bit().data());
+        BitTorrent::Session::instance()->blockIP(ip.toLocal8Bit().data());
         print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
         return;
     }

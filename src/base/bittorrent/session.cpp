@@ -1379,6 +1379,17 @@ void Session::banIP(const QString &ip)
     }
 }
 
+void Session::blockIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    boost::system::error_code ec;
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+    Q_ASSERT(!ec);
+    if (ec) return;
+    filter.add_rule(addr, addr, libt::ip_filter::blocked);
+    m_nativeSession->set_ip_filter(filter);
+}
+
 void Session::unbanIP()
 {
     SettingsStorage::instance()->storeValue("Preferences/IPFilter/BannedIPs", QString());

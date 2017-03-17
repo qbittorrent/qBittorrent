@@ -1,9 +1,10 @@
 (qBittorrent Enhanced Edition For Auto Ban Badass by Husky)
-Function:
+Features:
 1. Auto Ban Xunlei, QQ, Baidu, Xfplay client
-2. Reset IPFilter When qBittorrent Closed
-3. IP filter API for advanced user
-4. Logging Failed WebUI/API Login Attempts
+2. Temporary IP Filter API for advanced user
+3. Logging Failed WebUI/API Login Attempts
+4. Reset IPFilter When Exit Option
+5. Update MessageBox with changelog if NEW version is available
 
 qBittorrent is licensed under the GNU General Public License version 2 with the
 addition of the following special exception:

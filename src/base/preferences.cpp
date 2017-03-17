@@ -123,7 +123,7 @@ void Preferences::setConfirmOnExit(bool confirm)
 
 bool Preferences::speedInTitleBar() const
 {
-    return value("Preferences/General/SpeedInTitleBar", false).toBool();
+    return value("Preferences/General/SpeedInTitleBar", true).toBool();
 }
 
 void Preferences::showSpeedInTitleBar(bool show)

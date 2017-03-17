@@ -343,6 +343,7 @@ namespace BitTorrent
 
         void banIP(const QString &ip);
         void unbanIP();
+        void blockIP(const QString &ip);
 
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
