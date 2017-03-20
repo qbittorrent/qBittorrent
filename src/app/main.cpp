@@ -40,6 +40,7 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
+
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
 #ifdef QBT_USES_QT5
@@ -120,14 +121,19 @@ struct QBtCommandLineParameters
     }
 };
 
-#ifndef DISABLE_GUI
-void showSplashScreen();
-#endif
 void displayVersion();
 void displayUsage(const QString &prg_name);
 bool userAgreesWithLegalNotice();
 void displayBadArgMessage(const QString &message);
 QBtCommandLineParameters parseCommandLine();
+
+#if !defined(DISABLE_GUI)
+void showSplashScreen();
+
+#if defined(Q_OS_UNIX)
+void setupDpi();
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 // Main
 int main(int argc, char *argv[])
@@ -140,6 +146,11 @@ int main(int argc, char *argv[])
     // Due to this, we have to move from native plist to IniFormat
     macMigratePlists();
 #endif
+
+#if !defined(DISABLE_GUI) && defined(Q_OS_UNIX)
+    setupDpi();
+#endif
+
 
 #ifndef DISABLE_GUI
     migrateRSS();
@@ -379,7 +390,7 @@ void sigAbnormalHandler(int signum)
 }
 #endif // defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 
-#ifndef DISABLE_GUI
+#if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
     QPixmap splash_img(":/icons/skin/splash.png");
@@ -393,7 +404,15 @@ void showSplashScreen()
     QTimer::singleShot(1500, splash, SLOT(deleteLater()));
     qApp->processEvents();
 }
-#endif
+
+#if defined(Q_OS_UNIX)
+void setupDpi()
+{
+    if (qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+}
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 void displayVersion()
 {
