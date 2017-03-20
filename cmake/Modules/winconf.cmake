@@ -3,7 +3,7 @@
 # We want to link with static version of
 # libtorrent
 set(LibtorrentRasterbar_USE_STATIC_LIBS True)
-set(LibtorrentRasterbar_CUSTOM_DEFINITIONS 
+set(LibtorrentRasterbar_CUSTOM_DEFINITIONS
     -DBOOST_ALL_NO_LIB -DBOOST_ASIO_HASH_MAP_BUCKETS=1021
     -DBOOST_ASIO_SEPARATE_COMPILATION
     -DBOOST_EXCEPTION_DISABLE
@@ -17,6 +17,7 @@ add_definitions(-DUNICODE
     -DWIN32
     -D_WIN32
     -DWIN32_LEAN_AND_MEAN
+    -DNTDDI_VERSION=0x0501
     -D_WIN32_WINNT=0x0501
     -D_WIN32_IE=0x0500
     -D_CRT_SECURE_NO_DEPRECATE
