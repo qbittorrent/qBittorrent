@@ -47,21 +47,24 @@ addons:
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
   apt:
-    #sources:
-    # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-    #- ubuntu-toolchain-r-test
-    #- boost-latest
+    sources:
+      # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+      #- ubuntu-toolchain-r-test
+      #- boost-latest
+      - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
+      - sourceline: 'ppa:beineri/opt-qt551-trusty'
     packages:
     # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
-    - autoconf
-    - automake
-    - colormake
-    - libssl-dev
-    - libboost-dev
-    - libboost-system-dev
-    # uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
-    #- libtorrent-rasterbar6
-
+      - autoconf
+      - automake
+      - colormake
+      - libssl-dev
+      - libboost-dev
+      - libboost-system-dev
+      - libtorrent-rasterbar-dev
+      # Qt 5.5.1
+      - qt55base
+      - qt55tools
 before_install:
   # only allow specific build for coverity scan, others will stop
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true ]; then exit ; fi
@@ -94,17 +97,6 @@ before_install:
 install:
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # repositories
-      sudo add-apt-repository --yes ppa:qbittorrent-team/qbittorrent-stable ;
-      sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty ;
-      sudo apt-get update -qq ;
-
-      # libtorrent
-      sudo apt-get install -qq libtorrent-rasterbar-dev ;
-
-      # Qt 5.5.1
-      sudo apt-get install -qq qt55base qt55tools ;
-
       # build libtorrent from source
       #if [ "$lt_branch" != "dist" ]; then
         #cd "$HOME" && pwd && git clone --depth 1 https://github.com/arvidn/libtorrent.git --branch $lt_branch ;
