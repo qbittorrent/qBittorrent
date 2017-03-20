@@ -172,6 +172,6 @@ install(TARGETS ${QBT_TARGET_NAME}
     BUNDLE  DESTINATION .
     COMPONENT runtime)
 
-if (APPLE)
+if (APPLE AND GUI)
     install(SCRIPT ${OSX_RES_SRC_DIR}/bundle.cmake)
-endif (APPLE)
+endif (APPLE AND GUI)
