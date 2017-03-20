@@ -10,8 +10,8 @@ env:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- lt_branch=dist gui=true
     #- lt_branch=dist gui=false
-    - lt_branch=RC_1_0 qt=5 gui=true
-    - lt_branch=RC_1_0 qt=5 gui=false
+    - lt_branch=RC_1_0 gui=true
+    - lt_branch=RC_1_0 gui=false
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
@@ -77,7 +77,6 @@ before_install:
   - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
 
   # options for specific branches
-  - if [ "$qt" = 4 ]; then qbtconf="$qbtconf --with-qt4" ; fi
   - if [ "$gui" = false ]; then qbtconf="$qbtconf --disable-gui" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
