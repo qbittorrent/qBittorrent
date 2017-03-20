@@ -177,7 +177,6 @@ script:
   - |
     cd "$TRAVIS_BUILD_DIR"
     if [ "$build_system" = "cmake" ]; then
-      cd "$TRAVIS_BUILD_DIR"
       mkdir build
       cd build
       cmake -DGUI=${gui} -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
