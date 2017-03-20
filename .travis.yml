@@ -10,11 +10,18 @@ env:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- lt_branch=dist gui=true
     #- lt_branch=dist gui=false
-    - lt_branch=RC_1_0 gui=true
-    - lt_branch=RC_1_0 gui=false
+    - lt_branch=RC_1_0 gui=true build_system=cmake
+    - lt_branch=RC_1_0 gui=false build_system=cmake
+    - lt_branch=RC_1_0 gui=true build_system=qmake
+    - lt_branch=RC_1_0 gui=false build_system=qmake
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
+
+matrix:
+  allow_failures:
+    - env: lt_branch=RC_1_0 gui=true build_system=cmake
+    - env: lt_branch=RC_1_0 gui=false build_system=cmake
 
 branches:
   except:
@@ -53,10 +60,12 @@ addons:
       #- boost-latest
       - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
       - sourceline: 'ppa:beineri/opt-qt551-trusty'
+      - sourceline: 'ppa:adrozdoff/cmake'
     packages:
     # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
       - autoconf
       - automake
+      - cmake
       - colormake
       - libssl-dev
       - libboost-dev
@@ -90,9 +99,9 @@ before_install:
   # print settings
   - echo $lt_branch
   - echo $gui
+  - echo $build_system
   - echo $ltconf
   - echo $qbtconf
-
 install:
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
@@ -127,6 +136,10 @@ install:
       # dependencies
       brew update > /dev/null ;
       brew install colormake ccache ;
+      if [ "$build_system" = "cmake" ]; then
+        brew unlink cmake
+        brew install cmake;
+      fi
       brew outdated "pkg-config" || brew upgrade "pkg-config" ;
       # Copy custom libtorrent bottle to homebrew's cache so it can find and install it
       # Also install our custom libtorrent formula by passing the local path to it
@@ -134,13 +147,23 @@ install:
       cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
       brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb" ;
 
-      # Qt
-      # Copy custom qt5 bottle to homebrew's cache so it can find and install it
-      # Also install our custom qt5 formula by passing the local path to it
-      # These 2 files are restored from Travis' cache.
-      cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
-      brew install "$HOME/hombebrew_cache/qt5.rb" ;
-      brew link --force qt5 ;
+      if [ "$build_system" = "cmake" ]; then
+        brew install qt5 ;
+        brew link --force qt5 ;
+        export HOMEBREW_QT5_VERSION=$(brew list --versions qt5 | rev | cut -d' ' -f1 | rev)
+        ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/mkspecs /usr/local/mkspecs
+        ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/plugins /usr/local/plugins
+      else
+        # Qt
+        # Copy custom qt5 bottle to homebrew's cache so it can find and install it
+        # Also install our custom qt5 formula by passing the local path to it
+        # These 2 files are restored from Travis' cache.
+        cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
+        brew install "$HOME/hombebrew_cache/qt5.rb" ;
+        brew link --force qt5 ;
+      fi
+
+      MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -151,12 +174,22 @@ install:
 
 script:
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # skip usual build when running coverity scan
-  - cd "$TRAVIS_BUILD_DIR" && ./bootstrap.sh && ./configure $qbtconf
   - |
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile ;  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
-      sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile ;
-      sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ;
+    cd "$TRAVIS_BUILD_DIR"
+    if [ "$build_system" = "cmake" ]; then
+      cd "$TRAVIS_BUILD_DIR"
+      mkdir build
+      cd build
+      cmake -DGUI=${gui} -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
+        -G "Unix Makefiles" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE ..
+    fi
+    if [ "$build_system" = "qmake" ]; then
+      ./bootstrap.sh && ./configure $qbtconf
+      if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+        sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile ;  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
+        sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile ;
+        sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ;
+      fi
     fi
   - make && make install
 
