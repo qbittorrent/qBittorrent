@@ -1418,7 +1418,8 @@ void Session::removeBannedIP(const QString &ip)
 void Session::EraseIPFilter()
 {
     m_nativeSession->set_ip_filter(libt::ip_filter());
-    processBannedIPs();
+	libt::ip_filter filter;
+    processBannedIPs(filter);
 }
 
 // Delete a torrent from the session, given its hash
