@@ -29,12 +29,13 @@
 #ifndef ABSTRACTWEBAPPLICATION_H
 #define ABSTRACTWEBAPPLICATION_H
 
-#include <QObject>
-#include <QMap>
 #include <QHash>
-#include "base/http/types.h"
-#include "base/http/responsebuilder.h"
+#include <QMap>
+#include <QObject>
+
 #include "base/http/irequesthandler.h"
+#include "base/http/responsebuilder.h"
+#include "base/http/types.h"
 
 struct WebSession;
 struct WebSessionData;
