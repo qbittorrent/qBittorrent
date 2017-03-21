@@ -136,7 +136,7 @@ private slots:
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, bool invokedByUser);
+    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, QString nextUpdate, bool invokedByUser);
 #endif
     void updateRSSTabLabel(int count);
 
@@ -246,6 +246,7 @@ private:
 #endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
+    bool m_AutoBan;
 };
 
 #endif // MAINWINDOW_H

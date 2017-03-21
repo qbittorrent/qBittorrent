@@ -254,6 +254,8 @@ Session::Session(QObject *parent)
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 3)
+    , m_autoUnbanInterval(BITTORRENT_SESSION_KEY("AutoUnbanInterval"), 60)
+    , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
@@ -398,6 +400,11 @@ Session::Session(QObject *parent)
     m_resumeDataTimer->setInterval(saveResumeDataInterval() * 60 * 1000);
     connect(m_resumeDataTimer, SIGNAL(timeout()), SLOT(generateResumeData()));
 
+    // Auto Erase IP Filter
+    m_autoUnbanTimer = new QTimer(this);
+    m_autoUnbanTimer->setInterval(autoUnbanInterval() * 60 * 1000);
+    connect(m_autoUnbanTimer, SIGNAL(timeout()), SLOT(AutoEraseIPFilter()));
+
     m_statistics = new Statistics(this);
 
     updateRatioTimer();
@@ -419,6 +426,7 @@ Session::Session(QObject *parent)
     connect(m_ioThread, SIGNAL(finished()), m_resumeDataSavingManager, SLOT(deleteLater()));
     m_ioThread->start();
     m_resumeDataTimer->start();
+    m_autoUnbanTimer->start();
 
     // initialize PortForwarder instance
     Net::PortForwarder::initInstance(m_nativeSession);
@@ -1379,15 +1387,40 @@ void Session::banIP(const QString &ip)
     }
 }
 
+bool Session::checkAccessFlags(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    return filter.access(addr);
+}
+
 void Session::blockIP(const QString &ip)
 {
     libt::ip_filter filter = m_nativeSession->get_ip_filter();
-    boost::system::error_code ec;
-    libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
-    Q_ASSERT(!ec);
-    if (ec) return;
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
     filter.add_rule(addr, addr, libt::ip_filter::blocked);
     m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::removeBannedIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    filter.add_rule(addr, addr, 0);
+    m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::EraseIPFilter()
+{
+    m_nativeSession->set_ip_filter(libt::ip_filter());
+    processBannedIPs();
+}
+
+void Session::AutoEraseIPFilter()
+{
+    m_nativeSession->set_ip_filter(libt::ip_filter());
+    processBannedIPs();
+    Logger::instance()->addMessage(tr("[Task Scheduler] IP Filter erased."), Log::INFO);
 }
 
 void Session::unbanIP()
@@ -2221,6 +2254,31 @@ void Session::setSaveResumeDataInterval(uint value)
     if (value != saveResumeDataInterval()) {
         m_saveResumeDataInterval = value;
         m_resumeDataTimer->setInterval(value * 60 * 1000);
+    }
+}
+
+uint Session::autoUnbanInterval() const
+{
+    return m_autoUnbanInterval;
+}
+
+void Session::setAutoUnbanInterval(uint value)
+{
+    if (value != autoUnbanInterval()) {
+        m_autoUnbanInterval = value;
+        m_autoUnbanTimer->setInterval(value * 60 * 1000);
+    }
+}
+
+bool Session::isAutoBanUnknownPeerEnabled() const
+{
+    return m_autoBanUnknownPeer;
+}
+
+void Session::setAutoBanUnknownPeer(bool value)
+{
+    if (value != isAutoBanUnknownPeerEnabled()) {
+        m_autoBanUnknownPeer = value;
     }
 }
 

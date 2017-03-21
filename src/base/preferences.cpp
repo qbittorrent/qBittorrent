@@ -1064,6 +1064,26 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
     setValue("Preferences/Advanced/TrayIconStyle", style);
 }
 
+int Preferences::getAutoBanTime() const
+{
+    return value("Preferences/Advanced/AutoUnbanInterval", 60).toUInt();
+}
+
+void Preferences::setAutoBanTime(const int &interval)
+{
+    setValue("Preferences/Advanced/AutoUnbanInterval", interval);
+}
+
+bool Preferences::getAutoBanUnknownPeer() const
+{
+    return value("Preferences/Advanced/AutoBanUnknownPeer", false).toBool();
+}
+
+void Preferences::setAutoBanUnknownPeer(const bool checked)
+{
+    setValue("Preferences/Advanced/AutoBanUnknownPeer", checked);
+}
+
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
 

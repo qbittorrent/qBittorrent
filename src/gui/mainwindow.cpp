@@ -59,6 +59,8 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #endif
+#include "base/net/reverseresolution.h"
+#include "base/net/geoipmanager.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -143,6 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_uiLocked = pref->isUILocked();
     setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(VERSION)));
     m_displaySpeedInTitle = pref->speedInTitleBar();
+    m_AutoBan = pref->getAutoBanUnknownPeer();
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
@@ -1352,40 +1355,51 @@ void MainWindow::updateGUI()
             if (addr.ip.isNull()) continue;
             QString ip = addr.ip.toString();
             QString client = peer.client();
+            QString ptoc = peer.pidtoclient();
+            QString pid = peer.pid().left(8);
+            QString country = peer.country();
 
-            if(client >= "0.0.0.0" && client <= "9.99.99.9999" || client.contains("Xunlei") || client.contains("XL")) {
+            if(client >= "0.0.0.0" && client <= "9.99.99.9999" || client.contains("Xunlei") || client.contains("XL") || pid.contains("-XL") || pid.contains("-SD")) {
                 qDebug("Auto Banning Xunlei peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...").arg(ip));
+                Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                continue;
             }
 
-            if(client.contains("Xf")) {
+            if(client.contains("Xf") || pid.contains("-XF")) {
                 qDebug("Auto Banning Xfplay peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...").arg(ip));
+                Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                continue;
             }
 
-            if(client.contains("QQ"))
+            if(client.contains("QQ") || pid.contains("-QD"))
             {
                 qDebug("Auto Banning QQDownload peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...").arg(ip));
+                Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                continue;
             }
 
-            if(client.contains("Baidu"))
+            if(client.contains("Baidu") || pid.contains("-BD"))
             {
                 qDebug("Auto Banning Baidu peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Baidu peer '%1'...").arg(ip));
+                Logger::instance()->addMessage(tr("Auto banning Baidu peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                continue;
             }
 
-            /*
+
             if(client.contains("Unknown"))
             {
-                qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...").arg(ip));
-                BitTorrent::Session::instance()->banIP(ip);
-            }*/
+                if(m_AutoBan && country == "CN") {
+                    qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
+                    Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+                    BitTorrent::Session::instance()->banIP(ip);
+                    continue;
+                }
+            }
+
         }
     }
 }
@@ -1645,7 +1659,7 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 
-void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, bool invokedByUser)
+void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, QString nextUpdate, bool invokedByUser)
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (updateAvailable) {
@@ -1660,7 +1674,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
     }
     else if (invokedByUser) {
         QMessageBox::information(this, tr("Already Using the Latest qBittorrent Version"),
-                                 tr("No updates available.\nYou are already using the latest version."));
+                                 tr("No updates available.\nYou are already using the latest version.\n%1").arg(nextUpdate));
     }
     sender()->deleteLater();
     m_ui->actionCheckForUpdates->setEnabled(true);
@@ -1812,7 +1826,7 @@ void MainWindow::checkProgramUpdate()
     m_ui->actionCheckForUpdates->setToolTip(tr("Already checking for program updates in the background"));
     bool invokedByUser = m_ui->actionCheckForUpdates == qobject_cast<QAction * >(sender());
     ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
-    connect(updater, SIGNAL(updateCheckFinished(bool,QString,QString,bool)), SLOT(handleUpdateCheckFinished(bool,QString,QString,bool)));
+    connect(updater, SIGNAL(updateCheckFinished(bool,QString,QString,QString,bool)), SLOT(handleUpdateCheckFinished(bool,QString,QString,QString,bool)));
     updater->checkForUpdates();
 }
 

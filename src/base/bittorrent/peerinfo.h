@@ -30,6 +30,7 @@
 #define BITTORRENT_PEERINFO_H
 
 #include <libtorrent/peer_info.hpp>
+#include <libtorrent/identify_client.hpp>
 
 #include <QHostAddress>
 #include <QBitArray>
@@ -87,6 +88,8 @@ namespace BitTorrent
 
         PeerAddress address() const;
         QString client() const;
+        QString pid() const;
+        QString pidtoclient() const;
         qreal progress() const;
         int payloadUpSpeed() const;
         int payloadDownSpeed() const;

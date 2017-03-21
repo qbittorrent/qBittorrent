@@ -4,7 +4,9 @@ Features:
 2. Temporary IP Filter API for advanced user
 3. Logging Failed WebUI/API Login Attempts
 4. Reset IPFilter When Exit Option
-5. Update MessageBox with changelog if NEW version is available
+5. Update Message if NEW version is available
+6. Auto Ban Unknown Peer from China Option
+7. Auto Reset IP Filter in X Minute(s) Option
 
 qBittorrent is licensed under the GNU General Public License version 2 with the
 addition of the following special exception:

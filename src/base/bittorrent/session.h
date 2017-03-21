@@ -251,7 +251,11 @@ namespace BitTorrent
         void setBandwidthSchedulerEnabled(bool enabled);
 
         uint saveResumeDataInterval() const;
+        uint autoUnbanInterval() const;
+        bool isAutoBanUnknownPeerEnabled() const;
         void setSaveResumeDataInterval(uint value);
+        void setAutoUnbanInterval(uint value);
+        void setAutoBanUnknownPeer(bool value);
         int port() const;
         void setPort(int port);
         bool useRandomPort() const;
@@ -342,8 +346,11 @@ namespace BitTorrent
         void setMaxRatioAction(MaxRatioAction act);
 
         void banIP(const QString &ip);
-        void unbanIP();
+        bool checkAccessFlags(const QString &ip);
         void blockIP(const QString &ip);
+        void removeBannedIP(const QString &ip);
+        void EraseIPFilter();
+        void unbanIP();
 
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
@@ -426,6 +433,7 @@ namespace BitTorrent
         void handleDownloadFailed(const QString &url, const QString &reason);
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
         void switchToAlternativeMode(bool alternative);
+        void AutoEraseIPFilter();
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(const bool online);
@@ -549,6 +557,8 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<uint> m_saveResumeDataInterval;
+        CachedSettingValue<uint> m_autoUnbanInterval;
+        CachedSettingValue<bool> m_autoBanUnknownPeer;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;
         CachedSettingValue<QString> m_networkInterface;
@@ -587,6 +597,7 @@ namespace BitTorrent
         QTimer *m_refreshTimer;
         QTimer *m_bigRatioTimer;
         QTimer *m_resumeDataTimer;
+        QTimer *m_autoUnbanTimer;
         Statistics *m_statistics;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;

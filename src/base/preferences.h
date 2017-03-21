@@ -259,6 +259,11 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
+    int getAutoBanTime() const;
+    void setAutoBanTime(const int &interval);
+    bool getAutoBanUnknownPeer() const;
+    void setAutoBanUnknownPeer(const bool checked);
+
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

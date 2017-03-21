@@ -77,6 +77,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
     m_listModel->setHeaderData(PeerListDelegate::CONNECTION, Qt::Horizontal, tr("Connection"));
     m_listModel->setHeaderData(PeerListDelegate::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
+    m_listModel->setHeaderData(PeerListDelegate::PEERID, Qt::Horizontal, tr("Peer ID", "i.e.: Client Peer ID"));
     m_listModel->setHeaderData(PeerListDelegate::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
     m_listModel->setHeaderData(PeerListDelegate::DOWN_SPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
     m_listModel->setHeaderData(PeerListDelegate::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
@@ -293,8 +294,13 @@ void PeerListWidget::banSelectedPeers()
     foreach (const QModelIndex &index, selectedIndexes) {
         int row = m_proxyModel->mapToSource(index).row();
         QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
+        QString client = m_listModel->data(m_listModel->index(row, PeerListDelegate::CLIENT)).toString();
+        QString peerid = m_listModel->data(m_listModel->index(row, PeerListDelegate::PEERID)).toString();
+        QHostAddress host;
+        host.setAddress(ip);
+        const QString countryName = Net::GeoIPManager::CountryName(Net::GeoIPManager::instance()->lookup(host));
         qDebug("Banning peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Manually banning peer '%1'...").arg(ip));
+        Logger::instance()->addMessage(tr("Manually banning peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(peerid).arg(client).arg(countryName));
         BitTorrent::Session::instance()->banIP(ip);
     }
     // Refresh list
@@ -403,6 +409,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), Utils::String::toHtmlEscaped(peer.client()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PEERID), Utils::String::toHtmlEscaped(peer.pid().left(8)));
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
@@ -434,6 +441,7 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), Utils::String::toHtmlEscaped(peer.client()));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PEERID), Utils::String::toHtmlEscaped(peer.pid().left(8)));
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
