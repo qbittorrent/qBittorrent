@@ -404,18 +404,11 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
     return QString();
 }
 
-QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
-{
-    QStringMap map;
-
-    map["htm"] = Http::CONTENT_TYPE_HTML;
-    map["html"] = Http::CONTENT_TYPE_HTML;
-    map["css"] = Http::CONTENT_TYPE_CSS;
-    map["gif"] = Http::CONTENT_TYPE_GIF;
-    map["png"] = Http::CONTENT_TYPE_PNG;
-    map["js"] = Http::CONTENT_TYPE_JS;
-
-    return map;
-}
-
-const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
+const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
+    { "htm", Http::CONTENT_TYPE_HTML },
+    { "html", Http::CONTENT_TYPE_HTML },
+    { "css", Http::CONTENT_TYPE_CSS },
+    { "gif", Http::CONTENT_TYPE_GIF },
+    { "png", Http::CONTENT_TYPE_PNG },
+    { "js", Http::CONTENT_TYPE_JS }
+};
