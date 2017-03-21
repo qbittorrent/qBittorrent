@@ -354,6 +354,7 @@ bool AbstractWebApplication::sessionStart()
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setHttpOnly(true);
         cookie.setPath(QLatin1String("/"));
         header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
 
