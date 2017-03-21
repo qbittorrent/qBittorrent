@@ -34,6 +34,7 @@
 #include <vector>
 
 #include "base/iconprovider.h"
+#include "base/logger.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
@@ -120,6 +121,9 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, addCategory);
     ADD_ACTION(command, removeCategories);
     ADD_ACTION(command, getSavePath);
+    ADD_ACTION(command, blockPeer);
+    ADD_ACTION(command, unblockPeer);
+    ADD_ACTION(command, resetIPFilter);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -793,6 +797,73 @@ void WebApplication::action_command_getSavePath()
 {
     CHECK_URI(0);
     print(BitTorrent::Session::instance()->defaultSavePath());
+}
+
+void WebApplication::action_command_blockPeer()
+{
+    CHECK_URI(0);
+    QString ip = request().posts["ip"];
+    boost::system::error_code ec;
+    boost::asio::ip::address addr = boost::asio::ip::address::from_string(ip.toStdString(), ec);
+    bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(QString::fromStdString(addr.to_string()));
+
+    if (ip.isEmpty()) {
+        print(QByteArray("IP field should not be empty."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (ec) {
+        print(QByteArray("The given IP address is not valid."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (isBanned) {
+        print(QByteArray("The given IP address already exists."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    qDebug("Peer %s banned via Web API.", ip.toLocal8Bit().data());
+    BitTorrent::Session::instance()->blockIP(ip);
+    Logger::instance()->addMessage(tr("Peer '%1' banned via Web API.").arg(ip));
+    print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_unblockPeer()
+{
+    CHECK_URI(0);
+    QString ip = request().posts["ip"];
+    boost::system::error_code ec;
+    boost::asio::ip::address addr = boost::asio::ip::address::from_string(ip.toStdString(), ec);
+    bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(QString::fromStdString(addr.to_string()));
+
+    if (ip.isEmpty()) {
+        print(QByteArray("IP field should not be empty."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (ec) {
+        print(QByteArray("The given IP address is not valid."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (!isBanned) {
+        print(QByteArray("The given IP address isn't banned."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    qDebug("Peer %s unbanned via Web API.", ip.toLocal8Bit().data());
+    Logger::instance()->addMessage(tr("Peer '%1' unbanned via Web API.").arg(ip));
+    BitTorrent::Session::instance()->removeBannedIP(ip);
+    print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_resetIPFilter()
+{
+    CHECK_URI(0);
+    qDebug("IP Filter erased via Web API.");
+    Logger::instance()->addMessage(tr("IP Filter erased via Web API."), Log::INFO);
+    BitTorrent::Session::instance()->EraseIPFilter();
+    print(QByteArray("Erased."), Http::CONTENT_TYPE_TXT);
 }
 
 bool WebApplication::isPublicScope()

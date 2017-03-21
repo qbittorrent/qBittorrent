@@ -1392,6 +1392,35 @@ void Session::banIP(const QString &ip)
     }
 }
 
+bool Session::checkAccessFlags(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    return filter.access(addr);
+}
+
+void Session::blockIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    filter.add_rule(addr, addr, libt::ip_filter::blocked);
+    m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::removeBannedIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    filter.add_rule(addr, addr, 0);
+    m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::EraseIPFilter()
+{
+    m_nativeSession->set_ip_filter(libt::ip_filter());
+    processBannedIPs();
+}
+
 // Delete a torrent from the session, given its hash
 // deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
 bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)

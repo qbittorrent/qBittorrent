@@ -344,7 +344,10 @@ namespace BitTorrent
         MaxRatioAction maxRatioAction() const;
         void setMaxRatioAction(MaxRatioAction act);
 
-        void banIP(const QString &ip);
+        bool checkAccessFlags(const QString &ip);
+        void blockIP(const QString &ip);
+        void removeBannedIP(const QString &ip);
+        void EraseIPFilter();
 
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
