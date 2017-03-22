@@ -138,14 +138,14 @@ However, there are cases where curly braces for single statement if blocks **sho
 
 Generally it will depend on the particular piece of code and would be determined on how readable that piece of code is. **If in doubt** always use braces if one of the above exceptions applies.
 
-### 3. Indentation###
+### 3. Indentation ###
 4 spaces.
 
-### 4. File encoding and line endings.###
+### 4. File encoding and line endings. ###
 
 UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
-### 5. Initialization lists.###
+### 5. Initialization lists. ###
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
@@ -158,7 +158,7 @@ myClass::myClass(int a, int b, int c, int d)
 }
 ```
 
-### 6. Enums.###
+### 6. Enums. ###
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
 ```c++
 enum Days
@@ -173,7 +173,7 @@ enum Days
 };
 ```
 
-### 7. Names.###
+### 7. Names. ###
 All names should be camelCased.
 
 #### a. Type names and namespaces ####
@@ -207,7 +207,7 @@ class MyClass
 }
 ```
 
-### 8. Header inclusion order.###
+### 8. Header inclusion order. ###
 The headers should be placed in the following order:
  1. Module header (in .cpp)
  2. System/Qt/Boost etc. headers (splitted in subcategories if you have many).
@@ -240,7 +240,7 @@ Example:
 
 ```
 
-### 9. Misc.###
+### 9. Misc. ###
 
 * Line breaks for long lines with operation:
 
@@ -304,5 +304,5 @@ for (int a = 0; a < b; ++b) {
 
 * Method definitions aren't allowed in header files
 
-###10. Not covered above###
+### 10. Not covered above ###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
