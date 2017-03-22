@@ -375,9 +375,9 @@ bool AbstractWebApplication::sessionStart()
 bool AbstractWebApplication::sessionEnd()
 {
     if ((session_ != 0) && (sessions_.contains(session_->id))) {
-        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        QNetworkCookie cookie(C_SID);
         cookie.setPath(QLatin1String("/"));
-        cookie.setExpirationDate(QDateTime::currentDateTime());
+        cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
 
         sessions_.remove(session_->id);
         delete session_;
