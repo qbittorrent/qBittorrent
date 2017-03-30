@@ -257,7 +257,7 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
     const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
                                             QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
-    if (!QDir(newLocation).exists()) return;
+    if (newLocation.isEmpty() || !QDir(newLocation).exists()) return;
     qDebug("New location is %s", qPrintable(newLocation));
 
     // Actually move storage
