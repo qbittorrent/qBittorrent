@@ -28,41 +28,36 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QDebug>
-#include <QShortcut>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
-#include <QTimer>
-#include <QClipboard>
-#include <QColor>
-#include <QUrl>
-#include <QMenu>
-#include <QRegExp>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QWheelEvent>
-#include <QTableView>
-
 #include "transferlistwidget.h"
+
+#include <QClipboard>
+#include <QDebug>
+#include <QFileDialog>
+#include <QMenu>
+#include <QMessageBox>
+#include <QRegExp>
+#include <QShortcut>
+#include <QTableView>
+#include <QWheelEvent>
+
+#include "autoexpandabledialog.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/logger.h"
-#include "base/torrentfilter.h"
-#include "transferlistdelegate.h"
-#include "previewselect.h"
-#include "speedlimitdlg.h"
-#include "updownratiodlg.h"
-#include "optionsdlg.h"
-#include "mainwindow.h"
 #include "base/preferences.h"
-#include "torrentmodel.h"
-#include "deletionconfirmationdlg.h"
-#include "propertieswidget.h"
-#include "guiiconprovider.h"
+#include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "autoexpandabledialog.h"
+#include "deletionconfirmationdlg.h"
+#include "guiiconprovider.h"
+#include "mainwindow.h"
+#include "optionsdlg.h"
+#include "previewselect.h"
+#include "speedlimitdlg.h"
+#include "torrentmodel.h"
+#include "transferlistdelegate.h"
 #include "transferlistsortmodel.h"
+#include "updownratiodlg.h"
 
 static QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents);
 
