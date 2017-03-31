@@ -166,3 +166,7 @@ Function un.check_instance
     notfound:
 
 FunctionEnd
+
+Function un.onUninstSuccess
+  SetErrorLevel 0
+FunctionEnd
