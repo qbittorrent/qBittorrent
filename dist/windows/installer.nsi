@@ -228,3 +228,7 @@ Function PageFinishRun
   !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\qbittorrent.exe" "" "" ""
 
 FunctionEnd
+
+Function .onInstSuccess
+  SetErrorLevel 0
+FunctionEnd
