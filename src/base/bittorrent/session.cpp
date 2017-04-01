@@ -1413,13 +1413,15 @@ void Session::removeBannedIP(const QString &ip)
 void Session::EraseIPFilter()
 {
     m_nativeSession->set_ip_filter(libt::ip_filter());
-    processBannedIPs();
+    disableIPFilter();
+    enableIPFilter();
 }
 
 void Session::AutoEraseIPFilter()
 {
     m_nativeSession->set_ip_filter(libt::ip_filter());
-    processBannedIPs();
+    disableIPFilter();
+    enableIPFilter();
     Logger::instance()->addMessage(tr("[Task Scheduler] IP Filter erased."), Log::INFO);
 }
 

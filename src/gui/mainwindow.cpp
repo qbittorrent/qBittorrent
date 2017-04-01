@@ -1359,44 +1359,39 @@ void MainWindow::updateGUI()
             QString pid = peer.pid().left(8);
             QString country = peer.country();
 
-            if(client >= "0.0.0.0" && client <= "9.99.99.9999" || client.contains("Xunlei") || client.contains("XL") || pid.contains("-XL") || pid.contains("-SD")) {
-                qDebug("Auto Banning Xunlei peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Xunlei peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+            if (client >= "0.0.0.0" && client <= "9.99.99.9999" || client.contains("Xunlei") || client.contains("XL") || pid.contains("-XL") || pid.contains("-SD")) {
+                qDebug("Auto Banning Xunlei Peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Xunlei Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
                 continue;
             }
 
-            if(client.contains("Xf") || pid.contains("-XF")) {
-                qDebug("Auto Banning Xfplay peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Xfplay peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+            if (client.contains("Xf") || pid.contains("-XF")) {
+                qDebug("Auto Banning Xfplay Peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Xfplay Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
                 continue;
             }
 
-            if(client.contains("QQ") || pid.contains("-QD"))
-            {
-                qDebug("Auto Banning QQDownload peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning QQDownload peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+            if (client.contains("QQ") || pid.contains("-QD")) {
+                qDebug("Auto Banning QQDownload Peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning QQDownload Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
                 continue;
             }
 
-            if(client.contains("Baidu") || pid.contains("-BD"))
-            {
-                qDebug("Auto Banning Baidu peer %s...", ip.toLocal8Bit().data());
-                Logger::instance()->addMessage(tr("Auto banning Baidu peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+            if (client.contains("Baidu") || pid.contains("-BN")) {
+                qDebug("Auto Banning Baidu Peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning Baidu Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
                 continue;
             }
 
-
-            if(client.contains("Unknown"))
-            {
-                if(m_AutoBan && country == "CN") {
-                    qDebug("Auto Banning Unknown peer %s...", ip.toLocal8Bit().data());
-                    Logger::instance()->addMessage(tr("Auto banning Unknown peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                    BitTorrent::Session::instance()->banIP(ip);
-                    continue;
+            if(m_AutoBan) {
+                if(client.contains("Unknown") && country == "CN") {
+                    qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
+                    Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+                    BitTorrent::Session::instance()->blockIP(ip);
                 }
             }
 
