@@ -196,6 +196,13 @@ Function .onInit
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
 
+  !ifdef APP64BIT
+    ${IfNot} ${RunningX64}
+      MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_64bit)
+      Abort
+    ${EndIf}
+  !endif
+
   ;Search if qBittorrent is already installed.
   FindFirst $0 $1 "$INSTDIR\uninst.exe"
   FindClose $0

@@ -8,9 +8,15 @@ SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
 XPStyle on
 
+;Uncomment when packaging 64bit qbittorrent
+;!define APP64BIT
+
 !include "MUI.nsh"
 !include "UAC.nsh"
 !include "FileFunc.nsh"
+!ifdef APP64BIT
+!include "x64.nsh"
+!endif
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
@@ -20,16 +26,26 @@ XPStyle on
 !define CSIDL_APPDATA '0x1A' ;Application Data path
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
+; Program specific
 !define PROG_VERSION "3.4.0"
+
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
 
-; The name of the installer
-Name "qBittorrent ${PROG_VERSION}"
+!ifndef APP64BIT
+  ; The name of the installer
+  Name "qBittorrent ${PROG_VERSION}"
 
-; The file to write
-OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
+  ; The file to write
+  OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
+!else
+  ; The name of the installer
+  Name "qBittorrent ${PROG_VERSION} x64"
+
+  ; The file to write
+  OutFile "qbittorrent_${PROG_VERSION}_x64_setup.exe"
+!endif
 
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
@@ -40,8 +56,15 @@ VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
 VIProductVersion "${PROG_VERSION}.0"
 
-; The default installation directory
-InstallDir $PROGRAMFILES\qBittorrent
+; The default installation directory. It changes depending if we install in the 64bit dir or not.
+; A caveat of this is if a user has installed a 32bit version and then runs the 64bit installer
+; (which in turn launches the 32bit uninstaller first) the value will still point to the 32bit location.
+; The user has to manually uninstall the old version and THEN run the 64bit installer
+!ifndef APP64BIT
+  InstallDir $PROGRAMFILES32\qBittorrent
+!else
+  InstallDir $PROGRAMFILES64\qBittorrent
+!endif
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
