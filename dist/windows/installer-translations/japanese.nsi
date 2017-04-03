@@ -22,6 +22,8 @@ LangString inst_uninstall_question ${LANG_JAPANESE} "A previous installation was
 LangString inst_unist ${LANG_JAPANESE} "以前のバージョンをアンインストールしています。"
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_JAPANESE} "qBittorrent を起動する"
+;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
+LangString inst_requires_64bit ${LANG_JAPANESE} "This installer works only in 64-bit Windows versions."
 
 
 ;------------------------------------
