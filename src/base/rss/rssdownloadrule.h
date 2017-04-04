@@ -36,7 +36,6 @@
 #include <QSharedPointer>
 #include <QStringList>
 
-template <class T, class U> class QHash;
 class QRegularExpression;
 
 namespace Rss
@@ -58,7 +57,6 @@ namespace Rss
         };
 
         DownloadRule();
-        ~DownloadRule();
 
         static DownloadRulePtr fromVariantHash(const QVariantHash &ruleHash);
         QVariantHash toVariantHash() const;
@@ -93,7 +91,6 @@ namespace Rss
 
     private:
         bool matches(const QString &articleTitle, const QString &expression) const;
-        QRegularExpression getRegex(const QString &expression, bool isRegex = true) const;
 
         QString m_name;
         QStringList m_mustContain;
@@ -107,7 +104,6 @@ namespace Rss
         AddPausedState m_apstate;
         QDateTime m_lastMatch;
         int m_ignoreDays;
-        mutable QHash<QString, QRegularExpression> *m_cachedRegexes;
     };
 }
 
