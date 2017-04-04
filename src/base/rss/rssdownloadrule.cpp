@@ -28,16 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QRegExp>
 #include <QDebug>
 #include <QDir>
-#include <QRegExp>
-#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
-#include "base/utils/string.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrule.h"
@@ -54,23 +52,23 @@ DownloadRule::DownloadRule()
 
 bool DownloadRule::matches(const QString &articleTitle, const QString &expression) const
 {
-    static QRegularExpression whitespace("\\s+");
+    static QRegExp whitespace("\\s+");
 
     if (expression.isEmpty()) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         return true;
     }
     else if (m_useRegex) {
-        QRegularExpression reg(expression, QRegularExpression::CaseInsensitiveOption);
-        return reg.match(articleTitle).hasMatch();
+        QRegExp reg(expression, Qt::CaseInsensitive, QRegExp::RegExp);
+        return reg.indexIn(articleTitle) > -1;
     }
     else {
         // Only match if every wildcard token (separated by spaces) is present in the article name.
         // Order of wildcard tokens is unimportant (if order is important, they should have used *).
         foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
-            QRegularExpression reg(Utils::String::wildcardToRegex(wildcard), QRegularExpression::CaseInsensitiveOption);
+            QRegExp reg(wildcard, Qt::CaseInsensitive, QRegExp::Wildcard);
 
-            if (!reg.match(articleTitle).hasMatch())
+            if (reg.indexIn(articleTitle) == -1)
                 return false;
         }
     }
@@ -126,15 +124,14 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
     if (!m_episodeFilter.isEmpty()) {
         qDebug() << "Checking episode filter:" << m_episodeFilter;
-        QRegularExpression f("(^\\d{1,4})x(.*;$)");
-        QRegularExpressionMatch matcher = f.match(m_episodeFilter);
-        bool matched = matcher.hasMatch();
+        QRegExp f("(^\\d{1,4})x(.*;$)");
+        int pos = f.indexIn(m_episodeFilter);
 
-        if (!matched)
+        if (pos < 0)
             return false;
 
-        QString s = matcher.captured(1);
-        QStringList eps = matcher.captured(2).split(";");
+        QString s = f.cap(1);
+        QStringList eps = f.cap(2).split(";");
         int sOurs = s.toInt();
 
         foreach (QString ep, eps) {
@@ -148,24 +145,22 @@ bool DownloadRule::matches(const QString &articleTitle) const
             if (ep.indexOf('-') != -1) { // Range detected
                 QString partialPattern1 = "\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)";
                 QString partialPattern2 = "\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)";
-                QRegularExpression reg(partialPattern1, QRegularExpression::CaseInsensitiveOption);
+                QRegExp reg(partialPattern1, Qt::CaseInsensitive);
 
                 if (ep.endsWith('-')) { // Infinite range
                     int epOurs = ep.left(ep.size() - 1).toInt();
 
                     // Extract partial match from article and compare as digits
-                    matcher = reg.match(articleTitle);
-                    matched = matcher.hasMatch();
+                    pos = reg.indexIn(articleTitle);
 
-                    if (!matched) {
-                        reg = QRegularExpression(partialPattern2, QRegularExpression::CaseInsensitiveOption);
-                        matcher = reg.match(articleTitle);
-                        matched = matcher.hasMatch();
+                    if (pos == -1) {
+                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
+                        pos = reg.indexIn(articleTitle);
                     }
 
-                    if (matched) {
-                        int sTheirs = matcher.captured(1).toInt();
-                        int epTheirs = matcher.captured(2).toInt();
+                    if (pos != -1) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
                         if (((sTheirs == sOurs) && (epTheirs >= epOurs)) || (sTheirs > sOurs)) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
@@ -183,18 +178,16 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     int epOursLast = range.last().toInt();
 
                     // Extract partial match from article and compare as digits
-                    matcher = reg.match(articleTitle);
-                    matched = matcher.hasMatch();
+                    pos = reg.indexIn(articleTitle);
 
-                    if (!matched) {
-                        reg = QRegularExpression(partialPattern2, QRegularExpression::CaseInsensitiveOption);
-                        matcher = reg.match(articleTitle);
-                        matched = matcher.hasMatch();
+                    if (pos == -1) {
+                        reg = QRegExp(partialPattern2, Qt::CaseInsensitive);
+                        pos = reg.indexIn(articleTitle);
                     }
 
-                    if (matched) {
-                        int sTheirs = matcher.captured(1).toInt();
-                        int epTheirs = matcher.captured(2).toInt();
+                    if (pos != -1) {
+                        int sTheirs = reg.cap(1).toInt();
+                        int epTheirs = reg.cap(2).toInt();
                         if ((sTheirs == sOurs) && ((epOursFirst <= epTheirs) && (epOursLast >= epTheirs))) {
                             qDebug() << "Matched episode:" << ep;
                             qDebug() << "Matched article:" << articleTitle;
@@ -205,8 +198,8 @@ bool DownloadRule::matches(const QString &articleTitle) const
             }
             else { // Single number
                 QString expStr("\\b(?:s0?" + s + "[ -_\\.]?" + "e0?" + ep + "|" + s + "x" + "0?" + ep + ")(?:\\D|\\b)");
-                QRegularExpression reg(expStr, QRegularExpression::CaseInsensitiveOption);
-                if (reg.match(articleTitle).hasMatch()) {
+                QRegExp reg(expStr, Qt::CaseInsensitive);
+                if (reg.indexIn(articleTitle) != -1) {
                     qDebug() << "Matched episode:" << ep;
                     qDebug() << "Matched article:" << articleTitle;
                     return true;

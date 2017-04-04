@@ -31,12 +31,10 @@
 #ifndef RSSDOWNLOADRULE_H
 #define RSSDOWNLOADRULE_H
 
-#include <QDateTime>
+#include <QStringList>
 #include <QVariantHash>
 #include <QSharedPointer>
-#include <QStringList>
-
-class QRegularExpression;
+#include <QDateTime>
 
 namespace Rss
 {

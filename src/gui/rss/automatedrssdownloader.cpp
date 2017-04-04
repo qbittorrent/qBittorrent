@@ -28,15 +28,14 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QCursor>
-#include <QDebug>
-#include <QFileDialog>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QDebug>
 #include <QMenu>
-#include <QRegularExpression>
+#include <QCursor>
 
-#include "base/bittorrent/session.h"
 #include "base/preferences.h"
+#include "base/bittorrent/session.h"
 #include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
@@ -73,8 +72,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<Rss::Manager> 
     Q_ASSERT(ok);
     m_ruleList = manager.toStrongRef()->downloadRules();
     m_editableRuleList = new Rss::DownloadRuleList; // Read rule list from disk
-    m_episodeRegex = new QRegularExpression("^(^\\d{1,4}x(\\d{1,4}(-(\\d{1,4})?)?;){1,}){1,1}",
-                                 QRegularExpression::CaseInsensitiveOption);
+    m_episodeRegex = new QRegExp("^(^\\d{1,4}x(\\d{1,4}(-(\\d{1,4})?)?;){1,}){1,1}",
+                                 Qt::CaseInsensitive);
     QString tip = "<p>" + tr("Matches articles based on episode filter.") + "</p><p><b>" + tr("Example: ")
                   + "1x2;8-15;5;30-;</b>" + tr(" will match 2, 5, 8 through 15, 30 and onward episodes of season one", "example X will match") + "</p>";
     tip += "<p>" + tr("Episode filter rules: ") + "</p><ul><li>" + tr("Season number is a mandatory non-zero value") + "</li>"
@@ -672,7 +671,7 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
 {
     QString tip;
     if (regex) {
-        tip = "<p>" + tr("Regex mode: use Perl-compatible regular expressions") + "</p>";
+        tip = "<p>" + tr("Regex mode: use Perl-like regular expressions") + "</p>";
     }
     else {
         tip = "<p>" + tr("Wildcard mode: you can use") + "<ul>"
@@ -698,23 +697,17 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
 void AutomatedRssDownloader::updateMustLineValidity()
 {
     const QString text = ui->lineContains->text();
-    bool isRegex = ui->checkRegex->isChecked();
     bool valid = true;
-    QString error;
 
     if (!text.isEmpty()) {
         QStringList tokens;
-        if (isRegex)
+        if (ui->checkRegex->isChecked())
             tokens << text;
         else
-            foreach (const QString &token, text.split("|"))
-                tokens << Utils::String::wildcardToRegex(token);
-
+            tokens << text.split("|");
         foreach (const QString &token, tokens) {
-            QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
+            QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
             if (!reg.isValid()) {
-                if (isRegex)
-                    error = tr("Position %1: %2").arg(reg.patternErrorOffset()).arg(reg.errorString());
                 valid = false;
                 break;
             }
@@ -724,35 +717,27 @@ void AutomatedRssDownloader::updateMustLineValidity()
     if (valid) {
         ui->lineContains->setStyleSheet("");
         ui->lbl_must_stat->setPixmap(QPixmap());
-        ui->lbl_must_stat->setToolTip(QLatin1String(""));
     }
     else {
         ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
         ui->lbl_must_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
-        ui->lbl_must_stat->setToolTip(error);
     }
 }
 
 void AutomatedRssDownloader::updateMustNotLineValidity()
 {
     const QString text = ui->lineNotContains->text();
-    bool isRegex = ui->checkRegex->isChecked();
     bool valid = true;
-    QString error;
 
     if (!text.isEmpty()) {
         QStringList tokens;
-        if (isRegex)
+        if (ui->checkRegex->isChecked())
             tokens << text;
         else
-            foreach (const QString &token, text.split("|"))
-                tokens << Utils::String::wildcardToRegex(token);
-
+            tokens << text.split("|");
         foreach (const QString &token, tokens) {
-            QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
+            QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
             if (!reg.isValid()) {
-                if (isRegex)
-                    error = tr("Position %1: %2").arg(reg.patternErrorOffset()).arg(reg.errorString());
                 valid = false;
                 break;
             }
@@ -762,19 +747,17 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     if (valid) {
         ui->lineNotContains->setStyleSheet("");
         ui->lbl_mustnot_stat->setPixmap(QPixmap());
-        ui->lbl_mustnot_stat->setToolTip(QLatin1String(""));
     }
     else {
         ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
         ui->lbl_mustnot_stat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
-        ui->lbl_mustnot_stat->setToolTip(error);
     }
 }
 
 void AutomatedRssDownloader::updateEpisodeFilterValidity()
 {
     const QString text = ui->lineEFilter->text();
-    bool valid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
+    bool valid = text.isEmpty() || m_episodeRegex->indexIn(text) != -1;
 
     if (valid) {
         ui->lineEFilter->setStyleSheet("");
