@@ -59,7 +59,7 @@ DownloadRule::~DownloadRule()
     delete m_cachedRegexes;
 }
 
-QRegularExpression DownloadRule::cachedRegex(const QString &expression, bool isRegex) const
+QRegularExpression DownloadRule::getRegex(const QString &expression, bool isRegex) const
 {
     // Use a cache of regexes so we don't have to continually recompile - big performance increase.
     // The cache is cleared whenever the regex/wildcard, must or must not contain fields or
@@ -82,14 +82,14 @@ bool DownloadRule::matches(const QString &articleTitle, const QString &expressio
         return true;
     }
     else if (m_useRegex) {
-        QRegularExpression reg(cachedRegex(expression));
+        QRegularExpression reg(getRegex(expression));
         return reg.match(articleTitle).hasMatch();
     }
     else {
         // Only match if every wildcard token (separated by spaces) is present in the article name.
         // Order of wildcard tokens is unimportant (if order is important, they should have used *).
         foreach (const QString &wildcard, expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)) {
-            QRegularExpression reg(cachedRegex(wildcard, false));
+            QRegularExpression reg(getRegex(wildcard, false));
 
             if (!reg.match(articleTitle).hasMatch())
                 return false;
@@ -147,7 +147,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
 
     if (!m_episodeFilter.isEmpty()) {
         qDebug() << "Checking episode filter:" << m_episodeFilter;
-        QRegularExpression f(cachedRegex("(^\\d{1,4})x(.*;$)"));
+        QRegularExpression f(getRegex("(^\\d{1,4})x(.*;$)"));
         QRegularExpressionMatch matcher = f.match(m_episodeFilter);
         bool matched = matcher.hasMatch();
 
@@ -169,7 +169,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
             if (ep.indexOf('-') != -1) { // Range detected
                 QString partialPattern1 = "\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)";
                 QString partialPattern2 = "\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)";
-                QRegularExpression reg(cachedRegex(partialPattern1));
+                QRegularExpression reg(getRegex(partialPattern1));
 
                 if (ep.endsWith('-')) { // Infinite range
                     int epOurs = ep.left(ep.size() - 1).toInt();
@@ -179,7 +179,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     matched = matcher.hasMatch();
 
                     if (!matched) {
-                        reg = QRegularExpression(cachedRegex(partialPattern2));
+                        reg = QRegularExpression(getRegex(partialPattern2));
                         matcher = reg.match(articleTitle);
                         matched = matcher.hasMatch();
                     }
@@ -208,7 +208,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
                     matched = matcher.hasMatch();
 
                     if (!matched) {
-                        reg = QRegularExpression(cachedRegex(partialPattern2));
+                        reg = QRegularExpression(getRegex(partialPattern2));
                         matcher = reg.match(articleTitle);
                         matched = matcher.hasMatch();
                     }
@@ -226,7 +226,7 @@ bool DownloadRule::matches(const QString &articleTitle) const
             }
             else { // Single number
                 QString expStr("\\b(?:s0?" + s + "[ -_\\.]?" + "e0?" + ep + "|" + s + "x" + "0?" + ep + ")(?:\\D|\\b)");
-                QRegularExpression reg(cachedRegex(expStr));
+                QRegularExpression reg(getRegex(expStr));
                 if (reg.match(articleTitle).hasMatch()) {
                     qDebug() << "Matched episode:" << ep;
                     qDebug() << "Matched article:" << articleTitle;
