@@ -87,8 +87,8 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
-    timer->setInterval(60000); // 1 min.
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
+    timer->start(60 * 1000);  // 1 min.
 }
 
 AbstractWebApplication::~AbstractWebApplication()
@@ -354,6 +354,7 @@ bool AbstractWebApplication::sessionStart()
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setHttpOnly(true);
         cookie.setPath(QLatin1String("/"));
         header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
 
@@ -366,9 +367,9 @@ bool AbstractWebApplication::sessionStart()
 bool AbstractWebApplication::sessionEnd()
 {
     if ((session_ != 0) && (sessions_.contains(session_->id))) {
-        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        QNetworkCookie cookie(C_SID);
         cookie.setPath(QLatin1String("/"));
-        cookie.setExpirationDate(QDateTime::currentDateTime());
+        cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
 
         sessions_.remove(session_->id);
         delete session_;
@@ -395,18 +396,11 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
     return QString();
 }
 
-QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
-{
-    QStringMap map;
-
-    map["htm"] = Http::CONTENT_TYPE_HTML;
-    map["html"] = Http::CONTENT_TYPE_HTML;
-    map["css"] = Http::CONTENT_TYPE_CSS;
-    map["gif"] = Http::CONTENT_TYPE_GIF;
-    map["png"] = Http::CONTENT_TYPE_PNG;
-    map["js"] = Http::CONTENT_TYPE_JS;
-
-    return map;
-}
-
-const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
+const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
+    { "htm", Http::CONTENT_TYPE_HTML },
+    { "html", Http::CONTENT_TYPE_HTML },
+    { "css", Http::CONTENT_TYPE_CSS },
+    { "gif", Http::CONTENT_TYPE_GIF },
+    { "png", Http::CONTENT_TYPE_PNG },
+    { "js", Http::CONTENT_TYPE_JS }
+};

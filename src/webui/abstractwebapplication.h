@@ -29,12 +29,13 @@
 #ifndef ABSTRACTWEBAPPLICATION_H
 #define ABSTRACTWEBAPPLICATION_H
 
-#include <QObject>
-#include <QMap>
 #include <QHash>
-#include "base/http/types.h"
-#include "base/http/responsebuilder.h"
+#include <QMap>
+#include <QObject>
+
 #include "base/http/irequesthandler.h"
+#include "base/http/responsebuilder.h"
+#include "base/http/types.h"
 
 struct WebSession;
 struct WebSessionData;
@@ -102,7 +103,6 @@ private:
     static void translateDocument(QString &data);
 
     static const QStringMap CONTENT_TYPE_BY_EXT;
-    static QStringMap initializeContentTypeByExtMap();
 };
 
 #endif // ABSTRACTWEBAPPLICATION_H
