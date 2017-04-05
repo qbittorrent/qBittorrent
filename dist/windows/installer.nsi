@@ -1,14 +1,17 @@
-﻿Section "-hidden"
+﻿Var uninstallerPath
+
+Section "-hidden"
 
     ;Search if qBittorrent is already installed.
-    FindFirst $0 $1 "$INSTDIR\uninst.exe"
+    FindFirst $0 $1 "$uninstallerPath\uninst.exe"
     FindClose $0
     StrCmp $1 "" done
 
     ;Run the uninstaller of the previous install.
     DetailPrint $(inst_unist)
-    ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
-    Delete "$INSTDIR\uninst.exe"
+    ExecWait '"$uninstallerPath\uninst.exe" /S _?=$uninstallerPath'
+    Delete "$uninstallerPath\uninst.exe"
+    RMDir "$uninstallerPath"
 
     done:
 
@@ -207,6 +210,9 @@ Function .onInit
   FindFirst $0 $1 "$INSTDIR\uninst.exe"
   FindClose $0
   StrCmp $1 "" done
+
+  ;Copy old value to var so we can call the correct uninstaller
+  StrCpy $uninstallerPath $INSTDIR
 
   ;Inform the user
   MessageBox MB_OKCANCEL|MB_ICONINFORMATION $(inst_uninstall_question) /SD IDOK IDOK done
