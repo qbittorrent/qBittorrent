@@ -103,9 +103,6 @@ TrackerList::TrackerList(PropertiesWidget *properties)
 
 TrackerList::~TrackerList()
 {
-    delete editHotkey;
-    delete deleteHotkey;
-    delete copyHotkey;
     saveSettings();
 }
 
