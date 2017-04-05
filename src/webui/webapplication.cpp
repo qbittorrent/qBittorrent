@@ -49,7 +49,7 @@
 #include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 13;
+static const int API_VERSION = 14;
 static const int API_VERSION_MIN = 13;
 
 const QString WWW_FOLDER = ":/www/public/";
@@ -83,6 +83,8 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, propertiesFiles);
     ADD_ACTION(query, getLog);
     ADD_ACTION(query, getPeerLog);
+    ADD_ACTION(query, getPieceHashes);
+    ADD_ACTION(query, getPieceStates);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
@@ -308,6 +310,18 @@ void WebApplication::action_query_getPeerLog()
         lastKnownId = -1;
 
     print(btjson::getPeerLog(lastKnownId), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_query_getPieceHashes()
+{
+    CHECK_URI(1);
+    print(btjson::getPieceHashesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_query_getPieceStates()
+{
+    CHECK_URI(1);
+    print(btjson::getPieceStatesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
 // GET param:
