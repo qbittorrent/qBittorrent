@@ -45,18 +45,18 @@
 #include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"
 
-namespace {
+namespace
+{
 
     QPalette progressBarDisabledPalette()
     {
-        auto getPalette = []()
-        {
-            QProgressBar bar;
-            bar.setEnabled(false);
-            QStyleOptionProgressBar opt;
-            opt.initFrom(&bar);
-            return opt.palette;
-        };
+        auto getPalette = []() {
+                              QProgressBar bar;
+                              bar.setEnabled(false);
+                              QStyleOptionProgressBar opt;
+                              opt.initFrom(&bar);
+                              return opt.palette;
+                          };
         static QPalette palette = getPalette();
         return palette;
     }
@@ -74,7 +74,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
 
-    switch(index.column()) {
+    switch (index.column()) {
     case PCSIZE:
     case REMAINING:
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
@@ -105,28 +105,28 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         // XXX: To avoid having the progress text on the right of the bar
         QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
-        }
-        break;
+    }
+    break;
     case PRIORITY: {
-            QString text = "";
-            switch (index.data().toInt()) {
-            case prio::MIXED:
-                text = tr("Mixed", "Mixed (priorities");
-                break;
-            case prio::IGNORED:
-                text = tr("Not downloaded");
-                break;
-            case prio::HIGH:
-                text = tr("High", "High (priority)");
-                break;
-            case prio::MAXIMUM:
-                text = tr("Maximum", "Maximum (priority)");
-                break;
-            default:
-                text = tr("Normal", "Normal (priority)");
-                break;
-            }
-            QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+        QString text = "";
+        switch (index.data().toInt()) {
+        case prio::MIXED:
+            text = tr("Mixed", "Mixed (priorities");
+            break;
+        case prio::IGNORED:
+            text = tr("Not downloaded");
+            break;
+        case prio::HIGH:
+            text = tr("High", "High (priority)");
+            break;
+        case prio::MAXIMUM:
+            text = tr("Maximum", "Maximum (priority)");
+            break;
+        default:
+            text = tr("Normal", "Normal (priority)");
+            break;
+        }
+        QItemDelegate::drawDisplay(painter, opt, option.rect, text);
         }
         break;
     default:
@@ -138,9 +138,9 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
 void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    QComboBox *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
-    switch(index.data().toInt()) {
+    switch (index.data().toInt()) {
     case prio::IGNORED:
         combobox->setCurrentIndex(0);
         break;
@@ -169,7 +169,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     if (index.data().toInt() == prio::MIXED)
         return 0;
 
-    QComboBox* editor = new QComboBox(parent);
+    QComboBox *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(tr("Do not download", "Do not download (priority)"));
     editor->addItem(tr("Normal", "Normal (priority)"));
@@ -180,11 +180,11 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 
 void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    QComboBox *combobox = static_cast<QComboBox *>(editor);
     int value = combobox->currentIndex();
     qDebug("PropListDelegate: setModelData(%d)", value);
 
-    switch(value)  {
+    switch (value) {
     case 0:
         model->setData(index, prio::IGNORED); // IGNORED
         break;

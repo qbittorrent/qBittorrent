@@ -38,7 +38,8 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
-class PeerListDelegate: public QItemDelegate {
+class PeerListDelegate: public QItemDelegate
+{
     Q_OBJECT
 
 public:
@@ -67,7 +68,7 @@ public:
 
     ~PeerListDelegate() {}
 
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const override
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         painter->save();
 
@@ -75,7 +76,7 @@ public:
         QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
         QItemDelegate::drawBackground(painter, opt, index);
 
-        switch(index.column()) {
+        switch (index.column()) {
         case PORT: {
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
@@ -91,7 +92,7 @@ public:
             }
             break;
         case DOWN_SPEED:
-        case UP_SPEED:{
+        case UP_SPEED: {
             qreal speed = index.data().toDouble();
             if (speed <= 0.0)
                 break;
@@ -103,7 +104,7 @@ public:
         case RELEVANCE: {
             qreal progress = index.data().toDouble();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress*100.0, 1)+"%");
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + "%");
             }
             break;
         default:
@@ -113,7 +114,7 @@ public:
         painter->restore();
     }
 
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const override
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override
     {
         // No editor here
         return nullptr;
