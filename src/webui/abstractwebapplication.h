@@ -103,6 +103,7 @@ private:
     static void translateDocument(QString &data);
 
     static const QStringMap CONTENT_TYPE_BY_EXT;
+    static QStringMap initializeContentTypeByExtMap();
 };
 
 #endif // ABSTRACTWEBAPPLICATION_H
