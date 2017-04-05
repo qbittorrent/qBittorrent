@@ -93,7 +93,7 @@ public:
         case DOWN_SPEED:
         case UP_SPEED:{
             qreal speed = index.data().toDouble();
-            if (speed == 0.0)
+            if (speed <= 0.0)
                 break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
