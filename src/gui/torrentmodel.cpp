@@ -63,9 +63,9 @@ static bool isDarkTheme();
 
 // TorrentModel
 
-TorrentModel::TorrentModel(QObject *parent)
+TorrentModel::TorrentModel(TransferListWidget *parent)
     : QAbstractListModel(parent)
-    , m_parent(parent)
+    , m_transferListWidget(parent)
 {
     // Load the torrents
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
@@ -295,9 +295,7 @@ Qt::ItemFlags TorrentModel::flags(const QModelIndex &index) const
 
 QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::TorrentHandle *torrent) const
 {
-    TransferListWidget *pWdiget = dynamic_cast<TransferListWidget *>(m_parent);
-
-    if (!pWdiget || !m_parent) return QVariant(""); // with QVariant() any currently visible tooltip does not go away
+    if (!m_transferListWidget) return QVariant(""); // with QVariant() any currently visible tooltip does not go away
 
     bool isHideState = true;
     if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
@@ -306,13 +304,13 @@ QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::Torr
             isHideState = false;
     }
     const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
-    QFontMetrics fontmetrics(pWdiget->font());
-    int textw = 0;
+    QFontMetrics fontmetrics(m_transferListWidget->font());
+    int textWidth = 0;
     QVariant text;
 
     switch (idx.column()) {
     case TorrentModel::TR_NAME:
-        textw += pWdiget->style()->pixelMetric(QStyle::PM_ListViewIconSize) + fontmetrics.width(" "); // icon width + margin
+        textWidth += m_transferListWidget->style()->pixelMetric(QStyle::PM_ListViewIconSize) + fontmetrics.width(" "); // icon width + margin
         // fall through
     case TorrentModel::TR_SAVE_PATH:
     case TorrentModel::TR_TRACKER:
@@ -326,7 +324,7 @@ QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::Torr
     case TorrentModel::TR_COMPLETED:
     case TorrentModel::TR_SIZE:
     case TorrentModel::TR_TOTAL_SIZE: {
-        qlonglong size = idx.data().toLongLong();
+        const qlonglong size = idx.data().toLongLong();
         if (hideValues && !size)
             return QVariant("");
         text = Utils::Misc::friendlyUnit(size);
@@ -338,8 +336,8 @@ QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::Torr
     }
     case TorrentModel::TR_SEEDS:
     case TorrentModel::TR_PEERS: {
-        qlonglong value = idx.data().toLongLong();
-        qlonglong total = idx.data(Qt::UserRole).toLongLong();
+        const qlonglong value = idx.data().toLongLong();
+        const qlonglong total = idx.data(Qt::UserRole).toLongLong();
         if (hideValues && (!value && !total))
             return QVariant("");
         text = QString("%1 (%2)").arg(value).arg(total);
@@ -366,8 +364,8 @@ QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::Torr
         break;
     }
     case TorrentModel::TR_TIME_ELAPSED: {
-        qlonglong elapsedTime = idx.data().toLongLong();
-        qlonglong seedingTime = idx.data(Qt::UserRole).toLongLong();
+        const qlonglong elapsedTime = idx.data().toLongLong();
+        const qlonglong seedingTime = idx.data(Qt::UserRole).toLongLong();
         if (seedingTime > 0)
             text = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                    .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
@@ -413,9 +411,9 @@ QVariant TorrentModel::getTooltip(const QModelIndex& idx, const BitTorrent::Torr
     // TODO QFontMetrics::width() function below seems to be unreliable width edge values when the column width is
     // set so the text was just elided however calculated witdh by fontmetrics is telling us the text should still fit
     // into that column
-    textw += fontmetrics.width(" " + text.toString());
+    textWidth += fontmetrics.width(" " + text.toString());
 
-    bool textFits = textw < pWdiget->columnWidth(idx.column());
+    bool textFits = textWidth < m_transferListWidget->columnWidth(idx.column());
     return textFits ? QVariant("") : text;
 }
 

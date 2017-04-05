@@ -40,6 +40,7 @@ namespace BitTorrent
     class InfoHash;
     class TorrentHandle;
 }
+class TransferListWidget;
 
 class TorrentModel : public QAbstractListModel
 {
@@ -82,7 +83,7 @@ public:
         NB_COLUMNS
     };
 
-    explicit TorrentModel(QObject *parent = 0);
+    explicit TorrentModel(TransferListWidget *parent = 0);
 
     int rowCount(const QModelIndex& index = QModelIndex()) const;
     int columnCount(const QModelIndex &parent=QModelIndex()) const;
@@ -102,7 +103,7 @@ private slots:
 
 private:
     QList<BitTorrent::TorrentHandle *> m_torrents;
-    QObject *m_parent;
+    const TransferListWidget *m_transferListWidget;
 };
 
 #endif // TORRENTMODEL_H
