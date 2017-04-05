@@ -39,7 +39,7 @@ public:
     explicit SearchListDelegate(QObject *parent);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const override;
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
 };
 
 #endif
