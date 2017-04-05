@@ -56,6 +56,8 @@ private:
     void action_query_propertiesFiles();
     void action_query_getLog();
     void action_query_getPeerLog();
+    void action_query_getPieceHashes();
+    void action_query_getPieceStates();
     void action_sync_maindata();
     void action_sync_torrent_peers();
     void action_command_shutdown();
