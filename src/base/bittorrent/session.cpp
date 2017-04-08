@@ -76,6 +76,7 @@
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "cachestatus.h"
 #include "magneturi.h"
@@ -90,7 +91,7 @@
 
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
-static const char USER_AGENT[] = "qBittorrent " VERSION;
+static const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -254,7 +255,6 @@ Session::Session(QObject *parent)
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 3)
-    , m_autoUnbanInterval(BITTORRENT_SESSION_KEY("AutoUnbanInterval"), 60)
     , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
@@ -303,7 +303,7 @@ Session::Session(QObject *parent)
                     ;
 
 #if LIBTORRENT_VERSION_NUM < 10100
-    libt::fingerprint fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+    libt::fingerprint fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
     std::string peerId = fingerprint.to_string();
     const ushort port = this->port();
     std::pair<int, int> ports(port, port);
@@ -333,7 +333,7 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr.release());
     });
 #else
-    std::string peerId = libt::generate_fingerprint(PEER_ID, VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_BUILD);
+    std::string peerId = libt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
@@ -400,11 +400,6 @@ Session::Session(QObject *parent)
     m_resumeDataTimer->setInterval(saveResumeDataInterval() * 60 * 1000);
     connect(m_resumeDataTimer, SIGNAL(timeout()), SLOT(generateResumeData()));
 
-    // Auto Erase IP Filter
-    m_autoUnbanTimer = new QTimer(this);
-    m_autoUnbanTimer->setInterval(autoUnbanInterval() * 60 * 1000);
-    connect(m_autoUnbanTimer, SIGNAL(timeout()), SLOT(AutoEraseIPFilter()));
-
     m_statistics = new Statistics(this);
 
     updateRatioTimer();
@@ -426,7 +421,6 @@ Session::Session(QObject *parent)
     connect(m_ioThread, SIGNAL(finished()), m_resumeDataSavingManager, SLOT(deleteLater()));
     m_ioThread->start();
     m_resumeDataTimer->start();
-    m_autoUnbanTimer->start();
 
     // initialize PortForwarder instance
     Net::PortForwarder::initInstance(m_nativeSession);
@@ -1417,14 +1411,6 @@ void Session::EraseIPFilter()
     enableIPFilter();
 }
 
-void Session::AutoEraseIPFilter()
-{
-    m_nativeSession->set_ip_filter(libt::ip_filter());
-    disableIPFilter();
-    enableIPFilter();
-    Logger::instance()->addMessage(tr("[Task Scheduler] IP Filter erased."), Log::INFO);
-}
-
 void Session::unbanIP()
 {
     SettingsStorage::instance()->storeValue("Preferences/IPFilter/BannedIPs", QString());
@@ -2259,19 +2245,6 @@ void Session::setSaveResumeDataInterval(uint value)
     }
 }
 
-uint Session::autoUnbanInterval() const
-{
-    return m_autoUnbanInterval;
-}
-
-void Session::setAutoUnbanInterval(uint value)
-{
-    if (value != autoUnbanInterval()) {
-        m_autoUnbanInterval = value;
-        m_autoUnbanTimer->setInterval(value * 60 * 1000);
-    }
-}
-
 bool Session::isAutoBanUnknownPeerEnabled() const
 {
     return m_autoBanUnknownPeer;
@@ -2286,7 +2259,7 @@ void Session::setAutoBanUnknownPeer(bool value)
 
 int Session::port() const
 {
-    static int randomPort = rand() % 64512 + 1024;
+    static int randomPort = Utils::Random::rand(1024, 65535);
     if (useRandomPort())
         return randomPort;
     return m_port;

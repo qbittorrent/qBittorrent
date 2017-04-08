@@ -17,15 +17,17 @@ endif()
 
 set(PROJECT_VERSION "${PROJECT_VERSION}${VER_STATUS}")
 
-add_definitions(-DVERSION_MAJOR=${VER_MAJOR})
-add_definitions(-DVERSION_MINOR=${VER_MINOR})
-add_definitions(-DVERSION_BUGFIX=${VER_BUGFIX})
-add_definitions(-DVERSION_BUILD=${VER_BUILD})
+add_definitions(-DQBT_VERSION_MAJOR=${VER_MAJOR})
+add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
+add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})
+add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
 
 # os2 {
-#     DEFINES += VERSION=\'\"v$${PROJECT_VERSION}\"\'
+#     DEFINES += DQBT_VERSION=\'\"v$${PROJECT_VERSION}\"\'
+#     DEFINES += DQBT_VERSION_2=\'\"$${PROJECT_VERSION}\"\'
 # } else {
-add_definitions(-DVERSION="v${PROJECT_VERSION}")
+add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
+add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
 # }
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")

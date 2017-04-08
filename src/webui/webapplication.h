@@ -58,9 +58,6 @@ private:
     void action_query_getPeerLog();
     void action_sync_maindata();
     void action_sync_torrent_peers();
-    void action_command_blockPeer();
-    void action_command_unblockPeer();
-    void action_command_resetIPFilter();
     void action_command_shutdown();
     void action_command_download();
     void action_command_upload();
@@ -96,6 +93,9 @@ private:
     void action_command_addCategory();
     void action_command_removeCategories();
     void action_command_getSavePath();
+    void action_command_blockPeer();
+    void action_command_unblockPeer();
+    void action_command_resetIPFilter();
     void action_version_api();
     void action_version_api_min();
     void action_version_qbittorrent();

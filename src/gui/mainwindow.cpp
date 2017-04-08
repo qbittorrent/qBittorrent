@@ -48,7 +48,6 @@
 #include <QMimeData>
 #include <QCryptographicHash>
 #include <QProcess>
-#include <QRegularExpression>
 
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
@@ -59,12 +58,10 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #endif
-#include "base/net/reverseresolution.h"
-#include "base/net/geoipmanager.h"
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
-#include "base/bittorrent/peerinfo.h"
 
 #include "application.h"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -143,9 +140,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(VERSION)));
+    setWindowTitle("qBittorrent " QBT_VERSION);
     m_displaySpeedInTitle = pref->speedInTitleBar();
-    m_AutoBan = pref->getAutoBanUnknownPeer();
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (Preferences::instance()->useSystemIconTheme())
@@ -278,6 +274,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
     connect(m_preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
+    m_UnbanTimer = new QTimer(this);
+    m_UnbanTimer->setInterval(500);
+    connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
 
     // Configure BT session according to options
     loadPreferences(false);
@@ -892,7 +891,6 @@ void MainWindow::on_actionExit_triggered()
         // Ask for UI lock password
         if (!unlockUI()) return;
 
-    //BitTorrent::Session::instance()->unbanIP();
     m_forceExit = true;
     close();
 }
@@ -1033,11 +1031,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
                 m_forceExit = false;
                 return;
             }
-            if (confirmBox.clickedButton() == alwaysBtn) {
+            if (confirmBox.clickedButton() == alwaysBtn)
                 // Remember choice
-                //BitTorrent::Session::instance()->unbanIP();
                 Preferences::instance()->setConfirmOnExit(false);
-            }
         }
     }
 
@@ -1051,7 +1047,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         m_systrayIcon->hide();
     // Accept exit
     if(m_ui->actionResetIPFilter->isChecked()) {
-        BitTorrent::Session::instance()->unbanIP();
+            BitTorrent::Session::instance()->unbanIP();
     }
     e->accept();
     qApp->exit();
@@ -1314,6 +1310,40 @@ void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const 
         new trackerLogin(this, torrent);
 }
 
+// Unban Timer
+void MainWindow::processUnbanRequest()
+{
+    if (bannedIPs.isEmpty() && UnbanTime.isEmpty()) {
+        m_UnbanTimer->stop();
+    }
+    else if (m_isActive) {
+        return;
+    }
+    else {
+        m_isActive = true;
+        int currentTime = QDateTime::currentMSecsSinceEpoch()/1000;
+        int nextTime = UnbanTime.dequeue();
+        int delayTime = nextTime - currentTime;
+        QString nextIP = bannedIPs.dequeue();
+        if (delayTime < 0) {
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+        }
+        else {
+            QTimer::singleShot(delayTime * 1000, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+        }
+    }
+}
+
+void MainWindow::insertQueue(QString ip)
+{
+    bannedIPs.enqueue(ip);
+    UnbanTime.enqueue(int(QDateTime::currentMSecsSinceEpoch()/1000) + 60 * 60);
+
+    if (!m_UnbanTimer->isActive()) {
+        m_UnbanTimer->start();
+    }
+}
+
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
@@ -1341,10 +1371,10 @@ void MainWindow::updateGUI()
     }
 
     if (m_displaySpeedInTitle) {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3 (Enhanced Edition)", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
                        .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true))
                        .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true))
-                       .arg(VERSION));
+                       .arg(QBT_VERSION));
     }
 
     //New Method
@@ -1363,6 +1393,7 @@ void MainWindow::updateGUI()
                 qDebug("Auto Banning Xunlei Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Xunlei Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                insertQueue(ip);
                 continue;
             }
 
@@ -1370,6 +1401,7 @@ void MainWindow::updateGUI()
                 qDebug("Auto Banning Xfplay Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Xfplay Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                insertQueue(ip);
                 continue;
             }
 
@@ -1377,6 +1409,7 @@ void MainWindow::updateGUI()
                 qDebug("Auto Banning QQDownload Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning QQDownload Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                insertQueue(ip);
                 continue;
             }
 
@@ -1384,6 +1417,7 @@ void MainWindow::updateGUI()
                 qDebug("Auto Banning Baidu Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Baidu Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                 BitTorrent::Session::instance()->blockIP(ip);
+                insertQueue(ip);
                 continue;
             }
 
@@ -1392,9 +1426,9 @@ void MainWindow::updateGUI()
                     qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
                     Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                     BitTorrent::Session::instance()->blockIP(ip);
+                    insertQueue(ip);
                 }
             }
-
         }
     }
 }
@@ -1558,7 +1592,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     if (m_displaySpeedInTitle)
         updateGUI();
     else
-        setWindowTitle("qBittorrent " VERSION);
+        setWindowTitle("qBittorrent " QBT_VERSION);
 }
 
 void MainWindow::on_actionRSSReader_triggered()

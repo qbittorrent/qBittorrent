@@ -31,9 +31,6 @@
 #include "base/unicodestrings.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "peerinfo.h"
-#include <QRegularExpression>
-#include "session.h"
-#include "base/logger.h"
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -213,7 +210,6 @@ QString PeerInfo::pidtoclient() const
 {
     return Utils::String::fromStdString(libt::identify_client(m_nativeInfo.pid));
 }
-
 
 qreal PeerInfo::progress() const
 {

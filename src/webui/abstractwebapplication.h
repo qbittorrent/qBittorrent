@@ -29,12 +29,16 @@
 #ifndef ABSTRACTWEBAPPLICATION_H
 #define ABSTRACTWEBAPPLICATION_H
 
-#include <QObject>
-#include <QMap>
 #include <QHash>
-#include "base/http/types.h"
-#include "base/http/responsebuilder.h"
+#include <QMap>
+#include <QObject>
+#include <QQueue>
+#include <QStringList>
+#include <QTimer>
+
 #include "base/http/irequesthandler.h"
+#include "base/http/responsebuilder.h"
+#include "base/http/types.h"
 
 struct WebSession;
 struct WebSessionData;
@@ -54,6 +58,14 @@ public:
     virtual ~AbstractWebApplication();
 
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+
+    bool m_isActive = false;
+    QQueue<QString> bannedIPs;
+    QQueue<int> UnbanTime;
+    QTimer *m_UnbanTimer;
+
+public slots:
+    void processUnbanRequest();
 
 protected:
     virtual void processRequest() = 0;

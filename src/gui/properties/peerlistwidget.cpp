@@ -36,7 +36,6 @@
 #include <QClipboard>
 #include <QMessageBox>
 #include <QWheelEvent>
-#include <QRegularExpression>
 #ifdef QBT_USES_QT5
 #include <QTableView>
 #endif

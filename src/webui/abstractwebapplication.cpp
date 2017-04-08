@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#include "abstractwebapplication.h"
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -35,10 +37,12 @@
 #include <QTemporaryFile>
 #include <QTimer>
 
+#include "base/logger.h"
+#include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "base/utils/random.h"
 #include "websessiondata.h"
-#include "abstractwebapplication.h"
 
 // UnbanTimer
 
@@ -85,8 +89,11 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
-    timer->setInterval(60000); // 1 min.
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
+    timer->start(60 * 1000);  // 1 min.
+    m_UnbanTimer = new QTimer(this);
+    m_UnbanTimer->setInterval(500);
+    connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
 }
 
 AbstractWebApplication::~AbstractWebApplication()
@@ -204,7 +211,7 @@ bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QSt
             translateDocument(dataStr);
 
             if (path.endsWith("about.html") || path.endsWith("index.html") || path.endsWith("client.js"))
-                dataStr.replace("${VERSION}", VERSION);
+                dataStr.replace("${VERSION}", QBT_VERSION);
 
             data = dataStr.toUtf8();
             translatedFiles_[path] = data; // cashing translated file
@@ -226,13 +233,12 @@ QString AbstractWebApplication::generateSid()
 {
     QString sid;
 
-    qsrand(QDateTime::currentDateTime().toTime_t());
     do {
         const size_t size = 6;
         quint32 tmp[size];
 
         for (size_t i = 0; i < size; ++i)
-            tmp[i] = qrand();
+            tmp[i] = Utils::Random::rand();
 
         sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
     }
@@ -333,6 +339,29 @@ void AbstractWebApplication::increaseFailedAttempts()
     }
 }
 
+void AbstractWebApplication::processUnbanRequest()
+{
+    if (bannedIPs.isEmpty() && UnbanTime.isEmpty()) {
+        m_UnbanTimer->stop();
+    }
+    else if (m_isActive) {
+        return;
+    }
+    else {
+        m_isActive = true;
+        int currentTime = QDateTime::currentMSecsSinceEpoch()/1000;
+        int nextTime = UnbanTime.dequeue();
+        int delayTime = nextTime - currentTime;
+        QString nextIP = bannedIPs.dequeue();
+        if (delayTime < 0) {
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+        }
+        else {
+            QTimer::singleShot(delayTime * 1000, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+        }
+    }
+}
+
 bool AbstractWebApplication::isAuthNeeded()
 {
     return (env_.clientAddress != QHostAddress::LocalHost
@@ -361,6 +390,7 @@ bool AbstractWebApplication::sessionStart()
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setHttpOnly(true);
         cookie.setPath(QLatin1String("/"));
         header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
 
@@ -373,9 +403,9 @@ bool AbstractWebApplication::sessionStart()
 bool AbstractWebApplication::sessionEnd()
 {
     if ((session_ != 0) && (sessions_.contains(session_->id))) {
-        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        QNetworkCookie cookie(C_SID);
         cookie.setPath(QLatin1String("/"));
-        cookie.setExpirationDate(QDateTime::currentDateTime());
+        cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
 
         sessions_.remove(session_->id);
         delete session_;

@@ -34,6 +34,7 @@
 #include <QByteArray>
 #include <QtGlobal>
 #include <QLocale>
+
 #ifdef QBT_USES_QT5
 #include <QCollator>
 #endif
@@ -217,6 +218,23 @@ QString Utils::String::toHtmlEscaped(const QString &str)
 #ifdef QBT_USES_QT5
     return str.toHtmlEscaped();
 #else
-    return Qt::escape(str);
+    // code from Qt
+    QString rich;
+    const int len = str.length();
+    rich.reserve(int(len * 1.1));
+    for (int i = 0; i < len; ++i) {
+        if (str.at(i) == QLatin1Char('<'))
+            rich += QLatin1String("&lt;");
+        else if (str.at(i) == QLatin1Char('>'))
+            rich += QLatin1String("&gt;");
+        else if (str.at(i) == QLatin1Char('&'))
+            rich += QLatin1String("&amp;");
+        else if (str.at(i) == QLatin1Char('"'))
+            rich += QLatin1String("&quot;");
+        else
+            rich += str.at(i);
+    }
+    rich.squeeze();
+    return rich;
 #endif
 }

@@ -48,6 +48,7 @@
 #include "transferlistwidget.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/logger.h"
 #include "base/torrentfilter.h"
 #include "transferlistdelegate.h"
 #include "previewselect.h"
@@ -260,12 +261,14 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
     const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
                                             QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
-    if (!QDir(newLocation).exists()) return;
+    if (newLocation.isEmpty() || !QDir(newLocation).exists()) return;
     qDebug("New location is %s", qPrintable(newLocation));
 
     // Actually move storage
-    foreach (BitTorrent::TorrentHandle *const torrent, torrents)
+    foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
+        Logger::instance()->addMessage(tr("Set location: moving \"%1\", from \"%2\" to \"%3\"", "Set location: moving \"ubuntu_16_04.iso\", from \"/home/dir1\" to \"/home/dir2\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocation));
         torrent->move(Utils::Fs::expandPathAbs(newLocation));
+    }
 }
 
 void TransferListWidget::pauseAllTorrents()

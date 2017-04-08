@@ -55,6 +55,7 @@ if (WIN32)
     else (MINGW)
         list (APPEND QBT_APP_SOURCES ../qbittorrent.rc)
     endif (MINGW)
+    list(APPEND QBT_APP_SOURCES ../qbittorent.exe.manifest)
 endif (WIN32)
 
 if (UNIX)
@@ -179,6 +180,6 @@ install(TARGETS ${QBT_TARGET_NAME}
     BUNDLE  DESTINATION .
     COMPONENT runtime)
 
-if (APPLE)
+if (APPLE AND GUI)
     install(SCRIPT ${OSX_RES_SRC_DIR}/bundle.cmake)
-endif (APPLE)
+endif (APPLE AND GUI)

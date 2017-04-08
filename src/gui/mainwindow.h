@@ -34,6 +34,9 @@
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QPointer>
+#include <QQueue>
+#include <QStringList>
+#include <QTimer>
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -101,6 +104,16 @@ public:
     void cleanup();
 
     void showNotificationBaloon(QString title, QString msg) const;
+
+    // Unban Timer
+    bool m_isActive = false;
+    QQueue<QString> bannedIPs;
+    QQueue<int> UnbanTime;
+    QTimer *m_UnbanTimer;
+    void insertQueue(QString ip);
+
+public slots:
+    void processUnbanRequest();
 
 private slots:
     void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);

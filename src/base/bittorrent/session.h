@@ -251,10 +251,8 @@ namespace BitTorrent
         void setBandwidthSchedulerEnabled(bool enabled);
 
         uint saveResumeDataInterval() const;
-        uint autoUnbanInterval() const;
         bool isAutoBanUnknownPeerEnabled() const;
         void setSaveResumeDataInterval(uint value);
-        void setAutoUnbanInterval(uint value);
         void setAutoBanUnknownPeer(bool value);
         int port() const;
         void setPort(int port);
@@ -433,7 +431,6 @@ namespace BitTorrent
         void handleDownloadFailed(const QString &url, const QString &reason);
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
         void switchToAlternativeMode(bool alternative);
-        void AutoEraseIPFilter();
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(const bool online);
@@ -557,7 +554,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<uint> m_saveResumeDataInterval;
-        CachedSettingValue<uint> m_autoUnbanInterval;
         CachedSettingValue<bool> m_autoBanUnknownPeer;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;
@@ -597,7 +593,6 @@ namespace BitTorrent
         QTimer *m_refreshTimer;
         QTimer *m_bigRatioTimer;
         QTimer *m_resumeDataTimer;
-        QTimer *m_autoUnbanTimer;
         Statistics *m_statistics;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;

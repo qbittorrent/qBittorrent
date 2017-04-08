@@ -123,7 +123,7 @@ void Preferences::setConfirmOnExit(bool confirm)
 
 bool Preferences::speedInTitleBar() const
 {
-    return value("Preferences/General/SpeedInTitleBar", true).toBool();
+    return value("Preferences/General/SpeedInTitleBar", false).toBool();
 }
 
 void Preferences::showSpeedInTitleBar(bool show)
@@ -1062,16 +1062,6 @@ TrayIcon::Style Preferences::trayIconStyle() const
 void Preferences::setTrayIconStyle(TrayIcon::Style style)
 {
     setValue("Preferences/Advanced/TrayIconStyle", style);
-}
-
-int Preferences::getAutoBanTime() const
-{
-    return value("Preferences/Advanced/AutoUnbanInterval", 60).toUInt();
-}
-
-void Preferences::setAutoBanTime(const int &interval)
-{
-    setValue("Preferences/Advanced/AutoUnbanInterval", interval);
 }
 
 bool Preferences::getAutoBanUnknownPeer() const

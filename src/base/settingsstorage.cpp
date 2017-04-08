@@ -117,7 +117,6 @@ namespace
             {"BitTorrent/Session/InterfaceName", "Preferences/Connection/InterfaceName"},
             {"BitTorrent/Session/InterfaceAddress", "Preferences/Connection/InterfaceAddress"},
             {"BitTorrent/Session/SaveResumeDataInterval", "Preferences/Downloads/SaveResumeDataInterval"},
-            {"BitTorrent/Session/AutoUnbanInterval", "Preferences/Advanced/AutoUnbanInterval"},
             {"BitTorrent/Session/AutoBanUnknownPeer", "Preferences/Advanced/AutoBanUnknownPeer"},
             {"BitTorrent/Session/Encryption", "Preferences/Bittorrent/Encryption"},
             {"BitTorrent/Session/ForceProxy", "Preferences/Connection/ProxyForce"},

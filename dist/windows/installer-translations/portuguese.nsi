@@ -22,6 +22,8 @@ LangString inst_uninstall_question ${LANG_PORTUGUESE} "Uma antiga instalação f
 LangString inst_unist ${LANG_PORTUGUESE} "A desinstalar versão anterior."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_PORTUGUESE} "Iniciar qBittorrent."
+;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
+LangString inst_requires_64bit ${LANG_PORTUGUESE} "This installer works only in 64-bit Windows versions."
 
 
 ;------------------------------------

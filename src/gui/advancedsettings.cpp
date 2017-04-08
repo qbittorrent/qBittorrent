@@ -55,7 +55,6 @@ enum AdvSettingsRows
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
-    AUTO_UNBAN_INTERVAL,
     CONFIRM_AUTO_BAN,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
@@ -130,8 +129,6 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(cb_os_cache.isChecked());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
-    // Save Auto Unban interval
-    session->setAutoUnbanInterval(spin_auto_unban_interval.value());
     // Enable Auto ban Unknown Peer
     session->setAutoBanUnknownPeer(cb_auto_ban_unknown_peer.isChecked());
     // Outgoing ports
@@ -352,14 +349,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     txtAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &txtAnnounceIP);
-
-    // Auto Unban Interval
-    spin_auto_unban_interval.setMinimum(1);
-    spin_auto_unban_interval.setMaximum(1440);
-    spin_auto_unban_interval.setValue(session->autoUnbanInterval());
-    spin_auto_unban_interval.setSuffix(tr(" m", " minutes"));
-    addRow(AUTO_UNBAN_INTERVAL, tr("Auto Unban interval", "How long do you need?"), &spin_auto_unban_interval);
-
     // Auto Ban Unknown Peer from China
     cb_auto_ban_unknown_peer.setChecked(session->isAutoBanUnknownPeerEnabled());
     addRow(CONFIRM_AUTO_BAN, tr("Auto Ban Unknown Peer from China"), &cb_auto_ban_unknown_peer);
