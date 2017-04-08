@@ -140,7 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle("qBittorrent " QBT_VERSION);
+    setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(QBT_VERSION)));
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -1371,7 +1371,7 @@ void MainWindow::updateGUI()
     }
 
     if (m_displaySpeedInTitle) {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3 (Enhanced Edition)", "D = Download; U = Upload; %3 is qBittorrent version")
                        .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true))
                        .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true))
                        .arg(QBT_VERSION));
@@ -1592,7 +1592,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     if (m_displaySpeedInTitle)
         updateGUI();
     else
-        setWindowTitle("qBittorrent " QBT_VERSION);
+        setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(QBT_VERSION)));
 }
 
 void MainWindow::on_actionRSSReader_triggered()
