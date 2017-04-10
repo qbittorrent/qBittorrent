@@ -60,6 +60,33 @@ Server::~Server()
 {
 }
 
+void Server::incomingConnection(qintptr socketDescriptor)
+{
+    QTcpSocket *serverSocket;
+#ifndef QT_NO_OPENSSL
+    if (m_https)
+        serverSocket = new QSslSocket(this);
+    else
+#endif
+        serverSocket = new QTcpSocket(this);
+
+    if (serverSocket->setSocketDescriptor(socketDescriptor)) {
+#ifndef QT_NO_OPENSSL
+        if (m_https) {
+            static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
+            static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
+            static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
+            static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
+            static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
+        }
+#endif
+        new Connection(serverSocket, m_requestHandler, this);
+    }
+    else {
+        serverSocket->deleteLater();
+    }
+}
+
 #ifndef QT_NO_OPENSSL
 bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
 {
@@ -90,44 +117,15 @@ void Server::disableHttps()
     m_certificates.clear();
     m_key.clear();
 }
-#endif
-
 #ifdef QBT_USES_QT5
-void Server::incomingConnection(qintptr socketDescriptor)
 #else
 void Server::incomingConnection(int socketDescriptor)
 #endif
-{
-    QTcpSocket *serverSocket;
-#ifndef QT_NO_OPENSSL
-    if (m_https)
-        serverSocket = new QSslSocket(this);
-    else
-#endif
-        serverSocket = new QTcpSocket(this);
-
-    if (serverSocket->setSocketDescriptor(socketDescriptor)) {
-#ifndef QT_NO_OPENSSL
-        if (m_https) {
-            static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
-            static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
 #ifdef QBT_USES_QT5
-            static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
 #else
             static_cast<QSslSocket *>(serverSocket)->setLocalCertificate(m_certificates.first());
 #endif
-            static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
-            static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
-        }
-#endif
-        new Connection(serverSocket, m_requestHandler, this);
-    }
-    else {
-        serverSocket->deleteLater();
-    }
-}
 
-#ifndef QT_NO_OPENSSL
 QList<QSslCipher> Server::safeCipherList() const
 {
     const QStringList badCiphers = {"idea", "rc4"};
