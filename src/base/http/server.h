@@ -55,7 +55,7 @@ namespace Http
         ~Server();
 
 #ifndef QT_NO_OPENSSL
-        void enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key);
+        bool setupHttps(const QByteArray &certificates, const QByteArray &key);
         void disableHttps();
 #endif
 
