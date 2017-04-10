@@ -34,6 +34,7 @@
 #define HTTP_SERVER_H
 
 #include <QTcpServer>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslCipher>
@@ -60,12 +61,13 @@ namespace Http
 #endif
 
     private:
-        IRequestHandler *m_requestHandler;
-
         void incomingConnection(qintptr socketDescriptor);
+
+        IRequestHandler *m_requestHandler;
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;
+
         bool m_https;
         QList<QSslCertificate> m_certificates;
         QSslKey m_key;
