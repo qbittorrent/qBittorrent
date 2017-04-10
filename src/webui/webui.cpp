@@ -74,14 +74,13 @@ void WebUI::init()
 
 #ifndef QT_NO_OPENSSL
         if (pref->isWebUiHttpsEnabled()) {
-            QList<QSslCertificate> certs = QSslCertificate::fromData(pref->getWebUiHttpsCertificate());
-            QSslKey key;
-            key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
-            bool certsIsNull = std::any_of(certs.begin(), certs.end(), [](QSslCertificate c) { return c.isNull(); });
-            if (!certsIsNull && !certs.empty() && !key.isNull())
-                m_httpServer->enableHttps(certs, key);
+            const QByteArray certs = pref->getWebUiHttpsCertificate();
+            const QByteArray key = pref->getWebUiHttpsKey();
+            bool success = m_httpServer->setupHttps(certs, key);
+            if (success)
+                logger->addMessage(tr("Web UI: https setup successful"));
             else
-                m_httpServer->disableHttps();
+                logger->addMessage(tr("Web UI: https setup failed, fallback to http"), Log::CRITICAL);
         }
         else {
             m_httpServer->disableHttps();
