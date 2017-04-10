@@ -63,13 +63,13 @@ void WebUI::init()
         }
 
         // http server
-        if (!httpServer_) {
-            webapp_ = new WebApplication(this);
-            httpServer_ = new Http::Server(webapp_, this);
+        if (!m_httpServer) {
+            m_webapp = new WebApplication(this);
+            m_httpServer = new Http::Server(m_webapp, this);
         }
         else {
-            if (httpServer_->serverPort() != m_port)
-                httpServer_->close();
+            if (m_httpServer->serverPort() != m_port)
+                m_httpServer->close();
         }
 
 #ifndef QT_NO_OPENSSL
@@ -79,17 +79,17 @@ void WebUI::init()
             key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
             bool certsIsNull = std::any_of(certs.begin(), certs.end(), [](QSslCertificate c) { return c.isNull(); });
             if (!certsIsNull && !certs.empty() && !key.isNull())
-                httpServer_->enableHttps(certs, key);
+                m_httpServer->enableHttps(certs, key);
             else
-                httpServer_->disableHttps();
+                m_httpServer->disableHttps();
         }
         else {
-            httpServer_->disableHttps();
+            m_httpServer->disableHttps();
         }
 #endif
 
-        if (!httpServer_->isListening()) {
-            bool success = httpServer_->listen(QHostAddress::Any, m_port);
+        if (!m_httpServer->isListening()) {
+            bool success = m_httpServer->listen(QHostAddress::Any, m_port);
             if (success)
                 logger->addMessage(tr("Web UI: Now listening on port %1").arg(m_port));
             else
@@ -98,26 +98,26 @@ void WebUI::init()
 
         // DynDNS
         if (pref->isDynDNSEnabled()) {
-            if (!dynDNSUpdater_)
-                dynDNSUpdater_ = new Net::DNSUpdater(this);
+            if (!m_dnsUpdater)
+                m_dnsUpdater = new Net::DNSUpdater(this);
             else
-                dynDNSUpdater_->updateCredentials();
+                m_dnsUpdater->updateCredentials();
         }
         else {
-            if (dynDNSUpdater_)
-                delete dynDNSUpdater_;
+            if (m_dnsUpdater)
+                delete m_dnsUpdater;
         }
     }
     else {
         Net::PortForwarder::instance()->deletePort(oldPort);
 
-        if (httpServer_)
-            delete httpServer_;
+        if (m_httpServer)
+            delete m_httpServer;
 
-        if (webapp_)
-            delete webapp_;
+        if (m_webapp)
+            delete m_webapp;
 
-        if (dynDNSUpdater_)
-            delete dynDNSUpdater_;
+        if (m_dnsUpdater)
+            delete m_dnsUpdater;
     }
 }
