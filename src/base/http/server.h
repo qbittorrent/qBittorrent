@@ -60,10 +60,14 @@ namespace Http
         void disableHttps();
 #endif
 
+    private slots:
+        void dropTimedOutConnection();
+
     private:
         void incomingConnection(qintptr socketDescriptor);
 
         IRequestHandler *m_requestHandler;
+        QList<Connection *> m_connections;  // for tracking persistence connections
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;

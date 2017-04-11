@@ -30,8 +30,10 @@
 
 #include "server.h"
 
+#include <QMutableListIterator>
 #include <QNetworkProxy>
 #include <QStringList>
+#include <QTimer>
 
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
@@ -40,6 +42,10 @@
 #endif
 
 #include "connection.h"
+
+static const int KEEP_ALIVE_DURATION = 7;  // seconds
+static const int CONNECTIONS_LIMIT = 500;
+static const int CONNECTIONS_SCAN_INTERVAL = 2;  // seconds
 
 using namespace Http;
 
@@ -54,6 +60,10 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 #ifndef QT_NO_OPENSSL
     QSslSocket::setDefaultCiphers(safeCipherList());
 #endif
+
+    QTimer *dropConnectionTimer = new QTimer(this);
+    connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
+    dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
 }
 
 Server::~Server()
@@ -62,6 +72,8 @@ Server::~Server()
 
 void Server::incomingConnection(qintptr socketDescriptor)
 {
+    if (m_connections.size() >= CONNECTIONS_LIMIT) return;
+
     QTcpSocket *serverSocket;
 #ifndef QT_NO_OPENSSL
     if (m_https)
@@ -70,20 +82,34 @@ void Server::incomingConnection(qintptr socketDescriptor)
 #endif
         serverSocket = new QTcpSocket(this);
 
-    if (serverSocket->setSocketDescriptor(socketDescriptor)) {
-#ifndef QT_NO_OPENSSL
-        if (m_https) {
-            static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
-            static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
-            static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
-            static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
-            static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
-        }
-#endif
-        new Connection(serverSocket, m_requestHandler, this);
+    if (!serverSocket->setSocketDescriptor(socketDescriptor)) {
+        delete serverSocket;
+        return;
     }
-    else {
-        serverSocket->deleteLater();
+
+#ifndef QT_NO_OPENSSL
+    if (m_https) {
+        static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
+        static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
+        static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
+        static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
+        static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
+    }
+#endif
+
+    Connection *c = new Connection(serverSocket, m_requestHandler, this);
+    m_connections.append(c);
+}
+
+void Server::dropTimedOutConnection()
+{
+    QMutableListIterator<Connection *> i(m_connections);
+    while (i.hasNext()) {
+        auto connection = i.next();
+        if (connection->isClosed() || connection->hasExpired(KEEP_ALIVE_DURATION)) {
+            delete connection;
+            i.remove();
+        }
     }
 }
 
