@@ -76,6 +76,7 @@ namespace Rss
         void rename(const QString &newName);
         QString displayName() const;
         QString url() const;
+        void setURL(const QString &url);
         QString iconPath() const;
         bool hasCustomIcon() const;
         void setIconPath(const QString &pathHierarchy);
@@ -105,6 +106,7 @@ namespace Rss
         void addArticle(const ArticlePtr &article);
         void downloadArticleTorrentIfMatching(const ArticlePtr &article);
         void deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article);
+        void downloadIcon();
 
     private:
         Manager *m_manager;

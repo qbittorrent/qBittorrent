@@ -33,19 +33,14 @@
 
 #include <QDateTime>
 #include <QVariantHash>
-#include <QSharedPointer>
+#include <QSharedDataPointer>
 #include <QStringList>
-
-template <class T, class U> class QHash;
-class QRegularExpression;
 
 namespace Rss
 {
     class Feed;
-    typedef QSharedPointer<Feed> FeedPtr;
-
-    class DownloadRule;
-    typedef QSharedPointer<DownloadRule> DownloadRulePtr;
+    using FeedPtr = QSharedPointer<Feed>;
+    class DownloadRuleData;
 
     class DownloadRule
     {
@@ -57,10 +52,15 @@ namespace Rss
             NEVER_PAUSED
         };
 
+        /*!
+         * Default constructor represents null
+         * Convenient when used in a collection
+         */
         DownloadRule();
+        DownloadRule(const QString &name);
         ~DownloadRule();
 
-        static DownloadRulePtr fromVariantHash(const QVariantHash &ruleHash);
+        static DownloadRule fromVariantHash(const QVariantHash &ruleHash);
         QVariantHash toVariantHash() const;
         bool matches(const QString &articleTitle) const;
         void setMustContain(const QString &tokens);
@@ -77,9 +77,9 @@ namespace Rss
         void setCategory(const QString &category);
         bool isEnabled() const;
         void setEnabled(bool enable);
-        void setLastMatch(const QDateTime &d);
+        void setLastMatch(const QDateTime &date);
         QDateTime lastMatch() const;
-        void setIgnoreDays(int d);
+        void setIgnoreDays(int days);
         int ignoreDays() const;
         QString mustContain() const;
         QString mustNotContain() const;
@@ -88,26 +88,17 @@ namespace Rss
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
         QStringList findMatchingArticles(const FeedPtr &feed) const;
+        bool isSame(const DownloadRule &other) const;
+
         // Operators
         bool operator==(const DownloadRule &other) const;
+        operator bool() const;
 
     private:
         bool matches(const QString &articleTitle, const QString &expression) const;
-        QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
 
-        QString m_name;
-        QStringList m_mustContain;
-        QStringList m_mustNotContain;
-        QString m_episodeFilter;
-        QString m_savePath;
-        QString m_category;
-        bool m_enabled;
-        QStringList m_rssFeeds;
-        bool m_useRegex;
-        AddPausedState m_apstate;
-        QDateTime m_lastMatch;
-        int m_ignoreDays;
-        mutable QHash<QString, QRegularExpression> *m_cachedRegexes;
+    private:
+        QSharedDataPointer<DownloadRuleData> d;
     };
 }
 

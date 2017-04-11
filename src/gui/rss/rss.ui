@@ -194,6 +194,11 @@
     <string>New folder...</string>
    </property>
   </action>
+  <action name="actionChange_Feed_URL">
+   <property name="text">
+    <string>Change Feed URL</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -203,5 +208,25 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionChange_Feed_URL</sender>
+   <signal>triggered()</signal>
+   <receiver>RSS</receiver>
+   <slot>changeSelectedFeedURL()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>809</x>
+     <y>457</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>changeSelectedFeedURL()</slot>
+ </slots>
 </ui>

@@ -69,6 +69,7 @@ private slots:
     void renameSelectedRssFile();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
+    void changeSelectedFeedURL();
     void populateArticleList(QTreeWidgetItem *item);
     void refreshTextBrowser();
     void updateFeedIcon(const QString &url, const QString &icon_path);
@@ -90,6 +91,7 @@ private slots:
 private:
     static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
     static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
+    QTreeWidgetItem* addItem(const Rss::FilePtr& file, QTreeWidgetItem *parent = nullptr);
 
 private:
     Rss::ManagerPtr m_rssManager;

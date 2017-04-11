@@ -43,6 +43,7 @@
 #include "base/net/downloadhandler.h"
 #include "private/rssparser.h"
 #include "rssdownloadrulelist.h"
+#include "rssdownloadrule_p.h"
 #include "rssarticle.h"
 #include "rssfolder.h"
 #include "rssmanager.h"
@@ -77,8 +78,7 @@ Feed::Feed(const QString &url, Manager *manager)
     connect(m_parser, SIGNAL(finished(QString)), SLOT(handleParsingFinished(QString)));
 
     // Download the RSS Feed icon
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
-    connect(handler, SIGNAL(downloadFinished(QString,QString)), this, SLOT(handleIconDownloadFinished(QString,QString)));
+    downloadIcon();
 
     // Load old RSS articles
     loadItemsFromDisk();
@@ -126,6 +126,12 @@ void Feed::loadItemsFromDisk()
         if (rssItem)
             addArticle(rssItem);
     }
+}
+
+void Feed::downloadIcon()
+{
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl(), true);
+    connect(handler, SIGNAL(downloadFinished(QString,QString)), this, SLOT(handleIconDownloadFinished(QString,QString)));
 }
 
 void Feed::addArticle(const ArticlePtr &article)
@@ -243,6 +249,21 @@ QString Feed::url() const
     return m_url;
 }
 
+void Feed::setURL(const QString &url)
+{
+    // Clear old articles
+    m_articles.clear();
+    m_articlesByDate.clear();
+    m_unreadCount = 0;
+    saveItemsToDisk();
+
+    m_url = url;
+    downloadIcon();
+
+    // FIXME: Cancel current refresh if in progress
+    refresh();
+}
+
 QString Feed::iconPath() const
 {
     if (m_inErrorState)
@@ -318,7 +339,8 @@ ArticleList Feed::unreadArticleListByDateDesc() const
 QString Feed::iconUrl() const
 {
     // XXX: This works for most sites but it is not perfect
-    return QString("http://%1/favicon.ico").arg(QUrl(m_url).host());
+    const QUrl url(m_url);
+    return QString("%1://%2/favicon.ico").arg(url.scheme()).arg(url.host());
 }
 
 void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
@@ -370,20 +392,20 @@ void Feed::deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article)
     qDebug().nospace() << Q_FUNC_INFO << " Matching of " << article->title() << " from " << displayName() << " RSS feed";
 
     DownloadRuleList *rules = m_manager->downloadRules();
-    DownloadRulePtr matchingRule = rules->findMatchingRule(m_url, article->title());
+    DownloadRule matchingRule = rules->findMatchingRule(m_url, article->title());
     if (!matchingRule) return;
 
-    if (matchingRule->ignoreDays() > 0) {
-        QDateTime lastMatch = matchingRule->lastMatch();
+    if (matchingRule.ignoreDays() > 0) {
+        QDateTime lastMatch = matchingRule.lastMatch();
         if (lastMatch.isValid()) {
-            if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule->ignoreDays())) {
+            if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule.ignoreDays())) {
                 article->markAsRead();
                 return;
             }
         }
     }
 
-    matchingRule->setLastMatch(QDateTime::currentDateTime());
+    matchingRule.setLastMatch(QDateTime::currentDateTime());
     rules->saveRulesToStorage();
     // Download the torrent
     const QString &torrentUrl = article->torrentUrl();
@@ -400,11 +422,11 @@ void Feed::deferredDownloadArticleTorrentIfMatching(const ArticlePtr &article)
         connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
 
     BitTorrent::AddTorrentParams params;
-    params.savePath = matchingRule->savePath();
-    params.category = matchingRule->category();
-    if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
+    params.savePath = matchingRule.savePath();
+    params.category = matchingRule.category();
+    if (matchingRule.addPaused() == DownloadRule::ALWAYS_PAUSED)
         params.addPaused = TriStateBool::True;
-    else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)
+    else if (matchingRule.addPaused() == DownloadRule::NEVER_PAUSED)
         params.addPaused = TriStateBool::False;
     BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
 }

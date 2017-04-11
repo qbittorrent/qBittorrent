@@ -189,7 +189,6 @@ QHash<QString, FeedPtr> Folder::getAllFeedsAsHash() const
 
 bool Folder::addFile(const FilePtr &item)
 {
-    Q_ASSERT(!m_children.contains(item->id()));
     if (!m_children.contains(item->id())) {
         m_children[item->id()] = item;
         // Update parent

@@ -43,6 +43,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "rsssettingsdlg.h"
+#include "base/rss/rssdownloadrulelist.h"
 #include "base/rss/rssmanager.h"
 #include "base/rss/rssfolder.h"
 #include "base/rss/rssarticle.h"
@@ -77,7 +78,7 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
         myRSSListMenu.addAction(actionMark_items_read);
         myRSSListMenu.addSeparator();
         if (selectedItems.size() == 1) {
-            if (m_feedList->getRSSItem(selectedItems.first()) != m_rssManager->rootFolder()) {
+            if (selectedItems.first() != m_feedList->stickyUnreadItem()) {
                 myRSSListMenu.addAction(actionRename);
                 myRSSListMenu.addAction(actionDelete);
                 myRSSListMenu.addSeparator();
@@ -93,6 +94,7 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
         if (m_feedList->isFeed(selectedItems.first())) {
             myRSSListMenu.addSeparator();
             myRSSListMenu.addAction(actionCopy_feed_URL);
+            myRSSListMenu.addAction(actionChange_Feed_URL);
         }
     }
     else {
@@ -152,19 +154,8 @@ void RSSImp::askNewFolder()
     if (!ok || rss_parent->hasChild(new_name))
         return;
 
-    Rss::FolderPtr newFolder(new Rss::Folder(new_name));
-    rss_parent->addFile(newFolder);
-    QTreeWidgetItem *folderItem = createFolderListItem(newFolder);
-    if (parent_item)
-        parent_item->addChild(folderItem);
-    else
-        m_feedList->addTopLevelItem(folderItem);
-    // Notify TreeWidget
-    m_feedList->itemAdded(folderItem, newFolder);
-    // Expand parent folder to display new folder
-    if (parent_item)
-        parent_item->setExpanded(true);
-    m_feedList->setCurrentItem(folderItem);
+    addItem(Rss::FolderPtr(new Rss::Folder(new_name)), parent_item);
+
     m_rssManager->saveStreamList();
 }
 
@@ -183,11 +174,7 @@ void RSSImp::on_newFeedButton_clicked()
         if (!m_feedList->isFolder(parent_item))
             parent_item = parent_item->parent();
     }
-    Rss::FolderPtr rss_parent;
-    if (parent_item)
-        rss_parent = qSharedPointerCast<Rss::Folder>(m_feedList->getRSSItem(parent_item));
-    else
-        rss_parent = m_rssManager->rootFolder();
+
     // Ask for feed URL
     bool ok;
     QString clip_txt = qApp->clipboard()->text();
@@ -211,19 +198,7 @@ void RSSImp::on_newFeedButton_clicked()
     }
 
     Rss::FeedPtr stream(new Rss::Feed(newUrl, m_rssManager.data()));
-    rss_parent->addFile(stream);
-    // Create TreeWidget item
-    QTreeWidgetItem *item = createFolderListItem(stream);
-    if (parent_item)
-        parent_item->addChild(item);
-    else
-        m_feedList->addTopLevelItem(item);
-    // Notify TreeWidget
-    m_feedList->itemAdded(item, stream);
-    // Expand parent folder to display new feed
-    if (parent_item)
-        parent_item->setExpanded(true);
-    m_feedList->setCurrentItem(item);
+    addItem(stream, parent_item);
     m_rssManager->saveStreamList();
 }
 
@@ -390,9 +365,9 @@ void RSSImp::renameSelectedRssFile()
     bool ok;
     QString newName;
     do {
-        newName = AutoExpandableDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, m_feedList->getRSSItem(item)->displayName(), &ok);
+        newName = AutoExpandableDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, rss_item->displayName(), &ok);
         // Check if name is already taken
-        if (ok) {
+        if (ok && rss_item->displayName() != newName) {
             if (rss_item->parentFolder()->hasChild(newName)) {
                 QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
                 ok = false;
@@ -447,6 +422,49 @@ void RSSImp::copySelectedFeedsURL()
     qApp->clipboard()->setText(URLs.join("\n"));
 }
 
+void RSSImp::changeSelectedFeedURL()
+{
+    QList<QTreeWidgetItem * > selectedItems = m_feedList->selectedItems();
+    if (selectedItems.size() != 1)
+        return;
+    QTreeWidgetItem *item = selectedItems.first();
+    if (item == m_feedList->stickyUnreadItem())
+        return;
+
+    Rss::FeedPtr feed = qSharedPointerDynamicCast<Rss::Feed>(m_feedList->getRSSItem(item));
+    if (!feed)
+        return;
+
+    bool ok;
+    QString newUrl = feed->url();
+    do {
+        newUrl = AutoExpandableDialog::getText(this, tr("Please type a RSS stream URL"), tr("Stream URL:"), QLineEdit::Normal, newUrl, &ok);
+        if (!ok)
+            return;
+
+        newUrl = newUrl.trimmed();
+        if (newUrl.isEmpty() || newUrl == feed->url())
+            return;
+
+        if (m_feedList->hasFeed(newUrl)) {
+            QMessageBox::warning(this, "qBittorrent",
+                                 tr("This RSS feed is already in the list."),
+                                 QMessageBox::Ok);
+            ok = false;
+        }
+    } while (!ok);
+
+    m_rssManager->downloadRules()->updateFeedURL(feed->url(), newUrl);
+    m_rssManager->downloadRules()->saveRulesToStorage();
+
+    m_feedList->itemAboutToBeRemoved(item);
+    feed->setURL(newUrl);
+    m_feedList->itemAdded(item, feed);
+
+    m_rssManager->saveStreamList();
+    updateItemInfos(item);
+}
+
 void RSSImp::on_markReadButton_clicked()
 {
     QList<QTreeWidgetItem * > selectedItems = m_feedList->selectedItems();
@@ -478,19 +496,12 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, const Rss::FolderPtr &rss_pa
         children = rss_parent->getContent();
     else
         children = m_rssManager->rootFolder()->getContent();
-    foreach (const Rss::FilePtr &rssFile, children) {
-        QTreeWidgetItem *item = createFolderListItem(rssFile);
-        Q_ASSERT(item);
-        if (parent)
-            parent->addChild(item);
-        else
-            m_feedList->addTopLevelItem(item);
-
-        // Notify TreeWidget of item addition
-        m_feedList->itemAdded(item, rssFile);
+    foreach (const Rss::FilePtr& rssFile, children) {
+        QTreeWidgetItem *item = addItem(rssFile, parent);
 
         // Recursive call if this is a folder.
-        if (Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(rssFile))
+        Rss::FolderPtr folder = qSharedPointerDynamicCast<Rss::Folder>(rssFile);
+        if (item && folder)
             fillFeedsList(item, folder);
     }
 }
@@ -714,6 +725,7 @@ RSSImp::RSSImp(QWidget *parent)
     actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     actionOpen_news_URL->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     actionRename->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
+    actionChange_Feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
     actionUpdate->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     actionUpdate_all_feeds->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
@@ -798,4 +810,32 @@ void RSSImp::on_rssDownloaderBtn_clicked()
         m_rssManager->rootFolder()->recheckRssItemsForDownload();
         refreshAllFeeds();
     }
+}
+
+QTreeWidgetItem* RSSImp::addItem(const Rss::FilePtr &file, QTreeWidgetItem *parent)
+{
+    qDebug() << Q_FUNC_INFO << file->id();
+    if (m_feedList->hasFeed(file->id()))
+        return nullptr;
+
+    QTreeWidgetItem *item = createFolderListItem(file);
+
+    Rss::FolderPtr rssParent = qSharedPointerDynamicCast<Rss::Folder>(m_feedList->getRSSItem(parent));
+    if (!rssParent)
+        rssParent = m_rssManager->rootFolder();
+    rssParent->addFile(file);
+
+    if (parent) {
+        parent->addChild(item);
+        parent->setExpanded(true);
+    }
+    else {
+        m_feedList->addTopLevelItem(item);
+    }
+
+    // Notify TreeWidget of item addition
+    m_feedList->itemAdded(item, file);
+    m_feedList->setCurrentItem(item);
+
+    return item;
 }

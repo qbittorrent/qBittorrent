@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2017  Michael Ziminsky
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,50 +24,52 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-
-#ifndef RSSDOWNLOADRULELIST_H
-#define RSSDOWNLOADRULELIST_H
-
-#include <QList>
-#include <QHash>
-#include <QVariantHash>
+#ifndef RSSDOWNLOADRULE_P_H
+#define RSSDOWNLOADRULE_P_H
 
 #include "rssdownloadrule.h"
 
+#include <QHash>
+#include <QStringList>
+
 namespace Rss
 {
-    class DownloadRuleList
+    class DownloadRuleData : public QSharedData
     {
     public:
-        DownloadRuleList();
+        QString name;
+        QString savePath;
+        QString category;
+        QStringList rssFeeds;
+        bool enabled = false;
+        DownloadRule::AddPausedState apstate = DownloadRule::USE_GLOBAL;
+        QDateTime lastMatch;
+        int ignoreDays = 0;
 
-        DownloadRule findMatchingRule(const QString &feedUrl, const QString &articleTitle) const;
-        // Operators
-        void saveRule(const DownloadRule &rule);
-        void removeRule(const QString &name);
-        void renameRule(const QString &oldName, const QString &newName);
-        DownloadRule getRule(const QString &name) const;
-        QStringList ruleNames() const;
-        bool isEmpty() const;
-        void saveRulesToStorage();
-        bool serialize(const QString &path);
-        bool unserialize(const QString &path);
-        void replace(const DownloadRuleList& other);
-        void merge(const DownloadRuleList& other);
-        void updateFeedURL(const QString &oldUrl, const QString &newUrl);
+        QStringList mustContain() const { return m_mustContain; }
+        void setMustContain(const QString &tokens);
+
+        QStringList mustNotContain() const { return m_mustNotContain; }
+        void setMustNotContain(const QString &tokens);
+
+        QString episodeFilter() const { return m_episodeFilter; }
+        void setEpisodeFilter(const QString &episodeFilter);
+
+        bool useRegex() const { return m_useRegex; }
+        void setUseRegex(bool useRegex);
+
+        QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
+
+        ~DownloadRuleData();
 
     private:
-        void loadRulesFromStorage();
-        void loadRulesFromVariantHash(const QVariantHash &l);
-        QVariantHash toVariantHash() const;
-
-    private:
-        QHash<QString, DownloadRule> m_rules;
-        QHash<QString, QStringList> m_feedRules;
+        QStringList m_mustContain;
+        QStringList m_mustNotContain;
+        QString m_episodeFilter;
+        bool m_useRegex = false;
+        mutable QHash<QString, QRegularExpression> m_cachedRegexes;
     };
 }
 
-#endif // RSSDOWNLOADFILTERLIST_H
+#endif // RSSDOWNLOADRULE_P_H
