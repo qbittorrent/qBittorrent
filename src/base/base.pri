@@ -2,7 +2,6 @@ HEADERS += \
     $$PWD/types.h \
     $$PWD/tristatebool.h \
     $$PWD/filesystemwatcher.h \
-    $$PWD/qinisettings.h \
     $$PWD/logger.h \
     $$PWD/settingsstorage.h \
     $$PWD/settingvalue.h \
@@ -55,6 +54,8 @@ HEADERS += \
     $$PWD/utils/net.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
+    $$PWD/profile.h \
+    $$PWD/private/profile_p.h \
     $$PWD/unicodestrings.h \
     $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
@@ -112,6 +113,8 @@ SOURCES += \
     $$PWD/utils/net.cpp \
     $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp \
+    $$PWD/profile.cpp \
+    $$PWD/private/profile_p.cpp \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/scanfoldersmodel.cpp \

@@ -30,11 +30,13 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
+#include "rssfeed.h"
+
 #include <QDebug>
 
 #include "base/preferences.h"
-#include "base/qinisettings.h"
 #include "base/logger.h"
+#include "base/profile.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/utils/misc.h"
@@ -46,7 +48,6 @@
 #include "rssarticle.h"
 #include "rssfolder.h"
 #include "rssmanager.h"
-#include "rssfeed.h"
 
 namespace Rss
 {
@@ -99,7 +100,7 @@ void Feed::saveItemsToDisk()
 
     m_dirty = false;
 
-    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
+    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss-feeds"));
     QVariantList oldItems;
 
     ArticleHash::ConstIterator it = m_articles.begin();
@@ -107,16 +108,15 @@ void Feed::saveItemsToDisk()
     for (; it != itend; ++it)
         oldItems << it.value()->toHash();
     qDebug("Saving %d old items for feed %s", oldItems.size(), qPrintable(displayName()));
-    QHash<QString, QVariant> allOldItems = qBTRSSFeeds.value("old_items", QHash<QString, QVariant>()).toHash();
+    QHash<QString, QVariant> allOldItems = qBTRSSFeeds->value("old_items", QHash<QString, QVariant>()).toHash();
     allOldItems[m_url] = oldItems;
-    qBTRSSFeeds.setValue("old_items", allOldItems);
+    qBTRSSFeeds->setValue("old_items", allOldItems);
 }
 
 void Feed::loadItemsFromDisk()
 {
-    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
-    QHash<QString, QVariant> allOldItems = qBTRSSFeeds.value("old_items", QHash<QString, QVariant>()).toHash();
-
+    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss-feeds"));
+    QHash<QString, QVariant> allOldItems = qBTRSSFeeds->value("old_items", QHash<QString, QVariant>()).toHash();
     const QVariantList oldItems = allOldItems.value(m_url, QVariantList()).toList();
     qDebug("Loading %d old items for feed %s", oldItems.size(), qPrintable(displayName()));
 
@@ -193,22 +193,22 @@ QString Feed::id() const
 void Feed::removeAllSettings()
 {
     qDebug() << "Removing all settings / history for feed: " << m_url;
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QVariantHash feedsWDownloader = qBTRSS.value("downloader_on", QVariantHash()).toHash();
+    SettingsPtr qBTRSS = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss"));
+    QVariantHash feedsWDownloader = qBTRSS->value("downloader_on", QVariantHash()).toHash();
     if (feedsWDownloader.contains(m_url)) {
         feedsWDownloader.remove(m_url);
-        qBTRSS.setValue("downloader_on", feedsWDownloader);
+        qBTRSS->setValue("downloader_on", feedsWDownloader);
     }
-    QVariantHash allFeedsFilters = qBTRSS.value("feed_filters", QVariantHash()).toHash();
+    QVariantHash allFeedsFilters = qBTRSS->value("feed_filters", QVariantHash()).toHash();
     if (allFeedsFilters.contains(m_url)) {
         allFeedsFilters.remove(m_url);
-        qBTRSS.setValue("feed_filters", allFeedsFilters);
+        qBTRSS->setValue("feed_filters", allFeedsFilters);
     }
-    QIniSettings qBTRSSFeeds("qBittorrent", "qBittorrent-rss-feeds");
-    QVariantHash allOldItems = qBTRSSFeeds.value("old_items", QVariantHash()).toHash();
+    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss-feeds"));
+    QVariantHash allOldItems = qBTRSSFeeds->value("old_items", QVariantHash()).toHash();
     if (allOldItems.contains(m_url)) {
         allOldItems.remove(m_url);
-        qBTRSSFeeds.setValue("old_items", allOldItems);
+        qBTRSSFeeds->setValue("old_items", allOldItems);
     }
 }
 

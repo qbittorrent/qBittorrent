@@ -33,9 +33,9 @@
 #include <QFile>
 #include <QHash>
 #include <QStringList>
-#include <QSettings>
 
 #include "logger.h"
+#include "profile.h"
 #include "utils/fs.h"
 
 namespace
@@ -61,16 +61,6 @@ namespace
         // if serialization operation was not successful we return empty string
         QString deserialize(const QString &name, QVariantHash &data);
         QString serialize(const QString &name, const QVariantHash &data);
-
-        using SettingsPtr = std::unique_ptr<QSettings>;
-        SettingsPtr createSettings(const QString &name)
-        {
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-            return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", name));
-#else
-            return SettingsPtr(new QSettings("qBittorrent", name));
-#endif
-        }
 
         QString m_name;
     };
@@ -290,7 +280,7 @@ bool TransactionalSettings::write(const QVariantHash &data)
 
 QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data)
 {
-    SettingsPtr settings = createSettings(name);
+    SettingsPtr settings = Profile::instance().applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
         return QString();
@@ -306,7 +296,7 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
 
 QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data)
 {
-    SettingsPtr settings = createSettings(name);
+    SettingsPtr settings = Profile::instance().applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 

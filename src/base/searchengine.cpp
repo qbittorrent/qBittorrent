@@ -37,6 +37,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #include "searchengine.h"
@@ -325,7 +326,7 @@ QString SearchEngine::engineLocation()
     QString folder = "nova";
     if (Utils::Misc::pythonVersion() >= 3)
         folder = "nova3";
-    const QString location = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + folder);
+    const QString location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + folder);
     QDir locationDir(location);
     if (!locationDir.exists())
         locationDir.mkpath(locationDir.absolutePath());
