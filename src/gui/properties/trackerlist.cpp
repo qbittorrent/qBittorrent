@@ -28,6 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "trackerlist.h"
+
+#include <QApplication>
 #include <QTreeWidgetItem>
 #include <QStringList>
 #include <QMenu>
@@ -35,11 +38,11 @@
 #include <QAction>
 #include <QColor>
 #include <QDebug>
+#include <QHeaderView>
 #include <QUrl>
 #include <QMessageBox>
 #ifdef QBT_USES_QT5
 #include <QTableView>
-#include <QHeaderView>
 #endif
 
 #include "base/bittorrent/session.h"
@@ -52,7 +55,6 @@
 #include "trackersadditiondlg.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
-#include "trackerlist.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings

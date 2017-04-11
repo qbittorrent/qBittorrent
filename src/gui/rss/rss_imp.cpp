@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org arnaud@qbittorrent.org
  */
 
+#include "rss_imp.h"
+
 #include <QDesktopServices>
 #include <QMenu>
 #include <QStandardItemModel>
@@ -37,7 +39,6 @@
 #include <QDragMoveEvent>
 #include <QDebug>
 
-#include "rss_imp.h"
 #include "feedlistwidget.h"
 #include "base/bittorrent/session.h"
 #include "base/net/downloadmanager.h"
@@ -51,6 +52,8 @@
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include "addnewtorrentdialog.h"
+
+#include "ui_rss.h"
 
 namespace Article
 {
@@ -73,33 +76,33 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
     QMenu myRSSListMenu(this);
     QList<QTreeWidgetItem * > selectedItems = m_feedList->selectedItems();
     if (selectedItems.size() > 0) {
-        myRSSListMenu.addAction(actionUpdate);
-        myRSSListMenu.addAction(actionMark_items_read);
+        myRSSListMenu.addAction(m_ui->actionUpdate);
+        myRSSListMenu.addAction(m_ui->actionMark_items_read);
         myRSSListMenu.addSeparator();
         if (selectedItems.size() == 1) {
             if (m_feedList->getRSSItem(selectedItems.first()) != m_rssManager->rootFolder()) {
-                myRSSListMenu.addAction(actionRename);
-                myRSSListMenu.addAction(actionDelete);
+                myRSSListMenu.addAction(m_ui->actionRename);
+                myRSSListMenu.addAction(m_ui->actionDelete);
                 myRSSListMenu.addSeparator();
                 if (m_feedList->isFolder(selectedItems.first()))
-                    myRSSListMenu.addAction(actionNew_folder);
+                    myRSSListMenu.addAction(m_ui->actionNew_folder);
             }
         }
         else {
-            myRSSListMenu.addAction(actionDelete);
+            myRSSListMenu.addAction(m_ui->actionDelete);
             myRSSListMenu.addSeparator();
         }
-        myRSSListMenu.addAction(actionNew_subscription);
+        myRSSListMenu.addAction(m_ui->actionNew_subscription);
         if (m_feedList->isFeed(selectedItems.first())) {
             myRSSListMenu.addSeparator();
-            myRSSListMenu.addAction(actionCopy_feed_URL);
+            myRSSListMenu.addAction(m_ui->actionCopy_feed_URL);
         }
     }
     else {
-        myRSSListMenu.addAction(actionNew_subscription);
-        myRSSListMenu.addAction(actionNew_folder);
+        myRSSListMenu.addAction(m_ui->actionNew_subscription);
+        myRSSListMenu.addAction(m_ui->actionNew_folder);
         myRSSListMenu.addSeparator();
-        myRSSListMenu.addAction(actionUpdate_all_feeds);
+        myRSSListMenu.addAction(m_ui->actionUpdate_all_feeds);
     }
     myRSSListMenu.exec(QCursor::pos());
 }
@@ -107,7 +110,7 @@ void RSSImp::displayRSSListMenu(const QPoint &pos)
 void RSSImp::displayItemsListMenu(const QPoint &)
 {
     QMenu myItemListMenu(this);
-    QList<QListWidgetItem * > selectedItems = listArticles->selectedItems();
+    QList<QListWidgetItem * > selectedItems = m_ui->listArticles->selectedItems();
     if (selectedItems.size() <= 0)
         return;
 
@@ -128,9 +131,9 @@ void RSSImp::displayItemsListMenu(const QPoint &)
             break;
     }
     if (hasTorrent)
-        myItemListMenu.addAction(actionDownload_torrent);
+        myItemListMenu.addAction(m_ui->actionDownload_torrent);
     if (hasLink)
-        myItemListMenu.addAction(actionOpen_news_URL);
+        myItemListMenu.addAction(m_ui->actionOpen_news_URL);
     if (hasTorrent || hasLink)
         myItemListMenu.exec(QCursor::pos());
 }
@@ -323,7 +326,7 @@ void RSSImp::refreshAllFeeds()
 
 void RSSImp::downloadSelectedTorrents()
 {
-    QList<QListWidgetItem * > selected_items = listArticles->selectedItems();
+    QList<QListWidgetItem * > selected_items = m_ui->listArticles->selectedItems();
     if (selected_items.size() <= 0)
         return;
     foreach (QListWidgetItem *item, selected_items) {
@@ -353,7 +356,7 @@ void RSSImp::downloadSelectedTorrents()
 // open the url of the selected RSS articles in the Web browser
 void RSSImp::openSelectedArticlesUrls()
 {
-    QList<QListWidgetItem * > selected_items = listArticles->selectedItems();
+    QList<QListWidgetItem * > selected_items = m_ui->listArticles->selectedItems();
     if (selected_items.size() <= 0)
         return;
     foreach (QListWidgetItem *item, selected_items) {
@@ -519,7 +522,7 @@ QListWidgetItem *RSSImp::createArticleListItem(const Rss::ArticlePtr &article)
 void RSSImp::populateArticleList(QTreeWidgetItem *item)
 {
     if (!item) {
-        listArticles->clear();
+        m_ui->listArticles->clear();
         return;
     }
 
@@ -528,9 +531,9 @@ void RSSImp::populateArticleList(QTreeWidgetItem *item)
         return;
 
     // Clear the list first
-    textBrowser->clear();
+    m_ui->textBrowser->clear();
     m_currentArticle = 0;
-    listArticles->clear();
+    m_ui->listArticles->clear();
 
     qDebug("Getting the list of news");
     Rss::ArticleList articles;
@@ -542,7 +545,7 @@ void RSSImp::populateArticleList(QTreeWidgetItem *item)
     qDebug("Got the list of news");
     foreach (const Rss::ArticlePtr &article, articles) {
         QListWidgetItem *articleItem = createArticleListItem(article);
-        listArticles->addItem(articleItem);
+        m_ui->listArticles->addItem(articleItem);
     }
     qDebug("Added all news to the GUI");
 }
@@ -550,7 +553,7 @@ void RSSImp::populateArticleList(QTreeWidgetItem *item)
 // display a news
 void RSSImp::refreshTextBrowser()
 {
-    QList<QListWidgetItem * > selection = listArticles->selectedItems();
+    QList<QListWidgetItem * > selection = m_ui->listArticles->selectedItems();
     if (selection.empty()) return;
     QListWidgetItem *item = selection.first();
     Q_ASSERT(item);
@@ -601,7 +604,7 @@ void RSSImp::refreshTextBrowser()
         html += "<pre>" + description + "</pre>";
     }
     html += "</div>";
-    textBrowser->setHtml(html);
+    m_ui->textBrowser->setHtml(html);
     article->markAsRead();
     item->setData(Article::ColorRole, QVariant(QColor("grey")));
     item->setData(Article::IconRole, QVariant(QIcon(":/icons/sphere.png")));
@@ -614,8 +617,8 @@ void RSSImp::saveSlidersPosition()
 {
     // Remember sliders positions
     Preferences *const pref = Preferences::instance();
-    pref->setRssSideSplitterState(splitterSide->saveState());
-    pref->setRssMainSplitterState(splitterMain->saveState());
+    pref->setRssSideSplitterState(m_ui->splitterSide->saveState());
+    pref->setRssMainSplitterState(m_ui->splitterMain->saveState());
     qDebug("Splitters position saved");
 }
 
@@ -624,10 +627,10 @@ void RSSImp::restoreSlidersPosition()
     const Preferences *const pref = Preferences::instance();
     const QByteArray stateSide = pref->getRssSideSplitterState();
     if (!stateSide.isEmpty())
-        splitterSide->restoreState(stateSide);
+        m_ui->splitterSide->restoreState(stateSide);
     const QByteArray stateMain = pref->getRssMainSplitterState();
     if (!stateMain.isEmpty())
-        splitterMain->restoreState(stateMain);
+        m_ui->splitterMain->restoreState(stateMain);
 }
 
 void RSSImp::updateItemsInfos(const QList<QTreeWidgetItem *> &items)
@@ -701,29 +704,30 @@ void RSSImp::updateRefreshInterval(uint val)
 }
 
 RSSImp::RSSImp(QWidget *parent)
-    : QWidget(parent),
-    m_rssManager(new Rss::Manager)
+    : QWidget(parent)
+    , m_ui(new Ui::RSS())
+    , m_rssManager(new Rss::Manager)
 {
-    setupUi(this);
+    m_ui->setupUi(this);
     // Icons
-    actionCopy_feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
-    actionDelete->setIcon(GuiIconProvider::instance()->getIcon("edit-delete"));
-    actionDownload_torrent->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    actionMark_items_read->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
-    actionNew_folder->setIcon(GuiIconProvider::instance()->getIcon("folder-new"));
-    actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
-    actionOpen_news_URL->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
-    actionRename->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
-    actionUpdate->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
-    actionUpdate_all_feeds->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
-    newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
-    markReadButton->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
-    updateAllButton->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
-    rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    settingsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system"));
+    m_ui->actionCopy_feed_URL->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
+    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("edit-delete"));
+    m_ui->actionDownload_torrent->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    m_ui->actionMark_items_read->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
+    m_ui->actionNew_folder->setIcon(GuiIconProvider::instance()->getIcon("folder-new"));
+    m_ui->actionNew_subscription->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
+    m_ui->actionOpen_news_URL->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
+    m_ui->actionRename->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
+    m_ui->actionUpdate->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->actionUpdate_all_feeds->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
+    m_ui->markReadButton->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
+    m_ui->updateAllButton->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    m_ui->settingsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system"));
 
-    m_feedList = new FeedListWidget(splitterSide, m_rssManager);
-    splitterSide->insertWidget(0, m_feedList);
+    m_feedList = new FeedListWidget(m_ui->splitterSide, m_rssManager);
+    m_ui->splitterSide->insertWidget(0, m_feedList);
     editHotkey = new QShortcut(Qt::Key_F2, m_feedList, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
     connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
@@ -742,33 +746,33 @@ RSSImp::RSSImp(QWidget *parent)
     connect(m_rssManager.data(), SIGNAL(feedIconChanged(QString,QString)), SLOT(updateFeedIcon(QString,QString)));
 
     connect(m_feedList, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(displayRSSListMenu(const QPoint&)));
-    connect(listArticles, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(displayItemsListMenu(const QPoint&)));
+    connect(m_ui->listArticles, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(displayItemsListMenu(const QPoint&)));
 
     // Feeds list actions
-    connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
-    connect(actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedRssFile()));
-    connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedItems()));
-    connect(actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
-    connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
-    connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(refreshAllFeeds()));
-    connect(updateAllButton, SIGNAL(clicked()), SLOT(refreshAllFeeds()));
-    connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
-    connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
+    connect(m_ui->actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
+    connect(m_ui->actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedRssFile()));
+    connect(m_ui->actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedItems()));
+    connect(m_ui->actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
+    connect(m_ui->actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
+    connect(m_ui->actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(refreshAllFeeds()));
+    connect(m_ui->updateAllButton, SIGNAL(clicked()), SLOT(refreshAllFeeds()));
+    connect(m_ui->actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
+    connect(m_ui->actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
     // News list actions
-    connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openSelectedArticlesUrls()));
-    connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
+    connect(m_ui->actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openSelectedArticlesUrls()));
+    connect(m_ui->actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
 
     connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem *,QTreeWidgetItem *)), this, SLOT(populateArticleList(QTreeWidgetItem *)));
     connect(m_feedList, SIGNAL(foldersAltered(QList<QTreeWidgetItem * >)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem * >)));
 
-    connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-    connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));
+    connect(m_ui->listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
+    connect(m_ui->listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));
 
     // Restore sliders position
     restoreSlidersPosition();
     // Bind saveSliders slots
-    connect(splitterMain, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
-    connect(splitterSide, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
+    connect(m_ui->splitterMain, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
+    connect(m_ui->splitterSide, SIGNAL(splitterMoved(int,int)), this, SLOT(saveSlidersPosition()));
 
     qDebug("RSSImp constructed");
 }
@@ -780,6 +784,7 @@ RSSImp::~RSSImp()
     delete editHotkey;
     delete deleteHotkey;
     delete m_feedList;
+    delete m_ui;
     qDebug("RSSImp deleted");
 }
 

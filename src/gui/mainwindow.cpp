@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "mainwindow.h"
+
 #include <QtGlobal>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
@@ -44,6 +46,7 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#include <QSplitter>
 #include <QSysInfo>
 #include <QMimeData>
 #include <QCryptographicHash>
@@ -91,7 +94,6 @@
 #include "executionlog.h"
 #include "hidabletabwidget.h"
 #include "ui_mainwindow.h"
-#include "mainwindow.h"
 
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
