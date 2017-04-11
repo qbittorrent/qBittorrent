@@ -29,14 +29,14 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QTcpSocket>
-#include <QDebug>
+#include "connection.h"
+
 #include <QRegExp>
-#include "types.h"
+#include <QTcpSocket>
+
+#include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
-#include "irequesthandler.h"
-#include "connection.h"
 
 using namespace Http;
 
@@ -46,27 +46,33 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
     , m_requestHandler(requestHandler)
 {
     m_socket->setParent(this);
+    m_idleTimer.start();
     connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
-    connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
 }
 
 Connection::~Connection()
 {
+    m_socket->close();
 }
 
 void Connection::read()
 {
-    m_receivedData.append(m_socket->readAll());
+    m_idleTimer.restart();
 
+    m_receivedData.append(m_socket->readAll());
     Request request;
     RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
+
     switch (err) {
     case RequestParser::IncompleteRequest:
         // Partial request waiting for the rest
         break;
+
     case RequestParser::BadRequest:
         sendResponse(Response(400, "Bad Request"));
+        m_receivedData.clear();
         break;
+
     case RequestParser::NoError:
         Environment env;
         env.clientAddress = m_socket->peerAddress();
@@ -74,6 +80,7 @@ void Connection::read()
         if (acceptsGzipEncoding(request.headers["accept-encoding"]))
             response.headers[HEADER_CONTENT_ENCODING] = "gzip";
         sendResponse(response);
+        m_receivedData.clear();
         break;
     }
 }
@@ -81,7 +88,16 @@ void Connection::read()
 void Connection::sendResponse(const Response &response)
 {
     m_socket->write(ResponseGenerator::generate(response));
-    m_socket->disconnectFromHost();
+}
+
+bool Connection::hasExpired(const qint64 timeout) const
+{
+    return m_idleTimer.hasExpired(timeout);
+}
+
+bool Connection::isClosed() const
+{
+    return (m_socket->state() == QAbstractSocket::UnconnectedState);
 }
 
 bool Connection::acceptsGzipEncoding(const QString &encoding)

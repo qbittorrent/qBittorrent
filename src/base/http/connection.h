@@ -33,12 +33,12 @@
 #ifndef HTTP_CONNECTION_H
 #define HTTP_CONNECTION_H
 
+#include <QElapsedTimer>
 #include <QObject>
+
 #include "types.h"
 
-QT_BEGIN_NAMESPACE
 class QTcpSocket;
-QT_END_NAMESPACE
 
 namespace Http
 {
@@ -53,6 +53,9 @@ namespace Http
         Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
         ~Connection();
 
+        bool hasExpired(qint64 timeout) const;
+        bool isClosed() const;
+
     private slots:
         void read();
 
@@ -63,6 +66,7 @@ namespace Http
         QTcpSocket *m_socket;
         IRequestHandler *m_requestHandler;
         QByteArray m_receivedData;
+        QElapsedTimer m_idleTimer;
     };
 }
 

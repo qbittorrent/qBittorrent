@@ -60,6 +60,9 @@ namespace Http
         void disableHttps();
 #endif
 
+    private slots:
+        void dropTimedOutConnection();
+
     private:
 #ifdef QBT_USES_QT5
         void incomingConnection(qintptr socketDescriptor);
@@ -68,6 +71,7 @@ namespace Http
 #endif
 
         IRequestHandler *m_requestHandler;
+        QList<Connection *> m_connections;  // for tracking persistence connections
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;
