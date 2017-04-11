@@ -150,9 +150,8 @@ install:
       if [ "$build_system" = "cmake" ]; then
         brew install qt5 ;
         brew link --force qt5 ;
-        export HOMEBREW_QT5_VERSION=$(brew list --versions qt5 | rev | cut -d' ' -f1 | rev)
-        ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/mkspecs /usr/local/mkspecs
-        ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/plugins /usr/local/plugins
+        ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
+        ln -s /usr/local/opt/qt/plugins /usr/local/plugins
       else
         # Qt
         # Copy custom qt5 bottle to homebrew's cache so it can find and install it
