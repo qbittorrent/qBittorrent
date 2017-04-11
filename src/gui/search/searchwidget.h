@@ -34,15 +34,21 @@
 
 #include <QList>
 #include <QPointer>
+#include <QWidget>
 
-#include "ui_searchwidget.h"
+class QTabWidget;
 
 class MainWindow;
 class SearchEngine;
 struct SearchResult;
 class SearchTab;
 
-class SearchWidget: public QWidget, private Ui::SearchWidget
+namespace Ui
+{
+    class SearchWidget;
+}
+
+class SearchWidget: public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(SearchWidget)
@@ -82,6 +88,7 @@ private:
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
+    Ui::SearchWidget *m_ui;
     SearchEngine *m_searchEngine;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
     QPointer<SearchTab> m_activeSearchTab; // Tab with running search

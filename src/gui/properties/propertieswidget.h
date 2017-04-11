@@ -33,7 +33,6 @@
 
 #include <QShortcut>
 #include <QWidget>
-#include "ui_propertieswidget.h"
 #include "base/bittorrent/torrenthandle.h"
 
 
@@ -52,10 +51,17 @@ class LineEdit;
 
 QT_BEGIN_NAMESPACE
 class QAction;
+class QPushButton;
 class QTimer;
+class QTreeView;
 QT_END_NAMESPACE
 
-class PropertiesWidget: public QWidget, private Ui::PropertiesWidget
+namespace Ui
+{
+    class PropertiesWidget;
+}
+
+class PropertiesWidget: public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(PropertiesWidget)
@@ -69,7 +75,7 @@ public:
     BitTorrent::TorrentHandle *getCurrentTorrent() const;
     TrackerList *getTrackerList() const { return trackerList; }
     PeerListWidget *getPeerList() const { return peersList; }
-    QTreeView *getFilesList() const { return filesList; }
+    QTreeView *getFilesList() const;
     SpeedWidget *getSpeedWidget() const { return speedWidget; }
 
 protected:
@@ -107,6 +113,7 @@ private:
     void openFolder(const QModelIndex &index, bool containing_folder);
 
 private:
+    Ui::PropertiesWidget *m_ui;
     TransferListWidget *transferList;
     MainWindow *main_window;
     BitTorrent::TorrentHandle *m_torrent;

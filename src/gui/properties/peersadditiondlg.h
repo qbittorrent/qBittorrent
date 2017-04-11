@@ -34,14 +34,21 @@
 #include <QDialog>
 
 #include "base/bittorrent/peerinfo.h"
-#include "ui_peersadditiondlg.h"
 
-class PeersAdditionDlg: public QDialog, private Ui::addPeersDialog
+template <class T> class QList;
+
+namespace Ui
+{
+    class addPeersDialog;
+}
+
+class PeersAdditionDlg: public QDialog
 {
     Q_OBJECT
 
 public:
     PeersAdditionDlg(QWidget *parent = 0);
+    ~PeersAdditionDlg();
 
     static QList<BitTorrent::PeerAddress> askForPeers();
 
@@ -50,6 +57,8 @@ protected slots:
 
 private:
     BitTorrent::PeerAddress parsePeer(QString peer);
+
+    Ui::addPeersDialog *m_ui;
     QList<BitTorrent::PeerAddress> m_peersList;
 
 };

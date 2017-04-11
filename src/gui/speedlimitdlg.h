@@ -33,11 +33,15 @@
 
 #include <QDialog>
 #include <QList>
-#include "ui_bandwidth_limit.h"
 #include "base/utils/misc.h"
 #include "base/bittorrent/session.h"
 
-class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
+namespace Ui
+{
+    class bandwidth_dlg;
+}
+
+class SpeedLimitDialog : public QDialog {
     Q_OBJECT
 public:
     explicit SpeedLimitDialog(QWidget *parent=0);
@@ -49,6 +53,9 @@ protected slots:
     void updateSliderValue(int val) const;
     long getSpeedLimit() const;
     void setupDialog(long max_slider, long val) const;
+
+private:
+    Ui::bandwidth_dlg *m_ui;
 };
 
 #endif

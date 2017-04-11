@@ -30,12 +30,20 @@
 
 #include "pluginsourcedlg.h"
 
+#include "ui_pluginsourcedlg.h"
+
 PluginSourceDlg::PluginSourceDlg(QWidget *parent)
     : QDialog(parent)
+    , m_ui(new Ui::PluginSourceDlg())
 {
-    setupUi(this);
+    m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     show();
+}
+
+PluginSourceDlg::~PluginSourceDlg()
+{
+    delete m_ui;
 }
 
 void PluginSourceDlg::on_localButton_clicked()
