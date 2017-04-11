@@ -304,6 +304,8 @@ public:
     void setRssSideSplitterState(const QByteArray &state);
     QByteArray getRssMainSplitterState() const;
     void setRssMainSplitterState(const QByteArray &state);
+    QByteArray getRssFeedWidgetState() const;
+    void setRssFeedWidgetState(const QByteArray &state);
     QByteArray getSearchTabHeaderState() const;
     void setSearchTabHeaderState(const QByteArray &state);
     QStringList getSearchEngDisabled() const;

@@ -42,39 +42,30 @@ using namespace Rss;
 
 Folder::Folder(const QString &name)
     : m_name(name)
+{}
+
+uint Folder::count() const
 {
+    uint total = 0;
+    for (const FilePtr &child : m_children)
+        total += child->count();
+    return total;
 }
 
 uint Folder::unreadCount() const
 {
     uint nbUnread = 0;
-
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it)
-        nbUnread += it.value()->unreadCount();
-
+    for (const FilePtr &child : m_children)
+        nbUnread += child->unreadCount();
     return nbUnread;
-}
-
-void Folder::removeChild(const QString &childId)
-{
-    if (m_children.contains(childId)) {
-        FilePtr child = m_children.take(childId);
-        child->removeAllSettings();
-    }
 }
 
 // Refresh All Children
 bool Folder::refresh()
 {
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
     bool refreshed = false;
-    for ( ; it != itend; ++it) {
-        if (it.value()->refresh())
-            refreshed = true;
-    }
+    for (auto child : m_children)
+        refreshed |= child->refresh();
     return refreshed;
 }
 
@@ -82,11 +73,9 @@ ArticleList Folder::articleListByDateDesc() const
 {
     ArticleList news;
 
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
+    for (const FilePtr &child : m_children) {
         int n = news.size();
-        news << it.value()->articleListByDateDesc();
+        news << child->articleListByDateDesc();
         std::inplace_merge(news.begin(), news.begin() + n, news.end(), articleDateRecentThan);
     }
     return news;
@@ -96,11 +85,9 @@ ArticleList Folder::unreadArticleListByDateDesc() const
 {
     ArticleList unreadNews;
 
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
+    for (const FilePtr &child : m_children) {
         int n = unreadNews.size();
-        unreadNews << it.value()->unreadArticleListByDateDesc();
+        unreadNews << child->unreadArticleListByDateDesc();
         std::inplace_merge(unreadNews.begin(), unreadNews.begin() + n, unreadNews.end(), articleDateRecentThan);
     }
     return unreadNews;
@@ -111,59 +98,50 @@ FileList Folder::getContent() const
     return m_children.values();
 }
 
-uint Folder::getNbFeeds() const
-{
-    uint nbFeeds = 0;
-
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
-        if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value()))
-            nbFeeds += folder->getNbFeeds();
-        else
-            ++nbFeeds; // Feed
-    }
-    return nbFeeds;
-}
-
 QString Folder::displayName() const
 {
     return m_name;
 }
 
-void Folder::rename(const QString &newName)
+bool Folder::doRename(const QString &newName)
 {
-    if (m_name == newName) return;
+    if (m_name == newName || !parentFolder())
+        return false;
 
-    Q_ASSERT(!m_parent->hasChild(newName));
-    if (!m_parent->hasChild(newName)) {
+    bool renamed = false;
+    Folder *parent = parentFolder();
+    if ((renamed = !parent->hasChild(newName))) {
         // Update parent
-        FilePtr folder = m_parent->m_children.take(m_name);
-        m_parent->m_children[newName] = folder;
+        FilePtr folder = parent->m_children.take(m_name);
+        parent->m_children.insert(newName, folder);
         // Actually rename
         m_name = newName;
     }
+
+    return renamed;
 }
 
 void Folder::markAsRead()
 {
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
-        it.value()->markAsRead();
+    if (m_children.size() == 0)
+        return;
+
+    for (const FilePtr &child : m_children) {
+        child->disconnect(SIGNAL(unreadCountChanged()), this);
+        child->markAsRead();
+        this->connect(child.data(), SIGNAL(unreadCountChanged()), SIGNAL(unreadCountChanged()));
     }
+
+    emit unreadCountChanged(0);
 }
 
 FeedList Folder::getAllFeeds() const
 {
     FeedList streams;
-
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
-        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(it.value()))
+    for (const FilePtr &child : m_children) {
+        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(child))
             streams << feed;
-        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value()))
+        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(child))
             streams << folder->getAllFeeds();
     }
     return streams;
@@ -172,15 +150,12 @@ FeedList Folder::getAllFeeds() const
 QHash<QString, FeedPtr> Folder::getAllFeedsAsHash() const
 {
     QHash<QString, FeedPtr> ret;
-
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it) {
-        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(it.value())) {
+    for (const FilePtr &child : m_children) {
+        if (FeedPtr feed = qSharedPointerDynamicCast<Feed>(child)) {
             qDebug() << Q_FUNC_INFO << feed->url();
             ret[feed->url()] = feed;
         }
-        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(it.value())) {
+        else if (FolderPtr folder = qSharedPointerDynamicCast<Folder>(child)) {
             ret.unite(folder->getAllFeedsAsHash());
         }
     }
@@ -189,20 +164,15 @@ QHash<QString, FeedPtr> Folder::getAllFeedsAsHash() const
 
 bool Folder::addFile(const FilePtr &item)
 {
-    Q_ASSERT(!m_children.contains(item->id()));
-    if (!m_children.contains(item->id())) {
+    if (!hasChild(item->id())) {
         m_children[item->id()] = item;
-        // Update parent
-        item->m_parent = this;
+        becomeParent(item.data(), {});
+        emit unreadCountChanged();
+        emit countChanged();
         return true;
     }
 
     return false;
-}
-
-void Folder::removeAllItems()
-{
-    m_children.clear();
 }
 
 FilePtr Folder::child(const QString &childId)
@@ -212,15 +182,13 @@ FilePtr Folder::child(const QString &childId)
 
 void Folder::removeAllSettings()
 {
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it)
-        it.value()->removeAllSettings();
+    for (const FilePtr &child : m_children)
+        child->removeAllSettings();
 }
 
 void Folder::saveItemsToDisk()
 {
-    foreach (const FilePtr &child, m_children.values())
+    for (const FilePtr &child : m_children)
         child->saveItemsToDisk();
 }
 
@@ -234,20 +202,29 @@ QString Folder::iconPath() const
     return IconProvider::instance()->getIconPath("inode-directory");
 }
 
-bool Folder::hasChild(const QString &childId)
+bool Folder::hasChild(const QString &childId) const
 {
     return m_children.contains(childId);
 }
 
 FilePtr Folder::takeChild(const QString &childId)
 {
-    return m_children.take(childId);
+    FilePtr child = m_children.take(childId);
+    if (child) {
+        emit unreadCountChanged();
+        emit countChanged();
+    }
+    return child;
+}
+
+void Folder::removeChild(const QString &childId)
+{
+    if (FilePtr child = takeChild(childId))
+        child->removeAllSettings();
 }
 
 void Folder::recheckRssItemsForDownload()
 {
-    FileHash::ConstIterator it = m_children.begin();
-    FileHash::ConstIterator itend = m_children.end();
-    for ( ; it != itend; ++it)
-        it.value()->recheckRssItemsForDownload();
+    for (const FilePtr &child : m_children)
+        child->recheckRssItemsForDownload();
 }

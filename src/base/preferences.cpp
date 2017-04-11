@@ -1269,6 +1269,16 @@ void Preferences::setRssMainSplitterState(const QByteArray &state)
     setValue("Rss/qt5/splitterMain", state);
 }
 
+QByteArray Preferences::getRssFeedWidgetState() const
+{
+    return value("Rss/qt5/feedWidget").toByteArray();
+}
+
+void Preferences::setRssFeedWidgetState(const QByteArray &state)
+{
+    setValue("Rss/qt5/feedWidget", state);
+}
+
 QByteArray Preferences::getSearchTabHeaderState() const
 {
     return value("SearchTab/qt5/HeaderState").toByteArray();

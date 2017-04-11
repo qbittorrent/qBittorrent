@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
+ * Copyright (C) 2017  Michael Ziminsky
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,49 +24,56 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#include "rssfolder.h"
-#include "rssfile.h"
+#ifndef RSSFEEDLISTWIDGETITEM_H
+#define RSSFEEDLISTWIDGETITEM_H
 
-using namespace Rss;
+#include <QTreeWidgetItem>
+#include <QSharedPointer>
 
-File::~File() {}
-
-Folder *File::parentFolder() const
+namespace Rss
 {
-    return m_parent;
+    class File;
+    class Folder;
 }
+typedef QSharedPointer<Rss::File> FilePtr;
+typedef QSharedPointer<Rss::Folder> FolderPtr;
 
-QStringList File::pathHierarchy() const
+class RssFeedListWidget;
+
+class RssFeedListWidgetItem : public QObject, public QTreeWidgetItem
 {
-    QStringList path;
-    if (m_parent)
-        path << m_parent->pathHierarchy();
-    path << id();
-    return path;
-}
+    Q_OBJECT
 
-void File::rename(const QString &newName)
-{
-    if (doRename(newName))
-        emit nameChanged(newName);
-}
+protected:
+    enum ItemType
+    {
+        Sticky = UserType,
+        Folder,
+        Feed
+    };
 
-void File::becomeParent(File *child, FolderKey)
-{
-    Q_ASSERT(child);
+public:
+    explicit RssFeedListWidgetItem(FilePtr file, RssFeedListWidget *view = nullptr);
+    virtual ~RssFeedListWidgetItem();
 
-    if (child->m_parent) {
-        child->disconnect(child->m_parent);
-        child->m_parent->takeChild(child->id());
-    }
+    FilePtr rssFile() const;
 
-    child->m_parent = static_cast<Folder*>(this);
+    virtual bool operator <(const QTreeWidgetItem &other) const override;
 
-    // Propogate child change signals up
-    connect(child, SIGNAL(countChanged()), SIGNAL(countChanged()));
-    connect(child, SIGNAL(unreadCountChanged()), SIGNAL(unreadCountChanged()));
-}
+protected:
+    RssFeedListWidgetItem(FilePtr file, RssFeedListWidget *view, ItemType type);
+    Qt::SortOrder sortOrder() const;
+
+private slots:
+    void setName(const QString &name);
+    void setUnread(int unread);
+    void setTotal(int total);
+    void refreshIcon();
+
+private:
+    FilePtr m_file;
+};
+
+#endif // RSSFEEDLISTWIDGETITEM_H

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
+ * Copyright (C) 2017  Michael Ziminsky
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,49 +24,64 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#include "rssfolder.h"
-#include "rssfile.h"
+#ifndef RSSFEEDLISTWIDGET_H
+#define RSSFEEDLISTWIDGET_H
 
-using namespace Rss;
+#include <QSharedPointer>
+#include <QTreeWidget>
 
-File::~File() {}
+#include <functional>
 
-Folder *File::parentFolder() const
+#define RSS_WIDGET_ITEM(item) static_cast<RssFeedListWidgetItem*>(item)
+
+namespace Rss
 {
-    return m_parent;
+    class Folder;
 }
+typedef QSharedPointer<Rss::Folder> FolderPtr;
 
-QStringList File::pathHierarchy() const
+class RssFeedListWidgetItem;
+
+class RssFeedListWidget : public QTreeWidget
 {
-    QStringList path;
-    if (m_parent)
-        path << m_parent->pathHierarchy();
-    path << id();
-    return path;
-}
+    Q_OBJECT
 
-void File::rename(const QString &newName)
-{
-    if (doRename(newName))
-        emit nameChanged(newName);
-}
+public:
+    explicit RssFeedListWidget(QWidget *parent = nullptr);
+    ~RssFeedListWidget();
 
-void File::becomeParent(File *child, FolderKey)
-{
-    Q_ASSERT(child);
+    void setRoot(FolderPtr root);
+    FolderPtr getRoot() const;
 
-    if (child->m_parent) {
-        child->disconnect(child->m_parent);
-        child->m_parent->takeChild(child->id());
-    }
+    bool isRoot(QTreeWidgetItem *item) const;
+    bool isFolder(QTreeWidgetItem *item) const;
+    bool isFeed(QTreeWidgetItem *item) const;
+    bool hasFeed(const QString &url) const;
 
-    child->m_parent = static_cast<Folder*>(this);
+    QList<RssFeedListWidgetItem*> selectedItemsNoRoot() const;
 
-    // Propogate child change signals up
-    connect(child, SIGNAL(countChanged()), SIGNAL(countChanged()));
-    connect(child, SIGNAL(unreadCountChanged()), SIGNAL(unreadCountChanged()));
-}
+    void walkFolders(std::function<void(RssFeedListWidgetItem*)> callback);
+
+signals:
+    void unreadCountChanged(int) const;
+
+public slots:
+    void renameSelected();
+    void deleteSelected();
+    void refreshSelected();
+    void refreshAll();
+
+private slots:
+    void refreshUnreadCount() const;
+
+protected:
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+
+private:
+    RssFeedListWidgetItem *m_stickyRoot;
+};
+
+#endif // RSSFEEDLISTWIDGET_H

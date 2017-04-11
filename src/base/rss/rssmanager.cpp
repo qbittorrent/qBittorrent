@@ -31,6 +31,8 @@
 
 #include <QDebug>
 
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/magneturi.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "rssfolder.h"
@@ -124,21 +126,6 @@ void Manager::loadStreamList()
     qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
-void Manager::forwardFeedContentChanged(const QString &url)
-{
-    emit feedContentChanged(url);
-}
-
-void Manager::forwardFeedInfosChanged(const QString &url, const QString &displayName, uint unreadCount)
-{
-    emit feedInfosChanged(url, displayName, unreadCount);
-}
-
-void Manager::forwardFeedIconChanged(const QString &url, const QString &iconPath)
-{
-    emit feedIconChanged(url, iconPath);
-}
-
 void Manager::moveFile(const FilePtr &file, const FolderPtr &destinationFolder)
 {
     Folder *srcFolder = file->parentFolder();
@@ -193,9 +180,9 @@ void Manager::refresh()
     m_rootFolder->refresh();
 }
 
-void Manager::downloadArticleTorrentIfMatching(const QString &url, const ArticlePtr &article)
+void Manager::downloadArticleTorrentIfMatching(const QString &feedId, const ArticlePtr &article)
 {
-    m_deferredDownloads.append(qMakePair(url, article));
+    m_deferredDownloads.append(qMakePair(feedId, article));
     m_deferredDownloadTimer.start();
 }
 
@@ -204,15 +191,54 @@ void Manager::downloadNextArticleTorrentIfMatching()
     if (m_deferredDownloads.empty())
         return;
 
+    QPair<QString, ArticlePtr> feedArticle(m_deferredDownloads.takeFirst());
+    FeedPtr feed = m_rootFolder->getAllFeedsAsHash().value(feedArticle.first);
+    const ArticlePtr &article = feedArticle.second;
+
     // Schedule to process the next article (if any)
     m_deferredDownloadTimer.start();
 
-    QPair<QString, ArticlePtr> urlArticle(m_deferredDownloads.takeFirst());
-    FeedList streams = m_rootFolder->getAllFeeds();
-    foreach (const FeedPtr &stream, streams) {
-        if (stream->url() == urlArticle.first) {
-            stream->deferredDownloadArticleTorrentIfMatching(urlArticle.second);
-            break;
+    if (!feed)
+        return;
+
+    qDebug().nospace() << Q_FUNC_INFO << " Matching of " << article->title() << " from " << feed->displayName() << " RSS feed";
+
+    DownloadRuleList *rules = downloadRules();
+    DownloadRulePtr matchingRule = rules->findMatchingRule(feed->url(), article->title());
+    if (!matchingRule) return;
+
+    if (matchingRule->ignoreDays() > 0) {
+        QDateTime lastMatch = matchingRule->lastMatch();
+        if (lastMatch.isValid()) {
+            if (QDateTime::currentDateTime() < lastMatch.addDays(matchingRule->ignoreDays())) {
+                article->markAsRead();
+                return;
+            }
         }
     }
+
+    matchingRule->setLastMatch(QDateTime::currentDateTime());
+    rules->saveRulesToStorage();
+    // Download the torrent
+    const QString &torrentUrl = article->torrentUrl();
+    if (torrentUrl.isEmpty()) {
+        Logger::instance()->addMessage(tr("Automatic download of '%1' from '%2' RSS feed failed because it doesn't contain a torrent or a magnet link...").arg(article->title()).arg(feed->displayName()), Log::WARNING);
+        article->markAsRead();
+        return;
+    }
+
+    Logger::instance()->addMessage(tr("Automatically downloading '%1' torrent from '%2' RSS feed...").arg(article->title()).arg(feed->displayName()));
+    if (BitTorrent::MagnetUri(torrentUrl).isValid())
+        article->markAsRead();
+    else
+        article->connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFinished(QString)), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
+
+    BitTorrent::AddTorrentParams params;
+    params.savePath = matchingRule->savePath();
+    params.category = matchingRule->category();
+    if (matchingRule->addPaused() == DownloadRule::ALWAYS_PAUSED)
+        params.addPaused = TriStateBool::True;
+    else if (matchingRule->addPaused() == DownloadRule::NEVER_PAUSED)
+        params.addPaused = TriStateBool::False;
+    BitTorrent::Session::instance()->addTorrent(torrentUrl, params);
 }

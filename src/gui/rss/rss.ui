@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
+    <width>887</width>
     <height>447</height>
    </rect>
   </property>
@@ -83,6 +83,11 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
+     <widget class="RssFeedListWidget" name="feedWidget">
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -158,14 +163,6 @@
     <string>New subscription...</string>
    </property>
   </action>
-  <action name="actionUpdate_all_feeds">
-   <property name="text">
-    <string>Update all feeds</string>
-   </property>
-   <property name="toolTip">
-    <string>Update all feeds</string>
-   </property>
-  </action>
   <action name="actionMark_items_read">
    <property name="text">
     <string>Mark items read</string>
@@ -200,6 +197,17 @@
    <class>HtmlBrowser</class>
    <extends>QTextBrowser</extends>
    <header>htmlbrowser.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RssFeedListWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>rssfeedlistwidget.h</header>
+   <slots>
+    <slot>renameSelected()</slot>
+    <slot>deleteSelected()</slot>
+    <slot>refreshSelected()</slot>
+    <slot>refreshAll()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>

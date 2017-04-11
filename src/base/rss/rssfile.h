@@ -50,31 +50,53 @@ namespace Rss
     /**
      * Parent interface for Rss::Folder and Rss::Feed.
      */
-    class File
+    class File : public QObject
     {
+        Q_OBJECT
+
+    protected:
+        // Passkey idiom. Only allow Folder class access to becomeParent below
+        class FolderKey
+        {
+            friend class Folder;
+            FolderKey() {}
+            FolderKey(const FolderKey&) = delete;
+            FolderKey& operator =(const FolderKey&) = delete;
+        };
+
     public:
         virtual ~File();
 
         virtual QString id() const = 0;
         virtual QString displayName() const = 0;
+        virtual uint count() const = 0;
         virtual uint unreadCount() const = 0;
         virtual QString iconPath() const = 0;
         virtual ArticleList articleListByDateDesc() const = 0;
         virtual ArticleList unreadArticleListByDateDesc() const = 0;
 
-        virtual void rename(const QString &newName) = 0;
+        Folder *parentFolder() const;
+        QStringList pathHierarchy() const;
+        void rename(const QString &newName);
+
+    signals:
+        void nameChanged(const QString&);
+        void unreadCountChanged(int = -1);
+        void countChanged(int = -1);
+
+    public slots:
         virtual void markAsRead() = 0;
         virtual bool refresh() = 0;
         virtual void removeAllSettings() = 0;
         virtual void saveItemsToDisk() = 0;
         virtual void recheckRssItemsForDownload() = 0;
 
-        Folder *parentFolder() const;
-        QStringList pathHierarchy() const;
 
     protected:
-        friend class Folder;
+        virtual bool doRename(const QString &newName) = 0;
+        void becomeParent(File *child, FolderKey);
 
+    private:
         Folder *m_parent = nullptr;
     };
 }
