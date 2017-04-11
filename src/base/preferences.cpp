@@ -1480,6 +1480,16 @@ void Preferences::setToolbarTextPosition(const int position)
     setValue("Toolbar/textPosition", position);
 }
 
+bool Preferences::getAutoFilePriorities() const
+{
+    return value("Preferences/autoFilePriorities", false).toBool();
+}
+
+void Preferences::setAutoFilePriorities(bool enable)
+{
+    setValue("Preferences/autoFilePriorities", enable);
+}
+
 QList<QNetworkCookie> Preferences::getNetworkCookies() const
 {
     QList<QNetworkCookie> cookies;

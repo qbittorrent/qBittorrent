@@ -44,7 +44,7 @@
 #endif
 
 #include <boost/function.hpp>
-
+#include "base/utils/prio.h"
 #include "base/tristatebool.h"
 #include "private/speedmonitor.h"
 #include "infohash.h"
@@ -86,6 +86,35 @@ namespace BitTorrent
     class PeerInfo;
     class TrackerEntry;
     struct AddTorrentParams;
+    class TorrentHandle;
+
+    enum class FileAutoPriority
+    {
+        None = -1,
+        NameAsc,
+        NameDesc,
+        SizeAsc,
+        SizeDesc
+    };
+
+    class AutoFilePrioritizer
+    {
+        struct Entry {
+            QString name;
+            qlonglong size;
+            int index;
+            qreal progress;
+            int priority;
+        };
+
+    public:
+        void AddFile(QString name, qlonglong size, qreal progress);
+        QVector<int> GetPriorities(FileAutoPriority type);
+        static QVector<int> GetPriorities(FileAutoPriority type, const TorrentHandle* h);
+
+    private:
+        QVector<Entry> m_entries;
+    };
 
     struct AddTorrentData
     {
@@ -104,6 +133,7 @@ namespace BitTorrent
         QVector<int> filePriorities;
         // for resumed torrents
         qreal ratioLimit;
+        FileAutoPriority autoPrioType;
 
         AddTorrentData();
         AddTorrentData(const AddTorrentParams &params);
@@ -353,6 +383,9 @@ namespace BitTorrent
         void handleAppendExtensionToggled();
         void saveResumeData(bool updateStatus = false);
 
+        FileAutoPriority getFileAutoPriority();
+        void setFileAutoPriority(FileAutoPriority autoPrio);
+
     private:
         typedef boost::function<void ()> EventTrigger;
 
@@ -425,6 +458,8 @@ namespace BitTorrent
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;
+
+        FileAutoPriority m_fileAutoPriority;
     };
 }
 

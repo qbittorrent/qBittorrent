@@ -36,6 +36,7 @@
 #include <QVector>
 #include <QVariant>
 
+#include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
@@ -63,10 +64,15 @@ public:
   virtual QModelIndex parent(const QModelIndex& index) const;
   virtual int rowCount(const QModelIndex& parent = QModelIndex()) const;
   void clear();
-  void setupModelData(const BitTorrent::TorrentInfo &info);
+  BitTorrent::FileAutoPriority getAutoPriorityType() const;
+  void setAutoPriorityType(BitTorrent::FileAutoPriority type);
+
+  using AutoPriorityType = BitTorrent::FileAutoPriority;
+  void setupModelData(const BitTorrent::TorrentInfo &info, AutoPriorityType sort = AutoPriorityType::NameAsc);
 
 signals:
   void filteredFilesChanged();
+  void dataChanged(const QModelIndex&, const QModelIndex&);
 
 public slots:
   void selectAll();
@@ -75,6 +81,7 @@ public slots:
 private:
   TorrentContentModelFolder* m_rootItem;
   QVector<TorrentContentModelFile*> m_filesIndex;
+  BitTorrent::FileAutoPriority m_fileAutoPrio;
 };
 
 #endif // TORRENTCONTENTMODEL_H

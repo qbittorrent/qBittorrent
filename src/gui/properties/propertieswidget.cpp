@@ -92,6 +92,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
     connect(filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(openDoubleClickedFile(const QModelIndex&)));
     connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
+    connect(PropListModel->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), SLOT(dataChanged(const QModelIndex&, const QModelIndex&)));
     connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
     connect(transferList, SIGNAL(currentTorrentChanged(BitTorrent::TorrentHandle * const)), this, SLOT(loadTorrentInfos(BitTorrent::TorrentHandle * const)));
     connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
@@ -316,6 +317,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
 
         // List files in torrent
         PropListModel->model()->setupModelData(m_torrent->info());
+        PropListModel->model()->setAutoPriorityType(m_torrent->getFileAutoPriority());
         filesList->setExpanded(PropListModel->index(0, 0), true);
 
         // Load file priorities
@@ -882,5 +884,15 @@ void PropertiesWidget::filterText(const QString &filter)
     }
     else {
         filesList->expandAll();
+    }
+}
+
+void PropertiesWidget::dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+{
+    if (3 == topLeft.column()) {
+        PropListModel->model()->setAutoPriorityType(BitTorrent::FileAutoPriority::None);
+
+        if (m_torrent)
+            m_torrent->setFileAutoPriority(BitTorrent::FileAutoPriority::None);
     }
 }

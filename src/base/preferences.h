@@ -331,6 +331,8 @@ public:
     void setTransHeaderState(const QByteArray &state);
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
+    void setAutoFilePriorities(bool enable);
+    bool getAutoFilePriorities() const;
 
     //From old RssSettings class
     bool isRSSEnabled() const;

@@ -44,6 +44,8 @@
 #include "propertieswidget.h"
 #include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"
+#include "torrentcontentmodel.h"
+#include "torrentcontentfiltermodel.h"
 
 namespace {
 
@@ -112,25 +114,31 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         }
         break;
     case PRIORITY: {
+            QString postfix;
+            auto p = dynamic_cast<const TorrentContentFilterModel *>(index.model());
+            if (p && p->model()->getAutoPriorityType() != BitTorrent::FileAutoPriority::None)
+                postfix = tr(" (auto)");
+
             QItemDelegate::drawBackground(painter, opt, index);
             QString text = "";
             switch (index.data().toInt()) {
             case prio::MIXED:
-                text = tr("Mixed", "Mixed (priorities");
+                text = tr("Mixed", "Mixed (priorities") + postfix;
                 break;
             case prio::IGNORED:
                 text = tr("Not downloaded");
                 break;
             case prio::HIGH:
-                text = tr("High", "High (priority)");
+                text = tr("High", "High (priority)") + postfix;
                 break;
             case prio::MAXIMUM:
-                text = tr("Maximum", "Maximum (priority)");
+                text = tr("Maximum", "Maximum (priority)") + postfix;
                 break;
             default:
                 text = tr("Normal", "Normal (priority)");
                 break;
             }
+
             QItemDelegate::drawDisplay(painter, opt, option.rect, text);
         }
         break;
