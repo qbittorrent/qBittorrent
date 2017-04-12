@@ -134,7 +134,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::SystemLocaleShortDate));
         break;
     case TorrentModel::TR_RATIO_LIMIT:
     case TorrentModel::TR_RATIO: {
