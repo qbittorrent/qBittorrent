@@ -47,6 +47,7 @@ namespace Http
     const QString HEADER_X_XSS_PROTECTION = "X-XSS-Protection";
     const QString HEADER_X_CONTENT_TYPE_OPTIONS = "X-Content-Type-Options";
     const QString HEADER_CONTENT_SECURITY_POLICY = "Content-Security-Policy";
+    const QString HEADER_DATE = "Date";
 
     const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
     const QString CONTENT_TYPE_GIF = "image/gif";
