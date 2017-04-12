@@ -37,10 +37,10 @@
 
 namespace Http
 {
-    class ResponseGenerator
+    namespace ResponseGenerator
     {
-    public:
-        static QByteArray generate(Response response);
+        QByteArray generate(Response response);
+        QString httpDate();
     };
 }
 

@@ -29,8 +29,11 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "base/utils/gzip.h"
 #include "responsegenerator.h"
+
+#include <QDateTime>
+
+#include "base/utils/gzip.h"
 
 using namespace Http;
 
@@ -49,6 +52,7 @@ QByteArray ResponseGenerator::generate(Response response)
     }
 
     response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+    response.headers[HEADER_DATE] = httpDate();
 
     QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
 
@@ -63,4 +67,13 @@ QByteArray ResponseGenerator::generate(Response response)
     //  qDebug() << ret;
 
     return ret.toUtf8() + response.content;
+}
+
+QString ResponseGenerator::httpDate()
+{
+    // [RFC 7231] 7.1.1.1. Date/Time Formats
+   // example: "Sun, 06 Nov 1994 08:49:37 GMT"
+
+    return QLocale::c().toString(QDateTime::currentDateTimeUtc(), QLatin1String("ddd, dd MMM yyyy HH:mm:ss"))
+        .append(QLatin1String(" GMT"));
 }
