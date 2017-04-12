@@ -717,6 +717,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkEditableSavePath">
+                 <property name="text">
+                  <string comment="The save path in will be editable">Enable editable save paths in "Add New Torrent" dialog</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
                  <property name="toolTip">
                   <string>Should the .torrent file be deleted after adding it</string>

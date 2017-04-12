@@ -158,6 +158,8 @@ public:
     void setActionOnDblClOnTorrentDl(int act);
     int getActionOnDblClOnTorrentFn() const;
     void setActionOnDblClOnTorrentFn(int act);
+    bool getEditableSavePath() const;
+    void setEditableSavePath(bool enabled);
 
     // Connection options
     QTime getSchedulerStartTime() const;

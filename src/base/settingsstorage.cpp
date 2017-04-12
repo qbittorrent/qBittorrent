@@ -145,9 +145,8 @@ namespace
             {"AddNewTorrentDialog/SavePathHistory", "TorrentAdditionDlg/save_path_history"},
             {"AddNewTorrentDialog/Enabled", "Preferences/Downloads/NewAdditionDialog"},
             {"AddNewTorrentDialog/TopLevel", "Preferences/Downloads/NewAdditionDialogFront"},
-
+            {"AddNewTorrentDialog/EditableSavePath", "Preferences/Downloads/EditableSavePath"},
             {"State/BannedIPs", "Preferences/IPFilter/BannedIPs"}
-
         };
 
         return keyMapping.value(key, key);

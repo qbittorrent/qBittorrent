@@ -374,6 +374,16 @@ void Preferences::setActionOnDblClOnTorrentFn(int act)
     setValue("Preferences/Downloads/DblClOnTorFn", act);
 }
 
+bool Preferences::getEditableSavePath() const
+{
+    return value("Preferences/Downloads/EditableSavePath").toBool();
+}
+
+void Preferences::setEditableSavePath(bool enabled)
+{
+    setValue("Preferences/Downloads/EditableSavePath", enabled);
+}
+
 QTime Preferences::getSchedulerStartTime() const
 {
     return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();

@@ -72,6 +72,7 @@ private slots:
     void displayContentTreeMenu(const QPoint&);
     void updateDiskSpaceLabel();
     void onSavePathChanged(int);
+    void onSavePathTextEdited();
     void renameSelectedFile();
     void setdialogPosition();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
@@ -98,7 +99,9 @@ private:
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
     void setCommentText(const QString &str) const;
-
+    bool isSavePathValid(const QString &path) const;
+    void addPathToHistory(QString &path);
+    
     void showEvent(QShowEvent *event) override;
 
     Ui::AddNewTorrentDialog *ui;
