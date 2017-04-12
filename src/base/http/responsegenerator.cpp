@@ -48,8 +48,7 @@ QByteArray ResponseGenerator::generate(Response response)
             response.headers.remove(HEADER_CONTENT_ENCODING);
     }
 
-    if (response.content.length() > 0)
-        response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
 
     QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
 
