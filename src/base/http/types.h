@@ -56,6 +56,9 @@ namespace Http
     const char CONTENT_TYPE_PNG[] = "image/png";
     const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
 
+    // portability: "\r\n" doesn't guarantee mapping to the correct value
+    const char CRLF[] = {0x0D, 0x0A, '\0'};
+
     struct Environment
     {
         QHostAddress clientAddress;
