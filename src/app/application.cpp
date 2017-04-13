@@ -441,6 +441,9 @@ int Application::exec(const QStringList &params)
         m_paramsQueue.clear();
     }
 
+    // Now UI is ready to process signals from Session
+    BitTorrent::Session::instance()->startUpTorrents();
+
     return BaseApplication::exec();
 }
 
