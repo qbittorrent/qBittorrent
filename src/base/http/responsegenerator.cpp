@@ -37,7 +37,7 @@
 
 QByteArray Http::toByteArray(Response response)
 {
-    if (response.headers[HEADER_CONTENT_ENCODING] == "gzip") {
+    if (response.headers.value(HEADER_CONTENT_ENCODING) == "gzip") {
         // A gzip seems to have 23 bytes overhead.
         // Also "Content-Encoding: gzip\r\n" is 26 bytes long
         // So we only benefit from gzip if the message is bigger than 23+26 = 49
