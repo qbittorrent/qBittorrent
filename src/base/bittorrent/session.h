@@ -330,6 +330,7 @@ namespace BitTorrent
         QStringList bannedIPs() const;
         void setBannedIPs(const QStringList &list);
 
+        void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QHash<InfoHash, TorrentHandle *> torrents() const;
         TorrentStatusReport torrentStatusReport() const;
@@ -460,7 +461,6 @@ namespace BitTorrent
         void enableIPFilter();
         void disableIPFilter();
 
-        void startUpTorrents();
         bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                              TorrentInfo torrentInfo = TorrentInfo(),
                              const QByteArray &fastresumeData = QByteArray());
