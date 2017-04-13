@@ -87,7 +87,7 @@ void Connection::read()
 
 void Connection::sendResponse(const Response &response)
 {
-    m_socket->write(ResponseGenerator::generate(response));
+    m_socket->write(toByteArray(response));
 }
 
 bool Connection::hasExpired(const qint64 timeout) const

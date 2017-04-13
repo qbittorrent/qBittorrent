@@ -35,9 +35,7 @@
 
 #include "base/utils/gzip.h"
 
-using namespace Http;
-
-QByteArray ResponseGenerator::generate(Response response)
+QByteArray Http::toByteArray(Response response)
 {
     if (response.headers[HEADER_CONTENT_ENCODING] == "gzip") {
         // A gzip seems to have 23 bytes overhead.
@@ -69,7 +67,7 @@ QByteArray ResponseGenerator::generate(Response response)
     return ret.toUtf8() + response.content;
 }
 
-QString ResponseGenerator::httpDate()
+QString Http::httpDate()
 {
     // [RFC 7231] 7.1.1.1. Date/Time Formats
    // example: "Sun, 06 Nov 1994 08:49:37 GMT"
