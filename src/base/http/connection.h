@@ -60,7 +60,7 @@ namespace Http
         void read();
 
     private:
-        static bool acceptsGzipEncoding(const QString &encoding);
+        static bool acceptsGzipEncoding(QString codings);
         void sendResponse(const Response &response);
 
         QTcpSocket *m_socket;
