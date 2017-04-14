@@ -61,7 +61,7 @@ void Connection::read()
 
     m_receivedData.append(m_socket->readAll());
     Request request;
-    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
+    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);  // TODO: transform request headers to lowercase
 
     switch (err) {
     case RequestParser::IncompleteRequest:
@@ -100,15 +100,44 @@ bool Connection::isClosed() const
     return (m_socket->state() == QAbstractSocket::UnconnectedState);
 }
 
-bool Connection::acceptsGzipEncoding(const QString &encoding)
+bool Connection::acceptsGzipEncoding(QString codings)
 {
-    QRegExp rx("(gzip)(;q=([^,]+))?");
-    if (rx.indexIn(encoding) >= 0) {
-        if (rx.cap(2).size() > 0)
-            // check if quality factor > 0
-            return (rx.cap(3).toDouble() > 0);
-        // if quality factor is not specified, then it's 1
+    // [rfc7231] 5.3.4. Accept-Encoding
+
+    const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
+    {
+        foreach (const QString &str, list) {
+            if (!str.startsWith(encoding))
+                continue;
+
+            // without quality values
+            if (str == encoding)
+                return true;
+
+            // [rfc7231] 5.3.1. Quality Values
+            const QStringRef substr = str.midRef(encoding.size() + 3);  // ex. skip over "gzip;q="
+
+            bool ok = false;
+            const double qvalue = substr.toDouble(&ok);
+            if (!ok || (qvalue <= 0.0))
+                return false;
+
+            return true;
+        }
+        return false;
+    };
+
+    const QStringList list = codings.remove(' ').remove('\t').split(',', QString::SkipEmptyParts);
+    if (list.isEmpty())
+        return false;
+
+    const bool canGzip = isCodingAvailable(list, QLatin1String("gzip"));
+    if (canGzip)
         return true;
-    }
+
+    const bool canAny = isCodingAvailable(list, QLatin1String("*"));
+    if (canAny)
+        return true;
+
     return false;
 }
