@@ -61,7 +61,7 @@ public:
 
     bool m_isActive = false;
     QQueue<QString> bannedIPs;
-    QQueue<int> UnbanTime;
+    QQueue<int64_t> UnbanTime;
     QTimer *m_UnbanTimer;
 
 public slots:

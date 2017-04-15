@@ -108,7 +108,7 @@ public:
     // Unban Timer
     bool m_isActive = false;
     QQueue<QString> bannedIPs;
-    QQueue<int> UnbanTime;
+    QQueue<int64_t> UnbanTime;
     QTimer *m_UnbanTimer;
     void insertQueue(QString ip);
 

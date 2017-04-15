@@ -349,15 +349,15 @@ void AbstractWebApplication::processUnbanRequest()
     }
     else {
         m_isActive = true;
-        int currentTime = QDateTime::currentMSecsSinceEpoch()/1000;
-        int nextTime = UnbanTime.dequeue();
-        int delayTime = nextTime - currentTime;
+        int64_t currentTime = QDateTime::currentMSecsSinceEpoch();
+        int64_t nextTime = UnbanTime.dequeue();
+        int delayTime = int(nextTime - currentTime);
         QString nextIP = bannedIPs.dequeue();
         if (delayTime < 0) {
             QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
         }
         else {
-            QTimer::singleShot(delayTime * 1000, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
         }
     }
 }
