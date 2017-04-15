@@ -89,11 +89,11 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
-    timer->start(60 * 1000);  // 1 min.
     m_UnbanTimer = new QTimer(this);
     m_UnbanTimer->setInterval(500);
+    connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
     connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
+    timer->start(60 * 1000);  // 1 min.
 }
 
 AbstractWebApplication::~AbstractWebApplication()
