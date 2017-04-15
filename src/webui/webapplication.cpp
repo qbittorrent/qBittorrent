@@ -826,6 +826,13 @@ void WebApplication::action_command_blockPeer()
     BitTorrent::Session::instance()->blockIP(ip);
     Logger::instance()->addMessage(tr("Peer '%1' banned via Web API.").arg(ip));
     print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
+
+    bannedIPs.enqueue(ip);
+    UnbanTime.enqueue(QDateTime::currentMSecsSinceEpoch() + 60 * 60 * 1000);
+
+    if (!m_UnbanTimer->isActive()) {
+        m_UnbanTimer->start();
+    }
 }
 
 void WebApplication::action_command_unblockPeer()
@@ -855,6 +862,15 @@ void WebApplication::action_command_unblockPeer()
     Logger::instance()->addMessage(tr("Peer '%1' unbanned via Web API.").arg(ip));
     BitTorrent::Session::instance()->removeBannedIP(ip);
     print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
+
+    //Remove Queue
+    int count = bannedIPs.count();
+    for (int i = 0; i < count; ++i) {
+        if (bannedIPs[i] == ip) {
+            bannedIPs.removeAll(ip);
+            UnbanTime.removeAt(i);
+        }
+    }
 }
 
 void WebApplication::action_command_resetIPFilter()
