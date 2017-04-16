@@ -347,7 +347,7 @@ window.addEvent('load', function () {
     updateMainData = function() {
         torrentsTable.updateTable();
         clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncMainDataTimer = syncMainData.delay(1000);
     }
 
     var processServerState = function () {
