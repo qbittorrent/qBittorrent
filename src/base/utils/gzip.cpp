@@ -94,54 +94,56 @@ QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *
     return output;
 }
 
-bool Utils::Gzip::uncompress(QByteArray src, QByteArray &dest)
+QByteArray Utils::Gzip::decompress(const QByteArray &data, bool *ok)
 {
-    dest.clear();
+    if (ok) *ok = false;
 
-    if (src.size() <= 4) {
-        qWarning("uncompress: Input data is truncated");
-        return false;
-    }
+    if (data.isEmpty())
+        return {};
+
+    const int BUFSIZE = 1024 * 1024;
+    char tmpBuf[BUFSIZE] = {0};
 
     z_stream strm;
-    static const int CHUNK_SIZE = 1024;
-    char out[CHUNK_SIZE];
-
-    /* allocate inflate state */
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
-    strm.avail_in = static_cast<uint>(src.size());
-    strm.next_in = reinterpret_cast<uchar *>(src.data());
+    strm.next_in = reinterpret_cast<const Bytef *>(data.constData());
+    strm.avail_in = uInt(data.size());
+    strm.next_out = reinterpret_cast<Bytef *>(tmpBuf);
+    strm.avail_out = BUFSIZE;
 
-    const int windowBits = 15;
-    const int ENABLE_ZLIB_GZIP = 32;
+    // windowBits must be greater than or equal to the windowBits value provided to deflateInit2() while compressing
+    // Add 32 to windowBits to enable zlib and gzip decoding with automatic header detection
+    int result = inflateInit2(&strm, (15 + 32));
+    if (result != Z_OK)
+        return {};
 
-    int ret = inflateInit2(&strm, windowBits | ENABLE_ZLIB_GZIP); // gzip decoding
-    if (ret != Z_OK)
-        return false;
+    QByteArray output;
+    // from lzbench, level 9 average compression ratio is: 31.92%, which decompression ratio is: 1 / 0.3192 = 3.13
+    output.reserve(data.size() * 3);
 
-    // run inflate()
-    do {
-        strm.avail_out = CHUNK_SIZE;
-        strm.next_out = reinterpret_cast<uchar *>(out);
+    // run inflate
+    while (true) {
+        result = inflate(&strm, Z_NO_FLUSH);
 
-        ret = inflate(&strm, Z_NO_FLUSH);
-        Q_ASSERT(ret != Z_STREAM_ERROR); // state not clobbered
-
-        switch (ret) {
-        case Z_NEED_DICT:
-        case Z_DATA_ERROR:
-        case Z_MEM_ERROR:
-            inflateEnd(&strm);
-            return false;
+        if (result == Z_STREAM_END) {
+            output.append(tmpBuf, (BUFSIZE - strm.avail_out));
+            break;
         }
 
-        dest.append(out, CHUNK_SIZE - strm.avail_out);
-    }
-    while (!strm.avail_out);
+        if (result != Z_OK) {
+            inflateEnd(&strm);
+            return {};
+        }
 
-    // clean up and return
+        output.append(tmpBuf, (BUFSIZE - strm.avail_out));
+        strm.next_out = reinterpret_cast<Bytef *>(tmpBuf);
+        strm.avail_out = BUFSIZE;
+    }
+
     inflateEnd(&strm);
-    return true;
+
+    if (ok) *ok = true;
+    return output;
 }

@@ -37,7 +37,7 @@ namespace Utils
     namespace Gzip
     {
         QByteArray compress(const QByteArray &data, int level = 6, bool *ok = nullptr);
-        bool uncompress(QByteArray src, QByteArray &dest);
+        QByteArray decompress(const QByteArray &data, bool *ok = nullptr);
     }
 }
 
