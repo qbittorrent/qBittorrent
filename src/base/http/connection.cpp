@@ -88,6 +88,7 @@ void Connection::read()
 void Connection::sendResponse(const Response &response)
 {
     m_socket->write(toByteArray(response));
+    m_socket->close();  // TODO: remove when HTTP pipelining is supported
 }
 
 bool Connection::hasExpired(const qint64 timeout) const
