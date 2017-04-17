@@ -441,7 +441,6 @@ Session::Session(QObject *parent)
     Net::PortForwarder::initInstance(m_nativeSession);
 
     qDebug("* BitTorrent Session constructed");
-    startUpTorrents();
 }
 
 bool Session::isDHTEnabled() const
