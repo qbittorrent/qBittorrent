@@ -30,6 +30,7 @@
 
 #include "statusbar.h"
 
+#include <QApplication>
 #include <QStatusBar>
 #include <QFrame>
 #include <QLabel>
