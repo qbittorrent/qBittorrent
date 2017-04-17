@@ -37,15 +37,20 @@
 
 #include "base/rss/rssfolder.h"
 #include "base/rss/rssmanager.h"
-#include "ui_rss.h"
 
 class FeedListWidget;
 
 QT_BEGIN_NAMESPACE
+class QListWidgetItem;
 class QTreeWidgetItem;
 QT_END_NAMESPACE
 
-class RSSImp: public QWidget, public Ui::RSS
+namespace Ui
+{
+    class RSS;
+}
+
+class RSSImp: public QWidget
 {
     Q_OBJECT
 
@@ -92,6 +97,7 @@ private:
     static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
 
 private:
+    Ui::RSS *m_ui;
     Rss::ManagerPtr m_rssManager;
     FeedListWidget *m_feedList;
     QListWidgetItem *m_currentArticle;

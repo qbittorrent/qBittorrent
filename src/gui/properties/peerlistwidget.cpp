@@ -28,6 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "peerlistwidget.h"
+
+#include <QApplication>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -51,7 +54,6 @@
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
-#include "peerlistwidget.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)

@@ -28,6 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "proplistdelegate.h"
+
+#include <QApplication>
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
@@ -42,7 +45,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "propertieswidget.h"
-#include "proplistdelegate.h"
 #include "torrentcontentmodelitem.h"
 
 namespace {
