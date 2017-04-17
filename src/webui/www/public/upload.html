@@ -25,6 +25,15 @@
     <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR</label>
 	<input type="text" id="category" name="category"/ style="width: 16em;"/>
 </div>
+<div class="formRow">
+    <label for="start_torrent" class="leftLabelLarge">QBT_TR(Start torrent)QBT_TR</label>
+    <input type="checkbox" id="start_torrent" checked="checked" style="width: 16em;"/>
+    <input type="hidden" id="add_paused" name="paused" value="true" disabled="disabled"/>
+</div>
+<div class="formRow">
+    <label for="skip_checking" class="leftLabelLarge">QBT_TR(Skip hash check)QBT_TR</label>
+    <input type="checkbox" name="skip_checking" value="true" style="width: 16em;"/>
+</div>
 <div id="submitbutton" style="margin-top: 30px; text-align: center;">
 	<button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR</button>
 </div>
@@ -42,6 +51,10 @@ $('uploadForm').addEventListener("submit", function() {
 $('upload_frame').addEventListener("load", function() {
 	if (submitted)
 		window.parent.closeWindows();
+});
+
+$('start_torrent').addEventListener('change', function() {
+    $('add_paused').disabled = $('start_torrent').checked;
 });
 </script>
 <div id="upload_spinner" class="mochaSpinner"></div>

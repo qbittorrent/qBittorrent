@@ -97,7 +97,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 200
+            height: 220
         });
         updateMainData();
     });
