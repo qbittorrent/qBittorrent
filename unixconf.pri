@@ -39,11 +39,11 @@ nogui:systemd {
 
 # Menu Icon
 !nogui {
-    menuicon.files = icons/qBittorrent.desktop
+    menuicon.files = icons/qbittorrent.desktop
     menuicon.path = $$DATADIR/applications/
     INSTALLS += menuicon
 
-    appdata.files = $$DIST_PATH/qBittorrent.appdata.xml
+    appdata.files = $$DIST_PATH/qbittorrent.appdata.xml
     appdata.path = $$DATADIR/appdata/
     INSTALLS += appdata
 
