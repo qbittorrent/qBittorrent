@@ -32,10 +32,9 @@
 #define PEERADDITION_H
 
 #include <QDialog>
-#include <QRegExp>
+#include <QMap>
 #include <QMessageBox>
 #include <QHostAddress>
-#include "ui_peer.h"
 
 #include <libtorrent/socket.hpp>
 #include <libtorrent/address.hpp>
@@ -47,59 +46,29 @@
 #include <boost/asio/ip/tcp.hpp>
 #endif
 
-class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
-  Q_OBJECT
+QT_BEGIN_NAMESPACE
+namespace Ui {
+    class PeersAdditionDlg;
+}
+QT_END_NAMESPACE
+
+class PeersAdditionDlg: public QDialog
+{
+    Q_OBJECT
 
 public:
-  PeerAdditionDlg(QWidget *parent=0): QDialog(parent) {
-    setupUi(this);
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
-  }
+    PeersAdditionDlg(QWidget *parent = 0);
+    ~PeersAdditionDlg();
 
-  ~PeerAdditionDlg() {}
-
-  QString getIP() const {
-    QHostAddress ip(lineIP->text());
-    if (!ip.isNull()) {
-      // QHostAddress::toString() cleans up the IP for libtorrent
-      return ip.toString();
-    }
-    return QString();
-  }
-
-  unsigned short getPort() const {
-    return spinPort->value();
-  }
-
-  static libtorrent::asio::ip::tcp::endpoint askForPeerEndpoint() {
-    libtorrent::asio::ip::tcp::endpoint ep;
-    PeerAdditionDlg dlg;
-    if (dlg.exec() == QDialog::Accepted) {
-      QString ip = dlg.getIP();
-      boost::system::error_code ec;
-      libtorrent::address addr = libtorrent::address::from_string(qPrintable(ip), ec);
-      if (ec) {
-        qDebug("Unable to parse the provided IP: %s", qPrintable(ip));
-        return ep;
-      }
-      qDebug("Provided IP is correct");
-      ep = libtorrent::asio::ip::tcp::endpoint(addr, dlg.getPort());
-    }
-    return ep;
-  }
-
+    static QMap<QString, int> askForPeersEndpoints();
+    QMap<QString, int> endpoints;
 
 protected slots:
-  void validateInput() {
-    if (getIP().isEmpty()) {
-      QMessageBox::warning(this, tr("Invalid IP"),
-                           tr("The IP you provided is invalid."),
-                           QMessageBox::Ok);
-    } else {
-      accept();
-    }
-  }
+    void validateInput();
+
+private:
+    Ui::PeersAdditionDlg *ui;
+
 };
 
 #endif // PEERADDITION_H
