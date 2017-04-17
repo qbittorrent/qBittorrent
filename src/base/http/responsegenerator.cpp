@@ -93,14 +93,15 @@ void Http::compressContent(Response &response)
         return;
 
     // try compressing
-    QByteArray buf;
-    if (!Utils::Gzip::compress(response.content, buf))
+    bool ok = false;
+    const QByteArray compressedData = Utils::Gzip::compress(response.content, 6, &ok);
+    if (!ok)
         return;
 
     // "Content-Encoding: gzip\r\n" is 24 bytes long
-    if ((buf.size() + 24) >= contentSize)
+    if ((compressedData.size() + 24) >= contentSize)
         return;
 
-    response.content = buf;
+    response.content = compressedData;
     response.headers[HEADER_CONTENT_ENCODING] = QLatin1String("gzip");
 }

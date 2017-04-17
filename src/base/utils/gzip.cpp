@@ -27,66 +27,71 @@
  * exception statement from your version.
  */
 
-#include <QByteArray>
-#include <zlib.h>
-
 #include "gzip.h"
 
-bool Utils::Gzip::compress(QByteArray src, QByteArray &dest)
-{
-    static const int BUFSIZE = 128 * 1024;
-    char tmpBuf[BUFSIZE];
-    int ret;
+#include <QByteArray>
 
-    dest.clear();
+#ifndef ZLIB_CONST
+#define ZLIB_CONST  // make z_stream.next_in const
+#endif
+#include <zlib.h>
+
+QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *ok)
+{
+    if (ok) *ok = false;
+
+    if (data.isEmpty())
+        return {};
+
+    const int BUFSIZE = 128 * 1024;
+    char tmpBuf[BUFSIZE] = {0};
 
     z_stream strm;
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
-    strm.next_in = reinterpret_cast<uchar *>(src.data());
-    strm.avail_in = src.length();
-    strm.next_out = reinterpret_cast<uchar *>(tmpBuf);
+    strm.next_in = reinterpret_cast<const Bytef *>(data.constData());
+    strm.avail_in = uInt(data.size());
+    strm.next_out = reinterpret_cast<Bytef *>(tmpBuf);
     strm.avail_out = BUFSIZE;
 
     // windowBits = 15 + 16 to enable gzip
     // From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
     // to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
-    ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15 + 16, 8, Z_DEFAULT_STRATEGY);
+    int result = deflateInit2(&strm, level, Z_DEFLATED, (15 + 16), 9, Z_DEFAULT_STRATEGY);
+    if (result != Z_OK)
+        return {};
 
-    if (ret != Z_OK)
-        return false;
+    QByteArray output;
+    output.reserve(deflateBound(&strm, data.size()));
 
-    while (strm.avail_in != 0) {
-        ret = deflate(&strm, Z_NO_FLUSH);
-        if (ret != Z_OK)
-            return false;
+    // feed to deflate
+    while (strm.avail_in > 0) {
+        result = deflate(&strm, Z_NO_FLUSH);
 
-        if (strm.avail_out == 0) {
-            dest.append(tmpBuf, BUFSIZE);
-            strm.next_out = reinterpret_cast<uchar *>(tmpBuf);
-            strm.avail_out = BUFSIZE;
-        }
-    }
-
-    int deflateRes = Z_OK;
-    while (deflateRes == Z_OK) {
-        if (strm.avail_out == 0) {
-            dest.append(tmpBuf, BUFSIZE);
-            strm.next_out = reinterpret_cast<uchar *>(tmpBuf);
-            strm.avail_out = BUFSIZE;
+        if (result != Z_OK) {
+            deflateEnd(&strm);
+            return {};
         }
 
-        deflateRes = deflate(&strm, Z_FINISH);
+        output.append(tmpBuf, (BUFSIZE - strm.avail_out));
+        strm.next_out = reinterpret_cast<Bytef *>(tmpBuf);
+        strm.avail_out = BUFSIZE;
     }
 
-    if (deflateRes != Z_STREAM_END)
-        return false;
+    // flush the rest from deflate
+    while (result != Z_STREAM_END) {
+        result = deflate(&strm, Z_FINISH);
 
-    dest.append(tmpBuf, BUFSIZE - strm.avail_out);
+        output.append(tmpBuf, (BUFSIZE - strm.avail_out));
+        strm.next_out = reinterpret_cast<Bytef *>(tmpBuf);
+        strm.avail_out = BUFSIZE;
+    }
+
     deflateEnd(&strm);
 
-    return true;
+    if (ok) *ok = true;
+    return output;
 }
 
 bool Utils::Gzip::uncompress(QByteArray src, QByteArray &dest)
