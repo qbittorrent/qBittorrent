@@ -60,22 +60,6 @@ Server::~Server()
 {
 }
 
-#ifndef QT_NO_OPENSSL
-void Server::enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key)
-{
-    m_certificates = certificates;
-    m_key = key;
-    m_https = true;
-}
-
-void Server::disableHttps()
-{
-    m_https = false;
-    m_certificates.clear();
-    m_key.clear();
-}
-#endif
-
 void Server::incomingConnection(qintptr socketDescriptor)
 {
     QTcpSocket *serverSocket;
@@ -104,6 +88,36 @@ void Server::incomingConnection(qintptr socketDescriptor)
 }
 
 #ifndef QT_NO_OPENSSL
+bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
+{
+    QSslKey sslKey(key, QSsl::Rsa);
+    if (sslKey.isNull())
+        sslKey = QSslKey(key, QSsl::Ec);
+
+    const QList<QSslCertificate> certs = QSslCertificate::fromData(certificates);
+    const bool areCertsValid = !certs.empty() && std::all_of(certs.begin(), certs.end(), [](const QSslCertificate &c) { return !c.isNull(); });
+
+    if (!sslKey.isNull() && areCertsValid)
+    {
+        m_key = sslKey;
+        m_certificates = certs;
+        m_https = true;
+        return true;
+    }
+    else
+    {
+        disableHttps();
+        return false;
+    }
+}
+
+void Server::disableHttps()
+{
+    m_https = false;
+    m_certificates.clear();
+    m_key.clear();
+}
+
 QList<QSslCipher> Server::safeCipherList() const
 {
     const QStringList badCiphers = {"idea", "rc4"};
