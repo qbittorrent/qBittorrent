@@ -37,17 +37,7 @@
 
 QByteArray Http::toByteArray(Response response)
 {
-    if (response.headers.value(HEADER_CONTENT_ENCODING) == "gzip") {
-        // A gzip seems to have 23 bytes overhead.
-        // Also "Content-Encoding: gzip\r\n" is 26 bytes long
-        // So we only benefit from gzip if the message is bigger than 23+26 = 49
-        // If the message is smaller than 49 bytes we actually send MORE data if we gzip
-        QByteArray destBuf;
-        if ((response.content.size() > 49) && (Utils::Gzip::compress(response.content, destBuf)))
-            response.content = destBuf;
-        else
-            response.headers.remove(HEADER_CONTENT_ENCODING);
-    }
+    compressContent(response);
 
     response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
     response.headers[HEADER_DATE] = httpDate();
@@ -83,4 +73,34 @@ QString Http::httpDate()
 
     return QLocale::c().toString(QDateTime::currentDateTimeUtc(), QLatin1String("ddd, dd MMM yyyy HH:mm:ss"))
         .append(QLatin1String(" GMT"));
+}
+
+void Http::compressContent(Response &response)
+{
+    if (response.headers.value(HEADER_CONTENT_ENCODING) != QLatin1String("gzip"))
+        return;
+
+    response.headers.remove(HEADER_CONTENT_ENCODING);
+
+    // for very small files, compressing them only wastes cpu cycles
+    const int contentSize = response.content.size();
+    if (contentSize <= 1024)  // 1 kb
+        return;
+
+    // filter out known hard-to-compress types
+    const QString contentType = response.headers[HEADER_CONTENT_TYPE];
+    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_PNG))
+        return;
+
+    // try compressing
+    QByteArray buf;
+    if (!Utils::Gzip::compress(response.content, buf))
+        return;
+
+    // "Content-Encoding: gzip\r\n" is 24 bytes long
+    if ((buf.size() + 24) >= contentSize)
+        return;
+
+    response.content = buf;
+    response.headers[HEADER_CONTENT_ENCODING] = QLatin1String("gzip");
 }
