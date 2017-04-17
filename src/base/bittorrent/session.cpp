@@ -3200,7 +3200,7 @@ void Session::refresh()
 
 void Session::handleIPFilterParsed(int ruleCount)
 {
-    if (!m_filterParser) {
+    if (m_filterParser) {
         libt::ip_filter filter = m_filterParser->IPfilter();
         processBannedIPs(filter);
         m_nativeSession->set_ip_filter(filter);
