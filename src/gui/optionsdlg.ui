@@ -709,6 +709,16 @@
                  </layout>
                 </widget>
                </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkCreateSubfolder">
+                 <property name="text">
+                  <string>Create subfolder for torrents with multiple files</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="text">

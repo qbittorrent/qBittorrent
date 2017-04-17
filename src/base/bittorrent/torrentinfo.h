@@ -99,6 +99,7 @@ namespace BitTorrent
         PieceRange filePieces(int fileIndex) const;
 
         void renameFile(uint index, const QString &newPath);
+        void stripRootFolder();
 
         NativePtr nativeInfo() const;
 

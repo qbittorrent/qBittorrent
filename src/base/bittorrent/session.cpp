@@ -244,6 +244,7 @@ Session::Session(QObject *parent)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
+    , m_isCreateTorrentSubfolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY("RefreshInterval"), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
@@ -1405,7 +1406,9 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        m_savePathsToRemove[torrent->hash()] = torrent->rootPath(true);
+        QString rootPath = torrent->rootPath(true);
+        if (!rootPath.isEmpty())
+            m_savePathsToRemove[torrent->hash()] = rootPath;
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
@@ -1652,6 +1655,9 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
+        if (!addData.resumed && !addData.hasRootFolder)
+            torrentInfo.stripRootFolder();
+
         // Metadata
         if (!addData.resumed && !addData.hasSeedStatus)
             findIncompleteFiles(torrentInfo, savePath);
@@ -3248,6 +3254,16 @@ void Session::getPendingAlerts(std::vector<libt::alert *> &out, ulong time)
 #endif
 }
 
+bool Session::isCreateTorrentSubfolder() const
+{
+    return m_isCreateTorrentSubfolder;
+}
+
+void Session::setCreateTorrentSubfolder(bool value)
+{
+    m_isCreateTorrentSubfolder = value;
+}
+
 // Read alerts sent by the BitTorrent session
 void Session::readAlerts()
 {
@@ -3646,6 +3662,7 @@ namespace
         torrentData.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
+        torrentData.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
         torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
