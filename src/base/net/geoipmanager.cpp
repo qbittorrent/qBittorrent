@@ -416,8 +416,10 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
 {
     Q_UNUSED(url);
 
-    if (!Utils::Gzip::uncompress(data, data)) {
-        Logger::instance()->addMessage(tr("Could not uncompress GeoIP database file."), Log::WARNING);
+    bool ok = false;
+    data = Utils::Gzip::decompress(data, &ok);
+    if (!ok) {
+        Logger::instance()->addMessage(tr("Could not decompress GeoIP database file."), Log::WARNING);
         return;
     }
 
