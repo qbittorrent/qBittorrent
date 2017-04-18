@@ -32,6 +32,7 @@
 #define QBT_PROFILE_P_H
 
 #include <QDir>
+#include <QStandardPaths>
 #include "base/profile.h"
 
 namespace Private
@@ -48,13 +49,17 @@ namespace Private
 
         virtual ~Profile() = default;
 
-        QString configurationName() const;
+        /**
+         * @brief QCoreApplication::applicationName() with optional configuration name appended
+         */
+        QString profileName() const;
 
     protected:
         Profile(const QString &configurationName);
 
+        QString configurationSuffix() const;
     private:
-        QString m_configurationName;
+        QString m_configurationSuffix;
     };
 
     /// Default implementation. Takes paths from system
@@ -69,6 +74,15 @@ namespace Private
         QString dataLocation() const override;
         QString downloadLocation() const override;
         SettingsPtr applicationSettings(const QString &name) const override;
+
+    private:
+        /**
+         * @brief Standard path writable location for profile files
+         *
+         * @param location location kind
+         * @return QStandardPaths::writableLocation(location) / configurationName()
+         */
+        QString locationWithConfigurationName(QStandardPaths::StandardLocation location) const;
     };
 
     /// Custom tree: creates directories under the specified root directory

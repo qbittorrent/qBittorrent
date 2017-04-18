@@ -63,7 +63,7 @@ public:
 
     /// Returns either default name for configuration file (QCoreApplication::applicationName())
     /// or the value, supplied via parameters
-    QString configurationName() const;
+    QString profileName() const;
 
     QString toPortablePath(const QString &absolutePath) const;
     QString fromPortablePath(const QString &portablePath) const;
