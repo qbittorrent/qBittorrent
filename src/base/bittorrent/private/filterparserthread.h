@@ -37,7 +37,6 @@
 
 class QDataStream;
 class QStringList;
-class QByteArray;
 template<typename T> class QVector;
 
 class FilterParserThread : public QThread
@@ -58,8 +57,8 @@ protected:
     void run();
 
 private:
-    QVector<int> indicesOfDelimiters(const QByteArray &data, const char delimiter, const int start, const int end);
-    QByteArray trim(const QByteArray &data, const int start, const int end);
+    QVector<int> indicesOfDelimiters(const char * const data, const char delimiter, const int start, const int end) const;
+    QByteArray trim(const char * const data, const int start, const int end) const;
     int parseDATFilterFile();
     int parseP2PFilterFile();
     int getlineInStream(QDataStream &stream, std::string &name, char delim);
