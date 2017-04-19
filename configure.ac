@@ -208,7 +208,7 @@ PKG_CHECK_MODULES(libtorrent,
                   LIBS="$libtorrent_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
-                 [zlib],
+                 [zlib >= 1.2.5.2],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
