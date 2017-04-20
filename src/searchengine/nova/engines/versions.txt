@@ -1,4 +1,4 @@
-demonoid: 1.22
+demonoid: 1.23
 extratorrent: 3.10
 legittorrents: 2.01
 mininova: 2.02
