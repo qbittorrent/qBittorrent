@@ -5,6 +5,8 @@
         <file>searchengine/nova/nova2.py</file>
         <file>searchengine/nova/novaprinter.py</file>
         <file>searchengine/nova/socks.py</file>
+        <file>searchengine/nova/engines/btdb.png</file>
+        <file>searchengine/nova/engines/btdb.py</file>
         <file>searchengine/nova/engines/demonoid.png</file>
         <file>searchengine/nova/engines/demonoid.py</file>
         <file>searchengine/nova/engines/extratorrent.png</file>
@@ -22,6 +24,8 @@
         <file>searchengine/nova3/novaprinter.py</file>
         <file>searchengine/nova3/sgmllib3.py</file>
         <file>searchengine/nova3/socks.py</file>
+        <file>searchengine/nova3/engines/btdb.png</file>
+        <file>searchengine/nova3/engines/btdb.py</file>
         <file>searchengine/nova3/engines/demonoid.png</file>
         <file>searchengine/nova3/engines/demonoid.py</file>
         <file>searchengine/nova3/engines/extratorrent.png</file>
