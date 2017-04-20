@@ -1,7 +1,6 @@
 demonoid: 1.23
 extratorrent: 3.10
 legittorrents: 2.01
-mininova: 2.02
 piratebay: 2.15
 torlock: 2.0
 torrentz: 2.22
