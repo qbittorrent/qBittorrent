@@ -93,13 +93,12 @@ foreach(_boost_cmpnt IN LISTS _boost_components)
     list(APPEND LibtorrentRasterbar_LIBRARIES "Boost::${_boost_cmpnt}")
 endforeach(_boost_cmpnt)
 
-set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIRS})
 
 list(FIND LibtorrentRasterbar_DEFINITIONS -DTORRENT_USE_OPENSSL LibtorrentRasterbar_ENCRYPTION_INDEX)
 if(LibtorrentRasterbar_ENCRYPTION_INDEX GREATER -1)
     find_package(OpenSSL REQUIRED)
-    set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} ${OPENSSL_LIBRARIES})
-    set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIRS})
+    set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
     set(LibtorrentRasterbar_OPENSSL_ENABLED ON)
 endif()
 
