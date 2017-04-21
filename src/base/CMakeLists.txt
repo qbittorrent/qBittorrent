@@ -48,6 +48,7 @@ utils/misc.h
 utils/net.h
 utils/random.h
 utils/string.h
+utils/version.h
 filesystemwatcher.h
 iconprovider.h
 indexrange.h
