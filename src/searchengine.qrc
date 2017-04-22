@@ -5,14 +5,14 @@
         <file>searchengine/nova/nova2.py</file>
         <file>searchengine/nova/novaprinter.py</file>
         <file>searchengine/nova/socks.py</file>
+        <file>searchengine/nova/engines/btdb.png</file>
+        <file>searchengine/nova/engines/btdb.py</file>
         <file>searchengine/nova/engines/demonoid.png</file>
         <file>searchengine/nova/engines/demonoid.py</file>
         <file>searchengine/nova/engines/extratorrent.png</file>
         <file>searchengine/nova/engines/extratorrent.py</file>
         <file>searchengine/nova/engines/legittorrents.png</file>
         <file>searchengine/nova/engines/legittorrents.py</file>
-        <file>searchengine/nova/engines/mininova.png</file>
-        <file>searchengine/nova/engines/mininova.py</file>
         <file>searchengine/nova/engines/piratebay.png</file>
         <file>searchengine/nova/engines/piratebay.py</file>
         <file>searchengine/nova/engines/torlock.png</file>
@@ -24,14 +24,14 @@
         <file>searchengine/nova3/novaprinter.py</file>
         <file>searchengine/nova3/sgmllib3.py</file>
         <file>searchengine/nova3/socks.py</file>
+        <file>searchengine/nova3/engines/btdb.png</file>
+        <file>searchengine/nova3/engines/btdb.py</file>
         <file>searchengine/nova3/engines/demonoid.png</file>
         <file>searchengine/nova3/engines/demonoid.py</file>
         <file>searchengine/nova3/engines/extratorrent.png</file>
         <file>searchengine/nova3/engines/extratorrent.py</file>
         <file>searchengine/nova3/engines/legittorrents.png</file>
         <file>searchengine/nova3/engines/legittorrents.py</file>
-        <file>searchengine/nova3/engines/mininova.png</file>
-        <file>searchengine/nova3/engines/mininova.py</file>
         <file>searchengine/nova3/engines/piratebay.png</file>
         <file>searchengine/nova3/engines/piratebay.py</file>
         <file>searchengine/nova3/engines/torlock.png</file>

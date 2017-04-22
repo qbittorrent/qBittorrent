@@ -1,4 +1,4 @@
-#VERSION: 1.22
+#VERSION: 1.23
 #AUTHORS: Douman (custparasite@gmx.se)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 
@@ -36,7 +36,7 @@ from helpers import download_file, retrieve_url
 
 class demonoid(object):
     """ Search engine class """
-    url = "https://www.dnoid.me"
+    url = "https://www.demonoid.pw"
     name = "Demonoid"
     supported_categories = {'all': '0',
                             'music': '2',
