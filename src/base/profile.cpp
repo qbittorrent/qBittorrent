@@ -90,9 +90,9 @@ QString Profile::location(SpecialFolder folder) const
     return result;
 }
 
-QString Profile::configurationName() const
+QString Profile::profileName() const
 {
-    return m_profileImpl->configurationName();
+    return m_profileImpl->profileName();
 }
 
 SettingsPtr Profile::applicationSettings(const QString &name) const

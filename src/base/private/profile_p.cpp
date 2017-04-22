@@ -32,29 +32,21 @@
 
 #include <QCoreApplication>
 
-#include <QStandardPaths>
-
-#ifdef Q_OS_MAC
-#include <CoreServices/CoreServices.h>
-#include <Carbon/Carbon.h>
-#endif
-
-#ifdef Q_OS_WIN
-#include <shlobj.h>
-#endif
-
 #include "base/utils/fs.h"
 
 Private::Profile::Profile(const QString &configurationName)
-    : m_configurationName {configurationName.isEmpty()
-                           ? QCoreApplication::applicationName()
-                           : QCoreApplication::applicationName() + QLatin1Char('_') + configurationName}
+    : m_configurationSuffix {configurationName.isEmpty() ? QString() : QLatin1Char('_') + configurationName}
 {
 }
 
-QString Private::Profile::configurationName() const
+QString Private::Profile::configurationSuffix() const
 {
-    return m_configurationName;
+    return m_configurationSuffix;
+}
+
+QString Private::Profile::profileName() const
+{
+    return QCoreApplication::applicationName() + configurationSuffix();
 }
 
 Private::DefaultProfile::DefaultProfile(const QString &configurationName)
@@ -69,81 +61,28 @@ QString Private::DefaultProfile::baseDirectory() const
 
 QString Private::DefaultProfile::cacheLocation() const
 {
-    QString result;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    result = dataLocation() + QLatin1String("cache");
-#else
-#ifdef Q_OS_MAC
-    // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
-    FSRef ref;
-    OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
-    if (err)
-        return QString();
-    QByteArray ba(2048, 0);
-    if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-        result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-    result += QLatin1Char('/') + configurationName();
-#else
-    QString xdgCacheHome = QLatin1String(qgetenv("XDG_CACHE_HOME"));
-    if (xdgCacheHome.isEmpty())
-        xdgCacheHome = QDir::homePath() + QLatin1String("/.cache");
-    xdgCacheHome += QLatin1Char('/') + configurationName();
-    result = xdgCacheHome;
-#endif
-#endif
-    if (!result.endsWith("/"))
-        result += "/";
-    return result;
+    return locationWithConfigurationName(QStandardPaths::CacheLocation);
 }
 
 QString Private::DefaultProfile::configLocation() const
 {
-    QString result;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    result = dataLocation() + QLatin1String("config");
+#if defined(Q_OS_WIN)
+    // On Windows QSettings stores files in FOLDERID_RoamingAppData\AppName
+    return locationWithConfigurationName(QStandardPaths::AppDataLocation);
 #else
-#ifdef Q_OS_MAC
-    result = QDir::homePath() + QLatin1String("/Library/Preferences/") + configurationName();
-#else
-    QString xdgConfigHome = QLatin1String(qgetenv("XDG_CONFIG_HOME"));
-    if (xdgConfigHome.isEmpty())
-        xdgConfigHome = QDir::homePath() + QLatin1String("/.config");
-    xdgConfigHome += QLatin1Char('/') + configurationName();
-    result = xdgConfigHome;
+    return locationWithConfigurationName(QStandardPaths::AppConfigLocation);
 #endif
-#endif
-    return result;
 }
 
 QString Private::DefaultProfile::dataLocation() const
 {
-    QString result;
-#if defined(Q_OS_WIN)
-    wchar_t path[MAX_PATH + 1] = {L'\0'};
-    if (SHGetSpecialFolderPathW(0, path, CSIDL_LOCAL_APPDATA, FALSE))
-        result = Utils::Fs::fromNativePath(QString::fromWCharArray(path));
-    if (!QCoreApplication::applicationName().isEmpty())
-        result += QLatin1String("/") + qApp->applicationName();
-#elif defined(Q_OS_MAC)
-    FSRef ref;
-    OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
-    if (err)
-        return QString();
-    QByteArray ba(2048, 0);
-    if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-        result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-    result += QLatin1Char('/') + qApp->applicationName();
+#if defined(Q_OS_WIN) || defined (Q_OS_MAC)
+    return locationWithConfigurationName(QStandardPaths::AppLocalDataLocation);
 #else
-    QString xdgDataHome = QLatin1String(qgetenv("XDG_DATA_HOME"));
-    if (xdgDataHome.isEmpty())
-        xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
-    xdgDataHome += QLatin1String("/data/")
-            + qApp->applicationName();
-    result = xdgDataHome;
+    // on Linux gods know why qBittorrent creates 'data' subdirectory in ~/.local/share/
+    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+        + QLatin1String("/data/") + profileName() + QLatin1Char('/');
 #endif
-    if (!result.endsWith("/"))
-        result += "/";
-    return result;
 }
 
 QString Private::DefaultProfile::downloadLocation() const
@@ -159,15 +98,20 @@ QString Private::DefaultProfile::downloadLocation() const
 SettingsPtr Private::DefaultProfile::applicationSettings(const QString &name) const
 {
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, configurationName(), name));
+    return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, profileName(), name));
 #else
-    return SettingsPtr(new QSettings(configurationName(), name));
+    return SettingsPtr(new QSettings(profileName(), name));
 #endif
+}
+
+QString Private::DefaultProfile::locationWithConfigurationName(QStandardPaths::StandardLocation location) const
+{
+    return QStandardPaths::writableLocation(location) + configurationSuffix();
 }
 
 Private::CustomProfile::CustomProfile(const QString &rootPath, const QString &configurationName)
     : Profile {configurationName}
-    , m_rootDirectory {QDir(rootPath).absoluteFilePath(this->configurationName())}
+    , m_rootDirectory {QDir(rootPath).absoluteFilePath(this->profileName())}
 {
 }
 
