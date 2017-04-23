@@ -642,7 +642,7 @@ void AddNewTorrentDialog::accept()
         params.filePriorities = m_contentModel->model()->getFilePriorities();
 
     params.addPaused = TriStateBool(!ui->startTorrentCheckBox->isChecked());
-    params.createSubfolder = !ui->startTorrentCheckBox->isChecked();
+    params.createSubfolder = ui->createSubfolderCheckBox->isChecked();
 
     QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
