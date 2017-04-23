@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -25,62 +26,63 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSFOLDER_H
-#define RSSFOLDER_H
+#pragma once
 
-#include <QHash>
-#include <QSharedPointer>
+#include <QList>
+#include <QObject>
 
-#include "rssfile.h"
-
-namespace Rss
+namespace RSS
 {
+    class Article;
     class Folder;
-    class Feed;
-    class Manager;
+    class Session;
 
-    typedef QHash<QString, FilePtr> FileHash;
-    typedef QSharedPointer<Feed> FeedPtr;
-    typedef QSharedPointer<Folder> FolderPtr;
-    typedef QList<FeedPtr> FeedList;
-
-    class Folder: public File
+    class Item: public QObject
     {
+        Q_OBJECT
+        Q_DISABLE_COPY(Item)
+
+        friend class Folder;
+        friend class Session;
+
     public:
-        explicit Folder(const QString &name = QString());
+        virtual QList<Article *> articles() const = 0;
+        virtual int unreadCount() const = 0;
+        virtual void markAsRead() = 0;
+        virtual void refresh() = 0;
 
-        uint unreadCount() const;
-        uint getNbFeeds() const;
-        FileList getContent() const;
-        FeedList getAllFeeds() const;
-        QHash<QString, FeedPtr> getAllFeedsAsHash() const;
-        QString displayName() const;
-        QString id() const;
-        QString iconPath() const;
-        bool hasChild(const QString &childId);
-        ArticleList articleListByDateDesc() const;
-        ArticleList unreadArticleListByDateDesc() const;
+        QString path() const;
+        QString name() const;
 
-        void rename(const QString &newName);
-        void markAsRead();
-        bool refresh();
-        void removeAllSettings();
-        void saveItemsToDisk();
-        void recheckRssItemsForDownload();
-        void removeAllItems();
-        FilePtr child(const QString &childId);
-        FilePtr takeChild(const QString &childId);
-        bool addFile(const FilePtr &item);
-        void removeChild(const QString &childId);
+        virtual QJsonValue toJsonValue(bool withData = false) const = 0;
+
+        static const QString PathSeparator;
+
+        static bool isValidPath(const QString &path);
+        static QString joinPath(const QString &path1, const QString &path2);
+        static QStringList expandPath(const QString &path);
+        static QString parentPath(const QString &path);
+        static QString relativeName(const QString &path);
+
+    signals:
+        void pathChanged(Item *item = nullptr);
+        void unreadCountChanged(Item *item = nullptr);
+        void aboutToBeDestroyed(Item *item = nullptr);
+        void newArticle(Article *article);
+        void articleRead(Article *article);
+        void articleAboutToBeRemoved(Article *article);
+
+    protected:
+        explicit Item(const QString &path);
+        ~Item() override;
+
+        virtual void cleanup() = 0;
 
     private:
-        QString m_name;
-        FileHash m_children;
+        void setPath(const QString &path);
+
+        QString m_path;
     };
 }
-
-#endif // RSSFOLDER_H

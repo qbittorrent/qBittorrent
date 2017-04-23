@@ -29,14 +29,15 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "rss_parser.h"
+
 #include <QDebug>
 #include <QDateTime>
+#include <QMetaObject>
 #include <QRegExp>
 #include <QStringList>
 #include <QVariant>
 #include <QXmlStreamReader>
-
-#include "rssparser.h"
 
 namespace
 {
@@ -206,10 +207,23 @@ namespace
     }
 }
 
-using namespace Rss::Private;
+using namespace RSS::Private;
+
+const int ParsingResultTypeId = qRegisterMetaType<ParsingResult>();
+
+Parser::Parser(QString lastBuildDate)
+{
+    m_result.lastBuildDate = lastBuildDate;
+}
+
+void Parser::parse(const QByteArray &feedData)
+{
+    QMetaObject::invokeMethod(this, "parse_impl", Qt::QueuedConnection
+                              , Q_ARG(QByteArray, feedData));
+}
 
 // read and create items from a rss document
-void Parser::parse(const QByteArray &feedData)
+void Parser::parse_impl(const QByteArray &feedData)
 {
     qDebug() << Q_FUNC_INFO;
 
@@ -243,18 +257,28 @@ void Parser::parse(const QByteArray &feedData)
     }
 
     if (xml.hasError())
-        emit finished(xml.errorString());
+        m_result.error = xml.errorString();
     else if (!foundChannel)
-        emit finished(tr("Invalid RSS feed."));
+        m_result.error = tr("Invalid RSS feed.");
     else
-        emit finished(QString());
+        // Sort article list chronologically
+        // NOTE: We don't need to sort it here if articles are always
+        // sorted in fetched XML in reverse chronological order
+        std::sort(m_result.articles.begin(), m_result.articles.end()
+                  , [](const QVariantHash &a1, const QVariantHash &a2)
+        {
+            return a1["date"].toDateTime() < a2["date"].toDateTime();
+        });
+
+    emit finished(m_result);
+    m_result.articles.clear(); // clear articles only
 }
 
 void Parser::parseRssArticle(QXmlStreamReader &xml)
 {
     QVariantHash article;
 
-    while(!xml.atEnd()) {
+    while (!xml.atEnd()) {
         xml.readNext();
 
         if(xml.isEndElement() && xml.name() == "item")
@@ -290,28 +314,7 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
         }
     }
 
-    if (!article.contains("torrent_url") && article.contains("news_link"))
-        article["torrent_url"] = article["news_link"];
-
-    if (!article.contains("id")) {
-        // Item does not have a guid, fall back to some other identifier
-        const QString link = article.value("news_link").toString();
-        if (!link.isEmpty()) {
-            article["id"] = link;
-        }
-        else {
-            const QString title = article.value("title").toString();
-            if (!title.isEmpty()) {
-                article["id"] = title;
-            }
-            else {
-                qWarning() << "Item has no guid, link or title, ignoring it...";
-                return;
-            }
-        }
-    }
-
-    emit newArticle(article);
+    m_result.articles.prepend(article);
 }
 
 void Parser::parseRSSChannel(QXmlStreamReader &xml)
@@ -319,22 +322,21 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
     qDebug() << Q_FUNC_INFO;
     Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
 
-    while(!xml.atEnd()) {
+    while (!xml.atEnd()) {
         xml.readNext();
 
         if (xml.isStartElement()) {
             if (xml.name() == "title") {
-                QString title = xml.readElementText();
-                emit feedTitle(title);
+                m_result.title = xml.readElementText();
             }
             else if (xml.name() == "lastBuildDate") {
                 QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty()) {
-                    if (m_lastBuildDate == lastBuildDate) {
+                    if (m_result.lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
                         return;
                     }
-                    m_lastBuildDate = lastBuildDate;
+                    m_result.lastBuildDate = lastBuildDate;
                 }
             }
             else if (xml.name() == "item") {
@@ -349,10 +351,10 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
     QVariantHash article;
     bool doubleContent = false;
 
-    while(!xml.atEnd()) {
+    while (!xml.atEnd()) {
         xml.readNext();
 
-        if(xml.isEndElement() && (xml.name() == "entry"))
+        if (xml.isEndElement() && (xml.name() == "entry"))
             break;
 
         if (xml.isStartElement()) {
@@ -360,9 +362,9 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                 article["title"] = xml.readElementText().trimmed();
             }
             else if (xml.name() == "link") {
-                QString link = ( xml.attributes().isEmpty() ?
-                                     xml.readElementText().trimmed() :
-                                     xml.attributes().value("href").toString() );
+                QString link = (xml.attributes().isEmpty()
+                                ? xml.readElementText().trimmed()
+                                : xml.attributes().value("href").toString());
 
                 if (link.startsWith("magnet:", Qt::CaseInsensitive))
                     article["torrent_url"] = link; // magnet link instead of a news URL
@@ -370,7 +372,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                     // Atom feeds can have relative links, work around this and
                     // take the stress of figuring article full URI from UI
                     // Assemble full URI
-                    article["news_link"] = ( m_baseUrl.isEmpty() ? link : m_baseUrl + link );
+                    article["news_link"] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
 
             }
             else if ((xml.name() == "summary") || (xml.name() == "content")){
@@ -398,8 +400,8 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
             }
             else if (xml.name() == "author") {
                 xml.readNext();
-                while(xml.name() != "author") {
-                    if(xml.name() == "name")
+                while (xml.name() != "author") {
+                    if (xml.name() == "name")
                         article["author"] = xml.readElementText().trimmed();
                     xml.readNext();
                 }
@@ -410,28 +412,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
         }
     }
 
-    if (!article.contains("torrent_url") && article.contains("news_link"))
-        article["torrent_url"] = article["news_link"];
-
-    if (!article.contains("id")) {
-        // Item does not have a guid, fall back to some other identifier
-        const QString link = article.value("news_link").toString();
-        if (!link.isEmpty()) {
-            article["id"] = link;
-        }
-        else {
-            const QString title = article.value("title").toString();
-            if (!title.isEmpty()) {
-                article["id"] = title;
-            }
-            else {
-                qWarning() << "Item has no guid, link or title, ignoring it...";
-                return;
-            }
-        }
-    }
-
-    emit newArticle(article);
+    m_result.articles.prepend(article);
 }
 
 void Parser::parseAtomChannel(QXmlStreamReader &xml)
@@ -446,17 +427,16 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
 
         if (xml.isStartElement()) {
             if (xml.name() == "title") {
-                QString title = xml.readElementText();
-                emit feedTitle(title);
+                m_result.title = xml.readElementText();
             }
             else if (xml.name() == "updated") {
                 QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty()) {
-                    if (m_lastBuildDate == lastBuildDate) {
+                    if (m_result.lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
                         return;
                     }
-                    m_lastBuildDate = lastBuildDate;
+                    m_result.lastBuildDate = lastBuildDate;
                 }
             }
             else if (xml.name() == "entry") {

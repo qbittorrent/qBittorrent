@@ -48,7 +48,8 @@ namespace Utils
         QString folderName(const QString& file_path);
         qint64 computePathSize(const QString& path);
         bool sameFiles(const QString& path1, const QString& path2);
-        QString toValidFileSystemName(const QString &name, bool allowSeparators = false);
+        QString toValidFileSystemName(const QString &name, bool allowSeparators = false
+                , const QString &pad = QLatin1String(" "));
         bool isValidFileSystemName(const QString& name, bool allowSeparators = false);
         qulonglong freeDiskSpaceOnPath(const QString &path);
         QString branchPath(const QString& file_path, QString* removed = 0);

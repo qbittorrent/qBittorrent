@@ -144,7 +144,7 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFil
 
     // Process download request
     qDebug("url is %s", qPrintable(url));
-    const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
+    const QUrl qurl = QUrl(url);
     QNetworkRequest request(qurl);
 
     if (userAgent.isEmpty())

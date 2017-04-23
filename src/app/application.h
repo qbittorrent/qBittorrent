@@ -64,6 +64,12 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace RSS
+{
+    class Session;
+    class AutoDownloader;
+}
+
 class Application : public BaseApplication
 {
     Q_OBJECT

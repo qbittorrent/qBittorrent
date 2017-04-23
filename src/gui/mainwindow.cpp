@@ -64,6 +64,8 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/rss/rss_folder.h"
+#include "base/rss/rss_session.h"
 
 #include "application.h"
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -86,7 +88,7 @@
 #include "transferlistfilterswidget.h"
 #include "propertieswidget.h"
 #include "statusbar.h"
-#include "rss_imp.h"
+#include "rss/rsswidget.h"
 #include "about_imp.h"
 #include "optionsdlg.h"
 #include "trackerlogin.h"
@@ -296,7 +298,7 @@ MainWindow::MainWindow(QWidget *parent)
     // View settings
     m_ui->actionTopToolBar->setChecked(pref->isToolbarDisplayed());
     m_ui->actionSpeedInTitleBar->setChecked(pref->speedInTitleBar());
-    m_ui->actionRSSReader->setChecked(pref->isRSSEnabled());
+    m_ui->actionRSSReader->setChecked(pref->isRSSWidgetEnabled());
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
     m_ui->actionExecutionLogs->setChecked(isExecutionLogEnabled());
 
@@ -600,25 +602,25 @@ void MainWindow::on_actionLock_triggered()
     hide();
 }
 
+void MainWindow::handleRSSUnreadCountUpdated(int count)
+{
+    m_tabs->setTabText(m_tabs->indexOf(m_rssWidget), tr("RSS (%1)").arg(count));
+}
+
 void MainWindow::displayRSSTab(bool enable)
 {
     if (enable) {
         // RSS tab
         if (!m_rssWidget) {
-            m_rssWidget = new RSSImp(m_tabs);
-            connect(m_rssWidget, SIGNAL(updateRSSCount(int)), this, SLOT(updateRSSTabLabel(int)));
-            int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(0));
+            m_rssWidget = new RSSWidget(m_tabs);
+            connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
+            int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
             m_tabs->setTabIcon(indexTab, GuiIconProvider::instance()->getIcon("application-rss+xml"));
         }
     }
     else if (m_rssWidget) {
         delete m_rssWidget;
     }
-}
-
-void MainWindow::updateRSSTabLabel(int count)
-{
-    m_tabs->setTabText(m_tabs->indexOf(m_rssWidget), tr("RSS (%1)").arg(count));
 }
 
 void MainWindow::displaySearchTab(bool enable)
@@ -684,6 +686,10 @@ void MainWindow::writeSettings()
 void MainWindow::cleanup()
 {
     writeSettings();
+
+    // delete RSSWidget explicitly to avoid crash in
+    // handleRSSUnreadCountUpdated() at application shutdown
+    delete m_rssWidget;
 
     delete m_executableWatcher;
     if (m_systrayCreator)
@@ -1502,7 +1508,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
 
 void MainWindow::on_actionRSSReader_triggered()
 {
-    Preferences::instance()->setRSSEnabled(m_ui->actionRSSReader->isChecked());
+    Preferences::instance()->setRSSWidgetVisible(m_ui->actionRSSReader->isChecked());
     displayRSSTab(m_ui->actionRSSReader->isChecked());
 }
 

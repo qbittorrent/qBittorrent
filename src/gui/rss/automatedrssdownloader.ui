@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>537</height>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,20 +15,31 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
-    <widget class="QCheckBox" name="checkEnableDownloader">
+    <widget class="QLabel" name="labelWarn">
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <italic>true</italic>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: red;</string>
+     </property>
      <property name="text">
-      <string>Enable Automated RSS Downloader</string>
+      <string>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QSplitter" name="hsplitter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -249,11 +260,11 @@
             </item>
             <item>
              <widget class="QSpinBox" name="spinIgnorePeriod">
-              <property name="specialValueText">
-               <string>Disabled</string>
-              </property>
               <property name="enabled">
                <bool>true</bool>
+              </property>
+              <property name="specialValueText">
+               <string>Disabled</string>
               </property>
               <property name="suffix">
                <string> days</string>
@@ -374,6 +385,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QPushButton" name="importBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>&amp;Import...</string>
        </property>
@@ -381,6 +395,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="exportBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>&amp;Export...</string>
        </property>

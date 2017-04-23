@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,67 +25,54 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef FEEDLIST_H
-#define FEEDLIST_H
+#ifndef FEEDLISTWIDGET_H
+#define FEEDLISTWIDGET_H
 
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
-#include <QDropEvent>
-#include <QDragMoveEvent>
-#include <QStringList>
 #include <QHash>
-#include <QUrl>
+#include <QTreeWidget>
 
-#include "base/rss/rssfile.h"
-#include "base/rss/rssfeed.h"
-#include "base/rss/rssmanager.h"
+namespace RSS
+{
+    class Article;
+    class Feed;
+    class Folder;
+    class Item;
+}
 
-class FeedListWidget: public QTreeWidget {
-  Q_OBJECT
+class FeedListWidget: public QTreeWidget
+{
+    Q_OBJECT
 
 public:
-  FeedListWidget(QWidget *parent, const Rss::ManagerPtr& rssManager);
-  ~FeedListWidget();
+    explicit FeedListWidget(QWidget *parent);
+    ~FeedListWidget();
 
-  bool hasFeed(const QString &url) const;
-  QList<QTreeWidgetItem*> getAllFeedItems() const;
-  QTreeWidgetItem* stickyUnreadItem() const;
-  QStringList getItemPath(QTreeWidgetItem* item) const;
-  QList<QTreeWidgetItem*> getAllOpenFolders(QTreeWidgetItem *parent=0) const;
-  QList<QTreeWidgetItem*> getAllFeedItems(QTreeWidgetItem* folder);
-  Rss::FilePtr getRSSItem(QTreeWidgetItem *item) const;
-  bool isFeed(QTreeWidgetItem *item) const;
-  bool isFolder(QTreeWidgetItem *item) const;
-  QString getItemID(QTreeWidgetItem *item) const;
-  QTreeWidgetItem* getTreeItemFromUrl(const QString &url) const;
-  Rss::FeedPtr getRSSItemFromUrl(const QString &url) const;
-  QTreeWidgetItem* currentItem() const;
-  QTreeWidgetItem* currentFeed() const;
-
-public slots:
-  void itemAdded(QTreeWidgetItem *item, const Rss::FilePtr& file);
-  void itemAboutToBeRemoved(QTreeWidgetItem *item);
-
-signals:
-  void foldersAltered(const QList<QTreeWidgetItem*> &folders);
+    QTreeWidgetItem *stickyUnreadItem() const;
+    QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
+    RSS::Item *getRSSItem(QTreeWidgetItem *item) const;
+    QTreeWidgetItem *mapRSSItem(RSS::Item *rssItem) const;
+    QString itemPath(QTreeWidgetItem *item) const;
+    bool isFeed(QTreeWidgetItem *item) const;
+    bool isFolder(QTreeWidgetItem *item) const;
 
 private slots:
-  void updateCurrentFeed(QTreeWidgetItem* new_item);
-
-protected:
-  void dragMoveEvent(QDragMoveEvent * event);
-  void dropEvent(QDropEvent *event);
+    void handleItemAdded(RSS::Item *rssItem);
+    void handleFeedStateChanged(RSS::Feed *feed);
+    void handleFeedIconLoaded(RSS::Feed *feed);
+    void handleItemUnreadCountChanged(RSS::Item *rssItem);
+    void handleItemPathChanged(RSS::Item *rssItem);
+    void handleItemAboutToBeRemoved(RSS::Item *rssItem);
 
 private:
-  Rss::ManagerPtr m_rssManager;
-  QHash<QTreeWidgetItem*, Rss::FilePtr> m_rssMapping;
-  QHash<QString, QTreeWidgetItem*> m_feedsItems;
-  QTreeWidgetItem* m_currentFeed;
-  QTreeWidgetItem *m_unreadStickyItem;
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dropEvent(QDropEvent *event);
+    QTreeWidgetItem *createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem = nullptr);
+    void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
+
+    QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
+    QTreeWidgetItem *m_unreadStickyItem;
 };
 
-#endif // FEEDLIST_H
+#endif // FEEDLISTWIDGET_H

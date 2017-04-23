@@ -1,0 +1,117 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#include "articlelistwidget.h"
+
+#include <QListWidgetItem>
+
+#include "base/rss/rss_article.h"
+#include "base/rss/rss_item.h"
+
+ArticleListWidget::ArticleListWidget(QWidget *parent)
+    : QListWidget(parent)
+{
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+}
+
+RSS::Article *ArticleListWidget::getRSSArticle(QListWidgetItem *item) const
+{
+    Q_ASSERT(item);
+    return reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+}
+
+QListWidgetItem *ArticleListWidget::mapRSSArticle(RSS::Article *rssArticle) const
+{
+    return m_rssArticleToListItemMapping.value(rssArticle);
+}
+
+void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
+{
+    // Clear the list first
+    clear();
+    if (m_rssItem)
+        m_rssItem->disconnect(this);
+
+    m_unreadOnly = unreadOnly;
+    m_rssItem = rssItem;
+    if (!m_rssItem) return;
+
+    m_rssItem = rssItem;
+    connect(m_rssItem, &RSS::Item::newArticle, this, &ArticleListWidget::handleArticleAdded);
+    connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
+    connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
+
+    foreach (auto article, rssItem->articles()) {
+        if (!(m_unreadOnly && article->isRead()))
+            addItem(createItem(article));
+    }
+}
+
+void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
+{
+    if (!(m_unreadOnly && rssArticle->isRead()))
+        addItem(createItem(rssArticle));
+}
+
+void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
+{
+    if (m_unreadOnly) {
+        delete m_rssArticleToListItemMapping.take(rssArticle);
+    }
+    else {
+        auto item = mapRSSArticle(rssArticle);
+        item->setData(Qt::ForegroundRole, QColor("grey"));
+        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+    }
+}
+
+void ArticleListWidget::handleArticleAboutToBeRemoved(RSS::Article *rssArticle)
+{
+    delete m_rssArticleToListItemMapping.take(rssArticle);
+}
+
+QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article)
+{
+    Q_ASSERT(article);
+    QListWidgetItem *item = new QListWidgetItem;
+
+    item->setData(Qt::DisplayRole, article->title());
+    item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
+    if (article->isRead()) {
+        item->setData(Qt::ForegroundRole, QColor("grey"));
+        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+    }
+    else {
+        item->setData(Qt::ForegroundRole, QColor("blue"));
+        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere2.png"));
+    }
+
+    m_rssArticleToListItemMapping.insert(article, item);
+    return item;
+}

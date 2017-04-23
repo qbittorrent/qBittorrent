@@ -44,7 +44,7 @@ class QTimer;
 
 class downloadFromURL;
 class SearchWidget;
-class RSSImp;
+class RSSWidget;
 class about;
 class OptionsDialog;
 class TransferListWidget;
@@ -138,7 +138,6 @@ private slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
 #endif
-    void updateRSSTabLabel(int count);
 
 #ifdef Q_OS_WIN
     void pythonDownloadSuccess(const QString &url, const QString &filePath);
@@ -151,6 +150,7 @@ private slots:
     void downloadFromURLList(const QStringList &urlList);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
+    void handleRSSUnreadCountUpdated(int count);
 
     void on_actionSearchWidget_triggered();
     void on_actionRSSReader_triggered();
@@ -211,7 +211,7 @@ private:
     QList<QPair<BitTorrent::TorrentHandle *, QString >> m_unauthenticatedTrackers; // Still needed?
     // GUI related
     bool m_posInitialized;
-    QTabWidget *m_tabs;
+    QPointer<QTabWidget> m_tabs;
     StatusBar *m_statusBar;
     QPointer<OptionsDialog> m_options;
     QPointer<about> m_aboutDlg;
@@ -235,7 +235,7 @@ private:
     QAction *m_prioSeparatorMenu;
     QSplitter *m_splitter;
     QPointer<SearchWidget> m_searchWidget;
-    QPointer<RSSImp> m_rssWidget;
+    QPointer<RSSWidget> m_rssWidget;
     QPointer<ExecutionLog> m_executionLog;
     // Power Management
     PowerManagement *m_pwr;

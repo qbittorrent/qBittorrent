@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,99 +25,85 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef AUTOMATEDRSSDOWNLOADER_H
 #define AUTOMATEDRSSDOWNLOADER_H
 
 #include <QDialog>
-#include <QHideEvent>
+#include <QHash>
 #include <QPair>
 #include <QSet>
-#include <QShortcut>
-#include <QShowEvent>
-#include <QString>
-#include <QWeakPointer>
 
-#include "base/rss/rssdownloadrule.h"
+#include "base/rss/rss_autodownloadrule.h"
 
-QT_BEGIN_NAMESPACE
 namespace Ui
 {
     class AutomatedRssDownloader;
 }
-QT_END_NAMESPACE
 
-namespace Rss
-{
-    class DownloadRuleList;
-    class Manager;
-}
-
-QT_BEGIN_NAMESPACE
 class QListWidgetItem;
 class QRegularExpression;
-QT_END_NAMESPACE
+class QShortcut;
+
+namespace RSS
+{
+    class Feed;
+}
 
 class AutomatedRssDownloader: public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit AutomatedRssDownloader(const QWeakPointer<Rss::Manager> &manager, QWidget *parent = 0);
-    ~AutomatedRssDownloader();
-    bool isRssDownloaderEnabled() const;
-
-protected:
-    virtual void showEvent(QShowEvent *event) override;
-    virtual void hideEvent(QHideEvent *event) override;
-
-protected slots:
-    void loadSettings();
-    void saveSettings();
-    void loadRulesList();
-    void handleRuleCheckStateChange(QListWidgetItem *rule_item);
-    void handleFeedCheckStateChange(QListWidgetItem *feed_item);
-    void updateRuleDefinitionBox(QListWidgetItem *selected = 0);
-    void clearRuleDefinitionBox();
-    void saveEditedRule();
-    void loadFeedList();
-    void updateFeedList(QListWidgetItem *selected = 0);
+    explicit AutomatedRssDownloader(QWidget *parent = nullptr);
+    ~AutomatedRssDownloader() override;
 
 private slots:
-    void displayRulesListMenu(const QPoint &pos);
     void on_addRuleBtn_clicked();
     void on_removeRuleBtn_clicked();
     void on_browseSP_clicked();
     void on_exportBtn_clicked();
     void on_importBtn_clicked();
+
+    void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
+    void handleFeedCheckStateChange(QListWidgetItem *feedItem);
+    void displayRulesListMenu();
     void renameSelectedRule();
-    void updateMatchingArticles();
+    void updateRuleDefinitionBox();
     void updateFieldsToolTips(bool regex);
     void updateMustLineValidity();
     void updateMustNotLineValidity();
     void updateEpisodeFilterValidity();
-    void onFinished(int result);
+    void handleRuleDefinitionChanged();
+    void handleRuleAdded(const QString &ruleName);
+    void handleRuleRenamed(const QString &ruleName, const QString &oldRuleName);
+    void handleRuleChanged(const QString &ruleName);
+    void handleRuleAboutToBeRemoved(const QString &ruleName);
+
+    void handleProcessingStateChanged(bool enabled);
 
 private:
-    Rss::DownloadRulePtr getCurrentRule() const;
+    void loadSettings();
+    void saveSettings();
+    void createRuleItem(const RSS::AutoDownloadRule &rule);
     void initCategoryCombobox();
-    void addFeedArticlesToTree(const Rss::FeedPtr &feed, const QStringList &articles);
-    void disconnectRuleFeedSlots();
-    void connectRuleFeedSlots();
+    void clearRuleDefinitionBox();
+    void updateEditedRule();
+    void updateMatchingArticles();
+    void saveEditedRule();
+    void loadFeedList();
+    void updateFeedList();
+    void addFeedArticlesToTree(RSS::Feed *feed, const QStringList &articles);
 
-private:
-    Ui::AutomatedRssDownloader *ui;
-    QWeakPointer<Rss::Manager> m_manager;
-    QListWidgetItem *m_editedRule;
-    Rss::DownloadRuleList *m_ruleList;
-    Rss::DownloadRuleList *m_editableRuleList;
+    Ui::AutomatedRssDownloader *m_ui;
+    QListWidgetItem *m_currentRuleItem;
+    QShortcut *m_editHotkey;
+    QShortcut *m_deleteHotkey;
+    QSet<QPair<QString, QString>> m_treeListEntries;
+    RSS::AutoDownloadRule m_currentRule;
+    QHash<QString, QListWidgetItem *> m_itemsByRuleName;
     QRegularExpression *m_episodeRegex;
-    QShortcut *editHotkey;
-    QShortcut *deleteHotkey;
-    QSet<QPair<QString, QString >> m_treeListEntries;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H

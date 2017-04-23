@@ -1241,32 +1241,32 @@ void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
 
 QStringList Preferences::getRssOpenFolders() const
 {
-    return value("Rss/open_folders").toStringList();
+    return value("GUI/RSSWidget/OpenedFolders").toStringList();
 }
 
 void Preferences::setRssOpenFolders(const QStringList &folders)
 {
-    setValue("Rss/open_folders", folders);
+    setValue("GUI/RSSWidget/OpenedFolders", folders);
 }
 
 QByteArray Preferences::getRssSideSplitterState() const
 {
-    return value("Rss/qt5/splitter_h").toByteArray();
+    return value("GUI/RSSWidget/qt5/splitter_h").toByteArray();
 }
 
 void Preferences::setRssSideSplitterState(const QByteArray &state)
 {
-    setValue("Rss/qt5/splitter_h", state);
+    setValue("GUI/RSSWidget/qt5/splitter_h", state);
 }
 
 QByteArray Preferences::getRssMainSplitterState() const
 {
-    return value("Rss/qt5/splitterMain").toByteArray();
+    return value("GUI/RSSWidget/qt5/splitterMain").toByteArray();
 }
 
 void Preferences::setRssMainSplitterState(const QByteArray &state)
 {
-    setValue("Rss/qt5/splitterMain", state);
+    setValue("GUI/RSSWidget/qt5/splitterMain", state);
 }
 
 QByteArray Preferences::getSearchTabHeaderState() const
@@ -1410,64 +1410,14 @@ void Preferences::setTransHeaderState(const QByteArray &state)
 }
 
 //From old RssSettings class
-bool Preferences::isRSSEnabled() const
+bool Preferences::isRSSWidgetEnabled() const
 {
-    return value("Preferences/RSS/RSSEnabled", false).toBool();
+    return value("GUI/RSSWidget/Enabled", false).toBool();
 }
 
-void Preferences::setRSSEnabled(const bool enabled)
+void Preferences::setRSSWidgetVisible(const bool enabled)
 {
-    setValue("Preferences/RSS/RSSEnabled", enabled);
-}
-
-uint Preferences::getRSSRefreshInterval() const
-{
-    return value("Preferences/RSS/RSSRefresh", 30).toUInt();
-}
-
-void Preferences::setRSSRefreshInterval(const uint &interval)
-{
-    setValue("Preferences/RSS/RSSRefresh", interval);
-}
-
-int Preferences::getRSSMaxArticlesPerFeed() const
-{
-    return value("Preferences/RSS/RSSMaxArticlesPerFeed", 50).toInt();
-}
-
-void Preferences::setRSSMaxArticlesPerFeed(const int &nb)
-{
-    setValue("Preferences/RSS/RSSMaxArticlesPerFeed", nb);
-}
-
-bool Preferences::isRssDownloadingEnabled() const
-{
-    return value("Preferences/RSS/RssDownloading", true).toBool();
-}
-
-void Preferences::setRssDownloadingEnabled(const bool b)
-{
-    setValue("Preferences/RSS/RssDownloading", b);
-}
-
-QStringList Preferences::getRssFeedsUrls() const
-{
-    return value("Rss/streamList").toStringList();
-}
-
-void Preferences::setRssFeedsUrls(const QStringList &rssFeeds)
-{
-    setValue("Rss/streamList", rssFeeds);
-}
-
-QStringList Preferences::getRssFeedsAliases() const
-{
-    return value("Rss/streamAlias").toStringList();
-}
-
-void Preferences::setRssFeedsAliases(const QStringList &rssAliases)
-{
-    setValue("Rss/streamAlias", rssAliases);
+    setValue("GUI/RSSWidget/Enabled", enabled);
 }
 
 int Preferences::getToolbarTextPosition() const
@@ -1522,24 +1472,6 @@ void Preferences::setSpeedWidgetGraphEnable(int id, const bool enable)
 
 void Preferences::upgrade()
 {
-    // Move RSS cookies to global storage
-    QList<QNetworkCookie> cookies = getNetworkCookies();
-    QVariantMap hostsTable = value("Rss/hosts_cookies").toMap();
-    foreach (const QString &key, hostsTable.keys()) {
-        QVariant value = hostsTable[key];
-        QList<QByteArray> rawCookies = value.toByteArray().split(':');
-        foreach (const QByteArray &rawCookie, rawCookies) {
-            foreach (QNetworkCookie cookie, QNetworkCookie::parseCookies(rawCookie)) {
-                cookie.setDomain(key);
-                cookie.setPath("/");
-                cookie.setExpirationDate(QDateTime::currentDateTime().addYears(10));
-                cookies << cookie;
-            }
-        }
-    }
-
-    setNetworkCookies(cookies);
-
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.isEmpty()) {
         QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
@@ -1551,7 +1483,6 @@ void Preferences::upgrade()
         SettingsStorage::instance()->removeValue("TransferListFilters/customLabels");
     }
 
-    SettingsStorage::instance()->removeValue("Rss/hosts_cookies");
     SettingsStorage::instance()->removeValue("Preferences/Downloads/AppendLabel");
 }
 

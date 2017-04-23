@@ -1,6 +1,8 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez, Arnaud Demaiziere
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2006  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,46 +26,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org arnaud@qbittorrent.org
  */
-#ifndef __RSS_IMP_H__
-#define __RSS_IMP_H__
 
-#define REFRESH_MAX_LATENCY 600000
+#ifndef RSSWIDGET_H
+#define RSSWIDGET_H
 
 #include <QPointer>
 #include <QShortcut>
 
-#include "base/rss/rssfolder.h"
-#include "base/rss/rssmanager.h"
-
+class ArticleListWidget;
 class FeedListWidget;
-
-QT_BEGIN_NAMESPACE
 class QListWidgetItem;
 class QTreeWidgetItem;
-QT_END_NAMESPACE
 
 namespace Ui
 {
-    class RSS;
+    class RSSWidget;
 }
 
-class RSSImp: public QWidget
+class RSSWidget: public QWidget
 {
     Q_OBJECT
 
 public:
-    RSSImp(QWidget * parent);
-    ~RSSImp();
+    RSSWidget(QWidget *parent);
+    ~RSSWidget();
 
 public slots:
     void deleteSelectedItems();
     void updateRefreshInterval(uint val);
 
 signals:
-    void updateRSSCount(int);
+    void unreadCountUpdated(int count);
 
 private slots:
     void on_newFeedButton_clicked();
@@ -71,38 +65,28 @@ private slots:
     void on_markReadButton_clicked();
     void displayRSSListMenu(const QPoint &);
     void displayItemsListMenu(const QPoint &);
-    void renameSelectedRssFile();
+    void renameSelectedRSSItem();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
-    void populateArticleList(QTreeWidgetItem *item);
-    void refreshTextBrowser();
-    void updateFeedIcon(const QString &url, const QString &icon_path);
-    void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
-    void onFeedContentChanged(const QString &url);
-    void updateItemsInfos(const QList<QTreeWidgetItem *> &items);
-    void updateItemInfos(QTreeWidgetItem *item);
+    void handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem);
+    void handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QListWidgetItem *previousItem);
     void openSelectedArticlesUrls();
     void downloadSelectedTorrents();
-    void fillFeedsList(QTreeWidgetItem *parent = 0, const Rss::FolderPtr &rss_parent = Rss::FolderPtr());
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void askNewFolder();
     void saveFoldersOpenState();
     void loadFoldersOpenState();
-    void on_settingsButton_clicked();
     void on_rssDownloaderBtn_clicked();
+    void handleSessionProcessingStateChanged(bool enabled);
+    void handleUnreadCountChanged();
 
 private:
-    static QListWidgetItem *createArticleListItem(const Rss::ArticlePtr &article);
-    static QTreeWidgetItem *createFolderListItem(const Rss::FilePtr &rssFile);
-
-private:
-    Ui::RSS *m_ui;
-    Rss::ManagerPtr m_rssManager;
-    FeedListWidget *m_feedList;
-    QListWidgetItem *m_currentArticle;
-    QShortcut *editHotkey;
-    QShortcut *deleteHotkey;
+    Ui::RSSWidget *m_ui;
+    ArticleListWidget *m_articleListWidget;
+    FeedListWidget *m_feedListWidget;
+    QShortcut *m_editHotkey;
+    QShortcut *m_deleteHotkey;
 };
 
-#endif
+#endif // RSSWIDGET_H

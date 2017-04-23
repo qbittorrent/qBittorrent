@@ -3372,8 +3372,8 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
     bool fromMagnetUri = !torrent->hasMetadata();
 
     if (data.resumed) {
-        if (fromMagnetUri && !data.addPaused)
-            torrent->resume(data.addForced);
+        if (fromMagnetUri && (data.addPaused != TriStateBool::True))
+            torrent->resume(data.addForced == TriStateBool::True);
 
         logger->addMessage(tr("'%1' resumed. (fast resume)", "'torrent name' was resumed. (fast resume)")
                            .arg(torrent->name()));
@@ -3399,7 +3399,7 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         if (isAddTrackersEnabled() && !torrent->isPrivate())
             torrent->addTrackers(m_additionalTrackerList);
 
-        bool addPaused = data.addPaused;
+        bool addPaused = (data.addPaused == TriStateBool::True);
         if (data.addPaused == TriStateBool::Undefined)
             addPaused = isAddTorrentPaused();
 
@@ -3664,8 +3664,8 @@ namespace
         torrentData.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-        torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
-        torrentData.addForced = fast.dict_find_int_value("qBt-forced");
+        torrentData.addPaused = TriStateBool(fast.dict_find_int_value("qBt-paused"));
+        torrentData.addForced = TriStateBool(fast.dict_find_int_value("qBt-forced"));
 
         prio = fast.dict_find_int_value("qBt-queuePosition");
 

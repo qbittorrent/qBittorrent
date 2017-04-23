@@ -333,18 +333,8 @@ public:
     void setToolbarTextPosition(const int position);
 
     //From old RssSettings class
-    bool isRSSEnabled() const;
-    void setRSSEnabled(const bool enabled);
-    uint getRSSRefreshInterval() const;
-    void setRSSRefreshInterval(const uint &interval);
-    int getRSSMaxArticlesPerFeed() const;
-    void setRSSMaxArticlesPerFeed(const int &nb);
-    bool isRssDownloadingEnabled() const;
-    void setRssDownloadingEnabled(const bool b);
-    QStringList getRssFeedsUrls() const;
-    void setRssFeedsUrls(const QStringList &rssFeeds);
-    QStringList getRssFeedsAliases() const;
-    void setRssFeedsAliases(const QStringList &rssAliases);
+    bool isRSSWidgetEnabled() const;
+    void setRSSWidgetVisible(const bool enabled);
 
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;

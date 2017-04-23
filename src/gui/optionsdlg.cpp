@@ -54,6 +54,8 @@
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
+#include "base/rss/rss_autodownloader.h"
+#include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
@@ -61,6 +63,7 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
+#include "rss/automatedrssdownloader.h"
 #include "banlistoptions.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
@@ -84,6 +87,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
     m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("speedometer", "chronometer"));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(GuiIconProvider::instance()->getIcon("rss-config", "application-rss+xml"));
 #ifndef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
 #else
@@ -335,6 +339,15 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
     connect(m_ui->DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
 #endif
+
+    // RSS tab
+    connect(m_ui->checkRSSEnable, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkRSSAutoDownloaderEnable, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->spinRSSRefreshInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->spinRSSMaxArticlesPerFeed, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->btnEditRules, &QPushButton::clicked, [this]() { AutomatedRssDownloader(this).exec(); });
+
     // Disable apply Button
     applyButton->setEnabled(false);
     // Tab selection mechanism
@@ -499,6 +512,11 @@ void OptionsDialog::saveOptions()
     app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
     app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
     // End General preferences
+
+    RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
+    RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
+    RSS::Session::instance()->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
+    RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
 
     auto session = BitTorrent::Session::instance();
 
@@ -711,6 +729,11 @@ void OptionsDialog::loadOptions()
     m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
+
+    m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
+    m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
+    m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
+    m_ui->spinRSSMaxArticlesPerFeed->setValue(RSS::Session::instance()->maxArticlesPerFeed());
 
     auto session = BitTorrent::Session::instance();
 

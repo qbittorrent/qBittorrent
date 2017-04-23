@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -25,58 +26,46 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSFILE_H
-#define RSSFILE_H
+#pragma once
 
 #include <QList>
-#include <QStringList>
-#include <QSharedPointer>
+#include "rss_item.h"
 
-namespace Rss
+namespace RSS
 {
-    class Folder;
-    class File;
-    class Article;
+    class Session;
 
-    typedef QSharedPointer<File> FilePtr;
-    typedef QSharedPointer<Article> ArticlePtr;
-    typedef QList<ArticlePtr> ArticleList;
-    typedef QList<FilePtr> FileList;
-
-    /**
-     * Parent interface for Rss::Folder and Rss::Feed.
-     */
-    class File
+    class Folder final: public Item
     {
+        Q_OBJECT
+        Q_DISABLE_COPY(Folder)
+
+        friend class Session;
+
+        explicit Folder(const QString &path = "");
+        ~Folder() override;
+
     public:
-        virtual ~File();
+        QList<Article *> articles() const override;
+        int unreadCount() const override;
+        void markAsRead() override;
+        void refresh() override;
 
-        virtual QString id() const = 0;
-        virtual QString displayName() const = 0;
-        virtual uint unreadCount() const = 0;
-        virtual QString iconPath() const = 0;
-        virtual ArticleList articleListByDateDesc() const = 0;
-        virtual ArticleList unreadArticleListByDateDesc() const = 0;
+        QList<Item *> items() const;
 
-        virtual void rename(const QString &newName) = 0;
-        virtual void markAsRead() = 0;
-        virtual bool refresh() = 0;
-        virtual void removeAllSettings() = 0;
-        virtual void saveItemsToDisk() = 0;
-        virtual void recheckRssItemsForDownload() = 0;
+        QJsonValue toJsonValue(bool withData = false) const override;
 
-        Folder *parentFolder() const;
-        QStringList pathHierarchy() const;
+    private slots:
+        void handleItemUnreadCountChanged();
+        void handleItemAboutToBeDestroyed(Item *item);
 
-    protected:
-        friend class Folder;
+    private:
+        void cleanup() override;
+        void addItem(Item *item);
+        void removeItem(Item *item);
 
-        Folder *m_parent = nullptr;
+        QList<Item *> m_items;
     };
 }
-
-#endif // RSSFILE_H
