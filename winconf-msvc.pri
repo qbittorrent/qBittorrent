@@ -12,6 +12,10 @@ strace_win {
 }
 
 CONFIG -= embed_manifest_exe
+
+QMAKE_CFLAGS += "/FS"
+QMAKE_CXXFLAGS += "/FS"
+
 QMAKE_LFLAGS += "/OPT:REF /OPT:ICF /MANIFEST:EMBED /MANIFESTINPUT:$$quote($${PWD}/src/qbittorrent.exe.manifest)"
 
 RC_FILE = qbittorrent.rc
