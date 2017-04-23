@@ -1,25 +1,24 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(QBT_RSS_HEADERS
+articlelistwidget.h
 automatedrssdownloader.h
 feedlistwidget.h
 htmlbrowser.h
-rss_imp.h
-rsssettingsdlg.h
+rsswidget.h
 )
 
 set(QBT_RSS_SOURCE
+articlelistwidget.cpp
 automatedrssdownloader.cpp
 feedlistwidget.cpp
 htmlbrowser.cpp
-rss_imp.cpp
-rsssettingsdlg.cpp
+rsswidget.cpp
 )
 
 set(QBT_RSS_FORMS
 automatedrssdownloader.ui
-rss.ui
-rsssettingsdlg.ui
+rsswidget.ui
 )
 
 add_library(qbt_rss STATIC ${QBT_RSS_HEADERS} ${QBT_RSS_SOURCE} ${QBT_RSS_FORMS})
