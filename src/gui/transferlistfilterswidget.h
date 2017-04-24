@@ -127,7 +127,7 @@ private:
     void downloadFavicon(const QString &url);
 
 private:
-    QHash<QString, QStringList> m_trackers;
+    QHash<QString, QHash<QString, QStringList>> m_trackers;
     QHash<QString, QStringList> m_errors;
     QHash<QString, QStringList> m_warnings;
     QStringList m_iconPaths;

@@ -195,7 +195,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     QListWidgetItem *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, QVariant(tr("Warning (0)")));
     warningTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxWarning));
-    m_trackers.insert("", QStringList());
+    m_trackers.insert("", QHash<QString, QStringList>());
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
     toggleFilter(Preferences::instance()->getTrackerFilterState());
@@ -209,15 +209,17 @@ TrackerFiltersList::~TrackerFiltersList()
 
 void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 {
-    QStringList tmp;
+    QHash<QString, QStringList> tmp;
     QListWidgetItem *trackerItem = 0;
     QString host = getHost(tracker);
     bool exists = m_trackers.contains(host);
 
     if (exists) {
         tmp = m_trackers.value(host);
-        if (tmp.contains(hash))
+        if (tmp.contains(hash)) {
+            m_trackers[host][hash].append(tracker);
             return;
+        }
 
         if (host != "") {
             trackerItem = item(rowFromTracker(host));
@@ -234,7 +236,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
     if (!trackerItem) return;
 
-    tmp.append(hash);
+    tmp.insert(hash, QStringList(tracker));
     m_trackers.insert(host, tmp);
     if (host == "") {
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
@@ -266,12 +268,14 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
 {
     QString host = getHost(tracker);
     QListWidgetItem *trackerItem = nullptr;
-    QStringList tmp = m_trackers.value(host);
+    QHash<QString, QStringList> tmp = m_trackers.value(host);
     int row = 0;
 
     if (tmp.empty())
         return;
-    tmp.removeAll(hash);
+    tmp[hash].removeOne(tracker);
+    if (tmp[hash].isEmpty())
+        tmp.remove(hash);
 
     if (!host.isEmpty()) {
         // Remove from 'Error' and 'Warning' view
@@ -517,13 +521,13 @@ QString TrackerFiltersList::getHost(const QString &tracker) const
 QStringList TrackerFiltersList::getHashes(int row)
 {
     if (row == 1)
-        return m_trackers.value("");
+        return m_trackers.value("").keys();
     else if (row == 2)
         return m_errors.keys();
     else if (row == 3)
         return m_warnings.keys();
     else
-        return m_trackers.value(trackerFromRow(row));
+        return m_trackers.value(trackerFromRow(row)).keys();
 }
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
