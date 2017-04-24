@@ -92,7 +92,9 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , sequential(params.sequential)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder)
+    , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
+                    ? Session::instance()->isCreateTorrentSubfolder()
+                    : params.createSubfolder == TriStateBool::True)
     , addForced(params.addForced == TriStateBool::True)
     , addPaused(params.addPaused == TriStateBool::Undefined
                 ? Session::instance()->isAddTorrentPaused()
