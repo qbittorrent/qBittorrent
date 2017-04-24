@@ -63,7 +63,7 @@ using namespace RSS;
 
 QPointer<Session> Session::m_instance = nullptr;
 
-Session::Session()    
+Session::Session()
     : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
     , m_workingThread(new QThread(this))
     , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toUInt())
