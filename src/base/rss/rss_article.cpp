@@ -160,7 +160,7 @@ Article *Article::fromVariantHash(Feed *feed, const QVariantHash &varHash)
         guid = varHash.value(Str_Torrent_Url).toString();
     if (guid.isEmpty())
         guid = varHash.value(Str_Title).toString();
-    if (guid.isEmpty()) nullptr;
+    if (guid.isEmpty()) return nullptr;
 
     return new Article(feed, guid
                        , varHash.value(Str_Date).toDateTime()
