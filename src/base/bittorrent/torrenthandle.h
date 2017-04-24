@@ -99,8 +99,8 @@ namespace BitTorrent
         bool hasSeedStatus;
         bool skipChecking;
         bool hasRootFolder;
-        TriStateBool addForced;
-        TriStateBool addPaused;
+        bool addForced;
+        bool addPaused;
         // for new torrents
         QVector<int> filePriorities;
         // for resumed torrents
