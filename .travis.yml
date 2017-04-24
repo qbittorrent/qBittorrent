@@ -76,7 +76,7 @@ addons:
       - qt55tools
 before_install:
   # only allow specific build for coverity scan, others will stop
-  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true ]; then exit ; fi
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true -a "$build_system" = "qmake" ]; then exit ; fi
 
   - shopt -s expand_aliases
   - alias make="colormake -j3" # Using nprocs/2 sometimes may fail (gcc is killed by system)
