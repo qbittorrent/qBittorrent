@@ -36,8 +36,6 @@
 #include <libtorrent/ip_filter.hpp>
 
 class QDataStream;
-class QStringList;
-template<typename T> class QVector;
 
 class FilterParserThread : public QThread
 {
@@ -57,8 +55,8 @@ protected:
     void run();
 
 private:
-    QVector<int> indicesOfDelimiters(const char * const data, const char delimiter, const int start, const int end) const;
-    QByteArray trim(const char * const data, const int start, const int end) const;
+    int findAndNullDelimiter(char *const data, char delimiter, int start, int end);
+    int trim(char *const data, int start, int end);
     int parseDATFilterFile();
     int parseP2PFilterFile();
     int getlineInStream(QDataStream &stream, std::string &name, char delim);
