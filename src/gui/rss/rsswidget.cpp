@@ -224,7 +224,7 @@ void RSSWidget::askNewFolder()
             destItem = destItem->parent();
     }
     // Consider the case where the user clicked on Unread item
-    RSS::Folder *rssDestFolder = ((destItem == m_feedListWidget->stickyUnreadItem())
+    RSS::Folder *rssDestFolder = ((!destItem || (destItem == m_feedListWidget->stickyUnreadItem()))
                                   ? RSS::Session::instance()->rootFolder()
                                   : qobject_cast<RSS::Folder *>(m_feedListWidget->getRSSItem(destItem)));
 
@@ -234,7 +234,7 @@ void RSSWidget::askNewFolder()
         QMessageBox::warning(this, "qBittorrent", error, QMessageBox::Ok);
 
     // Expand destination folder to display new feed
-    if (destItem != m_feedListWidget->stickyUnreadItem())
+    if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
         destItem->setExpanded(true);
     // As new RSS items are added synchronously, we can do the following here.
     m_feedListWidget->setCurrentItem(m_feedListWidget->mapRSSItem(RSS::Session::instance()->itemByPath(newFolderPath)));
