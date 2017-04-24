@@ -76,6 +76,9 @@ AddTorrentData::AddTorrentData()
     , sequential(false)
     , hasSeedStatus(false)
     , skipChecking(false)
+    , hasRootFolder(true)
+    , addForced(false)
+    , addPaused(false)
     , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
 {
 }
@@ -89,9 +92,13 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , sequential(params.sequential)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder)
-    , addForced(params.addForced)
-    , addPaused(params.addPaused)
+    , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
+                    ? Session::instance()->isCreateTorrentSubfolder()
+                    : params.createSubfolder == TriStateBool::True)
+    , addForced(params.addForced == TriStateBool::True)
+    , addPaused(params.addPaused == TriStateBool::Undefined
+                ? Session::instance()->isAddTorrentPaused()
+                : params.addPaused == TriStateBool::True)
     , filePriorities(params.filePriorities)
     , ratioLimit(params.ignoreShareRatio ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
 {
