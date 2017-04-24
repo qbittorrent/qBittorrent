@@ -340,9 +340,11 @@ bool Feed::addArticle(Article *article)
 
 void Feed::removeOldestArticle()
 {
-    auto oldestArticle = m_articlesByDate.takeLast();
-    m_articles.remove(oldestArticle->guid());
+    auto oldestArticle = m_articlesByDate.last();
     emit articleAboutToBeRemoved(oldestArticle);
+
+    m_articles.remove(oldestArticle->guid());
+    m_articlesByDate.removeLast();
     bool isRead = oldestArticle->isRead();
     delete oldestArticle;
 
