@@ -77,7 +77,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
 void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 {
     if (!(m_unreadOnly && rssArticle->isRead()))
-        addItem(createItem(rssArticle));
+        insertItem(0, createItem(rssArticle));
 }
 
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
