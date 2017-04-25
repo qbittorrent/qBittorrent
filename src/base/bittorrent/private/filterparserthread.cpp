@@ -102,6 +102,8 @@ namespace
 
         return !ec;
     }
+
+    const int BUFFER_SIZE = 2 * 1024 * 1024; // 2 MiB
 }
 
 FilterParserThread::FilterParserThread(QObject *parent)
@@ -128,8 +130,7 @@ int FilterParserThread::parseDATFilterFile()
         return ruleCount;
     }
 
-    static const int bufferSize = 2 * 1024 * 1024; // 2 MiB
-    std::vector<char> buffer(bufferSize, 0); // seems a bit faster than QVector
+    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QVector
     qint64 bytesRead = 0;
     int offset = 0;
     int start = 0;
@@ -137,7 +138,7 @@ int FilterParserThread::parseDATFilterFile()
     int nbLine = 0;
 
     while (true) {
-        bytesRead = file.read(buffer.data() + offset, bufferSize - offset);
+        bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
         if (bytesRead < 0)
             break;
         int dataSize = bytesRead + offset;
@@ -263,54 +264,113 @@ int FilterParserThread::parseP2PFilterFile()
         return ruleCount;
     }
 
-    unsigned int nbLine = 0;
-    while (!file.atEnd() && !m_abort) {
-        ++nbLine;
-        QByteArray line = file.readLine().trimmed();
-        if (line.isEmpty()) continue;
-        // Ignoring commented lines
-        if (line.startsWith('#') || line.startsWith("//")) continue;
+    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QVector
+    qint64 bytesRead = 0;
+    int offset = 0;
+    int start = 0;
+    int endOfLine = -1;
+    int nbLine = 0;
 
-        // Line is split by :
-        QList<QByteArray> partsList = line.split(':');
-        if (partsList.size() < 2) {
-            LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
-            continue;
+    while (true) {
+        bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
+        if (bytesRead < 0)
+            break;
+        int dataSize = bytesRead + offset;
+        if (bytesRead == 0 && dataSize == 0)
+            break;
+
+        for (start = 0; start < dataSize; ++start) {
+            endOfLine = -1;
+            // The file might have ended without the last line having a newline
+            if (!(bytesRead == 0 && dataSize > 0)) {
+                for (int i = start; i < dataSize; ++i) {
+                    if (buffer[i] == '\n') {
+                        endOfLine = i;
+                        // We need to NULL the newline in case the line has only an IP range.
+                        // In that case the parser won't work for the end IP, because it ends
+                        // with the newline and not with a number.
+                        buffer[i] = '\0';
+                        break;
+                    }
+                }
+            }
+            else {
+                endOfLine = dataSize;
+                buffer[dataSize] = '\0';
+            }
+
+            if (endOfLine == -1) {
+                // read the next chunk from file
+                // but first move(copy) the leftover data to the front of the buffer
+                offset = dataSize - start;
+                memmove(buffer.data(), buffer.data() + start, offset);
+                break;
+            }
+            else {
+                ++nbLine;
+            }
+
+            if ((buffer[start] == '#')
+                || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/')))) {
+                start = endOfLine;
+                continue;
+            }
+
+            // Each line should follow this format:
+            // Some organization:1.0.0.0-1.255.255.255
+            // The "Some organization" part might contain a ':' char itself so we find the last occurrence
+            int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
+            if (partsDelimiter == -1) {
+                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                start = endOfLine;
+                continue;
+            }
+
+            // IP Range should be split by a dash
+            int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
+            if (delimIP == -1) {
+                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                start = endOfLine;
+                continue;
+            }
+
+            libt::address startAddr;
+            int newStart = trim(buffer.data(), partsDelimiter + 1, delimIP - 1);
+            if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
+                LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                start = endOfLine;
+                continue;
+            }
+
+            libt::address endAddr;
+            newStart = trim(buffer.data(), delimIP + 1, endOfLine);
+            if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
+                LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                start = endOfLine;
+                continue;
+            }
+
+            if ((startAddr.is_v4() != endAddr.is_v4())
+                || (startAddr.is_v6() != endAddr.is_v6())) {
+                LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+                start = endOfLine;
+                continue;
+            }
+
+            start = endOfLine;
+
+            try {
+                m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
+                ++ruleCount;
+            }
+            catch (std::exception &e) {
+                LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
+                       .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
+            }
         }
 
-        // Get IP range
-        QList<QByteArray> IPs = partsList.last().split('-');
-        if (IPs.size() != 2) {
-            LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
-            continue;
-        }
-
-        libt::address startAddr;
-        if (!parseIPAddress(IPs.at(0), startAddr)) {
-            LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
-            continue;
-        }
-
-        libt::address endAddr;
-        if (!parseIPAddress(IPs.at(1), endAddr)) {
-            LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
-            continue;
-        }
-
-        if ((startAddr.is_v4() != endAddr.is_v4())
-            || (startAddr.is_v6() != endAddr.is_v6())) {
-            LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
-            continue;
-        }
-
-        try {
-            m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
-            ++ruleCount;
-        }
-        catch (std::exception &e) {
-            LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
-                                           .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
-        }
+        if (start >= dataSize)
+            offset = 0;
     }
 
     return ruleCount;
@@ -500,12 +560,22 @@ void FilterParserThread::run()
     qDebug("IP Filter thread: finished parsing, filter applied");
 }
 
-int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, int start, int end)
+int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse)
 {
-    for (int i = start; i <= end; ++i) {
-        if (data[i] == delimiter) {
-            data[i] = '\0';
-            return i;
+    if (!reverse) {
+        for (int i = start; i <= end; ++i) {
+            if (data[i] == delimiter) {
+                data[i] = '\0';
+                return i;
+            }
+        }
+    }
+    else {
+        for (int i = end; i >= start; --i) {
+            if (data[i] == delimiter) {
+                data[i] = '\0';
+                return i;
+            }
         }
     }
 
