@@ -90,3 +90,8 @@ QVector<Log::Peer> Logger::getPeers(int lastKnownId) const
 
     return m_peers.mid(size - diff);
 }
+
+void LogMsg(const QString &message, const Log::MsgType &type)
+{
+    Logger::instance()->addMessage(message, type);
+}
