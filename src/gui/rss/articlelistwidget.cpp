@@ -55,6 +55,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
 {
     // Clear the list first
     clear();
+    m_rssArticleToListItemMapping.clear();
     if (m_rssItem)
         m_rssItem->disconnect(this);
 
