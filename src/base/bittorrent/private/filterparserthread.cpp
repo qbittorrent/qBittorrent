@@ -124,7 +124,7 @@ int FilterParserThread::parseDATFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        Logger::instance()->addMessage(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -203,7 +203,7 @@ int FilterParserThread::parseDATFilterFile()
             int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
             int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
             if (delimIP == -1) {
-                Logger::instance()->addMessage(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
                 start = endOfLine;
                 continue;
             }
@@ -211,7 +211,7 @@ int FilterParserThread::parseDATFilterFile()
             libt::address startAddr;
             int newStart = trim(buffer.data(), start, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
-                Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
                 start = endOfLine;
                 continue;
             }
@@ -219,14 +219,14 @@ int FilterParserThread::parseDATFilterFile()
             libt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfIPRange);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
-                Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
                 start = endOfLine;
                 continue;
             }
 
             if ((startAddr.is_v4() != endAddr.is_v4())
                 || (startAddr.is_v6() != endAddr.is_v6())) {
-                Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+                LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
                 start = endOfLine;
                 continue;
             }
@@ -239,7 +239,7 @@ int FilterParserThread::parseDATFilterFile()
                 ++ruleCount;
             }
             catch (std::exception &e) {
-                Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
+                LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
                                                .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
             }
         }
@@ -259,7 +259,7 @@ int FilterParserThread::parseP2PFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        Logger::instance()->addMessage(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -274,32 +274,32 @@ int FilterParserThread::parseP2PFilterFile()
         // Line is split by :
         QList<QByteArray> partsList = line.split(':');
         if (partsList.size() < 2) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+            LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
         // Get IP range
         QList<QByteArray> IPs = partsList.last().split('-');
         if (IPs.size() != 2) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+            LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
         libt::address startAddr;
         if (!parseIPAddress(IPs.at(0), startAddr)) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+            LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
         libt::address endAddr;
         if (!parseIPAddress(IPs.at(1), endAddr)) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+            LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
         if ((startAddr.is_v4() != endAddr.is_v4())
             || (startAddr.is_v6() != endAddr.is_v6())) {
-            Logger::instance()->addMessage(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+            LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
             continue;
         }
 
@@ -308,7 +308,7 @@ int FilterParserThread::parseP2PFilterFile()
             ++ruleCount;
         }
         catch (std::exception &e) {
-            Logger::instance()->addMessage(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
+            LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
                                            .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
         }
     }
@@ -347,7 +347,7 @@ int FilterParserThread::parseP2BFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly)) {
-        Logger::instance()->addMessage(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -358,7 +358,7 @@ int FilterParserThread::parseP2BFilterFile()
     if (!stream.readRawData(buf, sizeof(buf))
         || memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7)
         || !stream.readRawData((char*)&version, sizeof(version))) {
-        Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+        LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -370,7 +370,7 @@ int FilterParserThread::parseP2BFilterFile()
         while(getlineInStream(stream, name, '\0') && !m_abort) {
             if (!stream.readRawData((char*)&start, sizeof(start))
                 || !stream.readRawData((char*)&end, sizeof(end))) {
-                Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+                LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }
 
@@ -391,7 +391,7 @@ int FilterParserThread::parseP2BFilterFile()
         qDebug ("p2b version 3");
         unsigned int namecount;
         if (!stream.readRawData((char*)&namecount, sizeof(namecount))) {
-            Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+            LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
             return ruleCount;
         }
 
@@ -400,7 +400,7 @@ int FilterParserThread::parseP2BFilterFile()
         for (unsigned int i = 0; i < namecount; ++i) {
             std::string name;
             if (!getlineInStream(stream, name, '\0')) {
-                Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+                LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }
 
@@ -410,7 +410,7 @@ int FilterParserThread::parseP2BFilterFile()
         // Reading the ranges
         unsigned int rangecount;
         if (!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
-            Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+            LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
             return ruleCount;
         }
 
@@ -420,7 +420,7 @@ int FilterParserThread::parseP2BFilterFile()
             if (!stream.readRawData((char*)&name, sizeof(name))
                 || !stream.readRawData((char*)&start, sizeof(start))
                 || !stream.readRawData((char*)&end, sizeof(end))) {
-                Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+                LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }
 
@@ -440,7 +440,7 @@ int FilterParserThread::parseP2BFilterFile()
         }
     }
     else {
-        Logger::instance()->addMessage(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
+        LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
     }
 
     return ruleCount;
