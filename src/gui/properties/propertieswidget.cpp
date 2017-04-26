@@ -41,6 +41,7 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QBitArray>
+#include <QThread>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
@@ -780,7 +781,7 @@ void PropertiesWidget::renameSelectedFile()
             int timeout = 10;
             while (!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
                 // FIXME: We should not sleep here (freezes the UI for 1 second)
-                Utils::Misc::msleep(100);
+                QThread::msleep(100);
                 --timeout;
             }
         }

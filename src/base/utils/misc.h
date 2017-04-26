@@ -98,8 +98,6 @@ namespace Utils
         QList<int> intListfromStringList(const QStringList &l);
         QList<bool> boolListfromStringList(const QStringList &l);
 
-        void msleep(unsigned long msecs);
-
 #ifndef DISABLE_GUI
         void openPath(const QString& absolutePath);
         void openFolderSelect(const QString& absolutePath);
