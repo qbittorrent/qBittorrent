@@ -119,7 +119,7 @@ QString Utils::Fs::folderName(const QString& file_path)
  */
 bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& path)
 {
-    if (!QDir(path).exists())
+    if (path.isEmpty() || !QDir(path).exists())
         return false;
 
     static const QStringList deleteFilesList = {
@@ -180,12 +180,14 @@ bool Utils::Fs::forceRemove(const QString& file_path)
  * Removes directory and its content recursively.
  *
  */
-void Utils::Fs::removeDirRecursive(const QString& dirName)
+void Utils::Fs::removeDirRecursive(const QString &path)
 {
+if (path.isEmpty())
+    return;
 #ifdef QBT_USES_QT5
-    QDir(dirName).removeRecursively();
+    QDir(path).removeRecursively();
 #else
-    QDir dir(dirName);
+    QDir dir(path);
 
     if (!dir.exists()) return;
 
@@ -198,7 +200,7 @@ void Utils::Fs::removeDirRecursive(const QString& dirName)
         else forceRemove(info.absoluteFilePath());
     }
 
-    dir.rmdir(dirName);
+    dir.rmdir(path);
 #endif
 }
 

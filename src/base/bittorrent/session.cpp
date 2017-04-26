@@ -1391,7 +1391,14 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        m_savePathsToRemove[torrent->hash()] = torrent->rootPath(true);
+        if (torrent->savePath(true) == torrentTempPath(torrent->hash())) {
+            m_savePathsToRemove[torrent->hash()] = torrent->savePath(true);
+        }
+        else {
+            QString rootPath = torrent->rootPath(true);
+            if (!rootPath.isEmpty())
+                m_savePathsToRemove[torrent->hash()] = rootPath;
+        }
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
@@ -3363,17 +3370,16 @@ void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 {
-    m_savePathsToRemove.remove(p->info_hash);
+    const QString path = m_savePathsToRemove.take(p->info_hash);
+    if (path == torrentTempPath(p->info_hash))
+        Utils::Fs::smartRemoveEmptyFolderTree(path);
 }
 
 void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
 {
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    if (m_savePathsToRemove.contains(p->info_hash)) {
-        QString path = m_savePathsToRemove.take(p->info_hash);
-        Utils::Fs::smartRemoveEmptyFolderTree(path);
-    }
+    Utils::Fs::smartRemoveEmptyFolderTree(m_savePathsToRemove.take(p->info_hash));
 }
 
 void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)

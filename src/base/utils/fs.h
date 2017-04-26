@@ -58,7 +58,7 @@ namespace Utils
 
         bool smartRemoveEmptyFolderTree(const QString& path);
         bool forceRemove(const QString& file_path);
-        void removeDirRecursive(const QString& dirName);
+        void removeDirRecursive(const QString& path);
 
         /* Ported from Qt4 to drop dependency on QtGui */
         QString QDesktopServicesDataLocation();
