@@ -1,13 +1,10 @@
 TS_IN = $$fromfile(src/src.pro,TRANSLATIONS)
 TS_IN_NOEXT = $$replace(TS_IN,".ts","")
-             
+
 isEmpty(QMAKE_LRELEASE) {
     win32|os2:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
     else:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
     unix {
-      equals(QT_MAJOR_VERSION, 4) {
-        !exists($$QMAKE_LRELEASE) { QMAKE_LRELEASE = lrelease-qt4 }
-      } 
       equals(QT_MAJOR_VERSION, 5) {
         !exists($$QMAKE_LRELEASE) { QMAKE_LRELEASE = lrelease-qt5 }
       }

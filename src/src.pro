@@ -6,8 +6,6 @@ CONFIG += qt thread silent
 CONFIG += c++11
 DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 
-lessThan(QT_MAJOR_VERSION, 5): DEFINES += QStringLiteral=QLatin1String
-
 # Windows specific configuration
 win32: include(../winconf.pri)
 
@@ -25,8 +23,7 @@ nogui {
     DEFINES += DISABLE_GUI
     TARGET = qbittorrent-nox
 } else {
-    QT += xml
-    greaterThan(QT_MAJOR_VERSION, 4): QT += concurrent widgets
+    QT += xml concurrent widgets
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
