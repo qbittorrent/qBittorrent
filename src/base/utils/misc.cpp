@@ -36,7 +36,6 @@
 #include <QDebug>
 #include <QProcess>
 #include <QRegularExpression>
-#include <QThread>
 #include <QSysInfo>
 #include <boost/version.hpp>
 #include <libtorrent/version.hpp>
@@ -640,24 +639,6 @@ QSize Utils::Misc::largeIconSize()
     return QSize(s, s);
 }
 #endif // DISABLE_GUI
-
-namespace
-{
-    //  Trick to get a portable sleep() function
-    class SleeperThread: public QThread
-    {
-    public:
-        static void msleep(unsigned long msecs)
-        {
-            QThread::msleep(msecs);
-        }
-    };
-}
-
-void Utils::Misc::msleep(unsigned long msecs)
-{
-    SleeperThread::msleep(msecs);
-}
 
 QString Utils::Misc::osName()
 {

@@ -31,6 +31,7 @@
 
 #include <QDebug>
 #include <QScopedPointer>
+#include <QThread>
 
 #ifndef DISABLE_GUI
 // GUI-only includes
@@ -168,7 +169,7 @@ int main(int argc, char *argv[])
 #endif
             qDebug("qBittorrent is already running for this user.");
 
-            Utils::Misc::msleep(300);
+            QThread::msleep(300);
             app->sendParams(params.torrents);
 
             return EXIT_SUCCESS;
