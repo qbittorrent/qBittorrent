@@ -56,7 +56,8 @@ private slots:
     void handleArticleAboutToBeRemoved(RSS::Article *rssArticle);
 
 private:
-    QListWidgetItem *createItem(RSS::Article *article);
+    void checkInvariant() const;
+    QListWidgetItem *createItem(RSS::Article *article) const;
 
     RSS::Item *m_rssItem = nullptr;
     bool m_unreadOnly = false;

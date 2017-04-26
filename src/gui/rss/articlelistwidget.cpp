@@ -38,6 +38,8 @@ ArticleListWidget::ArticleListWidget(QWidget *parent)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    
+    checkInvariant();
 }
 
 RSS::Article *ArticleListWidget::getRSSArticle(QListWidgetItem *item) const
@@ -61,23 +63,32 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
 
     m_unreadOnly = unreadOnly;
     m_rssItem = rssItem;
-    if (!m_rssItem) return;
+    if (m_rssItem) {
+        connect(m_rssItem, &RSS::Item::newArticle, this, &ArticleListWidget::handleArticleAdded);
+        connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
+        connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-    m_rssItem = rssItem;
-    connect(m_rssItem, &RSS::Item::newArticle, this, &ArticleListWidget::handleArticleAdded);
-    connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
-    connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
-
-    foreach (auto article, rssItem->articles()) {
-        if (!(m_unreadOnly && article->isRead()))
-            addItem(createItem(article));
+        foreach (auto article, rssItem->articles()) {
+            if (!(m_unreadOnly && article->isRead())) {
+                auto item = createItem(article);
+                addItem(item);
+                m_rssArticleToListItemMapping.insert(article, item);
+            }
+        }
     }
+
+    checkInvariant();
 }
 
 void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 {
-    if (!(m_unreadOnly && rssArticle->isRead()))
-        insertItem(0, createItem(rssArticle));
+    if (!(m_unreadOnly && rssArticle->isRead())) {
+        auto item = createItem(rssArticle);
+        insertItem(0, item);
+        m_rssArticleToListItemMapping.insert(rssArticle, item);
+    }
+
+    checkInvariant();
 }
 
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
@@ -90,14 +101,22 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
         item->setData(Qt::ForegroundRole, QColor("grey"));
         item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
     }
+
+    checkInvariant();
 }
 
 void ArticleListWidget::handleArticleAboutToBeRemoved(RSS::Article *rssArticle)
 {
     delete m_rssArticleToListItemMapping.take(rssArticle);
+    checkInvariant();
 }
 
-QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article)
+void ArticleListWidget::checkInvariant() const
+{
+    Q_ASSERT(count() == m_rssArticleToListItemMapping.count());
+}
+
+QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
 {
     Q_ASSERT(article);
     QListWidgetItem *item = new QListWidgetItem;
@@ -113,6 +132,5 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article)
         item->setData(Qt::DecorationRole, QIcon(":/icons/sphere2.png"));
     }
 
-    m_rssArticleToListItemMapping.insert(article, item);
     return item;
 }
