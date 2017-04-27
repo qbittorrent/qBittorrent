@@ -2,6 +2,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD "11")
 add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 
+include(MacroQbtCompilerSettings)
+qbt_set_compiler_options()
+
 include(MacroLinkQtComponents)
 include(QbtTargetSources)
 
