@@ -814,7 +814,7 @@ bool WebApplication::isPublicScope()
     return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
 }
 
-void WebApplication::processRequest()
+void WebApplication::doProcessRequest()
 {
     scope_ = DEFAULT_SCOPE;
     action_ = DEFAULT_ACTION;
