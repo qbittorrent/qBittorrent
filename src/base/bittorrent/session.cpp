@@ -34,7 +34,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
-#include <QDirIterator>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
 #include <QNetworkInterface>
@@ -153,16 +152,6 @@ namespace
         }
 
         return expanded;
-    }
-
-    QStringList findAllFiles(const QString &dirPath)
-    {
-        QStringList files;
-        QDirIterator it(dirPath, QDir::Files, QDirIterator::Subdirectories);
-        while (it.hasNext())
-            files << it.next();
-
-        return files;
     }
 
     template <typename T>
@@ -1714,35 +1703,19 @@ bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) c
 {
     auto findInDir = [](const QString &dirPath, TorrentInfo &torrentInfo) -> bool
     {
+        const QDir dir(dirPath);
         bool found = false;
-        if (torrentInfo.filesCount() == 1) {
-            const QString filePath = dirPath + torrentInfo.filePath(0);
-            if (QFile(filePath).exists()) {
+        for (int i = 0; i < torrentInfo.filesCount(); ++i) {
+            const QString filePath = torrentInfo.filePath(i);
+            if (dir.exists(filePath)) {
                 found = true;
             }
-            else if (QFile(filePath + QB_EXT).exists()) {
+            else if (dir.exists(filePath + QB_EXT)) {
                 found = true;
-                torrentInfo.renameFile(0, torrentInfo.filePath(0) + QB_EXT);
+                torrentInfo.renameFile(i, filePath + QB_EXT);
             }
-        }
-        else {
-            QSet<QString> allFiles;
-            int dirPathSize = dirPath.size();
-            foreach (const QString &file, findAllFiles(dirPath + torrentInfo.name()))
-                allFiles << file.mid(dirPathSize);
-            for (int i = 0; i < torrentInfo.filesCount(); ++i) {
-                QString filePath = torrentInfo.filePath(i);
-                if (allFiles.contains(filePath)) {
-                    found = true;
-                }
-                else {
-                    filePath += QB_EXT;
-                    if (allFiles.contains(filePath)) {
-                        found = true;
-                        torrentInfo.renameFile(i, filePath);
-                    }
-                }
-            }
+            if ((i % 100) == 0)
+                qApp->processEvents();
         }
 
         return found;
