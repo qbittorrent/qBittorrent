@@ -25,6 +25,7 @@ HEADERS += \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/net/private/geoipdatabase.h \
+    $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \

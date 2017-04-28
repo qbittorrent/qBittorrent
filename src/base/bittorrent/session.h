@@ -49,6 +49,7 @@
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
 #include "base/types.h"
+#include "addtorrentparams.h"
 #include "torrentinfo.h"
 
 namespace libtorrent
@@ -134,21 +135,6 @@ namespace BitTorrent
     class MagnetUri;
     class TrackerEntry;
     struct AddTorrentData;
-
-    struct AddTorrentParams
-    {
-        QString name;
-        QString category;
-        QString savePath;
-        bool disableTempPath = false; // e.g. for imported torrents
-        bool sequential = false;
-        TriStateBool addForced;
-        TriStateBool addPaused;
-        QVector<int> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareRatio = false;
-        bool skipChecking = false;
-        TriStateBool createSubfolder;
-    };
 
     struct TorrentStatusReport
     {
