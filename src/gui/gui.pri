@@ -50,6 +50,7 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
+    $$PWD/categoryfilterproxymodel.h \
     $$PWD/categoryfilterwidget.h \
     $$PWD/banlistoptions.h \
     $$PWD/rss/rsswidget.h \
@@ -98,6 +99,7 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
+    $$PWD/categoryfilterproxymodel.cpp \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/banlistoptions.cpp \
     $$PWD/rss/rsswidget.cpp \

@@ -139,8 +139,7 @@ public:
 
         item->m_parent = this;
         m_children[uid] = item;
-        auto pos = std::lower_bound(m_childUids.begin(), m_childUids.end(), uid);
-        m_childUids.insert(pos, uid);
+        m_childUids.append(uid);
         m_torrentsCount += item->torrentsCount();
     }
 
@@ -314,11 +313,10 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
             parent = findItem(expanded[expanded.count() - 2]);
     }
 
-    auto item = new CategoryModelItem(
-                parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName);
-
-    QModelIndex i = index(item);
-    beginInsertRows(i.parent(), i.row(), i.row());
+    int row = parent->childCount();
+    beginInsertRows(index(parent), row, row);
+    new CategoryModelItem(
+            parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName);
     endInsertRows();
 }
 
