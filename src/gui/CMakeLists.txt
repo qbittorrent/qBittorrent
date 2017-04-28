@@ -33,6 +33,7 @@ advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
 categoryfiltermodel.h
+categoryfilterproxymodel.h
 categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
@@ -74,6 +75,7 @@ addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
 categoryfiltermodel.cpp
+categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
