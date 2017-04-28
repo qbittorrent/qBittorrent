@@ -74,6 +74,7 @@ void TransferListSortModel::disableTrackerFilter()
 bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     switch (sortColumn()) {
+    case TorrentModel::TR_CATEGORY:
     case TorrentModel::TR_NAME: {
         QVariant vL = left.data();
         QVariant vR = right.data();
