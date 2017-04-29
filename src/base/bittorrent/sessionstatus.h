@@ -61,6 +61,12 @@ namespace BitTorrent
         quint64 totalUpload = 0;
         quint64 totalPayloadDownload = 0;
         quint64 totalPayloadUpload = 0;
+        quint64 ipOverheadUpload = 0;
+        quint64 ipOverheadDownload = 0;
+        quint64 dhtUpload = 0;
+        quint64 dhtDownload = 0;
+        quint64 trackerUpload = 0;
+        quint64 trackerDownload = 0;
         quint64 totalWasted = 0;
         quint64 diskReadQueue = 0;
         quint64 diskWriteQueue = 0;

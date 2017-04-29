@@ -64,6 +64,9 @@
 #endif
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/session_stats.hpp>
+#endif
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
@@ -439,6 +442,11 @@ Session::Session(QObject *parent)
 
     // initialize PortForwarder instance
     Net::PortForwarder::initInstance(m_nativeSession);
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+    initMetrics();
+    m_statsUpdateTimer.start();
+#endif
 
     qDebug("* BitTorrent Session constructed");
 }
@@ -918,6 +926,75 @@ void Session::adjustLimits(libt::settings_pack &settingsPack)
                          , maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads);
     settingsPack.set_int(libt::settings_pack::active_limit
                          , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
+}
+
+void Session::initMetrics()
+{
+    m_metricIndices.net.hasIncomingConnections = libt::find_metric_idx("net.has_incoming_connections");
+    Q_ASSERT(m_metricIndices.net.hasIncomingConnections >= 0);
+
+    m_metricIndices.net.sentPayloadBytes = libt::find_metric_idx("net.sent_payload_bytes");
+    Q_ASSERT(m_metricIndices.net.sentPayloadBytes >= 0);
+
+    m_metricIndices.net.recvPayloadBytes = libt::find_metric_idx("net.recv_payload_bytes");
+    Q_ASSERT(m_metricIndices.net.recvPayloadBytes >= 0);
+
+    m_metricIndices.net.sentBytes = libt::find_metric_idx("net.sent_bytes");
+    Q_ASSERT(m_metricIndices.net.sentBytes >= 0);
+
+    m_metricIndices.net.recvBytes = libt::find_metric_idx("net.recv_bytes");
+    Q_ASSERT(m_metricIndices.net.recvBytes >= 0);
+
+    m_metricIndices.net.sentIPOverheadBytes = libt::find_metric_idx("net.sent_ip_overhead_bytes");
+    Q_ASSERT(m_metricIndices.net.sentIPOverheadBytes >= 0);
+
+    m_metricIndices.net.recvIPOverheadBytes = libt::find_metric_idx("net.recv_ip_overhead_bytes");
+    Q_ASSERT(m_metricIndices.net.recvIPOverheadBytes >= 0);
+
+    m_metricIndices.net.sentTrackerBytes = libt::find_metric_idx("net.sent_tracker_bytes");
+    Q_ASSERT(m_metricIndices.net.sentTrackerBytes >= 0);
+
+    m_metricIndices.net.recvTrackerBytes = libt::find_metric_idx("net.recv_tracker_bytes");
+    Q_ASSERT(m_metricIndices.net.recvTrackerBytes >= 0);
+
+    m_metricIndices.net.recvRedundantBytes = libt::find_metric_idx("net.recv_redundant_bytes");
+    Q_ASSERT(m_metricIndices.net.recvRedundantBytes >= 0);
+
+    m_metricIndices.net.recvFailedBytes = libt::find_metric_idx("net.recv_failed_bytes");
+    Q_ASSERT(m_metricIndices.net.recvFailedBytes >= 0);
+
+    m_metricIndices.peer.numPeersConnected = libt::find_metric_idx("peer.num_peers_connected");
+    Q_ASSERT(m_metricIndices.peer.numPeersConnected >= 0);
+
+    m_metricIndices.peer.numPeersDownDisk = libt::find_metric_idx("peer.num_peers_down_disk");
+    Q_ASSERT(m_metricIndices.peer.numPeersDownDisk >= 0);
+
+    m_metricIndices.peer.numPeersUpDisk = libt::find_metric_idx("peer.num_peers_up_disk");
+    Q_ASSERT(m_metricIndices.peer.numPeersUpDisk >= 0);
+
+    m_metricIndices.dht.dhtBytesIn = libt::find_metric_idx("dht.dht_bytes_in");
+    Q_ASSERT(m_metricIndices.dht.dhtBytesIn >= 0);
+
+    m_metricIndices.dht.dhtBytesOut = libt::find_metric_idx("dht.dht_bytes_out");
+    Q_ASSERT(m_metricIndices.dht.dhtBytesOut >= 0);
+
+    m_metricIndices.dht.dhtNodes = libt::find_metric_idx("dht.dht_nodes");
+    Q_ASSERT(m_metricIndices.dht.dhtNodes >= 0);
+
+    m_metricIndices.disk.diskBlocksInUse = libt::find_metric_idx("disk.disk_blocks_in_use");
+    Q_ASSERT(m_metricIndices.disk.diskBlocksInUse >= 0);
+
+    m_metricIndices.disk.numBlocksRead = libt::find_metric_idx("disk.num_blocks_read");
+    Q_ASSERT(m_metricIndices.disk.numBlocksRead >= 0);
+
+    m_metricIndices.disk.numBlocksCacheHits = libt::find_metric_idx("disk.num_blocks_cache_hits");
+    Q_ASSERT(m_metricIndices.disk.numBlocksCacheHits >= 0);
+
+    m_metricIndices.disk.queuedDiskJobs = libt::find_metric_idx("disk.queued_disk_jobs");
+    Q_ASSERT(m_metricIndices.disk.queuedDiskJobs >= 0);
+
+    m_metricIndices.disk.diskJobTime = libt::find_metric_idx("disk.disk_job_time");
+    Q_ASSERT(m_metricIndices.disk.diskJobTime >= 0);
 }
 
 void Session::configure(libtorrent::settings_pack &settingsPack)
@@ -3196,6 +3273,9 @@ quint64 Session::getAlltimeUL() const
 void Session::refresh()
 {
     m_nativeSession->post_torrent_updates();
+#if LIBTORRENT_VERSION_NUM >= 10100
+    m_nativeSession->post_session_stats();
+#endif
 }
 
 void Session::handleIPFilterParsed(int ruleCount)
@@ -3304,6 +3384,11 @@ void Session::handleAlert(libt::alert *a)
         case libt::state_update_alert::alert_type:
             handleStateUpdateAlert(static_cast<libt::state_update_alert*>(a));
             break;
+#if LIBTORRENT_VERSION_NUM >= 10100
+        case libt::session_stats_alert::alert_type:
+            handleSessionStatsAlert(static_cast<libt::session_stats_alert*>(a));
+            break;
+#endif
         case libt::file_error_alert::alert_type:
             handleFileErrorAlert(static_cast<libt::file_error_alert*>(a));
             break;
@@ -3581,6 +3666,69 @@ void Session::handleExternalIPAlert(libt::external_ip_alert *p)
     Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
+#if LIBTORRENT_VERSION_NUM >= 10100
+void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
+{
+    qreal interval = m_statsUpdateTimer.restart() / 1000.;
+
+    m_status.hasIncomingConnections = static_cast<bool>(p->values[m_metricIndices.net.hasIncomingConnections]);
+
+    const auto ipOverheadDownload = p->values[m_metricIndices.net.recvIPOverheadBytes];
+    const auto ipOverheadUpload = p->values[m_metricIndices.net.sentIPOverheadBytes];
+    const auto totalDownload = p->values[m_metricIndices.net.recvBytes] + ipOverheadDownload;
+    const auto totalUpload = p->values[m_metricIndices.net.sentBytes] + ipOverheadUpload;
+    const auto totalPayloadDownload = p->values[m_metricIndices.net.recvPayloadBytes];
+    const auto totalPayloadUpload = p->values[m_metricIndices.net.sentPayloadBytes];
+    const auto trackerDownload = p->values[m_metricIndices.net.recvTrackerBytes];
+    const auto trackerUpload = p->values[m_metricIndices.net.sentTrackerBytes];
+    const auto dhtDownload = p->values[m_metricIndices.dht.dhtBytesIn];
+    const auto dhtUpload = p->values[m_metricIndices.dht.dhtBytesOut];
+
+    auto calcRate = [interval](quint64 previous, quint64 current)
+    {
+        Q_ASSERT(current >= previous);
+        return static_cast<quint64>((current - previous) / interval);
+    };
+
+    m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);
+    m_status.payloadUploadRate = calcRate(m_status.totalPayloadUpload, totalPayloadUpload);
+    m_status.downloadRate = calcRate(m_status.totalDownload, totalDownload);
+    m_status.uploadRate = calcRate(m_status.totalUpload, totalUpload);
+    m_status.ipOverheadDownloadRate = calcRate(m_status.ipOverheadDownload, ipOverheadDownload);
+    m_status.ipOverheadUploadRate = calcRate(m_status.ipOverheadUpload, ipOverheadUpload);
+    m_status.dhtDownloadRate = calcRate(m_status.dhtDownload, dhtDownload);
+    m_status.dhtUploadRate = calcRate(m_status.dhtUpload, dhtUpload);
+    m_status.trackerDownloadRate = calcRate(m_status.trackerDownload, trackerDownload);
+    m_status.trackerUploadRate = calcRate(m_status.trackerUpload, trackerUpload);
+
+    m_status.totalDownload = totalDownload;
+    m_status.totalUpload = totalUpload;
+    m_status.totalPayloadDownload = totalPayloadDownload;
+    m_status.totalPayloadUpload = totalPayloadUpload;
+    m_status.ipOverheadDownload = ipOverheadDownload;
+    m_status.ipOverheadUpload = ipOverheadUpload;
+    m_status.trackerDownload = trackerDownload;
+    m_status.trackerUpload = trackerUpload;
+    m_status.dhtDownload = dhtDownload;
+    m_status.dhtUpload = dhtUpload;
+    m_status.totalWasted = p->values[m_metricIndices.net.recvRedundantBytes]
+            + p->values[m_metricIndices.net.recvFailedBytes];
+    m_status.dhtNodes = p->values[m_metricIndices.dht.dhtNodes];
+    m_status.diskReadQueue = p->values[m_metricIndices.peer.numPeersUpDisk];
+    m_status.diskWriteQueue = p->values[m_metricIndices.peer.numPeersDownDisk];
+    m_status.peersCount = p->values[m_metricIndices.peer.numPeersConnected];
+
+    const auto numBlocksRead = p->values[m_metricIndices.disk.numBlocksRead];
+    m_cacheStatus.totalUsedBuffers = p->values[m_metricIndices.disk.diskBlocksInUse];
+    m_cacheStatus.readRatio = numBlocksRead > 0
+            ? static_cast<qreal>(p->values[m_metricIndices.disk.numBlocksCacheHits]) / numBlocksRead
+            : -1;
+    m_cacheStatus.jobQueueLength = p->values[m_metricIndices.disk.queuedDiskJobs];
+    m_cacheStatus.averageJobTime = p->values[m_metricIndices.disk.diskJobTime];
+
+    emit statsUpdated();
+}
+#else
 void Session::updateStats()
 {
     libt::session_status ss = m_nativeSession->status();
@@ -3595,6 +3743,7 @@ void Session::updateStats()
     m_status.dhtUploadRate = ss.dht_upload_rate;
     m_status.trackerDownloadRate = ss.tracker_download_rate;
     m_status.trackerUploadRate = ss.tracker_upload_rate;
+
     m_status.totalDownload = ss.total_download;
     m_status.totalUpload = ss.total_upload;
     m_status.totalPayloadDownload = ss.total_payload_download;
@@ -3610,20 +3759,19 @@ void Session::updateStats()
     m_cacheStatus.readRatio = cs.blocks_read > 0
             ? static_cast<qreal>(cs.blocks_read_hit) / cs.blocks_read
             : -1;
-#if LIBTORRENT_VERSION_NUM < 10100
     m_cacheStatus.jobQueueLength = cs.job_queue_length;
-#else
-    m_cacheStatus.jobQueueLength = cs.queued_jobs;
-#endif
     m_cacheStatus.averageJobTime = cs.average_job_time;
-    m_cacheStatus.queuedBytes = cs.queued_bytes;
+    m_cacheStatus.queuedBytes = cs.queued_bytes; // it seems that it is constantly equal to zero
 
     emit statsUpdated();
 }
+#endif
 
 void Session::handleStateUpdateAlert(libt::state_update_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     updateStats();
+#endif
 
     foreach (const libt::torrent_status &status, p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);

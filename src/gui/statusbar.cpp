@@ -191,7 +191,7 @@ void StatusBar::updateDHTNodesNumber()
     if (BitTorrent::Session::instance()->isDHTEnabled()) {
         m_DHTLbl->setVisible(true);
         m_DHTLbl->setText(tr("DHT: %1 nodes")
-                          .arg(QString::number(BitTorrent::Session::instance()->status().dhtNodes)));
+                          .arg(BitTorrent::Session::instance()->status().dhtNodes));
     }
     else {
         m_DHTLbl->setVisible(false);
