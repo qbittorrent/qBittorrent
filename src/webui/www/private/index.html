@@ -63,12 +63,13 @@
                         <ul>
                         <li><a id="showTopToolbarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(&Top Toolbar)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Top Toolbar)QBT_TR</a></li>
                         <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(S&peed in Title Bar)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(S&peed in Title Bar)QBT_TR</a></li>
+                        <li><a id=StatisticsLink ><img class="MyMenuIcon" src="theme/view-statistics" alt="QBT_TR(&About)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Statistics)QBT_TR</a></li>
                         </ul>
                     </li>
                     <li>
                         <a class="returnFalse">QBT_TR(&Tools)QBT_TR</a>
                         <ul>
-                            <li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/preferences-system" alt="QBT_TR(&Options...)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Options...)QBT_TR</a></li>
+                            <li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/configure" alt="QBT_TR(&Options...)QBT_TR" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Options...)QBT_TR</a></li>
                         </ul>
                     </li>
                     <li>
@@ -94,7 +95,7 @@
                     <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Decrease Priority)QBT_TR" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                     <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Minimum Priority)QBT_TR" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
                 </span>
-                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR" src="theme/preferences-system" alt="QBT_TR(Options)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR" src="theme/configure" alt="QBT_TR(Options)QBT_TR" width="24" height="24" onload="fixPNG(this)"/></a>
             </div>
         </div>
         <div id="pageWrapper">
@@ -107,7 +108,7 @@
         <li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR"/> QBT_TR(Delete)QBT_TR</a></li>
         <li class="separator">
             <a href="#Category" class="arrow-right"><img src="theme/view-categories" alt="QBT_TR(Category)QBT_TR"/> QBT_TR(Category)QBT_TR</a>
-            <ul id="contextCategoryList"></ul>
+            <ul id="contextCategoryList" class="scrollableMenu"></ul>
         </li>
         <li id="queueingMenuItems" class="separator">
             <a href="#priority" class="arrow-right"><span style="display: inline-block; width:16px"></span> QBT_TR(Priority)QBT_TR</a>
@@ -118,8 +119,8 @@
                 <li><a href="#prioBottom"><img src="theme/go-bottom" alt="QBT_TR(Move to bottom)QBT_TR"/> QBT_TR(Move to bottom)QBT_TR</a></li>
             </ul>
         </li>
-        <li class="separator"><a href="#DownloadLimit"><img src="images/skin/downloadLimit.png" alt="QBT_TR(Limit download rate...)QBT_TR"/> QBT_TR(Limit download rate...)QBT_TR</a></li>
-        <li><a href="#UploadLimit"><img src="images/skin/uploadLimit.png" alt="QBT_TR(Limit upload rate...)QBT_TR"/> QBT_TR(Limit upload rate...)QBT_TR</a></li>
+        <li class="separator"><a href="#DownloadLimit"><img src="theme/kt-set-max-download-speed" alt="QBT_TR(Limit download rate...)QBT_TR"/> QBT_TR(Limit download rate...)QBT_TR</a></li>
+        <li><a href="#UploadLimit"><img src="theme/kt-set-max-upload-speed" alt="QBT_TR(Limit upload rate...)QBT_TR"/> QBT_TR(Limit upload rate...)QBT_TR</a></li>
         <li><a href="#SuperSeeding"><img src="theme/checked" alt="QBT_TR(Super seeding mode)QBT_TR"/> QBT_TR(Super seeding mode)QBT_TR</a></li>
         <li class="separator"><a href="#SequentialDownload"><img src="theme/checked" alt="QBT_TR(Download in sequential order)QBT_TR"/> QBT_TR(Download in sequential order)QBT_TR</a></li>
         <li><a href="#FirstLastPiecePrio"><img src="theme/checked" alt="QBT_TR(Download first and last pieces first)QBT_TR"/> QBT_TR(Download first and last pieces first)QBT_TR</a></li>
@@ -144,9 +145,9 @@
                     <td class="statusBarSeparator"></td>
                     <td style="cursor:pointer;"><img id="alternativeSpeedLimits" alt="QBT_TR(Alternative speed limits)QBT_TR" src="images/slow_off.png" /></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/skin/download.png" alt="" style="padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
+                    <td class="speedLabel"><img src="images/skin/download.png" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/skin/seeding.png" alt="" style="padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td>
+                    <td class="speedLabel"><img src="images/skin/seeding.png" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td>
                 </tr>
             </table>
         </div>

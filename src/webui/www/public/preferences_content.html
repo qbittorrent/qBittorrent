@@ -180,6 +180,12 @@
   <input type="text" id="ipfilter_text"/><br/>
   <input type="checkbox" id="ipfilter_trackers_checkbox"/>
   <label for="ipfilter_trackers_checkbox">QBT_TR(Apply to trackers)QBT_TR</label>
+  <div class="formRow">
+    <fieldset class="settings">
+        <legend>QBT_TR(Manually banned IP addresses...)QBT_TR</legend>
+        <textarea id="banned_IPs_textarea" rows="5" cols="70"></textarea>
+    </fieldset>
+  </div>
 </fieldset>
 </div>
 
@@ -329,16 +335,20 @@
       <option value="fr_FR">Français</option>
       <option value="de_DE">Deutsch</option>
       <option value="hu_HU">Magyar</option>
+      <option value="is">Íslenska</option>
       <option value="id">Bahasa Indonesia</option>
       <option value="it_IT">Italiano</option>
       <option value="nl_NL">Nederlands</option>
       <option value="es_ES">Español</option>
       <option value="ca_ES">Català</option>
       <option value="gl_ES">Galego</option>
+      <option value="oc">lenga d'òc</option>
       <option value="pt_BR">Português brasileiro</option>
       <option value="pt_PT">Português</option>
       <option value="pl_PL">Polski</option>
+      <option value="lv_LV">latviešu valoda</option>
       <option value="lt_LT">Lietuvių</option>
+      <option value="ms_MY">بهاس ملايو</option>
       <option value="cs_CZ">Čeština</option>
       <option value="sk_SK">Slovenčina</option>
       <option value="sl_SI">Slovenščina</option>
@@ -355,6 +365,7 @@
       <option value="da_DK">Dansk</option>
       <option value="bg_BG">Български</option>
       <option value="uk_UA">Українська</option>
+      <option value="uz@Latn">أۇزبېك</option>
       <option value="ru_RU">Русский</option>
       <option value="ja_JP">日本語</option>
       <option value="he_IL">עברית</option>
@@ -632,9 +643,11 @@ updateFilterSettings = function() {
   if($('ipfilter_enabled_checkbox').getProperty('checked')) {
     $('ipfilter_text').setProperty('disabled', false);
     $('ipfilter_trackers_checkbox').setProperty('disabled', false);
+    $('banned_IPs_textarea').setProperty('disabled', false);
   } else {
     $('ipfilter_text').setProperty('disabled', true);
     $('ipfilter_trackers_checkbox').setProperty('disabled', true);
+    $('banned_IPs_textarea').setProperty('disabled', true);
   }
 }
 
@@ -908,11 +921,12 @@ loadPreferences = function() {
                     $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
                     $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                     $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
+                    $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
                     updateFilterSettings();
 
                     // Speed tab
                     // Global Rate Limits
-                    var up_limit = pref.up_limit.toInt();
+                    var up_limit = pref.up_limit.toInt() / 1024;
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -920,7 +934,7 @@ loadPreferences = function() {
                       $('up_limit_value').setProperty('value', up_limit);
                     }
                     updateUpLimitEnabled();
-                    var dl_limit = pref.dl_limit.toInt();
+                    var dl_limit = pref.dl_limit.toInt() / 1024;
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -934,7 +948,7 @@ loadPreferences = function() {
                     updateUTPEnabled();
 
                     // Alternative Global Rate Limits
-                    var alt_up_limit = pref.alt_up_limit.toInt();
+                    var alt_up_limit = pref.alt_up_limit.toInt() / 1024;
                     if(alt_up_limit <= 0) {
                       $('alt_up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -942,7 +956,7 @@ loadPreferences = function() {
                       $('alt_up_limit_value').setProperty('value', alt_up_limit);
                     }
                     updateAltUpLimitEnabled();
-                    var alt_dl_limit = pref.alt_dl_limit.toInt();
+                    var alt_dl_limit = pref.alt_dl_limit.toInt() / 1024;
                     if(alt_dl_limit <= 0) {
                       $('alt_dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -1105,7 +1119,7 @@ applyPreferences = function() {
 
   // Proxy Server
   var proxy_type_str = $('peer_proxy_type_select').getProperty('value');
-  var proxy_type = -1;
+  var proxy_type = 0;
   var proxy_auth_enabled = false;
   if(proxy_type_str == "socks5") {
     if($('peer_proxy_auth_checkbox').getProperty('checked')) {
@@ -1141,12 +1155,13 @@ applyPreferences = function() {
   settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
   settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
   settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
+  settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
 
   // Speed tab
   // Global Rate Limits
   var up_limit = -1;
   if($('up_limit_checkbox').getProperty('checked')) {
-    up_limit = $('up_limit_value').getProperty('value').toInt();
+    up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(up_limit) || up_limit <= 0) {
       alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1155,7 +1170,7 @@ applyPreferences = function() {
   settings.set('up_limit', up_limit);
   var dl_limit = -1;
   if($('dl_limit_checkbox').getProperty('checked')) {
-    dl_limit = $('dl_limit_value').getProperty('value').toInt();
+    dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(dl_limit) || dl_limit <= 0) {
       alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1169,7 +1184,7 @@ applyPreferences = function() {
   // Alternative Global Rate Limits
   var alt_up_limit = -1;
   if($('alt_up_limit_checkbox').getProperty('checked')) {
-    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt();
+    alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_up_limit) || alt_up_limit <= 0) {
       alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR");
       return;
@@ -1178,7 +1193,7 @@ applyPreferences = function() {
   settings.set('alt_up_limit', alt_up_limit);
   var alt_dl_limit = -1;
   if($('alt_dl_limit_checkbox').getProperty('checked')) {
-    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt();
+    alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
     if(isNaN(alt_dl_limit) || alt_dl_limit <= 0) {
       alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR");
       return;

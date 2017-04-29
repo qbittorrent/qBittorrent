@@ -47,6 +47,11 @@ enum DoubleClickAction
     NO_ACTION
 };
 
+namespace Net
+{
+    enum class ProxyType;
+}
+
 namespace Ui
 {
     class OptionsDialog;
@@ -63,6 +68,7 @@ private:
         TAB_CONNECTION,
         TAB_SPEED,
         TAB_BITTORRENT,
+        TAB_RSS,
         TAB_WEBUI,
         TAB_ADVANCED
     };
@@ -88,6 +94,7 @@ private slots:
     void handleScanFolderViewSelectionChanged();
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
+    void on_banListButton_clicked();
     void on_browseFileLogDir_clicked();
     void on_browseExportDirButton_clicked();
     void on_browseExportDirFinButton_clicked();
@@ -149,9 +156,9 @@ private:
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
     QString getProxyPassword() const;
-    int getProxyType() const;
+    Net::ProxyType getProxyType() const;
     // IP Filter
-    bool isFilteringEnabled() const;
+    bool isIPFilteringEnabled() const;
     QString getFilter() const;
     bool m_refreshingIpFilter;
     // Queueing system
@@ -166,8 +173,8 @@ private:
     QSize sizeFittingScreen() const;
 
 private:
-    void setSslKey(const QByteArray &key, bool interactive = true);
-    void setSslCertificate(const QByteArray &cert, bool interactive = true);
+    bool setSslKey(const QByteArray &key);
+    bool setSslCertificate(const QByteArray &cert);
     bool schedTimesOk();
     bool webUIAuthenticationOk();
 

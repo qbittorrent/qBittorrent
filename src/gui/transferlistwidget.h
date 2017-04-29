@@ -68,7 +68,9 @@ public slots:
     void startVisibleTorrents();
     void pauseSelectedTorrents();
     void pauseVisibleTorrents();
-    void deleteSelectedTorrents();
+    void softDeleteSelectedTorrents();
+    void permDeleteSelectedTorrents();
+    void deleteSelectedTorrents(bool deleteLocalFiles);
     void deleteVisibleTorrents();
     void increasePrioSelectedTorrents();
     void decreasePrioSelectedTorrents();
@@ -99,7 +101,7 @@ protected:
     QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 protected slots:
-    void torrentDoubleClicked(const QModelIndex& index);
+    void torrentDoubleClicked();
     void displayListMenu(const QPoint&);
     void currentChanged(const QModelIndex& current, const QModelIndex&);
     void toggleSelectedTorrentsSuperSeeding() const;
@@ -113,12 +115,17 @@ signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     TransferListDelegate *listDelegate;
     TorrentModel *listModel;
     TransferListSortModel *nameFilterModel;
     MainWindow *main_window;
     QShortcut *editHotkey;
     QShortcut *deleteHotkey;
+    QShortcut *permDeleteHotkey;
+    QShortcut *doubleClickHotkey;
+    QShortcut *recheckHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

@@ -51,6 +51,7 @@ typedef QtSingleCoreApplication BaseApplication;
 #endif
 
 #include "base/utils/misc.h"
+#include "options.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;
@@ -61,6 +62,12 @@ class FileLogger;
 namespace BitTorrent
 {
     class TorrentHandle;
+}
+
+namespace RSS
+{
+    class Session;
+    class AutoDownloader;
 }
 
 class Application : public BaseApplication
@@ -79,6 +86,8 @@ public:
 #ifndef DISABLE_GUI
     QPointer<MainWindow> mainWindow();
 #endif
+
+    const QBtCommandLineParameters &commandLineArgs() const;
 
     // FileLogger properties
     bool isFileLoggerEnabled() const;
@@ -116,6 +125,7 @@ private slots:
 private:
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
+    QBtCommandLineParameters m_commandLineArgs;
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
@@ -136,6 +146,7 @@ private:
     void processParams(const QStringList &params);
     void runExternalProgram(BitTorrent::TorrentHandle *const torrent) const;
     void sendNotificationEmail(BitTorrent::TorrentHandle *const torrent);
+    void validateCommandLineParameters();
 };
 
 #endif // APPLICATION_H

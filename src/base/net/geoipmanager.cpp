@@ -35,6 +35,7 @@
 
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
 #include "downloadmanager.h"
@@ -45,7 +46,6 @@
 static const char DATABASE_URL[] = "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz";
 static const char GEOIP_FOLDER[] = "GeoIP";
 static const char GEOIP_FILENAME[] = "GeoLite2-Country.mmdb";
-static const int CACHE_SIZE = 1000;
 static const int UPDATE_INTERVAL = 30; // Days between database updates
 
 using namespace Net;
@@ -95,7 +95,7 @@ void GeoIPManager::loadDatabase()
     }
 
     QString filepath = Utils::Fs::expandPathAbs(
-                QString("%1%2/%3").arg(Utils::Fs::QDesktopServicesDataLocation())
+                QString("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data))
                 .arg(GEOIP_FOLDER).arg(GEOIP_FILENAME));
 
     QString error;
@@ -432,7 +432,7 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
                                            .arg(m_geoIPDatabase->type()).arg(m_geoIPDatabase->buildEpoch().toString()),
                                            Log::INFO);
             QString targetPath = Utils::Fs::expandPathAbs(
-                        Utils::Fs::QDesktopServicesDataLocation() + GEOIP_FOLDER);
+                        specialFolderLocation(SpecialFolder::Data) + GEOIP_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
             QFile targetFile(QString("%1/%2").arg(targetPath).arg(GEOIP_FILENAME));

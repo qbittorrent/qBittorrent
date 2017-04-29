@@ -1,4 +1,3 @@
-#cmakedefine QBT_USES_QT5
 #cmakedefine QBT_USE_GUI
 
 #ifndef QBT_USE_GUI

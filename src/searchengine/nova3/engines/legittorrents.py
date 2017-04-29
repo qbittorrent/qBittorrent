@@ -1,4 +1,4 @@
-#VERSION: 2.01
+#VERSION: 2.02
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 #         Douman (custparasite@gmx.se)
 
@@ -61,7 +61,7 @@ class legittorrents(object):
                     elif link.startswith("download"):
                         self.current_item["link"] = "/".join((self.url, link))
                 elif tag == "td":
-                    if "width" in params and params["width"] == "30":
+                    if "width" in params and params["width"] == "30" and not "leech" in self.current_item:
                         self.save_item_key = "leech" if "seeds" in self.current_item else "seeds"
 
             elif tag == "tr":

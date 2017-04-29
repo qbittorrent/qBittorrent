@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.23
 #AUTHORS: Douman (custparasite@gmx.se)
 #CONTRIBUTORS: Diego de las Heras (ngosang@hotmail.es)
 

@@ -18,19 +18,10 @@ endif (GUI)
 
 add_library(qtsingleapplication ${QBT_QTSINGLEAPPLICATION_HEADERS} ${QBT_QTSINGLEAPPLICATION_SOURCES})
 target_include_directories(qtsingleapplication INTERFACE "${qtsingleapplication_SOURCE_DIR}")
-
-if (QT4_FOUND)
-    target_link_libraries(qtsingleapplication Qt4::QtNetwork)
-else (QT4_FOUND)
-    target_link_libraries(qtsingleapplication Qt5::Network)
-endif (QT4_FOUND)
+target_link_qt_components(qtsingleapplication Network)
 
 if (GUI)
-    if (QT4_FOUND)
-        target_link_libraries(qtsingleapplication Qt4::QtGui)
-    else (QT4_FOUND)
-        target_link_libraries(qtsingleapplication Qt5::Widgets)
-    endif(QT4_FOUND)
+    target_link_qt_components(qtsingleapplication Widgets)
 endif (GUI)
 
 add_library(QtSingleApplication::QtSingleApplication ALIAS qtsingleapplication)

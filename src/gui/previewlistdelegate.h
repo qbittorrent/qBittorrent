@@ -32,8 +32,8 @@
 #define PREVIEWLISTDELEGATE_H
 
 #include <QItemDelegate>
-#include <QStyleOptionProgressBarV2>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionProgressBar>
+#include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QPainter>
 #include <QApplication>
@@ -42,11 +42,7 @@
 #include "previewselect.h"
 
 #ifdef Q_OS_WIN
-#ifndef QBT_USES_QT5
-#include <QPlastiqueStyle>
-#else
 #include <QProxyStyle>
-#endif
 #endif
 
 class PreviewListDelegate: public QItemDelegate {
@@ -59,7 +55,7 @@ class PreviewListDelegate: public QItemDelegate {
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
       painter->save();
-      QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+      QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
       switch(index.column()) {
         case PreviewSelect::SIZE:
@@ -67,7 +63,7 @@ class PreviewListDelegate: public QItemDelegate {
           QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
           break;
         case PreviewSelect::PROGRESS:{
-          QStyleOptionProgressBarV2 newopt;
+          QStyleOptionProgressBar newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
           newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
@@ -80,11 +76,7 @@ class PreviewListDelegate: public QItemDelegate {
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
           // XXX: To avoid having the progress text on the right of the bar
-#ifndef QBT_USES_QT5
-          QPlastiqueStyle st;
-#else
           QProxyStyle st("fusion");
-#endif
           st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
           break;

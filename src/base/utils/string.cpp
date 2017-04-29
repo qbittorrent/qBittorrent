@@ -32,11 +32,10 @@
 #include <cmath>
 
 #include <QByteArray>
+#include <QCollator>
 #include <QtGlobal>
 #include <QLocale>
-#ifdef QBT_USES_QT5
-#include <QCollator>
-#endif
+#include <QRegExp>
 #ifdef Q_OS_MAC
 #include <QThreadStorage>
 #endif
@@ -49,7 +48,6 @@ namespace
         explicit NaturalCompare(const bool caseSensitive = true)
             : m_caseSensitive(caseSensitive)
         {
-#ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
             // Without ICU library, QCollator uses the native API on Windows 7+. But that API
             // sorts older versions of μTorrent differently than the newer ones because the
@@ -62,12 +60,10 @@ namespace
 #endif
             m_collator.setNumericMode(true);
             m_collator.setCaseSensitivity(caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
-#endif
         }
 
         bool operator()(const QString &left, const QString &right) const
         {
-#ifdef QBT_USES_QT5
 #if defined(Q_OS_WIN)
             // Without ICU library, QCollator uses the native API on Windows 7+. But that API
             // sorts older versions of μTorrent differently than the newer ones because the
@@ -79,9 +75,6 @@ namespace
                 return lessThan(left, right);
 #endif
             return (m_collator.compare(left, right) < 0);
-#else
-            return lessThan(left, right);
-#endif
         }
 
         bool lessThan(const QString &left, const QString &right) const
@@ -110,20 +103,12 @@ namespace
                 int startL = posL;
                 while ((posL < left.size()) && left[posL].isDigit())
                     ++posL;
-#ifdef QBT_USES_QT5
                 int numL = left.midRef(startL, posL - startL).toInt();
-#else
-                int numL = left.mid(startL, posL - startL).toInt();
-#endif
 
                 int startR = posR;
                 while ((posR < right.size()) && right[posR].isDigit())
                     ++posR;
-#ifdef QBT_USES_QT5
                 int numR = right.midRef(startR, posR - startR).toInt();
-#else
-                int numR = right.mid(startR, posR - startR).toInt();
-#endif
 
                 if (numL != numR)
                     return (numL < numR);
@@ -135,9 +120,7 @@ namespace
         }
 
     private:
-#ifdef QBT_USES_QT5
         QCollator m_collator;
-#endif
         const bool m_caseSensitive;
     };
 }
@@ -170,17 +153,6 @@ bool Utils::String::naturalCompareCaseInsensitive(const QString &left, const QSt
 #endif
 }
 
-QString Utils::String::fromStdString(const std::string &str)
-{
-    return QString::fromUtf8(str.c_str());
-}
-
-std::string Utils::String::toStdString(const QString &str)
-{
-    QByteArray utf8 = str.toUtf8();
-    return std::string(utf8.constData(), utf8.length());
-}
-
 // to send numbers instead of strings with suffixes
 QString Utils::String::fromDouble(double n, int precision)
 {
@@ -207,3 +179,13 @@ bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
 
     return (diff == 0);
 }
+
+// This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to
+// copy the code from QRegExp::wc2rx().
+QString qt_regexp_toCanonical(const QString &pattern, QRegExp::PatternSyntax patternSyntax);
+
+QString Utils::String::wildcardToRegex(const QString &pattern)
+{
+    return qt_regexp_toCanonical(pattern, QRegExp::Wildcard);
+}
+

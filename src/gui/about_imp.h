@@ -47,7 +47,11 @@ public:
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-        lb_name->setText("<b><h2>qBittorrent " VERSION "</h2></b>");
+#if defined(__x86_64__) || defined(_M_X64)
+        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
+#else
+        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
+#endif
 
         // About
         QString aboutText = QString(
@@ -61,7 +65,7 @@ public:
             "</table>"
             "</p>")
             .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar."))
-            .arg(tr("Copyright %1 2006-2016 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
+            .arg(tr("Copyright %1 2006-2017 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
             .arg(tr("Home Page:"))
             .arg(tr("Forum:"))
             .arg(tr("Bug Tracker:"));

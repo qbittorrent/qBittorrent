@@ -97,7 +97,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 200
+            height: 220
         });
         updateMainData();
     });
@@ -210,6 +210,21 @@ initializeWindows = function() {
             width: 424,
             height: 80
         });
+    }
+
+    StatisticsLinkFN = function() {
+        new MochaUI.Window({
+            id: 'statisticspage',
+            title: 'QBT_TR(Statistics)QBT_TR',
+            loadMethod: 'xhr',
+            contentURL: 'statistics.html',
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            width: 275,
+            height: 370,
+            padding: 10
+        }); 
     }
 
     downloadLimitFN = function() {

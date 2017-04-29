@@ -55,7 +55,7 @@ using namespace BitTorrent;
 // name starts with a .
 bool fileFilter(const std::string &f)
 {
-    return !Utils::Fs::fileName(Utils::String::fromStdString(f)).startsWith('.');
+    return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
 }
 
 TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
@@ -103,18 +103,18 @@ void TorrentCreatorThread::run()
 {
     emit updateProgress(0);
 
-    QString creator_str("qBittorrent " VERSION);
+    QString creator_str("qBittorrent " QBT_VERSION);
     try {
         libt::file_storage fs;
         // Adding files to the torrent
-        libt::add_files(fs, Utils::String::toStdString(Utils::Fs::toNativePath(m_inputPath)), fileFilter);
+        libt::add_files(fs, Utils::Fs::toNativePath(m_inputPath).toStdString(), fileFilter);
         if (m_abort) return;
 
         libt::create_torrent t(fs, m_pieceSize);
 
         // Add url seeds
         foreach (const QString &seed, m_urlSeeds)
-            t.add_url_seed(Utils::String::toStdString(seed.trimmed()));
+            t.add_url_seed(seed.trimmed().toStdString());
 
         int tier = 0;
         bool newline = false;
@@ -126,14 +126,14 @@ void TorrentCreatorThread::run()
                 newline = true;
                 continue;
             }
-            t.add_tracker(Utils::String::toStdString(tracker.trimmed()), tier);
+            t.add_tracker(tracker.trimmed().toStdString(), tier);
             newline = false;
         }
         if (m_abort) return;
 
         // calculate the hash for all pieces
         const QString parentPath = Utils::Fs::branchPath(m_inputPath) + "/";
-        libt::set_piece_hashes(t, Utils::String::toStdString(Utils::Fs::toNativePath(parentPath)), boost::bind(&TorrentCreatorThread::sendProgressSignal, this, _1, t.num_pieces()));
+        libt::set_piece_hashes(t, Utils::Fs::toNativePath(parentPath).toStdString(), boost::bind(&TorrentCreatorThread::sendProgressSignal, this, _1, t.num_pieces()));
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
         t.set_creator(creator_str.toUtf8().constData());
@@ -163,6 +163,6 @@ void TorrentCreatorThread::run()
         emit creationSuccess(m_savePath, parentPath);
     }
     catch (std::exception& e) {
-        emit creationFailure(Utils::String::fromStdString(e.what()));
+        emit creationFailure(QString::fromStdString(e.what()));
     }
 }

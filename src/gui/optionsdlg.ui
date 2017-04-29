@@ -23,6 +23,9 @@
       <bool>false</bool>
      </property>
      <widget class="QListWidget" name="tabSelection">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
@@ -42,7 +45,7 @@
        <enum>QListView::IconMode</enum>
       </property>
       <property name="currentRow">
-       <number>0</number>
+       <number>-1</number>
       </property>
       <item>
        <property name="text">
@@ -71,6 +74,11 @@
       </item>
       <item>
        <property name="text">
+        <string>RSS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Web UI</string>
        </property>
       </item>
@@ -84,7 +92,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabOptionPage1">
+      <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <property name="leftMargin">
          <number>0</number>
@@ -114,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>497</width>
-             <height>880</height>
+             <width>470</width>
+             <height>783</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -646,7 +654,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage2">
+      <widget class="QWidget" name="tabDownloadsPage">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <property name="leftMargin">
          <number>0</number>
@@ -670,8 +678,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>586</width>
-             <height>1118</height>
+             <width>470</width>
+             <height>994</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -704,6 +712,16 @@
                    </widget>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkCreateSubfolder">
+                 <property name="text">
+                  <string>Create subfolder for torrents with multiple files</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -1345,8 +1363,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>457</width>
-             <height>672</height>
+             <width>470</width>
+             <height>619</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1714,21 +1732,15 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="checkIPFilter">
+             <widget class="QGroupBox" name="groupIPFilter">
               <property name="title">
                <string>IP Filtering</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
                  <item>
-                  <widget class="QLabel" name="lblFilterPath">
+                  <widget class="QCheckBox" name="checkIPFilter">
                    <property name="text">
                     <string>Filter path (.dat, .p2p, .p2b):</string>
                    </property>
@@ -1764,6 +1776,19 @@
                   </widget>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="banListButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Manually banned IP addresses...</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkIpFilterTrackers">
@@ -1818,8 +1843,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>388</width>
-             <height>452</height>
+             <width>487</width>
+             <height>542</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2181,7 +2206,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOptionPage4">
+      <widget class="QWidget" name="tabBitTorrentPage">
        <layout class="QVBoxLayout" name="verticalLayout_15">
         <property name="leftMargin">
          <number>0</number>
@@ -2205,8 +2230,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>574</width>
-             <height>534</height>
+             <width>487</width>
+             <height>542</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2578,6 +2603,125 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tabRSSPage">
+       <layout class="QVBoxLayout" name="verticalLayout_25">
+        <item>
+         <widget class="QGroupBox" name="groupRSSReader">
+          <property name="title">
+           <string>RSS Reader</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_26">
+           <item>
+            <widget class="QCheckBox" name="checkRSSEnable">
+             <property name="text">
+              <string>Enable fetching RSS feeds</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>Feeds refresh interval:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Maximum number of articles per feed:</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinRSSRefreshInterval">
+               <property name="suffix">
+                <string> min</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>999999</number>
+               </property>
+               <property name="value">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+               <property name="maximum">
+                <number>9999</number>
+               </property>
+               <property name="value">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupRSSAutoDownloader">
+          <property name="title">
+           <string>RSS Torrent Auto Downloader</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_21">
+           <item>
+            <widget class="QCheckBox" name="checkRSSAutoDownloaderEnable">
+             <property name="text">
+              <string>Enable auto downloading of RSS torrents</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnEditRules">
+             <property name="text">
+              <string>Edit auto downloading rules...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tabWebuiPage">
        <layout class="QVBoxLayout" name="tabWebuiPageLayout">
         <property name="leftMargin">
@@ -2602,8 +2746,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>438</width>
-             <height>543</height>
+             <width>487</width>
+             <height>542</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">

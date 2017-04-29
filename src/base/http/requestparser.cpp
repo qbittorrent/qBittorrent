@@ -31,11 +31,8 @@
 
 #include <QStringList>
 #include <QUrl>
-#ifdef QBT_USES_QT5
 #include <QUrlQuery>
-#endif
 #include <QDir>
-#include <QTemporaryFile>
 #include <QDebug>
 #include "requestparser.h"
 
@@ -122,11 +119,7 @@ bool RequestParser::parseStartingLine(const QString &line)
         m_request.path = url.path(); // Path
 
         // Parse GET parameters
-#ifndef QBT_USES_QT5
-        QListIterator<QPair<QString, QString> > i(url.queryItems());
-#else
         QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
-#endif
         while (i.hasNext()) {
             QPair<QString, QString> pair = i.next();
             m_request.gets[pair.first] = pair.second;
@@ -199,14 +192,14 @@ QList<QByteArray> RequestParser::splitMultipartData(const QByteArray& data, cons
         start = end + sepLength; // skip first boundary
 
         while ((end = data.indexOf(sep, start)) >= 0) {
-            ret << data.mid(start, end - start);
+            ret << data.mid(start, end - EOL.length() - start);
             start = end + sepLength;
         }
 
         // last or single part
         sep = boundary + "--" + EOL;
         if ((end = data.indexOf(sep, start)) >= 0)
-            ret << data.mid(start, end - start);
+            ret << data.mid(start, end - EOL.length() - start);
     }
 
     return ret;
@@ -221,13 +214,8 @@ bool RequestParser::parseContent(const QByteArray& data)
     // Parse url-encoded POST data
     if (m_request.headers["content-type"].startsWith("application/x-www-form-urlencoded")) {
         QUrl url;
-#ifndef QBT_USES_QT5
-        url.setEncodedQuery(data);
-        QListIterator<QPair<QString, QString> > i(url.queryItems());
-#else
         url.setQuery(data);
         QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems(QUrl::FullyDecoded));
-#endif
         while (i.hasNext()) {
             QPair<QString, QString> pair = i.next();
             m_request.posts[pair.first.toLower()] = pair.second;

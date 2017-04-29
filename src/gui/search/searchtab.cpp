@@ -30,6 +30,7 @@
 
 #include <QApplication>
 #include <QDir>
+#include <QMenu>
 #include <QMetaEnum>
 #include <QTreeView>
 #include <QStandardItemModel>
@@ -38,9 +39,7 @@
 #include <QLabel>
 #include <QPalette>
 #include <QVBoxLayout>
-#ifdef QBT_USES_QT5
 #include <QTableView>
-#endif
 
 #include "base/utils/misc.h"
 #include "base/preferences.h"
@@ -66,15 +65,16 @@ SearchTab::SearchTab(SearchWidget *parent)
 {
     m_ui->setupUi(this);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(m_ui->resultsBrowser->header());
     m_ui->resultsBrowser->header()->setParent(m_ui->resultsBrowser);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
+
+    loadSettings();
     m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setStretchLastSection(false);
 
     // Set Search results list model
     m_searchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS, this);
@@ -83,6 +83,10 @@ SearchTab::SearchTab(SearchWidget *parent)
     m_searchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
     m_searchListModel->setHeaderData(SearchSortModel::LEECHES, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
     m_searchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+    // Set columns text alignment
+    m_searchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_searchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_searchListModel->setHeaderData(SearchSortModel::LEECHES, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
 
     m_proxyModel = new SearchSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
@@ -99,15 +103,31 @@ SearchTab::SearchTab(SearchWidget *parent)
     m_ui->resultsBrowser->setAllColumnsShowFocus(true);
     m_ui->resultsBrowser->setSortingEnabled(true);
 
+    //Ensure that at least one column is visible at all times
+    bool atLeastOne = false;
+    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; i++) {
+        if (!m_ui->resultsBrowser->isColumnHidden(i)) {
+            atLeastOne = true;
+            break;
+        }
+    }
+    if (!atLeastOne)
+        m_ui->resultsBrowser->setColumnHidden(SearchSortModel::NAME, false);
+    //To also mitigate the above issue, we have to resize each column when
+    //its size is 0, because explicitly 'showing' the column isn't enough
+    //in the above scenario.
+    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; i++)
+        if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
+            m_ui->resultsBrowser->resizeColumnToContents(i);
+
     // Connect signals to slots (search part)
     connect(m_ui->resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadItem(const QModelIndex&)));
 
-    // Load last columns width for search results list
-    if (!loadColWidthResultsList())
-        m_ui->resultsBrowser->header()->resizeSection(0, 275);
-
-    // Sort by Seeds
-    m_ui->resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
+    header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
+    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
+    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
+    connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
     fillFilterComboBoxes();
 
@@ -128,6 +148,7 @@ SearchTab::SearchTab(SearchWidget *parent)
 
 SearchTab::~SearchTab()
 {
+    saveSettings();
     delete m_ui;
 }
 
@@ -142,21 +163,6 @@ void SearchTab::downloadItem(const QModelIndex &index)
 QHeaderView* SearchTab::header() const
 {
     return m_ui->resultsBrowser->header();
-}
-
-bool SearchTab::loadColWidthResultsList()
-{
-    QString line = Preferences::instance()->getSearchColsWidth();
-    if (line.isEmpty()) return false;
-
-    QStringList widthList = line.split(' ');
-    if (widthList.size() > m_searchListModel->columnCount())
-        return false;
-
-    for (int i = 0; i < widthList.size(); ++i)
-        m_ui->resultsBrowser->header()->resizeSection(i, widthList.at(i).toInt());
-
-    return true;
 }
 
 QTreeView* SearchTab::getCurrentTreeView() const
@@ -302,4 +308,50 @@ SearchTab::NameFilteringMode SearchTab::filteringMode() const
     QMetaEnum metaEnum =
         this->metaObject()->enumerator(this->metaObject()->indexOfEnumerator("NameFilteringMode"));
     return static_cast<NameFilteringMode>(metaEnum.keyToValue(m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()).toByteArray()));
+}
+
+void SearchTab::loadSettings()
+{
+    header()->restoreState(Preferences::instance()->getSearchTabHeaderState());
+}
+
+void SearchTab::saveSettings() const
+{
+    Preferences::instance()->setSearchTabHeaderState(header()->saveState());
+}
+
+void SearchTab::displayToggleColumnsMenu(const QPoint&)
+{
+    QMenu hideshowColumn(this);
+    hideshowColumn.setTitle(tr("Column visibility"));
+    QList<QAction*> actions;
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+        QAction *myAct = hideshowColumn.addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        myAct->setCheckable(true);
+        myAct->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
+        actions.append(myAct);
+    }
+    int visibleCols = 0;
+    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; i++) {
+        if (!m_ui->resultsBrowser->isColumnHidden(i))
+            visibleCols++;
+
+        if (visibleCols > 1)
+            break;
+    }
+
+    // Call menu
+    QAction *act = hideshowColumn.exec(QCursor::pos());
+    if (act) {
+        int col = actions.indexOf(act);
+        Q_ASSERT(col >= 0);
+        Q_ASSERT(visibleCols > 0);
+        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (visibleCols == 1))
+            return;
+        qDebug("Toggling column %d visibility", col);
+        m_ui->resultsBrowser->setColumnHidden(col, !m_ui->resultsBrowser->isColumnHidden(col));
+        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (m_ui->resultsBrowser->columnWidth(col) <= 5))
+            m_ui->resultsBrowser->setColumnWidth(col, 100);
+        saveSettings();
+    }
 }

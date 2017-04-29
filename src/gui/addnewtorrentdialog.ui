@@ -170,7 +170,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="skip_check_cb">
+       <widget class="QCheckBox" name="skipCheckingCheckBox">
         <property name="text">
          <string>Skip hash check</string>
         </property>
@@ -191,6 +191,26 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="startTorrentCheckBox_2">
+        <property name="text">
+         <string>Start torrent</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="createSubfolderCheckBox">
+        <property name="text">
+         <string>Create subfolder</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -285,8 +305,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>308</width>
-           <height>74</height>
+           <width>321</width>
+           <height>69</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -403,7 +423,7 @@
   <tabstop>never_show_cb</tabstop>
   <tabstop>adv_button</tabstop>
   <tabstop>startTorrentCheckBox</tabstop>
-  <tabstop>skip_check_cb</tabstop>
+  <tabstop>skipCheckingCheckBox</tabstop>
   <tabstop>categoryComboBox</tabstop>
   <tabstop>defaultCategoryCheckbox</tabstop>
   <tabstop>scrollArea</tabstop>

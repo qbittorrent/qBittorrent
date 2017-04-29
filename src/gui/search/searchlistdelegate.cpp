@@ -28,7 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
@@ -46,18 +46,17 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 {
     painter->save();
 
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-    switch(index.column()) {
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
+    QItemDelegate::drawBackground(painter, opt, index);
+
+    switch (index.column()) {
     case SearchSortModel::SIZE:
-        QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case SearchSortModel::SEEDS:
-        QItemDelegate::drawBackground(painter, opt, index);
-        QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
-        break;
     case SearchSortModel::LEECHES:
-        QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
     default:
@@ -70,5 +69,5 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 QWidget *SearchListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
 {
     // No editor here
-    return 0;
+    return nullptr;
 }

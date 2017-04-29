@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>537</height>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,20 +15,31 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
-    <widget class="QCheckBox" name="checkEnableDownloader">
+    <widget class="QLabel" name="labelWarn">
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <italic>true</italic>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: red;</string>
+     </property>
      <property name="text">
-      <string>Enable Automated RSS Downloader</string>
+      <string>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QSplitter" name="hsplitter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -141,9 +152,6 @@
             <item row="0" column="1">
              <widget class="QLineEdit" name="lineContains"/>
             </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEFilter"/>
-            </item>
             <item row="0" column="2">
              <widget class="QLabel" name="lbl_must_stat">
               <property name="maximumSize">
@@ -154,8 +162,21 @@
               </property>
              </widget>
             </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="lbl_epfilter_stat">
+              <property name="maximumSize">
+               <size>
+                <width>18</width>
+                <height>18</height>
+               </size>
+              </property>
+             </widget>
+            </item>
             <item row="1" column="1">
              <widget class="QLineEdit" name="lineNotContains"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEFilter"/>
             </item>
            </layout>
           </item>
@@ -242,8 +263,14 @@
               <property name="enabled">
                <bool>true</bool>
               </property>
+              <property name="specialValueText">
+               <string>Disabled</string>
+              </property>
               <property name="suffix">
                <string> days</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
               </property>
               <property name="maximum">
                <number>365</number>
@@ -304,7 +331,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="lblListFeeds">
            <property name="font">
             <font>
              <weight>50</weight>
@@ -358,6 +385,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QPushButton" name="importBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>&amp;Import...</string>
        </property>
@@ -365,6 +395,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="exportBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>&amp;Export...</string>
        </property>

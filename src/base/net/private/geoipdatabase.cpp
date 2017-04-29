@@ -40,7 +40,7 @@ namespace
 {
     const quint32 __ENDIAN_TEST__ = 0x00000001;
     const bool __IS_LITTLE_ENDIAN__ = (reinterpret_cast<const uchar *>(&__ENDIAN_TEST__)[0] == 0x01);
-    const int MAX_FILE_SIZE = 10485760; // 10MB
+    const qint32 MAX_FILE_SIZE = 67108864; // 64MB
     const char DB_TYPE[] = "GeoLite2-Country";
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
     const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";
@@ -65,10 +65,6 @@ namespace
         Boolean = 14,
         Float = 15
     };
-
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR createMappedAddress(quint32 ip4);
-#endif
 }
 
 struct DataFieldDescriptor
@@ -166,13 +162,7 @@ QDateTime GeoIPDatabase::buildEpoch() const
 
 QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
 {
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR addr = hostAddr.protocol() == QAbstractSocket::IPv4Protocol
-            ? createMappedAddress(hostAddr.toIPv4Address())
-            : hostAddr.toIPv6Address();
-#else
     Q_IPV6ADDR addr = hostAddr.toIPv6Address();
-#endif
 
     const uchar *ptr = m_data;
 
@@ -495,26 +485,4 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, quint32 count) const
     }
 
     return array;
-}
-
-namespace
-{
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR createMappedAddress(quint32 ip4)
-    {
-        Q_IPV6ADDR ip6;
-        memset(&ip6, 0, sizeof(ip6));
-
-        int i;
-        for (i = 15; ip4 != 0; i--) {
-            ip6[i] = ip4 & 0xFF;
-            ip4 >>= 8;
-        }
-
-        ip6[11] = 0xFF;
-        ip6[10] = 0xFF;
-
-        return ip6;
-    }
-#endif
 }

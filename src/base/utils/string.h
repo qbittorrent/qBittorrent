@@ -39,8 +39,6 @@ namespace Utils
 {
     namespace String
     {
-        QString fromStdString(const std::string &str);
-        std::string toStdString(const QString &str);
         QString fromDouble(double n, int precision);
 
         // Implements constant-time comparison to protect against timing attacks
@@ -49,6 +47,8 @@ namespace Utils
 
         bool naturalCompareCaseSensitive(const QString &left, const QString &right);
         bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
+
+        QString wildcardToRegex(const QString &pattern);
     }
 }
 

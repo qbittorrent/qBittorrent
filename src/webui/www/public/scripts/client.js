@@ -367,6 +367,23 @@ window.addEvent('load', function () {
         }else
             document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
+
+        <!-- Statistics dialog -->
+        if (document.getElementById("statisticspage")) {
+            $('AlltimeDL').set('html', 'Alltime download: %1'.replace("%1", friendlyUnit(serverState.alltime_dl, false)));
+            $('AlltimeUL').set('html', 'Alltime upload: %1'.replace("%1", friendlyUnit(serverState.alltime_ul, false)));
+            $('TotalWastedSession').set('html', 'Total wasted (this session): %1'.replace("%1", friendlyUnit(serverState.total_wasted_session, false)));
+            $('GlobalRatio').set('html', 'Global ratio: %1'.replace("%1", serverState.global_ratio ));
+            $('TotalPeerConnections').set('html', 'Total peer connections: %1'.replace("%1", serverState.total_peer_connections ));
+            $('ReadCacheHits').set('html', 'Read cache hits: %1'.replace("%1", serverState.read_cache_hits ));
+            $('TotalBuffersSize').set('html', 'Total buffers size: %1'.replace("%1", friendlyUnit(serverState.total_buffers_size, false)));
+            $('WriteCacheOverload').set('html', 'Write cache overload: %1'.replace("%1", serverState.write_cache_overload ));
+            $('ReadCacheOverload').set('html', 'Read cache overload: %1'.replace("%1", serverState.read_cache_overload ));
+            $('QueuedIOJobs').set('html', 'Queued I/O jobs: %1'.replace("%1", serverState.queued_io_jobs ));
+            $('AverageTimeInQueue').set('html', 'Average time in queue: %1'.replace("%1", serverState.average_time_queue ));
+            $('TotalQueuedSize').set('html', 'Total queued size: %1'.replace("%1", friendlyUnit(serverState.total_queued_size, false) ));
+        }
+
         if (serverState.connection_status == "connected")
             $('connectionStatus').src = 'images/skin/connected.png';
         else if (serverState.connection_status == "firewalled")
@@ -450,6 +467,8 @@ window.addEvent('load', function () {
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
         processServerState();
     });
+
+    $('StatisticsLink').addEvent('click', StatisticsLinkFN); 
 
     new MochaUI.Panel({
         id : 'transferList',
@@ -629,6 +648,10 @@ var loadTorrentPeersData = function(){
                 if (response['peers']) {
                     for (var key in response['peers']) {
                         response['peers'][key]['rowId'] = key;
+
+                        if (response['peers'][key]['client'])
+                            response['peers'][key]['client'] = escapeHtml(response['peers'][key]['client']);
+
                         torrentPeersTable.updateRowData(response['peers'][key]);
                     }
                 }

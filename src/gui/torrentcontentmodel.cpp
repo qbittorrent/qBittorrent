@@ -122,7 +122,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     if (!index.isValid())
         return false;
 
-    if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
         TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d", qPrintable(item->name()), value.toInt());
         if (item->priority() != value.toInt()) {
@@ -181,23 +181,26 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
-    if ((index.column() == 0) && (role == Qt::DecorationRole)) {
+
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
         else
             return getFileIcon();
     }
-    if ((index.column() == 0) && (role == Qt::CheckStateRole)) {
+
+    if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
             return Qt::Unchecked;
         if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::MIXED)
             return Qt::PartiallyChecked;
         return Qt::Checked;
     }
-    if (role != Qt::DisplayRole)
-        return QVariant();
 
-    return item->data(index.column());
+    if (role == Qt::DisplayRole)
+        return item->data(index.column());
+
+    return QVariant();
 }
 
 Qt::ItemFlags TorrentContentModel::flags(const QModelIndex& index) const
@@ -285,17 +288,18 @@ void TorrentContentModel::clear()
 void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
 {
     qDebug("setup model data called");
-    if (info.filesCount() <= 0)
+    const int filesCount = info.filesCount();
+    if (filesCount <= 0)
         return;
 
     emit layoutAboutToBeChanged();
     // Initialize files_index array
-    qDebug("Torrent contains %d files", info.filesCount());
-    m_filesIndex.reserve(info.filesCount());
+    qDebug("Torrent contains %d files", filesCount);
+    m_filesIndex.reserve(filesCount);
 
     TorrentContentModelFolder* currentParent;
     // Iterate over files
-    for (int i = 0; i < info.filesCount(); ++i) {
+    for (int i = 0; i < filesCount; ++i) {
         currentParent = m_rootItem;
         QString path = Utils::Fs::fromNativePath(info.filePath(i));
         // Iterate of parts of the path to create necessary folders

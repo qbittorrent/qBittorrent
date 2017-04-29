@@ -28,6 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "peerlistwidget.h"
+
+#include <QApplication>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QSet>
@@ -35,9 +38,8 @@
 #include <QMenu>
 #include <QClipboard>
 #include <QMessageBox>
-#ifdef QBT_USES_QT5
+#include <QWheelEvent>
 #include <QTableView>
-#endif
 
 #include "base/net/reverseresolution.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -52,7 +54,6 @@
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
-#include "peerlistwidget.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
@@ -68,7 +69,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false);
     // List Model
-    m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
+    m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT, this);
     m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country")); // Country flag column
     m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
     m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
@@ -82,8 +83,16 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
     m_listModel->setHeaderData(PeerListDelegate::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
+    // Set header text alignment
+    m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::PROGRESS, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::DOWN_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::UP_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
-    m_proxyModel = new PeerListSortModel();
+    m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
@@ -93,7 +102,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
     if (!m_resolveCountries)
         hideColumn(PeerListDelegate::COUNTRY);
-    //Ensure that at least one column is visible at all times
+    // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
     for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++) {
         if (!isColumnHidden(i)) {
@@ -103,9 +112,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     }
     if (!atLeastOne)
         setColumnHidden(PeerListDelegate::IP, false);
-    //To also mitigate the above issue, we have to resize each column when
-    //its size is 0, because explicitly 'showing' the column isn't enough
-    //in the above scenario.
+    // To also mitigate the above issue, we have to resize each column when
+    // its size is 0, because explicitly 'showing' the column isn't enough
+    // in the above scenario.
     for (unsigned int i = 0; i < PeerListDelegate::IP_HIDDEN; i++)
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
@@ -121,37 +130,31 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     updatePeerHostNameResolutionState();
     // SIGNAL/SLOT
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
+    connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayToggleColumnsMenu(const QPoint&)));
     connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
     handleSortColumnChanged(header()->sortIndicatorSection());
-    m_copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(this->header());
     this->header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
 }
 
 PeerListWidget::~PeerListWidget()
 {
     saveSettings();
-    delete m_proxyModel;
-    delete m_listModel;
-    delete m_listDelegate;
     if (m_resolver)
         delete m_resolver;
-    delete m_copyHotkey;
 }
 
-void PeerListWidget::displayToggleColumnsMenu(const QPoint&)
+void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
 {
     QMenu hideshowColumn(this);
     hideshowColumn.setTitle(tr("Column visibility"));
-    QList<QAction*> actions;
+    QList<QAction *> actions;
     for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
         if ((i == PeerListDelegate::COUNTRY) && !Preferences::instance()->resolvePeerCountries()) {
             actions.append(nullptr); // keep the index in sync
@@ -192,7 +195,7 @@ void PeerListWidget::updatePeerHostNameResolutionState()
     if (Preferences::instance()->resolvePeerHostNames()) {
         if (!m_resolver) {
             m_resolver = new Net::ReverseResolution(this);
-            connect(m_resolver, SIGNAL(ipResolved(QString, QString)), SLOT(handleResolved(QString, QString)));
+            connect(m_resolver, SIGNAL(ipResolved(QString,QString)), SLOT(handleResolved(QString,QString)));
             loadPeers(m_properties->getCurrentTorrent(), true);
         }
     }
@@ -217,7 +220,7 @@ void PeerListWidget::updatePeerCountryResolutionState()
     }
 }
 
-void PeerListWidget::showPeerListMenu(const QPoint&)
+void PeerListWidget::showPeerListMenu(const QPoint &)
 {
     QMenu menu;
     bool emptyMenu = true;
@@ -361,7 +364,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
     // Delete peers that are gone
     QSetIterator<QString> it(oldeersSet);
     while (it.hasNext()) {
-        const QString& ip = it.next();
+        const QString &ip = it.next();
         m_missingFlags.remove(ip);
         m_peerAddresses.remove(ip);
         QStandardItem *item = m_peerItems.take(ip);
@@ -369,7 +372,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
     }
 }
 
-QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
+QStandardItem *PeerListWidget::addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
 {
     int row = m_listModel->rowCount();
     // Adding Peer to peer list
@@ -392,7 +395,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, BitTorrent::TorrentHan
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), peer.connectionType());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client());
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client().toHtmlEscaped());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
@@ -423,7 +426,7 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client());
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client().toHtmlEscaped());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
@@ -455,3 +458,16 @@ void PeerListWidget::handleSortColumnChanged(int col)
     }
 }
 
+void PeerListWidget::wheelEvent(QWheelEvent *event)
+{
+    event->accept();
+
+    if (event->modifiers() & Qt::ShiftModifier) {
+        // Shift + scroll = horizontal scroll
+        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
+}

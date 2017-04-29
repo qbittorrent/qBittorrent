@@ -51,13 +51,20 @@
 #include "app/application.h"
 #include "base/bittorrent/session.h"
 #include "base/net/dnsupdater.h"
+#include "base/net/portforwarder.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
+#include "base/rss/rss_autodownloader.h"
+#include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
+#include "rss/automatedrssdownloader.h"
+#include "banlistoptions.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 
@@ -78,8 +85,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("chronometer"));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("speedometer", "chronometer"));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(GuiIconProvider::instance()->getIcon("rss-config", "application-rss+xml"));
 #ifndef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
 #else
@@ -119,11 +127,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         }
     }
 
-#ifndef QBT_USES_QT5
-    m_ui->scanFoldersView->header()->setResizeMode(QHeaderView::ResizeToContents);
-#else
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#endif
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
     m_ui->scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, m_ui->scanFoldersView));
     connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(enableApplyButton()));
@@ -149,6 +153,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 #if defined(QT_NO_OPENSSL)
     m_ui->checkWebUiHttps->setVisible(false);
+    m_ui->checkSmtpSSL->setVisible(false);
 #endif
 
 #ifndef Q_OS_WIN
@@ -213,6 +218,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkCreateSubfolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -304,6 +310,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     // Misc tab
     connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->textFilterPath, SLOT(setEnabled(bool)));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->browseFilterButton, SLOT(setEnabled(bool)));
+    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->IpFilterRefreshBtn, SLOT(setEnabled(bool)));
     connect(m_ui->checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(m_ui->textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkEnableQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -330,6 +339,15 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
     connect(m_ui->DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
 #endif
+
+    // RSS tab
+    connect(m_ui->checkRSSEnable, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkRSSAutoDownloaderEnable, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->spinRSSRefreshInterval, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->spinRSSMaxArticlesPerFeed, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->btnEditRules, &QPushButton::clicked, [this]() { AutomatedRssDownloader(this).exec(); });
+
     // Disable apply Button
     applyButton->setEnabled(false);
     // Tab selection mechanism
@@ -495,6 +513,11 @@ void OptionsDialog::saveOptions()
     app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
     // End General preferences
 
+    RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
+    RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
+    RSS::Session::instance()->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
+    RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
+
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
@@ -506,18 +529,19 @@ void OptionsDialog::saveOptions()
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
     session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->text()));
-    pref->useIncompleteFilesExtension(m_ui->checkAppendqB->isChecked());
-    pref->preAllocateAllFiles(preAllocateAllFiles());
+    session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
+    session->setPreallocationEnabled(preAllocateAllFiles());
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
+    session->setCreateTorrentSubfolder(m_ui->checkCreateSubfolder->isChecked());
     ScanFoldersModel::instance()->removeFromFSWatcher(removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
     removedScanDirs.clear();
     addedScanDirs.clear();
-    pref->setTorrentExportDir(getTorrentExportDir());
-    pref->setFinishedTorrentExportDir(getFinishedTorrentExportDir());
+    session->setTorrentExportDirectory(getTorrentExportDir());
+    session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
     pref->setMailNotificationEmail(m_ui->dest_email_txt->text());
     pref->setMailNotificationSMTP(m_ui->smtp_server_txt->text());
@@ -535,61 +559,66 @@ void OptionsDialog::saveOptions()
     // End Downloads preferences
 
     // Connection preferences
-    pref->setSessionPort(getPort());
-    pref->setRandomPort(m_ui->checkRandomPort->isChecked());
-    pref->setUPnPEnabled(isUPnPEnabled());
+    session->setPort(getPort());
+    session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
+    Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
     const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
-    pref->setGlobalDownloadLimit(down_up_limit.first);
-    pref->setGlobalUploadLimit(down_up_limit.second);
-    pref->setuTPEnabled(m_ui->checkuTP->isChecked());
-    pref->setuTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
-    pref->includeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
-    pref->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
+    session->setGlobalDownloadSpeedLimit(down_up_limit.first);
+    session->setGlobalUploadSpeedLimit(down_up_limit.second);
+    session->setUTPEnabled(m_ui->checkuTP->isChecked());
+    session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
+    session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
+    session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
     const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
-    pref->setAltGlobalDownloadLimit(alt_down_up_limit.first);
-    pref->setAltGlobalUploadLimit(alt_down_up_limit.second);
-    pref->setSchedulerEnabled(m_ui->check_schedule->isChecked());
+    session->setAltGlobalDownloadSpeedLimit(alt_down_up_limit.first);
+    session->setAltGlobalUploadSpeedLimit(alt_down_up_limit.second);
+    session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
     pref->setSchedulerStartTime(m_ui->schedule_from->time());
     pref->setSchedulerEndTime(m_ui->schedule_to->time());
     pref->setSchedulerDays((scheduler_days)m_ui->schedule_days->currentIndex());
-    pref->setProxyType(getProxyType());
-    pref->setProxyIp(getProxyIp());
-    pref->setProxyPort(getProxyPort());
-    pref->setProxyPeerConnections(m_ui->checkProxyPeerConnecs->isChecked());
-    pref->setForceProxy(m_ui->checkForceProxy->isChecked());
-    pref->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
-    pref->setProxyAuthEnabled(isProxyAuthEnabled());
-    pref->setProxyUsername(getProxyUsername());
-    pref->setProxyPassword(getProxyPassword());
+
+    auto proxyConfigManager  = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConf;
+    proxyConf.type = getProxyType();
+    proxyConf.ip = getProxyIp();
+    proxyConf.port = getProxyPort();
+    proxyConf.username = getProxyUsername();
+    proxyConf.password = getProxyPassword();
+    proxyConfigManager->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
+    proxyConfigManager->setProxyConfiguration(proxyConf);
+
+    session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
+    session->setForceProxyEnabled(m_ui->checkForceProxy->isChecked());
     // End Connection preferences
+
     // Bittorrent preferences
-    pref->setMaxConnecs(getMaxConnecs());
-    pref->setMaxConnecsPerTorrent(getMaxConnecsPerTorrent());
-    pref->setMaxUploads(getMaxUploads());
-    pref->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
-    pref->setDHTEnabled(isDHTEnabled());
-    pref->setPeXEnabled(m_ui->checkPeX->isChecked());
-    pref->setLSDEnabled(isLSDEnabled());
-    pref->setEncryptionSetting(getEncryptionSetting());
-    pref->enableAnonymousMode(m_ui->checkAnonymousMode->isChecked());
-    pref->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
-    pref->setTrackersList(m_ui->textTrackers->toPlainText());
-    pref->setGlobalMaxRatio(getMaxRatio());
+    session->setMaxConnections(getMaxConnecs());
+    session->setMaxConnectionsPerTorrent(getMaxConnecsPerTorrent());
+    session->setMaxUploads(getMaxUploads());
+    session->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
+    session->setDHTEnabled(isDHTEnabled());
+    session->setPeXEnabled(m_ui->checkPeX->isChecked());
+    session->setLSDEnabled(isLSDEnabled());
+    session->setEncryption(getEncryptionSetting());
+    session->setAnonymousModeEnabled(m_ui->checkAnonymousMode->isChecked());
+    session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
+    session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
+    session->setGlobalMaxRatio(getMaxRatio());
     session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
     // Misc preferences
     // * IPFilter
-    pref->setFilteringEnabled(isFilteringEnabled());
-    pref->setFilteringTrackerEnabled(m_ui->checkIpFilterTrackers->isChecked());
-    pref->setFilter(m_ui->textFilterPath->text());
+    session->setIPFilteringEnabled(isIPFilteringEnabled());
+    session->setTrackerFilteringEnabled(m_ui->checkIpFilterTrackers->isChecked());
+    session->setIPFilterFile(m_ui->textFilterPath->text());
     // End IPFilter preferences
     // Queueing system
-    pref->setQueueingSystemEnabled(isQueueingSystemEnabled());
-    pref->setMaxActiveDownloads(m_ui->spinMaxActiveDownloads->value());
-    pref->setMaxActiveUploads(m_ui->spinMaxActiveUploads->value());
-    pref->setMaxActiveTorrents(m_ui->spinMaxActiveTorrents->value());
-    pref->setIgnoreSlowTorrentsForQueueing(m_ui->checkIgnoreSlowTorrentsForQueueing->isChecked());
+    session->setQueueingSystemEnabled(isQueueingSystemEnabled());
+    session->setMaxActiveDownloads(m_ui->spinMaxActiveDownloads->value());
+    session->setMaxActiveUploads(m_ui->spinMaxActiveUploads->value());
+    session->setMaxActiveTorrents(m_ui->spinMaxActiveTorrents->value());
+    session->setIgnoreSlowTorrentsForQueueing(m_ui->checkIgnoreSlowTorrentsForQueueing->isChecked());
     // End Queueing system preferences
     // Web UI
     pref->setWebUiEnabled(isWebUiEnabled());
@@ -620,34 +649,33 @@ void OptionsDialog::saveOptions()
     pref->apply();
 }
 
-bool OptionsDialog::isFilteringEnabled() const
+bool OptionsDialog::isIPFilteringEnabled() const
 {
     return m_ui->checkIPFilter->isChecked();
 }
 
-int OptionsDialog::getProxyType() const
+Net::ProxyType OptionsDialog::getProxyType() const
 {
     switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
-        return Proxy::SOCKS4;
+        return Net::ProxyType::SOCKS4;
         break;
     case 2:
         if (isProxyAuthEnabled())
-            return Proxy::SOCKS5_PW;
-        return Proxy::SOCKS5;
+            return Net::ProxyType::SOCKS5_PW;
+        return Net::ProxyType::SOCKS5;
     case 3:
         if (isProxyAuthEnabled())
-            return Proxy::HTTP_PW;
-        return Proxy::HTTP;
+            return Net::ProxyType::HTTP_PW;
+        return Net::ProxyType::HTTP;
     default:
-        return -1;
+        return Net::ProxyType::None;
     }
 }
 
 void OptionsDialog::loadOptions()
 {
     int intValue;
-    qreal floatValue;
     QString strValue;
     bool fileLogBackup = true;
     bool fileLogDelete = true;
@@ -702,12 +730,18 @@ void OptionsDialog::loadOptions()
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
 
+    m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
+    m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
+    m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
+    m_ui->spinRSSMaxArticlesPerFeed->setValue(RSS::Session::instance()->maxArticlesPerFeed());
+
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
+    m_ui->checkCreateSubfolder->setChecked(session->isCreateTorrentSubfolder());
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -722,10 +756,10 @@ void OptionsDialog::loadOptions()
     m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
     m_ui->browseTempDirButton->setEnabled(m_ui->checkTempFolder->isChecked());
     m_ui->textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
-    m_ui->checkAppendqB->setChecked(pref->useIncompleteFilesExtension());
-    m_ui->checkPreallocateAll->setChecked(pref->preAllocateAllFiles());
+    m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
+    m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
 
-    strValue = Utils::Fs::toNativePath(pref->getTorrentExportDir());
+    strValue = Utils::Fs::toNativePath(session->torrentExportDirectory());
     if (strValue.isEmpty()) {
         // Disable
         m_ui->checkExportDir->setChecked(false);
@@ -740,7 +774,7 @@ void OptionsDialog::loadOptions()
         m_ui->textExportDir->setText(strValue);
     }
 
-    strValue = Utils::Fs::toNativePath(pref->getFinishedTorrentExportDir());
+    strValue = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     if (strValue.isEmpty()) {
         // Disable
         m_ui->checkExportDirFin->setChecked(false);
@@ -776,12 +810,12 @@ void OptionsDialog::loadOptions()
     // End Downloads preferences
 
     // Connection preferences
-    m_ui->checkUPnP->setChecked(pref->isUPnPEnabled());
-    m_ui->checkRandomPort->setChecked(pref->useRandomPort());
-    m_ui->spinPort->setValue(pref->getSessionPort());
+    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
+    m_ui->checkRandomPort->setChecked(session->useRandomPort());
+    m_ui->spinPort->setValue(session->port());
     m_ui->spinPort->setDisabled(m_ui->checkRandomPort->isChecked());
 
-    intValue = pref->getMaxConnecs();
+    intValue = session->maxConnections();
     if (intValue > 0) {
         // enable
         m_ui->checkMaxConnecs->setChecked(true);
@@ -793,7 +827,7 @@ void OptionsDialog::loadOptions()
         m_ui->checkMaxConnecs->setChecked(false);
         m_ui->spinMaxConnec->setEnabled(false);
     }
-    intValue = pref->getMaxConnecsPerTorrent();
+    intValue = session->maxConnectionsPerTorrent();
     if (intValue > 0) {
         // enable
         m_ui->checkMaxConnecsPerTorrent->setChecked(true);
@@ -805,7 +839,7 @@ void OptionsDialog::loadOptions()
         m_ui->checkMaxConnecsPerTorrent->setChecked(false);
         m_ui->spinMaxConnecPerTorrent->setEnabled(false);
     }
-    intValue = pref->getMaxUploads();
+    intValue = session->maxUploads();
     if (intValue > 0) {
         // enable
         m_ui->checkMaxUploads->setChecked(true);
@@ -817,7 +851,7 @@ void OptionsDialog::loadOptions()
         m_ui->checkMaxUploads->setChecked(false);
         m_ui->spinMaxUploads->setEnabled(false);
     }
-    intValue = pref->getMaxUploadsPerTorrent();
+    intValue = session->maxUploadsPerTorrent();
     if (intValue > 0) {
         // enable
         m_ui->checkMaxUploadsPerTorrent->setChecked(true);
@@ -830,39 +864,53 @@ void OptionsDialog::loadOptions()
         m_ui->spinMaxUploadsPerTorrent->setEnabled(false);
     }
 
-    intValue = pref->getProxyType();
-    switch (intValue) {
-    case Proxy::SOCKS4:
+    auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
+    using Net::ProxyType;
+    bool useProxyAuth = false;
+    switch (proxyConf.type) {
+    case ProxyType::SOCKS4:
         m_ui->comboProxyType->setCurrentIndex(1);
         break;
-    case Proxy::SOCKS5:
-    case Proxy::SOCKS5_PW:
+
+    case ProxyType::SOCKS5_PW:
+        useProxyAuth = true;
+        // fallthrough
+    case ProxyType::SOCKS5:
         m_ui->comboProxyType->setCurrentIndex(2);
         break;
-    case Proxy::HTTP:
-    case Proxy::HTTP_PW:
+
+    case ProxyType::HTTP_PW:
+        useProxyAuth = true;
+        // fallthrough
+    case ProxyType::HTTP:
         m_ui->comboProxyType->setCurrentIndex(3);
         break;
+
     default:
         m_ui->comboProxyType->setCurrentIndex(0);
     }
-    enableProxy(m_ui->comboProxyType->currentIndex());
-    m_ui->textProxyIP->setText(pref->getProxyIp());
-    m_ui->spinProxyPort->setValue(pref->getProxyPort());
-    m_ui->checkProxyPeerConnecs->setChecked(pref->proxyPeerConnections());
-    m_ui->checkForceProxy->setChecked(pref->getForceProxy());
-    m_ui->isProxyOnlyForTorrents->setChecked(pref->isProxyOnlyForTorrents());
-    m_ui->checkProxyAuth->setChecked(pref->isProxyAuthEnabled());
-    m_ui->textProxyUsername->setText(pref->getProxyUsername());
-    m_ui->textProxyPassword->setText(pref->getProxyPassword());
+    m_ui->textProxyIP->setText(proxyConf.ip);
+    m_ui->spinProxyPort->setValue(proxyConf.port);
+    m_ui->checkProxyAuth->setChecked(useProxyAuth);
+    m_ui->textProxyUsername->setText(proxyConf.username);
+    m_ui->textProxyPassword->setText(proxyConf.password);
 
-    m_ui->checkIPFilter->setChecked(pref->isFilteringEnabled());
-    m_ui->checkIpFilterTrackers->setChecked(pref->isFilteringTrackerEnabled());
-    m_ui->textFilterPath->setText(Utils::Fs::toNativePath(pref->getFilter()));
+    m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
+    m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
+    enableProxy(m_ui->comboProxyType->currentIndex());
+
+    m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
+    m_ui->textFilterPath->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->textFilterPath->setText(Utils::Fs::toNativePath(session->IPFilterFile()));
+    m_ui->browseFilterButton->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->IpFilterRefreshBtn->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
     // End Connection preferences
 
     // Speed preferences
-    intValue = pref->getGlobalDownloadLimit();
+    intValue = session->globalDownloadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkDownloadLimit->setChecked(true);
@@ -874,8 +922,8 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimit->setChecked(false);
         m_ui->spinDownloadLimit->setEnabled(false);
     }
-    intValue = pref->getGlobalUploadLimit();
-    if (intValue != -1) {
+    intValue = session->globalUploadSpeedLimit() / 1024;
+    if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimit->setChecked(true);
         m_ui->spinUploadLimit->setEnabled(true);
@@ -887,7 +935,7 @@ void OptionsDialog::loadOptions()
         m_ui->spinUploadLimit->setEnabled(false);
     }
 
-    intValue = pref->getAltGlobalDownloadLimit();
+    intValue = session->altGlobalDownloadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkDownloadLimitAlt->setChecked(true);
@@ -899,8 +947,8 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
     }
-    intValue = pref->getAltGlobalUploadLimit();
-    if (intValue != -1) {
+    intValue = session->altGlobalUploadSpeedLimit() / 1024;
+    if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimitAlt->setChecked(true);
         m_ui->spinUploadLimitAlt->setEnabled(true);
@@ -912,40 +960,39 @@ void OptionsDialog::loadOptions()
         m_ui->spinUploadLimitAlt->setEnabled(false);
     }
 
-    m_ui->checkuTP->setChecked(pref->isuTPEnabled());
+    m_ui->checkuTP->setChecked(session->isUTPEnabled());
     m_ui->checkLimituTPConnections->setEnabled(m_ui->checkuTP->isChecked());
-    m_ui->checkLimituTPConnections->setChecked(pref->isuTPRateLimited());
-    m_ui->checkLimitTransportOverhead->setChecked(pref->includeOverheadInLimits());
-    m_ui->checkLimitLocalPeerRate->setChecked(!pref->getIgnoreLimitsOnLAN());
+    m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
+    m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
+    m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
-    m_ui->check_schedule->setChecked(pref->isSchedulerEnabled());
+    m_ui->check_schedule->setChecked(session->isBandwidthSchedulerEnabled());
     m_ui->schedule_from->setTime(pref->getSchedulerStartTime());
     m_ui->schedule_to->setTime(pref->getSchedulerEndTime());
     m_ui->schedule_days->setCurrentIndex((int)pref->getSchedulerDays());
     // End Speed preferences
 
     // Bittorrent preferences
-    m_ui->checkDHT->setChecked(pref->isDHTEnabled());
-    m_ui->checkPeX->setChecked(pref->isPeXEnabled());
-    m_ui->checkLSD->setChecked(pref->isLSDEnabled());
-    m_ui->comboEncryption->setCurrentIndex(pref->getEncryptionSetting());
-    m_ui->checkAnonymousMode->setChecked(pref->isAnonymousModeEnabled());
-    m_ui->checkEnableAddTrackers->setChecked(pref->isAddTrackersEnabled());
-    m_ui->textTrackers->setPlainText(pref->getTrackersList());
+    m_ui->checkDHT->setChecked(session->isDHTEnabled());
+    m_ui->checkPeX->setChecked(session->isPeXEnabled());
+    m_ui->checkLSD->setChecked(session->isLSDEnabled());
+    m_ui->comboEncryption->setCurrentIndex(session->encryption());
+    m_ui->checkAnonymousMode->setChecked(session->isAnonymousModeEnabled());
+    m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
+    m_ui->textTrackers->setPlainText(session->additionalTrackers());
 
-    m_ui->checkEnableQueueing->setChecked(pref->isQueueingSystemEnabled());
-    m_ui->spinMaxActiveDownloads->setValue(pref->getMaxActiveDownloads());
-    m_ui->spinMaxActiveUploads->setValue(pref->getMaxActiveUploads());
-    m_ui->spinMaxActiveTorrents->setValue(pref->getMaxActiveTorrents());
-    m_ui->checkIgnoreSlowTorrentsForQueueing->setChecked(pref->ignoreSlowTorrentsForQueueing());
+    m_ui->checkEnableQueueing->setChecked(session->isQueueingSystemEnabled());
+    m_ui->spinMaxActiveDownloads->setValue(session->maxActiveDownloads());
+    m_ui->spinMaxActiveUploads->setValue(session->maxActiveUploads());
+    m_ui->spinMaxActiveTorrents->setValue(session->maxActiveTorrents());
+    m_ui->checkIgnoreSlowTorrentsForQueueing->setChecked(session->ignoreSlowTorrentsForQueueing());
 
-    floatValue = pref->getGlobalMaxRatio();
-    if (floatValue >= 0.) {
+    if (session->globalMaxRatio() >= 0.) {
         // Enable
         m_ui->checkMaxRatio->setChecked(true);
         m_ui->spinMaxRatio->setEnabled(true);
         m_ui->comboRatioLimitAct->setEnabled(true);
-        m_ui->spinMaxRatio->setValue(floatValue);
+        m_ui->spinMaxRatio->setValue(session->globalMaxRatio());
     }
     else {
         // Disable
@@ -961,8 +1008,8 @@ void OptionsDialog::loadOptions()
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
     m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
-    setSslCertificate(pref->getWebUiHttpsCertificate(), false);
-    setSslKey(pref->getWebUiHttpsKey(), false);
+    setSslCertificate(pref->getWebUiHttpsCertificate());
+    setSslKey(pref->getWebUiHttpsKey());
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
     m_ui->textWebUiPassword->setText(pref->getWebUiPassword());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
@@ -985,7 +1032,7 @@ int OptionsDialog::getPort() const
 void OptionsDialog::on_randomButton_clicked()
 {
     // Range [1024: 65535]
-    m_ui->spinPort->setValue(rand() % 64512 + 1024);
+    m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
 }
 
 int OptionsDialog::getEncryptionSetting() const
@@ -1044,11 +1091,11 @@ bool OptionsDialog::isUPnPEnabled() const
 // [download,upload]
 QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 {
-    int DL = -1, UP = -1;
+    int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimit->isChecked())
-        DL = m_ui->spinDownloadLimit->value();
+        DL = m_ui->spinDownloadLimit->value() * 1024;
     if (m_ui->checkUploadLimit->isChecked())
-        UP = m_ui->spinUploadLimit->value();
+        UP = m_ui->spinUploadLimit->value() * 1024;
     return qMakePair(DL, UP);
 }
 
@@ -1056,11 +1103,11 @@ QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
 // [download,upload]
 QPair<int, int> OptionsDialog::getAltGlobalBandwidthLimits() const
 {
-    int DL = -1, UP = -1;
+    int DL = 0, UP = 0;
     if (m_ui->checkDownloadLimitAlt->isChecked())
-        DL = m_ui->spinDownloadLimitAlt->value();
+        DL = m_ui->spinDownloadLimitAlt->value() * 1024;
     if (m_ui->checkUploadLimitAlt->isChecked())
-        UP = m_ui->spinUploadLimitAlt->value();
+        UP = m_ui->spinUploadLimitAlt->value() * 1024;
     return qMakePair(DL, UP);
 }
 
@@ -1182,13 +1229,15 @@ void OptionsDialog::enableProxy(int index)
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
         m_ui->checkForceProxy->setEnabled(true);
-        m_ui->isProxyOnlyForTorrents->setEnabled(true);
         if (index > 1) {
             m_ui->checkProxyAuth->setEnabled(true);
+            m_ui->isProxyOnlyForTorrents->setEnabled(true);
         }
         else {
             m_ui->checkProxyAuth->setEnabled(false);
             m_ui->checkProxyAuth->setChecked(false);
+            m_ui->isProxyOnlyForTorrents->setEnabled(false);
+            m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
     }
     else {
@@ -1280,7 +1329,10 @@ void OptionsDialog::setLocale(const QString &localeStr)
     }
     else {
         QLocale locale(localeStr);
-        name = locale.name();
+        if (locale.language() == QLocale::Uzbek)
+            name = "uz@Latn";
+        else
+            name = locale.name();
     }
     // Attempt to find exact match
     int index = m_ui->comboI18n->findData(name, Qt::UserRole);
@@ -1294,7 +1346,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     }
     if (index < 0) {
         // Unrecognized, use US English
-        index = m_ui->comboI18n->findData(QLocale("en").name(), Qt::UserRole);
+        index = m_ui->comboI18n->findData("en", Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
     m_ui->comboI18n->setCurrentIndex(index);
@@ -1489,26 +1541,32 @@ void OptionsDialog::showConnectionTab()
 
 void OptionsDialog::on_btnWebUiCrt_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Certificate") + QString(" (*.crt *.pem)"));
-    if (filename.isNull())
+    const QString filename = QFileDialog::getOpenFileName(this, tr("Import SSL certificate"), QString(), tr("SSL Certificate") + QLatin1String(" (*.crt *.pem)"));
+    if (filename.isEmpty())
         return;
-    QFile file(filename);
-    if (file.open(QIODevice::ReadOnly)) {
-        setSslCertificate(file.readAll());
-        file.close();
-    }
+
+    QFile cert(filename);
+    if (!cert.open(QIODevice::ReadOnly))
+        return;
+
+    bool success = setSslCertificate(cert.read(1024 * 1024));
+    if (!success)
+        QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
 }
 
 void OptionsDialog::on_btnWebUiKey_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("SSL Key") + QString(" (*.key *.pem)"));
-    if (filename.isNull())
+    const QString filename = QFileDialog::getOpenFileName(this, tr("Import SSL key"), QString(), tr("SSL key") + QLatin1String(" (*.key *.pem)"));
+    if (filename.isEmpty())
         return;
-    QFile file(filename);
-    if (file.open(QIODevice::ReadOnly)) {
-        setSslKey(file.readAll());
-        file.close();
-    }
+
+    QFile key(filename);
+    if (!key.open(QIODevice::ReadOnly))
+        return;
+
+    bool success = setSslKey(key.read(1024 * 1024));
+    if (!success)
+        QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
 }
 
 void OptionsDialog::on_registerDNSBtn_clicked()
@@ -1521,13 +1579,12 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     if (m_refreshingIpFilter) return;
     m_refreshingIpFilter = true;
     // Updating program preferences
-    Preferences* const pref = Preferences::instance();
-    pref->setFilteringEnabled(true);
-    pref->setFilter(getFilter());
-    // Force refresh
-    connect(BitTorrent::Session::instance(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    session->setIPFilteringEnabled(true);
+    session->setIPFilterFile(""); // forcing Session reload filter file
+    session->setIPFilterFile(getFilter());
+    connect(session, SIGNAL(IPFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
     setCursor(QCursor(Qt::WaitCursor));
-    BitTorrent::Session::instance()->enableIPFilter(getFilter(), true);
 }
 
 void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
@@ -1538,7 +1595,7 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
     else
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
-    disconnect(BitTorrent::Session::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+    disconnect(BitTorrent::Session::instance(), SIGNAL(IPFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
 QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
@@ -1554,19 +1611,23 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
     case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
     case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
+    case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
     case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
     case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
     case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
     case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
     case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
     case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
+    case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
     case QLocale::Portuguese: {
         if (locale.country() == QLocale::Brazil)
             return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
         return QString::fromUtf8(C_LOCALE_PORTUGUESE);
     }
     case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+    case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
     case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
+    case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
     case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
     case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
     case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
@@ -1582,6 +1643,7 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
     case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
     case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
+    case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
     case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
     case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
     case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
@@ -1612,35 +1674,42 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     }
 }
 
-void OptionsDialog::setSslKey(const QByteArray &key, bool interactive)
+bool OptionsDialog::setSslKey(const QByteArray &key)
 {
 #ifndef QT_NO_OPENSSL
-    if (!key.isEmpty() && !QSslKey(key, QSsl::Rsa).isNull()) {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+    // try different formats
+    const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
+    if (isKeyValid) {
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslKey.clear();
-        if (interactive)
-            QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
     }
+    return isKeyValid;
+#else
+    Q_UNUSED(key);
+    return false;
 #endif
 }
 
-void OptionsDialog::setSslCertificate(const QByteArray &cert, bool interactive)
+bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 {
 #ifndef QT_NO_OPENSSL
-    if (!cert.isEmpty() && !QSslCertificate(cert).isNull()) {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+    const bool isCertValid = !QSslCertificate(cert).isNull();
+    if (isCertValid) {
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/oxygen/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
         m_sslCert.clear();
-        if (interactive)
-            QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
     }
+    return isCertValid;
+#else
+    Q_UNUSED(cert);
+    return false;
 #endif
 }
 
@@ -1664,4 +1733,11 @@ bool OptionsDialog::webUIAuthenticationOk()
         return false;
     }
     return true;
+}
+
+void OptionsDialog::on_banListButton_clicked()
+{
+    //have to call dialog window
+    BanListOptions bl(this);
+    bl.exec();
 }

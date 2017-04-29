@@ -28,6 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "trackerlist.h"
+
+#include <QApplication>
 #include <QTreeWidgetItem>
 #include <QStringList>
 #include <QMenu>
@@ -37,10 +40,8 @@
 #include <QDebug>
 #include <QUrl>
 #include <QMessageBox>
-#ifdef QBT_USES_QT5
 #include <QTableView>
 #include <QHeaderView>
-#endif
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -52,7 +53,6 @@
 #include "trackersadditiondlg.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
-#include "trackerlist.h"
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
   // Graphical settings
@@ -68,31 +68,32 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   header << "#";
   header << tr("URL");
   header << tr("Status");
+  header << tr("Received");
+  header << tr("Seeds");
   header << tr("Peers");
+  header << tr("Downloaded");
   header << tr("Message");
   setHeaderItem(new QTreeWidgetItem(header));
-  dht_item = new QTreeWidgetItem(QStringList() << "" << "** [DHT] **");
+  dht_item = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
-  pex_item = new QTreeWidgetItem(QStringList() << "" << "** [PeX] **");
+  pex_item = new QTreeWidgetItem({ "",  "** [PeX] **", "", "0", "", "", "0" });
   insertTopLevelItem(1, pex_item);
   setRowColor(1, QColor("grey"));
-  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **");
+  lsd_item = new QTreeWidgetItem({ "",  "** [LSD] **", "", "0", "", "", "0" });
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
-  editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
+  editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
   connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
-  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
-  copyHotkey = new QShortcut(QKeySequence(Qt::ControlModifier + Qt::Key_C), this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
+  deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
+  copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
 
-#ifdef QBT_USES_QT5
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(this->header());
     this->header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-#endif
 
   loadSettings();
 }
@@ -199,18 +200,22 @@ void TrackerList::moveSelectionDown() {
     torrent->forceReannounce();
 }
 
-void TrackerList::clear() {
-  qDeleteAll(tracker_items.values());
-  tracker_items.clear();
-  dht_item->setText(COL_PEERS, "");
-  dht_item->setText(COL_STATUS, "");
-  dht_item->setText(COL_MSG, "");
-  pex_item->setText(COL_PEERS, "");
-  pex_item->setText(COL_STATUS, "");
-  pex_item->setText(COL_MSG, "");
-  lsd_item->setText(COL_PEERS, "");
-  lsd_item->setText(COL_STATUS, "");
-  lsd_item->setText(COL_MSG, "");
+void TrackerList::clear()
+{
+    qDeleteAll(tracker_items.values());
+    tracker_items.clear();
+    dht_item->setText(COL_STATUS, "");
+    dht_item->setText(COL_SEEDS, "");
+    dht_item->setText(COL_PEERS, "");
+    dht_item->setText(COL_MSG, "");
+    pex_item->setText(COL_STATUS, "");
+    pex_item->setText(COL_SEEDS, "");
+    pex_item->setText(COL_PEERS, "");
+    pex_item->setText(COL_MSG, "");
+    lsd_item->setText(COL_STATUS, "");
+    lsd_item->setText(COL_SEEDS, "");
+    lsd_item->setText(COL_PEERS, "");
+    lsd_item->setText(COL_MSG, "");
 }
 
 void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
@@ -224,7 +229,7 @@ void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
     dht_item->setText(COL_STATUS, disabled);
 
   // Load PeX Information
-  if (BitTorrent::Session::instance()->isPexEnabled() && !torrent->isPrivate())
+  if (BitTorrent::Session::instance()->isPeXEnabled() && !torrent->isPrivate())
     pex_item->setText(COL_STATUS, working);
   else
     pex_item->setText(COL_STATUS, disabled);
@@ -242,20 +247,38 @@ void TrackerList::loadStickyItems(BitTorrent::TorrentHandle *const torrent) {
     lsd_item->setText(COL_MSG, privateMsg);
   }
 
-  // XXX: libtorrent should provide this info...
-  // Count peers from DHT, LSD, PeX
-  uint nb_dht = 0, nb_lsd = 0, nb_pex = 0;
-  foreach (const BitTorrent::PeerInfo &peer, torrent->peers()) {
-    if (peer.fromDHT())
-      ++nb_dht;
-    if (peer.fromLSD())
-      ++nb_lsd;
-    if (peer.fromPeX())
-      ++nb_pex;
-  }
-  dht_item->setText(COL_PEERS, QString::number(nb_dht));
-  pex_item->setText(COL_PEERS, QString::number(nb_pex));
-  lsd_item->setText(COL_PEERS, QString::number(nb_lsd));
+    // XXX: libtorrent should provide this info...
+    // Count peers from DHT, PeX, LSD
+    uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
+    foreach (const BitTorrent::PeerInfo &peer, torrent->peers()) {
+        if (peer.isConnecting()) continue;
+
+        if (peer.fromDHT()) {
+            if (peer.isSeed())
+                ++seedsDHT;
+            else
+                ++peersDHT;
+        }
+        if (peer.fromPeX()) {
+            if (peer.isSeed())
+                ++seedsPeX;
+            else
+                ++peersPeX;
+        }
+        if (peer.fromLSD()) {
+            if (peer.isSeed())
+                ++seedsLSD;
+            else
+                ++peersLSD;
+        }
+    }
+
+    dht_item->setText(COL_SEEDS, QString::number(seedsDHT));
+    dht_item->setText(COL_PEERS, QString::number(peersDHT));
+    pex_item->setText(COL_SEEDS, QString::number(seedsPeX));
+    pex_item->setText(COL_PEERS, QString::number(peersPeX));
+    lsd_item->setText(COL_SEEDS, QString::number(seedsLSD));
+    lsd_item->setText(COL_PEERS, QString::number(peersLSD));
 }
 
 void TrackerList::loadTrackers() {
@@ -299,8 +322,18 @@ void TrackerList::loadTrackers() {
         item->setText(COL_MSG, "");
         break;
     }
+    item->setText(COL_RECEIVED, QString::number(data.numPeers));
 
-    item->setText(COL_PEERS, QString::number(trackers_data.value(trackerUrl).numPeers));
+#if LIBTORRENT_VERSION_NUM >= 10000
+    item->setText(COL_SEEDS, QString::number(entry.nativeEntry().scrape_complete > 0 ? entry.nativeEntry().scrape_complete : 0));
+    item->setText(COL_PEERS, QString::number(entry.nativeEntry().scrape_incomplete > 0 ? entry.nativeEntry().scrape_incomplete : 0));
+    item->setText(COL_DOWNLOADED, QString::number(entry.nativeEntry().scrape_downloaded > 0 ? entry.nativeEntry().scrape_downloaded : 0));
+#else
+    item->setText(COL_SEEDS, "0");
+    item->setText(COL_PEERS, "0");
+    item->setText(COL_DOWNLOADED, "0");
+#endif
+
   }
   // Remove old trackers
   foreach (const QString &tracker, old_trackers_urls) {

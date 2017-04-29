@@ -63,6 +63,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/iconprovider.h"
@@ -70,8 +71,11 @@
 #include "base/net/smtp.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/rss/rss_autodownloader.h"
+#include "base/rss/rss_session.h"
 
 namespace
 {
@@ -92,16 +96,35 @@ namespace
 
     const QString LOG_FOLDER("logs");
     const char PARAMS_SEPARATOR[] = "|";
+
+    const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QLatin1String("profile");
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
     : BaseApplication(id, argc, argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
+    , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
+    qRegisterMetaType<Log::Msg>("Log::Msg");
+
+    setApplicationName("qBittorrent");
+    validateCommandLineParameters();
+
+    QString profileDir = m_commandLineArgs.portableMode
+        ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
+        : m_commandLineArgs.profileDir;
+
+    Profile::initialize(profileDir, m_commandLineArgs.configurationName,
+                        m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
+
     Logger::initInstance();
     SettingsStorage::initInstance();
     Preferences::initInstance();
+
+    if (m_commandLineArgs.webUiPort > 0) { // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    }
 
 #if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
     if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
@@ -110,12 +133,9 @@ Application::Application(const QString &id, int &argc, char **argv)
         QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
     }
 #endif
-    setApplicationName("qBittorrent");
     initializeTranslation();
 #ifndef DISABLE_GUI
-#ifdef QBT_USES_QT5
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-#endif // QBT_USES_QT5
     setQuitOnLastWindowClosed(false);
 #ifdef Q_OS_WIN
     connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
@@ -128,7 +148,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(VERSION));
+    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
 }
 
 #ifndef DISABLE_GUI
@@ -137,6 +157,11 @@ QPointer<MainWindow> Application::mainWindow()
     return m_window;
 }
 #endif
+
+const QBtCommandLineParameters &Application::commandLineArgs() const
+{
+    return m_commandLineArgs;
+}
 
 bool Application::isFileLoggerEnabled() const
 {
@@ -154,7 +179,8 @@ void Application::setFileLoggerEnabled(bool value)
 
 QString Application::fileLoggerPath() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_PATH, QVariant(Utils::Fs::QDesktopServicesDataLocation() + LOG_FOLDER)).toString();
+    return settings()->loadValue(KEY_FILELOGGER_PATH,
+            QVariant(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER)).toString();
 }
 
 void Application::setFileLoggerPath(const QString &value)
@@ -261,9 +287,11 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
 #if defined(Q_OS_UNIX)
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
 #elif defined(Q_OS_WIN)  // test cmd: `echo "%F" > "c:\ab ba.txt"`
-    program.prepend(QLatin1String("cmd.exe /C "));
-    if (program.size() >= MAX_PATH) {
-        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(MAX_PATH), Log::CRITICAL);
+    program.prepend(QLatin1String("\"")).append(QLatin1String("\""));
+    program.prepend(Utils::Misc::windowsSystemPath() + QLatin1String("\\cmd.exe /C "));
+    const int cmdMaxLength = 32768;  // max length (incl. terminate char) for `lpCommandLine` in `CreateProcessW()`
+    if ((program.size() + 1) > cmdMaxLength) {
+        logger->addMessage(tr("Torrent: %1, run external program command too long (length > %2), execution failed.").arg(torrent->name()).arg(cmdMaxLength), Log::CRITICAL);
         return;
     }
 
@@ -393,6 +421,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+    Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
 #ifdef DISABLE_GUI
     IconProvider::initInstance();
@@ -412,6 +441,9 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     m_webui = new WebUI;
 #endif
+
+    new RSS::Session; // create RSS::Session singleton
+    new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
 
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
@@ -436,6 +468,9 @@ int Application::exec(const QStringList &params)
         processParams(m_paramsQueue);
         m_paramsQueue.clear();
     }
+
+    // Now UI is ready to process signals from Session
+    BitTorrent::Session::instance()->startUpTorrents();
 
     return BaseApplication::exec();
 }
@@ -507,36 +542,24 @@ void Application::initializeTranslation()
 {
     Preferences* const pref = Preferences::instance();
     // Load translation
-    QString locale = pref->getLocale();
+    QString localeStr = pref->getLocale();
 
-    if (locale.isEmpty()) {
-        locale = QLocale::system().name();
-        pref->setLocale(locale);
-    }
+    if (m_qtTranslator.load(QString::fromUtf8("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
+        m_qtTranslator.load(QString::fromUtf8("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+            qDebug("Qt %s locale recognized, using translation.", qPrintable(localeStr));
+    else
+        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(localeStr));
 
-    if (m_qtTranslator.load(
-#ifdef QBT_USES_QT5
-            QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load(
-#endif
-            QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
-            qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
-    }
-    else {
-        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
-    }
     installTranslator(&m_qtTranslator);
 
-    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
-        qDebug("%s locale recognized, using translation.", qPrintable(locale));
-    }
-    else {
-        qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
-    }
+    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + localeStr))
+        qDebug("%s locale recognized, using translation.", qPrintable(localeStr));
+    else
+        qDebug("%s locale unrecognized, using default (en).", qPrintable(localeStr));
     installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI
-    if (locale.startsWith("ar") || locale.startsWith("he")) {
+    if (localeStr.startsWith("ar") || localeStr.startsWith("he")) {
         qDebug("Right to Left mode");
         setLayoutDirection(Qt::RightToLeft);
     }
@@ -613,17 +636,22 @@ void Application::cleanup()
     delete m_webui;
 #endif
 
+    delete RSS::AutoDownloader::instance();
+    delete RSS::Session::instance();
+
     ScanFoldersModel::freeInstance();
     BitTorrent::Session::freeInstance();
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::freeInstance();
 #endif
     Net::DownloadManager::freeInstance();
+    Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
     delete m_fileLogger;
     Logger::freeInstance();
     IconProvider::freeInstance();
+    Utils::Fs::removeDirRecursive(Utils::Fs::tempPath());
 
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
@@ -640,4 +668,13 @@ void Application::cleanup()
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
+}
+
+void Application::validateCommandLineParameters()
+{
+    if (m_commandLineArgs.portableMode && !m_commandLineArgs.profileDir.isEmpty())
+        throw CommandLineParameterError(tr("Portable mode and explicit profile directory options are mutually exclusive"));
+
+    if (m_commandLineArgs.portableMode && m_commandLineArgs.relativeFastresumePaths)
+        Logger::instance()->addMessage(tr("Portable mode implies relative fastresume"), Log::WARNING);
 }

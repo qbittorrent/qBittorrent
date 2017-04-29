@@ -69,11 +69,6 @@ namespace Utils
 
         void shutdownComputer(const ShutdownDialogAction &action);
 
-#ifndef DISABLE_GUI
-        // Get screen center
-        QPoint screenCenter(QWidget *win);
-        QSize smallIconSize();
-#endif
         QString osName();
         QString boostVersionString();
         QString libtorrentVersionString();
@@ -88,6 +83,7 @@ namespace Utils
         // value must be given in bytes
         bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
+        int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
 
         bool isPreviewable(const QString& extension);
@@ -105,9 +101,15 @@ namespace Utils
 #ifndef DISABLE_GUI
         void openPath(const QString& absolutePath);
         void openFolderSelect(const QString& absolutePath);
+
+        QPoint screenCenter(QWidget *win);
+        QSize smallIconSize();
+        QSize largeIconSize();
 #endif
 
-        void msleep(unsigned long msecs);
+#ifdef Q_OS_WIN
+        QString windowsSystemPath();
+#endif
     }
 }
 

@@ -55,10 +55,10 @@ private slots:
     void init();
 
 private:
-    QPointer<Http::Server> httpServer_;
-    QPointer<Net::DNSUpdater> dynDNSUpdater_;
-    QPointer<AbstractWebApplication> webapp_;
-    qint16 m_port;
+    QPointer<Http::Server> m_httpServer;
+    QPointer<Net::DNSUpdater> m_dnsUpdater;
+    QPointer<AbstractWebApplication> m_webapp;
+    quint16 m_port;
 };
 
 #endif // WEBUI_H

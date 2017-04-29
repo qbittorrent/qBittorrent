@@ -54,27 +54,27 @@ FileGuard::~FileGuard()
         Utils::Fs::forceRemove(m_path); // forceRemove() checks for file existence
 }
 
-TorrentFileGuard::TorrentFileGuard(const QString &path)
-    : m_mode {autoDeleteMode()}
+TorrentFileGuard::TorrentFileGuard(const QString &path, TorrentFileGuard::AutoDeleteMode mode)
+    : FileGuard {mode != Never ? path : QString()}
+    , m_mode {mode}
     , m_wasAdded {false}
-    , m_guard {m_mode != Never ? path : QString()}
+{
+}
+
+TorrentFileGuard::TorrentFileGuard(const QString &path)
+    : TorrentFileGuard {path, autoDeleteMode()}
 {
 }
 
 TorrentFileGuard::~TorrentFileGuard()
 {
     if (!m_wasAdded && (m_mode != Always))
-        m_guard.setAutoRemove(false);
+        setAutoRemove(false);
 }
 
 void TorrentFileGuard::markAsAddedToSession()
 {
     m_wasAdded = true;
-}
-
-void TorrentFileGuard::setAutoRemove(bool remove)
-{
-    m_guard.setAutoRemove(remove);
 }
 
 TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
@@ -92,9 +92,5 @@ void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 
 QMetaEnum TorrentFileGuard::modeMetaEnum()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     return QMetaEnum::fromType<AutoDeleteMode>();
-#else
-    return staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("AutoDeleteMode"));
-#endif
 }

@@ -58,12 +58,21 @@ GuiIconProvider *GuiIconProvider::instance()
 
 QIcon GuiIconProvider::getIcon(const QString &iconId)
 {
+    return getIcon(iconId, iconId);
+}
+
+QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
+{
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(iconId, QIcon(IconProvider::getIconPath(iconId)));
+        QIcon icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::getIconPath(iconId)));
         icon = generateDifferentSizes(icon);
         return icon;
     }
+#else
+    Q_UNUSED(fallback)
 #endif
     return QIcon(IconProvider::getIconPath(iconId));
 }
@@ -81,6 +90,13 @@ QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
 {
+    // if icon is loaded from SVG format, it already contains all the required sizes and we shall not resize it
+    // In that case it will be available in the following sizes:
+    // (QSize(16, 16), QSize(22, 22), QSize(32, 32), QSize(48, 48), QSize(64, 64), QSize(128, 128), QSize(256, 256))
+
+    if (icon.availableSizes(QIcon::Normal, QIcon::On).size() > 6)
+        return icon;
+
     QIcon newIcon;
     QList<QSize> requiredSizes;
     requiredSizes << QSize(16, 16) << QSize(24, 24) << QSize(32, 32);

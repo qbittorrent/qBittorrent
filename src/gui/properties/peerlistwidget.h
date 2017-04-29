@@ -77,18 +77,20 @@ public:
 private slots:
     void loadSettings();
     void saveSettings() const;
-    void displayToggleColumnsMenu(const QPoint&);
-    void showPeerListMenu(const QPoint&);
+    void displayToggleColumnsMenu(const QPoint &);
+    void showPeerListMenu(const QPoint &);
     void banSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);
     void handleResolved(const QString &ip, const QString &hostname);
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
+
     QStandardItemModel *m_listModel;
     PeerListDelegate *m_listDelegate;
     PeerListSortModel *m_proxyModel;
-    QHash<QString, QStandardItem*> m_peerItems;
+    QHash<QString, QStandardItem *> m_peerItems;
     QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
     QSet<QString> m_missingFlags;
     QPointer<Net::ReverseResolution> m_resolver;

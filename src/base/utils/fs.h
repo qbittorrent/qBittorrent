@@ -48,9 +48,10 @@ namespace Utils
         QString folderName(const QString& file_path);
         qint64 computePathSize(const QString& path);
         bool sameFiles(const QString& path1, const QString& path2);
-        QString toValidFileSystemName(const QString &name, bool allowSeparators = false);
+        QString toValidFileSystemName(const QString &name, bool allowSeparators = false
+                , const QString &pad = QLatin1String(" "));
         bool isValidFileSystemName(const QString& name, bool allowSeparators = false);
-        qlonglong freeDiskSpaceOnPath(QString path);
+        qulonglong freeDiskSpaceOnPath(const QString &path);
         QString branchPath(const QString& file_path, QString* removed = 0);
         bool sameFileNames(const QString& first, const QString& second);
         QString expandPath(const QString& path);
@@ -58,15 +59,9 @@ namespace Utils
 
         bool smartRemoveEmptyFolderTree(const QString& path);
         bool forceRemove(const QString& file_path);
-        void removeDirRecursive(const QString& dirName);
+        void removeDirRecursive(const QString& path);
 
-        /* Ported from Qt4 to drop dependency on QtGui */
-        QString QDesktopServicesDataLocation();
-        QString QDesktopServicesCacheLocation();
-        QString QDesktopServicesDownloadLocation();
-        /* End of Qt4 code */
-
-        QString cacheLocation();
+        QString tempPath();
     }
 }
 

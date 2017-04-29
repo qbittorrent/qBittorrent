@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#include "abstractwebapplication.h"
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -36,8 +38,9 @@
 #include <QTimer>
 
 #include "base/preferences.h"
+#include "base/utils/fs.h"
+#include "base/utils/random.h"
 #include "websessiondata.h"
-#include "abstractwebapplication.h"
 
 // UnbanTimer
 
@@ -84,8 +87,8 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
-    timer->setInterval(60000); // 1 min.
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
+    timer->start(60 * 1000);  // 1 min.
 }
 
 AbstractWebApplication::~AbstractWebApplication()
@@ -100,7 +103,14 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     request_ = request;
     env_ = env;
 
-    clear(); // clear response
+    // clear response
+    clear();
+
+    // avoid clickjacking attacks
+    header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
+    header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
+    header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
+    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self' 'unsafe-inline' 'unsafe-eval';");
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
@@ -196,7 +206,7 @@ bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QSt
             translateDocument(dataStr);
 
             if (path.endsWith("about.html") || path.endsWith("index.html") || path.endsWith("client.js"))
-                dataStr.replace("${VERSION}", VERSION);
+                dataStr.replace("${VERSION}", QBT_VERSION);
 
             data = dataStr.toUtf8();
             translatedFiles_[path] = data; // cashing translated file
@@ -218,13 +228,12 @@ QString AbstractWebApplication::generateSid()
 {
     QString sid;
 
-    qsrand(QDateTime::currentDateTime().toTime_t());
     do {
         const size_t size = 6;
         quint32 tmp[size];
 
         for (size_t i = 0; i < size; ++i)
-            tmp[i] = qrand();
+            tmp[i] = Utils::Random::rand();
 
         sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
     }
@@ -243,7 +252,7 @@ void AbstractWebApplication::translateDocument(QString& data)
         "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
         "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
         "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget",
-        "CategoryFiltersList"
+        "CategoryFiltersList", "TransferListDelegate", "AddNewTorrentDialog"
     };
     const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;
@@ -262,20 +271,12 @@ void AbstractWebApplication::translateDocument(QString& data)
             if (isTranslationNeeded) {
                 QString context = regex.cap(4);
                 if (context.length() > 0) {
-#ifndef QBT_USES_QT5
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
                     translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
-#endif
                 }
                 else {
                     size_t context_index = 0;
                     while ((context_index < context_count) && (translation == word)) {
-#ifndef QBT_USES_QT5
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
                         translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
-#endif
                         ++context_index;
                     }
                 }
@@ -353,6 +354,7 @@ bool AbstractWebApplication::sessionStart()
         sessions_[session_->id] = session_;
 
         QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        cookie.setHttpOnly(true);
         cookie.setPath(QLatin1String("/"));
         header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
 
@@ -365,9 +367,9 @@ bool AbstractWebApplication::sessionStart()
 bool AbstractWebApplication::sessionEnd()
 {
     if ((session_ != 0) && (sessions_.contains(session_->id))) {
-        QNetworkCookie cookie(C_SID, session_->id.toUtf8());
+        QNetworkCookie cookie(C_SID);
         cookie.setPath(QLatin1String("/"));
-        cookie.setExpirationDate(QDateTime::currentDateTime());
+        cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
 
         sessions_.remove(session_->id);
         delete session_;
@@ -382,7 +384,7 @@ bool AbstractWebApplication::sessionEnd()
 
 QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
 {
-    QTemporaryFile tmpfile(QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+    QTemporaryFile tmpfile(Utils::Fs::tempPath() + "XXXXXX.torrent");
     tmpfile.setAutoRemove(false);
     if (tmpfile.open()) {
         tmpfile.write(data);
@@ -394,18 +396,11 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
     return QString();
 }
 
-QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
-{
-    QStringMap map;
-
-    map["htm"] = Http::CONTENT_TYPE_HTML;
-    map["html"] = Http::CONTENT_TYPE_HTML;
-    map["css"] = Http::CONTENT_TYPE_CSS;
-    map["gif"] = Http::CONTENT_TYPE_GIF;
-    map["png"] = Http::CONTENT_TYPE_PNG;
-    map["js"] = Http::CONTENT_TYPE_JS;
-
-    return map;
-}
-
-const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
+const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
+    { "htm", Http::CONTENT_TYPE_HTML },
+    { "html", Http::CONTENT_TYPE_HTML },
+    { "css", Http::CONTENT_TYPE_CSS },
+    { "gif", Http::CONTENT_TYPE_GIF },
+    { "png", Http::CONTENT_TYPE_PNG },
+    { "js", Http::CONTENT_TYPE_JS }
+};

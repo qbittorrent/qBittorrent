@@ -29,29 +29,25 @@
  */
 
 #include "btjson.h"
-#include "base/logger.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#include "base/preferences.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "base/bittorrent/trackerentry.h"
-#include "base/bittorrent/peerinfo.h"
-#include "base/torrentfilter.h"
-#include "base/net/geoipmanager.h"
-#include "jsonutils.h"
 
 #include <QDebug>
-#include <QVariant>
-#ifndef QBT_USES_QT5
-#include <QMetaType>
-#endif
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
-#endif
+#include <QVariant>
 
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
+#include "base/bittorrent/cachestatus.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/logger.h"
+#include "base/net/geoipmanager.h"
+#include "base/preferences.h"
+#include "base/torrentfilter.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "jsonutils.h"
 
 #define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
     static VARTYPE VAR; \
@@ -73,15 +69,6 @@
     cacheTimer.start(); \
     VAR = VARTYPE()
 
-#else
-// We don't support caching for Qt < 4.7 at the moment
-#define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
-    VARTYPE VAR
-
-#define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
-    VARTYPE VAR
-
-#endif
 
 // Numerical constants
 static const int CACHE_DURATION_MS = 1500; // 1500ms
@@ -109,6 +96,19 @@ static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
 static const char KEY_TORRENT_ADDED_ON[] = "added_on";
 static const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
+static const char KEY_TORRENT_TRACKER[] = "tracker";
+static const char KEY_TORRENT_DL_LIMIT[] = "dl_limit";
+static const char KEY_TORRENT_UP_LIMIT[] = "up_limit";
+static const char KEY_TORRENT_AMOUNT_DOWNLOADED[] = "downloaded";
+static const char KEY_TORRENT_AMOUNT_UPLOADED[] = "uploaded";
+static const char KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION[] = "downloaded_session";
+static const char KEY_TORRENT_AMOUNT_UPLOADED_SESSION[] = "uploaded_session";
+static const char KEY_TORRENT_AMOUNT_LEFT[] = "amount_left";
+static const char KEY_TORRENT_AMOUNT_COMPLETED[] = "completed";
+static const char KEY_TORRENT_RATIO_LIMIT[] = "ratio_limit";
+static const char KEY_TORRENT_LAST_SEEN_COMPLETE_TIME[] = "seen_complete";
+static const char KEY_TORRENT_LAST_ACTIVITY_TIME[] = "last_activity";
+static const char KEY_TORRENT_TOTAL_SIZE[] = "total_size";
 
 // Peer keys
 static const char KEY_PEER_IP[] = "ip";
@@ -125,6 +125,7 @@ static const char KEY_PEER_CONNECTION_TYPE[] = "connection";
 static const char KEY_PEER_FLAGS[] = "flags";
 static const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
 static const char KEY_PEER_RELEVANCE[] = "relevance";
+static const char KEY_PEER_FILES[] = "files";
 
 // Tracker keys
 static const char KEY_TRACKER_URL[] = "url";
@@ -187,6 +188,20 @@ static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
+// Statistics keys
+static const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
+static const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
+static const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
+static const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
+static const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
+static const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
+static const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
+static const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
+static const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
+static const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
+static const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
+static const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
+
 // Sync main data keys
 static const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
 static const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
@@ -221,50 +236,18 @@ public:
     QTorrentCompare(QString key, bool greaterThan = false)
         : key_(key)
         , greaterThan_(greaterThan)
-#ifndef QBT_USES_QT5
-        , type_(QVariant::Invalid)
-#endif
     {
     }
 
     bool operator()(QVariant torrent1, QVariant torrent2)
     {
-#ifndef QBT_USES_QT5
-        if (type_ == QVariant::Invalid)
-            type_ = torrent1.toMap().value(key_).type();
-
-        switch (static_cast<QMetaType::Type>(type_)) {
-        case QMetaType::Int:
-            return greaterThan_ ? torrent1.toMap().value(key_).toInt() > torrent2.toMap().value(key_).toInt()
-                   : torrent1.toMap().value(key_).toInt() < torrent2.toMap().value(key_).toInt();
-        case QMetaType::LongLong:
-            return greaterThan_ ? torrent1.toMap().value(key_).toLongLong() > torrent2.toMap().value(key_).toLongLong()
-                   : torrent1.toMap().value(key_).toLongLong() < torrent2.toMap().value(key_).toLongLong();
-        case QMetaType::ULongLong:
-            return greaterThan_ ? torrent1.toMap().value(key_).toULongLong() > torrent2.toMap().value(key_).toULongLong()
-                   : torrent1.toMap().value(key_).toULongLong() < torrent2.toMap().value(key_).toULongLong();
-        case QMetaType::Float:
-            return greaterThan_ ? torrent1.toMap().value(key_).toFloat() > torrent2.toMap().value(key_).toFloat()
-                   : torrent1.toMap().value(key_).toFloat() < torrent2.toMap().value(key_).toFloat();
-        case QMetaType::Double:
-            return greaterThan_ ? torrent1.toMap().value(key_).toDouble() > torrent2.toMap().value(key_).toDouble()
-                   : torrent1.toMap().value(key_).toDouble() < torrent2.toMap().value(key_).toDouble();
-        default:
-            return greaterThan_ ? torrent1.toMap().value(key_).toString() > torrent2.toMap().value(key_).toString()
-                   : torrent1.toMap().value(key_).toString() < torrent2.toMap().value(key_).toString();
-        }
-#else
         return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
                : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
-#endif
     }
 
 private:
     QString key_;
     bool greaterThan_;
-#ifndef QBT_USES_QT5
-    QVariant::Type type_;
-#endif
 };
 
 /**
@@ -347,6 +330,21 @@ QByteArray btjson::getTorrents(QString filter, QString category,
  *  - "state": Torrent state
  *  - "seq_dl": Torrent sequential download state
  *  - "f_l_piece_prio": Torrent first last piece priority state
+ *  - "completion_on": Torrent copletion time
+ *  - "tracker": Torrent tracker
+ *  - "dl_limit": Torrent download limit
+ *  - "up_limit": Torrent upload limit
+ *  - "downloaded": Amount of data downloaded
+ *  - "uploaded": Amount of data uploaded
+ *  - "downloaded_session": Amount of data downloaded since program open
+ *  - "uploaded_session": Amount of data uploaded since program open
+ *  - "amount_left": Amount of data left to download
+ *  - "save_path": Torrent save path
+ *  - "completed": Amount of data completed
+ *  - "ratio_limit": Upload share ratio limit
+ *  - "seen_complete": Indicates the time when the torrent was last seen complete/whole
+ *  - "last_activity": Last time when a chunk was downloaded/uploaded
+ *  - "total_size": Size including unwanted data
  * Server state map may contain the following keys:
  *  - "connection_status": connection status
  *  - "dht_nodes": DHT nodes count
@@ -364,24 +362,36 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     QVariantMap data;
     QVariantHash torrents;
 
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+
+    foreach (BitTorrent::TorrentHandle *const torrent, session->torrents()) {
         QVariantMap map = toMap(torrent);
         map.remove(KEY_TORRENT_HASH);
+
+        // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
+        // So we don't need unnecessary updates of last activity time in response.
+        if (lastData.contains("torrents") && lastData["torrents"].toHash().contains(torrent->hash()) &&
+                lastData["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
+            uint lastValue = lastData["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
+            if (qAbs((int)(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
+                map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+        }
+
         torrents[torrent->hash()] = map;
     }
 
     data["torrents"] = torrents;
 
     QVariantList categories;
-    foreach (const QString &category, BitTorrent::Session::instance()->categories())
+    foreach (const QString &category, session->categories())
         categories << category;
 
     data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfoMap();
-    serverState[KEY_SYNC_MAINDATA_QUEUEING] = BitTorrent::Session::instance()->isQueueingEnabled();
-    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = Preferences::instance()->isAltBandwidthEnabled();
-    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = Preferences::instance()->getRefreshInterval();
+    serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
+    serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
     data["server_state"] = serverState;
 
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
@@ -427,6 +437,8 @@ QByteArray btjson::getSyncTorrentPeersData(int acceptedResponseId, QString hash,
         peer[KEY_PEER_FLAGS] = pi.flags();
         peer[KEY_PEER_FLAGS_DESCRIPTION] = pi.flagsDescription();
         peer[KEY_PEER_RELEVANCE] = pi.relevance();
+        peer[KEY_PEER_FILES] = torrent->info().filesForPiece(pi.downloadingPieceIndex()).join(QLatin1String("\n"));
+
         peers[pi.address().ip.toString() + ":" + QString::number(pi.address().port)] = peer;
     }
 
@@ -665,12 +677,37 @@ QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
     BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
+    BitTorrent::CacheStatus cacheStatus = BitTorrent::Session::instance()->cacheStatus();
     map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate();
     map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
     map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
     map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
-    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadRateLimit();
-    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadRateLimit();
+    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
+    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+
+    quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
+    quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+    map[KEY_TRANSFER_ALLTIME_DL] = atd;
+    map[KEY_TRANSFER_ALLTIME_UL] = atu;
+    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted();
+    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) : "-";
+    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount();
+
+    qreal readRatio = cacheStatus.readRatio();
+    map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
+    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers() * 16 * 1024;
+
+    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
+    quint32 peers = 0;
+    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+        peers += torrent->peersCount();
+    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue()) / peers, 2) : "0";
+    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue()) / peers, 2) : "0";
+
+    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength();
+    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime();
+    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes(); 
+
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
@@ -697,17 +734,17 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
 QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
 {
     QVariantMap ret;
-    ret[KEY_TORRENT_HASH] =  QString(torrent->hash());
-    ret[KEY_TORRENT_NAME] =  torrent->name();
-    ret[KEY_TORRENT_SIZE] =  torrent->wantedSize();
+    ret[KEY_TORRENT_HASH] = QString(torrent->hash());
+    ret[KEY_TORRENT_NAME] = torrent->name();
+    ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
     ret[KEY_TORRENT_PROGRESS] = torrent->progress();
     ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();
     ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
     ret[KEY_TORRENT_PRIORITY] = torrent->queuePosition();
     ret[KEY_TORRENT_SEEDS] = torrent->seedsCount();
-    ret[KEY_TORRENT_NUM_COMPLETE] = torrent->completeCount();
+    ret[KEY_TORRENT_NUM_COMPLETE] = torrent->totalSeedsCount();
     ret[KEY_TORRENT_LEECHS] = torrent->leechsCount();
-    ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->incompleteCount();
+    ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
     const qreal ratio = torrent->realRatio();
     ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = torrent->state().toString();
@@ -721,6 +758,27 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
     ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
     ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
+    ret[KEY_TORRENT_TRACKER] = torrent->currentTracker();
+    ret[KEY_TORRENT_DL_LIMIT] = torrent->downloadLimit();
+    ret[KEY_TORRENT_UP_LIMIT] = torrent->uploadLimit();
+    ret[KEY_TORRENT_AMOUNT_DOWNLOADED] = torrent->totalDownload();
+    ret[KEY_TORRENT_AMOUNT_UPLOADED] = torrent->totalUpload();
+    ret[KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
+    ret[KEY_TORRENT_AMOUNT_UPLOADED_SESSION] = torrent->totalPayloadUpload();
+    ret[KEY_TORRENT_AMOUNT_LEFT] = torrent->incompletedSize();
+    ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent->completedSize();
+    ret[KEY_TORRENT_RATIO_LIMIT] = torrent->maxRatio();
+    ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent->lastSeenComplete().toTime_t();
+
+    if (torrent->isPaused() || torrent->isChecking())
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
+    else {
+        QDateTime dt = QDateTime::currentDateTime();
+        dt = dt.addSecs(-torrent->timeSinceActivity());
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
+    }
+
+    ret[KEY_TORRENT_TOTAL_SIZE] = torrent->totalSize();
 
     return ret;
 }
@@ -879,17 +937,6 @@ QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantM
     if (fullUpdate) {
         lastAcceptedData.clear();
         syncData = data;
-
-#if (QBT_USES_QT5 && QT_VERSION < QT_VERSION_CHECK(5, 5, 0))
-        // QJsonDocument::fromVariant() supports QVariantHash only
-        // since Qt5.5, so manually convert data["torrents"]
-        QVariantMap torrentsMap;
-        QVariantHash torrents = data["torrents"].toHash();
-        foreach (const QString &key, torrents.keys())
-            torrentsMap[key] = torrents[key];
-        syncData["torrents"] = torrentsMap;
-#endif
-
         syncData[KEY_FULL_UPDATE] = true;
     }
 

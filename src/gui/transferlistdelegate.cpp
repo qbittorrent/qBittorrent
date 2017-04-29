@@ -31,7 +31,7 @@
 #include "transferlistdelegate.h"
 
 #include <QModelIndex>
-#include <QStyleOptionViewItemV2>
+#include <QStyleOptionViewItem>
 #include <QApplication>
 #include <QPainter>
 #include "base/utils/misc.h"
@@ -44,11 +44,7 @@
 #include "base/unicodestrings.h"
 
 #ifdef Q_OS_WIN
-#ifndef QBT_USES_QT5
-#include <QPlastiqueStyle>
-#else
 #include <QProxyStyle>
-#endif
 #endif
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
@@ -67,7 +63,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
     }
     const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
 
-    QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
+    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
     switch (index.column()) {
     case TorrentModel::TR_AMOUNT_DOWNLOADED:
@@ -162,7 +158,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_PROGRESS: {
-        QStyleOptionProgressBarV2 newopt;
+        QStyleOptionProgressBar newopt;
         qreal progress = index.data().toDouble() * 100.;
         newopt.rect = opt.rect;
         newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
@@ -175,11 +171,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar
-#ifndef QBT_USES_QT5
-        QPlastiqueStyle st;
-#else
         QProxyStyle st("fusion");
-#endif
         st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         break;

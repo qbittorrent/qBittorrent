@@ -31,9 +31,7 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
-#ifdef QBT_USES_QT5
 #include <QUrlQuery>
-#endif
 
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -80,7 +78,7 @@ void DNSUpdater::checkPublicIP()
 
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
                 "http://checkip.dyndns.org", false, 0, false,
-                QString("qBittorrent/%1").arg(VERSION));
+                "qBittorrent/" QBT_VERSION_2);
     connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipRequestFinished(QString, QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipRequestFailed(QString, QString)));
 
@@ -127,7 +125,7 @@ void DNSUpdater::updateDNSService()
     m_lastIPCheckTime = QDateTime::currentDateTime();
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
                 getUpdateUrl(), false, 0, false,
-                QString("qBittorrent/%1").arg(VERSION));
+                "qBittorrent/" QBT_VERSION_2);
     connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipUpdateFinished(QString, QByteArray)));
     connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipUpdateFailed(QString, QString)));
 }
@@ -158,15 +156,10 @@ QString DNSUpdater::getUpdateUrl() const
     }
     url.setPath("/nic/update");
 
-#ifndef QBT_USES_QT5
-    url.addQueryItem("hostname", m_domain);
-    url.addQueryItem("myip", m_lastIP.toString());
-#else
     QUrlQuery urlQuery(url);
     urlQuery.addQueryItem("hostname", m_domain);
     urlQuery.addQueryItem("myip", m_lastIP.toString());
     url.setQuery(urlQuery);
-#endif
     Q_ASSERT(url.isValid());
 
     qDebug() << Q_FUNC_INFO << url.toString();

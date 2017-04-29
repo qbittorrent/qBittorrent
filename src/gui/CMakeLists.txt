@@ -32,6 +32,9 @@ addnewtorrentdialog.h
 advancedsettings.h
 advancedsettings.h
 autoexpandabledialog.h
+banlistoptions.h
+categoryfiltermodel.h
+categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
 deletionconfirmationdlg.h
@@ -71,6 +74,9 @@ set(QBT_GUI_SOURCES
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
+banlistoptions.cpp
+categoryfiltermodel.cpp
+categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
 executionlog.cpp
@@ -110,6 +116,7 @@ endif (WIN32 OR APPLE)
 set(QBT_GUI_FORMS
 mainwindow.ui
 about.ui
+banlistoptions.ui
 cookiesdialog.ui
 preview.ui
 login.ui
@@ -128,7 +135,7 @@ shutdownconfirmdlg.ui
 
 qbt_target_sources(about.qrc)
 
-add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES})
+add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_FORMS})
 target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
     ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
     QtSingleApplication::QtSingleApplication

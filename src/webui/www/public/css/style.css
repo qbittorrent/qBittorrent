@@ -165,12 +165,25 @@ a.propButton img {
     margin-bottom: -4px;
 }
 
+.scrollableMenu {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 /* context menu specific */
 
 .contextMenu { border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
 .contextMenu .separator { border-top:1px solid #999; }
 .contextMenu li { margin:0; padding:0;}
-.contextMenu li a { display:block; padding:5px 10px 5px 5px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; }
+.contextMenu li a {
+    display: block;
+    padding: 5px 20px 5px 5px;
+    font-size: 12px;
+    text-decoration: none;
+    font-family: tahoma,arial,sans-serif;
+    color: #000;
+    white-space: nowrap;
+}
 .contextMenu li a:hover { background-color:#ddd; }
 .contextMenu li a.disabled { color:#ccc; font-style:italic; }
 .contextMenu li a.disabled:hover { background-color:#eee; }
@@ -389,27 +402,13 @@ td.generalLabel {
     margin-bottom: -3px;
 }
 
-.torrentTable {
+.unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.torrentTable th {
-    padding: 5px 10px;
-    white-space: nowrap;
-}
-
-.torrentTable td {
-    padding: 0px 3px;
-    white-space: nowrap;
-}
-
-.torrentTable thead tr {
-    background-color: #eee;
 }
 
 #prop_general {

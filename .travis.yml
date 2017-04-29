@@ -3,20 +3,25 @@ language: cpp
 os:
   - linux
   - osx
-osx_image: xcode7
+osx_image: xcode7.3
 
 env:
   matrix:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
     #- lt_branch=dist gui=true
     #- lt_branch=dist gui=false
-    - lt_branch=RC_1_0 qt=5 gui=true
-    - lt_branch=RC_1_0 qt=5 gui=false
-    - lt_branch=RC_1_0 qt=4 gui=true
-    - lt_branch=RC_1_0 qt=4 gui=false
+    - lt_branch=RC_1_0 gui=true build_system=cmake
+    - lt_branch=RC_1_0 gui=false build_system=cmake
+    - lt_branch=RC_1_0 gui=true build_system=qmake
+    - lt_branch=RC_1_0 gui=false build_system=qmake
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
+
+matrix:
+  allow_failures:
+    - env: lt_branch=RC_1_0 gui=true build_system=cmake
+    - env: lt_branch=RC_1_0 gui=false build_system=cmake
 
 branches:
   except:
@@ -30,7 +35,10 @@ notifications:
 
 # container-based builds
 #sudo: false
-cache: ccache
+cache:
+  ccache: true
+  directories:
+    - $HOME/hombebrew_cache
 
 # opt-in Ubuntu Trusty
 sudo: required
@@ -46,68 +54,62 @@ addons:
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
   apt:
-    #sources:
-    # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-    #- ubuntu-toolchain-r-test
-    #- boost-latest
+    sources:
+      # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+      #- ubuntu-toolchain-r-test
+      #- boost-latest
+      - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
+      - sourceline: 'ppa:beineri/opt-qt551-trusty'
+      - sourceline: 'ppa:adrozdoff/cmake'
     packages:
     # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
-    - autoconf
-    - automake
-    - colormake
-    - libssl-dev
-    - libboost-dev
-    - libboost-system-dev
-    # uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
-    #- libtorrent-rasterbar6
-
+      - autoconf
+      - automake
+      - cmake
+      - colormake
+      - libssl-dev
+      - libboost-dev
+      - libboost-system-dev
+      - libtorrent-rasterbar-dev
+      # Qt 5.5.1
+      - qt55base
+      - qt55tools
 before_install:
   # only allow specific build for coverity scan, others will stop
-  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true ]; then exit ; fi
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true -a "$build_system" = "qmake" ]; then exit ; fi
 
   - shopt -s expand_aliases
   - alias make="colormake -j3" # Using nprocs/2 sometimes may fail (gcc is killed by system)
   #- libt_path="$HOME/libt_install"
   #- ltconf="$ltconf --prefix="$libt_path" --disable-geoip"
   - qbt_path="$HOME/qbt_install"
-  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
+  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
 
   # options for specific branches
-  - if [ "$qt" = 4 ]; then qbtconf="$qbtconf --with-qt4" ; fi
   - if [ "$gui" = false ]; then qbtconf="$qbtconf --disable-gui" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
-    fi
-  - |
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      qbtconf="$qbtconf --disable-qt-dbus" ;
+
+      # Qt 5
+      PATH=/opt/qt55/bin:${PATH}
     fi
 
   # print settings
   - echo $lt_branch
   - echo $gui
+  - echo $build_system
   - echo $ltconf
   - echo $qbtconf
-
 install:
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # libtorrent
-      sudo add-apt-repository --yes ppa:qbittorrent-team/qbittorrent-stable ;
-      sudo apt-get update -qq ;
-      sudo apt-get install -qq libtorrent-rasterbar-dev ;
-
       # build libtorrent from source
       #if [ "$lt_branch" != "dist" ]; then
         #cd "$HOME" && pwd && git clone --depth 1 https://github.com/arvidn/libtorrent.git --branch $lt_branch ;
         #cd libtorrent && ./autotool.sh && ./configure $ltconf && make install ;
       #fi ;
-
-      # Qt
-      if [ "$qt" = 4 ]; then sudo apt-get -qq install qt4-default libqt4-dev ; fi ;
-      if [ "$qt" = 5 ]; then sudo apt-get -qq install qt5-default qtbase5-dev qttools5-dev-tools ; fi ;
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -117,12 +119,50 @@ install:
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      # dependencies
-      brew update > /dev/null && brew install colormake ccache libtorrent-rasterbar ;
+      wget https://builds.shiki.hu/homebrew/version ;
+      if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
+        echo "Cached files are different from server. Downloading new ones." ;
+        # First delete old files
+        rm -r "$HOME/hombebrew_cache" ;
+        mkdir "$HOME/hombebrew_cache";
+        cp "version" $HOME/hombebrew_cache ;
+        cd "$HOME/hombebrew_cache" ;
+        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb ;
+        wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz ;
+        wget https://builds.shiki.hu/homebrew/qt5.rb ;
+        wget https://builds.shiki.hu/homebrew/qt5-5.7.1_1.el_capitan.bottle.tar.gz ;
+      fi
 
-      # Qt
-      if [ "$qt" = 4 ]; then brew install qt && ln -s /usr/local/Cellar/qt/4.8.7_2/plugins /usr/local ; fi ;
-      if [ "$qt" = 5 ]; then brew install qt5 && brew link --force qt5 && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local ; fi ;
+      # dependencies
+      brew update > /dev/null ;
+      brew install colormake ccache ;
+      if [ "$build_system" = "cmake" ]; then
+        brew unlink cmake
+        brew install cmake;
+      fi
+      brew outdated "pkg-config" || brew upgrade "pkg-config" ;
+      # Copy custom libtorrent bottle to homebrew's cache so it can find and install it
+      # Also install our custom libtorrent formula by passing the local path to it
+      # These 2 files are restored from Travis' cache.
+      cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.10.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
+      brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb" ;
+
+      if [ "$build_system" = "cmake" ]; then
+        brew install qt5 ;
+        brew link --force qt5 ;
+        ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
+        ln -s /usr/local/opt/qt/plugins /usr/local/plugins
+      else
+        # Qt
+        # Copy custom qt5 bottle to homebrew's cache so it can find and install it
+        # Also install our custom qt5 formula by passing the local path to it
+        # These 2 files are restored from Travis' cache.
+        cp "$HOME/hombebrew_cache/qt5-5.7.1_1.el_capitan.bottle.tar.gz" "$(brew --cache)" ;
+        brew install "$HOME/hombebrew_cache/qt5.rb" ;
+        brew link --force qt5 ;
+      fi
+
+      MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
 
       # ccache
       if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -133,19 +173,32 @@ install:
 
 script:
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ]; then exit ; fi # skip usual build when running coverity scan
-  - cd "$TRAVIS_BUILD_DIR" && ./bootstrap.sh && ./configure $qbtconf
   - |
-    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile ;  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
-      sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile ;
-      sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ;
+    cd "$TRAVIS_BUILD_DIR"
+    if [ "$build_system" = "cmake" ]; then
+      mkdir build
+      cd build
+      cmake -DGUI=${gui} -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
+        -G "Unix Makefiles" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE ..
+    fi
+    if [ "$build_system" = "qmake" ]; then
+      ./bootstrap.sh && ./configure $qbtconf
+      if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+        sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile ;  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
+        sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile ;
+        sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile ;
+      fi
     fi
   - make && make install
 
 after_success:
   - if [ "$gui" = true ]; then qbt_exe="qbittorrent" ; else qbt_exe="qbittorrent-nox" ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then cd "$TRAVIS_BUILD_DIR/src/" && macdeployqt "$qbt_exe.app" && cd "$qbt_exe.app/Contents/MacOS" ; fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app" ;
+      cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS" ;
+    fi
   - ./$qbt_exe --version
 
 after_script:

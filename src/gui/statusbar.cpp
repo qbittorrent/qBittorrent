@@ -30,6 +30,7 @@
 
 #include "statusbar.h"
 
+#include <QApplication>
 #include <QStatusBar>
 #include <QFrame>
 #include <QLabel>
@@ -43,7 +44,6 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "speedlimitdlg.h"
 #include "guiiconprovider.h"
-#include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/logger.h"
 
@@ -52,8 +52,8 @@ StatusBar::StatusBar(QStatusBar *bar)
 {
     qApp->setStyleSheet("QStatusBar::item { border-width: 0; }");
 
-    Preferences* const pref = Preferences::instance();
-    connect(BitTorrent::Session::instance(), SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    connect(session, SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     m_container = new QWidget(bar);
     m_layout = new QHBoxLayout(m_container);
     m_layout->setContentsMargins(0,0,0,0);
@@ -91,7 +91,7 @@ StatusBar::StatusBar(QStatusBar *bar)
     m_altSpeedsBtn->setFlat(true);
     m_altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     m_altSpeedsBtn->setCursor(Qt::PointingHandCursor);
-    updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
+    updateAltSpeedsBtn(session->isAltGlobalSpeedLimitEnabled());
     connect(m_altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
     // Because on some platforms the default icon size is bigger
@@ -134,7 +134,7 @@ StatusBar::StatusBar(QStatusBar *bar)
     m_container->adjustSize();
     bar->adjustSize();
     // Is DHT enabled
-    m_DHTLbl->setVisible(pref->isDHTEnabled());
+    m_DHTLbl->setVisible(session->isDHTEnabled());
     m_refreshTimer = new QTimer(bar);
     refreshStatusBar();
     connect(m_refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
@@ -156,7 +156,7 @@ void StatusBar::showRestartRequired()
     // Restart required notification
     const QString restartText = tr("qBittorrent needs to be restarted");
     QLabel *restartIconLbl = new QLabel(m_bar);
-    restartIconLbl->setPixmap(QPixmap(":/icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
+    restartIconLbl->setPixmap(QPixmap(":/icons/qbt-theme/dialog-warning.png").scaled(QSize(24,24)));
     restartIconLbl->setToolTip(restartText);
     m_bar->insertWidget(0, restartIconLbl);
     QLabel *restartLbl = new QLabel(m_bar);
@@ -175,18 +175,18 @@ void StatusBar::stopTimer()
 void StatusBar::updateConnectionStatus(const BitTorrent::SessionStatus &sessionStatus)
 {
     if (!BitTorrent::Session::instance()->isListening()) {
-        m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/disconnected.png")));
-        m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
+        m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/disconnected.png")));
+        m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
         if (sessionStatus.hasIncomingConnections()) {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/connected.png")));
-            m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection Status:") + QString::fromUtf8("</b><br>") + tr("Online"));
+            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/connected.png")));
+            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
         }
         else {
-            m_connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/icons/skin/firewalled.png")));
-            m_connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>") + tr("Connection status:") + QString::fromUtf8("</b><br>") + QString::fromUtf8("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QString::fromUtf8("</i>"));
+            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/firewalled.png")));
+            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
         }
     }
 }
@@ -205,12 +205,12 @@ void StatusBar::updateDHTNodesNumber(const BitTorrent::SessionStatus &sessionSta
 void StatusBar::updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus)
 {
     QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true);
-    int speedLimit = BitTorrent::Session::instance()->downloadRateLimit();
+    int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
     if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
     speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload()) + ")";
     m_dlSpeedLbl->setText(speedLbl);
-    speedLimit = BitTorrent::Session::instance()->uploadRateLimit();
+    speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
     speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true);
     if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
@@ -243,64 +243,34 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
 
 void StatusBar::toggleAlternativeSpeeds()
 {
-    Preferences* const pref = Preferences::instance();
-    if (pref->isSchedulerEnabled())
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (session->isBandwidthSchedulerEnabled())
         m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
-    BitTorrent::Session::instance()->changeSpeedLimitMode(!pref->isAltBandwidthEnabled());
+    session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
 }
 
 void StatusBar::capDownloadSpeed()
 {
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
-    int curLimit = BitTorrent::Session::instance()->downloadRateLimit();
-    long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), curLimit);
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
     if (ok) {
-        Preferences* const pref = Preferences::instance();
-        bool alt = pref->isAltBandwidthEnabled();
-        if (newLimit <= 0) {
-            qDebug("Setting global download rate limit to Unlimited");
-            BitTorrent::Session::instance()->setDownloadRateLimit(-1);
-            if (!alt)
-                pref->setGlobalDownloadLimit(-1);
-            else
-                pref->setAltGlobalDownloadLimit(-1);
-        }
-        else {
-            qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
-            BitTorrent::Session::instance()->setDownloadRateLimit(newLimit);
-            if (!alt)
-                pref->setGlobalDownloadLimit(newLimit / 1024.);
-            else
-                pref->setAltGlobalDownloadLimit(newLimit / 1024.);
-        }
+        qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
+        session->setDownloadSpeedLimit(newLimit);
         refreshStatusBar();
     }
 }
 
 void StatusBar::capUploadSpeed()
 {
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
-    int curLimit = BitTorrent::Session::instance()->uploadRateLimit();
-    long newLimit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), curLimit);
+    const long newLimit = SpeedLimitDialog::askSpeedLimit(
+                &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
     if (ok) {
-        Preferences* const pref = Preferences::instance();
-        bool alt = pref->isAltBandwidthEnabled();
-        if (newLimit <= 0) {
-            qDebug("Setting global upload rate limit to Unlimited");
-            BitTorrent::Session::instance()->setUploadRateLimit(-1);
-            if (!alt)
-                Preferences::instance()->setGlobalUploadLimit(-1);
-            else
-                Preferences::instance()->setAltGlobalUploadLimit(-1);
-        }
-        else {
-            qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
-            BitTorrent::Session::instance()->setUploadRateLimit(newLimit);
-            if (!alt)
-                Preferences::instance()->setGlobalUploadLimit(newLimit / 1024.);
-            else
-                Preferences::instance()->setAltGlobalUploadLimit(newLimit / 1024.);
-        }
+        qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
+        session->setUploadSpeedLimit(newLimit);
         refreshStatusBar();
     }
 }

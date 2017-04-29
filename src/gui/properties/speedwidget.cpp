@@ -33,6 +33,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QSignalMapper>
+#include <QThread>
 
 #include <libtorrent/session_status.hpp>
 
@@ -40,7 +41,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
-#include "base/utils/misc.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
@@ -73,7 +73,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
 
-    m_graphsMenu = new QMenu();
+    m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
     m_graphsMenu->addAction(tr("Total Download"));
     m_graphsMenu->addAction(tr("Payload Upload"));
@@ -152,7 +152,7 @@ void SpeedWidget::update()
         m_plot->pushPoint(point);
 
         QMetaObject::invokeMethod(this, "graphUpdate", Qt::QueuedConnection);
-        Utils::Misc::msleep(1000);
+        QThread::msleep(1000);
     }
 }
 
