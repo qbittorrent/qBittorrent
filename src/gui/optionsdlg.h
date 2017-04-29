@@ -28,10 +28,16 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef OPTIONS_IMP_H
-#define OPTIONS_IMP_H
+#ifndef OPTIONSDLG_H
+#define OPTIONSDLG_H
 
-#include "ui_options.h"
+#include <QButtonGroup>
+#include <QDialog>
+
+class QAbstractButton;
+class QCloseEvent;
+class QListWidgetItem;
+class AdvancedSettings;
 
 // actions on double-click on torrents
 enum DoubleClickAction
@@ -41,13 +47,12 @@ enum DoubleClickAction
     NO_ACTION
 };
 
-class AdvancedSettings;
+namespace Ui
+{
+    class OptionsDialog;
+}
 
-QT_BEGIN_NAMESPACE
-class QCloseEvent;
-QT_END_NAMESPACE
-
-class options_imp: public QDialog, private Ui_Preferences
+class OptionsDialog: public QDialog
 {
     Q_OBJECT
 private:
@@ -64,8 +69,8 @@ private:
 
 public:
     // Constructor / Destructor
-    options_imp(QWidget *parent = 0);
-    ~options_imp();
+    OptionsDialog(QWidget *parent = 0);
+    ~OptionsDialog();
 
 public slots:
     void showConnectionTab();
@@ -167,6 +172,7 @@ private:
     bool webUIAuthenticationOk();
 
 private:
+    Ui::OptionsDialog *m_ui;
     QButtonGroup choiceLanguage;
     QAbstractButton *applyButton;
     AdvancedSettings *advancedSettings;

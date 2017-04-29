@@ -84,7 +84,7 @@
 #include "statusbar.h"
 #include "rss_imp.h"
 #include "about_imp.h"
-#include "options_imp.h"
+#include "optionsdlg.h"
 #include "trackerlogin.h"
 #include "lineedit.h"
 #include "executionlog.h"
@@ -1452,7 +1452,7 @@ void MainWindow::on_actionOptions_triggered()
     if (m_options)
         m_options->setFocus();
     else
-        m_options = new options_imp(this);
+        m_options = new OptionsDialog(this);
 }
 
 void MainWindow::on_actionTopToolBar_triggered()

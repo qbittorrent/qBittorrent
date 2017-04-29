@@ -401,7 +401,30 @@ void FilterParserThread::processFilterList(libt::session *s, const QStringList &
 
 QString FilterParserThread::cleanupIPAddress(QString _ip)
 {
-    QHostAddress ip(_ip.trimmed());
+    _ip = _ip.trimmed();
+
+    // Emule .DAT files contain leading zeroes in IPv4 addresses
+    // eg 001.009.106.186
+    // We need to remove them because both QHostAddress and Boost.Asio fail to parse them.
+    QStringList octets = _ip.split('.', QString::SkipEmptyParts);
+    if (octets.size() == 4) {
+        QString octet; // it is faster to not recreate this object in the loop
+        for (int i = 0; i < 4; i++) {
+            octet = octets[i];
+            if ((octet[0] == QChar('0')) && (octet.count() > 1)) {
+                if ((octet[1] == QChar('0')) && (octet.count() > 2))
+                    octet.remove(0, 2);
+                else
+                    octet.remove(0, 1);
+
+                octets[i] = octet;
+            }
+        }
+
+        _ip = octets.join(".");
+    }
+
+    QHostAddress ip(_ip);
     if (ip.isNull()) return QString();
 
     return ip.toString();

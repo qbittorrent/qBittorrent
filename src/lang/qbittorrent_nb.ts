@@ -90,18 +90,6 @@
         <translation>Lagre i</translation>
     </message>
     <message>
-        <source>Saving Management:</source>
-        <translation type="obsolete">Lagringsbehandling:</translation>
-    </message>
-    <message>
-        <source>Simple</source>
-        <translation type="obsolete">Enkelt</translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="obsolete">Avansert</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="79"/>
         <source>Browse...</source>
         <translation>Bla gjennom...</translation>
@@ -169,32 +157,32 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentbehandlingsmodus:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk modus betyr at diverse torrent-egenskaper (f.eks. lagringssti) vil bli bestemt av den assosierte kategorien</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="30"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="98"/>
         <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Når sjekket vil ikke torrentfilen bli slettet, uavhengig av innstillingene på siden &apos;Nedlastinger&apos;, under &apos;Alternativer&apos;</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="101"/>
         <source>Do not delete .torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke slett .torrent fil</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="373"/>
@@ -224,17 +212,9 @@
         <translation>Inn- ut-datafeil</translation>
     </message>
     <message>
-        <source>The torrent file does not exist.</source>
-        <translation type="obsolete">Torrentfilen eksisterer ikke.</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
         <source>Invalid torrent</source>
         <translation>Ugyldig torrent</translation>
-    </message>
-    <message>
-        <source>Failed to load the torrent: %1</source>
-        <translation type="obsolete">Mislyktes med å laste inn torrenten: %1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
@@ -267,18 +247,14 @@
         <translation>Ugyldig magnetlenke</translation>
     </message>
     <message>
-        <source>The torrent file cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation type="obsolete">Torrentfilen kan ikke leses fra disken. Mangler sannsynligvis lesetilgang.</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="212"/>
         <source>The torrent file &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfilen &apos;%1&apos; eksisterer ikke.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="218"/>
         <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfilen &apos;%1&apos; kan ikke leses fra disken. Du har sannsynligvis ikke nok tillatelser.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="226"/>
@@ -286,7 +262,8 @@
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
 &apos; characters. They insert a newline.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mislyktes med å laste inn torrenten: %1.
+Feil: %2</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="238"/>
@@ -418,188 +395,194 @@ Error: %2</source>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="210"/>
+        <location filename="../gui/advancedsettings.cpp" line="260"/>
         <source>Disk write cache size</source>
         <translation>Disk-skrivnings hurtiglagerstørrelse</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="180"/>
+        <location filename="../gui/advancedsettings.cpp" line="193"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="230"/>
+        <location filename="../gui/advancedsettings.cpp" line="280"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Utgående porter (Min) [0: Deaktivert]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="235"/>
+        <location filename="../gui/advancedsettings.cpp" line="285"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Utgående porter (Maks) [0: Deaktivert]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="238"/>
+        <location filename="../gui/advancedsettings.cpp" line="288"/>
         <source>Recheck torrents on completion</source>
         <translation>Sjekk torrenter på nytt ved fullførelse</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="244"/>
+        <location filename="../gui/advancedsettings.cpp" line="294"/>
         <source>Transfer list refresh interval</source>
         <translation>Overføringsliste oppdateringsintervall</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="243"/>
+        <location filename="../gui/advancedsettings.cpp" line="293"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="96"/>
+        <location filename="../gui/advancedsettings.cpp" line="98"/>
         <source>Setting</source>
         <translation>Innstilling</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="96"/>
+        <location filename="../gui/advancedsettings.cpp" line="98"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Verdi</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="178"/>
+        <location filename="../gui/advancedsettings.cpp" line="191"/>
         <source> (auto)</source>
         <translation> (auto)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="189"/>
+        <location filename="../gui/advancedsettings.cpp" line="204"/>
+        <source>All addresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="239"/>
         <source>qBittorrent Section</source>
         <translation>qBittorrent-del</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="191"/>
-        <location filename="../gui/advancedsettings.cpp" line="196"/>
+        <location filename="../gui/advancedsettings.cpp" line="241"/>
+        <location filename="../gui/advancedsettings.cpp" line="246"/>
         <source>Open documentation</source>
         <translation>Åpne dokumentasjon</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="194"/>
+        <location filename="../gui/advancedsettings.cpp" line="244"/>
         <source>libtorrent Section</source>
         <translation>libtorrent-del</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="215"/>
+        <location filename="../gui/advancedsettings.cpp" line="265"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="216"/>
+        <location filename="../gui/advancedsettings.cpp" line="266"/>
         <source>Disk cache expiry interval</source>
         <translation>Disk hurtiglager utløpsintervall</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="219"/>
+        <location filename="../gui/advancedsettings.cpp" line="269"/>
         <source>Enable OS cache</source>
         <translation>Aktiver OS-hurtiglager</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="224"/>
+        <location filename="../gui/advancedsettings.cpp" line="274"/>
         <source> m</source>
         <comment> minutes</comment>
         <translation> m</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="247"/>
+        <location filename="../gui/advancedsettings.cpp" line="297"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Løs deltakerland (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="250"/>
+        <location filename="../gui/advancedsettings.cpp" line="300"/>
         <source>Resolve peer host names</source>
         <translation>Løs deltaker-vertsnavn</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="258"/>
+        <location filename="../gui/advancedsettings.cpp" line="308"/>
         <source>Strict super seeding</source>
         <translation>Streng supergivning</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="284"/>
+        <location filename="../gui/advancedsettings.cpp" line="334"/>
         <source>Network Interface (requires restart)</source>
         <translation>Nettverksgrensesnitt (krever omstart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="287"/>
+        <location filename="../gui/advancedsettings.cpp" line="337"/>
+        <source>Optional IP Address to bind to (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="340"/>
         <source>Listen on IPv6 address (requires restart)</source>
         <translation>Lytt på IPv6 Adresse (krever omstart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="294"/>
+        <location filename="../gui/advancedsettings.cpp" line="348"/>
         <source>Display notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis varslinger</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="297"/>
+        <location filename="../gui/advancedsettings.cpp" line="351"/>
         <source>Display notifications for added torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis varslinger for tillagte torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="316"/>
+        <location filename="../gui/advancedsettings.cpp" line="370"/>
         <source>Confirm torrent recheck</source>
         <translation>Bekreft sjekking av torrent på nytt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="319"/>
+        <location filename="../gui/advancedsettings.cpp" line="373"/>
         <source>Exchange trackers with other peers</source>
         <translation>Utveksle sporere med andre deltakere</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="322"/>
+        <location filename="../gui/advancedsettings.cpp" line="376"/>
         <source>Always announce to all trackers</source>
         <translation>Annonsér alltid til alle sporere</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="260"/>
+        <location filename="../gui/advancedsettings.cpp" line="310"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Hvilket som helst grensesnitt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="225"/>
+        <location filename="../gui/advancedsettings.cpp" line="275"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Intervall for lagring av gjenopptakelsesdata</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="255"/>
+        <location filename="../gui/advancedsettings.cpp" line="305"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
         <translation>Maksimalt antall halvåpne tilkoblinger [0: Ubegrenset]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="290"/>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP Adresse som skal rapporteres til sporere (krever omstart)</translation>
     </message>
     <message>
-        <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Vis programvarslinger på skjermen</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="300"/>
+        <location filename="../gui/advancedsettings.cpp" line="354"/>
         <source>Enable embedded tracker</source>
         <translation>Aktiver innebygd sporer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="305"/>
+        <location filename="../gui/advancedsettings.cpp" line="359"/>
         <source>Embedded tracker port</source>
         <translation>Innebygd sporerport</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="308"/>
+        <location filename="../gui/advancedsettings.cpp" line="362"/>
         <source>Check for software updates</source>
         <translation>Se etter programvareoppdateringer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="312"/>
+        <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source>Use system icon theme</source>
         <translation>Bruk systemikon tema</translation>
     </message>
@@ -607,38 +590,53 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="130"/>
+        <location filename="../app/application.cpp" line="131"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 startet</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="388"/>
+        <location filename="../app/application.cpp" line="259"/>
+        <source>Torrent: %1, running external program, command: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="266"/>
+        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="316"/>
+        <source>Torrent: %1, sending mail notification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="420"/>
         <source>Information</source>
         <translation>Informasjon</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="389"/>
+        <location filename="../app/application.cpp" line="421"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>For å kontrollere qBittorrent, få tilgang til nettbrukergrensesnittet hos http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="390"/>
+        <location filename="../app/application.cpp" line="422"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Nettbrukergrensesnittets administrator-brukernavn er: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="393"/>
+        <location filename="../app/application.cpp" line="425"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Nettbrukergrensesnittets administrator-passord er fremdeles standardpassordet: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="394"/>
+        <location filename="../app/application.cpp" line="426"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Dette er en sikkerhetsrisiko, vennligst vurder å forandre passordet ditt fra programinnstillingene.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="568"/>
+        <location filename="../app/application.cpp" line="598"/>
         <source>Saving torrent progress...</source>
         <translation>Lagrer torrent-fremdrift...</translation>
     </message>
@@ -1065,40 +1063,46 @@ Error: %2</source>
         <translation>Nettverksoppsettet av %1 har blitt forandret, oppdaterer øktbinding</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2015"/>
+        <location filename="../base/bittorrent/session.cpp" line="1744"/>
+        <source>Configured network interface address %1 isn&apos;t valid.</source>
+        <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2039"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Ikke i stand til å dekode &apos;%1&apos; torrentfil.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2130"/>
+        <location filename="../base/bittorrent/session.cpp" line="2154"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Rekursiv nedlasting av fila &apos;%1&apos; innebygd i torrenten &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2458"/>
+        <location filename="../base/bittorrent/session.cpp" line="2482"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Kunne ikke lagre &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2579"/>
+        <location filename="../base/bittorrent/session.cpp" line="2603"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>fordi %1 er avskrudd.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2582"/>
+        <location filename="../base/bittorrent/session.cpp" line="2606"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>fordi %1 er avskrudd.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2600"/>
+        <location filename="../base/bittorrent/session.cpp" line="2624"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Nettadresseoppslag for delere feilet for URL-en: &apos;%1&apos;, melding: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2640"/>
+        <location filename="../base/bittorrent/session.cpp" line="2664"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent mislyktes i å lytte til grensesnittet %1 port: %2/%3. Grunn: %4.</translation>
@@ -1138,136 +1142,136 @@ Error: %2</source>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="218"/>
-        <location filename="../base/bittorrent/session.cpp" line="1796"/>
+        <location filename="../base/bittorrent/session.cpp" line="1820"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent forsøker å lytte til hvilken som helst grensesnitts-port: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1749"/>
+        <location filename="../base/bittorrent/session.cpp" line="1763"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Det definerte nettverksgrensesnittet er ugyldig: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="222"/>
-        <location filename="../base/bittorrent/session.cpp" line="1807"/>
+        <location filename="../base/bittorrent/session.cpp" line="1831"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent forsøker å lytte til grensesnitt %1 port: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1773"/>
+        <location filename="../base/bittorrent/session.cpp" line="1797"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent fant ikke en %1 lokaladresse å lytte til</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1800"/>
+        <location filename="../base/bittorrent/session.cpp" line="1824"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent mislyktes i å lytte til hvilket som helst grensesnitts-port: %1. Grunn: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1926"/>
+        <location filename="../base/bittorrent/session.cpp" line="1950"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Sporeren &apos;%1&apos; ble lagt til torrenten &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1936"/>
+        <location filename="../base/bittorrent/session.cpp" line="1960"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Sporeren &apos;%1&apos; ble slettet fra torrenten &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1951"/>
+        <location filename="../base/bittorrent/session.cpp" line="1975"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Nettadresse-deleren &apos;%1&apos; ble lagt til torrenten &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1957"/>
+        <location filename="../base/bittorrent/session.cpp" line="1981"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Nettadressede-deleren &apos;%1&apos; ble fjernet fra torrenten &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2225"/>
+        <location filename="../base/bittorrent/session.cpp" line="2249"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Ute av stand stand til å gjenoppta torrenten &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2284"/>
+        <location filename="../base/bittorrent/session.cpp" line="2308"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Oppgitt IP-filteret analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2290"/>
+        <location filename="../base/bittorrent/session.cpp" line="2314"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Feil: Mislyktes i fortolkning av oppgitt IP-filter.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2495"/>
+        <location filename="../base/bittorrent/session.cpp" line="2519"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Kunne ikke legge til torrent. Grunn: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2441"/>
+        <location filename="../base/bittorrent/session.cpp" line="2465"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; gjenopptatt (hurtig)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2472"/>
+        <location filename="../base/bittorrent/session.cpp" line="2496"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; lagt i nedlastingskø.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2543"/>
+        <location filename="../base/bittorrent/session.cpp" line="2567"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>En inn- ut-datafeil oppstod, &apos;%1&apos; satt på pause. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2551"/>
+        <location filename="../base/bittorrent/session.cpp" line="2575"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP- NAT-PMP: Port-tilordningssvikt, melding: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2557"/>
+        <location filename="../base/bittorrent/session.cpp" line="2581"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP- NAT-PMP: Port-tilordning gjort, melding: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2567"/>
+        <location filename="../base/bittorrent/session.cpp" line="2591"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>pga. IP-filter.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2570"/>
+        <location filename="../base/bittorrent/session.cpp" line="2594"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>pga. port-filter.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2573"/>
+        <location filename="../base/bittorrent/session.cpp" line="2597"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>pga.  blandingsmodusbegrensninger i I2P.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2576"/>
+        <location filename="../base/bittorrent/session.cpp" line="2600"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>fordi den har en lavt nummerert port.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2614"/>
+        <location filename="../base/bittorrent/session.cpp" line="2638"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent lytter til grensesnittet %1 på port: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2649"/>
+        <location filename="../base/bittorrent/session.cpp" line="2673"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Ekstern-IP: %1</translation>
@@ -1276,17 +1280,17 @@ Error: %2</source>
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1411"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1392"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Kunne ikke flytte torrent: &apos;%1&apos;. Grunn: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1563"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1544"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Ikke samsvar i filstørrelser for torrent &apos;%1&apos;, settes på pause.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1569"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1550"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Hurtig gjenopptakelsesdata ble avvist for torrenten &apos;%1&apos;. Grunn: %2. Sjekker igjen…</translation>
     </message>
@@ -1434,17 +1438,17 @@ Kategorinavn ikke inneholde &apos;//&apos; sekvens.</translation>
 <context>
     <name>DownloadedPiecesBar</name>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="37"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="177"/>
         <source>White: Missing pieces</source>
         <translation>Hvitt: Manglende deler</translation>
     </message>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="37"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="178"/>
         <source>Green: Partial pieces</source>
         <translation>Grønt: Ufullstendige deler</translation>
     </message>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="37"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="179"/>
         <source>Blue: Completed pieces</source>
         <translation>Blått: Fullførte deler</translation>
     </message>
@@ -2118,14 +2122,6 @@ Kategorinavn ikke inneholde &apos;//&apos; sekvens.</translation>
         <translation>Lås qBitt&amp;orrent</translation>
     </message>
     <message>
-        <source>&amp;Import Existing Torrent...</source>
-        <translation type="obsolete">&amp;Importer Eksisterende Torrent...</translation>
-    </message>
-    <message>
-        <source>Import Torrent...</source>
-        <translation type="obsolete">Importer Torrent...</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.ui" line="331"/>
         <source>Do&amp;nate!</source>
         <translation>Do&amp;ner!</translation>
@@ -2268,7 +2264,7 @@ Kategorinavn ikke inneholde &apos;//&apos; sekvens.</translation>
         <translation>Vis</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1584"/>
+        <location filename="../gui/mainwindow.cpp" line="1587"/>
         <source>Check for program updates</source>
         <translation>Se etter programoppdateringer</translation>
     </message>
@@ -2283,7 +2279,7 @@ Kategorinavn ikke inneholde &apos;//&apos; sekvens.</translation>
         <translation>Hvis du liker qBittorrent, vennligst doner!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1612"/>
+        <location filename="../gui/mainwindow.cpp" line="1615"/>
         <source>Execution Log</source>
         <translation>Utførelseslogg</translation>
     </message>
@@ -2406,13 +2402,13 @@ Vil du assosiere qBittorrent til torrentfiler og Magnetlenker?</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="729"/>
         <source>Torrent added</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent lagt til</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="729"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; ble lagt til.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="735"/>
@@ -2476,29 +2472,35 @@ Vil du assosiere qBittorrent til torrentfiler og Magnetlenker?</translation>
         <translation>Python funnet i %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1503"/>
+        <location filename="../gui/mainwindow.cpp" line="1506"/>
         <source>Old Python Interpreter</source>
         <translation>Gammel Python-fortolker</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1568"/>
+        <location filename="../gui/mainwindow.cpp" line="1506"/>
+        <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
+Minimum requirement: 2.7.9 / 3.3.0.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1571"/>
         <source>qBittorrent Update Available</source>
         <translation>qBittorrent-oppdatering tilgjengelig</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1569"/>
+        <location filename="../gui/mainwindow.cpp" line="1572"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>Ny versjon er tilgjengelig.
 Vil du laste ned %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1578"/>
+        <location filename="../gui/mainwindow.cpp" line="1581"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Bruker allerede den siste qBittorrent-versjonen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1513"/>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>Undetermined Python version</source>
         <translation>Ubestemt Python versjon</translation>
     </message>
@@ -2528,67 +2530,66 @@ Vil du laste ned %1?</translation>
         <translation>Kunne ikke laste ned fil på nettadressen: &apos;%1&apos;, Grunn: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1503"/>
         <source>Your Python version %1 is outdated. Please upgrade to latest version for search engines to work. Minimum requirement: 2.7.0/3.3.0.</source>
-        <translation>Din Python versjon %1 er utdatert. Vennligst oppgrader til siste versjon for at søkemotorene skal virke. Minimumskrav: 2.7.0/3.3.0.</translation>
+        <translation type="obsolete">Din Python versjon %1 er utdatert. Vennligst oppgrader til siste versjon for at søkemotorene skal virke. Minimumskrav: 2.7.0/3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1513"/>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Kunne ikke bestemme din Python versjon (%1). Søkemotor deaktivert.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1524"/>
-        <location filename="../gui/mainwindow.cpp" line="1536"/>
+        <location filename="../gui/mainwindow.cpp" line="1527"/>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
         <source>Missing Python Interpreter</source>
         <translation>Manglende Python-fortolker</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1525"/>
+        <location filename="../gui/mainwindow.cpp" line="1528"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python kreves for å bruke søkemotoren, men det synes ikke å være installert.
 Vil du installere det nå?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1536"/>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python kreves for å bruke søkemotoren, men det synes ikke å være installert.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1579"/>
+        <location filename="../gui/mainwindow.cpp" line="1582"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Ingen oppdateringer tilgjengelig.
 Du bruker allerede den siste versjonen.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1583"/>
+        <location filename="../gui/mainwindow.cpp" line="1586"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Se etter Oppdateringer</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1726"/>
+        <location filename="../gui/mainwindow.cpp" line="1729"/>
         <source>Checking for Updates...</source>
         <translation>Ser etter Oppdateringer...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1727"/>
+        <location filename="../gui/mainwindow.cpp" line="1730"/>
         <source>Already checking for program updates in the background</source>
         <translation>Ser allerede etter programoppdateringer i bakgrunnen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1742"/>
+        <location filename="../gui/mainwindow.cpp" line="1745"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python funnet i &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1795"/>
+        <location filename="../gui/mainwindow.cpp" line="1798"/>
         <source>Download error</source>
         <translation>Nedlastingsfeil</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1795"/>
+        <location filename="../gui/mainwindow.cpp" line="1798"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python-oppsett kunne ikke bli nedlastet, grunn: %1.
@@ -4048,6 +4049,1084 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     </message>
 </context>
 <context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="14"/>
+        <source>Options</source>
+        <translation type="unfinished">Alternativer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="49"/>
+        <source>Behavior</source>
+        <translation type="unfinished">Oppførsel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="54"/>
+        <source>Downloads</source>
+        <translation type="unfinished">Nedlastinger</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="59"/>
+        <source>Connection</source>
+        <translation type="unfinished">Tilkobling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="64"/>
+        <source>Speed</source>
+        <translation type="unfinished">Hastighet</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="69"/>
+        <source>BitTorrent</source>
+        <translation type="unfinished">BitTorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="74"/>
+        <source>Web UI</source>
+        <translation type="unfinished">Web UI</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="79"/>
+        <source>Advanced</source>
+        <translation type="unfinished">Avansert</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="125"/>
+        <source>Language</source>
+        <translation type="unfinished">Språk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="133"/>
+        <source>User Interface Language:</source>
+        <translation type="unfinished">Brukergrensesnittsspråk:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="161"/>
+        <source>(Requires restart)</source>
+        <translation type="unfinished">(Krever omstart)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="189"/>
+        <source>Transfer List</source>
+        <translation type="unfinished">Overføringsliste</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="195"/>
+        <source>Confirm when deleting torrents</source>
+        <translation type="unfinished">Bekreft ved sletting av torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="205"/>
+        <source>Use alternating row colors</source>
+        <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
+        <translation type="unfinished">Bruk alternerende rekkefarger</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="217"/>
+        <source>Hide zero and infinity values</source>
+        <translation type="unfinished">Skjul null- og uendelighetsverdier</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="225"/>
+        <source>Always</source>
+        <translation type="unfinished">Alltid</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="230"/>
+        <source>Paused torrents only</source>
+        <translation type="unfinished">Kun torrenter satt på pause</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="259"/>
+        <source>Action on double-click</source>
+        <translation type="unfinished">Handling ved dobbelklikk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="268"/>
+        <source>Downloading torrents:</source>
+        <translation type="unfinished">Nedlastende torrenter:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="285"/>
+        <location filename="../gui/optionsdlg.ui" line="311"/>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished">Start / Stopp Torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="290"/>
+        <location filename="../gui/optionsdlg.ui" line="316"/>
+        <source>Open destination folder</source>
+        <translation type="unfinished">Åpne destinasjonsmappe</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="295"/>
+        <location filename="../gui/optionsdlg.ui" line="321"/>
+        <source>No action</source>
+        <translation type="unfinished">Ingen handling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="303"/>
+        <source>Completed torrents:</source>
+        <translation type="unfinished">Fullførte torrenter:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="335"/>
+        <source>Desktop</source>
+        <translation type="unfinished">Skrivebord</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="341"/>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished">Start qBittorrent ved Windows oppstart</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="348"/>
+        <source>Show splash screen on start up</source>
+        <translation type="unfinished">Vis velkomstskjerm ved oppstart</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="358"/>
+        <source>Start qBittorrent minimized</source>
+        <translation type="unfinished">Start qBittorrent minimert</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="365"/>
+        <source>Confirmation on exit when torrents are active</source>
+        <translation type="unfinished">Bekreftelse ved avsluttning når torrenter er aktive</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="375"/>
+        <source>Confirmation on auto-exit when downloads finish</source>
+        <translation type="unfinished">Bekreftelse ved auto-avslutning når nedlastinger er ferdige</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="385"/>
+        <source>Show qBittorrent in notification area</source>
+        <translation type="unfinished">Vis qBittorrent i varslingsområdet</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="394"/>
+        <source>Minimize qBittorrent to notification area</source>
+        <translation type="unfinished">Minimer qBittorrent til varslingsområdet</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="404"/>
+        <source>Close qBittorrent to notification area</source>
+        <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
+        <translation type="unfinished">Steng qBittorrent til varslingsområdet</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="413"/>
+        <source>Tray icon style:</source>
+        <translation type="unfinished">Systemkurvikon-stil:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="421"/>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="426"/>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished">Monokromt (Mørkt tema)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="431"/>
+        <source>Monochrome (Light theme)</source>
+        <translation type="unfinished">Monokromt (Lyst tema)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="444"/>
+        <source>File association</source>
+        <translation type="unfinished">Filassosiasjon</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="450"/>
+        <source>Use qBittorrent for .torrent files</source>
+        <translation type="unfinished">Bruk qBittorrent for .torrent filer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="457"/>
+        <source>Use qBittorrent for magnet links</source>
+        <translation type="unfinished">Bruk qBittorrent for magnetlenker</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="470"/>
+        <source>Power Management</source>
+        <translation type="unfinished">Strømstyring</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="476"/>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished">Hindre systemhvile når torrenter er aktive</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="486"/>
+        <source>Log file</source>
+        <translation type="unfinished">Loggfil</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="500"/>
+        <source>Save path:</source>
+        <translation type="unfinished">Lagringssti:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="530"/>
+        <source>Backup the log file after:</source>
+        <translation type="unfinished">Sikkerhetskopier loggfilen etter:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="537"/>
+        <source> MB</source>
+        <translation type="unfinished"> MB</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="573"/>
+        <source>Delete backup logs older than:</source>
+        <translation type="unfinished">Slett sikkerhetskopier av logger eldre enn:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="597"/>
+        <source>days</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="unfinished">dager</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="602"/>
+        <source>months</source>
+        <comment>Delete backup logs older than 10 months</comment>
+        <translation type="unfinished">måneder</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="607"/>
+        <source>years</source>
+        <comment>Delete backup logs older than 10 years</comment>
+        <translation type="unfinished">år</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="681"/>
+        <source>When adding a torrent</source>
+        <translation type="unfinished">Når en torrent legges til</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="687"/>
+        <source>Display torrent content and some options</source>
+        <translation type="unfinished">Vis torrentinnhold og noen alternativer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="699"/>
+        <source>Bring torrent dialog to the front</source>
+        <translation type="unfinished">Hent torrentdialog til fronten</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="712"/>
+        <source>Do not start the download automatically</source>
+        <comment>The torrent will be added to download list in pause state</comment>
+        <translation type="unfinished">Ikke start nedlastingen automatisk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="719"/>
+        <source>Should the .torrent file be deleted after adding it</source>
+        <translation type="unfinished">Skal .torrent filen slettes etter å ha blitt lagt til</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="722"/>
+        <source>Delete .torrent files afterwards </source>
+        <translation type="unfinished">Slett .torrent filer etterpå </translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="734"/>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished">Slett også .torrent filer hvis tillegging ble avbrutt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="737"/>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished">Også når tillegging blir avbrutt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="759"/>
+        <source>Warning! Data loss possible!</source>
+        <translation type="unfinished">Advarsel! Datatap mulig!</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="774"/>
+        <source>Saving Management</source>
+        <translation type="unfinished">Lagringsbehandling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="782"/>
+        <source>Default Torrent Management Mode:</source>
+        <translation type="unfinished">Standard Torrentbehandlingsmodus:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="794"/>
+        <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="798"/>
+        <source>Manual</source>
+        <translation type="unfinished">Manuell</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="803"/>
+        <source>Automatic</source>
+        <translation type="unfinished">Automatisk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="826"/>
+        <source>When Torrent Category changed:</source>
+        <translation type="unfinished">Når Torrentkategori forandret:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="836"/>
+        <source>Relocate torrent</source>
+        <translation type="unfinished">Omplasser torrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="841"/>
+        <source>Switch torrent to Manual Mode</source>
+        <translation type="unfinished">Bytt torrent til Manuell Modus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="864"/>
+        <source>When Default Save Path changed:</source>
+        <translation type="unfinished">Når Standard Lagringssti forandret:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="877"/>
+        <location filename="../gui/optionsdlg.ui" line="918"/>
+        <source>Relocate affected torrents</source>
+        <translation type="unfinished">Omplasser berørte torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="882"/>
+        <location filename="../gui/optionsdlg.ui" line="923"/>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation type="unfinished">Bytt berørte torrenter til Manuell Modus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="905"/>
+        <source>When Category changed:</source>
+        <translation type="unfinished">Når Kategori forandret:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="948"/>
+        <source>Use Subcategories</source>
+        <translation type="unfinished">Bruk Underkategorier</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="957"/>
+        <source>Default Save Path:</source>
+        <translation type="unfinished">Standard Lagringssti:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1003"/>
+        <source>Keep incomplete torrents in:</source>
+        <translation type="unfinished">Oppbevar ikke-fullførte torrenter i:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1042"/>
+        <source>Copy .torrent files to:</source>
+        <translation type="unfinished">Kopier torrentfiler til:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1075"/>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished">Kopier .torrent filer for ferdige nedlastinger til:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1110"/>
+        <source>Pre-allocate disk space for all files</source>
+        <translation type="unfinished">Forhåndstildel diskplass for alle filer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1117"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished">Tilføy .!qB benevnelse til ikke-fullførte filer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1127"/>
+        <source>Automatically add torrents from:</source>
+        <translation type="unfinished">Legg automatisk til torrenter fra:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1174"/>
+        <source>Add entry</source>
+        <translation type="unfinished">Legg til oppføring</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1184"/>
+        <source>Remove entry</source>
+        <translation type="unfinished">Fjern oppføring</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1211"/>
+        <source>Email notification upon download completion</source>
+        <translation type="unfinished">Epost-varsling ved nedlastingsfullførelse</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1228"/>
+        <source>Destination email:</source>
+        <translation type="unfinished">Destinasjons-epost:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1235"/>
+        <source>SMTP server:</source>
+        <translation type="unfinished">SMTP tjener:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1247"/>
+        <source>This server requires a secure connection (SSL)</source>
+        <translation type="unfinished">Denne tjeneren krever en sikker tilkobling (SSL)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1254"/>
+        <location filename="../gui/optionsdlg.ui" line="1666"/>
+        <location filename="../gui/optionsdlg.ui" line="2803"/>
+        <source>Authentication</source>
+        <translation type="unfinished">Autentisering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1266"/>
+        <location filename="../gui/optionsdlg.ui" line="1680"/>
+        <location filename="../gui/optionsdlg.ui" line="2842"/>
+        <location filename="../gui/optionsdlg.ui" line="2917"/>
+        <source>Username:</source>
+        <translation type="unfinished">Brukernavn:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1276"/>
+        <location filename="../gui/optionsdlg.ui" line="1690"/>
+        <location filename="../gui/optionsdlg.ui" line="2849"/>
+        <location filename="../gui/optionsdlg.ui" line="2931"/>
+        <source>Password:</source>
+        <translation type="unfinished">Passord:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1296"/>
+        <source>Run external program on torrent completion</source>
+        <translation type="unfinished">Kjør eksternt program ved ferdigstillelse av torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1356"/>
+        <source>Listening Port</source>
+        <translation type="unfinished">Lytteport</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1364"/>
+        <source>Port used for incoming connections:</source>
+        <translation type="unfinished">Port brukt for innkommende tilkoblinger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1384"/>
+        <source>Random</source>
+        <translation type="unfinished">Tilfeldig</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1406"/>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished">Bruk UPnP / NAT-PMP port-videresending fra min ruter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1416"/>
+        <source>Use different port on each startup</source>
+        <translation type="unfinished">Bruk annen port ved hver oppstart</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1426"/>
+        <source>Connections Limits</source>
+        <translation type="unfinished">Tilkoblingsgrenser</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1442"/>
+        <source>Maximum number of connections per torrent:</source>
+        <translation type="unfinished">Maksimalt antall tilkoblinger per torrent:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1452"/>
+        <source>Global maximum number of connections:</source>
+        <translation type="unfinished">Globalt maksimalt antall tilkoblinger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1491"/>
+        <source>Maximum number of upload slots per torrent:</source>
+        <translation type="unfinished">Maksimalt antall opplastingsåpninger per torrent:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1501"/>
+        <source>Global maximum number of upload slots:</source>
+        <translation type="unfinished">Globalt maksimalt antall opplastingsåpninger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1540"/>
+        <source>Proxy Server</source>
+        <translation type="unfinished">Mellomtjener</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1548"/>
+        <source>Type:</source>
+        <translation type="unfinished">Type:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1556"/>
+        <source>(None)</source>
+        <translation type="unfinished">(Ingen)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1561"/>
+        <source>SOCKS4</source>
+        <translation type="unfinished">SOCKS4</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1566"/>
+        <source>SOCKS5</source>
+        <translation type="unfinished">SOCKS5</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1571"/>
+        <source>HTTP</source>
+        <translation type="unfinished">HTTP</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1582"/>
+        <source>Host:</source>
+        <translation type="unfinished">Vert:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1602"/>
+        <location filename="../gui/optionsdlg.ui" line="2627"/>
+        <source>Port:</source>
+        <translation type="unfinished">Port:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1630"/>
+        <source>Otherwise, the proxy server is only used for tracker connections</source>
+        <translation type="unfinished">Ellers så er mellomtjeneren kun brukt for sporertilkoblinger</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1633"/>
+        <source>Use proxy for peer connections</source>
+        <translation type="unfinished">Bruk mellomtjener for deltakertilkoblinger</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1640"/>
+        <source>Disable connections not supported by proxies</source>
+        <translation type="unfinished">Deaktiver tilkoblinger som ikke er støttet av mellomtjenere</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1650"/>
+        <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
+        <translation type="unfinished">RSS-informasjonsstrømmer, søkemotor, programvareoppdateringer, eller hva som helst annet enn torrentoverføringer og relaterte operasjoner (som deltakerutvekslinger) vil bruke en direkte tilkobling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1653"/>
+        <source>Use proxy only for torrents</source>
+        <translation type="unfinished">Bruk mellomtjener kun for torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1706"/>
+        <source>Info: The password is saved unencrypted</source>
+        <translation type="unfinished">Info: Passordet er lagret ukryptert</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1719"/>
+        <source>IP Filtering</source>
+        <translation type="unfinished">IP Filtrering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1733"/>
+        <source>Filter path (.dat, .p2p, .p2b):</source>
+        <translation type="unfinished">Filtersti (.dat, .p2p, .p2b):</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1762"/>
+        <source>Reload the filter</source>
+        <translation type="unfinished">Last inn filteret på nytt</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1771"/>
+        <source>Apply to trackers</source>
+        <translation type="unfinished">Bruk til sporere</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1829"/>
+        <source>Global Rate Limits</source>
+        <translation type="unfinished">Globale Forholdsgrenser</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1851"/>
+        <location filename="../gui/optionsdlg.ui" line="2042"/>
+        <source>Upload:</source>
+        <translation type="unfinished">Opplasting:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1858"/>
+        <location filename="../gui/optionsdlg.ui" line="1881"/>
+        <location filename="../gui/optionsdlg.ui" line="2088"/>
+        <location filename="../gui/optionsdlg.ui" line="2095"/>
+        <source>KiB/s</source>
+        <translation type="unfinished">KiB/s</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1895"/>
+        <location filename="../gui/optionsdlg.ui" line="2049"/>
+        <source>Download:</source>
+        <translation type="unfinished">Nedlasting:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1918"/>
+        <source>Alternative Rate Limits</source>
+        <translation type="unfinished">Alternative forholdsgrenser</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1924"/>
+        <source>Schedule the use of alternative rate limits</source>
+        <translation type="unfinished">Planlegg bruken av alternative forholdsgrenser</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1936"/>
+        <source>From:</source>
+        <extracomment>from (time1 to time2)</extracomment>
+        <translation type="unfinished">Fra:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1960"/>
+        <source>To:</source>
+        <extracomment>time1 to time2</extracomment>
+        <translation type="unfinished">Til:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="1987"/>
+        <source>When:</source>
+        <translation type="unfinished">Når:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2001"/>
+        <source>Every day</source>
+        <translation type="unfinished">Hver dag</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2006"/>
+        <source>Weekdays</source>
+        <translation type="unfinished">Ukedager</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2011"/>
+        <source>Weekends</source>
+        <translation type="unfinished">Helger</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2118"/>
+        <source>Rate Limits Settings</source>
+        <translation type="unfinished">Innstillinger for forholdsgrenser</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2124"/>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation type="unfinished">Bruk forholdsgrense for deltakere på lokalnett</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2131"/>
+        <source>Apply rate limit to transport overhead</source>
+        <translation type="unfinished">Bruk forholdsgrense for transportering av tilleggsdata</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2138"/>
+        <source>Enable µTP protocol</source>
+        <translation type="unfinished">Aktiver µTP-protokoll</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2145"/>
+        <source>Apply rate limit to µTP protocol</source>
+        <translation type="unfinished">Bruk forholdsgrense for µTP-protokoll</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2216"/>
+        <source>Privacy</source>
+        <translation type="unfinished">Personvern</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2222"/>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished">Aktiver DHT (desentralisert nettverk) for å finne flere deltakere</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../gui/optionsdlg.ui" line="2232"/>
+        <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translation type="unfinished">Utveksle deltakere med kompatible Bittorrent-klienter (µTorrent, Vuze, ...)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2235"/>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished">Aktiver utveksling av deltakere (PeX) for å finne flere deltakere</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2245"/>
+        <source>Look for peers on your local network</source>
+        <translation type="unfinished">Se etter deltakere i ditt lokale nettverk</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2248"/>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished">Aktiver lokal deltakeroppdagelse for å finne flere deltakere</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2260"/>
+        <source>Encryption mode:</source>
+        <translation type="unfinished">Krypteringsmodus:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2268"/>
+        <source>Prefer encryption</source>
+        <translation type="unfinished">Foretrekk kryptering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2273"/>
+        <source>Require encryption</source>
+        <translation type="unfinished">Krev kryptering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2278"/>
+        <source>Disable encryption</source>
+        <translation type="unfinished">Deaktiver kryptering</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2303"/>
+        <source>Enable when using a proxy or a VPN connection</source>
+        <translation type="unfinished">Aktiver ved bruk av mellomtjener eller en VPN-tilkobling</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2306"/>
+        <source>Enable anonymous mode</source>
+        <translation type="unfinished">Aktiver anonymitetsmodus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2313"/>
+        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mer informasjon&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2341"/>
+        <source>Torrent Queueing</source>
+        <translation type="unfinished">Torrentkø-danning</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2356"/>
+        <source>Maximum active downloads:</source>
+        <translation type="unfinished">Maksimalt aktive nedlastinger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2376"/>
+        <source>Maximum active uploads:</source>
+        <translation type="unfinished">Maksimalt aktive opplastinger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2396"/>
+        <source>Maximum active torrents:</source>
+        <translation type="unfinished">Maksimalt aktive torrenter:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2455"/>
+        <source>Do not count slow torrents in these limits</source>
+        <translation type="unfinished">Ikke tell trege torrenter i disse grensene</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2465"/>
+        <source>Share Ratio Limiting</source>
+        <translation type="unfinished">Delingsforholdsbegrensning</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2476"/>
+        <source>Seed torrents until their ratio reaches</source>
+        <translation type="unfinished">Vær giver for torrenter til forholdet deres når</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2505"/>
+        <source>then</source>
+        <translation type="unfinished">deretter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2516"/>
+        <source>Pause them</source>
+        <translation type="unfinished">Sett dem på pause</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2521"/>
+        <source>Remove them</source>
+        <translation type="unfinished">Fjern dem</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2540"/>
+        <source>Automatically add these trackers to new downloads:</source>
+        <translation type="unfinished">Automatisk legg disse sporerne til nye nedlastinger:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2613"/>
+        <source>Enable Web User Interface (Remote control)</source>
+        <translation type="unfinished">Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2662"/>
+        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
+        <translation type="unfinished">Bruk UPnP / NAT-PMP for å videresende porten fra min ruter</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2672"/>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation type="unfinished">Bruk HTTPS istedenfor HTTP</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2703"/>
+        <source>Certificate:</source>
+        <translation type="unfinished">Sertifikat:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2715"/>
+        <source>Import SSL Certificate</source>
+        <translation type="unfinished">Importer SSL-sertifikat</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2756"/>
+        <source>Key:</source>
+        <translation type="unfinished">Nøkkel:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2768"/>
+        <source>Import SSL Key</source>
+        <translation type="unfinished">Importer SSL-nøkkel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2790"/>
+        <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation type="unfinished">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informasjon om sertifikater&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2835"/>
+        <source>Bypass authentication for localhost</source>
+        <translation type="unfinished">Omgå autentisering for lokalvert</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2859"/>
+        <source>Update my dynamic domain name</source>
+        <translation type="unfinished">Oppdater mitt dynamiske domenenavn</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2871"/>
+        <source>Service:</source>
+        <translation type="unfinished">Tjeneste:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2894"/>
+        <source>Register</source>
+        <translation type="unfinished">Registrer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2903"/>
+        <source>Domain name:</source>
+        <translation type="unfinished">Domenenavn:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="99"/>
+        <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
+        <translation type="unfinished">Ved å aktivere disse alternativene kan du &lt;strong&gt;ugjenkallelig miste&lt;/strong&gt; dine .torrent filer!</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="101"/>
+        <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
+        <translation type="unfinished">Når disse alternativene er aktivert vil qBittorrent &lt;strong&gt;slette&lt;/strong&gt; .torrent filer etter at har blitt vellykket (det første alternativet), eller ikke (det andre alternativet), lagt til dens nedlastingskø. Dette vil bli brukt &lt;strong&gt;ikke bare&lt;/strong&gt; for filer åpnet via &amp;ldquo;Legg til torrent&amp;rdquo; meny-handling, men for de som bli åpnet via filtypeassosiasjon også</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="106"/>
+        <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
+        <translation type="unfinished">Hvis du aktiverer det andre alternativet (&amp;ldquo;Også når tillegging blir avbrutt&amp;rdquo;) vil .torrent filen &lt;strong&gt;bli slettet&lt;/strong&gt; selv om du trykker &amp;ldquo;&lt;strong&gt;Avbryt&lt;/strong&gt;&amp;rdquo; i &amp;ldquo;Legg til torrent&amp;rdquo; dialogen</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="244"/>
+        <source>Supported parameters (case sensitive):</source>
+        <translation type="unfinished">Støttede parametre (forskjell på små og store bokstaver):</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="245"/>
+        <source>%N: Torrent name</source>
+        <translation type="unfinished">%N: Torrentnavn</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="246"/>
+        <source>%L: Category</source>
+        <translation type="unfinished">%L: Kategori</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="247"/>
+        <source>%F: Content path (same as root path for multifile torrent)</source>
+        <translation type="unfinished">%F: Innholdsti (samme som rotsti for flerfilstorrent)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="248"/>
+        <source>%R: Root path (first torrent subdirectory path)</source>
+        <translation type="unfinished">%R: Rotsti (første torrent underkatalogsti)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="249"/>
+        <source>%D: Save path</source>
+        <translation type="unfinished">%D: Lagringssti</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="250"/>
+        <source>%C: Number of files</source>
+        <translation type="unfinished">%C: Antall filer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="251"/>
+        <source>%Z: Torrent size (bytes)</source>
+        <translation type="unfinished">%Z: Torrentstørrelse (byte)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="252"/>
+        <source>%T: Current tracker</source>
+        <translation type="unfinished">%T: Nåværende sporer</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="253"/>
+        <source>%I: Info hash</source>
+        <translation type="unfinished">%I: Informativ verifiseringsnøkkel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="254"/>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation type="unfinished">Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., &quot;%N&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1336"/>
+        <source>Select folder to monitor</source>
+        <translation type="unfinished">Velg mappe for å overvåke</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1343"/>
+        <source>Folder is already being monitored:</source>
+        <translation type="unfinished">Mappe blir allerede overvåket:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1346"/>
+        <source>Folder does not exist:</source>
+        <translation type="unfinished">Mappe eksisterer ikke:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1349"/>
+        <source>Folder is not readable:</source>
+        <translation type="unfinished">Mappe er ikke lesbar:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1360"/>
+        <source>Adding entry failed</source>
+        <translation type="unfinished">Tillegging av oppføring mislyktes</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1388"/>
+        <location filename="../gui/optionsdlg.cpp" line="1390"/>
+        <source>Choose export directory</source>
+        <translation type="unfinished">Velg eksporteringskatalog</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1400"/>
+        <location filename="../gui/optionsdlg.cpp" line="1402"/>
+        <location filename="../gui/optionsdlg.cpp" line="1437"/>
+        <location filename="../gui/optionsdlg.cpp" line="1439"/>
+        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1452"/>
+        <source>Choose a save directory</source>
+        <translation type="unfinished">Velg en lagringskatalog</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1425"/>
+        <source>Choose an IP filter file</source>
+        <translation type="unfinished">Velg en IP filterfil</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1425"/>
+        <source>All supported filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1492"/>
+        <source>SSL Certificate</source>
+        <translation type="unfinished">SSL-sertifikat</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1504"/>
+        <source>SSL Key</source>
+        <translation type="unfinished">SSL-nøkkel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1537"/>
+        <source>Parsing error</source>
+        <translation type="unfinished">Analyseringsfeil</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1537"/>
+        <source>Failed to parse the provided IP filter</source>
+        <translation type="unfinished">Analysering av det oppgitte IP filteret mislyktes</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished">Oppdatert vellykket</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1626"/>
+        <source>Invalid key</source>
+        <translation type="unfinished">Ugyldig nøkkel</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1626"/>
+        <source>This is not a valid SSL key.</source>
+        <translation type="unfinished">Dette er ikke en gyldig SSL-nøkkel.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1642"/>
+        <source>Invalid certificate</source>
+        <translation type="unfinished">Ugyldig sertifikat</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1642"/>
+        <source>This is not a valid SSL certificate.</source>
+        <translation type="unfinished">Dette er ikke et gyldig SSL-sertifikat.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1650"/>
+        <source>Time Error</source>
+        <translation type="unfinished">Tidspunktsfeil</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1650"/>
+        <source>The start time and the end time can&apos;t be the same.</source>
+        <translation type="unfinished">Starttidspunktet og sluttidspunktet kan ikke være det samme.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1659"/>
+        <location filename="../gui/optionsdlg.cpp" line="1663"/>
+        <source>Length Error</source>
+        <translation type="unfinished">Lengdefeil</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1659"/>
+        <source>The Web UI username must be at least 3 characters long.</source>
+        <translation type="unfinished">Nettbrukergrensesnittets brukernavn må minst være 3 tegn langt.</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.cpp" line="1663"/>
+        <source>The Web UI password must be at least 6 characters long.</source>
+        <translation type="unfinished">Nettbrukergrensesnittets passord må minst være 6 tegn langt.</translation>
+    </message>
+</context>
+<context>
     <name>PeerInfo</name>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="293"/>
@@ -4201,10 +5280,6 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <translation>Legg til ny deltaker...</translation>
     </message>
     <message>
-        <source>Copy selected</source>
-        <translation type="obsolete">Kopier valgte</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="238"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="276"/>
         <source>Ban peer permanently</source>
@@ -4239,7 +5314,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="236"/>
         <source>Copy IP:port</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier IP:port</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="258"/>
@@ -4293,14 +5368,37 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
 <context>
     <name>PieceAvailabilityBar</name>
     <message>
-        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="39"/>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="163"/>
         <source>White: Unavailable pieces</source>
         <translation>Hvitt: Utilgjengelige deler</translation>
     </message>
     <message>
-        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="39"/>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="164"/>
         <source>Blue: Available pieces</source>
         <translation>Blått: Tilgjengelige deler</translation>
+    </message>
+</context>
+<context>
+    <name>PiecesBar</name>
+    <message>
+        <location filename="../gui/properties/piecesbar.cpp" line="265"/>
+        <source>Files in this piece:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/piecesbar.cpp" line="269"/>
+        <source>File in this piece</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/piecesbar.cpp" line="271"/>
+        <source>File in these pieces</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/piecesbar.cpp" line="289"/>
+        <source>Hold Shift key for detailed information</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4503,933 +5601,692 @@ De programtilleggene ble avskrudd.</translation>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../gui/options.ui" line="54"/>
         <source>Downloads</source>
-        <translation>Nedlastinger</translation>
+        <translation type="obsolete">Nedlastinger</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="59"/>
         <source>Connection</source>
-        <translation>Tilkobling</translation>
+        <translation type="obsolete">Tilkobling</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="64"/>
         <source>Speed</source>
-        <translation>Hastighet</translation>
+        <translation type="obsolete">Hastighet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="74"/>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="obsolete">Web UI</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="79"/>
         <source>Advanced</source>
-        <translation>Avansert</translation>
+        <translation type="obsolete">Avansert</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="161"/>
         <source>(Requires restart)</source>
-        <translation>(Krever omstart)</translation>
+        <translation type="obsolete">(Krever omstart)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="205"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation>Bruk alternerende rekkefarger</translation>
+        <translation type="obsolete">Bruk alternerende rekkefarger</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="285"/>
-        <location filename="../gui/options.ui" line="311"/>
         <source>Start / Stop Torrent</source>
-        <translation>Start / Stopp Torrent</translation>
+        <translation type="obsolete">Start / Stopp Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="295"/>
-        <location filename="../gui/options.ui" line="321"/>
         <source>No action</source>
-        <translation>Ingen handling</translation>
+        <translation type="obsolete">Ingen handling</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1135"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Tilføy .!qB benevnelse til ikke-fullførte filer</translation>
+        <translation type="obsolete">Tilføy .!qB benevnelse til ikke-fullførte filer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1060"/>
         <source>Copy .torrent files to:</source>
-        <translation>Kopier torrentfiler til:</translation>
+        <translation type="obsolete">Kopier torrentfiler til:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1448"/>
         <source>Connections Limits</source>
-        <translation>Tilkoblingsgrenser</translation>
+        <translation type="obsolete">Tilkoblingsgrenser</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1601"/>
         <source>Proxy Server</source>
-        <translation>Mellomtjener</translation>
+        <translation type="obsolete">Mellomtjener</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1904"/>
         <source>Global Rate Limits</source>
-        <translation>Globale Forholdsgrenser</translation>
+        <translation type="obsolete">Globale Forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2206"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Bruk forholdsgrense for transportering av tilleggsdata</translation>
+        <translation type="obsolete">Bruk forholdsgrense for transportering av tilleggsdata</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1999"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Planlegg bruken av alternative forholdsgrenser</translation>
+        <translation type="obsolete">Planlegg bruken av alternative forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2011"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>Fra:</translation>
+        <translation type="obsolete">Fra:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2035"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>Til:</translation>
+        <translation type="obsolete">Til:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2323"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Aktiver lokal deltakeroppdagelse for å finne flere deltakere</translation>
+        <translation type="obsolete">Aktiver lokal deltakeroppdagelse for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2335"/>
         <source>Encryption mode:</source>
-        <translation>Krypteringsmodus:</translation>
+        <translation type="obsolete">Krypteringsmodus:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2343"/>
         <source>Prefer encryption</source>
-        <translation>Foretrekk kryptering</translation>
+        <translation type="obsolete">Foretrekk kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2348"/>
         <source>Require encryption</source>
-        <translation>Krev kryptering</translation>
+        <translation type="obsolete">Krev kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2353"/>
         <source>Disable encryption</source>
-        <translation>Deaktiver kryptering</translation>
+        <translation type="obsolete">Deaktiver kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2431"/>
         <source>Maximum active downloads:</source>
-        <translation>Maksimalt aktive nedlastinger:</translation>
+        <translation type="obsolete">Maksimalt aktive nedlastinger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2451"/>
         <source>Maximum active uploads:</source>
-        <translation>Maksimalt aktive opplastinger:</translation>
+        <translation type="obsolete">Maksimalt aktive opplastinger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2471"/>
         <source>Maximum active torrents:</source>
-        <translation>Maksimalt aktive torrenter:</translation>
+        <translation type="obsolete">Maksimalt aktive torrenter:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="687"/>
         <source>When adding a torrent</source>
-        <translation>Når en torrent legges til</translation>
+        <translation type="obsolete">Når en torrent legges til</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="49"/>
         <source>Behavior</source>
-        <translation>Oppførsel</translation>
+        <translation type="obsolete">Oppførsel</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="125"/>
         <source>Language</source>
-        <translation>Språk</translation>
+        <translation type="obsolete">Språk</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="703"/>
         <source>Display torrent content and some options</source>
-        <translation>Vis torrentinnhold og noen alternativer</translation>
+        <translation type="obsolete">Vis torrentinnhold og noen alternativer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1314"/>
         <source>Run external program on torrent completion</source>
-        <translation>Kjør eksternt program ved ferdigstillelse av torrenter</translation>
+        <translation type="obsolete">Kjør eksternt program ved ferdigstillelse av torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1384"/>
         <source>Port used for incoming connections:</source>
-        <translation>Port brukt for innkommende tilkoblinger:</translation>
+        <translation type="obsolete">Port brukt for innkommende tilkoblinger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1404"/>
         <source>Random</source>
-        <translation>Tilfeldig</translation>
+        <translation type="obsolete">Tilfeldig</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1454"/>
         <source>Global maximum number of connections:</source>
-        <translation>Globalt maksimalt antall tilkoblinger:</translation>
+        <translation type="obsolete">Globalt maksimalt antall tilkoblinger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1480"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Maksimalt antall tilkoblinger per torrent:</translation>
+        <translation type="obsolete">Maksimalt antall tilkoblinger per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1503"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksimalt antall opplastingsåpninger per torrent:</translation>
+        <translation type="obsolete">Maksimalt antall opplastingsåpninger per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1926"/>
-        <location filename="../gui/options.ui" line="2117"/>
         <source>Upload:</source>
-        <translation>Opplasting:</translation>
+        <translation type="obsolete">Opplasting:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1970"/>
-        <location filename="../gui/options.ui" line="2124"/>
         <source>Download:</source>
-        <translation>Nedlasting:</translation>
+        <translation type="obsolete">Nedlasting:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1933"/>
-        <location filename="../gui/options.ui" line="1956"/>
-        <location filename="../gui/options.ui" line="2163"/>
-        <location filename="../gui/options.ui" line="2170"/>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
-        <source>Remove folder</source>
-        <translation type="obsolete">Fjern mappe</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="2076"/>
         <source>Every day</source>
-        <translation>Hver dag</translation>
+        <translation type="obsolete">Hver dag</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2307"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Utveksle deltakere med kompatible Bittorrent-klienter (µTorrent, Vuze, ...)</translation>
+        <translation type="obsolete">Utveksle deltakere med kompatible Bittorrent-klienter (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1643"/>
         <source>Host:</source>
-        <translation>Vert:</translation>
+        <translation type="obsolete">Vert:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1622"/>
         <source>SOCKS4</source>
-        <translation>SOCKS4</translation>
+        <translation type="obsolete">SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1609"/>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation type="obsolete">Type:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="14"/>
         <source>Options</source>
-        <translation>Alternativer</translation>
+        <translation type="obsolete">Alternativer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="259"/>
         <source>Action on double-click</source>
-        <translation>Handling ved dobbelklikk</translation>
+        <translation type="obsolete">Handling ved dobbelklikk</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="268"/>
         <source>Downloading torrents:</source>
-        <translation>Nedlastende torrenter:</translation>
+        <translation type="obsolete">Nedlastende torrenter:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="290"/>
-        <location filename="../gui/options.ui" line="316"/>
         <source>Open destination folder</source>
-        <translation>Åpne destinasjonsmappe</translation>
+        <translation type="obsolete">Åpne destinasjonsmappe</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="303"/>
         <source>Completed torrents:</source>
-        <translation>Fullførte torrenter:</translation>
+        <translation type="obsolete">Fullførte torrenter:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="335"/>
         <source>Desktop</source>
-        <translation>Skrivebord</translation>
+        <translation type="obsolete">Skrivebord</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="348"/>
         <source>Show splash screen on start up</source>
-        <translation>Vis velkomstskjerm ved oppstart</translation>
+        <translation type="obsolete">Vis velkomstskjerm ved oppstart</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="358"/>
         <source>Start qBittorrent minimized</source>
-        <translation>Start qBittorrent minimert</translation>
+        <translation type="obsolete">Start qBittorrent minimert</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="394"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Minimer qBittorrent til varslingsområdet</translation>
+        <translation type="obsolete">Minimer qBittorrent til varslingsområdet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="404"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Steng qBittorrent til varslingsområdet</translation>
+        <translation type="obsolete">Steng qBittorrent til varslingsområdet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="413"/>
         <source>Tray icon style:</source>
-        <translation>Systemkurvikon-stil:</translation>
+        <translation type="obsolete">Systemkurvikon-stil:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="421"/>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="426"/>
         <source>Monochrome (Dark theme)</source>
-        <translation>Monokromt (Mørkt tema)</translation>
+        <translation type="obsolete">Monokromt (Mørkt tema)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="431"/>
         <source>Monochrome (Light theme)</source>
-        <translation>Monokromt (Lyst tema)</translation>
+        <translation type="obsolete">Monokromt (Lyst tema)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="133"/>
         <source>User Interface Language:</source>
-        <translation>Brukergrensesnittsspråk:</translation>
+        <translation type="obsolete">Brukergrensesnittsspråk:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="189"/>
         <source>Transfer List</source>
-        <translation>Overføringsliste</translation>
+        <translation type="obsolete">Overføringsliste</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="195"/>
         <source>Confirm when deleting torrents</source>
-        <translation>Bekreft ved sletting av torrenter</translation>
+        <translation type="obsolete">Bekreft ved sletting av torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="341"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Start qBittorrent ved Windows oppstart</translation>
+        <translation type="obsolete">Start qBittorrent ved Windows oppstart</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="365"/>
         <source>Confirmation on exit when torrents are active</source>
-        <translation>Bekreftelse ved avsluttning når torrenter er aktive</translation>
+        <translation type="obsolete">Bekreftelse ved avsluttning når torrenter er aktive</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="385"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>Vis qBittorrent i varslingsområdet</translation>
+        <translation type="obsolete">Vis qBittorrent i varslingsområdet</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="444"/>
         <source>File association</source>
-        <translation>Filassosiasjon</translation>
+        <translation type="obsolete">Filassosiasjon</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="450"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation>Bruk qBittorrent for .torrent filer</translation>
+        <translation type="obsolete">Bruk qBittorrent for .torrent filer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="457"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>Bruk qBittorrent for magnetlenker</translation>
+        <translation type="obsolete">Bruk qBittorrent for magnetlenker</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="470"/>
         <source>Power Management</source>
-        <translation>Strømstyring</translation>
+        <translation type="obsolete">Strømstyring</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="476"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation>Hindre systemhvile når torrenter er aktive</translation>
+        <translation type="obsolete">Hindre systemhvile når torrenter er aktive</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="696"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Ikke start nedlastingen automatisk</translation>
+        <translation type="obsolete">Ikke start nedlastingen automatisk</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="712"/>
         <source>Bring torrent dialog to the front</source>
-        <translation>Hent torrentdialog til fronten</translation>
+        <translation type="obsolete">Hent torrentdialog til fronten</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="725"/>
         <source>Should the .torrent file be deleted after adding it</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Skal .torrent filen slettes etter å ha blitt lagt til</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="728"/>
         <source>Delete .torrent files afterwards </source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Slett .torrent filer etterpå </translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="740"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Slett også .torrent filer hvis tillegging ble avbrutt</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="743"/>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Også når tillegging blir avbrutt</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="771"/>
         <source>Warning! Data loss possible!</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Advarsel! Datatap mulig!</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="800"/>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Standard Torrentbehandlingsmodus:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="812"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Automatisk modus betyr at diverse torrent-egenskaper (f.eks. lagringssti) vil bli bestemt av den assosierte kategorien</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="816"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Manuell</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="821"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Automatisk</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="844"/>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Når Torrentkategori forandret:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="859"/>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Bytt torrent til Manuell Modus</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="882"/>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Når Standard Lagringssti forandret:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="900"/>
-        <location filename="../gui/options.ui" line="941"/>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Bytt berørte torrenter til Manuell Modus</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="923"/>
         <source>When Category changed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Når Kategori forandret:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="966"/>
         <source>Use Subcategories</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Bruk Underkategorier</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="975"/>
         <source>Default Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Standard Lagringssti:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1128"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Forhåndstildel diskplass for alle filer</translation>
+        <translation type="obsolete">Forhåndstildel diskplass for alle filer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1021"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Oppbevar ikke-fullførte torrenter i:</translation>
+        <translation type="obsolete">Oppbevar ikke-fullførte torrenter i:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1145"/>
         <source>Automatically add torrents from:</source>
-        <translation>Legg automatisk til torrenter fra:</translation>
+        <translation type="obsolete">Legg automatisk til torrenter fra:</translation>
     </message>
     <message>
-        <source>Add folder...</source>
-        <translation type="obsolete">Legg til mappe...</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="1093"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Kopier .torrent filer for ferdige nedlastinger til:</translation>
+        <translation type="obsolete">Kopier .torrent filer for ferdige nedlastinger til:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1192"/>
         <source>Add entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Legg til oppføring</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1202"/>
         <source>Remove entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Fjern oppføring</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1229"/>
         <source>Email notification upon download completion</source>
-        <translation>Epost-varsling ved nedlastingsfullførelse</translation>
+        <translation type="obsolete">Epost-varsling ved nedlastingsfullførelse</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1246"/>
         <source>Destination email:</source>
-        <translation>Destinasjons-epost:</translation>
+        <translation type="obsolete">Destinasjons-epost:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1253"/>
         <source>SMTP server:</source>
-        <translation>SMTP tjener:</translation>
+        <translation type="obsolete">SMTP tjener:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1265"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Denne tjeneren krever en sikker tilkobling (SSL)</translation>
+        <translation type="obsolete">Denne tjeneren krever en sikker tilkobling (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1376"/>
         <source>Listening Port</source>
-        <translation>Lytteport</translation>
+        <translation type="obsolete">Lytteport</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1426"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Bruk UPnP / NAT-PMP port-videresending fra min ruter</translation>
+        <translation type="obsolete">Bruk UPnP / NAT-PMP port-videresending fra min ruter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1436"/>
         <source>Use different port on each startup</source>
-        <translation>Bruk annen port ved hver oppstart</translation>
+        <translation type="obsolete">Bruk annen port ved hver oppstart</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1562"/>
         <source>Global maximum number of upload slots:</source>
-        <translation>Globalt maksimalt antall opplastingsåpninger:</translation>
+        <translation type="obsolete">Globalt maksimalt antall opplastingsåpninger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1697"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation>Ellers så er mellomtjeneren kun brukt for sporertilkoblinger</translation>
+        <translation type="obsolete">Ellers så er mellomtjeneren kun brukt for sporertilkoblinger</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1700"/>
         <source>Use proxy for peer connections</source>
-        <translation>Bruk mellomtjener for deltakertilkoblinger</translation>
+        <translation type="obsolete">Bruk mellomtjener for deltakertilkoblinger</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1707"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>Deaktiver tilkoblinger som ikke er støttet av mellomtjenere</translation>
+        <translation type="obsolete">Deaktiver tilkoblinger som ikke er støttet av mellomtjenere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1720"/>
         <source>Use proxy only for torrents</source>
-        <translation>Bruk mellomtjener kun for torrenter</translation>
+        <translation type="obsolete">Bruk mellomtjener kun for torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1717"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
-        <translation>RSS-informasjonsstrømmer, søkemotor, programvareoppdateringer, eller hva som helst annet enn torrentoverføringer og relaterte operasjoner (som deltakerutvekslinger) vil bruke en direkte tilkobling</translation>
+        <translation type="obsolete">RSS-informasjonsstrømmer, søkemotor, programvareoppdateringer, eller hva som helst annet enn torrentoverføringer og relaterte operasjoner (som deltakerutvekslinger) vil bruke en direkte tilkobling</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1789"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Info: Passordet er lagret ukryptert</translation>
+        <translation type="obsolete">Info: Passordet er lagret ukryptert</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1802"/>
         <source>IP Filtering</source>
-        <translation>IP Filtrering</translation>
+        <translation type="obsolete">IP Filtrering</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1843"/>
         <source>Reload the filter</source>
-        <translation>Last inn filteret på nytt</translation>
+        <translation type="obsolete">Last inn filteret på nytt</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1859"/>
         <source>Apply to trackers</source>
-        <translation>Bruk til sporere</translation>
+        <translation type="obsolete">Bruk til sporere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2199"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Bruk forholdsgrense for deltakere på lokalnett</translation>
+        <translation type="obsolete">Bruk forholdsgrense for deltakere på lokalnett</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2062"/>
         <source>When:</source>
-        <translation>Når:</translation>
+        <translation type="obsolete">Når:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="217"/>
         <source>Hide zero and infinity values</source>
-        <translation>Skjul null- og uendelighetsverdier</translation>
+        <translation type="obsolete">Skjul null- og uendelighetsverdier</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="225"/>
         <source>Always</source>
-        <translation>Alltid</translation>
+        <translation type="obsolete">Alltid</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="230"/>
         <source>Paused torrents only</source>
-        <translation>Kun torrenter satt på pause</translation>
+        <translation type="obsolete">Kun torrenter satt på pause</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="375"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation>Bekreftelse ved auto-avslutning når nedlastinger er ferdige</translation>
+        <translation type="obsolete">Bekreftelse ved auto-avslutning når nedlastinger er ferdige</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="486"/>
         <source>Log file</source>
-        <translation>Loggfil</translation>
+        <translation type="obsolete">Loggfil</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="500"/>
         <source>Save path:</source>
-        <translation>Lagringssti:</translation>
+        <translation type="obsolete">Lagringssti:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="530"/>
         <source>Backup the log file after:</source>
-        <translation>Sikkerhetskopier loggfilen etter:</translation>
+        <translation type="obsolete">Sikkerhetskopier loggfilen etter:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="537"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="obsolete"> MB</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="573"/>
         <source>Delete backup logs older than:</source>
-        <translation>Slett sikkerhetskopier av logger eldre enn:</translation>
+        <translation type="obsolete">Slett sikkerhetskopier av logger eldre enn:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="597"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation>dager</translation>
+        <translation type="obsolete">dager</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="602"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
-        <translation>måneder</translation>
+        <translation type="obsolete">måneder</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="607"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
-        <translation>år</translation>
+        <translation type="obsolete">år</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="792"/>
         <source>Saving Management</source>
-        <translation>Lagringsbehandling</translation>
+        <translation type="obsolete">Lagringsbehandling</translation>
     </message>
     <message>
-        <source>Default Saving Mode:</source>
-        <translation type="obsolete">Forvalgt lagringsmodus:</translation>
-    </message>
-    <message>
-        <source>Simple</source>
-        <translation type="obsolete">Enkel</translation>
-    </message>
-    <message>
-        <source>Default Save Path</source>
-        <translation type="obsolete">Forvalgt lagringssti</translation>
-    </message>
-    <message>
-        <source>Enable Subcategories:</source>
-        <translation type="obsolete">Aktiver underkategorier:</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Nei</translation>
-    </message>
-    <message>
-        <source>When Torrent Category changed</source>
-        <translation type="obsolete">Når torrentkategori er forandret</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="854"/>
         <source>Relocate torrent</source>
-        <translation>Omplasser torrent</translation>
+        <translation type="obsolete">Omplasser torrent</translation>
     </message>
     <message>
-        <source>Switch torrent to Simple Mode</source>
-        <translation type="obsolete">Bytt torrent til enkel modus</translation>
-    </message>
-    <message>
-        <source>When Default Save Path changed</source>
-        <translation type="obsolete">Når forvalgt lagringssti er forandret</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="895"/>
-        <location filename="../gui/options.ui" line="936"/>
         <source>Relocate affected torrents</source>
-        <translation>Omplasser berørte torrenter</translation>
+        <translation type="obsolete">Omplasser berørte torrenter</translation>
     </message>
     <message>
-        <source>Switch affected torrents to Simple Mode</source>
-        <translation type="obsolete">Bytt berørte torrenter til enkel modus</translation>
-    </message>
-    <message>
-        <source>When Category changed</source>
-        <translation type="obsolete">Når kategori er forandret</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="2081"/>
         <source>Weekdays</source>
-        <translation>Ukedager</translation>
+        <translation type="obsolete">Ukedager</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2086"/>
         <source>Weekends</source>
-        <translation>Helger</translation>
+        <translation type="obsolete">Helger</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2193"/>
         <source>Rate Limits Settings</source>
-        <translation>Innstillinger for forholdsgrenser</translation>
+        <translation type="obsolete">Innstillinger for forholdsgrenser</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2213"/>
         <source>Enable µTP protocol</source>
-        <translation>Aktiver µTP-protokoll</translation>
+        <translation type="obsolete">Aktiver µTP-protokoll</translation>
     </message>
     <message utf8="true">
-        <location filename="../gui/options.ui" line="2220"/>
         <source>Apply rate limit to µTP protocol</source>
-        <translation>Bruk forholdsgrense for µTP-protokoll</translation>
+        <translation type="obsolete">Bruk forholdsgrense for µTP-protokoll</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2291"/>
         <source>Privacy</source>
-        <translation>Personvern</translation>
+        <translation type="obsolete">Personvern</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2297"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Aktiver DHT (desentralisert nettverk) for å finne flere deltakere</translation>
+        <translation type="obsolete">Aktiver DHT (desentralisert nettverk) for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2310"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Aktiver utveksling av deltakere (PeX) for å finne flere deltakere</translation>
+        <translation type="obsolete">Aktiver utveksling av deltakere (PeX) for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2320"/>
         <source>Look for peers on your local network</source>
-        <translation>Se etter deltakere i ditt lokale nettverk</translation>
+        <translation type="obsolete">Se etter deltakere i ditt lokale nettverk</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2378"/>
         <source>Enable when using a proxy or a VPN connection</source>
-        <translation>Aktiver ved bruk av mellomtjener eller en VPN-tilkobling</translation>
+        <translation type="obsolete">Aktiver ved bruk av mellomtjener eller en VPN-tilkobling</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2381"/>
         <source>Enable anonymous mode</source>
-        <translation>Aktiver anonymitetsmodus</translation>
+        <translation type="obsolete">Aktiver anonymitetsmodus</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2388"/>
         <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mer informasjon&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mer informasjon&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2530"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Ikke tell trege torrenter i disse grensene</translation>
+        <translation type="obsolete">Ikke tell trege torrenter i disse grensene</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2551"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Vær giver for torrenter til forholdet deres når</translation>
+        <translation type="obsolete">Vær giver for torrenter til forholdet deres når</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2580"/>
         <source>then</source>
-        <translation>deretter</translation>
+        <translation type="obsolete">deretter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2591"/>
         <source>Pause them</source>
-        <translation>Sett dem på pause</translation>
+        <translation type="obsolete">Sett dem på pause</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2596"/>
         <source>Remove them</source>
-        <translation>Fjern dem</translation>
+        <translation type="obsolete">Fjern dem</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2615"/>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Automatisk legg disse sporerne til nye nedlastinger:</translation>
+        <translation type="obsolete">Automatisk legg disse sporerne til nye nedlastinger:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2737"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Bruk UPnP / NAT-PMP for å videresende porten fra min ruter</translation>
+        <translation type="obsolete">Bruk UPnP / NAT-PMP for å videresende porten fra min ruter</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2747"/>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>Bruk HTTPS istedenfor HTTP</translation>
+        <translation type="obsolete">Bruk HTTPS istedenfor HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2790"/>
         <source>Import SSL Certificate</source>
-        <translation>Importer SSL-sertifikat</translation>
+        <translation type="obsolete">Importer SSL-sertifikat</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2843"/>
         <source>Import SSL Key</source>
-        <translation>Importer SSL-nøkkel</translation>
+        <translation type="obsolete">Importer SSL-nøkkel</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2865"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informasjon om sertifikater&lt;/a&gt;</translation>
+        <translation type="obsolete">&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informasjon om sertifikater&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2778"/>
         <source>Certificate:</source>
-        <translation>Sertifikat:</translation>
+        <translation type="obsolete">Sertifikat:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1993"/>
         <source>Alternative Rate Limits</source>
-        <translation>Alternative forholdsgrenser</translation>
+        <translation type="obsolete">Alternative forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2831"/>
         <source>Key:</source>
-        <translation>Nøkkel:</translation>
+        <translation type="obsolete">Nøkkel:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2910"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Omgå autentisering for lokalvert</translation>
+        <translation type="obsolete">Omgå autentisering for lokalvert</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2934"/>
         <source>Update my dynamic domain name</source>
-        <translation>Oppdater mitt dynamiske domenenavn</translation>
+        <translation type="obsolete">Oppdater mitt dynamiske domenenavn</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2946"/>
         <source>Service:</source>
-        <translation>Tjeneste:</translation>
+        <translation type="obsolete">Tjeneste:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2969"/>
         <source>Register</source>
-        <translation>Registrer</translation>
+        <translation type="obsolete">Registrer</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2978"/>
         <source>Domain name:</source>
-        <translation>Domenenavn:</translation>
+        <translation type="obsolete">Domenenavn:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1617"/>
         <source>(None)</source>
-        <translation>(Ingen)</translation>
+        <translation type="obsolete">(Ingen)</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="69"/>
         <source>BitTorrent</source>
-        <translation>BitTorrent</translation>
+        <translation type="obsolete">BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1632"/>
         <source>HTTP</source>
-        <translation>HTTP</translation>
+        <translation type="obsolete">HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1669"/>
-        <location filename="../gui/options.ui" line="2702"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="obsolete">Port:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1272"/>
-        <location filename="../gui/options.ui" line="1733"/>
-        <location filename="../gui/options.ui" line="2878"/>
         <source>Authentication</source>
-        <translation>Autentisering</translation>
+        <translation type="obsolete">Autentisering</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1284"/>
-        <location filename="../gui/options.ui" line="1747"/>
-        <location filename="../gui/options.ui" line="2917"/>
-        <location filename="../gui/options.ui" line="2992"/>
         <source>Username:</source>
-        <translation>Brukernavn:</translation>
+        <translation type="obsolete">Brukernavn:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1294"/>
-        <location filename="../gui/options.ui" line="1767"/>
-        <location filename="../gui/options.ui" line="2924"/>
-        <location filename="../gui/options.ui" line="3006"/>
         <source>Password:</source>
-        <translation>Passord:</translation>
+        <translation type="obsolete">Passord:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2416"/>
         <source>Torrent Queueing</source>
-        <translation>Torrentkø-danning</translation>
+        <translation type="obsolete">Torrentkø-danning</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2540"/>
         <source>Share Ratio Limiting</source>
-        <translation>Delingsforholdsbegrensning</translation>
+        <translation type="obsolete">Delingsforholdsbegrensning</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="2688"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
+        <translation type="obsolete">Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1627"/>
         <source>SOCKS5</source>
-        <translation>SOCKS5</translation>
+        <translation type="obsolete">SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="1814"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Filtersti (.dat, .p2p, .p2b):</translation>
+        <translation type="obsolete">Filtersti (.dat, .p2p, .p2b):</translation>
     </message>
 </context>
 <context>
@@ -5710,154 +6567,154 @@ De programtilleggene ble avskrudd.</translation>
         <translation>Ikke last ned</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="431"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
         <source>Never</source>
         <translation>Aldri</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="438"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="447"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (har %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="386"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="392"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 denne økta)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="395"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="404"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (delt i %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (%2 maks)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="415"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="419"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="428"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (%2 totalt)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="423"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="427"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="432"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="436"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (%2 gj.sn.)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="568"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="582"/>
         <source>Open</source>
         <translation>Åpne</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="569"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="583"/>
         <source>Open Containing Folder</source>
         <translation>Åpne Innholdende Mappe</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="570"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
         <source>Rename...</source>
         <translation>Omdøp...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="575"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="589"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="621"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="639"/>
         <source>New Web seed</source>
         <translation>Ny Nettgiver</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="627"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="645"/>
         <source>Remove Web seed</source>
         <translation>Fjern Nettgiver</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="629"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="647"/>
         <source>Copy Web seed URL</source>
         <translation>Kopier Nettgiver-nettadresse</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="630"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="648"/>
         <source>Edit Web seed URL</source>
         <translation>Rediger Nettgiver-nettadresse</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="655"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="674"/>
         <source>Rename the file</source>
         <translation>Omdøp filen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="656"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="675"/>
         <source>New name:</source>
         <translation>Nytt navn:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="660"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="679"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="706"/>
         <source>The file could not be renamed</source>
         <translation>Filen kunne ikke omdøpes</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="661"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="680"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Dette filnavnet inneholder forbudte tegn, vennligst velg et annet et.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="731"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="707"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="749"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Dette navnet er allerede i bruk i denne mappen. Vennligst velg et annet navn.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="730"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="748"/>
         <source>The folder could not be renamed</source>
         <translation>Mappen kunne ikke omdøpes</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="833"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="856"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="81"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="83"/>
         <source>Filter files...</source>
         <translation>Filtrer filer...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="776"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="796"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny nyhetsmatingsgivning</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="777"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="797"/>
         <source>New URL seed:</source>
         <translation>Ny nyhetsmatingsgivning:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="783"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="834"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="803"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="857"/>
         <source>This URL seed is already in the list.</source>
         <translation>Denne nyhetsmatingsgivningen er allerede i listen.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="826"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="849"/>
         <source>Web seed editing</source>
         <translation>Nettgiver-redigering</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="827"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="850"/>
         <source>Web seed URL:</source>
         <translation>Nettgiver-nettadresse:</translation>
     </message>
@@ -6004,33 +6861,33 @@ Ingen flere notiser vil bli gitt.</translation>
         <translation>Jeg Samtykker</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="247"/>
+        <location filename="../app/application.cpp" line="290"/>
         <source>Torrent name: %1</source>
         <translation>Torrentnavn: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="248"/>
+        <location filename="../app/application.cpp" line="291"/>
         <source>Torrent size: %1</source>
         <translation>Torrentstørrelse: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="249"/>
+        <location filename="../app/application.cpp" line="292"/>
         <source>Save path: %1</source>
         <translation>Lagringssti: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="250"/>
+        <location filename="../app/application.cpp" line="293"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrenten ble lastet ned til %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="253"/>
+        <location filename="../app/application.cpp" line="296"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Takk for at du bruker qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="259"/>
+        <location filename="../app/application.cpp" line="302"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &apos;%1&apos; er ferdig nedlastet</translation>
     </message>
@@ -6173,17 +7030,17 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../base/settingsstorage.cpp" line="214"/>
         <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation type="unfinished">Oppdaget uren programavsluttning. Bruker reservefil for å gjenopprette innstillinger.</translation>
+        <translation>Oppdaget uren programavsluttning. Bruker reservefil for å gjenopprette innstillinger.</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="280"/>
         <source>An access error occurred while trying to write the configuration file.</source>
-        <translation type="unfinished">En tilgangsfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
+        <translation>En tilgangsfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="282"/>
         <source>A format error occurred while trying to write the configuration file.</source>
-        <translation type="unfinished">En formatfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
+        <translation>En formatfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
     </message>
 </context>
 <context>
@@ -6409,69 +7266,37 @@ Ingen flere notiser vil bli gitt.</translation>
 <context>
     <name>ScanFoldersDelegate</name>
     <message>
-        <source>Watch Folder</source>
-        <translation type="obsolete">Overvåkningsmappe</translation>
-    </message>
-    <message>
-        <source>Default Folder</source>
-        <translation type="obsolete">Forvalgt mappe</translation>
-    </message>
-    <message>
-        <source>Browse...</source>
-        <translation type="obsolete">Bla gjennom…</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Velg lagringssti</translation>
-    </message>
-    <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
         <source>Select save location</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg lagringsplassering</translation>
     </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <source>Watch Folder</source>
-        <translation type="obsolete">Overvåkningsmappe</translation>
-    </message>
-    <message>
-        <source>Default Folder</source>
-        <translation type="obsolete">Forvalgt mappe</translation>
-    </message>
-    <message>
-        <source>Watched Folder</source>
-        <translation type="obsolete">Overvåket Mappe</translation>
-    </message>
-    <message>
-        <source>Save Files to</source>
-        <translation type="obsolete">Lagre filer til</translation>
-    </message>
-    <message>
         <location filename="../base/scanfoldersmodel.cpp" line="151"/>
         <source>Monitored Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Overvåket Mappe</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="154"/>
         <source>Override Save Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Overstyr Lagringsplassering</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="395"/>
         <source>Monitored folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Overvåket mappe</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="397"/>
         <source>Default save location</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard lagringsplassering</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="399"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bla gjennom...</translation>
     </message>
 </context>
 <context>
@@ -6566,72 +7391,72 @@ Ingen flere notiser vil bli gitt.</translation>
 <context>
     <name>SearchTab</name>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="79"/>
+        <location filename="../gui/search/searchtab.cpp" line="81"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="80"/>
+        <location filename="../gui/search/searchtab.cpp" line="82"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Størrelse</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="81"/>
+        <location filename="../gui/search/searchtab.cpp" line="83"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Givere</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="82"/>
+        <location filename="../gui/search/searchtab.cpp" line="84"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Sankere</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="83"/>
+        <location filename="../gui/search/searchtab.cpp" line="85"/>
         <source>Search engine</source>
         <translation>Søkemotor</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="203"/>
+        <location filename="../gui/search/searchtab.cpp" line="205"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation>Resultat (viser &lt;i&gt;%1&lt;/i&gt; av &lt;i&gt;%2&lt;/i&gt;):</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="253"/>
+        <location filename="../gui/search/searchtab.cpp" line="255"/>
         <source>Torrent names only</source>
         <translation>Kun torrentnavn</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="254"/>
+        <location filename="../gui/search/searchtab.cpp" line="256"/>
         <source>Everywhere</source>
         <translation>Overalt</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="266"/>
+        <location filename="../gui/search/searchtab.cpp" line="268"/>
         <source>Searching...</source>
         <translation>Søker...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="268"/>
+        <location filename="../gui/search/searchtab.cpp" line="270"/>
         <source>Search has finished</source>
         <translation>Søket er ferdig</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="270"/>
+        <location filename="../gui/search/searchtab.cpp" line="272"/>
         <source>Search aborted</source>
         <translation>Søk avbrutt</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="272"/>
+        <location filename="../gui/search/searchtab.cpp" line="274"/>
         <source>An error occurred during search...</source>
         <translation>En feil oppstod under søk...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchtab.cpp" line="274"/>
+        <location filename="../gui/search/searchtab.cpp" line="276"/>
         <source>Search returned no results</source>
         <translation>Søket returnerte ingen resultat</translation>
     </message>
@@ -6768,27 +7593,19 @@ Ingen flere notiser vil bli gitt.</translation>
         <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: søk etter &lt;b&gt;foo bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>All enabled</source>
-        <translation type="obsolete">Alle aktivert</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="143"/>
+        <location filename="../gui/search/searchwidget.cpp" line="144"/>
         <source>All plugins</source>
         <translation>Alle programtillegg</translation>
     </message>
     <message>
-        <source>Multiple...</source>
-        <translation type="obsolete">Flere…</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.cpp" line="144"/>
+        <location filename="../gui/search/searchwidget.cpp" line="143"/>
         <source>Only enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun aktiverte</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="145"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="245"/>
@@ -6826,21 +7643,6 @@ Ingen flere notiser vil bli gitt.</translation>
         <location filename="../gui/search/searchwidget.cpp" line="342"/>
         <source>Search has failed</source>
         <translation>Søket mislyktes</translation>
-    </message>
-</context>
-<context>
-    <name>SettingsStorage</name>
-    <message>
-        <source>Detected unclean program exit. Using fallback file to restore settings.</source>
-        <translation type="obsolete">Oppdaget uren programavsluttning. Bruker reservefil for å gjenopprette innstillinger.</translation>
-    </message>
-    <message>
-        <source>An access error occurred while trying to write the configuration file.</source>
-        <translation type="obsolete">En tilgangsfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
-    </message>
-    <message>
-        <source>A format error occurred while trying to write the configuration file.</source>
-        <translation type="obsolete">En formatfeil oppstod ved forsøk på å skrive oppsettsfila.</translation>
     </message>
 </context>
 <context>
@@ -7100,16 +7902,12 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache hits:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hurtiglager-lesningstreff:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Read cache Hits:</source>
-        <translation type="obsolete">Hurtiglager-lesningstreff:</translation>
+        <translation>Gjennomsnittlig tid i kø:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
@@ -7132,10 +7930,6 @@ Ingen flere notiser vil bli gitt.</translation>
         <translation>Hurtiglager-skrivningsoverlast:</translation>
     </message>
     <message>
-        <source>Average time in queue (ms):</source>
-        <translation type="obsolete">Gjennomsnittlig tid i kø (ms):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="191"/>
         <source>Read cache overload:</source>
         <translation>Hurtiglager-lesningsoverlast:</translation>
@@ -7154,7 +7948,7 @@ Ingen flere notiser vil bli gitt.</translation>
         <location filename="../gui/statsdialog.cpp" line="101"/>
         <source>%1 ms</source>
         <comment>18 milliseconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 ms</translation>
     </message>
 </context>
 <context>
@@ -7405,67 +8199,6 @@ Ingen flere notiser vil bli gitt.</translation>
         <location filename="../gui/torrentcreatordlg.cpp" line="165"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Den opprettede torrentfilen er ugyldig. Den vil ikke bli lagt til nedlastingslisten.</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentImportDlg</name>
-    <message>
-        <source>Torrent Import</source>
-        <translation type="obsolete">Torrent Importering</translation>
-    </message>
-    <message>
-        <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="obsolete">Denne assistenten vil hjelpe deg med å dele med qBittorrent en torrent som du allerede har lastet ned.</translation>
-    </message>
-    <message>
-        <source>Torrent file to import:</source>
-        <translation type="obsolete">Torrentfil til å importere:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Content location:</source>
-        <translation type="obsolete">Innholdsplassering:</translation>
-    </message>
-    <message>
-        <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="obsolete">Hopp over steget med datasjekking og start givning umiddelbart</translation>
-    </message>
-    <message>
-        <source>Import</source>
-        <translation type="obsolete">Importer</translation>
-    </message>
-    <message>
-        <source>Torrent file to import</source>
-        <translation type="obsolete">Torrentfil til å importere</translation>
-    </message>
-    <message>
-        <source>Torrent files</source>
-        <translation type="obsolete">Torrentfiler</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; Files</source>
-        <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="obsolete">&apos;%1&apos;-filer</translation>
-    </message>
-    <message>
-        <source>Please provide the location of &apos;%1&apos;</source>
-        <comment>%1 is a file name</comment>
-        <translation type="obsolete">Oppgi plasseringen for &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Please point to the location of the torrent: %1</source>
-        <translation type="obsolete">Vennligst pek til plasseringen av torrenten: %1</translation>
-    </message>
-    <message>
-        <source>Invalid torrent file</source>
-        <translation type="obsolete">Ugyldig torrentfil</translation>
-    </message>
-    <message>
-        <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Dette er ikke en gyldig torrentfil.</translation>
     </message>
 </context>
 <context>
@@ -8157,16 +8890,12 @@ Kategorinavn kan ikke inneholde &apos;//&apos; sekvens.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="675"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk Torrentbehandling</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="677"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Advanced Saving Management</source>
-        <translation type="obsolete">Aktiver avansert lagringsbehandling</translation>
+        <translation>Automatisk modus betyr at diverse torrent-egenskaper (f.eks. lagringssti) vil bli bestemt av den assosierte kategorien</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="775"/>
@@ -8251,7 +8980,7 @@ Kategorinavn kan ikke inneholde &apos;//&apos; sekvens.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="781"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukorrekt kategorinavn</translation>
     </message>
 </context>
 <context>
@@ -8699,228 +9428,157 @@ Kategorinavn kan ikke inneholde &apos;//&apos; sekvens.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1385"/>
-        <location filename="../gui/options_imp.cpp" line="1387"/>
         <source>Choose export directory</source>
-        <translation>Velg eksporteringskatalog</translation>
+        <translation type="obsolete">Velg eksporteringskatalog</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1397"/>
-        <location filename="../gui/options_imp.cpp" line="1399"/>
-        <location filename="../gui/options_imp.cpp" line="1438"/>
-        <location filename="../gui/options_imp.cpp" line="1440"/>
-        <location filename="../gui/options_imp.cpp" line="1451"/>
-        <location filename="../gui/options_imp.cpp" line="1453"/>
         <source>Choose a save directory</source>
-        <translation>Velg en lagringskatalog</translation>
+        <translation type="obsolete">Velg en lagringskatalog</translation>
     </message>
     <message>
-        <source>Add directory to scan</source>
-        <translation type="obsolete">Legg til katalog som skal gjennomsøkes</translation>
-    </message>
-    <message>
-        <location filename="../gui/options_imp.cpp" line="241"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation>Støttede parametre (forskjell på små og store bokstaver):</translation>
+        <translation type="obsolete">Støttede parametre (forskjell på små og store bokstaver):</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="242"/>
         <source>%N: Torrent name</source>
-        <translation>%N: Torrentnavn</translation>
+        <translation type="obsolete">%N: Torrentnavn</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="243"/>
         <source>%L: Category</source>
-        <translation>%L: Kategori</translation>
+        <translation type="obsolete">%L: Kategori</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="244"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Innholdsti (samme som rotsti for flerfilstorrent)</translation>
+        <translation type="obsolete">%F: Innholdsti (samme som rotsti for flerfilstorrent)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="245"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: Rotsti (første torrent underkatalogsti)</translation>
+        <translation type="obsolete">%R: Rotsti (første torrent underkatalogsti)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="246"/>
         <source>%D: Save path</source>
-        <translation>%D: Lagringssti</translation>
+        <translation type="obsolete">%D: Lagringssti</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="247"/>
         <source>%C: Number of files</source>
-        <translation>%C: Antall filer</translation>
+        <translation type="obsolete">%C: Antall filer</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="248"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation>%Z: Torrentstørrelse (byte)</translation>
+        <translation type="obsolete">%Z: Torrentstørrelse (byte)</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="249"/>
         <source>%T: Current tracker</source>
-        <translation>%T: Nåværende sporer</translation>
+        <translation type="obsolete">%T: Nåværende sporer</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="250"/>
         <source>%I: Info hash</source>
-        <translation>%I: Informativ verifiseringsnøkkel</translation>
+        <translation type="obsolete">%I: Informativ verifiseringsnøkkel</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="251"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., &quot;%N&quot;)</translation>
+        <translation type="obsolete">Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <source>Folder is already being watched.</source>
-        <translation type="obsolete">Mappe er allerede overvåket.</translation>
-    </message>
-    <message>
-        <source>Folder does not exist.</source>
-        <translation type="obsolete">Mappe eksisterer ikke.</translation>
-    </message>
-    <message>
-        <source>Folder is not readable.</source>
-        <translation type="obsolete">Mappe er ikke lesbar.</translation>
-    </message>
-    <message>
-        <source>Failure</source>
-        <translation type="obsolete">Svikt</translation>
-    </message>
-    <message>
-        <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation type="obsolete">Tillegging av gjennomsøkingsmappe mislyktes &apos;%1&apos;: %2</translation>
-    </message>
-    <message>
-        <location filename="../gui/options_imp.cpp" line="96"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ved å aktivere disse alternativene kan du &lt;strong&gt;ugjenkallelig miste&lt;/strong&gt; dine .torrent filer!</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="98"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Når disse alternativene er aktivert vil qBittorrent &lt;strong&gt;slette&lt;/strong&gt; .torrent filer etter at har blitt vellykket (det første alternativet), eller ikke (det andre alternativet), lagt til dens nedlastingskø. Dette vil bli brukt &lt;strong&gt;ikke bare&lt;/strong&gt; for filer åpnet via &amp;ldquo;Legg til torrent&amp;rdquo; meny-handling, men for de som bli åpnet via filtypeassosiasjon også</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="103"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Hvis du aktiverer det andre alternativet (&amp;ldquo;Også når tillegging blir avbrutt&amp;rdquo;) vil .torrent filen &lt;strong&gt;bli slettet&lt;/strong&gt; selv om du trykker &amp;ldquo;&lt;strong&gt;Avbryt&lt;/strong&gt;&amp;rdquo; i &amp;ldquo;Legg til torrent&amp;rdquo; dialogen</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1333"/>
         <source>Select folder to monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Velg mappe for å overvåke</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1340"/>
         <source>Folder is already being monitored:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Mappe blir allerede overvåket:</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1343"/>
         <source>Folder does not exist:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Mappe eksisterer ikke:</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1346"/>
         <source>Folder is not readable:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Mappe er ikke lesbar:</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1357"/>
         <source>Adding entry failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Tillegging av oppføring mislyktes</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1424"/>
-        <location filename="../gui/options_imp.cpp" line="1426"/>
         <source>Filters</source>
-        <translation>Filter</translation>
+        <translation type="obsolete">Filter</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1424"/>
-        <location filename="../gui/options_imp.cpp" line="1426"/>
         <source>Choose an IP filter file</source>
-        <translation>Velg en IP filterfil</translation>
+        <translation type="obsolete">Velg en IP filterfil</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1493"/>
         <source>SSL Certificate</source>
-        <translation>SSL-sertifikat</translation>
+        <translation type="obsolete">SSL-sertifikat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1505"/>
         <source>SSL Key</source>
-        <translation>SSL-nøkkel</translation>
+        <translation type="obsolete">SSL-nøkkel</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1538"/>
         <source>Parsing error</source>
-        <translation>Analyseringsfeil</translation>
+        <translation type="obsolete">Analyseringsfeil</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1538"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Analysering av det oppgitte IP filteret mislyktes</translation>
+        <translation type="obsolete">Analysering av det oppgitte IP filteret mislyktes</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1540"/>
         <source>Successfully refreshed</source>
-        <translation>Oppdatert vellykket</translation>
+        <translation type="obsolete">Oppdatert vellykket</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1540"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
+        <translation type="obsolete">Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1627"/>
         <source>Invalid key</source>
-        <translation>Ugyldig nøkkel</translation>
+        <translation type="obsolete">Ugyldig nøkkel</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1627"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Dette er ikke en gyldig SSL-nøkkel.</translation>
+        <translation type="obsolete">Dette er ikke en gyldig SSL-nøkkel.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1643"/>
         <source>Invalid certificate</source>
-        <translation>Ugyldig sertifikat</translation>
+        <translation type="obsolete">Ugyldig sertifikat</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1643"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Dette er ikke et gyldig SSL-sertifikat.</translation>
+        <translation type="obsolete">Dette er ikke et gyldig SSL-sertifikat.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1651"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation>Starttidspunktet og sluttidspunktet kan ikke være det samme.</translation>
+        <translation type="obsolete">Starttidspunktet og sluttidspunktet kan ikke være det samme.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1651"/>
         <source>Time Error</source>
-        <translation>Tidspunktsfeil</translation>
+        <translation type="obsolete">Tidspunktsfeil</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1660"/>
-        <location filename="../gui/options_imp.cpp" line="1664"/>
         <source>Length Error</source>
-        <translation>Lengdefeil</translation>
+        <translation type="obsolete">Lengdefeil</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1660"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Nettbrukergrensesnittets brukernavn må minst være 3 tegn langt.</translation>
+        <translation type="obsolete">Nettbrukergrensesnittets brukernavn må minst være 3 tegn langt.</translation>
     </message>
     <message>
-        <location filename="../gui/options_imp.cpp" line="1664"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Nettbrukergrensesnittets passord må minst være 6 tegn langt.</translation>
+        <translation type="obsolete">Nettbrukergrensesnittets passord må minst være 6 tegn langt.</translation>
     </message>
 </context>
 <context>
