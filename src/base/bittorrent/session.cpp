@@ -52,6 +52,7 @@
 #include <libtorrent/bdecode.hpp>
 #endif
 #include <libtorrent/bencode.hpp>
+#include <libtorrent/disk_io_thread.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
@@ -63,6 +64,7 @@
 #endif
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
 #include "base/logger.h"
@@ -79,13 +81,11 @@
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
-#include "cachestatus.h"
 #include "magneturi.h"
 #include "private/filterparserthread.h"
 #include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
 #include "private/resumedatasavingmanager.h"
-#include "sessionstatus.h"
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"
@@ -3088,14 +3088,14 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
     }
 }
 
-SessionStatus Session::status() const
+const SessionStatus &Session::status() const
 {
-    return m_nativeSession->status();
+    return m_status;
 }
 
-CacheStatus Session::cacheStatus() const
+const CacheStatus &Session::cacheStatus() const
 {
-    return m_nativeSession->get_cache_status();
+    return m_cacheStatus;
 }
 
 // Will resume torrents in backup directory
@@ -3581,8 +3581,50 @@ void Session::handleExternalIPAlert(libt::external_ip_alert *p)
     Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
+void Session::updateStats()
+{
+    libt::session_status ss = m_nativeSession->status();
+    m_status.hasIncomingConnections = ss.has_incoming_connections;
+    m_status.payloadDownloadRate = ss.payload_download_rate;
+    m_status.payloadUploadRate = ss.payload_upload_rate;
+    m_status.downloadRate = ss.download_rate;
+    m_status.uploadRate = ss.upload_rate;
+    m_status.ipOverheadDownloadRate = ss.ip_overhead_download_rate;
+    m_status.ipOverheadUploadRate = ss.ip_overhead_upload_rate;
+    m_status.dhtDownloadRate = ss.dht_download_rate;
+    m_status.dhtUploadRate = ss.dht_upload_rate;
+    m_status.trackerDownloadRate = ss.tracker_download_rate;
+    m_status.trackerUploadRate = ss.tracker_upload_rate;
+    m_status.totalDownload = ss.total_download;
+    m_status.totalUpload = ss.total_upload;
+    m_status.totalPayloadDownload = ss.total_payload_download;
+    m_status.totalPayloadUpload = ss.total_payload_upload;
+    m_status.totalWasted = ss.total_redundant_bytes + ss.total_failed_bytes;
+    m_status.diskReadQueue = ss.disk_read_queue;
+    m_status.diskWriteQueue = ss.disk_write_queue;
+    m_status.dhtNodes = ss.dht_nodes;
+    m_status.peersCount = ss.num_peers;
+
+    libt::cache_status cs = m_nativeSession->get_cache_status();
+    m_cacheStatus.totalUsedBuffers = cs.total_used_buffers;
+    m_cacheStatus.readRatio = cs.blocks_read > 0
+            ? static_cast<qreal>(cs.blocks_read_hit) / cs.blocks_read
+            : -1;
+#if LIBTORRENT_VERSION_NUM < 10100
+    m_cacheStatus.jobQueueLength = cs.job_queue_length;
+#else
+    m_cacheStatus.jobQueueLength = cs.queued_jobs;
+#endif
+    m_cacheStatus.averageJobTime = cs.average_job_time;
+    m_cacheStatus.queuedBytes = cs.queued_bytes;
+
+    emit statsUpdated();
+}
+
 void Session::handleStateUpdateAlert(libt::state_update_alert *p)
 {
+    updateStats();
+
     foreach (const libt::torrent_status &status, p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
         if (torrent)

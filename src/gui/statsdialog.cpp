@@ -45,25 +45,21 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
 
     update();
-    m_timer = new QTimer(this);
-    m_timer->setInterval(1500);
-    connect(m_timer, &QTimer::timeout, this, &StatsDialog::update);
-    m_timer->start();
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
+            , this, &StatsDialog::update);
 
     show();
 }
 
 StatsDialog::~StatsDialog()
 {
-    m_timer->stop();
-    delete m_timer;
     delete m_ui;
 }
 
 void StatsDialog::update()
 {
-    BitTorrent::SessionStatus ss = BitTorrent::Session::instance()->status();
-    BitTorrent::CacheStatus cs = BitTorrent::Session::instance()->cacheStatus();
+    const BitTorrent::SessionStatus &ss = BitTorrent::Session::instance()->status();
+    const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
 
     // Alltime DL/UL
     quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
@@ -71,17 +67,17 @@ void StatsDialog::update()
     m_ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));
     m_ui->labelAlltimeUL->setText(Utils::Misc::friendlyUnit(atu));
     // Total waste (this session)
-    m_ui->labelWaste->setText(Utils::Misc::friendlyUnit(ss.totalWasted()));
+    m_ui->labelWaste->setText(Utils::Misc::friendlyUnit(ss.totalWasted));
     // Global ratio
     m_ui->labelGlobalRatio->setText(
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2)
                 : "-");
     // Cache hits
-    qreal readRatio = cs.readRatio();
+    qreal readRatio = cs.readRatio;
     m_ui->labelCacheHits->setText((readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-");
     // Buffers size
-    m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers() * 16 * 1024));
+    m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
@@ -92,18 +88,18 @@ void StatsDialog::update()
         peers += torrent->peersCount();
 
     m_ui->labelWriteStarve->setText(QString("%1%")
-                                    .arg(((ss.diskWriteQueue() > 0) && (peers > 0))
-                                         ? Utils::String::fromDouble((100. * ss.diskWriteQueue()) / peers, 2)
+                                    .arg(((ss.diskWriteQueue > 0) && (peers > 0))
+                                         ? Utils::String::fromDouble((100. * ss.diskWriteQueue) / peers, 2)
                                          : "0"));
     m_ui->labelReadStarve->setText(QString("%1%")
-                                   .arg(((ss.diskReadQueue() > 0) && (peers > 0))
-                                        ? Utils::String::fromDouble((100. * ss.diskReadQueue()) / peers, 2)
+                                   .arg(((ss.diskReadQueue > 0) && (peers > 0))
+                                        ? Utils::String::fromDouble((100. * ss.diskReadQueue) / peers, 2)
                                         : "0"));
     // Disk queues
-    m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength()));
-    m_ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime()));
-    m_ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes()));
+    m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
+    m_ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime));
+    m_ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes));
 
     // Total connected peers
-    m_ui->labelPeers->setText(QString::number(ss.peersCount()));
+    m_ui->labelPeers->setText(QString::number(ss.peersCount));
 }

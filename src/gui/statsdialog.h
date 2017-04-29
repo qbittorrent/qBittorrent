@@ -30,7 +30,6 @@
 #define STATSDIALOG_H
 
 #include <QDialog>
-#include <QTimer>
 
 namespace Ui
 {
@@ -50,7 +49,6 @@ private slots:
 
 private:
     Ui::StatsDialog *m_ui;
-    QTimer *m_timer;
 };
 
 #endif // STATSDIALOG_H

@@ -676,12 +676,12 @@ QByteArray btjson::getTransferInfo()
 QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
-    BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
-    BitTorrent::CacheStatus cacheStatus = BitTorrent::Session::instance()->cacheStatus();
-    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate();
-    map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
-    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
-    map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
+    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
+    map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
+    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
+    map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
     map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
     map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
 
@@ -689,30 +689,30 @@ QVariantMap getTranserInfoMap()
     quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
     map[KEY_TRANSFER_ALLTIME_DL] = atd;
     map[KEY_TRANSFER_ALLTIME_UL] = atu;
-    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted();
+    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
     map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount();
+    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
-    qreal readRatio = cacheStatus.readRatio();
+    qreal readRatio = cacheStatus.readRatio;
     map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers() * 16 * 1024;
+    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
     quint32 peers = 0;
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
         peers += torrent->peersCount();
-    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue()) / peers, 2) : "0";
-    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue()) / peers, 2) : "0";
+    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
+    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
 
-    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength();
-    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime();
-    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes(); 
+    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
+    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
+    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
-    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
+    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
     else
-        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections() ? "connected" : "firewalled";
+        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
     return map;
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,50 +29,43 @@
 #ifndef BITTORRENT_SESSIONSTATUS_H
 #define BITTORRENT_SESSIONSTATUS_H
 
-#include <libtorrent/session_status.hpp>
 #include <QtGlobal>
 
 namespace BitTorrent
 {
-    class SessionStatus
+    struct SessionStatus
     {
-    public:
-        SessionStatus(const libtorrent::session_status &nativeStatus);
+        bool hasIncomingConnections = false;
 
-        bool hasIncomingConnections() const;
-
-        // Return current download rate for the BT
+        // Current download rate for the BT
         // session. Payload means that it only take into
         // account "useful" part of the rate
-        int payloadDownloadRate() const;
+        quint64 payloadDownloadRate = 0;
 
-        // Return current upload rate for the BT
+        // Current upload rate for the BT
         // session. Payload means that it only take into
         // account "useful" part of the rate
-        int payloadUploadRate() const;
+        quint64 payloadUploadRate = 0;
 
         // Additional download/upload rates
-        int uploadRate() const;
-        int downloadRate() const;
-        int ipOverheadUploadRate() const;
-        int ipOverheadDownloadRate() const;
-        int dhtUploadRate() const;
-        int dhtDownloadRate() const;
-        int trackerUploadRate() const;
-        int trackerDownloadRate() const;
+        quint64 uploadRate = 0;
+        quint64 downloadRate = 0;
+        quint64 ipOverheadUploadRate = 0;
+        quint64 ipOverheadDownloadRate = 0;
+        quint64 dhtUploadRate = 0;
+        quint64 dhtDownloadRate = 0;
+        quint64 trackerUploadRate = 0;
+        quint64 trackerDownloadRate = 0;
 
-        qlonglong totalDownload() const;
-        qlonglong totalUpload() const;
-        qlonglong totalPayloadDownload() const;
-        qlonglong totalPayloadUpload() const;
-        qlonglong totalWasted() const;
-        int diskReadQueue() const;
-        int diskWriteQueue() const;
-        int dhtNodes() const;
-        int peersCount() const;
-
-    private:
-        libtorrent::session_status m_nativeStatus;
+        quint64 totalDownload = 0;
+        quint64 totalUpload = 0;
+        quint64 totalPayloadDownload = 0;
+        quint64 totalPayloadUpload = 0;
+        quint64 totalWasted = 0;
+        quint64 diskReadQueue = 0;
+        quint64 diskWriteQueue = 0;
+        quint64 dhtNodes = 0;
+        quint64 peersCount = 0;
     };
 }
 

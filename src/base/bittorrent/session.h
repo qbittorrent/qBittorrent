@@ -49,6 +49,8 @@
 #include "base/tristatebool.h"
 #include "base/types.h"
 #include "addtorrentparams.h"
+#include "cachestatus.h"
+#include "sessionstatus.h"
 #include "torrentinfo.h"
 
 namespace libtorrent
@@ -56,15 +58,12 @@ namespace libtorrent
     class session;
     struct torrent_handle;
     class entry;
-    struct add_torrent_params;
     struct ip_filter;
-    struct pe_settings;
 #if LIBTORRENT_VERSION_NUM < 10100
     struct session_settings;
 #else
     struct settings_pack;
 #endif
-    struct session_status;
 
     class alert;
     struct torrent_alert;
@@ -127,8 +126,6 @@ enum TorrentExportFolder
 namespace BitTorrent
 {
     class InfoHash;
-    class CacheStatus;
-    class SessionStatus;
     class TorrentHandle;
     class Tracker;
     class MagnetUri;
@@ -324,8 +321,8 @@ namespace BitTorrent
         TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
-        SessionStatus status() const;
-        CacheStatus cacheStatus() const;
+        const SessionStatus &status() const;
+        const CacheStatus &cacheStatus() const;
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
         bool isListening() const;
@@ -371,6 +368,7 @@ namespace BitTorrent
         void handleTorrentTrackerAuthenticationRequired(TorrentHandle *const torrent, const QString &trackerUrl);
 
     signals:
+        void statsUpdated();
         void torrentsUpdated();
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
@@ -484,6 +482,8 @@ namespace BitTorrent
         void dispatchAlerts(libtorrent::alert *alertPtr);
 #endif
         void getPendingAlerts(std::vector<libtorrent::alert *> &out, ulong time = 0);
+
+        void updateStats();
 
         // BitTorrent
         libtorrent::session *m_nativeSession;
@@ -599,6 +599,9 @@ namespace BitTorrent
         QWaitCondition m_alertsWaitCondition;
         std::vector<libtorrent::alert *> m_alerts;
 #endif
+
+        SessionStatus m_status;
+        CacheStatus m_cacheStatus;
 
         QNetworkConfigurationManager m_networkManager;
 

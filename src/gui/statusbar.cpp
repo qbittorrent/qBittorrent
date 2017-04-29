@@ -34,7 +34,6 @@
 #include <QStatusBar>
 #include <QFrame>
 #include <QLabel>
-#include <QTimer>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QFontMetrics>
@@ -135,10 +134,9 @@ StatusBar::StatusBar(QStatusBar *bar)
     bar->adjustSize();
     // Is DHT enabled
     m_DHTLbl->setVisible(session->isDHTEnabled());
-    m_refreshTimer = new QTimer(bar);
     refreshStatusBar();
-    connect(m_refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
-    m_refreshTimer->start(1500);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
+            , this, &StatusBar::refreshStatusBar);
 }
 
 StatusBar::~StatusBar()
@@ -167,19 +165,16 @@ void StatusBar::showRestartRequired()
     Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), Log::CRITICAL);
 }
 
-void StatusBar::stopTimer()
+void StatusBar::updateConnectionStatus()
 {
-    m_refreshTimer->stop();
-}
+    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
-void StatusBar::updateConnectionStatus(const BitTorrent::SessionStatus &sessionStatus)
-{
     if (!BitTorrent::Session::instance()->isListening()) {
         m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/disconnected.png")));
         m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
-        if (sessionStatus.hasIncomingConnections()) {
+        if (sessionStatus.hasIncomingConnections) {
             // Connection OK
             m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/connected.png")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
@@ -191,39 +186,41 @@ void StatusBar::updateConnectionStatus(const BitTorrent::SessionStatus &sessionS
     }
 }
 
-void StatusBar::updateDHTNodesNumber(const BitTorrent::SessionStatus &sessionStatus)
+void StatusBar::updateDHTNodesNumber()
 {
     if (BitTorrent::Session::instance()->isDHTEnabled()) {
         m_DHTLbl->setVisible(true);
-        m_DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dhtNodes())));
+        m_DHTLbl->setText(tr("DHT: %1 nodes")
+                          .arg(QString::number(BitTorrent::Session::instance()->status().dhtNodes)));
     }
     else {
         m_DHTLbl->setVisible(false);
     }
 }
 
-void StatusBar::updateSpeedLabels(const BitTorrent::SessionStatus &sessionStatus)
+void StatusBar::updateSpeedLabels()
 {
-    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate(), true);
+    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+
+    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
     int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
     if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload()) + ")";
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ")";
     m_dlSpeedLbl->setText(speedLbl);
     speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
-    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate(), true);
+    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
     if (speedLimit)
         speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload()) + ")";
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ")";
     m_upSpeedLbl->setText(speedLbl);
 }
 
 void StatusBar::refreshStatusBar()
 {
-    const BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
-    updateConnectionStatus(sessionStatus);
-    updateDHTNodesNumber(sessionStatus);
-    updateSpeedLabels(sessionStatus);
+    updateConnectionStatus();
+    updateDHTNodesNumber();
+    updateSpeedLabels();
 }
 
 void StatusBar::updateAltSpeedsBtn(bool alternative)
