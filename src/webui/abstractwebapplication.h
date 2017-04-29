@@ -54,10 +54,10 @@ public:
     explicit AbstractWebApplication(QObject *parent = 0);
     virtual ~AbstractWebApplication();
 
-    Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) final;
 
 protected:
-    virtual void processRequest() = 0;
+    virtual void doProcessRequest() = 0;
 
     bool isBanned() const;
     int failedAttempts() const;

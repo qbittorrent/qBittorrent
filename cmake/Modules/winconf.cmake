@@ -1,5 +1,7 @@
 # Settings for compiling qBittorrent on Windows
 
+list(APPEND CMAKE_LIBRARY_PATH "$ENV{LIB}")
+
 # We want to link with static version of
 # libtorrent
 set(LibtorrentRasterbar_USE_STATIC_LIBS True)
