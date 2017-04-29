@@ -1,6 +1,7 @@
 find_package(ZLIB REQUIRED)
 
 set(QBT_BASE_HEADERS
+bittorrent/addtorrentparams.h
 bittorrent/cachestatus.h
 bittorrent/infohash.h
 bittorrent/magneturi.h
