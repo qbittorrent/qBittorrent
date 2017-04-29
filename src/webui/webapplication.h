@@ -103,7 +103,7 @@ private:
     QString action_;
     QStringList args_;
 
-    void processRequest();
+    void doProcessRequest() override;
 
     bool isPublicScope();
     void parsePath();

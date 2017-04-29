@@ -121,7 +121,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
         print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), Http::CONTENT_TYPE_TXT);
     }
     else {
-        processRequest();
+        doProcessRequest();
     }
 
     return response();
