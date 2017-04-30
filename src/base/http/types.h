@@ -29,32 +29,35 @@
 #ifndef HTTP_TYPES_H
 #define HTTP_TYPES_H
 
-#include <QString>
-#include <QMap>
 #include <QHostAddress>
+#include <QString>
 #include <QVector>
 
 #include "base/types.h"
 
 namespace Http
 {
-    const QString HEADER_SET_COOKIE = "Set-Cookie";
-    const QString HEADER_CONTENT_TYPE = "Content-Type";
-    const QString HEADER_CONTENT_ENCODING = "Content-Encoding";
-    const QString HEADER_CONTENT_LENGTH = "Content-Length";
-    const QString HEADER_CACHE_CONTROL = "Cache-Control";
-    const QString HEADER_X_FRAME_OPTIONS = "X-Frame-Options";
-    const QString HEADER_X_XSS_PROTECTION = "X-XSS-Protection";
-    const QString HEADER_X_CONTENT_TYPE_OPTIONS = "X-Content-Type-Options";
-    const QString HEADER_CONTENT_SECURITY_POLICY = "Content-Security-Policy";
+    const char HEADER_CACHE_CONTROL[] = "Cache-Control";
+    const char HEADER_CONTENT_ENCODING[] = "Content-Encoding";
+    const char HEADER_CONTENT_LENGTH[] = "Content-Length";
+    const char HEADER_CONTENT_SECURITY_POLICY[] = "Content-Security-Policy";
+    const char HEADER_CONTENT_TYPE[] = "Content-Type";
+    const char HEADER_DATE[] = "Date";
+    const char HEADER_SET_COOKIE[] = "Set-Cookie";
+    const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "X-Content-Type-Options";
+    const char HEADER_X_FRAME_OPTIONS[] = "X-Frame-Options";
+    const char HEADER_X_XSS_PROTECTION[] = "X-XSS-Protection";
 
-    const QString CONTENT_TYPE_CSS = "text/css; charset=UTF-8";
-    const QString CONTENT_TYPE_GIF = "image/gif";
-    const QString CONTENT_TYPE_HTML = "text/html; charset=UTF-8";
-    const QString CONTENT_TYPE_JS = "application/javascript; charset=UTF-8";
-    const QString CONTENT_TYPE_JSON = "application/json";
-    const QString CONTENT_TYPE_PNG = "image/png";
-    const QString CONTENT_TYPE_TXT = "text/plain; charset=UTF-8";
+    const char CONTENT_TYPE_CSS[] = "text/css; charset=UTF-8";
+    const char CONTENT_TYPE_GIF[] = "image/gif";
+    const char CONTENT_TYPE_HTML[] = "text/html; charset=UTF-8";
+    const char CONTENT_TYPE_JS[] = "application/javascript; charset=UTF-8";
+    const char CONTENT_TYPE_JSON[] = "application/json";
+    const char CONTENT_TYPE_PNG[] = "image/png";
+    const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
+
+    // portability: "\r\n" doesn't guarantee mapping to the correct value
+    const char CRLF[] = {0x0D, 0x0A, '\0'};
 
     struct Environment
     {

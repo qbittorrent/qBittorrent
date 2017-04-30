@@ -1,4 +1,4 @@
-find_package(ZLIB REQUIRED)
+find_package(ZLIB 1.2.5.2 REQUIRED)
 
 set(QBT_BASE_HEADERS
 bittorrent/addtorrentparams.h

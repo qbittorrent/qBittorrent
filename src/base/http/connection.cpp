@@ -29,14 +29,14 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QTcpSocket>
-#include <QDebug>
+#include "connection.h"
+
 #include <QRegExp>
-#include "types.h"
+#include <QTcpSocket>
+
+#include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
-#include "irequesthandler.h"
-#include "connection.h"
 
 using namespace Http;
 
@@ -46,27 +46,33 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
     , m_requestHandler(requestHandler)
 {
     m_socket->setParent(this);
+    m_idleTimer.start();
     connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
-    connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
 }
 
 Connection::~Connection()
 {
+    m_socket->close();
 }
 
 void Connection::read()
 {
-    m_receivedData.append(m_socket->readAll());
+    m_idleTimer.restart();
 
+    m_receivedData.append(m_socket->readAll());
     Request request;
-    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);
+    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);  // TODO: transform request headers to lowercase
+
     switch (err) {
     case RequestParser::IncompleteRequest:
         // Partial request waiting for the rest
         break;
+
     case RequestParser::BadRequest:
         sendResponse(Response(400, "Bad Request"));
+        m_receivedData.clear();
         break;
+
     case RequestParser::NoError:
         Environment env;
         env.clientAddress = m_socket->peerAddress();
@@ -74,25 +80,65 @@ void Connection::read()
         if (acceptsGzipEncoding(request.headers["accept-encoding"]))
             response.headers[HEADER_CONTENT_ENCODING] = "gzip";
         sendResponse(response);
+        m_receivedData.clear();
         break;
     }
 }
 
 void Connection::sendResponse(const Response &response)
 {
-    m_socket->write(ResponseGenerator::generate(response));
-    m_socket->disconnectFromHost();
+    m_socket->write(toByteArray(response));
+    m_socket->close();  // TODO: remove when HTTP pipelining is supported
 }
 
-bool Connection::acceptsGzipEncoding(const QString &encoding)
+bool Connection::hasExpired(const qint64 timeout) const
 {
-    QRegExp rx("(gzip)(;q=([^,]+))?");
-    if (rx.indexIn(encoding) >= 0) {
-        if (rx.cap(2).size() > 0)
-            // check if quality factor > 0
-            return (rx.cap(3).toDouble() > 0);
-        // if quality factor is not specified, then it's 1
+    return m_idleTimer.hasExpired(timeout);
+}
+
+bool Connection::isClosed() const
+{
+    return (m_socket->state() == QAbstractSocket::UnconnectedState);
+}
+
+bool Connection::acceptsGzipEncoding(QString codings)
+{
+    // [rfc7231] 5.3.4. Accept-Encoding
+
+    const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
+    {
+        foreach (const QString &str, list) {
+            if (!str.startsWith(encoding))
+                continue;
+
+            // without quality values
+            if (str == encoding)
+                return true;
+
+            // [rfc7231] 5.3.1. Quality Values
+            const QStringRef substr = str.midRef(encoding.size() + 3);  // ex. skip over "gzip;q="
+
+            bool ok = false;
+            const double qvalue = substr.toDouble(&ok);
+            if (!ok || (qvalue <= 0.0))
+                return false;
+
+            return true;
+        }
+        return false;
+    };
+
+    const QStringList list = codings.remove(' ').remove('\t').split(',', QString::SkipEmptyParts);
+    if (list.isEmpty())
+        return false;
+
+    const bool canGzip = isCodingAvailable(list, QLatin1String("gzip"));
+    if (canGzip)
         return true;
-    }
+
+    const bool canAny = isCodingAvailable(list, QLatin1String("*"));
+    if (canAny)
+        return true;
+
     return false;
 }

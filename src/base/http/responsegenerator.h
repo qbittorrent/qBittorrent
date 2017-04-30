@@ -37,11 +37,9 @@
 
 namespace Http
 {
-    class ResponseGenerator
-    {
-    public:
-        static QByteArray generate(Response response);
-    };
+    QByteArray toByteArray(Response response);
+    QString httpDate();
+    void compressContent(Response &response);
 }
 
 #endif // HTTP_RESPONSEGENERATOR_H
