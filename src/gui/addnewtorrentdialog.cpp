@@ -577,6 +577,10 @@ void AddNewTorrentDialog::renameSelectedFile()
 
 void AddNewTorrentDialog::setdialogPosition()
 {
+    // In macOS, AddNewTorrentDialog is a sheet, not a window. Moving it
+    // causes very bad things to happen, especially if AddNewTorrentDialog is
+    // on a secondary monitor.
+#ifndef Q_OS_MAC
     qApp->processEvents();
     QPoint center(Utils::Misc::screenCenter(this));
     // Adjust y
@@ -590,6 +594,7 @@ void AddNewTorrentDialog::setdialogPosition()
             center.setY(0);
     }
     move(center);
+#endif
 }
 
 void AddNewTorrentDialog::populateSavePathComboBox()
