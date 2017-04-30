@@ -41,6 +41,7 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
+
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
 Q_IMPORT_PLUGIN(QICOPlugin)
@@ -89,12 +90,17 @@ const char *sysSigName[] = {
 };
 #endif
 
-#ifndef DISABLE_GUI
-void showSplashScreen();
-#endif
 void displayVersion();
 bool userAgreesWithLegalNotice();
 void displayBadArgMessage(const QString &message);
+
+#if !defined(DISABLE_GUI)
+void showSplashScreen();
+
+#if defined(Q_OS_UNIX)
+void setupDpi();
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 // Main
 int main(int argc, char *argv[])
@@ -108,15 +114,21 @@ int main(int argc, char *argv[])
     macMigratePlists();
 #endif
 
+#if !defined(DISABLE_GUI) && defined(Q_OS_UNIX)
+    setupDpi();
+#endif
+
     try {
         // Create Application
         QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
         QScopedPointer<Application> app(new Application(appId, argc, argv));
+
 #ifndef DISABLE_GUI
         // after the application object creation because we need a profile to be set already
         // for the migration
         migrateRSS();
 #endif
+
         const QBtCommandLineParameters &params = app->commandLineArgs();
 
         if (!params.unknownParameter.isEmpty()) {
@@ -280,7 +292,7 @@ void sigAbnormalHandler(int signum)
 }
 #endif // defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 
-#ifndef DISABLE_GUI
+#if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
     QPixmap splash_img(":/icons/skin/splash.png");
@@ -294,7 +306,15 @@ void showSplashScreen()
     QTimer::singleShot(1500, splash, SLOT(deleteLater()));
     qApp->processEvents();
 }
-#endif
+
+#if defined(Q_OS_UNIX)
+void setupDpi()
+{
+    if (qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+}
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 void displayVersion()
 {
