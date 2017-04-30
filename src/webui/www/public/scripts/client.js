@@ -207,15 +207,15 @@ window.addEvent('load', function () {
     };
 
     var updateFiltersList = function() {
-        updateFilter('all', 'QBT_TR(All (%1))QBT_TR');
-        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR');
-        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR');
-        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR');
-        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR');
-        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR');
-        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR');
-        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR');
-        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR');
+        updateFilter('all', 'QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
     };
 
     var updateCategoryList = function() {
@@ -239,8 +239,8 @@ window.addEvent('load', function () {
             if (row['full_data'].category.length === 0)
                 uncategorized += 1;
         });
-        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All (0))QBT_TR'.replace(' (0)', ''), all));
-        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized (0))QBT_TR'.replace(' (0)', ''), uncategorized));
+        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]', all));
+        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]', uncategorized));
 
         var sortedCategories = []
         Object.each(category_list, function(category) {
@@ -279,7 +279,7 @@ window.addEvent('load', function () {
             noCache : true,
             method : 'get',
             onFailure : function () {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(syncMainDataTimer);
                 syncMainDataTimer = syncMainData.delay(2000);
             },
@@ -362,11 +362,11 @@ window.addEvent('load', function () {
         transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
-            document.title = "QBT_TR([D:%1 U:%2])QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
-            document.title += " qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", ${VERSION});
+            document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }else
-            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
-        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
+            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
+        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         <!-- Statistics dialog -->
         if (document.getElementById("statisticspage")) {
@@ -631,7 +631,7 @@ var loadTorrentPeersData = function(){
         noCache: true,
         method: 'get',
         onFailure: function() {
-            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
             clearTimeout(loadTorrentPeersTimer);
             loadTorrentPeersTimer = loadTorrentPeersData.delay(5000);
         },

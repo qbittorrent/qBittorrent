@@ -3,15 +3,15 @@
  */
 function friendlyUnit(value, isSpeed) {
     units = [
-        "QBT_TR(B)QBT_TR",
-        "QBT_TR(KiB)QBT_TR",
-        "QBT_TR(MiB)QBT_TR",
-        "QBT_TR(GiB)QBT_TR",
-        "QBT_TR(TiB)QBT_TR",
+        "QBT_TR(B)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(GiB)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(TiB)QBT_TR[CONTEXT=misc]",
     ];
 
     if (value < 0)
-        return "QBT_TR(Unknown)QBT_TR";
+        return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
     var i = 0;
     while (value >= 1024. && i < 4) {
@@ -26,7 +26,7 @@ function friendlyUnit(value, isSpeed) {
             + " " + units[i];
 
     if (isSpeed)
-        ret += "QBT_TR(/s)QBT_TR";
+        ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
     return ret;
 }
 
@@ -40,18 +40,18 @@ function friendlyDuration(seconds) {
     if (seconds == 0)
         return "0";
     if (seconds < 60)
-        return "QBT_TR(< 1m)QBT_TR";
+        return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
     var minutes = seconds / 60;
     if (minutes < 60)
-        return "QBT_TR(%1m)QBT_TR".replace("%1", parseInt(minutes));
+        return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(minutes));
     var hours = minutes / 60;
     minutes = minutes % 60;
     if (hours < 24)
-        return "QBT_TR(%1h %2m)QBT_TR".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes))
+        return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes))
     var days = hours / 24;
     hours = hours % 24;
     if (days < 100)
-        return "QBT_TR(%1d %2h)QBT_TR".replace("%1", parseInt(days)).replace("%2", parseInt(hours))
+        return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours))
     return "∞";
 }
 
