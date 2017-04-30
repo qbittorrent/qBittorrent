@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Deletion confirmation - qBittorrent</string>
+   <string>Deletion confirmation</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
