@@ -122,9 +122,8 @@ Application::Application(const QString &id, int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
-    if (m_commandLineArgs.webUiPort > 0) { // it will be -1 when user did not set any value
+    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
-    }
 
     setApplicationName("qBittorrent");
     initializeTranslation();
