@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
             qDebug("qBittorrent is already running for this user.");
 
             QThread::msleep(300);
-            app->sendParams(params.torrents);
+            app->sendParams(params.paramList());
 
             return EXIT_SUCCESS;
         }
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
         signal(SIGSEGV, sigAbnormalHandler);
 #endif
 
-        return app->exec(params.torrents);
+        return app->exec(params.paramList());
     }
     catch (CommandLineParameterError &er) {
         displayBadArgMessage(er.messageForUser());
