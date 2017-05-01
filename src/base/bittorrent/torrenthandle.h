@@ -333,7 +333,9 @@ namespace BitTorrent
         void forceReannounce(int index = -1);
         void forceDHTAnnounce();
         void forceRecheck();
+#if LIBTORRENT_VERSION_NUM < 10100
         void setTrackerLogin(const QString &username, const QString &password);
+#endif
         void renameFile(int index, const QString &name);
         bool saveTorrentFile(const QString &path);
         void prioritizeFiles(const QVector<int> &priorities);

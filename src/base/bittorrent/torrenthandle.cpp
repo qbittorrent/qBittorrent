@@ -1331,11 +1331,13 @@ void TorrentHandle::moveStorage(const QString &newPath)
     }
 }
 
+#if LIBTORRENT_VERSION_NUM < 10100
 void TorrentHandle::setTrackerLogin(const QString &username, const QString &password)
 {
     m_nativeHandle.set_tracker_login(std::string(username.toLocal8Bit().constData())
                                      , std::string(password.toLocal8Bit().constData()));
 }
+#endif
 
 void TorrentHandle::renameFile(int index, const QString &name)
 {

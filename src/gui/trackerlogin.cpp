@@ -28,8 +28,10 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "base/bittorrent/torrenthandle.h"
 #include "trackerlogin.h"
+
+#include <libtorrent/version.hpp>
+#include "base/bittorrent/torrenthandle.h"
 
 trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
   : QDialog(parent)
@@ -47,7 +49,9 @@ trackerLogin::~trackerLogin() {}
 
 void trackerLogin::on_loginButton_clicked() {
   // login
+#if LIBTORRENT_VERSION_NUM < 10100
   m_torrent->setTrackerLogin(lineUsername->text(), linePasswd->text());
+#endif
   close();
 }
 

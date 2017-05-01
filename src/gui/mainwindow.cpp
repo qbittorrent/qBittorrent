@@ -91,7 +91,9 @@
 #include "rss/rsswidget.h"
 #include "about_imp.h"
 #include "optionsdlg.h"
+#if LIBTORRENT_VERSION_NUM < 10100
 #include "trackerlogin.h"
+#endif
 #include "lineedit.h"
 #include "executionlog.h"
 #include "hidabletabwidget.h"
@@ -1311,9 +1313,13 @@ void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle
 // Called when a tracker requires authentication
 void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     if (m_unauthenticatedTrackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
         // Tracker login
         new trackerLogin(this, torrent);
+#else
+    Q_UNUSED(torrent);
+#endif
 }
 
 // Check connection status and display right icon
