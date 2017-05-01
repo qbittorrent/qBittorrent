@@ -147,8 +147,10 @@ QString TorrentState::toString() const
         return QLatin1String("checkingDL");
     case ForcedDownloading:
         return QLatin1String("forcedDL");
+#if LIBTORRENT_VERSION_NUM < 10100
     case QueuedForChecking:
         return QLatin1String("queuedForChecking");
+#endif
     case CheckingResumeData:
         return QLatin1String("checkingResumeData");
     default:
@@ -658,9 +660,12 @@ bool TorrentHandle::isQueued() const
 
 bool TorrentHandle::isChecking() const
 {
-    return ((m_nativeStatus.state == libt::torrent_status::queued_for_checking)
-            || (m_nativeStatus.state == libt::torrent_status::checking_files)
-            || (m_nativeStatus.state == libt::torrent_status::checking_resume_data));
+    return ((m_nativeStatus.state == libt::torrent_status::checking_files)
+            || (m_nativeStatus.state == libt::torrent_status::checking_resume_data)
+#if LIBTORRENT_VERSION_NUM < 10100
+            || (m_nativeStatus.state == libt::torrent_status::queued_for_checking)
+#endif
+            );
 }
 
 bool TorrentHandle::isDownloading() const
@@ -799,9 +804,11 @@ void TorrentHandle::updateState()
             case libt::torrent_status::allocating:
                 m_state = TorrentState::Allocating;
                 break;
+#if LIBTORRENT_VERSION_NUM < 10100
             case libt::torrent_status::queued_for_checking:
                 m_state = TorrentState::QueuedForChecking;
                 break;
+#endif
             case libt::torrent_status::checking_resume_data:
                 m_state = TorrentState::CheckingResumeData;
                 break;
@@ -837,7 +844,11 @@ bool TorrentHandle::hasMissingFiles() const
 
 bool TorrentHandle::hasError() const
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     return (m_nativeStatus.paused && !m_nativeStatus.error.empty());
+#else
+    return (m_nativeStatus.paused && m_nativeStatus.errc);
+#endif
 }
 
 bool TorrentHandle::hasFilteredPieces() const
@@ -859,7 +870,11 @@ int TorrentHandle::queuePosition() const
 
 QString TorrentHandle::error() const
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     return QString::fromStdString(m_nativeStatus.error);
+#else
+    return QString::fromStdString(m_nativeStatus.errc.message());
+#endif
 }
 
 qlonglong TorrentHandle::totalDownload() const

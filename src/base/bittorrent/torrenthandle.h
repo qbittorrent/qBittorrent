@@ -140,7 +140,9 @@ namespace BitTorrent
             CheckingUploading,
             CheckingDownloading,
 
+#if LIBTORRENT_VERSION_NUM < 10100
             QueuedForChecking,
+#endif
             CheckingResumeData,
 
             PausedDownloading,
