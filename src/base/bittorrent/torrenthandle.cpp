@@ -1382,7 +1382,11 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
+#if LIBTORRENT_VERSION_NUM < 10100
     const QString newPath = QString::fromStdString(p->path);
+#else
+    const QString newPath(p->storage_path());
+#endif
     if (newPath != m_newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
@@ -1432,7 +1436,11 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
 
 void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     QString trackerUrl = QString::fromStdString(p->url);
+#else
+    QString trackerUrl(p->tracker_url());
+#endif
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qPrintable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
@@ -1443,8 +1451,13 @@ void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 
 void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     QString trackerUrl = QString::fromStdString(p->url);
     QString message = QString::fromStdString(p->msg);
+#else
+    QString trackerUrl(p->tracker_url());
+    QString message = QString::fromStdString(p->message());
+#endif
     qDebug("Received a tracker warning for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
@@ -1454,8 +1467,13 @@ void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert 
 
 void TorrentHandle::handleTrackerErrorAlert(libtorrent::tracker_error_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     QString trackerUrl = QString::fromStdString(p->url);
     QString message = QString::fromStdString(p->msg);
+#else
+    QString trackerUrl(p->tracker_url());
+    QString message = QString::fromStdString(p->message());
+#endif
     qDebug("Received a tracker error for %s: %s", qPrintable(trackerUrl), qPrintable(message));
     m_trackerInfos[trackerUrl].lastMessage = message;
 
@@ -1592,7 +1610,11 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
 
 void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     QString newName = Utils::Fs::fromNativePath(QString::fromStdString(p->name));
+#else
+    QString newName = Utils::Fs::fromNativePath(p->new_name());
+#endif
 
     // TODO: Check this!
     if (filesCount() > 1) {
