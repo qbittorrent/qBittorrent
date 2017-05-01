@@ -121,12 +121,6 @@ bool PeerInfo::isConnecting() const
     return (m_nativeInfo.flags & libt::peer_info::connecting);
 }
 
-bool PeerInfo::isQueued() const
-{
-    return (m_nativeInfo.flags & libt::peer_info::queued);
-}
-
-
 bool PeerInfo::isOnParole() const
 {
     return (m_nativeInfo.flags & libt::peer_info::on_parole);
