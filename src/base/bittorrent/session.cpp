@@ -371,6 +371,8 @@ Session::Session(QObject *parent)
     {
         QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
     });
+
+    configurePeerClasses();
 #endif
 
     // Enabling plugins
@@ -889,6 +891,7 @@ void Session::configure()
     libt::settings_pack settingsPack = m_nativeSession->get_settings();
     configure(settingsPack);
     m_nativeSession->apply_settings(settingsPack);
+    configurePeerClasses();
 #endif
 
     if (m_IPFilteringChanged) {
@@ -1136,16 +1139,12 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(libt::settings_pack::num_outgoing_ports, outgoingPortsMax() - outgoingPortsMin() + 1);
 
-    // Ignore limits on LAN
-    settingsPack.set_bool(libt::settings_pack::ignore_limits_on_local_network, ignoreLimitsOnLAN());
     // Include overhead in transfer limits
     settingsPack.set_bool(libt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(libt::settings_pack::announce_ip, announceIP().toStdString());
     // Super seeding
     settingsPack.set_bool(libt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
-    // * Max Half-open connections
-    settingsPack.set_int(libt::settings_pack::half_open_limit, maxHalfOpenConnections());
     // * Max connections limit
     settingsPack.set_int(libt::settings_pack::connections_limit, maxConnections());
     // * Global max upload slots
@@ -1153,8 +1152,6 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // uTP
     settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
     settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
-    // uTP rate limiting
-    settingsPack.set_bool(libt::settings_pack::rate_limit_utp, isUTPRateLimited());
     settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, isUTPRateLimited()
                          ? libt::settings_pack::prefer_tcp
                          : libt::settings_pack::peer_proportional);
@@ -1165,6 +1162,61 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     if (isDHTEnabled())
         settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "dht.libtorrent.org:25401,router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
+}
+
+void Session::configurePeerClasses()
+{
+    libt::ip_filter f;
+    f.add_rule(libt::address_v4::from_string("0.0.0.0")
+               , libt::address_v4::from_string("255.255.255.255")
+               , 1 << libt::session::global_peer_class_id);
+#if TORRENT_USE_IPV6
+    f.add_rule(libt::address_v6::from_string("::0")
+               , libt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+               , 1 << libt::session::global_peer_class_id);
+#endif
+    if (ignoreLimitsOnLAN()) {
+        f.add_rule(libt::address_v4::from_string("10.0.0.0")
+                   , libt::address_v4::from_string("10.255.255.255")
+                   , 1 << libt::session::local_peer_class_id);
+        f.add_rule(libt::address_v4::from_string("172.16.0.0")
+                   , libt::address_v4::from_string("172.16.255.255")
+                   , 1 << libt::session::local_peer_class_id);
+        f.add_rule(libt::address_v4::from_string("192.168.0.0")
+                   , libt::address_v4::from_string("192.168.255.255")
+                   , 1 << libt::session::local_peer_class_id);
+        f.add_rule(libt::address_v4::from_string("169.254.0.0")
+                   , libt::address_v4::from_string("169.254.255.255")
+                   , 1 << libt::session::local_peer_class_id);
+        f.add_rule(libt::address_v4::from_string("127.0.0.0")
+                   , libt::address_v4::from_string("127.255.255.255")
+                   , 1 << libt::session::local_peer_class_id);
+#if TORRENT_USE_IPV6
+        f.add_rule(libt::address_v6::from_string("fe80::")
+                   , libt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                   , 1 << libt::session::local_peer_class_id);
+        f.add_rule(libt::address_v6::from_string("::1")
+                   , libt::address_v6::from_string("::1")
+                   , 1 << libt::session::local_peer_class_id);
+#endif
+    }
+    m_nativeSession->set_peer_class_filter(f);
+
+    libt::peer_class_type_filter peerClassTypeFilter;
+    peerClassTypeFilter.add(libt::peer_class_type_filter::tcp_socket, libt::session::tcp_peer_class_id);
+    peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_tcp_socket, libt::session::tcp_peer_class_id);
+    peerClassTypeFilter.add(libt::peer_class_type_filter::i2p_socket, libt::session::tcp_peer_class_id);
+    if (isUTPRateLimited()) {
+        peerClassTypeFilter.add(libt::peer_class_type_filter::utp_socket
+            , libt::session::local_peer_class_id);
+        peerClassTypeFilter.add(libt::peer_class_type_filter::utp_socket
+            , libt::session::global_peer_class_id);
+        peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_utp_socket
+            , libt::session::local_peer_class_id);
+        peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_utp_socket
+            , libt::session::global_peer_class_id);
+    }
+    m_nativeSession->set_peer_class_type_filter(peerClassTypeFilter);
 }
 
 #else

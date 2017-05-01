@@ -483,6 +483,7 @@ namespace BitTorrent
         void adjustLimits(libtorrent::session_settings &sessionSettings);
 #else
         void configure(libtorrent::settings_pack &settingsPack);
+        void configurePeerClasses();
         void adjustLimits(libtorrent::settings_pack &settingsPack);
         void initMetrics();
 #endif
