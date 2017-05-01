@@ -3666,7 +3666,13 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2").arg(QString::fromStdString(p->url)).arg(QString::fromStdString(p->message())), Log::CRITICAL);
+    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2")
+#if LIBTORRENT_VERSION_NUM >= 10100
+                                   .arg(QString::fromStdString(p->server_url()))
+#else
+                                   .arg(QString::fromStdString(p->url))
+#endif
+                                   .arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
