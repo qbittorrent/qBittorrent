@@ -34,10 +34,10 @@
 
 #include <QDialog>
 
+#include "base/searchengine.h"
+
 class QDropEvent;
 class QTreeWidgetItem;
-
-class SearchEngine;
 
 namespace Ui
 {
@@ -76,7 +76,7 @@ private slots:
     void iconDownloaded(const QString &url, QString filePath);
     void iconDownloadFailed(const QString &url, const QString &reason);
 
-    void checkForUpdatesFinished(const QHash<QString, qreal> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
     void pluginInstalled(const QString &name);
     void pluginInstallationFailed(const QString &name, const QString &reason);
