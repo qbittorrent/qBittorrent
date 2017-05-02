@@ -96,6 +96,7 @@ namespace BitTorrent
         QString savePath;
         bool disableTempPath;
         bool sequential;
+        bool firstLastPiecePriority;
         bool hasSeedStatus;
         bool skipChecking;
         bool hasRootFolder;
@@ -429,6 +430,7 @@ namespace BitTorrent
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
         bool m_hasRootFolder;
+        bool m_needsToSetFirstLastPiecePriority;
 
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;

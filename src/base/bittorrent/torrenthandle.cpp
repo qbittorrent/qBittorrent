@@ -90,6 +90,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , savePath(params.savePath)
     , disableTempPath(params.disableTempPath)
     , sequential(params.sequential)
+    , firstLastPiecePriority(params.firstLastPiecePriority)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
     , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
@@ -208,6 +209,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_tempPathDisabled(data.disableTempPath)
     , m_hasMissingFiles(false)
     , m_hasRootFolder(data.hasRootFolder)
+    , m_needsToSetFirstLastPiecePriority(false)
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
@@ -217,12 +219,22 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
 
-    if (!data.resumed) {
+    // NB: the following two if statements are present because we don't want
+    // to set either sequential download or first/last piece priority to false
+    // if their respective flags in data are false when a torrent is being
+    // resumed. This is because, in that circumstance, this constructor is
+    // called with those flags set to false, even if the torrent was set to
+    // download sequentially or have first/last piece priority enabled when
+    // its resume data was saved. These two settings are restored later. But
+    // if we set them to false now, both will erroneously not be restored.
+    if (!data.resumed || data.sequential)
         setSequentialDownload(data.sequential);
-        if (hasMetadata()) {
-            if (filesCount() == 1)
-                m_hasRootFolder = false;
-        }
+    if (!data.resumed || data.firstLastPiecePriority)
+        setFirstLastPiecePriority(data.firstLastPiecePriority);
+
+    if (!data.resumed && hasMetadata()) {
+        if (filesCount() == 1)
+            m_hasRootFolder = false;
     }
 }
 
@@ -729,7 +741,8 @@ bool TorrentHandle::isSequentialDownload() const
 
 bool TorrentHandle::hasFirstLastPiecePriority() const
 {
-    if (!hasMetadata()) return false;
+    if (!hasMetadata())
+        return m_needsToSetFirstLastPiecePriority;
 
     // Get int first media file
     std::vector<int> fp;
@@ -1229,7 +1242,10 @@ void TorrentHandle::toggleSequentialDownload()
 
 void TorrentHandle::setFirstLastPiecePriority(bool b)
 {
-    if (!hasMetadata()) return;
+    if (!hasMetadata()) {
+        m_needsToSetFirstLastPiecePriority = b;
+        return;
+    }
 
     std::vector<int> fp = m_nativeHandle.file_priorities();
     std::vector<int> pp = m_nativeHandle.piece_priorities();
@@ -1508,6 +1524,11 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["qBt-magnetUri"] = toMagnetUri().toStdString();
         resumeData["qBt-paused"] = isPaused();
         resumeData["qBt-forced"] = isForced();
+        // Both firstLastPiecePriority and sequential need to be stored in the
+        // resume data if there is no metadata, otherwise they won't be
+        // restored if qBittorrent quits before the metadata are retrieved:
+        resumeData["qBt-firstLastPiecePriority"] = hasFirstLastPiecePriority();
+        resumeData["qBt-sequential"] = isSequentialDownload();
     }
     else {
         auto savePath = resumeData.find_key("save_path")->string();
@@ -1633,6 +1654,13 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
         // and the torrent can be paused when metadata is received
         m_speedMonitor.reset();
         m_session->handleTorrentPaused(this);
+    }
+    
+    // If first/last piece priority was specified when adding this torrent, we can set it
+    // now that we have metadata:
+    if (m_needsToSetFirstLastPiecePriority) {
+        setFirstLastPiecePriority(true);
+        m_needsToSetFirstLastPiecePriority = false;
     }
 }
 

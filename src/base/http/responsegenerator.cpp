@@ -29,39 +29,79 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "base/utils/gzip.h"
 #include "responsegenerator.h"
 
-using namespace Http;
+#include <QDateTime>
 
-QByteArray ResponseGenerator::generate(Response response)
+#include "base/utils/gzip.h"
+
+QByteArray Http::toByteArray(Response response)
 {
-    if (response.headers[HEADER_CONTENT_ENCODING] == "gzip") {
-        // A gzip seems to have 23 bytes overhead.
-        // Also "Content-Encoding: gzip\r\n" is 26 bytes long
-        // So we only benefit from gzip if the message is bigger than 23+26 = 49
-        // If the message is smaller than 49 bytes we actually send MORE data if we gzip
-        QByteArray dest_buf;
-        if ((response.content.size() > 49) && (Utils::Gzip::compress(response.content, dest_buf)))
-            response.content = dest_buf;
-        else
-            response.headers.remove(HEADER_CONTENT_ENCODING);
-    }
+    compressContent(response);
 
-    if (response.content.length() > 0)
-        response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
+    response.headers[HEADER_DATE] = httpDate();
 
-    QString ret(QLatin1String("HTTP/1.1 %1 %2\r\n%3\r\n"));
+    QByteArray buf;
+    buf.reserve(10 * 1024);
 
-    QString header;
-    foreach (const QString& key, response.headers.keys())
-        header += QString("%1: %2\r\n").arg(key).arg(response.headers[key]);
+    // Status Line
+    buf += QString("HTTP/%1 %2 %3")
+        .arg("1.1",  // TODO: depends on request
+            QString::number(response.status.code),
+            response.status.text)
+        .toLatin1()
+        .append(CRLF);
 
-    ret = ret.arg(response.status.code).arg(response.status.text).arg(header);
+    // Header Fields
+    for (auto i = response.headers.constBegin(); i != response.headers.constEnd(); ++i)
+        buf += QString("%1: %2").arg(i.key(), i.value()).toLatin1().append(CRLF);
 
-    //  qDebug() << Q_FUNC_INFO;
-    //  qDebug() << "HTTP Response header:";
-    //  qDebug() << ret;
+    // the first empty line
+    buf += CRLF;
 
-    return ret.toUtf8() + response.content;
+    // message body  // TODO: support HEAD request
+    buf += response.content;
+
+    return buf;
+}
+
+QString Http::httpDate()
+{
+    // [RFC 7231] 7.1.1.1. Date/Time Formats
+   // example: "Sun, 06 Nov 1994 08:49:37 GMT"
+
+    return QLocale::c().toString(QDateTime::currentDateTimeUtc(), QLatin1String("ddd, dd MMM yyyy HH:mm:ss"))
+        .append(QLatin1String(" GMT"));
+}
+
+void Http::compressContent(Response &response)
+{
+    if (response.headers.value(HEADER_CONTENT_ENCODING) != QLatin1String("gzip"))
+        return;
+
+    response.headers.remove(HEADER_CONTENT_ENCODING);
+
+    // for very small files, compressing them only wastes cpu cycles
+    const int contentSize = response.content.size();
+    if (contentSize <= 1024)  // 1 kb
+        return;
+
+    // filter out known hard-to-compress types
+    const QString contentType = response.headers[HEADER_CONTENT_TYPE];
+    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_PNG))
+        return;
+
+    // try compressing
+    bool ok = false;
+    const QByteArray compressedData = Utils::Gzip::compress(response.content, 6, &ok);
+    if (!ok)
+        return;
+
+    // "Content-Encoding: gzip\r\n" is 24 bytes long
+    if ((compressedData.size() + 24) >= contentSize)
+        return;
+
+    response.content = compressedData;
+    response.headers[HEADER_CONTENT_ENCODING] = QLatin1String("gzip");
 }

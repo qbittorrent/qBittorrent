@@ -122,25 +122,20 @@ Application::Application(const QString &id, int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
-    if (m_commandLineArgs.webUiPort > 0) { // it will be -1 when user did not set any value
+    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
-    }
 
-#if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
-    if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8) {
-        // fix Mac OS X 10.9 (mavericks) font issue
-        // https://bugreports.qt-project.org/browse/QTBUG-32789
-        QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
-    }
-#endif
+    setApplicationName("qBittorrent");
     initializeTranslation();
-#ifndef DISABLE_GUI
+
+#if !defined(DISABLE_GUI)
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
     setQuitOnLastWindowClosed(false);
-#ifdef Q_OS_WIN
+#endif
+
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
-#endif // Q_OS_WIN
-#endif // DISABLE_GUI
+#endif
 
     connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
     connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
@@ -407,15 +402,63 @@ void Application::processParams(const QStringList &params)
         return;
     }
 #endif
+    BitTorrent::AddTorrentParams torrentParams;
+    TriStateBool skipTorrentDialog;
 
     foreach (QString param, params) {
         param = param.trimmed();
+
+        // Process strings indicating options specified by the user.
+        
+        if (param.startsWith(QLatin1String("@savePath="))) {
+            torrentParams.savePath = param.mid(10);
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@addPaused="))) {
+            torrentParams.addPaused = param.mid(11).toInt() ? TriStateBool::True : TriStateBool::False;
+            continue;
+        }
+
+        if (param == QLatin1String("@skipChecking")) {
+            torrentParams.skipChecking = true;
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@category="))) {
+            torrentParams.category = param.mid(10);
+            continue;
+        }
+
+        if (param == QLatin1String("@sequential")) {
+            torrentParams.sequential = true;
+            continue;
+        }
+
+        if (param == QLatin1String("@firstLastPiecePriority")) {
+            torrentParams.firstLastPiecePriority = true;
+            continue;
+        }
+
+        if (param.startsWith(QLatin1String("@skipDialog="))) {
+            skipTorrentDialog = param.mid(12).toInt() ? TriStateBool::True : TriStateBool::False;
+            continue;
+        }
+
 #ifndef DISABLE_GUI
-        if (AddNewTorrentDialog::isEnabled())
-            AddNewTorrentDialog::show(param, m_window);
+        // There are two circumstances in which we want to show the torrent
+        // dialog. One is when the application settings specify that it should
+        // be shown and skipTorrentDialog is undefined. The other is when
+        // skipTorrentDialog is false, meaning that the application setting
+        // should be overridden.
+        const bool showDialogForThisTorrent =
+            ((AddNewTorrentDialog::isEnabled() && skipTorrentDialog == TriStateBool::Undefined)
+             || skipTorrentDialog == TriStateBool::False);
+        if (showDialogForThisTorrent)
+            AddNewTorrentDialog::show(param, torrentParams, m_window);
         else
 #endif
-            BitTorrent::Session::instance()->addTorrent(param);
+            BitTorrent::Session::instance()->addTorrent(param, torrentParams);
     }
 }
 
