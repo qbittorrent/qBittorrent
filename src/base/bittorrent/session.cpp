@@ -1176,25 +1176,34 @@ void Session::configurePeerClasses()
                , 1 << libt::session::global_peer_class_id);
 #endif
     if (ignoreLimitsOnLAN()) {
+        // local networks
         f.add_rule(libt::address_v4::from_string("10.0.0.0")
                    , libt::address_v4::from_string("10.255.255.255")
                    , 1 << libt::session::local_peer_class_id);
         f.add_rule(libt::address_v4::from_string("172.16.0.0")
-                   , libt::address_v4::from_string("172.16.255.255")
+                   , libt::address_v4::from_string("172.31.255.255")
                    , 1 << libt::session::local_peer_class_id);
         f.add_rule(libt::address_v4::from_string("192.168.0.0")
                    , libt::address_v4::from_string("192.168.255.255")
                    , 1 << libt::session::local_peer_class_id);
+        // link local
         f.add_rule(libt::address_v4::from_string("169.254.0.0")
                    , libt::address_v4::from_string("169.254.255.255")
                    , 1 << libt::session::local_peer_class_id);
+        // loopback
         f.add_rule(libt::address_v4::from_string("127.0.0.0")
                    , libt::address_v4::from_string("127.255.255.255")
                    , 1 << libt::session::local_peer_class_id);
 #if TORRENT_USE_IPV6
+        // link local
         f.add_rule(libt::address_v6::from_string("fe80::")
                    , libt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << libt::session::local_peer_class_id);
+        // unique local addresses
+        f.add_rule(libt::address_v6::from_string("fc00::")
+                   , libt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                   , 1 << libt::session::local_peer_class_id);
+        // loopback
         f.add_rule(libt::address_v6::from_string("::1")
                    , libt::address_v6::from_string("::1")
                    , 1 << libt::session::local_peer_class_id);
