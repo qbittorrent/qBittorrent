@@ -44,7 +44,6 @@
 #include "base/utils/misc.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
-#include "base/searchengine.h"
 #include "ico.h"
 #include "searchwidget.h"
 #include "pluginsourcedlg.h"
@@ -95,7 +94,7 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     connect(m_pluginManager, SIGNAL(pluginInstallationFailed(QString, QString)), SLOT(pluginInstallationFailed(QString, QString)));
     connect(m_pluginManager, SIGNAL(pluginUpdated(QString)), SLOT(pluginUpdated(QString)));
     connect(m_pluginManager, SIGNAL(pluginUpdateFailed(QString, QString)), SLOT(pluginUpdateFailed(QString, QString)));
-    connect(m_pluginManager, SIGNAL(checkForUpdatesFinished(QHash<QString, qreal>)), SLOT(checkForUpdatesFinished(QHash<QString, qreal>)));
+    connect(m_pluginManager, &SearchEngine::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
     connect(m_pluginManager, SIGNAL(checkForUpdatesFailed(QString)), SLOT(checkForUpdatesFailed(QString)));
 
     show();
@@ -388,7 +387,7 @@ void PluginSelectDlg::iconDownloadFailed(const QString &url, const QString &reas
     qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
 }
 
-void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, qreal> &updateInfo)
+void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
 {
     finishAsyncOp();
     if (updateInfo.isEmpty()) {
