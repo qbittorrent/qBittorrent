@@ -17,6 +17,7 @@ Makefile*
 
 # Generated MOC, resource and UI files
 moc_*.cpp
+moc_*.h
 qrc_*.cpp
 ui_*.h
 *.moc
