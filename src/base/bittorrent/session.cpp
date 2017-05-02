@@ -1749,7 +1749,6 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
     libt::add_torrent_params p;
     InfoHash hash;
-    std::vector<char> buf(fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size());
     std::vector<boost::uint8_t> filePriorities;
 
     QString savePath;
@@ -1803,7 +1802,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
     if (addData.resumed && !fromMagnetUri) {
         // Set torrent fast resume data
-        p.resume_data = buf;
+        p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
         p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
     }
     else {
