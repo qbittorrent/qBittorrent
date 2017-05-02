@@ -121,6 +121,10 @@ struct QBtCommandLineParameters
     }
 };
 
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+void reportToUser(const char* str);
+#endif
+
 void displayVersion();
 void displayUsage(const QString &prg_name);
 bool userAgreesWithLegalNotice();
@@ -353,6 +357,17 @@ QBtCommandLineParameters parseCommandLine()
     return result;
 }
 
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+void reportToUser(const char* str)
+{
+    const size_t strLen = strlen(str);
+    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+        auto dummy = write(STDOUT_FILENO, str, strLen);
+        Q_UNUSED(dummy);
+    }
+}
+#endif
+
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum)
 {
@@ -360,9 +375,9 @@ void sigNormalHandler(int signum)
     const char str1[] = "Catching signal: ";
     const char *sigName = sysSigName[signum];
     const char str2[] = "\nExiting cleanly\n";
-    write(STDERR_FILENO, str1, strlen(str1));
-    write(STDERR_FILENO, sigName, strlen(sigName));
-    write(STDERR_FILENO, str2, strlen(str2));
+    reportToUser(str1);
+    reportToUser(sigName);
+    reportToUser(str2);
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
     signal(signum, SIG_DFL);
     qApp->exit();  // unsafe, but exit anyway
@@ -375,9 +390,9 @@ void sigAbnormalHandler(int signum)
     const char *sigName = sysSigName[signum];
     const char str2[] = "\nPlease file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
     "qBittorrent version: " QBT_VERSION "\n";
-    write(STDERR_FILENO, str1, strlen(str1));
-    write(STDERR_FILENO, sigName, strlen(sigName));
-    write(STDERR_FILENO, str2, strlen(str2));
+    reportToUser(str1);
+    reportToUser(sigName);
+    reportToUser(str2);
     print_stacktrace();  // unsafe
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #ifdef STACKTRACE_WIN
