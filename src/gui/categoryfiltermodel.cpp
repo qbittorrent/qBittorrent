@@ -195,6 +195,13 @@ CategoryFilterModel::~CategoryFilterModel()
     delete m_rootItem;
 }
 
+bool CategoryFilterModel::isSpecialItem(const QModelIndex &index)
+{
+    // the first two items at first level are special items:
+    // 'All' and 'Uncategorized'
+    return (!index.parent().isValid() && (index.row() <= 1));
+}
+
 int CategoryFilterModel::columnCount(const QModelIndex &) const
 {
     return 1;
