@@ -54,13 +54,6 @@ namespace
 
         return categoryFilter;
     }
-
-    bool isSpecialItem(const QModelIndex &index)
-    {
-        // the first two items at first level are special items:
-        // 'All' and 'Uncategorized'
-        return (!index.parent().isValid() && (index.row() <= 1));
-    }
 }
 
 CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
@@ -115,7 +108,7 @@ void CategoryFilterWidget::showMenu(QPoint)
     connect(addAct, SIGNAL(triggered()), SLOT(addCategory()));
 
     auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
             QAction *addSubAct = menu.addAction(
                         GuiIconProvider::instance()->getIcon("list-add")
@@ -238,7 +231,7 @@ void CategoryFilterWidget::addSubcategory()
 void CategoryFilterWidget::removeCategory()
 {
     auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         BitTorrent::Session::instance()->removeCategory(
                     static_cast<CategoryFilterModel *>(model())->categoryName(selectedRows.first()));
         updateGeometry();
