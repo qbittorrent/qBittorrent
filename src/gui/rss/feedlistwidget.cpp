@@ -138,6 +138,11 @@ void FeedListWidget::handleItemPathChanged(RSS::Item *rssItem)
 void FeedListWidget::handleItemAboutToBeRemoved(RSS::Item *rssItem)
 {
     delete m_rssToTreeItemMapping.take(rssItem);
+
+    // RSS Item is still valid in this slot so if it is the last
+    // item we should prevent Unread list populating
+    if (m_rssToTreeItemMapping.size() == 1)
+        setCurrentItem(nullptr);
 }
 
 QTreeWidgetItem *FeedListWidget::stickyUnreadItem() const
