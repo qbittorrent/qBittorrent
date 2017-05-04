@@ -38,7 +38,7 @@ ArticleListWidget::ArticleListWidget(QWidget *parent)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    
+
     checkInvariant();
 }
 
@@ -93,14 +93,9 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
 {
-    if (m_unreadOnly) {
-        delete m_rssArticleToListItemMapping.take(rssArticle);
-    }
-    else {
-        auto item = mapRSSArticle(rssArticle);
-        item->setData(Qt::ForegroundRole, QColor("grey"));
-        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
-    }
+    auto item = mapRSSArticle(rssArticle);
+    item->setData(Qt::ForegroundRole, QColor("grey"));
+    item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
 
     checkInvariant();
 }
