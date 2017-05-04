@@ -164,6 +164,8 @@ QList<QTreeWidgetItem *> FeedListWidget::getAllOpenedFolders(QTreeWidgetItem *pa
 
 RSS::Item *FeedListWidget::getRSSItem(QTreeWidgetItem *item) const
 {
+    if (!item) return nullptr;
+
     return reinterpret_cast<RSS::Item *>(item->data(0, Qt::UserRole).value<quintptr>());
 }
 

@@ -416,11 +416,6 @@ void RSSWidget::copySelectedFeedsURL()
 
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
 {
-    if (!currentItem) {
-        m_articleListWidget->clear();
-        return;
-    }
-
     m_articleListWidget->setRSSItem(m_feedListWidget->getRSSItem(currentItem)
                                     , (currentItem == m_feedListWidget->stickyUnreadItem()));
 }
