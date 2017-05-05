@@ -202,15 +202,6 @@
   <td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
   </tr>
   </table>
-  <fieldset class="settings">
-  <legend>QBT_TR(Rate Limits Settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
-  <input type="checkbox" id="enable_utp_checkbox" onClick="updateUTPEnabled();"/>
-  <label for="enable_utp_checkbox">QBT_TR(Enable µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-  <input type="checkbox" id="limit_utp_rate_checkbox"/>
-  <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-  <input type="checkbox" id="limit_tcp_overhead_checkbox"/>
-  <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-  </fieldset>
 </fieldset>
 
 <fieldset class="settings">
@@ -255,6 +246,16 @@
   </select>
   </br/>
   </fieldset>
+</fieldset>
+
+<fieldset class="settings">
+  <legend>QBT_TR(Rate Limits Settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
+  <input type="checkbox" id="enable_utp_checkbox" onClick="updateUTPEnabled();"/>
+  <label for="enable_utp_checkbox">QBT_TR(Enable µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+  <input type="checkbox" id="limit_utp_rate_checkbox"/>
+  <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+  <input type="checkbox" id="limit_tcp_overhead_checkbox"/>
+  <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
 </fieldset>
 </div>
 
