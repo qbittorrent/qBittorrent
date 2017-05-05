@@ -362,7 +362,7 @@ window.addEvent('load', function () {
         transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
-            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", ${VERSION});
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", "${VERSION}");
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }else
             document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
@@ -370,18 +370,18 @@ window.addEvent('load', function () {
 
         <!-- Statistics dialog -->
         if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', 'Alltime download: %1'.replace("%1", friendlyUnit(serverState.alltime_dl, false)));
-            $('AlltimeUL').set('html', 'Alltime upload: %1'.replace("%1", friendlyUnit(serverState.alltime_ul, false)));
-            $('TotalWastedSession').set('html', 'Total wasted (this session): %1'.replace("%1", friendlyUnit(serverState.total_wasted_session, false)));
-            $('GlobalRatio').set('html', 'Global ratio: %1'.replace("%1", serverState.global_ratio ));
-            $('TotalPeerConnections').set('html', 'Total peer connections: %1'.replace("%1", serverState.total_peer_connections ));
-            $('ReadCacheHits').set('html', 'Read cache hits: %1'.replace("%1", serverState.read_cache_hits ));
-            $('TotalBuffersSize').set('html', 'Total buffers size: %1'.replace("%1", friendlyUnit(serverState.total_buffers_size, false)));
-            $('WriteCacheOverload').set('html', 'Write cache overload: %1'.replace("%1", serverState.write_cache_overload ));
-            $('ReadCacheOverload').set('html', 'Read cache overload: %1'.replace("%1", serverState.read_cache_overload ));
-            $('QueuedIOJobs').set('html', 'Queued I/O jobs: %1'.replace("%1", serverState.queued_io_jobs ));
-            $('AverageTimeInQueue').set('html', 'Average time in queue: %1'.replace("%1", serverState.average_time_queue ));
-            $('TotalQueuedSize').set('html', 'Total queued size: %1'.replace("%1", friendlyUnit(serverState.total_queued_size, false) ));
+            $('AlltimeDL').set('html', 'QBT_TR(Alltime download:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_dl, false));
+            $('AlltimeUL').set('html', 'QBT_TR(Alltime upload:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_ul, false));
+            $('TotalWastedSession').set('html', 'QBT_TR(Total wasted (this session):)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_wasted_session, false));
+            $('GlobalRatio').set('html', 'QBT_TR(Global ratio:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.global_ratio);
+            $('TotalPeerConnections').set('html', 'QBT_TR(Total peer connections:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.total_peer_connections);
+            $('ReadCacheHits').set('html', 'QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_hits);
+            $('TotalBuffersSize').set('html', 'QBT_TR(Total buffers size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_buffers_size, false));
+            $('WriteCacheOverload').set('html', 'QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.write_cache_overload);
+            $('ReadCacheOverload').set('html', 'QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_overload);
+            $('QueuedIOJobs').set('html', 'QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.queued_io_jobs);
+            $('AverageTimeInQueue').set('html', 'QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.average_time_queue);
+            $('TotalQueuedSize').set('html', 'QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_queued_size, false));
         }
 
         if (serverState.connection_status == "connected")
