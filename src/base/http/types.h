@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -41,6 +42,8 @@ namespace Http
     const char METHOD_POST[] = "POST";
 
     const char HEADER_CACHE_CONTROL[] = "cache-control";
+    const char HEADER_CONNECTION[] = "connection";
+    const char HEADER_CONTENT_DISPOSITION[] = "content-disposition";
     const char HEADER_CONTENT_ENCODING[] = "content-encoding";
     const char HEADER_CONTENT_LENGTH[] = "content-length";
     const char HEADER_CONTENT_SECURITY_POLICY[] = "content-security-policy";
@@ -55,6 +58,10 @@ namespace Http
     const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
     const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
 
+    const char HEADER_REQUEST_METHOD_GET[] = "GET";
+    const char HEADER_REQUEST_METHOD_HEAD[] = "HEAD";
+    const char HEADER_REQUEST_METHOD_POST[] = "POST";
+
     const char CONTENT_TYPE_HTML[] = "text/html";
     const char CONTENT_TYPE_JS[] = "application/javascript";
     const char CONTENT_TYPE_JSON[] = "application/json";
@@ -64,8 +71,10 @@ namespace Http
     const char CONTENT_TYPE_PNG[] = "image/png";
     const char CONTENT_TYPE_TXT[] = "text/plain";
     const char CONTENT_TYPE_SVG[] = "image/svg+xml";
+    const char CONTENT_TYPE_FORM_ENCODED[] = "application/x-www-form-urlencoded";
+    const char CONTENT_TYPE_FORM_DATA[] = "multipart/form-data";
 
-    // portability: "\r\n" doesn't guarantee mapping to the correct value
+    // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     const char CRLF[] = {0x0D, 0x0A, '\0'};
 
     struct Environment
@@ -79,13 +88,14 @@ namespace Http
 
     struct UploadedFile
     {
-        QString filename; // original filename
-        QString type; // MIME type
-        QByteArray data; // File data
+        QString filename;
+        QString type;  // MIME type
+        QByteArray data;
     };
 
     struct Request
     {
+        QString version;
         QString method;
         QString path;
         QStringMap headers;
