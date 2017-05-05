@@ -8,13 +8,15 @@ function friendlyUnit(value, isSpeed) {
         "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
         "QBT_TR(GiB)QBT_TR[CONTEXT=misc]",
         "QBT_TR(TiB)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(PiB)QBT_TR[CONTEXT=misc]",
+        "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
     ];
 
     if (value < 0)
         return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
     var i = 0;
-    while (value >= 1024. && i < 4) {
+    while (value >= 1024. && i < 6) {
         value /= 1024.;
         ++i;
     }
