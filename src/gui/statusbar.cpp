@@ -252,9 +252,10 @@ void StatusBar::toggleAlternativeSpeeds()
 void StatusBar::capDownloadSpeed()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
+
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+                m_bar->parentWidget(), &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
         session->setDownloadSpeedLimit(newLimit);
@@ -265,9 +266,10 @@ void StatusBar::capDownloadSpeed()
 void StatusBar::capUploadSpeed()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
+
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+                m_bar->parentWidget(), &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
         session->setUploadSpeedLimit(newLimit);

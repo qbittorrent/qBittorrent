@@ -170,7 +170,6 @@ private:
     quint16 webUiPort() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
-    QSize sizeFittingScreen() const;
 
 private:
     bool setSslKey(const QByteArray &key);

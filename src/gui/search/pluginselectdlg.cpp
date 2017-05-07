@@ -207,9 +207,9 @@ void PluginSelectDlg::on_actionUninstall_triggered()
     }
 
     if (error)
-        QMessageBox::warning(0, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
+        QMessageBox::warning(this, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
     else
-        QMessageBox::information(0, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
+        QMessageBox::information(this, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
 
 void PluginSelectDlg::enableSelection(bool enable)

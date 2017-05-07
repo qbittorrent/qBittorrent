@@ -54,7 +54,6 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     lbl_warn->setFixedWidth(lbl_warn->height());
     rememberBtn->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
 
-    move(Utils::Misc::screenCenter(this));
     checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(checkPermDelete, SIGNAL(clicked()), this, SLOT(updateRememberButtonState()));
     buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
@@ -64,8 +63,8 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     return checkPermDelete->isChecked();
   }
 
-  static bool askForDeletionConfirmation(bool& deleteLocalFiles, const int& size, const QString& name) {
-    DeletionConfirmationDlg dlg(NULL, size, name, deleteLocalFiles);
+  static bool askForDeletionConfirmation(QWidget *parent, bool& deleteLocalFiles, const int& size, const QString& name) {
+    DeletionConfirmationDlg dlg(parent, size, name, deleteLocalFiles);
     if (dlg.exec() == QDialog::Accepted) {
       deleteLocalFiles = dlg.shouldDeleteLocalFiles();
       return true;

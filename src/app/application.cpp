@@ -366,7 +366,7 @@ void Application::allTorrentsFinished()
         // do nothing & skip confirm
     }
     else {
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if (!ShutdownConfirmDlg::askForConfirmation(m_window, action)) return;
     }
 #endif // DISABLE_GUI
 
@@ -409,7 +409,7 @@ void Application::processParams(const QStringList &params)
         param = param.trimmed();
 
         // Process strings indicating options specified by the user.
-        
+
         if (param.startsWith(QLatin1String("@savePath="))) {
             torrentParams.savePath = param.mid(10);
             continue;

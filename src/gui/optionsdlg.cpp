@@ -357,7 +357,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->advPageLayout->addWidget(advancedSettings);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
-    // Adapt size
     show();
     loadWindowState();
 }
@@ -404,14 +403,9 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 void OptionsDialog::loadWindowState()
 {
     const Preferences* const pref = Preferences::instance();
-    resize(pref->getPrefSize(sizeFittingScreen()));
-    QPoint p = pref->getPrefPos();
-    QRect scr_rect = qApp->desktop()->screenGeometry();
-    if (!p.isNull() && scr_rect.contains(p))
-        move(p);
-    // Load slider size
+
+    resize(pref->getPrefSize(this->size()));
     const QStringList sizes_str = pref->getPrefHSplitterSizes();
-    // Splitter size
     QList<int> sizes;
     if (sizes_str.size() == 2) {
         sizes << sizes_str.first().toInt();
@@ -427,32 +421,15 @@ void OptionsDialog::loadWindowState()
 void OptionsDialog::saveWindowState() const
 {
     Preferences* const pref = Preferences::instance();
+
+    // window size
     pref->setPrefSize(size());
-    pref->setPrefPos(pos());
+
     // Splitter size
     QStringList sizes_str;
     sizes_str << QString::number(m_ui->hsplitter->sizes().first());
     sizes_str << QString::number(m_ui->hsplitter->sizes().last());
     pref->setPrefHSplitterSizes(sizes_str);
-}
-
-QSize OptionsDialog::sizeFittingScreen() const
-{
-    int scrn = 0;
-    QWidget *w = this->topLevelWidget();
-
-    if (w)
-        scrn = QApplication::desktop()->screenNumber(w);
-    else if (QApplication::desktop()->isVirtualDesktop())
-        scrn = QApplication::desktop()->screenNumber(QCursor::pos());
-    else
-        scrn = QApplication::desktop()->screenNumber(this);
-
-    QRect desk(QApplication::desktop()->availableGeometry(scrn));
-    if (width() > desk.width() || height() > desk.height())
-        if (desk.width() > 0 && desk.height() > 0)
-            return QSize(desk.width(), desk.height());
-    return size();
 }
 
 void OptionsDialog::saveOptions()

@@ -52,7 +52,6 @@ class TransferListFiltersWidget;
 class PropertiesWidget;
 class StatusBar;
 class TorrentCreatorDlg;
-class downloadFromURL;
 class LineEdit;
 class ExecutionLog;
 class PowerManagement;

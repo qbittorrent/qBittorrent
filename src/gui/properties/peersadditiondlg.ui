@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>List of peers to add (one per line):</string>
+      <string>List of peers to add (one IP per line):</string>
      </property>
     </widget>
    </item>
@@ -40,9 +40,6 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>

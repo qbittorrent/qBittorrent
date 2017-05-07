@@ -1127,7 +1127,6 @@ void Preferences::setMainLastDir(const QString &path)
     setValue("MainWindowLastDir", path);
 }
 
-#ifndef DISABLE_GUI
 QSize Preferences::getPrefSize(const QSize& defaultSize) const
 {
     return value("Preferences/State/size", defaultSize).toSize();
@@ -1136,17 +1135,6 @@ QSize Preferences::getPrefSize(const QSize& defaultSize) const
 void Preferences::setPrefSize(const QSize &size)
 {
     setValue("Preferences/State/size", size);
-}
-#endif
-
-QPoint Preferences::getPrefPos() const
-{
-    return value("Preferences/State/pos").toPoint();
-}
-
-void Preferences::setPrefPos(const QPoint &pos)
-{
-    setValue("Preferences/State/pos", pos);
 }
 
 QStringList Preferences::getPrefHSplitterSizes() const
@@ -1219,14 +1207,14 @@ void Preferences::setPropTrackerListState(const QByteArray &state)
     setValue("TorrentProperties/Trackers/qt5/TrackerListState", state);
 }
 
-QByteArray Preferences::getRssGeometry() const
+QSize Preferences::getRssGeometrySize(const QSize &defaultSize) const
 {
-    return value("RssFeedDownloader/geometry").toByteArray();
+    return value("RssFeedDownloader/geometrySize", defaultSize).toSize();
 }
 
-void Preferences::setRssGeometry(const QByteArray &geometry)
+void Preferences::setRssGeometrySize(const QSize &geometry)
 {
-    setValue("RssFeedDownloader/geometry", geometry);
+    setValue("RssFeedDownloader/geometrySize", geometry);
 }
 
 QByteArray Preferences::getRssHSplitterSizes() const

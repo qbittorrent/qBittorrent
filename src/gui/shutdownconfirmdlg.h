@@ -45,10 +45,10 @@ class ShutdownConfirmDlg: public QDialog
     Q_OBJECT
 
 public:
-    ShutdownConfirmDlg(const ShutdownDialogAction &action);
+    ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogAction &action);
     ~ShutdownConfirmDlg();
 
-    static bool askForConfirmation(const ShutdownDialogAction &action);
+    static bool askForConfirmation(QWidget *parent, const ShutdownDialogAction &action);
 
 protected:
     void showEvent(QShowEvent *event) override;

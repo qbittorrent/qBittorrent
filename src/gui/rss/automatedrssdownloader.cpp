@@ -149,17 +149,15 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
 void AutomatedRssDownloader::loadSettings()
 {
-    // load dialog geometry
     const Preferences *const pref = Preferences::instance();
-    restoreGeometry(pref->getRssGeometry());
+    resize(pref->getRssGeometrySize(this->size()));
     m_ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
-    // Save dialog geometry
     Preferences *const pref = Preferences::instance();
-    pref->setRssGeometry(saveGeometry());
+    pref->setRssGeometrySize(this->size());
     pref->setRssHSplitterSizes(m_ui->hsplitter->saveState());
 }
 

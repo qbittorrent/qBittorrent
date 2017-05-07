@@ -265,7 +265,7 @@ void SearchWidget::on_searchButton_clicked()
     const QString pattern = m_ui->m_searchPattern->text().trimmed();
     // No search pattern entered
     if (pattern.isEmpty()) {
-        QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
+        QMessageBox::critical(this, tr("Empty search pattern"), tr("Please type a search pattern first"));
         return;
     }
 

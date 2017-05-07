@@ -15,21 +15,17 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
-    <layout class="QHBoxLayout">
-     <item>
-      <widget class="QLabel" name="downloadURL_lbl">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Add torrent links</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QLabel" name="downloadURL_lbl">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Add torrent links</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTextEdit" name="textUrls">
@@ -43,19 +39,13 @@
    </item>
    <item>
     <widget class="QLabel" name="label_infos">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>17</height>
-      </size>
-     </property>
      <property name="font">
       <font>
        <italic>true</italic>
       </font>
      </property>
      <property name="text">
-      <string>One per line (HTTP links, Magnet links and info-hashes are supported)</string>
+      <string>One link per line (HTTP links, Magnet links and info-hashes are supported)</string>
      </property>
     </widget>
    </item>

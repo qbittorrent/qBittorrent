@@ -63,7 +63,6 @@ const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
 const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
 const QString KEY_WIDTH = SETTINGS_KEY("Width");
 const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
-const QString KEY_POSITION = SETTINGS_KEY("Position");
 const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
 const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
 
@@ -85,7 +84,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     , m_oldIndex(0)
     , m_torrentParams(inParams)
 {
-    // TODO: set dialog file properties using m_torrentParams.filePriorities 
+    // TODO: set dialog file properties using m_torrentParams.filePriorities
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     ui->lblMetaLoading->setVisible(false);
@@ -99,7 +98,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         ui->startTorrentCheckBox->setChecked(true);
     else
         ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
-    
+
     ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     ui->comboTTM->blockSignals(false);
@@ -114,7 +113,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         ui->createSubfolderCheckBox->setChecked(false);
     else
         ui->createSubfolderCheckBox->setChecked(session->isCreateTorrentSubfolder());
-    
+
     ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
@@ -179,11 +178,10 @@ void AddNewTorrentDialog::loadState()
 {
     m_headerState = settings()->loadValue(KEY_TREEHEADERSTATE).toByteArray();
     int width = settings()->loadValue(KEY_WIDTH, -1).toInt();
-    if (width >= 0) {
-        QRect geo = geometry();
-        geo.setWidth(width);
-        setGeometry(geo);
-    }
+    QSize geo = size();
+    geo.setWidth(width);
+    resize(geo);
+
     ui->adv_button->setChecked(settings()->loadValue(KEY_EXPANDED).toBool());
 }
 
@@ -191,7 +189,6 @@ void AddNewTorrentDialog::saveState()
 {
     if (m_contentModel)
         settings()->storeValue(KEY_TREEHEADERSTATE, ui->contentTreeView->header()->saveState());
-    settings()->storeValue(KEY_POSITION, pos().y());
     settings()->storeValue(KEY_WIDTH, width());
     settings()->storeValue(KEY_EXPANDED, ui->adv_button->isChecked());
 }
@@ -235,13 +232,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
+        MessageBoxRaised::critical(this, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
     QFileInfo fileinfo(m_filePath);
     if (!fileinfo.isReadable()) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
+        MessageBoxRaised::critical(this, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
@@ -249,7 +246,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, error);
     if (!m_torrentInfo.isValid()) {
-        MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
+        MessageBoxRaised::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
         return false;
     }
 
@@ -261,16 +258,16 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
-                MessageBoxRaised::critical(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers weren't merged because it is a private torrent."), QMessageBox::Ok);
+                MessageBoxRaised::critical(this, tr("Already in download list"), tr("Torrent is already in download list. Trackers weren't merged because it is a private torrent."), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers were merged."), QMessageBox::Ok);
+                MessageBoxRaised::information(this, tr("Already in download list"), tr("Torrent is already in download list. Trackers were merged."), QMessageBox::Ok);
             }
         }
         else {
-            MessageBoxRaised::critical(0, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding state."), QMessageBox::Ok);
+            MessageBoxRaised::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding state."), QMessageBox::Ok);
         }
         return false;
     }
@@ -284,7 +281,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
 bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 {
     if (!magnetUri.isValid()) {
-        MessageBoxRaised::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
+        MessageBoxRaised::critical(this, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
         return false;
     }
 
@@ -295,16 +292,16 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate()) {
-                MessageBoxRaised::critical(0, tr("Already in download list"), tr("Torrent is already in download list. Trackers weren't merged because it is a private torrent."), QMessageBox::Ok);
+                MessageBoxRaised::critical(this, tr("Already in download list"), tr("Torrent is already in download list. Trackers weren't merged because it is a private torrent."), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(magnetUri.trackers());
                 torrent->addUrlSeeds(magnetUri.urlSeeds());
-                MessageBoxRaised::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Trackers were merged."), QMessageBox::Ok);
+                MessageBoxRaised::information(this, tr("Already in download list"), tr("Magnet link is already in download list. Trackers were merged."), QMessageBox::Ok);
             }
         }
         else {
-            MessageBoxRaised::critical(0, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding."), QMessageBox::Ok);
+            MessageBoxRaised::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding."), QMessageBox::Ok);
         }
         return false;
     }
@@ -317,8 +314,6 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     setupTreeview();
     TMMChanged(ui->comboTTM->currentIndex());
-    // Set dialog position
-    setdialogPosition();
 
     BitTorrent::Session::instance()->loadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
@@ -575,28 +570,6 @@ void AddNewTorrentDialog::renameSelectedFile()
     }
 }
 
-void AddNewTorrentDialog::setdialogPosition()
-{
-    // In macOS, AddNewTorrentDialog is a sheet, not a window. Moving it
-    // causes very bad things to happen, especially if AddNewTorrentDialog is
-    // on a secondary monitor.
-#ifndef Q_OS_MAC
-    qApp->processEvents();
-    QPoint center(Utils::Misc::screenCenter(this));
-    // Adjust y
-    int y = settings()->loadValue(KEY_POSITION, -1).toInt();
-    if (y >= 0) {
-        center.setY(y);
-    }
-    else {
-        center.ry() -= 120;
-        if (center.y() < 0)
-            center.setY(0);
-    }
-    move(center);
-#endif
-}
-
 void AddNewTorrentDialog::populateSavePathComboBox()
 {
     QString defSavePath = BitTorrent::Session::instance()->defaultSavePath();
@@ -608,7 +581,7 @@ void AddNewTorrentDialog::populateSavePathComboBox()
     foreach (const QString &savePath, settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList())
         if (QDir(savePath) != defaultSaveDir)
             ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
-    
+
     if (!m_torrentParams.savePath.isEmpty())
         setSavePath(m_torrentParams.savePath);
 }
@@ -711,7 +684,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
 
     disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
     if (!info.isValid()) {
-        MessageBoxRaised::critical(0, tr("I/O Error"), ("Invalid metadata."));
+        MessageBoxRaised::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));
         return;
     }
@@ -772,13 +745,11 @@ void AddNewTorrentDialog::setupTreeview()
 
     updateDiskSpaceLabel();
     showAdvancedSettings(settings()->loadValue(KEY_EXPANDED, false).toBool());
-    // Set dialog position
-    setdialogPosition();
 }
 
 void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
 {
-    MessageBoxRaised::critical(0, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
+    MessageBoxRaised::critical(this, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
     this->deleteLater();
 }
 
