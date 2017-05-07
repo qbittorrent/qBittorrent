@@ -16,13 +16,13 @@ usesystemqtsingleapplication {
 
 HEADERS += \
     $$PWD/application.h \
-    $$PWD/filelogger.h \
-    $$PWD/options.h
+    $$PWD/cmdoptions.h \
+    $$PWD/filelogger.h
 
 SOURCES += \
     $$PWD/application.cpp \
+    $$PWD/cmdoptions.cpp \
     $$PWD/filelogger.cpp \
-    $$PWD/options.cpp \
     $$PWD/main.cpp
 
 unix: HEADERS += $$PWD/stacktrace.h
