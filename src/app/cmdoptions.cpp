@@ -30,7 +30,7 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include "options.h"
+#include "cmdoptions.h"
 
 #include <iostream>
 

@@ -69,11 +69,12 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 
 #include <cstdlib>
 #include <iostream>
+
 #include "application.h"
-#include "options.h"
 #include "base/profile.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
+#include "cmdoptions.h"
 
 #include "upgrade.h"
 
