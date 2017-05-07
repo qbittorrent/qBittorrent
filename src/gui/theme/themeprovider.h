@@ -57,9 +57,9 @@ namespace Theme
         static ThemeProvider &instance();
 
         /**
-         * @brief Collection of available colour themes
+         * @brief Collection of available color themes
          *
-         * @returns map them info object -> file path
+         * @returns map theme info object -> file path
          */
         std::map<ThemeInfo, QString> availableThemes(Kind kind) const;
 
@@ -110,7 +110,7 @@ namespace Theme
         /**
          * @brief Theme search paths arranged by priority
          *
-         * @return QStringList with paths. The firs one is of highest priority.
+         * @return QStringList with paths. The first one is of highest priority.
          */
         QStringList themeSearchPaths() const;
 

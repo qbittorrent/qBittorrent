@@ -48,6 +48,12 @@ AC_ARG_ENABLE(qt-dbus,
               [],
               [enable_qt_dbus=yes])
 
+AC_ARG_ENABLE(plasma-integration,
+              [AS_HELP_STRING([--enable-plasma-integration],
+                              [Enable KDE/Plasma integration])],
+              [],
+              [enable_plasma_integration=no])
+
 # Detect OS
 AC_MSG_CHECKING([whether OS is FreeBSD])
 AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
@@ -136,7 +142,16 @@ AS_CASE(["x$enable_qt_dbus"],
               QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG dbus"],
         [AC_MSG_RESULT([$enable_qt_dbus])
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
-
+AC_MSG_CHECKING([whether KDE/Plasma integration should be enabled])
+AS_CASE(["x$enable_plasma_integration"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG plasma_integration"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG plasma_integration"],
+        [AC_MSG_RESULT([$enable_plasma_integration])
+        AC_MSG_ERROR([Unknown option "$plasma_integration". Use either "yes" or "no".])])
 
 AX_BOOST_BASE([1.35])
 # HAVE_BOOST is set to an empty value when Boost is found. I don't know

@@ -158,6 +158,19 @@ if (WIN32 OR APPLE)
     list(APPEND QBT_GUI_SOURCES programupdater.cpp)
 endif (WIN32 OR APPLE)
 
+if (PLASMA_INTEGRATION)
+    list(APPEND QBT_GUI_HEADERS
+        theme/plasmacolorprovider.h
+        utils/colorutils.h
+        utils/plasmacolorscheme.h
+        )
+    list(APPEND QBT_GUI_SOURCES
+        theme/plasmacolorprovider.cpp
+        utils/colorutils.cpp
+        utils/plasmacolorscheme.cpp
+        )
+endif (PLASMA_INTEGRATION)
+
 set(QBT_GUI_FORMS
 mainwindow.ui
 about.ui

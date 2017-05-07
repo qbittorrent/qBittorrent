@@ -30,6 +30,10 @@
 
 #include <QMetaEnum>
 
+#ifdef PLASMA_INTEGRATION
+#include "plasmacolorprovider.h"
+#endif
+
 namespace
 {
     struct ColorProvidersRegistrator
@@ -60,6 +64,9 @@ namespace
 void Theme::Serialization::registerColorProviders()
 {
     static ColorProvidersRegistrator colorProvidersRegistrator;
+#ifdef PLASMA_INTEGRATION
+    registerPlasmaColorProviders();
+#endif
 }
 
 Theme::Serialization::ExplicitColor::ExplicitColor(const QColor &color)

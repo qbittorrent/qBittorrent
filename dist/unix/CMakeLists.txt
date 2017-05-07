@@ -43,3 +43,9 @@ if (GUI)
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/status
         COMPONENT data)
 endif()
+
+if (PLASMA_INTEGRATION)
+    install(FILES qBittorrentPlasma.colortheme
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/qBittorrent/theme/
+            COMPONENT data)
+endif (PLASMA_INTEGRATION)

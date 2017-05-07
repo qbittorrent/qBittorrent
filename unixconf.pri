@@ -125,6 +125,13 @@ nogui:systemd {
     INSTALLS += pixmap
 }
 
+plasma_integration {
+    DEFINES += PLASMA_INTEGRATION
+    themes.files += $$DIST_PATH/qBittorrentPlasma.colortheme
+    themes.path = $$DATADIR/qBittorrent/theme/
+    INSTALLS += themes
+}
+
 # INSTALL
 target.path = $$PREFIX/bin/
 INSTALLS += target

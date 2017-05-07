@@ -1,0 +1,37 @@
+[Info]
+Name=Plasma colors
+Description=qBittorrent color theme which uses Plasma colors.
+
+[TorrentState]
+Unknown=Plasma:ForegroundNegative:Disabled
+Error=Plasma:ForegroundNegative
+MissingFiles=Plasma:ForegroundNegative
+Uploading=Plasma:ForegroundNeutral
+PausedUploading=Plasma:ForegroundNeutral:Disabled
+QueuedUploading=Plasma:ForegroundNeutral:Inactive
+StalledUploading=Plasma:ForegroundInactive
+CheckingUploading=Plasma:ForegroundActive:Inactive
+ForcedUploading=Plasma:ForegroundNeutral:Active:View:Intensify
+Allocating=Plasma:ForegroundInactive
+Downloading=Plasma:ForegroundPositive
+DownloadingMetadata=Plasma:ForegroundActive:Active:View:Reduce
+PausedDownloading=Plasma:ForegroundPositive:Disabled
+QueuedDownloading=Plasma:ForegroundPositive:Inactive
+StalledDownloading=Plasma:ForegroundInactive
+CheckingDownloading=Plasma:ForegroundActive:Inactive
+ForcedDownloading=Plasma:ForegroundPositive:Active:View:Intensify
+QueuedForChecking=Plasma:ForegroundActive:Inactive
+CheckingResumeData=Plasma:ForegroundActive:Inactive
+
+[LogMessageType]
+ALL=QPalette:Active:WindowText
+NORMAL=QPalette:Active:WindowText
+INFO=Plasma:ForegroundActive
+WARNING=Plasma:ForegroundNeutral
+CRITICAL=Plasma:ForegroundNegative
+
+[DownloadProgressBar]
+Background=Plasma:BackgroundNormal
+Border=Plasma:DecorationFocus
+Complete=Plasma:ForegroundActive
+Incomplete=Plasma:ForegroundPositive
