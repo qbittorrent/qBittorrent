@@ -59,7 +59,6 @@ namespace RSS
 
     private slots:
         void handleItemUnreadCountChanged();
-        void handleItemAboutToBeDestroyed(Item *item);
 
     private:
         void cleanup() override;
