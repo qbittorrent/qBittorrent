@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Download from urls</string>
+   <string>Download from URLs</string>
   </property>
   <layout class="QVBoxLayout">
    <item>
@@ -33,11 +33,11 @@
    </item>
    <item>
     <widget class="QTextEdit" name="textUrls">
-     <property name="acceptRichText">
-      <bool>false</bool>
-     </property>
      <property name="tabChangesFocus">
       <bool>true</bool>
+     </property>
+     <property name="acceptRichText">
+      <bool>false</bool>
      </property>
     </widget>
    </item>

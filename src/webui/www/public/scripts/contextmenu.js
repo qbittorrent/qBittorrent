@@ -341,8 +341,8 @@ var TorrentsTableContextMenu = new Class({
     updateCategoriesSubMenu : function (category_list) {
         var categoryList = $('contextCategoryList');
         categoryList.empty();
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentNewCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR"/> QBT_TR(New...)QBT_TR</a>'}));
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR"/> QBT_TR(Reset)QBT_TR</a>'}));
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentNewCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'}));
+        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'}));
 
         var sortedCategories = []
         Object.each(category_list, function (category) {

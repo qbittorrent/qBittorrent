@@ -679,7 +679,7 @@
              <x>0</x>
              <y>0</y>
              <width>470</width>
-             <height>994</height>
+             <height>1017</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -714,7 +714,7 @@
                  </layout>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item>
                 <widget class="QCheckBox" name="checkCreateSubfolder">
                  <property name="text">
                   <string>Create subfolder for torrents with multiple files</string>
@@ -2754,7 +2754,7 @@
             <item>
              <widget class="QGroupBox" name="checkWebUi">
               <property name="title">
-               <string>Enable Web User Interface (Remote control)</string>
+               <string>Web User Interface (Remote control)</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
