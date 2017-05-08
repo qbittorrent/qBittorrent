@@ -33,6 +33,7 @@
 
 #include <QButtonGroup>
 #include <QDialog>
+#include <QSpinBox>
 
 class QAbstractButton;
 class QCloseEvent;
@@ -108,10 +109,14 @@ private slots:
     void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &locale);
+    void adaptLimitStep(int value);
+    void adaptLimitStep(QSpinBox* limitBox);
 
 private:
     // Methods
     void saveOptions();
+    int limitStep(int value);
+    void adaptLimitStep(QSpinBox* limitBox, int value);
     void loadOptions();
     void initializeLanguageCombo();
     static QString languageToLocalizedString(const QLocale &locale);

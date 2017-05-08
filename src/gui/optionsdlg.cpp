@@ -42,6 +42,7 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QTranslator>
+#include <QSpinBox>
 
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
@@ -269,9 +270,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkUploadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkDownloadLimitAlt, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinUploadLimit, SIGNAL(valueChanged(int)), this, SLOT(adaptLimitStep(int)));
     connect(m_ui->spinDownloadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinDownloadLimit, SIGNAL(valueChanged(int)), this, SLOT(adaptLimitStep(int)));
     connect(m_ui->spinUploadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinUploadLimitAlt, SIGNAL(valueChanged(int)), this, SLOT(adaptLimitStep(int)));
     connect(m_ui->spinDownloadLimitAlt, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->spinDownloadLimitAlt, SIGNAL(valueChanged(int)), this, SLOT(adaptLimitStep(int)));
     connect(m_ui->check_schedule, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
     connect(m_ui->schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
@@ -650,6 +655,16 @@ Net::ProxyType OptionsDialog::getProxyType() const
     }
 }
 
+int OptionsDialog::limitStep(const int value)
+{
+    if (value < 100)
+        return 1;
+
+    int log = static_cast<int>(log10(value)) - 1;
+    return static_cast<int>(pow(10, log));
+}
+
+
 void OptionsDialog::loadOptions()
 {
     int intValue;
@@ -893,11 +908,13 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimit->setChecked(true);
         m_ui->spinDownloadLimit->setEnabled(true);
         m_ui->spinDownloadLimit->setValue(intValue);
+        adaptLimitStep(m_ui->spinDownloadLimit, intValue);
     }
     else {
         // Disabled
         m_ui->checkDownloadLimit->setChecked(false);
         m_ui->spinDownloadLimit->setEnabled(false);
+        adaptLimitStep(m_ui->spinDownloadLimit);
     }
     intValue = session->globalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
@@ -905,11 +922,13 @@ void OptionsDialog::loadOptions()
         m_ui->checkUploadLimit->setChecked(true);
         m_ui->spinUploadLimit->setEnabled(true);
         m_ui->spinUploadLimit->setValue(intValue);
+        adaptLimitStep(m_ui->spinUploadLimit, intValue);
     }
     else {
         // Disabled
         m_ui->checkUploadLimit->setChecked(false);
         m_ui->spinUploadLimit->setEnabled(false);
+        adaptLimitStep(m_ui->spinUploadLimit);
     }
 
     intValue = session->altGlobalDownloadSpeedLimit() / 1024;
@@ -918,11 +937,13 @@ void OptionsDialog::loadOptions()
         m_ui->checkDownloadLimitAlt->setChecked(true);
         m_ui->spinDownloadLimitAlt->setEnabled(true);
         m_ui->spinDownloadLimitAlt->setValue(intValue);
+        adaptLimitStep(m_ui->spinDownloadLimitAlt, intValue);
     }
     else {
         // Disabled
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
+        adaptLimitStep(m_ui->spinDownloadLimitAlt);
     }
     intValue = session->altGlobalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
@@ -930,11 +951,13 @@ void OptionsDialog::loadOptions()
         m_ui->checkUploadLimitAlt->setChecked(true);
         m_ui->spinUploadLimitAlt->setEnabled(true);
         m_ui->spinUploadLimitAlt->setValue(intValue);
+        adaptLimitStep(m_ui->spinUploadLimitAlt, intValue);
     }
     else {
         // Disabled
         m_ui->checkUploadLimitAlt->setChecked(false);
         m_ui->spinUploadLimitAlt->setEnabled(false);
+        adaptLimitStep(m_ui->spinUploadLimitAlt);
     }
 
     m_ui->checkuTP->setChecked(session->isUTPEnabled());
@@ -1194,6 +1217,23 @@ bool OptionsDialog::useAdditionDialog() const
 void OptionsDialog::enableApplyButton()
 {
     applyButton->setEnabled(true);
+}
+
+void OptionsDialog::adaptLimitStep(QSpinBox* limitBox, const int value)
+{
+    if (value < limitBox->minimum() || value > limitBox->maximum())
+        throw std::out_of_range(std::to_string(value) + " out of range");
+    limitBox->setSingleStep(limitStep(value));
+}
+
+void OptionsDialog::adaptLimitStep(const int value)
+{
+    adaptLimitStep(static_cast<QSpinBox*>(QObject::sender()), value);
+}
+
+void OptionsDialog::adaptLimitStep(QSpinBox* limitBox)
+{
+    adaptLimitStep(limitBox, limitBox->value());
 }
 
 void OptionsDialog::enableProxy(int index)
