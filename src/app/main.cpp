@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
         migrateRSS();
 #endif
 
-        const QBtCommandLineParameters &params = app->commandLineArgs();
+        const QBtCommandLineParameters params = app->commandLineArgs();
 
         if (!params.unknownParameter.isEmpty()) {
             throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
