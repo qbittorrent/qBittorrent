@@ -78,8 +78,8 @@ namespace
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddNewTorrentDialog)
-    , m_contentModel(0)
-    , m_contentDelegate(0)
+    , m_contentModel(nullptr)
+    , m_contentDelegate(nullptr)
     , m_hasMetadata(false)
     , m_oldIndex(0)
     , m_torrentParams(inParams)
@@ -148,9 +148,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
     saveState();
+
+    delete m_contentDelegate;
     delete ui;
-    if (m_contentModel)
-        delete m_contentModel;
 }
 
 bool AddNewTorrentDialog::isEnabled()
