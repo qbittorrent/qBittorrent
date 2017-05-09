@@ -49,14 +49,14 @@ TorrentFilter::TorrentFilter()
 {
 }
 
-TorrentFilter::TorrentFilter(Type type, QStringSet hashSet, QString category)
+TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &category)
     : m_type(type)
     , m_category(category)
     , m_hashSet(hashSet)
 {
 }
 
-TorrentFilter::TorrentFilter(QString filter, QStringSet hashSet, QString category)
+TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &category)
     : m_type(All)
     , m_category(category)
     , m_hashSet(hashSet)
