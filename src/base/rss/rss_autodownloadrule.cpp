@@ -430,9 +430,9 @@ QStringList AutoDownloadRule::feedURLs() const
     return m_dataPtr->feedURLs;
 }
 
-void AutoDownloadRule::setFeedURLs(const QStringList &rssFeeds)
+void AutoDownloadRule::setFeedURLs(const QStringList &urls)
 {
-    m_dataPtr->feedURLs = rssFeeds;
+    m_dataPtr->feedURLs = urls;
 }
 
 QString AutoDownloadRule::name() const
