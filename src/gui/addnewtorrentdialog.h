@@ -110,7 +110,6 @@ private:
     QString m_filePath;
     BitTorrent::InfoHash m_hash;
     BitTorrent::TorrentInfo m_torrentInfo;
-    QShortcut *editHotkey;
     QByteArray m_headerState;
     int m_oldIndex;
     QScopedPointer<TorrentFileGuard> m_torrentGuard;
