@@ -84,7 +84,7 @@ TrackerEntry &TrackerEntry::operator=(const TrackerEntry &other)
     return *this;
 }
 
-bool TrackerEntry::operator==(const TrackerEntry &other)
+bool TrackerEntry::operator==(const TrackerEntry &other) const
 {
     return (QUrl(url()) == QUrl(other.url()));
 }

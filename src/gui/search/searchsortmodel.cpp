@@ -40,9 +40,9 @@ SearchSortModel::SearchSortModel(QObject *parent)
 {
 }
 
-void SearchSortModel::enableNameFilter(bool enable)
+void SearchSortModel::enableNameFilter(bool enabled)
 {
-    m_isNameFilterEnabled = enable;
+    m_isNameFilterEnabled = enabled;
 }
 
 void SearchSortModel::setNameFilter(const QString &searchTerm)

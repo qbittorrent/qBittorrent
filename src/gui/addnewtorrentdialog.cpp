@@ -78,8 +78,8 @@ namespace
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddNewTorrentDialog)
-    , m_contentModel(0)
-    , m_contentDelegate(0)
+    , m_contentModel(nullptr)
+    , m_contentDelegate(nullptr)
     , m_hasMetadata(false)
     , m_oldIndex(0)
     , m_torrentParams(inParams)
@@ -138,7 +138,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // Signal / slots
     connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
     connect(ui->doNotDeleteTorrentCheckBox, SIGNAL(clicked(bool)), SLOT(doNotDeleteTorrentClicked(bool)));
-    editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
+    QShortcut *editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
 
@@ -148,10 +148,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
     saveState();
+
+    delete m_contentDelegate;
     delete ui;
-    if (m_contentModel)
-        delete m_contentModel;
-    delete editHotkey;
 }
 
 bool AddNewTorrentDialog::isEnabled()

@@ -180,7 +180,7 @@ namespace
         {
         }
 
-        T operator()(T val)
+        T operator()(T val) const
         {
             return val <= m_limit ? m_ret : val;
         }

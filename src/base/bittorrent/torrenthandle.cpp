@@ -74,6 +74,7 @@ AddTorrentData::AddTorrentData()
     : resumed(false)
     , disableTempPath(false)
     , sequential(false)
+    , firstLastPiecePriority(false)
     , hasSeedStatus(false)
     , skipChecking(false)
     , hasRootFolder(true)
@@ -1655,7 +1656,7 @@ void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p
         m_speedMonitor.reset();
         m_session->handleTorrentPaused(this);
     }
-    
+
     // If first/last piece priority was specified when adding this torrent, we can set it
     // now that we have metadata:
     if (m_needsToSetFirstLastPiecePriority) {

@@ -316,7 +316,7 @@ namespace BitTorrent
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
-        void setBannedIPs(const QStringList &list);
+        void setBannedIPs(const QStringList &newList);
 
         void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;

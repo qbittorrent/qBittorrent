@@ -178,11 +178,11 @@ QString Application::fileLoggerPath() const
             QVariant(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER)).toString();
 }
 
-void Application::setFileLoggerPath(const QString &value)
+void Application::setFileLoggerPath(const QString &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(value);
-    settings()->storeValue(KEY_FILELOGGER_PATH, value);
+        m_fileLogger->changePath(path);
+    settings()->storeValue(KEY_FILELOGGER_PATH, path);
 }
 
 bool Application::isFileLoggerBackup() const

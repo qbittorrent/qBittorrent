@@ -72,8 +72,8 @@ public:
 
     TorrentFilter();
     // category: pass empty string for "no category" or null string (QString()) for "any category"
-    TorrentFilter(Type type, QStringSet hashSet = AnyHash, QString category = AnyCategory);
-    TorrentFilter(QString filter, QStringSet hashSet = AnyHash, QString category = AnyCategory);
+    TorrentFilter(const Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory);
+    TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);

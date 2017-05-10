@@ -111,7 +111,7 @@ public slots:
 
 private slots:
     void handleFavicoDownload(const QString &url, const QString &filePath);
-    void handleFavicoFailure(const QString &url, const QString &reason);
+    void handleFavicoFailure(const QString &url, const QString &error);
 
 private:
     // These 4 methods are virtual slots in the base class.

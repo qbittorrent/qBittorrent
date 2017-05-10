@@ -82,7 +82,7 @@ public slots:
     void showConnectionTab();
 
 private slots:
-    void enableProxy(int comboIndex);
+    void enableProxy(int index);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e);
     void on_buttonBox_rejected();
@@ -107,7 +107,7 @@ private slots:
     void on_btnWebUiCrt_clicked();
     void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
-    void setLocale(const QString &locale);
+    void setLocale(const QString &localeStr);
 
 private:
     // Methods

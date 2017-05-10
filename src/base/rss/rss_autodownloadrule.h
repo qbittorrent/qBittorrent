@@ -59,7 +59,7 @@ namespace RSS
         QString mustNotContain() const;
         void setMustNotContain(const QString &tokens);
         QStringList feedURLs() const;
-        void setFeedURLs(const QStringList &feedURLs);
+        void setFeedURLs(const QStringList &urls);
         int ignoreDays() const;
         void setIgnoreDays(int d);
         QDateTime lastMatch() const;
@@ -74,7 +74,7 @@ namespace RSS
         TriStateBool addPaused() const;
         void setAddPaused(const TriStateBool &addPaused);
         QString assignedCategory() const;
-        void setCategory(const QString &assignedCategory);
+        void setCategory(const QString &category);
 
         bool matches(const QString &articleTitle) const;
 
