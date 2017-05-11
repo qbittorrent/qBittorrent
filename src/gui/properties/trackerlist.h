@@ -93,14 +93,14 @@ protected:
     QList<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
 private:
-    PropertiesWidget *properties;
-    QHash<QString, QTreeWidgetItem *> tracker_items;
-    QTreeWidgetItem *dht_item;
-    QTreeWidgetItem *pex_item;
-    QTreeWidgetItem *lsd_item;
-    QShortcut *editHotkey;
-    QShortcut *deleteHotkey;
-    QShortcut *copyHotkey;
+    PropertiesWidget *m_properties;
+    QHash<QString, QTreeWidgetItem *> m_trackerItems;
+    QTreeWidgetItem *m_DHTItem;
+    QTreeWidgetItem *m_PEXItem;
+    QTreeWidgetItem *m_LSDItem;
+    QShortcut *m_editHotkey;
+    QShortcut *m_deleteHotkey;
+    QShortcut *m_copyHotkey;
 
     static QStringList headerLabels();
 };
