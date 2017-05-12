@@ -36,6 +36,7 @@
 #include <QNetworkCookie>
 #include <QTemporaryFile>
 #include <QTimer>
+#include <QUrl>
 
 #include "base/preferences.h"
 #include "base/utils/fs.h"
@@ -112,6 +113,12 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
     header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
     header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
+
+    // block cross-site requests
+    if (isCrossSiteRequest(request_)) {
+        status(401, "Unauthorized");
+        return response();
+    }
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
@@ -370,6 +377,38 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
 
     qWarning() << "I/O Error: Could not create temporary file";
     return QString();
+}
+
+bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) const
+{
+    // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
+
+    const auto isSameOrigin = [](const QUrl &left, const QUrl &right) -> bool
+    {
+        // [rfc6454] 5. Comparing Origins
+        return ((left.port() == right.port())
+                // && (left.scheme() == right.scheme())  // not present in this context
+                && (left.host() == right.host()));
+    };
+
+    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers[Http::HEADER_HOST]);
+    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
+    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
+
+    if (originValue.isEmpty() && refererValue.isEmpty()) {
+        if ((request.path == QLatin1String("/")) || (request.path == QLatin1String("/favicon.ico")))
+            return false;  // normal request
+        return true;
+    }
+
+    // sent with CORS requests, as well as with POST requests
+    if (!originValue.isEmpty())
+        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), originValue);
+
+    if (!refererValue.isEmpty())
+        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
+
+    return true;
 }
 
 QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
