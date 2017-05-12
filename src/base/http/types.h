@@ -43,8 +43,12 @@ namespace Http
     const char HEADER_CONTENT_SECURITY_POLICY[] = "Content-Security-Policy";
     const char HEADER_CONTENT_TYPE[] = "Content-Type";
     const char HEADER_DATE[] = "Date";
+    const char HEADER_HOST[] = "host";
+    const char HEADER_ORIGIN[] = "origin";
+    const char HEADER_REFERER[] = "referer";
     const char HEADER_SET_COOKIE[] = "Set-Cookie";
     const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "X-Content-Type-Options";
+    const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
     const char HEADER_X_FRAME_OPTIONS[] = "X-Frame-Options";
     const char HEADER_X_XSS_PROTECTION[] = "X-XSS-Protection";
 
