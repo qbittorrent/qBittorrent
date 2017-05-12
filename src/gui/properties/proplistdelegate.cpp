@@ -42,6 +42,7 @@
 #include <QProxyStyle>
 #endif
 
+#include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "propertieswidget.h"
@@ -129,6 +130,19 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             break;
         }
         QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+        }
+        break;
+    case AVAILABILITY: {
+            const qreal availability = index.data().toDouble();
+            if (availability < 0) {
+                QItemDelegate::drawDisplay(painter, opt, option.rect, tr("N/A"));
+            }
+            else {
+                const QString value = (availability >= 1.0)
+                                        ? QLatin1String("100")
+                                        : Utils::String::fromDouble(availability * 100., 1);
+                QItemDelegate::drawDisplay(painter, opt, option.rect, value + C_THIN_SPACE + QLatin1Char('%'));
+            }
         }
         break;
     default:

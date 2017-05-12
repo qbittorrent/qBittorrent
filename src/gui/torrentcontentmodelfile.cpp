@@ -32,43 +32,54 @@
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                                                 TorrentContentModelFolder* parent, int file_index)
-  : TorrentContentModelItem(parent)
-  , m_fileIndex(file_index)
+                                                 TorrentContentModelFolder *parent, int fileIndex)
+    : TorrentContentModelItem(parent)
+    , m_fileIndex(fileIndex)
 {
-  Q_ASSERT(parent);
+    Q_ASSERT(parent);
 
-  m_name = fileName;
+    m_name = fileName;
 
-  // Do not display incomplete extensions
-  if (m_name.endsWith(".!qB"))
-    m_name.chop(4);
+    // Do not display incomplete extensions
+    if (m_name.endsWith(".!qB"))
+        m_name.chop(4);
 
-  m_size = fileSize;
+    m_size = fileSize;
 }
 
 int TorrentContentModelFile::fileIndex() const
 {
-  return m_fileIndex;
+    return m_fileIndex;
 }
 
-void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
+void TorrentContentModelFile::setPriority(int newPriority, bool updateParent)
 {
-  Q_ASSERT(new_prio != prio::MIXED);
+    Q_ASSERT(newPriority != prio::MIXED);
 
-  if (m_priority == new_prio)
-    return;
+    if (m_priority == newPriority)
+        return;
 
-  m_priority = new_prio;
+    m_priority = newPriority;
 
-  // Update parent
-  if (update_parent)
-    m_parentItem->updatePriority();
+    // Update parent
+    if (updateParent)
+        m_parentItem->updatePriority();
 }
 
 void TorrentContentModelFile::setProgress(qreal progress)
 {
-  m_progress = progress;
-  m_remaining = (qulonglong)(m_size * (1.0 - m_progress));
-  Q_ASSERT(m_progress <= 1.);
+    m_progress = progress;
+    m_remaining = static_cast<qulonglong>(m_size * (1.0 - m_progress));
+    Q_ASSERT(m_progress <= 1.);
+}
+
+void TorrentContentModelFile::setAvailability(qreal availability)
+{
+    m_availability = availability;
+    Q_ASSERT(m_availability <= 1.);
+}
+
+TorrentContentModelItem::ItemType TorrentContentModelFile::itemType() const
+{
+    return FileType;
 }

@@ -33,34 +33,35 @@
 
 #include "torrentcontentmodelitem.h"
 
-class TorrentContentModelFolder : public TorrentContentModelItem
+class TorrentContentModelFolder: public TorrentContentModelItem
 {
 public:
-  // Folder constructor
-  TorrentContentModelFolder(const QString& name, TorrentContentModelFolder* parent);
+    // Folder constructor
+    TorrentContentModelFolder(const QString& name, TorrentContentModelFolder* parent);
 
-  // Invisible root item constructor
-  TorrentContentModelFolder(const QList<QVariant>& data);
+    // Invisible root item constructor
+    TorrentContentModelFolder(const QList<QVariant>& data);
 
-  ~TorrentContentModelFolder();
+    ~TorrentContentModelFolder();
 
-  ItemType itemType() const { return FolderType; }
+    ItemType itemType() const override;
 
-  void increaseSize(qulonglong delta);
-  void recalculateProgress();
-  void updatePriority();
+    void increaseSize(qulonglong delta);
+    void recalculateProgress();
+    void recalculateAvailability();
+    void updatePriority();
 
-  void setPriority(int new_prio, bool update_parent = true);
+    void setPriority(int newPriority, bool updateParent = true) override;
 
-  void deleteAllChildren();
-  const QList<TorrentContentModelItem*>& children() const;
-  void appendChild(TorrentContentModelItem* item);
-  TorrentContentModelItem* child(int row) const;
-  TorrentContentModelFolder* childFolderWithName(const QString& name) const;
-  int childCount() const;
+    void deleteAllChildren();
+    const QList<TorrentContentModelItem*>& children() const;
+    void appendChild(TorrentContentModelItem* item);
+    TorrentContentModelItem* child(int row) const;
+    TorrentContentModelFolder* childFolderWithName(const QString& name) const;
+    int childCount() const;
 
 private:
-  QList<TorrentContentModelItem*> m_childItems;
+    QList<TorrentContentModelItem*> m_childItems;
 };
 
 #endif // TORRENTCONTENTMODELFOLDER_H

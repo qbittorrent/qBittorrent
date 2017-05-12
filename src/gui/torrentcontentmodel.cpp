@@ -56,7 +56,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining") })))
+    , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
 }
 
@@ -76,6 +76,7 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
         m_filesIndex[i]->setProgress(fp[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
+    m_rootItem->recalculateAvailability();
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
@@ -89,6 +90,20 @@ void TorrentContentModel::updateFilesPriorities(const QVector<int> &fprio)
     emit layoutAboutToBeChanged();
     for (int i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(fprio[i]);
+    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+}
+
+void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
+{
+    Q_ASSERT(m_filesIndex.size() == fa.size());
+    // XXX: Why is this necessary?
+    if (m_filesIndex.size() != fa.size()) return;
+
+    emit layoutAboutToBeChanged();
+    for (int i = 0; i < fa.size(); ++i)
+        m_filesIndex[i]->setAvailability(fa[i]);
+    // Update folders progress in the tree
+    m_rootItem->recalculateProgress();
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
@@ -134,6 +149,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
                 item->setPriority(prio::NORMAL);
             // Update folders progress in the tree
             m_rootItem->recalculateProgress();
+            m_rootItem->recalculateAvailability();
             emit dataChanged(this->index(0, 0), this->index(rowCount() - 1, columnCount() - 1));
             emit filteredFilesChanged();
         }
