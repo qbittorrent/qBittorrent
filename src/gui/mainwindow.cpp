@@ -953,17 +953,17 @@ void MainWindow::notifyOfUpdate(QString)
 }
 
 // Toggle Main window visibility
-void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
+void MainWindow::toggleVisibility(const QSystemTrayIcon::ActivationReason reason)
 {
-    if ((e == QSystemTrayIcon::Trigger) || (e == QSystemTrayIcon::DoubleClick)) {
+    switch (reason) {
+    case QSystemTrayIcon::Trigger: {
         if (isHidden()) {
-            if (m_uiLocked) {
-                // Ask for UI lock password
-                if (!unlockUI())
-                    return;
-            }
+            if (m_uiLocked && !unlockUI())  // Ask for UI lock password
+                return;
+
             // Make sure the window is not minimized
             setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+
             // Then show it
             show();
             raise();
@@ -972,6 +972,12 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
         else {
             hide();
         }
+
+        break;
+    }
+
+    default:
+        break;
     }
 }
 
