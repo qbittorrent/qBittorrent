@@ -463,6 +463,16 @@ void Preferences::setUPnPForWebUIPort(bool enabled)
     setValue("Preferences/WebUI/UseUPnP", enabled);
 }
 
+bool Preferences::isWebUiSecurityHeadersEnabled() const
+{
+    return value("Preferences/WebUI/SecurityHeaders", true).toBool();
+}
+
+void Preferences::setWebUiSecurityHeadersEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/SecurityHeaders", enabled);
+}
+
 QString Preferences::getWebUiUsername() const
 {
     return value("Preferences/WebUI/Username", "admin").toString();

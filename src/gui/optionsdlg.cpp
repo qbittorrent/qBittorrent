@@ -327,6 +327,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkWebUIUPnP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+    connect(m_ui->checkWebUISecurityHeaders, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(m_ui->checkWebUiHttps, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(m_ui->btnWebUiKey, SIGNAL(clicked()), SLOT(enableApplyButton()));
     connect(m_ui->btnWebUiCrt, SIGNAL(clicked()), SLOT(enableApplyButton()));
@@ -602,6 +603,7 @@ void OptionsDialog::saveOptions()
     if (isWebUiEnabled()) {
         pref->setWebUiPort(webUiPort());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
+        pref->setWebUiSecurityHeadersEnabled(m_ui->checkWebUISecurityHeaders->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
         if (m_ui->checkWebUiHttps->isChecked()) {
             pref->setWebUiHttpsCertificate(m_sslCert);
@@ -984,6 +986,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
+    m_ui->checkWebUISecurityHeaders->setChecked(pref->isWebUiSecurityHeadersEnabled());
     m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
     setSslCertificate(pref->getWebUiHttpsCertificate());
     setSslKey(pref->getWebUiHttpsKey());

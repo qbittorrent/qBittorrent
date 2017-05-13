@@ -387,6 +387,8 @@
   <label for="webui_port_value">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;"/><br/>
   <input type="checkbox" id="webui_upnp_checkbox"/>
   <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+  <input type="checkbox" id="webui_security_headers_checkbox"/>
+  <label for="webui_security_headers_checkbox">QBT_TR(Send security headers on all requests)QBT_TR</label><br/>
   <fieldset class="settings">
   <legend><input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
   <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
@@ -1014,6 +1016,7 @@ loadPreferences = function() {
                     // HTTP Server
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
                     $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
+                    $('webui_security_headers_checkbox').setProperty('checked', pref.use_security_headers);
                     $('use_https_checkbox').setProperty('checked', pref.use_https);
                     $('ssl_key_textarea').setProperty('value', pref.ssl_key);
                     $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
@@ -1274,6 +1277,7 @@ applyPreferences = function() {
   }
   settings.set('web_ui_port', web_ui_port);
   settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
+  settings.set('use_security_headers', $('webui_security_headers_checkbox').getProperty('checked'));
   settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
   settings.set('ssl_key', $('ssl_key_textarea').getProperty('value'));
   settings.set('ssl_cert', $('ssl_cert_textarea').getProperty('value'));
