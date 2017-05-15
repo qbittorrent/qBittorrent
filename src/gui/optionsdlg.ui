@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>591</height>
+    <width>1116</width>
+    <height>838</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -390,7 +390,7 @@
                <item>
                 <widget class="QGroupBox" name="checkShowSystray">
                  <property name="title">
-                  <string>Show qBittorrent in notification area</string>
+                  <string>Show &amp;qBittorrent in notification area</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -491,7 +491,7 @@
             <item>
              <widget class="QGroupBox" name="checkFileLog">
               <property name="title">
-               <string>Log file</string>
+               <string>&amp;Log file</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -504,26 +504,19 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <item>
                   <widget class="QLabel" name="label_4">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="text">
                     <string>Save path:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textFileLogPath"/>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browseFileLogDir">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
+                  <widget class="FileSystemPathLineEdit" name="textFileLogPath" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -692,7 +685,7 @@
                <item>
                 <widget class="QGroupBox" name="checkAdditionDialog">
                  <property name="title">
-                  <string>Display torrent content and some options</string>
+                  <string>Display &amp;torrent content and some options</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -737,7 +730,7 @@
                   <string>Should the .torrent file be deleted after adding it</string>
                  </property>
                  <property name="title">
-                  <string>Delete .torrent files afterwards </string>
+                  <string>De&amp;lete .torrent files afterwards </string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -969,121 +962,24 @@
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelSavePath">
-                   <property name="text">
-                    <string>Default Save Path:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <layout class="QHBoxLayout" name="horizontalLayout_10">
                    <item>
-                    <widget class="QLineEdit" name="textSavePath">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseSaveDirButton">
-                     <property name="enabled">
-                      <bool>true</bool>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
+                    <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
                    </item>
                   </layout>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="checkTempFolder">
-                   <property name="text">
-                    <string>Keep incomplete torrents in:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_111">
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
                    <item>
-                    <widget class="QLineEdit" name="textTempPath"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseTempDirButton">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>25</horstretch>
-                       <verstretch>27</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
+                    <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
                    </item>
                   </layout>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QCheckBox" name="checkExportDir">
-                   <property name="text">
-                    <string>Copy .torrent files to:</string>
-                   </property>
-                  </widget>
                  </item>
                  <item row="2" column="1">
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
                    <item>
-                    <widget class="QLineEdit" name="textExportDir"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseExportDirButton">
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
+                    <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                    </item>
                   </layout>
                  </item>
@@ -1094,31 +990,33 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item row="1" column="1">
+                  <layout class="QHBoxLayout" name="horizontalLayout_111">
                    <item>
-                    <widget class="QLineEdit" name="textExportDirFin"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseExportDirFinButton">
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
+                    <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
                    </item>
                   </layout>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelSavePath">
+                   <property name="text">
+                    <string>Default Save Path:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QCheckBox" name="checkExportDir">
+                   <property name="text">
+                    <string>Copy .torrent files to:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QCheckBox" name="checkTempFolder">
+                   <property name="text">
+                    <string>Keep incomplete torrents in:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -1226,7 +1124,7 @@
             <item>
              <widget class="QGroupBox" name="groupMailNotification">
               <property name="title">
-               <string>Email notification upon download completion</string>
+               <string>Email notification &amp;upon download completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1311,7 +1209,7 @@
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run external program on torrent completion</string>
+               <string>Run e&amp;xternal program on torrent completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1321,7 +1219,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <item>
-                <widget class="QLineEdit" name="autoRun_txt"/>
+                <widget class="FileSystemPathLineEdit" name="autoRun_txt" native="true"/>
                </item>
                <item>
                 <widget class="QLabel" name="autoRun_param">
@@ -1681,7 +1579,7 @@
                   <bool>false</bool>
                  </property>
                  <property name="title">
-                  <string>Authentication</string>
+                  <string>A&amp;uthentication</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1734,7 +1632,7 @@
             <item>
              <widget class="QGroupBox" name="groupIPFilter">
               <property name="title">
-               <string>IP Filtering</string>
+               <string>IP Fi&amp;ltering</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
                <item>
@@ -1747,20 +1645,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textFilterPath"/>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browseFilterButton">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
+                  <widget class="FileSystemPathLineEdit" name="textFilterPath" native="true"/>
                  </item>
                  <item>
                   <widget class="QToolButton" name="IpFilterRefreshBtn">
@@ -1946,7 +1831,7 @@
                <item row="2" column="0" colspan="5">
                 <widget class="QGroupBox" name="check_schedule">
                  <property name="title">
-                  <string>Schedule the use of alternative rate limits</string>
+                  <string>Schedule &amp;the use of alternative rate limits</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -2363,7 +2248,7 @@
             <item>
              <widget class="QGroupBox" name="checkEnableQueueing">
               <property name="title">
-               <string>Torrent Queueing</string>
+               <string>&amp;Torrent Queueing</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2562,7 +2447,7 @@
                </sizepolicy>
               </property>
               <property name="title">
-               <string>Automatically add these trackers to new downloads:</string>
+               <string>A&amp;utomatically add these trackers to new downloads:</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2813,7 +2698,7 @@
                <item>
                 <widget class="QGroupBox" name="checkWebUiHttps">
                  <property name="title">
-                  <string>Use HTTPS instead of HTTP</string>
+                  <string>&amp;Use HTTPS instead of HTTP</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3000,7 +2885,7 @@
                <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
-                  <string>Update my dynamic domain name</string>
+                  <string>Upda&amp;te my dynamic domain name</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3139,11 +3024,17 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>textSavePath</tabstop>
-  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>

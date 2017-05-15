@@ -34,6 +34,7 @@
 #include <QUrl>
 #include <QMenu>
 #include <QFileDialog>
+#include <QPushButton>
 
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
@@ -90,6 +91,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     ui->lblMetaLoading->setVisible(false);
     ui->progMetaLoading->setVisible(false);
 
+    ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    ui->savePath->setDialogCaption(tr("Choose save path"));
+
     auto session = BitTorrent::Session::instance();
 
     if (m_torrentParams.addPaused == TriStateBool::True)
@@ -103,8 +107,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     ui->comboTTM->blockSignals(false);
     populateSavePathComboBox();
-    connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
-    connect(ui->browseButton, SIGNAL(clicked()), SLOT(browseButton_clicked()));
+    connect(ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
     if (m_torrentParams.createSubfolder == TriStateBool::True)
@@ -353,7 +356,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
 
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
-    QDir selectedSavePath(ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString());
+    QDir selectedSavePath(ui->savePath->selectedPath());
     // Get current history
     QStringList history = settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList();
     QList<QDir> historyDirs;
@@ -374,8 +377,8 @@ void AddNewTorrentDialog::saveSavePathHistory() const
 int AddNewTorrentDialog::indexOfSavePath(const QString &save_path)
 {
     QDir saveDir(save_path);
-    for (int i = 0; i < ui->savePathComboBox->count(); ++i)
-        if (QDir(ui->savePathComboBox->itemData(i).toString()) == saveDir)
+    for (int i = 0; i < ui->savePath->count(); ++i)
+        if (QDir(ui->savePath->item(i)) == saveDir)
             return i;
     return -1;
 }
@@ -401,23 +404,18 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     QString size_string = torrent_size ? Utils::Misc::friendlyUnit(torrent_size) : QString(tr("Not Available", "This size is unavailable."));
     size_string += " (";
     size_string += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
-                                                                                  ui->savePathComboBox->itemData(
-                                                                                      ui->savePathComboBox->currentIndex()).toString())));
+                                                                   ui->savePath->selectedPath())));
     size_string += ")";
     ui->size_lbl->setText(size_string);
 }
 
-void AddNewTorrentDialog::onSavePathChanged(int index)
+void AddNewTorrentDialog::onSavePathChanged(const QString &newPath)
 {
     // Toggle default save path setting checkbox visibility
     ui->defaultSavePathCheckBox->setChecked(false);
-    ui->defaultSavePathCheckBox->setVisible(
-        QDir(ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString())
-        != QDir(BitTorrent::Session::instance()->defaultSavePath()));
-
+    ui->defaultSavePathCheckBox->setVisible(QDir(newPath) != QDir(BitTorrent::Session::instance()->defaultSavePath()));
     // Remember index
-    m_oldIndex = index;
-
+    m_oldIndex = ui->savePath->currentIndex();
     updateDiskSpaceLabel();
 }
 
@@ -427,8 +425,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
 
     if (ui->comboTTM->currentIndex() == 1) {
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
-        ui->savePathComboBox->setItemText(0, Utils::Fs::toNativePath(savePath));
-        ui->savePathComboBox->setItemData(0, savePath);
+        ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
     }
 }
 
@@ -437,35 +434,11 @@ void AddNewTorrentDialog::setSavePath(const QString &newPath)
     int existingIndex = indexOfSavePath(newPath);
     if (existingIndex < 0) {
         // New path, prepend to combo box
-        ui->savePathComboBox->insertItem(0, Utils::Fs::toNativePath(newPath), newPath);
+        ui->savePath->insertItem(0, newPath);
         existingIndex = 0;
     }
-    ui->savePathComboBox->setCurrentIndex(existingIndex);
-    onSavePathChanged(existingIndex);
-}
-
-void AddNewTorrentDialog::browseButton_clicked()
-{
-    disconnect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathChanged(int)));
-
-    // User is asking for a new save path
-    QString curSavePath = ui->savePathComboBox->itemText(m_oldIndex);
-    QString newPath;
-
-    if (!curSavePath.isEmpty() && QDir(curSavePath).exists())
-        newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), curSavePath);
-    else
-        newPath = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
-
-    if (!newPath.isEmpty()) {
-        setSavePath(newPath);
-    }
-    else {
-        // Restore index
-        ui->savePathComboBox->setCurrentIndex(m_oldIndex);
-    }
-
-    connect(ui->savePathComboBox, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
+    ui->savePath->setCurrentIndex(existingIndex);
+    onSavePathChanged(newPath);
 }
 
 void AddNewTorrentDialog::renameSelectedFile()
@@ -573,14 +546,14 @@ void AddNewTorrentDialog::populateSavePathComboBox()
 {
     QString defSavePath = BitTorrent::Session::instance()->defaultSavePath();
 
-    ui->savePathComboBox->clear();
-    ui->savePathComboBox->addItem(Utils::Fs::toNativePath(defSavePath), defSavePath);
+    ui->savePath->clear();
+    ui->savePath->addItem(defSavePath);
     QDir defaultSaveDir(defSavePath);
     // Load save path history
     foreach (const QString &savePath, settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList())
         if (QDir(savePath) != defaultSaveDir)
-            ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
-
+            ui->savePath->addItem(savePath);
+    
     if (!m_torrentParams.savePath.isEmpty())
         setSavePath(m_torrentParams.savePath);
 }
@@ -646,7 +619,7 @@ void AddNewTorrentDialog::accept()
     m_torrentParams.addPaused = TriStateBool(!ui->startTorrentCheckBox->isChecked());
     m_torrentParams.createSubfolder = TriStateBool(ui->createSubfolderCheckBox->isChecked());
 
-    QString savePath = ui->savePathComboBox->itemData(ui->savePathComboBox->currentIndex()).toString();
+    QString savePath = ui->savePath->selectedPath();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
@@ -776,16 +749,16 @@ void AddNewTorrentDialog::TMMChanged(int index)
     if (index != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         populateSavePathComboBox();
         ui->groupBoxSavePath->setEnabled(true);
-        ui->savePathComboBox->blockSignals(false);
-        ui->savePathComboBox->setCurrentIndex(m_oldIndex < ui->savePathComboBox->count() ? m_oldIndex : ui->savePathComboBox->count() - 1);
+        ui->savePath->blockSignals(false);
+        ui->savePath->setCurrentIndex(m_oldIndex < ui->savePath->count() ? m_oldIndex : ui->savePath->count() - 1);
         ui->adv_button->setEnabled(true);
     }
     else {
         ui->groupBoxSavePath->setEnabled(false);
-        ui->savePathComboBox->blockSignals(true);
-        ui->savePathComboBox->clear();
+        ui->savePath->blockSignals(true);
+        ui->savePath->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
-        ui->savePathComboBox->addItem(Utils::Fs::toNativePath(savePath), savePath);
+        ui->savePath->addItem(savePath);
         ui->defaultSavePathCheckBox->setVisible(false);
         ui->adv_button->setChecked(true);
         ui->adv_button->setEnabled(false);

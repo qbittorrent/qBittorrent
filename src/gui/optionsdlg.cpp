@@ -196,7 +196,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
     connect(m_ui->checkFileLog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(m_ui->textFileLogPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textFileLogPath, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkFileLogBackup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkFileLogBackup, SIGNAL(toggled(bool)), m_ui->spinFileLogSize, SLOT(setEnabled(bool)));
     connect(m_ui->checkFileLogDelete, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -206,13 +206,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinFileLogAge, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboFileLogAgeType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     // Downloads tab
-    connect(m_ui->textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textSavePath, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkUseSubcategories, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboSavingMode, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboTorrentCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboCategoryDefaultPathChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->comboCategoryChanged, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-    connect(m_ui->textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textTempPath, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -223,17 +223,14 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->deleteCancelledTorrentBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), m_ui->textExportDir, SLOT(setEnabled(bool)));
-    connect(m_ui->checkExportDir, SIGNAL(toggled(bool)), m_ui->browseExportDirButton, SLOT(setEnabled(bool)));
     connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), m_ui->textExportDirFin, SLOT(setEnabled(bool)));
-    connect(m_ui->checkExportDirFin, SIGNAL(toggled(bool)), m_ui->browseExportDirFinButton, SLOT(setEnabled(bool)));
-    connect(m_ui->textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
-    connect(m_ui->textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textExportDir, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->textExportDirFin, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), m_ui->textTempPath, SLOT(setEnabled(bool)));
-    connect(m_ui->checkTempFolder, SIGNAL(toggled(bool)), m_ui->browseTempDirButton, SLOT(setEnabled(bool)));
     connect(m_ui->addScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(m_ui->removeScanFolderButton, SIGNAL(clicked()), this, SLOT(enableApplyButton()));
     connect(m_ui->groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -244,7 +241,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->mailNotifUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-    connect(m_ui->autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+    connect(m_ui->autoRun_txt, SIGNAL(selectedPathChanged(QString)), this, SLOT(enableApplyButton()));
 
     const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -311,7 +308,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Misc tab
     connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->textFilterPath, SLOT(setEnabled(bool)));
-    connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->browseFilterButton, SLOT(setEnabled(bool)));
     connect(m_ui->checkIPFilter, SIGNAL(toggled(bool)), m_ui->IpFilterRefreshBtn, SLOT(setEnabled(bool)));
     connect(m_ui->checkIpFilterTrackers, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
     connect(m_ui->textFilterPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -356,6 +352,25 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     advancedSettings = new AdvancedSettings(m_ui->tabAdvancedPage);
     m_ui->advPageLayout->addWidget(advancedSettings);
     connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
+
+    m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
+    m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+
+    m_ui->textExportDir->setDialogCaption(tr("Choose export directory"));
+    m_ui->textExportDir->setMode(FileSystemPathEdit::Mode::DirectorySave);
+
+    m_ui->textExportDirFin->setDialogCaption(tr("Choose export directory"));
+    m_ui->textExportDirFin->setMode(FileSystemPathEdit::Mode::DirectorySave);
+
+    m_ui->textFilterPath->setDialogCaption(tr("Choose an IP filter file"));
+    m_ui->textFilterPath->setFileNameFilter(tr("All supported filters")
+        + QLatin1String(" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)"));
+
+    m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
+    m_ui->textSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+
+    m_ui->textTempPath->setDialogCaption(tr("Choose a save directory"));
+    m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     show();
     loadWindowState();
@@ -481,7 +496,7 @@ void OptionsDialog::saveOptions()
     }
 #endif
     Application * const app = static_cast<Application*>(QCoreApplication::instance());
-    app->setFileLoggerPath(Utils::Fs::fromNativePath(m_ui->textFileLogPath->text()));
+    app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value());
     app->setFileLoggerAge(m_ui->spinFileLogAge->value());
@@ -498,14 +513,14 @@ void OptionsDialog::saveOptions()
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->text()));
+    session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
-    session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->text()));
+    session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->selectedPath()));
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setPreallocationEnabled(preAllocateAllFiles());
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
@@ -527,7 +542,7 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
-    pref->setAutoRunProgram(m_ui->autoRun_txt->text().trimmed());
+    pref->setAutoRunProgram(m_ui->autoRun_txt->selectedPath().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
@@ -588,7 +603,7 @@ void OptionsDialog::saveOptions()
     // * IPFilter
     session->setIPFilteringEnabled(isIPFilteringEnabled());
     session->setTrackerFilteringEnabled(m_ui->checkIpFilterTrackers->isChecked());
-    session->setIPFilterFile(m_ui->textFilterPath->text());
+    session->setIPFilterFile(m_ui->textFilterPath->selectedPath());
     // End IPFilter preferences
     // Queueing system
     session->setQueueingSystemEnabled(isQueueingSystemEnabled());
@@ -694,7 +709,7 @@ void OptionsDialog::loadOptions()
 
     const Application * const app = static_cast<Application*>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
-    m_ui->textFileLogPath->setText(Utils::Fs::toNativePath(app->fileLoggerPath()));
+    m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
     fileLogBackup = app->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
@@ -723,7 +738,7 @@ void OptionsDialog::loadOptions()
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
-    m_ui->textSavePath->setText(Utils::Fs::toNativePath(session->defaultSavePath()));
+    m_ui->textSavePath->setSelectedPath(session->defaultSavePath());
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
@@ -731,39 +746,35 @@ void OptionsDialog::loadOptions()
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
     m_ui->checkTempFolder->setChecked(session->isTempPathEnabled());
     m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->browseTempDirButton->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->textTempPath->setText(Utils::Fs::toNativePath(session->tempPath()));
+    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
+    m_ui->textTempPath->setSelectedPath(Utils::Fs::toNativePath(session->tempPath()));
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
 
-    strValue = Utils::Fs::toNativePath(session->torrentExportDirectory());
+    strValue = session->torrentExportDirectory();
     if (strValue.isEmpty()) {
         // Disable
         m_ui->checkExportDir->setChecked(false);
         m_ui->textExportDir->setEnabled(false);
-        m_ui->browseExportDirButton->setEnabled(false);
     }
     else {
         // Enable
         m_ui->checkExportDir->setChecked(true);
         m_ui->textExportDir->setEnabled(true);
-        m_ui->browseExportDirButton->setEnabled(true);
-        m_ui->textExportDir->setText(strValue);
+        m_ui->textExportDir->setSelectedPath(strValue);
     }
 
-    strValue = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
+    strValue = session->finishedTorrentExportDirectory();
     if (strValue.isEmpty()) {
         // Disable
         m_ui->checkExportDirFin->setChecked(false);
         m_ui->textExportDirFin->setEnabled(false);
-        m_ui->browseExportDirFinButton->setEnabled(false);
     }
     else {
         // Enable
         m_ui->checkExportDirFin->setChecked(true);
         m_ui->textExportDirFin->setEnabled(true);
-        m_ui->browseExportDirFinButton->setEnabled(true);
-        m_ui->textExportDirFin->setText(strValue);
+        m_ui->textExportDirFin->setSelectedPath(strValue);
     }
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
@@ -775,7 +786,7 @@ void OptionsDialog::loadOptions()
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
-    m_ui->autoRun_txt->setText(pref->getAutoRunProgram());
+    m_ui->autoRun_txt->setSelectedPath(pref->getAutoRunProgram());
     intValue = pref->getActionOnDblClOnTorrentDl();
     if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
         intValue = 0;
@@ -880,8 +891,7 @@ void OptionsDialog::loadOptions()
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->textFilterPath->setEnabled(m_ui->checkIPFilter->isChecked());
-    m_ui->textFilterPath->setText(Utils::Fs::toNativePath(session->IPFilterFile()));
-    m_ui->browseFilterButton->setEnabled(m_ui->checkIPFilter->isChecked());
+    m_ui->textFilterPath->setSelectedPath(session->IPFilterFile());
     m_ui->IpFilterRefreshBtn->setEnabled(m_ui->checkIPFilter->isChecked());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
     // End Connection preferences
@@ -1332,14 +1342,14 @@ void OptionsDialog::setLocale(const QString &localeStr)
 QString OptionsDialog::getTorrentExportDir() const
 {
     if (m_ui->checkExportDir->isChecked())
-        return Utils::Fs::expandPathAbs(m_ui->textExportDir->text());
+        return Utils::Fs::expandPathAbs(m_ui->textExportDir->selectedPath());
     return QString();
 }
 
 QString OptionsDialog::getFinishedTorrentExportDir() const
 {
     if (m_ui->checkExportDirFin->isChecked())
-        return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->text());
+        return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
     return QString();
 }
 
@@ -1420,73 +1430,10 @@ QString OptionsDialog::askForExportDir(const QString& currentExportPath)
     return dir;
 }
 
-void OptionsDialog::on_browseFileLogDir_clicked()
-{
-    const QString path = Utils::Fs::expandPathAbs(Utils::Fs::fromNativePath(m_ui->textFileLogPath->text()));
-    QDir pathDir(path);
-    QString dir;
-    if (!path.isEmpty() && pathDir.exists())
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), pathDir.absolutePath());
-    else
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
-    if (!dir.isNull())
-        m_ui->textFileLogPath->setText(Utils::Fs::toNativePath(dir));
-}
-
-void OptionsDialog::on_browseExportDirButton_clicked()
-{
-    const QString newExportDir = askForExportDir(m_ui->textExportDir->text());
-    if (!newExportDir.isNull())
-        m_ui->textExportDir->setText(Utils::Fs::toNativePath(newExportDir));
-}
-
-void OptionsDialog::on_browseExportDirFinButton_clicked()
-{
-    const QString newExportDir = askForExportDir(m_ui->textExportDirFin->text());
-    if (!newExportDir.isNull())
-        m_ui->textExportDirFin->setText(Utils::Fs::toNativePath(newExportDir));
-}
-
-void OptionsDialog::on_browseFilterButton_clicked()
-{
-    QDir lastDir(Utils::Fs::fromNativePath(m_ui->textFilterPath->text()));
-    QString lastPath = lastDir.exists() ? lastDir.absolutePath() : QDir::homePath();
-    QString newPath = QFileDialog::getOpenFileName(this, tr("Choose an IP filter file"), lastPath, tr("All supported filters") + QString(" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)"));
-    if (!newPath.isEmpty())
-        m_ui->textFilterPath->setText(Utils::Fs::toNativePath(newPath));
-}
-
-// Display dialog to choose save dir
-void OptionsDialog::on_browseSaveDirButton_clicked()
-{
-    const QString save_path = Utils::Fs::expandPathAbs(m_ui->textSavePath->text());
-    QDir saveDir(save_path);
-    QString dir;
-    if (!save_path.isEmpty() && saveDir.exists())
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), saveDir.absolutePath());
-    else
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
-    if (!dir.isNull())
-        m_ui->textSavePath->setText(Utils::Fs::toNativePath(dir));
-}
-
-void OptionsDialog::on_browseTempDirButton_clicked()
-{
-    const QString temp_path = Utils::Fs::expandPathAbs(m_ui->textTempPath->text());
-    QDir tempDir(temp_path);
-    QString dir;
-    if (!temp_path.isEmpty() && tempDir.exists())
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), tempDir.absolutePath());
-    else
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
-    if (!dir.isNull())
-        m_ui->textTempPath->setText(Utils::Fs::toNativePath(dir));
-}
-
 // Return Filter object to apply to BT session
 QString OptionsDialog::getFilter() const
 {
-    return Utils::Fs::fromNativePath(m_ui->textFilterPath->text());
+    return m_ui->textFilterPath->selectedPath();
 }
 
 // Web UI

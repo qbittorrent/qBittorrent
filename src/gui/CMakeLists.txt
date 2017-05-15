@@ -40,6 +40,8 @@ cookiesmodel.h
 deletionconfirmationdlg.h
 downloadfromurldlg.h
 executionlog.h
+fspathedit.h
+fspathedit_p.h
 guiiconprovider.h
 hidabletabwidget.h
 ico.h
@@ -80,6 +82,8 @@ categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
 executionlog.cpp
+fspathedit.cpp
+fspathedit_p.cpp
 guiiconprovider.cpp
 ico.cpp
 loglistwidget.cpp
