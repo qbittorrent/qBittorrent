@@ -86,16 +86,8 @@ TorrentCreatorDlg::~TorrentCreatorDlg()
 {
     saveSettings();
 
-    // End torrent creation thread
-    if (m_creatorThread) {
-        if (m_creatorThread->isRunning()) {
-            m_creatorThread->abortCreation();
-            m_creatorThread->terminate();
-            // Wait for termination
-            m_creatorThread->wait();
-        }
+    if (m_creatorThread)
         delete m_creatorThread;
-    }
 
     delete m_ui;
 }

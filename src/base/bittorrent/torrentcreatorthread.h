@@ -46,7 +46,6 @@ namespace BitTorrent
 
         void create(const QString &inputPath, const QString &savePath, const QStringList &trackers,
                     const QStringList &urlSeeds, const QString &comment, bool isPrivate, int pieceSize);
-        void abortCreation();
 
     protected:
         void run();
@@ -66,7 +65,6 @@ namespace BitTorrent
         QString m_comment;
         bool m_private;
         int m_pieceSize;
-        bool m_abort;
     };
 }
 
