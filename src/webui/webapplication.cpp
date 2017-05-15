@@ -400,13 +400,19 @@ void WebApplication::action_command_download()
     params.savePath = savepath;
     params.category = category;
 
+    bool partialSuccess = false;
     foreach (QString url, list) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            BitTorrent::Session::instance()->addTorrent(url, params);
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, params);
         }
     }
+
+    if (partialSuccess)
+        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+    else
+        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_upload()
