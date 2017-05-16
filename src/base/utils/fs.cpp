@@ -36,6 +36,7 @@
 #include <QFileInfo>
 #include <QDirIterator>
 #include <QCoreApplication>
+#include <QStorageInfo>
 
 #ifndef Q_OS_WIN
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
@@ -234,44 +235,11 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
     return !name.contains(regex);
 }
 
-qulonglong Utils::Fs::freeDiskSpaceOnPath(const QString &path)
+qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 {
-    if (path.isEmpty()) return 0;
+    if (path.isEmpty()) return -1;
 
-    QDir dirPath(path);
-    if (!dirPath.exists()) {
-        QStringList parts = path.split("/");
-        while (parts.size() > 1 && !QDir(parts.join("/")).exists())
-            parts.removeLast();
-
-        dirPath = QDir(parts.join("/"));
-        if (!dirPath.exists()) return 0;
-    }
-    Q_ASSERT(dirPath.exists());
-
-#if defined(Q_OS_WIN)
-    ULARGE_INTEGER bytesFree;
-    LPCWSTR nativePath = reinterpret_cast<LPCWSTR>((toNativePath(dirPath.path())).utf16());
-    if (GetDiskFreeSpaceExW(nativePath, &bytesFree, NULL, NULL) == 0)
-        return 0;
-    return bytesFree.QuadPart;
-#elif defined(Q_OS_HAIKU)
-    const QString statfsPath = dirPath.path() + "/.";
-    dev_t device = dev_for_path(qPrintable(statfsPath));
-    if (device < 0)
-        return 0;
-    fs_info info;
-    if (fs_stat_dev(device, &info) != B_OK)
-        return 0;
-    return ((qulonglong) info.free_blocks * (qulonglong) info.block_size);
-#else
-    struct statfs stats;
-    const QString statfsPath = dirPath.path() + "/.";
-    const int ret = statfs(qPrintable(statfsPath), &stats);
-    if (ret != 0)
-        return 0;
-    return ((qulonglong) stats.f_bavail * (qulonglong) stats.f_bsize);
-#endif
+    return QStorageInfo(path).bytesAvailable();
 }
 
 QString Utils::Fs::branchPath(const QString& file_path, QString* removed)
