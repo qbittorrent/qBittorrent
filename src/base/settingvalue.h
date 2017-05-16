@@ -40,8 +40,15 @@ class CachedSettingValue
     using ProxyFunc = std::function<T (const T&)>;
 
 public:
-    explicit CachedSettingValue(const char *keyName, const T &defaultValue = T()
-            , ProxyFunc proxyFunc = [](const T &value) { return value; })
+    explicit CachedSettingValue(const char *keyName, const T &defaultValue = T())
+        : m_keyName(QLatin1String(keyName))
+        , m_value(SettingsStorage::instance()->loadValue(
+                                m_keyName, defaultValue).template value<T>())
+    {
+    }
+
+    explicit CachedSettingValue(const char *keyName, const T &defaultValue
+            , const ProxyFunc &proxyFunc)
         : m_keyName(QLatin1String(keyName))
         , m_value(proxyFunc(SettingsStorage::instance()->loadValue(
                                 m_keyName, defaultValue).template value<T>()))
@@ -53,16 +60,16 @@ public:
         return m_value;
     }
 
+    operator T() const
+    {
+        return value();
+    }
+
     CachedSettingValue<T> &operator=(const T &newValue)
     {
         m_value = newValue;
         SettingsStorage::instance()->storeValue(m_keyName, m_value);
         return *this;
-    }
-
-    operator T() const
-    {
-        return value();
     }
 
 private:
