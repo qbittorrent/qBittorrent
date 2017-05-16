@@ -186,7 +186,7 @@ qlonglong TorrentInfo::fileSize(int index) const
 qlonglong TorrentInfo::fileOffset(int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->file_at(index).offset;
+    return m_nativeInfo->files().file_offset(index);
 }
 
 QList<TrackerEntry> TorrentInfo::trackers() const

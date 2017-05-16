@@ -45,13 +45,13 @@ quint64 Statistics::getAlltimeUL() const
 
 void Statistics::gather()
 {
-    SessionStatus ss = m_session->status();
-    if (ss.totalDownload() > m_sessionDL) {
-        m_sessionDL = ss.totalDownload();
+    const SessionStatus &ss = m_session->status();
+    if (ss.totalDownload > m_sessionDL) {
+        m_sessionDL = ss.totalDownload;
         m_dirty = true;
     }
-    if (ss.totalUpload() > m_sessionUL) {
-        m_sessionUL = ss.totalUpload();
+    if (ss.totalUpload > m_sessionUL) {
+        m_sessionUL = ss.totalUpload;
         m_dirty = true;
     }
 

@@ -91,7 +91,9 @@
 #include "rss/rsswidget.h"
 #include "about_imp.h"
 #include "optionsdlg.h"
+#if LIBTORRENT_VERSION_NUM < 10100
 #include "trackerlogin.h"
+#endif
 #include "lineedit.h"
 #include "executionlog.h"
 #include "hidabletabwidget.h"
@@ -1317,15 +1319,19 @@ void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle
 // Called when a tracker requires authentication
 void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     if (m_unauthenticatedTrackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
         // Tracker login
         new trackerLogin(this, torrent);
+#else
+    Q_UNUSED(torrent);
+#endif
 }
 
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
-    BitTorrent::SessionStatus status = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
 
     // update global informations
     if (m_systrayIcon) {
@@ -1334,24 +1340,24 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
+        html += "<img src=':/icons/skin/download.png' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += "<img src=':/icons/skin/seeding.png' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
+        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
         html += "\n";
-        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
 #endif
         m_systrayIcon->setToolTip(html); // tray icon
     }
 
     if (m_displaySpeedInTitle) {
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-                       .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true))
-                       .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true))
+                       .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                       .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
                        .arg(QBT_VERSION));
     }
 }

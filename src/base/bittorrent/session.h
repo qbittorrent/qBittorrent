@@ -33,6 +33,9 @@
 #include <vector>
 #include <libtorrent/version.hpp>
 
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <QElapsedTimer>
+#endif
 #include <QFile>
 #include <QHash>
 #include <QMap>
@@ -49,6 +52,8 @@
 #include "base/tristatebool.h"
 #include "base/types.h"
 #include "addtorrentparams.h"
+#include "cachestatus.h"
+#include "sessionstatus.h"
 #include "torrentinfo.h"
 
 namespace libtorrent
@@ -56,15 +61,12 @@ namespace libtorrent
     class session;
     struct torrent_handle;
     class entry;
-    struct add_torrent_params;
     struct ip_filter;
-    struct pe_settings;
 #if LIBTORRENT_VERSION_NUM < 10100
     struct session_settings;
 #else
     struct settings_pack;
 #endif
-    struct session_status;
 
     class alert;
     struct torrent_alert;
@@ -98,6 +100,9 @@ namespace libtorrent
     struct listen_succeeded_alert;
     struct listen_failed_alert;
     struct external_ip_alert;
+#if LIBTORRENT_VERSION_NUM >= 10100
+    struct session_stats_alert;
+#endif
 }
 
 class QThread;
@@ -127,8 +132,6 @@ enum TorrentExportFolder
 namespace BitTorrent
 {
     class InfoHash;
-    class CacheStatus;
-    class SessionStatus;
     class TorrentHandle;
     class Tracker;
     class MagnetUri;
@@ -146,6 +149,49 @@ namespace BitTorrent
         uint nbResumed = 0;
         uint nbErrored = 0;
     };
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+    struct SessionMetricIndices
+    {
+        struct
+        {
+            int hasIncomingConnections = 0;
+            int sentPayloadBytes = 0;
+            int recvPayloadBytes = 0;
+            int sentBytes = 0;
+            int recvBytes = 0;
+            int sentIPOverheadBytes = 0;
+            int recvIPOverheadBytes = 0;
+            int sentTrackerBytes = 0;
+            int recvTrackerBytes = 0;
+            int recvRedundantBytes = 0;
+            int recvFailedBytes = 0;
+        } net;
+
+        struct
+        {
+            int numPeersConnected = 0;
+            int numPeersUpDisk = 0;
+            int numPeersDownDisk = 0;
+        } peer;
+
+        struct
+        {
+            int dhtBytesIn = 0;
+            int dhtBytesOut = 0;
+            int dhtNodes = 0;
+        } dht;
+
+        struct
+        {
+            int diskBlocksInUse = 0;
+            int numBlocksRead = 0;
+            int numBlocksCacheHits = 0;
+            int queuedDiskJobs = 0;
+            int diskJobTime = 0;
+        } disk;
+    };
+#endif
 
     class Session : public QObject
     {
@@ -324,8 +370,8 @@ namespace BitTorrent
         TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
-        SessionStatus status() const;
-        CacheStatus cacheStatus() const;
+        const SessionStatus &status() const;
+        const CacheStatus &cacheStatus() const;
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
         bool isListening() const;
@@ -371,6 +417,7 @@ namespace BitTorrent
         void handleTorrentTrackerAuthenticationRequired(TorrentHandle *const torrent, const QString &trackerUrl);
 
     signals:
+        void statsUpdated();
         void torrentsUpdated();
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
@@ -436,7 +483,9 @@ namespace BitTorrent
         void adjustLimits(libtorrent::session_settings &sessionSettings);
 #else
         void configure(libtorrent::settings_pack &settingsPack);
+        void configurePeerClasses();
         void adjustLimits(libtorrent::settings_pack &settingsPack);
+        void initMetrics();
 #endif
         void adjustLimits();
         void processBannedIPs(libtorrent::ip_filter &filter);
@@ -475,6 +524,9 @@ namespace BitTorrent
         void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
         void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
         void handleExternalIPAlert(libtorrent::external_ip_alert *p);
+#if LIBTORRENT_VERSION_NUM >= 10100
+        void handleSessionStatsAlert(libtorrent::session_stats_alert *p);
+#endif
 
         void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 
@@ -482,6 +534,7 @@ namespace BitTorrent
 
 #if LIBTORRENT_VERSION_NUM < 10100
         void dispatchAlerts(libtorrent::alert *alertPtr);
+        void updateStats();
 #endif
         void getPendingAlerts(std::vector<libtorrent::alert *> &out, ulong time = 0);
 
@@ -598,7 +651,13 @@ namespace BitTorrent
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;
         std::vector<libtorrent::alert *> m_alerts;
+#else
+        SessionMetricIndices m_metricIndices;
+        QElapsedTimer m_statsUpdateTimer;
 #endif
+
+        SessionStatus m_status;
+        CacheStatus m_cacheStatus;
 
         QNetworkConfigurationManager m_networkManager;
 

@@ -89,8 +89,6 @@ SOURCES += \
     $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/session.cpp \
-    $$PWD/bittorrent/sessionstatus.cpp \
-    $$PWD/bittorrent/cachestatus.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
     $$PWD/bittorrent/torrenthandle.cpp \
