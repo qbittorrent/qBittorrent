@@ -20,11 +20,18 @@ function friendlyUnit(value, isSpeed) {
         value /= 1024.;
         ++i;
     }
+
+    function friendlyUnitPrecision(sizeUnit) {
+        if (sizeUnit <= 2) return 1; // KiB, MiB
+        else if (sizeUnit === 3) return 2; // GiB
+        else return 3; // TiB, PiB, EiB
+    }
+
     var ret;
     if (i == 0)
         ret = value + " " + units[i];
     else
-        ret = (Math.floor(10 * value) / 10).toFixed(1) //Don't round up
+        ret = (Math.floor(10 * value) / 10).toFixed(friendlyUnitPrecision(i)) //Don't round up
             + " " + units[i];
 
     if (isSpeed)
