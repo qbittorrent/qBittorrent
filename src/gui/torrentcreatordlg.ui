@@ -63,14 +63,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="addFile_button">
+         <widget class="QPushButton" name="addFileButton">
           <property name="text">
            <string>Select file</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="addFolder_button">
+         <widget class="QPushButton" name="addFolderButton">
           <property name="text">
            <string>Select folder</string>
           </property>
@@ -182,7 +182,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QCheckBox" name="check_private">
+       <widget class="QCheckBox" name="checkPrivate">
         <property name="text">
          <string>Private torrent (Won't distribute on DHT network)</string>
         </property>
@@ -215,7 +215,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="1">
-       <widget class="QTextEdit" name="trackers_list">
+       <widget class="QTextEdit" name="trackersList">
         <property name="toolTip">
          <string comment="A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.">You can separate tracker tiers / groups with an empty line.</string>
         </property>
@@ -232,14 +232,14 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QTextEdit" name="URLSeeds_list">
+       <widget class="QTextEdit" name="URLSeedsList">
         <property name="acceptRichText">
          <bool>false</bool>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QTextEdit" name="txt_comment">
+       <widget class="QTextEdit" name="txtComment">
         <property name="acceptRichText">
          <bool>false</bool>
         </property>
@@ -294,15 +294,15 @@
  </widget>
  <tabstops>
   <tabstop>textInputPath</tabstop>
-  <tabstop>addFile_button</tabstop>
-  <tabstop>addFolder_button</tabstop>
+  <tabstop>addFileButton</tabstop>
+  <tabstop>addFolderButton</tabstop>
   <tabstop>comboPieceSize</tabstop>
-  <tabstop>check_private</tabstop>
+  <tabstop>checkPrivate</tabstop>
   <tabstop>checkStartSeeding</tabstop>
   <tabstop>checkIgnoreShareLimits</tabstop>
-  <tabstop>trackers_list</tabstop>
-  <tabstop>URLSeeds_list</tabstop>
-  <tabstop>txt_comment</tabstop>
+  <tabstop>trackersList</tabstop>
+  <tabstop>URLSeedsList</tabstop>
+  <tabstop>txtComment</tabstop>
  </tabstops>
  <resources/>
  <connections>

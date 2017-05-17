@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Mike Tzou (Chocobo1)
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "torrentcreatordlg.h"
@@ -68,8 +67,8 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
 
-    connect(m_ui->addFile_button, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
-    connect(m_ui->addFolder_button, SIGNAL(clicked(bool)), SLOT(onAddFolderButtonClicked()));
+    connect(m_ui->addFileButton, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
+    connect(m_ui->addFolderButton, SIGNAL(clicked(bool)), SLOT(onAddFolderButtonClicked()));
     connect(m_ui->buttonBox, SIGNAL(accepted()), SLOT(onCreateButtonClicked()));
 
     connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
@@ -164,12 +163,12 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     setInteractionEnabled(false);
     setCursor(QCursor(Qt::WaitCursor));
 
-    QStringList trackers = m_ui->trackers_list->toPlainText().split("\n");
-    QStringList urlSeeds = m_ui->URLSeeds_list->toPlainText().split("\n");
-    QString comment = m_ui->txt_comment->toPlainText();
+    QStringList trackers = m_ui->trackersList->toPlainText().split("\n");
+    QStringList urlSeeds = m_ui->URLSeedsList->toPlainText().split("\n");
+    QString comment = m_ui->txtComment->toPlainText();
 
     // run the creator thread
-    m_creatorThread->create(input, destination, trackers, urlSeeds, comment, m_ui->check_private->isChecked(), getPieceSize());
+    m_creatorThread->create(input, destination, trackers, urlSeeds, comment, m_ui->checkPrivate->isChecked(), getPieceSize());
 }
 
 void TorrentCreatorDlg::handleCreationFailure(const QString &msg)
@@ -211,13 +210,13 @@ void TorrentCreatorDlg::updateProgressBar(int progress)
 void TorrentCreatorDlg::setInteractionEnabled(bool enabled)
 {
     m_ui->textInputPath->setEnabled(enabled);
-    m_ui->addFile_button->setEnabled(enabled);
-    m_ui->addFolder_button->setEnabled(enabled);
-    m_ui->trackers_list->setEnabled(enabled);
-    m_ui->URLSeeds_list->setEnabled(enabled);
-    m_ui->txt_comment->setEnabled(enabled);
+    m_ui->addFileButton->setEnabled(enabled);
+    m_ui->addFolderButton->setEnabled(enabled);
+    m_ui->trackersList->setEnabled(enabled);
+    m_ui->URLSeedsList->setEnabled(enabled);
+    m_ui->txtComment->setEnabled(enabled);
     m_ui->comboPieceSize->setEnabled(enabled);
-    m_ui->check_private->setEnabled(enabled);
+    m_ui->checkPrivate->setEnabled(enabled);
     m_ui->checkStartSeeding->setEnabled(enabled);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
     m_ui->checkIgnoreShareLimits->setEnabled(enabled && m_ui->checkStartSeeding->isChecked());
@@ -228,13 +227,13 @@ void TorrentCreatorDlg::saveSettings()
     m_storeLastAddPath = m_ui->textInputPath->text().trimmed();
 
     m_storePieceSize = m_ui->comboPieceSize->currentIndex();
-    m_storePrivateTorrent = m_ui->check_private->isChecked();
+    m_storePrivateTorrent = m_ui->checkPrivate->isChecked();
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
 
-    m_storeTrackerList = m_ui->trackers_list->toPlainText();
-    m_storeWebSeedList = m_ui->URLSeeds_list->toPlainText();
-    m_storeComments = m_ui->txt_comment->toPlainText();
+    m_storeTrackerList = m_ui->trackersList->toPlainText();
+    m_storeWebSeedList = m_ui->URLSeedsList->toPlainText();
+    m_storeComments = m_ui->txtComment->toPlainText();
 
     m_storeDialogSize = size();
 }
@@ -244,14 +243,14 @@ void TorrentCreatorDlg::loadSettings()
     m_ui->textInputPath->setText(m_storeLastAddPath);
 
     m_ui->comboPieceSize->setCurrentIndex(m_storePieceSize);
-    m_ui->check_private->setChecked(m_storePrivateTorrent);
+    m_ui->checkPrivate->setChecked(m_storePrivateTorrent);
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
 
-    m_ui->trackers_list->setPlainText(m_storeTrackerList);
-    m_ui->URLSeeds_list->setPlainText(m_storeWebSeedList);
-    m_ui->txt_comment->setPlainText(m_storeComments);
+    m_ui->trackersList->setPlainText(m_storeTrackerList);
+    m_ui->URLSeedsList->setPlainText(m_storeWebSeedList);
+    m_ui->txtComment->setPlainText(m_storeComments);
 
     if (m_storeDialogSize.value().isValid())
         resize(m_storeDialogSize);
