@@ -180,6 +180,8 @@ public:
     void setWebUiPort(quint16 port);
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
+    bool isWebUiSecurityHeadersEnabled() const;
+    void setWebUiSecurityHeadersEnabled(bool enabled);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
     QString getWebUiPassword() const;

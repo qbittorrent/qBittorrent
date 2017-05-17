@@ -2696,6 +2696,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkWebUISecurityHeaders">
+                 <property name="text">
+                  <string>Send security headers on all requests</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkWebUiHttps">
                  <property name="title">
                   <string>&amp;Use HTTPS instead of HTTP</string>
