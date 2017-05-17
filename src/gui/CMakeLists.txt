@@ -34,6 +34,7 @@ advancedsettings.h
 autoexpandabledialog.h
 banlistoptions.h
 categoryfiltermodel.h
+categoryfilterproxymodel.h
 categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
@@ -78,6 +79,7 @@ advancedsettings.cpp
 autoexpandabledialog.cpp
 banlistoptions.cpp
 categoryfiltermodel.cpp
+categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp

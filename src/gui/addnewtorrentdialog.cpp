@@ -135,7 +135,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         if (category != defaultCategory && category != m_torrentParams.category)
             ui->categoryComboBox->addItem(category);
 
-    ui->categoryComboBox->model()->sort(0);
     ui->contentTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     loadState();
     // Signal / slots
