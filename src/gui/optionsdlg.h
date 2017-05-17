@@ -60,6 +60,8 @@ namespace Ui
 class OptionsDialog: public QDialog
 {
     Q_OBJECT
+    using ThisType = OptionsDialog;
+
 private:
     enum Tabs
     {
