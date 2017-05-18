@@ -20,6 +20,8 @@ clone_folder: *REPO_DIR
 cache:
   - *CACHE_DIR
 
+clone_depth: 50
+
 install:
   # check if library needs update
   - appveyor DownloadFile "%QBT_VER_URL%" -FileName "c:\version_new" && SET /P newVersion=<"c:\version_new"
