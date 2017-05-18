@@ -2395,7 +2395,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="5" column="2">
+               <item row="4" column="2">
                 <widget class="QLabel" name="label">
                  <property name="text">
                   <string>then</string>
@@ -2405,7 +2405,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="4" colspan="2">
+               <item row="4" column="4" colspan="2">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2422,7 +2422,7 @@
                  </item>
                 </widget>
                </item>
-               <item row="5" column="6">
+               <item row="4" column="6">
                 <spacer name="horizontalSpacer_20">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2435,7 +2435,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="5" column="1">
+               <item row="4" column="1">
                 <spacer name="horizontalSpacer_171">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
