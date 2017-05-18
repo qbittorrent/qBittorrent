@@ -390,6 +390,7 @@ window.addEvent('load', function () {
             $('connectionStatus').src = 'images/skin/firewalled.png';
         else
             $('connectionStatus').src = 'images/skin/disconnected.png';
+        $('connectionStatus').style = 'height: 1.5em';
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
@@ -468,7 +469,7 @@ window.addEvent('load', function () {
         processServerState();
     });
 
-    $('StatisticsLink').addEvent('click', StatisticsLinkFN); 
+    $('StatisticsLink').addEvent('click', StatisticsLinkFN);
 
     new MochaUI.Panel({
         id : 'transferList',
