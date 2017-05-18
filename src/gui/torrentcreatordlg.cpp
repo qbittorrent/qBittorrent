@@ -169,7 +169,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
         BitTorrent::AddTorrentParams params;
         params.savePath = branch_path;
         params.skipChecking = true;
-        params.ignoreShareRatio = checkIgnoreShareLimits->isChecked();
+        params.ignoreShareLimits = checkIgnoreShareLimits->isChecked();
 
         BitTorrent::Session::instance()->addTorrent(t, params);
     }

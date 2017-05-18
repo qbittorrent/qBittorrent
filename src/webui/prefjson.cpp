@@ -151,6 +151,8 @@ QByteArray prefjson::getPreferences()
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
     data["max_ratio"] = session->globalMaxRatio();
+    data["max_seeding_time_enabled"] = (session->globalMaxSeedingMinutes() >= 0.);
+    data["max_seeding_time"] = session->globalMaxSeedingMinutes();
     data["max_ratio_act"] = session->maxRatioAction();
     // Add trackers
     data["add_trackers_enabled"] = session->isAddTrackersEnabled();
@@ -367,6 +369,10 @@ void prefjson::setPreferences(const QString& json)
         session->setGlobalMaxRatio(m["max_ratio"].toReal());
     else
         session->setGlobalMaxRatio(-1);
+    if (m.contains("max_seeding_time_enabled"))
+        session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
+    else
+        session->setGlobalMaxSeedingMinutes(-1);
     if (m.contains("max_ratio_act"))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
     // Add trackers

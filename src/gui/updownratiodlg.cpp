@@ -30,11 +30,15 @@
 
 #include "updownratiodlg.h"
 
+#include <QMessageBox>
+
 #include "base/bittorrent/session.h"
+
 #include "ui_updownratiodlg.h"
 
-UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
-                               qreal maxValue, QWidget *parent)
+UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialRatioValue,
+                               qreal maxRatioValue, int initialTimeValue,
+                               int maxTimeValue, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::UpDownRatioDlg)
 {
@@ -43,19 +47,43 @@ UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
     if (useDefault) {
         ui->useDefaultButton->setChecked(true);
     }
-    else if (initialValue == -1) {
+    else if ((initialRatioValue == -1) && (initialTimeValue == -1)) {
         ui->noLimitButton->setChecked(true);
-        initialValue = BitTorrent::Session::instance()->globalMaxRatio();
+        initialRatioValue = BitTorrent::Session::instance()->globalMaxRatio();
+        initialTimeValue = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
     }
     else {
         ui->torrentLimitButton->setChecked(true);
+
+        if (initialRatioValue >= 0)
+            ui->checkMaxRatio->setChecked(true);
+
+        if (initialTimeValue >= 0)
+            ui->checkMaxTime->setChecked(true);
     }
 
     ui->ratioSpinBox->setMinimum(0);
-    ui->ratioSpinBox->setMaximum(maxValue);
-    ui->ratioSpinBox->setValue(initialValue);
+    ui->ratioSpinBox->setMaximum(maxRatioValue);
+    ui->ratioSpinBox->setValue(initialRatioValue);
+
+    ui->timeSpinBox->setMinimum(0);
+    ui->timeSpinBox->setMaximum(maxTimeValue);
+    ui->timeSpinBox->setValue(initialTimeValue);
+
     connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), SLOT(handleRatioTypeChanged()));
+    connect(ui->checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableRatioSpin()));
+    connect(ui->checkMaxTime, SIGNAL(toggled(bool)), this, SLOT(enableTimeSpin()));
+
     handleRatioTypeChanged();
+}
+
+void UpDownRatioDlg::accept()
+{
+    if (ui->torrentLimitButton->isChecked() && !ui->checkMaxRatio->isChecked() && !ui->checkMaxTime->isChecked())
+        QMessageBox::critical(this, tr("No share limit method selected"),
+                              tr("Please select a limit method first"));
+    else
+        QDialog::accept();
 }
 
 bool UpDownRatioDlg::useDefault() const
@@ -65,12 +93,32 @@ bool UpDownRatioDlg::useDefault() const
 
 qreal UpDownRatioDlg::ratio() const
 {
-    return ui->noLimitButton->isChecked() ? -1 : ui->ratioSpinBox->value();
+    return (ui->noLimitButton->isChecked() || !ui->checkMaxRatio->isChecked()) ? -1 : ui->ratioSpinBox->value();
+}
+
+int UpDownRatioDlg::seedingTime() const
+{
+    return (ui->noLimitButton->isChecked() || !ui->checkMaxTime->isChecked()) ? -1 : ui->timeSpinBox->value();
 }
 
 void UpDownRatioDlg::handleRatioTypeChanged()
 {
-    ui->ratioSpinBox->setEnabled(ui->torrentLimitButton->isChecked());
+    // ui->ratioSpinBox->setEnabled(ui->torrentLimitButton->isChecked());
+    ui->checkMaxRatio->setEnabled(ui->torrentLimitButton->isChecked());
+    ui->checkMaxTime->setEnabled(ui->torrentLimitButton->isChecked());
+
+    ui->ratioSpinBox->setEnabled(ui->torrentLimitButton->isChecked() && ui->checkMaxRatio->isChecked());
+    ui->timeSpinBox->setEnabled(ui->torrentLimitButton->isChecked() && ui->checkMaxTime->isChecked());
+}
+
+void UpDownRatioDlg::enableRatioSpin()
+{
+    ui->ratioSpinBox->setEnabled(ui->checkMaxRatio->isChecked());
+}
+
+void UpDownRatioDlg::enableTimeSpin()
+{
+    ui->timeSpinBox->setEnabled(ui->checkMaxTime->isChecked());
 }
 
 UpDownRatioDlg::~UpDownRatioDlg()

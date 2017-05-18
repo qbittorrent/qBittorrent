@@ -90,6 +90,7 @@ private slots:
     void on_buttonBox_rejected();
     void applySettings(QAbstractButton* button);
     void enableApplyButton();
+    void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem*, QListWidgetItem*);
     void loadWindowState();
     void saveWindowState() const;
@@ -145,6 +146,7 @@ private:
     bool isLSDEnabled() const;
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
+    int getMaxSeedingMinutes() const;
     // Proxy options
     bool isProxyEnabled() const;
     bool isProxyAuthEnabled() const;

@@ -106,6 +106,7 @@ namespace BitTorrent
         QVector<int> filePriorities;
         // for resumed torrents
         qreal ratioLimit;
+        int seedingTimeLimit;
 
         AddTorrentData();
         AddTorrentData(const AddTorrentParams &params);
@@ -169,7 +170,11 @@ namespace BitTorrent
         static const qreal USE_GLOBAL_RATIO;
         static const qreal NO_RATIO_LIMIT;
 
+        static const int USE_GLOBAL_SEEDING_TIME;
+        static const int NO_SEEDING_TIME_LIMIT;
+
         static const qreal MAX_RATIO;
+        static const int MAX_SEEDING_TIME;
 
         TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
                           const AddTorrentData &data);
@@ -251,6 +256,7 @@ namespace BitTorrent
         qreal progress() const;
         QDateTime addedTime() const;
         qreal ratioLimit() const;
+        int seedingTimeLimit() const;
 
         QString filePath(int index) const;
         QString fileName(int index) const;
@@ -313,6 +319,7 @@ namespace BitTorrent
         QVector<int> pieceAvailability() const;
         qreal distributedCopies() const;
         qreal maxRatio(bool *usesGlobalRatio = 0) const;
+        int maxSeedingTime(bool *usesGlobalSeedingTime = 0) const;
         qreal realRatio() const;
         int uploadPayloadRate() const;
         int downloadPayloadRate() const;
@@ -341,6 +348,7 @@ namespace BitTorrent
         void prioritizeFiles(const QVector<int> &priorities);
         void setFilePriority(int index, int priority);
         void setRatioLimit(qreal limit);
+        void setSeedingTimeLimit(int limit);
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
@@ -439,6 +447,7 @@ namespace BitTorrent
         QString m_category;
         bool m_hasSeedStatus;
         qreal m_ratioLimit;
+        int m_seedingTimeLimit;
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
         bool m_hasRootFolder;

@@ -235,6 +235,7 @@ Session::Session(QObject *parent)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
+    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY("GlobalMaxSeedingMinutes"), -1, lowerLimited(-1))
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
     , m_isCreateTorrentSubfolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
@@ -287,9 +288,9 @@ Session::Session(QObject *parent)
 
     initResumeFolder();
 
-    m_bigRatioTimer = new QTimer(this);
-    m_bigRatioTimer->setInterval(10000);
-    connect(m_bigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
+    m_seedingLimitTimer = new QTimer(this);
+    m_seedingLimitTimer->setInterval(10000);
+    connect(m_seedingLimitTimer, SIGNAL(timeout()), SLOT(processShareLimits()));
 
     // Set severity level of libtorrent session
     int alertMask = libt::alert::error_notification
@@ -411,7 +412,7 @@ Session::Session(QObject *parent)
 
     m_statistics = new Statistics(this);
 
-    updateRatioTimer();
+    updateSeedingLimitTimer();
     populateAdditionalTrackers();
 
     enableTracker(isTrackerEnabled());
@@ -800,7 +801,23 @@ void Session::setGlobalMaxRatio(qreal ratio)
 
     if (ratio != globalMaxRatio()) {
         m_globalMaxRatio = ratio;
-        updateRatioTimer();
+        updateSeedingLimitTimer();
+    }
+}
+
+int Session::globalMaxSeedingMinutes() const
+{
+    return m_globalMaxSeedingMinutes;
+}
+
+void Session::setGlobalMaxSeedingMinutes(int minutes)
+{
+    if (minutes < 0)
+        minutes = -1;
+
+    if (minutes != globalMaxSeedingMinutes()) {
+        m_globalMaxSeedingMinutes = minutes;
+        updateSeedingLimitTimer();
     }
 }
 
@@ -1415,36 +1432,56 @@ void Session::populateAdditionalTrackers()
     }
 }
 
-void Session::processBigRatios()
+void Session::processShareLimits()
 {
-    qDebug("Process big ratios...");
+    qDebug("Processing share limits...");
 
-    qreal globalMaxRatio = this->globalMaxRatio();
     foreach (TorrentHandle *const torrent, m_torrents) {
-        if (torrent->isSeed()
-            && (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT)
-            && !torrent->isForced()) {
-            const qreal ratio = torrent->realRatio();
-            qreal ratioLimit = torrent->ratioLimit();
-            if (ratioLimit == TorrentHandle::USE_GLOBAL_RATIO) {
-                // If Global Max Ratio is really set...
-                ratioLimit = globalMaxRatio;
-                if (ratioLimit < 0) continue;
-            }
-            qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
-            Q_ASSERT(ratioLimit >= 0.f);
+        if (torrent->isSeed() && !torrent->isForced()) {
+            if (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT) {
+                const qreal ratio = torrent->realRatio();
+                qreal ratioLimit = torrent->ratioLimit();
+                if (ratioLimit == TorrentHandle::USE_GLOBAL_RATIO)
+                    // If Global Max Ratio is really set...
+                    ratioLimit = globalMaxRatio();
 
-            if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
-                Logger* const logger = Logger::instance();
-                if (maxRatioAction() == Remove) {
-                    logger->addMessage(tr("'%1' reached the maximum ratio you set. Removing...").arg(torrent->name()));
-                    deleteTorrent(torrent->hash());
+                if (ratioLimit >= 0) {
+                    qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
+
+                    if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
+                        Logger* const logger = Logger::instance();
+                        if (m_maxRatioAction == Remove) {
+                            deleteTorrent(torrent->hash());
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
+                        }
+                        else if (!torrent->isPaused()) {
+                            torrent->pause();
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
+                        }
+                    }
                 }
-                else {
-                    // Pause it
-                    if (!torrent->isPaused()) {
-                        logger->addMessage(tr("'%1' reached the maximum ratio you set. Pausing...").arg(torrent->name()));
-                        torrent->pause();
+            }
+
+            if (torrent->seedingTimeLimit() != TorrentHandle::NO_SEEDING_TIME_LIMIT) {
+                const int seedingTimeInMinutes = torrent->seedingTime() / 60;
+                int seedingTimeLimit = torrent->seedingTimeLimit();
+                if (seedingTimeLimit == TorrentHandle::USE_GLOBAL_SEEDING_TIME)
+                     // If Global Seeding Time Limit is really set...
+                    seedingTimeLimit = globalMaxSeedingMinutes();
+
+                if (seedingTimeLimit >= 0) {
+                    qDebug("Seeding Time: %d (limit: %d)", seedingTimeInMinutes, seedingTimeLimit);
+
+                    if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit)) {
+                        Logger* const logger = Logger::instance();
+                        if (m_maxRatioAction == Remove) {
+                            deleteTorrent(torrent->hash());
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
+                        }
+                        else if (!torrent->isPaused()) {
+                            torrent->pause();
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
+                        }
                     }
                 }
             }
@@ -2926,21 +2963,22 @@ bool Session::isKnownTorrent(const InfoHash &hash) const
             || m_loadedMetadata.contains(hash));
 }
 
-void Session::updateRatioTimer()
+void Session::updateSeedingLimitTimer()
 {
-    if ((globalMaxRatio() == -1) && !hasPerTorrentRatioLimit()) {
-        if (m_bigRatioTimer->isActive())
-            m_bigRatioTimer->stop();
+    if ((globalMaxRatio() == -1) && !hasPerTorrentRatioLimit()
+        && (globalMaxSeedingMinutes() == TorrentHandle::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()) {
+        if (m_seedingLimitTimer->isActive())
+            m_seedingLimitTimer->stop();
     }
-    else if (!m_bigRatioTimer->isActive()) {
-        m_bigRatioTimer->start();
+    else if (!m_seedingLimitTimer->isActive()) {
+        m_seedingLimitTimer->start();
     }
 }
 
-void Session::handleTorrentRatioLimitChanged(TorrentHandle *const torrent)
+void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
 {
     Q_UNUSED(torrent);
-    updateRatioTimer();
+    updateSeedingLimitTimer();
 }
 
 void Session::saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave)
@@ -3115,6 +3153,14 @@ bool Session::hasPerTorrentRatioLimit() const
 {
     foreach (TorrentHandle *const torrent, m_torrents)
         if (torrent->ratioLimit() >= 0) return true;
+
+    return false;
+}
+
+bool Session::hasPerTorrentSeedingTimeLimit() const
+{
+    foreach (TorrentHandle *const torrent, m_torrents)
+        if (torrent->seedingTimeLimit() >= 0) return true;
 
     return false;
 }
@@ -3528,8 +3574,9 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         saveTorrentResumeData(torrent);
     }
 
-    if ((torrent->ratioLimit() >= 0) && !m_bigRatioTimer->isActive())
-        m_bigRatioTimer->start();
+    if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
+        && !m_seedingLimitTimer->isActive())
+        m_seedingLimitTimer->start();
 
     // Send torrent addition signal
     emit torrentAdded(torrent);
@@ -3875,6 +3922,7 @@ namespace
         torrentData.savePath = Profile::instance().fromPortablePath(
             Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
         torrentData.ratioLimit = QString::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+        torrentData.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future

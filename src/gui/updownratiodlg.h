@@ -45,14 +45,21 @@ class UpDownRatioDlg : public QDialog
 
 public:
     explicit UpDownRatioDlg(bool useDefault, qreal initialValue, qreal maxValue,
+        int initialTimeValue, int maxTimeValue,
         QWidget *parent = 0);
     ~UpDownRatioDlg();
 
     bool useDefault() const;
     qreal ratio() const;
+    int seedingTime() const;
+
+public slots:
+    void accept();
 
 private slots:
     void handleRatioTypeChanged();
+    void enableRatioSpin();
+    void enableTimeSpin();
 
 private:
     Ui::UpDownRatioDlg *ui;
