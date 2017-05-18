@@ -2,8 +2,8 @@ if (SYSTEMD)
     find_package(Systemd)
     if (SYSTEMD_FOUND)
         set(EXPAND_BINDIR ${CMAKE_INSTALL_FULL_BINDIR})
-        configure_file(systemd/qbittorrent-nox.service.in ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox.service @ONLY)
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox.service
+        configure_file(systemd/qbittorrent-nox@.service.in ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox@.service @ONLY)
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox@.service
             DESTINATION ${SYSTEMD_SERVICES_INSTALL_DIR}
             COMPONENT data)
     endif(SYSTEMD_FOUND)
