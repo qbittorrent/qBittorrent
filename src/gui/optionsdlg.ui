@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1116</width>
-    <height>838</height>
+    <width>779</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>783</height>
+             <width>430</width>
+             <height>972</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -671,8 +671,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>1017</height>
+             <width>585</width>
+             <height>1179</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1261,8 +1261,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>619</height>
+             <width>450</width>
+             <height>759</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1728,8 +1728,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>376</width>
+             <height>501</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2115,8 +2115,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>528</width>
+             <height>664</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2709,8 +2709,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>432</width>
+             <height>569</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3113,7 +3113,6 @@
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
@@ -3147,17 +3146,14 @@
   <tabstop>checkPreallocateAll</tabstop>
   <tabstop>checkTempFolder</tabstop>
   <tabstop>textTempPath</tabstop>
-  <tabstop>browseTempDirButton</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
   <tabstop>addScanFolderButton</tabstop>
   <tabstop>removeScanFolderButton</tabstop>
   <tabstop>checkExportDir</tabstop>
   <tabstop>textExportDir</tabstop>
-  <tabstop>browseExportDirButton</tabstop>
   <tabstop>checkExportDirFin</tabstop>
   <tabstop>textExportDirFin</tabstop>
-  <tabstop>browseExportDirFinButton</tabstop>
   <tabstop>groupMailNotification</tabstop>
   <tabstop>dest_email_txt</tabstop>
   <tabstop>smtp_server_txt</tabstop>
@@ -3189,7 +3185,6 @@
   <tabstop>textProxyPassword</tabstop>
   <tabstop>checkIPFilter</tabstop>
   <tabstop>textFilterPath</tabstop>
-  <tabstop>browseFilterButton</tabstop>
   <tabstop>IpFilterRefreshBtn</tabstop>
   <tabstop>checkIpFilterTrackers</tabstop>
   <tabstop>scrollArea_9</tabstop>
