@@ -43,6 +43,10 @@ public:
 
 protected:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
+
+private:
+    // we added another overload of index(), hence this using directive:
+    using QSortFilterProxyModel::index;
 };
 
 #endif // CATEGORYFILTERPROXYMODEL_H
