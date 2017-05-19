@@ -172,8 +172,6 @@ TransferListWidget::~TransferListWidget()
     delete nameFilterModel;
     delete listModel;
     delete listDelegate;
-    delete editHotkey;
-    delete deleteHotkey;
     qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
