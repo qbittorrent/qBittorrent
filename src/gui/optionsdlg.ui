@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1116</width>
-    <height>838</height>
+    <width>779</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>783</height>
+             <width>430</width>
+             <height>972</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -671,8 +671,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>1017</height>
+             <width>585</width>
+             <height>1179</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -962,26 +962,8 @@
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="0" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_10">
-                   <item>
-                    <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="3" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_13">
-                   <item>
-                    <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="2" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_12">
-                   <item>
-                    <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
-                   </item>
-                  </layout>
+                 <item row="1" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
                  </item>
                  <item row="3" column="0">
                   <widget class="QCheckBox" name="checkExportDirFin">
@@ -989,13 +971,6 @@
                     <string>Copy .torrent files for finished downloads to:</string>
                    </property>
                   </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_111">
-                   <item>
-                    <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
-                   </item>
-                  </layout>
                  </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelSavePath">
@@ -1017,6 +992,15 @@
                     <string>Keep incomplete torrents in:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -1261,8 +1245,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>619</height>
+             <width>450</width>
+             <height>759</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1728,8 +1712,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>376</width>
+             <height>501</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2115,8 +2099,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>528</width>
+             <height>664</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2395,7 +2379,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="5" column="2">
+               <item row="4" column="2">
                 <widget class="QLabel" name="label">
                  <property name="text">
                   <string>then</string>
@@ -2405,7 +2389,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="4" colspan="2">
+               <item row="4" column="4" colspan="2">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2422,7 +2406,7 @@
                  </item>
                 </widget>
                </item>
-               <item row="5" column="6">
+               <item row="4" column="6">
                 <spacer name="horizontalSpacer_20">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2435,7 +2419,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="5" column="1">
+               <item row="4" column="1">
                 <spacer name="horizontalSpacer_171">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2709,8 +2693,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>432</width>
+             <height>569</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3113,7 +3097,6 @@
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
@@ -3147,17 +3130,14 @@
   <tabstop>checkPreallocateAll</tabstop>
   <tabstop>checkTempFolder</tabstop>
   <tabstop>textTempPath</tabstop>
-  <tabstop>browseTempDirButton</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
   <tabstop>addScanFolderButton</tabstop>
   <tabstop>removeScanFolderButton</tabstop>
   <tabstop>checkExportDir</tabstop>
   <tabstop>textExportDir</tabstop>
-  <tabstop>browseExportDirButton</tabstop>
   <tabstop>checkExportDirFin</tabstop>
   <tabstop>textExportDirFin</tabstop>
-  <tabstop>browseExportDirFinButton</tabstop>
   <tabstop>groupMailNotification</tabstop>
   <tabstop>dest_email_txt</tabstop>
   <tabstop>smtp_server_txt</tabstop>
@@ -3189,7 +3169,6 @@
   <tabstop>textProxyPassword</tabstop>
   <tabstop>checkIPFilter</tabstop>
   <tabstop>textFilterPath</tabstop>
-  <tabstop>browseFilterButton</tabstop>
   <tabstop>IpFilterRefreshBtn</tabstop>
   <tabstop>checkIpFilterTrackers</tabstop>
   <tabstop>scrollArea_9</tabstop>
