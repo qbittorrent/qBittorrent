@@ -167,7 +167,7 @@ namespace Utils
                 throw std::runtime_error ("Incorrect number of version components");
 
             bool ok = false;
-            ComponentsArray res;
+            ComponentsArray res{};
             for (std::size_t i = 0; i < static_cast<std::size_t>(versionParts.size()); ++i) {
                 res[i] = static_cast<T>(versionParts[i].toInt(&ok));
                 if (!ok)

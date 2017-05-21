@@ -2053,8 +2053,10 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 
 QVector<qreal> TorrentHandle::availableFileFractions() const
 {
-    QVector<int> piecesAvailability = pieceAvailability();
     const auto filesCount = this->filesCount();
+    if (filesCount < 0) return {};
+
+    const QVector<int> piecesAvailability = pieceAvailability();
     // libtorrent returns empty array for seeding only torrents
     if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1.);
 
