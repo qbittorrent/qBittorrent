@@ -107,7 +107,7 @@ window.addEvent('load', function () {
         selected_category = hash;
         localStorage.setItem('selected_category', selected_category);
         highlightSelectedCategory();
-        if (typeof torrentsTable.table != 'undefined')
+        if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
     };
 
@@ -126,7 +126,7 @@ window.addEvent('load', function () {
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        if (typeof torrentsTable.table != 'undefined')
+        if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
     }
 
