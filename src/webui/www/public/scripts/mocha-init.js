@@ -57,7 +57,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 360
+            height: 400
         });
         updateMainData();
     });
@@ -97,7 +97,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 220
+            height: 240
         });
         updateMainData();
     });
