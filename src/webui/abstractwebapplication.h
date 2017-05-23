@@ -100,6 +100,8 @@ private:
     QString generateSid();
     bool sessionInitialize();
 
+    QStringMap parseCookie(const Http::Request &request) const;
+
     static void translateDocument(QString &data);
 
     static const QStringMap CONTENT_TYPE_BY_EXT;

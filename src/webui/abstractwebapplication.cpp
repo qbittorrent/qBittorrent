@@ -40,6 +40,7 @@
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
+#include "base/utils/string.h"
 #include "websessiondata.h"
 
 // UnbanTimer
@@ -147,24 +148,13 @@ void AbstractWebApplication::removeInactiveSessions()
 
 bool AbstractWebApplication::sessionInitialize()
 {
-    static const QString SID_START = QLatin1String(C_SID) + QLatin1String("=");
-
     if (session_ == 0)
     {
-        QString cookie = request_.headers.value("cookie");
-        //qDebug() << Q_FUNC_INFO << "cookie: " << cookie;
-
-        QString sessionId;
-        int pos = cookie.indexOf(SID_START);
-        if (pos >= 0) {
-            pos += SID_START.length();
-            int end = cookie.indexOf(QRegExp("[,;]"), pos);
-            sessionId = cookie.mid(pos, end >= 0 ? end - pos : end);
-        }
+        const QString sessionId = parseCookie(request_).value(C_SID);
 
         // TODO: Additional session check
 
-        if (!sessionId.isNull()) {
+        if (!sessionId.isEmpty()) {
             if (sessions_.contains(sessionId)) {
                 session_ = sessions_[sessionId];
                 session_->updateTimestamp();
@@ -401,3 +391,23 @@ QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
 }
 
 const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
+
+QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) const
+{
+    // [rfc6265] 4.2.1. Syntax
+    QStringMap ret;
+    const QString cookieStr = request.headers.value(QLatin1String("cookie"));
+    const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
+
+    for (const auto &cookie : cookies) {
+        const int idx = cookie.indexOf('=');
+        if (idx < 0)
+            continue;
+
+        const QString name = cookie.left(idx).trimmed().toString();
+        const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
+                                  .toString();
+        ret.insert(name, value);
+    }
+    return ret;
+}
