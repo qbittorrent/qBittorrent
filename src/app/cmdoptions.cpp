@@ -44,6 +44,7 @@
 #endif
 
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 
 namespace
 {
@@ -86,7 +87,7 @@ namespace
         static QString padUsageText(const QString &usage)
         {
             QString res = QString(USAGE_INDENTATION, ' ') + usage;
-            
+
             if ((USAGE_TEXT_COLUMN - usage.length() - 4) > 0)
                 return res + QString(USAGE_TEXT_COLUMN - usage.length() - 4, ' ');
             else
@@ -153,7 +154,7 @@ namespace
         {
             QStringList parts = arg.split(QLatin1Char('='));
             if (parts.size() == 2)
-                return unquote(parts[1]);
+                return Utils::String::unquote(parts[1], QLatin1String("'\""));
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
                                             .arg(fullParameter()).arg(QLatin1String("<value>")));
@@ -162,7 +163,7 @@ namespace
         QString value(const QProcessEnvironment &env, const QString &defaultValue = QString()) const
         {
             QString val = env.value(envVarName());
-            return val.isEmpty() ? defaultValue : unquote(val);
+            return val.isEmpty() ? defaultValue : Utils::String::unquote(val, QLatin1String("'\""));
         }
 
         QString usage(const QString &valueName) const
@@ -174,19 +175,6 @@ namespace
         QString parameterAssignment() const
         {
             return fullParameter() + QLatin1Char('=');
-        }
-
-        static QString unquote(const QString &s)
-        {
-            auto isStringQuoted =
-                [](const QString &s, QChar quoteChar)
-                {
-                    return (s.startsWith(quoteChar) && s.endsWith(quoteChar));
-                };
-
-            if ((s.size() >= 2) && (isStringQuoted(s, QLatin1Char('\'')) || isStringQuoted(s, QLatin1Char('"'))))
-                return s.mid(1, s.size() - 2);
-            return s;
         }
     };
 
@@ -290,7 +278,7 @@ namespace
         TriStateBool value(const QProcessEnvironment &env) const
         {
             QString val = env.value(envVarName(), "-1");
-            
+
             if (val.isEmpty()) {
                 return TriStateBool(m_defaultValue);
             }
@@ -374,7 +362,7 @@ QStringList QBtCommandLineParameters::paramList() const
     // specified by the user, and placing them at the beginning of the
     // string listr so that they will be processed before the list of
     // torrent paths or URLs.
-    
+
     if (!savePath.isEmpty())
         result.append(QString("@savePath=%1").arg(savePath));
 
@@ -384,7 +372,7 @@ QStringList QBtCommandLineParameters::paramList() const
     else if (addPaused == TriStateBool::False) {
         result.append(QLatin1String("@addPaused=0"));
     }
-    
+
     if (skipChecking)
         result.append(QLatin1String("@skipChecking"));
 
@@ -510,7 +498,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
     QStringList words = text.split(' ');
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
-    
+
     foreach (const QString &word, words.mid(1)) {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength) {
             lines.last().append(" " + word);
@@ -520,7 +508,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
             currentLineMaxLength = wrapAtColumn;
         }
     }
-    
+
     return lines.join("\n");
 }
 
@@ -559,7 +547,7 @@ QString makeUsage(const QString &prgName)
     stream << Option::padUsageText(QObject::tr("files or urls"))
            << wrapText(QObject::tr("Downloads the torrents passed by the user")) << '\n'
            << '\n';
-           
+
     stream << wrapText(QObject::tr("Options when adding new torrents:"), 0) << '\n';
     stream << SAVE_PATH_OPTION.usage(QObject::tr("path")) << wrapText(QObject::tr("Torrent save path")) << '\n';
     stream << PAUSED_OPTION.usage() << wrapText(QObject::tr("Add torrents as started or paused")) << '\n';

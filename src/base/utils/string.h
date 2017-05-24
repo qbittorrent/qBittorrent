@@ -30,10 +30,10 @@
 #ifndef UTILS_STRING_H
 #define UTILS_STRING_H
 
-#include <string>
+#include <QString>
 
 class QByteArray;
-class QString;
+class QLatin1String;
 
 namespace Utils
 {
@@ -49,6 +49,19 @@ namespace Utils
         bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
 
         QString wildcardToRegex(const QString &pattern);
+
+        template <typename T>
+        T unquote(const T &str, const QString &quotes = QLatin1String("\""))
+        {
+            if (str.length() < 2) return str;
+
+            for (auto const quote : quotes) {
+                if (str.startsWith(quote) && str.endsWith(quote))
+                    return str.mid(1, str.length() - 2);
+            }
+
+            return str;
+        }
     }
 }
 
