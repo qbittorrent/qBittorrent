@@ -71,7 +71,7 @@ public:
 
 private slots:
     void showAdvancedSettings(bool show);
-    void displayContentTreeMenu(const QPoint&);
+    void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
     void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
@@ -92,7 +92,7 @@ private:
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
-    int indexOfSavePath(const QString& save_path);
+    int indexOfSavePath(const QString &save_path);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());

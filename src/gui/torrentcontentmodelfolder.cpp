@@ -28,8 +28,9 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QDebug>
 #include "torrentcontentmodelfolder.h"
+
+#include "base/bittorrent/torrenthandle.h"
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)
     : TorrentContentModelItem(parent)
@@ -37,7 +38,7 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, Torren
     Q_ASSERT(parent);
     m_name = name;
     // Do not display incomplete extensions
-    if (m_name.endsWith(".!qB"))
+    if (m_name.endsWith(QB_EXT))
         m_name.chop(4);
 }
 

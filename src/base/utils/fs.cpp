@@ -38,8 +38,9 @@
 #include <QCoreApplication>
 #include <QStorageInfo>
 
-#ifndef Q_OS_WIN
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -47,9 +48,8 @@
 #else
 #include <sys/vfs.h>
 #endif
-#else
-#include <Windows.h>
-#endif
+
+#include "base/bittorrent/torrenthandle.h"
 
 /**
  * Converts a path to a string suitable for display.
@@ -71,7 +71,7 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(".!qB");
+    QString ext = QString(filename).remove(QB_EXT);
     const int point_index = ext.lastIndexOf(".");
     return (point_index >= 0) ? ext.mid(point_index + 1) : QString();
 }
