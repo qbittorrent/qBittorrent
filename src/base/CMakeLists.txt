@@ -52,6 +52,7 @@ utils/string.h
 utils/version.h
 asyncfilestorage.h
 filesystemwatcher.h
+global.h
 iconprovider.h
 indexrange.h
 logger.h

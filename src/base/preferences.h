@@ -305,16 +305,6 @@ public:
     void setSearchTabHeaderState(const QByteArray &state);
     QStringList getSearchEngDisabled() const;
     void setSearchEngDisabled(const QStringList &engines);
-    QString getCreateTorLastAddPath() const;
-    void setCreateTorLastAddPath(const QString &path);
-    QString getCreateTorLastSavePath() const;
-    void setCreateTorLastSavePath(const QString &path);
-    QString getCreateTorTrackers() const;
-    void setCreateTorTrackers(const QString &path);
-    QByteArray getCreateTorGeometry() const;
-    void setCreateTorGeometry(const QByteArray &geometry);
-    bool getCreateTorIgnoreRatio() const;
-    void setCreateTorIgnoreRatio(const bool ignore);
     QString getTorImportLastContentDir() const;
     void setTorImportLastContentDir(const QString &path);
     QByteArray getTorImportGeometry() const;

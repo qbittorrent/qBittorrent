@@ -1277,56 +1277,6 @@ void Preferences::setSearchEngDisabled(const QStringList &engines)
     setValue("SearchEngines/disabledEngines", engines);
 }
 
-QString Preferences::getCreateTorLastAddPath() const
-{
-    return value("CreateTorrent/last_add_path", QDir::homePath()).toString();
-}
-
-void Preferences::setCreateTorLastAddPath(const QString &path)
-{
-    setValue("CreateTorrent/last_add_path", path);
-}
-
-QString Preferences::getCreateTorLastSavePath() const
-{
-    return value("CreateTorrent/last_save_path", QDir::homePath()).toString();
-}
-
-void Preferences::setCreateTorLastSavePath(const QString &path)
-{
-    setValue("CreateTorrent/last_save_path", path);
-}
-
-QString Preferences::getCreateTorTrackers() const
-{
-    return value("CreateTorrent/TrackerList").toString();
-}
-
-void Preferences::setCreateTorTrackers(const QString &path)
-{
-    setValue("CreateTorrent/TrackerList", path);
-}
-
-QByteArray Preferences::getCreateTorGeometry() const
-{
-    return value("CreateTorrent/dimensions").toByteArray();
-}
-
-void Preferences::setCreateTorGeometry(const QByteArray &geometry)
-{
-    setValue("CreateTorrent/dimensions", geometry);
-}
-
-bool Preferences::getCreateTorIgnoreRatio() const
-{
-    return value("CreateTorrent/IgnoreRatio").toBool();
-}
-
-void Preferences::setCreateTorIgnoreRatio(const bool ignore)
-{
-    setValue("CreateTorrent/IgnoreRatio", ignore);
-}
-
 QString Preferences::getTorImportLastContentDir() const
 {
     return value("TorrentImport/LastContentDir", QDir::homePath()).toString();

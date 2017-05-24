@@ -64,6 +64,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 
@@ -1069,10 +1070,17 @@ void MainWindow::closeEvent(QCloseEvent *e)
 // Display window to create a torrent
 void MainWindow::on_actionCreateTorrent_triggered()
 {
-    if (m_createTorrentDlg)
+    createTorrentTriggered();
+}
+
+void MainWindow::createTorrentTriggered(const QString &path)
+{
+    if (m_createTorrentDlg) {
+        m_createTorrentDlg->updateInputPath(path);
         m_createTorrentDlg->setFocus();
+    }
     else
-        m_createTorrentDlg = new TorrentCreatorDlg(this);
+        m_createTorrentDlg = new TorrentCreatorDlg(this, path);
 }
 
 bool MainWindow::event(QEvent *e)
@@ -1126,6 +1134,8 @@ bool MainWindow::event(QEvent *e)
 void MainWindow::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
+
+    // remove scheme
     QStringList files;
     if (event->mimeData()->hasUrls()) {
         const QList<QUrl> urls = event->mimeData()->urls();
@@ -1142,14 +1152,33 @@ void MainWindow::dropEvent(QDropEvent *event)
         files = event->mimeData()->text().split('\n');
     }
 
-    // Add file to download list
+    // differentiate ".torrent" files and others
+    QStringList torrentFiles, otherFiles;
+    foreach (const QString &file, files) {
+        if (file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+            torrentFiles << file;
+        else
+            otherFiles << file;
+    }
+
+    // Download torrents
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    foreach (QString file, files) {
+    foreach (const QString &file, torrentFiles) {
         qDebug("Dropped file %s on download list", qPrintable(file));
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(file, this);
         else
             BitTorrent::Session::instance()->addTorrent(file);
+    }
+    if (!torrentFiles.isEmpty()) return;
+
+    // Create torrent
+    foreach (const QString &file, otherFiles) {
+        createTorrentTriggered(file);
+
+        // currently only hande the first entry
+        // this is a stub that can be expanded later to create many torrents at once
+        break;
     }
 }
 
@@ -1177,7 +1206,7 @@ void MainWindow::on_actionOpen_triggered()
     // Note: it is possible to select more than one file
     const QStringList pathsList =
         QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
-                                      tr("Torrent Files") + " (*.torrent)");
+                                      tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
 
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {

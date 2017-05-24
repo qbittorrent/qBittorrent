@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Mike Tzou (Chocobo1)
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,56 +25,65 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef CREATE_TORRENT_IMP_H
-#define CREATE_TORRENT_IMP_H
+#ifndef TORRENTCREATORDLG_H
+#define TORRENTCREATORDLG_H
 
-#include "ui_torrentcreatordlg.h"
+#include <QDialog>
+
+#include "base/settingvalue.h"
+
+namespace Ui
+{
+    class TorrentCreatorDlg;
+}
 
 namespace BitTorrent
 {
     class TorrentCreatorThread;
 }
 
-class TorrentCreatorDlg : public QDialog, private Ui::createTorrentDialog
+class TorrentCreatorDlg: public QDialog
 {
     Q_OBJECT
 
 public:
-    TorrentCreatorDlg(QWidget *parent = 0);
+    TorrentCreatorDlg(QWidget *parent = 0, const QString &defaultPath = QString());
     ~TorrentCreatorDlg();
-    int getPieceSize() const;
+    void updateInputPath(const QString &path);
 
-public slots:
+private slots:
     void updateProgressBar(int progress);
-    void on_cancelButton_clicked();
-
-protected slots:
-    void on_createButton_clicked();
-    void on_addFile_button_clicked();
-    void on_addFolder_button_clicked();
-    void handleCreationFailure(QString msg);
-    void handleCreationSuccess(QString path, QString branch_path);
-    void setInteractionEnabled(bool enabled);
-    void showProgressBar(bool show);
-    void on_checkAutoPieceSize_clicked(bool checked);
-    void updateOptimalPieceSize();
-    void saveTrackerList();
-    void loadTrackerList();
-
-protected:
-    void closeEvent(QCloseEvent *event);
+    void onCreateButtonClicked();
+    void onAddFileButtonClicked();
+    void onAddFolderButtonClicked();
+    void handleCreationFailure(const QString &msg);
+    void handleCreationSuccess(const QString &path, const QString &branchPath);
 
 private:
+    void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
+
     void saveSettings();
     void loadSettings();
+    int getPieceSize() const;
+    void setInteractionEnabled(bool enabled);
 
-private:
+    Ui::TorrentCreatorDlg *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
-    QList<int> m_pieceSizes;
+
+    // settings
+    CachedSettingValue<QSize> m_storeDialogSize;
+    CachedSettingValue<int> m_storePieceSize;
+    CachedSettingValue<bool> m_storePrivateTorrent;
+    CachedSettingValue<bool> m_storeStartSeeding;
+    CachedSettingValue<bool> m_storeIgnoreRatio;
+    CachedSettingValue<QString> m_storeLastAddPath;
+    CachedSettingValue<QString> m_storeTrackerList;
+    CachedSettingValue<QString> m_storeWebSeedList;
+    CachedSettingValue<QString> m_storeComments;
+    CachedSettingValue<QString> m_storeLastSavePath;
 };
 
 #endif

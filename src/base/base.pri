@@ -63,7 +63,8 @@ HEADERS += \
     $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h \
-    $$PWD/searchengine.h
+    $$PWD/searchengine.h \
+    $$PWD/global.h
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
