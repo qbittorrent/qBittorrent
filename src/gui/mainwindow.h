@@ -137,6 +137,7 @@ private slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
 #endif
+    void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
     void pythonDownloadSuccess(const QString &url, const QString &filePath);
@@ -204,6 +205,7 @@ private:
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
     void createTorrentTriggered(const QString &path = QString());
+    void showStatusBar(bool show);
 
     Ui::MainWindow *m_ui;
 
@@ -213,7 +215,7 @@ private:
     // GUI related
     bool m_posInitialized;
     QPointer<QTabWidget> m_tabs;
-    StatusBar *m_statusBar;
+    QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;
     QPointer<about> m_aboutDlg;
     QPointer<StatsDialog> m_statsDlg;

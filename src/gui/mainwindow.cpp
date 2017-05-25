@@ -264,6 +264,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionBottomPriority, SIGNAL(triggered()), m_transferListWidget, SLOT(bottomPrioSelectedTorrents()));
     connect(m_ui->actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
     connect(m_ui->actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
+    connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     m_programUpdateTimer = new QTimer(this);
@@ -289,10 +290,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Accept drag 'n drops
     setAcceptDrops(true);
     createKeyboardShortcuts();
-    // Create status bar
-    m_statusBar = new StatusBar(QMainWindow::statusBar());
-    connect(m_statusBar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
-    connect(m_ui->actionUseAlternativeSpeedLimits, SIGNAL(triggered()), m_statusBar, SLOT(toggleAlternativeSpeeds()));
 
 #ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
@@ -951,6 +948,8 @@ void MainWindow::notifyOfUpdate(QString)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
+    Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective.")
+                                   , Log::CRITICAL);
     // Delete the executable watcher
     delete m_executableWatcher;
     m_executableWatcher = 0;
@@ -1240,7 +1239,21 @@ void MainWindow::optionsSaved()
     loadPreferences();
 }
 
-// Load program preferences
+void MainWindow::showStatusBar(bool show)
+{
+    if (show && !m_statusBar) {
+        // Create status bar
+        m_statusBar = new StatusBar;
+        connect(m_statusBar.data(), &StatusBar::connectionButtonClicked, this, &MainWindow::showConnectionSettings);
+        connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
+        setStatusBar(m_statusBar);
+    }
+    else if (!show && m_statusBar) {
+        // Remove status bar
+        setStatusBar(nullptr);
+    }
+}
+
 void MainWindow::loadPreferences(bool configureSession)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
@@ -1285,7 +1298,7 @@ void MainWindow::loadPreferences(bool configureSession)
         m_ui->toolBar->setVisible(false);
     }
 
-    m_statusBar->setVisible(pref->isStatusbarDisplayed());
+    showStatusBar(pref->isStatusbarDisplayed());
 
     if (pref->preventFromSuspend() && !m_preventTimer->isActive()) {
         m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
@@ -1541,16 +1554,16 @@ void MainWindow::on_actionOptions_triggered()
 
 void MainWindow::on_actionTopToolBar_triggered()
 {
-    bool isVisible = static_cast<QAction * >(sender())->isChecked();
+    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
     m_ui->toolBar->setVisible(isVisible);
     Preferences::instance()->setToolbarDisplayed(isVisible);
 }
 
 void MainWindow::on_actionShowStatusbar_triggered()
 {
-    bool isVisible = static_cast<QAction*>(sender())->isChecked();
-    m_statusBar->setVisible(isVisible);
+    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
     Preferences::instance()->setStatusbarDisplayed(isVisible);
+    showStatusBar(isVisible);
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()
@@ -1681,8 +1694,15 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
     if (Preferences::instance()->isUpdateCheckEnabled() && (answer == QMessageBox::Yes))
         m_programUpdateTimer->start();
 }
-
 #endif
+
+void MainWindow::toggleAlternativeSpeeds()
+{
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (session->isBandwidthSchedulerEnabled())
+        m_statusBar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
+    session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
+}
 
 void MainWindow::on_actionDonateMoney_triggered()
 {
