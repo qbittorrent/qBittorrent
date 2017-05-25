@@ -70,6 +70,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     connect(m_ui->addFileButton, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
     connect(m_ui->addFolderButton, SIGNAL(clicked(bool)), SLOT(onAddFolderButtonClicked()));
     connect(m_ui->buttonBox, SIGNAL(accepted()), SLOT(onCreateButtonClicked()));
+    connect(m_ui->buttonCalcTotalPieces, &QAbstractButton::clicked, this, &TorrentCreatorDlg::updatePiecesCount);
 
     connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
     connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
@@ -205,6 +206,14 @@ void TorrentCreatorDlg::handleCreationSuccess(const QString &path, const QString
 void TorrentCreatorDlg::updateProgressBar(int progress)
 {
     m_ui->progressBar->setValue(progress);
+}
+
+void TorrentCreatorDlg::updatePiecesCount()
+{
+    const QString path = m_ui->textInputPath->text().trimmed();
+
+    const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(path, getPieceSize());
+    m_ui->labelTotalPieces->setText(QString::number(count));
 }
 
 void TorrentCreatorDlg::setInteractionEnabled(bool enabled)
