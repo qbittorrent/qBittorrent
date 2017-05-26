@@ -50,7 +50,8 @@ namespace
     {
     public:
         PieceIndexToImagePos(const BitTorrent::TorrentInfo &torrentInfo, const QImage &image)
-            : m_bytesPerPixel {image.width() > 0 ? torrentInfo.totalSize() / image.width() : -1}
+            : m_bytesPerPixel {(image.width() > 0 && torrentInfo.totalSize() >= image.width())
+                ? torrentInfo.totalSize() / image.width() : -1}
             , m_torrentInfo {torrentInfo}
         {
             if ((m_bytesPerPixel > 0) && (m_bytesPerPixel < 10))
