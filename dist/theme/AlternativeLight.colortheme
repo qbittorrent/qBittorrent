@@ -1,0 +1,22 @@
+[Info]
+Name=Alternative (Light)
+Description=Alternative color theme. Light flavour.
+Inherits=Default (Light)
+
+[TorrentState]
+Unknown=RGB:#ff0000
+Error=RGB:#ff0000
+MissingFiles=RGB:#ff0000
+Uploading=RGB:#4169e1
+PausedUploading=RGB:#00008b
+QueuedUploading=RGB:#008080
+StalledUploading=RGB:#4169e1
+CheckingUploading=RGB:#008080
+ForcedUploading=RGB:#4169e1
+Allocating=RGB:#228b22
+PausedDownloading=RGB:#000000
+QueuedDownloading=RGB:#008080
+StalledDownloading=RGB:#228b22
+CheckingDownloading=RGB:#008080
+QueuedForChecking=RGB:#008080
+CheckingResumeData=RGB:#008080

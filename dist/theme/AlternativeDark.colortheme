@@ -1,0 +1,25 @@
+[Info]
+Name=Alternative (Dark)
+Description=Alternative color theme. Dark flavour.
+Inherits=Default (Dark)
+
+[TorrentState]
+Uploading=RGB:#63b8ff
+PausedUploading=RGB:#4f94cd
+QueuedUploading=RGB:#00cdcd
+StalledUploading=RGB:#63b8ff
+CheckingUploading=RGB:#00cdcd
+ForcedUploading=RGB:#63b8ff
+Allocating=RGB:#fa8072
+Downloading=RGB:#32cd32
+DownloadingMetadata=RGB:#32cd32
+PausedDownloading=RGB:#cccccc
+QueuedDownloading=RGB:#00cdcd
+StalledDownloading=RGB:#fa8072
+CheckingDownloading=RGB:#00cdcd
+ForcedDownloading=RGB:#32cd32
+QueuedForChecking=RGB:#00cdcd
+CheckingResumeData=RGB:#00cdcd
+Unknown=RGB:#ff0000
+Error=RGB:#ff0000
+MissingFiles=RGB:#ff0000
