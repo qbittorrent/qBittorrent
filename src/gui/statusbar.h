@@ -64,15 +64,18 @@ private:
     void updateConnectionStatus();
     void updateDHTNodesNumber();
     void updateSpeedLabels();
+    void updateFreeSpaceOnDisk();
 
     QStatusBar *m_bar;
     QPushButton *m_dlSpeedLbl;
     QPushButton *m_upSpeedLbl;
     QLabel *m_DHTLbl;
+    QLabel *m_freeSpaceOnDiskLbl;
     QFrame *m_statusSep1;
     QFrame *m_statusSep2;
     QFrame *m_statusSep3;
     QFrame *m_statusSep4;
+    QFrame *m_statusSep5;
     QPushButton *m_connecStatusLblIcon;
     QPushButton *m_altSpeedsBtn;
     QWidget *m_container;
