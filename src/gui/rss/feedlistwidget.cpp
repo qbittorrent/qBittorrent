@@ -137,6 +137,7 @@ void FeedListWidget::handleItemPathChanged(RSS::Item *rssItem)
 
 void FeedListWidget::handleItemAboutToBeRemoved(RSS::Item *rssItem)
 {
+    rssItem->disconnect(this);
     delete m_rssToTreeItemMapping.take(rssItem);
 
     // RSS Item is still valid in this slot so if it is the last
