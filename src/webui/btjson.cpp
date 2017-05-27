@@ -655,6 +655,59 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
 }
 
 /**
+ * Returns an array of hashes (of each pieces respectively) for a torrent in JSON format.
+ *
+ * The return value is a JSON-formatted array of strings (hex strings).
+ */
+QByteArray btjson::getPieceHashesForTorrent(const QString &hash)
+{
+    CACHED_VARIABLE_FOR_HASH(QVariantList, pieceHashes, CACHE_DURATION_MS, hash);
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    const QVector<QByteArray> hashes = torrent->info().pieceHashes();
+    pieceHashes.reserve(hashes.size());
+    foreach (const QByteArray &hash, hashes)
+        pieceHashes.append(hash.toHex());
+
+    return json::toJson(pieceHashes);
+}
+
+/**
+ * Returns an array of states (of each pieces respectively) for a torrent in JSON format.
+ *
+ * The return value is a JSON-formatted array of ints.
+ * 0: piece not downloaded
+ * 1: piece requested or downloading
+ * 2: piece already downloaded
+ */
+QByteArray btjson::getPieceStatesForTorrent(const QString &hash)
+{
+    CACHED_VARIABLE_FOR_HASH(QVariantList, pieceStates, CACHE_DURATION_MS, hash);
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    const QBitArray states = torrent->pieces();
+    pieceStates.reserve(states.size());
+    for (int i = 0; i < states.size(); ++i)
+        pieceStates.append(static_cast<int>(states[i]) * 2);
+
+    const QBitArray dlstates = torrent->downloadingPieces();
+    for (int i = 0; i < states.size(); ++i) {
+        if (dlstates[i])
+            pieceStates[i] = 1;
+    }
+
+    return json::toJson(pieceStates);
+}
+
+/**
  * Returns the global transfer information in JSON format.
  *
  * The return value is a JSON-formatted dictionary.
