@@ -29,34 +29,35 @@
 #ifndef STATUSBAR_H
 #define STATUSBAR_H
 
-#include <QObject>
+#include <QStatusBar>
 
-class QStatusBar;
-class QFrame;
 class QLabel;
 class QPushButton;
-class QHBoxLayout;
 
 namespace BitTorrent
 {
     struct SessionStatus;
 }
 
-class StatusBar: public QObject
+class StatusBar: public QStatusBar
 {
     Q_OBJECT
+    Q_DISABLE_COPY(StatusBar)
 
 public:
-    StatusBar(QStatusBar *bar);
-    ~StatusBar();
+    StatusBar(QWidget *parent = nullptr);
+    ~StatusBar() override;
 
-    QPushButton* connectionStatusButton() const;
+signals:
+    void alternativeSpeedsButtonClicked();
+    void connectionButtonClicked();
 
 public slots:
     void showRestartRequired();
-    void refreshStatusBar();
+
+private slots:
+    void refresh();
     void updateAltSpeedsBtn(bool alternative);
-    void toggleAlternativeSpeeds();
     void capDownloadSpeed();
     void capUploadSpeed();
 
@@ -65,18 +66,11 @@ private:
     void updateDHTNodesNumber();
     void updateSpeedLabels();
 
-    QStatusBar *m_bar;
     QPushButton *m_dlSpeedLbl;
     QPushButton *m_upSpeedLbl;
     QLabel *m_DHTLbl;
-    QFrame *m_statusSep1;
-    QFrame *m_statusSep2;
-    QFrame *m_statusSep3;
-    QFrame *m_statusSep4;
     QPushButton *m_connecStatusLblIcon;
     QPushButton *m_altSpeedsBtn;
-    QWidget *m_container;
-    QHBoxLayout *m_layout;
 };
 
 #endif // STATUSBAR_H
