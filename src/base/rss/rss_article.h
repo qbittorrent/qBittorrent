@@ -33,6 +33,7 @@
 #include <QDateTime>
 #include <QObject>
 #include <QString>
+#include <QVariantHash>
 
 namespace RSS
 {
@@ -45,10 +46,8 @@ namespace RSS
 
         friend class Feed;
 
-        Article(Feed *feed, QString guid, QDateTime date, QString title, QString author
-                , QString description, QString torrentUrl, QString link, bool isRead = false);
-        static Article *fromJsonObject(Feed *feed, const QJsonObject &jsonObj);
-        static Article *fromVariantHash(Feed *feed, const QVariantHash &varHash);
+        Article(Feed *feed, const QVariantHash &varHash);
+        Article(Feed *feed, const QJsonObject &jsonObj);
 
     public:
         Feed *feed() const;
@@ -60,6 +59,7 @@ namespace RSS
         QString torrentUrl() const;
         QString link() const;
         bool isRead() const;
+        QVariantHash data() const;
 
         void markAsRead();
 
@@ -80,5 +80,6 @@ namespace RSS
         QString m_torrentURL;
         QString m_link;
         bool m_isRead = false;
+        QVariantHash m_data;
     };
 }

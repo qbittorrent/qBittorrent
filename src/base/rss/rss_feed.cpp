@@ -207,13 +207,14 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
         m_lastBuildDate = result.lastBuildDate;
 
         foreach (const QVariantHash &varHash, result.articles) {
-            auto article = Article::fromVariantHash(this, varHash);
-            if (article) {
+            try {
+                auto article = new Article(this, varHash);
                 if (!addArticle(article))
                     delete article;
                 else
                     m_dirty = true;
             }
+            catch (const std::runtime_error&) {}
         }
 
         store();
@@ -272,9 +273,12 @@ void Feed::loadArticles(const QByteArray &data)
             continue;
         }
 
-        auto article = Article::fromJsonObject(this, jsonVal.toObject());
-        if (article && !addArticle(article))
-            delete article;
+        try {
+            auto article = new Article(this, jsonVal.toObject());
+            if (!addArticle(article))
+                delete article;
+        }
+        catch (const std::runtime_error&) {}
     }
 }
 
@@ -284,9 +288,17 @@ void Feed::loadArticlesLegacy()
     QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
     foreach (const QVariant &var, allOldItems.value(m_url).toList()) {
-        auto article = Article::fromVariantHash(this, var.toHash());
-        if (article && !addArticle(article))
-            delete article;
+        auto hash = var.toHash();
+        // update legacy keys
+        hash[QLatin1String("link")] = hash.take(QLatin1String("news_link"));
+        hash[QLatin1String("torrentURL")] = hash.take(QLatin1String("torrent_url"));
+        hash[QLatin1String("isRead")] = hash.take(QLatin1String("read"));
+        try {
+            auto article = new Article(this, hash);
+            if (!addArticle(article))
+                delete article;
+        }
+        catch (const std::runtime_error&) {}
     }
 }
 

@@ -294,13 +294,13 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
             }
             else if (name == "enclosure") {
                 if (xml.attributes().value("type") == "application/x-bittorrent")
-                    article["torrent_url"] = xml.attributes().value("url").toString();
+                    article["torrentURL"] = xml.attributes().value("url").toString();
             }
             else if (name == "link") {
                 if (text.startsWith("magnet:", Qt::CaseInsensitive))
-                    article["torrent_url"] = text; // magnet link instead of a news URL
+                    article["torrentURL"] = text; // magnet link instead of a news URL
                 else
-                    article["news_link"] = text;
+                    article["link"] = text;
             }
             else if (name == "description") {
                 article["description"] = text;
@@ -374,12 +374,12 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                                 : xml.attributes().value("href").toString());
 
                 if (link.startsWith("magnet:", Qt::CaseInsensitive))
-                    article["torrent_url"] = link; // magnet link instead of a news URL
+                    article["torrentURL"] = link; // magnet link instead of a news URL
                 else
                     // Atom feeds can have relative links, work around this and
                     // take the stress of figuring article full URI from UI
                     // Assemble full URI
-                    article["news_link"] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
+                    article["link"] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
 
             }
             else if ((name == "summary") || (name == "content")){
