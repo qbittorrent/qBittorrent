@@ -1241,16 +1241,16 @@ void MainWindow::optionsSaved()
 
 void MainWindow::showStatusBar(bool show)
 {
-    if (show && !m_statusBar) {
+    if (!show) {
+        // Remove status bar
+        setStatusBar(nullptr);
+    }
+    else if (!m_statusBar) {
         // Create status bar
         m_statusBar = new StatusBar;
         connect(m_statusBar.data(), &StatusBar::connectionButtonClicked, this, &MainWindow::showConnectionSettings);
         connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
         setStatusBar(m_statusBar);
-    }
-    else if (!show && m_statusBar) {
-        // Remove status bar
-        setStatusBar(nullptr);
     }
 }
 
