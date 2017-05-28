@@ -50,6 +50,15 @@ namespace RSS
         Article(Feed *feed, const QJsonObject &jsonObj);
 
     public:
+        static const QString KeyId;
+        static const QString KeyDate;
+        static const QString KeyTitle;
+        static const QString KeyAuthor;
+        static const QString KeyDescription;
+        static const QString KeyTorrentURL;
+        static const QString KeyLink;
+        static const QString KeyIsRead;
+
         Feed *feed() const;
         QString guid() const;
         QDateTime date() const;

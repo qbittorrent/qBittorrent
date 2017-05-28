@@ -36,6 +36,7 @@
 #include <QSaveFile>
 #include <QThread>
 #include <QTimer>
+#include <QVariant>
 
 #include "../bittorrent/magneturi.h"
 #include "../bittorrent/session.h"
@@ -54,10 +55,7 @@
 struct ProcessingJob
 {
     QString feedURL;
-    QString articleGUID;
-    QString articleTitle;
-    QDateTime articleDate;
-    QString torrentURL;
+    QVariantHash articleData;
 };
 
 const QString ConfFolderName(QStringLiteral("rss"));
@@ -191,8 +189,8 @@ void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
     auto job = m_waitingJobs.take(url);
     if (!job) return;
 
-    if (auto feed = Session::instance()->feedByURL(job->feedURL))
-        if (auto article = feed->articleByGUID(job->articleGUID))
+    if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
+        if (Article *article = feed->articleByGUID(job->articleData.value(Article::KeyId).toString()))
             article->markAsRead();
 }
 
@@ -220,10 +218,7 @@ void AutoDownloader::addJobForArticle(Article *article)
 
     QSharedPointer<ProcessingJob> job(new ProcessingJob);
     job->feedURL = article->feed()->url();
-    job->articleGUID = article->guid();
-    job->articleTitle = article->title();
-    job->articleDate = article->date();
-    job->torrentURL = torrentURL;
+    job->articleData = article->data();
     m_processingQueue.append(job);
     if (!m_processingTimer->isActive())
         m_processingTimer->start();
@@ -234,17 +229,18 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
     for (AutoDownloadRule &rule: m_rules) {
         if (!rule.isEnabled()) continue;
         if (!rule.feedURLs().contains(job->feedURL)) continue;
-        if (!rule.matches(job->articleTitle)) continue;
+        if (!rule.matches(job->articleData.value(Article::KeyTitle).toString())) continue;
 
+        auto articleDate = job->articleData.value(Article::KeyDate).toDateTime();
         // if rule is in ignoring state do nothing with matched torrent
         if (rule.ignoreDays() > 0) {
             if (rule.lastMatch().isValid()) {
-                if (job->articleDate < rule.lastMatch().addDays(rule.ignoreDays()))
+                if (articleDate < rule.lastMatch().addDays(rule.ignoreDays()))
                     return;
             }
         }
 
-        rule.setLastMatch(job->articleDate);
+        rule.setLastMatch(articleDate);
         m_dirty = true;
         storeDeferred();
 
@@ -252,18 +248,19 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         params.savePath = rule.savePath();
         params.category = rule.assignedCategory();
         params.addPaused = rule.addPaused();
-        BitTorrent::Session::instance()->addTorrent(job->torrentURL, params);
+        auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
+        BitTorrent::Session::instance()->addTorrent(torrentURL, params);
 
-        if (BitTorrent::MagnetUri(job->torrentURL).isValid()) {
-            if (auto feed = Session::instance()->feedByURL(job->feedURL)) {
-                if (auto article = feed->articleByGUID(job->articleGUID))
+        if (BitTorrent::MagnetUri(torrentURL).isValid()) {
+            if (Feed *feed = Session::instance()->feedByURL(job->feedURL)) {
+                if (Article *article = feed->articleByGUID(job->articleData.value(Article::KeyId).toString()))
                     article->markAsRead();
             }
         }
         else {
             // waiting for torrent file downloading
             // normalize URL string via QUrl since DownloadManager do it
-            m_waitingJobs.insert(QUrl(job->torrentURL).toString(), job);
+            m_waitingJobs.insert(QUrl(torrentURL).toString(), job);
         }
 
         return;
