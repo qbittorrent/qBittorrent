@@ -105,7 +105,7 @@ GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
 
     db = new GeoIPDatabase(file.size());
 
-    if (file.read((char *)db->m_data, db->m_size) != db->m_size) {
+    if (file.read(reinterpret_cast<char *>(db->m_data), db->m_size) != db->m_size) {
         error = file.errorString();
         delete db;
         return 0;
@@ -130,7 +130,7 @@ GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
 
     db = new GeoIPDatabase(data.size());
 
-    memcpy((char *)db->m_data, data.constData(), db->m_size);
+    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), db->m_size);
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error)) {
         delete db;

@@ -33,7 +33,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
 
     // allocate string which will be filled with the demangled function name
     size_t funcnamesize = 256;
-    char *funcname = (char *)malloc(funcnamesize);
+    char *funcname = static_cast<char *>(malloc(funcnamesize));
 
     int functionNamesFound = 0;
     // iterate over the returned symbol lines. skip the first, it is the

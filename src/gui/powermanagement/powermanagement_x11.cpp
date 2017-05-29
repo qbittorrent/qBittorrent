@@ -117,9 +117,9 @@ void PowerManagementInhibitor::RequestBusy()
 
     QList<QVariant> args;
     args << "qBittorrent";
-    if (m_use_gsm) args << (uint)0;
+    if (m_use_gsm) args << 0u;
     args << "Active torrents are presented";
-    if (m_use_gsm) args << (uint)8;
+    if (m_use_gsm) args << 8u;
     call.setArguments(args);
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);

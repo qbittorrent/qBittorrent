@@ -406,12 +406,12 @@ void Preferences::setSchedulerEndTime(const QTime &time)
 
 scheduler_days Preferences::getSchedulerDays() const
 {
-    return (scheduler_days)value("Preferences/Scheduler/days", EVERY_DAY).toInt();
+    return static_cast<scheduler_days>(value("Preferences/Scheduler/days", EVERY_DAY).toInt());
 }
 
 void Preferences::setSchedulerDays(scheduler_days days)
 {
-    setValue("Preferences/Scheduler/days", (int)days);
+    setValue("Preferences/Scheduler/days", static_cast<int>(days));
 }
 
 // Search

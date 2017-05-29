@@ -577,7 +577,7 @@ void OptionsDialog::saveOptions()
     session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
     pref->setSchedulerStartTime(m_ui->schedule_from->time());
     pref->setSchedulerEndTime(m_ui->schedule_to->time());
-    pref->setSchedulerDays((scheduler_days)m_ui->schedule_days->currentIndex());
+    pref->setSchedulerDays(static_cast<scheduler_days>(m_ui->schedule_days->currentIndex()));
 
     auto proxyConfigManager  = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
@@ -967,7 +967,7 @@ void OptionsDialog::loadOptions()
     m_ui->check_schedule->setChecked(session->isBandwidthSchedulerEnabled());
     m_ui->schedule_from->setTime(pref->getSchedulerStartTime());
     m_ui->schedule_to->setTime(pref->getSchedulerEndTime());
-    m_ui->schedule_days->setCurrentIndex((int)pref->getSchedulerDays());
+    m_ui->schedule_days->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
     // End Speed preferences
 
     // Bittorrent preferences
@@ -1024,7 +1024,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
 
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
-    m_ui->comboDNSService->setCurrentIndex((int)pref->getDynDNSService());
+    m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
     m_ui->domainNameTxt->setText(pref->getDynDomainName());
     m_ui->DNSUsernameTxt->setText(pref->getDynDNSUsername());
     m_ui->DNSPasswordTxt->setText(pref->getDynDNSPassword());

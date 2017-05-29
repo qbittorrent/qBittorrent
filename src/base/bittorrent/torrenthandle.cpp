@@ -555,7 +555,7 @@ qreal TorrentHandle::progress() const
     if (m_nativeStatus.total_wanted_done == m_nativeStatus.total_wanted)
         return 1.;
 
-    float progress = (float) m_nativeStatus.total_wanted_done / (float) m_nativeStatus.total_wanted;
+    float progress = static_cast<float>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
     Q_ASSERT((progress >= 0.f) && (progress <= 1.f));
     return progress;
 }
