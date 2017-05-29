@@ -82,9 +82,9 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
 
 void TorrentContentModel::updateFilesPriorities(const QVector<int> &fprio)
 {
-    Q_ASSERT(m_filesIndex.size() == (int)fprio.size());
+    Q_ASSERT(m_filesIndex.size() == fprio.size());
     // XXX: Why is this necessary?
-    if (m_filesIndex.size() != (int)fprio.size())
+    if (m_filesIndex.size() != fprio.size())
         return;
 
     emit layoutAboutToBeChanged();

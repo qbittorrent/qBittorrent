@@ -417,7 +417,7 @@ int FilterParserThread::parseP2BFilterFile()
     unsigned char version;
     if (!stream.readRawData(buf, sizeof(buf))
         || memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7)
-        || !stream.readRawData((char*)&version, sizeof(version))) {
+        || !stream.readRawData(reinterpret_cast<char*>(&version), sizeof(version))) {
         LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
         return ruleCount;
     }
@@ -428,8 +428,8 @@ int FilterParserThread::parseP2BFilterFile()
 
         std::string name;
         while(getlineInStream(stream, name, '\0') && !m_abort) {
-            if (!stream.readRawData((char*)&start, sizeof(start))
-                || !stream.readRawData((char*)&end, sizeof(end))) {
+            if (!stream.readRawData(reinterpret_cast<char*>(&start), sizeof(start))
+                || !stream.readRawData(reinterpret_cast<char*>(&end), sizeof(end))) {
                 LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }
@@ -450,7 +450,7 @@ int FilterParserThread::parseP2BFilterFile()
     else if (version == 3) {
         qDebug ("p2b version 3");
         unsigned int namecount;
-        if (!stream.readRawData((char*)&namecount, sizeof(namecount))) {
+        if (!stream.readRawData(reinterpret_cast<char*>(&namecount), sizeof(namecount))) {
             LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
             return ruleCount;
         }
@@ -469,7 +469,7 @@ int FilterParserThread::parseP2BFilterFile()
 
         // Reading the ranges
         unsigned int rangecount;
-        if (!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
+        if (!stream.readRawData(reinterpret_cast<char*>(&rangecount), sizeof(rangecount))) {
             LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
             return ruleCount;
         }
@@ -477,9 +477,9 @@ int FilterParserThread::parseP2BFilterFile()
         rangecount = ntohl(rangecount);
         unsigned int name, start, end;
         for (unsigned int i = 0; i < rangecount; ++i) {
-            if (!stream.readRawData((char*)&name, sizeof(name))
-                || !stream.readRawData((char*)&start, sizeof(start))
-                || !stream.readRawData((char*)&end, sizeof(end))) {
+            if (!stream.readRawData(reinterpret_cast<char*>(&name), sizeof(name))
+                || !stream.readRawData(reinterpret_cast<char*>(&start), sizeof(start))
+                || !stream.readRawData(reinterpret_cast<char*>(&end), sizeof(end))) {
                 LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }

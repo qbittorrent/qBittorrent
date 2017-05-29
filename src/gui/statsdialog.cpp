@@ -71,7 +71,7 @@ void StatsDialog::update()
     // Global ratio
     m_ui->labelGlobalRatio->setText(
                 ((atd > 0) && (atu > 0))
-                ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2)
+                ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
                 : "-");
     // Cache hits
     qreal readRatio = cs.readRatio;

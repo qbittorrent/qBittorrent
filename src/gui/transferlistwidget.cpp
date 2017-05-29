@@ -449,7 +449,7 @@ void TransferListWidget::setDlLimitSelectedTorrents()
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
         torrent->setDownloadLimit(newLimit);
     }
 }
@@ -474,7 +474,7 @@ void TransferListWidget::setUpLimitSelectedTorrents()
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
         torrent->setUploadLimit(newLimit);
     }
 }

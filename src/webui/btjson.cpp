@@ -373,7 +373,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
         if (lastData.contains("torrents") && lastData["torrents"].toHash().contains(torrent->hash()) &&
                 lastData["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
             uint lastValue = lastData["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
-            if (qAbs((int)(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
+            if (qAbs(static_cast<int>(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
                 map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
         }
 
@@ -595,8 +595,8 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
     dataDict[KEY_PROP_ADDITION_DATE] = torrent->addedTime().toTime_t();
     if (torrent->hasMetadata()) {
-        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? (int)torrent->lastSeenComplete().toTime_t() : -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? (int)torrent->completedTime().toTime_t() : -1;
+        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? static_cast<int>(torrent->lastSeenComplete().toTime_t()) : -1;
+        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? static_cast<int>(torrent->completedTime().toTime_t()) : -1;
         dataDict[KEY_PROP_CREATION_DATE] = torrent->creationDate().toTime_t();
     }
     else {
@@ -743,7 +743,7 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_ALLTIME_DL] = atd;
     map[KEY_TRANSFER_ALLTIME_UL] = atu;
     map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
-    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) : "-";
+    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
     map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
     qreal readRatio = cacheStatus.readRatio;

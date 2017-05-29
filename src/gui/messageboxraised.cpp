@@ -37,7 +37,7 @@ MessageBoxRaised::MessageBoxRaised(QMessageBox::Icon icon, const QString &title,
 QMessageBox::StandardButton MessageBoxRaised::impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
   MessageBoxRaised dlg(icon, title, text, buttons, parent);
   dlg.setDefaultButton(defaultButton);
-  return (QMessageBox::StandardButton)dlg.exec();
+  return static_cast<QMessageBox::StandardButton>(dlg.exec());
 }
 
 QMessageBox::StandardButton MessageBoxRaised::critical(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {

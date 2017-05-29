@@ -1092,7 +1092,7 @@ bool MainWindow::event(QEvent *e)
         if (isMinimized()) {
             qDebug("minimisation");
             if (m_systrayIcon && Preferences::instance()->minimizeToTray()) {
-                qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
+                qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
                 bool hasModalWindow = false;
                 foreach (QWidget *widget, QApplication::allWidgets()) {

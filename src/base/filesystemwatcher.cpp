@@ -224,7 +224,9 @@ bool FileSystemWatcher::isNetworkFileSystem(QString path)
         // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
         return ((strcmp(buf.f_fstypename, "nfs") == 0) || (strcmp(buf.f_fstypename, "cifs") == 0) || (strcmp(buf.f_fstypename, "smbfs") == 0));
 #else
-        return ((buf.f_type == (long)CIFS_MAGIC_NUMBER) || (buf.f_type == (long)NFS_SUPER_MAGIC) || (buf.f_type == (long)SMB_SUPER_MAGIC));
+        return ((buf.f_type == static_cast<long>(CIFS_MAGIC_NUMBER))
+            || (buf.f_type == static_cast<long>(NFS_SUPER_MAGIC))
+            || (buf.f_type == static_cast<long>(SMB_SUPER_MAGIC)));
 #endif
     }
     else {

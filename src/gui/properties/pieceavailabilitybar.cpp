@@ -44,7 +44,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     QVector<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
 
-    const float ratio = vecin.size() / (float)reqSize;
+    const float ratio = static_cast<float>(vecin.size()) / reqSize;
 
     const int maxElement = *std::max_element(vecin.begin(), vecin.end());
 
@@ -112,7 +112,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         value /= ratio * maxElement;
 
         // float precision sometimes gives > 1, because in not possible to store irrational numbers
-        value = qMin(value, (float)1.0);
+        value = qMin(value, 1.0f);
 
         result[x] = value;
     }
