@@ -290,9 +290,9 @@ void Feed::loadArticlesLegacy()
     foreach (const QVariant &var, allOldItems.value(m_url).toList()) {
         auto hash = var.toHash();
         // update legacy keys
-        hash[QLatin1String("link")] = hash.take(QLatin1String("news_link"));
-        hash[QLatin1String("torrentURL")] = hash.take(QLatin1String("torrent_url"));
-        hash[QLatin1String("isRead")] = hash.take(QLatin1String("read"));
+        hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));
+        hash[Article::KeyTorrentURL] = hash.take(QLatin1String("torrent_url"));
+        hash[Article::KeyIsRead] = hash.take(QLatin1String("read"));
         try {
             auto article = new Article(this, hash);
             if (!addArticle(article))
