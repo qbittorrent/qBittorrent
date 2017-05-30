@@ -105,12 +105,6 @@ void Folder::handleItemUnreadCountChanged()
     emit unreadCountChanged(this);
 }
 
-void Folder::handleItemAboutToBeDestroyed(Item *item)
-{
-    if (item->unreadCount() > 0)
-        emit unreadCountChanged(this);
-}
-
 void Folder::cleanup()
 {
     foreach (Item *item, items())
@@ -127,14 +121,23 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleRead, this, &Item::articleRead);
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
-    connect(item, &Item::aboutToBeDestroyed, this, &Folder::handleItemAboutToBeDestroyed);
-    emit unreadCountChanged(this);
+
+    for (auto article: item->articles())
+        emit newArticle(article);
+
+    if (item->unreadCount() > 0)
+        emit unreadCountChanged(this);
 }
 
 void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
+
+    for (auto article: item->articles())
+        emit articleAboutToBeRemoved(article);
+
     item->disconnect(this);
     m_items.removeOne(item);
-    emit unreadCountChanged(this);
+    if (item->unreadCount() > 0)
+        emit unreadCountChanged(this);
 }

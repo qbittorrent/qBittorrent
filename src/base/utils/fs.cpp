@@ -36,9 +36,11 @@
 #include <QFileInfo>
 #include <QDirIterator>
 #include <QCoreApplication>
+#include <QStorageInfo>
 
-#ifndef Q_OS_WIN
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -46,9 +48,8 @@
 #else
 #include <sys/vfs.h>
 #endif
-#else
-#include <Windows.h>
-#endif
+
+#include "base/bittorrent/torrenthandle.h"
 
 /**
  * Converts a path to a string suitable for display.
@@ -70,7 +71,7 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(".!qB");
+    QString ext = QString(filename).remove(QB_EXT);
     const int point_index = ext.lastIndexOf(".");
     return (point_index >= 0) ? ext.mid(point_index + 1) : QString();
 }
@@ -179,14 +180,13 @@ qint64 Utils::Fs::computePathSize(const QString& path)
     QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
+
     // Compute folder size based on its content
     qint64 size = 0;
-    foreach (const QFileInfo &subfi, QDir(path).entryInfoList(QDir::Dirs|QDir::Files)) {
-        if (subfi.fileName().startsWith(".")) continue;
-        if (subfi.isDir())
-            size += computePathSize(subfi.absoluteFilePath());
-        else
-            size += subfi.size();
+    QDirIterator iter(path, QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories);
+    while (iter.hasNext()) {
+        iter.next();
+        size += iter.fileInfo().size();
     }
     return size;
 }
@@ -200,19 +200,14 @@ bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
     if (!f1.exists() || !f2.exists()) return false;
     if (f1.size() != f2.size()) return false;
     if (!f1.open(QIODevice::ReadOnly)) return false;
-    if (!f2.open(QIODevice::ReadOnly)) {
-        f1.close();
-        return false;
-    }
-    bool same = true;
+    if (!f2.open(QIODevice::ReadOnly)) return false;
+
+    const int readSize = 1024 * 1024;  // 1 MiB
     while(!f1.atEnd() && !f2.atEnd()) {
-        if (f1.read(1024) != f2.read(1024)) {
-            same = false;
-            break;
-        }
+        if (f1.read(readSize) != f2.read(readSize))
+            return false;
     }
-    f1.close(); f2.close();
-    return same;
+    return true;
 }
 
 QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
@@ -234,44 +229,11 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
     return !name.contains(regex);
 }
 
-qulonglong Utils::Fs::freeDiskSpaceOnPath(const QString &path)
+qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 {
-    if (path.isEmpty()) return 0;
+    if (path.isEmpty()) return -1;
 
-    QDir dirPath(path);
-    if (!dirPath.exists()) {
-        QStringList parts = path.split("/");
-        while (parts.size() > 1 && !QDir(parts.join("/")).exists())
-            parts.removeLast();
-
-        dirPath = QDir(parts.join("/"));
-        if (!dirPath.exists()) return 0;
-    }
-    Q_ASSERT(dirPath.exists());
-
-#if defined(Q_OS_WIN)
-    ULARGE_INTEGER bytesFree;
-    LPCWSTR nativePath = reinterpret_cast<LPCWSTR>((toNativePath(dirPath.path())).utf16());
-    if (GetDiskFreeSpaceExW(nativePath, &bytesFree, NULL, NULL) == 0)
-        return 0;
-    return bytesFree.QuadPart;
-#elif defined(Q_OS_HAIKU)
-    const QString statfsPath = dirPath.path() + "/.";
-    dev_t device = dev_for_path(qPrintable(statfsPath));
-    if (device < 0)
-        return 0;
-    fs_info info;
-    if (fs_stat_dev(device, &info) != B_OK)
-        return 0;
-    return ((qulonglong) info.free_blocks * (qulonglong) info.block_size);
-#else
-    struct statfs stats;
-    const QString statfsPath = dirPath.path() + "/.";
-    const int ret = statfs(qPrintable(statfsPath), &stats);
-    if (ret != 0)
-        return 0;
-    return ((qulonglong) stats.f_bavail * (qulonglong) stats.f_bsize);
-#endif
+    return QStorageInfo(path).bytesAvailable();
 }
 
 QString Utils::Fs::branchPath(const QString& file_path, QString* removed)

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017  Frédéric Brière <fbriere@fbriere.net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,44 +26,27 @@
  * exception statement from your version.
  */
 
-#include <libtorrent/version.hpp>
-#include "cachestatus.h"
+#ifndef CATEGORYFILTERPROXYMODEL_H
+#define CATEGORYFILTERPROXYMODEL_H
 
-using namespace BitTorrent;
+#include <QSortFilterProxyModel>
+#include <QString>
 
-CacheStatus::CacheStatus(const libtorrent::cache_status &nativeStatus)
-    : m_nativeStatus(nativeStatus)
+class CategoryFilterProxyModel: public QSortFilterProxyModel
 {
-}
+public:
+    explicit CategoryFilterProxyModel(QObject *parent = nullptr);
 
-int CacheStatus::totalUsedBuffers() const
-{
-    return m_nativeStatus.total_used_buffers;
-}
+    // CategoryFilterModel methods which we need to relay
+    QModelIndex index(const QString &categoryName) const;
+    QString categoryName(const QModelIndex &index) const;
 
-qreal CacheStatus::readRatio() const
-{
-    if (m_nativeStatus.blocks_read > 0)
-        return (static_cast<qreal>(m_nativeStatus.blocks_read_hit) / m_nativeStatus.blocks_read);
-    else
-        return -1;
-}
+protected:
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
-int CacheStatus::jobQueueLength() const
-{
-#if LIBTORRENT_VERSION_NUM < 10100
-    return m_nativeStatus.job_queue_length;
-#else
-    return m_nativeStatus.queued_jobs;
-#endif
-}
+private:
+    // we added another overload of index(), hence this using directive:
+    using QSortFilterProxyModel::index;
+};
 
-int CacheStatus::averageJobTime() const
-{
-    return m_nativeStatus.average_job_time;
-}
-
-qlonglong CacheStatus::queuedBytes() const
-{
-    return m_nativeStatus.queued_bytes;
-}
+#endif // CATEGORYFILTERPROXYMODEL_H

@@ -178,11 +178,11 @@ QString Application::fileLoggerPath() const
             QVariant(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER)).toString();
 }
 
-void Application::setFileLoggerPath(const QString &value)
+void Application::setFileLoggerPath(const QString &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(value);
-    settings()->storeValue(KEY_FILELOGGER_PATH, value);
+        m_fileLogger->changePath(path);
+    settings()->storeValue(KEY_FILELOGGER_PATH, path);
 }
 
 bool Application::isFileLoggerBackup() const
@@ -366,7 +366,7 @@ void Application::allTorrentsFinished()
         // do nothing & skip confirm
     }
     else {
-        if (!ShutdownConfirmDlg::askForConfirmation(action)) return;
+        if (!ShutdownConfirmDlg::askForConfirmation(m_window, action)) return;
     }
 #endif // DISABLE_GUI
 
@@ -409,7 +409,7 @@ void Application::processParams(const QStringList &params)
         param = param.trimmed();
 
         // Process strings indicating options specified by the user.
-        
+
         if (param.startsWith(QLatin1String("@savePath="))) {
             torrentParams.savePath = param.mid(10);
             continue;

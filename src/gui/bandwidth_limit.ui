@@ -10,9 +10,6 @@
     <height>83</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string notr="true">Bandwidth allocation</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -25,9 +22,6 @@
      </item>
      <item>
       <widget class="QSpinBox" name="spinBandwidth">
-       <property name="suffix">
-        <string/>
-       </property>
        <property name="maximum">
         <number>65535</number>
        </property>
@@ -40,9 +34,6 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>

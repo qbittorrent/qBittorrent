@@ -186,7 +186,7 @@ qlonglong TorrentInfo::fileSize(int index) const
 qlonglong TorrentInfo::fileOffset(int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->file_at(index).offset;
+    return m_nativeInfo->files().file_offset(index);
 }
 
 QList<TrackerEntry> TorrentInfo::trackers() const
@@ -244,6 +244,21 @@ QVector<int> TorrentInfo::fileIndicesForPiece(int pieceIndex) const
         [](const libt::file_slice &s) { return s.file_index; });
 
     return res;
+}
+
+QVector<QByteArray> TorrentInfo::pieceHashes() const
+{
+    if (!isValid())
+        return {};
+
+    const int count = piecesCount();
+    QVector<QByteArray> hashes;
+    hashes.reserve(count);
+
+    for (int i = 0; i < count; ++i)
+        hashes += { m_nativeInfo->hash_for_piece_ptr(i), libtorrent::sha1_hash::size };
+
+    return hashes;
 }
 
 TorrentInfo::PieceRange TorrentInfo::filePieces(const QString& file) const

@@ -3,14 +3,14 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(QBT_APP_HEADERS
 application.h
+cmdoptions.h
 filelogger.h
-options.h
 )
 
 set(QBT_APP_SOURCES
 application.cpp
+cmdoptions.cpp
 filelogger.cpp
-options.cpp
 main.cpp
 )
 
@@ -36,6 +36,7 @@ endforeach()
 
 set(QBT_APP_RESOURCES
 ../icons.qrc
+../searchengine.qrc
 "${_lang_qrc_dst}"
 )
 

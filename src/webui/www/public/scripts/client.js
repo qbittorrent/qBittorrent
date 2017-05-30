@@ -107,7 +107,7 @@ window.addEvent('load', function () {
         selected_category = hash;
         localStorage.setItem('selected_category', selected_category);
         highlightSelectedCategory();
-        if (typeof torrentsTable.table != 'undefined')
+        if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
     };
 
@@ -126,7 +126,7 @@ window.addEvent('load', function () {
         selected_filter = f;
         localStorage.setItem('selected_filter', f);
         // Reload torrents
-        if (typeof torrentsTable.table != 'undefined')
+        if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
     }
 
@@ -207,15 +207,15 @@ window.addEvent('load', function () {
     };
 
     var updateFiltersList = function() {
-        updateFilter('all', 'QBT_TR(All (%1))QBT_TR');
-        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR');
-        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR');
-        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR');
-        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR');
-        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR');
-        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR');
-        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR');
-        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR');
+        updateFilter('all', 'QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
     };
 
     var updateCategoryList = function() {
@@ -239,8 +239,8 @@ window.addEvent('load', function () {
             if (row['full_data'].category.length === 0)
                 uncategorized += 1;
         });
-        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All (0))QBT_TR'.replace(' (0)', ''), all));
-        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized (0))QBT_TR'.replace(' (0)', ''), uncategorized));
+        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]', all));
+        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]', uncategorized));
 
         var sortedCategories = []
         Object.each(category_list, function(category) {
@@ -279,7 +279,7 @@ window.addEvent('load', function () {
             noCache : true,
             method : 'get',
             onFailure : function () {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(syncMainDataTimer);
                 syncMainDataTimer = syncMainData.delay(2000);
             },
@@ -362,26 +362,26 @@ window.addEvent('load', function () {
         transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
-            document.title = "QBT_TR([D:%1 U:%2])QBT_TR".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true));
-            document.title += " qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", "${VERSION}");
+            document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }else
-            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR";
-        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR'.replace("%1", serverState.dht_nodes));
+            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
+        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         <!-- Statistics dialog -->
         if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', 'Alltime download: %1'.replace("%1", friendlyUnit(serverState.alltime_dl, false)));
-            $('AlltimeUL').set('html', 'Alltime upload: %1'.replace("%1", friendlyUnit(serverState.alltime_ul, false)));
-            $('TotalWastedSession').set('html', 'Total wasted (this session): %1'.replace("%1", friendlyUnit(serverState.total_wasted_session, false)));
-            $('GlobalRatio').set('html', 'Global ratio: %1'.replace("%1", serverState.global_ratio ));
-            $('TotalPeerConnections').set('html', 'Total peer connections: %1'.replace("%1", serverState.total_peer_connections ));
-            $('ReadCacheHits').set('html', 'Read cache hits: %1'.replace("%1", serverState.read_cache_hits ));
-            $('TotalBuffersSize').set('html', 'Total buffers size: %1'.replace("%1", friendlyUnit(serverState.total_buffers_size, false)));
-            $('WriteCacheOverload').set('html', 'Write cache overload: %1'.replace("%1", serverState.write_cache_overload ));
-            $('ReadCacheOverload').set('html', 'Read cache overload: %1'.replace("%1", serverState.read_cache_overload ));
-            $('QueuedIOJobs').set('html', 'Queued I/O jobs: %1'.replace("%1", serverState.queued_io_jobs ));
-            $('AverageTimeInQueue').set('html', 'Average time in queue: %1'.replace("%1", serverState.average_time_queue ));
-            $('TotalQueuedSize').set('html', 'Total queued size: %1'.replace("%1", friendlyUnit(serverState.total_queued_size, false) ));
+            $('AlltimeDL').set('html', 'QBT_TR(Alltime download:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_dl, false));
+            $('AlltimeUL').set('html', 'QBT_TR(Alltime upload:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_ul, false));
+            $('TotalWastedSession').set('html', 'QBT_TR(Total wasted (this session):)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_wasted_session, false));
+            $('GlobalRatio').set('html', 'QBT_TR(Global ratio:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.global_ratio);
+            $('TotalPeerConnections').set('html', 'QBT_TR(Total peer connections:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.total_peer_connections);
+            $('ReadCacheHits').set('html', 'QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_hits);
+            $('TotalBuffersSize').set('html', 'QBT_TR(Total buffers size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_buffers_size, false));
+            $('WriteCacheOverload').set('html', 'QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.write_cache_overload);
+            $('ReadCacheOverload').set('html', 'QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_overload);
+            $('QueuedIOJobs').set('html', 'QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.queued_io_jobs);
+            $('AverageTimeInQueue').set('html', 'QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.average_time_queue);
+            $('TotalQueuedSize').set('html', 'QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_queued_size, false));
         }
 
         if (serverState.connection_status == "connected")
@@ -468,7 +468,7 @@ window.addEvent('load', function () {
         processServerState();
     });
 
-    $('StatisticsLink').addEvent('click', StatisticsLinkFN); 
+    $('StatisticsLink').addEvent('click', StatisticsLinkFN);
 
     new MochaUI.Panel({
         id : 'transferList',
@@ -631,7 +631,7 @@ var loadTorrentPeersData = function(){
         noCache: true,
         method: 'get',
         onFailure: function() {
-            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR');
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
             clearTimeout(loadTorrentPeersTimer);
             loadTorrentPeersTimer = loadTorrentPeersData.delay(5000);
         },

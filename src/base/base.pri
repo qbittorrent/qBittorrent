@@ -63,7 +63,8 @@ HEADERS += \
     $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h \
-    $$PWD/searchengine.h
+    $$PWD/searchengine.h \
+    $$PWD/global.h
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
@@ -89,8 +90,6 @@ SOURCES += \
     $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/session.cpp \
-    $$PWD/bittorrent/sessionstatus.cpp \
-    $$PWD/bittorrent/cachestatus.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
     $$PWD/bittorrent/torrenthandle.cpp \

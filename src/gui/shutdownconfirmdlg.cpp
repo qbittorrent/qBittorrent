@@ -42,8 +42,9 @@
 #include "base/utils/misc.h"
 
 
-ShutdownConfirmDlg::ShutdownConfirmDlg(const ShutdownDialogAction &action)
-    : ui(new Ui::confirmShutdownDlg)
+ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogAction &action)
+    : QDialog(parent)
+    , ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
 {
@@ -82,9 +83,9 @@ void ShutdownConfirmDlg::showEvent(QShowEvent *event)
     m_timer.start();
 }
 
-bool ShutdownConfirmDlg::askForConfirmation(const ShutdownDialogAction &action)
+bool ShutdownConfirmDlg::askForConfirmation(QWidget *parent, const ShutdownDialogAction &action)
 {
-    ShutdownConfirmDlg dlg(action);
+    ShutdownConfirmDlg dlg(parent, action);
     return (dlg.exec() == QDialog::Accepted);
 }
 

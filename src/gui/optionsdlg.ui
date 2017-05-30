@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>783</height>
+             <width>430</width>
+             <height>972</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -390,7 +390,7 @@
                <item>
                 <widget class="QGroupBox" name="checkShowSystray">
                  <property name="title">
-                  <string>Show qBittorrent in notification area</string>
+                  <string>Show &amp;qBittorrent in notification area</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -491,7 +491,7 @@
             <item>
              <widget class="QGroupBox" name="checkFileLog">
               <property name="title">
-               <string>Log file</string>
+               <string>&amp;Log file</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -504,26 +504,19 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <item>
                   <widget class="QLabel" name="label_4">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="text">
                     <string>Save path:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textFileLogPath"/>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browseFileLogDir">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
+                  <widget class="FileSystemPathLineEdit" name="textFileLogPath" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -678,8 +671,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>994</height>
+             <width>585</width>
+             <height>1179</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -692,7 +685,7 @@
                <item>
                 <widget class="QGroupBox" name="checkAdditionDialog">
                  <property name="title">
-                  <string>Display torrent content and some options</string>
+                  <string>Display &amp;torrent content and some options</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -714,7 +707,7 @@
                  </layout>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item>
                 <widget class="QCheckBox" name="checkCreateSubfolder">
                  <property name="text">
                   <string>Create subfolder for torrents with multiple files</string>
@@ -737,7 +730,7 @@
                   <string>Should the .torrent file be deleted after adding it</string>
                  </property>
                  <property name="title">
-                  <string>Delete .torrent files afterwards </string>
+                  <string>De&amp;lete .torrent files afterwards </string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -969,123 +962,8 @@
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelSavePath">
-                   <property name="text">
-                    <string>Default Save Path:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_10">
-                   <item>
-                    <widget class="QLineEdit" name="textSavePath">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseSaveDirButton">
-                     <property name="enabled">
-                      <bool>true</bool>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="checkTempFolder">
-                   <property name="text">
-                    <string>Keep incomplete torrents in:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="1" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_111">
-                   <item>
-                    <widget class="QLineEdit" name="textTempPath"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseTempDirButton">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>25</horstretch>
-                       <verstretch>27</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QCheckBox" name="checkExportDir">
-                   <property name="text">
-                    <string>Copy .torrent files to:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_12">
-                   <item>
-                    <widget class="QLineEdit" name="textExportDir"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseExportDirButton">
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                  <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
                  </item>
                  <item row="3" column="0">
                   <widget class="QCheckBox" name="checkExportDirFin">
@@ -1094,31 +972,35 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelSavePath">
+                   <property name="text">
+                    <string>Default Save Path:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QCheckBox" name="checkExportDir">
+                   <property name="text">
+                    <string>Copy .torrent files to:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QCheckBox" name="checkTempFolder">
+                   <property name="text">
+                    <string>Keep incomplete torrents in:</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="3" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_13">
-                   <item>
-                    <widget class="QLineEdit" name="textExportDirFin"/>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="browseExportDirFinButton">
-                     <property name="minimumSize">
-                      <size>
-                       <width>22</width>
-                       <height>22</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>25</width>
-                       <height>27</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string notr="true">...</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                  <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -1226,7 +1108,7 @@
             <item>
              <widget class="QGroupBox" name="groupMailNotification">
               <property name="title">
-               <string>Email notification upon download completion</string>
+               <string>Email notification &amp;upon download completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1311,7 +1193,7 @@
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run external program on torrent completion</string>
+               <string>Run e&amp;xternal program on torrent completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1321,7 +1203,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <item>
-                <widget class="QLineEdit" name="autoRun_txt"/>
+                <widget class="FileSystemPathLineEdit" name="autoRun_txt" native="true"/>
                </item>
                <item>
                 <widget class="QLabel" name="autoRun_param">
@@ -1363,8 +1245,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>470</width>
-             <height>619</height>
+             <width>450</width>
+             <height>759</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1681,7 +1563,7 @@
                   <bool>false</bool>
                  </property>
                  <property name="title">
-                  <string>Authentication</string>
+                  <string>A&amp;uthentication</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1734,7 +1616,7 @@
             <item>
              <widget class="QGroupBox" name="groupIPFilter">
               <property name="title">
-               <string>IP Filtering</string>
+               <string>IP Fi&amp;ltering</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
                <item>
@@ -1747,20 +1629,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textFilterPath"/>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="browseFilterButton">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
+                  <widget class="FileSystemPathLineEdit" name="textFilterPath" native="true"/>
                  </item>
                  <item>
                   <widget class="QToolButton" name="IpFilterRefreshBtn">
@@ -1843,8 +1712,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>376</width>
+             <height>501</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1946,7 +1815,7 @@
                <item row="2" column="0" colspan="5">
                 <widget class="QGroupBox" name="check_schedule">
                  <property name="title">
-                  <string>Schedule the use of alternative rate limits</string>
+                  <string>Schedule &amp;the use of alternative rate limits</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1967,15 +1836,15 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
                     <property name="time">
                      <time>
                       <hour>20</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
                     </property>
                    </widget>
                   </item>
@@ -1991,18 +1860,18 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
                     <property name="time">
                      <time>
                       <hour>8</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
@@ -2230,8 +2099,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>528</width>
+             <height>664</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2363,7 +2232,7 @@
             <item>
              <widget class="QGroupBox" name="checkEnableQueueing">
               <property name="title">
-               <string>Torrent Queueing</string>
+               <string>&amp;Torrent Queueing</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2489,66 +2358,144 @@
               <property name="title">
                <string>Share Ratio Limiting</string>
               </property>
-              <layout class="QVBoxLayout">
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
-               <item>
-                <layout class="QHBoxLayout">
+              <layout class="QGridLayout" name="gridLayout_91">
+               <item row="0" column="0" rowspan="3" colspan="3">
+                <widget class="QCheckBox" name="checkMaxRatio">
+                 <property name="text">
+                  <string>Seed torrents until their ratio reaches</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="6" rowspan="2">
+                <spacer name="horizontalSpacer_161">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>109</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>then</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="4" colspan="2">
+                <widget class="QComboBox" name="comboRatioLimitAct">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <item>
-                  <widget class="QCheckBox" name="checkMaxRatio">
-                   <property name="text">
-                    <string>Seed torrents until their ratio reaches</string>
-                   </property>
-                  </widget>
+                  <property name="text">
+                   <string>Pause them</string>
+                  </property>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="spinMaxRatio">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignHCenter</set>
-                   </property>
-                   <property name="minimum">
-                    <double>0.000000000000000</double>
-                   </property>
-                   <property name="maximum">
-                    <double>9998.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>0.050000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>1.000000000000000</double>
-                   </property>
-                  </widget>
+                  <property name="text">
+                   <string>Remove them</string>
+                  </property>
                  </item>
-                 <item>
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>then</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboRatioLimitAct">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Pause them</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Remove them</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
+                </widget>
+               </item>
+               <item row="4" column="6">
+                <spacer name="horizontalSpacer_20">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>121</width>
+                   <height>28</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="4" column="1">
+                <spacer name="horizontalSpacer_171">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>100</width>
+                   <height>42</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="6">
+                <spacer name="horizontalSpacer_191">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="4">
+                <widget class="QSpinBox" name="spinMaxSeedingMinutes">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="maximum">
+                  <number>9999999</number>
+                 </property>
+                 <property name="value">
+                  <number>1440</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QDoubleSpinBox" name="spinMaxRatio">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignHCenter</set>
+                 </property>
+                 <property name="minimum">
+                  <double>0.000000000000000</double>
+                 </property>
+                 <property name="maximum">
+                  <double>9998.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.050000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="5">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>minutes</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="4">
+                <widget class="QCheckBox" name="checkMaxSeedingMinutes">
+                 <property name="text">
+                  <string>Seed torrents until their seeding time reaches</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2562,7 +2509,7 @@
                </sizepolicy>
               </property>
               <property name="title">
-               <string>Automatically add these trackers to new downloads:</string>
+               <string>A&amp;utomatically add these trackers to new downloads:</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2621,7 +2568,7 @@
            <item>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="label_111">
                <property name="text">
                 <string>Feeds refresh interval:</string>
                </property>
@@ -2746,15 +2693,15 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>487</width>
-             <height>542</height>
+             <width>432</width>
+             <height>569</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
             <item>
              <widget class="QGroupBox" name="checkWebUi">
               <property name="title">
-               <string>Enable Web User Interface (Remote control)</string>
+               <string>Web User Interface (Remote control)</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2813,7 +2760,7 @@
                <item>
                 <widget class="QGroupBox" name="checkWebUiHttps">
                  <property name="title">
-                  <string>Use HTTPS instead of HTTP</string>
+                  <string>&amp;Use HTTPS instead of HTTP</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3000,7 +2947,7 @@
                <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
-                  <string>Update my dynamic domain name</string>
+                  <string>Upda&amp;te my dynamic domain name</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3139,21 +3086,135 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>textSavePath</tabstop>
-  <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
+  <tabstop>textWebUiUsername</tabstop>
+  <tabstop>checkWebUi</tabstop>
+  <tabstop>textSavePath</tabstop>
+  <tabstop>scrollArea_7</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>spinWebUiPort</tabstop>
+  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>tabSelection</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>confirmDeletion</tabstop>
+  <tabstop>checkAltRowColors</tabstop>
+  <tabstop>actionTorrentDlOnDblClBox</tabstop>
+  <tabstop>actionTorrentFnOnDblClBox</tabstop>
+  <tabstop>checkStartup</tabstop>
+  <tabstop>checkShowSplash</tabstop>
+  <tabstop>checkStartMinimized</tabstop>
+  <tabstop>checkProgramExitConfirm</tabstop>
+  <tabstop>checkShowSystray</tabstop>
+  <tabstop>checkMinimizeToSysTray</tabstop>
+  <tabstop>checkCloseToSystray</tabstop>
+  <tabstop>comboTrayIcon</tabstop>
+  <tabstop>checkAssociateTorrents</tabstop>
+  <tabstop>checkAssociateMagnetLinks</tabstop>
+  <tabstop>checkPreventFromSuspend</tabstop>
+  <tabstop>checkAdditionDialog</tabstop>
+  <tabstop>checkAdditionDialogFront</tabstop>
+  <tabstop>checkPreallocateAll</tabstop>
+  <tabstop>checkTempFolder</tabstop>
+  <tabstop>textTempPath</tabstop>
+  <tabstop>checkAppendqB</tabstop>
+  <tabstop>scanFoldersView</tabstop>
+  <tabstop>addScanFolderButton</tabstop>
+  <tabstop>removeScanFolderButton</tabstop>
+  <tabstop>checkExportDir</tabstop>
+  <tabstop>textExportDir</tabstop>
+  <tabstop>checkExportDirFin</tabstop>
+  <tabstop>textExportDirFin</tabstop>
+  <tabstop>groupMailNotification</tabstop>
+  <tabstop>dest_email_txt</tabstop>
+  <tabstop>smtp_server_txt</tabstop>
+  <tabstop>groupMailNotifAuth</tabstop>
+  <tabstop>mailNotifUsername</tabstop>
+  <tabstop>mailNotifPassword</tabstop>
+  <tabstop>checkSmtpSSL</tabstop>
+  <tabstop>autoRunBox</tabstop>
+  <tabstop>autoRun_txt</tabstop>
+  <tabstop>scrollArea_3</tabstop>
+  <tabstop>randomButton</tabstop>
+  <tabstop>checkRandomPort</tabstop>
+  <tabstop>checkMaxConnecs</tabstop>
+  <tabstop>spinMaxConnec</tabstop>
+  <tabstop>checkMaxConnecsPerTorrent</tabstop>
+  <tabstop>spinMaxConnecPerTorrent</tabstop>
+  <tabstop>checkMaxUploadsPerTorrent</tabstop>
+  <tabstop>spinMaxUploadsPerTorrent</tabstop>
+  <tabstop>checkMaxUploads</tabstop>
+  <tabstop>spinMaxUploads</tabstop>
+  <tabstop>comboProxyType</tabstop>
+  <tabstop>textProxyIP</tabstop>
+  <tabstop>spinProxyPort</tabstop>
+  <tabstop>checkProxyPeerConnecs</tabstop>
+  <tabstop>checkForceProxy</tabstop>
+  <tabstop>isProxyOnlyForTorrents</tabstop>
+  <tabstop>checkProxyAuth</tabstop>
+  <tabstop>textProxyUsername</tabstop>
+  <tabstop>textProxyPassword</tabstop>
+  <tabstop>checkIPFilter</tabstop>
+  <tabstop>textFilterPath</tabstop>
+  <tabstop>IpFilterRefreshBtn</tabstop>
+  <tabstop>checkIpFilterTrackers</tabstop>
+  <tabstop>scrollArea_9</tabstop>
+  <tabstop>spinUploadLimit</tabstop>
+  <tabstop>checkUploadLimit</tabstop>
+  <tabstop>spinDownloadLimit</tabstop>
+  <tabstop>checkDownloadLimit</tabstop>
+  <tabstop>check_schedule</tabstop>
+  <tabstop>schedule_to</tabstop>
+  <tabstop>schedule_from</tabstop>
+  <tabstop>schedule_days</tabstop>
+  <tabstop>checkUploadLimitAlt</tabstop>
+  <tabstop>checkDownloadLimitAlt</tabstop>
+  <tabstop>spinUploadLimitAlt</tabstop>
+  <tabstop>spinDownloadLimitAlt</tabstop>
+  <tabstop>checkLimitLocalPeerRate</tabstop>
+  <tabstop>checkLimitTransportOverhead</tabstop>
+  <tabstop>checkuTP</tabstop>
+  <tabstop>checkLimituTPConnections</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+  <tabstop>checkDHT</tabstop>
+  <tabstop>checkPeX</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
+  <tabstop>checkAnonymousMode</tabstop>
+  <tabstop>checkEnableQueueing</tabstop>
+  <tabstop>spinMaxActiveDownloads</tabstop>
+  <tabstop>spinMaxActiveUploads</tabstop>
+  <tabstop>spinMaxActiveTorrents</tabstop>
+  <tabstop>checkIgnoreSlowTorrentsForQueueing</tabstop>
   <tabstop>checkMaxRatio</tabstop>
   <tabstop>spinMaxRatio</tabstop>
-  <tabstop>spinWebUiPort</tabstop>
-  <tabstop>textWebUiUsername</tabstop>
-  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>checkMaxSeedingMinutes</tabstop>
+  <tabstop>spinMaxSeedingMinutes</tabstop>
+  <tabstop>comboRatioLimitAct</tabstop>
+  <tabstop>checkWebUIUPnP</tabstop>
+  <tabstop>checkWebUiHttps</tabstop>
+  <tabstop>btnWebUiCrt</tabstop>
+  <tabstop>btnWebUiKey</tabstop>
+  <tabstop>checkBypassLocalAuth</tabstop>
+  <tabstop>checkDynDNS</tabstop>
+  <tabstop>comboDNSService</tabstop>
+  <tabstop>registerDNSBtn</tabstop>
+  <tabstop>domainNameTxt</tabstop>
+  <tabstop>DNSUsernameTxt</tabstop>
+  <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
  <resources>
   <include location="../icons.qrc"/>
@@ -3240,9 +3301,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxRatio</sender>
+   <sender>checkMaxUploads</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinMaxRatio</receiver>
+   <receiver>spinMaxUploads</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3256,9 +3317,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxRatio</sender>
+   <sender>checkDownloadLimitAlt</sender>
    <signal>toggled(bool)</signal>
-   <receiver>comboRatioLimitAct</receiver>
+   <receiver>spinDownloadLimitAlt</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3272,9 +3333,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxUploads</sender>
+   <sender>checkUploadLimitAlt</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploads</receiver>
+   <receiver>spinUploadLimitAlt</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3288,9 +3349,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkDownloadLimitAlt</sender>
+   <sender>checkMaxRatio</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinDownloadLimitAlt</receiver>
+   <receiver>spinMaxRatio</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3304,9 +3365,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkUploadLimitAlt</sender>
+   <sender>checkMaxSeedingMinutes</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinUploadLimitAlt</receiver>
+   <receiver>spinMaxSeedingMinutes</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

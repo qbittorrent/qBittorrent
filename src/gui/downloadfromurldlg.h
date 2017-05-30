@@ -47,7 +47,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       setModal(true);
-      show();
+
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
       QStringList clip_txt_list = clip_txt.split(QString::fromUtf8("\n"));
@@ -71,6 +71,8 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       }
       if (clip_txt_list_cleaned.size() > 0)
         textUrls->setText(clip_txt_list_cleaned.join("\n"));
+
+      show();
     }
 
     ~downloadFromURL() {}
@@ -93,7 +95,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
         }
       }
       if (!url_list_cleaned.size()) {
-        QMessageBox::warning(0, tr("No URL entered"), tr("Please type at least one URL."));
+        QMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }
       emit urlsReadyToBeDownloaded(url_list_cleaned);

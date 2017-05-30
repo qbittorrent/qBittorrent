@@ -33,19 +33,20 @@
 
 #include "torrentcontentmodelitem.h"
 
-class TorrentContentModelFile : public TorrentContentModelItem
+class TorrentContentModelFile: public TorrentContentModelItem
 {
 public:
-  TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                          TorrentContentModelFolder* parent, int file_index);
+    TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
+                            TorrentContentModelFolder *parent, int fileIndex);
 
-  int fileIndex() const;
-  void setPriority(int new_prio, bool update_parent = true);
-  void setProgress(qreal progress);
-  ItemType itemType() const { return FileType; }
+    int fileIndex() const;
+    void setPriority(int newPriority, bool updateParent = true) override;
+    void setProgress(qreal progress);
+    void setAvailability(qreal availability);
+    ItemType itemType() const override;
 
 private:
-  int m_fileIndex;
+    int m_fileIndex;
 };
 
 #endif // TORRENTCONTENTMODELFILE_H

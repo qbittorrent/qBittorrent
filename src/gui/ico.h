@@ -41,7 +41,7 @@ public:
     ICOHandler();
 
     bool canRead() const;
-    bool read(QImage *image);
+    bool read(QImage *outImage);
     bool write(const QImage &image);
 
     QByteArray name() const;

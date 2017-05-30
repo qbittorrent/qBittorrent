@@ -162,7 +162,7 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         qreal progress = index.data().toDouble() * 100.;
         newopt.rect = opt.rect;
         newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
-        newopt.progress = (int)progress;
+        newopt.progress = static_cast<int>(progress);
         newopt.maximum = 100;
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
@@ -258,9 +258,11 @@ QString TransferListDelegate::getStatusString(const int state) const
     case BitTorrent::TorrentState::CheckingUploading:
         str = tr("Checking", "Torrent local data is being checked");
         break;
+#if LIBTORRENT_VERSION_NUM < 10100
     case BitTorrent::TorrentState::QueuedForChecking:
         str = tr("Queued for checking", "i.e. torrent is queued for hash checking");
         break;
+#endif
     case BitTorrent::TorrentState::CheckingResumeData:
         str = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
         break;

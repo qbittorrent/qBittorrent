@@ -172,8 +172,6 @@ TransferListWidget::~TransferListWidget()
     delete nameFilterModel;
     delete listModel;
     delete listDelegate;
-    delete editHotkey;
-    delete deleteHotkey;
     qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -328,7 +326,7 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
     if (torrents.empty()) return;
 
     if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
@@ -344,8 +342,9 @@ void TransferListWidget::deleteVisibleTorrents()
 
     bool deleteLocalFiles = false;
     if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDlg::askForDeletionConfirmation(deleteLocalFiles, torrents.size(), torrents[0]->name()))
+        && !DeletionConfirmationDlg::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
+
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
 }
@@ -445,12 +444,12 @@ void TransferListWidget::setDlLimitSelectedTorrents()
 
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Download Speed Limiting"), oldLimit
+                this, &ok, tr("Torrent Download Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalDownloadSpeedLimit());
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
         torrent->setDownloadLimit(newLimit);
     }
 }
@@ -470,12 +469,12 @@ void TransferListWidget::setUpLimitSelectedTorrents()
 
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                &ok, tr("Torrent Upload Speed Limiting"), oldLimit
+                this, &ok, tr("Torrent Upload Speed Limiting"), oldLimit
                 , BitTorrent::Session::instance()->globalUploadSpeedLimit());
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (long) (newLimit / 1024.), qPrintable(torrent->hash()));
+        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
         torrent->setUploadLimit(newLimit);
     }
 }
@@ -486,16 +485,24 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
     if (torrents.isEmpty()) return;
 
     bool useGlobalValue = true;
-    qreal currentMaxRatio = BitTorrent::Session::instance()->globalMaxRatio();;
+    qreal currentMaxRatio = BitTorrent::Session::instance()->globalMaxRatio();
     if (torrents.count() == 1)
         currentMaxRatio = torrents[0]->maxRatio(&useGlobalValue);
 
-    UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO, this);
+    int currentMaxSeedingTime = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
+    if (torrents.count() == 1)
+        currentMaxSeedingTime = torrents[0]->maxSeedingTime(&useGlobalValue);
+
+    UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
+                       currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);
     if (dlg.exec() != QDialog::Accepted) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
         qreal ratio = (dlg.useDefault() ? BitTorrent::TorrentHandle::USE_GLOBAL_RATIO : dlg.ratio());
         torrent->setRatioLimit(ratio);
+
+        int seedingTime = (dlg.useDefault() ? BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME : dlg.seedingTime());
+        torrent->setSeedingTimeLimit(seedingTime);
     }
 }
 

@@ -39,10 +39,10 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     qDebug("Bandwidth allocation dialog creation");
+
     // Connect to slots
     connect(m_ui->bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
     connect(m_ui->spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
-    move(Utils::Misc::screenCenter(this));
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()
@@ -52,9 +52,9 @@ SpeedLimitDialog::~SpeedLimitDialog()
 }
 
 // -2: if cancel
-long SpeedLimitDialog::askSpeedLimit(bool *ok, QString title, long default_value, long max_value)
+long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, QString title, long default_value, long max_value)
 {
-    SpeedLimitDialog dlg;
+    SpeedLimitDialog dlg(parent);
     dlg.setWindowTitle(title);
     dlg.setupDialog(max_value / 1024., default_value / 1024.);
     if (dlg.exec() == QDialog::Accepted) {

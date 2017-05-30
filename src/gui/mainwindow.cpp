@@ -64,6 +64,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 
@@ -91,7 +92,9 @@
 #include "rss/rsswidget.h"
 #include "about_imp.h"
 #include "optionsdlg.h"
+#if LIBTORRENT_VERSION_NUM < 10100
 #include "trackerlogin.h"
+#endif
 #include "lineedit.h"
 #include "executionlog.h"
 #include "hidabletabwidget.h"
@@ -261,6 +264,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionBottomPriority, SIGNAL(triggered()), m_transferListWidget, SLOT(bottomPrioSelectedTorrents()));
     connect(m_ui->actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
     connect(m_ui->actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
+    connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     m_programUpdateTimer = new QTimer(this);
@@ -286,10 +290,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Accept drag 'n drops
     setAcceptDrops(true);
     createKeyboardShortcuts();
-    // Create status bar
-    m_statusBar = new StatusBar(QMainWindow::statusBar());
-    connect(m_statusBar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
-    connect(m_ui->actionUseAlternativeSpeedLimits, SIGNAL(triggered()), m_statusBar, SLOT(toggleAlternativeSpeeds()));
 
 #ifdef Q_OS_MAC
     setUnifiedTitleAndToolBarOnMac(true);
@@ -297,6 +297,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // View settings
     m_ui->actionTopToolBar->setChecked(pref->isToolbarDisplayed());
+    m_ui->actionShowStatusbar->setChecked(pref->isStatusbarDisplayed());
     m_ui->actionSpeedInTitleBar->setChecked(pref->speedInTitleBar());
     m_ui->actionRSSReader->setChecked(pref->isRSSWidgetEnabled());
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
@@ -385,7 +386,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
-        if (QMessageBox::question(0, tr("Torrent file association"),
+        if (QMessageBox::question(this, tr("Torrent file association"),
                                   tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
             Preferences::setTorrentFileAssoc(true);
@@ -841,7 +842,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
     if (pref->recursiveDownloadDisabled()) return;
     // Get Torrent name
     QString torrentName = torrent->name();
-    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrentName));
+    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrentName), QMessageBox::NoButton, this);
     QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox.addButton(tr("No"), QMessageBox::NoRole);
     QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
@@ -862,10 +863,12 @@ void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 void MainWindow::on_actionSetGlobalUploadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+        this, &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
         session->setUploadSpeedLimit(newLimit);
@@ -875,10 +878,12 @@ void MainWindow::on_actionSetGlobalUploadLimit_triggered()
 void MainWindow::on_actionSetGlobalDownloadLimit_triggered()
 {
     qDebug() << Q_FUNC_INFO;
+
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+        this, &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
         session->setDownloadSpeedLimit(newLimit);
@@ -943,23 +948,25 @@ void MainWindow::notifyOfUpdate(QString)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
+    Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective.")
+                                   , Log::CRITICAL);
     // Delete the executable watcher
     delete m_executableWatcher;
     m_executableWatcher = 0;
 }
 
 // Toggle Main window visibility
-void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
+void MainWindow::toggleVisibility(const QSystemTrayIcon::ActivationReason reason)
 {
-    if ((e == QSystemTrayIcon::Trigger) || (e == QSystemTrayIcon::DoubleClick)) {
+    switch (reason) {
+    case QSystemTrayIcon::Trigger: {
         if (isHidden()) {
-            if (m_uiLocked) {
-                // Ask for UI lock password
-                if (!unlockUI())
-                    return;
-            }
+            if (m_uiLocked && !unlockUI())  // Ask for UI lock password
+                return;
+
             // Make sure the window is not minimized
             setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+
             // Then show it
             show();
             raise();
@@ -968,6 +975,12 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
         else {
             hide();
         }
+
+        break;
+    }
+
+    default:
+        break;
     }
 }
 
@@ -1021,7 +1034,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
             if (!isVisible())
                 show();
             QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
-                                   tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
+                                   // Split it because the last sentence is used in the Web UI
+                                   tr("Some files are currently transferring.") + "\n" + tr("Are you sure you want to quit qBittorrent?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);
             confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
@@ -1056,10 +1070,17 @@ void MainWindow::closeEvent(QCloseEvent *e)
 // Display window to create a torrent
 void MainWindow::on_actionCreateTorrent_triggered()
 {
-    if (m_createTorrentDlg)
+    createTorrentTriggered();
+}
+
+void MainWindow::createTorrentTriggered(const QString &path)
+{
+    if (m_createTorrentDlg) {
+        m_createTorrentDlg->updateInputPath(path);
         m_createTorrentDlg->setFocus();
+    }
     else
-        m_createTorrentDlg = new TorrentCreatorDlg(this);
+        m_createTorrentDlg = new TorrentCreatorDlg(this, path);
 }
 
 bool MainWindow::event(QEvent *e)
@@ -1071,7 +1092,7 @@ bool MainWindow::event(QEvent *e)
         if (isMinimized()) {
             qDebug("minimisation");
             if (m_systrayIcon && Preferences::instance()->minimizeToTray()) {
-                qDebug("Has active window: %d", (int)(qApp->activeWindow() != 0));
+                qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
                 bool hasModalWindow = false;
                 foreach (QWidget *widget, QApplication::allWidgets()) {
@@ -1113,6 +1134,8 @@ bool MainWindow::event(QEvent *e)
 void MainWindow::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
+
+    // remove scheme
     QStringList files;
     if (event->mimeData()->hasUrls()) {
         const QList<QUrl> urls = event->mimeData()->urls();
@@ -1129,14 +1152,33 @@ void MainWindow::dropEvent(QDropEvent *event)
         files = event->mimeData()->text().split('\n');
     }
 
-    // Add file to download list
+    // differentiate ".torrent" files and others
+    QStringList torrentFiles, otherFiles;
+    foreach (const QString &file, files) {
+        if (file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+            torrentFiles << file;
+        else
+            otherFiles << file;
+    }
+
+    // Download torrents
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    foreach (QString file, files) {
+    foreach (const QString &file, torrentFiles) {
         qDebug("Dropped file %s on download list", qPrintable(file));
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(file, this);
         else
             BitTorrent::Session::instance()->addTorrent(file);
+    }
+    if (!torrentFiles.isEmpty()) return;
+
+    // Create torrent
+    foreach (const QString &file, otherFiles) {
+        createTorrentTriggered(file);
+
+        // currently only hande the first entry
+        // this is a stub that can be expanded later to create many torrents at once
+        break;
     }
 }
 
@@ -1163,8 +1205,9 @@ void MainWindow::on_actionOpen_triggered()
     // Open File Open Dialog
     // Note: it is possible to select more than one file
     const QStringList pathsList =
-        QFileDialog::getOpenFileNames(0, tr("Open Torrent Files"), pref->getMainLastDir(),
-                                      tr("Torrent Files") + " (*.torrent)");
+        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
+                                      tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
+
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {
@@ -1196,7 +1239,21 @@ void MainWindow::optionsSaved()
     loadPreferences();
 }
 
-// Load program preferences
+void MainWindow::showStatusBar(bool show)
+{
+    if (!show) {
+        // Remove status bar
+        setStatusBar(nullptr);
+    }
+    else if (!m_statusBar) {
+        // Create status bar
+        m_statusBar = new StatusBar;
+        connect(m_statusBar.data(), &StatusBar::connectionButtonClicked, this, &MainWindow::showConnectionSettings);
+        connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
+        setStatusBar(m_statusBar);
+    }
+}
+
 void MainWindow::loadPreferences(bool configureSession)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
@@ -1240,6 +1297,8 @@ void MainWindow::loadPreferences(bool configureSession)
         m_searchFilter->clear();
         m_ui->toolBar->setVisible(false);
     }
+
+    showStatusBar(pref->isStatusbarDisplayed());
 
     if (pref->preventFromSuspend() && !m_preventTimer->isActive()) {
         m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
@@ -1305,15 +1364,19 @@ void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle
 // Called when a tracker requires authentication
 void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
 {
+#if LIBTORRENT_VERSION_NUM < 10100
     if (m_unauthenticatedTrackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
         // Tracker login
         new trackerLogin(this, torrent);
+#else
+    Q_UNUSED(torrent);
+#endif
 }
 
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
-    BitTorrent::SessionStatus status = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
 
     // update global informations
     if (m_systrayIcon) {
@@ -1322,24 +1385,24 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
+        html += "<img src=':/icons/skin/download.png' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += "<img src=':/icons/skin/seeding.png' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true));
+        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
         html += "\n";
-        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true));
+        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
 #endif
         m_systrayIcon->setToolTip(html); // tray icon
     }
 
     if (m_displaySpeedInTitle) {
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-                       .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate(), true))
-                       .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate(), true))
+                       .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                       .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
                        .arg(QBT_VERSION));
     }
 }
@@ -1491,9 +1554,16 @@ void MainWindow::on_actionOptions_triggered()
 
 void MainWindow::on_actionTopToolBar_triggered()
 {
-    bool isVisible = static_cast<QAction * >(sender())->isChecked();
+    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
     m_ui->toolBar->setVisible(isVisible);
     Preferences::instance()->setToolbarDisplayed(isVisible);
+}
+
+void MainWindow::on_actionShowStatusbar_triggered()
+{
+    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
+    Preferences::instance()->setStatusbarDisplayed(isVisible);
+    showStatusBar(isVisible);
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()
@@ -1624,8 +1694,15 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
     if (Preferences::instance()->isUpdateCheckEnabled() && (answer == QMessageBox::Yes))
         m_programUpdateTimer->start();
 }
-
 #endif
+
+void MainWindow::toggleAlternativeSpeeds()
+{
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (session->isBandwidthSchedulerEnabled())
+        m_statusBar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
+    session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
+}
 
 void MainWindow::on_actionDonateMoney_triggered()
 {

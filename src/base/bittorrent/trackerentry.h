@@ -60,7 +60,7 @@ namespace BitTorrent
 
         void setTier(int value);
         TrackerEntry &operator=(const TrackerEntry &other);
-        bool operator==(const TrackerEntry &other);
+        bool operator==(const TrackerEntry &other) const;
 
         libtorrent::announce_entry nativeEntry() const;
 

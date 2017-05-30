@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,23 +30,16 @@
 #define BITTORRENT_CACHESTATUS_H
 
 #include <QtGlobal>
-#include <libtorrent/disk_io_thread.hpp>
 
 namespace BitTorrent
 {
-    class CacheStatus
+    struct CacheStatus
     {
-    public:
-        CacheStatus(const libtorrent::cache_status &nativeStatus);
-
-        int totalUsedBuffers() const;
-        qreal readRatio() const;
-        int jobQueueLength() const;
-        int averageJobTime() const;
-        qlonglong queuedBytes() const;
-
-    private:
-        libtorrent::cache_status m_nativeStatus;
+        quint64 totalUsedBuffers = 0;
+        quint64 jobQueueLength = 0;
+        quint64 averageJobTime = 0;
+        quint64 queuedBytes = 0;
+        qreal readRatio = 0.0;
     };
 }
 

@@ -373,7 +373,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
         if (lastData.contains("torrents") && lastData["torrents"].toHash().contains(torrent->hash()) &&
                 lastData["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
             uint lastValue = lastData["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
-            if (qAbs((int)(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
+            if (qAbs(static_cast<int>(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
                 map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
         }
 
@@ -595,8 +595,8 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
     dataDict[KEY_PROP_ADDITION_DATE] = torrent->addedTime().toTime_t();
     if (torrent->hasMetadata()) {
-        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? (int)torrent->lastSeenComplete().toTime_t() : -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? (int)torrent->completedTime().toTime_t() : -1;
+        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? static_cast<int>(torrent->lastSeenComplete().toTime_t()) : -1;
+        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? static_cast<int>(torrent->completedTime().toTime_t()) : -1;
         dataDict[KEY_PROP_CREATION_DATE] = torrent->creationDate().toTime_t();
     }
     else {
@@ -655,6 +655,59 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
 }
 
 /**
+ * Returns an array of hashes (of each pieces respectively) for a torrent in JSON format.
+ *
+ * The return value is a JSON-formatted array of strings (hex strings).
+ */
+QByteArray btjson::getPieceHashesForTorrent(const QString &hash)
+{
+    CACHED_VARIABLE_FOR_HASH(QVariantList, pieceHashes, CACHE_DURATION_MS, hash);
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    const QVector<QByteArray> hashes = torrent->info().pieceHashes();
+    pieceHashes.reserve(hashes.size());
+    foreach (const QByteArray &hash, hashes)
+        pieceHashes.append(hash.toHex());
+
+    return json::toJson(pieceHashes);
+}
+
+/**
+ * Returns an array of states (of each pieces respectively) for a torrent in JSON format.
+ *
+ * The return value is a JSON-formatted array of ints.
+ * 0: piece not downloaded
+ * 1: piece requested or downloading
+ * 2: piece already downloaded
+ */
+QByteArray btjson::getPieceStatesForTorrent(const QString &hash)
+{
+    CACHED_VARIABLE_FOR_HASH(QVariantList, pieceStates, CACHE_DURATION_MS, hash);
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent) {
+        qWarning() << Q_FUNC_INFO << "Invalid torrent " << qPrintable(hash);
+        return QByteArray();
+    }
+
+    const QBitArray states = torrent->pieces();
+    pieceStates.reserve(states.size());
+    for (int i = 0; i < states.size(); ++i)
+        pieceStates.append(static_cast<int>(states[i]) * 2);
+
+    const QBitArray dlstates = torrent->downloadingPieces();
+    for (int i = 0; i < states.size(); ++i) {
+        if (dlstates[i])
+            pieceStates[i] = 1;
+    }
+
+    return json::toJson(pieceStates);
+}
+
+/**
  * Returns the global transfer information in JSON format.
  *
  * The return value is a JSON-formatted dictionary.
@@ -676,12 +729,12 @@ QByteArray btjson::getTransferInfo()
 QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
-    BitTorrent::SessionStatus sessionStatus = BitTorrent::Session::instance()->status();
-    BitTorrent::CacheStatus cacheStatus = BitTorrent::Session::instance()->cacheStatus();
-    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate();
-    map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload();
-    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate();
-    map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload();
+    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
+    map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
+    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
+    map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
     map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
     map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
 
@@ -689,30 +742,30 @@ QVariantMap getTranserInfoMap()
     quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
     map[KEY_TRANSFER_ALLTIME_DL] = atd;
     map[KEY_TRANSFER_ALLTIME_UL] = atu;
-    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted();
-    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble((qreal)atu / (qreal)atd, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount();
+    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
+    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
+    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
-    qreal readRatio = cacheStatus.readRatio();
+    qreal readRatio = cacheStatus.readRatio;
     map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers() * 16 * 1024;
+    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
     quint32 peers = 0;
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
         peers += torrent->peersCount();
-    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue()) / peers, 2) : "0";
-    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue() > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue()) / peers, 2) : "0";
+    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
+    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
 
-    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength();
-    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime();
-    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes(); 
+    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
+    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
+    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
-    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes();
+    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
     else
-        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections() ? "connected" : "firewalled";
+        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
     return map;
 }
 

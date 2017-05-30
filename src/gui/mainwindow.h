@@ -52,7 +52,6 @@ class TransferListFiltersWidget;
 class PropertiesWidget;
 class StatusBar;
 class TorrentCreatorDlg;
-class downloadFromURL;
 class LineEdit;
 class ExecutionLog;
 class PowerManagement;
@@ -103,7 +102,7 @@ public:
     void showNotificationBaloon(QString title, QString msg) const;
 
 private slots:
-    void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
+    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
 
     void balloonClicked();
     void writeSettings();
@@ -138,6 +137,7 @@ private slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
 #endif
+    void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
     void pythonDownloadSuccess(const QString &url, const QString &filePath);
@@ -156,6 +156,7 @@ private slots:
     void on_actionRSSReader_triggered();
     void on_actionSpeedInTitleBar_triggered();
     void on_actionTopToolBar_triggered();
+    void on_actionShowStatusbar_triggered();
     void on_actionDonateMoney_triggered();
     void on_actionExecutionLogs_triggered(bool checked);
     void on_actionNormalMessages_triggered(bool checked);
@@ -200,9 +201,11 @@ private:
     void dragEnterEvent(QDragEnterEvent *event) override;
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
-    bool event(QEvent *event) override;
+    bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
+    void createTorrentTriggered(const QString &path = QString());
+    void showStatusBar(bool show);
 
     Ui::MainWindow *m_ui;
 
@@ -212,7 +215,7 @@ private:
     // GUI related
     bool m_posInitialized;
     QPointer<QTabWidget> m_tabs;
-    StatusBar *m_statusBar;
+    QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;
     QPointer<about> m_aboutDlg;
     QPointer<StatsDialog> m_statsDlg;

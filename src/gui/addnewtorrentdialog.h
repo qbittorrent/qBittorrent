@@ -71,13 +71,11 @@ public:
 
 private slots:
     void showAdvancedSettings(bool show);
-    void displayContentTreeMenu(const QPoint&);
+    void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
-    void onSavePathChanged(int);
+    void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
-    void setdialogPosition();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
-    void browseButton_clicked();
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
     void handleDownloadFinished(const QString &url, const QString &filePath);
@@ -94,7 +92,7 @@ private:
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
-    int indexOfSavePath(const QString& save_path);
+    int indexOfSavePath(const QString &save_path);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
@@ -111,7 +109,6 @@ private:
     QString m_filePath;
     BitTorrent::InfoHash m_hash;
     BitTorrent::TorrentInfo m_torrentInfo;
-    QShortcut *editHotkey;
     QByteArray m_headerState;
     int m_oldIndex;
     QScopedPointer<TorrentFileGuard> m_torrentGuard;

@@ -5,6 +5,10 @@ skip_tags: true
 
 os: Visual Studio 2015
 
+branches:
+  except:  # blacklist
+    - coverity_scan
+
 environment:
   REPO_DIR: &REPO_DIR c:\qbittorrent
   CACHE_DIR: &CACHE_DIR c:\qbt_cache
@@ -19,6 +23,8 @@ clone_folder: *REPO_DIR
 # see: https://www.appveyor.com/docs/build-cache#save-update-cache-before-build-finishes
 cache:
   - *CACHE_DIR
+
+clone_depth: 50
 
 install:
   # check if library needs update

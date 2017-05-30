@@ -46,7 +46,7 @@ namespace BitTorrent
         TriStateBool addForced;
         TriStateBool addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareRatio = false;
+        bool ignoreShareLimits = false;
         bool skipChecking = false;
         TriStateBool createSubfolder;
     };

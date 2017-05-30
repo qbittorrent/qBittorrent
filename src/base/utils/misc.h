@@ -102,7 +102,7 @@ namespace Utils
         void openPath(const QString& absolutePath);
         void openFolderSelect(const QString& absolutePath);
 
-        QPoint screenCenter(QWidget *win);
+        QPoint screenCenter(const QWidget *w);
         QSize smallIconSize();
         QSize largeIconSize();
 #endif

@@ -45,7 +45,8 @@
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
     , m_menu(menu)
-{}
+{
+}
 
 void ComboBoxMenuButton::showPopup()
 {
@@ -134,20 +135,20 @@ void SpeedWidget::update()
 {
     while (m_isUpdating) {
 
-        BitTorrent::SessionStatus btStatus = BitTorrent::Session::instance()->status();
+        const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
 
         SpeedPlotView::PointData point;
         point.x = QDateTime::currentDateTime().toTime_t();
-        point.y[SpeedPlotView::UP] = btStatus.uploadRate();
-        point.y[SpeedPlotView::DOWN] = btStatus.downloadRate();
-        point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate();
-        point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate();
-        point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate();
-        point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate();
-        point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate();
-        point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate();
-        point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate();
-        point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate();
+        point.y[SpeedPlotView::UP] = btStatus.uploadRate;
+        point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
+        point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
+        point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
+        point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
+        point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
+        point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
+        point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
+        point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
+        point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
 
         m_plot->pushPoint(point);
 

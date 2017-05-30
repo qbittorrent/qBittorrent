@@ -40,6 +40,7 @@
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
+#include "base/utils/string.h"
 #include "websessiondata.h"
 
 // UnbanTimer
@@ -110,7 +111,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
     header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
     header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
-    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self' 'unsafe-inline' 'unsafe-eval';");
+    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
@@ -147,24 +148,13 @@ void AbstractWebApplication::removeInactiveSessions()
 
 bool AbstractWebApplication::sessionInitialize()
 {
-    static const QString SID_START = QLatin1String(C_SID) + QLatin1String("=");
-
     if (session_ == 0)
     {
-        QString cookie = request_.headers.value("cookie");
-        //qDebug() << Q_FUNC_INFO << "cookie: " << cookie;
-
-        QString sessionId;
-        int pos = cookie.indexOf(SID_START);
-        if (pos >= 0) {
-            pos += SID_START.length();
-            int end = cookie.indexOf(QRegExp("[,;]"), pos);
-            sessionId = cookie.mid(pos, end >= 0 ? end - pos : end);
-        }
+        const QString sessionId = parseCookie(request_).value(C_SID);
 
         // TODO: Additional session check
 
-        if (!sessionId.isNull()) {
+        if (!sessionId.isEmpty()) {
             if (sessions_.contains(sessionId)) {
                 session_ = sessions_[sessionId];
                 session_->updateTimestamp();
@@ -244,17 +234,8 @@ QString AbstractWebApplication::generateSid()
 
 void AbstractWebApplication::translateDocument(QString& data)
 {
-    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])?");
+    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
     const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
-    const std::string contexts[] = {
-        "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
-        "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
-        "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
-        "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-        "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget",
-        "CategoryFiltersList", "TransferListDelegate", "AddNewTorrentDialog"
-    };
-    const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;
     bool found = true;
 
@@ -270,16 +251,7 @@ void AbstractWebApplication::translateDocument(QString& data)
             QString translation = word;
             if (isTranslationNeeded) {
                 QString context = regex.cap(4);
-                if (context.length() > 0) {
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
-                }
-                else {
-                    size_t context_index = 0;
-                    while ((context_index < context_count) && (translation == word)) {
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
-                        ++context_index;
-                    }
-                }
+                translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
             }
             // Remove keyboard shortcuts
             translation.replace(mnemonic, "");
@@ -404,3 +376,23 @@ const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
     { "png", Http::CONTENT_TYPE_PNG },
     { "js", Http::CONTENT_TYPE_JS }
 };
+
+QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) const
+{
+    // [rfc6265] 4.2.1. Syntax
+    QStringMap ret;
+    const QString cookieStr = request.headers.value(QLatin1String("cookie"));
+    const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
+
+    for (const auto &cookie : cookies) {
+        const int idx = cookie.indexOf('=');
+        if (idx < 0)
+            continue;
+
+        const QString name = cookie.left(idx).trimmed().toString();
+        const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
+                                  .toString();
+        ret.insert(name, value);
+    }
+    return ret;
+}

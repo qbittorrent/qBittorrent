@@ -52,6 +52,7 @@ utils/string.h
 utils/version.h
 asyncfilestorage.h
 filesystemwatcher.h
+global.h
 iconprovider.h
 indexrange.h
 logger.h
@@ -68,7 +69,6 @@ unicodestrings.h
 )
 
 set(QBT_BASE_SOURCES
-bittorrent/cachestatus.cpp
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
@@ -78,7 +78,6 @@ bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp
 bittorrent/session.cpp
-bittorrent/sessionstatus.cpp
 bittorrent/torrentcreatorthread.cpp
 bittorrent/torrenthandle.cpp
 bittorrent/torrentinfo.cpp

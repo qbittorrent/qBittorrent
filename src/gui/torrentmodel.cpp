@@ -338,7 +338,9 @@ QIcon getIconByState(BitTorrent::TorrentState state)
         return getQueuedIcon();
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
+#if LIBTORRENT_VERSION_NUM < 10100
     case BitTorrent::TorrentState::QueuedForChecking:
+#endif
     case BitTorrent::TorrentState::CheckingResumeData:
         return getCheckingIcon();
     case BitTorrent::TorrentState::Unknown:
@@ -391,7 +393,9 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::QueuedUploading:
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
+#if LIBTORRENT_VERSION_NUM < 10100
     case BitTorrent::TorrentState::QueuedForChecking:
+#endif
     case BitTorrent::TorrentState::CheckingResumeData:
         if (!dark)
             return QColor(0, 128, 128); // Teal

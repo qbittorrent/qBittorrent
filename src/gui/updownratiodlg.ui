@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>317</width>
-    <height>152</height>
+    <width>399</width>
+    <height>195</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QRadioButton" name="useDefaultButton">
      <property name="text">
-      <string>Use global ratio limit</string>
+      <string>Use global share limit</string>
      </property>
      <attribute name="buttonGroup">
       <string>buttonGroup</string>
@@ -27,7 +27,7 @@
    <item>
     <widget class="QRadioButton" name="noLimitButton">
      <property name="text">
-      <string>Set no ratio limit</string>
+      <string>Set no share limit</string>
      </property>
      <attribute name="buttonGroup">
       <string>buttonGroup</string>
@@ -35,18 +35,18 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <widget class="QRadioButton" name="torrentLimitButton">
        <property name="text">
-        <string>Set ratio limit to</string>
+        <string>Set share limit to</string>
        </property>
        <attribute name="buttonGroup">
         <string>buttonGroup</string>
        </attribute>
       </widget>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QDoubleSpinBox" name="ratioSpinBox">
        <property name="maximum">
         <double>9998.000000000000000</double>
@@ -59,7 +59,29 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="2" column="2">
+      <widget class="QDoubleSpinBox" name="timeSpinBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="decimals">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <double>525600.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>1.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>1440.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -71,6 +93,20 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="0" column="1">
+      <widget class="QCheckBox" name="checkMaxRatio">
+       <property name="text">
+        <string>ratio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="checkMaxTime">
+       <property name="text">
+        <string>minutes</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -135,6 +171,7 @@
   </connection>
  </connections>
  <buttongroups>
+  <buttongroup name="shareButtonGroup"/>
   <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

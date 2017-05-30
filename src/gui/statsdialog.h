@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,33 +24,31 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
 #ifndef STATSDIALOG_H
 #define STATSDIALOG_H
 
 #include <QDialog>
-#include <QTimer>
 
-namespace Ui {
-  class StatsDialog;
+namespace Ui
+{
+    class StatsDialog;
 }
 
-class StatsDialog : public QDialog {
-  Q_OBJECT
+class StatsDialog: public QDialog
+{
+    Q_OBJECT
 
 public:
-  explicit StatsDialog(QWidget *parent = 0);
-  ~StatsDialog();
+  explicit StatsDialog(QWidget *parent);
+  ~StatsDialog() override;
 
 private slots:
-  void updateUI();
+    void update();
 
 private:
-  Ui::StatsDialog *ui;
-  QTimer* t;
+    Ui::StatsDialog *m_ui;
 };
 
 #endif // STATSDIALOG_H

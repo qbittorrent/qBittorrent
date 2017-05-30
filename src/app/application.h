@@ -51,7 +51,7 @@ typedef QtSingleCoreApplication BaseApplication;
 #endif
 
 #include "base/utils/misc.h"
-#include "options.h"
+#include "cmdoptions.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;

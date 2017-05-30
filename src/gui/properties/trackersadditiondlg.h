@@ -51,11 +51,11 @@ class TrackersAdditionDlg : public QDialog
     Q_OBJECT
 
 public:
-    TrackersAdditionDlg(BitTorrent::TorrentHandle *const torrent, QWidget *parent = 0);
+    TrackersAdditionDlg(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
     ~TrackersAdditionDlg();
 
     QStringList newTrackers() const;
-    static QStringList askForTrackers(BitTorrent::TorrentHandle *const torrent);
+    static QStringList askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
 
 public slots:
     void on_uTorrentListButton_clicked();

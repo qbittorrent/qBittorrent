@@ -69,7 +69,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   int nbFiles = torrent->filesCount();
   for (int i = 0; i < nbFiles; ++i) {
     QString fileName = torrent->fileName(i);
-    if (fileName.endsWith(".!qB"))
+    if (fileName.endsWith(QB_EXT))
       fileName.chop(4);
     QString extension = Utils::Fs::fileExtension(fileName).toUpper();
     if (Utils::Misc::isPreviewable(extension)) {
@@ -83,7 +83,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
   }
 
   if (!previewListModel->rowCount()) {
-    QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+    QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
     close();
   }
   connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
@@ -120,7 +120,7 @@ void PreviewSelect::on_previewButton_clicked() {
   if (QFile::exists(path))
     emit readyToPreviewFile(path);
   else
-    QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+    QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
   close();
 }
 

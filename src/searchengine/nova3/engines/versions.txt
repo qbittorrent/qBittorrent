@@ -1,6 +1,5 @@
 btdb: 1.01
 demonoid: 1.23
-extratorrent: 3.10
 legittorrents: 2.02
 piratebay: 2.15
 torlock: 2.0

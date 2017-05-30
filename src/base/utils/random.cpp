@@ -56,7 +56,7 @@ uint32_t Utils::Random::rand(const uint32_t min, const uint32_t max)
     static thread_local std::mt19937 generator{
         hasTrueRandomDevice
         ? std::random_device{}()
-        : (std::random_device::result_type) std::chrono::system_clock::now().time_since_epoch().count()
+        : static_cast<std::random_device::result_type>(std::chrono::system_clock::now().time_since_epoch().count())
     };
 #endif
 
