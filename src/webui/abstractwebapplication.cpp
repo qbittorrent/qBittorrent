@@ -252,13 +252,9 @@ void AbstractWebApplication::translateDocument(QString& data)
             if (isTranslationNeeded) {
                 QString context = regex.cap(4);
 #ifndef QBT_USES_QT5
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+                translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
 #else
                 translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
-#endif
-#ifndef QBT_USES_QT5
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
 #endif
             }
             // Remove keyboard shortcuts
@@ -397,16 +393,25 @@ QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) con
     // [rfc6265] 4.2.1. Syntax
     QStringMap ret;
     const QString cookieStr = request.headers.value(QLatin1String("cookie"));
+#ifdef QBT_USES_QT5
     const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
+#else
+    const QStringList cookies = cookieStr.split(';', QString::SkipEmptyParts);
+#endif
 
     for (const auto &cookie : cookies) {
         const int idx = cookie.indexOf('=');
         if (idx < 0)
             continue;
-
+#ifdef QBT_USES_QT5
         const QString name = cookie.left(idx).trimmed().toString();
         const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
                                   .toString();
+#else
+        const QString name = cookie.left(idx).trimmed();
+        const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed());
+#endif
+
         ret.insert(name, value);
     }
     return ret;

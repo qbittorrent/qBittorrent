@@ -62,7 +62,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 #endif
 
     QTimer *dropConnectionTimer = new QTimer(this);
-    connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
+    connect(dropConnectionTimer, SIGNAL(timeout()), SLOT(dropTimedOutConnection()));
     dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
 }
 
@@ -70,7 +70,11 @@ Server::~Server()
 {
 }
 
+#ifdef QBT_USES_QT5
 void Server::incomingConnection(qintptr socketDescriptor)
+#else
+void Server::incomingConnection(int socketDescriptor)
+#endif
 {
     if (m_connections.size() >= CONNECTIONS_LIMIT) return;
 
@@ -91,7 +95,11 @@ void Server::incomingConnection(qintptr socketDescriptor)
     if (m_https) {
         static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
         static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
+#ifdef QBT_USES_QT5
         static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
+#else
+        static_cast<QSslSocket *>(serverSocket)->setLocalCertificate(m_certificates.first());
+#endif
         static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
         static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
     }
@@ -118,7 +126,14 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
 {
     QSslKey sslKey(key, QSsl::Rsa);
     if (sslKey.isNull())
+#ifdef QBT_USES_QT5
         sslKey = QSslKey(key, QSsl::Ec);
+#else
+    {
+        disableHttps();
+        return false;
+    }
+#endif
 
     const QList<QSslCertificate> certs = QSslCertificate::fromData(certificates);
     const bool areCertsValid = !certs.empty() && std::all_of(certs.begin(), certs.end(), [](const QSslCertificate &c) { return !c.isNull(); });
@@ -143,14 +158,6 @@ void Server::disableHttps()
     m_certificates.clear();
     m_key.clear();
 }
-#ifdef QBT_USES_QT5
-#else
-void Server::incomingConnection(int socketDescriptor)
-#endif
-#ifdef QBT_USES_QT5
-#else
-            static_cast<QSslSocket *>(serverSocket)->setLocalCertificate(m_certificates.first());
-#endif
 
 QList<QSslCipher> Server::safeCipherList() const
 {

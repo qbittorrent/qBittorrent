@@ -32,6 +32,9 @@
 #include "responsegenerator.h"
 
 #include <QDateTime>
+#ifndef QBT_USES_QT5
+#include <QLocale>
+#endif
 
 #include "base/utils/gzip.h"
 
