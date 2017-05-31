@@ -55,7 +55,7 @@ addons:
   apt:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-      #- ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
       #- boost-latest
       - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
       - sourceline: 'ppa:beineri/opt-qt551-trusty'
@@ -74,6 +74,7 @@ addons:
       - qt55base
       - qt55tools
       - ninja-build
+      - [gcc-6, g++-6]
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -95,6 +96,11 @@ before_install:
 
       # Qt 5
       PATH=/opt/qt55/bin:${PATH}
+
+      if [ "$build_system" = "cmake" ]; then
+          COMPILER_VERSION=6
+          export CXX="${CXX}-${COMPILER_VERSION}" CC="${CC}-${COMPILER_VERSION}"
+      fi
     fi
 
   # print settings
