@@ -989,7 +989,7 @@ void MainWindow::on_actionAbout_triggered()
 {
     // About dialog
     if (m_aboutDlg)
-        m_aboutDlg->setFocus();
+        m_aboutDlg->activateWindow();
     else
         m_aboutDlg = new about(this);
 }
@@ -997,7 +997,7 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::on_actionStatistics_triggered()
 {
     if (m_statsDlg)
-        m_statsDlg->setFocus();
+        m_statsDlg->activateWindow();
     else
         m_statsDlg = new StatsDialog(this);
 }
@@ -1077,7 +1077,7 @@ void MainWindow::createTorrentTriggered(const QString &path)
 {
     if (m_createTorrentDlg) {
         m_createTorrentDlg->updateInputPath(path);
-        m_createTorrentDlg->setFocus();
+        m_createTorrentDlg->activateWindow();
     }
     else
         m_createTorrentDlg = new TorrentCreatorDlg(this, path);
@@ -1547,7 +1547,7 @@ void MainWindow::createTrayIcon()
 void MainWindow::on_actionOptions_triggered()
 {
     if (m_options)
-        m_options->setFocus();
+        m_options->activateWindow();
     else
         m_options = new OptionsDialog(this);
 }
