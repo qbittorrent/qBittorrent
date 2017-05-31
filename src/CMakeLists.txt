@@ -31,6 +31,7 @@ else (QT5)
     endif (DBUS)
     find_package(Qt4 4.8.0 COMPONENTS ${QBT_QT_COMPONENTS} REQUIRED)
     include(${QT_USE_FILE})
+    add_definitions(-DQStringLiteral=QLatin1String)
 endif (QT5)
 
 set(CMAKE_AUTOMOC True)
