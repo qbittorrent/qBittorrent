@@ -62,18 +62,12 @@ addons:
       - sourceline: 'ppa:adrozdoff/cmake'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
-      - autoconf
-      - automake
-      - cmake
-      - colormake
+      - [autoconf, automake, colormake]
+      - [cmake, ninja-build]
       - libssl-dev
-      - libboost-dev
-      - libboost-system-dev
+      - [libboost-dev, libboost-system-dev]
       - libtorrent-rasterbar-dev
-      # Qt 5.5.1
-      - qt55base
-      - qt55tools
-      - ninja-build
+      - [qt55base, qt55tools]
       - [gcc-6, g++-6]
 
 before_install:
