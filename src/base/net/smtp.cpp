@@ -528,7 +528,8 @@ QString Smtp::getCurrentDateTime() const
     int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
     int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
     int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
-    char buf[6] = {0};
+    // buf size = 11 to avoid format truncation warnings from snprintf
+    char buf[11] = {0};
     std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
     QString timeOffsetStr = buf;
 
