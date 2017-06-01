@@ -55,24 +55,20 @@ addons:
   apt:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-      #- ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
       #- boost-latest
       - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
       - sourceline: 'ppa:beineri/opt-qt551-trusty'
       - sourceline: 'ppa:adrozdoff/cmake'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
-      - autoconf
-      - automake
-      - cmake
-      - colormake
+      - [autoconf, automake, colormake]
+      - [cmake, ninja-build]
       - libssl-dev
-      - libboost-dev
-      - libboost-system-dev
+      - [libboost-dev, libboost-system-dev]
       - libtorrent-rasterbar-dev
-      # Qt 5.5.1
-      - qt55base
-      - qt55tools
+      - [qt55base, qt55tools]
+      - [gcc-6, g++-6]
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -94,6 +90,11 @@ before_install:
 
       # Qt 5
       PATH=/opt/qt55/bin:${PATH}
+
+      if [ "$build_system" = "cmake" ]; then
+          COMPILER_VERSION=6
+          export CXX="${CXX}-${COMPILER_VERSION}" CC="${CC}-${COMPILER_VERSION}"
+      fi
     fi
 
   # print settings
@@ -143,7 +144,7 @@ install:
 
       if [ "$build_system" = "cmake" ]; then
         brew unlink cmake
-        brew install cmake
+        brew install cmake ninja
 
         brew install qt5
         brew link --force qt5
@@ -175,7 +176,8 @@ script:
       mkdir build
       cd build
       cmake -DGUI=${gui} -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
-        -G "Unix Makefiles" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE ..
+        -G "Ninja" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE ..
+      BUILD_TOOL="ninja"
     fi
     if [ "$build_system" = "qmake" ]; then
       ./bootstrap.sh && ./configure $qbtconf
@@ -184,8 +186,9 @@ script:
         sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile
         sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile
       fi
+      BUILD_TOOL="make"
     fi
-  - make && make install
+  - $BUILD_TOOL && $BUILD_TOOL install
 
 after_success:
   - if [ "$gui" = true ]; then qbt_exe="qbittorrent" ; else qbt_exe="qbittorrent-nox" ; fi
