@@ -623,18 +623,13 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
         if (!pluginName.endsWith(":")) continue;
 
         pluginName.chop(1); // remove trailing ':'
-        bool ok;
-        qreal versionParseTest = list.last().toFloat(&ok);
-        qDebug("read line %s: %.2f", qPrintable(pluginName), versionParseTest);
-        if (!ok) continue;
-
         PluginVersion version = PluginVersion::tryParse(list.last(), {});
-        if (version != PluginVersion()) {
-            dataCorrect = true;
-            if (isUpdateNeeded(pluginName, version)) {
-                qDebug("Plugin: %s is outdated", qPrintable(pluginName));
-                updateInfo[pluginName] = version;
-            }
+        if (version == PluginVersion()) continue;
+
+        dataCorrect = true;
+        if (isUpdateNeeded(pluginName, version)) {
+            qDebug("Plugin: %s is outdated", qPrintable(pluginName));
+            updateInfo[pluginName] = version;
         }
     }
 
