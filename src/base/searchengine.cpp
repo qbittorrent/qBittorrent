@@ -226,10 +226,6 @@ void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
 
 bool SearchEngine::uninstallPlugin(const QString &name)
 {
-    if (QFile::exists(":/nova/engines/" + name + ".py"))
-        return false;
-
-    // Proceed with uninstall
     // remove it from hard drive
     QDir pluginsFolder(pluginsLocation());
     QStringList filters;
@@ -457,27 +453,6 @@ void SearchEngine::updateNova()
 
     QDir destDir(pluginsLocation());
     Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));
-    QDir shippedSubdir(":/" + novaFolder + "/engines/");
-    QStringList files = shippedSubdir.entryList();
-    foreach (const QString &file, files) {
-        QString shippedFile = shippedSubdir.absoluteFilePath(file);
-        // Copy python classes
-        if (file.endsWith(".py")) {
-            const QString destFile = destDir.absoluteFilePath(file);
-            if (getPluginVersion(shippedFile) > getPluginVersion(destFile) ) {
-                qDebug("shipped %s is more recent then local plugin, updating...", qPrintable(file));
-                removePythonScriptIfExists(destFile);
-                qDebug("%s copied to %s", qPrintable(shippedFile), qPrintable(destFile));
-                QFile::copy(shippedFile, destFile);
-            }
-        }
-        else {
-            // Copy icons
-            if (file.endsWith(".png"))
-                if (!QFile::exists(destDir.absoluteFilePath(file)))
-                    QFile::copy(shippedFile, destDir.absoluteFilePath(file));
-        }
-    }
 }
 
 void SearchEngine::onTimeout()
