@@ -153,7 +153,7 @@ body {
 	left: -999em;
 	z-index: 8000;
 	/* Fix by Chris */
-	margin-top: -6px;
+	margin-top: -12px;
 }
 
 #desktopNavbar li:hover ul ul,
