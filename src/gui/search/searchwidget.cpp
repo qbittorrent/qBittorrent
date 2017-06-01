@@ -118,6 +118,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     fillCatCombobox();
     fillPluginComboBox();
 
+    selectActivePage();
+
     connect(m_ui->m_searchPattern, SIGNAL(returnPressed()), m_ui->searchButton, SLOT(click()));
     connect(m_ui->m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
     connect(m_ui->selectPlugin, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMultipleBox(int)));
@@ -167,6 +169,24 @@ QString SearchWidget::selectedCategory() const
 QString SearchWidget::selectedPlugin() const
 {
     return m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
+}
+
+void SearchWidget::selectActivePage()
+{
+    if (m_searchEngine->allPlugins().isEmpty()) {
+        m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
+        m_ui->m_searchPattern->setEnabled(false);
+        m_ui->comboCategory->setEnabled(false);
+        m_ui->selectPlugin->setEnabled(false);
+        m_ui->searchButton->setEnabled(false);
+    }
+    else {
+        m_ui->stackedPages->setCurrentWidget(m_ui->searchPage);
+        m_ui->m_searchPattern->setEnabled(true);
+        m_ui->comboCategory->setEnabled(true);
+        m_ui->selectPlugin->setEnabled(true);
+        m_ui->searchButton->setEnabled(true);
+    }
 }
 
 SearchWidget::~SearchWidget()
@@ -224,6 +244,7 @@ void SearchWidget::on_pluginsButton_clicked()
     PluginSelectDlg *dlg = new PluginSelectDlg(m_searchEngine, this);
     connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillCatCombobox()));
     connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillPluginComboBox()));
+    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::selectActivePage);
 }
 
 void SearchWidget::searchTextEdited(QString)

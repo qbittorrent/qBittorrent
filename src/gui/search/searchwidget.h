@@ -82,6 +82,7 @@ private slots:
 
     void fillCatCombobox();
     void fillPluginComboBox();
+    void selectActivePage();
     void searchTextEdited(QString);
 
 private:
