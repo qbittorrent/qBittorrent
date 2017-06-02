@@ -37,20 +37,20 @@
 
 namespace Http
 {
-    const char HEADER_CACHE_CONTROL[] = "Cache-Control";
-    const char HEADER_CONTENT_ENCODING[] = "Content-Encoding";
-    const char HEADER_CONTENT_LENGTH[] = "Content-Length";
-    const char HEADER_CONTENT_SECURITY_POLICY[] = "Content-Security-Policy";
-    const char HEADER_CONTENT_TYPE[] = "Content-Type";
-    const char HEADER_DATE[] = "Date";
+    const char HEADER_CACHE_CONTROL[] = "cache-control";
+    const char HEADER_CONTENT_ENCODING[] = "content-encoding";
+    const char HEADER_CONTENT_LENGTH[] = "content-length";
+    const char HEADER_CONTENT_SECURITY_POLICY[] = "content-security-policy";
+    const char HEADER_CONTENT_TYPE[] = "content-type";
+    const char HEADER_DATE[] = "date";
     const char HEADER_HOST[] = "host";
     const char HEADER_ORIGIN[] = "origin";
     const char HEADER_REFERER[] = "referer";
-    const char HEADER_SET_COOKIE[] = "Set-Cookie";
-    const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "X-Content-Type-Options";
+    const char HEADER_SET_COOKIE[] = "set-cookie";
+    const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
     const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
-    const char HEADER_X_FRAME_OPTIONS[] = "X-Frame-Options";
-    const char HEADER_X_XSS_PROTECTION[] = "X-XSS-Protection";
+    const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
+    const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
 
     const char CONTENT_TYPE_CSS[] = "text/css; charset=UTF-8";
     const char CONTENT_TYPE_GIF[] = "image/gif";
