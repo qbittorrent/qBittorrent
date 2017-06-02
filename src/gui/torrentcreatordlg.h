@@ -55,6 +55,7 @@ public:
 
 private slots:
     void updateProgressBar(int progress);
+    void updatePiecesCount();
     void onCreateButtonClicked();
     void onAddFileButtonClicked();
     void onAddFolderButtonClicked();

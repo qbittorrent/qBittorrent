@@ -47,6 +47,8 @@ namespace BitTorrent
         void create(const QString &inputPath, const QString &savePath, const QStringList &trackers,
                     const QStringList &urlSeeds, const QString &comment, bool isPrivate, int pieceSize);
 
+        static int calculateTotalPieces(const QString &inputPath, const int pieceSize);
+
     protected:
         void run();
 
