@@ -39,6 +39,8 @@
 #include <QVariant>
 #include <QXmlStreamReader>
 
+#include "../rss_article.h"
+
 namespace
 {
     const char shortDay[][4] = {
@@ -280,36 +282,41 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
 
     while (!xml.atEnd()) {
         xml.readNext();
+        const QString name(xml.name().toString());
 
-        if(xml.isEndElement() && xml.name() == "item")
+        if (xml.isEndElement() && (name == QLatin1String("item")))
             break;
 
         if (xml.isStartElement()) {
-            if (xml.name() == "title") {
-                article["title"] = xml.readElementText().trimmed();
+            const QString text(xml.readElementText().trimmed());
+
+            if (name == QLatin1String("title")) {
+                article[Article::KeyTitle] = text;
             }
-            else if (xml.name() == "enclosure") {
-                if (xml.attributes().value("type") == "application/x-bittorrent")
-                    article["torrent_url"] = xml.attributes().value("url").toString();
+            else if (name == QLatin1String("enclosure")) {
+                if (xml.attributes().value("type") == QLatin1String("application/x-bittorrent"))
+                    article[Article::KeyTorrentURL] = xml.attributes().value(QLatin1String("url")).toString();
             }
-            else if (xml.name() == "link") {
-                QString link = xml.readElementText().trimmed();
-                if (link.startsWith("magnet:", Qt::CaseInsensitive))
-                    article["torrent_url"] = link; // magnet link instead of a news URL
+            else if (name == QLatin1String("link")) {
+                if (text.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive))
+                    article[Article::KeyTorrentURL] = text; // magnet link instead of a news URL
                 else
-                    article["news_link"] = link;
+                    article[Article::KeyLink] = text;
             }
-            else if (xml.name() == "description") {
-                article["description"] = xml.readElementText().trimmed();
+            else if (name == QLatin1String("description")) {
+                article[Article::KeyDescription] = text;
             }
-            else if (xml.name() == "pubDate") {
-                article["date"] = parseDate(xml.readElementText().trimmed());
+            else if (name == QLatin1String("pubDate")) {
+                article[Article::KeyDate] = parseDate(text);
             }
-            else if (xml.name() == "author") {
-                article["author"] = xml.readElementText().trimmed();
+            else if (name == QLatin1String("author")) {
+                article[Article::KeyAuthor] = text;
             }
-            else if (xml.name() == "guid") {
-                article["id"] = xml.readElementText().trimmed();
+            else if (name == QLatin1String("guid")) {
+                article[Article::KeyId] = text;
+            }
+            else {
+                article[name] = text;
             }
         }
     }
@@ -353,33 +360,36 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
 
     while (!xml.atEnd()) {
         xml.readNext();
+        const QString name(xml.name().toString());
 
-        if (xml.isEndElement() && (xml.name() == "entry"))
+        if (xml.isEndElement() && (name == QLatin1String("entry")))
             break;
 
         if (xml.isStartElement()) {
-            if (xml.name() == "title") {
-                article["title"] = xml.readElementText().trimmed();
-            }
-            else if (xml.name() == "link") {
-                QString link = (xml.attributes().isEmpty()
-                                ? xml.readElementText().trimmed()
-                                : xml.attributes().value("href").toString());
+            const QString text(xml.readElementText().trimmed());
 
-                if (link.startsWith("magnet:", Qt::CaseInsensitive))
-                    article["torrent_url"] = link; // magnet link instead of a news URL
+            if (name == QLatin1String("title")) {
+                article[Article::KeyTitle] = text;
+            }
+            else if (name == QLatin1String("link")) {
+                QString link = (xml.attributes().isEmpty()
+                                ? text
+                                : xml.attributes().value(QLatin1String("href")).toString());
+
+                if (link.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive))
+                    article[Article::KeyTorrentURL] = link; // magnet link instead of a news URL
                 else
                     // Atom feeds can have relative links, work around this and
                     // take the stress of figuring article full URI from UI
                     // Assemble full URI
-                    article["news_link"] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
+                    article[Article::KeyLink] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
 
             }
-            else if ((xml.name() == "summary") || (xml.name() == "content")){
+            else if ((name == QLatin1String("summary")) || (name == QLatin1String("content"))){
                 if (doubleContent) { // Duplicate content -> ignore
                     xml.readNext();
 
-                    while ((xml.name() != "summary") && (xml.name() != "content"))
+                    while ((xml.name() != QLatin1String("summary")) && (xml.name() != QLatin1String("content")))
                         xml.readNext();
 
                     continue;
@@ -389,25 +399,28 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                 // Actually works great for non-broken content too
                 QString feedText = xml.readElementText(QXmlStreamReader::IncludeChildElements);
                 if (!feedText.isEmpty())
-                    article["description"] = feedText.trimmed();
+                    article[Article::KeyDescription] = feedText.trimmed();
 
                 doubleContent = true;
             }
-            else if (xml.name() == "updated") {
+            else if (name == QLatin1String("updated")) {
                 // ATOM uses standard compliant date, don't do fancy stuff
-                QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
-                article["date"] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
+                QDateTime articleDate = QDateTime::fromString(text, Qt::ISODate);
+                article[Article::KeyDate] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
             }
-            else if (xml.name() == "author") {
+            else if (name == QLatin1String("author")) {
                 xml.readNext();
-                while (xml.name() != "author") {
-                    if (xml.name() == "name")
-                        article["author"] = xml.readElementText().trimmed();
+                while (xml.name() != QLatin1String("author")) {
+                    if (xml.name() == QLatin1String("name"))
+                        article[Article::KeyAuthor] = xml.readElementText().trimmed();
                     xml.readNext();
                 }
             }
-            else if (xml.name() == "id") {
-                article["id"] = xml.readElementText().trimmed();
+            else if (name == QLatin1String("id")) {
+                article[Article::KeyId] = text;
+            }
+            else {
+                article[name] = text;
             }
         }
     }
