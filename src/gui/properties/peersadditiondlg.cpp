@@ -28,21 +28,29 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "peersadditiondlg.h"
+
 #include <QMessageBox>
 #include <QHostAddress>
 
-#include "peersadditiondlg.h"
+#include "ui_peersadditiondlg.h"
 
 PeersAdditionDlg::PeersAdditionDlg(QWidget *parent)
     : QDialog(parent)
+    , m_ui(new Ui::addPeersDialog())
 {
-    setupUi(this);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
+    m_ui->setupUi(this);
+    connect(m_ui->buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
 
 #ifdef QBT_USES_QT5
-    label_format->hide();
-    peers_txt->setPlaceholderText("Format: IPv4:port / [IPv6]:port");
+    m_ui->label_format->hide();
+    m_ui->peers_txt->setPlaceholderText("Format: IPv4:port / [IPv6]:port");
 #endif
+}
+
+PeersAdditionDlg::~PeersAdditionDlg()
+{
+    delete m_ui;
 }
 
 QList<BitTorrent::PeerAddress> PeersAdditionDlg::askForPeers()
@@ -54,13 +62,13 @@ QList<BitTorrent::PeerAddress> PeersAdditionDlg::askForPeers()
 
 void PeersAdditionDlg::validateInput()
 {
-    if (peers_txt->toPlainText().trimmed().isEmpty()) {
+    if (m_ui->peers_txt->toPlainText().trimmed().isEmpty()) {
         QMessageBox::warning(this, tr("No peer entered"),
                     tr("Please type at least one peer."),
                     QMessageBox::Ok);
         return;
     }
-    foreach (const QString &peer, peers_txt->toPlainText().trimmed().split("\n")) {
+    foreach (const QString &peer, m_ui->peers_txt->toPlainText().trimmed().split("\n")) {
         BitTorrent::PeerAddress addr = parsePeer(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);

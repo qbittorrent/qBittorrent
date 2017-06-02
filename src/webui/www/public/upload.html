@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>QBT_TR(Upload local torrent)QBT_TR</title>
+        <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<link rel="stylesheet" href="css/Window.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
@@ -18,15 +18,24 @@
 </p>
 <fieldset class="settings" style="border: 0; text-align: left;">
 <div class="formRow" style="margin-top: 12px;">
-	<label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR</label>
+        <label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
 	<input type="text" id="savepath" name="savepath" style="width: 16em;"/>
 </div>
 <div class="formRow">
-    <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR</label>
+    <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
 	<input type="text" id="category" name="category"/ style="width: 16em;"/>
 </div>
+<div class="formRow">
+    <label for="start_torrent" class="leftLabelLarge">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+    <input type="checkbox" id="start_torrent" checked="checked"/>
+    <input type="hidden" id="add_paused" name="paused" value="true" disabled="disabled"/>
+</div>
+<div class="formRow">
+    <label for="skip_checking" class="leftLabelLarge">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+    <input type="checkbox" name="skip_checking" value="true"/>
+</div>
 <div id="submitbutton" style="margin-top: 30px; text-align: center;">
-	<button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR</button>
+        <button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR[CONTEXT=HttpServer]</button>
 </div>
 </fieldset>
 </form>
@@ -42,6 +51,10 @@ $('uploadForm').addEventListener("submit", function() {
 $('upload_frame').addEventListener("load", function() {
 	if (submitted)
 		window.parent.closeWindows();
+});
+
+$('start_torrent').addEventListener('change', function() {
+    $('add_paused').disabled = $('start_torrent').checked;
 });
 </script>
 <div id="upload_spinner" class="mochaSpinner"></div>

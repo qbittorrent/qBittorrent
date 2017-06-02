@@ -32,12 +32,19 @@
 #ifndef PLUGINSELECTDLG_H
 #define PLUGINSELECTDLG_H
 
-#include "ui_pluginselectdlg.h"
+#include <QDialog>
 
 class QDropEvent;
+class QTreeWidgetItem;
+
 class SearchEngine;
 
-class PluginSelectDlg: public QDialog, private Ui::PluginSelectDlg
+namespace Ui
+{
+    class PluginSelectDlg;
+}
+
+class PluginSelectDlg: public QDialog
 {
     Q_OBJECT
 
@@ -82,6 +89,7 @@ private:
     void startAsyncOp();
     void finishAsyncOp();
 
+    Ui::PluginSelectDlg *m_ui;
     SearchEngine *m_pluginManager;
     int m_asyncOps;
 };

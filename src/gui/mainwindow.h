@@ -116,7 +116,7 @@ public slots:
     void processUnbanRequest();
 
 private slots:
-    void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
+    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
 
     void balloonClicked();
     void writeSettings();

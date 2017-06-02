@@ -30,7 +30,6 @@ add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
 add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
 # }
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")
 if (UNIX AND NOT APPLE)
     include(GNUInstallDirs)
 endif (UNIX AND NOT APPLE)

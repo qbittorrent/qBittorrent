@@ -2,6 +2,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD "11")
 add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 
+include(MacroQbtCompilerSettings)
+qbt_set_compiler_options()
+
 include(MacroLinkQtComponents)
 include(QbtTargetSources)
 
@@ -28,6 +31,7 @@ else (QT5)
     endif (DBUS)
     find_package(Qt4 4.8.0 COMPONENTS ${QBT_QT_COMPONENTS} REQUIRED)
     include(${QT_USE_FILE})
+    add_definitions(-DQStringLiteral=QLatin1String)
 endif (QT5)
 
 set(CMAKE_AUTOMOC True)

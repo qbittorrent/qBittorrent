@@ -32,14 +32,19 @@
 #define PLUGINSOURCEDLG_H
 
 #include <QDialog>
-#include "ui_pluginsourcedlg.h"
 
-class PluginSourceDlg: public QDialog, private Ui::PluginSourceDlg
+namespace Ui
+{
+    class PluginSourceDlg;
+}
+
+class PluginSourceDlg: public QDialog
 {
     Q_OBJECT
 
 public:
     explicit PluginSourceDlg(QWidget *parent = 0);
+    ~PluginSourceDlg();
 
 signals:
     void askForUrl();
@@ -48,6 +53,9 @@ signals:
 private slots:
     void on_localButton_clicked();
     void on_urlButton_clicked();
+
+private:
+    Ui::PluginSourceDlg *m_ui;
 };
 
 #endif // PLUGINSOURCEDLG_H

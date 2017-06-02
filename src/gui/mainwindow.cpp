@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "mainwindow.h"
+
 #include <QtGlobal>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
@@ -44,6 +46,7 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#include <QSplitter>
 #include <QSysInfo>
 #include <QMimeData>
 #include <QCryptographicHash>
@@ -92,7 +95,6 @@
 #include "executionlog.h"
 #include "hidabletabwidget.h"
 #include "ui_mainwindow.h"
-#include "mainwindow.h"
 
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -946,17 +948,17 @@ void MainWindow::notifyOfUpdate(QString)
 }
 
 // Toggle Main window visibility
-void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
+void MainWindow::toggleVisibility(const QSystemTrayIcon::ActivationReason reason)
 {
-    if ((e == QSystemTrayIcon::Trigger) || (e == QSystemTrayIcon::DoubleClick)) {
+    switch (reason) {
+    case QSystemTrayIcon::Trigger: {
         if (isHidden()) {
-            if (m_uiLocked) {
-                // Ask for UI lock password
-                if (!unlockUI())
-                    return;
-            }
+            if (m_uiLocked && !unlockUI())  // Ask for UI lock password
+                return;
+
             // Make sure the window is not minimized
             setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+
             // Then show it
             show();
             raise();
@@ -965,6 +967,12 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e)
         else {
             hide();
         }
+
+        break;
+    }
+
+    default:
+        break;
     }
 }
 
@@ -973,7 +981,7 @@ void MainWindow::on_actionAbout_triggered()
 {
     // About dialog
     if (m_aboutDlg)
-        m_aboutDlg->setFocus();
+        m_aboutDlg->activateWindow();
     else
         m_aboutDlg = new about(this);
 }
@@ -981,7 +989,7 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::on_actionStatistics_triggered()
 {
     if (m_statsDlg)
-        m_statsDlg->setFocus();
+        m_statsDlg->activateWindow();
     else
         m_statsDlg = new StatsDialog(this);
 }
@@ -1018,7 +1026,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
             if (!isVisible())
                 show();
             QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
-                                   tr("Some files are currently transferring.\nAre you sure you want to quit qBittorrent?"),
+                                   // Split it because the last sentence is used in the Web UI
+                                   tr("Some files are currently transferring.") + "\n" + tr("Are you sure you want to quit qBittorrent?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);
             confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
@@ -1057,7 +1066,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::on_actionCreateTorrent_triggered()
 {
     if (m_createTorrentDlg)
-        m_createTorrentDlg->setFocus();
+        m_createTorrentDlg->activateWindow();
     else
         m_createTorrentDlg = new TorrentCreatorDlg(this);
 }
@@ -1326,10 +1335,10 @@ void MainWindow::processUnbanRequest()
         int delayTime = int(nextTime - currentTime);
         QString nextIP = bannedIPs.dequeue();
         if (delayTime < 0) {
-            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
         }
         else {
-            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
         }
     }
 }
@@ -1392,7 +1401,7 @@ void MainWindow::updateGUI()
             if (client >= "0.0.0.0" && client <= "9.99.99.9999" || client.contains("Xunlei") || client.contains("XL") || pid.contains("-XL") || pid.contains("-SD")) {
                 qDebug("Auto Banning Xunlei Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Xunlei Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                BitTorrent::Session::instance()->blockIP(ip);
+                BitTorrent::Session::instance()->tempblockIP(ip);
                 insertQueue(ip);
                 continue;
             }
@@ -1400,7 +1409,7 @@ void MainWindow::updateGUI()
             if (client.contains("Xf") || pid.contains("-XF")) {
                 qDebug("Auto Banning Xfplay Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Xfplay Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                BitTorrent::Session::instance()->blockIP(ip);
+                BitTorrent::Session::instance()->tempblockIP(ip);
                 insertQueue(ip);
                 continue;
             }
@@ -1408,7 +1417,7 @@ void MainWindow::updateGUI()
             if (client.contains("QQ") || pid.contains("-QD")) {
                 qDebug("Auto Banning QQDownload Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning QQDownload Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                BitTorrent::Session::instance()->blockIP(ip);
+                BitTorrent::Session::instance()->tempblockIP(ip);
                 insertQueue(ip);
                 continue;
             }
@@ -1416,7 +1425,7 @@ void MainWindow::updateGUI()
             if (client.contains("Baidu") || pid.contains("-BN")) {
                 qDebug("Auto Banning Baidu Peer %s...", ip.toLocal8Bit().data());
                 Logger::instance()->addMessage(tr("Auto banning Baidu Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                BitTorrent::Session::instance()->blockIP(ip);
+                BitTorrent::Session::instance()->tempblockIP(ip);
                 insertQueue(ip);
                 continue;
             }
@@ -1425,7 +1434,7 @@ void MainWindow::updateGUI()
                 if(client.contains("Unknown") && country == "CN") {
                     qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
                     Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
-                    BitTorrent::Session::instance()->blockIP(ip);
+                    BitTorrent::Session::instance()->tempblockIP(ip);
                     insertQueue(ip);
                 }
             }
@@ -1573,7 +1582,7 @@ void MainWindow::createTrayIcon()
 void MainWindow::on_actionOptions_triggered()
 {
     if (m_options)
-        m_options->setFocus();
+        m_options->activateWindow();
     else
         m_options = new OptionsDialog(this);
 }

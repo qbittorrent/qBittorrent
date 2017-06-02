@@ -38,11 +38,12 @@
 #include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "categoryfiltermodel.h"
+#include "categoryfilterproxymodel.h"
 #include "guiiconprovider.h"
 
 namespace
 {
-    QString getCategoryFilter(const CategoryFilterModel *const model, const QModelIndex &index)
+    QString getCategoryFilter(const CategoryFilterProxyModel *const model, const QModelIndex &index)
     {
         QString categoryFilter; // Defaults to All
         if (index.isValid()) {
@@ -54,19 +55,15 @@ namespace
 
         return categoryFilter;
     }
-
-    bool isSpecialItem(const QModelIndex &index)
-    {
-        // the first two items at first level are special items:
-        // 'All' and 'Uncategorized'
-        return (!index.parent().isValid() && (index.row() <= 1));
-    }
 }
 
 CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    setModel(new CategoryFilterModel(this));
+    CategoryFilterProxyModel *proxyModel = new CategoryFilterProxyModel(this);
+    proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    proxyModel->setSourceModel(new CategoryFilterModel(this));
+    setModel(proxyModel);
     setFrameShape(QFrame::NoFrame);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -78,6 +75,7 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     setContextMenuPolicy(Qt::CustomContextMenu);
+    sortByColumn(0, Qt::AscendingOrder);
     setCurrentIndex(model()->index(0, 0));
 
     connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(callUpdateGeometry()));
@@ -95,14 +93,14 @@ QString CategoryFilterWidget::currentCategory() const
     if (!selectedRows.isEmpty())
         current = selectedRows.first();
 
-    return getCategoryFilter(static_cast<CategoryFilterModel *>(model()), current);
+    return getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current);
 }
 
 void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);
 
-    emit categoryChanged(getCategoryFilter(static_cast<CategoryFilterModel *>(model()), current));
+    emit categoryChanged(getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current));
 }
 
 void CategoryFilterWidget::showMenu(QPoint)
@@ -115,7 +113,7 @@ void CategoryFilterWidget::showMenu(QPoint)
     connect(addAct, SIGNAL(triggered()), SLOT(addCategory()));
 
     auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
             QAction *addSubAct = menu.addAction(
                         GuiIconProvider::instance()->getIcon("list-add")
@@ -253,9 +251,9 @@ void CategoryFilterWidget::addSubcategory()
 void CategoryFilterWidget::removeCategory()
 {
     auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         BitTorrent::Session::instance()->removeCategory(
-                    static_cast<CategoryFilterModel *>(model())->categoryName(selectedRows.first()));
+                    static_cast<CategoryFilterProxyModel *>(model())->categoryName(selectedRows.first()));
         updateGeometry();
     }
 }
@@ -264,7 +262,7 @@ void CategoryFilterWidget::removeUnusedCategories()
 {
     auto session = BitTorrent::Session::instance();
     foreach (const QString &category, session->categories())
-        if (model()->data(static_cast<CategoryFilterModel *>(model())->index(category), Qt::UserRole) == 0)
+        if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)
             session->removeCategory(category);
     updateGeometry();
 }

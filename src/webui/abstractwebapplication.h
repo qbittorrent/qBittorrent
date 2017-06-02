@@ -57,7 +57,7 @@ public:
     explicit AbstractWebApplication(QObject *parent = 0);
     virtual ~AbstractWebApplication();
 
-    Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) final;
 
     bool m_isActive = false;
     QQueue<QString> bannedIPs;
@@ -68,7 +68,7 @@ public slots:
     void processUnbanRequest();
 
 protected:
-    virtual void processRequest() = 0;
+    virtual void doProcessRequest() = 0;
 
     bool isBanned() const;
     int failedAttempts() const;
@@ -110,6 +110,9 @@ private:
 
     QString generateSid();
     bool sessionInitialize();
+
+    QStringMap parseCookie(const Http::Request &request) const;
+    bool isCrossSiteRequest(const Http::Request &request) const;
 
     static void translateDocument(QString &data);
 

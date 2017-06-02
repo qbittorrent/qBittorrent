@@ -20,18 +20,20 @@ install(FILES ${MAN_FILES}
         DESTINATION ${CMAKE_INSTALL_MANDIR}/man1
         COMPONENT doc)
 
-install(DIRECTORY menuicons/
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor
-        FILES_MATCHING PATTERN "*.png")
+if (GUI)
+    install(DIRECTORY menuicons/
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor
+            FILES_MATCHING PATTERN "*.png")
 
-install(FILES ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent.png
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pixmaps/
-        COMPONENT data)
+    install(FILES ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent.png
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pixmaps/
+            COMPONENT data)
 
-install(FILES ${qBittorrent_SOURCE_DIR}/src/icons/qBittorrent.desktop
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
-        COMPONENT data)
+    install(FILES ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent.desktop
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
+            COMPONENT data)
 
-install(FILES qBittorrent.appdata.xml
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata/
-        COMPONENT data)
+    install(FILES qbittorrent.appdata.xml
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata/
+            COMPONENT data)
+endif()

@@ -50,8 +50,8 @@
 #include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 13;
-static const int API_VERSION_MIN = 13;
+static const int API_VERSION = 14;
+static const int API_VERSION_MIN = 14;
 
 const QString WWW_FOLDER = ":/www/public/";
 const QString PRIVATE_FOLDER = ":/www/private/";
@@ -84,6 +84,8 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(query, propertiesFiles);
     ADD_ACTION(query, getLog);
     ADD_ACTION(query, getPeerLog);
+    ADD_ACTION(query, getPieceHashes);
+    ADD_ACTION(query, getPieceStates);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
@@ -121,8 +123,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, addCategory);
     ADD_ACTION(command, removeCategories);
     ADD_ACTION(command, getSavePath);
-    ADD_ACTION(command, blockPeer);
-    ADD_ACTION(command, unblockPeer);
+    ADD_ACTION(command, tempblockPeer);
     ADD_ACTION(command, resetIPFilter);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
@@ -191,6 +192,7 @@ void WebApplication::action_public_login()
         QString addr = env().clientAddress.toString();
         increaseFailedAttempts();
         qDebug("client IP: %s (%d failed attempts)", qPrintable(addr), failedAttempts());
+        Logger::instance()->addMessage(tr("client IP: %1 (%2 failed attempts)").arg(addr).arg(failedAttempts()));
         print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
     }
 }
@@ -314,6 +316,18 @@ void WebApplication::action_query_getPeerLog()
     print(btjson::getPeerLog(lastKnownId), Http::CONTENT_TYPE_JSON);
 }
 
+void WebApplication::action_query_getPieceHashes()
+{
+    CHECK_URI(1);
+    print(btjson::getPieceHashesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_query_getPieceStates()
+{
+    CHECK_URI(1);
+    print(btjson::getPieceStatesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
+}
+
 // GET param:
 //   - rid (int): last response id
 void WebApplication::action_sync_maindata()
@@ -371,6 +385,8 @@ void WebApplication::action_command_download()
     CHECK_URI(0);
     QString urls = request().posts["urls"];
     QStringList list = urls.split('\n');
+    bool skipChecking = request().posts["skip_checking"] == "true";
+    bool addPaused = request().posts["paused"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
     QString cookie = request().posts["cookie"];
@@ -394,22 +410,35 @@ void WebApplication::action_command_download()
     category = category.trimmed();
 
     BitTorrent::AddTorrentParams params;
+
+    // TODO: Check if destination actually exists
+    params.skipChecking = skipChecking;
+
+    params.addPaused = addPaused;
     params.savePath = savepath;
     params.category = category;
 
+    bool partialSuccess = false;
     foreach (QString url, list) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            BitTorrent::Session::instance()->addTorrent(url, params);
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, params);
         }
     }
+
+    if (partialSuccess)
+        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+    else
+        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
 }
 
 void WebApplication::action_command_upload()
 {
     qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
+    bool skipChecking = request().posts["skip_checking"] == "true";
+    bool addPaused = request().posts["paused"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
 
@@ -427,6 +456,11 @@ void WebApplication::action_command_upload()
             }
             else {
                 BitTorrent::AddTorrentParams params;
+
+                 // TODO: Check if destination actually exists
+                params.skipChecking = skipChecking;
+
+                params.addPaused = addPaused;
                 params.savePath = savepath;
                 params.category = category;
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
@@ -799,7 +833,7 @@ void WebApplication::action_command_getSavePath()
     print(BitTorrent::Session::instance()->defaultSavePath());
 }
 
-void WebApplication::action_command_blockPeer()
+void WebApplication::action_command_tempblockPeer()
 {
     CHECK_URI(0);
     QString ip = request().posts["ip"];
@@ -823,7 +857,7 @@ void WebApplication::action_command_blockPeer()
     }
 
     qDebug("Peer %s banned via Web API.", ip.toLocal8Bit().data());
-    BitTorrent::Session::instance()->blockIP(ip);
+    BitTorrent::Session::instance()->tempblockIP(ip);
     Logger::instance()->addMessage(tr("Peer '%1' banned via Web API.").arg(ip));
     print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
 
@@ -832,46 +866,6 @@ void WebApplication::action_command_blockPeer()
 
     if (!m_UnbanTimer->isActive()) {
         m_UnbanTimer->start();
-    }
-}
-
-void WebApplication::action_command_unblockPeer()
-{
-    CHECK_URI(0);
-    QString ip = request().posts["ip"];
-    boost::system::error_code ec;
-    boost::asio::ip::address addr = boost::asio::ip::address::from_string(ip.toStdString(), ec);
-    bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(QString::fromStdString(addr.to_string()));
-
-    if (ip.isEmpty()) {
-        print(QByteArray("IP field should not be empty."), Http::CONTENT_TYPE_TXT);
-        return;
-    }
-
-    if (ec) {
-        print(QByteArray("The given IP address is not valid."), Http::CONTENT_TYPE_TXT);
-        return;
-    }
-
-    if (!isBanned) {
-        print(QByteArray("The given IP address isn't banned."), Http::CONTENT_TYPE_TXT);
-        return;
-    }
-
-    qDebug("Peer %s unbanned via Web API.", ip.toLocal8Bit().data());
-    Logger::instance()->addMessage(tr("Peer '%1' unbanned via Web API.").arg(ip));
-    BitTorrent::Session::instance()->removeBannedIP(ip);
-    print(QByteArray("Done."), Http::CONTENT_TYPE_TXT);
-
-    //Remove Queue
-    int count = bannedIPs.count();
-    for (int i = 0; i < count; ++i) {
-        if (bannedIPs[i] == ip) {
-            Logger::instance()->addMessage(tr("IP: '%1'").arg(bannedIPs[i]));
-            Logger::instance()->addMessage(tr("Time: '%1'").arg(UnbanTime[i]));
-            bannedIPs.removeAll(ip);
-            UnbanTime.removeAt(i);
-        }
     }
 }
 
@@ -891,7 +885,7 @@ bool WebApplication::isPublicScope()
     return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
 }
 
-void WebApplication::processRequest()
+void WebApplication::doProcessRequest()
 {
     scope_ = DEFAULT_SCOPE;
     action_ = DEFAULT_ACTION;

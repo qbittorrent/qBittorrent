@@ -3,6 +3,9 @@
 # sets variables
 # SYSTEMD_FOUND
 # SYSTEMD_SERVICES_INSTALL_DIR
+
+find_package(PkgConfig QUIET REQUIRED)
+
 if (NOT SYSTEMD_FOUND)
     pkg_check_modules(SYSTEMD "systemd")
 endif(NOT SYSTEMD_FOUND)

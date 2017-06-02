@@ -36,12 +36,14 @@
 #include <QNetworkCookie>
 #include <QTemporaryFile>
 #include <QTimer>
+#include <QUrl>
 
 #include "base/logger.h"
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
+#include "base/utils/string.h"
 #include "websessiondata.h"
 
 // UnbanTimer
@@ -115,7 +117,13 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
     header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
     header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
-    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self' 'unsafe-inline' 'unsafe-eval';");
+    header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
+
+    // block cross-site requests
+    if (isCrossSiteRequest(request_)) {
+        status(401, "Unauthorized");
+        return response();
+    }
 
     sessionInitialize();
     if (!sessionActive() && !isAuthNeeded())
@@ -126,7 +134,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
         print(QObject::tr("Your IP address has been banned after too many failed authentication attempts."), Http::CONTENT_TYPE_TXT);
     }
     else {
-        processRequest();
+        doProcessRequest();
     }
 
     return response();
@@ -152,24 +160,13 @@ void AbstractWebApplication::removeInactiveSessions()
 
 bool AbstractWebApplication::sessionInitialize()
 {
-    static const QString SID_START = QLatin1String(C_SID) + QLatin1String("=");
-
     if (session_ == 0)
     {
-        QString cookie = request_.headers.value("cookie");
-        //qDebug() << Q_FUNC_INFO << "cookie: " << cookie;
-
-        QString sessionId;
-        int pos = cookie.indexOf(SID_START);
-        if (pos >= 0) {
-            pos += SID_START.length();
-            int end = cookie.indexOf(QRegExp("[,;]"), pos);
-            sessionId = cookie.mid(pos, end >= 0 ? end - pos : end);
-        }
+        const QString sessionId = parseCookie(request_).value(C_SID);
 
         // TODO: Additional session check
 
-        if (!sessionId.isNull()) {
+        if (!sessionId.isEmpty()) {
             if (sessions_.contains(sessionId)) {
                 session_ = sessions_[sessionId];
                 session_->updateTimestamp();
@@ -249,17 +246,8 @@ QString AbstractWebApplication::generateSid()
 
 void AbstractWebApplication::translateDocument(QString& data)
 {
-    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])?");
+    const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
     const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
-    const std::string contexts[] = {
-        "TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget",
-        "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
-        "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel",
-        "PropTabBar", "TorrentModel", "downloadFromURL", "MainWindow", "misc",
-        "StatusBar", "AboutDlg", "about", "PeerListWidget", "StatusFiltersWidget",
-        "CategoryFiltersList", "TransferListDelegate"
-    };
-    const size_t context_count = sizeof(contexts) / sizeof(contexts[0]);
     int i = 0;
     bool found = true;
 
@@ -275,24 +263,11 @@ void AbstractWebApplication::translateDocument(QString& data)
             QString translation = word;
             if (isTranslationNeeded) {
                 QString context = regex.cap(4);
-                if (context.length() > 0) {
 #ifndef QBT_USES_QT5
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+                translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
 #else
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
+                translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
 #endif
-                }
-                else {
-                    size_t context_index = 0;
-                    while ((context_index < context_count) && (translation == word)) {
-#ifndef QBT_USES_QT5
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-#else
-                        translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
-#endif
-                        ++context_index;
-                    }
-                }
             }
             // Remove keyboard shortcuts
             translation.replace(mnemonic, "");
@@ -354,10 +329,10 @@ void AbstractWebApplication::processUnbanRequest()
         int delayTime = int(nextTime - currentTime);
         QString nextIP = bannedIPs.dequeue();
         if (delayTime < 0) {
-            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
         }
         else {
-            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBannedIP(nextIP); m_isActive = false; });
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
         }
     }
 }
@@ -432,6 +407,38 @@ QString AbstractWebApplication::saveTmpFile(const QByteArray &data)
     return QString();
 }
 
+bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) const
+{
+    // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
+
+    const auto isSameOrigin = [](const QUrl &left, const QUrl &right) -> bool
+    {
+        // [rfc6454] 5. Comparing Origins
+        return ((left.port() == right.port())
+                // && (left.scheme() == right.scheme())  // not present in this context
+                && (left.host() == right.host()));
+    };
+
+    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers[Http::HEADER_HOST]);
+    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
+    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
+
+    if (originValue.isEmpty() && refererValue.isEmpty()) {
+        if ((request.path == QLatin1String("/")) || (request.path == QLatin1String("/favicon.ico")))
+            return false;  // normal request
+        return true;
+    }
+
+    // sent with CORS requests, as well as with POST requests
+    if (!originValue.isEmpty())
+        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), originValue);
+
+    if (!refererValue.isEmpty())
+        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
+
+    return true;
+}
+
 QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
 {
     QStringMap map;
@@ -447,3 +454,32 @@ QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
 }
 
 const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = AbstractWebApplication::initializeContentTypeByExtMap();
+
+QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) const
+{
+    // [rfc6265] 4.2.1. Syntax
+    QStringMap ret;
+    const QString cookieStr = request.headers.value(QLatin1String("cookie"));
+#ifdef QBT_USES_QT5
+    const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
+#else
+    const QStringList cookies = cookieStr.split(';', QString::SkipEmptyParts);
+#endif
+
+    for (const auto &cookie : cookies) {
+        const int idx = cookie.indexOf('=');
+        if (idx < 0)
+            continue;
+#ifdef QBT_USES_QT5
+        const QString name = cookie.left(idx).trimmed().toString();
+        const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
+                                  .toString();
+#else
+        const QString name = cookie.left(idx).trimmed();
+        const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed());
+#endif
+
+        ret.insert(name, value);
+    }
+    return ret;
+}

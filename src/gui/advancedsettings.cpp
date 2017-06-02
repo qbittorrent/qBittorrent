@@ -129,8 +129,6 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(cb_os_cache.isChecked());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
-    // Enable Auto ban Unknown Peer
-    session->setAutoBanUnknownPeer(cb_auto_ban_unknown_peer.isChecked());
     // Outgoing ports
     session->setOutgoingPortsMin(outgoing_ports_min.value());
     session->setOutgoingPortsMax(outgoing_ports_max.value());
@@ -169,6 +167,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Announce IP
     QHostAddress addr(txtAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
+    // Enable Auto ban Unknown Peer
+    session->setAutoBanUnknownPeer(cb_auto_ban_unknown_peer.isChecked());
 
     // Program notification
     MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();

@@ -38,6 +38,7 @@ endforeach()
 
 set(QBT_APP_RESOURCES
 ../icons.qrc
+../searchengine.qrc
 "${_lang_qrc_dst}"
 )
 
@@ -55,7 +56,7 @@ if (WIN32)
     else (MINGW)
         list (APPEND QBT_APP_SOURCES ../qbittorrent.rc)
     endif (MINGW)
-    list(APPEND QBT_APP_SOURCES ../qbittorent.exe.manifest)
+    list(APPEND QBT_APP_SOURCES ../qbittorrent.exe.manifest)
 endif (WIN32)
 
 if (UNIX)

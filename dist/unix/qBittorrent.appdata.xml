@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014 sledgehammer999 <sledgehammer999@qbittorrent.org> -->
 <component type="desktop">
-  <id>qBittorrent.desktop</id>
+  <id>qbittorrent.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0 and OpenSSL</project_license>
   <name>qBittorrent</name>

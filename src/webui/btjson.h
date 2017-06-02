@@ -51,6 +51,8 @@ public:
     static QByteArray getWebSeedsForTorrent(const QString& hash);
     static QByteArray getPropertiesForTorrent(const QString& hash);
     static QByteArray getFilesForTorrent(const QString& hash);
+    static QByteArray getPieceHashesForTorrent(const QString &hash);
+    static QByteArray getPieceStatesForTorrent(const QString &hash);
     static QByteArray getTransferInfo();
     static QByteArray getTorrentsRatesLimits(QStringList& hashes, bool downloadLimits);
     static QByteArray getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId);

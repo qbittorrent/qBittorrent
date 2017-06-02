@@ -2613,7 +2613,7 @@
             <item>
              <widget class="QGroupBox" name="checkWebUi">
               <property name="title">
-               <string>Enable Web User Interface (Remote control)</string>
+               <string>Web User Interface (Remote control)</string>
               </property>
               <property name="checkable">
                <bool>true</bool>

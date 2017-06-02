@@ -56,6 +56,8 @@ private:
     void action_query_propertiesFiles();
     void action_query_getLog();
     void action_query_getPeerLog();
+    void action_query_getPieceHashes();
+    void action_query_getPieceStates();
     void action_sync_maindata();
     void action_sync_torrent_peers();
     void action_command_shutdown();
@@ -93,8 +95,7 @@ private:
     void action_command_addCategory();
     void action_command_removeCategories();
     void action_command_getSavePath();
-    void action_command_blockPeer();
-    void action_command_unblockPeer();
+    void action_command_tempblockPeer();
     void action_command_resetIPFilter();
     void action_version_api();
     void action_version_api_min();
@@ -106,7 +107,7 @@ private:
     QString action_;
     QStringList args_;
 
-    void processRequest();
+    void doProcessRequest() override;
 
     bool isPublicScope();
     void parsePath();

@@ -50,7 +50,8 @@ namespace
     {
     public:
         PieceIndexToImagePos(const BitTorrent::TorrentInfo &torrentInfo, const QImage &image)
-            : m_bytesPerPixel {image.width() > 0 ? torrentInfo.totalSize() / image.width() : -1}
+            : m_bytesPerPixel {(image.width() > 0 && torrentInfo.totalSize() >= image.width())
+                ? torrentInfo.totalSize() / image.width() : -1}
             , m_torrentInfo {torrentInfo}
         {
             if ((m_bytesPerPixel > 0) && (m_bytesPerPixel < 10))
@@ -251,8 +252,8 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
     QString toolTipText;
     QTextStream stream(&toolTipText, QIODevice::WriteOnly);
-    bool showDetailedInformation = QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier);
-    if (showDetailedInformation) {
+    const bool showDetailedInformation = QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier);
+    if (showDetailedInformation && m_torrent->hasMetadata()) {
         const int imagePos = e->pos().x() - borderWidth;
         if ((imagePos >=0) && (imagePos < m_image.width())) {
             stream << "<html><body>";
@@ -286,7 +287,10 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
     }
     else {
         stream << simpleToolTipText();
-        stream << '\n' << tr("Hold Shift key for detailed information");
+        if (showDetailedInformation) // metadata are not available at this point
+            stream << '\n' << tr("Wait until metadata become available to see detailed information");
+        else
+            stream << '\n' << tr("Hold Shift key for detailed information");
     }
 
     stream.flush();
@@ -296,7 +300,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
 void PiecesBar::highlightFile(int imagePos)
 {
-    if (!m_torrent || (imagePos < 0) || (imagePos >= m_image.width()))
+    if (!m_torrent || !m_torrent->hasMetadata() || (imagePos < 0) || (imagePos >= m_image.width()))
         return;
 
     PieceIndexToImagePos transform {m_torrent->info(), m_image};

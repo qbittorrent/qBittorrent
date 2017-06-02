@@ -38,7 +38,8 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
-class PeerListDelegate: public QItemDelegate {
+class PeerListDelegate: public QItemDelegate
+{
     Q_OBJECT
 
 public:
@@ -68,14 +69,16 @@ public:
 
     ~PeerListDelegate() {}
 
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         painter->save();
+
         const bool hideValues = Preferences::instance()->getHideZeroValues();
         QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
-        switch(index.column()) {
+        QItemDelegate::drawBackground(painter, opt, index);
+
+        switch (index.column()) {
         case PORT: {
-            QItemDelegate::drawBackground(painter, opt, index);
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
             }
@@ -85,40 +88,38 @@ public:
             qlonglong size = index.data().toLongLong();
             if (hideValues && (size <= 0))
                 break;
-            QItemDelegate::drawBackground(painter, opt, index);
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(size));
             }
             break;
         case DOWN_SPEED:
-        case UP_SPEED:{
-            QItemDelegate::drawBackground(painter, opt, index);
+        case UP_SPEED: {
             qreal speed = index.data().toDouble();
+            if (speed <= 0.0)
+                break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            if (speed > 0.0)
-                QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
             }
             break;
         case PROGRESS:
         case RELEVANCE: {
-            QItemDelegate::drawBackground(painter, opt, index);
             qreal progress = index.data().toDouble();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress*100.0, 1)+"%");
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + "%");
             }
             break;
         default:
             QItemDelegate::paint(painter, option, index);
         }
+
         painter->restore();
     }
 
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override
     {
         // No editor here
-        return 0;
+        return nullptr;
     }
-
 };
 
 #endif // PEERLISTDELEGATE_H

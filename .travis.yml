@@ -34,16 +34,15 @@ notifications:
     on_success: change
     on_failure: change
 
-# container-based builds
-#sudo: false
 cache:
   ccache: true
   directories:
     - $HOME/hombebrew_cache
 
 # opt-in Ubuntu Trusty
-sudo: required
 dist: trusty
+# container-based builds
+sudo: false
 
 addons:
   coverity_scan:
@@ -55,20 +54,27 @@ addons:
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
   apt:
-    #sources:
-    # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-    #- ubuntu-toolchain-r-test
-    #- boost-latest
+    sources:
+      # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+      #- ubuntu-toolchain-r-test
+      #- boost-latest
+      - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
+      - sourceline: 'ppa:beineri/opt-qt551-trusty'
     packages:
-    # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
-    - autoconf
-    - automake
-    - colormake
-    - libssl-dev
-    - libboost-dev
-    - libboost-system-dev
-    # uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
-    #- libtorrent-rasterbar6
+      # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+      - autoconf
+      - automake
+      - colormake
+      - libssl-dev
+      - libboost-dev
+      - libboost-system-dev
+      - libtorrent-rasterbar-dev
+      # Qt 5.5.1
+      - qt55base
+      - qt55tools
+      # Qt 4.8
+      - qt4-default
+      - libqt4-dev
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -79,7 +85,7 @@ before_install:
   #- libt_path="$HOME/libt_install"
   #- ltconf="$ltconf --prefix="$libt_path" --disable-geoip"
   - qbt_path="$HOME/qbt_install"
-  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":$PKG_CONFIG_PATH"
+  - qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH="$libt_path/lib/pkgconfig":/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
 
   # options for specific branches
   - if [ "$qt" = 4 ]; then qbtconf="$qbtconf --with-qt4" ; fi
@@ -88,6 +94,9 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
+
+      # Qt 5
+      PATH=/opt/qt55/bin:${PATH}
     fi
 
   # print settings
@@ -97,31 +106,23 @@ before_install:
   - echo $qbtconf
 
 install:
-  - |
-    if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # libtorrent
-      sudo add-apt-repository --yes ppa:qbittorrent-team/qbittorrent-stable ;
-      sudo apt-get update -qq ;
-      sudo apt-get install -qq libtorrent-rasterbar-dev ;
-
+  #- |
+    #if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # build libtorrent from source
       #if [ "$lt_branch" != "dist" ]; then
         #cd "$HOME" && pwd && git clone --depth 1 https://github.com/arvidn/libtorrent.git --branch $lt_branch ;
         #cd libtorrent && ./autotool.sh && ./configure $ltconf && make install ;
       #fi ;
-
-      # Qt
-      if [ "$qt" = 4 ]; then sudo apt-get -qq install qt4-default libqt4-dev ; fi ;
-      if [ "$qt" = 5 ]; then sudo apt-get -qq install qt5-default qtbase5-dev qttools5-dev-tools ; fi ;
-
-      # ccache
-      if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
-        dpkg-query -L ccache && export use_ccache=true ;
-        ccache -V && ccache --show-stats && ccache --zero-stats ;
-      fi ;
-    fi
+    #fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      # dependencies
+      brew update > /dev/null
+      brew install colormake ccache zlib
+      PATH="/usr/local/opt/ccache/libexec:$PATH"
+      brew link --force zlib
+      brew outdated "pkg-config" || brew upgrade "pkg-config"
+
       wget https://builds.shiki.hu/homebrew/version ;
       if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
         echo "Cached files are different from server. Downloading new ones." ;
@@ -136,10 +137,6 @@ install:
         wget https://builds.shiki.hu/homebrew/qt5-5.7.1_1.el_capitan.bottle.tar.gz ;
       fi
 
-      # dependencies
-      brew update > /dev/null ;
-      brew install colormake ccache ;
-      brew outdated "pkg-config" || brew upgrade "pkg-config" ;
       # Copy custom libtorrent bottle to homebrew's cache so it can find and install it
       # Also install our custom libtorrent formula by passing the local path to it
       # These 2 files are restored from Travis' cache.
@@ -156,12 +153,11 @@ install:
         brew install "$HOME/hombebrew_cache/qt5.rb" ;
         brew link --force qt5 ;
       fi
-
-      # ccache
-      if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
-        export PATH="/usr/local/opt/ccache/libexec:$PATH" && export use_ccache=true ;
-        ccache -V && ccache --show-stats && ccache --zero-stats ;
-      fi ;
+    fi
+  - |
+    if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
+      export use_ccache=true
+      ccache -V && ccache --show-stats && ccache --zero-stats
     fi
 
 script:

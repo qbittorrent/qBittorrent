@@ -34,6 +34,7 @@
 #define HTTP_SERVER_H
 
 #include <QTcpServer>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
 #include <QSslCipher>
@@ -55,18 +56,22 @@ namespace Http
         ~Server();
 
 #ifndef QT_NO_OPENSSL
-        void enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key);
+        bool setupHttps(const QByteArray &certificates, const QByteArray &key);
         void disableHttps();
 #endif
 
-    private:
-        IRequestHandler *m_requestHandler;
+    private slots:
+        void dropTimedOutConnection();
 
+    private:
 #ifdef QBT_USES_QT5
         void incomingConnection(qintptr socketDescriptor);
 #else
         void incomingConnection(int socketDescriptor);
 #endif
+
+        IRequestHandler *m_requestHandler;
+        QList<Connection *> m_connections;  // for tracking persistence connections
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;

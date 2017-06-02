@@ -40,6 +40,7 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
+
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
 #ifdef QBT_USES_QT5
@@ -120,14 +121,23 @@ struct QBtCommandLineParameters
     }
 };
 
-#ifndef DISABLE_GUI
-void showSplashScreen();
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+void reportToUser(const char* str);
 #endif
+
 void displayVersion();
 void displayUsage(const QString &prg_name);
 bool userAgreesWithLegalNotice();
 void displayBadArgMessage(const QString &message);
 QBtCommandLineParameters parseCommandLine();
+
+#if !defined(DISABLE_GUI)
+void showSplashScreen();
+
+#if defined(Q_OS_UNIX)
+void setupDpi();
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 // Main
 int main(int argc, char *argv[])
@@ -140,6 +150,11 @@ int main(int argc, char *argv[])
     // Due to this, we have to move from native plist to IniFormat
     macMigratePlists();
 #endif
+
+#if !defined(DISABLE_GUI) && defined(Q_OS_UNIX)
+    setupDpi();
+#endif
+
 
 #ifndef DISABLE_GUI
     migrateRSS();
@@ -342,6 +357,17 @@ QBtCommandLineParameters parseCommandLine()
     return result;
 }
 
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+void reportToUser(const char* str)
+{
+    const size_t strLen = strlen(str);
+    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+        auto dummy = write(STDOUT_FILENO, str, strLen);
+        Q_UNUSED(dummy);
+    }
+}
+#endif
+
 #if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum)
 {
@@ -349,9 +375,9 @@ void sigNormalHandler(int signum)
     const char str1[] = "Catching signal: ";
     const char *sigName = sysSigName[signum];
     const char str2[] = "\nExiting cleanly\n";
-    write(STDERR_FILENO, str1, strlen(str1));
-    write(STDERR_FILENO, sigName, strlen(sigName));
-    write(STDERR_FILENO, str2, strlen(str2));
+    reportToUser(str1);
+    reportToUser(sigName);
+    reportToUser(str2);
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
     signal(signum, SIG_DFL);
     qApp->exit();  // unsafe, but exit anyway
@@ -364,9 +390,9 @@ void sigAbnormalHandler(int signum)
     const char *sigName = sysSigName[signum];
     const char str2[] = "\nPlease file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
     "qBittorrent version: " QBT_VERSION "\n";
-    write(STDERR_FILENO, str1, strlen(str1));
-    write(STDERR_FILENO, sigName, strlen(sigName));
-    write(STDERR_FILENO, str2, strlen(str2));
+    reportToUser(str1);
+    reportToUser(sigName);
+    reportToUser(str2);
     print_stacktrace();  // unsafe
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #ifdef STACKTRACE_WIN
@@ -379,7 +405,7 @@ void sigAbnormalHandler(int signum)
 }
 #endif // defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 
-#ifndef DISABLE_GUI
+#if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
     QPixmap splash_img(":/icons/skin/splash.png");
@@ -393,7 +419,15 @@ void showSplashScreen()
     QTimer::singleShot(1500, splash, SLOT(deleteLater()));
     qApp->processEvents();
 }
-#endif
+
+#if defined(Q_OS_UNIX)
+void setupDpi()
+{
+    if (qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+}
+#endif  // Q_OS_UNIX
+#endif  // DISABLE_GUI
 
 void displayVersion()
 {

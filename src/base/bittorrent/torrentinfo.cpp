@@ -246,6 +246,21 @@ QVector<int> TorrentInfo::fileIndicesForPiece(int pieceIndex) const
     return res;
 }
 
+QVector<QByteArray> TorrentInfo::pieceHashes() const
+{
+    if (!isValid())
+        return {};
+
+    const int count = piecesCount();
+    QVector<QByteArray> hashes;
+    hashes.reserve(count);
+
+    for (int i = 0; i < count; ++i)
+        hashes += { m_nativeInfo->hash_for_piece_ptr(i), libtorrent::sha1_hash::size };
+
+    return hashes;
+}
+
 TorrentInfo::PieceRange TorrentInfo::filePieces(const QString& file) const
 {
     if (!isValid()) // if we do not check here the debug message will be printed, which would be not correct

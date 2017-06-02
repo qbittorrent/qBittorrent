@@ -51,6 +51,7 @@ HEADERS += \
     $$PWD/cookiesmodel.h \
     $$PWD/cookiesdialog.h \
     $$PWD/categoryfiltermodel.h \
+    $$PWD/categoryfilterproxymodel.h \
     $$PWD/categoryfilterwidget.h
 
 SOURCES += \
@@ -93,6 +94,7 @@ SOURCES += \
     $$PWD/cookiesmodel.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
+    $$PWD/categoryfilterproxymodel.cpp \
     $$PWD/categoryfilterwidget.cpp
 
 win32|macx {

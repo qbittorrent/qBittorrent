@@ -11,6 +11,7 @@ strace_win {
   LIBS += dbghelp.lib
 }
 
+CONFIG -= embed_manifest_exe
 QMAKE_LFLAGS += "/OPT:REF /OPT:ICF /MANIFEST:EMBED /MANIFESTINPUT:$$quote($${PWD}/src/qbittorrent.exe.manifest)"
 
 RC_FILE = qbittorrent.rc
