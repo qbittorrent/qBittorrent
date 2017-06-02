@@ -396,9 +396,9 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
     const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 
     if (originValue.isEmpty() && refererValue.isEmpty()) {
-        if ((request.path == QLatin1String("/")) || (request.path == QLatin1String("/favicon.ico")))
-            return false;  // normal request
-        return true;
+        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+        // so lets be permissive here
+        return false;
     }
 
     // sent with CORS requests, as well as with POST requests
