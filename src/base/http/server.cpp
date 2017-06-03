@@ -43,7 +43,7 @@
 
 #include "connection.h"
 
-static const int KEEP_ALIVE_DURATION = 7;  // seconds
+static const int KEEP_ALIVE_DURATION = 7 * 1000;  // milliseconds
 static const int CONNECTIONS_LIMIT = 500;
 static const int CONNECTIONS_SCAN_INTERVAL = 2;  // seconds
 
