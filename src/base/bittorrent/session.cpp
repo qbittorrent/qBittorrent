@@ -3538,9 +3538,6 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
     if (data.resumed) {
         if (fromMagnetUri && !data.addPaused)
             torrent->resume(data.addForced);
-
-        logger->addMessage(tr("'%1' resumed. (fast resume)", "'torrent name' was resumed. (fast resume)")
-                           .arg(torrent->name()));
     }
     else {
         qDebug("This is a NEW torrent (first time)...");
