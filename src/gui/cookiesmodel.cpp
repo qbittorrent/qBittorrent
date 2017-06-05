@@ -145,7 +145,7 @@ bool CookiesModel::insertRows(int row, int count, const QModelIndex &parent)
     if ((row < 0) || (row > m_cookies.size())) return false;
 
     QNetworkCookie newCookie;
-    newCookie.setExpirationDate(QDateTime::currentDateTime().addYears(99));
+    newCookie.setExpirationDate(QDateTime::currentDateTime().addYears(2));
 
     beginInsertRows(parent, row, row + count - 1);
     while (count-- > 0)
