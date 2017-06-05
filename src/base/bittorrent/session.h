@@ -455,7 +455,7 @@ namespace BitTorrent
 
     private slots:
         void configureDeferred();
-        void readAlerts();
+        void readAlerts(ulong time = 0);
         void refresh();
         void processShareLimits();
         void generateResumeData(bool final = false);
