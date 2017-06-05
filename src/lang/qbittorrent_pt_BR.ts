@@ -1261,7 +1261,7 @@ Erro: %2</translation>
         <location filename="../base/bittorrent/session.cpp" line="3120"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation>Não foi possível resumir o torrent &apos;%1&apos;.</translation>
+        <translation>Não foi possível continuar o torrent &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3202"/>
@@ -1283,7 +1283,7 @@ Erro: %2</translation>
         <location filename="../base/bittorrent/session.cpp" line="3362"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
-        <translation>&apos;%1&apos; resumido. (resumir rápido)</translation>
+        <translation>&apos;%1&apos; continuado. (continuação rápida)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="3393"/>
@@ -1823,7 +1823,7 @@ O nome da categoria não pode conter a sequência &apos;//&apos;.</translation>
     <message>
         <location filename="../webui/extra_translations.h" line="82"/>
         <source>Resumed</source>
-        <translation>Resumido</translation>
+        <translation>Continuado</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="83"/>
@@ -2105,7 +2105,7 @@ O nome da categoria não pode conter a sequência &apos;//&apos;.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="188"/>
         <source>&amp;Resume</source>
-        <translation>&amp;Resumir</translation>
+        <translation>&amp;Continuar</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="221"/>
@@ -8176,7 +8176,7 @@ Não serão exibidos mais avisos.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="634"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Resumir</translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="638"/>
