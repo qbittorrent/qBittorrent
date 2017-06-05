@@ -53,6 +53,7 @@
 #include "autoexpandabledialog.h"
 #include "categoryfilterwidget.h"
 #include "guiiconprovider.h"
+#include "tagfilterwidget.h"
 #include "torrentmodel.h"
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -75,11 +76,13 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
 #endif
 
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
-    connect(this, SIGNAL(currentRowChanged(int)), SLOT(applyFilter(int)));
+    connect(this, &FiltersBase::customContextMenuRequested, this, &FiltersBase::showMenu);
+    connect(this, &FiltersBase::currentRowChanged, this, &FiltersBase::applyFilter);
 
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const)), SLOT(handleNewTorrent(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)), SLOT(torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const)));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded
+            , this, &FiltersBase::handleNewTorrent);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
+            , this, &FiltersBase::torrentAboutToBeDeleted);
 }
 
 QSize FiltersBase::sizeHint() const
@@ -111,7 +114,8 @@ void FiltersBase::toggleFilter(bool checked)
 StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : FiltersBase(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), SLOT(updateTorrentNumbers()));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
+            , this, &StatusFiltersWidget::updateTorrentNumbers);
 
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(this);
@@ -387,8 +391,11 @@ void TrackerFiltersList::downloadFavicon(const QString& url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
-    connect(h, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleFavicoDownload(QString, QString)));
-    connect(h, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleFavicoFailure(QString, QString)));
+    using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
+    connect(h, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this
+            , &TrackerFiltersList::handleFavicoDownload);
+    connect(h, static_cast<Func>(&Net::DownloadHandler::downloadFailed), this
+            , &TrackerFiltersList::handleFavicoFailure);
 }
 
 void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
@@ -568,20 +575,39 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *categoryLabel = new QCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
     categoryLabel->setFont(font);
-    connect(categoryLabel, SIGNAL(toggled(bool)), SLOT(onCategoryFilterStateChanged(bool)));
+    connect(categoryLabel, &QCheckBox::toggled, this
+            , &TransferListFiltersWidget::onCategoryFilterStateChanged);
     frameLayout->addWidget(categoryLabel);
 
     m_categoryFilterWidget = new CategoryFilterWidget(this);
-    connect(m_categoryFilterWidget, SIGNAL(actionDeleteTorrentsTriggered())
-            , transferList, SLOT(deleteVisibleTorrents()));
-    connect(m_categoryFilterWidget, SIGNAL(actionPauseTorrentsTriggered())
-            , transferList, SLOT(pauseVisibleTorrents()));
-    connect(m_categoryFilterWidget, SIGNAL(actionResumeTorrentsTriggered())
-            , transferList, SLOT(startVisibleTorrents()));
-    connect(m_categoryFilterWidget, SIGNAL(categoryChanged(QString))
-            , transferList, SLOT(applyCategoryFilter(QString)));
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionDeleteTorrentsTriggered
+            , transferList, &TransferListWidget::deleteVisibleTorrents);
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionPauseTorrentsTriggered
+            , transferList, &TransferListWidget::pauseVisibleTorrents);
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionResumeTorrentsTriggered
+            , transferList, &TransferListWidget::startVisibleTorrents);
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::categoryChanged
+            , transferList, &TransferListWidget::applyCategoryFilter);
     toggleCategoryFilter(pref->getCategoryFilterState());
     frameLayout->addWidget(m_categoryFilterWidget);
+
+    QCheckBox *tagsLabel = new QCheckBox(tr("Tags"), this);
+    tagsLabel->setChecked(pref->getTagFilterState());
+    tagsLabel->setFont(font);
+    connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
+    frameLayout->addWidget(tagsLabel);
+
+    m_tagFilterWidget = new TagFilterWidget(this);
+    connect(m_tagFilterWidget, &TagFilterWidget::actionDeleteTorrentsTriggered
+            , transferList, &TransferListWidget::deleteVisibleTorrents);
+    connect(m_tagFilterWidget, &TagFilterWidget::actionPauseTorrentsTriggered
+            , transferList, &TransferListWidget::pauseVisibleTorrents);
+    connect(m_tagFilterWidget, &TagFilterWidget::actionResumeTorrentsTriggered
+            , transferList, &TransferListWidget::startVisibleTorrents);
+    connect(m_tagFilterWidget, &TagFilterWidget::tagChanged
+            , transferList, &TransferListWidget::applyTagFilter);
+    toggleTagFilter(pref->getTagFilterState());
+    frameLayout->addWidget(m_tagFilterWidget);
 
     QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
@@ -591,13 +617,18 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     m_trackerFilters = new TrackerFiltersList(this, transferList);
     frameLayout->addWidget(m_trackerFilters);
 
-    connect(statusLabel, SIGNAL(toggled(bool)), statusFilters, SLOT(toggleFilter(bool)));
-    connect(statusLabel, SIGNAL(toggled(bool)), pref, SLOT(setStatusFilterState(const bool)));
-    connect(trackerLabel, SIGNAL(toggled(bool)), m_trackerFilters, SLOT(toggleFilter(bool)));
-    connect(trackerLabel, SIGNAL(toggled(bool)), pref, SLOT(setTrackerFilterState(const bool)));
-    connect(this, SIGNAL(trackerSuccess(const QString &, const QString &)), m_trackerFilters, SLOT(trackerSuccess(const QString &, const QString &)));
-    connect(this, SIGNAL(trackerError(const QString &, const QString &)), m_trackerFilters, SLOT(trackerError(const QString &, const QString &)));
-    connect(this, SIGNAL(trackerWarning(const QString &, const QString &)), m_trackerFilters, SLOT(trackerWarning(const QString &, const QString &)));
+    connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFiltersWidget::toggleFilter);
+    connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
+    connect(trackerLabel, &QCheckBox::toggled, m_trackerFilters, &TrackerFiltersList::toggleFilter);
+    connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
+
+    using Func = void (TransferListFiltersWidget::*)(const QString&, const QString&);
+    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerSuccess)
+            , m_trackerFilters, &TrackerFiltersList::trackerSuccess);
+    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerError)
+            , m_trackerFilters, &TrackerFiltersList::trackerError);
+    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerWarning)
+            , m_trackerFilters, &TrackerFiltersList::trackerWarning);
 }
 
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
@@ -647,4 +678,16 @@ void TransferListFiltersWidget::toggleCategoryFilter(bool enabled)
 {
     m_categoryFilterWidget->setVisible(enabled);
     m_transferList->applyCategoryFilter(enabled ? m_categoryFilterWidget->currentCategory() : QString());
+}
+
+void TransferListFiltersWidget::onTagFilterStateChanged(bool enabled)
+{
+    toggleTagFilter(enabled);
+    Preferences::instance()->setTagFilterState(enabled);
+}
+
+void TransferListFiltersWidget::toggleTagFilter(bool enabled)
+{
+    m_tagFilterWidget->setVisible(enabled);
+    m_transferList->applyTagFilter(enabled ? m_tagFilterWidget->currentTag() : QString());
 }

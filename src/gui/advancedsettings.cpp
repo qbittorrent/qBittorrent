@@ -66,6 +66,7 @@ enum AdvSettingsRows
     RESOLVE_COUNTRIES,
     PROGRAM_NOTIFICATIONS,
     TORRENT_ADDED_NOTIFICATIONS,
+    CONFIRM_REMOVE_ALL_TAGS,
     DOWNLOAD_TRACKER_FAVICON,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
@@ -185,6 +186,9 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
+
+    pref->setConfirmRemoveAllTags(cb_confirm_remove_all_tags.isChecked());
+
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
 }
 
@@ -377,6 +381,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &cb_confirm_torrent_recheck);
+
+    // Remove all tags confirmation
+    cb_confirm_remove_all_tags.setChecked(pref->confirmRemoveAllTags());
+    addRow(CONFIRM_REMOVE_ALL_TAGS, tr("Confirm remove all tags"), &cb_confirm_remove_all_tags);
+
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
     addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);

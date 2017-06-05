@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Tony Gregerson <tony.gregerson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,42 +24,29 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
-#ifndef TRANSFERLISTSORTMODEL_H
-#define TRANSFERLISTSORTMODEL_H
+#ifndef TAGFILTERPROXYMODEL_H
+#define TAGFILTERPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
-#include "base/torrentfilter.h"
+#include <QString>
 
-class QStringList;
-
-class TransferListSortModel: public QSortFilterProxyModel
+class TagFilterProxyModel: public QSortFilterProxyModel
 {
-    Q_OBJECT
-
 public:
-    TransferListSortModel(QObject *parent = 0);
+    explicit TagFilterProxyModel(QObject *parent = nullptr);
 
-    void setStatusFilter(TorrentFilter::Type filter);
-    void setCategoryFilter(const QString &category);
-    void disableCategoryFilter();
-    void setTagFilter(const QString &tag);
-    void disableTagFilter();
-    void setTrackerFilter(const QStringList &hashes);
-    void disableTrackerFilter();
+    // TagFilterModel methods which we need to relay
+    QModelIndex index(const QString &tag) const;
+    QString tag(const QModelIndex &index) const;
 
-private:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-    bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
+protected:
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-    TorrentFilter m_filter;
+    // we added another overload of index(), hence this using directive:
+    using QSortFilterProxyModel::index;
 };
 
-#endif // TRANSFERLISTSORTMODEL_H
+#endif // TAGFILTERPROXYMODEL_H

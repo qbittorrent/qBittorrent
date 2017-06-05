@@ -57,6 +57,9 @@ shutdownconfirmdlg.h
 speedlimitdlg.h
 statsdialog.h
 statusbar.h
+tagfiltermodel.h
+tagfilterproxymodel.h
+tagfilterwidget.h
 torrentcontentfiltermodel.h
 torrentcontentmodel.h
 torrentcontentmodelfile.h
@@ -98,6 +101,9 @@ shutdownconfirmdlg.cpp
 speedlimitdlg.cpp
 statsdialog.cpp
 statusbar.cpp
+tagfiltermodel.cpp
+tagfilterproxymodel.cpp
+tagfilterwidget.cpp
 torrentcontentfiltermodel.cpp
 torrentcontentmodel.cpp
 torrentcontentmodelfile.cpp

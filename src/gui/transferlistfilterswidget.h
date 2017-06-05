@@ -136,6 +136,7 @@ private:
 };
 
 class CategoryFilterWidget;
+class TagFilterWidget;
 
 class TransferListFiltersWidget: public QFrame
 {
@@ -160,13 +161,16 @@ signals:
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
+    void onTagFilterStateChanged(bool enabled);
 
 private:
     void toggleCategoryFilter(bool enabled);
+    void toggleTagFilter(bool enabled);
 
     TransferListWidget *m_transferList;
     TrackerFiltersList *m_trackerFilters;
     CategoryFilterWidget *m_categoryFilterWidget;
+    TagFilterWidget *m_tagFilterWidget;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QSet>
 #include <QString>
 #include <QVector>
 
@@ -39,6 +40,7 @@ namespace BitTorrent
     {
         QString name;
         QString category;
+        QSet<QString> tags;
         QString savePath;
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;

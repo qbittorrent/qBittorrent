@@ -1064,6 +1064,16 @@ void Preferences::setConfirmTorrentRecheck(bool enabled)
     setValue("Preferences/Advanced/confirmTorrentRecheck", enabled);
 }
 
+bool Preferences::confirmRemoveAllTags() const
+{
+    return value("Preferences/Advanced/confirmRemoveAllTags", true).toBool();
+}
+
+void Preferences::setConfirmRemoveAllTags(bool enabled)
+{
+    setValue("Preferences/Advanced/confirmRemoveAllTags", enabled);
+}
+
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
@@ -1325,6 +1335,16 @@ bool Preferences::getCategoryFilterState() const
 void Preferences::setCategoryFilterState(const bool checked)
 {
     setValue("TransferListFilters/CategoryFilterState", checked);
+}
+
+bool Preferences::getTagFilterState() const
+{
+    return value("TransferListFilters/TagFilterState", true).toBool();
+}
+
+void Preferences::setTagFilterState(const bool checked)
+{
+    setValue("TransferListFilters/TagFilterState", checked);
 }
 
 bool Preferences::getTrackerFilterState() const

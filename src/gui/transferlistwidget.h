@@ -31,6 +31,7 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
+#include <functional>
 #include <QTreeView>
 
 namespace BitTorrent
@@ -60,6 +61,9 @@ public:
 
 public slots:
     void setSelectionCategory(QString category);
+    void addSelectionTag(const QString &tag);
+    void removeSelectionTag(const QString &tag);
+    void clearSelectionTags();
     void setSelectedTorrentsLocation();
     void pauseAllTorrents();
     void resumeAllTorrents();
@@ -89,6 +93,7 @@ public slots:
     void applyNameFilter(const QString& name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(QString category);
+    void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QStringList &hashes);
     void previewFile(QString filePath);
@@ -116,6 +121,11 @@ signals:
 
 private:
     void wheelEvent(QWheelEvent *event) override;
+    void askAddTagsForSelection();
+    void askRemoveTagsForSelection();
+    void confirmRemoveAllTagsForSelection();
+    QStringList askTagsForSelection(const QString &dialogTitle);
+    void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
 
     TransferListDelegate *listDelegate;
     TorrentModel *listModel;

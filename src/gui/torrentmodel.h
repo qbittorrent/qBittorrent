@@ -62,6 +62,7 @@ public:
         TR_ETA,
         TR_RATIO,
         TR_CATEGORY,
+        TR_TAGS,
         TR_ADD_DATE,
         TR_SEED_DATE,
         TR_TRACKER,
