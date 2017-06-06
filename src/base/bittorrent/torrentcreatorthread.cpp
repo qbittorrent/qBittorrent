@@ -160,3 +160,13 @@ void TorrentCreatorThread::run()
         emit creationFailure(QString::fromStdString(e.what()));
     }
 }
+
+int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize)
+{
+    if (inputPath.isEmpty())
+        return 0;
+
+    libt::file_storage fs;
+    libt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
+    return libt::create_torrent(fs, pieceSize).num_pieces();
+}

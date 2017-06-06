@@ -28,6 +28,8 @@
 
 #include "cookiesdialog.h"
 
+#include <algorithm>
+
 #include "base/settingsstorage.h"
 #include "base/net/downloadmanager.h"
 #include "guiiconprovider.h"
@@ -85,5 +87,16 @@ void CookiesDialog::onButtonAddClicked()
 
 void CookiesDialog::onButtonDeleteClicked()
 {
-    m_cookiesModel->removeRow(m_ui->treeView->selectionModel()->currentIndex().row());
+    QModelIndexList idxs = m_ui->treeView->selectionModel()->selectedRows();
+
+    // sort in descending order
+    std::sort(idxs.begin(), idxs.end(),
+        [](const QModelIndex &l, const QModelIndex &r)
+        {
+            return (l.row() > r.row());
+        }
+    );
+
+    for (const QModelIndex &idx : idxs)
+        m_cookiesModel->removeRow(idx.row());
 }

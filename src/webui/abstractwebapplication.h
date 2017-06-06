@@ -101,6 +101,7 @@ private:
     bool sessionInitialize();
 
     QStringMap parseCookie(const Http::Request &request) const;
+    bool isCrossSiteRequest(const Http::Request &request) const;
 
     static void translateDocument(QString &data);
 
