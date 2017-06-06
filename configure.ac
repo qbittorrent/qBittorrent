@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v3.2.0alpha], [bugs.qbittorrent.org], [], [http://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [3.4.0alpha], [bugs.qbittorrent.org], [], [http://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CC

@@ -591,7 +591,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="130"/>
         <source>qBittorrent %1 started</source>
-        <comment>qBittorrent v3.2.0alpha started</comment>
+        <comment>qBittorrent v3.4.0alpha started</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2386,7 +2386,7 @@ Category name must not contain &apos;//&apos; sequence.</source>
         <location filename="../gui/mainwindow.cpp" line="385"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>كيوبت‎تورنت ليس التطبيق الافتراضي لفتح ملفات التورنت والروابط الممغنطة. 
+        <translation>كيوبت‎تورنت ليس التطبيق الافتراضي لفتح ملفات التورنت والروابط الممغنطة.
 هل ترغب بربط كيوبت‎تورنت بملفات التورنت والروابط الممغنطة ؟</translation>
     </message>
     <message>
