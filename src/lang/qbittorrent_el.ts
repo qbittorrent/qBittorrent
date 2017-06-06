@@ -591,7 +591,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="130"/>
         <source>qBittorrent %1 started</source>
-        <comment>qBittorrent v3.2.0alpha started</comment>
+        <comment>qBittorrent v3.4.0alpha started</comment>
         <translation>To qBittorrent %1 ξεκίνησε</translation>
     </message>
     <message>

@@ -143,7 +143,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
+    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.4.0alpha started").arg(QBT_VERSION));
 }
 
 #ifndef DISABLE_GUI
