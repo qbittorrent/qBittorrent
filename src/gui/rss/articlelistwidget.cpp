@@ -94,6 +94,8 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
 {
     auto item = mapRSSArticle(rssArticle);
+    if (!item) return;
+
     item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
     item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
 
