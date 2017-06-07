@@ -335,7 +335,8 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr.release());
     });
 #else
-    std::string peerId = libt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
+    libt::fingerprint fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
+    std::string peerId = fingerprint.to_string();
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
