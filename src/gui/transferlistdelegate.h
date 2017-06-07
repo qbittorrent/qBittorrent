@@ -51,8 +51,7 @@ public:
     QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
 
-private:
-    QString getStatusString(const int state) const;
+    static QString getStatusString(const int state);
 };
 
 #endif // TRANSFERLISTDELEGATE_H

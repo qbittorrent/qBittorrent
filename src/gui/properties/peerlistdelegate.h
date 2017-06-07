@@ -107,6 +107,10 @@ public:
             QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + "%");
             }
             break;
+        case DOWNLOADING_PIECE:
+            opt.textElideMode = Qt::ElideMiddle;
+            QItemDelegate::paint(painter, opt, index);
+            break;
         default:
             QItemDelegate::paint(painter, option, index);
         }
