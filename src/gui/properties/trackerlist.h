@@ -51,6 +51,7 @@ class TrackerList: public QTreeWidget {
   Q_DISABLE_COPY(TrackerList)
 
 private:
+  TransferListWidget *transferList;
   PropertiesWidget *properties;
   QHash<QString, QTreeWidgetItem*> tracker_items;
   QTreeWidgetItem* dht_item;
@@ -61,7 +62,7 @@ private:
   QShortcut *copyHotkey;
 
 public:
-  TrackerList(PropertiesWidget *properties);
+  TrackerList(TransferListWidget *transferList, PropertiesWidget *properties);
   ~TrackerList();
 
 protected:

@@ -134,7 +134,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *main_window, Tra
     pieces_availability->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     // Tracker list
-    trackerList = new TrackerList(this);
+    trackerList = new TrackerList(transferList, this);
     m_ui->trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->trackerUpButton->setIconSize(Utils::Misc::smallIconSize());
     m_ui->trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
