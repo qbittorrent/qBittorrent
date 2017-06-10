@@ -51,12 +51,13 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/preferences.h"
 #include "base/utils/misc.h"
+#include "transferlistwidget.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 
-TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
+TrackerList::TrackerList(TransferListWidget* transferList, PropertiesWidget *properties): QTreeWidget(), transferList(transferList), properties(properties) {
   // Graphical settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
@@ -402,10 +403,8 @@ void TrackerList::deleteSelectedTrackers() {
 }
 
 void TrackerList::editSelectedTracker() {
-    BitTorrent::TorrentHandle *const torrent = properties->getCurrentTorrent();
-    if (!torrent) return;
-
-    QString hash = torrent->hash();
+    QList<BitTorrent::TorrentHandle *>  torrents = transferList->getSelectedTorrents();
+    if (torrents.empty()) return;
 
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if (selected_items.isEmpty())
@@ -426,26 +425,28 @@ void TrackerList::editSelectedTracker() {
     if (new_tracker_url == tracker_url)
       return;
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    bool match = false;
-    for (int i = 0; i < trackers.size(); ++i) {
-      BitTorrent::TrackerEntry &entry = trackers[i];
-      if (new_tracker_url == QUrl(entry.url())) {
-        QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
-        return;
+    foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
+      QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+      bool match = false;
+      for (int i = 0; i < trackers.size(); ++i) {
+        BitTorrent::TrackerEntry &entry = trackers[i];
+        if (new_tracker_url == QUrl(entry.url())) {
+          QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
+          return;
+        }
+
+        if (tracker_url == QUrl(entry.url()) && !match) {
+          BitTorrent::TrackerEntry new_entry(new_tracker_url.toString());
+          new_entry.setTier(entry.tier());
+          match = true;
+          entry = new_entry;
+        }
       }
 
-      if (tracker_url == QUrl(entry.url()) && !match) {
-        BitTorrent::TrackerEntry new_entry(new_tracker_url.toString());
-        new_entry.setTier(entry.tier());
-        match = true;
-        entry = new_entry;
+      torrent->replaceTrackers(trackers);
+      if (!torrent->isPaused()) {
+        torrent->forceReannounce();
       }
-    }
-
-    torrent->replaceTrackers(trackers);
-    if (!torrent->isPaused()) {
-      torrent->forceReannounce();
     }
 }
 
