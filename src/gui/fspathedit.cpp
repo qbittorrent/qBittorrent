@@ -80,6 +80,7 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     Mode m_mode;
     QString m_lastSignaledPath;
     QString m_dialogCaption;
+    Private::FileSystemPathValidator *m_validator;
 };
 
 FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
@@ -89,6 +90,7 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
     , m_browseAction {new QAction(q)}
     , m_browseBtn {new QToolButton(q)}
     , m_mode {FileSystemPathEdit::Mode::FileOpen}
+    , m_validator {new Private::FileSystemPathValidator(q)}
 {
     m_browseAction->setIconText(browseButtonBriefText.tr());
     m_browseAction->setText(browseButtonFullText.tr());
@@ -97,6 +99,8 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
     m_browseBtn->setDefaultAction(m_browseAction);
     m_fileNameFilter = tr("Any file") + QLatin1String(" (*)");
     m_editor->setBrowseAction(m_browseAction);
+    m_validator->setStrictMode(false);
+    m_editor->setValidator(m_validator);
     modeChanged();
 }
 
@@ -163,6 +167,11 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
     }
     m_browseAction->setIcon(QApplication::style()->standardIcon(pixmap));
     m_editor->completeDirectoriesOnly(showDirsOnly);
+
+    m_validator->setExistingOnly(m_mode != FileSystemPathEdit::Mode::FileSave);
+    m_validator->setDirectoriesOnly((m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));
+    m_validator->setCheckReadPermission((m_mode == FileSystemPathEdit::Mode::FileOpen) || (m_mode == FileSystemPathEdit::Mode::DirectoryOpen));
+    m_validator->setCheckWritePermission((m_mode == FileSystemPathEdit::Mode::FileSave) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));
 }
 
 FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor, QWidget *parent)
