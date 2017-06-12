@@ -32,8 +32,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSystemTrayIcon>
 #include <QPointer>
+
+#ifndef Q_OS_MAC
+#include <QSystemTrayIcon>
+#endif
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -102,15 +105,11 @@ public:
     void showNotificationBaloon(QString title, QString msg) const;
 
 private slots:
-    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
-
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void createTrayIcon();
     void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
-    void createSystrayDelayed();
     void tabChanged(int newTab);
     void defineUILockPassword();
     void clearUILockPassword();
@@ -118,7 +117,6 @@ private slots:
     void notifyOfUpdate(QString);
     void showConnectionSettings();
     void minimizeWindow();
-    void updateTrayIconMenu();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayTransferTab() const;
@@ -191,7 +189,15 @@ private slots:
     void toolbarFollowSystem();
 
 private:
+#ifdef Q_OS_MAC
+    void setupDockClickHandler();
+#else
+    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
+    void createTrayIcon();
+    void createSystrayDelayed();
+    void updateTrayIconMenu();
     QIcon getSystrayIcon() const;
+#endif
 #ifdef Q_OS_WIN
     bool addPythonPathToEnv();
     void installPython();
@@ -221,8 +227,10 @@ private:
     QPointer<StatsDialog> m_statsDlg;
     QPointer<TorrentCreatorDlg> m_createTorrentDlg;
     QPointer<downloadFromURL> m_downloadFromURLDialog;
+#ifndef Q_OS_MAC
     QPointer<QSystemTrayIcon> m_systrayIcon;
     QPointer<QTimer> m_systrayCreator;
+#endif
     QPointer<QMenu> m_trayIconMenu;
     TransferListWidget *m_transferListWidget;
     TransferListFiltersWidget *m_transferListFiltersWidget;

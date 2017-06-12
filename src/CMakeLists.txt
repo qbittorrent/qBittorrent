@@ -17,12 +17,21 @@ if (GUI)
     if (WIN32)
         list (APPEND QBT_QT_COMPONENTS WinExtras)
     endif(WIN32)
+    if (APPLE)
+        list (APPEND QBT_GUI_OPTIONAL_LINK_LIBRARIES objc)
+        list (APPEND QBT_QT_COMPONENTS MacExtras)
+    endif (APPLE)
 endif (GUI)
 if (DBUS)
     list (APPEND QBT_QT_COMPONENTS DBus)
 endif (DBUS)
 find_package(Qt5 5.5.1 COMPONENTS ${QBT_QT_COMPONENTS} REQUIRED)
 
+if (GUI AND APPLE)
+    # Fix MOC inability to detect macOS. This seems to only affect cmake.
+    # Relevant issue: https://bugreports.qt.io/browse/QTBUG-58325
+    set(CMAKE_AUTOMOC_MOC_OPTIONS ${CMAKE_AUTOMOC_MOC_OPTIONS} -DQ_OS_MAC)
+endif ()
 
 set(CMAKE_AUTOMOC True)
 list(APPEND CMAKE_AUTORCC_OPTIONS -compress 9 -threshold 5)

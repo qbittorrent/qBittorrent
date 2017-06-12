@@ -99,12 +99,19 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
            << "</p></body></html>" << flush;
     m_ui->m_searchPattern->setToolTip(searchPatternHint);
 
+#ifndef Q_OS_MAC
     // Icons
     m_ui->searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
     m_ui->downloadButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
     m_ui->goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     m_ui->pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
+#else
+    // On macOS the icons overlap the text otherwise
+    QSize iconSize = m_ui->tabWidget->iconSize();
+    iconSize.setWidth(iconSize.width() + 16);
+    m_ui->tabWidget->setIconSize(iconSize);
+#endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
 
     m_searchEngine = new SearchEngine;

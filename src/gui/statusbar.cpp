@@ -45,7 +45,11 @@
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
+#ifndef Q_OS_MAC
+    // Redefining global stylesheet breaks certain elements on mac like tabs.
+    // Qt checks whether the stylesheet class inherts("QMacStyle") and this becomes false.
     qApp->setStyleSheet("QStatusBar::item { border-width: 0; }");
+#endif
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
@@ -108,16 +112,24 @@ StatusBar::StatusBar(QWidget *parent)
 
     QFrame *statusSep1 = new QFrame(this);
     statusSep1->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MAC
     statusSep1->setFrameShadow(QFrame::Raised);
+#endif
     QFrame *statusSep2 = new QFrame(this);
     statusSep2->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MAC
     statusSep2->setFrameShadow(QFrame::Raised);
+#endif
     QFrame *statusSep3 = new QFrame(this);
     statusSep3->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MAC
     statusSep3->setFrameShadow(QFrame::Raised);
+#endif
     QFrame *statusSep4 = new QFrame(this);
     statusSep4->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MAC
     statusSep4->setFrameShadow(QFrame::Raised);
+#endif
     layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep1);
     layout->addWidget(m_connecStatusLblIcon);

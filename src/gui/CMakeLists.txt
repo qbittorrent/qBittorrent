@@ -153,3 +153,7 @@ target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_prope
 if(WIN32)
     target_link_libraries(qbt_gui Qt5::WinExtras)
 endif(WIN32)
+
+if (APPLE)
+    target_link_libraries(qbt_gui Qt5::MacExtras)
+endif()

@@ -72,10 +72,12 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionRename->setIcon(GuiIconProvider::instance()->getIcon("edit-rename"));
     m_ui->actionUpdate->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     m_ui->actionUpdateAllFeeds->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+#ifndef Q_OS_MAC
     m_ui->newFeedButton->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     m_ui->markReadButton->setIcon(GuiIconProvider::instance()->getIcon("mail-mark-read"));
     m_ui->updateAllButton->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
     m_ui->rssDownloaderBtn->setIcon(GuiIconProvider::instance()->getIcon("download"));
+#endif
 
     m_articleListWidget = new ArticleListWidget(m_ui->splitterMain);
     m_ui->splitterMain->insertWidget(0, m_articleListWidget);

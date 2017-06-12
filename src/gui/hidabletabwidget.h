@@ -43,13 +43,22 @@ public:
     }
 
 protected:
-    void tabInserted(int index)
+#ifdef Q_OS_MAC
+    void paintEvent(QPaintEvent* event) override
+    {
+        // Hide the pane for macintosh style
+        if (!style()->inherits("QMacStyle"))
+            QTabWidget::paintEvent(event);
+    }
+#endif
+
+    void tabInserted(int index) override
     {
         QTabWidget::tabInserted(index);
         tabBar()->setVisible(count() != 1);
     }
 
-    void tabRemoved(int index)
+    void tabRemoved(int index) override
     {
         //QTabWidget::tabInserted(index);
         QTabWidget::tabRemoved(index);

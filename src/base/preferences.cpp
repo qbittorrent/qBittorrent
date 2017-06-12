@@ -161,6 +161,9 @@ void Preferences::setHideZeroComboValues(int n)
     setValue("Preferences/General/HideZeroComboValues", n);
 }
 
+// In Mac OS X the dock is sufficient for our needs so we disable the sys tray functionality.
+// See extensive discussion in https://github.com/qbittorrent/qBittorrent/pull/3018
+#ifndef Q_OS_MAC
 bool Preferences::systrayIntegration() const
 {
     return value("Preferences/General/SystrayEnabled", true).toBool();
@@ -169,26 +172,6 @@ bool Preferences::systrayIntegration() const
 void Preferences::setSystrayIntegration(bool enabled)
 {
     setValue("Preferences/General/SystrayEnabled", enabled);
-}
-
-bool Preferences::isToolbarDisplayed() const
-{
-    return value("Preferences/General/ToolbarDisplayed", true).toBool();
-}
-
-void Preferences::setToolbarDisplayed(bool displayed)
-{
-    setValue("Preferences/General/ToolbarDisplayed", displayed);
-}
-
-bool Preferences::isStatusbarDisplayed() const
-{
-    return value("Preferences/General/StatusbarDisplayed", true).toBool();
-}
-
-void Preferences::setStatusbarDisplayed(bool displayed)
-{
-    setValue("Preferences/General/StatusbarDisplayed", displayed);
 }
 
 bool Preferences::minimizeToTray() const
@@ -209,6 +192,27 @@ bool Preferences::closeToTray() const
 void Preferences::setCloseToTray(bool b)
 {
     setValue("Preferences/General/CloseToTray", b);
+}
+#endif
+
+bool Preferences::isToolbarDisplayed() const
+{
+    return value("Preferences/General/ToolbarDisplayed", true).toBool();
+}
+
+void Preferences::setToolbarDisplayed(bool displayed)
+{
+    setValue("Preferences/General/ToolbarDisplayed", displayed);
+}
+
+bool Preferences::isStatusbarDisplayed() const
+{
+    return value("Preferences/General/StatusbarDisplayed", true).toBool();
+}
+
+void Preferences::setStatusbarDisplayed(bool displayed)
+{
+    setValue("Preferences/General/StatusbarDisplayed", displayed);
 }
 
 bool Preferences::startMinimized() const
@@ -1084,6 +1088,7 @@ void Preferences::setConfirmRemoveAllTags(bool enabled)
     setValue("Preferences/Advanced/confirmRemoveAllTags", enabled);
 }
 
+#ifndef Q_OS_MAC
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
@@ -1093,6 +1098,7 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
 {
     setValue("Preferences/Advanced/TrayIconStyle", style);
 }
+#endif
 
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.

@@ -73,6 +73,7 @@ TagFilterWidget::TagFilterWidget(QWidget *parent)
     setIconSize(Utils::Misc::smallIconSize());
 #if defined(Q_OS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);
+    setIndentation(0);
 #endif
     setContextMenuPolicy(Qt::CustomContextMenu);
     sortByColumn(0, Qt::AscendingOrder);

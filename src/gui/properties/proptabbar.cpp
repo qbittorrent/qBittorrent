@@ -43,34 +43,58 @@ PropTabBar::PropTabBar(QWidget *parent) :
   setSpacing(3);
   m_btnGroup = new QButtonGroup(this);
   // General tab
-  QPushButton *main_infos_button = new QPushButton(GuiIconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
+  QPushButton *main_infos_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("document-properties"),
+#endif
+    tr("General"), parent);
   main_infos_button->setShortcut(Qt::ALT + Qt::Key_G);
   addWidget(main_infos_button);
   m_btnGroup->addButton(main_infos_button, MAIN_TAB);
   // Trackers tab
-  QPushButton *trackers_button = new QPushButton(GuiIconProvider::instance()->getIcon("network-server"), tr("Trackers"), parent);
+  QPushButton *trackers_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("network-server"),
+#endif
+    tr("Trackers"), parent);
   trackers_button->setShortcut(Qt::ALT + Qt::Key_C);
   addWidget(trackers_button);
   m_btnGroup->addButton(trackers_button, TRACKERS_TAB);
   // Peers tab
-  QPushButton *peers_button = new QPushButton(GuiIconProvider::instance()->getIcon("edit-find-user"), tr("Peers"), parent);
+  QPushButton *peers_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("edit-find-user"),
+#endif
+    tr("Peers"), parent);
   peers_button->setShortcut(Qt::ALT + Qt::Key_R);
   addWidget(peers_button);
   m_btnGroup->addButton(peers_button, PEERS_TAB);
   // URL seeds tab
-  QPushButton *urlseeds_button = new QPushButton(GuiIconProvider::instance()->getIcon("network-server"), tr("HTTP Sources"), parent);
+  QPushButton *urlseeds_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("network-server"),
+#endif
+    tr("HTTP Sources"), parent);
   urlseeds_button->setShortcut(Qt::ALT + Qt::Key_B);
   addWidget(urlseeds_button);
   m_btnGroup->addButton(urlseeds_button, URLSEEDS_TAB);
   // Files tab
-  QPushButton *files_button = new QPushButton(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Content"), parent);
+  QPushButton *files_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("inode-directory"),
+#endif
+    tr("Content"), parent);
   files_button->setShortcut(Qt::ALT + Qt::Key_Z);
   addWidget(files_button);
   m_btnGroup->addButton(files_button, FILES_TAB);
   // Spacer
   addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
   // Speed tab
-  QPushButton *speed_button = new QPushButton(GuiIconProvider::instance()->getIcon("office-chart-line"), tr("Speed"), parent);
+  QPushButton *speed_button = new QPushButton(
+#ifndef Q_OS_MAC
+    GuiIconProvider::instance()->getIcon("office-chart-line"),
+#endif
+    tr("Speed"), parent);
   speed_button->setShortcut(Qt::ALT + Qt::Key_D);
   addWidget(speed_button);
   m_btnGroup->addButton(speed_button, SPEED_TAB);
