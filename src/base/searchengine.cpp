@@ -70,13 +70,13 @@ SearchEngine::SearchEngine()
 
     m_searchProcess = new QProcess(this);
     m_searchProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(m_searchProcess, SIGNAL(started()), this, SIGNAL(searchStarted()));
-    connect(m_searchProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readSearchOutput()));
-    connect(m_searchProcess, SIGNAL(finished(int)), this, SLOT(processFinished(int)));
+    connect(m_searchProcess, &QProcess::started, this, &SearchEngine::searchStarted);
+    connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchEngine::readSearchOutput);
+    connect(m_searchProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished), this, &SearchEngine::processFinished);
 
     m_searchTimeout = new QTimer(this);
     m_searchTimeout->setSingleShot(true);
-    connect(m_searchTimeout, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(m_searchTimeout, &QTimer::timeout, this, &SearchEngine::onTimeout);
 
     update();
 }
@@ -156,9 +156,11 @@ void SearchEngine::installPlugin(const QString &source)
     qDebug("Asked to install plugin at %s", qPrintable(source));
 
     if (Utils::Misc::isUrl(source)) {
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(pluginDownloaded(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(pluginDownloadFailed(QString, QString)));
+        using namespace Net;
+        DownloadHandler *handler = DownloadManager::instance()->downloadUrl(source, true);
+        connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
+                , this, &SearchEngine::pluginDownloaded);
+        connect(handler, &DownloadHandler::downloadFailed, this, &SearchEngine::pluginDownloadFailed);
     }
     else {
         QString path = source;
@@ -256,10 +258,12 @@ void SearchEngine::updateIconPath(PluginInfo * const plugin)
 
 void SearchEngine::checkForUpdates()
 {
-    // Download version file from update server on sourceforge
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_updateUrl + "versions.txt");
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), this, SLOT(versionInfoDownloaded(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(versionInfoDownloadFailed(QString, QString)));
+    // Download version file from update server
+    using namespace Net;
+    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(m_updateUrl + "versions.txt");
+    connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
+            , this, &SearchEngine::versionInfoDownloaded);
+    connect(handler, &DownloadHandler::downloadFailed, this, &SearchEngine::versionInfoDownloadFailed);
 }
 
 void SearchEngine::cancelSearch()
@@ -281,7 +285,7 @@ void SearchEngine::downloadTorrent(const QString &siteUrl, const QString &url)
 {
     QProcess *downloadProcess = new QProcess(this);
     downloadProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(downloadProcess, SIGNAL(finished(int)), this, SLOT(torrentFileDownloadFinished(int)));
+    connect(downloadProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished), this, &SearchEngine::torrentFileDownloadFinished);
     m_downloaders << downloadProcess;
     QStringList params {
         Utils::Fs::toNativePath(engineLocation() + "/nova2dl.py"),

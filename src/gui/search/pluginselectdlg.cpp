@@ -85,18 +85,18 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
 
     m_ui->actionUninstall->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
 
-    connect(m_ui->actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
-    connect(m_ui->pluginsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContextMenu(const QPoint&)));
-    connect(m_ui->pluginsTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(togglePluginState(QTreeWidgetItem*, int)));
+    connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDlg::enableSelection);
+    connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDlg::displayContextMenu);
+    connect(m_ui->pluginsTree, &QTreeWidget::itemDoubleClicked, this, &PluginSelectDlg::togglePluginState);
 
     loadSupportedSearchPlugins();
 
-    connect(m_pluginManager, SIGNAL(pluginInstalled(QString)), SLOT(pluginInstalled(QString)));
-    connect(m_pluginManager, SIGNAL(pluginInstallationFailed(QString, QString)), SLOT(pluginInstallationFailed(QString, QString)));
-    connect(m_pluginManager, SIGNAL(pluginUpdated(QString)), SLOT(pluginUpdated(QString)));
-    connect(m_pluginManager, SIGNAL(pluginUpdateFailed(QString, QString)), SLOT(pluginUpdateFailed(QString, QString)));
+    connect(m_pluginManager, &SearchEngine::pluginInstalled, this, &PluginSelectDlg::pluginInstalled);
+    connect(m_pluginManager, &SearchEngine::pluginInstallationFailed, this, &PluginSelectDlg::pluginInstallationFailed);
+    connect(m_pluginManager, &SearchEngine::pluginUpdated, this, &PluginSelectDlg::pluginUpdated);
+    connect(m_pluginManager, &SearchEngine::pluginUpdateFailed, this, &PluginSelectDlg::pluginUpdateFailed);
     connect(m_pluginManager, &SearchEngine::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
-    connect(m_pluginManager, SIGNAL(checkForUpdatesFailed(QString)), SLOT(checkForUpdatesFailed(QString)));
+    connect(m_pluginManager, &SearchEngine::checkForUpdatesFailed, this, &PluginSelectDlg::checkForUpdatesFailed);
 
     show();
 }
@@ -294,9 +294,11 @@ void PluginSelectDlg::addNewPlugin(QString pluginName)
     }
     else {
         // Icon is missing, we must download it
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(plugin->url + "/favicon.ico", true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(iconDownloaded(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(iconDownloadFailed(QString, QString)));
+        using namespace Net;
+        DownloadHandler *handler = DownloadManager::instance()->downloadUrl(plugin->url + "/favicon.ico", true);
+        connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
+                , this, &PluginSelectDlg::iconDownloaded);
+        connect(handler, &DownloadHandler::downloadFailed, this, &PluginSelectDlg::iconDownloadFailed);
     }
     item->setText(PLUGIN_VERSION, plugin->version);
 }
@@ -328,8 +330,8 @@ void PluginSelectDlg::finishPluginUpdate()
 void PluginSelectDlg::on_installButton_clicked()
 {
     PluginSourceDlg *dlg = new PluginSourceDlg(this);
-    connect(dlg, SIGNAL(askForLocalFile()), this, SLOT(askForLocalPlugin()));
-    connect(dlg, SIGNAL(askForUrl()), this, SLOT(askForPluginUrl()));
+    connect(dlg, &PluginSourceDlg::askForLocalFile, this, &PluginSelectDlg::askForLocalPlugin);
+    connect(dlg, &PluginSourceDlg::askForUrl, this, &PluginSelectDlg::askForPluginUrl);
 }
 
 void PluginSelectDlg::askForPluginUrl()

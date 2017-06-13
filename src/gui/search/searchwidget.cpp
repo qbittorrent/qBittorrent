@@ -105,14 +105,14 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     m_ui->goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
     m_ui->pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
-    connect(m_ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
+    connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
 
     m_searchEngine = new SearchEngine;
-    connect(m_searchEngine, SIGNAL(searchStarted()), SLOT(searchStarted()));
-    connect(m_searchEngine, SIGNAL(newSearchResults(QList<SearchResult>)), SLOT(appendSearchResults(QList<SearchResult>)));
-    connect(m_searchEngine, SIGNAL(searchFinished(bool)), SLOT(searchFinished(bool)));
-    connect(m_searchEngine, SIGNAL(searchFailed()), SLOT(searchFailed()));
-    connect(m_searchEngine, SIGNAL(torrentFileDownloaded(QString)), SLOT(addTorrentToSession(QString)));
+    connect(m_searchEngine, &SearchEngine::searchStarted, this, &SearchWidget::searchStarted);
+    connect(m_searchEngine, &SearchEngine::newSearchResults, this, &SearchWidget::appendSearchResults);
+    connect(m_searchEngine, &SearchEngine::searchFinished, this, &SearchWidget::searchFinished);
+    connect(m_searchEngine, &SearchEngine::searchFailed, this, &SearchWidget::searchFailed);
+    connect(m_searchEngine, &SearchEngine::torrentFileDownloaded, this, &SearchWidget::addTorrentToSession);
 
     // Fill in category combobox
     fillCatCombobox();
@@ -120,9 +120,9 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
     selectActivePage();
 
-    connect(m_ui->m_searchPattern, SIGNAL(returnPressed()), m_ui->searchButton, SLOT(click()));
-    connect(m_ui->m_searchPattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
-    connect(m_ui->selectPlugin, SIGNAL(currentIndexChanged(int)), this, SLOT(selectMultipleBox(int)));
+    connect(m_ui->m_searchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
+    connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
+    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SearchWidget::selectMultipleBox);
 }
 
 void SearchWidget::fillCatCombobox()
@@ -242,8 +242,8 @@ void SearchWidget::addTorrentToSession(const QString &source)
 void SearchWidget::on_pluginsButton_clicked()
 {
     PluginSelectDlg *dlg = new PluginSelectDlg(m_searchEngine, this);
-    connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillCatCombobox()));
-    connect(dlg, SIGNAL(pluginsChanged()), this, SLOT(fillPluginComboBox()));
+    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::fillCatCombobox);
+    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::fillPluginComboBox);
     connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::selectActivePage);
 }
 
