@@ -17,6 +17,8 @@
         <file>searchengine/nova/engines/torlock.py</file>
         <file>searchengine/nova/engines/torrentz.png</file>
         <file>searchengine/nova/engines/torrentz.py</file>
+        <file>searchengine/nova/engines/zooqle.png</file>
+        <file>searchengine/nova/engines/zooqle.py</file>
         <file>searchengine/nova3/helpers.py</file>
         <file>searchengine/nova3/nova2.py</file>
         <file>searchengine/nova3/novaprinter.py</file>
@@ -34,6 +36,8 @@
         <file>searchengine/nova3/engines/torlock.py</file>
         <file>searchengine/nova3/engines/torrentz.png</file>
         <file>searchengine/nova3/engines/torrentz.py</file>
+        <file>searchengine/nova3/engines/zooqle.png</file>
+        <file>searchengine/nova3/engines/zooqle.py</file>
         <file>searchengine/nova/nova2dl.py</file>
         <file>searchengine/nova3/nova2dl.py</file>
     </qresource>

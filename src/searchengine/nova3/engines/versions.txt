@@ -4,3 +4,4 @@ legittorrents: 2.02
 piratebay: 2.15
 torlock: 2.0
 torrentz: 2.22
+zooqle: 1.11
