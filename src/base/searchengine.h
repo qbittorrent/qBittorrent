@@ -84,6 +84,7 @@ public:
     void updatePlugin(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
+    static void updateIconPath(PluginInfo * const plugin);
     void checkForUpdates();
 
     void startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);

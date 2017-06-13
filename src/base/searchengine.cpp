@@ -240,6 +240,20 @@ bool SearchEngine::uninstallPlugin(const QString &name)
     return true;
 }
 
+void SearchEngine::updateIconPath(PluginInfo * const plugin)
+{
+    if (!plugin) return;
+    QString iconPath = QString("%1/%2.png").arg(pluginsLocation()).arg(plugin->name);
+    if (QFile::exists(iconPath)) {
+        plugin->iconPath = iconPath;
+    }
+    else {
+        iconPath = QString("%1/%2.ico").arg(pluginsLocation()).arg(plugin->name);
+        if (QFile::exists(iconPath))
+            plugin->iconPath = iconPath;
+    }
+}
+
 void SearchEngine::checkForUpdates()
 {
     // Download version file from update server on sourceforge
@@ -528,16 +542,7 @@ void SearchEngine::update()
             QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
             plugin->enabled = !disabledEngines.contains(pluginName);
 
-            // Handle icon
-            QString iconPath = QString("%1/%2.png").arg(pluginsLocation()).arg(pluginName);
-            if (QFile::exists(iconPath)) {
-                plugin->iconPath = iconPath;
-            }
-            else {
-                iconPath = QString("%1/%2.ico").arg(pluginsLocation()).arg(pluginName);
-                if (QFile::exists(iconPath))
-                    plugin->iconPath = iconPath;
-            }
+            updateIconPath(plugin);
 
             if (!m_plugins.contains(pluginName)) {
                 m_plugins[pluginName] = plugin;

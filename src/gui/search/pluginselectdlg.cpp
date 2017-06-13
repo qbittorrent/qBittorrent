@@ -374,8 +374,10 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
             QFile icon(filePath);
             icon.open(QIODevice::ReadOnly);
             QString iconPath = QString("%1/%2.%3").arg(SearchEngine::pluginsLocation()).arg(id).arg(ICOHandler::canRead(&icon) ? "ico" : "png");
-            if (QFile::copy(filePath, iconPath))
+            if (QFile::copy(filePath, iconPath)) {
                 item->setData(PLUGIN_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+                m_pluginManager->updateIconPath(plugin);
+            }
         }
     }
     // Delete tmp file
