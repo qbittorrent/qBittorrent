@@ -37,6 +37,7 @@
 #include "base/searchengine.h"
 
 class QDropEvent;
+class QStringList;
 class QTreeWidgetItem;
 
 namespace Ui
@@ -88,10 +89,13 @@ private:
     void addNewPlugin(QString pluginName);
     void startAsyncOp();
     void finishAsyncOp();
+    void finishPluginUpdate();
 
     Ui::PluginSelectDlg *m_ui;
     SearchEngine *m_pluginManager;
+    QStringList m_updatedPlugins;
     int m_asyncOps;
+    int m_pendingUpdates;
 };
 
 #endif // PLUGINSELECTDLG_H

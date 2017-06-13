@@ -65,6 +65,7 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     , m_ui(new Ui::PluginSelectDlg())
     , m_pluginManager(pluginManager)
     , m_asyncOps(0)
+    , m_pendingUpdates(0)
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -314,6 +315,16 @@ void PluginSelectDlg::finishAsyncOp()
         setCursor(QCursor(Qt::ArrowCursor));
 }
 
+void PluginSelectDlg::finishPluginUpdate()
+{
+    --m_pendingUpdates;
+    if (m_pendingUpdates == 0 && !m_updatedPlugins.isEmpty()) {
+        m_updatedPlugins.sort(Qt::CaseInsensitive);
+        QMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(", ")));
+        m_updatedPlugins.clear();
+    }
+}
+
 void PluginSelectDlg::on_installButton_clicked()
 {
     PluginSourceDlg *dlg = new PluginSourceDlg(this);
@@ -414,6 +425,7 @@ void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, PluginVersion
 
     foreach (const QString &pluginName, updateInfo.keys()) {
         startAsyncOp();
+        m_pendingUpdates++;
         m_pluginManager->updatePlugin(pluginName);
     }
 }
@@ -428,13 +440,15 @@ void PluginSelectDlg::pluginInstalled(const QString &name)
 {
     addNewPlugin(name);
     finishAsyncOp();
-    QMessageBox::information(this, tr("Search plugin install"), tr("\"%1\" search engine plugin was successfully installed.", "%1 is the name of the search engine").arg(name));
+    m_updatedPlugins.append(name);
+    finishPluginUpdate();
 }
 
 void PluginSelectDlg::pluginInstallationFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
     QMessageBox::information(this, tr("Search plugin install"), tr("Couldn't install \"%1\" search engine plugin. %2").arg(name).arg(reason));
+    finishPluginUpdate();
 }
 
 void PluginSelectDlg::pluginUpdated(const QString &name)
@@ -443,7 +457,8 @@ void PluginSelectDlg::pluginUpdated(const QString &name)
     PluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
     item->setText(PLUGIN_VERSION, version);
-    QMessageBox::information(this, tr("Search plugin install"), tr("\"%1\" search engine plugin was successfully updated.", "%1 is the name of the search engine").arg(name));
+    m_updatedPlugins.append(name);
+    finishPluginUpdate();
 
 }
 
@@ -451,4 +466,5 @@ void PluginSelectDlg::pluginUpdateFailed(const QString &name, const QString &rea
 {
     finishAsyncOp();
     QMessageBox::information(this, tr("Search plugin update"), tr("Couldn't update \"%1\" search engine plugin. %2").arg(name).arg(reason));
+    finishPluginUpdate();
 }
