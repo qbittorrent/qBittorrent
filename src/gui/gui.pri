@@ -19,7 +19,6 @@ HEADERS += \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/deletionconfirmationdlg.h \
     $$PWD/statusbar.h \
-    $$PWD/ico.h \
     $$PWD/speedlimitdlg.h \
     $$PWD/about_imp.h \
     $$PWD/previewselect.h \
@@ -63,7 +62,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
-    $$PWD/ico.cpp \
     $$PWD/transferlistwidget.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistdelegate.cpp \

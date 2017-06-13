@@ -45,7 +45,6 @@ fspathedit.h
 fspathedit_p.h
 guiiconprovider.h
 hidabletabwidget.h
-ico.h
 loglistwidget.h
 mainwindow.h
 messageboxraised.h
@@ -87,7 +86,6 @@ executionlog.cpp
 fspathedit.cpp
 fspathedit_p.cpp
 guiiconprovider.cpp
-ico.cpp
 loglistwidget.cpp
 mainwindow.cpp
 messageboxraised.cpp

@@ -39,12 +39,12 @@
 #include <QMimeData>
 #include <QClipboard>
 #include <QTableView>
+#include <QImageReader>
 
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
-#include "ico.h"
 #include "searchwidget.h"
 #include "pluginsourcedlg.h"
 #include "guiiconprovider.h"
@@ -364,18 +364,33 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
     filePath = Utils::Fs::fromNativePath(filePath);
 
     // Icon downloaded
-    QImage fileIcon;
-    if (fileIcon.load(filePath)) {
+    QIcon icon(filePath);
+    // Detect a non-decodable icon
+    QList<QSize> sizes = icon.availableSizes();
+    bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
+    if (!invalid) {
         foreach (QTreeWidgetItem *item, findItemsWithUrl(url)) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
-            QFile icon(filePath);
-            icon.open(QIODevice::ReadOnly);
-            QString iconPath = QString("%1/%2.%3").arg(SearchEngine::pluginsLocation()).arg(id).arg(ICOHandler::canRead(&icon) ? "ico" : "png");
+            QString iconPath = QString("%1/%2.%3")
+                               .arg(SearchEngine::pluginsLocation())
+                               .arg(id)
+                               .arg(url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
             if (QFile::copy(filePath, iconPath)) {
-                item->setData(PLUGIN_NAME, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+                // This 2nd check is necessary. Some favicons (eg from piratebay)
+                // decode fine without an ext, but fail to do so when appending the ext
+                // from the url. Probably a Qt bug.
+                QIcon iconWithExt(iconPath);
+                QList<QSize> sizesExt = iconWithExt.availableSizes();
+                bool invalidExt = (sizesExt.isEmpty() || iconWithExt.pixmap(sizesExt.first()).isNull());
+                if (invalidExt) {
+                    Utils::Fs::forceRemove(iconPath);
+                    continue;
+                }
+
+                item->setData(PLUGIN_NAME, Qt::DecorationRole, iconWithExt);
                 m_pluginManager->updateIconPath(plugin);
             }
         }
