@@ -57,6 +57,7 @@ public:
     TransferListWidget(QWidget *parent, MainWindow *main_window);
     ~TransferListWidget();
     TorrentModel* getSourceModel() const;
+    QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 public slots:
     void setSelectionCategory(QString category);
@@ -98,7 +99,6 @@ protected:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 protected slots:
     void torrentDoubleClicked();

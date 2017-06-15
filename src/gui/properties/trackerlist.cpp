@@ -51,11 +51,13 @@
 #include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
+#include "transferlistwidget.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
 
-TrackerList::TrackerList(PropertiesWidget *properties)
+TrackerList::TrackerList(TransferListWidget* transferList, PropertiesWidget *properties)
     : QTreeWidget()
+    , m_transferList(transferList)
     , m_properties(properties)
 {
   // Set header
@@ -430,10 +432,8 @@ void TrackerList::deleteSelectedTrackers() {
 }
 
 void TrackerList::editSelectedTracker() {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
-    if (!torrent) return;
-
-    QString hash = torrent->hash();
+    QList<BitTorrent::TorrentHandle *>  torrents = m_transferList->getSelectedTorrents();
+    if (torrents.empty()) return;
 
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if (selected_items.isEmpty())
@@ -454,26 +454,28 @@ void TrackerList::editSelectedTracker() {
     if (new_tracker_url == tracker_url)
       return;
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    bool match = false;
-    for (int i = 0; i < trackers.size(); ++i) {
-      BitTorrent::TrackerEntry &entry = trackers[i];
-      if (new_tracker_url == QUrl(entry.url())) {
-        QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
-        return;
+    foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
+      QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+      bool match = false;
+      for (int i = 0; i < trackers.size(); ++i) {
+        BitTorrent::TrackerEntry &entry = trackers[i];
+        if (new_tracker_url == QUrl(entry.url())) {
+          QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
+          return;
+        }
+
+        if (tracker_url == QUrl(entry.url()) && !match) {
+          BitTorrent::TrackerEntry new_entry(new_tracker_url.toString());
+          new_entry.setTier(entry.tier());
+          match = true;
+          entry = new_entry;
+        }
       }
 
-      if (tracker_url == QUrl(entry.url()) && !match) {
-        BitTorrent::TrackerEntry new_entry(new_tracker_url.toString());
-        new_entry.setTier(entry.tier());
-        match = true;
-        entry = new_entry;
+      torrent->replaceTrackers(trackers);
+      if (!torrent->isPaused()) {
+        torrent->forceReannounce();
       }
-    }
-
-    torrent->replaceTrackers(trackers);
-    if (!torrent->isPaused()) {
-      torrent->forceReannounce();
     }
 }
 

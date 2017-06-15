@@ -65,7 +65,7 @@ public:
         COL_COUNT
     };
 
-    TrackerList(PropertiesWidget *properties);
+    TrackerList(TransferListWidget *transferList, PropertiesWidget *properties);
     ~TrackerList();
 
     int visibleColumnsCount() const;
@@ -93,6 +93,7 @@ protected:
     QList<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
 private:
+	TransferListWidget *m_transferList; 
     PropertiesWidget *m_properties;
     QHash<QString, QTreeWidgetItem *> m_trackerItems;
     QTreeWidgetItem *m_DHTItem;
