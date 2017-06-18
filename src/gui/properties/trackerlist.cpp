@@ -432,7 +432,7 @@ void TrackerList::deleteSelectedTrackers() {
 }
 
 void TrackerList::editSelectedTracker() {
-    QList<BitTorrent::TorrentHandle *>  torrents = m_transferList->getSelectedTorrents();
+    const QList<BitTorrent::TorrentHandle *>  torrents = m_transferList->getSelectedTorrents();
     if (torrents.empty()) return;
 
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
