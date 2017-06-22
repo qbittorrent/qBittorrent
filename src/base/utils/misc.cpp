@@ -238,14 +238,11 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
 int Utils::Misc::pythonVersion()
 {
     static int version = -1;
-    if (version < 0) {
+    if (version != 3) {
         QString versionComplete = pythonVersionComplete().trimmed();
         QStringList splitted = versionComplete.split('.');
-        if (splitted.size() > 1) {
-            int highVer = splitted.at(0).toInt();
-            if ((highVer == 2) || (highVer == 3))
-                version = highVer;
-        }
+        if (splitted.size() > 1)
+            version = splitted.at(0).toInt();
     }
     return version;
 }
@@ -266,11 +263,6 @@ QString Utils::Misc::pythonExecutable()
         pythonProc.start("python3", QStringList() << "--version", QIODevice::ReadOnly);
         if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
             executable = "python3";
-            return executable;
-        }
-        pythonProc.start("python2", QStringList() << "--version", QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
-            executable = "python2";
             return executable;
         }
 #endif
