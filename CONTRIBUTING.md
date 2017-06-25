@@ -1,7 +1,7 @@
 # Filing an issue
 
 ### Must read
-* If you aren't sure, you can ask on the [**forum**](http://forum.qbittorrent.org) or read our [**wiki**](http://wiki.qbittorrent.org) first.
+* If you aren't sure, you can ask on the [**forum**](http://forum.qbittorrent.org) or read our [**wiki**](https://github.com/qbittorrent/qBittorrent/wiki) first.
 * Do a quick **search**. Others might already reported the issue.
 * Write in **English**!
 * Provide **version** information: (You can find version numbers at menu `Help -> About -> Libraries`)
