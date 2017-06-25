@@ -126,7 +126,7 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
 {
     QSslKey sslKey(key, QSsl::Rsa);
     if (sslKey.isNull())
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
         sslKey = QSslKey(key, QSsl::Ec);
 #else
     {

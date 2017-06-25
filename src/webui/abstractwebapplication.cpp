@@ -432,7 +432,7 @@ QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) con
     // [rfc6265] 4.2.1. Syntax
     QStringMap ret;
     const QString cookieStr = request.headers.value(QLatin1String("cookie"));
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
 #else
     const QStringList cookies = cookieStr.split(';', QString::SkipEmptyParts);
@@ -442,7 +442,7 @@ QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) con
         const int idx = cookie.indexOf('=');
         if (idx < 0)
             continue;
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
         const QString name = cookie.left(idx).trimmed().toString();
         const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
                                   .toString();
