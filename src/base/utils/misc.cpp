@@ -298,10 +298,23 @@ QString Utils::Misc::pythonVersionComplete()
             // Software 'Anaconda' installs its own python interpreter
             // and `python --version` returns a string like this:
             // `Python 3.4.3 :: Anaconda 2.3.0 (64-bit)`
-            const QList<QByteArray> verSplit = output.split(' ');
-            if (verSplit.size() > 1) {
-                version = verSplit.at(1).trimmed();
+            const QList<QByteArray> outSplit = output.split(' ');
+            if (outSplit.size() > 1) {
+                version = outSplit.at(1).trimmed();
                 Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(version), Log::INFO);
+            }
+
+            // If python doesn't report a 3-piece version e.g. 3.6.1
+            // then fill the missing pieces with zero
+            const QStringList verSplit = version.split('.', QString::SkipEmptyParts);
+            if (verSplit.size() < 3) {
+                for (int i = verSplit.size(); i < 3; ++i) {
+                    if (version.endsWith('.'))
+                        version.append('0');
+                    else
+                        version.append(".0");
+                }
+                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Normalized Python version: %1").arg(version), Log::INFO);
             }
         }
     }
