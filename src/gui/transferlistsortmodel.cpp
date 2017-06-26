@@ -59,6 +59,18 @@ void TransferListSortModel::disableCategoryFilter()
         invalidateFilter();
 }
 
+void TransferListSortModel::setTagFilter(const QString &tag)
+{
+    if (m_filter.setTag(tag))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableTagFilter()
+{
+    if (m_filter.setTag(TorrentFilter::AnyTag))
+        invalidateFilter();
+}
+
 void TransferListSortModel::setTrackerFilter(const QStringList &hashes)
 {
     if (m_filter.setHashSet(hashes.toSet()))
@@ -75,6 +87,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 {
     switch (sortColumn()) {
     case TorrentModel::TR_CATEGORY:
+    case TorrentModel::TR_TAGS:
     case TorrentModel::TR_NAME: {
         QVariant vL = left.data();
         QVariant vR = right.data();

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Tony Gregerson <tony.gregerson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,42 +24,41 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
-#ifndef TRANSFERLISTSORTMODEL_H
-#define TRANSFERLISTSORTMODEL_H
+#ifndef TAGFILTERWIDGET_H
+#define TAGFILTERWIDGET_H
 
-#include <QSortFilterProxyModel>
-#include "base/torrentfilter.h"
+#include <QTreeView>
 
-class QStringList;
-
-class TransferListSortModel: public QSortFilterProxyModel
+class TagFilterWidget: public QTreeView
 {
     Q_OBJECT
 
 public:
-    TransferListSortModel(QObject *parent = 0);
+    explicit TagFilterWidget(QWidget *parent = nullptr);
 
-    void setStatusFilter(TorrentFilter::Type filter);
-    void setCategoryFilter(const QString &category);
-    void disableCategoryFilter();
-    void setTagFilter(const QString &tag);
-    void disableTagFilter();
-    void setTrackerFilter(const QStringList &hashes);
-    void disableTrackerFilter();
+    QString currentTag() const;
+
+signals:
+    void tagChanged(const QString &tag);
+    void actionResumeTorrentsTriggered();
+    void actionPauseTorrentsTriggered();
+    void actionDeleteTorrentsTriggered();
+
+private slots:
+    void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
+    void showMenu(QPoint);
+    void callUpdateGeometry();
+    void addTag();
+    void removeTag();
+    void removeUnusedTags();
 
 private:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-    bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
-
-private:
-    TorrentFilter m_filter;
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+    void rowsInserted(const QModelIndex &parent, int start, int end) override;
+    QString askTagName();
 };
 
-#endif // TRANSFERLISTSORTMODEL_H
+#endif // TAGFILTERWIDGET_H

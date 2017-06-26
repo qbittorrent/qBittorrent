@@ -68,6 +68,19 @@ const QString QB_EXT {".!qB"};
 namespace libt = libtorrent;
 using namespace BitTorrent;
 
+namespace
+{
+    using ListType = libt::entry::list_type;
+
+    ListType setToEntryList(const QSet<QString> &input)
+    {
+        ListType entryList;
+        foreach (const QString &setValue, input)
+            entryList.emplace_back(setValue.toStdString());
+        return entryList;
+    }
+}
+
 // AddTorrentData
 
 AddTorrentData::AddTorrentData()
@@ -89,6 +102,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     : resumed(false)
     , name(params.name)
     , category(params.category)
+    , tags(params.tags)
     , savePath(params.savePath)
     , disableTempPath(params.disableTempPath)
     , sequential(params.sequential)
@@ -213,6 +227,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_name(data.name)
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
     , m_category(data.category)
+    , m_tags(data.tags)
     , m_hasSeedStatus(data.hasSeedStatus)
     , m_ratioLimit(data.ratioLimit)
     , m_seedingTimeLimit(data.seedingTimeLimit)
@@ -576,6 +591,50 @@ bool TorrentHandle::belongsToCategory(const QString &category) const
         return true;
 
     return false;
+}
+
+QSet<QString> TorrentHandle::tags() const
+{
+    return m_tags;
+}
+
+bool TorrentHandle::hasTag(const QString &tag) const
+{
+    return m_tags.contains(tag);
+}
+
+bool TorrentHandle::addTag(const QString &tag)
+{
+    if (!Session::isValidTag(tag))
+        return false;
+
+    if (!hasTag(tag)) {
+        if (!m_session->hasTag(tag))
+            if (!m_session->addTag(tag))
+                return false;
+        m_tags.insert(tag);
+        m_session->handleTorrentTagAdded(this, tag);
+        m_needSaveResumeData = true;
+        return true;
+    }
+    return false;
+}
+
+bool TorrentHandle::removeTag(const QString &tag)
+{
+    if (m_tags.remove(tag)) {
+        m_session->handleTorrentTagRemoved(this, tag);
+        m_needSaveResumeData = true;
+        return true;
+    }
+    return false;
+}
+
+void TorrentHandle::removeAllTags()
+{
+    // QT automatically copies the container in foreach, so it's safe to mutate it.
+    foreach (const QString &tag, m_tags)
+        removeTag(tag);
 }
 
 QDateTime TorrentHandle::addedTime() const
@@ -1617,6 +1676,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
     resumeData["qBt-seedingTimeLimit"] = QString::number(m_seedingTimeLimit).toStdString();
     resumeData["qBt-category"] = m_category.toStdString();
+    resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;

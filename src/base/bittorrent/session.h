@@ -44,6 +44,7 @@
 #endif
 #include <QNetworkConfigurationManager>
 #include <QPointer>
+#include <QSet>
 #include <QStringList>
 #include <QVector>
 #include <QWaitCondition>
@@ -223,6 +224,12 @@ namespace BitTorrent
         bool isSubcategoriesEnabled() const;
         void setSubcategoriesEnabled(bool value);
 
+        static bool isValidTag(const QString &tag);
+        QSet<QString> tags() const;
+        bool hasTag(const QString &tag) const;
+        bool addTag(const QString &tag);
+        bool removeTag(const QString &tag);
+
         // Torrent Management Mode subsystem (TMM)
         //
         // Each torrent can be either in Manual mode or in Automatic mode
@@ -400,6 +407,8 @@ namespace BitTorrent
         void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
         void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
+        void handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag);
+        void handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
         void handleTorrentSavingModeChanged(TorrentHandle *const torrent);
         void handleTorrentMetadataReceived(TorrentHandle *const torrent);
         void handleTorrentPaused(TorrentHandle *const torrent);
@@ -431,6 +440,8 @@ namespace BitTorrent
         void torrentFinishedChecking(BitTorrent::TorrentHandle *const torrent);
         void torrentSavePathChanged(BitTorrent::TorrentHandle *const torrent);
         void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
+        void torrentTagAdded(TorrentHandle *const torrent, const QString &tag);
+        void torrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
         void torrentSavingModeChanged(BitTorrent::TorrentHandle *const torrent);
         void allTorrentsFinished();
         void metadataLoaded(const BitTorrent::TorrentInfo &info);
@@ -452,6 +463,8 @@ namespace BitTorrent
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
         void subcategoriesSupportChanged();
+        void tagAdded(const QString &tag);
+        void tagRemoved(const QString &tag);
 
     private slots:
         void configureDeferred();
@@ -606,6 +619,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isForceProxyEnabled;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
         CachedSettingValue<QVariantMap> m_storedCategories;
+        CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<int> m_maxRatioAction;
         CachedSettingValue<QString> m_defaultSavePath;
         CachedSettingValue<QString> m_tempPath;
@@ -650,6 +664,7 @@ namespace BitTorrent
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         TorrentStatusReport m_torrentStatusReport;
         QStringMap m_categories;
+        QSet<QString> m_tags;
 
 #if LIBTORRENT_VERSION_NUM < 10100
         QMutex m_alertsMutex;

@@ -30,12 +30,13 @@
 #ifndef BITTORRENT_TORRENTHANDLE_H
 #define BITTORRENT_TORRENTHANDLE_H
 
-#include <QObject>
-#include <QString>
 #include <QDateTime>
-#include <QQueue>
-#include <QVector>
 #include <QHash>
+#include <QObject>
+#include <QQueue>
+#include <QSet>
+#include <QString>
+#include <QVector>
 
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/version.hpp>
@@ -93,6 +94,7 @@ namespace BitTorrent
         // for both new and resumed torrents
         QString name;
         QString category;
+        QSet<QString> tags;
         QString savePath;
         bool disableTempPath;
         bool sequential;
@@ -247,6 +249,12 @@ namespace BitTorrent
         QString category() const;
         bool belongsToCategory(const QString &category) const;
         bool setCategory(const QString &category);
+
+        QSet<QString> tags() const;
+        bool hasTag(const QString &tag) const;
+        bool addTag(const QString &tag);
+        bool removeTag(const QString &tag);
+        void removeAllTags();
 
         bool hasRootFolder() const;
 
@@ -445,6 +453,7 @@ namespace BitTorrent
         QString m_name;
         QString m_savePath;
         QString m_category;
+        QSet<QString> m_tags;
         bool m_hasSeedStatus;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;

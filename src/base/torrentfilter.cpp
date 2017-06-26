@@ -31,6 +31,7 @@
 
 const QString TorrentFilter::AnyCategory;
 const QStringSet TorrentFilter::AnyHash = (QStringSet() << QString());
+const QString TorrentFilter::AnyTag;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -49,16 +50,18 @@ TorrentFilter::TorrentFilter()
 {
 }
 
-TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &category)
+TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &category, const QString &tag)
     : m_type(type)
     , m_category(category)
+    , m_tag(tag)
     , m_hashSet(hashSet)
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &category)
+TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &category, const QString &tag)
     : m_type(All)
     , m_category(category)
+    , m_tag(tag)
     , m_hashSet(hashSet)
 {
     setTypeByName(filter);
@@ -121,11 +124,24 @@ bool TorrentFilter::setCategory(const QString &category)
     return false;
 }
 
+bool TorrentFilter::setTag(const QString &tag)
+{
+    // QString::operator==() doesn't distinguish between empty and null strings.
+    if ((m_tag != tag)
+        || (m_tag.isNull() && !tag.isNull())
+        || (!m_tag.isNull() && tag.isNull())) {
+        m_tag = tag;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::match(TorrentHandle *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
 }
 
 bool TorrentFilter::matchState(BitTorrent::TorrentHandle *const torrent) const
@@ -164,4 +180,12 @@ bool TorrentFilter::matchCategory(BitTorrent::TorrentHandle *const torrent) cons
 {
     if (m_category.isNull()) return true;
     else return (torrent->belongsToCategory(m_category));
+}
+
+bool TorrentFilter::matchTag(BitTorrent::TorrentHandle *const torrent) const
+{
+    // Empty tag is a special value to indicate we're filtering for untagged torrents.
+    if (m_tag.isNull()) return true;
+    else if (m_tag.isEmpty()) return torrent->tags().isEmpty();
+    else return (torrent->hasTag(m_tag));
 }

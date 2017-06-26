@@ -51,6 +51,9 @@ HEADERS += \
     $$PWD/categoryfiltermodel.h \
     $$PWD/categoryfilterproxymodel.h \
     $$PWD/categoryfilterwidget.h \
+    $$PWD/tagfiltermodel.h \
+    $$PWD/tagfilterproxymodel.h \
+    $$PWD/tagfilterwidget.h \
     $$PWD/banlistoptions.h \
     $$PWD/rss/rsswidget.h \
     $$PWD/rss/articlelistwidget.h \
@@ -101,6 +104,9 @@ SOURCES += \
     $$PWD/categoryfiltermodel.cpp \
     $$PWD/categoryfilterproxymodel.cpp \
     $$PWD/categoryfilterwidget.cpp \
+    $$PWD/tagfiltermodel.cpp \
+    $$PWD/tagfilterproxymodel.cpp \
+    $$PWD/tagfilterwidget.cpp \
     $$PWD/banlistoptions.cpp \
     $$PWD/rss/rsswidget.cpp \
     $$PWD/rss/articlelistwidget.cpp \

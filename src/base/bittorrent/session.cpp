@@ -127,6 +127,43 @@ namespace
         return result;
     }
 
+    template <typename Entry>
+    QSet<QString> entryListToSetImpl(const Entry &entry)
+    {
+        Q_ASSERT(entry.type() == Entry::list_t);
+        QSet<QString> output;
+        for (int i = 0; i < entry.list_size(); ++i) {
+            const QString tag = QString::fromStdString(entry.list_string_value_at(i));
+            if (Session::isValidTag(tag))
+                output.insert(tag);
+            else
+                qWarning() << QString("Dropping invalid stored tag: %1").arg(tag);
+        }
+        return output;
+    }
+
+#if LIBTORRENT_VERSION_NUM < 10100
+    bool isList(const libt::lazy_entry *entry)
+    {
+        return entry && (entry->type() == libt::lazy_entry::list_t);
+    }
+
+    QSet<QString> entryListToSet(const libt::lazy_entry *entry)
+    {
+        return entry ? entryListToSetImpl(*entry) : QSet<QString>();
+    }
+#else
+    bool isList(const libt::bdecode_node &entry)
+    {
+        return entry.type() == libt::bdecode_node::list_t;
+    }
+
+    QSet<QString> entryListToSet(const libt::bdecode_node &entry)
+    {
+        return entryListToSetImpl(entry);
+    }
+#endif
+
     QString normalizePath(const QString &path)
     {
         QString tmp = Utils::Fs::fromNativePath(path.trimmed());
@@ -260,6 +297,7 @@ Session::Session(QObject *parent)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
+    , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
     , m_defaultSavePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads), normalizePath)
     , m_tempPath(BITTORRENT_SESSION_KEY("TempPath"), defaultSavePath() + "temp/", normalizePath)
@@ -399,6 +437,8 @@ Session::Session(QObject *parent)
         m_categories = expandCategories(m_categories);
         m_storedCategories = map_cast(m_categories);
     }
+
+    m_tags = QSet<QString>::fromList(m_storedTags.value());
 
     m_refreshTimer = new QTimer(this);
     m_refreshTimer->setInterval(refreshInterval());
@@ -722,6 +762,47 @@ void Session::setSubcategoriesEnabled(bool value)
 
     m_isSubcategoriesEnabled = value;
     emit subcategoriesSupportChanged();
+}
+
+QSet<QString> Session::tags() const
+{
+    return m_tags;
+}
+
+bool Session::isValidTag(const QString &tag)
+{
+    return (!tag.trimmed().isEmpty() && !tag.contains(','));
+}
+
+bool Session::hasTag(const QString &tag) const
+{
+    return m_tags.contains(tag);
+}
+
+bool Session::addTag(const QString &tag)
+{
+    if (!isValidTag(tag))
+        return false;
+
+    if (!hasTag(tag)) {
+        m_tags.insert(tag);
+        m_storedTags = m_tags.toList();
+        emit tagAdded(tag);
+        return true;
+    }
+    return false;
+}
+
+bool Session::removeTag(const QString &tag)
+{
+    if (m_tags.remove(tag)) {
+        foreach (TorrentHandle *const torrent, torrents())
+            torrent->removeTag(tag);
+        m_storedTags = m_tags.toList();
+        emit tagRemoved(tag);
+        return true;
+    }
+    return false;
 }
 
 bool Session::isAutoTMMDisabledByDefault() const
@@ -2997,6 +3078,16 @@ void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const Q
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
+void Session::handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag)
+{
+    emit torrentTagAdded(torrent, tag);
+}
+
+void Session::handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag)
+{
+    emit torrentTagRemoved(torrent, tag);
+}
+
 void Session::handleTorrentSavingModeChanged(TorrentHandle * const torrent)
 {
     emit torrentSavingModeChanged(torrent);
@@ -3930,6 +4021,10 @@ namespace
         if (torrentData.category.isEmpty())
         // **************************************************************************************
             torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
+        // auto because the return type depends on the #if above.
+        const auto tagsEntry = fast.dict_find_list("qBt-tags");
+        if (isList(tagsEntry))
+            torrentData.tags = entryListToSet(tagsEntry);
         torrentData.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
         torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
