@@ -48,7 +48,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
 
 
 DOCUMENTATION:
-Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
+Please note that there is a documentation with a "compiling howto" at https://github.com/qbittorrent/qBittorrent/wiki.
 
 ------------------------------------------
 Christophe Dumez <chris@qbittorrent.org>

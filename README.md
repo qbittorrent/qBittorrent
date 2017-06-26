@@ -38,7 +38,7 @@ For more information please visit:
 http://www.qbittorrent.org
 
 or our wiki here:
-http://wiki.qbittorrent.org
+https://github.com/qbittorrent/qBittorrent/wiki
 
 Use the forum for troubleshooting before reporting bugs:
 http://forum.qbittorrent.org
