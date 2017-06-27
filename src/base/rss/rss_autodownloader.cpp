@@ -52,6 +52,36 @@
 #include "rss_folder.h"
 #include "rss_session.h"
 
+namespace {
+    // find all occurrences of <placeholder> in original string, and replace them with value of "placeholder" from article
+    // example: savePathTpl = "c:\downloads\<attr_name> - <description>\something\<title>\<not_found_attr>"
+    //          article = <item>
+    //                      <title>some title</title>
+    //                      <link>some link</link>
+    //                      <guid isPermaLink="false">some-guid</guid>
+    //                      <pubDate>Thu, 02 Jun 2016 03:50:04 +0000</pubDate>
+    //                      <description>some description</description>
+    //                      <attr_name>some attr value</attr_name>
+    //                    </item>
+    //          result = "c:\downloads\some attr value - some description\something\some title\not_found_attr"
+    QString generateSavePath(const QString savePath, const QVariantHash articleData)
+    {
+        QRegExp rx("<(.+)>");
+        rx.setMinimal(true);
+        QString result = savePath;
+
+        int pos = 0;
+        while ((pos = rx.indexIn(result, pos)) != -1) {
+            QString key = rx.cap(1);
+            QString value = articleData.value(key).toString();
+            result.replace(rx.cap(0), value);
+            pos += value.length();
+        }
+
+        return result;
+    }
+}
+
 struct ProcessingJob
 {
     QString feedURL;
@@ -341,34 +371,6 @@ void AutoDownloader::storeDeferred()
 {
     if (!m_savingTimer.isActive())
         m_savingTimer.start(5 * 1000, this);
-}
-
-// find all occurrences of <placeholder> in original string, and replace them with value of "placeholder" from article
-// example: savePathTpl = "c:\downloads\<attr_name> - <description>\something\<title>\<not_found_attr>"
-//          article = <item>
-//                      <title>some title</title>
-//                      <link>some link</link>
-//                      <guid isPermaLink="false">some-guid</guid>
-//                      <pubDate>Thu, 02 Jun 2016 03:50:04 +0000</pubDate>
-//                      <description>some description</description>
-//                      <attr_name>some attr value</attr_name>
-//                    </item>
-//          result = "c:\downloads\some attr value - some description\something\some title\not_found_attr"
-QString AutoDownloader::generateSavePath(const QString savePath, const QVariantHash articleData)
-{
-    QRegExp rx("<(.+)>");
-    rx.setMinimal(true);
-    QString result = savePath;
-
-    int pos = 0;
-    while ((pos = rx.indexIn(result, pos)) != -1) {
-        QString key = rx.cap(1);
-        QString value = articleData.value(key).toString();
-        result.replace(rx.cap(0), value);
-        pos += value.length();
-    }
-
-    return result;
 }
 
 bool AutoDownloader::isProcessingEnabled() const

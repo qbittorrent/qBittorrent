@@ -99,8 +99,6 @@ namespace RSS
         void store();
         void storeDeferred();
 
-        static QString generateSavePath(const QString savePath, const QVariantHash articleData);
-
         static QPointer<AutoDownloader> m_instance;
 
         bool m_processingEnabled;
