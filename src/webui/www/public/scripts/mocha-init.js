@@ -19,7 +19,7 @@ if (typeof localStorage == 'undefined') {
                 duration: 365 * 10
             });
         }
-    }
+    };
 }
 
 function getLocalStorageItem(name, defaultVal) {
@@ -116,7 +116,7 @@ initializeWindows = function() {
             width: 424,
             height: 80
         });
-    }
+    };
 
     uploadLimitFN = function() {
         var h = torrentsTable.selectedRowsIds();
@@ -210,7 +210,7 @@ initializeWindows = function() {
             width: 424,
             height: 80
         });
-    }
+    };
 
     StatisticsLinkFN = function() {
         new MochaUI.Window({
@@ -224,8 +224,8 @@ initializeWindows = function() {
             width: 275,
             height: 370,
             padding: 10
-        }); 
-    }
+        });
+    };
 
     downloadLimitFN = function() {
         var h = torrentsTable.selectedRowsIds();
@@ -340,8 +340,8 @@ initializeWindows = function() {
 
     torrentSetCategoryFN = function (categoryHash) {
         var categoryName = '';
-        if (categoryHash != 0)
-            var categoryName = category_list[categoryHash].name;
+        if (categoryHash !== 0)
+            categoryName = category_list[categoryHash].name;
         var h = torrentsTable.selectedRowsIds();
         if (h.length) {
             new Request({
@@ -387,7 +387,7 @@ initializeWindows = function() {
     deleteUnusedCategoriesFN = function () {
         var categories = [];
         for (var hash in category_list) {
-            if (torrentsTable.getFilteredTorrentsNumber('all', hash) == 0)
+            if (torrentsTable.getFilteredTorrentsNumber('all', hash) === 0)
                 categories.push(category_list[hash].name);
         }
         new Request({
@@ -499,7 +499,7 @@ initializeWindows = function() {
             }).send();
             updateMainData();
         }
-    }
+    };
 
     addClickEvent('about', function(e) {
         new Event(e).stop();
@@ -544,4 +544,4 @@ initializeWindows = function() {
             new Event(e).stop();
         });
     });
-}
+};

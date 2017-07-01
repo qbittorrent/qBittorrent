@@ -4,7 +4,7 @@ Script: Parametrics.js
 	Initializes the GUI property sliders.
 
 Copyright:
-	Copyright (c) 2007-2008 Greg Houston, <http://greghoustondesign.com/>.	
+	Copyright (c) 2007-2008 Greg Houston, <http://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -28,7 +28,7 @@ MochaUI.extend({
                     if (data) {
                         var tmp = data.toInt();
                         if (tmp > 0) {
-                            maximum = tmp / 1024.
+                            maximum = tmp / 1024.0;
                         }
                         else {
                             if (hashes[0] == "global")
@@ -59,7 +59,7 @@ MochaUI.extend({
                             }.bind(this)
                         });
                         // Set default value
-                        if (up_limit == 0) {
+                        if (up_limit === 0) {
                             $('uplimitUpdatevalue').value = '∞';
                             $('upLimitUnit').style.visibility = "hidden";
                         }
@@ -88,7 +88,7 @@ MochaUI.extend({
                                     var mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
                                         steps: maximum,
                                         offset: 0,
-                                        initialStep: (up_limit / 1024.).round(),
+                                        initialStep: (up_limit / 1024.0).round(),
                                         onChange: function(pos) {
                                             if (pos > 0) {
                                                 $('uplimitUpdatevalue').value = pos;
@@ -101,12 +101,12 @@ MochaUI.extend({
                                         }.bind(this)
                                     });
                                     // Set default value
-                                    if (up_limit == 0) {
+                                    if (up_limit === 0) {
                                         $('uplimitUpdatevalue').value = '∞';
                                         $('upLimitUnit').style.visibility = "hidden";
                                     }
                                     else {
-                                        $('uplimitUpdatevalue').value = (up_limit / 1024.).round();
+                                        $('uplimitUpdatevalue').value = (up_limit / 1024.0).round();
                                         $('upLimitUnit').style.visibility = "visible";
                                     }
                                 }
@@ -132,7 +132,7 @@ MochaUI.extend({
                     if (data) {
                         var tmp = data.toInt();
                         if (tmp > 0) {
-                            maximum = tmp / 1024.
+                            maximum = tmp / 1024.0;
                         }
                         else {
                             if (hashes[0] == "global")
@@ -163,7 +163,7 @@ MochaUI.extend({
                             }.bind(this)
                         });
                         // Set default value
-                        if (dl_limit == 0) {
+                        if (dl_limit === 0) {
                             $('dllimitUpdatevalue').value = '∞';
                             $('dlLimitUnit').style.visibility = "hidden";
                         }
@@ -192,7 +192,7 @@ MochaUI.extend({
                                     var mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
                                         steps: maximum,
                                         offset: 0,
-                                        initialStep: (dl_limit / 1024.).round(),
+                                        initialStep: (dl_limit / 1024.0).round(),
                                         onChange: function(pos) {
                                             if (pos > 0) {
                                                 $('dllimitUpdatevalue').value = pos;
@@ -205,12 +205,12 @@ MochaUI.extend({
                                         }.bind(this)
                                     });
                                     // Set default value
-                                    if (dl_limit == 0) {
+                                    if (dl_limit === 0) {
                                         $('dllimitUpdatevalue').value = '∞';
                                         $('dlLimitUnit').style.visibility = "hidden";
                                     }
                                     else {
-                                        $('dllimitUpdatevalue').value = (dl_limit / 1024.).round();
+                                        $('dllimitUpdatevalue').value = (dl_limit / 1024.0).round();
                                         $('dlLimitUnit').style.visibility = "visible";
                                     }
                                 }
