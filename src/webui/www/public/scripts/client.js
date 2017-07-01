@@ -38,6 +38,8 @@ var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
 
+var clipboardEvent;
+
 var CATEGORIES_ALL = 1;
 var CATEGORIES_UNCATEGORIZED = 2;
 
@@ -310,13 +312,19 @@ window.addEvent('load', function () {
                         update_categories = true;
                     }
                     if (response['torrents']) {
+                        var newTorrentInList = false;
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
                             response['torrents'][key]['rowId'] = key;
                             torrentsTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToCategoryList(response['torrents'][key]))
                                 update_categories = true;
+                            if (response['torrents'][key]['name'])
+                                newTorrentInList = true;
                         }
+
+                        if (newTorrentInList)
+                            setupCopyEventHandler();
                     }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
@@ -588,6 +596,29 @@ window.addEvent('load', function () {
 function closeWindows() {
     MochaUI.closeAll();
 };
+
+function setupCopyEventHandler() {
+    if (clipboardEvent)
+        clipboardEvent.destroy();
+
+    clipboardEvent = new Clipboard('.copyToClipboard', {
+        text: function(trigger) {
+            var textToCopy;
+
+            if (trigger.id === "CopyName") {
+                textToCopy = copyNameFN();
+            }
+            else if (trigger.id === "CopyMagnetLink") {
+                textToCopy = copyMagnetLinkFN();
+            }
+            else if (trigger.id === "CopyHash") {
+                textToCopy = copyHashFN();
+            }
+
+            return textToCopy;
+        }
+    });
+}
 
 var keyboardEvents = new Keyboard({
     defaultEventType: 'keydown',

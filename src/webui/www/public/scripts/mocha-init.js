@@ -224,7 +224,7 @@ initializeWindows = function() {
             width: 275,
             height: 370,
             padding: 10
-        }); 
+        });
     }
 
     downloadLimitFN = function() {
@@ -449,6 +449,36 @@ initializeWindows = function() {
             });
             updateMainData();
         }
+    };
+
+    copyNameFN = function() {
+        var selectedRows = torrentsTable.selectedRowsIds();
+        var names = [];
+        if (selectedRows.length) {
+            var rows = torrentsTable.getFilteredAndSortedRows();
+            for (var i = 0; i < selectedRows.length; i++) {
+                var hash = selectedRows[i];
+                names.push(rows[hash].full_data.name);
+            }
+        }
+        return names.join("\n");
+    };
+
+    copyMagnetLinkFN = function() {
+        var h = torrentsTable.selectedRowsIds();
+        var magnets = [];
+        if (h.length) {
+            var rows = torrentsTable.getFilteredAndSortedRows();
+            for (var i = 0; i < h.length; i++) {
+                var hash = h[i];
+                magnets.push(rows[hash].full_data.magnet_uri);
+            }
+        }
+        return magnets.join("\n");
+    };
+
+    copyHashFN = function() {
+        return torrentsTable.selectedRowsIds().join("\n");
     };
 
     ['pauseAll', 'resumeAll'].each(function(item) {
