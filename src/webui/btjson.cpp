@@ -87,6 +87,7 @@ static const char KEY_TORRENT_LEECHS[] = "num_leechs";
 static const char KEY_TORRENT_NUM_INCOMPLETE[] = "num_incomplete";
 static const char KEY_TORRENT_RATIO[] = "ratio";
 static const char KEY_TORRENT_ETA[] = "eta";
+static const char KEY_TORRENT_STATUS[] = "status";
 static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
@@ -800,6 +801,7 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
     const qreal ratio = torrent->realRatio();
     ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
+    ret[KEY_TORRENT_STATUS] = torrent->state().toString();
     ret[KEY_TORRENT_STATE] = torrent->state().toString();
     ret[KEY_TORRENT_ETA] = torrent->eta();
     ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
