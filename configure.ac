@@ -218,7 +218,7 @@ AC_SUBST(QBT_REMOVE_DEFINES)
 
 AC_OUTPUT(conf.pri)
 AS_IF([test "x$enable_systemd" = "xyes"],
-      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox.service)])
+      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
 
 
 
