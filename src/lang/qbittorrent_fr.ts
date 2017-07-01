@@ -2368,12 +2368,12 @@ Le nom de catégorie ne doit pas contenir la séquence &apos;//&apos;.</translat
     <message>
         <location filename="../gui/mainwindow.cpp" line="181"/>
         <source>&amp;Set Password</source>
-        <translation>&amp;Définir le mot de pass</translation>
+        <translation>&amp;Définir le mot de passe</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="183"/>
         <source>&amp;Clear Password</source>
-        <translation>&amp;Supprimer le mot de pass</translation>
+        <translation>&amp;Supprimer le mot de passe</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="230"/>
@@ -2405,12 +2405,12 @@ Voulez-vous associer qBittorrent aux fichiers torrent et liens magnet ?</transl
     <message>
         <location filename="../gui/mainwindow.cpp" line="471"/>
         <source>Text Alongside Icons</source>
-        <translation>Texte à côté des Icônes</translation>
+        <translation>Texte à côté des icônes</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="473"/>
         <source>Text Under Icons</source>
-        <translation>Texte sous les Icônes</translation>
+        <translation>Texte sous les icônes</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="475"/>
