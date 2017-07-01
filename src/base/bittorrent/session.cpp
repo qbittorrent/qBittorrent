@@ -133,7 +133,13 @@ namespace
         Q_ASSERT(entry.type() == Entry::list_t);
         QSet<QString> output;
         for (int i = 0; i < entry.list_size(); ++i) {
+#if LIBTORRENT_VERSION_NUM < 10100
             const QString tag = QString::fromStdString(entry.list_string_value_at(i));
+#else
+            // NOTE: For some reason libtorrent::bdecode_node::list_string_value_at declared as non-const member
+            // so we can't use it with `const libtorrent::bdecode_node &` (see libtorrent bug #2110 for more info)
+            const QString tag = QString::fromStdString(const_cast<Entry &>(entry).list_string_value_at(i));
+#endif
             if (Session::isValidTag(tag))
                 output.insert(tag);
             else
