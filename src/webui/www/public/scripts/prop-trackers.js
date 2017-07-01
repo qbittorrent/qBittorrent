@@ -34,8 +34,8 @@ var trackersDynTable = new Class({
     insertRow: function(row) {
         var url = row[0];
         if (this.rows.has(url)) {
-            var tr = this.rows.get(url);
-            this.updateRow(tr, row);
+            var tableRow = this.rows.get(url);
+            this.updateRow(tableRow, row);
             return;
         }
         //this.removeRow(id);
@@ -60,7 +60,7 @@ var loadTrackersData = function() {
         return;
     }
     var new_hash = torrentsTable.getCurrentTorrentHash();
-    if (new_hash == "") {
+    if (new_hash === "") {
         tTable.removeAllRows();
         clearTimeout(loadTrackersDataTimer);
         loadTrackersDataTimer = loadTrackersData.delay(10000);
@@ -85,7 +85,7 @@ var loadTrackersData = function() {
             if (trackers) {
                 // Update Trackers data
                 trackers.each(function(tracker) {
-                    var row = new Array();
+                    var row = [];
                     row.length = 4;
                     row[0] = escapeHtml(tracker.url);
                     row[1] = tracker.status;
@@ -101,19 +101,19 @@ var loadTrackersData = function() {
             loadTrackersDataTimer = loadTrackersData.delay(10000);
         }
     }).send();
-}
+};
 
 var updateTrackersData = function() {
     clearTimeout(loadTrackersDataTimer);
     loadTrackersData();
-}
+};
 
 tTable = new trackersDynTable();
 tTable.setup($('trackersTable'));
 
 // Add trackers code
 $('addTrackersPlus').addEvent('click', function addTrackerDlg() {
-    if (current_hash.length == 0) return;
+    if (current_hash.length === 0) return;
     new MochaUI.Window({
         id: 'trackersPage',
         title: "QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDlg]",
