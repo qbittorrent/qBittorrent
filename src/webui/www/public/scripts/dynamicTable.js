@@ -772,7 +772,6 @@ var TorrentsTable = new Class({
         initColumnsFunctions : function () {
 
             // state_icon
-
             this.columns['state_icon'].updateTd = function (td, row) {
                 var state = this.getRowValue(row);
 
@@ -809,7 +808,6 @@ var TorrentsTable = new Class({
             };
 
             // status
-
             this.columns['status'].updateTd = function (td, row) {
                 var status = this.getRowValue(row);
 
@@ -835,7 +833,6 @@ var TorrentsTable = new Class({
             };
 
             // priority
-
             this.columns['priority'].updateTd = function (td, row) {
                 var priority = this.getRowValue(row);
                 td.set('html', priority < 1 ? '*' : priority);
@@ -856,21 +853,18 @@ var TorrentsTable = new Class({
             };
 
             // name, category
-
             this.columns['name'].updateTd = function (td, row) {
                 td.set('html', escapeHtml(this.getRowValue(row)));
             };
             this.columns['category'].updateTd = this.columns['name'].updateTd;
 
             // size
-
             this.columns['size'].updateTd = function (td, row) {
                 var size = this.getRowValue(row);
                 td.set('html', friendlyUnit(size, false));
             };
 
             // progress
-
             this.columns['progress'].updateTd = function (td, row) {
                 var progress = this.getRowValue(row);
                 var progressFormated = (progress * 100).round(1);
@@ -910,7 +904,6 @@ var TorrentsTable = new Class({
             }.bind(this);
 
             // num_seeds
-
             this.columns['num_seeds'].updateTd = function (td, row) {
                 var num_seeds = this.getRowValue(row, 0);
                 var num_complete = this.getRowValue(row, 1);
@@ -938,30 +931,25 @@ var TorrentsTable = new Class({
             };
 
             // num_leechs
-
             this.columns['num_leechs'].updateTd = this.columns['num_seeds'].updateTd;
             this.columns['num_leechs'].compareRows = this.columns['num_seeds'].compareRows;
 
             // dlspeed
-
             this.columns['dlspeed'].updateTd = function (td, row) {
                 var speed = this.getRowValue(row);
                 td.set('html', friendlyUnit(speed, true));
             };
 
             // upspeed
-
             this.columns['upspeed'].updateTd = this.columns['dlspeed'].updateTd;
 
             // eta
-
             this.columns['eta'].updateTd = function (td, row) {
                 var eta = this.getRowValue(row);
                 td.set('html', friendlyDuration(eta, true));
             };
 
             // ratio
-
             this.columns['ratio'].updateTd = function (td, row) {
                 var ratio = this.getRowValue(row);
                 var html = null;
@@ -973,14 +961,12 @@ var TorrentsTable = new Class({
             };
 
             // added on
-
             this.columns['added_on'].updateTd = function (td, row) {
                 var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
                 td.set('html', date);
             };
 
             // completion_on
-
             this.columns['completion_on'].updateTd = function (td, row) {
                 var val = this.getRowValue(row);
                 if (val === 0xffffffff || val < 0)
@@ -992,11 +978,9 @@ var TorrentsTable = new Class({
             };
 
             // seen_complete
-
             this.columns['seen_complete'].updateTd = this.columns['completion_on'].updateTd;
 
             //  dl_limit, up_limit
-
             this.columns['dl_limit'].updateTd = function (td, row) {
                 var speed = this.getRowValue(row);
                 if (speed === 0)
@@ -1008,7 +992,6 @@ var TorrentsTable = new Class({
             this.columns['up_limit'].updateTd = this.columns['dl_limit'].updateTd;
 
             // downloaded, uploaded, downloaded_session, uploaded_session, amount_left, completed, total_size
-
             this.columns['downloaded'].updateTd = this.columns['size'].updateTd;
             this.columns['uploaded'].updateTd = this.columns['size'].updateTd;
             this.columns['downloaded_session'].updateTd = this.columns['size'].updateTd;
@@ -1019,16 +1002,13 @@ var TorrentsTable = new Class({
             this.columns['total_size'].updateTd = this.columns['size'].updateTd;
 
             // save_path, tracker
-
             this.columns['save_path'].updateTd = this.columns['name'].updateTd;
             this.columns['tracker'].updateTd = this.columns['name'].updateTd;
 
             // ratio_limit
-
             this.columns['ratio_limit'].updateTd = this.columns['ratio'].updateTd;
 
             // last_activity
-
             this.columns['last_activity'].updateTd = function (td, row) {
                 var val = this.getRowValue(row);
                 if (val < 1)
