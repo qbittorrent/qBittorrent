@@ -776,7 +776,7 @@ var TorrentsTable = new Class({
             this.columns['state_icon'].updateTd = function (td, row) {
                 var state = this.getRowValue(row);
 
-                if (state === "forcedDL" || state === "metaDL")
+                if ((state === "forcedDL") || (state === "metaDL"))
                     state = "downloading";
                 else if (state === "allocating")
                     state = "stalledDL";
@@ -786,12 +786,12 @@ var TorrentsTable = new Class({
                     state = "paused";
                 else if (state === "pausedUP")
                     state = "completed";
-                else if (state === "queuedDL" || state === "queuedUP")
+                else if ((state === "queuedDL") || (state === "queuedUP"))
                     state = "queued";
-                else if (state === "checkingDL" || state === "checkingUP" ||
-                        state === "queuedForChecking" || state === "checkingResumeData")
+                else if ((state === "checkingDL") || (state === "checkingUP") ||
+                        (state === "queuedForChecking") || (state === "checkingResumeData"))
                     state = "checking";
-                else if (state === "unknown" || state === "error" || state === "missingFiles")
+                else if ((state === "unknown") || (state === "error") || (state === "missingFiles"))
                     state = "error";
 
                 var img_path = 'images/skin/' + state + '.png';
@@ -813,22 +813,22 @@ var TorrentsTable = new Class({
             this.columns['status'].updateTd = function (td, row) {
                 var status = this.getRowValue(row);
 
-                if (status === "downloading" || status === "forcedDL" || status === "metaDL")
+                if ((status === "downloading") || (status === "forcedDL") || (status === "metaDL"))
                     status = "Downloading";
-                else if (status === "stalledDL" || status === "stalledUP" || status === "allocating")
+                else if ((status === "stalledDL") || (status === "stalledUP") || (status === "allocating"))
                     status = "Stalled";
-                else if (status === "uploading" || status === "forcedUP")
+                else if ((status === "uploading") || (status === "forcedUP"))
                     status = "Uploading";
                 else if (status === "pausedDL")
                     status = "Paused";
                 else if (status === "pausedUP")
                     status = "Completed";
-                else if (status === "queuedDL" || status === "queuedUP")
+                else if ((status === "queuedDL") || (status === "queuedUP"))
                     status = "Queued";
-                else if (status === "checkingDL" || status === "checkingUP" ||
-                        status === "queuedForChecking" || status === "checkingResumeData")
+                else if ((status === "checkingDL") || (status === "checkingUP") ||
+                        (status === "queuedForChecking") || (status === "checkingResumeData"))
                     status = "Checking";
-                else if (status === "unknown" || status === "error" || status === "missingFiles")
+                else if ((status === "unknown") || (status === "error") || (status === "missingFiles"))
                     status = "Error";
 
                 td.set('html', status);
