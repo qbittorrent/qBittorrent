@@ -74,8 +74,8 @@ void Connection::read()
         break;
 
     case RequestParser::NoError:
-        Environment env;
-        env.clientAddress = m_socket->peerAddress();
+        const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
+
         Response response = m_requestHandler->processRequest(request, env);
         if (acceptsGzipEncoding(request.headers["accept-encoding"]))
             response.headers[HEADER_CONTENT_ENCODING] = "gzip";

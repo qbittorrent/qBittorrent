@@ -86,6 +86,8 @@ private slots:
     void UnbanTimerEvent();
     void removeInactiveSessions();
 
+    void reloadDomainList();
+
 private:
     // Persistent data
     QMap<QString, WebSession *> sessions_;
@@ -97,11 +99,14 @@ private:
     Http::Request request_;
     Http::Environment env_;
 
+    QStringList domainList;
+
     QString generateSid();
     bool sessionInitialize();
 
     QStringMap parseCookie(const Http::Request &request) const;
     bool isCrossSiteRequest(const Http::Request &request) const;
+    bool validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const;
 
     static void translateDocument(QString &data);
 

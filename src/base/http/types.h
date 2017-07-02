@@ -65,7 +65,11 @@ namespace Http
 
     struct Environment
     {
+        QHostAddress localAddress;
+        quint16 localPort;
+
         QHostAddress clientAddress;
+        quint16 clientPort;
     };
 
     struct UploadedFile

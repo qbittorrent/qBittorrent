@@ -449,6 +449,16 @@ void Preferences::setWebUiLocalAuthEnabled(bool enabled)
     setValue("Preferences/WebUI/LocalHostAuth", enabled);
 }
 
+QString Preferences::getServerDomains() const
+{
+    return value("Preferences/WebUI/ServerDomains", "*").toString();
+}
+
+void Preferences::setServerDomains(const QString &str)
+{
+    setValue("Preferences/WebUI/ServerDomains", str);
+}
+
 quint16 Preferences::getWebUiPort() const
 {
     return value("Preferences/WebUI/Port", 8080).toInt();

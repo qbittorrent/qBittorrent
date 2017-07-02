@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -2693,8 +2693,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>432</width>
-             <height>569</height>
+             <width>518</width>
+             <height>602</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2710,6 +2710,28 @@
                <bool>false</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <item>
+                  <widget class="QLabel" name="labelServerDomains">
+                   <property name="text">
+                    <string>Server domains:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textSeverDomains">
+                   <property name="toolTip">
+                    <string>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_2">
                  <item>
