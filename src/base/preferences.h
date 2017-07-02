@@ -175,6 +175,8 @@ public:
     void setWebUiEnabled(bool enabled);
     bool isWebUiLocalAuthEnabled() const;
     void setWebUiLocalAuthEnabled(bool enabled);
+    QString getServerDomains() const;
+    void setServerDomains(const QString &str);
     quint16 getWebUiPort() const;
     void setWebUiPort(quint16 port);
     bool useUPnPForWebUIPort() const;

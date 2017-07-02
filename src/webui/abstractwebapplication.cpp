@@ -28,6 +28,8 @@
 
 #include "abstractwebapplication.h"
 
+#include <algorithm>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -91,6 +93,8 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
     timer->start(60 * 1000);  // 1 min.
+
+    connect(Preferences::instance(), SIGNAL(changed()), this, SLOT(reloadDomainList()));
 }
 
 AbstractWebApplication::~AbstractWebApplication()
@@ -115,7 +119,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
 
     // block cross-site requests
-    if (isCrossSiteRequest(request_)) {
+    if (isCrossSiteRequest(request_) || !validateHostHeader(request_, env, domainList)) {
         status(401, "Unauthorized");
         return response();
     }
@@ -151,6 +155,12 @@ void AbstractWebApplication::removeInactiveSessions()
         if ((now - sessions_[id]->timestamp) > INACTIVE_TIME)
             delete sessions_.take(id);
     }
+}
+
+void AbstractWebApplication::reloadDomainList()
+{
+    domainList = Preferences::instance()->getServerDomains().split(';', QString::SkipEmptyParts);
+    std::for_each(domainList.begin(), domainList.end(), [](QString &entry){ entry = entry.trimmed(); });
 }
 
 bool AbstractWebApplication::sessionInitialize()
@@ -409,6 +419,45 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
         return !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
 
     return true;
+}
+
+bool AbstractWebApplication::validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const
+{
+    const QUrl hostHeader = QUrl::fromUserInput(
+                                request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST)));
+
+    // (if present) try matching host header's port with local port
+    const int requestPort = hostHeader.port();
+    if ((requestPort != -1) && (env.localPort != requestPort))
+        return false;
+
+    // try matching host header with local address
+    const QString requestHost = hostHeader.host();
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
+    const bool sameAddr = env.localAddress.isEqual(QHostAddress(requestHost));
+#else
+    const auto equal = [](const Q_IPV6ADDR &l, const Q_IPV6ADDR &r) -> bool {
+        for (int i = 0; i < 16; ++i) {
+            if (l[i] != r[i])
+                return false;
+        }
+        return true;
+    };
+    const bool sameAddr = equal(env.localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
+#endif
+
+    if (sameAddr)
+        return true;
+
+    // try matching host header with domain list
+    for (const auto &domain : domains) {
+        QRegExp domainRegex(domain, Qt::CaseInsensitive, QRegExp::Wildcard);
+        if (requestHost.contains(domainRegex))
+            return true;
+    }
+
+    return false;
 }
 
 QStringMap AbstractWebApplication::initializeContentTypeByExtMap()

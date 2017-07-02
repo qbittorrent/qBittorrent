@@ -378,6 +378,7 @@
 
 <fieldset class="settings">
   <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
+  <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
   <label for="webui_port_value">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;"/><br/>
   <input type="checkbox" id="webui_upnp_checkbox"/>
   <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
@@ -1003,6 +1004,7 @@ loadPreferences = function() {
                     $('locale_select').setProperty('value', pref.locale);
 
                     // HTTP Server
+                    $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
                     $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
                     $('use_https_checkbox').setProperty('checked', pref.use_https);
@@ -1257,6 +1259,7 @@ applyPreferences = function() {
   settings.set('locale', $('locale_select').getProperty('value'));
 
   // HTTP Server
+  settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
   var web_ui_port = $('webui_port_value').getProperty('value').toInt();
   if(isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
     alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
