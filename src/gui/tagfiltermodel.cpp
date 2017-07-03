@@ -84,7 +84,7 @@ public:
     }
 
 private:
-    const QString m_tag;
+    QString m_tag;
     int m_torrentsCount;
 };
 
