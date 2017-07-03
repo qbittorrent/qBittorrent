@@ -105,10 +105,6 @@ public:
     void setLocale(const QString &locale);
     bool useAlternatingRowColors() const;
     void setAlternatingRowColors(bool b);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    bool useSystemIconTheme() const;
-    void setSystemIconTheme(bool enabled);
-#endif
 
     // General options
     bool deleteTorrentFilesAsDefault() const;

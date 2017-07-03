@@ -30,6 +30,7 @@
 #ifndef ICONPROVIDER_H
 #define ICONPROVIDER_H
 
+#include <QDir>
 #include <QObject>
 
 class QString;
@@ -49,7 +50,13 @@ protected:
     explicit IconProvider(QObject *parent = 0);
     ~IconProvider();
 
+    void setIconDir(const QString &path);
+    static QString defaultIconDir();
+
     static IconProvider *m_instance;
+
+private:
+    QDir m_iconThemeDir;
 };
 
 #endif // ICONPROVIDER_H

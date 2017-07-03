@@ -33,26 +33,18 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QDir>
 #include <QIcon>
+#include <QMap>
 #include <QPalette>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/settingvalue.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
+#include "guiiconprovider.h"
 #include "theme/colortheme.h"
-
-static QIcon getIconByState(BitTorrent::TorrentState state);
-
-static QIcon getPausedIcon();
-static QIcon getQueuedIcon();
-static QIcon getDownloadingIcon();
-static QIcon getStalledDownloadingIcon();
-static QIcon getUploadingIcon();
-static QIcon getStalledUploadingIcon();
-static QIcon getCompletedIcon();
-static QIcon getCheckingIcon();
-static QIcon getErrorIcon();
 
 // TorrentModel
 
@@ -165,10 +157,12 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
     if (!torrent) return QVariant();
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
-        return getIconByState(torrent->state());
+        return GuiIconProvider::instance()->icon(torrent->state());
 
     if (role == Qt::ForegroundRole)
-        return Theme::ColorTheme::current().torrentStateColor(torrent->state());
+        return textIsColorized()
+            ? Theme::ColorTheme::current().torrentStateColor(torrent->state())
+            : QGuiApplication::palette().color(QPalette::WindowText);
 
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
         return QVariant();
@@ -295,6 +289,16 @@ BitTorrent::TorrentHandle *TorrentModel::torrentHandle(const QModelIndex &index)
     return m_torrents.value(index.row());
 }
 
+bool TorrentModel::textIsColorized()
+{
+    return textIsColorizedSetting();
+}
+
+void TorrentModel::setTextIsColorized(bool v)
+{
+    textIsColorizedSetting() = v;
+}
+
 void TorrentModel::handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
 {
     const int row = m_torrents.indexOf(torrent);
@@ -317,98 +321,8 @@ void TorrentModel::handleTorrentsUpdated()
     emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
 }
 
-// Static functions
-
-QIcon getIconByState(BitTorrent::TorrentState state)
+CachedSettingValue<bool> &TorrentModel::textIsColorizedSetting()
 {
-    switch (state) {
-    case BitTorrent::TorrentState::Downloading:
-    case BitTorrent::TorrentState::ForcedDownloading:
-    case BitTorrent::TorrentState::DownloadingMetadata:
-        return getDownloadingIcon();
-    case BitTorrent::TorrentState::Allocating:
-    case BitTorrent::TorrentState::StalledDownloading:
-        return getStalledDownloadingIcon();
-    case BitTorrent::TorrentState::StalledUploading:
-        return getStalledUploadingIcon();
-    case BitTorrent::TorrentState::Uploading:
-    case BitTorrent::TorrentState::ForcedUploading:
-        return getUploadingIcon();
-    case BitTorrent::TorrentState::PausedDownloading:
-        return getPausedIcon();
-    case BitTorrent::TorrentState::PausedUploading:
-        return getCompletedIcon();
-    case BitTorrent::TorrentState::QueuedDownloading:
-    case BitTorrent::TorrentState::QueuedUploading:
-        return getQueuedIcon();
-    case BitTorrent::TorrentState::CheckingDownloading:
-    case BitTorrent::TorrentState::CheckingUploading:
-#if LIBTORRENT_VERSION_NUM < 10100
-    case BitTorrent::TorrentState::QueuedForChecking:
-#endif
-    case BitTorrent::TorrentState::CheckingResumeData:
-        return getCheckingIcon();
-    case BitTorrent::TorrentState::Unknown:
-    case BitTorrent::TorrentState::MissingFiles:
-    case BitTorrent::TorrentState::Error:
-        return getErrorIcon();
-    default:
-        Q_ASSERT(false);
-        return getErrorIcon();
-    }
+    static CachedSettingValue<bool> setting("Appearance/TransferListIsColorized", true);
+    return setting;
 }
-
-QIcon getPausedIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/paused.png");
-    return cached;
-}
-
-QIcon getQueuedIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/queued.png");
-    return cached;
-}
-
-QIcon getDownloadingIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/downloading.png");
-    return cached;
-}
-
-QIcon getStalledDownloadingIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.png");
-    return cached;
-}
-
-QIcon getUploadingIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/uploading.png");
-    return cached;
-}
-
-QIcon getStalledUploadingIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.png");
-    return cached;
-}
-
-QIcon getCompletedIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/completed.png");
-    return cached;
-}
-
-QIcon getCheckingIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/checking.png");
-    return cached;
-}
-
-QIcon getErrorIcon()
-{
-    static QIcon cached = QIcon(":/icons/skin/error.png");
-    return cached;
-}
-

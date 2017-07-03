@@ -33,6 +33,9 @@
 
 Q_DECLARE_LOGGING_CATEGORY(theme)
 
+class QColor;
+class QTemporaryFile;
+
 namespace Theme
 {
     enum class Kind

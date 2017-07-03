@@ -242,109 +242,111 @@
         <file>icons/flags/za.png</file>
         <file>icons/flags/zm.png</file>
         <file>icons/flags/zw.png</file>
-        <file>icons/L.gif</file>
-        <file>icons/loading.png</file>
-        <file>icons/qbittorrent.png</file>
-        <file>icons/qbt-theme/application-exit.png</file>
-        <file>icons/qbt-theme/application-rss+xml.png</file>
-        <file>icons/qbt-theme/application-x-mswinurl.png</file>
-        <file>icons/qbt-theme/checked.png</file>
-        <file>icons/qbt-theme/configure.png</file>
-        <file>icons/qbt-theme/dialog-cancel.png</file>
-        <file>icons/qbt-theme/dialog-information.png</file>
-        <file>icons/qbt-theme/dialog-warning.png</file>
-        <file>icons/qbt-theme/document-edit-verify.png</file>
-        <file>icons/qbt-theme/document-edit.png</file>
-        <file>icons/qbt-theme/document-encrypt.png</file>
-        <file>icons/qbt-theme/document-import.png</file>
-        <file>icons/qbt-theme/document-new.png</file>
-        <file>icons/qbt-theme/document-properties.png</file>
-        <file>icons/qbt-theme/document-save.png</file>
-        <file>icons/qbt-theme/download.png</file>
-        <file>icons/qbt-theme/edit-clear-history.png</file>
-        <file>icons/qbt-theme/edit-clear.png</file>
-        <file>icons/qbt-theme/edit-copy.png</file>
-        <file>icons/qbt-theme/edit-cut.png</file>
-        <file>icons/qbt-theme/edit-delete.png</file>
-        <file>icons/qbt-theme/edit-find-user.png</file>
-        <file>icons/qbt-theme/edit-find.png</file>
-        <file>icons/qbt-theme/edit-paste.png</file>
-        <file>icons/qbt-theme/edit-rename.png</file>
-        <file>icons/qbt-theme/folder-documents.png</file>
-        <file>icons/qbt-theme/folder-download.png</file>
-        <file>icons/qbt-theme/folder-new.png</file>
-        <file>icons/qbt-theme/folder-remote.png</file>
-        <file>icons/qbt-theme/gear.png</file>
-        <file>icons/qbt-theme/gear32.png</file>
-        <file>icons/qbt-theme/go-bottom.png</file>
-        <file>icons/qbt-theme/go-down.png</file>
-        <file>icons/qbt-theme/go-top.png</file>
-        <file>icons/qbt-theme/go-up.png</file>
-        <file>icons/qbt-theme/help-about.png</file>
-        <file>icons/qbt-theme/help-contents.png</file>
-        <file>icons/qbt-theme/inode-directory.png</file>
-        <file>icons/qbt-theme/insert-link.png</file>
-        <file>icons/qbt-theme/kt-magnet.png</file>
-        <file>icons/qbt-theme/kt-set-max-download-speed.png</file>
-        <file>icons/qbt-theme/kt-set-max-upload-speed.png</file>
-        <file>icons/qbt-theme/list-add.png</file>
-        <file>icons/qbt-theme/list-remove.png</file>
-        <file>icons/qbt-theme/mail-folder-inbox.png</file>
-        <file>icons/qbt-theme/mail-mark-read.png</file>
-        <file>icons/qbt-theme/media-playback-pause.png</file>
-        <file>icons/qbt-theme/media-playback-start.png</file>
-        <file>icons/qbt-theme/media-seek-forward.png</file>
-        <file>icons/qbt-theme/network-server.png</file>
-        <file>icons/qbt-theme/network-wired.png</file>
-        <file>icons/qbt-theme/object-locked.png</file>
-        <file>icons/qbt-theme/office-chart-line.png</file>
-        <file>icons/qbt-theme/preferences-desktop.png</file>
-        <file>icons/qbt-theme/preferences-desktop-theme.png</file>
-        <file>icons/qbt-theme/preferences-other.png</file>
-        <file>icons/qbt-theme/preferences-system-network.png</file>
-        <file>icons/qbt-theme/preferences-web-browser-cookies.png</file>
-        <file>icons/qbt-theme/rss-config.png</file>
-        <file>icons/qbt-theme/security-high.png</file>
-        <file>icons/qbt-theme/security-low.png</file>
-        <file>icons/qbt-theme/services.png</file>
-        <file>icons/qbt-theme/speedometer.png</file>
-        <file>icons/qbt-theme/system-log-out.png</file>
-        <file>icons/qbt-theme/tab-close.png</file>
-        <file>icons/qbt-theme/task-attention.png</file>
-        <file>icons/qbt-theme/task-complete.png</file>
-        <file>icons/qbt-theme/task-ongoing.png</file>
-        <file>icons/qbt-theme/task-reject.png</file>
-        <file>icons/qbt-theme/text-plain.png</file>
-        <file>icons/qbt-theme/tools-report-bug.png</file>
-        <file>icons/qbt-theme/unavailable.png</file>
-        <file>icons/qbt-theme/user-group-delete.png</file>
-        <file>icons/qbt-theme/user-group-new.png</file>
-        <file>icons/qbt-theme/view-calendar-journal.png</file>
-        <file>icons/qbt-theme/view-categories.png</file>
-        <file>icons/qbt-theme/view-filter.png</file>
-        <file>icons/qbt-theme/view-preview.png</file>
-        <file>icons/qbt-theme/view-refresh.png</file>
-        <file>icons/qbt-theme/view-statistics.png</file>
-        <file>icons/qbt-theme/wallet-open.png</file>
-        <file>icons/qbt-theme/webui.png</file>
+        <file>icons/qbt-theme/application-exit.svg</file>
+        <file>icons/qbt-theme/application-rss+xml.svg</file>
+        <file>icons/qbt-theme/application-x-mswinurl.svg</file>
+        <file>icons/qbt-theme/cloud-download.svg</file>
+        <file>icons/qbt-theme/cloud-upload.svg</file>
+        <file>icons/qbt-theme/configure.svg</file>
+        <file>icons/qbt-theme/dialog-cancel.svg</file>
+        <file>icons/qbt-theme/dialog-information.svg</file>
+        <file>icons/qbt-theme/dialog-warning.svg</file>
+        <file>icons/qbt-theme/document-edit-verify.svg</file>
+        <file>icons/qbt-theme/document-edit.svg</file>
+        <file>icons/qbt-theme/document-encrypt.svg</file>
+        <file>icons/qbt-theme/document-import.svg</file>
+        <file>icons/qbt-theme/document-new.svg</file>
+        <file>icons/qbt-theme/document-properties.svg</file>
+        <file>icons/qbt-theme/document-save.svg</file>
+        <file>icons/qbt-theme/download.svg</file>
+        <file>icons/qbt-theme/edit-clear-history.svg</file>
+        <file>icons/qbt-theme/edit-clear.svg</file>
+        <file>icons/qbt-theme/edit-copy.svg</file>
+        <file>icons/qbt-theme/edit-cut.svg</file>
+        <file>icons/qbt-theme/edit-delete.svg</file>
+        <file>icons/qbt-theme/edit-find-user.svg</file>
+        <file>icons/qbt-theme/edit-find.svg</file>
+        <file>icons/qbt-theme/edit-paste.svg</file>
+        <file>icons/qbt-theme/edit-rename.svg</file>
+        <file>icons/qbt-theme/folder-documents.svg</file>
+        <file>icons/qbt-theme/folder-download.svg</file>
+        <file>icons/qbt-theme/folder-new.svg</file>
+        <file>icons/qbt-theme/folder-remote.svg</file>
+        <file>icons/qbt-theme/gear.svg</file>
+        <file>icons/qbt-theme/gear32.svg</file>
+        <file>icons/qbt-theme/go-down.svg</file>
+        <file>icons/qbt-theme/go-up.svg</file>
+        <file>icons/qbt-theme/help-about.svg</file>
+        <file>icons/qbt-theme/help-contents.svg</file>
+        <file>icons/qbt-theme/inode-directory.svg</file>
+        <file>icons/qbt-theme/insert-link.svg</file>
+        <file>icons/qbt-theme/kt-magnet.svg</file>
+        <file>icons/qbt-theme/kt-set-max-download-speed.svg</file>
+        <file>icons/qbt-theme/kt-set-max-upload-speed.svg</file>
+        <file>icons/qbt-theme/list-add.svg</file>
+        <file>icons/qbt-theme/list-remove.svg</file>
+        <file>icons/qbt-theme/mail-folder-inbox.svg</file>
+        <file>icons/qbt-theme/mail-mark-read.svg</file>
+        <file>icons/qbt-theme/media-playback-pause.svg</file>
+        <file>icons/qbt-theme/media-playback-start.svg</file>
+        <file>icons/qbt-theme/media-seek-forward.svg</file>
+        <file>icons/qbt-theme/network-server.svg</file>
+        <file>icons/qbt-theme/network-wired.svg</file>
+        <file>icons/qbt-theme/object-locked.svg</file>
+        <file>icons/qbt-theme/preferences-desktop.svg</file>
+        <file>icons/qbt-theme/preferences-desktop-theme.svg</file>
+        <file>icons/qbt-theme/preferences-other.svg</file>
+        <file>icons/qbt-theme/preferences-system-network.svg</file>
+        <file>icons/qbt-theme/preferences-web-browser-cookies.svg</file>
+        <file>icons/qbt-theme/security-high.svg</file>
+        <file>icons/qbt-theme/security-low.svg</file>
+        <file>icons/qbt-theme/services.svg</file>
+        <file>icons/qbt-theme/speedometer.svg</file>
+        <file>icons/qbt-theme/system-log-out.svg</file>
+        <file>icons/qbt-theme/go-bottom.svg</file>
+        <file>icons/qbt-theme/go-top.svg</file>
+        <file>icons/qbt-theme/checked.svg</file>
+        <file>icons/qbt-theme/office-chart-line.svg</file>
+        <file>icons/qbt-theme/rss-config.svg</file>
+        <file>icons/qbt-theme/state-download.svg</file>
+        <file>icons/qbt-theme/state-error.svg</file>
+        <file>icons/qbt-theme/state-information.svg</file>
+        <file>icons/qbt-theme/state-offline.svg</file>
+        <file>icons/qbt-theme/state-ok.svg</file>
+        <file>icons/qbt-theme/state-pause.svg</file>
+        <file>icons/qbt-theme/state-sync.svg</file>
+        <file>icons/qbt-theme/state-warning.svg</file>
+        <file>icons/qbt-theme/tab-close.svg</file>
+        <file>icons/qbt-theme/task-attention.svg</file>
+        <file>icons/qbt-theme/text-plain.svg</file>
+        <file>icons/qbt-theme/tools-report-bug.svg</file>
+        <file>icons/qbt-theme/unavailable.svg</file>
+        <file>icons/qbt-theme/user-group-delete.svg</file>
+        <file>icons/qbt-theme/user-group-new.svg</file>
+        <file>icons/qbt-theme/view-calendar-journal.svg</file>
+        <file>icons/qbt-theme/view-categories.svg</file>
+        <file>icons/qbt-theme/view-filter.svg</file>
+        <file>icons/qbt-theme/view-preview.svg</file>
+        <file>icons/qbt-theme/view-refresh.svg</file>
+        <file>icons/qbt-theme/view-statistics.svg</file>
+        <file>icons/qbt-theme/wallet-open.svg</file>
+        <file>icons/qbt-theme/webui.svg</file>
         <file>icons/skin/arrow-right.gif</file>
         <file>icons/skin/bg-dropdown.gif</file>
         <file>icons/skin/bg-handle-horizontal.gif</file>
         <file>icons/skin/bg-header.gif</file>
         <file>icons/skin/bg-panel-header.gif</file>
-        <file>icons/skin/checking.png</file>
+        <file>icons/skin/checking.svg</file>
         <file>icons/skin/collapse-expand.gif</file>
-        <file>icons/skin/completed.png</file>
-        <file>icons/skin/connected.png</file>
-        <file>icons/skin/disconnected.png</file>
+        <file>icons/skin/connected.svg</file>
+        <file>icons/skin/disconnected.svg</file>
         <file>icons/skin/dock-tabs.gif</file>
-        <file>icons/skin/download.png</file>
-        <file>icons/skin/downloading.png</file>
-        <file>icons/skin/error.png</file>
-        <file>icons/skin/filteractive.png</file>
-        <file>icons/skin/filterall.png</file>
-        <file>icons/skin/filterinactive.png</file>
-        <file>icons/skin/firewalled.png</file>
+        <file>icons/skin/downloading.svg</file>
+        <file>icons/skin/error.svg</file>
+        <file>icons/skin/filteractive.svg</file>
+        <file>icons/skin/filterall.svg</file>
+        <file>icons/skin/filterinactive.svg</file>
+        <file>icons/skin/firewalled.svg</file>
         <file>icons/skin/handle-icon-horizontal.gif</file>
         <file>icons/skin/handle-icon.gif</file>
         <file>icons/skin/knob.gif</file>
@@ -352,31 +354,31 @@
         <file>icons/skin/logo.gif</file>
         <file>icons/skin/logo2.gif</file>
         <file>icons/skin/mascot.png</file>
-        <file>icons/skin/paused.png</file>
-        <file>icons/skin/qbittorrent-tray-dark.svg</file>
-        <file>icons/skin/qbittorrent-tray-light.svg</file>
+        <file>icons/skin/paused.svg</file>
         <file>icons/skin/qbittorrent16.png</file>
         <file>icons/skin/qbittorrent22.png</file>
         <file>icons/skin/qbittorrent32.png</file>
-        <file>icons/skin/queued.png</file>
-        <file>icons/skin/ratio.png</file>
-        <file>icons/skin/resumed.png</file>
-        <file>icons/skin/seeding.png</file>
+        <file>icons/skin/qbittorrent-tray-dark.svg</file>
+        <file>icons/skin/qbittorrent-tray-light.svg</file>
+        <file>icons/skin/queued.svg</file>
+        <file>icons/skin/ratio.svg</file>
         <file>icons/skin/slider-area.gif</file>
         <file>icons/skin/spacer.gif</file>
         <file>icons/skin/spinner-placeholder.gif</file>
         <file>icons/skin/spinner.gif</file>
         <file>icons/skin/splash.png</file>
-        <file>icons/skin/stalledDL.png</file>
-        <file>icons/skin/stalledUP.png</file>
+        <file>icons/skin/stalledDL.svg</file>
+        <file>icons/skin/stalledUP.svg</file>
         <file>icons/skin/tabs.gif</file>
         <file>icons/skin/toolbox-divider.gif</file>
         <file>icons/skin/toolbox-divider2.gif</file>
-        <file>icons/skin/uploading.png</file>
         <file>icons/slow.png</file>
         <file>icons/slow_off.png</file>
         <file>icons/sphere.png</file>
         <file>icons/sphere2.png</file>
         <file>icons/url.png</file>
+        <file>icons/skin/resumed.svg</file>
+        <file>icons/skin/uploading.svg</file>
+        <file>icons/skin/completed.svg</file>
     </qresource>
 </RCC>

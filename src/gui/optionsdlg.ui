@@ -201,13 +201,51 @@
               <property name="title">
                <string>Desktop</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_27">
-               <item>
-                <widget class="QCheckBox" name="checkUseSystemTheme">
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_27">
                  <property name="text">
-                  <string>Use system icon theme</string>
+                  <string>Icon theme:</string>
                  </property>
                 </widget>
+               </item>
+               <item row="0" column="1">
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QComboBox" name="comboIconTheme">
+                   <item>
+                    <property name="text">
+                     <string>Default</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Monochrome</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>System theme</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lbl_icontheme_info">
+                   <property name="font">
+                    <font>
+                     <italic>true</italic>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>(Requires restart)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>
@@ -286,7 +324,24 @@
                  </item>
                 </layout>
                </item>
-               <item row="1" column="0">
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="checkColorizeTransferList">
+                 <property name="text">
+                  <string>Colorize text in transfer list</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QCheckBox" name="checkColorizeStateIcons">
+                 <property name="text">
+                  <string>Colorize state icons</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
                 <widget class="QLabel" name="label_25">
                  <property name="text">
                   <string>Font theme:</string>
@@ -294,7 +349,7 @@
                  <layout class="QHBoxLayout" name="horizontalLayout_19"/>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="3" column="1">
                 <layout class="QHBoxLayout" name="horizontalLayout_12">
                  <item>
                   <widget class="QComboBox" name="comboBoxFontTheme">

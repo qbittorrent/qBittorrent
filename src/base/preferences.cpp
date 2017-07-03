@@ -102,18 +102,6 @@ void Preferences::setLocale(const QString &locale)
     setValue("Appearance/Locale", locale);
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-bool Preferences::useSystemIconTheme() const
-{
-    return value("Appearance/useSystemIconTheme", true).toBool();
-}
-
-void Preferences::setSystemIconTheme(bool enabled)
-{
-    setValue("Appearance/useSystemIconTheme", enabled);
-}
-#endif
-
 bool Preferences::useAlternatingRowColors() const
 {
     return value("Appearance/AlternatingRowColors", true).toBool();
@@ -1462,7 +1450,6 @@ void Preferences::upgrade()
     QList<QPair<QString, QString>> prefsToMigrate = {
         { "Preferences/General/Locale", "Appearance/Locale" },
         { "Preferences/General/AlternatingRowColors", "Appearance/AlternatingRowColors" },
-        { "Preferences/Advanced/useSystemIconTheme", "Appearance/useSystemIconTheme" },
     };
 
     for (auto iter = prefsToMigrate.begin(); iter != prefsToMigrate.end(); ++iter) {
@@ -1490,6 +1477,15 @@ void Preferences::upgrade()
     }
 
     SettingsStorage::instance()->removeValue("Preferences/Downloads/AppendLabel");
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    const QLatin1String UseSystemIconsOldKey = QLatin1String("Preferences/Advanced/useSystemIconTheme");
+    if (SettingsStorage::instance()->loadValue(UseSystemIconsOldKey, false).toBool()) {
+        // see GUiIconsProvider for the new key
+        SettingsStorage::instance()->storeValue(QLatin1String("Appearance/IconSet"), QLatin1String("SystemTheme"));
+    }
+    SettingsStorage::instance()->removeValue(UseSystemIconsOldKey);
+#endif
 }
 
 void Preferences::apply()

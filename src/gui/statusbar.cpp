@@ -38,6 +38,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "speedlimitdlg.h"
@@ -70,7 +71,7 @@ StatusBar::StatusBar(QWidget *parent)
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
+    m_dlSpeedLbl->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("cloud-download")));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -79,7 +80,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
+    m_upSpeedLbl->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("cloud-upload")));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -174,17 +175,17 @@ void StatusBar::updateConnectionStatus()
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
     if (!BitTorrent::Session::instance()->isListening()) {
-        m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/disconnected.png")));
+        m_connecStatusLblIcon->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("state-offline")));
         m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
         if (sessionStatus.hasIncomingConnections) {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/connected.png")));
+            m_connecStatusLblIcon->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("state-ok")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
         }
         else {
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/firewalled.png")));
+            m_connecStatusLblIcon->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("state-warning")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
         }
     }

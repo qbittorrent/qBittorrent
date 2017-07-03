@@ -65,6 +65,7 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
+#include "guiiconprovider.h"
 #include "rss/automatedrssdownloader.h"
 #include "theme/themeexceptions.h"
 #include "theme/themeinfo.h"
@@ -72,6 +73,7 @@
 #include "banlistoptions.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
+#include "torrentmodel.h"
 
 #include "ui_optionsdlg.h"
 
@@ -239,7 +241,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     }
 
 #if !((defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
-    m_ui->checkUseSystemTheme->setHidden(true);
+    // system icon theme is supported on Linux only
+    m_ui->comboIconTheme->removeItem(static_cast<int>(GuiIconProvider::IconSet::SystemTheme));
 #endif
 
     // Hide the Appearance/Desktop section if it doesn't contain any visible children.
@@ -312,9 +315,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // General tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    connect(m_ui->checkUseSystemTheme, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-#endif
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
@@ -350,10 +350,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboFileLogAgeType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     // Appearance tab
+    connect(m_ui->comboIconTheme, qComboBoxActivated, this, &ThisType::enableApplyButton);
     connect(m_ui->comboBoxColorTheme, qComboBoxActivated, this, &ThisType::colorThemeActivated);
     connect(m_ui->comboBoxFontTheme, qComboBoxActivated, this, &ThisType::fontThemeActivated);
     connect(m_ui->toolButtonExportColorTheme, &QToolButton::clicked, this, &ThisType::exportColorTheme);
     connect(m_ui->toolButtonExportFontTheme, &QToolButton::clicked, this, &ThisType::exportFontTheme);
+    connect(m_ui->checkColorizeStateIcons, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkColorizeTransferList, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     // Downloads tab
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -629,6 +632,8 @@ void OptionsDialog::saveOptions()
 
     // Appearance preferences
 
+    GuiIconProvider::setIconSet(static_cast<GuiIconProvider::IconSet>(m_ui->comboIconTheme->currentIndex()));
+
     const auto applyTheme = [this](Theme::Kind kind, const QString &themeName)
     {
 
@@ -673,13 +678,15 @@ void OptionsDialog::saveOptions()
     applyTheme(Theme::Kind::Color, themeEntry(m_ui->comboBoxColorTheme).info.name());
     applyTheme(Theme::Kind::Font, themeEntry(m_ui->comboBoxFontTheme).info.name());
 
+    GuiIconProvider::setStateIconsAreColorized(m_ui->checkColorizeStateIcons->isChecked());
+    TorrentModel::setTextIsColorized(m_ui->checkColorizeTransferList->isChecked());
+    // end Appearance preferences
+
     // General preferences
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    pref->setSystemIconTheme(m_ui->checkUseSystemTheme->isChecked());
-#endif
+
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MAC
@@ -895,9 +902,6 @@ void OptionsDialog::loadOptions()
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    m_ui->checkUseSystemTheme->setChecked(pref->useSystemIconTheme());
-#endif
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
@@ -944,6 +948,12 @@ void OptionsDialog::loadOptions()
     m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
+
+    // Appearance preferences
+    m_ui->comboIconTheme->setCurrentIndex(static_cast<int>(GuiIconProvider::iconSet()));
+    m_ui->checkColorizeStateIcons->setChecked(GuiIconProvider::stateIconsAreColorized());
+    m_ui->checkColorizeTransferList->setChecked(TorrentModel::textIsColorized());
+    // end Appearance preferences
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
@@ -1897,11 +1907,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("security-high")).pixmap(20, 20));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("security-low")).pixmap(20, 20));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1916,11 +1926,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("security-high")).pixmap(20, 20));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("security-low")).pixmap(20, 20));
         m_sslCert.clear();
     }
     return isCertValid;

@@ -28,6 +28,7 @@
 
 #include "themecommon.h"
 
+#include <QColor>
 #include <QPalette>
 
 bool Theme::isDarkTheme()
