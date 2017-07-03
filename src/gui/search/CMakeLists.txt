@@ -26,7 +26,6 @@ searchlistdelegate.cpp
 searchsortmodel.cpp
 searchtab.cpp
 searchwidget.cpp
-../ico.cpp
 )
 
 set(QBT_SEARCHENGINE_RESOURCES
