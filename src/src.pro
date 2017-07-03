@@ -28,6 +28,9 @@ nogui {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
     }
+    win32 {
+        QT += winextras
+    }
     TARGET = qbittorrent
 }
 nowebui: DEFINES += DISABLE_WEBUI
