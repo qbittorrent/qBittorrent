@@ -89,7 +89,7 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
+    connect(timer, &QTimer::timeout, this, &AbstractWebApplication::removeInactiveSessions);
     timer->start(60 * 1000);  // 1 min.
 }
 
