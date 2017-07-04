@@ -30,6 +30,7 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <QCryptographicHash>
+#include <QFileInfo>
 #include <queue>
 #include <vector>
 
@@ -117,6 +118,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, decreasePrio);
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
+    ADD_ACTION(command, setLocation);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setCategory);
     ADD_ACTION(command, addCategory);
@@ -767,6 +769,33 @@ void WebApplication::action_command_bottomPrio()
 
     QStringList hashes = request().posts["hashes"].split("|");
     BitTorrent::Session::instance()->bottomTorrentsPriority(hashes);
+}
+
+void WebApplication::action_command_setLocation()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "location");
+
+    QStringList hashes = request().posts["hashes"].split("|");
+    QString newLocationPath = request().posts["location"].trimmed();
+
+    // check location exists
+    QFileInfo newLocation(newLocationPath);
+    if (!newLocation.exists()) {
+        qDebug() << "Location" << newLocationPath << "is invalid. Not moving files.";
+        return;
+    }
+
+    foreach (const QString &hash, hashes) {
+        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+        if (torrent) {
+            // get old location
+            const QString oldLocation = torrent->savePath();
+            qDebug() << "Moving torrent" << torrent->hash() << "to" << newLocationPath;
+
+            torrent->move(Utils::Fs::expandPathAbs(newLocationPath));
+        }
+    }
 }
 
 void WebApplication::action_command_recheck()

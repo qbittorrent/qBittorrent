@@ -40,5 +40,6 @@
         <file>www/public/upload.html</file>
         <file>www/public/uploadlimit.html</file>
         <file>www/public/newcategory.html</file>
+        <file>www/public/setlocation.html</file>
     </qresource>
 </RCC>

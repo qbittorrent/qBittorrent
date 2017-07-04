@@ -22,9 +22,6 @@
         targets : '.torrentsTableContextMenuTarget',
         menu : 'torrentsTableMenu',
         actions : {
-            Delete : function (element, ref) {
-                deleteFN();
-            },
             Start : function (element, ref) {
                 startFN();
             },
@@ -34,6 +31,15 @@
             ForceStart : function (element, ref) {
                 setForceStartFN();
             },
+
+            Delete : function (element, ref) {
+                deleteFN();
+            },
+
+            SetLocation : function (element, ref) {
+                setLocationFN();
+            },
+
             prioTop : function (element, ref) {
                 setPriorityFN('topPrio');
             },
@@ -46,21 +52,25 @@
             prioBottom : function (element, ref) {
                 setPriorityFN('bottomPrio');
             },
-            ForceRecheck : function (element, ref) {
-                recheckFN();
+
+            DownloadLimit : function (element, ref) {
+                downloadLimitFN();
             },
             UploadLimit : function (element, ref) {
                 uploadLimitFN();
             },
-            DownloadLimit : function (element, ref) {
-                downloadLimitFN();
-            },
+
             SequentialDownload : function (element, ref) {
                 toggleSequentialDownloadFN();
             },
             FirstLastPiecePrio : function (element, ref) {
                 toggleFirstLastPiecePrioFN();
             },
+
+            ForceRecheck : function (element, ref) {
+                recheckFN();
+            },
+
             SuperSeeding : function (element, ref) {
                 setSuperSeedingFN(!ref.getItemChecked('SuperSeeding'));
             }
