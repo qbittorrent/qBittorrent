@@ -30,6 +30,8 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <QCryptographicHash>
+#include <QRegularExpression>
+
 #include <queue>
 #include <vector>
 
@@ -119,6 +121,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, topPrio);
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, setLocation);
+    ADD_ACTION(command, rename);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setCategory);
     ADD_ACTION(command, addCategory);
@@ -797,6 +800,25 @@ void WebApplication::action_command_setLocation()
 
             torrent->move(Utils::Fs::expandPathAbs(newLocation));
         }
+    }
+}
+
+void WebApplication::action_command_rename()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hash" << "name");
+
+    QString hash = request().posts["hash"];
+    QString name = request().posts["name"].trimmed();
+
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (torrent && !name.isEmpty()) {
+        name.replace(QRegularExpression("\r?\n|\r"), " ");
+        qDebug() << "Renaming" << torrent->name() << "to" << name;
+        torrent->setName(name);
+    }
+    else {
+        status(400, "Incorrect torrent hash or name");
     }
 }
 
