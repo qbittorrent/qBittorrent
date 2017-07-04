@@ -91,6 +91,7 @@ private:
     void action_command_topPrio();
     void action_command_bottomPrio();
     void action_command_setLocation();
+    void action_command_rename();
     void action_command_recheck();
     void action_command_setCategory();
     void action_command_addCategory();

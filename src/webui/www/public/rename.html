@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+    <script type="text/javascript">
+        var renameKeyboardEvents = new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'enter': function (event) {
+                    $('renameButton').click();
+                    event.preventDefault();
+                }
+            }
+        });
+        renameKeyboardEvents.activate();
+
+        window.addEvent('domready', function() {
+            var name = new URI().getData('name');
+            // set text field to current value
+            if (name)
+                $('rename').value = escapeHtml(name);
+
+            $('rename').focus();
+            $('renameButton').addEvent('click', function(e) {
+                new Event(e).stop();
+                // check field
+                var name = $('rename').value.trim();
+                if (name === null || name === "")
+                    return false;
+
+                var hash = new URI().getData('hash');
+                if (hash) {
+                    new Request({
+                        url: 'command/rename',
+                        method: 'post',
+                        data: {
+                            hash: hash,
+                            name: name
+                        },
+                        onComplete: function () {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p style="font-weight: bold;">QBT_TR(New name)QBT_TR[CONTEXT=TransferListWidget]:</p>
+        <input type="text" id="rename" value="" maxlength="100" style="width: 220px;"/>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton"/>
+        </div>
+    </div>
+</body>
+</html>

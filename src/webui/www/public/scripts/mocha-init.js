@@ -338,6 +338,30 @@ initializeWindows = function() {
         }
     };
 
+    renameFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length == 1) {
+            var hash = hashes[0];
+            var row = torrentsTable.rows[hash];
+            if (row) {
+                var name = row.full_data.name;
+                new MochaUI.Window({
+                    id: 'renamePage',
+                    title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
+                    loadMethod: 'iframe',
+                    contentURL: 'rename.html?hash=' + hashes[0] + '&name=' + name,
+                    scrollbars: false,
+                    resizable: false,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: 250,
+                    height: 100
+                });
+            }
+        }
+    };
+
     torrentNewCategoryFN = function () {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
