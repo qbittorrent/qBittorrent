@@ -810,6 +810,7 @@ var TorrentsTable = new Class({
             // status
             this.columns['status'].updateTd = function (td, row) {
                 var status = this.getRowValue(row);
+                if (!status) return;
 
                 if ((status === "downloading") || (status === "forcedDL") || (status === "metaDL"))
                     status = "Downloading";

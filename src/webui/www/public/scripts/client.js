@@ -313,6 +313,8 @@ window.addEvent('load', function () {
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
                             response['torrents'][key]['rowId'] = key;
+                            if (response['torrents'][key]['state'])
+                                response['torrents'][key]['status'] = response['torrents'][key]['state'];
                             torrentsTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToCategoryList(response['torrents'][key]))
                                 update_categories = true;
