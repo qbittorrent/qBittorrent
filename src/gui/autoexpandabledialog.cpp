@@ -52,6 +52,11 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
   d.ui->textEdit->setText(text);
   d.ui->textEdit->setEchoMode(mode);
   d.ui->textEdit->setInputMethodHints(inputMethodHints);
+  if (text.lastIndexOf(".",-1) > -1) {
+    d.ui->textEdit->setSelection(0,text.lastIndexOf(".",-1));
+  }  else {
+    d.ui->textEdit->selectAll();
+  }
 
   bool res = d.exec();
   if (ok)
