@@ -35,6 +35,7 @@
 #include <vector>
 
 #include "base/iconprovider.h"
+#include "base/logger.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
@@ -782,7 +783,7 @@ void WebApplication::action_command_setLocation()
     // check location exists
     QFileInfo newLocation(newLocationPath);
     if (!newLocation.exists()) {
-        qDebug() << "Invalid path" << newLocationPath;
+        Logger::instance()->addMessage(tr("Invalid path '%1'").arg(newLocationPath));
         return;
     }
 
@@ -791,7 +792,7 @@ void WebApplication::action_command_setLocation()
         if (torrent) {
             // get old location
             const QString oldLocation = torrent->savePath();
-            qDebug() << "Moving" << torrent->hash() << "to" << newLocationPath;
+            Logger::instance()->addMessage(tr("Moving torrent '%1' to '%2'").arg(torrent->hash()).arg(newLocationPath));
 
             torrent->move(Utils::Fs::expandPathAbs(newLocationPath));
         }
