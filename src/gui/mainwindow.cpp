@@ -1813,27 +1813,37 @@ void MainWindow::checkForActiveTorrents()
 
 QIcon MainWindow::getSystrayIcon() const
 {
-    TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (Preferences::instance()->useSystemIconTheme())
+        return QIcon::fromTheme("qbittorrent-tray");
+#endif
+
+    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    // on Linux we use theme icons, and icons from resources everywhere else
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     switch (style) {
     case TrayIcon::MONO_DARK:
-        return QIcon(":/icons/skin/qbittorrent_mono_dark.png");
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
     case TrayIcon::MONO_LIGHT:
-        return QIcon(":/icons/skin/qbittorrent_mono_light.png");
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-light"));
     default:
         break;
     }
+#else
+    switch (style) {
+    case TrayIcon::MONO_DARK:
+        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-dark.svg"));
+    case TrayIcon::MONO_LIGHT:
+        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-light.svg"));
+    default:
+        break;
+    }
+#endif
 
     QIcon icon;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (Preferences::instance()->useSystemIconTheme())
-        icon = QIcon::fromTheme("qbittorrent-tray");
-
-#endif
-    if (icon.isNull()) {
-        icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
-        icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
-        icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
-    }
+    icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
+    icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
+    icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
     return icon;
 }
 

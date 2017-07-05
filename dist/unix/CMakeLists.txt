@@ -36,4 +36,10 @@ if (GUI)
     install(FILES qbittorrent.appdata.xml
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata/
             COMPONENT data)
+
+    install(FILES
+            ${qBittorrent_SOURCE_DIR}/src/icons/skin/qbittorrent-tray-dark.svg
+            ${qBittorrent_SOURCE_DIR}/src/icons/skin/qbittorrent-tray-light.svg
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/status
+        COMPONENT data)
 endif()
