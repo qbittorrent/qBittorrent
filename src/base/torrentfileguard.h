@@ -29,10 +29,11 @@
 #ifndef TOFFENTFILEGURAD_H
 #define TOFFENTFILEGURAD_H
 
+#include <QObject>
 #include <QString>
-#include <QMetaType>
 
-class QMetaEnum;
+template <typename T> class CachedSettingValue;
+
 /// Utility class to defer file deletion
 class FileGuard
 {
@@ -62,7 +63,7 @@ public:
     void markAsAddedToSession();
     using FileGuard::setAutoRemove;
 
-    enum AutoDeleteMode     // do not change these names: they are stored in config file
+    enum AutoDeleteMode: int     // do not change these names: they are stored in config file
     {
         Never,
         IfAdded,
@@ -74,9 +75,8 @@ public:
     static void setAutoDeleteMode(AutoDeleteMode mode);
 
 private:
-    static QMetaEnum modeMetaEnum();
-
     TorrentFileGuard(const QString &path, AutoDeleteMode mode);
+    static CachedSettingValue<AutoDeleteMode> &autoDeleteModeSetting();
 
     Q_ENUM(AutoDeleteMode)
     AutoDeleteMode m_mode;
