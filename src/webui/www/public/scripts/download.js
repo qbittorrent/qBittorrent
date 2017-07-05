@@ -22,20 +22,20 @@
  */
 
 getSavePath = function() {
-        var req = new Request({
-                url: 'command/getSavePath',
-                method: 'get',
-                noCache: true,
-                onFailure: function() {
-                        alert("Could not contact qBittorrent");
-                },
-                onSuccess: function(data) {
-                        if (data) {
-                                $('savepath').setProperty('value', data);
-                        }
-                }
-        }).send();
-}
+    var req = new Request({
+        url: 'command/getSavePath',
+        method: 'get',
+        noCache: true,
+        onFailure: function() {
+            alert("Could not contact qBittorrent");
+        },
+        onSuccess: function(data) {
+            if (data) {
+                $('savepath').setProperty('value', data);
+            }
+        }
+    }).send();
+};
 
 $(window).addEventListener("load", function() {
 	getSavePath();
