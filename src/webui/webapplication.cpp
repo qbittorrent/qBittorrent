@@ -122,6 +122,7 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     ADD_ACTION(command, bottomPrio);
     ADD_ACTION(command, setLocation);
     ADD_ACTION(command, rename);
+    ADD_ACTION(command, setAutoTMM);
     ADD_ACTION(command, recheck);
     ADD_ACTION(command, setCategory);
     ADD_ACTION(command, addCategory);
@@ -819,6 +820,21 @@ void WebApplication::action_command_rename()
     }
     else {
         status(400, "Incorrect torrent hash or name");
+    }
+}
+
+void WebApplication::action_command_setAutoTMM()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("hashes" << "enable");
+
+    QStringList hashes = request().posts["hashes"].split("|");
+    QString enableStr = request().posts["enable"];
+
+    foreach (const QString &hash, hashes) {
+        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+        if (torrent)
+            torrent->setAutoTMMEnabled(enableStr == "true");
     }
 }
 
