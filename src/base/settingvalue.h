@@ -87,7 +87,7 @@ private:
         SettingsStorage::instance()->storeValue(m_keyName, value);
     }
 
-    // load/save pair for enum
+    // load/save pair for an enum
     // saves literal value of the enum constant, obtained from QMetaEnum
     template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
     U loadValue(const U &defaultValue)
@@ -97,7 +97,7 @@ private:
 
         bool ok = false;
         const U res = static_cast<U>(QMetaEnum::fromType<U>().keyToValue(
-            SettingsStorage::instance()->loadValue(m_keyName, QString()).toString().toLatin1().constData(), &ok));
+            SettingsStorage::instance()->loadValue(m_keyName).toString().toLatin1().constData(), &ok));
         return ok ? res : defaultValue;
     }
 
