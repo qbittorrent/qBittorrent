@@ -782,7 +782,7 @@ void WebApplication::action_command_setLocation()
     // check location exists
     QFileInfo newLocation(newLocationPath);
     if (!newLocation.exists()) {
-        qDebug() << "Location" << newLocationPath << "is invalid. Not moving files.";
+        qDebug() << "Invalid path" << newLocationPath;
         return;
     }
 
@@ -791,7 +791,7 @@ void WebApplication::action_command_setLocation()
         if (torrent) {
             // get old location
             const QString oldLocation = torrent->savePath();
-            qDebug() << "Moving torrent" << torrent->hash() << "to" << newLocationPath;
+            qDebug() << "Moving" << torrent->hash() << "to" << newLocationPath;
 
             torrent->move(Utils::Fs::expandPathAbs(newLocationPath));
         }
