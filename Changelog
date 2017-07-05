@@ -29,7 +29,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.4.0
     - SEARCH: Use explicit class for search plugin versions (evsh)
     - SEARCH: Remove all search plugins from repo. There is another repo named 'search-plugins'. (sledgehammer999)
     - SEARCH: Update the backend when a new plugin favicon is downloaded. (sledgehammer999)
-    - SEARCH: Drop python2 support. (sledgehammer999)
     - RSS: Redesigned RSS subsystem (glassez)
     - RSS: Do not use hardcoded colors in RSS feed view (evsh)
     - OTHER: Use new classes/methods from libtorrent and stop using deprecate ones. (glassez)
