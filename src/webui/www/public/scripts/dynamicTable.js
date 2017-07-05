@@ -731,10 +731,10 @@ var TorrentsTable = new Class({
         initColumns : function () {
             this.newColumn('priority', '', '#', 30, true);
             this.newColumn('state_icon', 'cursor: default', '', 22, true);
-            this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TorrentModel]', 200, true);
             this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR[CONTEXT=TorrentModel]', 85, true);
+            this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('num_leechs', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('dlspeed', '', 'QBT_TR(Down Speed)QBT_TR[CONTEXT=TorrentModel]', 100, true);
