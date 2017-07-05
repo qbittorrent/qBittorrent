@@ -605,14 +605,16 @@ function setupCopyEventHandler() {
         text: function(trigger) {
             var textToCopy;
 
-            if (trigger.id === "CopyName") {
-                textToCopy = copyNameFN();
-            }
-            else if (trigger.id === "CopyMagnetLink") {
-                textToCopy = copyMagnetLinkFN();
-            }
-            else if (trigger.id === "CopyHash") {
-                textToCopy = copyHashFN();
+            switch (trigger.id) {
+                case "CopyName":
+                    textToCopy = copyNameFN();
+                    break;
+                case "CopyMagnetLink":
+                    textToCopy = copyMagnetLinkFN();
+                    break;
+                case "CopyHash":
+                    textToCopy = copyHashFN();
+                    break;
             }
 
             return textToCopy;
