@@ -186,7 +186,7 @@ void WebApplication::action_public_login()
     bool equalUser = Utils::String::slowEquals(request().posts["username"].toUtf8(), pref->getWebUiUsername().toUtf8());
     bool equalPass = Utils::String::slowEquals(pass.toUtf8(), pref->getWebUiPassword().toUtf8());
 
-    if (equalUser && equalPass) {
+    if ((equalUser && equalPass) || !isAuthNeeded()) {
         sessionStart();
         print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
     }
