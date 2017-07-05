@@ -303,6 +303,27 @@ initializeWindows = function() {
         }
     };
 
+    autoTorrentManagementFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            var enable = false;
+            hashes.each(function(hash, index) {
+                var row = torrentsTable.rows[hash];
+                if (!row.full_data.auto_tmm)
+                    enable = true;
+            });
+            new Request({
+                url: 'command/setAutoTMM',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                    enable: enable
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
     recheckFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
