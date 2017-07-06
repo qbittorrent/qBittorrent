@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,106 +24,113 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QStandardItemModel>
+#include "previewselect.h"
+
+#include <QFile>
 #include <QHeaderView>
 #include <QMessageBox>
-#include <QFile>
+#include <QStandardItemModel>
 #include <QTableView>
 
+#include "base/preferences.h"
+#include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "previewlistdelegate.h"
-#include "previewselect.h"
-#include "base/utils/fs.h"
-#include "base/preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent)
     : QDialog(parent)
     , m_torrent(torrent)
 {
-  setupUi(this);
-  setAttribute(Qt::WA_DeleteOnClose);
-  Preferences* const pref = Preferences::instance();
-  // Preview list
-  previewListModel = new QStandardItemModel(0, NB_COLUMNS);
-  previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
-  previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
-  previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
+    setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
+    Preferences *const pref = Preferences::instance();
+    // Preview list
+    m_previewListModel = new QStandardItemModel(0, NB_COLUMNS);
+    m_previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
+    m_previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
+    m_previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
+
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;
     unused.setVerticalHeader(previewList->header());
     previewList->header()->setParent(previewList);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-  previewList->setModel(previewListModel);
-  previewList->hideColumn(FILE_INDEX);
-  listDelegate = new PreviewListDelegate(this);
-  previewList->setItemDelegate(listDelegate);
-  previewList->header()->resizeSection(0, 200);
-  previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
-  // Fill list in
-  QVector<qreal> fp = torrent->filesProgress();
-  int nbFiles = torrent->filesCount();
-  for (int i = 0; i < nbFiles; ++i) {
-    QString fileName = torrent->fileName(i);
-    if (fileName.endsWith(QB_EXT))
-      fileName.chop(4);
-    QString extension = Utils::Fs::fileExtension(fileName).toUpper();
-    if (Utils::Misc::isPreviewable(extension)) {
-      int row = previewListModel->rowCount();
-      previewListModel->insertRow(row);
-      previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
-      previewListModel->setData(previewListModel->index(row, SIZE), QVariant(torrent->fileSize(i)));
-      previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant(fp[i]));
-      previewListModel->setData(previewListModel->index(row, FILE_INDEX), QVariant(i));
+
+    previewList->setModel(m_previewListModel);
+    previewList->hideColumn(FILE_INDEX);
+    m_listDelegate = new PreviewListDelegate(this);
+    previewList->setItemDelegate(m_listDelegate);
+    previewList->header()->resizeSection(0, 200);
+    previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
+    // Fill list in
+    QVector<qreal> fp = torrent->filesProgress();
+    int nbFiles = torrent->filesCount();
+    for (int i = 0; i < nbFiles; ++i) {
+        QString fileName = torrent->fileName(i);
+        if (fileName.endsWith(QB_EXT))
+            fileName.chop(4);
+        QString extension = Utils::Fs::fileExtension(fileName).toUpper();
+        if (Utils::Misc::isPreviewable(extension)) {
+            int row = m_previewListModel->rowCount();
+            m_previewListModel->insertRow(row);
+            m_previewListModel->setData(m_previewListModel->index(row, NAME), QVariant(fileName));
+            m_previewListModel->setData(m_previewListModel->index(row, SIZE), QVariant(torrent->fileSize(i)));
+            m_previewListModel->setData(m_previewListModel->index(row, PROGRESS), QVariant(fp[i]));
+            m_previewListModel->setData(m_previewListModel->index(row, FILE_INDEX), QVariant(i));
+        }
     }
-  }
 
-  if (!previewListModel->rowCount()) {
-    QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+    if (m_previewListModel->rowCount() == 0) {
+        QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+        close();
+    }
+    connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
+    m_previewListModel->sort(NAME);
+    previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
+    previewList->selectionModel()->select(m_previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
+
+    if (m_previewListModel->rowCount() == 1) {
+        qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
+        // Only one file : no choice
+        on_previewButton_clicked();
+    }
+    else {
+        qDebug("Displaying media file selection dialog for preview");
+        show();
+    }
+}
+
+PreviewSelect::~PreviewSelect()
+{
+    delete m_previewListModel;
+    delete m_listDelegate;
+}
+
+
+void PreviewSelect::on_previewButton_clicked()
+{
+    QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
+    if (selectedIndexes.size() == 0) return;
+
+    // Flush data
+    m_torrent->flushCache();
+
+    QStringList absolutePaths(m_torrent->absoluteFilePaths());
+    // Only one file should be selected
+    QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
+    // File
+    if (QFile::exists(path))
+        emit readyToPreviewFile(path);
+    else
+        QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+
     close();
-  }
-  connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
-  previewListModel->sort(NAME);
-  previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
-  previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
-
-  if (previewListModel->rowCount() == 1) {
-    qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
-    // Only one file : no choice
-    on_previewButton_clicked();
-  }else{
-    qDebug("Displaying media file selection dialog for preview");
-    show();
-  }
 }
 
-PreviewSelect::~PreviewSelect() {
-  delete previewListModel;
-  delete listDelegate;
-}
-
-
-void PreviewSelect::on_previewButton_clicked() {
-  QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
-  if (selectedIndexes.size() == 0) return;
-  // Flush data
-  m_torrent->flushCache();
-
-  QStringList absolute_paths(m_torrent->absoluteFilePaths());
-  //only one file should be selected
-  QString path = absolute_paths.at(selectedIndexes.at(0).data().toInt());
-  // File
-  if (QFile::exists(path))
-    emit readyToPreviewFile(path);
-  else
-    QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
-  close();
-}
-
-void PreviewSelect::on_cancelButton_clicked() {
-  close();
+void PreviewSelect::on_cancelButton_clicked()
+{
+    close();
 }

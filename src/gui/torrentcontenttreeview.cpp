@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2014  Ivan Sorokin
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : vanyacpp@gmail.com
  */
 
 #include "torrentcontenttreeview.h"
 
+#include <QHeaderView>
 #include <QKeyEvent>
 #include <QModelIndexList>
 #include <QTableView>
-#include <QHeaderView>
 
 #include "torrentcontentmodelitem.h"
 
-TorrentContentTreeView::TorrentContentTreeView(QWidget* parent)
-  : QTreeView(parent)
+TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
+    : QTreeView(parent)
 {
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -48,40 +46,42 @@ TorrentContentTreeView::TorrentContentTreeView(QWidget* parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
-void TorrentContentTreeView::keyPressEvent(QKeyEvent *event) {
-  if (event->key() != Qt::Key_Space && event->key() != Qt::Key_Select) {
-    QTreeView::keyPressEvent(event);
-    return;
-  }
+void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->key() != Qt::Key_Space) && (event->key() != Qt::Key_Select)) {
+        QTreeView::keyPressEvent(event);
+        return;
+    }
 
-  event->accept();
+    event->accept();
 
-  QModelIndex current = currentNameCell();
+    QModelIndex current = currentNameCell();
 
-  QVariant value = current.data(Qt::CheckStateRole);
-  if (!value.isValid()) {
-    Q_ASSERT(false);
-    return;
-  }
+    QVariant value = current.data(Qt::CheckStateRole);
+    if (!value.isValid()) {
+        Q_ASSERT(false);
+        return;
+    }
 
-  Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked
-                       ? Qt::Unchecked : Qt::Checked);
+    Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked
+                            ? Qt::Unchecked : Qt::Checked);
 
-  QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
+    QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
 
-  for (QModelIndexList::const_iterator i = selection.begin(); i != selection.end(); ++i) {
-    QModelIndex index = *i;
-    Q_ASSERT(i->column() == TorrentContentModelItem::COL_NAME);
-    model()->setData(index, state, Qt::CheckStateRole);
-  }
+    for (QModelIndexList::const_iterator i = selection.begin(); i != selection.end(); ++i) {
+        QModelIndex index = *i;
+        Q_ASSERT(i->column() == TorrentContentModelItem::COL_NAME);
+        model()->setData(index, state, Qt::CheckStateRole);
+    }
 }
 
-QModelIndex TorrentContentTreeView::currentNameCell() {
-  QModelIndex current = currentIndex();
-  if (!current.isValid()) {
-    Q_ASSERT(false);
-    return QModelIndex();
-  }
+QModelIndex TorrentContentTreeView::currentNameCell()
+{
+    QModelIndex current = currentIndex();
+    if (!current.isValid()) {
+        Q_ASSERT(false);
+        return QModelIndex();
+    }
 
-  return model()->index(current.row(), TorrentContentModelItem::COL_NAME, current.parent());
+    return model()->index(current.row(), TorrentContentModelItem::COL_NAME, current.parent());
 }

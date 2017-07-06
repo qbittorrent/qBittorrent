@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,37 +24,37 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
 #ifndef AUTOEXPANDABLEDIALOG_H
 #define AUTOEXPANDABLEDIALOG_H
 
 #include <QDialog>
-#include <QString>
 #include <QLineEdit>
+#include <QString>
 
-namespace Ui {
-class AutoExpandableDialog;
+namespace Ui
+{
+    class AutoExpandableDialog;
 }
 
-class AutoExpandableDialog : public QDialog {
-  Q_OBJECT
+class AutoExpandableDialog: public QDialog
+{
+    Q_OBJECT
 
 public:
-  explicit AutoExpandableDialog(QWidget *parent);
-  ~AutoExpandableDialog();
+    explicit AutoExpandableDialog(QWidget *parent);
+    ~AutoExpandableDialog();
 
-  static QString getText(QWidget *parent, const QString& title,  const QString& label,
-                         QLineEdit::EchoMode mode = QLineEdit::Normal, const QString & text = QString(),
-                         bool * ok = 0, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+    static QString getText(QWidget *parent, const QString &title, const QString &label,
+                            QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = QString(),
+                            bool *ok = 0, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
 
 protected:
-  void showEvent(QShowEvent *e);
+    void showEvent(QShowEvent *e);
 
 private:
-  Ui::AutoExpandableDialog *ui;
+    Ui::AutoExpandableDialog *m_ui;
 };
 
 #endif // AUTOEXPANDABLEDIALOG_H
