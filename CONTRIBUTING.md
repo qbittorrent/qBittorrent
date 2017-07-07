@@ -33,4 +33,4 @@
 ### Good to know
 * **Search** pull request history! Others might already implemented your idea and is waiting to be merged (or got rejected already). Save your precious time by doing a search first.
 * When resolving merge conflicts, do `git rebase <target_branch_name>`, don't do `git pull`. Then you can start fixing the conflicts. Here is a good explanation: [link](https://www.atlassian.com/git/tutorials/merging-vs-rebasing).
-* New icons are based on the "Font-Awesome" icon-set: [link](https://github.com/FortAwesome/Font-Awesome). If you need to add an icon that qBittorrent does not already use, you can convert one of the "Font-Awesome" font characters to SVG, then use that. 
+* Icons are based on the "Font-Awesome" icon-set: [link](https://github.com/FortAwesome/Font-Awesome). If you need to add an icon that qBittorrent does not already use, you can convert one of the "Font-Awesome" font characters to SVG, then use that. 
