@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,36 +24,40 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
 #ifndef PEERLISTSORTMODEL_H
 #define PEERLISTSORTMODEL_H
 
-#include <QStringList>
 #include <QSortFilterProxyModel>
+#include <QStringList>
+
 #include "peerlistdelegate.h"
 
-class PeerListSortModel : public QSortFilterProxyModel {
-  Q_OBJECT
+class PeerListSortModel: public QSortFilterProxyModel
+{
+    Q_OBJECT
 
 public:
-  PeerListSortModel(QObject *parent = 0) : QSortFilterProxyModel(parent) {}
+    PeerListSortModel(QObject *parent = 0)
+        : QSortFilterProxyModel(parent)
+    {
+    }
 
 protected:
-  bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
-  switch (sortColumn()) {
-  case PeerListDelegate::IP:
-  case PeerListDelegate::CLIENT: {
-    QString vL = left.data().toString();
-    QString vR = right.data().toString();
-    return Utils::String::naturalCompareCaseInsensitive(vL, vR);
-  }
-  };
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const
+    {
+        switch (sortColumn()) {
+        case PeerListDelegate::IP:
+        case PeerListDelegate::CLIENT: {
+                QString vL = left.data().toString();
+                QString vR = right.data().toString();
+                return Utils::String::naturalCompareCaseInsensitive(vL, vR);
+            }
+        };
 
-  return QSortFilterProxyModel::lessThan(left, right);
-  }
+        return QSortFilterProxyModel::lessThan(left, right);
+    }
 };
 
 #endif // PEERLISTSORTMODEL_H

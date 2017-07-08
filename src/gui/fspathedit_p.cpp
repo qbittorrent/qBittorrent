@@ -207,8 +207,6 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     m_completer->setModel(m_completerModel);
     m_completer->setCompletionMode(QCompleter::PopupCompletion);
     setCompleter(m_completer);
-
-    connect(m_completerModel, &QFileSystemModel::directoryLoaded, this, &FileLineEdit::showCompletionPopup);
 }
 
 Private::FileLineEdit::~FileLineEdit()

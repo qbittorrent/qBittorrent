@@ -1598,14 +1598,17 @@ void MainWindow::on_actionSearchWidget_triggered()
 
         bool res = false;
 
-        if (pythonVersion == 3) {
-            // Check Python minimum requirement: 3.3.0
+        if ((pythonVersion == 2) || (pythonVersion == 3)) {
+            // Check Python minimum requirement: 2.7.9 / 3.3.0
             QString version = Utils::Misc::pythonVersionComplete();
             QStringList splitted = version.split('.');
-            if (splitted.size() > 1) {
+            if (splitted.size() > 2) {
                 int middleVer = splitted.at(1).toInt();
-                if ((pythonVersion == 3) && (middleVer < 3)) {
-                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 3.3.0.").arg(version));
+                int lowerVer = splitted.at(2).toInt();
+                if (((pythonVersion == 2) && (middleVer < 7))
+                    || ((pythonVersion == 2) && (middleVer == 7) && (lowerVer < 9))
+                    || ((pythonVersion == 3) && (middleVer < 3))) {
+                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.").arg(version));
                     m_ui->actionSearchWidget->setChecked(false);
                     Preferences::instance()->setSearchEnabled(false);
                     return;
@@ -1620,12 +1623,6 @@ void MainWindow::on_actionSearchWidget_triggered()
                 Preferences::instance()->setSearchEnabled(false);
                 return;
             }
-        }
-        else if (pythonVersion != -1) {
-            QMessageBox::information(this, tr("Incompatible Python version"), tr("Your Python version (%1) is incompatible. Please use Python 3 for search engines to work.\nMinimum requirement: 3.3.0.").arg(Utils::Misc::pythonVersionComplete()));
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
-            return;
         }
 
         if (res) {

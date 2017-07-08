@@ -132,11 +132,9 @@ namespace Private
         void keyPressEvent(QKeyEvent *event) override;
         void contextMenuEvent(QContextMenuEvent *event) override;
 
-    private slots:
-        void showCompletionPopup();
-
     private:
         static QString warningText(FileSystemPathValidator::TestResult r);
+        void showCompletionPopup();
 
         QFileSystemModel *m_completerModel;
         QCompleter *m_completer;
