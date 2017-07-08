@@ -40,7 +40,7 @@ var setCBState = function(state) {
             $("tristate_cb").checked = false;
         }
     }
-}
+};
 
 var switchCBState = function() {
     // Uncheck
@@ -69,7 +69,7 @@ var switchCBState = function() {
         item.set("checked", "checked");
         setFilePriority(index, 1);
     });
-}
+};
 
 var allCBChecked = function() {
     var CBs = $$('input.DownloadedCB');
@@ -79,7 +79,7 @@ var allCBChecked = function() {
             return false;
     }
     return true;
-}
+};
 
 var allCBUnchecked = function() {
     var CBs = $$('input.DownloadedCB');
@@ -89,10 +89,10 @@ var allCBUnchecked = function() {
             return false;
     }
     return true;
-}
+};
 
 var setFilePriority = function(id, priority) {
-    if (current_hash == "") return;
+    if (current_hash === "") return;
     new Request({
         url: 'command/setFilePrio',
         method: 'post',
@@ -110,7 +110,7 @@ var setFilePriority = function(id, priority) {
     else {
         $('comboPrio' + id).addClass("invisible");
     }
-}
+};
 
 var createDownloadedCB = function(id, downloaded) {
     var CB = new Element('input');
@@ -137,7 +137,7 @@ var createDownloadedCB = function(id, downloaded) {
         }
     });
     return CB;
-}
+};
 
 var createPriorityCombo = function(id, selected_prio) {
     var select = new Element('select');
@@ -147,19 +147,19 @@ var createPriorityCombo = function(id, selected_prio) {
         setFilePriority(id, new_prio);
     });
     var opt = new Element("option");
-    opt.set('value', '1')
+    opt.set('value', '1');
     opt.set('html', "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]");
     if (selected_prio <= 1)
         opt.setAttribute('selected', '');
     opt.injectInside(select);
     opt = new Element("option");
-    opt.set('value', '2')
+    opt.set('value', '2');
     opt.set('html', "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
     if (selected_prio == 2)
         opt.setAttribute('selected', '');
     opt.injectInside(select);
     opt = new Element("option");
-    opt.set('value', '7')
+    opt.set('value', '7');
     opt.set('html', "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
     if (selected_prio == 7)
         opt.setAttribute('selected', '');
@@ -172,7 +172,7 @@ var createPriorityCombo = function(id, selected_prio) {
     }
     select.addClass("combo_priority");
     return select;
-}
+};
 
 var filesDynTable = new Class({
 
@@ -231,8 +231,8 @@ var filesDynTable = new Class({
 
     insertRow: function(id, row) {
         if (this.rows.has(id)) {
-            var tr = this.rows.get(id);
-            this.updateRow(tr, row, id);
+            var tableRow = this.rows.get(id);
+            this.updateRow(tableRow, row, id);
             return;
         }
         //this.removeRow(id);
@@ -279,7 +279,7 @@ var loadTorrentFilesData = function() {
         return;
     }
     var new_hash = torrentsTable.getCurrentTorrentHash();
-    if (new_hash == "") {
+    if (new_hash === "") {
         fTable.removeAllRows();
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
@@ -305,17 +305,17 @@ var loadTorrentFilesData = function() {
                 // Update Trackers data
                 var i = 0;
                 files.each(function(file) {
-                    if (i == 0) {
+                    if (i === 0) {
                         is_seed = file.is_seed;
                     }
-                    var row = new Array();
+                    var row = [];
                     row.length = 4;
                     row[0] = file.priority;
                     row[1] = escapeHtml(file.name);
                     row[2] = friendlyUnit(file.size, false);
                     row[3] = (file.progress * 100).round(1);
                     if (row[3] == 100.0 && file.progress < 1.0)
-                        row[3] = 99.9
+                        row[3] = 99.9;
                     row[4] = file.priority;
                     fTable.insertRow(i, row);
                     i++;
@@ -340,12 +340,12 @@ var loadTorrentFilesData = function() {
             loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         }
     }).send();
-}
+};
 
 var updateTorrentFilesData = function() {
     clearTimeout(loadTorrentFilesDataTimer);
     loadTorrentFilesData();
-}
+};
 
 fTable = new filesDynTable();
 fTable.setup($('filesTable'));

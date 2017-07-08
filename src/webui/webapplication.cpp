@@ -173,6 +173,11 @@ void WebApplication::action_public_webui()
 
 void WebApplication::action_public_login()
 {
+    if (sessionActive()) {
+        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
     const Preferences* const pref = Preferences::instance();
     QCryptographicHash md5(QCryptographicHash::Md5);
 
