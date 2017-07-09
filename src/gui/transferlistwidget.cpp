@@ -35,10 +35,12 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
+#include <QStylePainter>
 #include <QRegExp>
 #include <QShortcut>
 #include <QTableView>
 #include <QWheelEvent>
+#include <QWidgetAction>
 
 #include "autoexpandabledialog.h"
 #include "base/bittorrent/session.h"
@@ -59,7 +61,139 @@
 #include "transferlistsortmodel.h"
 #include "updownratiodlg.h"
 
-static QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents);
+namespace
+{
+    using ToggleFn = std::function<void (Qt::CheckState)>;
+
+    QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents)
+    {
+        QStringList hashes;
+        foreach (BitTorrent::TorrentHandle *const torrent, torrents)
+            hashes << torrent->hash();
+
+        return hashes;
+    }
+
+    // Helper for setting style parameters when painting check box primitives.
+    class CheckBoxIconHelper: public QCheckBox
+    {
+    public:
+        explicit CheckBoxIconHelper(QWidget *parent);
+        QSize sizeHint() const override;
+        void initStyleOption(QStyleOptionButton *opt) const;
+
+    protected:
+        void paintEvent(QPaintEvent *) override {}
+    };
+
+    CheckBoxIconHelper::CheckBoxIconHelper(QWidget *parent)
+        : QCheckBox(parent)
+    {
+        setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    }
+
+    QSize CheckBoxIconHelper::sizeHint() const
+    {
+        const int dim = QCheckBox::sizeHint().height();
+        return QSize(dim, dim);
+    }
+
+    void CheckBoxIconHelper::initStyleOption(QStyleOptionButton *opt) const
+    {
+        QCheckBox::initStyleOption(opt);
+    }
+
+    // Tristate checkbox styled for use in menus.
+    class MenuCheckBox: public QWidget
+    {
+    public:
+        MenuCheckBox(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState);
+        QSize sizeHint() const override;
+
+    protected:
+        void paintEvent(QPaintEvent *e) override;
+        void mousePressEvent(QMouseEvent *) override;
+
+    private:
+        CheckBoxIconHelper *const m_checkBox;
+        const QString m_text;
+        QSize m_sizeHint;
+        QSize m_checkBoxOffset;
+    };
+
+    MenuCheckBox::MenuCheckBox(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState)
+        : m_checkBox(new CheckBoxIconHelper(this))
+        , m_text(text)
+        , m_sizeHint(QCheckBox(m_text).sizeHint())
+    {
+        m_checkBox->setCheckState(initialState);
+        connect(m_checkBox, &QCheckBox::stateChanged, [this, onToggle](int newState)
+        {
+            m_checkBox->setTristate(false);
+            onToggle(static_cast<Qt::CheckState>(newState));
+        });
+        setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        setMouseTracking(true);
+
+        // We attempt to mimic the amount of vertical whitespace padding around a QCheckBox.
+        QSize layoutPadding(3, 0);
+        const int sizeHintMargin = (m_sizeHint.height() - m_checkBox->sizeHint().height()) / 2;
+        if (sizeHintMargin > 0) {
+            m_checkBoxOffset.setHeight(sizeHintMargin);
+        }
+        else {
+            layoutPadding.setHeight(1);
+            m_checkBoxOffset.setHeight(1);
+        }
+        m_checkBoxOffset.setWidth(layoutPadding.width());
+
+        QHBoxLayout *layout = new QHBoxLayout(this);
+        layout->addWidget(m_checkBox);
+        layout->addStretch();
+        layout->setContentsMargins(layoutPadding.width(), layoutPadding.height(), layoutPadding.width(), layoutPadding.height());
+        setLayout(layout);
+    }
+
+    QSize MenuCheckBox::sizeHint() const
+    {
+        return m_sizeHint;
+    }
+
+    void MenuCheckBox::paintEvent(QPaintEvent *e)
+    {
+        if (!rect().intersects(e->rect()))
+            return;
+        QStylePainter painter(this);
+        QStyleOptionMenuItem menuOpt;
+        menuOpt.initFrom(this);
+        menuOpt.menuItemType = QStyleOptionMenuItem::Normal;
+        menuOpt.text = m_text;
+        QStyleOptionButton checkBoxOpt;
+        m_checkBox->initStyleOption(&checkBoxOpt);
+        checkBoxOpt.rect.translate(m_checkBoxOffset.width(), m_checkBoxOffset.height());
+        if (rect().contains(mapFromGlobal(QCursor::pos()))) {
+            menuOpt.state |= QStyle::State_Selected;
+            checkBoxOpt.state |= QStyle::State_MouseOver;
+        }
+        painter.drawControl(QStyle::CE_MenuItem, menuOpt);
+        painter.drawPrimitive(QStyle::PE_IndicatorCheckBox, checkBoxOpt);
+    }
+
+    void MenuCheckBox::mousePressEvent(QMouseEvent *)
+    {
+        m_checkBox->click();
+    }
+
+    class CheckBoxMenuItem: public QWidgetAction
+    {
+    public:
+        CheckBoxMenuItem(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState, QObject *parent)
+            : QWidgetAction(parent)
+        {
+            setDefaultWidget(new MenuCheckBox(text, onToggle, initialState));
+        }
+    };
+}
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     : QTreeView(parent)
@@ -614,13 +748,6 @@ void TransferListWidget::askAddTagsForSelection()
         addSelectionTag(tag);
 }
 
-void TransferListWidget::askRemoveTagsForSelection()
-{
-    const QStringList tags = askTagsForSelection(tr("Remove Tags"));
-    foreach (const QString &tag, tags)
-        removeSelectionTag(tag);
-}
-
 void TransferListWidget::confirmRemoveAllTagsForSelection()
 {
     QMessageBox::StandardButton response = QMessageBox::question(
@@ -772,7 +899,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
-    QSet<QString> tagsInSelection;
+    QSet<QString> tagsInAny;
+    QSet<QString> tagsInAll;
 
     BitTorrent::TorrentHandle *torrent;
     qDebug("Displaying menu");
@@ -787,10 +915,15 @@ void TransferListWidget::displayListMenu(const QPoint&)
         if (firstCategory != torrent->category())
             allSameCategory = false;
 
-        tagsInSelection.unite(torrent->tags());
+        tagsInAny.unite(torrent->tags());
 
-        if (first)
+        if (first) {
             firstAutoTMM = torrent->isAutoTMMEnabled();
+            tagsInAll = torrent->tags();
+        }
+        else {
+            tagsInAll.intersect(torrent->tags());
+        }
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
             allSameAutoTMM = false;
 
@@ -878,17 +1011,23 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QList<QAction *> tagsActions;
     QMenu *tagsMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Tags"));
     tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags..."));
-    tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Remove...", "Remove multiple tags..."));
     tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Remove All", "Remove all tags"));
     tagsMenu->addSeparator();
     foreach (QString tag, tags) {
-        const bool setChecked = tagsInSelection.contains(tag);
-        tag.replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *tagSelection = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tag, tagsMenu);
-        tagSelection->setCheckable(true);
-        tagSelection->setChecked(setChecked);
-        tagsMenu->addAction(tagSelection);
-        tagsActions << tagSelection;
+        const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
+                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked
+                                            : Qt::Unchecked;
+
+        const ToggleFn onToggle = [this, tag](Qt::CheckState newState)
+        {
+            Q_ASSERT(newState == Qt::CheckState::Checked || newState == Qt::CheckState::Unchecked);
+            if (newState == Qt::CheckState::Checked)
+                addSelectionTag(tag);
+            else
+                removeSelectionTag(tag);
+        };
+
+        tagsMenu->addAction(new CheckBoxMenuItem(tag, onToggle, initialState, tagsMenu));
     }
 
     if (allSameAutoTMM) {
@@ -963,27 +1102,14 @@ void TransferListWidget::displayListMenu(const QPoint&)
             }
         }
         i = tagsActions.indexOf(act);
-        if (i >= 0) {
-            if (i == 0) {
-                askAddTagsForSelection();
-            }
-            else if (i == 1) {
-                askRemoveTagsForSelection();
-            }
-            else if (i == 2) {
-                if (Preferences::instance()->confirmRemoveAllTags())
-                    confirmRemoveAllTagsForSelection();
-                else
-                    clearSelectionTags();
-            }
-            else {
-                // Individual tag toggles.
-                const QString &tag = tags.at(i - 3);
-                if (act->isChecked())
-                    addSelectionTag(tag);
-                else
-                    removeSelectionTag(tag);
-            }
+        if (i == 0) {
+            askAddTagsForSelection();
+        }
+        else if (i == 1) {
+            if (Preferences::instance()->confirmRemoveAllTags())
+                confirmRemoveAllTagsForSelection();
+            else
+                clearSelectionTags();
         }
     }
 }
@@ -1066,13 +1192,4 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     }
 
     QTreeView::wheelEvent(event);  // event delegated to base class
-}
-
-QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents)
-{
-    QStringList hashes;
-    foreach (BitTorrent::TorrentHandle *const torrent, torrents)
-        hashes << torrent->hash();
-
-    return hashes;
 }
