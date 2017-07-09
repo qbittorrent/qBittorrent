@@ -184,7 +184,7 @@ window.addEvent('load', function () {
 
     var addTorrentToCategoryList = function(torrent) {
         var category = torrent['category'];
-        if (category === null)
+        if (typeof category === 'undefined')
             return false;
         if (category.length === 0) { // Empty category
             removeTorrentFromCategoryList(torrent['hash']);
