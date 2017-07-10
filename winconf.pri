@@ -21,6 +21,7 @@ LIBS += $$quote(-LC:/qBittorrent/openssl/lib)
 # BOOST DEFINES
 DEFINES += BOOST_ALL_NO_LIB
 DEFINES += BOOST_ASIO_HASH_MAP_BUCKETS=1021
+# Disable this if building against libtorrent 1.1.x (RC_1_1)
 DEFINES += BOOST_ASIO_SEPARATE_COMPILATION
 # After 1.55 some Windows users reported regular UI freezes.
 # This makes ASIO use the pre-1.56 way of doing things. See issue #2003

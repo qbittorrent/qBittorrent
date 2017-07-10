@@ -69,6 +69,11 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
         throw std::runtime_error("Bad RSS Article data");
 
     m_data[KeyId] = m_guid;
+
+    if (m_torrentURL.isEmpty()) {
+        m_torrentURL = m_link;
+        m_data[KeyTorrentURL] = m_torrentURL;
+    }
 }
 
 Article::Article(Feed *feed, const QJsonObject &jsonObj)

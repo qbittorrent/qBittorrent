@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,71 +24,74 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
+
+#include "autoexpandabledialog.h"
 
 #include <QDesktopWidget>
 
 #include "mainwindow.h"
-#include "autoexpandabledialog.h"
 #include "ui_autoexpandabledialog.h"
 
-AutoExpandableDialog::AutoExpandableDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AutoExpandableDialog) {
-  ui->setupUi(this);
+AutoExpandableDialog::AutoExpandableDialog(QWidget *parent)
+    : QDialog(parent)
+    , m_ui(new Ui::AutoExpandableDialog)
+{
+    m_ui->setupUi(this);
 }
 
-AutoExpandableDialog::~AutoExpandableDialog() {
-  delete ui;
+AutoExpandableDialog::~AutoExpandableDialog()
+{
+    delete m_ui;
 }
 
 QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, const QString &label,
-                                      QLineEdit::EchoMode mode, const QString &text, bool *ok,
-                                      Qt::InputMethodHints inputMethodHints) {
+                                      QLineEdit::EchoMode mode, const QString &text,
+                                      bool *ok, Qt::InputMethodHints inputMethodHints)
+{
+    AutoExpandableDialog d(parent);
+    d.setWindowTitle(title);
+    d.m_ui->textLabel->setText(label);
+    d.m_ui->textEdit->setText(text);
+    d.m_ui->textEdit->setEchoMode(mode);
+    d.m_ui->textEdit->setInputMethodHints(inputMethodHints);
 
-  AutoExpandableDialog d(parent);
-  d.setWindowTitle(title);
-  d.ui->textLabel->setText(label);
-  d.ui->textEdit->setText(text);
-  d.ui->textEdit->setEchoMode(mode);
-  d.ui->textEdit->setInputMethodHints(inputMethodHints);
+    bool res = d.exec();
+    if (ok)
+        *ok = res;
 
-  bool res = d.exec();
-  if (ok)
-    *ok = res;
+    if (!res) return QString();
 
-  if (!res)
-    return QString();
-
-  return d.ui->textEdit->text();
+    return d.m_ui->textEdit->text();
 }
 
-void AutoExpandableDialog::showEvent(QShowEvent *e) {
-  // Overriding showEvent is required for consistent UI with fixed size under custom DPI
-  // Show dialog
-  QDialog::showEvent(e);
-  // and resize textbox to fit the text
+void AutoExpandableDialog::showEvent(QShowEvent *e)
+{
+    // Overriding showEvent is required for consistent UI with fixed size under custom DPI
+    // Show dialog
+    QDialog::showEvent(e);
+    // and resize textbox to fit the text
 
-  // NOTE: For some strange reason QFontMetrics gets more accurate
-  // when called from showEvent. Only 6 symbols off instead of 11 symbols off.
-  int textW = ui->textEdit->fontMetrics().width(ui->textEdit->text()) + 4;
-  int wd = textW;
+    // NOTE: For some strange reason QFontMetrics gets more accurate
+    // when called from showEvent. Only 6 symbols off instead of 11 symbols off.
+    int textW = m_ui->textEdit->fontMetrics().width(m_ui->textEdit->text()) + 4;
+    int wd = textW;
 
-  if (!windowTitle().isEmpty()) {
-    int _w = fontMetrics().width(windowTitle());
-    if (_w > wd)
-      wd = _w;
-  }
+    if (!windowTitle().isEmpty()) {
+        int w = fontMetrics().width(windowTitle());
+        if (w > wd)
+            wd = w;
+    }
 
-  if (!ui->textLabel->text().isEmpty()) {
-    int _w = ui->textLabel->fontMetrics().width(ui->textLabel->text());
-    if (_w > wd)
-      wd = _w;
-  }
+    if (!m_ui->textLabel->text().isEmpty()) {
+        int w = m_ui->textLabel->fontMetrics().width(m_ui->textLabel->text());
+        if (w > wd)
+            wd = w;
+    }
 
-  // Now resize the dialog to fit the contents
-  // max width of text from either of: label, title, textedit
-  // If the value is less than dialog default size default size is used
-  if (wd > width())
-    resize(width() - ui->verticalLayout->sizeHint().width() + wd, height());
+    // Now resize the dialog to fit the contents
+    // max width of text from either of: label, title, textedit
+    // If the value is less than dialog default size, default size is used
+    if (wd > width())
+        resize(width() - m_ui->verticalLayout->sizeHint().width() + wd, height());
 }

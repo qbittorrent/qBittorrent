@@ -45,8 +45,8 @@ var DynamicTable = new Class({
             this.hiddenTableHeader = $(dynamicTableDivId).getElements('tr')[0];
             this.tableBody = $(dynamicTableDivId).getElements('tbody')[0];
             this.rows = new Hash();
-            this.selectedRows = new Array();
-            this.columns = new Array();
+            this.selectedRows = [];
+            this.columns = [];
             this.contextMenu = contextMenu;
             this.sortedColumn = getLocalStorageItem('sorted_column_' + this.dynamicTableDivId, 0);
             this.reverseSort = getLocalStorageItem('reverse_sort_' + this.dynamicTableDivId, '0');
@@ -116,7 +116,7 @@ var DynamicTable = new Class({
                     el.setStyle('border-right-color', '');
                     el.setStyle('border-right-width', '');
                 }
-            }
+            };
 
             var mouseMoveFn = function (e) {
                 var brect = e.target.getBoundingClientRect();
@@ -250,7 +250,7 @@ var DynamicTable = new Class({
                     onDrag : onDrag,
                     onComplete : onComplete,
                     onCancel : onCancel
-                })
+                });
             }
         },
 
@@ -331,7 +331,7 @@ var DynamicTable = new Class({
             column['width'] = getLocalStorageItem('column_' + name + '_width_' + this.dynamicTableDivId, defaultWidth);
             column['dataProperties'] = [name];
             column['getRowValue'] = function (row, pos) {
-                if (pos == undefined)
+                if (pos === undefined)
                     pos = 0;
                 return row['full_data'][this.dataProperties[pos]];
             };
@@ -429,8 +429,8 @@ var DynamicTable = new Class({
             else {
                 ths[pos].addClass('invisible');
                 fths[pos].addClass('invisible');
-                for (var i = 0; i < trs.length; i++)
-                    trs[i].getElements('td')[pos].addClass('invisible');
+                for (var j = 0; j < trs.length; j++)
+                    trs[j].getElements('td')[pos].addClass('invisible');
             }
             if (this.columns[pos].onResize !== null)
             {
@@ -527,7 +527,7 @@ var DynamicTable = new Class({
         },
 
         getFilteredAndSortedRows : function () {
-            var filteredRows = new Array();
+            var filteredRows = [];
 
             var rows = this.rows.getValues();
 
@@ -557,7 +557,7 @@ var DynamicTable = new Class({
         },
 
         updateTable : function (fullUpdate) {
-            if (fullUpdate == undefined)
+            if (fullUpdate === undefined)
                 fullUpdate = false;
 
             var rows = this.getFilteredAndSortedRows();
@@ -573,7 +573,7 @@ var DynamicTable = new Class({
             for (var rowPos = 0; rowPos < rows.length; rowPos++) {
                 var rowId = rows[rowPos]['rowId'];
                 tr_found = false;
-                for (j = rowPos; j < trs.length; j++)
+                for (var j = rowPos; j < trs.length; j++)
                     if (trs[j]['rowId'] == rowId) {
                         tr_found = true;
                         if (rowPos == j)
@@ -635,7 +635,7 @@ var DynamicTable = new Class({
                                             tr.addClass('selected');
                                         }
                                         else
-                                            tr.removeClass('selected')
+                                            tr.removeClass('selected');
                                     }
                                 }
                             } else {
@@ -648,9 +648,9 @@ var DynamicTable = new Class({
 
                     this.setupTr(tr);
 
-                    for (var j = 0 ; j < this.columns.length; j++) {
+                    for (var k = 0 ; k < this.columns.length; k++) {
                         var td = new Element('td');
-                        if ((this.columns[j].visible == '0') || this.columns[j].force_hide)
+                        if ((this.columns[k].visible == '0') || this.columns[k].force_hide)
                             td.addClass('invisible');
                         td.injectInside(tr);
                     }
@@ -698,7 +698,7 @@ var DynamicTable = new Class({
         removeRow : function (rowId) {
             this.selectedRows.erase(rowId);
             var tr = this.getTrByRowId(rowId);
-            if (tr != null) {
+            if (tr !== null) {
                 tr.dispose();
                 this.rows.erase(rowId);
                 return true;
@@ -973,7 +973,7 @@ var TorrentsTable = new Class({
             this.columns['dl_limit'].updateTd = function (td, row) {
                 var speed = this.getRowValue(row);
                 if (speed === 0)
-                    td.set('html', '∞')
+                    td.set('html', '∞');
                 else
                     td.set('html', friendlyUnit(speed, true));
             };
@@ -1039,9 +1039,10 @@ var TorrentsTable = new Class({
                     break;
                 case 'inactive':
                     inactive = true;
+                    break;
                 case 'active':
                     if (state == 'stalledDL')
-                        r = (row['full_data'].upspeed > 0)
+                        r = (row['full_data'].upspeed > 0);
                     else
                         r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
                     if (r == inactive)
@@ -1086,7 +1087,7 @@ var TorrentsTable = new Class({
         },
 
         getFilteredAndSortedRows : function () {
-            var filteredRows = new Array();
+            var filteredRows = [];
 
             var rows = this.rows.getValues();
 
@@ -1218,7 +1219,7 @@ var TorrentPeersTable = new Class({
 
             this.columns['dl_speed'].updateTd = function (td, row) {
                 var speed = this.getRowValue(row);
-                if (speed == 0)
+                if (speed === 0)
                     td.set('html', '');
                 else
                     td.set('html', friendlyUnit(speed, true));

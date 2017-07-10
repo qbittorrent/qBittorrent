@@ -23,7 +23,7 @@ var clearData = function() {
     $('torrent_hash').set('html', '');
     $('save_path').set('html', '');
     $('comment').set('html', '');
-}
+};
 
 var loadTorrentDataTimer;
 var loadTorrentData = function() {
@@ -33,7 +33,7 @@ var loadTorrentData = function() {
         return;
     }
     var current_hash = torrentsTable.getCurrentTorrentHash();
-    if (current_hash == "") {
+    if (current_hash === "") {
         clearData();
         clearTimeout(loadTorrentDataTimer);
         loadTorrentDataTimer = loadTorrentData.delay(5000);
@@ -59,26 +59,26 @@ var loadTorrentData = function() {
                 if (data.seeding_time > 0)
                     temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
                             .replace("%1", friendlyDuration(data.time_elapsed))
-                            .replace("%2", friendlyDuration(data.seeding_time))
+                            .replace("%2", friendlyDuration(data.seeding_time));
                 else
-                    temp = friendlyDuration(data.time_elapsed)
+                    temp = friendlyDuration(data.time_elapsed);
                 $('time_elapsed').set('html', temp);
 
                 $('eta').set('html', friendlyDuration(data.eta));
 
                 temp = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.nb_connections)
-                        .replace("%2", data.nb_connections_limit < 0 ? "∞" : data.nb_connections_limit)
+                        .replace("%2", data.nb_connections_limit < 0 ? "∞" : data.nb_connections_limit);
                 $('nb_connections').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", friendlyUnit(data.total_downloaded))
-                        .replace("%2", friendlyUnit(data.total_downloaded_session))
+                        .replace("%2", friendlyUnit(data.total_downloaded_session));
                 $('total_downloaded').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", friendlyUnit(data.total_uploaded))
-                        .replace("%2", friendlyUnit(data.total_uploaded_session))
+                        .replace("%2", friendlyUnit(data.total_uploaded_session));
                 $('total_uploaded').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
@@ -161,9 +161,9 @@ var loadTorrentData = function() {
             loadTorrentDataTimer = loadTorrentData.delay(5000);
         }
     }).send();
-}
+};
 
 var updateTorrentData = function() {
     clearTimeout(loadTorrentDataTimer);
     loadTorrentData();
-}
+};

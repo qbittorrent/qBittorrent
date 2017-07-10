@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PREVIEWSELECT_H
@@ -33,36 +31,43 @@
 
 #include <QDialog>
 #include <QList>
-#include "ui_preview.h"
+
 #include "base/bittorrent/torrenthandle.h"
+#include "ui_preview.h"
+
+class QStandardItemModel;
 
 class PreviewListDelegate;
 
-QT_BEGIN_NAMESPACE
-class QStandardItemModel;
-QT_END_NAMESPACE
-
-class PreviewSelect: public QDialog, private Ui::preview {
-  Q_OBJECT
+class PreviewSelect: public QDialog, private Ui::preview
+{
+    Q_OBJECT
 
 public:
-  enum PreviewColumn { NAME, SIZE, PROGRESS, FILE_INDEX, NB_COLUMNS };
+    enum PreviewColumn
+    {
+        NAME,
+        SIZE,
+        PROGRESS,
+        FILE_INDEX,
 
-public:
-  PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent);
-  ~PreviewSelect();
+        NB_COLUMNS
+    };
+
+    PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent);
+    ~PreviewSelect();
 
 signals:
-  void readyToPreviewFile(QString) const;
+    void readyToPreviewFile(QString) const;
 
 protected slots:
-  void on_previewButton_clicked();
-  void on_cancelButton_clicked();
+    void on_previewButton_clicked();
+    void on_cancelButton_clicked();
 
 private:
-  QStandardItemModel *previewListModel;
-  PreviewListDelegate *listDelegate;
-  BitTorrent::TorrentHandle *const m_torrent;
+    QStandardItemModel *m_previewListModel;
+    PreviewListDelegate *m_listDelegate;
+    BitTorrent::TorrentHandle *const m_torrent;
 };
 
-#endif
+#endif // PREVIEWSELECT_H

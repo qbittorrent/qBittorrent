@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
- * Copyright (C) 2014  sledgehammer999
+ * Copyright (C) 2014  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,42 +25,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
- * Contact : hammered999@gmail.com
  */
 
 #include "shutdownconfirmdlg.h"
-#include "ui_shutdownconfirmdlg.h"
 
-#include <QStyle>
-#include <QIcon>
 #include <QDialogButtonBox>
+#include <QIcon>
 #include <QPushButton>
+#include <QStyle>
 
 #include "base/preferences.h"
 #include "base/utils/misc.h"
-
+#include "ui_shutdownconfirmdlg.h"
 
 ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogAction &action)
     : QDialog(parent)
-    , ui(new Ui::confirmShutdownDlg)
+    , m_ui(new Ui::confirmShutdownDlg)
     , m_timeout(15)
     , m_action(action)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     initText();
     QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
-    ui->warningLabel->setPixmap(warningIcon.pixmap(32));
+    m_ui->warningLabel->setPixmap(warningIcon.pixmap(32));
 
     if (m_action == ShutdownDialogAction::Exit)
-        ui->neverShowAgainCheckbox->setVisible(true);
+        m_ui->neverShowAgainCheckbox->setVisible(true);
     else
-        ui->neverShowAgainCheckbox->setVisible(false);
+        m_ui->neverShowAgainCheckbox->setVisible(false);
 
     // Cancel Button
-    QPushButton *cancelButton = ui->buttonBox->button(QDialogButtonBox::Cancel);
+    QPushButton *cancelButton = m_ui->buttonBox->button(QDialogButtonBox::Cancel);
     cancelButton->setFocus();
     cancelButton->setDefault(true);
 
@@ -74,7 +70,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogActi
 
 ShutdownConfirmDlg::~ShutdownConfirmDlg()
 {
-    delete ui;
+    delete m_ui;
 }
 
 void ShutdownConfirmDlg::showEvent(QShowEvent *event)
@@ -101,36 +97,32 @@ void ShutdownConfirmDlg::updateSeconds()
 
 void ShutdownConfirmDlg::accept()
 {
-    Preferences::instance()->setDontConfirmAutoExit(ui->neverShowAgainCheckbox->isChecked());
+    Preferences::instance()->setDontConfirmAutoExit(m_ui->neverShowAgainCheckbox->isChecked());
     QDialog::accept();
 }
 
 void ShutdownConfirmDlg::initText()
 {
-    QPushButton *okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
+    QPushButton *okButton = m_ui->buttonBox->button(QDialogButtonBox::Ok);
 
     switch (m_action) {
     case ShutdownDialogAction::Exit:
         m_msg = tr("qBittorrent will now exit.");
-
         okButton->setText(tr("E&xit Now"));
         setWindowTitle(tr("Exit confirmation"));
         break;
     case ShutdownDialogAction::Shutdown:
         m_msg = tr("The computer is going to shutdown.");
-
         okButton->setText(tr("&Shutdown Now"));
         setWindowTitle(tr("Shutdown confirmation"));
         break;
     case ShutdownDialogAction::Suspend:
         m_msg = tr("The computer is going to enter suspend mode.");
-
         okButton->setText(tr("&Suspend Now"));
         setWindowTitle(tr("Suspend confirmation"));
         break;
     case ShutdownDialogAction::Hibernate:
         m_msg = tr("The computer is going to enter hibernation mode.");
-
         okButton->setText(tr("&Hibernate Now"));
         setWindowTitle(tr("Hibernate confirmation"));
         break;
@@ -143,5 +135,5 @@ void ShutdownConfirmDlg::initText()
 void ShutdownConfirmDlg::updateText()
 {
     QString t = tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
-    ui->shutdownText->setText(m_msg + t);
+    m_ui->shutdownText->setText(m_msg + t);
 }
