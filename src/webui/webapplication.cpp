@@ -30,7 +30,6 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <QCryptographicHash>
-#include <QFileInfo>
 #include <queue>
 #include <vector>
 
