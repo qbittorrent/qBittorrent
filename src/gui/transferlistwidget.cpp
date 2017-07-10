@@ -395,11 +395,11 @@ void TransferListWidget::copySelectedNames() const
 
 void TransferListWidget::copySelectedHashes() const
 {
-    QStringList torrent_hashes;
+    QStringList torrentHashes;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
-        torrent_hashes << torrent->hash();
+        torrentHashes << torrent->hash();
 
-    qApp->clipboard()->setText(torrent_hashes.join("\n"));
+    qApp->clipboard()->setText(torrentHashes.join('\n'));
 }
 
 void TransferListWidget::hidePriorityColumn(bool hide)
@@ -752,8 +752,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
     QAction actionCopy_name(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
     connect(&actionCopy_name, SIGNAL(triggered()), this, SLOT(copySelectedNames()));
-    QAction actionCopy_hash(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), 0);
-    connect(&actionCopy_hash, SIGNAL(triggered()), this, SLOT(copySelectedHashes()));
+    QAction actionCopyHash(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), 0);
+    connect(&actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
     actionSuper_seeding_mode.setCheckable(true);
     connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
@@ -953,7 +953,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     listMenu.addSeparator();
     listMenu.addAction(&actionCopy_name);
     listMenu.addAction(&actionCopy_magnet_link);
-    listMenu.addAction(&actionCopy_hash);
+    listMenu.addAction(&actionCopyHash);
     // Call menu
     QAction *act = 0;
     act = listMenu.exec(QCursor::pos());
