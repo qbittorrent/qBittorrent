@@ -787,10 +787,8 @@ void WebApplication::action_command_setLocation()
 
     // check location exists
     QFileInfo newLocation(newLocationPath);
-    if (!newLocation.exists()) {
-        Logger::instance()->addMessage(tr("Invalid path '%1'").arg(newLocationPath));
+    if (!newLocation.exists())
         return;
-    }
 
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
