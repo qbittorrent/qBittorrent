@@ -311,7 +311,7 @@ window.addEvent('load', function () {
                         update_categories = true;
                     }
                     if (response['torrents']) {
-                        var newTorrentInList = false;
+                        var updateTorrentList = false;
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
                             response['torrents'][key]['rowId'] = key;
@@ -319,10 +319,10 @@ window.addEvent('load', function () {
                             if (addTorrentToCategoryList(response['torrents'][key]))
                                 update_categories = true;
                             if (response['torrents'][key]['name'])
-                                newTorrentInList = true;
+                                updateTorrentList = true;
                         }
 
-                        if (newTorrentInList)
+                        if (updateTorrentList)
                             setupCopyEventHandler();
                     }
                     if (response['torrents_removed'])
