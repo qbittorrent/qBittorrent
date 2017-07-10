@@ -783,11 +783,10 @@ void WebApplication::action_command_setLocation()
     CHECK_PARAMETERS("hashes" << "location");
 
     QStringList hashes = request().posts["hashes"].split("|");
-    QString newLocationPath = request().posts["location"].trimmed();
+    QString newLocation = request().posts["location"].trimmed();
 
     // check location exists
-    QFileInfo newLocation(newLocationPath);
-    if (!newLocation.exists())
+    if (!QDir(newLocation).exists())
         return;
 
     foreach (const QString &hash, hashes) {
@@ -795,9 +794,9 @@ void WebApplication::action_command_setLocation()
         if (torrent) {
             // get old location
             const QString oldLocation = torrent->savePath();
-            Logger::instance()->addMessage(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocationPath));
+            Logger::instance()->addMessage(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocation));
 
-            torrent->move(Utils::Fs::expandPathAbs(newLocationPath));
+            torrent->move(Utils::Fs::expandPathAbs(newLocation));
         }
     }
 }
