@@ -795,7 +795,7 @@ void WebApplication::action_command_setLocation()
         if (torrent) {
             // get old location
             const QString oldLocation = torrent->savePath();
-            Logger::instance()->addMessage(tr("Moving torrent '%1' to '%2'").arg(torrent->hash()).arg(newLocationPath));
+            Logger::instance()->addMessage(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocationPath));
 
             torrent->move(Utils::Fs::expandPathAbs(newLocationPath));
         }
