@@ -785,7 +785,7 @@ void WebApplication::action_command_setLocation()
     QString newLocation = request().posts["location"].trimmed();
 
     // check location exists
-    if (!QDir(newLocation).exists())
+    if (newLocation.isEmpty() || !QDir(newLocation).exists())
         return;
 
     foreach (const QString &hash, hashes) {
