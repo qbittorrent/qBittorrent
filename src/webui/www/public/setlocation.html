@@ -24,9 +24,8 @@
                 new Event(e).stop();
                 // check field
                 var location = $('setLocation').value.trim();
-                if (location === null || location === "") {
+                if (location === null || location === "")
                     return false;
-                }
 
                 var hashesList = new URI().getData('hashes');
                 new Request({
