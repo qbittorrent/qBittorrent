@@ -353,8 +353,8 @@
         <file>icons/skin/qbittorrent16.png</file>
         <file>icons/skin/qbittorrent22.png</file>
         <file>icons/skin/qbittorrent32.png</file>
-        <file>icons/skin/qbittorrent_mono_dark.png</file>
-        <file>icons/skin/qbittorrent_mono_light.png</file>
+        <file>icons/skin/qbittorrent-tray-dark.svg</file>
+        <file>icons/skin/qbittorrent-tray-light.svg</file>
         <file>icons/skin/queued.png</file>
         <file>icons/skin/ratio.png</file>
         <file>icons/skin/seeding.png</file>
