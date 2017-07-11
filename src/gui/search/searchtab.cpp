@@ -31,7 +31,6 @@
 #include <QApplication>
 #include <QDir>
 #include <QMenu>
-#include <QMetaEnum>
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QHeaderView>
@@ -43,20 +42,13 @@
 
 #include "base/utils/misc.h"
 #include "base/preferences.h"
-#include "base/settingsstorage.h"
+#include "base/settingvalue.h"
 #include "guiiconprovider.h"
 #include "searchsortmodel.h"
 #include "searchlistdelegate.h"
 #include "searchwidget.h"
 #include "searchtab.h"
 #include "ui_searchtab.h"
-
-namespace
-{
-#define SETTINGS_KEY(name) "Search/" name
-
-    const QString KEY_FILTER_MODE_SETTING_NAME = SETTINGS_KEY("FilteringMode");
-}
 
 SearchTab::SearchTab(SearchWidget *parent)
     : QWidget(parent)
@@ -216,15 +208,14 @@ void SearchTab::updateFilter()
 {
     using Utils::Misc::SizeUnit;
     SearchSortModel* filterModel = getCurrentSearchListProxy();
-    filterModel->enableNameFilter(filteringMode() == OnlyNames);
+    filterModel->enableNameFilter(filteringMode() == NameFilteringMode::OnlyNames);
     // we update size and seeds filter parameters in the model even if they are disabled
     filterModel->setSeedsFilter(m_ui->minSeeds->value(), m_ui->maxSeeds->value());
     filterModel->setSizeFilter(
         sizeInBytes(m_ui->minSize->value(), static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex())),
         sizeInBytes(m_ui->maxSize->value(), static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex())));
 
-    SettingsStorage::instance()->storeValue(KEY_FILTER_MODE_SETTING_NAME,
-                                            m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()));
+    nameFilteringModeSetting() = filteringMode();
 
     filterModel->invalidate();
     updateResultsCount();
@@ -255,14 +246,10 @@ void SearchTab::fillFilterComboBoxes()
 
     m_ui->filterMode->clear();
 
-    QMetaEnum nameFilteringModeEnum =
-        this->metaObject()->enumerator(this->metaObject()->indexOfEnumerator("NameFilteringMode"));
+    m_ui->filterMode->addItem(tr("Torrent names only"), static_cast<int>(NameFilteringMode::OnlyNames));
+    m_ui->filterMode->addItem(tr("Everywhere"), static_cast<int>(NameFilteringMode::Everywhere));
 
-    m_ui->filterMode->addItem(tr("Torrent names only"), nameFilteringModeEnum.valueToKey(OnlyNames));
-    m_ui->filterMode->addItem(tr("Everywhere"), nameFilteringModeEnum.valueToKey(Everywhere));
-
-    QVariant selectedMode = SettingsStorage::instance()->loadValue(
-                KEY_FILTER_MODE_SETTING_NAME, nameFilteringModeEnum.valueToKey(OnlyNames));
+    QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().value());
     int index = m_ui->filterMode->findData(selectedMode);
     m_ui->filterMode->setCurrentIndex(index == -1 ? 0 : index);
 }
@@ -305,9 +292,7 @@ QString SearchTab::statusIconName(SearchTab::Status st)
 
 SearchTab::NameFilteringMode SearchTab::filteringMode() const
 {
-    QMetaEnum metaEnum =
-        this->metaObject()->enumerator(this->metaObject()->indexOfEnumerator("NameFilteringMode"));
-    return static_cast<NameFilteringMode>(metaEnum.keyToValue(m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()).toByteArray()));
+    return static_cast<NameFilteringMode>(m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()).toInt());
 }
 
 void SearchTab::loadSettings()
@@ -354,4 +339,10 @@ void SearchTab::displayToggleColumnsMenu(const QPoint&)
             m_ui->resultsBrowser->setColumnWidth(col, 100);
         saveSettings();
     }
+}
+
+CachedSettingValue<SearchTab::NameFilteringMode> &SearchTab::nameFilteringModeSetting()
+{
+    static CachedSettingValue<NameFilteringMode> setting("Search/FilteringMode", NameFilteringMode::OnlyNames);
+    return setting;
 }

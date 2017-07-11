@@ -28,14 +28,8 @@
 
 #include "torrentfileguard.h"
 
-#include <QMetaEnum>
-#include "settingsstorage.h"
+#include "settingvalue.h"
 #include "utils/fs.h"
-
-namespace
-{
-    const QLatin1String KEY_AUTO_DELETE_ENABLED ("Core/AutoDeleteAddedTorrentFile");
-}
 
 FileGuard::FileGuard(const QString &path)
     : m_path {path}
@@ -79,18 +73,17 @@ void TorrentFileGuard::markAsAddedToSession()
 
 TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
 {
-    QMetaEnum meta {modeMetaEnum()};
-    return static_cast<AutoDeleteMode>(meta.keyToValue(SettingsStorage::instance()->loadValue(
-                                                           KEY_AUTO_DELETE_ENABLED, meta.valueToKey(Never)).toByteArray()));
+    return autoDeleteModeSetting();
 }
 
 void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 {
-    QMetaEnum meta {modeMetaEnum()};
-    SettingsStorage::instance()->storeValue(KEY_AUTO_DELETE_ENABLED, meta.valueToKey(mode));
+    autoDeleteModeSetting() = mode;
 }
 
-QMetaEnum TorrentFileGuard::modeMetaEnum()
+CachedSettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
 {
-    return QMetaEnum::fromType<AutoDeleteMode>();
+    static CachedSettingValue<AutoDeleteMode> setting("Core/AutoDeleteAddedTorrentFile", AutoDeleteMode::Never);
+    return setting;
 }
+

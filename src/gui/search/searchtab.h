@@ -31,7 +31,6 @@
 #ifndef SEARCHTAB_H
 #define SEARCHTAB_H
 
-#include <QVariant> // I don't know why <QMetaType> is not enought for Qt's 4.8.7 moc
 #include <QWidget>
 
 #define ENGINE_URL_COLUMN 4
@@ -43,6 +42,8 @@ class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
 class QVBoxLayout;
+
+template <typename T> class CachedSettingValue;
 
 class SearchSortModel;
 class SearchListDelegate;
@@ -59,13 +60,13 @@ class SearchTab: public QWidget
 
 public:
 
-    enum NameFilteringMode
+    enum class NameFilteringMode
     {
         Everywhere,
         OnlyNames
     };
 
-    Q_ENUMS(NameFilteringMode)
+    Q_ENUM(NameFilteringMode)
 
     explicit SearchTab(SearchWidget *parent);
     ~SearchTab();
@@ -105,6 +106,8 @@ private:
     NameFilteringMode filteringMode() const;
     static QString statusText(Status st);
     static QString statusIconName(Status st);
+
+    static CachedSettingValue<NameFilteringMode>& nameFilteringModeSetting();
 
     Ui::SearchTab *m_ui;
     QTreeView *m_resultsBrowser;
