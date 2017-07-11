@@ -1039,7 +1039,7 @@ var TorrentsTable = new Class({
                     break;
                 case 'inactive':
                     inactive = true;
-                    break;
+                    // fallthrough
                 case 'active':
                     if (state == 'stalledDL')
                         r = (row['full_data'].upspeed > 0);
