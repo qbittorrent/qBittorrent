@@ -38,7 +38,6 @@
 #include <QList>
 #include <QSize>
 #include <QTimer>
-#include <QReadWriteLock>
 #include <QNetworkCookie>
 #include <QVariant>
 

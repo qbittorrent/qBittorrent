@@ -33,6 +33,7 @@
 #include <QFile>
 #include <QHash>
 #include <QStringList>
+#include <QThread>
 
 #include "logger.h"
 #include "profile.h"
@@ -159,7 +160,6 @@ SettingsStorage *SettingsStorage::m_instance = nullptr;
 SettingsStorage::SettingsStorage()
     : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
     , m_dirty(false)
-    , m_lock(QReadWriteLock::Recursive)
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -190,9 +190,9 @@ SettingsStorage *SettingsStorage::instance()
 
 bool SettingsStorage::save()
 {
-    if (!m_dirty) return false; // Obtaining the lock is expensive, let's check early
-    QWriteLocker locker(&m_lock);
-    if (!m_dirty) return false; // something might have changed while we were getting the lock
+    Q_ASSERT(thread() == QThread::currentThread());
+
+    if (!m_dirty) return false;
 
     TransactionalSettings settings(QLatin1String("qBittorrent"));
     if (settings.write(m_data)) {
@@ -205,14 +205,16 @@ bool SettingsStorage::save()
 
 QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
 {
-    QReadLocker locker(&m_lock);
+    Q_ASSERT(thread() == QThread::currentThread());
+
     return m_data.value(mapKey(key), defaultValue);
 }
 
 void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 {
+    Q_ASSERT(thread() == QThread::currentThread());
+
     QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
     if (m_data.value(realKey) != value) {
         m_dirty = true;
         m_data.insert(realKey, value);
@@ -222,8 +224,9 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 
 void SettingsStorage::removeValue(const QString &key)
 {
+    Q_ASSERT(thread() == QThread::currentThread());
+
     QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
     if (m_data.contains(realKey)) {
         m_dirty = true;
         m_data.remove(realKey);
