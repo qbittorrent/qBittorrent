@@ -117,10 +117,10 @@ install:
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       # dependencies
       brew update > /dev/null
-      brew install colormake ccache zlib
-      PATH="/usr/local/opt/ccache/libexec:$PATH"
-      brew link --force zlib
       brew outdated "pkg-config" || brew upgrade "pkg-config"
+      brew install colormake ccache zlib qt
+      PATH="/usr/local/opt/ccache/libexec:$PATH"
+      brew link --force zlib qt
 
       wget https://builds.shiki.hu/homebrew/version
       if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
@@ -140,12 +140,9 @@ install:
       cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.11+git20172003.8736a59adc.el_capitan.bottle.tar.gz" "$(brew --cache)"
       brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb"
 
-      brew install qt
-      brew link --force qt
-
       if [ "$build_system" = "cmake" ]; then
-        brew unlink cmake
-        brew install cmake ninja
+        brew outdated cmake || brew upgrade cmake
+        brew install ninja
 
         ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
         ln -s /usr/local/opt/qt/plugins /usr/local/plugins
@@ -186,8 +183,12 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app"
-      cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS"
+      if [ "$build_system" = "qmake" ]; then
+        macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app"
+        cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS"
+      else
+        cd "$qbt_path/$qbt_exe.app/Contents/MacOS"
+      fi
     fi
   - ./$qbt_exe --version
 
