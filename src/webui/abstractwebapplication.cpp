@@ -94,6 +94,7 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
     timer->start(60 * 1000);  // 1 min.
 
+    reloadDomainList();
     connect(Preferences::instance(), SIGNAL(changed()), this, SLOT(reloadDomainList()));
 }
 
