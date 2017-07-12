@@ -144,8 +144,8 @@ install:
       brew link --force qt
 
       if [ "$build_system" = "cmake" ]; then
-        brew unlink cmake
-        brew install cmake ninja
+        brew outdated cmake || brew upgrade cmake
+        brew install ninja
 
         ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
         ln -s /usr/local/opt/qt/plugins /usr/local/plugins
@@ -186,8 +186,12 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd "$qbt_path/bin" ; fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app"
-      cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS"
+      if [ "$build_system" = "qmake" ]; then
+        macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app"
+        cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS"
+      else
+        cd "$qbt_path/$qbt_exe.app/Contents/MacOS"
+      fi
     fi
   - ./$qbt_exe --version
 
