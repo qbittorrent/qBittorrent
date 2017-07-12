@@ -132,8 +132,6 @@ install:
         cd "$HOME/hombebrew_cache"
         wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar.rb
         wget https://builds.shiki.hu/homebrew/libtorrent-rasterbar-1.0.11+git20172003.8736a59adc.el_capitan.bottle.tar.gz
-        wget https://builds.shiki.hu/homebrew/qt.rb
-        wget https://builds.shiki.hu/homebrew/qt-5.9.1.el_capitan.bottle.tar.gz
       fi
 
       # Copy custom libtorrent bottle to homebrew's cache so it can find and install it
@@ -142,22 +140,15 @@ install:
       cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.11+git20172003.8736a59adc.el_capitan.bottle.tar.gz" "$(brew --cache)"
       brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb"
 
+      brew install qt
+      brew link --force qt
+
       if [ "$build_system" = "cmake" ]; then
         brew unlink cmake
         brew install cmake ninja
 
-        brew install qt5
-        brew link --force qt5
         ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
         ln -s /usr/local/opt/qt/plugins /usr/local/plugins
-      else
-        # Qt
-        # Copy custom qt5 bottle to homebrew's cache so it can find and install it
-        # Also install our custom qt5 formula by passing the local path to it
-        # These 2 files are restored from Travis' cache.
-        cp "$HOME/hombebrew_cache/qt-5.9.1.el_capitan.bottle.tar.gz" "$(brew --cache)"
-        brew install "$HOME/hombebrew_cache/qt.rb"
-        brew link --force qt
       fi
 
       MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
