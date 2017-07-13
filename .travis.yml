@@ -187,6 +187,7 @@ after_success:
         macdeployqt "$TRAVIS_BUILD_DIR/src/$qbt_exe.app"
         cd "$TRAVIS_BUILD_DIR/src/$qbt_exe.app/Contents/MacOS"
       else
+        macdeployqt ""$qbt_path/src/$qbt_exe.app"
         cd "$qbt_path/$qbt_exe.app/Contents/MacOS"
       fi
     fi
