@@ -117,10 +117,10 @@ install:
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       # dependencies
       brew update > /dev/null
+      brew outdated "pkg-config" || brew upgrade "pkg-config"
       brew install colormake ccache zlib qt
       PATH="/usr/local/opt/ccache/libexec:$PATH"
       brew link --force zlib qt
-      brew outdated "pkg-config" || brew upgrade "pkg-config"
 
       wget https://builds.shiki.hu/homebrew/version
       if ! cmp --quiet "version" "$HOME/hombebrew_cache/version" ; then
