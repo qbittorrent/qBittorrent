@@ -117,9 +117,9 @@ install:
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       # dependencies
       brew update > /dev/null
-      brew install colormake ccache zlib
+      brew install colormake ccache zlib qt
       PATH="/usr/local/opt/ccache/libexec:$PATH"
-      brew link --force zlib
+      brew link --force zlib qt
       brew outdated "pkg-config" || brew upgrade "pkg-config"
 
       wget https://builds.shiki.hu/homebrew/version
@@ -139,9 +139,6 @@ install:
       # These 2 files are restored from Travis' cache.
       cp "$HOME/hombebrew_cache/libtorrent-rasterbar-1.0.11+git20172003.8736a59adc.el_capitan.bottle.tar.gz" "$(brew --cache)"
       brew install "$HOME/hombebrew_cache/libtorrent-rasterbar.rb"
-
-      brew install qt
-      brew link --force qt
 
       if [ "$build_system" = "cmake" ]; then
         brew outdated cmake || brew upgrade cmake
