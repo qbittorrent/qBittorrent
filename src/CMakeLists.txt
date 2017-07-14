@@ -13,7 +13,7 @@ find_package(LibtorrentRasterbar REQUIRED)
 # Qt
 list(APPEND QBT_QT_COMPONENTS Core Network Xml)
 if (GUI)
-    list (APPEND QBT_QT_COMPONENTS Concurrent Gui Widgets)
+    list (APPEND QBT_QT_COMPONENTS Concurrent Gui Svg Widgets)
     if (WIN32)
         list (APPEND QBT_QT_COMPONENTS WinExtras)
     endif(WIN32)
@@ -74,13 +74,6 @@ set(QBT_USE_GUI ${GUI})
 set(QBT_USE_WEBUI ${WEBUI})
 
 configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-
-if (GUI)
-    set(QBT_TARGET_NAME qbittorrent)
-else (GUI)
-    set(QBT_TARGET_NAME qbittorrent-nox)
-endif (GUI)
-
 
 if (SYSTEM_QTSINGLEAPPLICATION)
     find_package(QtSingleApplication REQUIRED)
