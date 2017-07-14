@@ -67,7 +67,7 @@ addons:
       - libssl-dev
       - [libboost-dev, libboost-system-dev]
       - libtorrent-rasterbar-dev
-      - [qt55base, qt55tools]
+      - [qt55base, qt55svg, qt55tools]
       - [gcc-6, g++-6]
 
 before_install:
