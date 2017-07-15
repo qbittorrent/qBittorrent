@@ -33,13 +33,14 @@
 #include <QObject>
 #include <QVariantHash>
 #include <QTimer>
-#include <QReadWriteLock>
 
 class SettingsStorage: public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SettingsStorage)
+
     SettingsStorage();
-    ~SettingsStorage();
+    ~SettingsStorage() override;
 
 public:
     static void initInstance();
@@ -59,7 +60,6 @@ private:
     QVariantHash m_data;
     bool m_dirty;
     QTimer m_timer;
-    mutable QReadWriteLock m_lock;
 };
 
 #endif // SETTINGSSTORAGE_H
