@@ -47,8 +47,10 @@ ExecutionLog::ExecutionLog(QWidget *parent, const Log::MsgTypes &types)
 
     m_msgList = new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types));
 
+#ifndef Q_OS_MAC
     ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
     ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
+#endif
     ui->tabGeneral->layout()->addWidget(m_msgList);
     ui->tabBan->layout()->addWidget(m_peerList);
 

@@ -214,7 +214,11 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
             ok = dlg->loadTorrent(source);
 
         if (ok)
+#ifdef Q_OS_MAC
+            dlg->exec();
+#else
             dlg->open();
+#endif
         else
             delete dlg;
     }

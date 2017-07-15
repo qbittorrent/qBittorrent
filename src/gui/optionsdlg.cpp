@@ -81,6 +81,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
 
+#if (defined(Q_OS_UNIX))
+    setWindowTitle(tr("Preferences"));
+#endif
+    
     // Icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
@@ -95,7 +99,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
     for (int i = 0; i < m_ui->tabSelection->count(); ++i) {
-        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 64));  // uniform size for all icons
+        // uniform size for all icons
+        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 62));
     }
 
     m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
@@ -143,6 +148,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Load options
     loadOptions();
+#ifdef Q_OS_MAC
+    m_ui->checkShowSystray->setVisible(false);
+#else
     // Disable systray integration if it is not supported by the system
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
         m_ui->checkShowSystray->setChecked(false);
@@ -150,6 +158,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->label_trayIconStyle->setVisible(false);
         m_ui->comboTrayIcon->setVisible(false);
     }
+#endif
 
 #if defined(QT_NO_OPENSSL)
     m_ui->checkWebUiHttps->setVisible(false);
@@ -479,11 +488,13 @@ void OptionsDialog::saveOptions()
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
+#ifndef Q_OS_MAC
     pref->setSystrayIntegration(systrayIntegration());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
+#endif
     pref->setSplashScreenDisabled(isSlashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
@@ -699,12 +710,14 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
+#ifndef Q_OS_MAC
     m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
     if (m_ui->checkShowSystray->isChecked()) {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
         m_ui->comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
     }
+#endif
 
     m_ui->checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
 
@@ -1067,18 +1080,6 @@ int OptionsDialog::getMaxActiveTorrents() const
     return m_ui->spinMaxActiveTorrents->value();
 }
 
-bool OptionsDialog::minimizeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkMinimizeToSysTray->isChecked();
-}
-
-bool OptionsDialog::closeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkCloseToSystray->isChecked();
-}
-
 bool OptionsDialog::isQueueingSystemEnabled() const
 {
     return m_ui->checkEnableQueueing->isChecked();
@@ -1128,11 +1129,25 @@ bool OptionsDialog::startMinimized() const
     return m_ui->checkStartMinimized->isChecked();
 }
 
+#ifndef Q_OS_MAC
 bool OptionsDialog::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
     return m_ui->checkShowSystray->isChecked();
 }
+
+bool OptionsDialog::minimizeToTray() const
+{
+    if (!m_ui->checkShowSystray->isChecked()) return false;
+    return m_ui->checkMinimizeToSysTray->isChecked();
+}
+
+bool OptionsDialog::closeToTray() const
+{
+    if (!m_ui->checkShowSystray->isChecked()) return false;
+    return m_ui->checkCloseToSystray->isChecked();
+}
+#endif
 
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const
