@@ -199,24 +199,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     QMenu *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
-    connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
+    connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
     QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
-    connect(clearUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(clearUILockPassword()));
+    connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
     // Creating Bittorrent session
-    connect(BitTorrent::Session::instance(), SIGNAL(fullDiskError(BitTorrent::TorrentHandle * const,QString)), this, SLOT(fullDiskError(BitTorrent::TorrentHandle * const,QString)));
-    connect(BitTorrent::Session::instance(), SIGNAL(addTorrentFailed(const QString&)), this, SLOT(addTorrentFailed(const QString&)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentNew(BitTorrent::TorrentHandle * const)), this, SLOT(torrentNew(BitTorrent::TorrentHandle * const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle * const)), this, SLOT(finishedTorrent(BitTorrent::TorrentHandle * const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackerAuthenticationRequired(BitTorrent::TorrentHandle * const)), this, SLOT(trackerAuthenticationRequired(BitTorrent::TorrentHandle * const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(downloadFromUrlFailed(QString,QString)), this, SLOT(handleDownloadFromUrlFailure(QString,QString)));
-    connect(BitTorrent::Session::instance(), SIGNAL(speedLimitModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
-    connect(BitTorrent::Session::instance(), SIGNAL(recursiveTorrentDownloadPossible(BitTorrent::TorrentHandle * const)), this, SLOT(askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle * const)));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::fullDiskError, this, &MainWindow::fullDiskError);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::addTorrentFailed, this, &MainWindow::addTorrentFailed);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentNew,this, &MainWindow::torrentNew);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &MainWindow::finishedTorrent);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerAuthenticationRequired, this, &MainWindow::trackerAuthenticationRequired);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed, this, &MainWindow::handleDownloadFromUrlFailure);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
-    connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
+    connect(m_tabs.data(), &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
 
     m_splitter = new QSplitter(Qt::Horizontal, this);
     // vSplitter->setChildrenCollapsible(false);
@@ -253,16 +253,18 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
         tr("Transfers"));
 
-    connect(m_searchFilter, SIGNAL(textChanged(QString)), m_transferListWidget, SLOT(applyNameFilter(QString)));
-    connect(hSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(writeSettings()));
-    connect(m_splitter, SIGNAL(splitterMoved(int,int)), this, SLOT(writeSettings()));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackersChanged(BitTorrent::TorrentHandle * const)), m_propertiesWidget, SLOT(loadTrackers(BitTorrent::TorrentHandle * const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackersAdded(BitTorrent::TorrentHandle * const,const QList<BitTorrent::TrackerEntry> &)), m_transferListFiltersWidget, SLOT(addTrackers(BitTorrent::TorrentHandle * const,const QList<BitTorrent::TrackerEntry> &)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackersRemoved(BitTorrent::TorrentHandle * const,const QList<BitTorrent::TrackerEntry> &)), m_transferListFiltersWidget, SLOT(removeTrackers(BitTorrent::TorrentHandle * const,const QList<BitTorrent::TrackerEntry> &)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackerlessStateChanged(BitTorrent::TorrentHandle * const,bool)), m_transferListFiltersWidget, SLOT(changeTrackerless(BitTorrent::TorrentHandle * const,bool)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackerSuccess(BitTorrent::TorrentHandle * const,const QString&)), m_transferListFiltersWidget, SLOT(trackerSuccess(BitTorrent::TorrentHandle * const,const QString&)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackerError(BitTorrent::TorrentHandle * const,const QString&)), m_transferListFiltersWidget, SLOT(trackerError(BitTorrent::TorrentHandle * const,const QString&)));
-    connect(BitTorrent::Session::instance(), SIGNAL(trackerWarning(BitTorrent::TorrentHandle * const,const QString&)), m_transferListFiltersWidget, SLOT(trackerWarning(BitTorrent::TorrentHandle * const,const QString&)));
+    connect(m_searchFilter, &LineEdit::textChanged, m_transferListWidget, &TransferListWidget::applyNameFilter);
+    connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);
+    connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_propertiesWidget, &PropertiesWidget::loadTrackers);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
+
+    using Func = void (TransferListFiltersWidget::*)(BitTorrent::TorrentHandle * const, const QString &);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerSuccess, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerSuccess));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerError, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerError));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerWarning, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerWarning));
 
 #ifdef Q_OS_MAC
     // Increase top spacing to avoid tab overlapping
@@ -299,41 +301,41 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     // Transfer list slots
-    connect(m_ui->actionStart, SIGNAL(triggered()), m_transferListWidget, SLOT(startSelectedTorrents()));
-    connect(m_ui->actionStartAll, SIGNAL(triggered()), m_transferListWidget, SLOT(resumeAllTorrents()));
-    connect(m_ui->actionPause, SIGNAL(triggered()), m_transferListWidget, SLOT(pauseSelectedTorrents()));
-    connect(m_ui->actionPauseAll, SIGNAL(triggered()), m_transferListWidget, SLOT(pauseAllTorrents()));
-    connect(m_ui->actionDelete, SIGNAL(triggered()), m_transferListWidget, SLOT(softDeleteSelectedTorrents()));
-    connect(m_ui->actionTopPriority, SIGNAL(triggered()), m_transferListWidget, SLOT(topPrioSelectedTorrents()));
-    connect(m_ui->actionIncreasePriority, SIGNAL(triggered()), m_transferListWidget, SLOT(increasePrioSelectedTorrents()));
-    connect(m_ui->actionDecreasePriority, SIGNAL(triggered()), m_transferListWidget, SLOT(decreasePrioSelectedTorrents()));
-    connect(m_ui->actionBottomPriority, SIGNAL(triggered()), m_transferListWidget, SLOT(bottomPrioSelectedTorrents()));
+    connect(m_ui->actionStart, &QAction::triggered, m_transferListWidget, &TransferListWidget::startSelectedTorrents);
+    connect(m_ui->actionStartAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::resumeAllTorrents);
+    connect(m_ui->actionPause, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseSelectedTorrents);
+    connect(m_ui->actionPauseAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseAllTorrents);
+    connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);
+    connect(m_ui->actionTopPriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::topPrioSelectedTorrents);
+    connect(m_ui->actionIncreasePriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::increasePrioSelectedTorrents);
+    connect(m_ui->actionDecreasePriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::decreasePrioSelectedTorrents);
+    connect(m_ui->actionBottomPriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomPrioSelectedTorrents);
 #ifndef Q_OS_MAC
-    connect(m_ui->actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
+    connect(m_ui->actionToggleVisibility, &QAction::triggered, [this](){ toggleVisibility(); });
 #endif
-    connect(m_ui->actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
+    connect(m_ui->actionMinimize, &QAction::triggered, this, &MainWindow::minimizeWindow);
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     m_programUpdateTimer = new QTimer(this);
     m_programUpdateTimer->setInterval(60 * 60 * 1000);
     m_programUpdateTimer->setSingleShot(true);
-    connect(m_programUpdateTimer, SIGNAL(timeout()), SLOT(checkProgramUpdate()));
-    connect(m_ui->actionCheckForUpdates, SIGNAL(triggered()), SLOT(checkProgramUpdate()));
+    connect(m_programUpdateTimer, &QTimer::timeout, this, &MainWindow::checkProgramUpdate);
+    connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, &MainWindow::checkProgramUpdate);
 #else
     m_ui->actionCheckForUpdates->setVisible(false);
 #endif
 
-    connect(m_ui->actionManageCookies, SIGNAL(triggered()), SLOT(manageCookies()));
+    connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
-    connect(m_preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
+    connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::checkForActiveTorrents);
 
     // Configure BT session according to options
     loadPreferences(false);
 
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentsUpdated()), this, SLOT(updateGUI()));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::updateGUI);
 
     // Accept drag 'n drops
     setAcceptDrops(true);
@@ -423,17 +425,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Start watching the executable for updates
     m_executableWatcher = new QFileSystemWatcher(this);
-    connect(m_executableWatcher, SIGNAL(fileChanged(QString)), this, SLOT(notifyOfUpdate(QString)));
+    connect(m_executableWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::notifyOfUpdate);
     m_executableWatcher->addPath(qApp->applicationFilePath());
 
     m_transferListWidget->setFocus();
 
     // Update the number of torrents (tab)
     updateNbTorrents();
-    connect(m_transferListWidget->getSourceModel(), SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(updateNbTorrents()));
-    connect(m_transferListWidget->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateNbTorrents()));
+    connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsInserted, this, &MainWindow::updateNbTorrents);
+    connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsRemoved, this, &MainWindow::updateNbTorrents);
 
-    connect(pref, SIGNAL(changed()), this, SLOT(optionsSaved()));
+    connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
@@ -520,18 +522,18 @@ void MainWindow::addToolbarContextMenu()
     m_toolbarMenu = new QMenu(this);
 
     m_ui->toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(m_ui->toolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(toolbarMenuRequested(QPoint)));
+    connect(m_ui->toolBar, &QWidget::customContextMenuRequested, this, &MainWindow::toolbarMenuRequested);
 
     QAction *iconsOnly = new QAction(tr("Icons Only"), m_toolbarMenu);
-    connect(iconsOnly, SIGNAL(triggered()), this, SLOT(toolbarIconsOnly()));
+    connect(iconsOnly, &QAction::triggered, this, &MainWindow::toolbarIconsOnly);
     QAction *textOnly = new QAction(tr("Text Only"), m_toolbarMenu);
-    connect(textOnly, SIGNAL(triggered()), this, SLOT(toolbarTextOnly()));
+    connect(textOnly, &QAction::triggered, this, &MainWindow::toolbarTextOnly);
     QAction *textBesideIcons = new QAction(tr("Text Alongside Icons"), m_toolbarMenu);
-    connect(textBesideIcons, SIGNAL(triggered()), this, SLOT(toolbarTextBeside()));
+    connect(textBesideIcons, &QAction::triggered, this, &MainWindow::toolbarTextBeside);
     QAction *textUnderIcons = new QAction(tr("Text Under Icons"), m_toolbarMenu);
-    connect(textUnderIcons, SIGNAL(triggered()), this, SLOT(toolbarTextUnder()));
+    connect(textUnderIcons, &QAction::triggered, this, &MainWindow::toolbarTextUnder);
     QAction *followSystemStyle = new QAction(tr("Follow System Style"), m_toolbarMenu);
-    connect(followSystemStyle, SIGNAL(triggered()), this, SLOT(toolbarFollowSystem()));
+    connect(followSystemStyle, &QAction::triggered, this, &MainWindow::toolbarFollowSystem);
     m_toolbarMenu->addAction(iconsOnly);
     m_toolbarMenu->addAction(textOnly);
     m_toolbarMenu->addAction(textBesideIcons);
@@ -832,16 +834,17 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
 
     QShortcut *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
-    connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
-    QShortcut *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
-    connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-    QShortcut *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
-    connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
-    QShortcut *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
-    connect(switchExecutionLogShortcut, SIGNAL(activated()), this, SLOT(displayExecutionLogTab()));
+    connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
 
+    using Func = void (MainWindow::*)();
+    QShortcut *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
+    connect(switchSearchShortcut, &QShortcut::activated, this, static_cast<Func>(&MainWindow::displaySearchTab));
+    QShortcut *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
+    connect(switchRSSShortcut, &QShortcut::activated, this, static_cast<Func>(&MainWindow::displayRSSTab));
+    QShortcut *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
+    connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, this);
-    connect(switchSearchFilterShortcut, SIGNAL(activated()), this, SLOT(focusSearchFilter()));
+    connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
@@ -1387,7 +1390,7 @@ void MainWindow::loadPreferences(bool configureSession)
             if (!QSystemTrayIcon::isSystemTrayAvailable()) {
                 if (!configureSession) { // Program startup
                     m_systrayCreator = new QTimer(this);
-                    connect(m_systrayCreator, SIGNAL(timeout()), this, SLOT(createSystrayDelayed()));
+                    connect(m_systrayCreator.data(), &QTimer::timeout, this, &MainWindow::createSystrayDelayed);
                     m_systrayCreator->setSingleShot(true);
                     m_systrayCreator->start(2000);
                     qDebug("Info: System tray is unavailable, trying again later.");
@@ -1635,9 +1638,9 @@ void MainWindow::createTrayIcon()
     m_systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
 
     m_systrayIcon->setContextMenu(trayIconMenu());
-    connect(m_systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
+    connect(m_systrayIcon.data(), &QSystemTrayIcon::messageClicked, this, &MainWindow::balloonClicked);
     // End of Icon Menu
-    connect(m_systrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(toggleVisibility(QSystemTrayIcon::ActivationReason)));
+    connect(m_systrayIcon.data(), &QSystemTrayIcon::activated, this, &MainWindow::toggleVisibility);
     m_systrayIcon->show();
 }
 #endif
@@ -1648,7 +1651,7 @@ QMenu *MainWindow::trayIconMenu()
 
     m_trayIconMenu = new QMenu(this);
 #ifndef Q_OS_MAC
-    connect(m_trayIconMenu, SIGNAL(aboutToShow()), SLOT(updateTrayIconMenu()));
+    connect(m_trayIconMenu.data(), &QMenu::aboutToShow, this, &MainWindow::updateTrayIconMenu);
     m_trayIconMenu->addAction(m_ui->actionToggleVisibility);
     m_trayIconMenu->addSeparator();
 #endif
@@ -1804,7 +1807,7 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 {
     if (!m_downloadFromURLDialog) {
         m_downloadFromURLDialog = new downloadFromURL(this);
-        connect(m_downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(QStringList)), this, SLOT(downloadFromURLList(QStringList)));
+        connect(m_downloadFromURLDialog.data(), &downloadFromURL::urlsReadyToBeDownloaded, this, &MainWindow::downloadFromURLList);
     }
 }
 
@@ -1998,7 +2001,7 @@ void MainWindow::checkProgramUpdate()
     m_ui->actionCheckForUpdates->setToolTip(tr("Already checking for program updates in the background"));
     bool invokedByUser = m_ui->actionCheckForUpdates == qobject_cast<QAction * >(sender());
     ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
-    connect(updater, SIGNAL(updateCheckFinished(bool,QString,bool)), SLOT(handleUpdateCheckFinished(bool,QString,bool)));
+    connect(updater, &ProgramUpdater::updateCheckFinished, this, &MainWindow::handleUpdateCheckFinished);
     updater->checkForUpdates();
 }
 
@@ -2033,8 +2036,10 @@ void MainWindow::installPython()
         handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe", true);
     else
         handler = Net::DownloadManager::instance()->downloadUrl("https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi", true);
-    connect(handler, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
-    connect(handler, SIGNAL(downloadFailed(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
+
+    using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
+    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this, &MainWindow::pythonDownloadSuccess);
+    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFailed), this, &MainWindow::pythonDownloadFailure);
 }
 
 void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePath)
