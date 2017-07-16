@@ -187,15 +187,17 @@ private slots:
     void toolbarTextBeside();
     void toolbarTextUnder();
     void toolbarFollowSystem();
+#ifndef Q_OS_MAC
+    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
+    void createSystrayDelayed();
+    void updateTrayIconMenu();
+#endif
 
 private:
 #ifdef Q_OS_MAC
     void setupDockClickHandler();
 #else
-    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
     void createTrayIcon();
-    void createSystrayDelayed();
-    void updateTrayIconMenu();
     QIcon getSystrayIcon() const;
 #endif
 #ifdef Q_OS_WIN
