@@ -56,9 +56,6 @@ public:
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
     QTreeWidgetItem* findItemWithID(QString id);
 
-signals:
-    void pluginsChanged();
-
 protected:
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);

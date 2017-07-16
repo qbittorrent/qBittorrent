@@ -141,6 +141,8 @@ void SearchEngine::enablePlugin(const QString &name, bool enabled)
         else if (!disabledPlugins.contains(name))
             disabledPlugins.append(name);
         pref->setSearchEngDisabled(disabledPlugins);
+
+        emit pluginEnabled(name, enabled);
     }
 }
 
@@ -239,6 +241,7 @@ bool SearchEngine::uninstallPlugin(const QString &name)
     // Remove it from supported engines
     delete m_plugins.take(name);
 
+    emit pluginUninstalled(name);
     return true;
 }
 
