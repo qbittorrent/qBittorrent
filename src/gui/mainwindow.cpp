@@ -273,7 +273,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_prioSeparator = m_ui->toolBar->insertSeparator(m_ui->actionTopPriority);
     m_prioSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopPriority);
-    
+
 #ifdef Q_OS_MAC
     foreach (QAction *action, m_ui->toolBar->actions()) {
         if (action->isSeparator()) {
@@ -1272,13 +1272,13 @@ static bool dockClickHandler(id self, SEL cmd, ...)
 {
     Q_UNUSED(self)
     Q_UNUSED(cmd)
-    
+
     qDebug("Dock icon clicked!");
-    
+
     if (dockMainWindowHandle && !dockMainWindowHandle->isVisible()) {
         dockMainWindowHandle->activate();
     }
-    
+
     // Return NO (false) to suppress the default OS X actions
     return false;
 }
@@ -1287,7 +1287,7 @@ void MainWindow::setupDockClickHandler()
 {
     Class cls = objc_getClass("NSApplication");
     objc_object *appInst = objc_msgSend(reinterpret_cast<objc_object *>(cls), sel_registerName("sharedApplication"));
-    
+
     if (!appInst)
         return;
 
@@ -1633,7 +1633,7 @@ void MainWindow::createTrayIcon()
 {
     // Tray icon
     m_systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
-    
+
     m_systrayIcon->setContextMenu(trayIconMenu());
     connect(m_systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
     // End of Icon Menu
