@@ -52,7 +52,8 @@
 #include "rss_folder.h"
 #include "rss_session.h"
 
-namespace {
+namespace
+{
     // find all occurrences of <placeholder> in original string, and replace them with value of "placeholder" from article
     // example: savePathTpl = "c:\downloads\<attr_name> - <description>\something\<title>\<not_found_attr>"
     //          article = <item>
@@ -70,8 +71,7 @@ namespace {
         rx.setMinimal(true);
         QString result = savePath;
 
-        int pos = 0;
-        while ((pos = rx.indexIn(result, pos)) != -1) {
+        for (int pos = 0; pos != -1; pos = rx.indexIn(result, pos)) {
             QString key = rx.cap(1);
             QString value = articleData.value(key).toString();
             result.replace(rx.cap(0), value);
