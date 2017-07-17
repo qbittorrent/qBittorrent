@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 
-#transferList img.statusIcon {
+#transferList img.stateIcon {
 	height: 1.3em;
 	vertical-align: middle;
     margin-bottom: -1px;
