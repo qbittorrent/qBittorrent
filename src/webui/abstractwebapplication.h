@@ -32,6 +32,9 @@
 #include <QHash>
 #include <QMap>
 #include <QObject>
+#ifndef QBT_USES_QT5
+#include <QStringList>
+#endif
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
