@@ -340,7 +340,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
 #ifndef DISABLE_WEBUI
     // Web UI tab
-    connect(m_ui->textSeverDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUi, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinWebUiPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -638,7 +638,7 @@ void OptionsDialog::saveOptions()
     // Web UI
     pref->setWebUiEnabled(isWebUiEnabled());
     if (isWebUiEnabled()) {
-        pref->setServerDomains(m_ui->textSeverDomains->text());
+        pref->setServerDomains(m_ui->textServerDomains->text());
         pref->setWebUiPort(webUiPort());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
@@ -1028,7 +1028,7 @@ void OptionsDialog::loadOptions()
     // End Bittorrent preferences
 
     // Web UI preferences
-    m_ui->textSeverDomains->setText(pref->getServerDomains());
+    m_ui->textServerDomains->setText(pref->getServerDomains());
     m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
