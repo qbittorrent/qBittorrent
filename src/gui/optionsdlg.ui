@@ -2623,7 +2623,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <layout class="QHBoxLayout" name="horizontalLayout_1">
                  <item>
                   <widget class="QLabel" name="labelServerDomains">
                    <property name="text">
