@@ -2632,7 +2632,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textSeverDomains">
+                  <widget class="QLineEdit" name="textServerDomains">
                    <property name="toolTip">
                     <string>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
