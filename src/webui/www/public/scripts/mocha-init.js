@@ -465,12 +465,12 @@ initializeWindows = function() {
     };
 
     copyMagnetLinkFN = function() {
-        var h = torrentsTable.selectedRowsIds();
+        var selectedRows = torrentsTable.selectedRowsIds();
         var magnets = [];
-        if (h.length) {
+        if (selectedRows.length) {
             var rows = torrentsTable.getFilteredAndSortedRows();
-            for (var i = 0; i < h.length; i++) {
-                var hash = h[i];
+            for (var i = 0; i < selectedRows.length; i++) {
+                var hash = selectedRows[i];
                 magnets.push(rows[hash].full_data.magnet_uri);
             }
         }
