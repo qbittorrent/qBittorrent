@@ -287,10 +287,10 @@ var TorrentsTableContextMenu = new Class({
             else
                 there_are_force_start = true;
 
-            if (data['auto_tmm'] != true)
-                all_are_auto_tmm = false;
-            else
+            if (data['auto_tmm'] === true)
                 there_are_auto_tmm = true;
+            else
+                all_are_auto_tmm = false;
         });
 
         show_seq_dl = true;
