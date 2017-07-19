@@ -33,10 +33,13 @@
 #include <QFileInfo>
 #include <QIcon>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
 #include <Windows.h>
 #include <Shellapi.h>
 #include <QtWin>
+#elif defined(Q_OS_MAC) 
+#include <objc/objc.h>
+#include <objc/message.h>
 #else
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -50,6 +53,14 @@
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelfile.h"
 
+#ifdef Q_OS_MAC
+struct NSImage;
+// This function is a private QtGui library export on macOS
+// See src/gui/painting/qcoregraphics_p.h for more details
+// QtMac::fromCGImageRef takes a CGImageRef and thus requires a double conversion
+QPixmap qt_mac_toQPixmap(const NSImage *image, const QSizeF &size);
+#endif
+
 namespace
 {
     QIcon getDirectoryIcon()
@@ -62,6 +73,7 @@ namespace
     {
     public:
         using QFileIconProvider::icon;
+
         QIcon icon(const QFileInfo &info) const override
         {
             Q_UNUSED(info);
@@ -69,12 +81,13 @@ namespace
             return cached;
         }
     };
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
     // See QTBUG-25319 for explanation why this is required
     class WinShellFileIconProvider: public UnifiedFileIconProvider
     {
     public:
         using QFileIconProvider::icon;
+
         QIcon icon(const QFileInfo &info) const override
         {
             SHFILEINFO sfi = { 0 };
@@ -86,6 +99,44 @@ namespace
             QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
             ::DestroyIcon(sfi.hIcon);
             return QIcon(iconPixmap);
+        }
+    };
+#elif defined(Q_OS_MAC)
+    // There is a similar bug on macOS, to be reported to Qt
+    // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
+    class MacFileIconProvider: public UnifiedFileIconProvider
+    {
+    public:
+        using QFileIconProvider::icon;
+
+        QIcon icon(const QFileInfo &info) const override
+        {
+            const QString ext = info.suffix();
+            if (!ext.isEmpty()) {
+                const QPixmap pixmap = pixmapForExtension(ext, QSize(32, 32));
+                if (!pixmap.isNull())
+                    return QIcon(pixmap);
+            }
+
+            return UnifiedFileIconProvider::icon(info);
+        }
+
+    private:
+        QPixmap pixmapForExtension(const QString &ext, const QSize &size) const
+        {
+            QMacAutoReleasePool pool;
+            objc_object *woskspaceCls = reinterpret_cast<objc_object *>(objc_getClass("NSWorkspace"));
+            SEL sharedWorkspaceSel = sel_registerName("sharedWorkspace");
+            SEL iconForFileTypeSel = sel_registerName("iconForFileType:");
+
+            objc_object *sharedWorkspace = objc_msgSend(woskspaceCls, sharedWorkspaceSel);
+            if (sharedWorkspace) {
+                objc_object *image = objc_msgSend(sharedWorkspace, iconForFileTypeSel, ext.toNSString());
+                if (image)
+                    return qt_mac_toQPixmap(reinterpret_cast<NSImage *>(image), size);
+            }
+
+            return QPixmap();
         }
     };
 #else
@@ -112,6 +163,7 @@ namespace
     class MimeFileIconProvider: public UnifiedFileIconProvider
     {
         using QFileIconProvider::icon;
+
         QIcon icon(const QFileInfo &info) const override
         {
             const QMimeType mimeType = m_db.mimeTypeForFile(info, QMimeDatabase::MatchExtension);
@@ -138,8 +190,10 @@ TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
+#elif defined(Q_OS_MAC)
+    m_fileIconProvider = new MacFileIconProvider();
 #else
     static bool doesBuiltInProviderWork = doesQFileIconProviderWork();
     m_fileIconProvider = doesBuiltInProviderWork ? new QFileIconProvider() : new MimeFileIconProvider();
