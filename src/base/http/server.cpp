@@ -43,7 +43,7 @@
 
 #include "connection.h"
 
-static const int KEEP_ALIVE_DURATION = 7;  // seconds
+static const int KEEP_ALIVE_DURATION = 7 * 1000;  // milliseconds
 static const int CONNECTIONS_LIMIT = 500;
 static const int CONNECTIONS_SCAN_INTERVAL = 2;  // seconds
 
@@ -126,7 +126,7 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
 {
     QSslKey sslKey(key, QSsl::Rsa);
     if (sslKey.isNull())
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
         sslKey = QSslKey(key, QSsl::Ec);
 #else
     {

@@ -6962,7 +6962,7 @@ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
 if test "x$enable_systemd" = "xyes"; then :
-  ac_config_files="$ac_config_files dist/unix/systemd/qbittorrent-nox.service"
+  ac_config_files="$ac_config_files dist/unix/systemd/qbittorrent-nox@.service"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -7716,7 +7716,7 @@ do
   case $ac_config_target in
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "conf.pri") CONFIG_FILES="$CONFIG_FILES conf.pri" ;;
-    "dist/unix/systemd/qbittorrent-nox.service") CONFIG_FILES="$CONFIG_FILES dist/unix/systemd/qbittorrent-nox.service" ;;
+    "dist/unix/systemd/qbittorrent-nox@.service") CONFIG_FILES="$CONFIG_FILES dist/unix/systemd/qbittorrent-nox@.service" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

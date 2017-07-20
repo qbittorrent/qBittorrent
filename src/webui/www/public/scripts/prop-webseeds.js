@@ -34,8 +34,8 @@ var webseedsDynTable = new Class({
     insertRow: function(row) {
         var url = row[0];
         if (this.rows.has(url)) {
-            var tr = this.rows.get(url);
-            this.updateRow(tr, row);
+            var tableRow = this.rows.get(url);
+            this.updateRow(tableRow, row);
             return;
         }
         //this.removeRow(id);
@@ -60,7 +60,7 @@ var loadWebSeedsData = function() {
         return;
     }
     var new_hash = torrentsTable.getCurrentTorrentHash();
-    if (new_hash == "") {
+    if (new_hash === "") {
         wsTable.removeAllRows();
         clearTimeout(loadWebSeedsDataTimer);
         loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
@@ -85,7 +85,7 @@ var loadWebSeedsData = function() {
             if (webseeds) {
                 // Update WebSeeds data
                 webseeds.each(function(webseed) {
-                    var row = new Array();
+                    var row = [];
                     row.length = 1;
                     row[0] = webseed.url;
                     wsTable.insertRow(row);
@@ -98,12 +98,12 @@ var loadWebSeedsData = function() {
             loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
         }
     }).send();
-}
+};
 
 var updateWebSeedsData = function() {
     clearTimeout(loadWebSeedsDataTimer);
     loadWebSeedsData();
-}
+};
 
 wsTable = new webseedsDynTable();
 wsTable.setup($('webseedsTable'));

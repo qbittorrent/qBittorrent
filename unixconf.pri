@@ -32,7 +32,7 @@ DIST_PATH = ../dist/unix
 
 # Systemd Service file
 nogui:systemd {
-    systemdService.files = $$DIST_PATH/systemd/qbittorrent-nox.service
+    systemdService.files = $$DIST_PATH/systemd/qbittorrent-nox@.service
     systemdService.path = $$PREFIX/lib/systemd/system/
     INSTALLS += systemdService
 }

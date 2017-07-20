@@ -28,6 +28,8 @@
 
 #include "abstractwebapplication.h"
 
+#include <algorithm>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -96,6 +98,9 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
     connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
     timer->start(60 * 1000);  // 1 min.
+
+    reloadDomainList();
+    connect(Preferences::instance(), SIGNAL(changed()), this, SLOT(reloadDomainList()));
 }
 
 AbstractWebApplication::~AbstractWebApplication()
@@ -120,7 +125,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
 
     // block cross-site requests
-    if (isCrossSiteRequest(request_)) {
+    if (isCrossSiteRequest(request_) || !validateHostHeader(request_, env, domainList)) {
         status(401, "Unauthorized");
         return response();
     }
@@ -156,6 +161,12 @@ void AbstractWebApplication::removeInactiveSessions()
         if ((now - sessions_[id]->timestamp) > INACTIVE_TIME)
             delete sessions_.take(id);
     }
+}
+
+void AbstractWebApplication::reloadDomainList()
+{
+    domainList = Preferences::instance()->getServerDomains().split(';', QString::SkipEmptyParts);
+    std::for_each(domainList.begin(), domainList.end(), [](QString &entry){ entry = entry.trimmed(); });
 }
 
 bool AbstractWebApplication::sessionInitialize()
@@ -419,14 +430,14 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
                 && (left.host() == right.host()));
     };
 
-    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers[Http::HEADER_HOST]);
+    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST));
     const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
     const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 
     if (originValue.isEmpty() && refererValue.isEmpty()) {
-        if ((request.path == QLatin1String("/")) || (request.path == QLatin1String("/favicon.ico")))
-            return false;  // normal request
-        return true;
+        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+        // so lets be permissive here
+        return false;
     }
 
     // sent with CORS requests, as well as with POST requests
@@ -437,6 +448,45 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
         return !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
 
     return true;
+}
+
+bool AbstractWebApplication::validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const
+{
+    const QUrl hostHeader = QUrl::fromUserInput(
+                                request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST)));
+
+    // (if present) try matching host header's port with local port
+    const int requestPort = hostHeader.port();
+    if ((requestPort != -1) && (env.localPort != requestPort))
+        return false;
+
+    // try matching host header with local address
+    const QString requestHost = hostHeader.host();
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
+    const bool sameAddr = env.localAddress.isEqual(QHostAddress(requestHost));
+#else
+    const auto equal = [](const Q_IPV6ADDR &l, const Q_IPV6ADDR &r) -> bool {
+        for (int i = 0; i < 16; ++i) {
+            if (l[i] != r[i])
+                return false;
+        }
+        return true;
+    };
+    const bool sameAddr = equal(env.localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
+#endif
+
+    if (sameAddr)
+        return true;
+
+    // try matching host header with domain list
+    for (const auto &domain : domains) {
+        QRegExp domainRegex(domain, Qt::CaseInsensitive, QRegExp::Wildcard);
+        if (requestHost.contains(domainRegex))
+            return true;
+    }
+
+    return false;
 }
 
 QStringMap AbstractWebApplication::initializeContentTypeByExtMap()
@@ -460,7 +510,7 @@ QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) con
     // [rfc6265] 4.2.1. Syntax
     QStringMap ret;
     const QString cookieStr = request.headers.value(QLatin1String("cookie"));
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
 #else
     const QStringList cookies = cookieStr.split(';', QString::SkipEmptyParts);
@@ -470,7 +520,7 @@ QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) con
         const int idx = cookie.indexOf('=');
         if (idx < 0)
             continue;
-#ifdef QBT_USES_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
         const QString name = cookie.left(idx).trimmed().toString();
         const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed())
                                   .toString();

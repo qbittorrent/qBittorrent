@@ -3,7 +3,7 @@ version: '{branch}-{build}'
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-os: Visual Studio 2015
+image: Visual Studio 2017
 
 environment:
   REPO_DIR: &REPO_DIR c:\qbittorrent
@@ -36,7 +36,7 @@ install:
 
 before_build:
   # setup env
-  - CALL "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
   # setup project
   - COPY /Y "%CACHE_DIR%\winconf.pri" "%REPO_DIR%"

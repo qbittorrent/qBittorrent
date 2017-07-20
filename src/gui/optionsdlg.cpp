@@ -319,6 +319,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textTrackers, SIGNAL(textChanged()), this, SLOT(enableApplyButton()));
 #ifndef DISABLE_WEBUI
     // Web UI tab
+    connect(m_ui->textServerDomains, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
     connect(m_ui->spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
     connect(m_ui->checkWebUIUPnP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
@@ -603,6 +604,7 @@ void OptionsDialog::saveOptions()
     // Web UI
     pref->setWebUiEnabled(isWebUiEnabled());
     if (isWebUiEnabled()) {
+        pref->setServerDomains(m_ui->textServerDomains->text());
         pref->setWebUiPort(webUiPort());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
@@ -975,6 +977,7 @@ void OptionsDialog::loadOptions()
     // End Bittorrent preferences
 
     // Web UI preferences
+    m_ui->textServerDomains->setText(pref->getServerDomains());
     m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());

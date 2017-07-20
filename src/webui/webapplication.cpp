@@ -50,8 +50,8 @@
 #include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 14;
-static const int API_VERSION_MIN = 14;
+static const int API_VERSION = 15;
+static const int API_VERSION_MIN = 15;
 
 const QString WWW_FOLDER = ":/www/public/";
 const QString PRIVATE_FOLDER = ":/www/private/";
@@ -175,6 +175,11 @@ void WebApplication::action_public_webui()
 
 void WebApplication::action_public_login()
 {
+    if (sessionActive()) {
+        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
     const Preferences* const pref = Preferences::instance();
     QCryptographicHash md5(QCryptographicHash::Md5);
 

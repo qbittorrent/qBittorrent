@@ -934,6 +934,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
             }
         }
 
+        settingsPack.set_str(libt::settings_pack::outgoing_interfaces, networkInterface().toStdString());
         m_listenInterfaceChanged = false;
     }
 

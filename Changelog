@@ -1,3 +1,19 @@
+* Tue Jul 18 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.14
+    - BUGFIX: Set interface for outgoing traffic(libtorrent 1.1.x series). (evsh)
+    - WEBUI: Fix KEEP_ALIVE_DURATION value (Chocobo1)
+    - WEBUI: Relax CSRF defense. Closes #6882. Allow HTTP request which has neither Origin nor Referer header included. (Chocobo1)
+    - WEBUI: Skip username/password check for active sessions (closes #6860) (Thomas Piccirello)
+    - WEBUI: Fix javascript errors and follow best practices (Thomas Piccirello)
+    - WEBUI: Fix value comparison. Closes #7081. (Chocobo1)
+    - WEBUI: Avoid modifying request headers (Chocobo1)
+    - WEBUI: Implement HTTP host header filtering. This filtering is required to defend against DNS rebinding attack. Fixes security issues reported by @beardog108 privately. (Chocobo1)
+    - WEBUI: Add Status column to webui (addresses #6815) (#7032) (Tom Piccirello)
+    - WEBUI: Bump API_VERSION and API_VERSION_MIN to 15.
+    - SEARCH: Pad shorter python versions. Closes #6877. (sledgehammer999)
+    - WINDOWS: Updated Arabic, Turkish, Greek, Russian, Danish languages of the installer. (KingLucius, BouRock, thalieht, Andrei Stepanov, scootergrisen)
+    - WINDOWS: Raise total stack size on Windows to 8 MB. Closes #7021. (Chocobo1)
+    - LINUX: Systemd service with user switch and other fixes/optimizations. (anton.latukha)
+
 * Thu Jun 01 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.13
     - BUGFIX: Fixed UI glitch about torrent numbers in the sidepanel. Fixes #6454. (evsh)
     - BUGFIX: Fix downloaded/uploaded columns were not highlighted properly when selected. (Chocobo1)
