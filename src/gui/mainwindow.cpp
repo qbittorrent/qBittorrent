@@ -326,6 +326,13 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionCheckForUpdates->setVisible(false);
 #endif
 
+    // Certain menu items should reside at specific places on macOS.
+    // Qt partially does it on its own, but updates and different languages require tuning.
+    m_ui->actionExit->setMenuRole(QAction::QuitRole);
+    m_ui->actionAbout->setMenuRole(QAction::AboutRole);
+    m_ui->actionCheckForUpdates->setMenuRole(QAction::ApplicationSpecificRole);
+    m_ui->actionOptions->setMenuRole(QAction::PreferencesRole);
+
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 
     m_pwr = new PowerManagement(this);
