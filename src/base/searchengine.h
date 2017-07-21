@@ -103,8 +103,10 @@ signals:
     void searchFailed();
     void newSearchResults(const QList<SearchResult> &results);
 
+    void pluginEnabled(const QString &name, bool enabled);
     void pluginInstalled(const QString &name);
     void pluginInstallationFailed(const QString &name, const QString &reason);
+    void pluginUninstalled(const QString &name);
     void pluginUpdated(const QString &name);
     void pluginUpdateFailed(const QString &name, const QString &reason);
 

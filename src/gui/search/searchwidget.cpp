@@ -121,11 +121,19 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_searchEngine, &SearchEngine::searchFailed, this, &SearchWidget::searchFailed);
     connect(m_searchEngine, &SearchEngine::torrentFileDownloaded, this, &SearchWidget::addTorrentToSession);
 
-    // Fill in category combobox
-    fillCatCombobox();
-    fillPluginComboBox();
+    const auto onPluginChanged = [this]()
+    {
+        fillCatCombobox();
+        fillPluginComboBox();
+        selectActivePage();
+    };
+    connect(m_searchEngine, &SearchEngine::pluginInstalled, this, onPluginChanged);
+    connect(m_searchEngine, &SearchEngine::pluginUninstalled, this, onPluginChanged);
+    connect(m_searchEngine, &SearchEngine::pluginUpdated, this, onPluginChanged);
+    connect(m_searchEngine, &SearchEngine::pluginEnabled, this, onPluginChanged);
 
-    selectActivePage();
+    // Fill in category combobox
+    onPluginChanged();
 
     connect(m_ui->m_searchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
@@ -248,10 +256,7 @@ void SearchWidget::addTorrentToSession(const QString &source)
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    PluginSelectDlg *dlg = new PluginSelectDlg(m_searchEngine, this);
-    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::fillCatCombobox);
-    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::fillPluginComboBox);
-    connect(dlg, &PluginSelectDlg::pluginsChanged, this, &SearchWidget::selectActivePage);
+    new PluginSelectDlg(m_searchEngine, this);
 }
 
 void SearchWidget::searchTextEdited(QString)

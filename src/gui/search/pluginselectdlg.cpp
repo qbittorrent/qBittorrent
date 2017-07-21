@@ -103,7 +103,6 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
 
 PluginSelectDlg::~PluginSelectDlg()
 {
-    emit pluginsChanged();
     delete m_ui;
 }
 
@@ -461,7 +460,6 @@ void PluginSelectDlg::pluginUpdated(const QString &name)
     item->setText(PLUGIN_VERSION, version);
     m_updatedPlugins.append(name);
     finishPluginUpdate();
-
 }
 
 void PluginSelectDlg::pluginUpdateFailed(const QString &name, const QString &reason)
