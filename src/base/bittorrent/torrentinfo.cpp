@@ -308,9 +308,29 @@ int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const
     return -1;
 }
 
+bool TorrentInfo::hasRootFolder() const
+{
+    QString testRootFolder;
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString filePath = this->filePath(i);
+        if (QDir::isAbsolutePath(filePath)) continue;
+
+        const auto filePathElements = filePath.splitRef('/');
+        // if at least one file has no root folder, no common root folder exists
+        if (filePathElements.count() <= 1) return false;
+
+        if (testRootFolder.isEmpty())
+            testRootFolder = filePathElements.at(0).toString();
+        else if (testRootFolder != filePathElements.at(0))
+            return false;
+    }
+
+    return true;
+}
+
 void TorrentInfo::stripRootFolder()
 {
-    if (filesCount() <= 1) return;
+    if (!hasRootFolder()) return;
 
     libtorrent::file_storage files = m_nativeInfo->files();
 
