@@ -523,7 +523,7 @@ QString makeUsage(const QString &prgName)
 
     stream << QObject::tr("Options:") << '\n';
 #ifndef Q_OS_WIN
-    stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Displays program version and exit")) << '\n';
+    stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Display program version and exit")) << '\n';
 #endif
     stream << SHOW_HELP_OPTION.usage() << wrapText(QObject::tr("Displays this help message and exit")) << '\n';
     stream << WEBUI_PORT_OPTION.usage(QObject::tr("port"))
@@ -544,7 +544,7 @@ QString makeUsage(const QString &prgName)
                                          "to the profile directory")) << '\n';
     stream << PORTABLE_OPTION.usage()
            << wrapText(QObject::tr("Shortcut for --profile=<exe dir>/profile --relative-fastresume")) << '\n';
-    stream << Option::padUsageText(QObject::tr("files or urls"))
+    stream << Option::padUsageText(QObject::tr("files or URLs"))
            << wrapText(QObject::tr("Downloads the torrents passed by the user")) << '\n'
            << '\n';
 
@@ -553,7 +553,7 @@ QString makeUsage(const QString &prgName)
     stream << PAUSED_OPTION.usage() << wrapText(QObject::tr("Add torrents as started or paused")) << '\n';
     stream << SKIP_HASH_CHECK_OPTION.usage() << wrapText(QObject::tr("Skip hash check")) << '\n';
     stream << CATEGORY_OPTION.usage(QObject::tr("name"))
-           << wrapText(QObject::tr("Assign torrents to category. If the category doesn't exist, it will be "
+           << wrapText(QObject::tr("Assign torrents to category. If the category doesn\'t exist, it will be "
                                    "created.")) << '\n';
     stream << SEQUENTIAL_OPTION.usage() << wrapText(QObject::tr("Download files in sequential order")) << '\n';
     stream << FIRST_AND_LAST_OPTION.usage()
