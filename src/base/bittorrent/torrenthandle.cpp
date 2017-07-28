@@ -1330,7 +1330,7 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
     }
 
     qDebug("Torrent is successfully moved from %s to %s", qPrintable(m_oldPath), qPrintable(m_newPath));
-    if (m_oldPath == m_session->torrentTempPath(hash())) {
+    if (QDir(m_oldPath) == QDir(m_session->torrentTempPath(hash()))) {
         qDebug() << "Removing torrent temp folder:" << m_oldPath;
         Utils::Fs::smartRemoveEmptyFolderTree(m_oldPath);
     }
