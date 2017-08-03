@@ -1,3 +1,6 @@
+* Thu Aug 03 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.15
+    - BUGFIX: Temporary subfolder wasn't being deleted. (glassez)
+
 * Tue Jul 18 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.14
     - BUGFIX: Set interface for outgoing traffic(libtorrent 1.1.x series). (evsh)
     - WEBUI: Fix KEEP_ALIVE_DURATION value (Chocobo1)
