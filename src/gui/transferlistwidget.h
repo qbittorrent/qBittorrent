@@ -122,7 +122,6 @@ signals:
 private:
     void wheelEvent(QWheelEvent *event) override;
     void askAddTagsForSelection();
-    void askRemoveTagsForSelection();
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
