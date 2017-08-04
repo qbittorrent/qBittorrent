@@ -244,6 +244,8 @@ namespace BitTorrent
         QString rootPath(bool actual = false) const;
         QString contentPath(bool actual = false) const;
 
+        bool useTempPath() const;
+
         bool isAutoTMMEnabled() const;
         void setAutoTMMEnabled(bool enabled);
         QString category() const;
@@ -416,7 +418,6 @@ namespace BitTorrent
         void handleStatsAlert(libtorrent::stats_alert *p);
 
         bool isMoveInProgress() const;
-        bool useTempPath() const;
         QString nativeActualSavePath() const;
 
         void adjustActualSavePath();
