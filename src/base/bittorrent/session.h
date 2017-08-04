@@ -210,7 +210,7 @@ namespace BitTorrent
         void setTempPath(QString path);
         bool isTempPathEnabled() const;
         void setTempPathEnabled(bool enabled);
-        QString torrentTempPath(const InfoHash &hash) const;
+        QString torrentTempPath(const TorrentInfo &torrentInfo) const;
 
         static bool isValidCategoryName(const QString &name);
         // returns category itself and all top level categories

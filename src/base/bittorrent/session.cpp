@@ -613,11 +613,14 @@ QString Session::tempPath() const
     return Utils::Fs::fromNativePath(m_tempPath);
 }
 
-QString Session::torrentTempPath(const InfoHash &hash) const
+QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
 {
-    return tempPath()
-            + static_cast<QString>(hash).left(7)
+    if ((torrentInfo.filesCount() > 1) && !torrentInfo.hasRootFolder())
+        return tempPath()
+            + QString::fromStdString(torrentInfo.nativeInfo()->orig_files().name())
             + "/";
+
+    return tempPath();
 }
 
 bool Session::isValidCategoryName(const QString &name)
@@ -1648,7 +1651,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        if (torrent->savePath(true) == torrentTempPath(torrent->hash())) {
+        if (torrent->savePath(true) == torrentTempPath(torrent->info())) {
             m_savePathsToRemove[torrent->hash()] = torrent->savePath(true);
         }
         else {
@@ -1996,7 +1999,7 @@ bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) c
 
     bool found = findInDir(savePath, torrentInfo);
     if (!found && isTempPathEnabled()) {
-        savePath = torrentTempPath(torrentInfo.hash());
+        savePath = torrentTempPath(torrentInfo);
         found = findInDir(savePath, torrentInfo);
     }
 
@@ -3698,9 +3701,7 @@ void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 {
-    const QString path = m_savePathsToRemove.take(p->info_hash);
-    if (path == torrentTempPath(p->info_hash))
-        Utils::Fs::smartRemoveEmptyFolderTree(path);
+    Utils::Fs::smartRemoveEmptyFolderTree(m_savePathsToRemove.take(p->info_hash));
 }
 
 void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
