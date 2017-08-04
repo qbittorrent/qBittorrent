@@ -1651,14 +1651,13 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        if (torrent->savePath(true) == torrentTempPath(torrent->info())) {
+        QString rootPath = torrent->rootPath(true);
+        if (!rootPath.isEmpty())
+            // torrent with root folder
+            m_savePathsToRemove[torrent->hash()] = rootPath;
+        else if (torrent->useTempPath())
+            // torrent without root folder still has it in its temporary save path
             m_savePathsToRemove[torrent->hash()] = torrent->savePath(true);
-        }
-        else {
-            QString rootPath = torrent->rootPath(true);
-            if (!rootPath.isEmpty())
-                m_savePathsToRemove[torrent->hash()] = rootPath;
-        }
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
