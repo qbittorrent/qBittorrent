@@ -51,5 +51,6 @@ namespace BitTorrent
         bool ignoreShareLimits = false;
         bool skipChecking = false;
         TriStateBool createSubfolder;
+        TriStateBool useAutoTMM;
     };
 }
