@@ -624,10 +624,14 @@ void AddNewTorrentDialog::accept()
 
     QString savePath = ui->savePath->selectedPath();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
+        m_torrentParams.useAutoTMM = TriStateBool::False;
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
         if (ui->defaultSavePathCheckBox->isChecked())
             BitTorrent::Session::instance()->setDefaultSavePath(savePath);
+    }
+    else {
+        m_torrentParams.useAutoTMM = TriStateBool::True;
     }
 
     setEnabled(!ui->never_show_cb->isChecked());

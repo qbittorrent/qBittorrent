@@ -120,6 +120,13 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , ratioLimit(params.ignoreShareLimits ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
     , seedingTimeLimit(params.ignoreShareLimits ? TorrentHandle::NO_SEEDING_TIME_LIMIT : TorrentHandle::USE_GLOBAL_SEEDING_TIME)
 {
+    bool useAutoTMM = (params.useAutoTMM == TriStateBool::Undefined
+                       ? !Session::instance()->isAutoTMMDisabledByDefault()
+                       : params.useAutoTMM == TriStateBool::True);
+    if (useAutoTMM)
+        savePath = "";
+    else if (savePath.trimmed().isEmpty())
+        savePath = Session::instance()->defaultSavePath();
 }
 
 // TorrentState
