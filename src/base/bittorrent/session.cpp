@@ -1855,9 +1855,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                               TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
-    addData.savePath = normalizeSavePath(
-                addData.savePath,
-                ((!addData.resumed && isAutoTMMDisabledByDefault()) ? defaultSavePath() : ""));
+    addData.savePath = normalizeSavePath(addData.savePath, "");
 
     if (!addData.category.isEmpty()) {
         if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
