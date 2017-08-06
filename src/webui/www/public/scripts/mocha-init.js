@@ -451,6 +451,36 @@ initializeWindows = function() {
         }
     };
 
+    copyNameFN = function() {
+        var selectedRows = torrentsTable.selectedRowsIds();
+        var names = [];
+        if (selectedRows.length) {
+            var rows = torrentsTable.getFilteredAndSortedRows();
+            for (var i = 0; i < selectedRows.length; i++) {
+                var hash = selectedRows[i];
+                names.push(rows[hash].full_data.name);
+            }
+        }
+        return names.join("\n");
+    };
+
+    copyMagnetLinkFN = function() {
+        var selectedRows = torrentsTable.selectedRowsIds();
+        var magnets = [];
+        if (selectedRows.length) {
+            var rows = torrentsTable.getFilteredAndSortedRows();
+            for (var i = 0; i < selectedRows.length; i++) {
+                var hash = selectedRows[i];
+                magnets.push(rows[hash].full_data.magnet_uri);
+            }
+        }
+        return magnets.join("\n");
+    };
+
+    copyHashFN = function() {
+        return torrentsTable.selectedRowsIds().join("\n");
+    };
+
     ['pauseAll', 'resumeAll'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();

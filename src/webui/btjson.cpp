@@ -76,6 +76,7 @@ static const int CACHE_DURATION_MS = 1500; // 1500ms
 // Torrent keys
 static const char KEY_TORRENT_HASH[] = "hash";
 static const char KEY_TORRENT_NAME[] = "name";
+static const char KEY_TORRENT_MAGNET_URI[] = "magnet_uri";
 static const char KEY_TORRENT_SIZE[] = "size";
 static const char KEY_TORRENT_PROGRESS[] = "progress";
 static const char KEY_TORRENT_DLSPEED[] = "dlspeed";
@@ -789,6 +790,7 @@ QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     QVariantMap ret;
     ret[KEY_TORRENT_HASH] = QString(torrent->hash());
     ret[KEY_TORRENT_NAME] = torrent->name();
+    ret[KEY_TORRENT_MAGNET_URI] = torrent->toMagnetUri();
     ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
     ret[KEY_TORRENT_PROGRESS] = torrent->progress();
     ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();

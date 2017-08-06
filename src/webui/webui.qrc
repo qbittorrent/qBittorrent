@@ -9,6 +9,7 @@
         <file>www/public/css/Tabs.css</file>
         <file>www/public/css/Window.css</file>
         <file>www/public/scripts/client.js</file>
+        <file>www/public/scripts/clipboard.min.js</file>
         <file>www/public/scripts/contextmenu.js</file>
         <file>www/public/scripts/download.js</file>
         <file>www/public/scripts/dynamicTable.js</file>
