@@ -38,6 +38,8 @@ var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
 
+var clipboardEvent;
+
 var CATEGORIES_ALL = 1;
 var CATEGORIES_UNCATEGORIZED = 2;
 
@@ -309,6 +311,7 @@ window.addEvent('load', function () {
                         update_categories = true;
                     }
                     if (response['torrents']) {
+                        var updateTorrentList = false;
                         for (var key in response['torrents']) {
                             response['torrents'][key]['hash'] = key;
                             response['torrents'][key]['rowId'] = key;
@@ -317,7 +320,12 @@ window.addEvent('load', function () {
                             torrentsTable.updateRowData(response['torrents'][key]);
                             if (addTorrentToCategoryList(response['torrents'][key]))
                                 update_categories = true;
+                            if (response['torrents'][key]['name'])
+                                updateTorrentList = true;
                         }
+
+                        if (updateTorrentList)
+                            setupCopyEventHandler();
                     }
                     if (response['torrents_removed'])
                         response['torrents_removed'].each(function (hash) {
@@ -588,6 +596,31 @@ window.addEvent('load', function () {
 
 function closeWindows() {
     MochaUI.closeAll();
+}
+
+function setupCopyEventHandler() {
+    if (clipboardEvent)
+        clipboardEvent.destroy();
+
+    clipboardEvent = new Clipboard('.copyToClipboard', {
+        text: function(trigger) {
+            var textToCopy;
+
+            switch (trigger.id) {
+                case "CopyName":
+                    textToCopy = copyNameFN();
+                    break;
+                case "CopyMagnetLink":
+                    textToCopy = copyMagnetLinkFN();
+                    break;
+                case "CopyHash":
+                    textToCopy = copyHashFN();
+                    break;
+            }
+
+            return textToCopy;
+        }
+    });
 }
 
 var keyboardEvents = new Keyboard({
