@@ -188,6 +188,7 @@ static const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 static const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 static const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 static const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+static const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
 
 // Statistics keys
 static const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
@@ -720,6 +721,7 @@ QByteArray btjson::getPieceStatesForTorrent(const QString &hash)
  *   - "dl_rate_limit": Download rate limit
  *   - "up_rate_limit": Upload rate limit
  *   - "dht_nodes": DHT nodes connected to
+ *   - "free_space_on_disk": Free space on the default save path
  *   - "connection_status": Connection status
  */
 QByteArray btjson::getTransferInfo()
@@ -730,6 +732,7 @@ QByteArray btjson::getTransferInfo()
 QVariantMap getTranserInfoMap()
 {
     QVariantMap map;
+
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
     const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
     map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
@@ -762,6 +765,7 @@ QVariantMap getTranserInfoMap()
     map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
     map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
+    map[KEY_TRANSFER_FREESPACEONDISK] = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->defaultSavePath());
     map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
     if (!BitTorrent::Session::instance()->isListening())
         map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
