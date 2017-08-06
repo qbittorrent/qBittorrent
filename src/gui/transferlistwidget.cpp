@@ -1091,8 +1091,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     }
     listMenu.addSeparator();
     listMenu.addAction(&actionCopy_name);
-    listMenu.addAction(&actionCopy_magnet_link);
     listMenu.addAction(&actionCopyHash);
+    listMenu.addAction(&actionCopy_magnet_link);
     // Call menu
     QAction *act = 0;
     act = listMenu.exec(QCursor::pos());
