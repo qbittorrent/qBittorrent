@@ -75,6 +75,7 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Hard Disk"),
     QT_TRANSLATE_NOOP("HttpServer", "Share ratio limit must be between 0 and 9998.")
     QT_TRANSLATE_NOOP("HttpServer", "Seeding time limit must be between 0 and 525600 minutes.")
+    QT_TRANSLATE_NOOP("HttpServer", "Set location")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
