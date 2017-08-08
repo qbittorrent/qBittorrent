@@ -73,10 +73,10 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     setIconSize(Utils::Misc::smallIconSize());
 #ifdef Q_OS_MAC
     setAttribute(Qt::WA_MacShowFocusRect, false);
+#endif
     m_defaultIndentation = indentation();
     if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
         setIndentation(0);
-#endif
     setContextMenuPolicy(Qt::CustomContextMenu);
     sortByColumn(0, Qt::AscendingOrder);
     setCurrentIndex(model()->index(0, 0));
@@ -157,12 +157,11 @@ void CategoryFilterWidget::showMenu(QPoint)
 
 void CategoryFilterWidget::callUpdateGeometry()
 {
-#ifdef Q_OS_MAC
     if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
         setIndentation(0);
     else
         setIndentation(m_defaultIndentation);
-#endif
+
     updateGeometry();
 }
 

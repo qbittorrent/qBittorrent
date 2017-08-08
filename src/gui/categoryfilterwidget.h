@@ -58,7 +58,5 @@ private:
     void rowsInserted(const QModelIndex &parent, int start, int end) override;
     QString askCategoryName();
 
-#ifdef Q_OS_MAC
     int m_defaultIndentation;
-#endif
 };
