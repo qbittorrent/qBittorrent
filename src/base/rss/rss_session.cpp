@@ -295,6 +295,20 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 
 void Session::loadLegacy()
 {
+    struct LegacySettingsDeleter
+    {
+        ~LegacySettingsDeleter()
+        {
+            auto settingsStorage = SettingsStorage::instance();
+            settingsStorage->removeValue("Rss/streamList");
+            settingsStorage->removeValue("Rss/streamAlias");
+            settingsStorage->removeValue("Rss/open_folders");
+            settingsStorage->removeValue("Rss/qt5/splitter_h");
+            settingsStorage->removeValue("Rss/qt5/splitterMain");
+            settingsStorage->removeValue("Rss/hosts_cookies");
+        }
+    } legacySettingsDeleter;
+
     const QStringList legacyFeedPaths = SettingsStorage::instance()->loadValue("Rss/streamList").toStringList();
     const QStringList feedAliases = SettingsStorage::instance()->loadValue("Rss/streamAlias").toStringList();
     if (legacyFeedPaths.size() != feedAliases.size()) {
