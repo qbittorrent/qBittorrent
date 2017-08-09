@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+include /usr/share/dpkg/buildflags.mk
+
+%:
+	dh $@ --without autoreconf --parallel
+
+override_dh_auto_configure:
+	mkdir -p build-nox && cd build-nox && ../configure --prefix=/usr --disable-gui \
+		--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+	mkdir -p build-gui && cd build-gui && ../configure --prefix=/usr \
+		--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory build-nox
+	dh_auto_build --builddirectory build-gui
+
+override_dh_auto_install:
+	sed -i '/STRIP/d' build-nox/src/Makefile
+	sed -i '/STRIP/d' build-gui/src/Makefile
+	dh_auto_install --builddirectory build-nox --destdir debian/qbittorrent-nox \
+		-- INSTALL_ROOT=$(CURDIR)/debian/qbittorrent-nox
+	dh_auto_install --builddirectory build-gui --destdir debian/qbittorrent \
+		-- INSTALL_ROOT=$(CURDIR)/debian/qbittorrent
+
+override_dh_auto_clean:
+	dh_auto_clean --builddirectory build-nox
+	dh_auto_clean --builddirectory build-gui
+
+override_dh_strip:
+	dh_strip -a --dbg-package=qbittorrent-dbg

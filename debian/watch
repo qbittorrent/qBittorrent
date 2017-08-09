@@ -1,0 +1,9 @@
+version=3
+
+#unstable: follow stable and rc releases
+opts="uversionmangle=s/rc/~rc/" \
+  http://sf.net/qbittorrent/qbittorrent-([\d\.]*(?:rc\d)?)\.tar\.xz
+
+#experimental: follow stable, rc and beta releases
+#opts="uversionmangle=s/(rc|beta)/~$1/" \
+#  http://sf.net/qbittorrent/qbittorrent-([\d\.]*(?:(?:rc|beta)\d)?)\.tar\.xz

@@ -1,0 +1,1 @@
+application/x-bittorrent; qbittorrent %s; description="BitTorrent client"; test=test -n "$DISPLAY"; nametemplate=%s.torrent
