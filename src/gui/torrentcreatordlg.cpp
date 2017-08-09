@@ -144,7 +144,7 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     QString input = Utils::Fs::fromNativePath(m_ui->textInputPath->text()).trimmed();
 
     // test if readable
-    QFileInfo fi(input);
+    const QFileInfo fi(input);
     if (!fi.isReadable()) {
         QMessageBox::critical(this, tr("Torrent creator failed"), tr("Reason: Path to file/folder is not readable."));
         return;
@@ -152,8 +152,8 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     input = fi.canonicalFilePath();
 
     // get save path
-    QString lastPath = m_storeLastSavePath;
-    QString destination = QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastPath, tr("Torrent Files (*.torrent)"));
+    const QString savePath = QString(m_storeLastSavePath) + QLatin1Char('/') + fi.fileName() + QLatin1String(".torrent");
+    QString destination = QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), savePath, tr("Torrent Files (*.torrent)"));
     if (destination.isEmpty())
         return;
     if (!destination.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
