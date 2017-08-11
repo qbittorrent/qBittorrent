@@ -263,6 +263,7 @@ Session::Session(QObject *parent)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 0)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
+    , m_guidedReadCacheEnabled(BITTORRENT_SESSION_KEY("GuidedReadCache"), true)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
@@ -1272,6 +1273,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
                                                               : libt::settings_pack::disable_os_cache;
     settingsPack.set_int(libt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(libt::settings_pack::disk_io_write_mode, mode);
+    settingsPack.set_bool(libt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
 
     settingsPack.set_bool(libt::settings_pack::anonymous_mode, isAnonymousModeEnabled());
 
@@ -1493,6 +1495,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
                                                                  : libt::session_settings::disable_os_cache;
     sessionSettings.disk_io_read_mode = mode;
     sessionSettings.disk_io_write_mode = mode;
+    sessionSettings.guided_read_cache = isGuidedReadCacheEnabled();
 
     sessionSettings.anonymous_mode = isAnonymousModeEnabled();
 
@@ -2849,6 +2852,19 @@ void Session::setUseOSCache(bool use)
         m_useOSCache = use;
         configureDeferred();
     }
+}
+
+bool Session::isGuidedReadCacheEnabled() const
+{
+    return m_guidedReadCacheEnabled;
+}
+
+void Session::setGuidedReadCacheEnabled(bool enabled)
+{
+    if (enabled == m_guidedReadCacheEnabled) return;
+
+    m_guidedReadCacheEnabled = enabled;
+    configureDeferred();
 }
 
 bool Session::isAnonymousModeEnabled() const
