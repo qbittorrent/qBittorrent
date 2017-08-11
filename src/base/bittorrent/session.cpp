@@ -312,6 +312,8 @@ Session::Session(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
+    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), 0)
+    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), 1)
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
     , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
@@ -380,7 +382,6 @@ Session::Session(QObject *parent)
     sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
     sessionSettings.connection_speed = 20; // default is 10
     sessionSettings.no_connect_privileged_ports = false;
-    sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
     // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
     // Soon to be deprecated there
     // More info: https://github.com/arvidn/libtorrent/issues/2251
@@ -411,7 +412,6 @@ Session::Session(QObject *parent)
     pack.set_int(libt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
     pack.set_int(libt::settings_pack::connection_speed, 20); // default is 10
     pack.set_bool(libt::settings_pack::no_connect_privileged_ports, false);
-    pack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
     // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
     // Soon to be deprecated there
     // More info: https://github.com/arvidn/libtorrent/issues/2251
@@ -1335,6 +1335,17 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     if (isDHTEnabled())
         settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "dht.libtorrent.org:25401,router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
+
+    switch (chokingAlgorithm()) {
+    case 0:
+    default:
+        settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::fixed_slots_choker);
+        break;
+    case 1:
+        settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::rate_based_choker);
+        break;
+    }
+    settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, seedChokingAlgorithm());
 }
 
 void Session::configurePeerClasses()
@@ -1583,6 +1594,17 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
         m_nativeSession->start_lsd();
     else
         m_nativeSession->stop_lsd();
+
+    switch (chokingAlgorithm()) {
+    case 0:
+    default:
+        sessionSettings.choking_algorithm = libt::session_settings::fixed_slots_choker;
+        break;
+    case 1:
+        sessionSettings.choking_algorithm = libt::session_settings::rate_based_choker;
+        break;
+    }
+    sessionSettings.seed_choking_algorithm = seedChokingAlgorithm();
 }
 #endif
 
@@ -2668,6 +2690,32 @@ void Session::setProxyPeerConnectionsEnabled(bool enabled)
         m_isProxyPeerConnectionsEnabled = enabled;
         configureDeferred();
     }
+}
+
+int Session::chokingAlgorithm() const
+{
+    return m_chokingAlgorithm;
+}
+
+void Session::setChokingAlgorithm(int mode)
+{
+    if (mode == m_chokingAlgorithm) return;
+
+    m_chokingAlgorithm = mode;
+    configureDeferred();
+}
+
+int Session::seedChokingAlgorithm() const
+{
+    return m_seedChokingAlgorithm;
+}
+
+void Session::setSeedChokingAlgorithm(int mode)
+{
+    if (mode == m_seedChokingAlgorithm) return;
+
+    m_seedChokingAlgorithm = mode;
+    configureDeferred();
 }
 
 bool Session::isAddTrackersEnabled() const

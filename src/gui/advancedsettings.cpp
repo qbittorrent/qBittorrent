@@ -89,6 +89,8 @@ enum AdvSettingsRows
     TRACKER_STATUS,
     TRACKER_PORT,
     // seeding
+    CHOKING_ALGORITHM,
+    SEED_CHOKING_ALGORITHM,
     SUPER_SEEDING,
     // tracker
     ANNOUNCE_ALL_TRACKERS,
@@ -187,6 +189,11 @@ void AdvancedSettings::saveAdvancedSettings()
     // Tracker
     session->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
+    // Choking algorithm
+    session->setChokingAlgorithm(comboChokingAlgorithm.currentIndex());
+    // Seed choking algorithm
+    session->setSeedChokingAlgorithm(comboSeedChokingAlgorithm.currentIndex());
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     pref->setUpdateCheckEnabled(cb_update_check.isChecked());
 #endif
@@ -390,6 +397,15 @@ void AdvancedSettings::loadAdvancedSettings()
     spin_tracker_port.setMaximum(65535);
     spin_tracker_port.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
+    // Choking algorithm
+    comboChokingAlgorithm.addItems({"Fixed slots", "Upload rate based"});
+    comboChokingAlgorithm.setCurrentIndex(session->chokingAlgorithm());
+    addRow(CHOKING_ALGORITHM, tr("Upload slots behavior"), &comboChokingAlgorithm);
+    // Seed choking algorithm
+    comboSeedChokingAlgorithm.addItems({"Round-robin", "Fastest upload", "Anti-leech"});
+    comboSeedChokingAlgorithm.setCurrentIndex(session->seedChokingAlgorithm());
+    addRow(SEED_CHOKING_ALGORITHM, tr("Upload choking algorithm"), &comboSeedChokingAlgorithm);
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     cb_update_check.setChecked(pref->isUpdateCheckEnabled());
     addRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
