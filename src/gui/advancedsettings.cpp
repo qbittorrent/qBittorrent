@@ -79,6 +79,7 @@ enum AdvSettingsRows
     DISK_CACHE_TTL,
     OS_CACHE,
     GUIDED_READ_CACHE,
+    SUGGEST_MODE,
     // ports
     MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
@@ -134,6 +135,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(cb_os_cache.isChecked());
     // Guided read cache
     session->setGuidedReadCacheEnabled(cbGuidedReadCache.isChecked());
+    // Suggest mode
+    session->setSuggestMode(cbSuggestMode.isChecked());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
@@ -297,6 +300,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Guided read cache
     cbGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
     addRow(GUIDED_READ_CACHE, tr("Guided read cache"), &cbGuidedReadCache);
+    // Suggest mode
+    cbSuggestMode.setChecked(session->isSuggestModeEnabled());
+    addRow(SUGGEST_MODE, tr("Send upload piece suggestions"), &cbSuggestMode);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
