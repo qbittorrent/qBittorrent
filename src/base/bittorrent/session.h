@@ -375,6 +375,8 @@ namespace BitTorrent
         void setUTPRateLimited(bool limited);
         int utpMixedMode() const;
         void setUtpMixedMode(int mode);
+        bool multiConnectionsPerIpEnabled() const;
+        void setMultiConnectionsPerIpEnabled(bool enabled);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
@@ -601,6 +603,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isUTPEnabled;
         CachedSettingValue<bool> m_isUTPRateLimited;
         CachedSettingValue<int> m_utpMixedMode;
+        CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
