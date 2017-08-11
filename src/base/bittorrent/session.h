@@ -341,6 +341,12 @@ namespace BitTorrent
         void setGuidedReadCacheEnabled(bool enabled);
         bool isSuggestModeEnabled() const;
         void setSuggestMode(bool mode);
+        int sendBufferWatermark() const;
+        void setSendBufferWatermark(int value);
+        int sendBufferLowWatermark() const;
+        void setSendBufferLowWatermark(int value);
+        int sendBufferWatermarkFactor() const;
+        void setSendBufferWatermarkFactor(int value);
         bool isAnonymousModeEnabled() const;
         void setAnonymousModeEnabled(bool enabled);
         bool isQueueingSystemEnabled() const;
@@ -589,6 +595,9 @@ namespace BitTorrent
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_guidedReadCacheEnabled;
         CachedSettingValue<bool> m_isSuggestMode;
+        CachedSettingValue<int> m_sendBufferWatermark;
+        CachedSettingValue<int> m_sendBufferLowWatermark;
+        CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
         CachedSettingValue<int> m_maxActiveDownloads;
