@@ -1262,9 +1262,15 @@ void Session::configurePeerClasses()
                , libt::address_v4::from_string("255.255.255.255")
                , 1 << libt::session::global_peer_class_id);
 #if TORRENT_USE_IPV6
-    f.add_rule(libt::address_v6::from_string("::0")
-               , libt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-               , 1 << libt::session::global_peer_class_id);
+    // IPv6 may not be available on OS and the parsing
+    // would result in an exception -> abnormal program termination
+    // Affects Windows XP
+    try {
+        f.add_rule(libt::address_v6::from_string("::0")
+                   , libt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                   , 1 << libt::session::global_peer_class_id);
+    }
+    catch(std::exception &) {}
 #endif
     if (ignoreLimitsOnLAN()) {
         // local networks
@@ -1286,18 +1292,24 @@ void Session::configurePeerClasses()
                    , libt::address_v4::from_string("127.255.255.255")
                    , 1 << libt::session::local_peer_class_id);
 #if TORRENT_USE_IPV6
-        // link local
-        f.add_rule(libt::address_v6::from_string("fe80::")
-                   , libt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << libt::session::local_peer_class_id);
-        // unique local addresses
-        f.add_rule(libt::address_v6::from_string("fc00::")
-                   , libt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << libt::session::local_peer_class_id);
-        // loopback
-        f.add_rule(libt::address_v6::from_string("::1")
-                   , libt::address_v6::from_string("::1")
-                   , 1 << libt::session::local_peer_class_id);
+        // IPv6 may not be available on OS and the parsing
+        // would result in an exception -> abnormal program termination
+        // Affects Windows XP
+        try {
+            // link local
+            f.add_rule(libt::address_v6::from_string("fe80::")
+                       , libt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                       , 1 << libt::session::local_peer_class_id);
+            // unique local addresses
+            f.add_rule(libt::address_v6::from_string("fc00::")
+                       , libt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                       , 1 << libt::session::local_peer_class_id);
+            // loopback
+            f.add_rule(libt::address_v6::from_string("::1")
+                       , libt::address_v6::from_string("::1")
+                       , 1 << libt::session::local_peer_class_id);
+        }
+        catch(std::exception &) {}
 #endif
     }
     m_nativeSession->set_peer_class_filter(f);
