@@ -317,6 +317,10 @@ namespace BitTorrent
         void setForceProxyEnabled(bool enabled);
         bool isProxyPeerConnectionsEnabled() const;
         void setProxyPeerConnectionsEnabled(bool enabled);
+        int chokingAlgorithm() const;
+        void setChokingAlgorithm(int mode);
+        int seedChokingAlgorithm() const;
+        void setSeedChokingAlgorithm(int mode);
         bool isAddTrackersEnabled() const;
         void setAddTrackersEnabled(bool enabled);
         QString additionalTrackers() const;
@@ -630,6 +634,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<bool> m_isForceProxyEnabled;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
+        CachedSettingValue<int> m_chokingAlgorithm;
+        CachedSettingValue<int> m_seedChokingAlgorithm;
         CachedSettingValue<QVariantMap> m_storedCategories;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<int> m_maxRatioAction;
