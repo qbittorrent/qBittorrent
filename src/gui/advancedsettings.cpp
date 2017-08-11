@@ -84,6 +84,7 @@ enum AdvSettingsRows
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
     UTP_MIX_MODE,
+    MULTI_CONNECTIONS_PER_IP,
     // embedded tracker
     TRACKER_STATUS,
     TRACKER_PORT,
@@ -138,6 +139,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setOutgoingPortsMax(outgoing_ports_max.value());
     // uTP-TCP mixed mode
     session->setUtpMixedMode(comboUtpMixedMode.currentIndex());
+    // multiple connections per IP
+    session->setMultiConnectionsPerIpEnabled(cbMultiConnectionsPerIp.isChecked());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
@@ -307,6 +310,9 @@ void AdvancedSettings::loadAdvancedSettings()
     comboUtpMixedMode.addItems({"Prefer TCP", "Peer proportional (throttles TCP)"});
     comboUtpMixedMode.setCurrentIndex(session->utpMixedMode());
     addRow(UTP_MIX_MODE, tr("uTP-TCP mixed mode algorithm"), &comboUtpMixedMode);
+    // multiple connections per IP
+    cbMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
+    addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &cbMultiConnectionsPerIp);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);

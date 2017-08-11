@@ -284,6 +284,7 @@ Session::Session(QObject *parent)
     , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
     , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), m_isUTPEnabled)
+    , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -1310,6 +1311,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
         break;
     }
 
+    settingsPack.set_bool(libt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
+
     settingsPack.set_bool(libt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
     settingsPack.set_bool(libt::settings_pack::enable_dht, isDHTEnabled());
@@ -1537,6 +1540,8 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
         sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
         break;
     }
+
+    sessionSettings.allow_multiple_connections_per_ip = multiConnectionsPerIpEnabled();
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
@@ -3113,6 +3118,19 @@ void Session::setUtpMixedMode(int mode)
     if (mode == m_utpMixedMode) return;
 
     m_utpMixedMode = mode;
+    configureDeferred();
+}
+
+bool Session::multiConnectionsPerIpEnabled() const
+{
+    return m_multiConnectionsPerIpEnabled;
+}
+
+void Session::setMultiConnectionsPerIpEnabled(bool enabled)
+{
+    if (enabled == m_multiConnectionsPerIpEnabled) return;
+
+    m_multiConnectionsPerIpEnabled = enabled;
     configureDeferred();
 }
 
