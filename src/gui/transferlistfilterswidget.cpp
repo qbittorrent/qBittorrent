@@ -89,12 +89,12 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
 
 QSize FiltersBase::sizeHint() const
 {
-    QSize size;
-    // Height should be exactly the height of the content
-    size.setHeight(((sizeHintForRow(0) + 2 * spacing()) * (count() + 0.5)));
-    // Width should be exactly the width of the content
-    size.setWidth(sizeHintForColumn(0));
-    return size;
+    return {
+        // Width should be exactly the width of the content
+        sizeHintForColumn(0),
+        // Height should be exactly the height of the content
+        static_cast<int>((sizeHintForRow(0) + 2 * spacing()) * (count() + 0.5)),
+    };
 }
 
 QSize FiltersBase::minimumSizeHint() const
