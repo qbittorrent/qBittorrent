@@ -32,14 +32,12 @@
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
+#include <QMap>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
 #include <Shellapi.h>
 #include <QtWin>
-#elif defined(Q_OS_MAC) 
-#include <objc/objc.h>
-#include <objc/message.h>
 #else
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -52,13 +50,8 @@
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelfile.h"
-
-#ifdef Q_OS_MAC
-struct NSImage;
-// This function is a private QtGui library export on macOS
-// See src/gui/painting/qcoregraphics_p.h for more details
-// QtMac::fromCGImageRef takes a CGImageRef and thus requires a double conversion
-QPixmap qt_mac_toQPixmap(const NSImage *image, const QSizeF &size);
+#if defined(Q_OS_MAC) 
+#include "macutilities.h"
 #endif
 
 namespace
@@ -113,31 +106,23 @@ namespace
         {
             const QString ext = info.suffix();
             if (!ext.isEmpty()) {
-                const QPixmap pixmap = pixmapForExtension(ext, QSize(32, 32));
-                if (!pixmap.isNull())
-                    return QIcon(pixmap);
+                auto cacheIter = m_iconCache.find(ext);
+                
+                if (cacheIter != m_iconCache.end())
+                    return *cacheIter;
+                
+                QIcon icon = QIcon(pixmapForExtension(ext, QSize(32, 32)));
+                if (!icon.isNull()) {
+                    m_iconCache.insert(ext, icon);
+                    return icon;
+                }
             }
 
             return UnifiedFileIconProvider::icon(info);
         }
 
     private:
-        QPixmap pixmapForExtension(const QString &ext, const QSize &size) const
-        {
-            QMacAutoReleasePool pool;
-            objc_object *woskspaceCls = reinterpret_cast<objc_object *>(objc_getClass("NSWorkspace"));
-            SEL sharedWorkspaceSel = sel_registerName("sharedWorkspace");
-            SEL iconForFileTypeSel = sel_registerName("iconForFileType:");
-
-            objc_object *sharedWorkspace = objc_msgSend(woskspaceCls, sharedWorkspaceSel);
-            if (sharedWorkspace) {
-                objc_object *image = objc_msgSend(sharedWorkspace, iconForFileTypeSel, ext.toNSString());
-                if (image)
-                    return qt_mac_toQPixmap(reinterpret_cast<NSImage *>(image), size);
-            }
-
-            return QPixmap();
-        }
+        mutable QMap<QString, QIcon> m_iconCache;
     };
 #else
     /**

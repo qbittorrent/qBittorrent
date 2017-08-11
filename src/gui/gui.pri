@@ -121,6 +121,11 @@ win32|macx {
     SOURCES += $$PWD/programupdater.cpp
 }
 
+macx {
+    HEADERS += $$PWD/macutilities.h
+    OBJECTIVE_SOURCES += $$PWD/macutilities.mm
+}
+
 FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/about.ui \
