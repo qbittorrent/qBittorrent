@@ -78,6 +78,7 @@ enum AdvSettingsRows
     DISK_CACHE,
     DISK_CACHE_TTL,
     OS_CACHE,
+    GUIDED_READ_CACHE,
     // ports
     MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
@@ -127,6 +128,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setDiskCacheTTL(spin_cache_ttl.value());
     // Enable OS cache
     session->setUseOSCache(cb_os_cache.isChecked());
+    // Guided read cache
+    session->setGuidedReadCacheEnabled(cbGuidedReadCache.isChecked());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
@@ -278,6 +281,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Enable OS cache
     cb_os_cache.setChecked(session->useOSCache());
     addRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
+    // Guided read cache
+    cbGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
+    addRow(GUIDED_READ_CACHE, tr("Guided read cache"), &cbGuidedReadCache);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
