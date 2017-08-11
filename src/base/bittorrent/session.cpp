@@ -265,6 +265,9 @@ Session::Session(QObject *parent)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
     , m_guidedReadCacheEnabled(BITTORRENT_SESSION_KEY("GuidedReadCache"), true)
     , m_isSuggestMode(BITTORRENT_SESSION_KEY("SuggestMode"), false)
+    , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
+    , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
+    , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY("SendBufferWatermarkFactor"), 50)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
@@ -1279,6 +1282,10 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
     settingsPack.set_bool(libt::settings_pack::suggest_mode, isSuggestModeEnabled());
 
+    settingsPack.set_int(libt::settings_pack::send_buffer_watermark, sendBufferWatermark() * 1024);
+    settingsPack.set_int(libt::settings_pack::send_buffer_low_watermark, sendBufferLowWatermark() * 1024);
+    settingsPack.set_int(libt::settings_pack::send_buffer_watermark_factor, sendBufferWatermarkFactor());
+
     settingsPack.set_bool(libt::settings_pack::anonymous_mode, isAnonymousModeEnabled());
 
     // Queueing System
@@ -1520,6 +1527,10 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.disk_io_write_mode = mode;
     sessionSettings.guided_read_cache = isGuidedReadCacheEnabled();
     sessionSettings.suggest_mode = isSuggestModeEnabled();
+
+    sessionSettings.send_buffer_watermark = sendBufferWatermark() * 1024;
+    sessionSettings.send_buffer_low_watermark = sendBufferLowWatermark() * 1024;
+    sessionSettings.send_buffer_watermark_factor = sendBufferWatermarkFactor();
 
     sessionSettings.anonymous_mode = isAnonymousModeEnabled();
 
@@ -2946,6 +2957,45 @@ void Session::setSuggestMode(bool mode)
     if (mode == m_isSuggestMode) return;
 
     m_isSuggestMode = mode;
+    configureDeferred();
+}
+
+int Session::sendBufferWatermark() const
+{
+    return m_sendBufferWatermark;
+}
+
+void Session::setSendBufferWatermark(int value)
+{
+    if (value == m_sendBufferWatermark) return;
+
+    m_sendBufferWatermark = value;
+    configureDeferred();
+}
+
+int Session::sendBufferLowWatermark() const
+{
+    return m_sendBufferLowWatermark;
+}
+
+void Session::setSendBufferLowWatermark(int value)
+{
+    if (value == m_sendBufferLowWatermark) return;
+
+    m_sendBufferLowWatermark = value;
+    configureDeferred();
+}
+
+int Session::sendBufferWatermarkFactor() const
+{
+    return m_sendBufferWatermarkFactor;
+}
+
+void Session::setSendBufferWatermarkFactor(int value)
+{
+    if (value == m_sendBufferWatermarkFactor) return;
+
+    m_sendBufferWatermarkFactor = value;
     configureDeferred();
 }
 

@@ -80,6 +80,9 @@ enum AdvSettingsRows
     OS_CACHE,
     GUIDED_READ_CACHE,
     SUGGEST_MODE,
+    SEND_BUF_WATERMARK,
+    SEND_BUF_LOW_WATERMARK,
+    SEND_BUF_WATERMARK_FACTOR,
     // ports
     MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
@@ -137,6 +140,10 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setGuidedReadCacheEnabled(cbGuidedReadCache.isChecked());
     // Suggest mode
     session->setSuggestMode(cbSuggestMode.isChecked());
+    // Send buffer watermark
+    session->setSendBufferWatermark(spinSendBufferWatermark.value());
+    session->setSendBufferLowWatermark(spinSendBufferLowWatermark.value());
+    session->setSendBufferWatermarkFactor(spinSendBufferWatermarkFactor.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
@@ -303,6 +310,22 @@ void AdvancedSettings::loadAdvancedSettings()
     // Suggest mode
     cbSuggestMode.setChecked(session->isSuggestModeEnabled());
     addRow(SUGGEST_MODE, tr("Send upload piece suggestions"), &cbSuggestMode);
+    // Send buffer watermark
+    spinSendBufferWatermark.setMinimum(1);
+    spinSendBufferWatermark.setMaximum(INT_MAX);
+    spinSendBufferWatermark.setSuffix(tr(" KiB"));
+    spinSendBufferWatermark.setValue(session->sendBufferWatermark());
+    addRow(SEND_BUF_WATERMARK, tr("Send buffer watermark"), &spinSendBufferWatermark);
+    spinSendBufferLowWatermark.setMinimum(1);
+    spinSendBufferLowWatermark.setMaximum(INT_MAX);
+    spinSendBufferLowWatermark.setSuffix(tr(" KiB"));
+    spinSendBufferLowWatermark.setValue(session->sendBufferLowWatermark());
+    addRow(SEND_BUF_LOW_WATERMARK, tr("Send buffer low watermark"), &spinSendBufferLowWatermark);
+    spinSendBufferWatermarkFactor.setMinimum(1);
+    spinSendBufferWatermarkFactor.setMaximum(INT_MAX);
+    spinSendBufferWatermarkFactor.setSuffix(" %");
+    spinSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
+    addRow(SEND_BUF_WATERMARK_FACTOR, tr("Send buffer watermark factor"), &spinSendBufferWatermarkFactor);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
