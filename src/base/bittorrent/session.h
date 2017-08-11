@@ -339,6 +339,8 @@ namespace BitTorrent
         void setUseOSCache(bool use);
         bool isGuidedReadCacheEnabled() const;
         void setGuidedReadCacheEnabled(bool enabled);
+        bool isSuggestModeEnabled() const;
+        void setSuggestMode(bool mode);
         bool isAnonymousModeEnabled() const;
         void setAnonymousModeEnabled(bool enabled);
         bool isQueueingSystemEnabled() const;
@@ -587,6 +589,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_guidedReadCacheEnabled;
+        CachedSettingValue<bool> m_isSuggestMode;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
         CachedSettingValue<int> m_maxActiveDownloads;
