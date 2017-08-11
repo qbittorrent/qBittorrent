@@ -283,6 +283,7 @@ Session::Session(QObject *parent)
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
     , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
+    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), m_isUTPEnabled)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -1299,9 +1300,15 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // uTP
     settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
     settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
-    settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, isUTPRateLimited()
-                         ? libt::settings_pack::prefer_tcp
-                         : libt::settings_pack::peer_proportional);
+    switch (utpMixedMode()) {
+    case 0:
+    default:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::prefer_tcp);
+        break;
+    case 1:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::peer_proportional);
+        break;
+    }
 
     settingsPack.set_bool(libt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
@@ -1521,9 +1528,15 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.enable_outgoing_utp = isUTPEnabled();
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
-    sessionSettings.mixed_mode_algorithm = isUTPRateLimited()
-                                           ? libt::session_settings::prefer_tcp
-                                           : libt::session_settings::peer_proportional;
+    switch (utpMixedMode()) {
+    case 0:
+    default:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
+        break;
+    case 1:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
+        break;
+    }
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
@@ -3088,6 +3101,19 @@ void Session::setUTPRateLimited(bool limited)
         m_isUTPRateLimited = limited;
         configureDeferred();
     }
+}
+
+int Session::utpMixedMode() const
+{
+    return m_utpMixedMode;
+}
+
+void Session::setUtpMixedMode(int mode)
+{
+    if (mode == m_utpMixedMode) return;
+
+    m_utpMixedMode = mode;
+    configureDeferred();
 }
 
 bool Session::isTrackerFilteringEnabled() const
