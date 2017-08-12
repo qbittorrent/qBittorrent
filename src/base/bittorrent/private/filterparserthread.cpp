@@ -444,7 +444,7 @@ int FilterParserThread::parseP2BFilterFile()
                 m_filter.add_rule(first, last, libt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch(std::exception &) {}
+            catch (std::exception &) {}
         }
     }
     else if (version == 3) {
@@ -494,7 +494,7 @@ int FilterParserThread::parseP2BFilterFile()
                 m_filter.add_rule(first, last, libt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch(std::exception &) {}
+            catch (std::exception &) {}
 
             if (m_abort) return ruleCount;
         }
@@ -553,7 +553,7 @@ void FilterParserThread::run()
     try {
         emit IPFilterParsed(ruleCount);
     }
-    catch(std::exception &) {
+    catch (std::exception &) {
         emit IPFilterError();
     }
 

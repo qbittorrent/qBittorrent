@@ -1270,7 +1270,7 @@ void Session::configurePeerClasses()
                    , libt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << libt::session::global_peer_class_id);
     }
-    catch(std::exception &) {}
+    catch (std::exception &) {}
 #endif
     if (ignoreLimitsOnLAN()) {
         // local networks
@@ -1309,7 +1309,7 @@ void Session::configurePeerClasses()
                        , libt::address_v6::from_string("::1")
                        , 1 << libt::session::local_peer_class_id);
         }
-        catch(std::exception &) {}
+        catch (std::exception &) {}
 #endif
     }
     m_nativeSession->set_peer_class_filter(f);
@@ -2696,7 +2696,7 @@ void Session::setMaxConnectionsPerTorrent(int max)
             try {
                 handle.set_max_connections(max);
             }
-            catch(std::exception) {}
+            catch (std::exception) {}
         }
     }
 }
@@ -2718,7 +2718,7 @@ void Session::setMaxUploadsPerTorrent(int max)
             try {
                 handle.set_max_uploads(max);
             }
-            catch(std::exception) {}
+            catch (std::exception) {}
         }
     }
 }
