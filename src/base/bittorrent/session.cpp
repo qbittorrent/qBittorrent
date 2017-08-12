@@ -41,6 +41,7 @@
 #include <QString>
 #include <QThread>
 #include <QTimer>
+#include <QUuid>
 
 #include <cstdlib>
 #include <queue>
@@ -92,6 +93,14 @@
 #include "tracker.h"
 #include "trackerentry.h"
 
+#ifdef Q_OS_WIN
+#include <iphlpapi.h>
+#endif
+
+#if _WIN32_WINNT < 0x0600
+using NETIO_STATUS = LONG;
+#endif
+
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
 static const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
@@ -108,6 +117,10 @@ namespace
     void torrentQueuePositionDown(const libt::torrent_handle &handle);
     void torrentQueuePositionTop(const libt::torrent_handle &handle);
     void torrentQueuePositionBottom(const libt::torrent_handle &handle);
+
+#ifdef Q_OS_WIN
+    QString convertIfaceNameToGuid(const QString &name);
+#endif
 
     inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
 
@@ -1103,6 +1116,10 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 {
     Logger* const logger = Logger::instance();
 
+#ifdef Q_OS_WIN
+    QString chosenIP;
+#endif
+
     if (m_listenInterfaceChanged) {
         const ushort port = this->port();
         std::pair<int, int> ports(port, port);
@@ -1132,11 +1149,31 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
                                    .arg(ip).arg(port)
                                    , Log::INFO);
                 settingsPack.set_str(libt::settings_pack::listen_interfaces, interfacesStr);
+#ifdef Q_OS_WIN
+                chosenIP = ip;
+#endif
                 break;
             }
         }
 
+#ifdef Q_OS_WIN
+        // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
+        // the interface's Luid and not the GUID.
+        // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
+        if (!networkInterface().isEmpty()) {
+            QString guid = convertIfaceNameToGuid(networkInterface());
+            if (!guid.isEmpty()) {
+                settingsPack.set_str(libt::settings_pack::outgoing_interfaces, guid.toStdString());
+            }
+            else {
+                settingsPack.set_str(libt::settings_pack::outgoing_interfaces, chosenIP.toStdString());
+                LogMsg(tr("Could not get GUID of configured network interface. Binding to IP %1").arg(chosenIP)
+                       , Log::WARNING);
+            }
+        }
+#else
         settingsPack.set_str(libt::settings_pack::outgoing_interfaces, networkInterface().toStdString());
+#endif
         m_listenInterfaceChanged = false;
     }
 
@@ -2510,10 +2547,10 @@ QString Session::networkInterface() const
     return m_networkInterface;
 }
 
-void Session::setNetworkInterface(const QString &interface)
+void Session::setNetworkInterface(const QString &iface)
 {
-    if (interface != networkInterface()) {
-        m_networkInterface = interface;
+    if (iface != networkInterface()) {
+        m_networkInterface = iface;
         configureListeningInterface();
     }
 }
@@ -4104,4 +4141,32 @@ namespace
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
+
+#ifdef Q_OS_WIN
+    QString convertIfaceNameToGuid(const QString &name)
+    {
+        // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
+        QUuid uuid(name);
+        if (!uuid.isNull())
+            return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
+
+        using PCONVERTIFACENAMETOLUID = NETIO_STATUS (WINAPI *)(const WCHAR *, PNET_LUID);
+        PCONVERTIFACENAMETOLUID ConvertIfaceNameToLuid = reinterpret_cast<PCONVERTIFACENAMETOLUID>(::GetProcAddress(::GetModuleHandleW(L"Iphlpapi.dll"), "ConvertInterfaceNameToLuidW"));
+        if (!ConvertIfaceNameToLuid) return QString();
+
+        using PCONVERTIFACELUIDTOGUID = NETIO_STATUS (WINAPI *)(const NET_LUID *, GUID *);
+        PCONVERTIFACELUIDTOGUID ConvertIfaceLuidToGuid = reinterpret_cast<PCONVERTIFACELUIDTOGUID>(::GetProcAddress(::GetModuleHandleW(L"Iphlpapi.dll"), "ConvertInterfaceLuidToGuid"));
+        if (!ConvertIfaceLuidToGuid) return QString();
+
+        NET_LUID luid;
+        LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
+        if (res == 0) {
+            GUID guid;
+            if (ConvertIfaceLuidToGuid(&luid, &guid) == 0)
+                return QUuid(guid).toString().toUpper();
+        }
+
+        return QString();
+    }
+#endif
 }
