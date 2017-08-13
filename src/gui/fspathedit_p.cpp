@@ -42,6 +42,8 @@ Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
     , m_directoriesOnly(false)
     , m_checkReadPermission(false)
     , m_checkWritePermission(false)
+    , m_lastTestResult(TestResult::DoesNotExist)
+    , m_lastValidationState(QValidator::Invalid)
 {
 }
 
