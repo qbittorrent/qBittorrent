@@ -116,6 +116,9 @@ AS_CASE(["x$enable_webui"],
         AC_MSG_ERROR([Unknown option "$enable_webui". Use either "yes" or "no".])])
 
 FIND_QT5()
+AS_IF([test "x$QT_QMAKE" = "x"],
+      [AC_MSG_ERROR([Could not find qmake])
+      ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
         ["xyes"],
