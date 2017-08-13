@@ -249,7 +249,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         int peerCount = 0;
         foreach (const BitTorrent::PeerAddress &addr, peersList) {
             if (torrent->connectPeer(addr)) {
-                qDebug("Adding peer %s...", qPrintable(addr.ip.toString()));
+                qDebug("Adding peer %s...", qUtf8Printable(addr.ip.toString()));
                 Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
                 peerCount++;
             }
@@ -442,7 +442,7 @@ void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
 {
     QStandardItem *item = m_peerItems.value(ip, 0);
     if (item) {
-        qDebug("Resolved %s -> %s", qPrintable(ip), qPrintable(hostname));
+        qDebug("Resolved %s -> %s", qUtf8Printable(ip), qUtf8Printable(hostname));
         item->setData(hostname, Qt::DisplayRole);
     }
 }

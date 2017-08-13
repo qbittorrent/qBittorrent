@@ -353,7 +353,7 @@ void ScanFoldersModel::configure()
 void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 {
     foreach (const QString &file, pathList) {
-        qDebug("File %s added", qPrintable(file));
+        qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;
         if (downloadInWatchFolder(file))
@@ -372,7 +372,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
                 Utils::Fs::forceRemove(file);
             }
             else {
-                qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
+                qDebug("Failed to open magnet file: %s", qUtf8Printable(f.errorString()));
             }
         }
         else {
@@ -382,7 +382,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
                 Utils::Fs::forceRemove(file);
             }
             else {
-                qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));
+                qDebug("Ignoring incomplete torrent file: %s", qUtf8Printable(file));
             }
         }
     }

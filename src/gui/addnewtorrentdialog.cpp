@@ -476,7 +476,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         const QString newFilePath = oldFilePath.leftRef(oldFilePath.size() - oldFileName.size()) + newName;
 
         if (oldFileName == newName) {
-            qDebug("Name did not change: %s", qPrintable(oldFileName));
+            qDebug("Name did not change: %s", qUtf8Printable(oldFileName));
             return;
         }
 
@@ -491,7 +491,7 @@ void AddNewTorrentDialog::renameSelectedFile()
             }
         }
 
-        qDebug("Renaming %s to %s", qPrintable(oldFilePath), qPrintable(newFilePath));
+        qDebug("Renaming %s to %s", qUtf8Printable(oldFilePath), qUtf8Printable(newFilePath));
         m_torrentInfo.renameFile(fileIndex, newFilePath);
 
         m_contentModel->setData(modelIndex, newName);
@@ -535,7 +535,7 @@ void AddNewTorrentDialog::renameSelectedFile()
                 QString newName = currentName;
                 newName.replace(0, oldPath.length(), newPath);
                 newName = Utils::Fs::expandPath(newName);
-                qDebug("Rename %s to %s", qPrintable(currentName), qPrintable(newName));
+                qDebug("Rename %s to %s", qUtf8Printable(currentName), qUtf8Printable(newName));
                 m_torrentInfo.renameFile(i, newName);
             }
         }

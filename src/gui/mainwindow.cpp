@@ -1247,7 +1247,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     // Download torrents
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (const QString &file, torrentFiles) {
-        qDebug("Dropped file %s on download list", qPrintable(file));
+        qDebug("Dropped file %s on download list", qUtf8Printable(file));
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(file, this);
         else
@@ -1341,7 +1341,7 @@ void MainWindow::on_actionOpen_triggered()
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {
-            qDebug("Dropped file %s on download list", qPrintable(file));
+            qDebug("Dropped file %s on download list", qUtf8Printable(file));
             if (useTorrentAdditionDialog)
                 AddNewTorrentDialog::show(file, this);
             else
@@ -2027,7 +2027,7 @@ bool MainWindow::addPythonPathToEnv()
         if (pathEnvar.isNull())
             pathEnvar = "";
         pathEnvar = pythonPath + ";" + pathEnvar;
-        qDebug("New PATH envvar is: %s", qPrintable(pathEnvar));
+        qDebug("New PATH envvar is: %s", qUtf8Printable(pathEnvar));
         qputenv("PATH", Utils::Fs::toNativePath(pathEnvar).toLocal8Bit());
         return true;
     }

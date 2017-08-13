@@ -380,12 +380,12 @@ void TransferListWidget::setSelectedTorrentsLocation()
     if (torrents.isEmpty()) return;
 
     const QString oldLocation = torrents[0]->savePath();
-    qDebug("Old location is %s", qPrintable(oldLocation));
+    qDebug("Old location is %s", qUtf8Printable(oldLocation));
 
     const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
                                             QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
     if (newLocation.isEmpty() || !QDir(newLocation).exists()) return;
-    qDebug("New location is %s", qPrintable(newLocation));
+    qDebug("New location is %s", qUtf8Printable(newLocation));
 
     // Actually move storage
     foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
@@ -592,7 +592,7 @@ void TransferListWidget::setDlLimitSelectedTorrents()
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
+        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qUtf8Printable(torrent->hash()));
         torrent->setDownloadLimit(newLimit);
     }
 }
@@ -617,7 +617,7 @@ void TransferListWidget::setUpLimitSelectedTorrents()
     if (!ok) return;
 
     foreach (BitTorrent::TorrentHandle *const torrent, TorrentsList) {
-        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qPrintable(torrent->hash()));
+        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qUtf8Printable(torrent->hash()));
         torrent->setUploadLimit(newLimit);
     }
 }
@@ -1174,7 +1174,7 @@ void TransferListWidget::applyStatusFilter(int f)
     nameFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
-        qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TorrentModel::TR_NAME).data().toString()));
+        qDebug("Nothing is selected, selecting first row: %s", qUtf8Printable(nameFilterModel->index(0, TorrentModel::TR_NAME).data().toString()));
         selectionModel()->setCurrentIndex(nameFilterModel->index(0, TorrentModel::TR_NAME), QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
     }
 }

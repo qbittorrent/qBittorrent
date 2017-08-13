@@ -143,7 +143,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
 void AbstractWebApplication::UnbanTimerEvent()
 {
     UnbanTimer* ubantimer = static_cast<UnbanTimer*>(sender());
-    qDebug("Ban period has expired for %s", qPrintable(ubantimer->peerIp().toString()));
+    qDebug("Ban period has expired for %s", qUtf8Printable(ubantimer->peerIp().toString()));
     clientFailedAttempts_.remove(ubantimer->peerIp());
     ubantimer->deleteLater();
 }
@@ -201,7 +201,7 @@ bool AbstractWebApplication::readFile(const QString& path, QByteArray &data, QSt
     else {
         QFile file(path);
         if (!file.open(QIODevice::ReadOnly)) {
-            qDebug("File %s was not found!", qPrintable(path));
+            qDebug("File %s was not found!", qUtf8Printable(path));
             return false;
         }
 

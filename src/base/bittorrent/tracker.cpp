@@ -109,14 +109,14 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 {
     clear(); // clear response
 
-    //qDebug("Tracker received the following request:\n%s", qPrintable(parser.toString()));
+    //qDebug("Tracker received the following request:\n%s", qUtf8Printable(parser.toString()));
     // Is request a GET request?
     if (request.method != "GET") {
-        qDebug("Tracker: Unsupported HTTP request: %s", qPrintable(request.method));
+        qDebug("Tracker: Unsupported HTTP request: %s", qUtf8Printable(request.method));
         status(100, "Invalid request type");
     }
     else if (!request.path.startsWith("/announce", Qt::CaseInsensitive)) {
-        qDebug("Tracker: Unrecognized path: %s", qPrintable(request.path));
+        qDebug("Tracker: Unrecognized path: %s", qUtf8Printable(request.path));
         status(100, "Invalid request type");
     }
     else {
@@ -146,7 +146,7 @@ void Tracker::respondToAnnounceRequest()
     annonceReq.infoHash = gets.value("info_hash");
     // info_hash cannot be longer than 20 bytes
     /*if (annonce_req.info_hash.toLatin1().length() > 20) {
-        qDebug("Tracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
+        qDebug("Tracker: Info_hash is not 20 byte long: %s (%d)", qUtf8Printable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
         status(150, "Invalid infohash");
         return;
       }*/
@@ -160,7 +160,7 @@ void Tracker::respondToAnnounceRequest()
     annonceReq.peer.peerId = gets.value("peer_id");
     // peer_id cannot be longer than 20 bytes
     /*if (annonce_req.peer.peer_id.length() > 20) {
-        qDebug("Tracker: peer_id is not 20 byte long: %s", qPrintable(annonce_req.peer.peer_id));
+        qDebug("Tracker: peer_id is not 20 byte long: %s", qUtf8Printable(annonce_req.peer.peer_id));
         status(151, "Invalid peerid");
         return;
       }*/
@@ -183,7 +183,7 @@ void Tracker::respondToAnnounceRequest()
     annonceReq.event = "";
     if (gets.contains("event")) {
         annonceReq.event = gets.value("event");
-        qDebug("Tracker: event is %s", qPrintable(annonceReq.event));
+        qDebug("Tracker: event is %s", qUtf8Printable(annonceReq.event));
     }
 
     // 5. Get numwant

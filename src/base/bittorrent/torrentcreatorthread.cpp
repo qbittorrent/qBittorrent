@@ -135,7 +135,7 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         // create the torrent and print it to out
-        qDebug("Saving to %s", qPrintable(m_savePath));
+        qDebug("Saving to %s", qUtf8Printable(m_savePath));
 #ifdef _MSC_VER
         wchar_t *savePathW = new wchar_t[m_savePath.length() + 1];
         int len = Utils::Fs::toNativePath(m_savePath).toWCharArray(savePathW);

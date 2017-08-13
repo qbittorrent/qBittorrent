@@ -1426,7 +1426,7 @@ void TorrentHandle::resume(bool forced)
 void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
 {
     if (isMoveInProgress()) {
-        qDebug("enqueue move storage to %s", qPrintable(newPath));
+        qDebug("enqueue move storage to %s", qUtf8Printable(newPath));
         m_moveStorageInfo.queuedPath = newPath;
         m_moveStorageInfo.queuedOverwrite = overwrite;
     }
@@ -1434,7 +1434,7 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
         const QString oldPath = nativeActualSavePath();
         if (QDir(oldPath) == QDir(newPath)) return;
 
-        qDebug("move storage: %s to %s", qPrintable(oldPath), qPrintable(newPath));
+        qDebug("move storage: %s to %s", qUtf8Printable(oldPath), qUtf8Printable(newPath));
         // Actually move the storage
         m_nativeHandle.move_storage(newPath.toUtf8().constData()
                                     , (overwrite ? libt::always_replace_files : libt::dont_replace));
@@ -1506,7 +1506,8 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
         return;
     }
 
-    qDebug("Torrent is successfully moved from %s to %s", qPrintable(m_moveStorageInfo.oldPath), qPrintable(m_moveStorageInfo.newPath));
+    qDebug("Torrent is successfully moved from %s to %s"
+        , qUtf8Printable(m_moveStorageInfo.oldPath), qUtf8Printable(m_moveStorageInfo.newPath));
     const QDir oldDir {m_moveStorageInfo.oldPath};
     if ((oldDir == QDir(m_session->torrentTempPath(info())))
             && (oldDir != QDir(m_session->tempPath()))) {
@@ -1559,7 +1560,7 @@ void TorrentHandle::handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p)
 #else
     QString trackerUrl(p->tracker_url());
 #endif
-    qDebug("Received a tracker reply from %s (Num_peers = %d)", qPrintable(trackerUrl), p->num_peers);
+    qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
     m_trackerInfos[trackerUrl].numPeers = p->num_peers;
@@ -1576,7 +1577,7 @@ void TorrentHandle::handleTrackerWarningAlert(libtorrent::tracker_warning_alert 
     QString trackerUrl(p->tracker_url());
     QString message = QString::fromStdString(p->message());
 #endif
-    qDebug("Received a tracker warning for %s: %s", qPrintable(trackerUrl), qPrintable(message));
+    qDebug("Received a tracker warning for %s: %s", qUtf8Printable(trackerUrl), qUtf8Printable(message));
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
 
@@ -1592,7 +1593,7 @@ void TorrentHandle::handleTrackerErrorAlert(libtorrent::tracker_error_alert *p)
     QString trackerUrl(p->tracker_url());
     QString message = QString::fromStdString(p->message());
 #endif
-    qDebug("Received a tracker error for %s: %s", qPrintable(trackerUrl), qPrintable(message));
+    qDebug("Received a tracker error for %s: %s", qUtf8Printable(trackerUrl), qUtf8Printable(message));
     m_trackerInfos[trackerUrl].lastMessage = message;
 
     if (p->status_code == 401)
@@ -1604,7 +1605,7 @@ void TorrentHandle::handleTrackerErrorAlert(libtorrent::tracker_error_alert *p)
 void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("%s have just finished checking", qPrintable(hash()));
+    qDebug("%s have just finished checking", qUtf8Printable(hash()));
 
     updateStatus();
 
@@ -1627,7 +1628,7 @@ void TorrentHandle::handleTorrentCheckedAlert(libtorrent::torrent_checked_alert 
 void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("Got a torrent finished alert for %s", qPrintable(name()));
+    qDebug("Got a torrent finished alert for %s", qUtf8Printable(name()));
     qDebug("Torrent has seed status: %s", m_hasSeedStatus ? "yes" : "no");
     if (m_hasSeedStatus) return;
 
@@ -1711,7 +1712,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(libtorrent::save_resume_data
 
 void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert *p)
 {
-    qDebug("/!\\ Fast resume failed for %s, reason: %s", qPrintable(name()), p->message().c_str());
+    qDebug("/!\\ Fast resume failed for %s, reason: %s", qUtf8Printable(name()), p->message().c_str());
     Logger *const logger = Logger::instance();
 
     updateStatus();
@@ -1746,9 +1747,9 @@ void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
         newPathParts.removeLast();
         QString newPath = newPathParts.join("/");
         if (!newPathParts.isEmpty() && (oldPath != newPath)) {
-            qDebug("oldPath(%s) != newPath(%s)", qPrintable(oldPath), qPrintable(newPath));
+            qDebug("oldPath(%s) != newPath(%s)", qUtf8Printable(oldPath), qUtf8Printable(newPath));
             oldPath = QString("%1/%2").arg(savePath(true)).arg(oldPath);
-            qDebug("Detected folder renaming, attempt to delete old folder: %s", qPrintable(oldPath));
+            qDebug("Detected folder renaming, attempt to delete old folder: %s", qUtf8Printable(oldPath));
             QDir().rmpath(oldPath);
         }
     }
@@ -1773,13 +1774,13 @@ void TorrentHandle::handleFileCompletedAlert(libtorrent::file_completed_alert *p
 {
     updateStatus();
 
-    qDebug("A file completed download in torrent \"%s\"", qPrintable(name()));
+    qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled()) {
         QString name = filePath(p->index);
         if (name.endsWith(QB_EXT)) {
             const QString oldName = name;
             name.chop(QB_EXT.size());
-            qDebug("Renaming %s to %s", qPrintable(oldName), qPrintable(name));
+            qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
             renameFile(p->index, name);
         }
     }
@@ -1796,7 +1797,7 @@ void TorrentHandle::handleStatsAlert(libtorrent::stats_alert *p)
 void TorrentHandle::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("Metadata received for torrent %s.", qPrintable(name()));
+    qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
     updateStatus();
     if (m_session->isAppendExtensionEnabled())
         manageIncompleteFiles();
