@@ -153,7 +153,7 @@ void ProxyConfigurationManager::configureProxy()
         }
 
         qDebug("HTTP communications proxy string: %s"
-               , qPrintable((m_config.type == ProxyType::SOCKS5) || (m_config.type == ProxyType::SOCKS5_PW)
+               , qUtf8Printable((m_config.type == ProxyType::SOCKS5) || (m_config.type == ProxyType::SOCKS5_PW)
                             ? proxyStrSOCK : proxyStrHTTP));
     }
 

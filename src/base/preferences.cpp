@@ -853,12 +853,12 @@ namespace {
                 delete[] lpSubkey;
 
                 if (res == ERROR_SUCCESS) {
-                    qDebug("Detected possible Python v%s location", qPrintable(version));
+                    qDebug("Detected possible Python v%s location", qUtf8Printable(version));
                     path = getRegValue(hkInstallPath);
                     ::RegCloseKey(hkInstallPath);
 
                     if (!path.isEmpty() && QDir(path).exists("python.exe")) {
-                        qDebug("Found python.exe at %s", qPrintable(path));
+                        qDebug("Found python.exe at %s", qUtf8Printable(path));
                         found = true;
                     }
                 }
@@ -931,7 +931,7 @@ bool Preferences::isMagnetLinkAssocSet()
     if (exe_reg.indexIn(shell_command) < 0)
         return false;
     QString assoc_exe = exe_reg.cap(1);
-    qDebug("exe: %s", qPrintable(assoc_exe));
+    qDebug("exe: %s", qUtf8Printable(assoc_exe));
     if (assoc_exe.compare(Utils::Fs::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
         return false;
 

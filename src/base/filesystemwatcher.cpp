@@ -71,7 +71,7 @@ void FileSystemWatcher::addPath(const QString &path)
     // Check if the path points to a network file system or not
     if (isNetworkFileSystem(path)) {
         // Network mode
-        qDebug("Network folder detected: %s", qPrintable(path));
+        qDebug("Network folder detected: %s", qUtf8Printable(path));
         qDebug("Using file polling mode instead of inotify...");
         m_watchedFolders << dir;
         // Set up the watch timer
@@ -84,7 +84,7 @@ void FileSystemWatcher::addPath(const QString &path)
     else {
 #endif
         // Normal mode
-        qDebug("FS Watching is watching %s in normal mode", qPrintable(path));
+        qDebug("FS Watching is watching %s in normal mode", qUtf8Printable(path));
         QFileSystemWatcher::addPath(path);
         scanLocalFolder(path);
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
@@ -111,13 +111,13 @@ void FileSystemWatcher::removePath(const QString &path)
 
 void FileSystemWatcher::scanLocalFolder(QString path)
 {
-    qDebug("scanLocalFolder(%s) called", qPrintable(path));
+    qDebug("scanLocalFolder(%s) called", qUtf8Printable(path));
     QStringList torrents;
     // Local folders scan
     addTorrentsFromDir(QDir(path), torrents);
     // Report detected torrent files
     if (!torrents.empty()) {
-        qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
+        qDebug("The following files are being reported: %s", qUtf8Printable(torrents.join("\n")));
         emit torrentsAdded(torrents);
     }
 }
@@ -129,12 +129,12 @@ void FileSystemWatcher::scanNetworkFolders()
     QStringList torrents;
     // Network folders scan
     foreach (const QDir &dir, m_watchedFolders) {
-        //qDebug("FSWatcher: Polling manually folder %s", qPrintable(dir.path()));
+        //qDebug("FSWatcher: Polling manually folder %s", qUtf8Printable(dir.path()));
         addTorrentsFromDir(dir, torrents);
     }
     // Report detected torrent files
     if (!torrents.empty()) {
-        qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
+        qDebug("The following files are being reported: %s", qUtf8Printable(torrents.join("\n")));
         emit torrentsAdded(torrents);
     }
 #endif
@@ -201,7 +201,7 @@ void FileSystemWatcher::addTorrentsFromDir(const QDir &dir, QStringList &torrent
             torrents << fileAbsPath;
         }
         else if (!m_partialTorrents.contains(fileAbsPath)) {
-            qDebug("Partial torrent detected at: %s", qPrintable(fileAbsPath));
+            qDebug("Partial torrent detected at: %s", qUtf8Printable(fileAbsPath));
             qDebug("Delay the file's processing...");
             m_partialTorrents.insert(fileAbsPath, 0);
         }

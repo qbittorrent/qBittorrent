@@ -514,7 +514,7 @@ void PropertiesWidget::loadUrlSeeds()
     const QList<QUrl> hc_seeds = m_torrent->urlSeeds();
     // Add url seeds
     foreach (const QUrl &hc_seed, hc_seeds) {
-        qDebug("Loading URL seed: %s", qPrintable(hc_seed.toString()));
+        qDebug("Loading URL seed: %s", qUtf8Printable(hc_seed.toString()));
         new QListWidgetItem(hc_seed.toString(), m_ui->listWebSeeds);
     }
 }
@@ -535,7 +535,7 @@ void PropertiesWidget::openFile(const QModelIndex &index)
     const QDir saveDir(m_torrent->savePath(true));
     const QString filename = m_torrent->filePath(i);
     const QString file_path = Utils::Fs::expandPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open file at %s", qPrintable(file_path));
+    qDebug("Trying to open file at %s", qUtf8Printable(file_path));
     // Flush data
     m_torrent->flushCache();
     Utils::Misc::openPath(file_path);
@@ -704,7 +704,7 @@ void PropertiesWidget::renameSelectedFile()
         const QString newFilePath = oldFilePath.leftRef(oldFilePath.size() - oldFileName.size()) + newFileName;
 
         if (oldFileName == newFileName) {
-            qDebug("Name did not change: %s", qPrintable(oldFileName));
+            qDebug("Name did not change: %s", qUtf8Printable(oldFileName));
             return;
         }
 
@@ -719,7 +719,7 @@ void PropertiesWidget::renameSelectedFile()
             }
         }
 
-        qDebug("Renaming %s to %s", qPrintable(oldFilePath), qPrintable(newFilePath));
+        qDebug("Renaming %s to %s", qUtf8Printable(oldFilePath), qUtf8Printable(newFilePath));
         m_torrent->renameFile(fileIndex, newFilePath);
 
         PropListModel->setData(modelIndex, newName);
@@ -766,7 +766,7 @@ void PropertiesWidget::renameSelectedFile()
                 if (!forceRecheck && QDir(m_torrent->savePath(true)).exists(newName))
                     forceRecheck = true;
                 newName = Utils::Fs::expandPath(newName);
-                qDebug("Rename %s to %s", qPrintable(currentName), qPrintable(newName));
+                qDebug("Rename %s to %s", qUtf8Printable(currentName), qUtf8Printable(newName));
                 m_torrent->renameFile(i, newName);
             }
         }
@@ -801,7 +801,7 @@ void PropertiesWidget::askWebSeed()
                                                            tr("New URL seed:"), QLineEdit::Normal,
                                                            QString::fromUtf8("http://www."), &ok);
     if (!ok) return;
-    qDebug("Adding %s web seed", qPrintable(url_seed));
+    qDebug("Adding %s web seed", qUtf8Printable(url_seed));
     if (!m_ui->listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
         QMessageBox::warning(this, "qBittorrent",
                              tr("This URL seed is already in the list."),

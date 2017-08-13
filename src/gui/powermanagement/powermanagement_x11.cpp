@@ -136,7 +136,7 @@ void PowerManagementInhibitor::OnAsyncReply(QDBusPendingCallWatcher *call)
 
         if (reply.isError())
         {
-            qDebug("D-Bus: Reply: Error: %s", qPrintable(reply.error().message()));
+            qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
             m_state = error;
         }
         else
@@ -152,7 +152,7 @@ void PowerManagementInhibitor::OnAsyncReply(QDBusPendingCallWatcher *call)
 
         if (reply.isError())
         {
-            qDebug("D-Bus: Reply: Error: %s", qPrintable(reply.error().message()));
+            qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
 
             if (!m_use_gsm)
             {

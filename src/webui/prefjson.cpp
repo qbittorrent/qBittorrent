@@ -226,10 +226,10 @@ void prefjson::setPreferences(const QString& json)
 
             if (ec == ScanFoldersModel::Ok) {
                 scanDirs.insert(folder, (downloadType == ScanFoldersModel::CUSTOM_LOCATION) ? QVariant(downloadPath) : QVariant(downloadType));
-                qDebug("New watched folder: %s to %s", qPrintable(folder), qPrintable(downloadPath));
+                qDebug("New watched folder: %s to %s", qUtf8Printable(folder), qUtf8Printable(downloadPath));
             }
             else {
-                qDebug("Watched folder %s failed with error %d", qPrintable(folder), ec);
+                qDebug("Watched folder %s failed with error %d", qUtf8Printable(folder), ec);
             }
         }
 
@@ -238,7 +238,7 @@ void prefjson::setPreferences(const QString& json)
             QString folder = folderVariant.toString();
             if (!scanDirs.contains(folder)) {
                 model->removePath(folder);
-                qDebug("Removed watched folder %s", qPrintable(folder));
+                qDebug("Removed watched folder %s", qUtf8Printable(folder));
             }
         }
         pref->setScanDirs(scanDirs);
@@ -387,9 +387,9 @@ void prefjson::setPreferences(const QString& json)
         if (pref->getLocale() != locale) {
             QTranslator *translator = new QTranslator;
             if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
-                qDebug("%s locale recognized, using translation.", qPrintable(locale));
+                qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
             }else{
-                qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
+                qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
             }
             qApp->installTranslator(translator);
 

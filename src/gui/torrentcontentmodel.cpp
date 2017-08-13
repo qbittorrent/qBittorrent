@@ -280,7 +280,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
         TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
-        qDebug("setData(%s, %d", qPrintable(item->name()), value.toInt());
+        qDebug("setData(%s, %d", qUtf8Printable(item->name()), value.toInt());
         if (item->priority() != value.toInt()) {
             if (value.toInt() == Qt::PartiallyChecked)
                 item->setPriority(prio::MIXED);

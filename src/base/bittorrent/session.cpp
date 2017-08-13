@@ -1658,7 +1658,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
 
-    qDebug("Deleting torrent with hash: %s", qPrintable(torrent->hash()));
+    qDebug("Deleting torrent with hash: %s", qUtf8Printable(torrent->hash()));
     emit torrentAboutToBeRemoved(torrent);
 
     // Remove it from session
@@ -1683,10 +1683,10 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 #endif
         // Remove unwanted and incomplete files
         foreach (const QString &unwantedFile, unwantedFiles) {
-            qDebug("Removing unwanted file: %s", qPrintable(unwantedFile));
+            qDebug("Removing unwanted file: %s", qUtf8Printable(unwantedFile));
             Utils::Fs::forceRemove(unwantedFile);
             const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
-            qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parentFolder));
+            qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
             QDir().rmpath(parentFolder);
         }
     }
@@ -1954,7 +1954,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     }
 
     qDebug("Adding torrent...");
-    qDebug(" -> Hash: %s", qPrintable(hash));
+    qDebug(" -> Hash: %s", qUtf8Printable(hash));
 
     // Preallocation mode
     if (isPreallocationEnabled())
@@ -2031,8 +2031,8 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     if (m_loadedMetadata.contains(hash)) return false;
 
     qDebug("Adding torrent to preload metadata...");
-    qDebug(" -> Hash: %s", qPrintable(hash));
-    qDebug(" -> Name: %s", qPrintable(name));
+    qDebug(" -> Hash: %s", qUtf8Printable(hash));
+    qDebug(" -> Name: %s", qUtf8Printable(name));
 
     libt::add_torrent_params p = magnetUri.addTorrentParams();
 
@@ -2114,7 +2114,7 @@ void Session::generateResumeData(bool final)
         if (!final && !torrent->needSaveResumeData()) continue;
 
         saveTorrentResumeData(torrent, final);
-        qDebug("Saving fastresume data for %s", qPrintable(torrent->name()));
+        qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
     }
 }
 
@@ -2237,7 +2237,7 @@ const QStringList Session::getListeningIPs()
     // Attempt to listen on provided interface
     const QNetworkInterface networkIFace = QNetworkInterface::interfaceFromName(ifaceName);
     if (!networkIFace.isValid()) {
-        qDebug("Invalid network interface: %s", qPrintable(ifaceName));
+        qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
         logger->addMessage(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
         return IPs;
@@ -3189,7 +3189,7 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         if (torrentRelpath.endsWith(".torrent", Qt::CaseInsensitive)) {
             qDebug("Found possible recursive torrent download.");
             const QString torrentFullpath = torrent->savePath(true) + "/" + torrentRelpath;
-            qDebug("Full subtorrent path is %s", qPrintable(torrentFullpath));
+            qDebug("Full subtorrent path is %s", qUtf8Printable(torrentFullpath));
             TorrentInfo torrentInfo = TorrentInfo::loadFromFile(torrentFullpath);
             if (torrentInfo.isValid()) {
                 qDebug("emitting recursiveTorrentDownloadPossible()");
@@ -3996,7 +3996,7 @@ namespace
     {
         QFile file(path);
         if (!file.open(QIODevice::ReadOnly)) {
-            qDebug("Cannot read file %s: %s", qPrintable(path), qPrintable(file.errorString()));
+            qDebug("Cannot read file %s: %s", qUtf8Printable(path), qUtf8Printable(file.errorString()));
             return false;
         }
 

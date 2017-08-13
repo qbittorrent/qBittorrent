@@ -73,11 +73,11 @@ QString DownloadHandler::url() const
 void DownloadHandler::processFinishedDownload()
 {
     QString url = m_reply->url().toString();
-    qDebug("Download finished: %s", qPrintable(url));
+    qDebug("Download finished: %s", qUtf8Printable(url));
     // Check if the request was successful
     if (m_reply->error() != QNetworkReply::NoError) {
         // Failure
-        qDebug("Download failure (%s), reason: %s", qPrintable(url), qPrintable(errorCodeToString(m_reply->error())));
+        qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
         emit downloadFailed(m_url, errorCodeToString(m_reply->error()));
         this->deleteLater();
     }
@@ -150,7 +150,7 @@ bool DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)
 
     tmpfile->setAutoRemove(false);
     filePath = tmpfile->fileName();
-    qDebug("Temporary filename is: %s", qPrintable(filePath));
+    qDebug("Temporary filename is: %s", qUtf8Printable(filePath));
     if (m_reply->isOpen() || m_reply->open(QIODevice::ReadOnly)) {
         tmpfile->write(replyData);
         tmpfile->close();
@@ -174,7 +174,7 @@ void DownloadHandler::handleRedirection(QUrl newUrl)
         newUrl = m_reply->url().resolved(newUrl);
 
     const QString newUrlString = newUrl.toString();
-    qDebug("Redirecting from %s to %s", qPrintable(m_reply->url().toString()), qPrintable(newUrlString));
+    qDebug("Redirecting from %s to %s", qUtf8Printable(m_reply->url().toString()), qUtf8Printable(newUrlString));
 
     // Redirect to magnet workaround
     if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {

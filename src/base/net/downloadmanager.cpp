@@ -143,7 +143,7 @@ DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFil
     applyProxySettings();
 
     // Process download request
-    qDebug("url is %s", qPrintable(url));
+    qDebug("url is %s", qUtf8Printable(url));
     const QUrl qurl = QUrl(url);
     QNetworkRequest request(qurl);
 
