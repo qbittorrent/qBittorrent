@@ -1507,7 +1507,11 @@ void TorrentHandle::handleStorageMovedAlert(libtorrent::storage_moved_alert *p)
     }
 
     qDebug("Torrent is successfully moved from %s to %s", qPrintable(m_moveStorageInfo.oldPath), qPrintable(m_moveStorageInfo.newPath));
-    if (QDir(m_moveStorageInfo.oldPath) == QDir(m_session->torrentTempPath(info()))) {
+    const QDir oldDir {m_moveStorageInfo.oldPath};
+    if ((oldDir == QDir(m_session->torrentTempPath(info())))
+            && (oldDir != QDir(m_session->tempPath()))) {
+        // torrent without root folder still has it in its temporary save path
+        // so its temp path isn't equal to temp path root
         qDebug() << "Removing torrent temp folder:" << m_moveStorageInfo.oldPath;
         Utils::Fs::smartRemoveEmptyFolderTree(m_moveStorageInfo.oldPath);
     }
