@@ -54,6 +54,7 @@ SearchTab::SearchTab(SearchWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::SearchTab())
     , m_parent(parent)
+    , m_status(Status::NoResults)
 {
     m_ui->setupUi(this);
 
