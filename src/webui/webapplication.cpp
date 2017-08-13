@@ -195,7 +195,7 @@ void WebApplication::action_public_login()
     else {
         QString addr = env().clientAddress.toString();
         increaseFailedAttempts();
-        qDebug("client IP: %s (%d failed attempts)", qPrintable(addr), failedAttempts());
+        qDebug("client IP: %s (%d failed attempts)", qUtf8Printable(addr), failedAttempts());
         print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
     }
 }

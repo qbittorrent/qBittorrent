@@ -153,7 +153,7 @@ void SearchWidget::fillCatCombobox()
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     foreach (const QStrPair &p, tmpList) {
-        qDebug("Supported category: %s", qPrintable(p.second));
+        qDebug("Supported category: %s", qUtf8Printable(p.second));
         m_ui->comboCategory->addItem(p.first, QVariant(p.second));
     }
 }
@@ -318,7 +318,7 @@ void SearchWidget::on_searchButton_clicked()
     else if (selectedPlugin() == "multi") plugins = m_searchEngine->enabledPlugins();
     else plugins << selectedPlugin();
 
-    qDebug("Search with category: %s", qPrintable(selectedCategory()));
+    qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
     // Update SearchEngine widgets
     m_noSearchResults = true;

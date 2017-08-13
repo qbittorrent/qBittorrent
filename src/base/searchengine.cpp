@@ -155,7 +155,7 @@ void SearchEngine::updatePlugin(const QString &name)
 // Install or update plugin from file or url
 void SearchEngine::installPlugin(const QString &source)
 {
-    qDebug("Asked to install plugin at %s", qPrintable(source));
+    qDebug("Asked to install plugin at %s", qUtf8Printable(source));
 
     if (Utils::Misc::isUrl(source)) {
         using namespace Net;
@@ -615,7 +615,7 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
 
         dataCorrect = true;
         if (isUpdateNeeded(pluginName, version)) {
-            qDebug("Plugin: %s is outdated", qPrintable(pluginName));
+            qDebug("Plugin: %s is outdated", qUtf8Printable(pluginName));
             updateInfo[pluginName] = version;
         }
     }
@@ -662,7 +662,7 @@ PluginVersion SearchEngine::getPluginVersion(QString filePath)
 {
     QFile plugin(filePath);
     if (!plugin.exists()) {
-        qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
+        qDebug("%s plugin does not exist, returning 0.0", qUtf8Printable(filePath));
         return {};
     }
 

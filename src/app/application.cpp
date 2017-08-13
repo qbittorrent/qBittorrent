@@ -554,7 +554,7 @@ bool Application::event(QEvent *ev)
         if (path.isEmpty())
             // Get the url instead
             path = static_cast<QFileOpenEvent *>(ev)->url().toString();
-        qDebug("Received a mac file open event: %s", qPrintable(path));
+        qDebug("Received a mac file open event: %s", qUtf8Printable(path));
         if (m_running)
             processParams(QStringList(path));
         else
@@ -589,16 +589,16 @@ void Application::initializeTranslation()
 
     if (m_qtTranslator.load(QString::fromUtf8("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
         m_qtTranslator.load(QString::fromUtf8("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-            qDebug("Qt %s locale recognized, using translation.", qPrintable(localeStr));
+            qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
-        qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(localeStr));
+        qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
 
     installTranslator(&m_qtTranslator);
 
     if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + localeStr))
-        qDebug("%s locale recognized, using translation.", qPrintable(localeStr));
+        qDebug("%s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
-        qDebug("%s locale unrecognized, using default (en).", qPrintable(localeStr));
+        qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
     installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI

@@ -128,7 +128,7 @@ void PluginSelectDlg::dropEvent(QDropEvent *event)
     if (files.isEmpty()) return;
 
     foreach (QString file, files) {
-        qDebug("dropped %s", qPrintable(file));
+        qDebug("dropped %s", qUtf8Printable(file));
         startAsyncOp();
         m_pluginManager->installPlugin(file);
     }
@@ -139,7 +139,7 @@ void PluginSelectDlg::dragEnterEvent(QDragEnterEvent *event)
 {
     QString mime;
     foreach (mime, event->mimeData()->formats()) {
-        qDebug("mimeData: %s", qPrintable(mime));
+        qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
     if (event->mimeData()->hasFormat(QLatin1String("text/plain")) || event->mimeData()->hasFormat(QLatin1String("text/uri-list"))) {
@@ -413,7 +413,7 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
 
 void PluginSelectDlg::iconDownloadFailed(const QString &url, const QString &reason)
 {
-    qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
+    qDebug("Could not download favicon: %s, reason: %s", qUtf8Printable(url), qUtf8Printable(reason));
 }
 
 void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)

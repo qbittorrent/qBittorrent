@@ -99,9 +99,9 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
         else if (xml.isEndElement()) {
             if (inItem && xml.name() == "item") {
                 if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0) {
-                    qDebug("The last update available is %s", qPrintable(version));
+                    qDebug("The last update available is %s", qUtf8Printable(version));
                     if (!version.isEmpty()) {
-                        qDebug("Detected version is %s", qPrintable(version));
+                        qDebug("Detected version is %s", qUtf8Printable(version));
                         if (isVersionMoreRecent(version))
                             m_updateUrl = updateLink;
                     }

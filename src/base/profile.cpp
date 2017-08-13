@@ -104,7 +104,7 @@ void Profile::ensureDirectoryExists(SpecialFolder folder)
 {
     QString locationPath = location(folder);
     if (!locationPath.isEmpty() && !QDir().mkpath(locationPath))
-        qFatal("Could not create required directory '%s'", qPrintable(locationPath));
+        qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath));
 }
 
 QString Profile::toPortablePath(const QString &absolutePath) const

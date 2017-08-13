@@ -67,7 +67,7 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString &error)
     TorrentInfo info(NativePtr(new libt::torrent_info(Utils::Fs::toNativePath(path).toStdString(), ec)));
     if (ec) {
         error = QString::fromUtf8(ec.message().c_str());
-        qDebug("Cannot load .torrent file: %s", qPrintable(error));
+        qDebug("Cannot load .torrent file: %s", qUtf8Printable(error));
     }
 
     return info;
