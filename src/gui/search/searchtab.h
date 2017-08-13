@@ -110,7 +110,6 @@ private:
     static CachedSettingValue<NameFilteringMode>& nameFilteringModeSetting();
 
     Ui::SearchTab *m_ui;
-    QTreeView *m_resultsBrowser;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
     SearchListDelegate *m_searchDelegate;
