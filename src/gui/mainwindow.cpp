@@ -1283,14 +1283,11 @@ static bool dockClickHandler(id self, SEL cmd, ...)
     Q_UNUSED(self)
     Q_UNUSED(cmd)
 
-    qDebug("Dock icon clicked!");
-
     if (dockMainWindowHandle && !dockMainWindowHandle->isVisible()) {
         dockMainWindowHandle->activate();
     }
 
-    // Return NO (false) to suppress the default OS X actions
-    return false;
+    return true;
 }
 
 void MainWindow::setupDockClickHandler()
