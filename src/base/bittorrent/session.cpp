@@ -1083,6 +1083,15 @@ void Session::initMetrics()
     m_metricIndices.disk.numBlocksCacheHits = libt::find_metric_idx("disk.num_blocks_cache_hits");
     Q_ASSERT(m_metricIndices.disk.numBlocksCacheHits >= 0);
 
+    m_metricIndices.disk.writeJobs = libt::find_metric_idx("disk.num_write_ops");
+    Q_ASSERT(m_metricIndices.disk.writeJobs >= 0);
+
+    m_metricIndices.disk.readJobs = libt::find_metric_idx("disk.num_read_ops");
+    Q_ASSERT(m_metricIndices.disk.readJobs >= 0);
+
+    m_metricIndices.disk.hashJobs = libt::find_metric_idx("disk.num_blocks_hashed");
+    Q_ASSERT(m_metricIndices.disk.hashJobs >= 0);
+
     m_metricIndices.disk.queuedDiskJobs = libt::find_metric_idx("disk.queued_disk_jobs");
     Q_ASSERT(m_metricIndices.disk.queuedDiskJobs >= 0);
 
@@ -3912,7 +3921,11 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
             ? static_cast<qreal>(p->values[m_metricIndices.disk.numBlocksCacheHits]) / numBlocksRead
             : -1;
     m_cacheStatus.jobQueueLength = p->values[m_metricIndices.disk.queuedDiskJobs];
-    m_cacheStatus.averageJobTime = p->values[m_metricIndices.disk.diskJobTime];
+
+    quint64 totalJobs = p->values[m_metricIndices.disk.writeJobs] + p->values[m_metricIndices.disk.readJobs]
+                  + p->values[m_metricIndices.disk.hashJobs];
+    m_cacheStatus.averageJobTime = totalJobs > 0
+                                   ? (p->values[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     emit statsUpdated();
 }

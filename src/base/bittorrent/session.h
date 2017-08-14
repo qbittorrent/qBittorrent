@@ -188,6 +188,9 @@ namespace BitTorrent
             int diskBlocksInUse = 0;
             int numBlocksRead = 0;
             int numBlocksCacheHits = 0;
+            int writeJobs = 0;
+            int readJobs = 0;
+            int hashJobs = 0;
             int queuedDiskJobs = 0;
             int diskJobTime = 0;
         } disk;
