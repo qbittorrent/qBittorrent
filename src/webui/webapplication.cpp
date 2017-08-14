@@ -390,48 +390,42 @@ void WebApplication::action_command_shutdown()
 void WebApplication::action_command_download()
 {
     CHECK_URI(0);
-    QString urls = request().posts["urls"];
-    QStringList list = urls.split('\n');
-    bool skipChecking = request().posts["skip_checking"] == "true";
-    bool addPaused = request().posts["paused"] == "true";
-    const QString rootFolder = request().posts["root_folder"];
-    QString savepath = request().posts["savepath"];
-    QString category = request().posts["category"];
-    QString cookie = request().posts["cookie"];
+
+    const QString urls = request().posts.value("urls");
+    const bool skipChecking = request().posts.value("skip_checking").contains("true", Qt::CaseInsensitive);
+    const bool addPaused = request().posts.value("paused").contains("true", Qt::CaseInsensitive);
+    const QString rootFolder = request().posts.value("root_folder");
+    const QString savepath = request().posts.value("savepath").trimmed();
+    const QString category = request().posts.value("category").trimmed();
+    const QString cookie = request().posts.value("cookie");
+
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty()) {
-
-        QStringList cookiesStr = cookie.split("; ");
-        foreach (QString cookieStr, cookiesStr) {
+        const QStringList cookiesStr = cookie.split("; ");
+        for (QString cookieStr : cookiesStr) {
             cookieStr = cookieStr.trimmed();
             int index = cookieStr.indexOf('=');
             if (index > 1) {
                 QByteArray name = cookieStr.left(index).toLatin1();
                 QByteArray value = cookieStr.right(cookieStr.length() - index - 1).toLatin1();
-                QNetworkCookie c(name, value);
-                cookies << c;
+                cookies += QNetworkCookie(name, value);
             }
         }
     }
 
-    savepath = savepath.trimmed();
-    category = category.trimmed();
-
     BitTorrent::AddTorrentParams params;
-
     // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
-
     params.addPaused = TriStateBool(addPaused);
     params.savePath = savepath;
     params.category = category;
-    if (rootFolder == "true")
+    if (rootFolder.contains("true", Qt::CaseInsensitive))
         params.createSubfolder = TriStateBool::True;
-    else if (rootFolder == "false")
+    else if (rootFolder.contains("false", Qt::CaseInsensitive))
         params.createSubfolder = TriStateBool::False;
 
     bool partialSuccess = false;
-    foreach (QString url, list) {
+    for (QString url : urls.split('\n')) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
@@ -447,53 +441,47 @@ void WebApplication::action_command_download()
 
 void WebApplication::action_command_upload()
 {
-    qDebug() << Q_FUNC_INFO;
     CHECK_URI(0);
-    bool skipChecking = request().posts["skip_checking"] == "true";
-    bool addPaused = request().posts["paused"] == "true";
-    const QString rootFolder = request().posts["root_folder"];
-    QString savepath = request().posts["savepath"];
-    QString category = request().posts["category"];
 
-    savepath = savepath.trimmed();
-    category = category.trimmed();
+    const bool skipChecking = request().posts.value("skip_checking").contains("true", Qt::CaseInsensitive);
+    const bool addPaused = request().posts.value("paused").contains("true", Qt::CaseInsensitive);
+    const QString rootFolder = request().posts.value("root_folder");
+    const QString savepath = request().posts.value("savepath").trimmed();
+    const QString category = request().posts.value("category").trimmed();
 
-    foreach(const Http::UploadedFile& torrent, request().files) {
-        QString filePath = saveTmpFile(torrent.data);
-
-        if (!filePath.isEmpty()) {
-            BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
-            if (!torrentInfo.isValid()) {
-                status(415, "Unsupported Media Type");
-                print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
-            }
-            else {
-                BitTorrent::AddTorrentParams params;
-
-                 // TODO: Check if destination actually exists
-                params.skipChecking = skipChecking;
-
-                params.addPaused = TriStateBool(addPaused);
-                params.savePath = savepath;
-                params.category = category;
-                if (rootFolder == "true")
-                    params.createSubfolder = TriStateBool::True;
-                else if (rootFolder == "false")
-                    params.createSubfolder = TriStateBool::False;
-
-                if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
-                    status(500, "Internal Server Error");
-                    print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
-                }
-            }
-            // Clean up
-            Utils::Fs::forceRemove(filePath);
-        }
-        else {
+    for (const Http::UploadedFile &torrent : request().files) {
+        const QString filePath = saveTmpFile(torrent.data);
+        if (filePath.isEmpty()) {
             qWarning() << "I/O Error: Could not create temporary file";
             status(500, "Internal Server Error");
             print(QObject::tr("I/O Error: Could not create temporary file."), Http::CONTENT_TYPE_TXT);
+            continue;
         }
+
+        const BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
+        if (!torrentInfo.isValid()) {
+            status(415, "Unsupported Media Type");
+            print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
+        }
+        else {
+            BitTorrent::AddTorrentParams params;
+            // TODO: Check if destination actually exists
+            params.skipChecking = skipChecking;
+            params.addPaused = TriStateBool(addPaused);
+            params.savePath = savepath;
+            params.category = category;
+            if (rootFolder.contains("true", Qt::CaseInsensitive))
+                params.createSubfolder = TriStateBool::True;
+            else if (rootFolder.contains("false", Qt::CaseInsensitive))
+                params.createSubfolder = TriStateBool::False;
+
+            if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
+                status(500, "Internal Server Error");
+                print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
+            }
+        }
+        // Clean up
+        Utils::Fs::forceRemove(filePath);
     }
 }
 
