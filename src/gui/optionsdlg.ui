@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>430</width>
-             <height>972</height>
+             <width>501</width>
+             <height>893</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -671,8 +671,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>585</width>
-             <height>1179</height>
+             <width>591</width>
+             <height>1138</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1245,8 +1245,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>450</width>
-             <height>759</height>
+             <width>501</width>
+             <height>745</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1712,8 +1712,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>376</width>
-             <height>501</height>
+             <width>516</width>
+             <height>525</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1836,15 +1836,15 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
                     <property name="time">
                      <time>
                       <hour>20</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
                     </property>
                    </widget>
                   </item>
@@ -1860,18 +1860,18 @@
                     <property name="wrapping">
                      <bool>true</bool>
                     </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>false</bool>
+                    </property>
                     <property name="time">
                      <time>
                       <hour>8</hour>
                       <minute>0</minute>
                       <second>0</second>
                      </time>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
@@ -2099,8 +2099,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>528</width>
-             <height>664</height>
+             <width>513</width>
+             <height>679</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2552,120 +2552,151 @@
       </widget>
       <widget class="QWidget" name="tabRSSPage">
        <layout class="QVBoxLayout" name="verticalLayout_25">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
-         <widget class="QGroupBox" name="groupRSSReader">
-          <property name="title">
-           <string>RSS Reader</string>
+         <widget class="QScrollArea" name="scrollArea_5">
+          <property name="widgetResizable">
+           <bool>true</bool>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_26">
-           <item>
-            <widget class="QCheckBox" name="checkRSSEnable">
-             <property name="text">
-              <string>Enable fetching RSS feeds</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QGridLayout" name="gridLayout_5">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_111">
-               <property name="text">
-                <string>Feeds refresh interval:</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_12">
-               <property name="text">
-                <string>Maximum number of articles per feed:</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spinRSSRefreshInterval">
-               <property name="suffix">
-                <string> min</string>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-               <property name="maximum">
-                <number>999999</number>
-               </property>
-               <property name="value">
-                <number>5</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
-               <property name="maximum">
-                <number>9999</number>
-               </property>
-               <property name="value">
-                <number>100</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <spacer name="horizontalSpacer_6">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-          </layout>
+          <widget class="QWidget" name="scrollAreaWidgetContents_5">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>516</width>
+             <height>525</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_27">
+            <item>
+             <widget class="QGroupBox" name="groupRSSReader">
+              <property name="title">
+               <string>RSS Reader</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_26">
+               <item>
+                <widget class="QCheckBox" name="checkRSSEnable">
+                 <property name="text">
+                  <string>Enable fetching RSS feeds</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="gridLayout_5">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_111">
+                   <property name="text">
+                    <string>Feeds refresh interval:</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_12">
+                   <property name="text">
+                    <string>Maximum number of articles per feed:</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QSpinBox" name="spinRSSRefreshInterval">
+                   <property name="suffix">
+                    <string> min</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>999999</number>
+                   </property>
+                   <property name="value">
+                    <number>5</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                   <property name="maximum">
+                    <number>9999</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupRSSAutoDownloader">
+              <property name="title">
+               <string>RSS Torrent Auto Downloader</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QCheckBox" name="checkRSSAutoDownloaderEnable">
+                 <property name="text">
+                  <string>Enable auto downloading of RSS torrents</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnEditRules">
+                 <property name="text">
+                  <string>Edit auto downloading rules...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>267</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
          </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupRSSAutoDownloader">
-          <property name="title">
-           <string>RSS Torrent Auto Downloader</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_21">
-           <item>
-            <widget class="QCheckBox" name="checkRSSAutoDownloaderEnable">
-             <property name="text">
-              <string>Enable auto downloading of RSS torrents</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btnEditRules">
-             <property name="text">
-              <string>Edit auto downloading rules...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -2693,8 +2724,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>518</width>
-             <height>602</height>
+             <width>501</width>
+             <height>636</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
