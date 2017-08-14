@@ -2193,6 +2193,8 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+    p.upload_limit = addData.uploadLimit;
+    p.download_limit = addData.downloadLimit;
 
     m_addingTorrents.insert(hash, addData);
     // Adding torrent to BitTorrent session

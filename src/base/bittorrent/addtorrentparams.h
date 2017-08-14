@@ -52,5 +52,7 @@ namespace BitTorrent
         bool skipChecking = false;
         TriStateBool createSubfolder;
         TriStateBool useAutoTMM;
+        int uploadLimit = -1;
+        int downloadLimit = -1;
     };
 }
