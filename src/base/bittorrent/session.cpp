@@ -97,7 +97,7 @@
 #include <iphlpapi.h>
 #endif
 
-#if _WIN32_WINNT < 0x0600
+#if defined(Q_OS_WIN) && (_WIN32_WINNT < 0x0600)
 using NETIO_STATUS = LONG;
 #endif
 
