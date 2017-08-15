@@ -301,7 +301,8 @@ Session::Session(QObject *parent)
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
     , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
-    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), m_isUTPEnabled, clampValue(0, 1))
+    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::Proportional
+        , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
@@ -330,8 +331,10 @@ Session::Session(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
-    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), 0, clampValue(0, 2))
-    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), 1, clampValue(0, 2))
+    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
+        , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
+    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), SeedChokingAlgorithm::FastestUpload
+        , clampValue(SeedChokingAlgorithm::RoundRobin, SeedChokingAlgorithm::AntiLeech))
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
     , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
@@ -1324,7 +1327,15 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // uTP
     settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
     settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
-    settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, utpMixedMode());
+    switch (utpMixedMode()) {
+    case MixedModeAlgorithm::TCP:
+    default:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::prefer_tcp);
+        break;
+    case MixedModeAlgorithm::Proportional:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::peer_proportional);
+        break;
+    }
 
     settingsPack.set_bool(libt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
@@ -1336,15 +1347,27 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
 
     switch (chokingAlgorithm()) {
-    case 0:
+    case ChokingAlgorithm::FixedSlots:
     default:
         settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::fixed_slots_choker);
         break;
-    case 1:
+    case ChokingAlgorithm::RateBased:
         settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::rate_based_choker);
         break;
     }
-    settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, seedChokingAlgorithm());
+
+    switch (seedChokingAlgorithm()) {
+    case SeedChokingAlgorithm::RoundRobin:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::round_robin);
+        break;
+    case SeedChokingAlgorithm::FastestUpload:
+    default:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
+        break;
+    case SeedChokingAlgorithm::AntiLeech:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::anti_leech);
+        break;
+    }
 }
 
 void Session::configurePeerClasses()
@@ -1562,7 +1585,15 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.enable_outgoing_utp = isUTPEnabled();
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
-    sessionSettings.mixed_mode_algorithm = utpMixedMode();
+    switch (utpMixedMode()) {
+    case MixedModeAlgorithm::TCP:
+    default:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
+        break;
+    case MixedModeAlgorithm::Proportional:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
+        break;
+    }
 
     sessionSettings.allow_multiple_connections_per_ip = multiConnectionsPerIpEnabled();
 
@@ -1587,15 +1618,27 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
         m_nativeSession->stop_lsd();
 
     switch (chokingAlgorithm()) {
-    case 0:
+    case ChokingAlgorithm::FixedSlots:
     default:
         sessionSettings.choking_algorithm = libt::session_settings::fixed_slots_choker;
         break;
-    case 1:
+    case ChokingAlgorithm::RateBased:
         sessionSettings.choking_algorithm = libt::session_settings::rate_based_choker;
         break;
     }
-    sessionSettings.seed_choking_algorithm = seedChokingAlgorithm();
+
+    switch (seedChokingAlgorithm()) {
+    case SeedChokingAlgorithm::RoundRobin:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::round_robin;
+        break;
+    case SeedChokingAlgorithm::FastestUpload:
+    default:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
+        break;
+    case SeedChokingAlgorithm::AntiLeech:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::anti_leech;
+        break;
+    }
 }
 #endif
 
@@ -2697,12 +2740,12 @@ void Session::setProxyPeerConnectionsEnabled(bool enabled)
     }
 }
 
-int Session::chokingAlgorithm() const
+ChokingAlgorithm Session::chokingAlgorithm() const
 {
     return m_chokingAlgorithm;
 }
 
-void Session::setChokingAlgorithm(int mode)
+void Session::setChokingAlgorithm(ChokingAlgorithm mode)
 {
     if (mode == m_chokingAlgorithm) return;
 
@@ -2710,12 +2753,12 @@ void Session::setChokingAlgorithm(int mode)
     configureDeferred();
 }
 
-int Session::seedChokingAlgorithm() const
+SeedChokingAlgorithm Session::seedChokingAlgorithm() const
 {
     return m_seedChokingAlgorithm;
 }
 
-void Session::setSeedChokingAlgorithm(int mode)
+void Session::setSeedChokingAlgorithm(SeedChokingAlgorithm mode)
 {
     if (mode == m_seedChokingAlgorithm) return;
 
@@ -3220,12 +3263,12 @@ void Session::setUTPRateLimited(bool limited)
     }
 }
 
-int Session::utpMixedMode() const
+MixedModeAlgorithm Session::utpMixedMode() const
 {
     return m_utpMixedMode;
 }
 
-void Session::setUtpMixedMode(int mode)
+void Session::setUtpMixedMode(MixedModeAlgorithm mode)
 {
     if (mode == m_utpMixedMode) return;
 
