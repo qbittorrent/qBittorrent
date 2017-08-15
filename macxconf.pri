@@ -9,7 +9,7 @@ exists($$OUT_PWD/../conf.pri) {
     include(conf.pri)
 }
 
-LIBS += -framework Carbon -framework IOKit
+LIBS += -framework Carbon -framework IOKit -framework AppKit
 
 QT_LANG_PATH = ../dist/qt-translations
 DIST_PATH = ../dist/mac

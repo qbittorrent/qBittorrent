@@ -31,8 +31,6 @@
 #include "mainwindow.h"
 
 #ifdef Q_OS_MAC
-#include <objc/objc.h>
-#include <objc/message.h>
 #include <QtMacExtras>
 #include <QtMac>
 #endif
@@ -106,6 +104,10 @@
 #include "executionlog.h"
 #include "hidabletabwidget.h"
 #include "ui_mainwindow.h"
+
+#ifdef Q_OS_MAC
+#include "macutilities.h"
+#endif
 
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -1294,29 +1296,9 @@ static bool dockClickHandler(id self, SEL cmd, ...)
 }
 
 void MainWindow::setupDockClickHandler()
-{
-    Class cls = objc_getClass("NSApplication");
-    objc_object *appInst = objc_msgSend(reinterpret_cast<objc_object *>(cls), sel_registerName("sharedApplication"));
-
-    if (!appInst)
-        return;
-
+{    
     dockMainWindowHandle = this;
-    objc_object* delegate = objc_msgSend(appInst, sel_registerName("delegate"));
-    Class delClass = reinterpret_cast<Class>(objc_msgSend(delegate, sel_registerName("class")));
-    SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
-    if (class_getInstanceMethod(delClass, shouldHandle)) {
-        if (class_replaceMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
-            qDebug("Registered dock click handler (replaced original method)");
-        else
-            qWarning("Failed to replace method for dock click handler");
-    }
-    else {
-        if (class_addMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
-            qDebug("Registered dock click handler");
-        else
-            qWarning("Failed to register dock click handler");
-    }
+    overrideDockClickHandler(dockClickHandler);
 }
 
 #endif

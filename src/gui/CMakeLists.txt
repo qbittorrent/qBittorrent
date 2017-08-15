@@ -118,6 +118,11 @@ transferlistwidget.cpp
 updownratiodlg.cpp
 )
 
+if (APPLE)
+    list(APPEND QBT_GUI_HEADERS macutilities.h)
+    list(APPEND QBT_GUI_SOURCES macutilities.mm)
+endif (APPLE)
+
 if (WIN32 OR APPLE)
     list(APPEND QBT_GUI_HEADERS programupdater.h)
     list(APPEND QBT_GUI_SOURCES programupdater.cpp)
