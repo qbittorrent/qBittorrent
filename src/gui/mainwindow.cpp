@@ -105,11 +105,11 @@
 #include "hidabletabwidget.h"
 #include "ui_mainwindow.h"
 
-#if defined (Q_OS_MAC)
+#ifdef Q_OS_MAC
 #include "macutilities.h"
 #endif
 
-#if defined (Q_OS_MAC)
+#ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
