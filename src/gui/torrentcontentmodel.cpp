@@ -43,6 +43,11 @@
 #include <QMimeType>
 #endif
 
+#if defined Q_OS_WIN || defined Q_OS_MAC
+#define QBT_PIXMAP_CACHE_FOR_FILE_ICONS
+#include <QPixmapCache>
+#endif
+
 #include "guiiconprovider.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
@@ -74,55 +79,79 @@ namespace
             return cached;
         }
     };
-#if defined(Q_OS_WIN)
-    // See QTBUG-25319 for explanation why this is required
-    class WinShellFileIconProvider: public UnifiedFileIconProvider
+
+#ifdef QBT_PIXMAP_CACHE_FOR_FILE_ICONS
+    struct Q_DECL_UNUSED PixmapCacheSetup
+    {
+        static const int PixmapCacheForIconsSize = 2 * 1024 * 1024; // 2 MiB for file icons
+
+        PixmapCacheSetup()
+        {
+            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() + PixmapCacheForIconsSize);
+        }
+
+        ~PixmapCacheSetup()
+        {
+            Q_ASSERT(QPixmapCache::cacheLimit() > PixmapCacheForIconsSize);
+            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() - PixmapCacheForIconsSize);
+        }
+    };
+
+    PixmapCacheSetup pixmapCacheSetup;
+
+    class CachingFileIconProvider: public UnifiedFileIconProvider
     {
     public:
         using QFileIconProvider::icon;
 
-        QIcon icon(const QFileInfo &info) const override
+        QIcon icon(const QFileInfo &info) const final override
         {
+            const QString ext = info.suffix();
+            if (!ext.isEmpty()) {
+                QPixmap cached;
+                if (QPixmapCache::find(ext, &cached)) return QIcon(cached);
+
+                const QPixmap pixmap = pixmapForExtension(ext);
+                if (!pixmap.isNull()) {
+                    QPixmapCache::insert(ext, pixmap);
+                    return QIcon(pixmap);
+                }
+            }
+            return UnifiedFileIconProvider::icon(info);
+        }
+
+    protected:
+        virtual QPixmap pixmapForExtension(const QString &ext) const = 0;
+    };
+#endif
+
+#if defined(Q_OS_WIN)
+    // See QTBUG-25319 for explanation why this is required
+    class WinShellFileIconProvider final: public CachingFileIconProvider
+    {
+        QPixmap pixmapForExtension(const QString &ext) const override
+        {
+            const QString extWithDot = QLatin1Char('.') + ext;
             SHFILEINFO sfi = { 0 };
-            HRESULT hr = ::SHGetFileInfoW(info.absoluteFilePath().toStdWString().c_str(),
+            HRESULT hr = ::SHGetFileInfoW(extWithDot.toStdWString().c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
-                return UnifiedFileIconProvider::icon(info);
+                return QPixmap();
 
             QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
             ::DestroyIcon(sfi.hIcon);
-            return QIcon(iconPixmap);
+            return iconPixmap;
         }
     };
 #elif defined(Q_OS_MAC)
     // There is a similar bug on macOS, to be reported to Qt
     // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
-    class MacFileIconProvider: public UnifiedFileIconProvider
+    class MacFileIconProvider final: public CachingFileIconProvider
     {
-    public:
-        using QFileIconProvider::icon;
-
-        QIcon icon(const QFileInfo &info) const override
+        QPixmap pixmapForExtension(const QString &ext) const override
         {
-            const QString ext = info.suffix();
-            if (!ext.isEmpty()) {
-                auto cacheIter = m_iconCache.find(ext);
-                
-                if (cacheIter != m_iconCache.end())
-                    return *cacheIter;
-                
-                QIcon icon = QIcon(pixmapForExtension(ext, QSize(32, 32)));
-                if (!icon.isNull()) {
-                    m_iconCache.insert(ext, icon);
-                    return icon;
-                }
-            }
-
-            return UnifiedFileIconProvider::icon(info);
+            return ::pixmapForExtension(ext, QSize(32, 32));
         }
-
-    private:
-        mutable QMap<QString, QIcon> m_iconCache;
     };
 #else
     /**
