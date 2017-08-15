@@ -56,7 +56,7 @@
  * This function makes sure the directory separator used is consistent
  * with the OS being run.
  */
-QString Utils::Fs::toNativePath(const QString& path)
+QString Utils::Fs::toNativePath(const QString &path)
 {
     return QDir::toNativeSeparators(path);
 }
@@ -72,26 +72,26 @@ QString Utils::Fs::fromNativePath(const QString &path)
 QString Utils::Fs::fileExtension(const QString &filename)
 {
     QString ext = QString(filename).remove(QB_EXT);
-    const int point_index = ext.lastIndexOf(".");
-    return (point_index >= 0) ? ext.mid(point_index + 1) : QString();
+    const int pointIndex = ext.lastIndexOf(".");
+    return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
 }
 
-QString Utils::Fs::fileName(const QString& file_path)
+QString Utils::Fs::fileName(const QString &filePath)
 {
-    QString path = fromNativePath(file_path);
-    const int slash_index = path.lastIndexOf("/");
-    if (slash_index == -1)
+    QString path = fromNativePath(filePath);
+    const int slashIndex = path.lastIndexOf("/");
+    if (slashIndex == -1)
         return path;
-    return path.mid(slash_index + 1);
+    return path.mid(slashIndex + 1);
 }
 
-QString Utils::Fs::folderName(const QString& file_path)
+QString Utils::Fs::folderName(const QString &filePath)
 {
-    QString path = fromNativePath(file_path);
-    const int slash_index = path.lastIndexOf("/");
-    if (slash_index == -1)
+    QString path = fromNativePath(filePath);
+    const int slashIndex = path.lastIndexOf("/");
+    if (slashIndex == -1)
         return path;
-    return path.left(slash_index);
+    return path.left(slashIndex);
 }
 
 /**
@@ -99,10 +99,10 @@ QString Utils::Fs::folderName(const QString& file_path)
  * `.DS_Store`. Then will try to remove the whole tree if the tree consist
  * only of folders
  */
-bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& path)
+bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
 {
     if (path.isEmpty() || !QDir(path).exists())
-        return false;
+        return true;
 
     static const QStringList deleteFilesList = {
         // Windows
@@ -119,7 +119,9 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& path)
     QDirIterator iter(path, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
     while (iter.hasNext())
         dirList << iter.next() + "/";
-    std::sort(dirList.begin(), dirList.end(), [](const QString &l, const QString &r) { return l.count("/") > r.count("/"); });  // sort descending by directory depth
+    // sort descending by directory depth
+    std::sort(dirList.begin(), dirList.end()
+              , [](const QString &l, const QString &r) { return l.count("/") > r.count("/"); });
 
     for (const QString &p : dirList) {
         // remove unwanted files
@@ -147,9 +149,9 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString& path)
  *
  * This function will try to fix the file permissions before removing it.
  */
-bool Utils::Fs::forceRemove(const QString& file_path)
+bool Utils::Fs::forceRemove(const QString &filePath)
 {
-    QFile f(file_path);
+    QFile f(filePath);
     if (!f.exists())
         return true;
     // Make sure we have read/write permissions
@@ -174,7 +176,7 @@ void Utils::Fs::removeDirRecursive(const QString &path)
  *
  * Returns -1 in case of error.
  */
-qint64 Utils::Fs::computePathSize(const QString& path)
+qint64 Utils::Fs::computePathSize(const QString &path)
 {
     // Check if it is a file
     QFileInfo fi(path);
@@ -194,7 +196,7 @@ qint64 Utils::Fs::computePathSize(const QString& path)
 /**
  * Makes deep comparison of two files to make sure they are identical.
  */
-bool Utils::Fs::sameFiles(const QString& path1, const QString& path2)
+bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
 {
     QFile f1(path1), f2(path2);
     if (!f1.exists() || !f2.exists()) return false;
@@ -236,9 +238,9 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
     return QStorageInfo(path).bytesAvailable();
 }
 
-QString Utils::Fs::branchPath(const QString& file_path, QString* removed)
+QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
 {
-    QString ret = fromNativePath(file_path);
+    QString ret = fromNativePath(filePath);
     if (ret.endsWith("/"))
         ret.chop(1);
     const int slashIndex = ret.lastIndexOf("/");
@@ -261,21 +263,16 @@ bool Utils::Fs::sameFileNames(const QString &first, const QString &second)
 
 QString Utils::Fs::expandPath(const QString &path)
 {
-    QString ret = fromNativePath(path.trimmed());
+    QString ret = path.trimmed();
     if (ret.isEmpty())
         return ret;
 
     return QDir::cleanPath(ret);
 }
 
-QString Utils::Fs::expandPathAbs(const QString& path)
+QString Utils::Fs::expandPathAbs(const QString &path)
 {
-    QString ret = expandPath(path);
-
-    if (!QDir::isAbsolutePath(ret))
-        ret = QDir(ret).absolutePath();
-
-    return ret;
+    return QDir(expandPath(path)).absolutePath();
 }
 
 QString Utils::Fs::tempPath()
