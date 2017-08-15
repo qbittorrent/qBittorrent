@@ -69,3 +69,15 @@ void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...))
             qWarning("Failed to register dock click handler");
     }
 }
+
+void displayNotification(const QString &title, const QString &message)
+{
+    @autoreleasepool {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = title.toNSString();
+        notification.informativeText = message.toNSString();
+        notification.soundName = NSUserNotificationDefaultSoundName;
+
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+}

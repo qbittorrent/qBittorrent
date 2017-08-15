@@ -1553,7 +1553,9 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     reply.waitForFinished();
     if (!reply.isError())
         return;
-#elif (!defined(Q_OS_MAC))
+#elif defined(Q_OS_MAC)
+    displayNotification(title, msg);
+#else
     if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
         m_systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
 #endif

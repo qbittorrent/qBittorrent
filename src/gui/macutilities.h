@@ -35,5 +35,6 @@
 
 QPixmap pixmapForExtension(const QString &ext, const QSize &size);
 void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
+void displayNotification(const QString &title, const QString &message);
 
 #endif // MACUTILITIES_H
