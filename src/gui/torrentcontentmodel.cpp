@@ -84,14 +84,18 @@ namespace
         QIcon icon(const QFileInfo &info) const override
         {
             SHFILEINFO sfi = { 0 };
-            HRESULT hr = ::SHGetFileInfoW(info.absoluteFilePath().toStdWString().c_str(),
+            QString nativePath = Utils::Fs::toNativePath(info.absoluteFilePath());
+            HRESULT hr = ::SHGetFileInfoW(nativePath.toStdWString().c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
                 return UnifiedFileIconProvider::icon(info);
 
             QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
             ::DestroyIcon(sfi.hIcon);
-            return QIcon(iconPixmap);
+            if (!iconPixmap.isNull())
+                return QIcon(iconPixmap);
+            else
+                return UnifiedFileIconProvider::icon(info);
         }
     };
 #elif defined(Q_OS_MAC)
