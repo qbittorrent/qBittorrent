@@ -237,6 +237,20 @@ namespace
 
     template <typename T>
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
+
+    template <typename T>
+    std::function<T (const T&)> clampValue(const T lower, const T upper)
+    {
+        // TODO: change return type to `auto` when using C++14
+        return [lower, upper](const T value) -> T
+        {
+            if (value < lower)
+                return lower;
+            if (value > upper)
+                return upper;
+            return value;
+        };
+    }
 }
 
 // Session
@@ -287,7 +301,7 @@ Session::Session(QObject *parent)
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
     , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
-    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), m_isUTPEnabled)
+    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), m_isUTPEnabled, clampValue(0, 1))
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
@@ -316,8 +330,8 @@ Session::Session(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
-    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), 0)
-    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), 1)
+    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), 0, clampValue(0, 2))
+    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), 1, clampValue(0, 2))
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
     , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
@@ -1326,15 +1340,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // uTP
     settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
     settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
-    switch (utpMixedMode()) {
-    case 0:
-    default:
-        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::prefer_tcp);
-        break;
-    case 1:
-        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::peer_proportional);
-        break;
-    }
+    settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, utpMixedMode());
 
     settingsPack.set_bool(libt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
@@ -1577,15 +1583,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.enable_outgoing_utp = isUTPEnabled();
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
-    switch (utpMixedMode()) {
-    case 0:
-    default:
-        sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
-        break;
-    case 1:
-        sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
-        break;
-    }
+    sessionSettings.mixed_mode_algorithm = utpMixedMode();
 
     sessionSettings.allow_multiple_connections_per_ip = multiConnectionsPerIpEnabled();
 
