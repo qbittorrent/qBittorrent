@@ -151,6 +151,38 @@ namespace BitTorrent
         uint nbErrored = 0;
     };
 
+    class SessionSettingsEnums
+    {
+        Q_GADGET
+
+    public:
+        // TODO: remove `SessionSettingsEnums` wrapper when we can use `Q_ENUM_NS` directly (QT >= 5.8 only)
+        enum class ChokingAlgorithm : int
+        {
+            FixedSlots = 0,
+            RateBased = 1
+        };
+        Q_ENUM(ChokingAlgorithm)
+
+        enum class SeedChokingAlgorithm : int
+        {
+            RoundRobin = 0,
+            FastestUpload = 1,
+            AntiLeech = 2
+        };
+        Q_ENUM(SeedChokingAlgorithm)
+
+        enum class MixedModeAlgorithm : int
+        {
+            TCP = 0,
+            Proportional = 1
+        };
+        Q_ENUM(MixedModeAlgorithm)
+    };
+    using ChokingAlgorithm = SessionSettingsEnums::ChokingAlgorithm;
+    using SeedChokingAlgorithm = SessionSettingsEnums::SeedChokingAlgorithm;
+    using MixedModeAlgorithm = SessionSettingsEnums::MixedModeAlgorithm;
+
 #if LIBTORRENT_VERSION_NUM >= 10100
     struct SessionMetricIndices
     {
@@ -317,10 +349,10 @@ namespace BitTorrent
         void setForceProxyEnabled(bool enabled);
         bool isProxyPeerConnectionsEnabled() const;
         void setProxyPeerConnectionsEnabled(bool enabled);
-        int chokingAlgorithm() const;
-        void setChokingAlgorithm(int mode);
-        int seedChokingAlgorithm() const;
-        void setSeedChokingAlgorithm(int mode);
+        ChokingAlgorithm chokingAlgorithm() const;
+        void setChokingAlgorithm(ChokingAlgorithm mode);
+        SeedChokingAlgorithm seedChokingAlgorithm() const;
+        void setSeedChokingAlgorithm(SeedChokingAlgorithm mode);
         bool isAddTrackersEnabled() const;
         void setAddTrackersEnabled(bool enabled);
         QString additionalTrackers() const;
@@ -385,8 +417,8 @@ namespace BitTorrent
         void setUTPEnabled(bool enabled);
         bool isUTPRateLimited() const;
         void setUTPRateLimited(bool limited);
-        int utpMixedMode() const;
-        void setUtpMixedMode(int mode);
+        MixedModeAlgorithm utpMixedMode() const;
+        void setUtpMixedMode(MixedModeAlgorithm mode);
         bool multiConnectionsPerIpEnabled() const;
         void setMultiConnectionsPerIpEnabled(bool enabled);
         bool isTrackerFilteringEnabled() const;
@@ -618,7 +650,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxUploadsPerTorrent;
         CachedSettingValue<bool> m_isUTPEnabled;
         CachedSettingValue<bool> m_isUTPRateLimited;
-        CachedSettingValue<int> m_utpMixedMode;
+        CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
@@ -647,8 +679,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<bool> m_isForceProxyEnabled;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
-        CachedSettingValue<int> m_chokingAlgorithm;
-        CachedSettingValue<int> m_seedChokingAlgorithm;
+        CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
+        CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QVariantMap> m_storedCategories;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<int> m_maxRatioAction;

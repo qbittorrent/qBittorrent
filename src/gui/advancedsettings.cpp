@@ -150,7 +150,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setOutgoingPortsMin(outgoing_ports_min.value());
     session->setOutgoingPortsMax(outgoing_ports_max.value());
     // uTP-TCP mixed mode
-    session->setUtpMixedMode(comboUtpMixedMode.currentIndex());
+    session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(comboUtpMixedMode.currentIndex()));
     // multiple connections per IP
     session->setMultiConnectionsPerIpEnabled(cbMultiConnectionsPerIp.isChecked());
     // Recheck torrents on completion
@@ -200,9 +200,9 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
     // Choking algorithm
-    session->setChokingAlgorithm(comboChokingAlgorithm.currentIndex());
+    session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(comboChokingAlgorithm.currentIndex()));
     // Seed choking algorithm
-    session->setSeedChokingAlgorithm(comboSeedChokingAlgorithm.currentIndex());
+    session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(comboSeedChokingAlgorithm.currentIndex()));
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     pref->setUpdateCheckEnabled(cb_update_check.isChecked());
@@ -344,7 +344,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
     // uTP-TCP mixed mode
     comboUtpMixedMode.addItems({"Prefer TCP", "Peer proportional (throttles TCP)"});
-    comboUtpMixedMode.setCurrentIndex(session->utpMixedMode());
+    comboUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
     addRow(UTP_MIX_MODE, tr("uTP-TCP mixed mode algorithm"), &comboUtpMixedMode);
     // multiple connections per IP
     cbMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
@@ -428,11 +428,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
     // Choking algorithm
     comboChokingAlgorithm.addItems({"Fixed slots", "Upload rate based"});
-    comboChokingAlgorithm.setCurrentIndex(session->chokingAlgorithm());
+    comboChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
     addRow(CHOKING_ALGORITHM, tr("Upload slots behavior"), &comboChokingAlgorithm);
     // Seed choking algorithm
     comboSeedChokingAlgorithm.addItems({"Round-robin", "Fastest upload", "Anti-leech"});
-    comboSeedChokingAlgorithm.setCurrentIndex(session->seedChokingAlgorithm());
+    comboSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
     addRow(SEED_CHOKING_ALGORITHM, tr("Upload choking algorithm"), &comboSeedChokingAlgorithm);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
