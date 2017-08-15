@@ -50,7 +50,7 @@
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelfile.h"
-#if defined(Q_OS_MAC) 
+#ifdef Q_OS_MAC
 #include "macutilities.h"
 #endif
 
