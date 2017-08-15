@@ -255,6 +255,8 @@ var TorrentsTableContextMenu = new Class({
         all_are_force_start = true;
         there_are_force_start = false;
         all_are_super_seeding = true;
+        all_are_auto_tmm = true;
+        there_are_auto_tmm = false;
 
         var h = torrentsTable.selectedRowsIds();
         h.each(function(item, index){
@@ -284,6 +286,11 @@ var TorrentsTableContextMenu = new Class({
                 all_are_force_start = false;
             else
                 there_are_force_start = true;
+
+            if (data['auto_tmm'] === true)
+                there_are_auto_tmm = true;
+            else
+                all_are_auto_tmm = false;
         });
 
         show_seq_dl = true;
@@ -336,6 +343,12 @@ var TorrentsTableContextMenu = new Class({
             this.hideItem('ForceStart');
         else if (!there_are_paused && !there_are_force_start)
             this.hideItem('Start');
+
+        if (!all_are_auto_tmm && there_are_auto_tmm)
+            this.hideItem('AutoTorrentManagement');
+        else
+            this.setItemChecked('AutoTorrentManagement', all_are_auto_tmm);
+
     },
 
     updateCategoriesSubMenu : function (category_list) {
