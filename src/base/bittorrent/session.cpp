@@ -2818,12 +2818,12 @@ void Session::setDiskCacheSize(int size)
     }
 }
 
-uint Session::diskCacheTTL() const
+int Session::diskCacheTTL() const
 {
     return m_diskCacheTTL;
 }
 
-void Session::setDiskCacheTTL(uint ttl)
+void Session::setDiskCacheTTL(int ttl)
 {
     if (ttl != m_diskCacheTTL) {
         m_diskCacheTTL = ttl;
@@ -2928,12 +2928,12 @@ void Session::setIgnoreSlowTorrentsForQueueing(bool ignore)
     }
 }
 
-uint Session::outgoingPortsMin() const
+int Session::outgoingPortsMin() const
 {
     return m_outgoingPortsMin;
 }
 
-void Session::setOutgoingPortsMin(uint min)
+void Session::setOutgoingPortsMin(int min)
 {
     if (min != m_outgoingPortsMin) {
         m_outgoingPortsMin = min;
@@ -2941,12 +2941,12 @@ void Session::setOutgoingPortsMin(uint min)
     }
 }
 
-uint Session::outgoingPortsMax() const
+int Session::outgoingPortsMax() const
 {
     return m_outgoingPortsMax;
 }
 
-void Session::setOutgoingPortsMax(uint max)
+void Session::setOutgoingPortsMax(int max)
 {
     if (max != m_outgoingPortsMax) {
         m_outgoingPortsMax = max;

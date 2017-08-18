@@ -329,8 +329,8 @@ namespace BitTorrent
         void setAnnounceToAllTrackers(bool val);
         int diskCacheSize() const;
         void setDiskCacheSize(int size);
-        uint diskCacheTTL() const;
-        void setDiskCacheTTL(uint ttl);
+        int diskCacheTTL() const;
+        void setDiskCacheTTL(int ttl);
         bool useOSCache() const;
         void setUseOSCache(bool use);
         bool isAnonymousModeEnabled() const;
@@ -339,10 +339,10 @@ namespace BitTorrent
         void setQueueingSystemEnabled(bool enabled);
         bool ignoreSlowTorrentsForQueueing() const;
         void setIgnoreSlowTorrentsForQueueing(bool ignore);
-        uint outgoingPortsMin() const;
-        void setOutgoingPortsMin(uint min);
-        uint outgoingPortsMax() const;
-        void setOutgoingPortsMax(uint max);
+        int outgoingPortsMin() const;
+        void setOutgoingPortsMin(int min);
+        int outgoingPortsMax() const;
+        void setOutgoingPortsMax(int max);
         bool ignoreLimitsOnLAN() const;
         void setIgnoreLimitsOnLAN(bool ignore);
         bool includeOverheadInLimits() const;
@@ -573,7 +573,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_IPFilterFile;
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<int> m_diskCacheSize;
-        CachedSettingValue<uint> m_diskCacheTTL;
+        CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
@@ -581,8 +581,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxActiveUploads;
         CachedSettingValue<int> m_maxActiveTorrents;
         CachedSettingValue<bool> m_ignoreSlowTorrentsForQueueing;
-        CachedSettingValue<uint> m_outgoingPortsMin;
-        CachedSettingValue<uint> m_outgoingPortsMax;
+        CachedSettingValue<int> m_outgoingPortsMin;
+        CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
