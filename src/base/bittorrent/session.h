@@ -281,8 +281,8 @@ namespace BitTorrent
         void setIPFilterFile(QString path);
         bool announceToAllTrackers() const;
         void setAnnounceToAllTrackers(bool val);
-        uint diskCacheSize() const;
-        void setDiskCacheSize(uint size);
+        int diskCacheSize() const;
+        void setDiskCacheSize(int size);
         uint diskCacheTTL() const;
         void setDiskCacheTTL(uint ttl);
         bool useOSCache() const;
@@ -515,7 +515,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
         CachedSettingValue<QString> m_IPFilterFile;
         CachedSettingValue<bool> m_announceToAllTrackers;
-        CachedSettingValue<uint> m_diskCacheSize;
+        CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<uint> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
