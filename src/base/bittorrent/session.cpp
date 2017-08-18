@@ -326,6 +326,10 @@ Session::Session(QObject *parent)
     sessionSettings.connection_speed = 20; // default is 10
     sessionSettings.no_connect_privileged_ports = false;
     sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
+    // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
+    // Soon to be deprecated there
+    // More info: https://github.com/arvidn/libtorrent/issues/2251
+    sessionSettings.use_disk_cache_pool = false;
     configure(sessionSettings);
     m_nativeSession->set_settings(sessionSettings);
     configureListeningInterface();
@@ -353,6 +357,10 @@ Session::Session(QObject *parent)
     pack.set_int(libt::settings_pack::connection_speed, 20); // default is 10
     pack.set_bool(libt::settings_pack::no_connect_privileged_ports, false);
     pack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
+    // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
+    // Soon to be deprecated there
+    // More info: https://github.com/arvidn/libtorrent/issues/2251
+    pack.set_bool(libt::settings_pack::use_disk_cache_pool, false);
     configure(pack);
 
     m_nativeSession = new libt::session(pack, 0);
@@ -1036,8 +1044,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAll);
     settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAll);
 
-    const int cacheSize = diskCacheSize();
-    settingsPack.set_int(libt::settings_pack::cache_size, (cacheSize > 0) ? cacheSize * 64 : -1);
+    const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
+    settingsPack.set_int(libt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(libt::settings_pack::cache_expiry, diskCacheTTL());
     qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
 
@@ -1183,8 +1191,8 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     bool announceToAll = announceToAllTrackers();
     sessionSettings.announce_to_all_trackers = announceToAll;
     sessionSettings.announce_to_all_tiers = announceToAll;
-    int cacheSize = diskCacheSize();
-    sessionSettings.cache_size = (cacheSize > 0) ? cacheSize * 64 : -1;
+    const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
+    sessionSettings.cache_size = cacheSize;
     sessionSettings.cache_expiry = diskCacheTTL();
     qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
     libt::session_settings::io_buffer_mode_t mode = useOSCache() ? libt::session_settings::enable_os_cache
@@ -2450,27 +2458,27 @@ void Session::setAnnounceToAllTrackers(bool val)
     }
 }
 
-uint Session::diskCacheSize() const
+int Session::diskCacheSize() const
 {
-    uint size = m_diskCacheSize;
+    int size = m_diskCacheSize;
     // These macros may not be available on compilers other than MSVC and GCC
 #if defined(__x86_64__) || defined(_M_X64)
-    size = qMin(size, 4096u);  // 4GiB
+    size = qMin(size, 4096);  // 4GiB
 #else
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    size = qMin(size, 1536u);
+    size = qMin(size, 1536);
 #endif
     return size;
 }
 
-void Session::setDiskCacheSize(uint size)
+void Session::setDiskCacheSize(int size)
 {
 #if defined(__x86_64__) || defined(_M_X64)
-    size = qMin(size, 4096u);  // 4GiB
+    size = qMin(size, 4096);  // 4GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    size = qMin(size, 1536u);
+    size = qMin(size, 1536);
 #endif
     if (size != m_diskCacheSize) {
         m_diskCacheSize = size;

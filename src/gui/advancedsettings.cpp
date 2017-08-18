@@ -190,7 +190,9 @@ void AdvancedSettings::saveAdvancedSettings()
 
 void AdvancedSettings::updateCacheSpinSuffix(int value)
 {
-    if (value <= 0)
+    if (value == 0)
+        spin_cache.setSuffix(tr(" (disabled)"));
+    else if (value < 0)
         spin_cache.setSuffix(tr(" (auto)"));
     else
         spin_cache.setSuffix(tr(" MiB"));
@@ -251,7 +253,7 @@ void AdvancedSettings::loadAdvancedSettings()
     labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("http://www.libtorrent.org/reference.html").arg(tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
     // Disk write cache
-    spin_cache.setMinimum(0);
+    spin_cache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
     // These macros may not be available on compilers other than MSVC and GCC
 #if defined(__x86_64__) || defined(_M_X64)
