@@ -606,6 +606,8 @@ libtorrent_CFLAGS
 BOOST_SYSTEM_LIB
 BOOST_LDFLAGS
 BOOST_CPPFLAGS
+Qt5Svg_LIBS
+Qt5Svg_CFLAGS
 QT_QMAKE
 PKG_CONFIG_LIBDIR
 PKG_CONFIG_PATH
@@ -738,6 +740,8 @@ PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
 QT_QMAKE
+Qt5Svg_CFLAGS
+Qt5Svg_LIBS
 libtorrent_CFLAGS
 libtorrent_LIBS
 zlib_CFLAGS
@@ -1420,6 +1424,9 @@ Some influential environment variables:
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
   QT_QMAKE    value of host_bins for Qt5Core >= 5.5.1, overriding pkg-config
+  Qt5Svg_CFLAGS
+              C compiler flags for Qt5Svg, overriding pkg-config
+  Qt5Svg_LIBS linker flags for Qt5Svg, overriding pkg-config
   libtorrent_CFLAGS
               C compiler flags for libtorrent, overriding pkg-config
   libtorrent_LIBS
@@ -4491,6 +4498,100 @@ fi
 
 if test "x$QT_QMAKE" = "x"; then :
   as_fn_error $? "Could not find qmake" "$LINENO" 5
+
+fi
+if test "x$enable_gui" = "xyes"; then :
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt5Svg" >&5
+$as_echo_n "checking for Qt5Svg... " >&6; }
+
+if test -n "$Qt5Svg_CFLAGS"; then
+    pkg_cv_Qt5Svg_CFLAGS="$Qt5Svg_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.5.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.5.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_Qt5Svg_CFLAGS=`$PKG_CONFIG --cflags "Qt5Svg >= 5.5.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$Qt5Svg_LIBS"; then
+    pkg_cv_Qt5Svg_LIBS="$Qt5Svg_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.5.1\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.5.1") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_Qt5Svg_LIBS=`$PKG_CONFIG --libs "Qt5Svg >= 5.5.1" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5Svg >= 5.5.1" 2>&1`
+        else
+	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5Svg >= 5.5.1" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$Qt5Svg_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (Qt5Svg >= 5.5.1) were not met:
+
+$Qt5Svg_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables Qt5Svg_CFLAGS
+and Qt5Svg_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables Qt5Svg_CFLAGS
+and Qt5Svg_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	Qt5Svg_CFLAGS=$pkg_cv_Qt5Svg_CFLAGS
+	Qt5Svg_LIBS=$pkg_cv_Qt5Svg_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+fi
 
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether QtDBus should be enabled" >&5
