@@ -225,32 +225,298 @@ static const char KEY_LOG_PEER_IP[] = "ip";
 static const char KEY_LOG_PEER_BLOCKED[] = "blocked";
 static const char KEY_LOG_PEER_REASON[] = "reason";
 
-QVariantMap getTranserInfoMap();
-QVariantMap toMap(BitTorrent::TorrentHandle *const torrent);
-void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData);
-void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems);
-void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems);
-QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData);
-
-class QTorrentCompare
+namespace
 {
-public:
-    QTorrentCompare(QString key, bool greaterThan = false)
-        : key_(key)
-        , greaterThan_(greaterThan)
+    class QTorrentCompare
     {
+    public:
+        QTorrentCompare(const QString &key, bool greaterThan = false)
+            : m_key(key)
+            , m_greaterThan(greaterThan)
+        {
+        }
+
+        bool operator()(const QVariant &torrent1, const QVariant &torrent2)
+        {
+            return m_greaterThan
+                ? (torrent1.toMap().value(m_key) > torrent2.toMap().value(m_key))
+                : (torrent1.toMap().value(m_key) < torrent2.toMap().value(m_key));
+        }
+
+    private:
+        const QString m_key;
+        const bool m_greaterThan;
+    };
+
+    QVariantMap getTranserInfoMap();
+    QVariantMap toMap(BitTorrent::TorrentHandle *const torrent);
+    void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData);
+    void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems);
+    void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
+    QVariantMap generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
+
+    QVariantMap getTranserInfoMap()
+    {
+        QVariantMap map;
+        const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+        const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+        map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
+        map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
+        map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
+        map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
+        map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
+        map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+
+        quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
+        quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+        map[KEY_TRANSFER_ALLTIME_DL] = atd;
+        map[KEY_TRANSFER_ALLTIME_UL] = atu;
+        map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
+        map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
+        map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
+
+        qreal readRatio = cacheStatus.readRatio;
+        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
+        map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
+
+        // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
+        quint32 peers = 0;
+        foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+            peers += torrent->peersCount();
+        map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
+        map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
+
+        map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
+        map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
+        map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
+
+        map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
+        if (!BitTorrent::Session::instance()->isListening())
+            map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
+        else
+            map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
+        return map;
     }
 
-    bool operator()(QVariant torrent1, QVariant torrent2)
+    QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
     {
-        return greaterThan_ ? torrent1.toMap().value(key_) > torrent2.toMap().value(key_)
-               : torrent1.toMap().value(key_) < torrent2.toMap().value(key_);
+        QVariantMap ret;
+        ret[KEY_TORRENT_HASH] = QString(torrent->hash());
+        ret[KEY_TORRENT_NAME] = torrent->name();
+        ret[KEY_TORRENT_MAGNET_URI] = torrent->toMagnetUri();
+        ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
+        ret[KEY_TORRENT_PROGRESS] = torrent->progress();
+        ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();
+        ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
+        ret[KEY_TORRENT_PRIORITY] = torrent->queuePosition();
+        ret[KEY_TORRENT_SEEDS] = torrent->seedsCount();
+        ret[KEY_TORRENT_NUM_COMPLETE] = torrent->totalSeedsCount();
+        ret[KEY_TORRENT_LEECHS] = torrent->leechsCount();
+        ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
+        const qreal ratio = torrent->realRatio();
+        ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
+        ret[KEY_TORRENT_STATE] = torrent->state().toString();
+        ret[KEY_TORRENT_ETA] = torrent->eta();
+        ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
+        if (torrent->hasMetadata())
+            ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
+        ret[KEY_TORRENT_CATEGORY] = torrent->category();
+        ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
+        ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
+        ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
+        ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
+        ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
+        ret[KEY_TORRENT_TRACKER] = torrent->currentTracker();
+        ret[KEY_TORRENT_DL_LIMIT] = torrent->downloadLimit();
+        ret[KEY_TORRENT_UP_LIMIT] = torrent->uploadLimit();
+        ret[KEY_TORRENT_AMOUNT_DOWNLOADED] = torrent->totalDownload();
+        ret[KEY_TORRENT_AMOUNT_UPLOADED] = torrent->totalUpload();
+        ret[KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
+        ret[KEY_TORRENT_AMOUNT_UPLOADED_SESSION] = torrent->totalPayloadUpload();
+        ret[KEY_TORRENT_AMOUNT_LEFT] = torrent->incompletedSize();
+        ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent->completedSize();
+        ret[KEY_TORRENT_RATIO_LIMIT] = torrent->maxRatio();
+        ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent->lastSeenComplete().toTime_t();
+        ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent->isAutoTMMEnabled();
+
+        if (torrent->isPaused() || torrent->isChecking())
+            ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
+        else {
+            QDateTime dt = QDateTime::currentDateTime();
+            dt = dt.addSecs(-torrent->timeSinceActivity());
+            ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
+        }
+
+        ret[KEY_TORRENT_TOTAL_SIZE] = torrent->totalSize();
+
+        return ret;
     }
 
-private:
-    QString key_;
-    bool greaterThan_;
-};
+    // Compare two structures (prevData, data) and calculate difference (syncData).
+    // Structures encoded as map.
+    void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData)
+    {
+        // initialize output variable
+        syncData.clear();
+
+        QVariantList removedItems;
+        foreach (QString key, data.keys()) {
+            removedItems.clear();
+
+            switch (static_cast<QMetaType::Type>(data[key].type())) {
+            case QMetaType::QVariantMap: {
+                    QVariantMap map;
+                    processMap(prevData[key].toMap(), data[key].toMap(), map);
+                    if (!map.isEmpty())
+                        syncData[key] = map;
+                }
+                break;
+            case QMetaType::QVariantHash: {
+                    QVariantMap map;
+                    processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
+                    if (!map.isEmpty())
+                        syncData[key] = map;
+                    if (!removedItems.isEmpty())
+                        syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+                }
+                break;
+            case QMetaType::QVariantList: {
+                    QVariantList list;
+                    processList(prevData[key].toList(), data[key].toList(), list, removedItems);
+                    if (!list.isEmpty())
+                        syncData[key] = list;
+                    if (!removedItems.isEmpty())
+                        syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+                }
+                break;
+            case QMetaType::QString:
+            case QMetaType::LongLong:
+            case QMetaType::Float:
+            case QMetaType::Int:
+            case QMetaType::Bool:
+            case QMetaType::Double:
+            case QMetaType::ULongLong:
+            case QMetaType::UInt:
+            case QMetaType::QDateTime:
+                if (prevData[key] != data[key])
+                    syncData[key] = data[key];
+                break;
+            default:
+                Q_ASSERT_X(false, "processMap"
+                           , QString("Unexpected type: %1")
+                           .arg(QMetaType::typeName(static_cast<QMetaType::Type>(data[key].type())))
+                           .toUtf8().constData());
+            }
+        }
+    }
+
+    // Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
+    // Structures encoded as map.
+    // Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
+    void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems)
+    {
+        // initialize output variables
+        syncData.clear();
+        removedItems.clear();
+
+        if (prevData.isEmpty()) {
+            // If list was empty before, then difference is a whole new list.
+            foreach (QString key, data.keys())
+                syncData[key] = data[key];
+        }
+        else {
+            foreach (QString key, data.keys()) {
+                switch (data[key].type()) {
+                case QVariant::Map:
+                    if (!prevData.contains(key)) {
+                        // new list item found - append it to syncData
+                        syncData[key] = data[key];
+                    }
+                    else {
+                        QVariantMap map;
+                        processMap(prevData[key].toMap(), data[key].toMap(), map);
+                        // existing list item found - remove it from prevData
+                        prevData.remove(key);
+                        if (!map.isEmpty())
+                            // changed list item found - append its changes to syncData
+                            syncData[key] = map;
+                    }
+                    break;
+                default:
+                    Q_ASSERT(0);
+                }
+            }
+
+            if (!prevData.isEmpty()) {
+                // prevData contains only items that are missing now -
+                // put them in removedItems
+                foreach (QString s, prevData.keys())
+                    removedItems << s;
+            }
+        }
+    }
+
+    // Compare two lists of simple value (prevData, data) and calculate difference (syncData, removedItems).
+    void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems)
+    {
+        // initialize output variables
+        syncData.clear();
+        removedItems.clear();
+
+        if (prevData.isEmpty()) {
+            // If list was empty before, then difference is a whole new list.
+            syncData = data;
+        }
+        else {
+            foreach (QVariant item, data) {
+                if (!prevData.contains(item))
+                    // new list item found - append it to syncData
+                    syncData.append(item);
+                else
+                    // unchanged list item found - remove it from prevData
+                    prevData.removeOne(item);
+            }
+
+            if (!prevData.isEmpty())
+                // prevData contains only items that are missing now -
+                // put them in removedItems
+                removedItems = prevData;
+        }
+    }
+
+    QVariantMap generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData)
+    {
+        QVariantMap syncData;
+        bool fullUpdate = true;
+        int lastResponseId = 0;
+        if (acceptedResponseId > 0) {
+            lastResponseId = lastData[KEY_RESPONSE_ID].toInt();
+
+            if (lastResponseId == acceptedResponseId)
+                lastAcceptedData = lastData;
+
+            int lastAcceptedResponseId = lastAcceptedData[KEY_RESPONSE_ID].toInt();
+
+            if (lastAcceptedResponseId == acceptedResponseId) {
+                processMap(lastAcceptedData, data, syncData);
+                fullUpdate = false;
+            }
+        }
+
+        if (fullUpdate) {
+            lastAcceptedData.clear();
+            syncData = data;
+            syncData[KEY_FULL_UPDATE] = true;
+        }
+
+        lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
+        lastData = data;
+        lastData[KEY_RESPONSE_ID] = lastResponseId;
+        syncData[KEY_RESPONSE_ID] = lastResponseId;
+
+        return syncData;
+    }
+}
 
 /**
  * Returns all the torrents in JSON format.
@@ -728,49 +994,6 @@ QByteArray btjson::getTransferInfo()
     return json::toJson(getTranserInfoMap());
 }
 
-QVariantMap getTranserInfoMap()
-{
-    QVariantMap map;
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
-    const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
-    map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
-    map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
-    map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
-    map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
-    map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-    map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
-
-    quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-    quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
-    map[KEY_TRANSFER_ALLTIME_DL] = atd;
-    map[KEY_TRANSFER_ALLTIME_UL] = atu;
-    map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
-    map[KEY_TRANSFER_GLOBAL_RATIO] = ( atd > 0 && atu > 0 ) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
-
-    qreal readRatio = cacheStatus.readRatio;
-    map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
-    map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
-
-    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-    quint32 peers = 0;
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
-        peers += torrent->peersCount();
-    map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
-    map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
-
-    map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
-    map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
-    map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
-
-    map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
-    if (!BitTorrent::Session::instance()->isListening())
-        map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
-    else
-        map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
-    return map;
-}
-
 QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimits)
 {
     QVariantMap map;
@@ -784,225 +1007,6 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
     }
 
     return json::toJson(map);
-}
-
-QVariantMap toMap(BitTorrent::TorrentHandle *const torrent)
-{
-    QVariantMap ret;
-    ret[KEY_TORRENT_HASH] = QString(torrent->hash());
-    ret[KEY_TORRENT_NAME] = torrent->name();
-    ret[KEY_TORRENT_MAGNET_URI] = torrent->toMagnetUri();
-    ret[KEY_TORRENT_SIZE] = torrent->wantedSize();
-    ret[KEY_TORRENT_PROGRESS] = torrent->progress();
-    ret[KEY_TORRENT_DLSPEED] = torrent->downloadPayloadRate();
-    ret[KEY_TORRENT_UPSPEED] = torrent->uploadPayloadRate();
-    ret[KEY_TORRENT_PRIORITY] = torrent->queuePosition();
-    ret[KEY_TORRENT_SEEDS] = torrent->seedsCount();
-    ret[KEY_TORRENT_NUM_COMPLETE] = torrent->totalSeedsCount();
-    ret[KEY_TORRENT_LEECHS] = torrent->leechsCount();
-    ret[KEY_TORRENT_NUM_INCOMPLETE] = torrent->totalLeechersCount();
-    const qreal ratio = torrent->realRatio();
-    ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
-    ret[KEY_TORRENT_STATE] = torrent->state().toString();
-    ret[KEY_TORRENT_ETA] = torrent->eta();
-    ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent->isSequentialDownload();
-    if (torrent->hasMetadata())
-        ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
-    ret[KEY_TORRENT_CATEGORY] = torrent->category();
-    ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
-    ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
-    ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
-    ret[KEY_TORRENT_ADDED_ON] = torrent->addedTime().toTime_t();
-    ret[KEY_TORRENT_COMPLETION_ON] = torrent->completedTime().toTime_t();
-    ret[KEY_TORRENT_TRACKER] = torrent->currentTracker();
-    ret[KEY_TORRENT_DL_LIMIT] = torrent->downloadLimit();
-    ret[KEY_TORRENT_UP_LIMIT] = torrent->uploadLimit();
-    ret[KEY_TORRENT_AMOUNT_DOWNLOADED] = torrent->totalDownload();
-    ret[KEY_TORRENT_AMOUNT_UPLOADED] = torrent->totalUpload();
-    ret[KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
-    ret[KEY_TORRENT_AMOUNT_UPLOADED_SESSION] = torrent->totalPayloadUpload();
-    ret[KEY_TORRENT_AMOUNT_LEFT] = torrent->incompletedSize();
-    ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent->completedSize();
-    ret[KEY_TORRENT_RATIO_LIMIT] = torrent->maxRatio();
-    ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent->lastSeenComplete().toTime_t();
-    ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent->isAutoTMMEnabled();
-
-    if (torrent->isPaused() || torrent->isChecking())
-        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
-    else {
-        QDateTime dt = QDateTime::currentDateTime();
-        dt = dt.addSecs(-torrent->timeSinceActivity());
-        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
-    }
-
-    ret[KEY_TORRENT_TOTAL_SIZE] = torrent->totalSize();
-
-    return ret;
-}
-
-// Compare two structures (prevData, data) and calculate difference (syncData).
-// Structures encoded as map.
-void processMap(QVariantMap prevData, QVariantMap data, QVariantMap &syncData)
-{
-    // initialize output variable
-    syncData.clear();
-
-    QVariantList removedItems;
-    foreach (QString key, data.keys()) {
-        removedItems.clear();
-
-        switch (static_cast<QMetaType::Type>(data[key].type())) {
-        case QMetaType::QVariantMap: {
-                QVariantMap map;
-                processMap(prevData[key].toMap(), data[key].toMap(), map);
-                if (!map.isEmpty())
-                    syncData[key] = map;
-            }
-            break;
-        case QMetaType::QVariantHash: {
-                QVariantMap map;
-                processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
-                if (!map.isEmpty())
-                    syncData[key] = map;
-                if (!removedItems.isEmpty())
-                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
-            }
-            break;
-        case QMetaType::QVariantList: {
-                QVariantList list;
-                processList(prevData[key].toList(), data[key].toList(), list, removedItems);
-                if (!list.isEmpty())
-                    syncData[key] = list;
-                if (!removedItems.isEmpty())
-                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
-            }
-            break;
-        case QMetaType::QString:
-        case QMetaType::LongLong:
-        case QMetaType::Float:
-        case QMetaType::Int:
-        case QMetaType::Bool:
-        case QMetaType::Double:
-        case QMetaType::ULongLong:
-        case QMetaType::UInt:
-        case QMetaType::QDateTime:
-            if (prevData[key] != data[key])
-                syncData[key] = data[key];
-            break;
-        default:
-            Q_ASSERT_X(false, "processMap"
-                       , QString("Unexpected type: %1")
-                       .arg(QMetaType::typeName(static_cast<QMetaType::Type>(data[key].type())))
-                       .toUtf8().constData());
-        }
-    }
-}
-
-// Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
-// Structures encoded as map.
-// Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
-void processHash(QVariantHash prevData, QVariantHash data, QVariantMap &syncData, QVariantList &removedItems)
-{
-    // initialize output variables
-    syncData.clear();
-    removedItems.clear();
-
-    if (prevData.isEmpty()) {
-        // If list was empty before, then difference is a whole new list.
-        foreach (QString key, data.keys())
-            syncData[key] = data[key];
-    }
-    else {
-        foreach (QString key, data.keys()) {
-            switch (data[key].type()) {
-            case QVariant::Map:
-                if (!prevData.contains(key)) {
-                    // new list item found - append it to syncData
-                    syncData[key] = data[key];
-                }
-                else {
-                    QVariantMap map;
-                    processMap(prevData[key].toMap(), data[key].toMap(), map);
-                    // existing list item found - remove it from prevData
-                    prevData.remove(key);
-                    if (!map.isEmpty())
-                        // changed list item found - append its changes to syncData
-                        syncData[key] = map;
-                }
-                break;
-            default:
-                Q_ASSERT(0);
-            }
-        }
-
-        if (!prevData.isEmpty()) {
-            // prevData contains only items that are missing now -
-            // put them in removedItems
-            foreach (QString s, prevData.keys())
-                removedItems << s;
-        }
-    }
-}
-
-// Compare two lists of simple value (prevData, data) and calculate difference (syncData, removedItems).
-void processList(QVariantList prevData, QVariantList data, QVariantList &syncData, QVariantList &removedItems)
-{
-    // initialize output variables
-    syncData.clear();
-    removedItems.clear();
-
-    if (prevData.isEmpty()) {
-        // If list was empty before, then difference is a whole new list.
-        syncData = data;
-    }
-    else {
-        foreach (QVariant item, data) {
-            if (!prevData.contains(item))
-                // new list item found - append it to syncData
-                syncData.append(item);
-            else
-                // unchanged list item found - remove it from prevData
-                prevData.removeOne(item);
-        }
-
-        if (!prevData.isEmpty())
-            // prevData contains only items that are missing now -
-            // put them in removedItems
-            removedItems = prevData;
-    }
-}
-
-QVariantMap generateSyncData(int acceptedResponseId, QVariantMap data, QVariantMap &lastAcceptedData,  QVariantMap &lastData)
-{
-    QVariantMap syncData;
-    bool fullUpdate = true;
-    int lastResponseId = 0;
-    if (acceptedResponseId > 0) {
-        lastResponseId = lastData[KEY_RESPONSE_ID].toInt();
-
-        if (lastResponseId == acceptedResponseId)
-            lastAcceptedData = lastData;
-
-        int lastAcceptedResponseId = lastAcceptedData[KEY_RESPONSE_ID].toInt();
-
-        if (lastAcceptedResponseId == acceptedResponseId) {
-            processMap(lastAcceptedData, data, syncData);
-            fullUpdate = false;
-        }
-    }
-
-    if (fullUpdate) {
-        lastAcceptedData.clear();
-        syncData = data;
-        syncData[KEY_FULL_UPDATE] = true;
-    }
-
-    lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
-    lastData = data;
-    lastData[KEY_RESPONSE_ID] = lastResponseId;
-    syncData[KEY_RESPONSE_ID] = lastResponseId;
-
-    return syncData;
 }
 
 /**
