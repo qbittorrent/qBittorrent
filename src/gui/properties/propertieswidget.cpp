@@ -329,7 +329,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
 
         // List files in torrent
         PropListModel->model()->setupModelData(m_torrent->info());
-        if ((m_torrent->filesCount() > 1) && (PropListModel->model()->rowCount() == 1))
+        if (PropListModel->model()->rowCount() == 1)
             m_ui->filesList->setExpanded(PropListModel->index(0, 0), true);
 
         // Load file priorities
