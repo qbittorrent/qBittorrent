@@ -1293,7 +1293,7 @@ static bool dockClickHandler(id self, SEL cmd, ...)
 }
 
 void MainWindow::setupDockClickHandler()
-{    
+{
     dockMainWindowHandle = this;
     overrideDockClickHandler(dockClickHandler);
 }
@@ -1831,8 +1831,6 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
 void MainWindow::toggleAlternativeSpeeds()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
-    if (session->isBandwidthSchedulerEnabled())
-        m_statusBar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
     session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
 }
 
