@@ -36,6 +36,7 @@
 
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/net/downloadmanager.h"
@@ -669,13 +670,20 @@ PluginVersion SearchEngine::getPluginVersion(QString filePath)
     if (!plugin.open(QIODevice::ReadOnly | QIODevice::Text))
         return {};
 
+    const PluginVersion invalidVersion;
+
     PluginVersion version;
     while (!plugin.atEnd()) {
         QByteArray line = plugin.readLine();
         if (line.startsWith("#VERSION: ")) {
             line = line.split(' ').last().trimmed();
-            version = PluginVersion::tryParse(line, {});
-            qDebug() << "plugin" << filePath << "version: " << version;
+            version = PluginVersion::tryParse(line, invalidVersion);
+            if (version == invalidVersion) {
+                LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
+                    .arg(Utils::Fs::fileName(filePath)).arg(QString::fromUtf8(line)), Log::MsgType::WARNING);
+            }
+            else
+                qDebug() << "plugin" << filePath << "version: " << version;
             break;
         }
     }
