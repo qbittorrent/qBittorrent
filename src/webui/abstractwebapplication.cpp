@@ -452,8 +452,7 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
 
 bool AbstractWebApplication::validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const
 {
-    const QUrl hostHeader = QUrl::fromUserInput(
-                                request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST)));
+    const QUrl hostHeader = QUrl::fromUserInput(request.headers.value(Http::HEADER_HOST));
 
     // (if present) try matching host header's port with local port
     const int requestPort = hostHeader.port();
