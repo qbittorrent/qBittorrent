@@ -117,7 +117,7 @@ namespace Utils
         {
             // find the last one non-zero component
             std::size_t lastSignificantIndex = N - 1;
-            while (lastSignificantIndex >= 0 && (*this)[lastSignificantIndex] == 0)
+            while (lastSignificantIndex > 0 && (*this)[lastSignificantIndex] == 0)
                 --lastSignificantIndex;
 
             if (lastSignificantIndex + 1 < Mandatory)     // lastSignificantIndex >= 0
