@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,27 +25,32 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef BANDWIDTHSCHEDULER_H
 #define BANDWIDTHSCHEDULER_H
 
+#include <QObject>
 #include <QTimer>
 
-class BandwidthScheduler : public QTimer
+class BandwidthScheduler: public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(BandwidthScheduler)
 
 public:
-    BandwidthScheduler(QObject *parent = 0);
-
-public slots:
+    explicit BandwidthScheduler(QObject *parent = nullptr);
     void start();
 
 signals:
-    void switchToAlternativeMode(bool alternative);
+    void bandwidthLimitRequested(bool alternative);
+
+private:
+    bool isTimeForAlternative() const;
+    void onTimeout();
+
+    QTimer m_timer;
+    bool m_lastAlternative;
 };
 
 #endif // BANDWIDTHSCHEDULER_H

@@ -441,6 +441,9 @@ Session::Session(QObject *parent)
                        .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
                        , Log::INFO);
 
+    if (isBandwidthSchedulerEnabled())
+        enableBandwidthScheduler();
+
     if (isIPFilteringEnabled()) {
         // Manually banned IPs are handled in that function too(in the slots)
         enableIPFilter();
@@ -953,13 +956,8 @@ Session::~Session()
 
 void Session::initInstance()
 {
-    if (!m_instance) {
+    if (!m_instance)
         m_instance = new Session;
-
-        // BandwidthScheduler::start() depends on Session being fully constructed
-        if (m_instance->isBandwidthSchedulerEnabled())
-            m_instance->enableBandwidthScheduler();
-    }
 }
 
 void Session::freeInstance()
@@ -988,6 +986,19 @@ void Session::adjustLimits()
         m_nativeSession->apply_settings(settingsPack);
 #endif
     }
+}
+
+void Session::applyBandwidthLimits()
+{
+#if LIBTORRENT_VERSION_NUM < 10100
+        libt::session_settings sessionSettings(m_nativeSession->settings());
+        applyBandwidthLimits(sessionSettings);
+        m_nativeSession->set_settings(sessionSettings);
+#else
+        libt::settings_pack settingsPack = m_nativeSession->get_settings();
+        applyBandwidthLimits(settingsPack);
+        m_nativeSession->apply_settings(settingsPack);
+#endif
 }
 
 // Set BitTorrent session configuration
@@ -1040,6 +1051,13 @@ void Session::adjustLimits(libt::settings_pack &settingsPack)
                          , maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads);
     settingsPack.set_int(libt::settings_pack::active_limit
                          , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
+}
+
+void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
+{
+    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
+    settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
+    settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
 }
 
 void Session::initMetrics()
@@ -1185,9 +1203,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
         m_listenInterfaceChanged = false;
     }
 
-    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
-    settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
-    settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+    applyBandwidthLimits(settingsPack);
 
     // The most secure, rc4 only so that all streams are encrypted
     settingsPack.set_int(libt::settings_pack::allowed_enc_level, libt::settings_pack::pe_rc4);
@@ -1397,11 +1413,16 @@ void Session::adjustLimits(libt::session_settings &sessionSettings)
     sessionSettings.active_limit = maxActive > -1 ? maxActive + m_extraLimit : maxActive;
 }
 
-void Session::configure(libtorrent::session_settings &sessionSettings)
+void Session::applyBandwidthLimits(libt::session_settings &sessionSettings)
 {
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     sessionSettings.download_rate_limit = altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit();
     sessionSettings.upload_rate_limit = altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit();
+}
+
+void Session::configure(libtorrent::session_settings &sessionSettings)
+{
+    applyBandwidthLimits(sessionSettings);
 
     // The most secure, rc4 only so that all streams are encrypted
     libt::pe_settings encryptionSettings;
@@ -1568,7 +1589,8 @@ void Session::enableBandwidthScheduler()
 {
     if (!m_bwScheduler) {
         m_bwScheduler = new BandwidthScheduler(this);
-        connect(m_bwScheduler.data(), SIGNAL(switchToAlternativeMode(bool)), this, SLOT(switchToAlternativeMode(bool)));
+        connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested
+                , this, &Session::setAltGlobalSpeedLimitEnabled);
     }
     m_bwScheduler->start();
 }
@@ -1648,11 +1670,6 @@ void Session::handleDownloadFailed(const QString &url, const QString &reason)
 void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
 {
     addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
-}
-
-void Session::switchToAlternativeMode(bool alternative)
-{
-    changeSpeedLimitMode_impl(alternative);
 }
 
 // Add to BitTorrent session the downloaded torrent file
@@ -2147,18 +2164,6 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     }
 }
 
-void Session::changeSpeedLimitMode_impl(bool alternative)
-{
-    qDebug() << Q_FUNC_INFO << alternative;
-    if (alternative == isAltGlobalSpeedLimitEnabled()) return;
-
-    // Save new state to remember it on startup
-    m_isAltGlobalSpeedLimitEnabled = alternative;
-    configureDeferred();
-    // Notify
-    emit speedLimitModeChanged(alternative);
-}
-
 void Session::generateResumeData(bool final)
 {
     foreach (TorrentHandle *const torrent, m_torrents) {
@@ -2488,11 +2493,13 @@ bool Session::isAltGlobalSpeedLimitEnabled() const
 
 void Session::setAltGlobalSpeedLimitEnabled(bool enabled)
 {
-    // Stop the scheduler when the user has manually changed the bandwidth mode
-    if (isBandwidthSchedulerEnabled())
-        setBandwidthSchedulerEnabled(false);
+    if (enabled == isAltGlobalSpeedLimitEnabled()) return;
 
-    changeSpeedLimitMode_impl(enabled);
+    // Save new state to remember it on startup
+    m_isAltGlobalSpeedLimitEnabled = enabled;
+    applyBandwidthLimits();
+    // Notify
+    emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
 }
 
 bool Session::isBandwidthSchedulerEnabled() const

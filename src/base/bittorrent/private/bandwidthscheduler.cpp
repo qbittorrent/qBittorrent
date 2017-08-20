@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,72 +25,78 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QTime>
-#include <QDateTime>
-
-#include "base/bittorrent/session.h"
-#include "base/preferences.h"
 #include "bandwidthscheduler.h"
 
+#include <utility>
+
+#include <QDate>
+#include <QTime>
+
+#include "base/preferences.h"
+
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
-    : QTimer(parent)
+    : QObject(parent)
+    , m_lastAlternative(false)
 {
-    // Single shot, we call start() again manually
-    setSingleShot(true);
-    // Connect Signals/Slots
-    connect(this, SIGNAL(timeout()), this, SLOT(start()));
+    connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::onTimeout);
 }
 
 void BandwidthScheduler::start()
 {
-    const Preferences* const pref = Preferences::instance();
-    bool alt_bw_enabled = BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled();
-
-    QTime start = pref->getSchedulerStartTime();
-    QTime end = pref->getSchedulerEndTime();
-    QTime now = QTime::currentTime();
-    int sched_days = pref->getSchedulerDays();
-    int day = QDateTime::currentDateTime().toLocalTime().date().dayOfWeek();
-    bool new_mode = false;
-    bool reverse = false;
-
-    if (start > end) {
-        QTime temp = start;
-        start = end;
-        end = temp;
-        reverse = true;
-    }
-
-    if ((start <= now) && (end >= now)) {
-        switch(sched_days) {
-        case EVERY_DAY:
-            new_mode = true;
-            break;
-        case WEEK_ENDS:
-            if ((day == 6) || (day == 7))
-                new_mode = true;
-            break;
-        case WEEK_DAYS:
-            if ((day != 6) && (day != 7))
-                new_mode = true;
-            break;
-        default:
-            if (day == (sched_days - 2))
-                new_mode = true;
-        }
-    }
-
-    if (reverse)
-        new_mode = !new_mode;
-
-    if (new_mode != alt_bw_enabled)
-        emit switchToAlternativeMode(new_mode);
+    m_lastAlternative = isTimeForAlternative();
+    emit bandwidthLimitRequested(m_lastAlternative);
 
     // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
-    QTimer::start(1500);
+    m_timer.start(30000);
+}
+
+bool BandwidthScheduler::isTimeForAlternative() const
+{
+    const Preferences* const pref = Preferences::instance();
+
+    QTime start = pref->getSchedulerStartTime();
+    QTime end = pref->getSchedulerEndTime();
+    const QTime now = QTime::currentTime();
+    const int schedulerDays = pref->getSchedulerDays();
+    const int day = QDate::currentDate().dayOfWeek();
+    bool alternative = false;
+
+    if (start > end) {
+        std::swap(start, end);
+        alternative = true;
+    }
+
+    if ((start <= now) && (end >= now)) {
+        switch (schedulerDays) {
+        case EVERY_DAY:
+            alternative = !alternative;
+            break;
+        case WEEK_ENDS:
+            if ((day == 6) || (day == 7))
+                alternative = !alternative;
+            break;
+        case WEEK_DAYS:
+            if ((day != 6) && (day != 7))
+                alternative = !alternative;
+            break;
+        default:
+            if (day == (schedulerDays - 2))
+                alternative = !alternative;
+        }
+    }
+
+    return alternative;
+}
+
+void BandwidthScheduler::onTimeout()
+{
+    bool alternative = isTimeForAlternative();
+
+    if (alternative != m_lastAlternative) {
+        m_lastAlternative = alternative;
+        emit bandwidthLimitRequested(alternative);
+    }
 }
