@@ -325,7 +325,6 @@ void AdvancedSettings::loadAdvancedSettings()
         // https://github.com/qbittorrent/qBittorrent/pull/5135
         if (iface.addressEntries().isEmpty()) continue;
 
-        if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
         combo_iface.addItem(iface.humanReadableName(), iface.name());
         if (!current_iface.isEmpty() && (iface.name() == current_iface)) {
             combo_iface.setCurrentIndex(i);
