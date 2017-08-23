@@ -84,7 +84,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #if (defined(Q_OS_UNIX))
     setWindowTitle(tr("Preferences"));
 #endif
-    
+
     // Icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
@@ -586,10 +586,10 @@ void OptionsDialog::saveOptions()
     const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
     session->setAltGlobalDownloadSpeedLimit(alt_down_up_limit.first);
     session->setAltGlobalUploadSpeedLimit(alt_down_up_limit.second);
-    session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
     pref->setSchedulerStartTime(m_ui->schedule_from->time());
     pref->setSchedulerEndTime(m_ui->schedule_to->time());
     pref->setSchedulerDays(static_cast<scheduler_days>(m_ui->schedule_days->currentIndex()));
+    session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
 
     auto proxyConfigManager  = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;

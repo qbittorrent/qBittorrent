@@ -480,7 +480,6 @@ namespace BitTorrent
         void handleDownloadFinished(const QString &url, const QString &filePath);
         void handleDownloadFailed(const QString &url, const QString &reason);
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
-        void switchToAlternativeMode(bool alternative);
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(const bool online);
@@ -500,17 +499,19 @@ namespace BitTorrent
 #if LIBTORRENT_VERSION_NUM < 10100
         void configure(libtorrent::session_settings &sessionSettings);
         void adjustLimits(libtorrent::session_settings &sessionSettings);
+        void applyBandwidthLimits(libtorrent::session_settings &sessionSettings);
 #else
         void configure(libtorrent::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(libtorrent::settings_pack &settingsPack);
+        void applyBandwidthLimits(libtorrent::settings_pack &settingsPack);
         void initMetrics();
 #endif
         void adjustLimits();
+        void applyBandwidthLimits();
         void processBannedIPs(libtorrent::ip_filter &filter);
         const QStringList getListeningIPs();
         void configureListeningInterface();
-        void changeSpeedLimitMode_impl(bool alternative);
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
         void populateAdditionalTrackers();
