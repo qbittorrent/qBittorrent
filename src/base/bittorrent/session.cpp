@@ -1761,7 +1761,7 @@ bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) c
                 torrentInfo.renameFile(i, filePath + QB_EXT);
             }
             if ((i % 100) == 0)
-                qApp->processEvents();
+                qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
 
         return found;
