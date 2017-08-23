@@ -692,8 +692,10 @@ void AutomatedRssDownloader::handleRuleAdded(const QString &ruleName)
 
 void AutomatedRssDownloader::handleRuleRenamed(const QString &ruleName, const QString &oldRuleName)
 {
-    auto item = m_itemsByRuleName.value(oldRuleName);
+    auto item = m_itemsByRuleName.take(oldRuleName);
     m_itemsByRuleName.insert(ruleName, item);
+    if (m_currentRule.name() == oldRuleName)
+        m_currentRule.setName(ruleName);
     item->setText(ruleName);
 }
 
