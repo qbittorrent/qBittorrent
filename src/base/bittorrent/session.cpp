@@ -237,6 +237,20 @@ namespace
 
     template <typename T>
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
+
+    template <typename T>
+    std::function<T (const T&)> clampValue(const T lower, const T upper)
+    {
+        // TODO: change return type to `auto` when using C++14
+        return [lower, upper](const T value) -> T
+        {
+            if (value < lower)
+                return lower;
+            if (value > upper)
+                return upper;
+            return value;
+        };
+    }
 }
 
 // Session
@@ -263,6 +277,11 @@ Session::Session(QObject *parent)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 0)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
+    , m_guidedReadCacheEnabled(BITTORRENT_SESSION_KEY("GuidedReadCache"), true)
+    , m_isSuggestMode(BITTORRENT_SESSION_KEY("SuggestMode"), false)
+    , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
+    , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
+    , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY("SendBufferWatermarkFactor"), 50)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
@@ -282,6 +301,9 @@ Session::Session(QObject *parent)
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
     , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
+    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::Proportional
+        , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
+    , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -309,6 +331,10 @@ Session::Session(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
+    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
+        , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
+    , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), SeedChokingAlgorithm::FastestUpload
+        , clampValue(SeedChokingAlgorithm::RoundRobin, SeedChokingAlgorithm::AntiLeech))
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
     , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
@@ -377,7 +403,6 @@ Session::Session(QObject *parent)
     sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
     sessionSettings.connection_speed = 20; // default is 10
     sessionSettings.no_connect_privileged_ports = false;
-    sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
     // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
     // Soon to be deprecated there
     // More info: https://github.com/arvidn/libtorrent/issues/2251
@@ -408,7 +433,6 @@ Session::Session(QObject *parent)
     pack.set_int(libt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
     pack.set_int(libt::settings_pack::connection_speed, 20); // default is 10
     pack.set_bool(libt::settings_pack::no_connect_privileged_ports, false);
-    pack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
     // Disk cache pool is rarely tested in libtorrent and doesn't free buffers
     // Soon to be deprecated there
     // More info: https://github.com/arvidn/libtorrent/issues/2251
@@ -1272,6 +1296,12 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
                                                               : libt::settings_pack::disable_os_cache;
     settingsPack.set_int(libt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(libt::settings_pack::disk_io_write_mode, mode);
+    settingsPack.set_bool(libt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
+    settingsPack.set_bool(libt::settings_pack::suggest_mode, isSuggestModeEnabled());
+
+    settingsPack.set_int(libt::settings_pack::send_buffer_watermark, sendBufferWatermark() * 1024);
+    settingsPack.set_int(libt::settings_pack::send_buffer_low_watermark, sendBufferLowWatermark() * 1024);
+    settingsPack.set_int(libt::settings_pack::send_buffer_watermark_factor, sendBufferWatermarkFactor());
 
     settingsPack.set_bool(libt::settings_pack::anonymous_mode, isAnonymousModeEnabled());
 
@@ -1313,9 +1343,17 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // uTP
     settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
     settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
-    settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, isUTPRateLimited()
-                         ? libt::settings_pack::prefer_tcp
-                         : libt::settings_pack::peer_proportional);
+    switch (utpMixedMode()) {
+    case MixedModeAlgorithm::TCP:
+    default:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::prefer_tcp);
+        break;
+    case MixedModeAlgorithm::Proportional:
+        settingsPack.set_int(libt::settings_pack::mixed_mode_algorithm, libt::settings_pack::peer_proportional);
+        break;
+    }
+
+    settingsPack.set_bool(libt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
     settingsPack.set_bool(libt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
@@ -1323,6 +1361,29 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     if (isDHTEnabled())
         settingsPack.set_str(libt::settings_pack::dht_bootstrap_nodes, "dht.libtorrent.org:25401,router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(libt::settings_pack::enable_lsd, isLSDEnabled());
+
+    switch (chokingAlgorithm()) {
+    case ChokingAlgorithm::FixedSlots:
+    default:
+        settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::fixed_slots_choker);
+        break;
+    case ChokingAlgorithm::RateBased:
+        settingsPack.set_int(libt::settings_pack::choking_algorithm, libt::settings_pack::rate_based_choker);
+        break;
+    }
+
+    switch (seedChokingAlgorithm()) {
+    case SeedChokingAlgorithm::RoundRobin:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::round_robin);
+        break;
+    case SeedChokingAlgorithm::FastestUpload:
+    default:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::fastest_upload);
+        break;
+    case SeedChokingAlgorithm::AntiLeech:
+        settingsPack.set_int(libt::settings_pack::seed_choking_algorithm, libt::settings_pack::anti_leech);
+        break;
+    }
 }
 
 void Session::configurePeerClasses()
@@ -1493,6 +1554,12 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
                                                                  : libt::session_settings::disable_os_cache;
     sessionSettings.disk_io_read_mode = mode;
     sessionSettings.disk_io_write_mode = mode;
+    sessionSettings.guided_read_cache = isGuidedReadCacheEnabled();
+    sessionSettings.suggest_mode = isSuggestModeEnabled();
+
+    sessionSettings.send_buffer_watermark = sendBufferWatermark() * 1024;
+    sessionSettings.send_buffer_low_watermark = sendBufferLowWatermark() * 1024;
+    sessionSettings.send_buffer_watermark_factor = sendBufferWatermarkFactor();
 
     sessionSettings.anonymous_mode = isAnonymousModeEnabled();
 
@@ -1539,9 +1606,17 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.enable_outgoing_utp = isUTPEnabled();
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
-    sessionSettings.mixed_mode_algorithm = isUTPRateLimited()
-                                           ? libt::session_settings::prefer_tcp
-                                           : libt::session_settings::peer_proportional;
+    switch (utpMixedMode()) {
+    case MixedModeAlgorithm::TCP:
+    default:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::prefer_tcp;
+        break;
+    case MixedModeAlgorithm::Proportional:
+        sessionSettings.mixed_mode_algorithm = libt::session_settings::peer_proportional;
+        break;
+    }
+
+    sessionSettings.allow_multiple_connections_per_ip = multiConnectionsPerIpEnabled();
 
     sessionSettings.apply_ip_filter_to_trackers = isTrackerFilteringEnabled();
 
@@ -1562,6 +1637,29 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
         m_nativeSession->start_lsd();
     else
         m_nativeSession->stop_lsd();
+
+    switch (chokingAlgorithm()) {
+    case ChokingAlgorithm::FixedSlots:
+    default:
+        sessionSettings.choking_algorithm = libt::session_settings::fixed_slots_choker;
+        break;
+    case ChokingAlgorithm::RateBased:
+        sessionSettings.choking_algorithm = libt::session_settings::rate_based_choker;
+        break;
+    }
+
+    switch (seedChokingAlgorithm()) {
+    case SeedChokingAlgorithm::RoundRobin:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::round_robin;
+        break;
+    case SeedChokingAlgorithm::FastestUpload:
+    default:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::fastest_upload;
+        break;
+    case SeedChokingAlgorithm::AntiLeech:
+        sessionSettings.seed_choking_algorithm = libt::session_settings::anti_leech;
+        break;
+    }
 }
 #endif
 
@@ -2649,6 +2747,32 @@ void Session::setProxyPeerConnectionsEnabled(bool enabled)
     }
 }
 
+ChokingAlgorithm Session::chokingAlgorithm() const
+{
+    return m_chokingAlgorithm;
+}
+
+void Session::setChokingAlgorithm(ChokingAlgorithm mode)
+{
+    if (mode == m_chokingAlgorithm) return;
+
+    m_chokingAlgorithm = mode;
+    configureDeferred();
+}
+
+SeedChokingAlgorithm Session::seedChokingAlgorithm() const
+{
+    return m_seedChokingAlgorithm;
+}
+
+void Session::setSeedChokingAlgorithm(SeedChokingAlgorithm mode)
+{
+    if (mode == m_seedChokingAlgorithm) return;
+
+    m_seedChokingAlgorithm = mode;
+    configureDeferred();
+}
+
 bool Session::isAddTrackersEnabled() const
 {
     return m_isAddTrackersEnabled;
@@ -2849,6 +2973,71 @@ void Session::setUseOSCache(bool use)
         m_useOSCache = use;
         configureDeferred();
     }
+}
+
+bool Session::isGuidedReadCacheEnabled() const
+{
+    return m_guidedReadCacheEnabled;
+}
+
+void Session::setGuidedReadCacheEnabled(bool enabled)
+{
+    if (enabled == m_guidedReadCacheEnabled) return;
+
+    m_guidedReadCacheEnabled = enabled;
+    configureDeferred();
+}
+
+bool Session::isSuggestModeEnabled() const
+{
+    return m_isSuggestMode;
+}
+
+void Session::setSuggestMode(bool mode)
+{
+    if (mode == m_isSuggestMode) return;
+
+    m_isSuggestMode = mode;
+    configureDeferred();
+}
+
+int Session::sendBufferWatermark() const
+{
+    return m_sendBufferWatermark;
+}
+
+void Session::setSendBufferWatermark(int value)
+{
+    if (value == m_sendBufferWatermark) return;
+
+    m_sendBufferWatermark = value;
+    configureDeferred();
+}
+
+int Session::sendBufferLowWatermark() const
+{
+    return m_sendBufferLowWatermark;
+}
+
+void Session::setSendBufferLowWatermark(int value)
+{
+    if (value == m_sendBufferLowWatermark) return;
+
+    m_sendBufferLowWatermark = value;
+    configureDeferred();
+}
+
+int Session::sendBufferWatermarkFactor() const
+{
+    return m_sendBufferWatermarkFactor;
+}
+
+void Session::setSendBufferWatermarkFactor(int value)
+{
+    if (value == m_sendBufferWatermarkFactor) return;
+
+    m_sendBufferWatermarkFactor = value;
+    configureDeferred();
 }
 
 bool Session::isAnonymousModeEnabled() const
@@ -3079,6 +3268,32 @@ void Session::setUTPRateLimited(bool limited)
         m_isUTPRateLimited = limited;
         configureDeferred();
     }
+}
+
+MixedModeAlgorithm Session::utpMixedMode() const
+{
+    return m_utpMixedMode;
+}
+
+void Session::setUtpMixedMode(MixedModeAlgorithm mode)
+{
+    if (mode == m_utpMixedMode) return;
+
+    m_utpMixedMode = mode;
+    configureDeferred();
+}
+
+bool Session::multiConnectionsPerIpEnabled() const
+{
+    return m_multiConnectionsPerIpEnabled;
+}
+
+void Session::setMultiConnectionsPerIpEnabled(bool enabled)
+{
+    if (enabled == m_multiConnectionsPerIpEnabled) return;
+
+    m_multiConnectionsPerIpEnabled = enabled;
+    configureDeferred();
 }
 
 bool Session::isTrackerFilteringEnabled() const

@@ -78,14 +78,23 @@ enum AdvSettingsRows
     DISK_CACHE,
     DISK_CACHE_TTL,
     OS_CACHE,
+    GUIDED_READ_CACHE,
+    SUGGEST_MODE,
+    SEND_BUF_WATERMARK,
+    SEND_BUF_LOW_WATERMARK,
+    SEND_BUF_WATERMARK_FACTOR,
     // ports
     MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
+    UTP_MIX_MODE,
+    MULTI_CONNECTIONS_PER_IP,
     // embedded tracker
     TRACKER_STATUS,
     TRACKER_PORT,
     // seeding
+    CHOKING_ALGORITHM,
+    SEED_CHOKING_ALGORITHM,
     SUPER_SEEDING,
     // tracker
     ANNOUNCE_ALL_TRACKERS,
@@ -127,11 +136,23 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setDiskCacheTTL(spin_cache_ttl.value());
     // Enable OS cache
     session->setUseOSCache(cb_os_cache.isChecked());
+    // Guided read cache
+    session->setGuidedReadCacheEnabled(cbGuidedReadCache.isChecked());
+    // Suggest mode
+    session->setSuggestMode(cbSuggestMode.isChecked());
+    // Send buffer watermark
+    session->setSendBufferWatermark(spinSendBufferWatermark.value());
+    session->setSendBufferLowWatermark(spinSendBufferLowWatermark.value());
+    session->setSendBufferWatermarkFactor(spinSendBufferWatermarkFactor.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(spin_save_resume_data_interval.value());
     // Outgoing ports
     session->setOutgoingPortsMin(outgoing_ports_min.value());
     session->setOutgoingPortsMax(outgoing_ports_max.value());
+    // uTP-TCP mixed mode
+    session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(comboUtpMixedMode.currentIndex()));
+    // multiple connections per IP
+    session->setMultiConnectionsPerIpEnabled(cbMultiConnectionsPerIp.isChecked());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
@@ -178,6 +199,11 @@ void AdvancedSettings::saveAdvancedSettings()
     // Tracker
     session->setTrackerEnabled(cb_tracker_status.isChecked());
     pref->setTrackerPort(spin_tracker_port.value());
+    // Choking algorithm
+    session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(comboChokingAlgorithm.currentIndex()));
+    // Seed choking algorithm
+    session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(comboSeedChokingAlgorithm.currentIndex()));
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     pref->setUpdateCheckEnabled(cb_update_check.isChecked());
 #endif
@@ -278,6 +304,28 @@ void AdvancedSettings::loadAdvancedSettings()
     // Enable OS cache
     cb_os_cache.setChecked(session->useOSCache());
     addRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
+    // Guided read cache
+    cbGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
+    addRow(GUIDED_READ_CACHE, tr("Guided read cache"), &cbGuidedReadCache);
+    // Suggest mode
+    cbSuggestMode.setChecked(session->isSuggestModeEnabled());
+    addRow(SUGGEST_MODE, tr("Send upload piece suggestions"), &cbSuggestMode);
+    // Send buffer watermark
+    spinSendBufferWatermark.setMinimum(1);
+    spinSendBufferWatermark.setMaximum(INT_MAX);
+    spinSendBufferWatermark.setSuffix(tr(" KiB"));
+    spinSendBufferWatermark.setValue(session->sendBufferWatermark());
+    addRow(SEND_BUF_WATERMARK, tr("Send buffer watermark"), &spinSendBufferWatermark);
+    spinSendBufferLowWatermark.setMinimum(1);
+    spinSendBufferLowWatermark.setMaximum(INT_MAX);
+    spinSendBufferLowWatermark.setSuffix(tr(" KiB"));
+    spinSendBufferLowWatermark.setValue(session->sendBufferLowWatermark());
+    addRow(SEND_BUF_LOW_WATERMARK, tr("Send buffer low watermark"), &spinSendBufferLowWatermark);
+    spinSendBufferWatermarkFactor.setMinimum(1);
+    spinSendBufferWatermarkFactor.setMaximum(INT_MAX);
+    spinSendBufferWatermarkFactor.setSuffix(" %");
+    spinSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
+    addRow(SEND_BUF_WATERMARK_FACTOR, tr("Send buffer watermark factor"), &spinSendBufferWatermarkFactor);
     // Save resume data interval
     spin_save_resume_data_interval.setMinimum(1);
     spin_save_resume_data_interval.setMaximum(1440);
@@ -294,6 +342,13 @@ void AdvancedSettings::loadAdvancedSettings()
     outgoing_ports_max.setMaximum(65535);
     outgoing_ports_max.setValue(session->outgoingPortsMax());
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
+    // uTP-TCP mixed mode
+    comboUtpMixedMode.addItems({"Prefer TCP", "Peer proportional (throttles TCP)"});
+    comboUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
+    addRow(UTP_MIX_MODE, tr("uTP-TCP mixed mode algorithm"), &comboUtpMixedMode);
+    // multiple connections per IP
+    cbMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
+    addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &cbMultiConnectionsPerIp);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);
@@ -371,6 +426,15 @@ void AdvancedSettings::loadAdvancedSettings()
     spin_tracker_port.setMaximum(65535);
     spin_tracker_port.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
+    // Choking algorithm
+    comboChokingAlgorithm.addItems({"Fixed slots", "Upload rate based"});
+    comboChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
+    addRow(CHOKING_ALGORITHM, tr("Upload slots behavior"), &comboChokingAlgorithm);
+    // Seed choking algorithm
+    comboSeedChokingAlgorithm.addItems({"Round-robin", "Fastest upload", "Anti-leech"});
+    comboSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
+    addRow(SEED_CHOKING_ALGORITHM, tr("Upload choking algorithm"), &comboSeedChokingAlgorithm);
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     cb_update_check.setChecked(pref->isUpdateCheckEnabled());
     addRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);

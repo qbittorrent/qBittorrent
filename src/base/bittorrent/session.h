@@ -151,6 +151,38 @@ namespace BitTorrent
         uint nbErrored = 0;
     };
 
+    class SessionSettingsEnums
+    {
+        Q_GADGET
+
+    public:
+        // TODO: remove `SessionSettingsEnums` wrapper when we can use `Q_ENUM_NS` directly (QT >= 5.8 only)
+        enum class ChokingAlgorithm : int
+        {
+            FixedSlots = 0,
+            RateBased = 1
+        };
+        Q_ENUM(ChokingAlgorithm)
+
+        enum class SeedChokingAlgorithm : int
+        {
+            RoundRobin = 0,
+            FastestUpload = 1,
+            AntiLeech = 2
+        };
+        Q_ENUM(SeedChokingAlgorithm)
+
+        enum class MixedModeAlgorithm : int
+        {
+            TCP = 0,
+            Proportional = 1
+        };
+        Q_ENUM(MixedModeAlgorithm)
+    };
+    using ChokingAlgorithm = SessionSettingsEnums::ChokingAlgorithm;
+    using SeedChokingAlgorithm = SessionSettingsEnums::SeedChokingAlgorithm;
+    using MixedModeAlgorithm = SessionSettingsEnums::MixedModeAlgorithm;
+
 #if LIBTORRENT_VERSION_NUM >= 10100
     struct SessionMetricIndices
     {
@@ -317,6 +349,10 @@ namespace BitTorrent
         void setForceProxyEnabled(bool enabled);
         bool isProxyPeerConnectionsEnabled() const;
         void setProxyPeerConnectionsEnabled(bool enabled);
+        ChokingAlgorithm chokingAlgorithm() const;
+        void setChokingAlgorithm(ChokingAlgorithm mode);
+        SeedChokingAlgorithm seedChokingAlgorithm() const;
+        void setSeedChokingAlgorithm(SeedChokingAlgorithm mode);
         bool isAddTrackersEnabled() const;
         void setAddTrackersEnabled(bool enabled);
         QString additionalTrackers() const;
@@ -333,6 +369,16 @@ namespace BitTorrent
         void setDiskCacheTTL(int ttl);
         bool useOSCache() const;
         void setUseOSCache(bool use);
+        bool isGuidedReadCacheEnabled() const;
+        void setGuidedReadCacheEnabled(bool enabled);
+        bool isSuggestModeEnabled() const;
+        void setSuggestMode(bool mode);
+        int sendBufferWatermark() const;
+        void setSendBufferWatermark(int value);
+        int sendBufferLowWatermark() const;
+        void setSendBufferLowWatermark(int value);
+        int sendBufferWatermarkFactor() const;
+        void setSendBufferWatermarkFactor(int value);
         bool isAnonymousModeEnabled() const;
         void setAnonymousModeEnabled(bool enabled);
         bool isQueueingSystemEnabled() const;
@@ -371,6 +417,10 @@ namespace BitTorrent
         void setUTPEnabled(bool enabled);
         bool isUTPRateLimited() const;
         void setUTPRateLimited(bool limited);
+        MixedModeAlgorithm utpMixedMode() const;
+        void setUtpMixedMode(MixedModeAlgorithm mode);
+        bool multiConnectionsPerIpEnabled() const;
+        void setMultiConnectionsPerIpEnabled(bool enabled);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
@@ -576,6 +626,11 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
+        CachedSettingValue<bool> m_guidedReadCacheEnabled;
+        CachedSettingValue<bool> m_isSuggestMode;
+        CachedSettingValue<int> m_sendBufferWatermark;
+        CachedSettingValue<int> m_sendBufferLowWatermark;
+        CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
         CachedSettingValue<int> m_maxActiveDownloads;
@@ -595,6 +650,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxUploadsPerTorrent;
         CachedSettingValue<bool> m_isUTPEnabled;
         CachedSettingValue<bool> m_isUTPRateLimited;
+        CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
+        CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
@@ -622,6 +679,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<bool> m_isForceProxyEnabled;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
+        CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
+        CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QVariantMap> m_storedCategories;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<int> m_maxRatioAction;
