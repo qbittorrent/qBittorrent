@@ -87,7 +87,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_graphsMenu->addAction(tr("Tracker Download"));
 
     m_graphsMenuActions = m_graphsMenu->actions();
-    m_graphsSignalMapper = new QSignalMapper();
+    m_graphsSignalMapper = new QSignalMapper(this);
 
     for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
         QAction *action = m_graphsMenuActions.at(id);
