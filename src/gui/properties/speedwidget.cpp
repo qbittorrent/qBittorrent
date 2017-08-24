@@ -72,7 +72,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("30 Minutes"));
     m_periodCombobox->addItem(tr("6 Hours"));
 
-    connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
+    connect(m_periodCombobox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+        , this, &SpeedWidget::onPeriodChange);
 
     m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
@@ -87,16 +88,18 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_graphsMenu->addAction(tr("Tracker Download"));
 
     m_graphsMenuActions = m_graphsMenu->actions();
-    m_graphsSignalMapper = new QSignalMapper();
+    m_graphsSignalMapper = new QSignalMapper(this);
 
     for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
         QAction *action = m_graphsMenuActions.at(id);
         action->setCheckable(true);
         action->setChecked(true);
-        connect(action, SIGNAL(changed()), m_graphsSignalMapper, SLOT(map()));
+        connect(action, &QAction::changed, m_graphsSignalMapper
+            , static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
         m_graphsSignalMapper->setMapping(action, id);
     }
-    connect(m_graphsSignalMapper, SIGNAL(mapped(int)), this, SLOT(onGraphChange(int)));
+    connect(m_graphsSignalMapper, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped)
+        , this, &SpeedWidget::onGraphChange);
 
     m_graphsButton = new ComboBoxMenuButton(this, m_graphsMenu);
     m_graphsButton->addItem(tr("Select Graphs"));
