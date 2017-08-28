@@ -1,14 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/qbittorrent.png</file>
         <file>icons/3-state-checkbox.gif</file>
-        <file>icons/L.gif</file>
-        <file>icons/loading.png</file>
-        <file>icons/slow.png</file>
-        <file>icons/slow_off.png</file>
-        <file>icons/sphere.png</file>
-        <file>icons/sphere2.png</file>
-        <file>icons/url.png</file>
         <file>icons/flags/ad.png</file>
         <file>icons/flags/ae.png</file>
         <file>icons/flags/af.png</file>
@@ -250,9 +242,13 @@
         <file>icons/flags/za.png</file>
         <file>icons/flags/zm.png</file>
         <file>icons/flags/zw.png</file>
+        <file>icons/L.gif</file>
+        <file>icons/loading.png</file>
+        <file>icons/qbittorrent.png</file>
         <file>icons/qbt-theme/application-exit.png</file>
         <file>icons/qbt-theme/application-rss+xml.png</file>
         <file>icons/qbt-theme/application-x-mswinurl.png</file>
+        <file>icons/qbt-theme/checked.png</file>
         <file>icons/qbt-theme/configure.png</file>
         <file>icons/qbt-theme/dialog-cancel.png</file>
         <file>icons/qbt-theme/dialog-information.png</file>
@@ -280,7 +276,9 @@
         <file>icons/qbt-theme/folder-remote.png</file>
         <file>icons/qbt-theme/gear.png</file>
         <file>icons/qbt-theme/gear32.png</file>
+        <file>icons/qbt-theme/go-bottom.png</file>
         <file>icons/qbt-theme/go-down.png</file>
+        <file>icons/qbt-theme/go-top.png</file>
         <file>icons/qbt-theme/go-up.png</file>
         <file>icons/qbt-theme/help-about.png</file>
         <file>icons/qbt-theme/help-contents.png</file>
@@ -299,14 +297,17 @@
         <file>icons/qbt-theme/network-server.png</file>
         <file>icons/qbt-theme/network-wired.png</file>
         <file>icons/qbt-theme/object-locked.png</file>
+        <file>icons/qbt-theme/office-chart-line.png</file>
         <file>icons/qbt-theme/preferences-desktop.png</file>
         <file>icons/qbt-theme/preferences-other.png</file>
         <file>icons/qbt-theme/preferences-system-network.png</file>
         <file>icons/qbt-theme/preferences-web-browser-cookies.png</file>
+        <file>icons/qbt-theme/rss-config.png</file>
         <file>icons/qbt-theme/security-high.png</file>
         <file>icons/qbt-theme/security-low.png</file>
         <file>icons/qbt-theme/services.png</file>
         <file>icons/qbt-theme/speedometer.png</file>
+        <file>icons/qbt-theme/system-log-out.png</file>
         <file>icons/qbt-theme/tab-close.png</file>
         <file>icons/qbt-theme/task-attention.png</file>
         <file>icons/qbt-theme/task-complete.png</file>
@@ -332,6 +333,7 @@
         <file>icons/skin/bg-panel-header.gif</file>
         <file>icons/skin/checking.png</file>
         <file>icons/skin/collapse-expand.gif</file>
+        <file>icons/skin/completed.png</file>
         <file>icons/skin/connected.png</file>
         <file>icons/skin/disconnected.png</file>
         <file>icons/skin/dock-tabs.gif</file>
@@ -350,13 +352,14 @@
         <file>icons/skin/logo2.gif</file>
         <file>icons/skin/mascot.png</file>
         <file>icons/skin/paused.png</file>
+        <file>icons/skin/qbittorrent-tray-dark.svg</file>
+        <file>icons/skin/qbittorrent-tray-light.svg</file>
         <file>icons/skin/qbittorrent16.png</file>
         <file>icons/skin/qbittorrent22.png</file>
         <file>icons/skin/qbittorrent32.png</file>
-        <file>icons/skin/qbittorrent-tray-dark.svg</file>
-        <file>icons/skin/qbittorrent-tray-light.svg</file>
         <file>icons/skin/queued.png</file>
         <file>icons/skin/ratio.png</file>
+        <file>icons/skin/resumed.png</file>
         <file>icons/skin/seeding.png</file>
         <file>icons/skin/slider-area.gif</file>
         <file>icons/skin/spacer.gif</file>
@@ -368,14 +371,11 @@
         <file>icons/skin/tabs.gif</file>
         <file>icons/skin/toolbox-divider.gif</file>
         <file>icons/skin/toolbox-divider2.gif</file>
-        <file>icons/skin/resumed.png</file>
         <file>icons/skin/uploading.png</file>
-        <file>icons/skin/completed.png</file>
-        <file>icons/qbt-theme/system-log-out.png</file>
-        <file>icons/qbt-theme/go-bottom.png</file>
-        <file>icons/qbt-theme/go-top.png</file>
-        <file>icons/qbt-theme/checked.png</file>
-        <file>icons/qbt-theme/office-chart-line.png</file>
-        <file>icons/qbt-theme/rss-config.png</file>
+        <file>icons/slow.png</file>
+        <file>icons/slow_off.png</file>
+        <file>icons/sphere.png</file>
+        <file>icons/sphere2.png</file>
+        <file>icons/url.png</file>
     </qresource>
 </RCC>
