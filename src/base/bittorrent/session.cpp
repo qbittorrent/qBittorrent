@@ -38,6 +38,7 @@
 #include <QNetworkInterface>
 #include <QProcess>
 #include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QThread>
 #include <QTimer>
@@ -89,6 +90,7 @@
 #include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
 #include "private/resumedatasavingmanager.h"
+#include "torrentcategory.h"
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"
@@ -123,22 +125,6 @@ namespace
 #endif
 
     inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
-
-    QStringMap map_cast(const QVariantMap &map)
-    {
-        QStringMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key).toString();
-        return result;
-    }
-
-    QVariantMap map_cast(const QStringMap &map)
-    {
-        QVariantMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key);
-        return result;
-    }
 
     template <typename Entry>
     QSet<QString> entryListToSetImpl(const Entry &entry)
@@ -194,20 +180,6 @@ namespace
         return normalizePath(path);
     }
 
-    QStringMap expandCategories(const QStringMap &categories)
-    {
-        QStringMap expanded = categories;
-
-        foreach (const QString &category, categories.keys()) {
-            foreach (const QString &subcat, Session::expandCategory(category)) {
-                if (!expanded.contains(subcat))
-                    expanded[subcat] = "";
-            }
-        }
-
-        return expanded;
-    }
-
     template <typename T>
     struct LowerLimited
     {
@@ -250,6 +222,15 @@ namespace
                 return upper;
             return value;
         };
+    }
+
+    QString cleanCategoryName(const QString &name)
+    {
+        return QString(name)
+                // remove leading and trailing separators
+                .remove(QRegularExpression(R"((^[\\\/]+|[\\\/]+$))"))
+                // replace backslashes with slashes and remove duplicates
+                .replace(QRegularExpression(R"([\\\/]+)"), "/");
     }
 }
 
@@ -479,12 +460,7 @@ Session::Session(QObject *parent)
         m_nativeSession->set_ip_filter(filter);
     }
 
-    m_categories = map_cast(m_storedCategories);
-    if (isSubcategoriesEnabled()) {
-        // if subcategories support changed manually
-        m_categories = expandCategories(m_categories);
-        m_storedCategories = map_cast(m_categories);
-    }
+    loadCategories();
 
     m_tags = QSet<QString>::fromList(m_storedTags.value());
 
@@ -671,124 +647,142 @@ QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
     return tempPath();
 }
 
-bool Session::isValidCategoryName(const QString &name)
-{
-    QRegExp re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
-    if (!name.isEmpty() && (re.indexIn(name) != 0)) {
-        qDebug() << "Incorrect category name:" << name;
-        return false;
-    }
-
-    return true;
-}
-
-QStringList Session::expandCategory(const QString &category)
+QStringList Session::expandCategoryName(const QString &categoryName)
 {
     QStringList result;
-    if (!isValidCategoryName(category))
-        return result;
 
     int index = 0;
-    while ((index = category.indexOf('/', index)) >= 0) {
-        result << category.left(index);
+    while ((index = categoryName.indexOf('/', index)) >= 0) {
+        result << categoryName.left(index);
         ++index;
     }
-    result << category;
+    result << categoryName;
 
     return result;
 }
 
-QStringList Session::categories() const
+CategoryDict Session::categories() const
 {
-    return m_categories.keys();
+    return m_categories;
 }
 
 QString Session::categorySavePath(const QString &categoryName) const
 {
-    QString basePath = m_defaultSavePath;
-    if (categoryName.isEmpty()) return basePath;
+    if (categoryName.isEmpty())
+        return defaultSavePath();
 
-    QString path = m_categories.value(categoryName);
-    if (path.isEmpty()) // use implicit save path
-        path = Utils::Fs::toValidFileSystemName(categoryName, true);
+    TorrentCategory *const category {findCategory(categoryName)};
+    QString path {(category && !category->savePath().isEmpty())
+                ? category->savePath() // use explicit save path
+                : Utils::Fs::toValidFileSystemName(categoryName, true)};
 
     if (!QDir::isAbsolutePath(path))
-        path.prepend(basePath);
+        path = QDir(defaultSavePath()).absoluteFilePath(path);
 
     return normalizeSavePath(path);
 }
 
-bool Session::addCategory(const QString &name, const QString &savePath)
+TorrentCategory *Session::findCategory(const QString &categoryName) const
 {
-    if (name.isEmpty()) return false;
-    if (!isValidCategoryName(name) || m_categories.contains(name))
-        return false;
-
-    if (isSubcategoriesEnabled()) {
-        foreach (const QString &parent, expandCategory(name)) {
-            if ((parent != name) && !m_categories.contains(parent)) {
-                m_categories[parent] = "";
-                emit categoryAdded(parent);
-            }
-        }
-    }
-
-    m_categories[name] = savePath;
-    m_storedCategories = map_cast(m_categories);
-    emit categoryAdded(name);
-
-    return true;
+    return m_categories.value(cleanCategoryName(categoryName));
 }
 
-bool Session::editCategory(const QString &name, const QString &savePath)
+TorrentCategory *Session::getCategory(const QString &categoryName)
 {
-    if (!m_categories.contains(name)) return false;
-    if (categorySavePath(name) == savePath) return false;
+    const QString validCategoryName {cleanCategoryName(categoryName)};
+    TorrentCategory *category {m_categories.value(validCategoryName)};
+    if (category) return category;
 
-    m_categories[name] = savePath;
-    if (isDisableAutoTMMWhenCategorySavePathChanged()) {
-        foreach (TorrentHandle *const torrent, torrents())
-            if (torrent->category() == name)
-                torrent->setAutoTMMEnabled(false);
+    category = createCategory_impl(validCategoryName);
+    storeCategories();
+    return category;
+}
+
+TorrentCategory *Session::createCategory(const QString &categoryName)
+{
+    TorrentCategory *category {createCategory_impl(cleanCategoryName(categoryName))};
+    storeCategories();
+    return category;
+}
+
+TorrentCategory *Session::createCategory_impl(const QString &validCategoryName)
+{
+    if (validCategoryName.isEmpty())
+        return nullptr;
+
+    if (m_categories.contains(validCategoryName))
+        return nullptr;
+
+    TorrentCategory *category {nullptr};
+    if (isSubcategoriesEnabled()) {
+        for (const QString &categoryName : expandCategoryName(validCategoryName)) {
+            if (!m_categories.contains(categoryName)) {
+                category = new TorrentCategory {categoryName, this};
+                addCategory(category);
+            }
+        }
     }
     else {
-        foreach (TorrentHandle *const torrent, torrents())
-            if (torrent->category() == name)
-                torrent->handleCategorySavePathChanged();
+        category = new TorrentCategory {validCategoryName, this};
+        addCategory(category);
     }
 
-    return true;
+    return category;
 }
 
-bool Session::removeCategory(const QString &name)
+void Session::addCategory(TorrentCategory *const category)
 {
-    foreach (TorrentHandle *const torrent, torrents())
-        if (torrent->belongsToCategory(name))
+    connect(category, &TorrentCategory::savePathChanged, this, &Session::storeCategories);
+    m_categories[category->name()] = category;
+    emit categoryAdded(category->name());
+}
+
+void Session::loadCategories()
+{
+    const QVariantMap map {m_storedCategories};
+    for (const QString &categoryName : map.keys()) {
+        TorrentCategory *category {createCategory_impl(cleanCategoryName(categoryName))};
+        category->blockSignals(true);
+        category->setSavePath(map.value(categoryName).toString());
+        category->blockSignals(false);
+    }
+}
+
+void Session::storeCategories()
+{
+    QVariantMap result;
+    for (TorrentCategory *const category : categories())
+        result[category->name()] = category->savePath();
+
+    m_storedCategories = result;
+}
+
+bool Session::removeCategory(const QString &categoryName)
+{
+    TorrentCategory *const category = findCategory(categoryName);
+    if (!category) return false;
+
+    for (TorrentHandle *const torrent : torrents()) {
+        if (category->contains(torrent))
             torrent->setCategory("");
+    }
+
+    emit categoryAboutToBeRemoved(categoryName);
 
     // remove stored category and its subcategories if exist
-    bool result = false;
     if (isSubcategoriesEnabled()) {
         // remove subcategories
-        QString test = name + "/";
-        foreach (const QString &category, m_categories.keys()) {
-            if (category.startsWith(test)) {
-                m_categories.remove(category);
-                result = true;
-                emit categoryRemoved(category);
-            }
+        for (TorrentCategory *const nextCategory : categories()) {
+            if (category->contains(nextCategory))
+                m_categories.remove(nextCategory->name());
         }
     }
 
-    result = (m_categories.remove(name) > 0) || result;
+    m_categories.remove(categoryName);
+    // update stored categories
+    storeCategories();
 
-    if (result) {
-        // update stored categories
-        m_storedCategories = map_cast(m_categories);
-        emit categoryRemoved(name);
-    }
-
-    return result;
+    return true;
 }
 
 bool Session::isSubcategoriesEnabled() const
@@ -802,13 +796,12 @@ void Session::setSubcategoriesEnabled(bool value)
 
     if (value) {
         // expand categories to include all parent categories
-        m_categories = expandCategories(m_categories);
+        for (TorrentCategory *const category : categories()) {
+            for (const QString &subcategoryName : expandCategoryName(category->name()))
+                createCategory_impl(subcategoryName);
+        }
         // update stored categories
-        m_storedCategories = map_cast(m_categories);
-    }
-    else {
-        // reload categories
-        m_categories = map_cast(m_storedCategories);
+        storeCategories();
     }
 
     m_isSubcategoriesEnabled = value;
@@ -1990,7 +1983,7 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(hash));
 }
 
-QHash<InfoHash, TorrentHandle *> Session::torrents() const
+TorrentDict Session::torrents() const
 {
     return m_torrents;
 }
@@ -2040,20 +2033,16 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 {
     addData.savePath = normalizeSavePath(addData.savePath, "");
 
-    if (!addData.category.isEmpty()) {
-        if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
-            qWarning() << "Couldn't create category" << addData.category;
-            addData.category = "";
-        }
-    }
-
     libt::add_torrent_params p;
     InfoHash hash;
     std::vector<boost::uint8_t> filePriorities;
 
+    TorrentCategory *const category {getCategory(addData.categoryName)};
+    if (category) // cleanup category name
+        addData.categoryName = category->name();
     QString savePath;
     if (addData.savePath.isEmpty()) // using Automatic mode
-        savePath = categorySavePath(addData.category);
+        savePath = categorySavePath(addData.categoryName);
     else  // using Manual mode
         savePath = addData.savePath;
 
@@ -3364,9 +3353,9 @@ void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
     emit torrentSavePathChanged(torrent);
 }
 
-void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory)
+void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategoryName)
 {
-    emit torrentCategoryChanged(torrent, oldCategory);
+    emit torrentCategoryChanged(torrent, oldCategoryName);
 }
 
 void Session::handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag)
@@ -4310,10 +4299,10 @@ namespace
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
-        if (torrentData.category.isEmpty())
+        torrentData.categoryName = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
+        if (torrentData.categoryName.isEmpty())
         // **************************************************************************************
-            torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
+            torrentData.categoryName = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
         // auto because the return type depends on the #if above.
         const auto tagsEntry = fast.dict_find_list("qBt-tags");
         if (isList(tagsEntry))

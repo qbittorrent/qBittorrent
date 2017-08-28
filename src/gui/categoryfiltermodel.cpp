@@ -31,6 +31,7 @@
 #include <QHash>
 #include <QIcon>
 
+#include "base/bittorrent/torrentcategory.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/session.h"
 #include "guiiconprovider.h"
@@ -176,15 +177,18 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
 {
     auto session = BitTorrent::Session::instance();
 
-    connect(session, SIGNAL(categoryAdded(QString)), SLOT(categoryAdded(QString)));
-    connect(session, SIGNAL(categoryRemoved(QString)), SLOT(categoryRemoved(QString)));
-    connect(session, SIGNAL(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString))
-            , SLOT(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)));
-    connect(session, SIGNAL(subcategoriesSupportChanged()), SLOT(subcategoriesSupportChanged()));
-    connect(session, SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const))
-            , SLOT(torrentAdded(BitTorrent::TorrentHandle *const)));
-    connect(session, SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const))
-            , SLOT(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)));
+    connect(session, &BitTorrent::Session::categoryAdded
+            , this, &CategoryFilterModel::categoryAdded);
+    connect(session, &BitTorrent::Session::categoryAboutToBeRemoved
+            , this, &CategoryFilterModel::categoryAboutToBeRemoved);
+    connect(session, &BitTorrent::Session::torrentCategoryChanged
+            , this, &CategoryFilterModel::torrentCategoryChanged);
+    connect(session, &BitTorrent::Session::subcategoriesSupportChanged
+            , this, &CategoryFilterModel::subcategoriesSupportChanged);
+    connect(session, &BitTorrent::Session::torrentAdded
+            , this, &CategoryFilterModel::torrentAdded);
+    connect(session, &BitTorrent::Session::torrentAboutToBeRemoved
+            , this, &CategoryFilterModel::torrentAboutToBeRemoved);
 
     populate();
 }
@@ -308,7 +312,7 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
     CategoryModelItem *parent = m_rootItem;
 
     if (m_isSubcategoriesEnabled) {
-        QStringList expanded = BitTorrent::Session::expandCategory(categoryName);
+        QStringList expanded = BitTorrent::Session::expandCategoryName(categoryName);
         if (expanded.count() > 1)
             parent = findItem(expanded[expanded.count() - 2]);
     }
@@ -320,7 +324,7 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
     endInsertRows();
 }
 
-void CategoryFilterModel::categoryRemoved(const QString &categoryName)
+void CategoryFilterModel::categoryAboutToBeRemoved(const QString &categoryName)
 {
     auto item = findItem(categoryName);
     if (item) {
@@ -405,10 +409,11 @@ void CategoryFilterModel::populate()
                                     , [](Torrent *torrent) { return torrent->category().isEmpty(); })));
 
     using Torrent = BitTorrent::TorrentHandle;
-    foreach (const QString &category, session->categories()) {
+    using Category = BitTorrent::TorrentCategory;
+    foreach (Category *const category, session->categories()) {
         if (m_isSubcategoriesEnabled) {
             CategoryModelItem *parent = m_rootItem;
-            foreach (const QString &subcat, session->expandCategory(category)) {
+            foreach (const QString &subcat, session->expandCategoryName(category->name())) {
                 const QString subcatName = shortName(subcat);
                 if (!parent->hasChild(subcatName)) {
                     new CategoryModelItem(
@@ -421,9 +426,9 @@ void CategoryFilterModel::populate()
         }
         else {
             new CategoryModelItem(
-                        m_rootItem, category
+                        m_rootItem, category->name()
                         , std::count_if(torrents.begin(), torrents.end()
-                                        , [category](Torrent *torrent) { return torrent->belongsToCategory(category); }));
+                                        , [category](Torrent *torrent) { return category->contains(torrent); }));
         }
     }
 }
@@ -437,7 +442,7 @@ CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
         return m_rootItem->child(fullName);
 
     CategoryModelItem *item = m_rootItem;
-    foreach (const QString &subcat, BitTorrent::Session::expandCategory(fullName)) {
+    foreach (const QString &subcat, BitTorrent::Session::expandCategoryName(fullName)) {
         const QString subcatName = shortName(subcat);
         if (!item->hasChild(subcatName)) return nullptr;
         item = item->child(subcatName);

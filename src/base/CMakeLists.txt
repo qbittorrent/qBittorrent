@@ -59,7 +59,6 @@ indexrange.h
 logger.h
 preferences.h
 profile.h
-qtcompat.h
 scanfoldersmodel.h
 searchengine.h
 settingsstorage.h

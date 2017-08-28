@@ -202,23 +202,8 @@ void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, in
 QString CategoryFilterWidget::askCategoryName()
 {
     bool ok;
-    QString category = "";
-    bool invalid;
-    do {
-        invalid = false;
-        category = AutoExpandableDialog::getText(
-                    this, tr("New Category"), tr("Category:"), QLineEdit::Normal, category, &ok);
-        if (ok && !category.isEmpty()) {
-            if (!BitTorrent::Session::isValidCategoryName(category)) {
-                QMessageBox::warning(
-                            this, tr("Invalid category name")
-                            , tr("Category name must not contain '\\'.\n"
-                                 "Category name must not start/end with '/'.\n"
-                                 "Category name must not contain '//' sequence."));
-                invalid = true;
-            }
-        }
-    } while (invalid);
+    const QString category = AutoExpandableDialog::getText(
+                this, tr("New Category"), tr("Category:"), QLineEdit::Normal, QString(), &ok);
 
     return ok ? category : QString();
 }
@@ -228,10 +213,10 @@ void CategoryFilterWidget::addCategory()
     const QString category = askCategoryName();
     if (category.isEmpty()) return;
 
-    if (BitTorrent::Session::instance()->categories().contains(category))
+    if (BitTorrent::Session::instance()->findCategory(category))
         QMessageBox::warning(this, tr("Category exists"), tr("Category name already exists."));
     else
-        BitTorrent::Session::instance()->addCategory(category);
+        BitTorrent::Session::instance()->createCategory(category);
 }
 
 void CategoryFilterWidget::addSubcategory()
@@ -241,11 +226,11 @@ void CategoryFilterWidget::addSubcategory()
 
     const QString category = QString(QStringLiteral("%1/%2")).arg(currentCategory()).arg(subcat);
 
-    if (BitTorrent::Session::instance()->categories().contains(category))
+    if (BitTorrent::Session::instance()->findCategory(category))
         QMessageBox::warning(this, tr("Category exists")
                              , tr("Subcategory name already exists in selected category."));
     else
-        BitTorrent::Session::instance()->addCategory(category);
+        BitTorrent::Session::instance()->createCategory(category);
 }
 
 void CategoryFilterWidget::removeCategory()
@@ -261,8 +246,8 @@ void CategoryFilterWidget::removeCategory()
 void CategoryFilterWidget::removeUnusedCategories()
 {
     auto session = BitTorrent::Session::instance();
-    foreach (const QString &category, session->categories())
-        if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)
-            session->removeCategory(category);
+    foreach (const QString &categoryName, session->categories().keys())
+        if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(categoryName), Qt::UserRole) == 0)
+            session->removeCategory(categoryName);
     updateGeometry();
 }

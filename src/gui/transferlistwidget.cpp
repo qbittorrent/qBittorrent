@@ -731,23 +731,9 @@ void TransferListWidget::askNewCategoryForSelection()
 {
     // Ask for category
     bool ok;
-    bool invalid;
-    do {
-        invalid = false;
-        const QString category = AutoExpandableDialog::getText(this, tr("New Category"), tr("Category:"), QLineEdit::Normal, "", &ok).trimmed();
-        if (ok && !category.isEmpty()) {
-            if (!BitTorrent::Session::isValidCategoryName(category)) {
-                QMessageBox::warning(this, tr("Invalid category name"),
-                                     tr("Category name must not contain '\\'.\n"
-                                        "Category name must not start/end with '/'.\n"
-                                        "Category name must not contain '//' sequence."));
-                invalid = true;
-            }
-            else {
-                setSelectionCategory(category);
-            }
-        }
-    } while(invalid);
+    const QString category = AutoExpandableDialog::getText(this, tr("New Category"), tr("Category:"), QLineEdit::Normal, "", &ok).trimmed();
+    if (ok && !category.isEmpty())
+        setSelectionCategory(category);
 }
 
 void TransferListWidget::askAddTagsForSelection()
@@ -998,7 +984,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     if (selectedIndexes.size() == 1)
         listMenu.addAction(&actionRename);
     // Category Menu
-    QStringList categories = BitTorrent::Session::instance()->categories();
+    QStringList categories = BitTorrent::Session::instance()->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
     QList<QAction*> categoryActions;
     QMenu *categoryMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Category"));

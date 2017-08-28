@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#include "bittorrent/session.h"
+#include "bittorrent/torrentcategory.h"
 #include "bittorrent/torrenthandle.h"
 #include "torrentfilter.h"
 
@@ -42,27 +44,24 @@ const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
 const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
-using BitTorrent::TorrentHandle;
-using BitTorrent::TorrentState;
+using namespace BitTorrent;
 
-TorrentFilter::TorrentFilter()
-    : m_type(All)
-{
-}
-
-TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const Type type)
     : m_type(type)
-    , m_category(category)
+{
+}
+
+TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &categoryName, const QString &tag)
+    : m_type(type)
+    , m_categoryName(categoryName)
+    , m_category(Session::instance()->findCategory(m_categoryName))
     , m_tag(tag)
     , m_hashSet(hashSet)
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &category, const QString &tag)
-    : m_type(All)
-    , m_category(category)
-    , m_tag(tag)
-    , m_hashSet(hashSet)
+TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &categoryName, const QString &tag)
+    : TorrentFilter {All, hashSet, categoryName, tag}
 {
     setTypeByName(filter);
 }
@@ -111,13 +110,14 @@ bool TorrentFilter::setHashSet(const QStringSet &hashSet)
     return false;
 }
 
-bool TorrentFilter::setCategory(const QString &category)
+bool TorrentFilter::setCategory(const QString &categoryName)
 {
     // QString::operator==() doesn't distinguish between empty and null strings.
-    if ((m_category != category)
-            || (m_category.isNull() && !category.isNull())
-            || (!m_category.isNull() && category.isNull())) {
-        m_category = category;
+    if ((m_categoryName != categoryName)
+            || (m_categoryName.isNull() && !categoryName.isNull())
+            || (!m_categoryName.isNull() && categoryName.isNull())) {
+        m_categoryName = categoryName;
+        m_category = Session::instance()->findCategory(m_categoryName);
         return true;
     }
 
@@ -178,8 +178,13 @@ bool TorrentFilter::matchHash(BitTorrent::TorrentHandle *const torrent) const
 
 bool TorrentFilter::matchCategory(BitTorrent::TorrentHandle *const torrent) const
 {
-    if (m_category.isNull()) return true;
-    else return (torrent->belongsToCategory(m_category));
+    if (m_categoryName.isNull())
+        return true;
+    if (m_categoryName.isEmpty())
+        return torrent->category().isEmpty();
+
+    Q_ASSERT(m_category);
+    return m_category->contains(torrent);
 }
 
 bool TorrentFilter::matchTag(BitTorrent::TorrentHandle *const torrent) const

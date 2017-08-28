@@ -858,12 +858,8 @@ void WebApplication::action_command_setCategory()
 
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent) {
-            if (!torrent->setCategory(category)) {
-                status(400, "Incorrect category name");
-                return;
-            }
-        }
+        if (torrent)
+            torrent->setCategory(category);
     }
 }
 
@@ -872,14 +868,8 @@ void WebApplication::action_command_addCategory()
     CHECK_URI(0);
     CHECK_PARAMETERS("category");
 
-    QString category = request().posts["category"].trimmed();
-
-    if (!BitTorrent::Session::isValidCategoryName(category) && !category.isEmpty()) {
-        status(400, tr("Incorrect category name"));
-        return;
-    }
-
-    BitTorrent::Session::instance()->addCategory(category);
+    BitTorrent::Session::instance()->createCategory(
+                request().posts["category"].trimmed());
 }
 
 void WebApplication::action_command_removeCategories()

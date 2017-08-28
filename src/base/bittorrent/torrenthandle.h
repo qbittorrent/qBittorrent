@@ -82,18 +82,18 @@ namespace libtorrent
 
 namespace BitTorrent
 {
-    struct PeerAddress;
-    class Session;
-    class PeerInfo;
-    class TrackerEntry;
     struct AddTorrentParams;
+    struct PeerAddress;
+    class PeerInfo;
+    class Session;
+    class TrackerEntry;
 
     struct AddTorrentData
     {
         bool resumed;
         // for both new and resumed torrents
         QString name;
-        QString category;
+        QString categoryName;
         QSet<QString> tags;
         QString savePath;
         bool disableTempPath;
@@ -166,7 +166,14 @@ namespace BitTorrent
 
     class TorrentHandle : public QObject
     {
+        Q_OBJECT
         Q_DISABLE_COPY(TorrentHandle)
+
+        friend class Session;
+
+        TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
+                          const AddTorrentData &data);
+        ~TorrentHandle() override;
 
     public:
         static const qreal USE_GLOBAL_RATIO;
@@ -177,10 +184,6 @@ namespace BitTorrent
 
         static const qreal MAX_RATIO;
         static const int MAX_SEEDING_TIME;
-
-        TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
-                          const AddTorrentData &data);
-        ~TorrentHandle();
 
         bool isValid() const;
         InfoHash hash() const;
@@ -249,8 +252,7 @@ namespace BitTorrent
         bool isAutoTMMEnabled() const;
         void setAutoTMMEnabled(bool enabled);
         QString category() const;
-        bool belongsToCategory(const QString &category) const;
-        bool setCategory(const QString &category);
+        void setCategory(const QString &categoryName);
 
         QSet<QString> tags() const;
         bool hasTag(const QString &tag) const;
@@ -458,7 +460,7 @@ namespace BitTorrent
         // Persistent data
         QString m_name;
         QString m_savePath;
-        QString m_category;
+        QString m_categoryName;
         QSet<QString> m_tags;
         bool m_hasSeedStatus;
         qreal m_ratioLimit;
