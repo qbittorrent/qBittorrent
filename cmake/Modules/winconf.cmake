@@ -24,6 +24,7 @@ add_definitions(-DUNICODE
     -D_WIN32_IE=0x0501
     -D_CRT_SECURE_NO_DEPRECATE
     -D_SCL_SECURE_NO_DEPRECATE
+    -DNOMINMAX
 )
 # and boost
 set(Boost_USE_STATIC_LIBS  True)
