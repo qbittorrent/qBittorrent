@@ -57,8 +57,8 @@ CONFIG(release, debug|release) {
 include(../version.pri)
 
 DEFINES += QT_NO_CAST_TO_ASCII
-# Fast concatenation (Qt >= 4.6)
-DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
+# Efficient construction for QString & QByteArray (Qt >= 4.8)
+DEFINES += QT_USE_QSTRINGBUILDER
 
 win32: DEFINES += NOMINMAX
 
