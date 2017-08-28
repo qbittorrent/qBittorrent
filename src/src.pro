@@ -6,26 +6,22 @@ CONFIG += qt thread silent
 CONFIG += c++11
 DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 
-# Windows specific configuration
+# Platform specific configuration
 win32: include(../winconf.pri)
-
-# Mac specific configuration
 macx: include(../macxconf.pri)
-
-# Unix specific configuration
 unix:!macx: include(../unixconf.pri)
-
-# eCS(OS/2) specific configuration
 os2: include(../os2conf.pri)
 
+QT += network xml
+
 nogui {
+    TARGET = qbittorrent-nox
     QT -= gui
     DEFINES += DISABLE_GUI
-    TARGET = qbittorrent-nox
 } else {
-    macx: QT += macextras
-    macx: LIBS += -lobjc
+    TARGET = qbittorrent
     QT += xml concurrent svg widgets
+
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
@@ -33,16 +29,19 @@ nogui {
     win32 {
         QT += winextras
     }
-    TARGET = qbittorrent
+    macx {
+        QT += macextras
+        LIBS += -lobjc
+    }
 }
-nowebui: DEFINES += DISABLE_WEBUI
+nowebui {
+    DEFINES += DISABLE_WEBUI
+}
 strace_win {
     DEFINES += STACKTRACE_WIN
     DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
     DEFINES += STACKTRACE_WIN_MAKEFILE_PATH=$$OUT_PWD
 }
-QT += network xml
-
 
 CONFIG(debug, debug|release): message(Project is built in DEBUG mode.)
 CONFIG(release, debug|release): message(Project is built in RELEASE mode.)
