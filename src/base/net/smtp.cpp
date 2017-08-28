@@ -194,7 +194,7 @@ void Smtp::readyRead()
                 ehlo();
             }
             else {
-                logError("Connection failed, unrecognized reply: " + line);
+                logError(QLatin1String("Connection failed, unrecognized reply: ") + line);
                 m_state = Close;
             }
             break;
@@ -231,7 +231,7 @@ void Smtp::readyRead()
             }
             else {
                 // Authentication failed!
-                logError("Authentication failed, msg: " + line);
+                logError(QLatin1String("Authentication failed, msg: ") + line);
                 m_state = Close;
             }
             break;
@@ -242,7 +242,7 @@ void Smtp::readyRead()
                 m_state = Data;
             }
             else {
-                logError("<mail from> was rejected by server, msg: " + line);
+                logError(QLatin1String("<mail from> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
@@ -253,7 +253,7 @@ void Smtp::readyRead()
                 m_state = Body;
             }
             else {
-                logError("<Rcpt to> was rejected by server, msg: " + line);
+                logError(QLatin1String("<Rcpt to> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
@@ -264,7 +264,7 @@ void Smtp::readyRead()
                 m_state = Quit;
             }
             else {
-                logError("<data> was rejected by server, msg: " + line);
+                logError(QLatin1String("<data> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
@@ -276,7 +276,7 @@ void Smtp::readyRead()
                 m_state = Close;
             }
             else {
-                logError("Message was rejected by the server, error: " + line);
+                logError(QLatin1String("Message was rejected by the server, error: ") + line);
                 m_state = Close;
             }
             break;

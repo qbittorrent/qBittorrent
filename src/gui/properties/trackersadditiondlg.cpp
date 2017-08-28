@@ -105,7 +105,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
         m_ui->trackers_list->insertPlainText("\n");
     int nb = 0;
     while (!list_file.atEnd()) {
-        const QByteArray line = list_file.readLine().trimmed();
+        const QString line = list_file.readLine().trimmed();
         if (line.isEmpty()) continue;
         BitTorrent::TrackerEntry newTracker(line);
         if (!existingTrackers.contains(newTracker)) {
