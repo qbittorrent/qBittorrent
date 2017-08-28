@@ -60,8 +60,6 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # Efficient construction for QString & QByteArray (Qt >= 4.8)
 DEFINES += QT_USE_QSTRINGBUILDER
 
-win32: DEFINES += NOMINMAX
-
 INCLUDEPATH += $$PWD
 
 include(app/app.pri)
