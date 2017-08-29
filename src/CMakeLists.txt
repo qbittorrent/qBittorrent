@@ -40,11 +40,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # defines
 add_definitions(-DQT_NO_CAST_TO_ASCII)
-# Fast concatenation (Qt >= 4.6)
-add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-if (WIN32)
-    add_definitions(-DNOMINMAX)
-endif (WIN32)
+# Efficient construction for QString & QByteArray (Qt >= 4.8)
+add_definitions(-DQT_USE_QSTRINGBUILDER)
 
 if (NOT GUI)
     add_definitions(-DDISABLE_GUI -DDISABLE_COUNTRIES_RESOLUTION)
