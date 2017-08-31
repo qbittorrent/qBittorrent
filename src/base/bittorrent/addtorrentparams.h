@@ -45,6 +45,7 @@ namespace BitTorrent
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
         bool firstLastPiecePriority = false;
+        bool pauseOnCompletion = false;
         TriStateBool addForced;
         TriStateBool addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set

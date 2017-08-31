@@ -99,6 +99,7 @@ namespace BitTorrent
         bool disableTempPath;
         bool sequential;
         bool firstLastPiecePriority;
+        bool pauseOnCompletion;
         bool hasSeedStatus;
         bool skipChecking;
         bool hasRootFolder;
@@ -290,6 +291,7 @@ namespace BitTorrent
         bool isErrored() const;
         bool isSequentialDownload() const;
         bool hasFirstLastPiecePriority() const;
+        bool hasPauseOnCompletion() const;
         TorrentState state() const;
         bool hasMetadata() const;
         bool hasMissingFiles() const;
@@ -344,6 +346,8 @@ namespace BitTorrent
         void toggleSequentialDownload();
         void setFirstLastPiecePriority(bool b);
         void toggleFirstLastPiecePriority();
+        void setPauseOnCompletion(bool b);
+        void togglePauseOnCompletion();
         void pause();
         void resume(bool forced = false);
         void move(QString path);
@@ -467,6 +471,7 @@ namespace BitTorrent
         bool m_hasMissingFiles;
         bool m_hasRootFolder;
         bool m_needsToSetFirstLastPiecePriority;
+        bool m_pauseOnCompletion;
 
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;

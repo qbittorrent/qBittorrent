@@ -721,6 +721,12 @@ void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
         torrent->toggleFirstLastPiecePriority();
 }
 
+void TransferListWidget::toggleSelectedPauseOnCompletion() const
+{
+    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
+        torrent->togglePauseOnCompletion();
+}
+
 void TransferListWidget::setSelectedAutoTMMEnabled(bool enabled) const
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
@@ -892,6 +898,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), 0);
     actionFirstLastPiece_prio.setCheckable(true);
     connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
+    QAction actionPauseOnCompletion(tr("Pause on completion"), 0);
+    actionPauseOnCompletion.setCheckable(true);
+    connect(&actionPauseOnCompletion, SIGNAL(triggered()), this, SLOT(toggleSelectedPauseOnCompletion()));
     QAction actionAutoTMM(tr("Automatic Torrent Management"), 0);
     actionAutoTMM.setCheckable(true);
     actionAutoTMM.setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
@@ -905,6 +914,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
     bool sequential_download_mode = false, prioritize_first_last = false;
     bool one_has_metadata = false, one_not_seed = false;
+    bool pause_on_completion = false;
     bool allSameCategory = true;
     bool allSameAutoTMM = true;
     bool firstAutoTMM = false;
@@ -954,6 +964,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
                         all_same_prio_firstlast = false;
                 }
             }
+
+            pause_on_completion = torrent->hasPauseOnCompletion();
         }
         else {
             if (!one_not_seed && all_same_super_seeding && torrent->hasMetadata()) {
@@ -1072,6 +1084,11 @@ void TransferListWidget::displayListMenu(const QPoint&)
             listMenu.addAction(&actionFirstLastPiece_prio);
             added_preview_action = true;
         }
+    }
+
+    if (one_not_seed) {
+        actionPauseOnCompletion.setChecked(pause_on_completion);
+        listMenu.addAction(&actionPauseOnCompletion);
     }
 
     if (added_preview_action)
