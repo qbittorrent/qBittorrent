@@ -1297,7 +1297,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(libt::settings_pack::disk_io_write_mode, mode);
     settingsPack.set_bool(libt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
-    settingsPack.set_bool(libt::settings_pack::suggest_mode, isSuggestModeEnabled());
+    settingsPack.set_int(libt::settings_pack::suggest_mode, isSuggestModeEnabled()
+                         ? libt::settings_pack::suggest_read_cache : libt::settings_pack::no_piece_suggestions);
 
     settingsPack.set_int(libt::settings_pack::send_buffer_watermark, sendBufferWatermark() * 1024);
     settingsPack.set_int(libt::settings_pack::send_buffer_low_watermark, sendBufferLowWatermark() * 1024);
@@ -1555,7 +1556,8 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.disk_io_read_mode = mode;
     sessionSettings.disk_io_write_mode = mode;
     sessionSettings.guided_read_cache = isGuidedReadCacheEnabled();
-    sessionSettings.suggest_mode = isSuggestModeEnabled();
+    sessionSettings.suggest_mode = isSuggestModeEnabled()
+            ? libt::session_settings::suggest_read_cache : libt::session_settings::no_piece_suggestions;
 
     sessionSettings.send_buffer_watermark = sendBufferWatermark() * 1024;
     sessionSettings.send_buffer_low_watermark = sendBufferLowWatermark() * 1024;
