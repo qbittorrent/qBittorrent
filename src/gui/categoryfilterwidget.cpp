@@ -167,11 +167,10 @@ void CategoryFilterWidget::callUpdateGeometry()
 
 QSize CategoryFilterWidget::sizeHint() const
 {
+    const QSize viewportSize {viewportSizeHint()};
     return {
-        // Width should be exactly the width of the content
-        sizeHintForColumn(0),
-        // Height should be exactly the height of the content
-        static_cast<int>(sizeHintForRow(0) * (model()->rowCount() + 0.5)),
+        viewportSize.width(),
+        viewportSize.height() + static_cast<int>(0.5 * sizeHintForRow(0))
     };
 }
 
