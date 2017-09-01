@@ -31,6 +31,7 @@
 class CategoryFilterWidget: public QTreeView
 {
     Q_OBJECT
+    Q_DISABLE_COPY(CategoryFilterWidget)
 
 public:
     explicit CategoryFilterWidget(QWidget *parent = nullptr);
