@@ -59,6 +59,7 @@ statusbar.h
 tagfiltermodel.h
 tagfilterproxymodel.h
 tagfilterwidget.h
+torrentcategorydialog.h
 torrentcontentfiltermodel.h
 torrentcontentmodel.h
 torrentcontentmodelfile.h
@@ -102,6 +103,7 @@ statusbar.cpp
 tagfiltermodel.cpp
 tagfilterproxymodel.cpp
 tagfilterwidget.cpp
+torrentcategorydialog.cpp
 torrentcontentfiltermodel.cpp
 torrentcontentmodel.cpp
 torrentcontentmodelfile.cpp
@@ -144,6 +146,7 @@ addnewtorrentdialog.ui
 autoexpandabledialog.ui
 statsdialog.ui
 optionsdlg.ui
+torrentcategorydialog.ui
 torrentcreatordlg.ui
 shutdownconfirmdlg.ui
 )

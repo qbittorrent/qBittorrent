@@ -56,6 +56,7 @@
 #include "optionsdlg.h"
 #include "previewselect.h"
 #include "speedlimitdlg.h"
+#include "torrentcategorydialog.h"
 #include "torrentmodel.h"
 #include "transferlistdelegate.h"
 #include "transferlistsortmodel.h"
@@ -729,11 +730,9 @@ void TransferListWidget::setSelectedAutoTMMEnabled(bool enabled) const
 
 void TransferListWidget::askNewCategoryForSelection()
 {
-    // Ask for category
-    bool ok;
-    const QString category = AutoExpandableDialog::getText(this, tr("New Category"), tr("Category:"), QLineEdit::Normal, "", &ok).trimmed();
-    if (ok && !category.isEmpty())
-        setSelectionCategory(category);
+    const QString newCategoryName {TorrentCategoryDialog::createCategory(this)};
+    if (!newCategoryName.isEmpty())
+        setSelectionCategory(newCategoryName);
 }
 
 void TransferListWidget::askAddTagsForSelection()

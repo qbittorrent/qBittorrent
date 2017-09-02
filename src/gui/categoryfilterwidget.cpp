@@ -36,10 +36,10 @@
 
 #include "base/bittorrent/session.h"
 #include "base/utils/misc.h"
-#include "autoexpandabledialog.h"
 #include "categoryfiltermodel.h"
 #include "categoryfilterproxymodel.h"
 #include "guiiconprovider.h"
+#include "torrentcategorydialog.h"
 
 namespace
 {
@@ -124,6 +124,11 @@ void CategoryFilterWidget::showMenu(QPoint)
             connect(addSubAct, &QAction::triggered, this, &CategoryFilterWidget::addSubcategory);
         }
 
+        QAction *editAct = menu.addAction(
+                        GuiIconProvider::instance()->getIcon("document-edit")
+                        , tr("Edit category properties..."));
+        connect(editAct, &QAction::triggered, this, &CategoryFilterWidget::editCategory);
+
         QAction *removeAct = menu.addAction(
                         GuiIconProvider::instance()->getIcon("list-remove")
                         , tr("Remove category"));
@@ -199,38 +204,19 @@ void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, in
     updateGeometry();
 }
 
-QString CategoryFilterWidget::askCategoryName()
-{
-    bool ok;
-    const QString category = AutoExpandableDialog::getText(
-                this, tr("New Category"), tr("Category:"), QLineEdit::Normal, QString(), &ok);
-
-    return ok ? category : QString();
-}
-
 void CategoryFilterWidget::addCategory()
 {
-    const QString category = askCategoryName();
-    if (category.isEmpty()) return;
-
-    if (BitTorrent::Session::instance()->findCategory(category))
-        QMessageBox::warning(this, tr("Category exists"), tr("Category name already exists."));
-    else
-        BitTorrent::Session::instance()->createCategory(category);
+    TorrentCategoryDialog::createCategory(this);
 }
 
 void CategoryFilterWidget::addSubcategory()
 {
-    const QString subcat = askCategoryName();
-    if (subcat.isEmpty()) return;
+    TorrentCategoryDialog::createCategory(this, currentCategory());
+}
 
-    const QString category = QString(QStringLiteral("%1/%2")).arg(currentCategory()).arg(subcat);
-
-    if (BitTorrent::Session::instance()->findCategory(category))
-        QMessageBox::warning(this, tr("Category exists")
-                             , tr("Subcategory name already exists in selected category."));
-    else
-        BitTorrent::Session::instance()->createCategory(category);
+void CategoryFilterWidget::editCategory()
+{
+    TorrentCategoryDialog::editCategory(this, currentCategory());
 }
 
 void CategoryFilterWidget::removeCategory()
