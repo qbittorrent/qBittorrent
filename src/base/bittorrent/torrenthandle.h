@@ -328,8 +328,8 @@ namespace BitTorrent
         QBitArray downloadingPieces() const;
         QVector<int> pieceAvailability() const;
         qreal distributedCopies() const;
-        qreal maxRatio(bool *usesGlobalRatio = 0) const;
-        int maxSeedingTime(bool *usesGlobalSeedingTime = 0) const;
+        qreal maxRatio() const;
+        int maxSeedingTime() const;
         qreal realRatio() const;
         int uploadPayloadRate() const;
         int downloadPayloadRate() const;
