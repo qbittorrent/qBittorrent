@@ -179,6 +179,7 @@ static const char KEY_FILE_SIZE[] = "size";
 static const char KEY_FILE_PROGRESS[] = "progress";
 static const char KEY_FILE_PRIORITY[] = "priority";
 static const char KEY_FILE_IS_SEED[] = "is_seed";
+static const char KEY_FILE_PIECE_RANGE[] = "piece_range";
 
 // TransferInfo keys
 static const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
@@ -888,6 +889,8 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
  *   - "progress": File progress
  *   - "priority": File priority
  *   - "is_seed": Flag indicating if torrent is seeding/complete
+ *   - "piece_range": Piece index range, the first number is the starting piece index
+ *        and the second number is the ending piece index (inclusive)
  */
 QByteArray btjson::getFilesForTorrent(const QString& hash)
 {
@@ -902,17 +905,22 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
         return json::toJson(fileList);
 
     const QVector<int> priorities = torrent->filePriorities();
-    QVector<qreal> fp = torrent->filesProgress();
+    const QVector<qreal> fp = torrent->filesProgress();
+    const BitTorrent::TorrentInfo info = torrent->info();
     for (int i = 0; i < torrent->filesCount(); ++i) {
         QVariantMap fileDict;
-        QString fileName = torrent->filePath(i);
-        if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
-            fileName.chop(4);
-        fileDict[KEY_FILE_NAME] = Utils::Fs::toNativePath(fileName);
-        const qlonglong size = torrent->fileSize(i);
-        fileDict[KEY_FILE_SIZE] = size;
         fileDict[KEY_FILE_PROGRESS] = fp[i];
         fileDict[KEY_FILE_PRIORITY] = priorities[i];
+        fileDict[KEY_FILE_SIZE] = torrent->fileSize(i);
+
+        QString fileName = torrent->filePath(i);
+        if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))
+            fileName.chop(QB_EXT.size());
+        fileDict[KEY_FILE_NAME] = Utils::Fs::toNativePath(fileName);
+
+        const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(i);
+        fileDict[KEY_FILE_PIECE_RANGE] = QVariantList {idx.first(), idx.last()};
+
         if (i == 0)
             fileDict[KEY_FILE_IS_SEED] = torrent->isSeed();
 
