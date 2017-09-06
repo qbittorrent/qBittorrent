@@ -1180,38 +1180,20 @@ qreal TorrentHandle::distributedCopies() const
     return m_nativeStatus.distributed_copies;
 }
 
-qreal TorrentHandle::maxRatio(bool *usesGlobalRatio) const
+qreal TorrentHandle::maxRatio() const
 {
-    qreal ratioLimit = m_ratioLimit;
+    if (m_ratioLimit == USE_GLOBAL_RATIO)
+        return m_session->globalMaxRatio();
 
-    if (ratioLimit == USE_GLOBAL_RATIO) {
-        ratioLimit = m_session->globalMaxRatio();
-        if (usesGlobalRatio)
-            *usesGlobalRatio = true;
-    }
-    else {
-        if (usesGlobalRatio)
-            *usesGlobalRatio = false;
-    }
-
-    return ratioLimit;
+    return m_ratioLimit;
 }
 
-int TorrentHandle::maxSeedingTime(bool *usesGlobalSeedingTime) const
+int TorrentHandle::maxSeedingTime() const
 {
-    int seedingTimeLimit = m_seedingTimeLimit;
+    if (m_seedingTimeLimit == USE_GLOBAL_SEEDING_TIME)
+        return m_session->globalMaxSeedingMinutes();
 
-    if (seedingTimeLimit == USE_GLOBAL_SEEDING_TIME) {
-        seedingTimeLimit = m_session->globalMaxSeedingMinutes();
-        if (usesGlobalSeedingTime)
-            *usesGlobalSeedingTime = true;
-    }
-    else {
-        if (usesGlobalSeedingTime)
-            *usesGlobalSeedingTime = false;
-    }
-
-    return seedingTimeLimit;
+    return m_seedingTimeLimit;
 }
 
 qreal TorrentHandle::realRatio() const
@@ -1688,7 +1670,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     }
     resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance().toPortablePath(m_savePath).toStdString();
     resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
-    resumeData["qBt-seedingTimeLimit"] = QString::number(m_seedingTimeLimit).toStdString();
+    resumeData["qBt-seedingTimeLimit"] = m_seedingTimeLimit;
     resumeData["qBt-category"] = m_category.toStdString();
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();

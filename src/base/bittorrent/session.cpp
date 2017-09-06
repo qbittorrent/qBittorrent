@@ -3384,7 +3384,7 @@ bool Session::isKnownTorrent(const InfoHash &hash) const
 
 void Session::updateSeedingLimitTimer()
 {
-    if ((globalMaxRatio() == -1) && !hasPerTorrentRatioLimit()
+    if ((globalMaxRatio() == TorrentHandle::NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == TorrentHandle::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()) {
         if (m_seedingLimitTimer->isActive())
             m_seedingLimitTimer->stop();
