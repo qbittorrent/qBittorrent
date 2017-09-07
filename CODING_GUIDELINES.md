@@ -9,7 +9,7 @@ If you make changes in a file that still uses another coding style, make sure th
 ```c++
 int myFunction(int a)
 {
-    //code
+    // code
 }
 
 void myFunction() {} // empty body
@@ -17,29 +17,29 @@ void myFunction() {} // empty body
 MyClass::MyClass(int *parent)
     : m_parent(parent)
 {
-    //initialize
+    // initialize
 }
 
 int MyClass::myMethod(int a)
 {
-    //code
+    // code
 }
 
 class MyOtherClass
 {
 public:
-    //code
-    
+    // code
+
 protected:
-    //code
-    
+    // code
+
 private:
-    //code
+    // code
 };
 
 namespace Name
 {
-    //code
+    // code
 }
 
 // Lambdas
@@ -54,20 +54,20 @@ namespace Name
 #### b. Other code blocks ####
 ```c++
 if (condition) {
-    //code
+    // code
 }
 
 for (int a = 0; a < b; ++b) {
-    //code
+    // code
 }
 
 switch (a) {
 case 1:
-    //blah
+    // blah
 case 2:
-    //blah
+    // blah
 default:
-    //blah
+    // blah
 }
 ```
 
@@ -75,17 +75,17 @@ default:
 ```c++
 switch (var) {
 case 1: {
-        //declare local variables
-        //code
+        // declare local variables
+        // code
     }
     break;
 case 2: {
-        //declare local variables
-        //code
+        // declare local variables
+        // code
     }
     break;
 default:
-    //code
+    // code
 }
 ```
 
@@ -103,13 +103,13 @@ QVariantMap map {{"key1", 5}, {"key2", 10}};
 #### a. Multiple tests ####
 ```c++
 if (condition) {
-    //code
+    // code
 }
 else if (condition) {
-    //code
+    // code
 }
 else {
-    //code
+    // code
 }
 ```
 The `else if`/`else` must be on their own lines.
@@ -154,7 +154,7 @@ myClass::myClass(int a, int b, int c, int d)
     , m_c(c)
     , m_d(d)
 {
-    //code
+    // code
 }
 ```
 
@@ -231,8 +231,8 @@ Example:
 
 #include <libtorrent/version.hpp>
 
-#include "base/bittorrent/session.h"
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/session.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -282,20 +282,32 @@ auto spinBox = static_cast<QSpinBox*>(sender());
 // we know the variable type based on the right-hand expression
 ```
 
-* Space around operations eg `a = b + c` or `a=b+c`:
-
-Before and after the assignment and other binary (and ternary) operators there should be a space.<br/>
-There should not be a space between increment/decrement and its operand.<br/>
-Some valid use cases:
+* Notice the spaces in the following specific situations:
 ```c++
+// Before and after the assignment and other binary (and ternary) operators there should be a space
+// There should not be a space between increment/decrement and its operand
 a += 20;
 a = (b <= MAX_B ? b : MAX_B);
 ++a;
-b--;
+--b;
 
 for (int a = 0; a < b; ++b) {
-    // code
 }
+
+// Range-based for loop, spaces before and after the colon
+for (auto i : container) {
+}
+
+// Derived class, spaces before and after the colon
+class Derived : public Base
+{
+};
+```
+
+* Prefer pre-increment, pre-decrement operators
+```c++
+++i, --j;  // Yes
+i++, j--;  // No
 ```
 
 * private/public/protected must not be indented
