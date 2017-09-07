@@ -1,12 +1,12 @@
 #ifndef FILESYSTEMWATCHER_H
 #define FILESYSTEMWATCHER_H
 
-#include <QFileSystemWatcher>
 #include <QDir>
-#include <QTimer>
+#include <QFileSystemWatcher>
+#include <QHash>
 #include <QPointer>
 #include <QStringList>
-#include <QHash>
+#include <QTimer>
 
 /*
  * Subclassing QFileSystemWatcher in order to support Network File
@@ -17,7 +17,7 @@ class FileSystemWatcher : public QFileSystemWatcher
     Q_OBJECT
 
 public:
-    explicit FileSystemWatcher(QObject *parent = 0);
+    explicit FileSystemWatcher(QObject *parent = nullptr);
     ~FileSystemWatcher();
 
     QStringList directories() const;

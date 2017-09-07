@@ -4,7 +4,10 @@
 #include <QObject>
 #include <QTimer>
 
-namespace BitTorrent { class Session; }
+namespace BitTorrent
+{
+    class Session;
+}
 
 class Statistics : QObject
 {

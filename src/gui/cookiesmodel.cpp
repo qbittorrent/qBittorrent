@@ -26,8 +26,9 @@
  * exception statement from your version.
  */
 
-#include <QDateTime>
 #include "cookiesmodel.h"
+
+#include <QDateTime>
 
 CookiesModel::CookiesModel(const QList<QNetworkCookie> &cookies, QObject *parent)
     : QAbstractItemModel(parent)
@@ -43,8 +44,7 @@ QList<QNetworkCookie> CookiesModel::cookies() const
 QVariant CookiesModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if ((role == Qt::DisplayRole) && (orientation == Qt::Horizontal)) {
-        switch (section)
-        {
+        switch (section) {
         case COL_DOMAIN:
             return tr("Domain");
         case COL_PATH:

@@ -32,11 +32,9 @@
 
 #include <QObject>
 
-QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
 class QNetworkReply;
 class QUrl;
-QT_END_NAMESPACE
 
 namespace Net
 {

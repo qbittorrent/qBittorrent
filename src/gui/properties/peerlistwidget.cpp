@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,36 +24,34 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "peerlistwidget.h"
 
 #include <QApplication>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
-#include <QSet>
+#include <QClipboard>
 #include <QHeaderView>
 #include <QMenu>
-#include <QClipboard>
 #include <QMessageBox>
-#include <QWheelEvent>
+#include <QSet>
+#include <QSortFilterProxyModel>
+#include <QStandardItemModel>
 #include <QTableView>
+#include <QWheelEvent>
 
-#include "base/net/reverseresolution.h"
-#include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/peerinfo.h"
-#include "base/preferences.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/logger.h"
-#include "base/unicodestrings.h"
-#include "propertieswidget.h"
 #include "base/net/geoipmanager.h"
-#include "peersadditiondlg.h"
-#include "speedlimitdlg.h"
+#include "base/net/reverseresolution.h"
+#include "base/preferences.h"
+#include "base/unicodestrings.h"
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
+#include "peersadditiondlg.h"
+#include "propertieswidget.h"
+#include "speedlimitdlg.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)

@@ -37,7 +37,7 @@ namespace Http
     class ResponseBuilder : public QObject
     {
     public:
-        explicit ResponseBuilder(QObject *parent = 0);
+        explicit ResponseBuilder(QObject *parent = nullptr);
 
     protected:
         void status(uint code = 200, const QString &text = QLatin1String("OK"));

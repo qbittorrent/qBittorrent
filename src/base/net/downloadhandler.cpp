@@ -27,20 +27,21 @@
  * exception statement from your version.
  */
 
-#include <QTemporaryFile>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QNetworkProxy>
-#include <QNetworkCookie>
-#include <QUrl>
+#include "downloadhandler.h"
+
 #include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkCookie>
+#include <QNetworkProxy>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QTemporaryFile>
+#include <QUrl>
 
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
 #include "base/utils/misc.h"
 #include "downloadmanager.h"
-#include "downloadhandler.h"
 
 static QString errorCodeToString(QNetworkReply::NetworkError status);
 
@@ -192,14 +193,14 @@ void DownloadHandler::handleRedirection(QUrl newUrl)
         m_reply->deleteLater();
         m_reply = tmp->m_reply;
         init();
-        tmp->m_reply = 0;
+        tmp->m_reply = nullptr;
         delete tmp;
     }
 }
 
 QString errorCodeToString(QNetworkReply::NetworkError status)
 {
-    switch(status) {
+    switch (status) {
     case QNetworkReply::HostNotFoundError:
         return QObject::tr("The remote host name was not found (invalid hostname)");
     case QNetworkReply::OperationCanceledError:

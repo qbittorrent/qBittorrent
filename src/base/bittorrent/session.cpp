@@ -29,6 +29,10 @@
 
 #include "session.h"
 
+#include <cstdlib>
+#include <queue>
+#include <vector>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -42,10 +46,6 @@
 #include <QThread>
 #include <QTimer>
 #include <QUuid>
-
-#include <cstdlib>
-#include <queue>
-#include <vector>
 
 #include <libtorrent/alert_types.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
@@ -71,24 +71,24 @@
 #include <libtorrent/torrent_info.hpp>
 
 #include "base/logger.h"
-#include "base/profile.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/profile.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
-#include "base/utils/net.h"
-#include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "magneturi.h"
-#include "private/filterparserthread.h"
-#include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
+#include "private/filterparserthread.h"
 #include "private/resumedatasavingmanager.h"
+#include "private/statistics.h"
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"

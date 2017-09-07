@@ -29,8 +29,8 @@
 #ifndef BITTORRENT_INFOHASH_H
 #define BITTORRENT_INFOHASH_H
 
-#include <libtorrent/sha1_hash.hpp>
 #include <QString>
+#include <libtorrent/sha1_hash.hpp>
 
 namespace BitTorrent
 {

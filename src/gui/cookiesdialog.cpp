@@ -30,10 +30,10 @@
 
 #include <algorithm>
 
-#include "base/settingsstorage.h"
 #include "base/net/downloadmanager.h"
-#include "guiiconprovider.h"
+#include "base/settingsstorage.h"
 #include "cookiesmodel.h"
+#include "guiiconprovider.h"
 #include "ui_cookiesdialog.h"
 
 #define SETTINGS_KEY(name) "CookiesDialog/" name

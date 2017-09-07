@@ -43,7 +43,7 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class TrackerList: public QTreeWidget
+class TrackerList : public QTreeWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(TrackerList)

@@ -39,12 +39,12 @@ namespace Ui
     class BanListOptions;
 }
 
-class BanListOptions: public QDialog
+class BanListOptions : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit BanListOptions(QWidget *parent = 0);
+    explicit BanListOptions(QWidget *parent = nullptr);
     ~BanListOptions();
 
 private slots:

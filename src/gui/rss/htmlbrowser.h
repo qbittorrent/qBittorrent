@@ -1,19 +1,19 @@
 #ifndef HTMLBROWSER_H
 #define HTMLBROWSER_H
 
-#include <QTextBrowser>
 #include <QHash>
+#include <QTextBrowser>
 
 class QNetworkAccessManager;
 class QNetworkDiskCache;
 class QNetworkReply;
 
-class HtmlBrowser: public QTextBrowser
+class HtmlBrowser : public QTextBrowser
 {
     Q_OBJECT
 
 public:
-    explicit HtmlBrowser(QWidget* parent = 0);
+    explicit HtmlBrowser(QWidget* parent = nullptr);
     ~HtmlBrowser();
 
     virtual QVariant loadResource(int type, const QUrl &name);

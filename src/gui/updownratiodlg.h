@@ -1,7 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christian Kandeler, Christophe Dumez
- *
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christian Kandeler
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef UPDOWNRATIODLG_H
@@ -33,20 +31,19 @@
 
 #include <QDialog>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
     class UpDownRatioDlg;
 }
-QT_END_NAMESPACE
 
 class UpDownRatioDlg : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit UpDownRatioDlg(bool useDefault, qreal initialValue, qreal maxValue,
-        int initialTimeValue, int maxTimeValue,
-        QWidget *parent = 0);
+    UpDownRatioDlg(bool useDefault, qreal initialValue, qreal maxValue,
+            int initialTimeValue, int maxTimeValue,
+            QWidget *parent = nullptr);
     ~UpDownRatioDlg();
 
     bool useDefault() const;
@@ -62,7 +59,7 @@ private slots:
     void enableTimeSpin();
 
 private:
-    Ui::UpDownRatioDlg *ui;
+    Ui::UpDownRatioDlg *m_ui;
 };
 
 #endif // UPDOWNRATIODLG_H

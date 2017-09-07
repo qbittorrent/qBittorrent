@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,16 +24,14 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef DNSUPDATER_H
 #define DNSUPDATER_H
 
-#include <QObject>
-#include <QHostAddress>
 #include <QDateTime>
+#include <QHostAddress>
+#include <QObject>
 #include <QTimer>
 
 #include "base/preferences.h"
@@ -41,12 +39,12 @@
 namespace Net
 {
     // Based on http://www.dyndns.com/developers/specs/
-    class DNSUpdater: public QObject
+    class DNSUpdater : public QObject
     {
         Q_OBJECT
 
     public:
-        explicit DNSUpdater(QObject *parent = 0);
+        explicit DNSUpdater(QObject *parent = nullptr);
         ~DNSUpdater();
 
         static QUrl getRegistrationUrl(int service);

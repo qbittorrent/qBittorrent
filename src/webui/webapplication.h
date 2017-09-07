@@ -32,12 +32,12 @@
 #include <QStringList>
 #include "abstractwebapplication.h"
 
-class WebApplication: public AbstractWebApplication
+class WebApplication : public AbstractWebApplication
 {
     Q_DISABLE_COPY(WebApplication)
 
 public:
-    explicit WebApplication(QObject* parent = 0);
+    explicit WebApplication(QObject *parent = nullptr);
 
 private:
     // Actions

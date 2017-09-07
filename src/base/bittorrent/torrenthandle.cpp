@@ -27,21 +27,23 @@
  * exception statement from your version.
  */
 
+#include "torrenthandle.h"
+
 #include <algorithm>
 #include <type_traits>
 
-#include <QDebug>
-#include <QStringList>
-#include <QFile>
-#include <QDir>
-#include <QByteArray>
 #include <QBitArray>
+#include <QByteArray>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QStringList>
 
-#include <libtorrent/entry.hpp>
-#include <libtorrent/bencode.hpp>
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
+#include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/time.hpp>
@@ -56,13 +58,12 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/string.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "session.h"
+#include "base/utils/string.h"
 #include "peerinfo.h"
+#include "session.h"
 #include "trackerentry.h"
-#include "torrenthandle.h"
 
 const QString QB_EXT {".!qB"};
 
