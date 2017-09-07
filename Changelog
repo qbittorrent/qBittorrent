@@ -1,5 +1,5 @@
-* Tue Sep 05 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.16
-    - BUGFIX: Better memory footprint when using libtorrent 1.1.x. The cache is turned off by default(`-1` value in the settings). The value `0 (auto)` makes it use your 1/8 of RAM. (sledgehammer999)
+* Thu Sep 07 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.16
+    - BUGFIX: Better memory footprint when using libtorrent 1.1.x. The cache is turned off by default(`0 (disabled)` value in the settings). The value `-1 (auto)` makes it use 1/8 of your RAM. (sledgehammer999)
     - BUGFIX: Skip user input events when adding torrent. Closes #7327. (glassez)
     - BUGFIX: Avoid memory leak in the speed graph. (Chocobo1)
     - WEBUI: Fix validating wrong header field. X-Forwarded-Host is a foreign proxy setting, it isn't the same as qbt's local setting and thus it makes no sense to verify it. Closes #7311. (Chocobo1)
