@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 
@@ -46,13 +44,13 @@ namespace Http
     class IRequestHandler;
     class Connection;
 
-    class Server: public QTcpServer
+    class Server : public QTcpServer
     {
         Q_OBJECT
         Q_DISABLE_COPY(Server)
 
     public:
-        Server(IRequestHandler *requestHandler, QObject *parent = 0);
+        Server(IRequestHandler *requestHandler, QObject *parent = nullptr);
         ~Server();
 
 #ifndef QT_NO_OPENSSL
@@ -67,7 +65,7 @@ namespace Http
         void incomingConnection(qintptr socketDescriptor);
 
         IRequestHandler *m_requestHandler;
-        QList<Connection *> m_connections;  // for tracking persistence connections
+        QList<Connection *> m_connections;  // for tracking persistent connections
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;

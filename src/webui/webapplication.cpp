@@ -26,14 +26,16 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QCoreApplication>
-#include <QTimer>
-#include <QCryptographicHash>
-#include <QRegularExpression>
+#include "webapplication.h"
 
 #include <queue>
 #include <vector>
+
+#include <QCoreApplication>
+#include <QCryptographicHash>
+#include <QDebug>
+#include <QRegularExpression>
+#include <QTimer>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -50,7 +52,6 @@
 #include "btjson.h"
 #include "jsonutils.h"
 #include "prefjson.h"
-#include "webapplication.h"
 #include "websessiondata.h"
 
 static const int API_VERSION = 15;
@@ -203,7 +204,7 @@ void WebApplication::action_public_login()
         return;
     }
 
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
     QCryptographicHash md5(QCryptographicHash::Md5);
 
     md5.addData(request().posts["password"].toLocal8Bit());
@@ -565,12 +566,12 @@ void WebApplication::action_command_setFilePrio()
     CHECK_URI(0);
     CHECK_PARAMETERS("hash" << "id" << "priority");
     QString hash = request().posts["hash"];
-    int file_id = request().posts["id"].toInt();
+    int fileID = request().posts["id"].toInt();
     int priority = request().posts["priority"].toInt();
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
 
     if (torrent && torrent->hasMetadata())
-        torrent->setFilePriority(file_id, priority);
+        torrent->setFilePriority(fileID, priority);
 }
 
 void WebApplication::action_command_getGlobalUpLimit()
@@ -801,15 +802,13 @@ void WebApplication::action_command_setLocation()
     QStringList hashes = request().posts["hashes"].split("|");
     QString newLocation = request().posts["location"].trimmed();
 
-    // check location exists
+    // check if the location exists
     if (newLocation.isEmpty() || !QDir(newLocation).exists())
         return;
 
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent) {
-            // get old location
-            const QString oldLocation = torrent->savePath();
             Logger::instance()->addMessage(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocation));
 
             torrent->move(Utils::Fs::expandPathAbs(newLocation));
@@ -945,7 +944,7 @@ void WebApplication::doProcessRequest()
 
 void WebApplication::parsePath()
 {
-    if(request().path == "/") action_ = WEBUI_ACTION;
+    if (request().path == "/") action_ = WEBUI_ACTION;
 
     // check action for requested path
     QStringList pathItems = request().path.split('/', QString::SkipEmptyParts);

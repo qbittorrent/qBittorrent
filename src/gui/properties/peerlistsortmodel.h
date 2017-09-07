@@ -34,12 +34,12 @@
 
 #include "peerlistdelegate.h"
 
-class PeerListSortModel: public QSortFilterProxyModel
+class PeerListSortModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    PeerListSortModel(QObject *parent = 0)
+    PeerListSortModel(QObject *parent = nullptr)
         : QSortFilterProxyModel(parent)
     {
     }

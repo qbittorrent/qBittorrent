@@ -65,7 +65,7 @@ void PortForwarder::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -143,4 +143,4 @@ void PortForwarder::stop()
     Logger::instance()->addMessage(tr("UPnP / NAT-PMP support [OFF]"), Log::INFO);
 }
 
-PortForwarder *PortForwarder::m_instance = 0;
+PortForwarder *PortForwarder::m_instance = nullptr;

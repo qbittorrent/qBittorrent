@@ -12,9 +12,9 @@
 #endif
 #endif
 
-#include "base/preferences.h"
-#include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/magneturi.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/preferences.h"
 #include "filesystemwatcher.h"
 
 #ifndef CIFS_MAGIC_NUMBER

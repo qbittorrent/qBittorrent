@@ -49,7 +49,7 @@ public:
         NB_COLUMNS
     };
 
-    explicit CookiesModel(const QList<QNetworkCookie> &cookies, QObject *parent = 0);
+    explicit CookiesModel(const QList<QNetworkCookie> &cookies, QObject *parent = nullptr);
 
     QList<QNetworkCookie> cookies() const;
 

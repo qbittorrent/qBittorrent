@@ -35,9 +35,10 @@
 
 #include <QGraphicsView>
 #include <QMap>
+
 class QPen;
 
-class SpeedPlotView: public QGraphicsView
+class SpeedPlotView : public QGraphicsView
 {
     Q_OBJECT
 
@@ -71,7 +72,7 @@ public:
         int y[NB_GRAPHS];
     };
 
-    explicit SpeedPlotView(QWidget *parent = 0);
+    explicit SpeedPlotView(QWidget *parent = nullptr);
 
     void setGraphEnable(GraphID id, bool enable);
     void setViewableLastPoints(TimePeriod period);

@@ -29,8 +29,8 @@
 #ifndef BITTORRENT_MAGNETURI_H
 #define BITTORRENT_MAGNETURI_H
 
-#include <QString>
 #include <QList>
+#include <QString>
 #include <QUrl>
 
 #include <libtorrent/add_torrent_params.hpp>

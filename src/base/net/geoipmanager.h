@@ -30,8 +30,8 @@
 #ifndef NET_GEOIPMANAGER_H
 #define NET_GEOIPMANAGER_H
 
-#include <QObject>
 #include <QCache>
+#include <QObject>
 
 class QHostAddress;
 class QString;
