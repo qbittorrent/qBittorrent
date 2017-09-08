@@ -79,9 +79,9 @@ void WebUI::init()
             const QByteArray key = pref->getWebUiHttpsKey();
             bool success = m_httpServer->setupHttps(certs, key);
             if (success)
-                logger->addMessage(tr("Web UI: https setup successful"));
+                logger->addMessage(tr("Web UI: HTTPS setup successful"));
             else
-                logger->addMessage(tr("Web UI: https setup failed, fallback to http"), Log::CRITICAL);
+                logger->addMessage(tr("Web UI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
         }
         else {
             m_httpServer->disableHttps();
