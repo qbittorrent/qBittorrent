@@ -71,4 +71,7 @@ private:
     int peerCounter;
 };
 
+// Helper function
+void LogMsg(const QString &message, const Log::MsgType &type = Log::NORMAL);
+
 #endif // LOGGER_H
