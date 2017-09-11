@@ -1943,15 +1943,12 @@ void MainWindow::checkForActiveTorrents()
 #ifndef Q_OS_MAC
 QIcon MainWindow::getSystrayIcon() const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (Preferences::instance()->useSystemIconTheme())
-        return QIcon::fromTheme("qbittorrent-tray");
-#endif
-
     const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
     // on Linux we use theme icons, and icons from resources everywhere else
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     switch (style) {
+    case TrayIcon::NORMAL:
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray"));
     case TrayIcon::MONO_DARK:
         return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
     case TrayIcon::MONO_LIGHT:
