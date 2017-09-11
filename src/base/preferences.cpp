@@ -59,9 +59,7 @@
 
 Preferences *Preferences::m_instance = 0;
 
-Preferences::Preferences()
-{
-}
+Preferences::Preferences() {}
 
 Preferences *Preferences::instance()
 {
@@ -195,7 +193,6 @@ void Preferences::setCloseToTray(bool b)
 {
     setValue("Preferences/General/CloseToTray", b);
 }
-
 #endif
 
 bool Preferences::isToolbarDisplayed() const
@@ -267,7 +264,6 @@ void Preferences::setWinStartup(bool b)
         settings.remove("qBittorrent");
     }
 }
-
 #endif
 
 // Downloads
@@ -744,7 +740,6 @@ void Preferences::useSystemIconTheme(bool enabled)
 {
     setValue("Preferences/Advanced/useSystemIconTheme", enabled);
 }
-
 #endif
 
 bool Preferences::recursiveDownloadDisabled() const
@@ -983,7 +978,6 @@ void Preferences::setMagnetLinkAssoc(bool set)
 
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
-
 #endif
 
 #ifdef Q_OS_MAC
@@ -1040,7 +1034,6 @@ void Preferences::setMagnetLinkAssoc()
     CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
     LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
-
 #endif
 
 int Preferences::getTrackerPort() const
@@ -1063,7 +1056,6 @@ void Preferences::setUpdateCheckEnabled(bool enabled)
 {
     setValue("Preferences/Advanced/updateCheck", enabled);
 }
-
 #endif
 
 bool Preferences::confirmTorrentDeletion() const
@@ -1106,7 +1098,6 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
 {
     setValue("Preferences/Advanced/TrayIconStyle", style);
 }
-
 #endif
 
 // Stuff that don't appear in the Options GUI but are saved
@@ -1468,9 +1459,10 @@ void Preferences::upgrade()
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.isEmpty()) {
         QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
-        foreach (const QString &label, labels)
+        foreach (const QString &label, labels) {
             if (!categories.contains(label))
                 categories[label] = "";
+        }
         setValue("BitTorrent/Session/Categories", categories);
         SettingsStorage::instance()->removeValue("TransferListFilters/customLabels");
     }

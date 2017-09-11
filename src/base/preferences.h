@@ -90,7 +90,7 @@ class Preferences: public QObject
     const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void setValue(const QString &key, const QVariant &value);
 
-    static Preferences* m_instance;
+    static Preferences *m_instance;
 
 signals:
     void changed();
@@ -98,7 +98,7 @@ signals:
 public:
     static void initInstance();
     static void freeInstance();
-    static Preferences* instance();
+    static Preferences *instance();
 
     // General options
     QString getLocale() const;
@@ -328,7 +328,7 @@ public:
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
 
-    //From old RssSettings class
+    // From old RssSettings class
     bool isRSSWidgetEnabled() const;
     void setRSSWidgetVisible(const bool enabled);
 

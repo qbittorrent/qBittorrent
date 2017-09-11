@@ -39,7 +39,7 @@
 #include <QApplication>
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "previewselect.h"
+#include "previewselectdialog.h"
 
 #ifdef Q_OS_WIN
 #include <QProxyStyle>
@@ -58,11 +58,11 @@ class PreviewListDelegate: public QItemDelegate {
       QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
       switch(index.column()) {
-        case PreviewSelect::SIZE:
+        case PreviewSelectDialog::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
           break;
-        case PreviewSelect::PROGRESS:{
+        case PreviewSelectDialog::PROGRESS:{
           QStyleOptionProgressBar newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;

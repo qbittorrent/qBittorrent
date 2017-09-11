@@ -21,7 +21,6 @@ HEADERS += \
     $$PWD/statusbar.h \
     $$PWD/speedlimitdlg.h \
     $$PWD/about_imp.h \
-    $$PWD/previewselect.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/downloadfromurldlg.h \
     $$PWD/trackerlogin.h \
@@ -62,6 +61,7 @@ HEADERS += \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
+    $$PWD/previewselectdialog.h \
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -77,7 +77,6 @@ SOURCES += \
     $$PWD/torrentcontenttreeview.cpp \
     $$PWD/executionlog.cpp \
     $$PWD/speedlimitdlg.cpp \
-    $$PWD/previewselect.cpp \
     $$PWD/guiiconprovider.cpp \
     $$PWD/updownratiodlg.cpp \
     $$PWD/loglistwidget.cpp \
@@ -114,7 +113,8 @@ SOURCES += \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/fspathedit.cpp \
-    $$PWD/fspathedit_p.cpp
+    $$PWD/fspathedit_p.cpp \
+    $$PWD/previewselectdialog.cpp \
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -129,7 +129,7 @@ macx {
 FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/about.ui \
-    $$PWD/preview.ui \
+    $$PWD/previewselectdialog.ui \
     $$PWD/login.ui \
     $$PWD/downloadfromurldlg.ui \
     $$PWD/bandwidth_limit.ui \
