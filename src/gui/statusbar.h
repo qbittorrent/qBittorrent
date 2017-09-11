@@ -34,6 +34,8 @@
 class QLabel;
 class QPushButton;
 
+class StatusSpeedButton;
+
 namespace BitTorrent
 {
     struct SessionStatus;
@@ -66,8 +68,8 @@ private:
     void updateDHTNodesNumber();
     void updateSpeedLabels();
 
-    QPushButton *m_dlSpeedLbl;
-    QPushButton *m_upSpeedLbl;
+    StatusSpeedButton *m_dlSpeedBtn;
+    StatusSpeedButton *m_upSpeedBtn;
     QLabel *m_DHTLbl;
     QPushButton *m_connecStatusLblIcon;
     QPushButton *m_altSpeedsBtn;

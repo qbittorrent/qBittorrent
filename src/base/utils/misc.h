@@ -77,12 +77,13 @@ namespace Utils
         QString pythonExecutable();
         QString pythonVersionComplete();
 
-        QString unitString(SizeUnit unit);
+        QString unitString(SizeUnit unit, bool isSpeed = false);
 
         // return best user friendly storage unit (B, KiB, MiB, GiB, TiB)
         // value must be given in bytes
         bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
+        QString friendlyUnit(qint64 bytesValue, int fieldWidth, QChar fill, bool isSpeed = false);
         int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
 

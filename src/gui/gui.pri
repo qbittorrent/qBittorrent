@@ -19,6 +19,7 @@ HEADERS += \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/deletionconfirmationdlg.h \
     $$PWD/statusbar.h \
+    $$PWD/statusspeedbutton.h \
     $$PWD/speedlimitdlg.h \
     $$PWD/about_imp.h \
     $$PWD/previewselect.h \
@@ -86,6 +87,7 @@ SOURCES += \
     $$PWD/statsdialog.cpp \
     $$PWD/messageboxraised.cpp \
     $$PWD/statusbar.cpp \
+    $$PWD/statusspeedbutton.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/trackerlogin.cpp \
     $$PWD/optionsdlg.cpp \

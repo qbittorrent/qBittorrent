@@ -56,6 +56,7 @@ shutdownconfirmdlg.h
 speedlimitdlg.h
 statsdialog.h
 statusbar.h
+statusspeedbutton.h
 tagfiltermodel.h
 tagfilterproxymodel.h
 tagfilterwidget.h
@@ -99,6 +100,7 @@ shutdownconfirmdlg.cpp
 speedlimitdlg.cpp
 statsdialog.cpp
 statusbar.cpp
+statusspeedbutton.cpp
 tagfiltermodel.cpp
 tagfilterproxymodel.cpp
 tagfilterwidget.cpp

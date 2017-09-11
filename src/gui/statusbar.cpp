@@ -41,6 +41,7 @@
 #include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "speedlimitdlg.h"
+#include "statusspeedbutton.h"
 
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
@@ -69,23 +70,13 @@ StatusBar::StatusBar(QWidget *parent)
                 .arg(tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
-    m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
-    connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
-    m_dlSpeedLbl->setFlat(true);
-    m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
-    m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_dlSpeedLbl->setStyleSheet("text-align:left;");
-    m_dlSpeedLbl->setMinimumWidth(200);
+    m_dlSpeedBtn = new StatusSpeedButton(this);
+    m_dlSpeedBtn->setIcon(QIcon(":/icons/skin/download.png"));
+    connect(m_dlSpeedBtn, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
 
-    m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
-    connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
-    m_upSpeedLbl->setFlat(true);
-    m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
-    m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_upSpeedLbl->setStyleSheet("text-align:left;");
-    m_upSpeedLbl->setMinimumWidth(200);
+    m_upSpeedBtn = new StatusSpeedButton(this);
+    m_upSpeedBtn->setIcon(QIcon(":/icons/skin/seeding.png"));
+    connect(m_upSpeedBtn, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
 
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
@@ -101,8 +92,8 @@ StatusBar::StatusBar(QWidget *parent)
     // and it will result in taller/fatter statusbar, even if the
     // icons are actually 16x16
     m_connecStatusLblIcon->setIconSize(QSize(16, 16));
-    m_dlSpeedLbl->setIconSize(QSize(16, 16));
-    m_upSpeedLbl->setIconSize(QSize(16, 16));
+    m_dlSpeedBtn->setIconSize(QSize(16, 16));
+    m_upSpeedBtn->setIconSize(QSize(16, 16));
     m_altSpeedsBtn->setIconSize(QSize(28, 16));
 
     // Set to the known maximum width(plus some padding)
@@ -136,9 +127,9 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(statusSep2);
     layout->addWidget(m_altSpeedsBtn);
     layout->addWidget(statusSep4);
-    layout->addWidget(m_dlSpeedLbl);
+    layout->addWidget(m_dlSpeedBtn);
     layout->addWidget(statusSep3);
-    layout->addWidget(m_upSpeedLbl);
+    layout->addWidget(m_upSpeedBtn);
 
     addPermanentWidget(container);
     setStyleSheet("QWidget {margin: 0;}");
@@ -147,6 +138,7 @@ StatusBar::StatusBar(QWidget *parent)
     // Is DHT enabled
     m_DHTLbl->setVisible(session->isDHTEnabled());
     refresh();
+
     connect(session, &BitTorrent::Session::statsUpdated, this, &StatusBar::refresh);
 }
 
@@ -206,18 +198,13 @@ void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
-    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ")";
-    m_dlSpeedLbl->setText(speedLbl);
-    speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
-    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ")";
-    m_upSpeedLbl->setText(speedLbl);
+    m_dlSpeedBtn->setCurrentSpeed(sessionStatus.payloadDownloadRate);
+    m_dlSpeedBtn->setSpeedLimit(BitTorrent::Session::instance()->downloadSpeedLimit());
+    m_dlSpeedBtn->setTotalPayload(sessionStatus.totalPayloadDownload);
+
+    m_upSpeedBtn->setCurrentSpeed(sessionStatus.payloadUploadRate);
+    m_upSpeedBtn->setSpeedLimit(BitTorrent::Session::instance()->uploadSpeedLimit());
+    m_upSpeedBtn->setTotalPayload(sessionStatus.totalPayloadUpload);
 }
 
 void StatusBar::refresh()

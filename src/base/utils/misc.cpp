@@ -329,10 +329,14 @@ QString Utils::Misc::pythonVersionComplete()
     return version;
 }
 
-QString Utils::Misc::unitString(Utils::Misc::SizeUnit unit)
+QString Utils::Misc::unitString(Utils::Misc::SizeUnit unit, bool isSpeed)
 {
-    return QCoreApplication::translate("misc",
+    QString res = QCoreApplication::translate("misc",
                                        units[static_cast<int>(unit)].source, units[static_cast<int>(unit)].comment);
+    if (isSpeed)
+        res += QCoreApplication::translate("misc", "/s", "per second");
+
+    return res;
 }
 
 // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
@@ -358,18 +362,23 @@ bool Utils::Misc::friendlyUnit(qint64 sizeInBytes, qreal &val, Utils::Misc::Size
 
 QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
 {
+    return friendlyUnit(bytesValue, 0, QChar(), isSpeed);
+}
+
+QString Utils::Misc::friendlyUnit(qint64 bytesValue, int fieldWidth, QChar fill, bool isSpeed)
+{
     SizeUnit unit;
     qreal friendlyVal;
     if (!friendlyUnit(bytesValue, friendlyVal, unit))
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
-    QString ret;
+
+    QString numberPart;
     if (unit == SizeUnit::Byte)
-        ret = QString::number(bytesValue) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
+        numberPart = QString(QLatin1String("%1")).arg(bytesValue, fieldWidth, 10, fill);
     else
-        ret = Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit)) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
-    if (isSpeed)
-        ret += QCoreApplication::translate("misc", "/s", "per second");
-    return ret;
+        numberPart = QString(QLatin1String("%1")).arg(friendlyVal, fieldWidth, 'f', friendlyUnitPrecision(unit), fill);
+
+    return numberPart + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit, isSpeed);
 }
 
 int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
