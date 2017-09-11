@@ -50,7 +50,7 @@ mainwindow.h
 messageboxraised.h
 optionsdlg.h
 previewlistdelegate.h
-previewselect.h
+previewselectdialog.h
 scanfoldersdelegate.h
 shutdownconfirmdlg.h
 speedlimitdlg.h
@@ -93,7 +93,7 @@ loglistwidget.cpp
 mainwindow.cpp
 messageboxraised.cpp
 optionsdlg.cpp
-previewselect.cpp
+previewselectdialog.cpp
 scanfoldersdelegate.cpp
 shutdownconfirmdlg.cpp
 speedlimitdlg.cpp
@@ -133,7 +133,7 @@ mainwindow.ui
 about.ui
 banlistoptions.ui
 cookiesdialog.ui
-preview.ui
+previewselectdialog.ui
 login.ui
 downloadfromurldlg.ui
 bandwidth_limit.ui

@@ -54,7 +54,7 @@
 #include "guiiconprovider.h"
 #include "mainwindow.h"
 #include "optionsdlg.h"
-#include "previewselect.h"
+#include "previewselectdialog.h"
 #include "speedlimitdlg.h"
 #include "torrentmodel.h"
 #include "transferlistdelegate.h"
@@ -563,7 +563,7 @@ void TransferListWidget::previewSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
         if (torrent->hasMetadata())
-            new PreviewSelect(this, torrent);
+            new PreviewSelectDialog(this, torrent);
     }
 }
 

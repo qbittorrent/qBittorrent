@@ -26,20 +26,21 @@
  * exception statement from your version.
  */
 
-#ifndef PREVIEWSELECT_H
-#define PREVIEWSELECT_H
+#ifndef PREVIEWSELECTDIALOG_H
+#define PREVIEWSELECTDIALOG_H
 
 #include <QDialog>
 #include <QList>
 
 #include "base/bittorrent/torrenthandle.h"
-#include "ui_preview.h"
+#include "base/settingvalue.h"
+#include "ui_previewselectdialog.h"
 
 class QStandardItemModel;
 
 class PreviewListDelegate;
 
-class PreviewSelect : public QDialog, private Ui::preview
+class PreviewSelectDialog : public QDialog, private Ui::preview
 {
     Q_OBJECT
 
@@ -54,19 +55,30 @@ public:
         NB_COLUMNS
     };
 
-    PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const torrent);
-    ~PreviewSelect();
+    PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
+    ~PreviewSelectDialog();
 
 signals:
     void readyToPreviewFile(QString) const;
+
+protected:
+    void showEvent(QShowEvent *event) override;
 
 private slots:
     void previewButtonClicked();
 
 private:
+    void loadWindowState();
+    void saveWindowState();
+
     QStandardItemModel *m_previewListModel;
     PreviewListDelegate *m_listDelegate;
     BitTorrent::TorrentHandle *const m_torrent;
+    bool m_headerStateInitialized = false;
+
+    // Settings
+    CachedSettingValue<QSize> m_storeDialogSize;
+    CachedSettingValue<QByteArray> m_storeTreeHeaderState;
 };
 
-#endif // PREVIEWSELECT_H
+#endif // PREVIEWSELECTDIALOG_H
