@@ -394,6 +394,7 @@ void WebApplication::action_command_download()
     QStringList list = urls.split('\n');
     bool skipChecking = request().posts["skip_checking"] == "true";
     bool addPaused = request().posts["paused"] == "true";
+    bool hasRootFolder = request().posts["root_folder"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
     QString cookie = request().posts["cookie"];
@@ -422,6 +423,7 @@ void WebApplication::action_command_download()
     params.skipChecking = skipChecking;
 
     params.addPaused = TriStateBool(addPaused);
+    params.createSubfolder = TriStateBool(hasRootFolder);
     params.savePath = savepath;
     params.category = category;
 
@@ -446,6 +448,7 @@ void WebApplication::action_command_upload()
     CHECK_URI(0);
     bool skipChecking = request().posts["skip_checking"] == "true";
     bool addPaused = request().posts["paused"] == "true";
+    bool hasRootFolder = request().posts["root_folder"] == "true";
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
 
@@ -468,6 +471,7 @@ void WebApplication::action_command_upload()
                 params.skipChecking = skipChecking;
 
                 params.addPaused = TriStateBool(addPaused);
+                params.createSubfolder = TriStateBool(hasRootFolder);
                 params.savePath = savepath;
                 params.category = category;
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
