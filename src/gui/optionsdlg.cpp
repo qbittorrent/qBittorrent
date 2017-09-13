@@ -272,6 +272,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->autoRun_param->setText(autoRunStr);
 
     // Connection tab
+    connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -287,8 +288,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->schedule_from, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->schedule_to, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->schedule_days, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkuTP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkuTP, &QAbstractButton::toggled, m_ui->checkLimituTPConnections, &QWidget::setEnabled);
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -573,13 +572,13 @@ void OptionsDialog::saveOptions()
     // End Downloads preferences
 
     // Connection preferences
+    session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
     session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
     const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
     session->setGlobalDownloadSpeedLimit(down_up_limit.first);
     session->setGlobalUploadSpeedLimit(down_up_limit.second);
-    session->setUTPEnabled(m_ui->checkuTP->isChecked());
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
@@ -824,6 +823,7 @@ void OptionsDialog::loadOptions()
     // End Downloads preferences
 
     // Connection preferences
+    m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
     m_ui->checkRandomPort->setChecked(session->useRandomPort());
     m_ui->spinPort->setValue(session->port());
@@ -973,8 +973,6 @@ void OptionsDialog::loadOptions()
         m_ui->spinUploadLimitAlt->setEnabled(false);
     }
 
-    m_ui->checkuTP->setChecked(session->isUTPEnabled());
-    m_ui->checkLimituTPConnections->setEnabled(m_ui->checkuTP->isChecked());
     m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());

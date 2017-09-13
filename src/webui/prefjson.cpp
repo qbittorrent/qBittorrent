@@ -120,7 +120,7 @@ QByteArray prefjson::getPreferences()
     // Global Rate Limits
     data["dl_limit"] = session->globalDownloadSpeedLimit();
     data["up_limit"] = session->globalUploadSpeedLimit();
-    data["enable_utp"] = session->isUTPEnabled();
+    data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
     data["limit_utp_rate"] = session->isUTPRateLimited();
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
     data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
@@ -322,8 +322,8 @@ void prefjson::setPreferences(const QString& json)
         session->setGlobalDownloadSpeedLimit(m["dl_limit"].toInt());
     if (m.contains("up_limit"))
         session->setGlobalUploadSpeedLimit(m["up_limit"].toInt());
-    if (m.contains("enable_utp"))
-        session->setUTPEnabled(m["enable_utp"].toBool());
+    if (m.contains("bittorrent_protocol"))
+        session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m["bittorrent_protocol"].toInt()));
     if (m.contains("limit_utp_rate"))
         session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
