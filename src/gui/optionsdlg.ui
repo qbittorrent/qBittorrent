@@ -1251,6 +1251,42 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_24">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Enabled protocol:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboProtocol">
+                <item>
+                 <property name="text">
+                  <string>TCP and μTP</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">TCP</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">μTP</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QGroupBox" name="ListeningPortBox">
               <property name="title">
                <string>Listening Port</string>
@@ -2011,47 +2047,27 @@
               <property name="title">
                <string>Rate Limits Settings</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_8">
-               <item row="4" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkLimitLocalPeerRate">
-                 <property name="text">
-                  <string>Apply rate limit to peers on LAN</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkLimitTransportOverhead">
-                 <property name="text">
-                  <string>Apply rate limit to transport overhead</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkuTP">
-                 <property name="text">
-                  <string>Enable µTP protocol</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
+              <layout class="QVBoxLayout" name="verticalLayout_30">
+               <item>
                 <widget class="QCheckBox" name="checkLimituTPConnections">
                  <property name="text">
                   <string>Apply rate limit to µTP protocol</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="2">
-                <spacer name="horizontalSpacer_9">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+               <item>
+                <widget class="QCheckBox" name="checkLimitTransportOverhead">
+                 <property name="text">
+                  <string>Apply rate limit to transport overhead</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkLimitLocalPeerRate">
+                 <property name="text">
+                  <string>Apply rate limit to peers on LAN</string>
                  </property>
-                </spacer>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3239,8 +3255,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>spinDownloadLimitAlt</tabstop>
   <tabstop>checkLimitLocalPeerRate</tabstop>
   <tabstop>checkLimitTransportOverhead</tabstop>
-  <tabstop>checkuTP</tabstop>
-  <tabstop>checkLimituTPConnections</tabstop>
   <tabstop>scrollArea_4</tabstop>
   <tabstop>checkDHT</tabstop>
   <tabstop>checkPeX</tabstop>

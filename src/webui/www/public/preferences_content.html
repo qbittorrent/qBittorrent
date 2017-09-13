@@ -88,6 +88,12 @@
 </div>
 
 <div id="ConnectionTab" class="PrefTab invisible">
+<label>QBT_TR(Enabled protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
+<select id="enable_protocol_combobox">
+  <option value="0" selected>QBT_TR(TCP and μTP)QBT_TR[CONTEXT=OptionsDialog]</option>
+  <option value="1">TCP</option>
+  <option value="2">μTP</option>
+</select><br/>
 <fieldset class="settings">
   <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
   <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -256,8 +262,6 @@
 
 <fieldset class="settings">
   <legend>QBT_TR(Rate Limits Settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
-  <input type="checkbox" id="enable_utp_checkbox" onClick="updateUTPEnabled();"/>
-  <label for="enable_utp_checkbox">QBT_TR(Enable µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
   <input type="checkbox" id="limit_utp_rate_checkbox"/>
   <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
   <input type="checkbox" id="limit_tcp_overhead_checkbox"/>
@@ -692,14 +696,6 @@ updateDlLimitEnabled = function() {
   }
 }
 
-updateUTPEnabled = function() {
-  if($('enable_utp_checkbox').getProperty('checked')) {
-    $('limit_utp_rate_checkbox').setProperty('disabled', false);
-  } else {
-    $('limit_utp_rate_checkbox').setProperty('disabled', true);
-  }
-}
-
 updateAltUpLimitEnabled = function() {
   if($('alt_up_limit_checkbox').getProperty('checked')) {
     $('alt_up_limit_value').setProperty('disabled', false);
@@ -974,10 +970,9 @@ loadPreferences = function() {
                       $('dl_limit_value').setProperty('value', dl_limit);
                     }
                     updateDlLimitEnabled();
-                    $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
+                    $('enable_protocol_combobox').setProperty('value', pref.bittorrent_protocol);
                     $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
                     $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
-                    updateUTPEnabled();
 
                     // Alternative Global Rate Limits
                     var alt_up_limit = pref.alt_up_limit.toInt() / 1024;
@@ -1217,7 +1212,7 @@ applyPreferences = function() {
     }
   }
   settings.set('dl_limit', dl_limit);
-  settings.set('enable_utp', $('enable_utp_checkbox').getProperty('checked'));
+  settings.set('bittorrent_protocol', $('enable_protocol_combobox').getProperty('value'));
   settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
   settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
 
