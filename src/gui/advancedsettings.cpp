@@ -294,7 +294,7 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     spin_cache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
-    addRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
+    addRow(DISK_CACHE, tr("Disk cache"), &spin_cache);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);
