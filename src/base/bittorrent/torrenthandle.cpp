@@ -87,6 +87,7 @@ AddTorrentData::AddTorrentData()
     : resumed(false)
     , disableTempPath(false)
     , sequential(false)
+    , sequentialOverride(false)
     , firstLastPiecePriority(false)
     , hasSeedStatus(false)
     , skipChecking(false)
@@ -106,6 +107,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , savePath(params.savePath)
     , disableTempPath(params.disableTempPath)
     , sequential(params.sequential)
+    , sequentialOverride(params.sequentialOverride)
     , firstLastPiecePriority(params.firstLastPiecePriority)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
@@ -243,6 +245,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasRootFolder(data.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
     , m_pauseAfterRecheck(false)
+    , m_sequentialDownloadOverride(data.sequentialOverride)
     , m_needSaveResumeData(false)
 {
     if (m_useAutoTMM)
@@ -351,6 +354,49 @@ qlonglong TorrentHandle::wastedSize() const
 QString TorrentHandle::currentTracker() const
 {
     return QString::fromStdString(m_nativeStatus.current_tracker);
+}
+
+/**
+   @brief Torrent is Previewable, if it contains at least one video file with pririoty
+   higher than Do not download.
+ */
+bool TorrentHandle::isPreviewable() const
+{
+    if (!hasMetadata()) {
+        return false;
+    }
+
+    QVector<int> fp = filePriorities();
+    QVector<int>::const_iterator i;
+
+    for (i = fp.constBegin(); i != fp.constEnd(); ++i) {
+        const int idx = i - fp.begin();
+        const QString filename = fileName(idx);
+        const QString ext = Utils::Fs::fileExtension(filename);
+
+        // To be previewable, it can't have Do not download priority
+        if ((fp[idx] != 0) && Utils::Misc::isPreviewable(ext)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+   @brief Was Sequential download overriden in Add new Torrent dialog?
+ */
+bool TorrentHandle::isSequentialDownloadOverride() const
+{
+    return m_sequentialDownloadOverride;
+}
+
+/**
+   @brief Setter for Sequential download override.
+ */
+void TorrentHandle::setSequentialDownloadOverride(const bool value)
+{
+    m_sequentialDownloadOverride = value;
 }
 
 QString TorrentHandle::savePath(bool actual) const
@@ -1357,12 +1403,19 @@ void TorrentHandle::setSequentialDownload(bool b)
     if (b != isSequentialDownload()) {
         m_nativeHandle.set_sequential_download(b);
         m_nativeStatus.sequential_download = b; // prevent return cached value
+        // Sequential Override has to be set too, because Sequential Download Guard
+        // needs to know, how to override global Sequential Download setting
+        setSequentialDownloadOverride(b);
     }
 }
 
 void TorrentHandle::toggleSequentialDownload()
 {
-    setSequentialDownload(!isSequentialDownload());
+    const bool toggledSequentialDownload = !isSequentialDownload();
+    setSequentialDownload(toggledSequentialDownload);
+    // Sequential Override has to be set too, because Sequential Download Guard
+    // needs to know, how to override global Sequential Download setting
+    setSequentialDownloadOverride(toggledSequentialDownload);
 }
 
 void TorrentHandle::setFirstLastPiecePriority(bool b)
@@ -1696,6 +1749,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
     resumeData["qBt-queuePosition"] = queuePosition();
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
+    resumeData["qBt-sequentialOverride"] = m_sequentialDownloadOverride;
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }

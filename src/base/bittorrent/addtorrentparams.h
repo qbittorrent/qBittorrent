@@ -44,6 +44,10 @@ namespace BitTorrent
         QString savePath;
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
+        /**
+           @brief Used to override global Sequential download setting.
+         */
+        bool sequentialOverride = false;
         bool firstLastPiecePriority = false;
         TriStateBool addForced;
         TriStateBool addPaused;

@@ -89,6 +89,7 @@
 #include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
 #include "private/resumedatasavingmanager.h"
+#include "private/sequentialdownloadsguard.h"
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"
@@ -311,6 +312,7 @@ Session::Session(QObject *parent)
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
     , m_isCreateTorrentSubfolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
+    , m_isSequentialDownload(BITTORRENT_SESSION_KEY("SequentialDownload"), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY("RefreshInterval"), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
     , m_torrentExportDirectory(BITTORRENT_SESSION_KEY("TorrentExportDirectory"))
@@ -523,12 +525,27 @@ Session::Session(QObject *parent)
     // initialize PortForwarder instance
     Net::PortForwarder::initInstance(m_nativeSession);
 
+    // Init Availibility guard, which enables/disables Sequential download by torrents availability
+    initSequentialDownloadGuard();
+
 #if LIBTORRENT_VERSION_NUM >= 10100
     initMetrics();
     m_statsUpdateTimer.start();
 #endif
 
     qDebug("* BitTorrent Session constructed");
+}
+
+/**
+   @brief Initialize Sequential download enabler / disabler by torrents availability.
+ */
+void Session::initSequentialDownloadGuard()
+{
+    m_sequentialGuardTimer = new QTimer(this);
+    m_sequentialDownloadGuard = new SequentialDownloadsGuard(this, m_sequentialGuardTimer);
+
+    m_sequentialGuardTimer->setInterval(SequentialDownloadsGuard::SEQ_DOWNLOAD_FIRST_REFRESH_INTERVAL);
+    connect(m_sequentialGuardTimer, SIGNAL(timeout()), m_sequentialDownloadGuard, SLOT(recheckSequentialDownloads()));
 }
 
 bool Session::isDHTEnabled() const
@@ -3719,6 +3736,10 @@ void Session::startUpTorrents()
     // starting up downloading torrents (queue position > 0)
     foreach (const TorrentResumeData &torrentResumeData, queuedResumeData)
         startupTorrent(torrentResumeData);
+
+    // When all torrents are ready, QTimer for availability guard for Sequential download
+    // can be started
+    m_sequentialGuardTimer->start();
 }
 
 quint64 Session::getAlltimeDL() const
@@ -3802,6 +3823,16 @@ bool Session::isCreateTorrentSubfolder() const
 void Session::setCreateTorrentSubfolder(bool value)
 {
     m_isCreateTorrentSubfolder = value;
+}
+
+bool Session::isSequentialDownload() const
+{
+    return m_isSequentialDownload;
+}
+
+void Session::setSequentialDownload(const bool enabled)
+{
+    m_isSequentialDownload = enabled;
 }
 
 // Read alerts sent by the BitTorrent session
@@ -4328,6 +4359,7 @@ namespace
         torrentData.addForced = fast.dict_find_int_value("qBt-forced");
         torrentData.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentData.sequential = fast.dict_find_int_value("qBt-sequential");
+        torrentData.sequentialOverride = fast.dict_find_int_value("qBt-sequentialOverride");
 
         prio = fast.dict_find_int_value("qBt-queuePosition");
 

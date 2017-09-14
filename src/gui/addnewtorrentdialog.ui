@@ -181,6 +181,13 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="2">
+       <widget class="QCheckBox" name="sequentialDownloadCheckbox">
+        <property name="text">
+         <string>Sequential download</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

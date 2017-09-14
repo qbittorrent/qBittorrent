@@ -725,6 +725,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkSequentialDownload">
+                 <property name="text">
+                  <string>Enable Sequential download for previewable torrents</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
                  <property name="toolTip">
                   <string>Should the .torrent file be deleted after adding it</string>

@@ -42,6 +42,7 @@ HEADERS += \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/statistics.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
+    $$PWD/bittorrent/private/sequentialdownloadsguard.h \
     $$PWD/rss/rss_article.h \
     $$PWD/rss/rss_item.h \
     $$PWD/rss/rss_feed.h \
@@ -64,7 +65,7 @@ HEADERS += \
     $$PWD/torrentfilter.h \
     $$PWD/scanfoldersmodel.h \
     $$PWD/searchengine.h \
-    $$PWD/global.h
+    $$PWD/global.h \
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
@@ -102,6 +103,7 @@ SOURCES += \
     $$PWD/bittorrent/private/filterparserthread.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
     $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
+    $$PWD/bittorrent/private/sequentialdownloadsguard.cpp \
     $$PWD/rss/rss_article.cpp \
     $$PWD/rss/rss_item.cpp \
     $$PWD/rss/rss_feed.cpp \
@@ -121,4 +123,4 @@ SOURCES += \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/scanfoldersmodel.cpp \
-    $$PWD/searchengine.cpp
+    $$PWD/searchengine.cpp \

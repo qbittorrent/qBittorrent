@@ -98,6 +98,10 @@ namespace BitTorrent
         QString savePath;
         bool disableTempPath;
         bool sequential;
+        /**
+           @brief Used to override global Sequential download setting.
+         */
+        bool sequentialOverride;
         bool firstLastPiecePriority;
         bool hasSeedStatus;
         bool skipChecking;
@@ -196,6 +200,15 @@ namespace BitTorrent
         qlonglong pieceLength() const;
         qlonglong wastedSize() const;
         QString currentTracker() const;
+        bool isPreviewable() const;
+        /**
+           @brief Was Sequential download overriden in Add new Torrent dialog?
+         */
+        bool isSequentialDownloadOverride() const;
+        /**
+           @brief Setter for Sequential download override.
+         */
+        void setSequentialDownloadOverride(const bool value);
 
         // 1. savePath() - the path where all the files and subfolders of torrent are stored (as always).
         // 2. rootPath() - absolute path of torrent file tree (save path + first item from 1st torrent file path).
@@ -467,6 +480,7 @@ namespace BitTorrent
         bool m_hasMissingFiles;
         bool m_hasRootFolder;
         bool m_needsToSetFirstLastPiecePriority;
+        bool m_sequentialDownloadOverride;
 
         bool m_pauseAfterRecheck;
         bool m_needSaveResumeData;

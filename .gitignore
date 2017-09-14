@@ -9,6 +9,7 @@ conf.pri
 Makefile*
 *.pyc
 *.log
+*.autosave
 
 # Compiled object files
 *.o

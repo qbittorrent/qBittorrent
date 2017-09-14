@@ -136,6 +136,7 @@ namespace BitTorrent
     class TorrentHandle;
     class Tracker;
     class MagnetUri;
+    class SequentialDownloadsGuard;
     class TrackerEntry;
     struct AddTorrentData;
 
@@ -299,6 +300,8 @@ namespace BitTorrent
         void setAddTorrentPaused(bool value);
         bool isCreateTorrentSubfolder() const;
         void setCreateTorrentSubfolder(bool value);
+        bool isSequentialDownload() const;
+        void setSequentialDownload(const bool enabled);
         bool isTrackerEnabled() const;
         void setTrackerEnabled(bool enabled);
         bool isAppendExtensionEnabled() const;
@@ -543,6 +546,7 @@ namespace BitTorrent
         bool hasPerTorrentSeedingTimeLimit() const;
 
         void initResumeFolder();
+        void initSequentialDownloadGuard();
 
         // Session configuration
         Q_INVOKABLE void configure();
@@ -694,6 +698,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategorySavePathChanged;
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
+        CachedSettingValue<bool> m_isSequentialDownload;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor
@@ -711,6 +716,8 @@ namespace BitTorrent
         QTimer *m_refreshTimer;
         QTimer *m_seedingLimitTimer;
         QTimer *m_resumeDataTimer;
+        QTimer *m_sequentialGuardTimer;
+        SequentialDownloadsGuard *m_sequentialDownloadGuard;
         Statistics *m_statistics;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;

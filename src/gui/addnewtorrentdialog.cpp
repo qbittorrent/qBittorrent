@@ -103,6 +103,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     else
         ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
 
+    ui->sequentialDownloadCheckbox->setChecked(session->isSequentialDownload());
+
     ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     ui->comboTTM->blockSignals(false);
@@ -635,6 +637,9 @@ void AddNewTorrentDialog::accept()
     }
 
     setEnabled(!ui->never_show_cb->isChecked());
+
+    // Sequential download override setting, checkbox in Add new Torrent dialog
+    m_torrentParams.sequentialOverride = ui->sequentialDownloadCheckbox->isChecked();
 
     // Add torrent
     if (!m_hasMetadata)
