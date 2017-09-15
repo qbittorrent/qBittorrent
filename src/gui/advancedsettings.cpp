@@ -55,6 +55,7 @@ enum AdvSettingsRows
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
+    CONFIRM_AUTO_BAN,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
@@ -166,6 +167,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Announce IP
     QHostAddress addr(txtAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
+    // Enable Auto ban Unknown Peer
+    session->setAutoBanUnknownPeer(cb_auto_ban_unknown_peer.isChecked());
 
     // Program notification
     MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
@@ -347,6 +350,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     txtAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &txtAnnounceIP);
+    // Auto Ban Unknown Peer from China
+    cb_auto_ban_unknown_peer.setChecked(session->isAutoBanUnknownPeerEnabled());
+    addRow(CONFIRM_AUTO_BAN, tr("Auto Ban Unknown Peer from China"), &cb_auto_ban_unknown_peer);
 
     // Program notifications
     const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();

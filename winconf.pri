@@ -1,7 +1,7 @@
 # Adapt these paths on Windows
 
 # Point this to the boost include folder
-INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_51_0)
+INCLUDEPATH += $$quote(C:/qBittorrent/install_msvc/base/include)
 # Point this to the libtorrent include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_16/include)
 # Point this to the zlib include folder
@@ -10,7 +10,7 @@ INCLUDEPATH += $$quote(C:/qBittorrent/Zlib/include)
 INCLUDEPATH += $$quote(C:/qBittorrent/openssl/include)
 
 # Point this to the boost lib folder
-LIBS += $$quote(-LC:/qBittorrent/boost_1_51_0/stage/lib)
+LIBS += $$quote(-LC:/qBittorrent/install_msvc/base/lib)
 # Point this to the libtorrent lib folder
 LIBS += $$quote(-LC:/qBittorrent/RC_0_16/bin/path-according-to-the-build-options-chosen)
 # Point this to the zlib lib folder

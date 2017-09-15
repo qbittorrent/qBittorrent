@@ -95,6 +95,8 @@ private:
     void action_command_addCategory();
     void action_command_removeCategories();
     void action_command_getSavePath();
+    void action_command_tempblockPeer();
+    void action_command_resetIPFilter();
     void action_version_api();
     void action_version_api_min();
     void action_version_qbittorrent();

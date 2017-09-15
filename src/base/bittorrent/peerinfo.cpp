@@ -201,6 +201,15 @@ QString PeerInfo::client() const
     return Utils::String::fromStdString(m_nativeInfo.client);
 }
 
+QString PeerInfo::pid() const
+{
+    return Utils::String::fromStdString(m_nativeInfo.pid.to_string());
+}
+
+QString PeerInfo::pidtoclient() const
+{
+    return Utils::String::fromStdString(libt::identify_client(m_nativeInfo.pid));
+}
 
 qreal PeerInfo::progress() const
 {

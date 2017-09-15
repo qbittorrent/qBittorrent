@@ -40,6 +40,8 @@
 #include <QTimer>
 #include <QUrl>
 
+#include "base/logger.h"
+#include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
@@ -91,7 +93,10 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
+    m_UnbanTimer = new QTimer(this);
+    m_UnbanTimer->setInterval(500);
     connect(timer, SIGNAL(timeout()), SLOT(removeInactiveSessions()));
+    connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
     timer->start(60 * 1000);  // 1 min.
 
     reloadDomainList();
@@ -317,6 +322,29 @@ void AbstractWebApplication::increaseFailedAttempts()
         UnbanTimer* ubantimer = new UnbanTimer(env_.clientAddress, this);
         connect(ubantimer, SIGNAL(timeout()), SLOT(UnbanTimerEvent()));
         ubantimer->start();
+    }
+}
+
+void AbstractWebApplication::processUnbanRequest()
+{
+    if (bannedIPs.isEmpty() && UnbanTime.isEmpty()) {
+        m_UnbanTimer->stop();
+    }
+    else if (m_isActive) {
+        return;
+    }
+    else {
+        m_isActive = true;
+        int64_t currentTime = QDateTime::currentMSecsSinceEpoch();
+        int64_t nextTime = UnbanTime.dequeue();
+        int delayTime = int(nextTime - currentTime);
+        QString nextIP = bannedIPs.dequeue();
+        if (delayTime < 0) {
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
+        else {
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
     }
 }
 

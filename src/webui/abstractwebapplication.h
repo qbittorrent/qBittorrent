@@ -32,9 +32,9 @@
 #include <QHash>
 #include <QMap>
 #include <QObject>
-#ifndef QBT_USES_QT5
+#include <QQueue>
 #include <QStringList>
-#endif
+#include <QTimer>
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
@@ -58,6 +58,14 @@ public:
     virtual ~AbstractWebApplication();
 
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env) final;
+
+    bool m_isActive = false;
+    QQueue<QString> bannedIPs;
+    QQueue<int64_t> UnbanTime;
+    QTimer *m_UnbanTimer;
+
+public slots:
+    void processUnbanRequest();
 
 protected:
     virtual void doProcessRequest() = 0;
