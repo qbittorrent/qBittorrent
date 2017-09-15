@@ -27,6 +27,8 @@
  * exception statement from your version.
  */
 
+#include "torrenthandle.h"
+
 #include <type_traits>
 
 #include <QDebug>
@@ -58,10 +60,10 @@
 #include "base/utils/string.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "session.h"
 #include "peerinfo.h"
+#include "session.h"
+#include "torrentcategory.h"
 #include "trackerentry.h"
-#include "torrenthandle.h"
 
 const QString QB_EXT {".!qB"};
 
@@ -101,7 +103,7 @@ AddTorrentData::AddTorrentData()
 AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     : resumed(false)
     , name(params.name)
-    , category(params.category)
+    , categoryName(params.category)
     , tags(params.tags)
     , savePath(params.savePath)
     , disableTempPath(params.disableTempPath)
@@ -233,7 +235,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_useAutoTMM(data.savePath.isEmpty())
     , m_name(data.name)
     , m_savePath(Utils::Fs::toNativePath(data.savePath))
-    , m_category(data.category)
+    , m_categoryName(data.categoryName)
     , m_tags(data.tags)
     , m_hasSeedStatus(data.hasSeedStatus)
     , m_ratioLimit(data.ratioLimit)
@@ -245,8 +247,13 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
+    TorrentCategory *const category {m_session->getCategory(m_categoryName)};
+    if (category)
+        connect(category, &TorrentCategory::savePathChanged
+                , this, &TorrentHandle::handleCategorySavePathChanged);
+
     if (m_useAutoTMM)
-        m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
+        m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_categoryName));
 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
@@ -397,7 +404,7 @@ void TorrentHandle::setAutoTMMEnabled(bool enabled)
     m_session->handleTorrentSavingModeChanged(this);
 
     if (m_useAutoTMM)
-        move_impl(m_session->categorySavePath(m_category), true);
+        move_impl(m_session->categorySavePath(m_categoryName), true);
 }
 
 bool TorrentHandle::hasRootFolder() const
@@ -584,20 +591,7 @@ qreal TorrentHandle::progress() const
 
 QString TorrentHandle::category() const
 {
-    return m_category;
-}
-
-bool TorrentHandle::belongsToCategory(const QString &category) const
-{
-    if (m_category.isEmpty()) return category.isEmpty();
-    if (!Session::isValidCategoryName(category)) return false;
-
-    if (m_category == category) return true;
-
-    if (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + "/"))
-        return true;
-
-    return false;
+    return m_categoryName;
 }
 
 QSet<QString> TorrentHandle::tags() const
@@ -1275,30 +1269,28 @@ void TorrentHandle::setName(const QString &name)
     }
 }
 
-bool TorrentHandle::setCategory(const QString &category)
+void TorrentHandle::setCategory(const QString &categoryName)
 {
-    if (m_category != category) {
-        if (!category.isEmpty()) {
-            if (!Session::isValidCategoryName(category)) return false;
-            if (!m_session->categories().contains(category))
-                if (!m_session->addCategory(category))
-                    return false;
-        }
+    if (m_categoryName == categoryName) return;
 
-        QString oldCategory = m_category;
-        m_category = category;
-        m_needSaveResumeData = true;
-        m_session->handleTorrentCategoryChanged(this, oldCategory);
+    TorrentCategory *const oldCategory {m_session->findCategory(m_categoryName)};
+    if (oldCategory)
+        oldCategory->disconnect(this);
 
-        if (m_useAutoTMM) {
-            if (!m_session->isDisableAutoTMMWhenCategoryChanged())
-                move_impl(m_session->categorySavePath(m_category), true);
-            else
-                setAutoTMMEnabled(false);
-        }
+    m_categoryName = categoryName;
+    TorrentCategory *const category {m_session->getCategory(m_categoryName)};
+    if (category)
+        connect(category, &TorrentCategory::savePathChanged
+                , this, &TorrentHandle::handleCategorySavePathChanged);
+    m_needSaveResumeData = true;
+    m_session->handleTorrentCategoryChanged(this, (oldCategory ? oldCategory->name() : ""));
+
+    if (m_useAutoTMM) {
+        if (!m_session->isDisableAutoTMMWhenCategoryChanged())
+            move_impl(m_session->categorySavePath(m_categoryName), true);
+        else
+            setAutoTMMEnabled(false);
     }
-
-    return true;
 }
 
 void TorrentHandle::move(QString path)
@@ -1689,7 +1681,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance().toPortablePath(m_savePath).toStdString();
     resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
     resumeData["qBt-seedingTimeLimit"] = QString::number(m_seedingTimeLimit).toStdString();
-    resumeData["qBt-category"] = m_category.toStdString();
+    resumeData["qBt-category"] = m_categoryName.toStdString();
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
@@ -1829,8 +1821,12 @@ void TorrentHandle::handleTempPathChanged()
 
 void TorrentHandle::handleCategorySavePathChanged()
 {
-    if (m_useAutoTMM)
-        move_impl(m_session->categorySavePath(m_category), true);
+    if (m_useAutoTMM) {
+        if (m_session->isDisableAutoTMMWhenCategorySavePathChanged())
+            setAutoTMMEnabled(false);
+        else
+            move_impl(m_session->categorySavePath(m_categoryName), true);
+    }
 }
 
 void TorrentHandle::handleAppendExtensionToggled()

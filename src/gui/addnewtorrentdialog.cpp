@@ -121,7 +121,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
     // Load categories
-    QStringList categories = session->categories();
+    QStringList categories = session->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
     QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
 
@@ -427,7 +427,8 @@ void AddNewTorrentDialog::categoryChanged(int index)
     Q_UNUSED(index);
 
     if (ui->comboTTM->currentIndex() == 1) {
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
+        const QString savePath = BitTorrent::Session::instance()->categorySavePath(
+                    ui->categoryComboBox->currentText());
         ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
     }
 }
@@ -764,7 +765,8 @@ void AddNewTorrentDialog::TMMChanged(int index)
         ui->groupBoxSavePath->setEnabled(false);
         ui->savePath->blockSignals(true);
         ui->savePath->clear();
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(ui->categoryComboBox->currentText());
+        const QString savePath = BitTorrent::Session::instance()->categorySavePath(
+                    ui->categoryComboBox->currentText());
         ui->savePath->addItem(savePath);
         ui->defaultSavePathCheckBox->setVisible(false);
         ui->adv_button->setChecked(true);

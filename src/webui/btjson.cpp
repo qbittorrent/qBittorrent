@@ -651,7 +651,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     data["torrents"] = torrents;
 
     QVariantList categories;
-    foreach (const QString &category, session->categories())
+    foreach (const QString &category, session->categories().keys())
         categories << category;
 
     data["categories"] = categories;

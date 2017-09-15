@@ -33,6 +33,7 @@ HEADERS += \
     $$PWD/bittorrent/magneturi.h \
     $$PWD/bittorrent/torrentinfo.h \
     $$PWD/bittorrent/torrenthandle.h \
+    $$PWD/bittorrent/torrentcategory.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/trackerentry.h \
     $$PWD/bittorrent/tracker.h \
@@ -93,6 +94,7 @@ SOURCES += \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
     $$PWD/bittorrent/torrenthandle.cpp \
+    $$PWD/bittorrent/torrentcategory.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/trackerentry.cpp \
     $$PWD/bittorrent/tracker.cpp \

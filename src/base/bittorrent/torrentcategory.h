@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,39 @@
  * exception statement from your version.
  */
 
- #include <QTreeView>
+#pragma once
 
-class CategoryFilterWidget: public QTreeView
+#include <QObject>
+
+namespace BitTorrent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(CategoryFilterWidget)
+    class Session;
+    class TorrentHandle;
 
-public:
-    explicit CategoryFilterWidget(QWidget *parent = nullptr);
+    class TorrentCategory final: public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(TorrentCategory)
 
-    QString currentCategory() const;
+        friend class Session;
 
-signals:
-    void categoryChanged(const QString &categoryName);
-    void actionResumeTorrentsTriggered();
-    void actionPauseTorrentsTriggered();
-    void actionDeleteTorrentsTriggered();
+        explicit TorrentCategory(const QString &name, Session *session);
+        ~TorrentCategory() override = default;
 
-private slots:
-    void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
-    void showMenu(QPoint);
-    void callUpdateGeometry();
-    void addCategory();
-    void addSubcategory();
-    void editCategory();
-    void removeCategory();
-    void removeUnusedCategories();
+    public:
+        QString name() const;
+        QString savePath() const;
+        void setSavePath(const QString &savePath);
 
-private:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    void rowsInserted(const QModelIndex &parent, int start, int end) override;
+        bool contains(const TorrentCategory *category) const;
+        bool contains(const TorrentHandle *torrent) const;
 
-    int m_defaultIndentation;
-};
+    signals:
+        void savePathChanged();
+
+    private:
+        Session *m_session;
+        QString m_name;
+        QString m_savePath;
+    };
+}

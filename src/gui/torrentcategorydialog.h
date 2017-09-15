@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,33 @@
  * exception statement from your version.
  */
 
- #include <QTreeView>
+#pragma once
 
-class CategoryFilterWidget: public QTreeView
+#include <QDialog>
+
+namespace Ui
+{
+    class TorrentCategoryDialog;
+}
+
+class TorrentCategoryDialog: public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(CategoryFilterWidget)
+    Q_DISABLE_COPY(TorrentCategoryDialog)
+
+    explicit TorrentCategoryDialog(QWidget *parent = nullptr);
+    ~TorrentCategoryDialog() override;
 
 public:
-    explicit CategoryFilterWidget(QWidget *parent = nullptr);
+    static QString createCategory(QWidget *parent, const QString &parentCategoryName = "");
+    static void editCategory(QWidget *parent, const QString &categoryName);
 
-    QString currentCategory() const;
-
-signals:
-    void categoryChanged(const QString &categoryName);
-    void actionResumeTorrentsTriggered();
-    void actionPauseTorrentsTriggered();
-    void actionDeleteTorrentsTriggered();
-
-private slots:
-    void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
-    void showMenu(QPoint);
-    void callUpdateGeometry();
-    void addCategory();
-    void addSubcategory();
-    void editCategory();
-    void removeCategory();
-    void removeUnusedCategories();
+    QString categoryName() const;
+    void setCategoryName(const QString &categoryName);
+    QString savePath() const;
+    void setSavePath(const QString &savePath);
+    void setCategoryNameEditable(bool editable);
 
 private:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    void rowsInserted(const QModelIndex &parent, int start, int end) override;
-
-    int m_defaultIndentation;
+    Ui::TorrentCategoryDialog *m_ui;
 };

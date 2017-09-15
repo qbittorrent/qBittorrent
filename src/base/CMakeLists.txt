@@ -13,6 +13,7 @@ bittorrent/private/speedmonitor.h
 bittorrent/private/statistics.h
 bittorrent/session.h
 bittorrent/sessionstatus.h
+bittorrent/torrentcategory.h
 bittorrent/torrentcreatorthread.h
 bittorrent/torrenthandle.h
 bittorrent/torrentinfo.h
@@ -78,6 +79,7 @@ bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp
 bittorrent/session.cpp
+bittorrent/torrentcategory.cpp
 bittorrent/torrentcreatorthread.cpp
 bittorrent/torrenthandle.cpp
 bittorrent/torrentinfo.cpp

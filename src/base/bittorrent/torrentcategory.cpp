@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,53 @@
  * exception statement from your version.
  */
 
- #include <QTreeView>
+#include "torrentcategory.h"
 
-class CategoryFilterWidget: public QTreeView
+#include "../utils/fs.h"
+#include "session.h"
+#include "torrenthandle.h"
+
+namespace BitTorrent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(CategoryFilterWidget)
+    TorrentCategory::TorrentCategory(const QString &name, Session *session)
+        : QObject {session}
+        , m_session {session}
+        , m_name {name}
+    {
+    }
 
-public:
-    explicit CategoryFilterWidget(QWidget *parent = nullptr);
+    QString TorrentCategory::name() const
+    {
+        return m_name;
+    }
 
-    QString currentCategory() const;
+    QString TorrentCategory::savePath() const
+    {
+        return m_savePath;
+    }
 
-signals:
-    void categoryChanged(const QString &categoryName);
-    void actionResumeTorrentsTriggered();
-    void actionPauseTorrentsTriggered();
-    void actionDeleteTorrentsTriggered();
+    void TorrentCategory::setSavePath(const QString &savePath)
+    {
+        QString newSavePath = Utils::Fs::expandPath(savePath);
+        if (m_savePath == newSavePath) return;
 
-private slots:
-    void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
-    void showMenu(QPoint);
-    void callUpdateGeometry();
-    void addCategory();
-    void addSubcategory();
-    void editCategory();
-    void removeCategory();
-    void removeUnusedCategories();
+        m_savePath = newSavePath;
+        emit savePathChanged();
+    }
 
-private:
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
-    void rowsInserted(const QModelIndex &parent, int start, int end) override;
+    bool TorrentCategory::contains(const TorrentCategory *category) const
+    {
+        return (m_session->isSubcategoriesEnabled()
+                && category
+                && category->name().startsWith(m_name + QLatin1Char('/')));
+    }
 
-    int m_defaultIndentation;
-};
+    bool TorrentCategory::contains(const TorrentHandle *torrent) const
+    {
+        Q_ASSERT(torrent);
+
+        return (m_name == torrent->category())
+                || (m_session->isSubcategoriesEnabled()
+                    && torrent->category().startsWith(m_name + QLatin1Char('/')));
+    }
+}

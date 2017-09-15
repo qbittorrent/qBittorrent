@@ -111,7 +111,7 @@ class QTimer;
 class QStringList;
 class QString;
 class QUrl;
-template<typename T> class QList;
+template <typename T> class QList;
 
 class FilterParserThread;
 class BandwidthScheduler;
@@ -132,12 +132,16 @@ enum TorrentExportFolder
 
 namespace BitTorrent
 {
+    struct AddTorrentData;
     class InfoHash;
+    class MagnetUri;
+    class TorrentCategory;
     class TorrentHandle;
     class Tracker;
-    class MagnetUri;
     class TrackerEntry;
-    struct AddTorrentData;
+
+    using TorrentDict = QHash<InfoHash, TorrentHandle *>;
+    using CategoryDict = QMap<QString, TorrentCategory *>;
 
     struct TorrentStatusReport
     {
@@ -247,15 +251,20 @@ namespace BitTorrent
         void setTempPathEnabled(bool enabled);
         QString torrentTempPath(const TorrentInfo &torrentInfo) const;
 
-        static bool isValidCategoryName(const QString &name);
-        // returns category itself and all top level categories
-        static QStringList expandCategory(const QString &category);
+        // returns category name itself and all names of top level categories
+        // starting from first parent, e.g. for "name1/name2/name3" it returns
+        // {"name1", "name1/name2", "name1/name2/name3"}
+        static QStringList expandCategoryName(const QString &categoryName);
 
-        QStringList categories() const;
+        CategoryDict categories() const;
         QString categorySavePath(const QString &categoryName) const;
-        bool addCategory(const QString &name, const QString &savePath = "");
-        bool editCategory(const QString &name, const QString &savePath);
-        bool removeCategory(const QString &name);
+        // Returns existing TorrentCategory
+        TorrentCategory *findCategory(const QString &categoryName) const;
+        // Returns existing TorrentCategory or creates the new one
+        // Returns nullptr if categoryName is incorrect
+        TorrentCategory *getCategory(const QString &categoryName);
+        TorrentCategory *createCategory(const QString &categoryName);
+        bool removeCategory(const QString &categoryName);
         bool isSubcategoriesEnabled() const;
         void setSubcategoriesEnabled(bool value);
 
@@ -428,7 +437,7 @@ namespace BitTorrent
 
         void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
-        QHash<InfoHash, TorrentHandle *> torrents() const;
+        TorrentDict torrents() const;
         TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
@@ -459,7 +468,7 @@ namespace BitTorrent
         // TorrentHandle interface
         void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
-        void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
+        void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategoryName);
         void handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag);
         void handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
         void handleTorrentSavingModeChanged(TorrentHandle *const torrent);
@@ -492,7 +501,7 @@ namespace BitTorrent
         void torrentFinished(BitTorrent::TorrentHandle *const torrent);
         void torrentFinishedChecking(BitTorrent::TorrentHandle *const torrent);
         void torrentSavePathChanged(BitTorrent::TorrentHandle *const torrent);
-        void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
+        void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategoryName);
         void torrentTagAdded(TorrentHandle *const torrent, const QString &tag);
         void torrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
         void torrentSavingModeChanged(BitTorrent::TorrentHandle *const torrent);
@@ -514,7 +523,7 @@ namespace BitTorrent
         void downloadFromUrlFailed(const QString &url, const QString &reason);
         void downloadFromUrlFinished(const QString &url);
         void categoryAdded(const QString &categoryName);
-        void categoryRemoved(const QString &categoryName);
+        void categoryAboutToBeRemoved(const QString &categoryName);
         void subcategoriesSupportChanged();
         void tagAdded(const QString &tag);
         void tagRemoved(const QString &tag);
@@ -567,6 +576,11 @@ namespace BitTorrent
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();
+
+        TorrentCategory *createCategory_impl(const QString &validCategoryName);
+        void addCategory(TorrentCategory *const category);
+        void loadCategories();
+        void storeCategories();
 
         bool addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
                              TorrentInfo torrentInfo = TorrentInfo(),
@@ -722,11 +736,11 @@ namespace BitTorrent
         ResumeDataSavingManager *m_resumeDataSavingManager;
 
         QHash<InfoHash, TorrentInfo> m_loadedMetadata;
-        QHash<InfoHash, TorrentHandle *> m_torrents;
+        TorrentDict m_torrents;
         QHash<InfoHash, AddTorrentData> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         TorrentStatusReport m_torrentStatusReport;
-        QStringMap m_categories;
+        CategoryDict m_categories;
         QSet<QString> m_tags;
 
 #if LIBTORRENT_VERSION_NUM < 10100

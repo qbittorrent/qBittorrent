@@ -36,10 +36,9 @@ typedef QSet<QString> QStringSet;
 
 namespace BitTorrent
 {
-
-class TorrentHandle;
-class TorrentState;
-
+    class TorrentCategory;
+    class TorrentHandle;
+    class TorrentState;
 }
 
 class TorrentFilter
@@ -72,16 +71,18 @@ public:
     static const TorrentFilter InactiveTorrent;
     static const TorrentFilter ErroredTorrent;
 
-    TorrentFilter();
+    explicit TorrentFilter(const Type type = All);
     // category & tags: pass empty string for uncategorized / untagged torrents.
     // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(const Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
-    TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
+    TorrentFilter(const Type type, const QStringSet &hashSet
+                           , const QString &categoryName, const QString &tag);
+    explicit TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash
+            , const QString &categoryName = AnyCategory, const QString &tags = AnyTag);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setHashSet(const QStringSet &hashSet);
-    bool setCategory(const QString &category);
+    bool setCategory(const QString &categoryName);
     bool setTag(const QString &tag);
 
     bool match(BitTorrent::TorrentHandle *const torrent) const;
@@ -92,8 +93,9 @@ private:
     bool matchCategory(BitTorrent::TorrentHandle *const torrent) const;
     bool matchTag(BitTorrent::TorrentHandle *const torrent) const;
 
-    Type m_type;
-    QString m_category;
+    Type m_type = All;
+    QString m_categoryName;
+    BitTorrent::TorrentCategory *m_category = nullptr;
     QString m_tag;
     QStringSet m_hashSet;
 };
