@@ -88,6 +88,7 @@ AddTorrentData::AddTorrentData()
     , disableTempPath(false)
     , sequential(false)
     , firstLastPiecePriority(false)
+    , pauseOnCompletion(false)
     , hasSeedStatus(false)
     , skipChecking(false)
     , hasRootFolder(true)
@@ -107,6 +108,7 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , disableTempPath(params.disableTempPath)
     , sequential(params.sequential)
     , firstLastPiecePriority(params.firstLastPiecePriority)
+    , pauseOnCompletion(params.pauseOnCompletion)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
     , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
@@ -242,6 +244,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasMissingFiles(false)
     , m_hasRootFolder(data.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
+    , m_pauseOnCompletion(data.pauseOnCompletion)
     , m_pauseAfterRecheck(false)
     , m_needSaveResumeData(false)
 {
@@ -250,6 +253,8 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
+
+    setPauseOnCompletion(data.pauseOnCompletion);
 
     // NB: the following two if statements are present because we don't want
     // to set either sequential download or first/last piece priority to false
@@ -852,6 +857,11 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
     return ((first == 7) && (last == 7));
 }
 
+bool TorrentHandle::hasPauseOnCompletion() const
+{
+    return m_pauseOnCompletion;
+}
+
 TorrentState TorrentHandle::state() const
 {
     return m_state;
@@ -1405,6 +1415,16 @@ void TorrentHandle::toggleFirstLastPiecePriority()
     setFirstLastPiecePriority(!hasFirstLastPiecePriority());
 }
 
+void TorrentHandle::setPauseOnCompletion(bool b)
+{
+    m_pauseOnCompletion = b;
+}
+
+void TorrentHandle::togglePauseOnCompletion()
+{
+    setPauseOnCompletion(!hasPauseOnCompletion());
+}
+
 void TorrentHandle::pause()
 {
     if (isPaused()) return;
@@ -1650,6 +1670,10 @@ void TorrentHandle::handleTorrentFinishedAlert(libtorrent::torrent_finished_aler
             forceRecheck();
         m_session->handleTorrentFinished(this);
     }
+
+    if (hasPauseOnCompletion()) {
+        pause();
+    }
 }
 
 void TorrentHandle::handleTorrentPausedAlert(libtorrent::torrent_paused_alert *p)
@@ -1696,6 +1720,7 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
     resumeData["qBt-queuePosition"] = queuePosition();
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
+    resumeData["qBt-pauseOnCompletion"] = hasPauseOnCompletion();
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }

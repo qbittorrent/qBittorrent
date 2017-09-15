@@ -4328,6 +4328,7 @@ namespace
         torrentData.addForced = fast.dict_find_int_value("qBt-forced");
         torrentData.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentData.sequential = fast.dict_find_int_value("qBt-sequential");
+        torrentData.pauseOnCompletion = fast.dict_find_int_value("qBt-pauseOnCompletion");
 
         prio = fast.dict_find_int_value("qBt-queuePosition");
 
