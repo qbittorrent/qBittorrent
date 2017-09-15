@@ -31,6 +31,7 @@
 #include <QFile>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QStandardItemModel>
 #include <QTableView>
 
@@ -45,6 +46,11 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
 {
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelect::previewButtonClicked);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     Preferences *const pref = Preferences::instance();
     // Preview list
     m_previewListModel = new QStandardItemModel(0, NB_COLUMNS);
@@ -95,7 +101,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, BitTorrent::TorrentHandle *const t
     if (m_previewListModel->rowCount() == 1) {
         qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
         // Only one file : no choice
-        on_previewButton_clicked();
+        previewButtonClicked();
     }
     else {
         qDebug("Displaying media file selection dialog for preview");
@@ -110,7 +116,7 @@ PreviewSelect::~PreviewSelect()
 }
 
 
-void PreviewSelect::on_previewButton_clicked()
+void PreviewSelect::previewButtonClicked()
 {
     QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
     if (selectedIndexes.size() == 0) return;
@@ -127,10 +133,5 @@ void PreviewSelect::on_previewButton_clicked()
     else
         QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
 
-    close();
-}
-
-void PreviewSelect::on_cancelButton_clicked()
-{
-    close();
+    accept();
 }

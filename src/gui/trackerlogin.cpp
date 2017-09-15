@@ -30,6 +30,7 @@
 
 #include "trackerlogin.h"
 
+#include <QPushButton>
 #include <libtorrent/version.hpp>
 #include "base/bittorrent/torrenthandle.h"
 
@@ -39,24 +40,36 @@ trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const tor
 {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+
+  buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Log in"));
+
   login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/qbt-theme/encrypted.png")));
+
   tracker_url->setText(torrent->currentTracker());
-  connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString>)), parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle*, QString>)));
+
+  connect(buttonBox, &QDialogButtonBox::accepted, this, &trackerLogin::loginButtonClicked);
+  connect(buttonBox, &QDialogButtonBox::rejected, this, &trackerLogin::cancelButtonClicked);
+  connect(linePasswd, &QLineEdit::returnPressed, this, &trackerLogin::loginButtonClicked);
+  connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString>)),  // TODO: use Qt5 connect syntax
+    parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle*, QString>)));
+
   show();
 }
 
 trackerLogin::~trackerLogin() {}
 
-void trackerLogin::on_loginButton_clicked() {
+void trackerLogin::loginButtonClicked()
+{
   // login
 #if LIBTORRENT_VERSION_NUM < 10100
   m_torrent->setTrackerLogin(lineUsername->text(), linePasswd->text());
 #endif
-  close();
+  accept();
 }
 
-void trackerLogin::on_cancelButton_clicked() {
+void trackerLogin::cancelButtonClicked()
+{
   // Emit a signal to GUI to stop asking for authentication
   emit trackerLoginCancelled(qMakePair(m_torrent, m_torrent->currentTracker()));
-  close();
+  reject();
 }
