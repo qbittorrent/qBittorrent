@@ -53,9 +53,9 @@ class trackerLogin : public QDialog, private Ui::authentication{
   signals:
     void trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString> tracker);
 
-  public slots:
-    void on_loginButton_clicked();
-    void on_cancelButton_clicked();
+  private slots:
+    void loginButtonClicked();
+    void cancelButtonClicked();
 };
 
 #endif
