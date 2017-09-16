@@ -47,7 +47,7 @@ public:
     bool operator!=(const TriStateBool &other) const;
 
 private:
-    int m_value = -1; // Undefined by default
+    signed char m_value = -1; // Undefined by default
 };
 
 #endif // TRISTATEBOOL_H
