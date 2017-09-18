@@ -178,10 +178,19 @@ namespace BitTorrent
             Proportional = 1
         };
         Q_ENUM(MixedModeAlgorithm)
+
+        enum class BTProtocol : int
+        {
+            Both = 0,
+            TCP = 1,
+            UTP = 2
+        };
+        Q_ENUM(BTProtocol)
     };
     using ChokingAlgorithm = SessionSettingsEnums::ChokingAlgorithm;
     using SeedChokingAlgorithm = SessionSettingsEnums::SeedChokingAlgorithm;
     using MixedModeAlgorithm = SessionSettingsEnums::MixedModeAlgorithm;
+    using BTProtocol = SessionSettingsEnums::BTProtocol;
 
 #if LIBTORRENT_VERSION_NUM >= 10100
     struct SessionMetricIndices
@@ -413,8 +422,8 @@ namespace BitTorrent
         void setMaxActiveUploads(int max);
         int maxActiveTorrents() const;
         void setMaxActiveTorrents(int max);
-        bool isUTPEnabled() const;
-        void setUTPEnabled(bool enabled);
+        BTProtocol btProtocol() const;
+        void setBTProtocol(BTProtocol protocol);
         bool isUTPRateLimited() const;
         void setUTPRateLimited(bool limited);
         MixedModeAlgorithm utpMixedMode() const;
@@ -648,7 +657,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxUploads;
         CachedSettingValue<int> m_maxConnectionsPerTorrent;
         CachedSettingValue<int> m_maxUploadsPerTorrent;
-        CachedSettingValue<bool> m_isUTPEnabled;
+        CachedSettingValue<BTProtocol> m_btProtocol;
         CachedSettingValue<bool> m_isUTPRateLimited;
         CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;

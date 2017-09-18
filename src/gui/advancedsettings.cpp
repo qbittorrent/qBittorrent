@@ -36,6 +36,7 @@
 #include "app/application.h"
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
+#include "base/unicodestrings.h"
 #include "gui/mainwindow.h"
 
 enum AdvSettingsCols
@@ -345,7 +346,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // uTP-TCP mixed mode
     comboUtpMixedMode.addItems({"Prefer TCP", "Peer proportional (throttles TCP)"});
     comboUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
-    addRow(UTP_MIX_MODE, tr("uTP-TCP mixed mode algorithm"), &comboUtpMixedMode);
+    addRow(UTP_MIX_MODE, tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP), &comboUtpMixedMode);
     // multiple connections per IP
     cbMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
     addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &cbMultiConnectionsPerIp);

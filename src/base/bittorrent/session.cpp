@@ -299,7 +299,8 @@ Session::Session(QObject *parent)
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), -1, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
-    , m_isUTPEnabled(BITTORRENT_SESSION_KEY("uTPEnabled"), true)
+    , m_btProtocol(BITTORRENT_SESSION_KEY("BTProtocol"), BTProtocol::Both
+        , clampValue(BTProtocol::Both, BTProtocol::UTP))
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
     , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::Proportional
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
@@ -1342,8 +1343,30 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     // * Global max upload slots
     settingsPack.set_int(libt::settings_pack::unchoke_slots_limit, maxUploads());
     // uTP
-    settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, isUTPEnabled());
-    settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, isUTPEnabled());
+    switch (btProtocol()) {
+    case BTProtocol::Both:
+    default:
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_tcp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_tcp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, true);
+        break;
+
+    case BTProtocol::TCP:
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_tcp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_tcp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, false);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, false);
+        break;
+
+    case BTProtocol::UTP:
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_tcp, false);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_tcp, false);
+        settingsPack.set_bool(libt::settings_pack::enable_incoming_utp, true);
+        settingsPack.set_bool(libt::settings_pack::enable_outgoing_utp, true);
+        break;
+    }
+
     switch (utpMixedMode()) {
     case MixedModeAlgorithm::TCP:
     default:
@@ -1604,8 +1627,30 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     // * Global max upload slots
     sessionSettings.unchoke_slots_limit = maxUploads();
     // uTP
-    sessionSettings.enable_incoming_utp = isUTPEnabled();
-    sessionSettings.enable_outgoing_utp = isUTPEnabled();
+    switch (btProtocol()) {
+    case BTProtocol::Both:
+    default:
+        sessionSettings.enable_incoming_tcp = true;
+        sessionSettings.enable_outgoing_tcp = true;
+        sessionSettings.enable_incoming_utp = true;
+        sessionSettings.enable_outgoing_utp = true;
+        break;
+
+    case BTProtocol::TCP:
+        sessionSettings.enable_incoming_tcp = true;
+        sessionSettings.enable_outgoing_tcp = true;
+        sessionSettings.enable_incoming_utp = false;
+        sessionSettings.enable_outgoing_utp = false;
+        break;
+
+    case BTProtocol::UTP:
+        sessionSettings.enable_incoming_tcp = false;
+        sessionSettings.enable_outgoing_tcp = false;
+        sessionSettings.enable_incoming_utp = true;
+        sessionSettings.enable_outgoing_utp = true;
+        break;
+    }
+
     // uTP rate limiting
     sessionSettings.rate_limit_utp = isUTPRateLimited();
     switch (utpMixedMode()) {
@@ -3246,17 +3291,20 @@ void Session::setMaxUploads(int max)
     }
 }
 
-bool Session::isUTPEnabled() const
+BTProtocol Session::btProtocol() const
 {
-    return m_isUTPEnabled;
+    return m_btProtocol;
 }
 
-void Session::setUTPEnabled(bool enabled)
+void Session::setBTProtocol(BTProtocol protocol)
 {
-    if (enabled != m_isUTPEnabled) {
-        m_isUTPEnabled = enabled;
-        configureDeferred();
-    }
+    if ((protocol < BTProtocol::Both) || (BTProtocol::UTP < protocol))
+        return;
+
+    if (protocol == m_btProtocol) return;
+
+    m_btProtocol = protocol;
+    configureDeferred();
 }
 
 bool Session::isUTPRateLimited() const
