@@ -35,22 +35,23 @@
 #include <queue>
 #include <vector>
 
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/trackerentry.h"
 #include "base/iconprovider.h"
 #include "base/logger.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#include "base/utils/string.h"
-#include "base/preferences.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/trackerentry.h"
-#include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/torrenthandle.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
+#include "base/tristatebool.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "btjson.h"
-#include "prefjson.h"
 #include "jsonutils.h"
-#include "websessiondata.h"
+#include "prefjson.h"
 #include "webapplication.h"
+#include "websessiondata.h"
 
 static const int API_VERSION = 15;
 static const int API_VERSION_MIN = 15;
@@ -67,9 +68,9 @@ const QString MAX_AGE_MONTH = "public, max-age=2592000";
 
 #define ADD_ACTION(scope, action) actions[#scope][#action] = &WebApplication::action_##scope##_##action
 
-QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initializeActions()
+QMap<QString, QMap<QString, WebApplication::Action>> WebApplication::initializeActions()
 {
-    QMap<QString,QMap<QString, WebApplication::Action> > actions;
+    QMap<QString,QMap<QString, WebApplication::Action>> actions;
 
     ADD_ACTION(public, webui);
     ADD_ACTION(public, index);
@@ -135,6 +136,8 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
     return actions;
 }
 
+namespace
+{
 #define CHECK_URI(ARGS_NUM) \
     if (args_.size() != ARGS_NUM) { \
         status(404, "Not Found"); \
@@ -153,6 +156,23 @@ QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initialize
             return; \
         } \
     }
+
+    bool parseBool(const QString &string, const bool defaultValue)
+    {
+        if (defaultValue)
+            return (string.compare("false", Qt::CaseInsensitive) == 0) ? false : true;
+        return (string.compare("true", Qt::CaseInsensitive) == 0) ? true : false;
+    }
+
+    TriStateBool parseTristatebool(const QString &string)
+    {
+        if (string.compare("true", Qt::CaseInsensitive) == 0)
+            return TriStateBool::True;
+        if (string.compare("false", Qt::CaseInsensitive) == 0)
+            return TriStateBool::False;
+        return TriStateBool::Undefined;
+    }
+}
 
 void WebApplication::action_public_index()
 {
@@ -392,9 +412,9 @@ void WebApplication::action_command_download()
     CHECK_URI(0);
 
     const QString urls = request().posts.value("urls");
-    const bool skipChecking = request().posts.value("skip_checking").contains("true", Qt::CaseInsensitive);
-    const bool addPaused = request().posts.value("paused").contains("true", Qt::CaseInsensitive);
-    const QString rootFolder = request().posts.value("root_folder");
+    const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
+    const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
+    const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
     const QString cookie = request().posts.value("cookie");
@@ -416,13 +436,10 @@ void WebApplication::action_command_download()
     BitTorrent::AddTorrentParams params;
     // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
-    params.addPaused = TriStateBool(addPaused);
+    params.addPaused = addPaused;
+    params.createSubfolder = rootFolder;
     params.savePath = savepath;
     params.category = category;
-    if (rootFolder.contains("true", Qt::CaseInsensitive))
-        params.createSubfolder = TriStateBool::True;
-    else if (rootFolder.contains("false", Qt::CaseInsensitive))
-        params.createSubfolder = TriStateBool::False;
 
     bool partialSuccess = false;
     for (QString url : urls.split('\n')) {
@@ -443,9 +460,9 @@ void WebApplication::action_command_upload()
 {
     CHECK_URI(0);
 
-    const bool skipChecking = request().posts.value("skip_checking").contains("true", Qt::CaseInsensitive);
-    const bool addPaused = request().posts.value("paused").contains("true", Qt::CaseInsensitive);
-    const QString rootFolder = request().posts.value("root_folder");
+    const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
+    const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
+    const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
 
@@ -467,13 +484,10 @@ void WebApplication::action_command_upload()
             BitTorrent::AddTorrentParams params;
             // TODO: Check if destination actually exists
             params.skipChecking = skipChecking;
-            params.addPaused = TriStateBool(addPaused);
+            params.addPaused = addPaused;
+            params.createSubfolder = rootFolder;
             params.savePath = savepath;
             params.category = category;
-            if (rootFolder.contains("true", Qt::CaseInsensitive))
-                params.createSubfolder = TriStateBool::True;
-            else if (rootFolder.contains("false", Qt::CaseInsensitive))
-                params.createSubfolder = TriStateBool::False;
 
             if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                 status(500, "Internal Server Error");
