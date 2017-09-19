@@ -394,7 +394,7 @@ void WebApplication::action_command_download()
     QStringList list = urls.split('\n');
     bool skipChecking = request().posts["skip_checking"] == "true";
     bool addPaused = request().posts["paused"] == "true";
-    bool hasRootFolder = request().posts["root_folder"] == "true";
+    const QString rootFolder = request().posts["root_folder"];
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
     QString cookie = request().posts["cookie"];
@@ -423,9 +423,12 @@ void WebApplication::action_command_download()
     params.skipChecking = skipChecking;
 
     params.addPaused = TriStateBool(addPaused);
-    params.createSubfolder = TriStateBool(hasRootFolder);
     params.savePath = savepath;
     params.category = category;
+    if (rootFolder == "true")
+        params.createSubfolder = TriStateBool::True;
+    else if (rootFolder == "false")
+        params.createSubfolder = TriStateBool::False;
 
     bool partialSuccess = false;
     foreach (QString url, list) {
@@ -448,7 +451,7 @@ void WebApplication::action_command_upload()
     CHECK_URI(0);
     bool skipChecking = request().posts["skip_checking"] == "true";
     bool addPaused = request().posts["paused"] == "true";
-    bool hasRootFolder = request().posts["root_folder"] == "true";
+    const QString rootFolder = request().posts["root_folder"];
     QString savepath = request().posts["savepath"];
     QString category = request().posts["category"];
 
@@ -471,9 +474,13 @@ void WebApplication::action_command_upload()
                 params.skipChecking = skipChecking;
 
                 params.addPaused = TriStateBool(addPaused);
-                params.createSubfolder = TriStateBool(hasRootFolder);
                 params.savePath = savepath;
                 params.category = category;
+                if (rootFolder == "true")
+                    params.createSubfolder = TriStateBool::True;
+                else if (rootFolder == "false")
+                    params.createSubfolder = TriStateBool::False;
+
                 if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                     status(500, "Internal Server Error");
                     print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
