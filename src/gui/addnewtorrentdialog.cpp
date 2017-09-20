@@ -606,6 +606,8 @@ void AddNewTorrentDialog::accept()
     if (!m_hasMetadata)
         disconnect(this, SLOT(updateMetadata(const BitTorrent::TorrentInfo&)));
 
+    m_torrentParams.name = m_torrentInfo.name();
+
     // TODO: Check if destination actually exists
     m_torrentParams.skipChecking = ui->skipCheckingCheckBox->isChecked();
 
