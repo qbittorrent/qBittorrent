@@ -545,6 +545,13 @@ namespace BitTorrent
         void networkConfigurationChange(const QNetworkConfiguration&);
 
     private:
+        struct RemovingTorrentData
+        {
+            QString name;
+            QString savePathToRemove;
+            bool requestedFileDeletion;
+        };
+
         explicit Session(QObject *parent = 0);
         ~Session();
 
@@ -714,7 +721,6 @@ namespace BitTorrent
         QList<BitTorrent::TrackerEntry> m_additionalTrackerList;
         QString m_resumeFolderPath;
         QFile m_resumeFolderLock;
-        QHash<InfoHash, QString> m_savePathsToRemove;
         bool m_useProxy;
 
         QTimer *m_refreshTimer;
@@ -734,6 +740,7 @@ namespace BitTorrent
         QHash<InfoHash, TorrentHandle *> m_torrents;
         QHash<InfoHash, AddTorrentData> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
+        QHash<InfoHash, RemovingTorrentData> m_removingTorrents;
         TorrentStatusReport m_torrentStatusReport;
         QStringMap m_categories;
         QSet<QString> m_tags;

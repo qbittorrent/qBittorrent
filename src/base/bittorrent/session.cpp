@@ -1882,13 +1882,16 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
         QString rootPath = torrent->rootPath(true);
         if (!rootPath.isEmpty())
             // torrent with root folder
-            m_savePathsToRemove[torrent->hash()] = rootPath;
+            m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteLocalFiles};
         else if (torrent->useTempPath())
             // torrent without root folder still has it in its temporary save path
-            m_savePathsToRemove[torrent->hash()] = torrent->savePath(true);
+            m_removingTorrents[torrent->hash()] = {torrent->name(), torrent->savePath(true), deleteLocalFiles};
+        else
+            m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
     }
     else {
+        m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};
         QStringList unwantedFiles;
         if (torrent->hasMetadata())
             unwantedFiles = torrent->absoluteFilePathsUnwanted();
@@ -1914,11 +1917,6 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
     const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
     foreach (const QString &file, files)
         Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
-
-    if (deleteLocalFiles)
-        Logger::instance()->addMessage(tr("'%1' was removed from transfer list and hard disk.", "'xxx.avi' was removed...").arg(torrent->name()));
-    else
-        Logger::instance()->addMessage(tr("'%1' was removed from transfer list.", "'xxx.avi' was removed...").arg(torrent->name()));
 
     delete torrent;
     qDebug("Torrent deleted.");
@@ -4032,18 +4030,38 @@ void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
 {
     if (m_loadedMetadata.contains(p->info_hash))
         emit metadataLoaded(m_loadedMetadata.take(p->info_hash));
+
+    if (m_removingTorrents.contains(p->info_hash)) {
+        const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[p->info_hash];
+        if (!tmpRemovingTorrentData.requestedFileDeletion) {
+            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+            m_removingTorrents.remove(p->info_hash);
+        }
+    }
 }
 
 void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 {
-    Utils::Fs::smartRemoveEmptyFolderTree(m_savePathsToRemove.take(p->info_hash));
+    if (!m_removingTorrents.contains(p->info_hash))
+        return;
+    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(p->info_hash);
+    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
+
+    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
 }
 
 void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
 {
+    if (!m_removingTorrents.contains(p->info_hash))
+        return;
+    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(p->info_hash);
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Utils::Fs::smartRemoveEmptyFolderTree(m_savePathsToRemove.take(p->info_hash));
+    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
+
+    LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
+           .arg(tmpRemovingTorrentData.name)
+           .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
 void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
