@@ -26,6 +26,10 @@
     <input type="text" id="cookie" name="cookie" style="width: 16em;"/>
 </div>
 <div class="formRow">
+    <label for="rename" class="leftLabelLarge">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="rename" style="width: 16em;"/>
+</div>
+<div class="formRow">
     <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
     <input type="text" id="category" name="category" style="width: 16em;"/>
 </div>
@@ -41,6 +45,23 @@
 <div class="formRow">
     <label for="root_folder" class="leftLabelLarge">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
     <input type="checkbox" name="root_folder" value="true" checked="checked"/>
+</div>
+</div>
+<div class="formRow">
+    <label for="sequentialDownload" class="leftLabelLarge">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
+    <input type="checkbox" name="sequentialDownload" value="true"/>
+</div>
+<div class="formRow">
+    <label for="firstLastPiecePrio" class="leftLabelLarge">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
+    <input type="checkbox" name="firstLastPiecePrio" value="true"/>
+</div>
+<div class="formRow">
+    <label for="dlLimit" class="leftLabelLarge">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="dlLimit" style="width: 16em;" placeholder="Bytes/s"/>
+</div>
+<div class="formRow">
+    <label for="upLimit" class="leftLabelLarge">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="upLimit" style="width: 16em;" placeholder="Bytes/s"/>
 </div>
 <div id="submitbutton" style="margin-top: 12px; text-align: center;">
     <button type="submit" id="submitButton">QBT_TR(Download)QBT_TR[CONTEXT=downloadFromURL]</button>

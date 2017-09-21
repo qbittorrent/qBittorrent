@@ -73,9 +73,12 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Invalid category name:\nPlease do not use any special characters in the category name."),
     QT_TRANSLATE_NOOP("HttpServer", "Unknown"),
     QT_TRANSLATE_NOOP("HttpServer", "Hard Disk"),
-    QT_TRANSLATE_NOOP("HttpServer", "Share ratio limit must be between 0 and 9998.")
-    QT_TRANSLATE_NOOP("HttpServer", "Seeding time limit must be between 0 and 525600 minutes.")
-    QT_TRANSLATE_NOOP("HttpServer", "Set location")
+    QT_TRANSLATE_NOOP("HttpServer", "Share ratio limit must be between 0 and 9998."),
+    QT_TRANSLATE_NOOP("HttpServer", "Seeding time limit must be between 0 and 525600 minutes."),
+    QT_TRANSLATE_NOOP("HttpServer", "Set location"),
+    QT_TRANSLATE_NOOP("HttpServer", "Limit upload rate"),
+    QT_TRANSLATE_NOOP("HttpServer", "Limit download rate"),
+    QT_TRANSLATE_NOOP("HttpServer", "Rename torrent")
 };
 
 static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
