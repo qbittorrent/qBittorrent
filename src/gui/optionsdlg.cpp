@@ -391,8 +391,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textTempPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
-    show();
     loadWindowState();
+    show();
+    // Have to be called after show(), because splitter width needed
+    loadSplitterState();
 }
 
 void OptionsDialog::initializeLanguageCombo()
@@ -439,6 +441,12 @@ void OptionsDialog::loadWindowState()
     const Preferences* const pref = Preferences::instance();
 
     resize(pref->getPrefSize(this->size()));
+}
+
+void OptionsDialog::loadSplitterState()
+{
+    const Preferences* const pref = Preferences::instance();
+
     const QStringList sizes_str = pref->getPrefHSplitterSizes();
     QList<int> sizes;
     if (sizes_str.size() == 2) {
