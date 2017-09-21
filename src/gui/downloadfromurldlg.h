@@ -31,22 +31,30 @@
 #ifndef DOWNLOADFROMURL_H
 #define DOWNLOADFROMURL_H
 
+#include <QClipboard>
 #include <QDialog>
 #include <QMessageBox>
-#include <QString>
+#include <QPushButton>
 #include <QRegExp>
+#include <QString>
 #include <QStringList>
-#include <QClipboard>
+
 #include "ui_downloadfromurldlg.h"
 
-class downloadFromURL : public QDialog, private Ui::downloadFromURL{
+class downloadFromURL : public QDialog, private Ui::downloadFromURL
+{
   Q_OBJECT
 
   public:
-    downloadFromURL(QWidget *parent): QDialog(parent) {
+    downloadFromURL(QWidget *parent): QDialog(parent)
+    {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       setModal(true);
+
+      buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Download"));
+      connect(buttonBox, &QDialogButtonBox::accepted, this, &downloadFromURL::downloadButtonClicked);
+      connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
@@ -80,8 +88,9 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
   signals:
     void urlsReadyToBeDownloaded(const QStringList& torrent_urls);
 
-  public slots:
-    void on_downloadButton_clicked() {
+  private slots:
+    void downloadButtonClicked()
+    {
       QString urls = textUrls->toPlainText();
       QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
@@ -100,11 +109,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       }
       emit urlsReadyToBeDownloaded(url_list_cleaned);
       qDebug("Emitted urlsReadytobedownloaded signal");
-      close();
-    }
-
-    void on_cancelButton_clicked() {
-      close();
+      accept();
     }
 };
 

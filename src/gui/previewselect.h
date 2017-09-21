@@ -39,7 +39,7 @@ class QStandardItemModel;
 
 class PreviewListDelegate;
 
-class PreviewSelect: public QDialog, private Ui::preview
+class PreviewSelect : public QDialog, private Ui::preview
 {
     Q_OBJECT
 
@@ -60,9 +60,8 @@ public:
 signals:
     void readyToPreviewFile(QString) const;
 
-protected slots:
-    void on_previewButton_clicked();
-    void on_cancelButton_clicked();
+private slots:
+    void previewButtonClicked();
 
 private:
     QStandardItemModel *m_previewListModel;
