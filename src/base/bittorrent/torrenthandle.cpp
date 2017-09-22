@@ -27,6 +27,7 @@
  * exception statement from your version.
  */
 
+#include <algorithm>
 #include <type_traits>
 
 #include <QDebug>
@@ -1108,10 +1109,9 @@ int TorrentHandle::timeSinceDownload() const
 
 int TorrentHandle::timeSinceActivity() const
 {
-    if (m_nativeStatus.time_since_upload < m_nativeStatus.time_since_download)
-        return m_nativeStatus.time_since_upload;
-    else
-        return m_nativeStatus.time_since_download;
+    return ((m_nativeStatus.time_since_upload < 0) != (m_nativeStatus.time_since_download < 0))
+        ? std::max(m_nativeStatus.time_since_upload, m_nativeStatus.time_since_download)
+        : std::min(m_nativeStatus.time_since_upload, m_nativeStatus.time_since_download);
 }
 
 int TorrentHandle::downloadLimit() const

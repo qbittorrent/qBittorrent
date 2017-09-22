@@ -181,14 +181,14 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
             break;
 
-        QString elapsedString;
+        // Show '< 1m ago' when elapsed time is 0
         if (elapsed == 0)
-            // Show '< 1m ago' when elapsed time is 0
             elapsed = 1;
-        else if (elapsed < 0)
-            elapsedString = Utils::Misc::userFriendlyDuration(elapsed);
-        else
-            elapsedString = tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed));
+
+        QString elapsedString = (elapsed >= 0)
+            ? tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed))
+            : Utils::Misc::userFriendlyDuration(elapsed);
+
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
         break;
