@@ -129,7 +129,7 @@ macx {
 FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/about.ui \
-    $$PWD/preview.ui \
+    $$PWD/previewselectdialog.ui \
     $$PWD/login.ui \
     $$PWD/downloadfromurldlg.ui \
     $$PWD/bandwidth_limit.ui \
