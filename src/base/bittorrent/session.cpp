@@ -698,9 +698,9 @@ QStringList Session::expandCategory(const QString &category)
     return result;
 }
 
-QStringList Session::categories() const
+const QStringMap &Session::categories() const
 {
-    return m_categories.keys();
+    return m_categories;
 }
 
 QString Session::categorySavePath(const QString &categoryName) const
@@ -746,6 +746,7 @@ bool Session::editCategory(const QString &name, const QString &savePath)
     if (categorySavePath(name) == savePath) return false;
 
     m_categories[name] = savePath;
+    m_storedCategories = map_cast(m_categories);
     if (isDisableAutoTMMWhenCategorySavePathChanged()) {
         foreach (TorrentHandle *const torrent, torrents())
             if (torrent->category() == name)

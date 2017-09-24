@@ -251,7 +251,7 @@ namespace BitTorrent
         // returns category itself and all top level categories
         static QStringList expandCategory(const QString &category);
 
-        QStringList categories() const;
+        const QStringMap &categories() const;
         QString categorySavePath(const QString &categoryName) const;
         bool addCategory(const QString &name, const QString &savePath = "");
         bool editCategory(const QString &name, const QString &savePath);
