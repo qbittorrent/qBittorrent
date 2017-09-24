@@ -421,6 +421,9 @@ void OptionsDialog::initializeLanguageCombo()
 OptionsDialog::~OptionsDialog()
 {
     qDebug("-> destructing Options");
+
+    saveWindowState();
+
     foreach (const QString &path, addedScanDirs)
         ScanFoldersModel::instance()->removePath(path);
     ScanFoldersModel::instance()->configure(); // reloads "removed" paths
@@ -1211,7 +1214,7 @@ void OptionsDialog::on_buttonBox_accepted()
         this->hide();
         saveOptions();
     }
-    saveWindowState();
+
     accept();
 }
 
