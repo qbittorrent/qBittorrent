@@ -341,10 +341,7 @@ QString SearchEngine::pluginsLocation()
 
 QString SearchEngine::engineLocation()
 {
-    QString folder = "nova";
-    if (Utils::Misc::pythonVersion() >= 3)
-        folder = "nova3";
-    const QString location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + folder);
+    const QString location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "nova6");
     QDir locationDir(location);
     if (!locationDir.exists())
         locationDir.mkpath(locationDir.absolutePath());
@@ -418,10 +415,8 @@ void SearchEngine::updateNova()
 
     // create nova directory if necessary
     QDir searchDir(engineLocation());
-    QString novaFolder = Utils::Misc::pythonVersion() >= 3 ? "searchengine/nova3" : "searchengine/nova";
-    QFile packageFile(searchDir.absoluteFilePath("__init__.py"));
-    packageFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    packageFile.close();
+    QString novaFolder = "searchengine/nova6";
+
     if (!searchDir.exists("engines"))
         searchDir.mkdir("engines");
     Utils::Fs::removeDirRecursive(searchDir.absoluteFilePath("__pycache__"));
@@ -443,35 +438,56 @@ void SearchEngine::updateNova()
         QFile::copy(":/" + novaFolder + "/nova2dl.py", filePath);
     }
 
-    filePath = searchDir.absoluteFilePath("fix_encoding.py");
-    QFile::copy(":/" + novaFolder + "/fix_encoding.py", filePath);
 
-    filePath = searchDir.absoluteFilePath("novaprinter.py");
-    if (getPluginVersion(":/" + novaFolder + "/novaprinter.py") > getPluginVersion(filePath)) {
+    if (!searchDir.exists("nova6"))
+        searchDir.mkdir("nova6");
+
+
+    filePath = searchDir.absoluteFilePath("nova6/novaprinter.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova6/novaprinter.py") > getPluginVersion(filePath)) {
         removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + novaFolder + "/novaprinter.py", filePath);
+        QFile::copy(":/" + novaFolder + "/nova6/novaprinter.py", filePath);
     }
 
-    filePath = searchDir.absoluteFilePath("helpers.py");
-    if (getPluginVersion(":/" + novaFolder + "/helpers.py") > getPluginVersion(filePath)) {
+    filePath = searchDir.absoluteFilePath("nova6/importer.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova6/importer.py") > getPluginVersion(filePath)) {
         removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + novaFolder + "/helpers.py", filePath);
+        QFile::copy(":/" + novaFolder + "/nova6/importer.py", filePath);
     }
 
-    filePath = searchDir.absoluteFilePath("socks.py");
+    filePath = searchDir.absoluteFilePath("nova6/nova6.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova6/nova6.py") > getPluginVersion(filePath)) {
+        removePythonScriptIfExists(filePath);
+        QFile::copy(":/" + novaFolder + "/nova6/nova6.py", filePath);
+    }
+
+
+    filePath = searchDir.absoluteFilePath("nova6/helpers.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova6/helpers.py") > getPluginVersion(filePath)) {
+        removePythonScriptIfExists(filePath);
+        QFile::copy(":/" + novaFolder + "/nova6/helpers.py", filePath);
+    }
+
+
+    filePath = searchDir.absoluteFilePath("nova6/nova6dl.py");
+    if (getPluginVersion(":/" + novaFolder + "/nova6/nova6dl.py") > getPluginVersion(filePath)) {
+        removePythonScriptIfExists(filePath);
+        QFile::copy(":/" + novaFolder + "/nova6/nova6dl.py", filePath);
+    }
+
+    filePath = searchDir.absoluteFilePath("nova6/socks.py");
     removePythonScriptIfExists(filePath);
-    QFile::copy(":/" + novaFolder + "/socks.py", filePath);
+    QFile::copy(":/" + novaFolder + "/nova6/socks.py", filePath);
 
-    if (novaFolder.endsWith("nova")) {
-        filePath = searchDir.absoluteFilePath("fix_encoding.py");
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + novaFolder + "/fix_encoding.py", filePath);
-    }
-    else if (novaFolder.endsWith("nova3")) {
-        filePath = searchDir.absoluteFilePath("sgmllib3.py");
-        removePythonScriptIfExists(filePath);
-        QFile::copy(":/" + novaFolder + "/sgmllib3.py", filePath);
-    }
+
+    filePath = searchDir.absoluteFilePath("nova6/sgmllib3.py");
+    removePythonScriptIfExists(filePath);
+    QFile::copy(":/" + novaFolder + "/nova6/sgmllib3.py", filePath);
+
+
+    QFile packageFile(searchDir.absoluteFilePath("nova6/__init__.py"));
+    packageFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    packageFile.close();
 
     QDir destDir(pluginsLocation());
     Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));

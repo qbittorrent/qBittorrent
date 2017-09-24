@@ -45,9 +45,9 @@ lang_file.write(output)
 lang_file.close()
 
 # update search_engine directory
-os.chdir('gui/searchengine')
+os.chdir('searchengine')
 search_list = []
-for nova_folder in ['nova/', 'nova3']:
+for nova_folder in ['nova6']:
   for root, dirs, files in os.walk(nova_folder):
     for file in files:
       if file.startswith("__"):

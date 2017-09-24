@@ -1,0 +1,3 @@
+[submodule "src/searchengine/nova6"]
+	path = src/searchengine/nova6
+	url = https://github.com/Depaulicious/nova6.git
