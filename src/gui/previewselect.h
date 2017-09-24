@@ -33,7 +33,7 @@
 #include <QList>
 
 #include "base/bittorrent/torrenthandle.h"
-#include "ui_preview.h"
+#include "ui_previewselectdialog.h"
 
 class QStandardItemModel;
 
