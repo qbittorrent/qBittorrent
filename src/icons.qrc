@@ -359,10 +359,10 @@
         <file>icons/skin/logo2.gif</file>
         <file>icons/skin/mascot.png</file>
         <file>icons/skin/paused.png</file>
+        <file>icons/skin/qbittorrent-tray.svg</file>
         <file>icons/skin/qbittorrent-tray-dark.svg</file>
         <file>icons/skin/qbittorrent-tray-light.svg</file>
         <file>icons/skin/qbittorrent16.png</file>
-        <file>icons/skin/qbittorrent22.png</file>
         <file>icons/skin/qbittorrent32.png</file>
         <file>icons/skin/queued.png</file>
         <file>icons/skin/ratio.png</file>
