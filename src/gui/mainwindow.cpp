@@ -1960,6 +1960,8 @@ QIcon MainWindow::getSystrayIcon() const
     }
 #else
     switch (style) {
+    case TrayIcon::NORMAL:
+        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
     case TrayIcon::MONO_DARK:
         return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-dark.svg"));
     case TrayIcon::MONO_LIGHT:
@@ -1969,11 +1971,8 @@ QIcon MainWindow::getSystrayIcon() const
     }
 #endif
 
-    QIcon icon;
-    icon.addFile(":/icons/skin/qbittorrent22.png", QSize(22, 22));
-    icon.addFile(":/icons/skin/qbittorrent16.png", QSize(16, 16));
-    icon.addFile(":/icons/skin/qbittorrent32.png", QSize(32, 32));
-    return icon;
+    // As a failsafe in case the enum is invalid
+    return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
 }
 #endif
 
