@@ -9,6 +9,7 @@ conf.pri
 Makefile*
 *.pyc
 *.log
+/winconf-user.pri
 
 # Compiled object files
 *.o

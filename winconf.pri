@@ -66,3 +66,8 @@ win32-g++* {
 else {
     include(winconf-msvc.pri)
 }
+
+# Here you can include your personal overrides
+exists(winconf-user.pri) {
+    include(winconf-user.pri)
+}
