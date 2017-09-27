@@ -30,6 +30,8 @@
  * Contact : hammered999@gmail.com
  */
 
+#include "preferences.h"
+
 #include <QCryptographicHash>
 #include <QDir>
 #include <QLocale>
@@ -51,11 +53,10 @@
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include "logger.h"
+#include "settingsstorage.h"
 #include "utils/fs.h"
 #include "utils/misc.h"
-#include "settingsstorage.h"
-#include "logger.h"
-#include "preferences.h"
 
 Preferences *Preferences::m_instance = 0;
 
@@ -461,6 +462,38 @@ bool Preferences::isWebUiLocalAuthEnabled() const
 void Preferences::setWebUiLocalAuthEnabled(bool enabled)
 {
     setValue("Preferences/WebUI/LocalHostAuth", enabled);
+}
+
+bool Preferences::isWebUiAuthSubnetWhitelistEnabled() const
+{
+    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", false).toBool();
+}
+
+void Preferences::setWebUiAuthSubnetWhitelistEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/AuthSubnetWhitelistEnabled", enabled);
+}
+
+QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
+{
+    QList<Utils::Net::Subnet> subnets;
+    foreach (const QString &rawSubnet, value("Preferences/WebUI/AuthSubnetWhitelist").toStringList()) {
+        bool ok = false;
+        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
+        if (ok)
+            subnets.append(subnet);
+    }
+
+    return subnets;
+}
+
+void Preferences::setWebUiAuthSubnetWhitelist(const QList<Utils::Net::Subnet> &subnets)
+{
+    QStringList subnetsStringList;
+    for (const Utils::Net::Subnet &subnet : subnets)
+        subnetsStringList.append(Utils::Net::subnetToString(subnet));
+
+    setValue("Preferences/WebUI/AuthSubnetWhitelist", subnetsStringList);
 }
 
 QString Preferences::getServerDomains() const

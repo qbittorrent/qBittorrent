@@ -99,6 +99,7 @@ private slots:
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
     void on_banListButton_clicked();
+    void on_IPSubnetWhitelistButton_clicked();
     void on_randomButton_clicked();
     void on_addScanFolderButton_clicked();
     void on_removeScanFolderButton_clicked();

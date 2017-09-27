@@ -55,6 +55,7 @@ HEADERS += \
     $$PWD/tagfilterproxymodel.h \
     $$PWD/tagfilterwidget.h \
     $$PWD/banlistoptions.h \
+    $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/rss/rsswidget.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/feedlistwidget.h \
@@ -109,6 +110,7 @@ SOURCES += \
     $$PWD/tagfilterproxymodel.cpp \
     $$PWD/tagfilterwidget.cpp \
     $$PWD/banlistoptions.cpp \
+    $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/rss/rsswidget.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/feedlistwidget.cpp \
@@ -150,6 +152,7 @@ FORMS += \
     $$PWD/search/searchtab.ui \
     $$PWD/cookiesdialog.ui \
     $$PWD/banlistoptions.ui \
+    $$PWD/ipsubnetwhitelistoptionsdialog.ui \
     $$PWD/rss/rsswidget.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/torrentcategorydialog.ui

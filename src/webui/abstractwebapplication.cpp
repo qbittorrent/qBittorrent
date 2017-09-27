@@ -43,6 +43,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "websessiondata.h"
@@ -319,10 +320,13 @@ void AbstractWebApplication::increaseFailedAttempts()
 
 bool AbstractWebApplication::isAuthNeeded()
 {
-    return (env_.clientAddress != QHostAddress::LocalHost
-            && env_.clientAddress != QHostAddress::LocalHostIPv6
-            && env_.clientAddress != QHostAddress("::ffff:127.0.0.1"))
-            || Preferences::instance()->isWebUiLocalAuthEnabled();
+    qDebug("Checking auth rules against client address %s", qPrintable(env().clientAddress.toString()));
+    const Preferences *pref = Preferences::instance();
+    if (!pref->isWebUiLocalAuthEnabled() && Utils::Net::isLoopbackAddress(env().clientAddress))
+        return false;
+    if (pref->isWebUiAuthSubnetWhitelistEnabled() && Utils::Net::isIPInRange(env().clientAddress, pref->getWebUiAuthSubnetWhitelist()))
+        return false;
+    return true;
 }
 
 void AbstractWebApplication::printFile(const QString& path)
