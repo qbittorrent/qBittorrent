@@ -57,7 +57,7 @@
 #include "logger.h"
 #include "preferences.h"
 
-Preferences* Preferences::m_instance = 0;
+Preferences *Preferences::m_instance = 0;
 
 Preferences::Preferences() {}
 
@@ -753,7 +753,8 @@ void Preferences::disableRecursiveDownload(bool disable)
 }
 
 #ifdef Q_OS_WIN
-namespace {
+namespace
+{
     enum REG_SEARCH_TYPE
     {
         USER,
@@ -842,7 +843,7 @@ namespace {
             versions.sort();
 
             bool found = false;
-            while(!found && !versions.empty()) {
+            while (!found && !versions.empty()) {
                 const QString version = versions.takeLast() + "\\InstallPath";
                 LPWSTR lpSubkey = new WCHAR[version.size() + 1];
                 version.toWCharArray(lpSubkey);
@@ -872,7 +873,6 @@ namespace {
 
         return path;
     }
-
 }
 
 QString Preferences::getPythonPath()
@@ -1163,7 +1163,7 @@ void Preferences::setMainLastDir(const QString &path)
     setValue("MainWindowLastDir", path);
 }
 
-QSize Preferences::getPrefSize(const QSize& defaultSize) const
+QSize Preferences::getPrefSize(const QSize &defaultSize) const
 {
     return value("Preferences/State/size", defaultSize).toSize();
 }
@@ -1393,7 +1393,7 @@ void Preferences::setTransHeaderState(const QByteArray &state)
     setValue("TransferList/qt5/HeaderState", state);
 }
 
-//From old RssSettings class
+// From old RssSettings class
 bool Preferences::isRSSWidgetEnabled() const
 {
     return value("GUI/RSSWidget/Enabled", false).toBool();
