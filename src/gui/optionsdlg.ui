@@ -3005,7 +3005,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item row="4" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBypassLocalAuth">
                     <property name="text">
-                     <string>Bypass authentication for localhost</string>
+                     <string>Bypass authentication for clients on localhost</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBypassAuthSubnetWhitelist">
+                    <property name="text">
+                     <string>Bypass authentication for clients in whitelisted IP subnets</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1" colspan="1">
+                   <widget class="QPushButton" name="IPSubnetWhitelistButton">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>IP subnet whitelist...</string>
                     </property>
                    </widget>
                   </item>
@@ -3289,6 +3309,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>btnWebUiCrt</tabstop>
   <tabstop>btnWebUiKey</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
+  <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
+  <tabstop>IPSubnetWhitelistButton</tabstop>
   <tabstop>checkDynDNS</tabstop>
   <tabstop>comboDNSService</tabstop>
   <tabstop>registerDNSBtn</tabstop>

@@ -65,6 +65,7 @@
 #include "advancedsettings.h"
 #include "rss/automatedrssdownloader.h"
 #include "banlistoptions.h"
+#include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
 
@@ -350,6 +351,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, m_ui->IPSubnetWhitelistButton, &QPushButton::setEnabled);
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->domainNameTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -655,13 +658,16 @@ void OptionsDialog::saveOptions()
         pref->setWebUiPort(m_ui->spinWebUiPort->value());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
+        // HTTPS
         if (m_ui->checkWebUiHttps->isChecked()) {
             pref->setWebUiHttpsCertificate(m_sslCert);
             pref->setWebUiHttpsKey(m_sslKey);
         }
+        // Authentication
         pref->setWebUiUsername(webUiUsername());
         pref->setWebUiPassword(webUiPassword());
         pref->setWebUiLocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
+        pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
         pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
@@ -1052,6 +1058,8 @@ void OptionsDialog::loadOptions()
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
     m_ui->textWebUiPassword->setText(pref->getWebUiPassword());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
+    m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
+    m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
 
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
     m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
@@ -1724,7 +1732,13 @@ bool OptionsDialog::webUIAuthenticationOk()
 
 void OptionsDialog::on_banListButton_clicked()
 {
-    //have to call dialog window
-    BanListOptions bl(this);
-    bl.exec();
+    // have to call dialog window
+    BanListOptions(this).exec();
+}
+
+void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
+{
+    // call dialog window
+    if (IPSubnetWhitelistOptionsDialog(this).exec() == QDialog::Accepted)
+        enableApplyButton();
 }

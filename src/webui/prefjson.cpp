@@ -37,6 +37,7 @@
 #endif
 #include <QStringList>
 #include <QTranslator>
+#include <QRegularExpression>
 
 #include "base/bittorrent/session.h"
 #include "base/net/portforwarder.h"
@@ -44,6 +45,7 @@
 #include "base/preferences.h"
 #include "base/scanfoldersmodel.h"
 #include "base/utils/fs.h"
+#include "base/utils/net.h"
 #include "jsonutils.h"
 
 prefjson::prefjson()
@@ -173,6 +175,11 @@ QByteArray prefjson::getPreferences()
     data["web_ui_username"] = pref->getWebUiUsername();
     data["web_ui_password"] = pref->getWebUiPassword();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
+    data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
+    QStringList authSubnetWhitelistStringList;
+    for (const Utils::Net::Subnet &subnet : pref->getWebUiAuthSubnetWhitelist())
+        authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
+    data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
     data["dyndns_service"] = pref->getDynDNSService();
@@ -427,6 +434,20 @@ void prefjson::setPreferences(const QString& json)
         pref->setWebUiPassword(m["web_ui_password"].toString());
     if (m.contains("bypass_local_auth"))
         pref->setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
+    if (m.contains("bypass_auth_subnet_whitelist_enabled"))
+        pref->setWebUiAuthSubnetWhitelistEnabled(m["bypass_auth_subnet_whitelist_enabled"].toBool());
+    if (m.contains("bypass_auth_subnet_whitelist")) {
+        QList<Utils::Net::Subnet> subnets;
+        // recognize new line and comma as delimiters
+        foreach (QString subnetString, m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts)) {
+            bool ok = false;
+            const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(subnetString.trimmed(), &ok);
+            if (ok)
+                subnets.append(subnet);
+        }
+
+        pref->setWebUiAuthSubnetWhitelist(subnets);
+    }
     // Update my dynamic domain name
     if (m.contains("dyndns_enabled"))
         pref->setDynDNSEnabled(m["dyndns_enabled"].toBool());
