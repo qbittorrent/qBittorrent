@@ -405,7 +405,7 @@ void CategoryFilterModel::populate()
                                     , [](Torrent *torrent) { return torrent->category().isEmpty(); })));
 
     using Torrent = BitTorrent::TorrentHandle;
-    foreach (const QString &category, session->categories()) {
+    foreach (const QString &category, session->categories().keys()) {
         if (m_isSubcategoriesEnabled) {
             CategoryModelItem *parent = m_rootItem;
             foreach (const QString &subcat, session->expandCategory(category)) {

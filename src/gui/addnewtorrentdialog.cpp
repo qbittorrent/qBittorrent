@@ -121,7 +121,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
     // Load categories
-    QStringList categories = session->categories();
+    QStringList categories = session->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
     QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
 

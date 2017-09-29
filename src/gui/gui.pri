@@ -11,6 +11,7 @@ HEADERS += \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
     $$PWD/transferlistsortmodel.h \
+    $$PWD/torrentcategorydialog.h \
     $$PWD/torrentcontentmodel.h \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontentmodelfolder.h \
@@ -69,6 +70,7 @@ SOURCES += \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
+    $$PWD/torrentcategorydialog.cpp \
     $$PWD/torrentcontentmodel.cpp \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontentmodelfolder.cpp \
@@ -149,6 +151,7 @@ FORMS += \
     $$PWD/cookiesdialog.ui \
     $$PWD/banlistoptions.ui \
     $$PWD/rss/rsswidget.ui \
-    $$PWD/rss/automatedrssdownloader.ui
+    $$PWD/rss/automatedrssdownloader.ui \
+    $$PWD/torrentcategorydialog.ui
 
 RESOURCES += $$PWD/about.qrc
