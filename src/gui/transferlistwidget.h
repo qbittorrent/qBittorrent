@@ -55,7 +55,7 @@ class TransferListWidget: public QTreeView
     Q_OBJECT
 
 public:
-    TransferListWidget(QWidget *parent, MainWindow *main_window);
+    TransferListWidget(QWidget *parent, MainWindow *mainWindow);
     ~TransferListWidget();
     TorrentModel* getSourceModel() const;
 
@@ -127,15 +127,15 @@ private:
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
 
-    TransferListDelegate *listDelegate;
-    TorrentModel *listModel;
-    TransferListSortModel *nameFilterModel;
-    MainWindow *main_window;
-    QShortcut *editHotkey;
-    QShortcut *deleteHotkey;
-    QShortcut *permDeleteHotkey;
-    QShortcut *doubleClickHotkey;
-    QShortcut *recheckHotkey;
+    TransferListDelegate *m_listDelegate;
+    TorrentModel *m_listModel;
+    TransferListSortModel *m_sortFilterModel;
+    MainWindow *m_mainWindow;
+    QShortcut *m_editHotkey;
+    QShortcut *m_deleteHotkey;
+    QShortcut *m_permDeleteHotkey;
+    QShortcut *m_doubleClickHotkey;
+    QShortcut *m_recheckHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

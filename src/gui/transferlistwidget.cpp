@@ -196,9 +196,9 @@ namespace
     };
 }
 
-TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
+TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     : QTreeView(parent)
-    , main_window(main_window)
+    , m_mainWindow(mainWindow)
 {
 
     setUniformRowHeights(true);
@@ -206,20 +206,20 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     bool column_loaded = loadSettings();
 
     // Create and apply delegate
-    listDelegate = new TransferListDelegate(this);
-    setItemDelegate(listDelegate);
+    m_listDelegate = new TransferListDelegate(this);
+    setItemDelegate(m_listDelegate);
 
     // Create transfer list model
-    listModel = new TorrentModel(this);
+    m_listModel = new TorrentModel(this);
 
-    nameFilterModel = new TransferListSortModel();
-    nameFilterModel->setDynamicSortFilter(true);
-    nameFilterModel->setSourceModel(listModel);
-    nameFilterModel->setFilterKeyColumn(TorrentModel::TR_NAME);
-    nameFilterModel->setFilterRole(Qt::DisplayRole);
-    nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    m_sortFilterModel = new TransferListSortModel();
+    m_sortFilterModel->setDynamicSortFilter(true);
+    m_sortFilterModel->setSourceModel(m_listModel);
+    m_sortFilterModel->setFilterKeyColumn(TorrentModel::TR_NAME);
+    m_sortFilterModel->setFilterRole(Qt::DisplayRole);
+    m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
-    setModel(nameFilterModel);
+    setModel(m_sortFilterModel);
 
     // Visual settings
     setRootIsDecorated(false);
@@ -284,11 +284,11 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window)
     connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
     connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
 
-    editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
-    deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
-    permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
-    doubleClickHotkey = new QShortcut(Qt::Key_Return, this, SLOT(torrentDoubleClicked()), 0, Qt::WidgetShortcut);
-    recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, SLOT(recheckSelectedTorrents()), 0, Qt::WidgetShortcut);
+    m_editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
+    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    m_permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, SLOT(permDeleteSelectedTorrents()), 0, Qt::WidgetShortcut);
+    m_doubleClickHotkey = new QShortcut(Qt::Key_Return, this, SLOT(torrentDoubleClicked()), 0, Qt::WidgetShortcut);
+    m_recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, SLOT(recheckSelectedTorrents()), 0, Qt::WidgetShortcut);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -304,15 +304,15 @@ TransferListWidget::~TransferListWidget()
     // Save settings
     saveSettings();
     // Clean up
-    delete nameFilterModel;
-    delete listModel;
-    delete listDelegate;
+    delete m_sortFilterModel;
+    delete m_listModel;
+    delete m_listDelegate;
     qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 TorrentModel* TransferListWidget::getSourceModel() const
 {
-    return listModel;
+    return m_listModel;
 }
 
 void TransferListWidget::previewFile(QString filePath)
@@ -323,16 +323,16 @@ void TransferListWidget::previewFile(QString filePath)
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
-    if (index.model() == nameFilterModel)
-        return nameFilterModel->mapToSource(index);
+    if (index.model() == m_sortFilterModel)
+        return m_sortFilterModel->mapToSource(index);
     return index;
 }
 
 inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
-    Q_ASSERT(index.model() == nameFilterModel);
-    return nameFilterModel->mapFromSource(index);
+    Q_ASSERT(index.model() == m_sortFilterModel);
+    return m_sortFilterModel->mapFromSource(index);
 }
 
 void TransferListWidget::torrentDoubleClicked()
@@ -340,8 +340,8 @@ void TransferListWidget::torrentDoubleClicked()
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
 
-    const QModelIndex index = listModel->index(mapToSource(selectedIndexes.first()).row());
-    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(index);
+    const QModelIndex index = m_listModel->index(mapToSource(selectedIndexes.first()).row());
+    BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(index);
     if (!torrent) return;
 
     int action;
@@ -370,7 +370,7 @@ QList<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() con
 {
     QList<BitTorrent::TorrentHandle *> torrents;
     foreach (const QModelIndex &index, selectionModel()->selectedRows())
-        torrents << listModel->torrentHandle(mapToSource(index));
+        torrents << m_listModel->torrentHandle(mapToSource(index));
 
     return torrents;
 }
@@ -421,8 +421,8 @@ void TransferListWidget::forceStartSelectedTorrents()
 
 void TransferListWidget::startVisibleTorrents()
 {
-    for (int i = 0; i < nameFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
+    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
+        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
         if (torrent)
             torrent->resume();
     }
@@ -436,8 +436,8 @@ void TransferListWidget::pauseSelectedTorrents()
 
 void TransferListWidget::pauseVisibleTorrents()
 {
-    for (int i = 0; i < nameFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
+    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
+        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
         if (torrent)
             torrent->pause();
     }
@@ -455,7 +455,7 @@ void TransferListWidget::permDeleteSelectedTorrents()
 
 void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
 {
-    if (main_window->currentTabWidget() != this) return;
+    if (m_mainWindow->currentTabWidget() != this) return;
 
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
@@ -469,11 +469,11 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
 
 void TransferListWidget::deleteVisibleTorrents()
 {
-    if (nameFilterModel->rowCount() <= 0) return;
+    if (m_sortFilterModel->rowCount() <= 0) return;
 
     QList<BitTorrent::TorrentHandle *> torrents;
-    for (int i = 0; i < nameFilterModel->rowCount(); ++i)
-        torrents << listModel->torrentHandle(mapToSource(nameFilterModel->index(i, 0)));
+    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
+        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
 
     bool deleteLocalFiles = false;
     if (Preferences::instance()->confirmTorrentDeletion()
@@ -487,26 +487,26 @@ void TransferListWidget::deleteVisibleTorrents()
 void TransferListWidget::increasePrioSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
-    if (main_window->currentTabWidget() == this)
+    if (m_mainWindow->currentTabWidget() == this)
         BitTorrent::Session::instance()->increaseTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::decreasePrioSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
-    if (main_window->currentTabWidget() == this)
+    if (m_mainWindow->currentTabWidget() == this)
         BitTorrent::Session::instance()->decreaseTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::topPrioSelectedTorrents()
 {
-    if (main_window->currentTabWidget() == this)
+    if (m_mainWindow->currentTabWidget() == this)
         BitTorrent::Session::instance()->topTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::bottomPrioSelectedTorrents()
 {
-    if (main_window->currentTabWidget() == this)
+    if (m_mainWindow->currentTabWidget() == this)
         BitTorrent::Session::instance()->bottomTorrentsPriority(extractHashes(getSelectedTorrents()));
 }
 
@@ -667,12 +667,12 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
     QMenu hideshowColumn(this);
     hideshowColumn.setTitle(tr("Column visibility"));
     QList<QAction*> actions;
-    for (int i = 0; i < listModel->columnCount(); ++i) {
+    for (int i = 0; i < m_listModel->columnCount(); ++i) {
         if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && i == TorrentModel::TR_PRIORITY) {
             actions.append(0);
             continue;
         }
-        QAction *myAct = hideshowColumn.addAction(listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        QAction *myAct = hideshowColumn.addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!isColumnHidden(i));
         actions.append(myAct);
@@ -778,7 +778,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
 void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn)
 {
     foreach (const QModelIndex &index, selectionModel()->selectedRows()) {
-        BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mapToSource(index));
+        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(index));
         Q_ASSERT(torrent);
         fn(torrent);
     }
@@ -789,8 +789,8 @@ void TransferListWidget::renameSelectedTorrent()
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
 
-    const QModelIndex mi = listModel->index(mapToSource(selectedIndexes.first()).row(), TorrentModel::TR_NAME);
-    BitTorrent::TorrentHandle *const torrent = listModel->torrentHandle(mi);
+    const QModelIndex mi = m_listModel->index(mapToSource(selectedIndexes.first()).row(), TorrentModel::TR_NAME);
+    BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mi);
     if (!torrent) return;
 
     // Ask for a new Name
@@ -799,14 +799,14 @@ void TransferListWidget::renameSelectedTorrent()
     if (ok && !name.isEmpty()) {
         name.replace(QRegExp("\r?\n|\r"), " ");
         // Rename the torrent
-        listModel->setData(mi, name, Qt::DisplayRole);
+        m_listModel->setData(mi, name, Qt::DisplayRole);
     }
 }
 
 void TransferListWidget::setSelectionCategory(QString category)
 {
     foreach (const QModelIndex &index, selectionModel()->selectedRows())
-        listModel->setData(listModel->index(mapToSource(index).row(), TorrentModel::TR_CATEGORY), category, Qt::DisplayRole);
+        m_listModel->setData(m_listModel->index(mapToSource(index).row(), TorrentModel::TR_CATEGORY), category, Qt::DisplayRole);
 }
 
 void TransferListWidget::addSelectionTag(const QString &tag)
@@ -903,7 +903,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     foreach (const QModelIndex &index, selectedIndexes) {
         // Get the file name
         // Get handle and pause the torrent
-        torrent = listModel->torrentHandle(mapToSource(index));
+        torrent = m_listModel->torrentHandle(mapToSource(index));
         if (!torrent) continue;
 
         if (firstCategory.isEmpty() && first)
@@ -1116,7 +1116,7 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
     qDebug("CURRENT CHANGED");
     BitTorrent::TorrentHandle *torrent = 0;
     if (current.isValid()) {
-        torrent = listModel->torrentHandle(mapToSource(current));
+        torrent = m_listModel->torrentHandle(mapToSource(current));
         // Scroll Fix
         scrollTo(current);
     }
@@ -1126,41 +1126,41 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
 void TransferListWidget::applyCategoryFilter(QString category)
 {
     if (category.isNull())
-        nameFilterModel->disableCategoryFilter();
+        m_sortFilterModel->disableCategoryFilter();
     else
-        nameFilterModel->setCategoryFilter(category);
+        m_sortFilterModel->setCategoryFilter(category);
 }
 
 void TransferListWidget::applyTagFilter(const QString &tag)
 {
     if (tag.isNull())
-        nameFilterModel->disableTagFilter();
+        m_sortFilterModel->disableTagFilter();
     else
-        nameFilterModel->setTagFilter(tag);
+        m_sortFilterModel->setTagFilter(tag);
 }
 
 void TransferListWidget::applyTrackerFilterAll()
 {
-    nameFilterModel->disableTrackerFilter();
+    m_sortFilterModel->disableTrackerFilter();
 }
 
 void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
 {
-    nameFilterModel->setTrackerFilter(hashes);
+    m_sortFilterModel->setTrackerFilter(hashes);
 }
 
 void TransferListWidget::applyNameFilter(const QString& name)
 {
-    nameFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, QRegExp::WildcardUnix));
+    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, QRegExp::WildcardUnix));
 }
 
 void TransferListWidget::applyStatusFilter(int f)
 {
-    nameFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));
+    m_sortFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));
     // Select first item if nothing is selected
-    if (selectionModel()->selectedRows(0).empty() && nameFilterModel->rowCount() > 0) {
-        qDebug("Nothing is selected, selecting first row: %s", qUtf8Printable(nameFilterModel->index(0, TorrentModel::TR_NAME).data().toString()));
-        selectionModel()->setCurrentIndex(nameFilterModel->index(0, TorrentModel::TR_NAME), QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+    if (selectionModel()->selectedRows(0).empty() && m_sortFilterModel->rowCount() > 0) {
+        qDebug("Nothing is selected, selecting first row: %s", qUtf8Printable(m_sortFilterModel->index(0, TorrentModel::TR_NAME).data().toString()));
+        selectionModel()->setCurrentIndex(m_sortFilterModel->index(0, TorrentModel::TR_NAME), QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
     }
 }
 
