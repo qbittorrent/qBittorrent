@@ -122,13 +122,13 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         break;
     }
     case TorrentModel::TR_TIME_ELAPSED: {
-        qlonglong elapsedTime = index.data().toLongLong();
-        qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
-        QString txt;
-        if (seedingTime > 0)
-            txt += tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-                   .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
-                   .arg(Utils::Misc::userFriendlyDuration(seedingTime));
+        const int elapsedTime = index.data().toInt();
+        const int seedingTime = index.data(Qt::UserRole).toInt();
+        const QString txt = (seedingTime > 0)
+            ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
+                .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
+                .arg(Utils::Misc::userFriendlyDuration(seedingTime))
+            : Utils::Misc::userFriendlyDuration(elapsedTime);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
         break;
     }
