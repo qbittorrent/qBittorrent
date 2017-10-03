@@ -45,6 +45,9 @@
      <property name="itemsExpandable">
       <bool>false</bool>
      </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <column>
       <property name="text">
        <string>Name</string>
