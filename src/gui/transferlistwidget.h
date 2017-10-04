@@ -132,7 +132,6 @@ private:
     TransferListSortModel *m_sortFilterModel;
     MainWindow *m_mainWindow;
     QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
     QShortcut *m_permDeleteHotkey;
     QShortcut *m_doubleClickHotkey;
     QShortcut *m_recheckHotkey;
