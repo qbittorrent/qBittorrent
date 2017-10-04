@@ -44,4 +44,4 @@ speedplotview.cpp
 
 add_library(qbt_properties STATIC ${QBT_PROPERTIES_HEADERS} ${QBT_PROPERTIES_SOURCES} ${QBT_PROPERTIES_FORMS})
 target_link_libraries(qbt_properties qbt_base)
-target_link_libraries(qbt_properties Qt5::Widgets Qt5::Concurrent)
+target_link_libraries(qbt_properties Qt5::Widgets)
