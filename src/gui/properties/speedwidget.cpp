@@ -34,6 +34,7 @@
 #include <QMenu>
 #include <QSignalMapper>
 #include <QThread>
+#include <QTimer>
 
 #include <libtorrent/session_status.hpp>
 
@@ -116,8 +117,9 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     loadSettings();
 
-    m_isUpdating = true;
-    m_updateFuture = QtConcurrent::run(this, &SpeedWidget::update);
+    QTimer *localUpdateTimer = new QTimer(this);
+    connect(localUpdateTimer, &QTimer::timeout, this, &SpeedWidget::update);
+    localUpdateTimer->start(1000);
 
     m_plot->show();
 }
@@ -125,43 +127,28 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 SpeedWidget::~SpeedWidget()
 {
     qDebug("SpeedWidget::~SpeedWidget() ENTER");
-
-    m_isUpdating = false;
-    m_updateFuture.waitForFinished();
-
     saveSettings();
-
     qDebug("SpeedWidget::~SpeedWidget() EXIT");
 }
 
 void SpeedWidget::update()
 {
-    while (m_isUpdating) {
+    const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
 
-        const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
+    SpeedPlotView::PointData point;
+    point.x = QDateTime::currentDateTime().toTime_t();
+    point.y[SpeedPlotView::UP] = btStatus.uploadRate;
+    point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
+    point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
+    point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
+    point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
+    point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
+    point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
+    point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
+    point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
+    point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
 
-        SpeedPlotView::PointData point;
-        point.x = QDateTime::currentDateTime().toTime_t();
-        point.y[SpeedPlotView::UP] = btStatus.uploadRate;
-        point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
-        point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
-        point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
-        point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
-        point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
-        point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
-        point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
-        point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
-        point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
-
-        m_plot->pushPoint(point);
-
-        QMetaObject::invokeMethod(this, "graphUpdate", Qt::QueuedConnection);
-        QThread::msleep(1000);
-    }
-}
-
-void SpeedWidget::graphUpdate()
-{
+    m_plot->pushPoint(point);
     m_plot->replot();
 }
 

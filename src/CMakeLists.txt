@@ -13,7 +13,7 @@ find_package(LibtorrentRasterbar REQUIRED)
 # Qt
 list(APPEND QBT_QT_COMPONENTS Core Network Xml)
 if (GUI)
-    list (APPEND QBT_QT_COMPONENTS Concurrent Gui Svg Widgets)
+    list (APPEND QBT_QT_COMPONENTS Gui Svg Widgets)
     if (WIN32)
         list (APPEND QBT_QT_COMPONENTS WinExtras)
     endif(WIN32)

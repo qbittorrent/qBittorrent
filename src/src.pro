@@ -19,7 +19,7 @@ nogui {
     DEFINES += DISABLE_GUI
 } else {
     TARGET = qbittorrent
-    QT += xml concurrent svg widgets
+    QT += xml svg widgets
 
     CONFIG(static) {
         DEFINES += QBT_STATIC_QT
