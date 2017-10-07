@@ -231,12 +231,12 @@ void StatusBar::refresh()
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative) {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.png"));
+        m_altSpeedsBtn->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("speedometer-flipped")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.png"));
+        m_altSpeedsBtn->setIcon(GuiIconProvider::instance()->getIcon(QLatin1String("speedometer")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

@@ -210,6 +210,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         // uniform size for all icons
         m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 62));
     }
+    m_ui->labelRateLimitIcon->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("speedometer")).pixmap(32, 32));
+    m_ui->labelAltRateLimitIcon->setPixmap(GuiIconProvider::instance()->getIcon(QLatin1String("speedometer-flipped")).pixmap(32, 32));
 
     m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
 

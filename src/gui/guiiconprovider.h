@@ -89,13 +89,16 @@ private:
     void update();
     void reset();
     void decolorizeIcons();
+    static QIcon flipIcon(const QIcon &icon, bool horizontal, bool vertical);
 
-    static QString colorizedIconsDir();
+    static QString temporaryDirForIcons();
     static CachedSettingValue<IconSet> &iconSetSetting();
     static CachedSettingValue<bool> &stateIconsAreColorizedSetting();
 
     QMap<BitTorrent::TorrentState, QIcon> m_torrentStateIcons; // these icons are needed frequently
+    QTemporaryDir m_iconsTemporaryDir;
     QTemporaryDir m_coloredIconsDir;
+    QMap<QString, QIcon> m_generatedIcons;
     QScopedPointer<SVGManipulator> m_svgManipulator;
 };
 

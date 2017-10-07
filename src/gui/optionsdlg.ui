@@ -95,7 +95,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tabAppearancePage">
        <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -127,8 +127,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>549</width>
+             <height>540</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -917,8 +917,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>623</width>
+             <height>1213</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1491,8 +1491,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>535</width>
+             <height>816</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1994,8 +1994,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>549</width>
+             <height>540</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2059,9 +2059,9 @@
                 </widget>
                </item>
                <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="label_5">
+                <widget class="QLabel" name="labelRateLimitIcon">
                  <property name="pixmap">
-                  <pixmap resource="../icons.qrc">:/icons/slow_off.png</pixmap>
+                  <pixmap resource="../icons.qrc">:/icons/qbt-theme/speedometer.svg</pixmap>
                  </property>
                 </widget>
                </item>
@@ -2206,9 +2206,9 @@
                 </widget>
                </item>
                <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="label_16">
+                <widget class="QLabel" name="labelAltRateLimitIcon">
                  <property name="pixmap">
-                  <pixmap resource="../icons.qrc">:/icons/slow.png</pixmap>
+                  <pixmap resource="../icons.qrc">:/icons/qbt-theme/speedometer.svg</pixmap>
                  </property>
                 </widget>
                </item>
@@ -2361,8 +2361,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>552</width>
+             <height>680</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2836,8 +2836,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>430</width>
+             <height>259</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2986,8 +2986,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>470</width>
+             <height>616</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">

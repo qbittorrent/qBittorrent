@@ -39,8 +39,11 @@
 #include <QDir>
 #include <QFile>
 #include <QIcon>
+#include <QPainter>
 #include <QPalette>
+#include <QRect>
 #include <QStandardPaths>
+#include <QTransform>
 
 #include "base/preferences.h"
 #include "base/settingvalue.h"
@@ -53,6 +56,12 @@
 #include <QDir>
 #include <QFile>
 #endif
+
+namespace
+{
+    const QLatin1String speedometerIconName {"speedometer"};
+    const QLatin1String speedometerFlippedIconName {"speedometer-flipped"};
+}
 
 class GuiIconProvider::SVGManipulator
 {
@@ -109,14 +118,13 @@ void GuiIconProvider::SVGManipulator::replaceSVGFillColor(const QString& svgFile
 }
 
 GuiIconProvider::GuiIconProvider(QObject *parent)
-    : IconProvider(parent)
-    , m_coloredIconsDir(colorizedIconsDir())
+    : IconProvider {parent}
+    , m_iconsTemporaryDir {temporaryDirForIcons()}
+    , m_coloredIconsDir(m_iconsTemporaryDir.path() + QDir::separator() + QLatin1String("colorized"))
     , m_svgManipulator(new SVGManipulator())
 {
     if (!m_coloredIconsDir.isValid())
-        qCWarning(theme, "Could not create temporary directory '%s' for colorized icons", qPrintable(m_coloredIconsDir.path()));
-    else
-        m_coloredIconsDir.setAutoRemove(true);
+        qCWarning(theme, "Could not create temporary directory '%s' for colorized icons", qUtf8Printable(m_coloredIconsDir.path()));
 
     connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::colorThemeChanged,
             this, &GuiIconProvider::colorThemeChanged);
@@ -143,6 +151,10 @@ QIcon GuiIconProvider::getIcon(const QString &iconId)
 
 QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
 {
+    const auto it = m_generatedIcons.find(iconId);
+    if (it != m_generatedIcons.end()) {
+        return it.value();
+    }
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (iconSet() == IconSet::SystemTheme) {
         QIcon icon = QIcon::fromTheme(iconId);
@@ -234,6 +246,8 @@ void GuiIconProvider::update()
         setIconDir(IconProvider::defaultIconDir());
     }
 
+    m_generatedIcons[speedometerFlippedIconName] = flipIcon(getIcon(speedometerIconName), true, false);
+
     using BitTorrent::TorrentState;
     const auto trySetColorizedIcon = [this](BitTorrent::TorrentState state, const char *stateName, const char *iconName)
     {
@@ -298,7 +312,7 @@ void GuiIconProvider::decolorizeIcons()
     }
 }
 
-QString GuiIconProvider::colorizedIconsDir()
+QString GuiIconProvider::temporaryDirForIcons()
 {
     // TODO Application should create QTemporaryDir for /run/user/<USERID>/<ApplicationName>/<PID>
     // and we then will be able to create directory "icons" inside
@@ -321,4 +335,25 @@ CachedSettingValue<bool> &GuiIconProvider::stateIconsAreColorizedSetting()
 {
     static CachedSettingValue<bool> setting("Appearance/StateIconColorization", true);
     return setting;
+}
+
+QIcon GuiIconProvider::flipIcon(const QIcon& icon, bool horizontal, bool vertical)
+{
+    QIcon res;
+    const QList<QSize> sizes = !icon.availableSizes().isEmpty()
+                        ? icon.availableSizes()
+                        : QList<QSize>{{16, 16}, {32, 32}, {64, 64}, {128, 128}, {256, 256}};
+    for (const auto &size : sizes) {
+        QPixmap px {size};
+        px.fill({0, 0, 0, 0});
+        QPainter painter {&px};
+        QRect bounds {0, 0, size.width(), size.height()};
+        QTransform tr;
+        tr.scale(horizontal ? -1. : 1., vertical ? -1. : 1.);
+        tr.translate(horizontal ? -size.width() : 0, vertical ? -size.height() : 0);
+        painter.setTransform(tr);
+        painter.drawPixmap(0, 0, icon.pixmap(size));
+        res.addPixmap(px);
+    }
+    return res;
 }
