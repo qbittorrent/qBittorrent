@@ -56,6 +56,8 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL
       connect(buttonBox, &QDialogButtonBox::accepted, this, &downloadFromURL::downloadButtonClicked);
       connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
+      textUrls->setWordWrapMode(QTextOption::NoWrap);
+
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
       QStringList clip_txt_list = clip_txt.split(QString::fromUtf8("\n"));
