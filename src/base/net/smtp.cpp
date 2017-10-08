@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 /*
@@ -33,22 +31,23 @@
  */
 
 #include "smtp.h"
-#include "base/preferences.h"
-#include "base/logger.h"
 
+#include <QCryptographicHash>
+#include <QDebug>
+#include <QHostAddress>
+#include <QHostInfo>
+#include <QNetworkInterface>
+#include <QStringList>
+#include <QTextCodec>
 #include <QTextStream>
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
 #include <QTcpSocket>
 #endif
-#include <QTextCodec>
-#include <QDebug>
-#include <QHostAddress>
-#include <QHostInfo>
-#include <QNetworkInterface>
-#include <QCryptographicHash>
-#include <QStringList>
+
+#include "base/logger.h"
+#include "base/preferences.h"
 
 namespace
 {

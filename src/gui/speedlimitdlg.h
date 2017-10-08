@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef BANDWIDTH_ALLOCATION_H
@@ -33,16 +31,19 @@
 
 #include <QDialog>
 #include <QList>
-#include "base/utils/misc.h"
+
 #include "base/bittorrent/session.h"
+#include "base/utils/misc.h"
 
 namespace Ui
 {
     class bandwidth_dlg;
 }
 
-class SpeedLimitDialog : public QDialog {
+class SpeedLimitDialog : public QDialog
+{
     Q_OBJECT
+
 public:
     explicit SpeedLimitDialog(QWidget *parent);
     ~SpeedLimitDialog();
@@ -58,4 +59,4 @@ private:
     Ui::bandwidth_dlg *m_ui;
 };
 
-#endif
+#endif // BANDWIDTH_ALLOCATION_H

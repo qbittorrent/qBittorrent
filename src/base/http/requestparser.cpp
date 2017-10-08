@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,21 +25,20 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
+#include "requestparser.h"
+
+#include <QDebug>
+#include <QDir>
 #include <QStringList>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QDir>
-#include <QDebug>
-#include "requestparser.h"
 
 const QByteArray EOL("\r\n");
 const QByteArray EOH("\r\n\r\n");
 
-inline QString unquoted(const QString& str)
+inline QString unquoted(const QString &str)
 {
     if ((str[0] == '\"') && (str[str.length() - 1] == '\"'))
         return str.mid(1, str.length() - 2);
@@ -49,7 +48,7 @@ inline QString unquoted(const QString& str)
 
 using namespace Http;
 
-RequestParser::ErrorCode RequestParser::parse(const QByteArray& data, Request& request, uint maxContentLength)
+RequestParser::ErrorCode RequestParser::parse(const QByteArray &data, Request &request, uint maxContentLength)
 {
     return RequestParser(maxContentLength).parseHttpRequest(data, request);
 }
@@ -59,42 +58,42 @@ RequestParser::RequestParser(uint maxContentLength)
 {
 }
 
-RequestParser::ErrorCode RequestParser::parseHttpRequest(const QByteArray& data, Request& request)
+RequestParser::ErrorCode RequestParser::parseHttpRequest(const QByteArray &data, Request &request)
 {
     m_request = Request();
 
     // Parse HTTP request header
-    const int header_end = data.indexOf(EOH);
-    if (header_end < 0) {
+    const int headerEnd = data.indexOf(EOH);
+    if (headerEnd < 0) {
         qDebug() << Q_FUNC_INFO << "incomplete request";
         return IncompleteRequest;
     }
 
-    if (!parseHttpHeader(data.left(header_end))) {
+    if (!parseHttpHeader(data.left(headerEnd))) {
         qWarning() << Q_FUNC_INFO << "header parsing error";
         return BadRequest;
     }
 
     // Parse HTTP request message
     if (m_request.headers.contains("content-length")) {
-        int content_length = m_request.headers["content-length"].toInt();
-        if (content_length < 0) {
-            qWarning() << Q_FUNC_INFO << "bad request: content-length negative";
+        int contentLength = m_request.headers["content-length"].toInt();
+        if (contentLength < 0) {
+            qWarning() << Q_FUNC_INFO << "bad request: content-length is negative";
             return BadRequest;
         }
 
-        if (content_length > static_cast<int>(m_maxContentLength)) {
+        if (contentLength > static_cast<int>(m_maxContentLength)) {
             qWarning() << Q_FUNC_INFO << "bad request: message too long";
             return BadRequest;
         }
 
-        QByteArray content = data.mid(header_end + EOH.length(), content_length);
-        if (content.length() < content_length) {
+        QByteArray content = data.mid(headerEnd + EOH.length(), contentLength);
+        if (content.length() < contentLength) {
             qDebug() << Q_FUNC_INFO << "incomplete request";
             return IncompleteRequest;
         }
 
-        if ((content_length > 0) && !parseContent(content)) {
+        if ((contentLength > 0) && !parseContent(content)) {
             qWarning() << Q_FUNC_INFO << "message parsing error";
             return BadRequest;
         }
@@ -102,7 +101,7 @@ RequestParser::ErrorCode RequestParser::parseHttpRequest(const QByteArray& data,
 
     //  qDebug() << Q_FUNC_INFO;
     //  qDebug() << "HTTP Request header:";
-    //  qDebug() << data.left(header_end) << "\n";
+    //  qDebug() << data.left(headerEnd) << "\n";
 
     request = m_request;
     return NoError;
@@ -132,7 +131,7 @@ bool RequestParser::parseStartingLine(const QString &line)
     return false;
 }
 
-bool RequestParser::parseHeaderLine(const QString &line, QPair<QString, QString>& out)
+bool RequestParser::parseHeaderLine(const QString &line, QPair<QString, QString> &out)
 {
     int i = line.indexOf(QLatin1Char(':'));
     if (i == -1) {
@@ -150,7 +149,7 @@ bool RequestParser::parseHttpHeader(const QByteArray &data)
     QStringList lines = str.trimmed().split(EOL);
 
     QStringList headerLines;
-    foreach (const QString& line, lines) {
+    foreach (const QString &line, lines) {
         if (line[0].isSpace()) { // header line continuation
             if (!headerLines.isEmpty()) { // really continuation
                 headerLines.last() += QLatin1Char(' ');
@@ -181,7 +180,7 @@ bool RequestParser::parseHttpHeader(const QByteArray &data)
     return true;
 }
 
-QList<QByteArray> RequestParser::splitMultipartData(const QByteArray& data, const QByteArray& boundary)
+QList<QByteArray> RequestParser::splitMultipartData(const QByteArray &data, const QByteArray &boundary)
 {
     QList<QByteArray> ret;
     QByteArray sep = boundary + EOL;
@@ -205,7 +204,7 @@ QList<QByteArray> RequestParser::splitMultipartData(const QByteArray& data, cons
     return ret;
 }
 
-bool RequestParser::parseContent(const QByteArray& data)
+bool RequestParser::parseContent(const QByteArray &data)
 {
     // Parse message content
     qDebug() << Q_FUNC_INFO << "Content-Length: " << m_request.headers["content-length"];
@@ -243,14 +242,14 @@ Content-Disposition: form-data; name=\"Upload\"
 Submit Query
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
 **/
-    QString content_type = m_request.headers["content-type"];
-    if (content_type.startsWith("multipart/form-data")) {
+    QString contentType = m_request.headers["content-type"];
+    if (contentType.startsWith("multipart/form-data")) {
         const QRegExp boundaryRegexQuoted("boundary=\"([ \\w'()+,-\\./:=\\?]+)\"");
         const QRegExp boundaryRegexNotQuoted("boundary=([\\w'()+,-\\./:=\\?]+)");
 
         QByteArray boundary;
-        if (boundaryRegexQuoted.indexIn(content_type) < 0) {
-            if (boundaryRegexNotQuoted.indexIn(content_type) < 0) {
+        if (boundaryRegexQuoted.indexIn(contentType) < 0) {
+            if (boundaryRegexNotQuoted.indexIn(contentType) < 0) {
                 qWarning() << "Could not find boundary in multipart/form-data header!";
                 return false;
             }
@@ -274,21 +273,21 @@ Submit Query
         return true;
     }
 
-    qWarning() << Q_FUNC_INFO << "unknown content type:" << qPrintable(content_type);
+    qWarning() << Q_FUNC_INFO << "unknown content type:" << qPrintable(contentType);
     return false;
 }
 
-bool RequestParser::parseFormData(const QByteArray& data)
+bool RequestParser::parseFormData(const QByteArray &data)
 {
     // Parse form data header
-    const int header_end = data.indexOf(EOH);
-    if (header_end < 0) {
+    const int headerEnd = data.indexOf(EOH);
+    if (headerEnd < 0) {
         qDebug() << "Invalid form data: \n" << data;
         return false;
     }
 
-    QString header_str = QString::fromUtf8(data.left(header_end));
-    QStringList lines = header_str.trimmed().split(EOL);
+    QString headerStr = QString::fromUtf8(data.left(headerEnd));
+    QStringList lines = headerStr.trimmed().split(EOL);
     QStringMap headers;
     foreach (const QString& line, lines) {
         QPair<QString, QString> header;
@@ -302,7 +301,7 @@ bool RequestParser::parseFormData(const QByteArray& data)
     if (!headers.contains("content-disposition")
         || !parseHeaderValue(headers["content-disposition"], disposition)
         || !disposition.contains("name")) {
-        qDebug() << "Invalid form data header: \n" << header_str;
+        qDebug() << "Invalid form data header: \n" << headerStr;
         return false;
     }
 
@@ -310,18 +309,18 @@ bool RequestParser::parseFormData(const QByteArray& data)
         UploadedFile ufile;
         ufile.filename = disposition["filename"];
         ufile.type = disposition["content-type"];
-        ufile.data = data.mid(header_end + EOH.length());
+        ufile.data = data.mid(headerEnd + EOH.length());
 
         m_request.files.append(ufile);
     }
     else {
-        m_request.posts[disposition["name"]] = QString::fromUtf8(data.mid(header_end + EOH.length()));
+        m_request.posts[disposition["name"]] = QString::fromUtf8(data.mid(headerEnd + EOH.length()));
     }
 
     return true;
 }
 
-bool RequestParser::parseHeaderValue(const QString& value, QStringMap& out)
+bool RequestParser::parseHeaderValue(const QString &value, QStringMap &out)
 {
     int pos = value.indexOf(QLatin1Char(';'));
     if (pos == -1) {

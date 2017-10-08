@@ -39,7 +39,7 @@ namespace Ui
     class confirmShutdownDlg;
 }
 
-class ShutdownConfirmDlg: public QDialog
+class ShutdownConfirmDlg : public QDialog
 {
     Q_OBJECT
 

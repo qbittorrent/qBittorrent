@@ -34,7 +34,6 @@
 #include <QNetworkProxy>
 #include <QStringList>
 #include <QTimer>
-
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
@@ -123,15 +122,13 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &key)
     const QList<QSslCertificate> certs = QSslCertificate::fromData(certificates);
     const bool areCertsValid = !certs.empty() && std::all_of(certs.begin(), certs.end(), [](const QSslCertificate &c) { return !c.isNull(); });
 
-    if (!sslKey.isNull() && areCertsValid)
-    {
+    if (!sslKey.isNull() && areCertsValid) {
         m_key = sslKey;
         m_certificates = certs;
         m_https = true;
         return true;
     }
-    else
-    {
+    else {
         disableHttps();
         return false;
     }
@@ -164,4 +161,4 @@ QList<QSslCipher> Server::safeCipherList() const
 
     return safeCiphers;
 }
-#endif
+#endif // QT_NO_OPENSSL

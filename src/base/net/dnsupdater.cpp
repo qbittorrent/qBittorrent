@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include <QDebug>
@@ -34,8 +32,8 @@
 #include <QUrlQuery>
 
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "dnsupdater.h"
 
 using namespace Net;
@@ -143,7 +141,7 @@ QString DNSUpdater::getUpdateUrl() const
 
     Q_ASSERT(!m_lastIP.isNull());
     // Service specific
-    switch(m_service) {
+    switch (m_service) {
     case DNS::DYNDNS:
         url.setHost("members.dyndns.org");
         break;
@@ -230,7 +228,6 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
     if (code == "abuse") {
         logger->addMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."), Log::CRITICAL);
         m_state = FATAL;
-        return;
     }
 }
 
@@ -289,7 +286,7 @@ void DNSUpdater::updateCredentials()
 
 QUrl DNSUpdater::getRegistrationUrl(int service)
 {
-    switch(service) {
+    switch (service) {
     case DNS::DYNDNS:
         return QUrl("https://www.dyndns.com/account/services/hosts/add.html");
     case DNS::NOIP:

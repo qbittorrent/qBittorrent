@@ -43,7 +43,7 @@ class CookiesDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit CookiesDialog(QWidget *parent = 0);
+    explicit CookiesDialog(QWidget *parent = nullptr);
     ~CookiesDialog();
 
 public slots:

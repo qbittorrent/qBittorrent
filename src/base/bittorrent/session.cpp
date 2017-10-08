@@ -29,6 +29,11 @@
 
 #include "session.h"
 
+#include <cstdlib>
+#include <queue>
+#include <string>
+#include <vector>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -42,10 +47,6 @@
 #include <QThread>
 #include <QTimer>
 #include <QUuid>
-
-#include <cstdlib>
-#include <queue>
-#include <vector>
 
 #include <libtorrent/alert_types.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
@@ -71,24 +72,24 @@
 #include <libtorrent/torrent_info.hpp>
 
 #include "base/logger.h"
-#include "base/profile.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/profile.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
-#include "base/utils/net.h"
-#include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "magneturi.h"
-#include "private/filterparserthread.h"
-#include "private/statistics.h"
 #include "private/bandwidthscheduler.h"
+#include "private/filterparserthread.h"
 #include "private/resumedatasavingmanager.h"
+#include "private/statistics.h"
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"
@@ -3384,7 +3385,7 @@ bool Session::isKnownTorrent(const InfoHash &hash) const
 
 void Session::updateSeedingLimitTimer()
 {
-    if ((globalMaxRatio() == -1) && !hasPerTorrentRatioLimit()
+    if ((globalMaxRatio() == TorrentHandle::NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == TorrentHandle::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()) {
         if (m_seedingLimitTimer->isActive())
             m_seedingLimitTimer->stop();
@@ -4372,7 +4373,12 @@ namespace
 
         torrentData.savePath = Profile::instance().fromPortablePath(
             Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
-        torrentData.ratioLimit = QString::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+
+        std::string ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
+        if (ratioLimitString.empty())
+            torrentData.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
+        else
+            torrentData.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
         torrentData.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
         // **************************************************************************************
         // Workaround to convert legacy label to category

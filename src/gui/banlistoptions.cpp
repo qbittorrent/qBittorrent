@@ -27,15 +27,15 @@
  */
 
 #include "banlistoptions.h"
-#include "ui_banlistoptions.h"
 
-#include <QMessageBox>
 #include <QHostAddress>
+#include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QStringListModel>
 
 #include "base/bittorrent/session.h"
 #include "base/utils/net.h"
+#include "ui_banlistoptions.h"
 
 BanListOptions::BanListOptions(QWidget *parent)
     : QDialog(parent)

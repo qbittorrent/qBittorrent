@@ -627,14 +627,18 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
     const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.isEmpty()) return;
 
-    bool useGlobalValue = true;
     qreal currentMaxRatio = BitTorrent::Session::instance()->globalMaxRatio();
     if (torrents.count() == 1)
-        currentMaxRatio = torrents[0]->maxRatio(&useGlobalValue);
+        currentMaxRatio = torrents[0]->maxRatio();
 
     int currentMaxSeedingTime = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
     if (torrents.count() == 1)
-        currentMaxSeedingTime = torrents[0]->maxSeedingTime(&useGlobalValue);
+        currentMaxSeedingTime = torrents[0]->maxSeedingTime();
+
+    bool useGlobalValue = true;
+    if (torrents.count() == 1)
+        useGlobalValue = (torrents[0]->ratioLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_RATIO)
+                && (torrents[0]->seedingTimeLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME);
 
     UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
                        currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);

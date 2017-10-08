@@ -27,21 +27,22 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QFile>
-#include <QDir>
-#include <QHostAddress>
+#include "geoipmanager.h"
+
 #include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QHostAddress>
 
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
-#include "downloadmanager.h"
 #include "downloadhandler.h"
+#include "downloadmanager.h"
 #include "private/geoipdatabase.h"
-#include "geoipmanager.h"
 
 static const char DATABASE_URL[] = "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz";
 static const char GEOIP_FOLDER[] = "GeoIP";
@@ -52,11 +53,11 @@ using namespace Net;
 
 // GeoIPManager
 
-GeoIPManager *GeoIPManager::m_instance = 0;
+GeoIPManager *GeoIPManager::m_instance = nullptr;
 
 GeoIPManager::GeoIPManager()
     : m_enabled(false)
-    , m_geoIPDatabase(0)
+    , m_geoIPDatabase(nullptr)
 {
     configure();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
@@ -78,7 +79,7 @@ void GeoIPManager::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -91,7 +92,7 @@ void GeoIPManager::loadDatabase()
 {
     if (m_geoIPDatabase) {
         delete m_geoIPDatabase;
-        m_geoIPDatabase = 0;
+        m_geoIPDatabase = nullptr;
     }
 
     QString filepath = Utils::Fs::expandPathAbs(
@@ -407,7 +408,7 @@ void GeoIPManager::configure()
         }
         else if (!m_enabled && m_geoIPDatabase) {
             delete m_geoIPDatabase;
-            m_geoIPDatabase = 0;
+            m_geoIPDatabase = nullptr;
         }
     }
 }

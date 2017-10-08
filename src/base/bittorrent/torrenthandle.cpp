@@ -27,21 +27,23 @@
  * exception statement from your version.
  */
 
+#include "torrenthandle.h"
+
 #include <algorithm>
 #include <type_traits>
 
-#include <QDebug>
-#include <QStringList>
-#include <QFile>
-#include <QDir>
-#include <QByteArray>
 #include <QBitArray>
+#include <QByteArray>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QStringList>
 
-#include <libtorrent/entry.hpp>
-#include <libtorrent/bencode.hpp>
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
+#include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/time.hpp>
@@ -56,13 +58,12 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/string.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "session.h"
+#include "base/utils/string.h"
 #include "peerinfo.h"
+#include "session.h"
 #include "trackerentry.h"
-#include "torrenthandle.h"
 
 const QString QB_EXT {".!qB"};
 
@@ -1180,38 +1181,20 @@ qreal TorrentHandle::distributedCopies() const
     return m_nativeStatus.distributed_copies;
 }
 
-qreal TorrentHandle::maxRatio(bool *usesGlobalRatio) const
+qreal TorrentHandle::maxRatio() const
 {
-    qreal ratioLimit = m_ratioLimit;
+    if (m_ratioLimit == USE_GLOBAL_RATIO)
+        return m_session->globalMaxRatio();
 
-    if (ratioLimit == USE_GLOBAL_RATIO) {
-        ratioLimit = m_session->globalMaxRatio();
-        if (usesGlobalRatio)
-            *usesGlobalRatio = true;
-    }
-    else {
-        if (usesGlobalRatio)
-            *usesGlobalRatio = false;
-    }
-
-    return ratioLimit;
+    return m_ratioLimit;
 }
 
-int TorrentHandle::maxSeedingTime(bool *usesGlobalSeedingTime) const
+int TorrentHandle::maxSeedingTime() const
 {
-    int seedingTimeLimit = m_seedingTimeLimit;
+    if (m_seedingTimeLimit == USE_GLOBAL_SEEDING_TIME)
+        return m_session->globalMaxSeedingMinutes();
 
-    if (seedingTimeLimit == USE_GLOBAL_SEEDING_TIME) {
-        seedingTimeLimit = m_session->globalMaxSeedingMinutes();
-        if (usesGlobalSeedingTime)
-            *usesGlobalSeedingTime = true;
-    }
-    else {
-        if (usesGlobalSeedingTime)
-            *usesGlobalSeedingTime = false;
-    }
-
-    return seedingTimeLimit;
+    return m_seedingTimeLimit;
 }
 
 qreal TorrentHandle::realRatio() const
@@ -1687,8 +1670,8 @@ void TorrentHandle::handleSaveResumeDataAlert(libtorrent::save_resume_data_alert
         resumeData["save_path"] = Profile::instance().toPortablePath(QString::fromStdString(savePath)).toStdString();
     }
     resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance().toPortablePath(m_savePath).toStdString();
-    resumeData["qBt-ratioLimit"] = QString::number(m_ratioLimit).toStdString();
-    resumeData["qBt-seedingTimeLimit"] = QString::number(m_seedingTimeLimit).toStdString();
+    resumeData["qBt-ratioLimit"] = static_cast<int>(m_ratioLimit * 1000);
+    resumeData["qBt-seedingTimeLimit"] = m_seedingTimeLimit;
     resumeData["qBt-category"] = m_category.toStdString();
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();

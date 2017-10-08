@@ -29,11 +29,11 @@
 #ifndef RESUMEDATASAVINGMANAGER_H
 #define RESUMEDATASAVINGMANAGER_H
 
-#include <QObject>
 #include <QByteArray>
 #include <QDir>
+#include <QObject>
 
-class ResumeDataSavingManager: public QObject
+class ResumeDataSavingManager : public QObject
 {
     Q_OBJECT
 
