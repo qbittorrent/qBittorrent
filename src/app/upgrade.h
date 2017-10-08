@@ -195,7 +195,7 @@ bool upgrade(bool ask = true)
             resumeData["qBt-forced"] = false;
 
             resumeData["qBt-savePath"] = oldTorrent.value("save_path").toString().toStdString();
-            resumeData["qBt-ratioLimit"] = QString::number(oldTorrent.value("max_ratio", -2).toReal()).toStdString();
+            resumeData["qBt-ratioLimit"] = static_cast<int>(oldTorrent.value("max_ratio", -2).toReal() * 1000);
             resumeData["qBt-label"] = oldTorrent.value("label").toString().toStdString();
             resumeData["qBt-name"] = oldTorrent.value("name").toString().toStdString();
             resumeData["qBt-seedStatus"] = oldTorrent.value("seed").toBool();

@@ -31,6 +31,7 @@
 
 #include <cstdlib>
 #include <queue>
+#include <string>
 #include <vector>
 
 #include <QCoreApplication>
@@ -4372,7 +4373,12 @@ namespace
 
         torrentData.savePath = Profile::instance().fromPortablePath(
             Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
-        torrentData.ratioLimit = QString::fromStdString(fast.dict_find_string_value("qBt-ratioLimit")).toDouble();
+
+        std::string ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
+        if (ratioLimitString.empty())
+            torrentData.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
+        else
+            torrentData.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
         torrentData.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
         // **************************************************************************************
         // Workaround to convert legacy label to category
