@@ -22,13 +22,8 @@ add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
 add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})
 add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
 
-# os2 {
-#     DEFINES += DQBT_VERSION=\'\"v$${PROJECT_VERSION}\"\'
-#     DEFINES += DQBT_VERSION_2=\'\"$${PROJECT_VERSION}\"\'
-# } else {
 add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
 add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
-# }
 
 if (UNIX AND NOT APPLE)
     include(GNUInstallDirs)

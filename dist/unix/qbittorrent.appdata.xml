@@ -11,7 +11,7 @@
    Aiming to be a good alternative to all other bittorrent clients out
    there, qBittorrent is fast, stable and provides unicode support as well
    as many other features. Additionally, qBittorrent runs and provides those
-   same features on all major platforms (Linux, Mac OS X, Windows, OS/2, FreeBSD).
+   same features on all major platforms (Linux, Mac OS X, Windows, FreeBSD).
   </p>
     <p>
    It is programmed in C++ / Qt and uses libtorrent (sometimes called
