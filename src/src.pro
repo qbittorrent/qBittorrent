@@ -10,7 +10,6 @@ DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
-os2: include(../os2conf.pri)
 
 QT += network xml
 
