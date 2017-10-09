@@ -127,7 +127,7 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
         throw std::logic_error("Unknown FileSystemPathEdit mode");
     }
     if (!selectedPath.isEmpty())
-        q->setEditWidgetText(selectedPath);
+        q->setEditWidgetText(Utils::Fs::toNativePath(selectedPath));
 }
 
 QString FileSystemPathEdit::FileSystemPathEditPrivate::dialogCaptionOrDefault() const
