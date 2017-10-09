@@ -839,9 +839,10 @@ void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
-    m_ui->actionDelete->setShortcut(QKeySequence::Delete);
     m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
+    // actionDelete->setShortcut(QKeySequence::Delete) will cause the following error when pressing del in other widgets:
+    //   QAction::eventFilter: Ambiguous shortcut overload: Del
 
     QShortcut *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
