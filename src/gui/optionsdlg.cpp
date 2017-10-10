@@ -1732,8 +1732,9 @@ bool OptionsDialog::webUIAuthenticationOk()
 
 void OptionsDialog::on_banListButton_clicked()
 {
-    // have to call dialog window
-    BanListOptions(this).exec();
+    // call dialog window
+    if (BanListOptions(this).exec() == QDialog::Accepted)
+        enableApplyButton();
 }
 
 void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
