@@ -70,8 +70,11 @@ void BanListOptions::on_buttonBox_accepted()
             IPList << index.data().toString();
         }
         BitTorrent::Session::instance()->setBannedIPs(IPList);
+        QDialog::accept();
     }
-    QDialog::accept();
+    else {
+        QDialog::reject();
+    }
 }
 
 void BanListOptions::on_buttonBanIP_clicked()
