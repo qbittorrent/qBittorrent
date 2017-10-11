@@ -120,48 +120,35 @@ namespace BitTorrent
         quint32 numPeers = 0;
     };
 
-    class TorrentState
+    enum class TorrentState
     {
-    public:
-        enum
-        {
-            Unknown = -1,
+        Unknown = -1,
 
-            ForcedDownloading,
-            Downloading,
-            DownloadingMetadata,
-            Allocating,
-            StalledDownloading,
+        ForcedDownloading,
+        Downloading,
+        DownloadingMetadata,
+        Allocating,
+        StalledDownloading,
 
-            ForcedUploading,
-            Uploading,
-            StalledUploading,
-
-            QueuedDownloading,
-            QueuedUploading,
-
-            CheckingUploading,
-            CheckingDownloading,
+        ForcedUploading,
+        Uploading,
+        StalledUploading,
 
 #if LIBTORRENT_VERSION_NUM < 10100
-            QueuedForChecking,
+        QueuedForChecking,
 #endif
-            CheckingResumeData,
+        CheckingResumeData,
+        QueuedDownloading,
+        QueuedUploading,
 
-            PausedDownloading,
-            PausedUploading,
+        CheckingUploading,
+        CheckingDownloading,
 
-            MissingFiles,
-            Error
-        };
+        PausedDownloading,
+        PausedUploading,
 
-        TorrentState(int value);
-
-        operator int() const;
-        QString toString() const;
-
-    private:
-        int m_value;
+        MissingFiles,
+        Error
     };
 
     class TorrentHandle : public QObject
@@ -473,5 +460,7 @@ namespace BitTorrent
         QHash<QString, TrackerInfo> m_trackerInfos;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::TorrentState)
 
 #endif // BITTORRENT_TORRENTHANDLE_H
