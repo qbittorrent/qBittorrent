@@ -28,6 +28,10 @@
 
 #include "webui.h"
 
+#ifdef DISABLE_GUI
+#include <QCoreApplication>
+#endif
+
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
@@ -90,10 +94,17 @@ void WebUI::init()
 
         if (!m_httpServer->isListening()) {
             bool success = m_httpServer->listen(QHostAddress::Any, m_port);
-            if (success)
+            if (success) {
                 logger->addMessage(tr("Web UI: Now listening on port %1").arg(m_port));
-            else
-                logger->addMessage(tr("Web UI: Unable to bind to port %1").arg(m_port), Log::CRITICAL);
+            }
+            else {
+                const QString errorMsg = tr("Web UI: Unable to bind to port %1. %2").arg(m_port).arg(m_httpServer->errorString());
+                logger->addMessage(errorMsg, Log::CRITICAL);
+#ifdef DISABLE_GUI
+                qCritical() << errorMsg;
+                QCoreApplication::exit(1);
+#endif
+            }
         }
 
         // DynDNS
