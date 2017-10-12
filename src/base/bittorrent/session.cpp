@@ -2317,6 +2317,15 @@ void Session::generateResumeData(bool final)
         if (torrent->isChecking() || torrent->hasError()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
 
+        // If we're shutting down, only bother saving fastresume data for the torrents currently
+        // downloading. This ensures that we don't end up slowing down shutdown hugely for lots of
+        // torrents that haven't actually changed.  Note: this does mean that some data may be
+        // innacurate.  For example, completed torrents may not have their seeding/ratio statistics
+        // saved on shutdown.  That's ok though as this data will still have been updated as
+        // qBitorrent was running.  So the statistics will only miss what happened since that last
+        // write up to closing the app.
+        if (final && !torrent->isDownloading()) continue;
+
         saveTorrentResumeData(torrent, final);
         qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
     }
