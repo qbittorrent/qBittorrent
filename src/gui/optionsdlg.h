@@ -168,7 +168,6 @@ private:
     int getMaxActiveUploads() const;
     int getMaxActiveTorrents() const;
     bool isWebUiEnabled() const;
-    quint16 webUiPort() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
 
