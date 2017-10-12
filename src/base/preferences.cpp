@@ -463,6 +463,16 @@ void Preferences::setServerDomains(const QString &str)
     setValue("Preferences/WebUI/ServerDomains", str);
 }
 
+QString Preferences::getWebUiAddress() const
+{
+    return value("Preferences/WebUI/Address", "*").toString().trimmed();
+}
+
+void Preferences::setWebUiAddress(const QString &addr)
+{
+    setValue("Preferences/WebUI/Address", addr.trimmed());
+}
+
 quint16 Preferences::getWebUiPort() const
 {
     return value("Preferences/WebUI/Port", 8080).toInt();

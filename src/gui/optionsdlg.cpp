@@ -340,6 +340,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Web UI tab
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUi, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUiAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinWebUiPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -648,7 +649,8 @@ void OptionsDialog::saveOptions()
     pref->setWebUiEnabled(isWebUiEnabled());
     if (isWebUiEnabled()) {
         pref->setServerDomains(m_ui->textServerDomains->text());
-        pref->setWebUiPort(webUiPort());
+        pref->setWebUiAddress(m_ui->textWebUiAddress->text());
+        pref->setWebUiPort(m_ui->spinWebUiPort->value());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
         if (m_ui->checkWebUiHttps->isChecked()) {
@@ -1038,6 +1040,7 @@ void OptionsDialog::loadOptions()
     // Web UI preferences
     m_ui->textServerDomains->setText(pref->getServerDomains());
     m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
+    m_ui->textWebUiAddress->setText(pref->getWebUiAddress());
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
     m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
@@ -1503,11 +1506,6 @@ QString OptionsDialog::getFilter() const
 bool OptionsDialog::isWebUiEnabled() const
 {
     return m_ui->checkWebUi->isChecked();
-}
-
-quint16 OptionsDialog::webUiPort() const
-{
-    return m_ui->spinWebUiPort->value();
 }
 
 QString OptionsDialog::webUiUsername() const

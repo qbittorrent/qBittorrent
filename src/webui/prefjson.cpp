@@ -163,6 +163,7 @@ QByteArray prefjson::getPreferences()
     data["locale"] = pref->getLocale();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
+    data["web_ui_address"] = pref->getWebUiAddress();
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
     data["use_https"] = pref->isWebUiHttpsEnabled();
@@ -399,6 +400,8 @@ void prefjson::setPreferences(const QString& json)
     // HTTP Server
     if (m.contains("web_ui_domain_list"))
         pref->setServerDomains(m["web_ui_domain_list"].toString());
+    if (m.contains("web_ui_address"))
+        pref->setWebUiAddress(m["web_ui_address"].toString());
     if (m.contains("web_ui_port"))
         pref->setWebUiPort(m["web_ui_port"].toUInt());
     if (m.contains("web_ui_upnp"))

@@ -2758,29 +2758,23 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_10">
-                 <item>
-                  <widget class="QLabel" name="labelServerDomains">
-                   <property name="text">
-                    <string>Server domains:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="textServerDomains">
-                   <property name="toolTip">
-                    <string>Whitelist for filtering HTTP Host header values.
-In order to defend against DNS rebinding attack,
-you should put in domain names used by WebUI server.
-
-Use ';' to split multiple entries. Can use wildcard '*'.</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="lblWebUiAddress">
+                   <property name="text">
+                    <string>IP address:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textWebUiAddress">
+                   <property name="toolTip">
+                    <string>IP address that the Web UI will bind to.
+Specify an IPv4 or IPv6 address. You can specify "0.0.0.0" for any IPv4 address,
+"::" for any IPv6 address, or "*" for both IPv4 and IPv6.</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QLabel" name="lblWebUiPort">
                    <property name="text">
@@ -2801,18 +2795,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </property>
                   </widget>
                  </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                  <widget class="QLabel" name="labelServerDomains">
+                   <property name="text">
+                    <string>Server domains:</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>21</width>
-                     <height>29</height>
-                    </size>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textServerDomains">
+                   <property name="toolTip">
+                    <string>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </property>
-                  </spacer>
+                  </widget>
                  </item>
                 </layout>
                </item>

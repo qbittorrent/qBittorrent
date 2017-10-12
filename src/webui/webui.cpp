@@ -93,7 +93,11 @@ void WebUI::init()
 #endif
 
         if (!m_httpServer->isListening()) {
-            bool success = m_httpServer->listen(QHostAddress::Any, m_port);
+            const QString addressString = pref->getWebUiAddress();
+            const auto address = (addressString == "*" || addressString.isEmpty())
+                ? QHostAddress::Any : QHostAddress(addressString);
+
+            bool success = m_httpServer->listen(address, m_port);
             if (success) {
                 logger->addMessage(tr("Web UI: Now listening on port %1").arg(m_port));
             }
