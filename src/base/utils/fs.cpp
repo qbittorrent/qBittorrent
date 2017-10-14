@@ -30,6 +30,10 @@
 
 #include "fs.h"
 
+#include <cstring>
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -47,6 +51,7 @@
 #include <kernel/fs_info.h>
 #else
 #include <sys/vfs.h>
+#include <unistd.h>
 #endif
 
 #include "base/bittorrent/torrenthandle.h"
@@ -280,4 +285,18 @@ QString Utils::Fs::tempPath()
     static const QString path = QDir::tempPath() + "/.qBittorrent/";
     QDir().mkdir(path);
     return path;
+}
+
+bool Utils::Fs::isRegularFile(const QString &path)
+{
+    struct ::stat st;
+    if (::stat(path.toUtf8().constData(), &st) != 0) {
+        //  analyse erno and log the error
+        const auto err = errno;
+        qDebug("Could not get file stats for path '%s'. Error: %s"
+               , qUtf8Printable(path), qUtf8Printable(strerror(err)));
+        return false;
+    }
+
+    return (st.st_mode & S_IFMT) == S_IFREG;
 }

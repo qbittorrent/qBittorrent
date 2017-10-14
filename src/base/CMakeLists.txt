@@ -19,6 +19,7 @@ bittorrent/torrentinfo.h
 bittorrent/tracker.h
 bittorrent/trackerentry.h
 http/connection.h
+http/httperror.h
 http/irequesthandler.h
 http/requestparser.h
 http/responsebuilder.h
@@ -85,6 +86,7 @@ bittorrent/torrentinfo.cpp
 bittorrent/tracker.cpp
 bittorrent/trackerentry.cpp
 http/connection.cpp
+http/httperror.cpp
 http/requestparser.cpp
 http/responsebuilder.cpp
 http/responsegenerator.cpp

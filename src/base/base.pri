@@ -21,6 +21,7 @@ HEADERS += \
     $$PWD/filesystemwatcher.h \
     $$PWD/global.h \
     $$PWD/http/connection.h \
+    $$PWD/http/httperror.h \
     $$PWD/http/irequesthandler.h \
     $$PWD/http/requestparser.h \
     $$PWD/http/responsebuilder.h \
@@ -86,6 +87,7 @@ SOURCES += \
     $$PWD/exceptions.cpp \
     $$PWD/filesystemwatcher.cpp \
     $$PWD/http/connection.cpp \
+    $$PWD/http/httperror.cpp \
     $$PWD/http/requestparser.cpp \
     $$PWD/http/responsebuilder.cpp \
     $$PWD/http/responsegenerator.cpp \
