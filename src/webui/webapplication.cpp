@@ -262,12 +262,12 @@ void WebApplication::action_public_images()
 void WebApplication::action_query_torrents()
 {
     CHECK_URI(0);
-    const QStringMap& gets = request().gets;
 
+    const QStringMap &gets = request().gets;
     print(btjson::getTorrents(
-        gets["filter"], gets["category"], gets["sort"], gets["reverse"] == "true",
-        gets["limit"].toInt(), gets["offset"].toInt()
-        ), Http::CONTENT_TYPE_JSON);
+            gets["filter"], gets["category"], gets["sort"], parseBool(gets["reverse"], false),
+            gets["limit"].toInt(), gets["offset"].toInt())
+        , Http::CONTENT_TYPE_JSON);
 }
 
 void WebApplication::action_query_preferences()
@@ -315,18 +315,18 @@ void WebApplication::action_query_propertiesFiles()
 void WebApplication::action_query_getLog()
 {
     CHECK_URI(0);
-    bool normal = request().gets["normal"] != "false";
-    bool info = request().gets["info"] != "false";
-    bool warning = request().gets["warning"] != "false";
-    bool critical = request().gets["critical"] != "false";
-    int lastKnownId;
-    bool ok;
 
-    lastKnownId = request().gets["last_known_id"].toInt(&ok);
+    const bool isNormal = parseBool(request().gets["normal"], true);
+    const bool isInfo = parseBool(request().gets["info"], true);
+    const bool isWarning = parseBool(request().gets["warning"], true);
+    const bool isCritical = parseBool(request().gets["critical"], true);
+
+    bool ok = false;
+    int lastKnownId = request().gets["last_known_id"].toInt(&ok);
     if (!ok)
         lastKnownId = -1;
 
-    print(btjson::getLog(normal, info, warning, critical, lastKnownId), Http::CONTENT_TYPE_JSON);
+    print(btjson::getLog(isNormal, isInfo, isWarning, isCritical, lastKnownId), Http::CONTENT_TYPE_JSON);
 }
 
 // GET params:
@@ -698,8 +698,9 @@ void WebApplication::action_command_setSuperSeeding()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes" << "value");
-    bool value = request().posts["value"] == "true";
-    QStringList hashes = request().posts["hashes"].split('|');
+
+    const bool value = parseBool(request().posts["value"], false);
+    const QStringList hashes = request().posts["hashes"].split('|');
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent)
@@ -711,8 +712,9 @@ void WebApplication::action_command_setForceStart()
 {
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes" << "value");
-    bool value = request().posts["value"] == "true";
-    QStringList hashes = request().posts["hashes"].split('|');
+
+    const bool value = parseBool(request().posts["value"], false);
+    const QStringList hashes = request().posts["hashes"].split('|');
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent)
@@ -840,13 +842,12 @@ void WebApplication::action_command_setAutoTMM()
     CHECK_URI(0);
     CHECK_PARAMETERS("hashes" << "enable");
 
-    QStringList hashes = request().posts["hashes"].split('|');
-    QString enableStr = request().posts["enable"];
-
+    const QStringList hashes = request().posts["hashes"].split('|');
+    const bool isEnabled = parseBool(request().posts["enable"], false);
     foreach (const QString &hash, hashes) {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent)
-            torrent->setAutoTMMEnabled(QString::compare(enableStr, "true", Qt::CaseInsensitive) == 0);
+            torrent->setAutoTMMEnabled(isEnabled);
     }
 }
 

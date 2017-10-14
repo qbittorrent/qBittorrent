@@ -79,8 +79,8 @@ protected:
     static QString saveTmpFile(const QByteArray &data);
 
     WebSessionData *session();
-    Http::Request request() const { return request_; }
-    Http::Environment env() const { return env_; }
+    const Http::Request &request() const { return request_; }
+    const Http::Environment &env() const { return env_; }
 
 private slots:
     void UnbanTimerEvent();
