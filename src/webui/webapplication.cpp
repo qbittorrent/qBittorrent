@@ -414,11 +414,16 @@ void WebApplication::action_command_download()
 
     const QString urls = request().posts.value("urls");
     const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
+    const bool seqDownload = parseBool(request().posts.value("sequentialDownload"), false);
+    const bool firstLastPiece = parseBool(request().posts.value("firstLastPiecePrio"), false);
     const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
     const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
     const QString cookie = request().posts.value("cookie");
+    const QString torrentName = request().posts.value("rename").trimmed();
+    const int upLimit = request().posts.value("upLimit").toInt();
+    const int dlLimit = request().posts.value("dlLimit").toInt();
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty()) {
@@ -437,10 +442,15 @@ void WebApplication::action_command_download()
     BitTorrent::AddTorrentParams params;
     // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
+    params.sequential = seqDownload;
+    params.firstLastPiecePriority = firstLastPiece;
     params.addPaused = addPaused;
     params.createSubfolder = rootFolder;
     params.savePath = savepath;
     params.category = category;
+    params.name = torrentName;
+    params.uploadLimit = (upLimit > 0) ? upLimit : -1;
+    params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
 
     bool partialSuccess = false;
     for (QString url : urls.split('\n')) {
@@ -462,10 +472,15 @@ void WebApplication::action_command_upload()
     CHECK_URI(0);
 
     const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
+    const bool seqDownload = parseBool(request().posts.value("sequentialDownload"), false);
+    const bool firstLastPiece = parseBool(request().posts.value("firstLastPiecePrio"), false);
     const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
     const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
+    const QString torrentName = request().posts.value("rename").trimmed();
+    const int upLimit = request().posts.value("upLimit").toInt();
+    const int dlLimit = request().posts.value("dlLimit").toInt();
 
     for (const Http::UploadedFile &torrent : request().files) {
         const QString filePath = saveTmpFile(torrent.data);
@@ -485,10 +500,15 @@ void WebApplication::action_command_upload()
             BitTorrent::AddTorrentParams params;
             // TODO: Check if destination actually exists
             params.skipChecking = skipChecking;
+            params.sequential = seqDownload;
+            params.firstLastPiecePriority = firstLastPiece;
             params.addPaused = addPaused;
             params.createSubfolder = rootFolder;
             params.savePath = savepath;
             params.category = category;
+            params.name = torrentName;
+            params.uploadLimit = (upLimit > 0) ? upLimit : -1;
+            params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
 
             if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                 status(500, "Internal Server Error");

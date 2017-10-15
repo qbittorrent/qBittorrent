@@ -104,6 +104,8 @@ namespace BitTorrent
         bool hasRootFolder;
         bool addForced;
         bool addPaused;
+        int uploadLimit;
+        int downloadLimit;
         // for new torrents
         QVector<int> filePriorities;
         // for resumed torrents

@@ -1,29 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css" />
-	<link rel="stylesheet" href="css/Window.css" type="text/css" />
-	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/download.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/Window.css" type="text/css" />
+    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/download.js" charset="utf-8"></script>
 </head>
 <body>
 <iframe id="upload_frame" name="upload_frame" class="invisible" src="javascript:false;"></iframe>
 <form action="command/upload" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame">
 <p>
-	<div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
-		<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
-	</div>
+    <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
+        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
+    </div>
 </p>
 <fieldset class="settings" style="border: 0; text-align: left;">
 <div class="formRow" style="margin-top: 12px;">
         <label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
-	<input type="text" id="savepath" name="savepath" style="width: 16em;"/>
+    <input type="text" id="savepath" name="savepath" style="width: 16em;"/>
+</div>
+<div class="formRow">
+    <label for="rename" class="leftLabelLarge">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="rename" style="width: 16em;"/>
 </div>
 <div class="formRow">
     <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-	<input type="text" id="category" name="category"/ style="width: 16em;"/>
+    <input type="text" id="category" name="category" style="width: 16em;"/>
 </div>
 <div class="formRow">
     <label for="start_torrent" class="leftLabelLarge">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
@@ -38,6 +42,22 @@
     <label for="root_folder" class="leftLabelLarge">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
     <input type="checkbox" name="root_folder" value="true" checked="checked"/>
 </div>
+<div class="formRow">
+    <label for="sequentialDownload" class="leftLabelLarge">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
+    <input type="checkbox" name="sequentialDownload" value="true"/>
+</div>
+<div class="formRow">
+    <label for="firstLastPiecePrio" class="leftLabelLarge">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
+    <input type="checkbox" name="firstLastPiecePrio" value="true"/>
+</div>
+<div class="formRow">
+    <label for="dlLimit" class="leftLabelLarge">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="dlLimit" style="width: 16em;" placeholder="Bytes/s"/>
+</div>
+<div class="formRow">
+    <label for="upLimit" class="leftLabelLarge">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
+    <input type="text" name="upLimit" style="width: 16em;" placeholder="Bytes/s"/>
+</div>
 <div id="submitbutton" style="margin-top: 30px; text-align: center;">
         <button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR[CONTEXT=HttpServer]</button>
 </div>
@@ -48,13 +68,13 @@
 var submitted = false;
 
 $('uploadForm').addEventListener("submit", function() {
-	$('upload_spinner').style.display = "block";
-	submitted = true;
+    $('upload_spinner').style.display = "block";
+    submitted = true;
 });
 
 $('upload_frame').addEventListener("load", function() {
-	if (submitted)
-		window.parent.closeWindows();
+    if (submitted)
+        window.parent.closeWindows();
 });
 
 $('start_torrent').addEventListener('change', function() {
