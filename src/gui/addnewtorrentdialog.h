@@ -53,18 +53,24 @@ namespace Ui
 class TorrentContentFilterModel;
 class TorrentFileGuard;
 class PropListDelegate;
+template <typename T> class CachedSettingValue;
 
 class AddNewTorrentDialog: public QDialog
 {
     Q_OBJECT
 
 public:
+    static constexpr int minPathHistoryLength = 0;
+    static constexpr int maxPathHistoryLength = 99;
+
     ~AddNewTorrentDialog();
 
     static bool isEnabled();
     static void setEnabled(bool value);
     static bool isTopLevel();
     static void setTopLevel(bool value);
+    static int savePathHistoryLength();
+    static void setSavePathHistoryLength(int value);
 
     static void show(QString source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
     static void show(QString source, QWidget *parent);
@@ -99,6 +105,7 @@ private:
     void setupTreeview();
     void setCommentText(const QString &str) const;
     void setSavePath(const QString &newPath);
+    static CachedSettingValue<int> &savePathHistoryLengthSetting();
 
     void showEvent(QShowEvent *event) override;
 

@@ -37,6 +37,7 @@
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
+#include "gui/addnewtorrentdialog.h"
 #include "gui/mainwindow.h"
 
 enum AdvSettingsCols
@@ -69,6 +70,7 @@ enum AdvSettingsRows
     TORRENT_ADDED_NOTIFICATIONS,
     CONFIRM_REMOVE_ALL_TAGS,
     DOWNLOAD_TRACKER_FAVICON,
+    SAVE_PATH_HISTORY_LENGTH,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
@@ -197,6 +199,7 @@ void AdvancedSettings::saveAdvancedSettings()
     mainWindow->setTorrentAddedNotificationsEnabled(cb_torrent_added_notifications.isChecked());
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(cb_tracker_favicon.isChecked());
+    AddNewTorrentDialog::setSavePathHistoryLength(spinSavePathHistoryLength.value());
 
     // Tracker
     session->setTrackerEnabled(cb_tracker_status.isChecked());
@@ -420,7 +423,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Download tracker's favicon
     cb_tracker_favicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &cb_tracker_favicon);
-
+    // Save path history length
+    spinSavePathHistoryLength.setRange(AddNewTorrentDialog::minPathHistoryLength, AddNewTorrentDialog::maxPathHistoryLength);
+    spinSavePathHistoryLength.setValue(AddNewTorrentDialog::savePathHistoryLength());
+    addRow(SAVE_PATH_HISTORY_LENGTH, tr("Save path history length"), &spinSavePathHistoryLength);
     // Tracker State
     cb_tracker_status.setChecked(session->isTrackerEnabled());
     addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);
