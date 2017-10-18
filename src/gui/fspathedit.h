@@ -143,6 +143,9 @@ public:
     int currentIndex() const;
     void setCurrentIndex(int index);
 
+    int maxVisibleItems() const;
+    void setMaxVisibleItems(int maxItems);
+
 private:
     QString editWidgetText() const override;
     void setEditWidgetText(const QString &text) override;
