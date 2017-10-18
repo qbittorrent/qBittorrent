@@ -29,7 +29,6 @@
 #ifndef SETTINGVALUE_H
 #define SETTINGVALUE_H
 
-#include <functional>
 #include <type_traits>
 #include <QMetaEnum>
 #include <QString>
@@ -40,8 +39,6 @@
 template <typename T>
 class CachedSettingValue
 {
-    using ProxyFunc = std::function<T (const T&)>;
-
 public:
     explicit CachedSettingValue(const char *keyName, const T &defaultValue = T())
         : m_keyName(QLatin1String(keyName))
@@ -49,8 +46,9 @@ public:
     {
     }
 
+    template <typename ProxyFunc>
     explicit CachedSettingValue(const char *keyName, const T &defaultValue
-            , const ProxyFunc &proxyFunc)
+            , ProxyFunc proxyFunc)
         : m_keyName(QLatin1String(keyName))
         , m_value(proxyFunc(loadValue(defaultValue)))
     {
