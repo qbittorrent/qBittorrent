@@ -44,10 +44,10 @@ Images Authors:
   license: LGPL
   url: http://www.oxygen-icons.org
 
-* files: src/icons/flags/*.png
-  copyright: Mark James <mjames@gmail.com>
-  license: Public Domain
-  url: http://www.famfamfam.com
+* files: src/icons/flags/*.svg
+  copyright: lipis/flag-icon-css
+  license: MIT
+  url: https://github.com/lipis/flag-icon-css/
 
 * files: src/icons/skin/*.png
   files: src/menuicons/YYxYY/*.png
