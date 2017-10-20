@@ -40,6 +40,7 @@
 #include <QTimer>
 #include <QUrl>
 
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
@@ -409,11 +410,25 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
     }
 
     // sent with CORS requests, as well as with POST requests
-    if (!originValue.isEmpty())
-        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), originValue);
+    if (!originValue.isEmpty()) {
+        const bool isInvalid = !isSameOrigin(QUrl::fromUserInput(targetOrigin), originValue);
+        if (isInvalid)
+            Logger::instance()->addMessage(tr("WebUI: Origin header & Target origin mismatch!") + "\n"
+                + tr("Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
+                    .arg(env_.clientAddress.toString()).arg(originValue).arg(targetOrigin)
+                , Log::WARNING);
+        return isInvalid;
+    }
 
-    if (!refererValue.isEmpty())
-        return !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
+    if (!refererValue.isEmpty()) {
+        const bool isInvalid = !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
+        if (isInvalid)
+            Logger::instance()->addMessage(tr("WebUI: Referer header & Target origin mismatch!") + "\n"
+                + tr("Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
+                    .arg(env_.clientAddress.toString()).arg(refererValue).arg(targetOrigin)
+                , Log::WARNING);
+        return isInvalid;
+    }
 
     return true;
 }
@@ -421,15 +436,18 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
 bool AbstractWebApplication::validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const
 {
     const QUrl hostHeader = QUrl::fromUserInput(request.headers.value(Http::HEADER_HOST));
+    const QString requestHost = hostHeader.host();
 
     // (if present) try matching host header's port with local port
     const int requestPort = hostHeader.port();
-    if ((requestPort != -1) && (env.localPort != requestPort))
+    if ((requestPort != -1) && (env.localPort != requestPort)) {
+        Logger::instance()->addMessage(tr("WebUI: Invalid Host header, port mismatch") + "\n"
+                + tr("Source IP: '%1'. Received Host header: '%2'").arg(env.clientAddress.toString()).arg(requestHost)
+            , Log::WARNING);
         return false;
+    }
 
     // try matching host header with local address
-    const QString requestHost = hostHeader.host();
-
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
     const bool sameAddr = env.localAddress.isEqual(QHostAddress(requestHost));
 #else
@@ -453,6 +471,9 @@ bool AbstractWebApplication::validateHostHeader(const Http::Request &request, co
             return true;
     }
 
+    Logger::instance()->addMessage(tr("WebUI: Invalid Host header") + "\n"
+            + tr("Source IP: '%1'. Received Host header: '%2'").arg(env.clientAddress.toString()).arg(requestHost)
+        , Log::WARNING);
     return false;
 }
 
