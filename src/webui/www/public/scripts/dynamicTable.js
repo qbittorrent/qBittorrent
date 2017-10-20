@@ -1177,7 +1177,7 @@ var TorrentPeersTable = new Class({
                     return;
                 }
 
-                var img_path = 'images/flags/' + country_code + '.png';
+                var img_path = 'images/flags/' + country_code + '.svg';
 
                 if (td.getChildren('img').length) {
                     var img = td.getChildren('img')[0];

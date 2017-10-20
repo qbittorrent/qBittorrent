@@ -414,7 +414,7 @@ void OptionsDialog::initializeLanguageCombo()
             QLocale locale(localeStr);
             languageName = languageToLocalizedString(locale);
         }
-        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".png"), */ languageName, localeStr);
+        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ languageName, localeStr);
         qDebug() << "Supported locale:" << localeStr;
     }
 }
