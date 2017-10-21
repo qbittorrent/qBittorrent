@@ -78,6 +78,11 @@ tr.dynamicTableHeader {
     white-space: nowrap;
 }
 
+.dynamicTable td img.flags {
+    height: 1.25em;
+    vertical-align: middle;
+}
+
 .dynamicTableFixedHeaderDiv {
     overflow: hidden;
 }
