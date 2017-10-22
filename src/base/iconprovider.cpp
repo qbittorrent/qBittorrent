@@ -33,9 +33,21 @@
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)
 {
+    setIconDir(defaultIconDir());
 }
 
-IconProvider::~IconProvider() {}
+IconProvider::~IconProvider() = default;
+
+void IconProvider::setIconDir(const QString& path)
+{
+    m_iconThemeDir = QDir(path);
+    Q_ASSERT(m_iconThemeDir.exists());
+}
+
+QString IconProvider::defaultIconDir()
+{
+    return QLatin1String(":/icons/qbt-theme/");
+}
 
 void IconProvider::initInstance()
 {
@@ -58,7 +70,7 @@ IconProvider *IconProvider::instance()
 
 QString IconProvider::getIconPath(const QString &iconId)
 {
-    return ":/icons/qbt-theme/" + iconId + ".png";
+    return m_iconThemeDir.absoluteFilePath(iconId + QLatin1String(".svg"));
 }
 
 IconProvider *IconProvider::m_instance = 0;

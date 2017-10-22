@@ -34,6 +34,8 @@
 
 #include <QDebug>
 
+#include "theme/colortheme.h"
+
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : base {parent}
 {
@@ -160,8 +162,14 @@ void PieceAvailabilityBar::clear()
 
 QString PieceAvailabilityBar::simpleToolTipText() const
 {
-    return tr("White: Unavailable pieces") + '\n'
-           + tr("Blue: Available pieces") + '\n';
+    return QString(QLatin1String(R"(<table style="width:100%; cellspacing=4">)"
+                                 R"(<tr><td bgcolor="%1">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;: %2</td></tr>)"
+                                 R"(<tr><td bgcolor="%3">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;: %4</td></tr>)"
+                                 R"(</table>)"))
+        .arg(Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Background).name())
+        .arg(tr("Unavailable pieces"))
+        .arg(Theme::ColorTheme::current().downloadProgressBarColor(Theme::DownloadProgressBarElement::Complete).name())
+        .arg(tr("Available pieces"));
 }
 
 bool PieceAvailabilityBar::isFileNameCorrectionNeeded() const

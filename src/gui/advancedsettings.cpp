@@ -69,9 +69,6 @@ enum AdvSettingsRows
     TORRENT_ADDED_NOTIFICATIONS,
     CONFIRM_REMOVE_ALL_TAGS,
     DOWNLOAD_TRACKER_FAVICON,
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    USE_ICON_THEME,
-#endif
 
     // libtorrent section
     LIBTORRENT_HEADER,
@@ -207,10 +204,6 @@ void AdvancedSettings::saveAdvancedSettings()
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     pref->setUpdateCheckEnabled(cb_update_check.isChecked());
-#endif
-    // Icon theme
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    pref->useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(cb_confirm_torrent_recheck.isChecked());
 
@@ -439,10 +432,6 @@ void AdvancedSettings::loadAdvancedSettings()
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     cb_update_check.setChecked(pref->isUpdateCheckEnabled());
     addRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
-#endif
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    cb_use_icon_theme.setChecked(pref->useSystemIconTheme());
-    addRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
 #endif
     // Torrent recheck confirmation
     cb_confirm_torrent_recheck.setChecked(pref->confirmTorrentRecheck());

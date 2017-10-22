@@ -61,6 +61,8 @@
 #include "transferlistdelegate.h"
 #include "transferlistsortmodel.h"
 #include "updownratiodlg.h"
+#include "theme/fonttheme.h"
+#include "theme/themeprovider.h"
 
 namespace
 {
@@ -296,6 +298,10 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     unused.setVerticalHeader(header());
     header()->setParent(this);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
+
+    applyFontTheme();
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::fontThemeChanged,
+            this, &TransferListWidget::applyFontTheme);
 }
 
 TransferListWidget::~TransferListWidget()
@@ -844,7 +850,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionDelete, SIGNAL(triggered()), this, SLOT(softDeleteSelectedTorrents()));
     QAction actionPreview_file(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), 0);
     connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
-    QAction actionSet_max_ratio(QIcon(QString::fromUtf8(":/icons/skin/ratio.png")), tr("Limit share ratio..."), 0);
+    QAction actionSet_max_ratio(QIcon(QString::fromUtf8(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), 0);
     connect(&actionSet_max_ratio, SIGNAL(triggered()), this, SLOT(setMaxRatioSelectedTorrents()));
     QAction actionSet_upload_limit(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), 0);
     connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
@@ -1193,4 +1199,14 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     }
 
     QTreeView::wheelEvent(event);  // event delegated to base class
+}
+
+void TransferListWidget::applyFontTheme()
+{
+    QFont font = Theme::FontTheme::current().font(Theme::FontThemeElement::TransferList);
+    setFont(font);
+    header()->setFont(font);
+    foreach (QWidget *widget, header()->findChildren<QWidget*>()) {
+        widget->setFont(font);
+    }
 }

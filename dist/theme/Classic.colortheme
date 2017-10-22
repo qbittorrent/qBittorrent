@@ -1,0 +1,24 @@
+[Info]
+Name=Classic
+Description=Classic qBittorrent colors.
+
+[TorrentState]
+Unknown=RGB:#ff0000
+Error=RGB:#ff0000
+MissingFiles=RGB:#ff0000
+Uploading=RGB:#ffa500
+PausedUploading=RGB:#ff0000
+QueuedUploading=RGB:#008080
+StalledUploading=RGB:#808080
+CheckingUploading=RGB:#808080
+ForcedUploading=RGB:#ffa500
+Allocating=RGB:#808080
+Downloading=RGB:#008000
+DownloadingMetadata=RGB:#008000
+PausedDownloading=RGB:#ff0000
+QueuedDownloading=RGB:#008080
+StalledDownloading=RGB:#808080
+CheckingDownloading=RGB:#808080
+ForcedDownloading=RGB:#008000
+QueuedForChecking=RGB:#808080
+CheckingResumeData=RGB:#808080

@@ -1,0 +1,8 @@
+[Info]
+Name=Default
+Description=Default qBittorrent font theme.
+
+[Fonts]
+TransferList=QFont:
+TorrentProperties=QFont:
+ExecutionLog=QFont:

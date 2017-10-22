@@ -1,0 +1,27 @@
+[Info]
+Name=Default (Dark)
+Description=Default qBittorrent color theme. Dark flavour.
+Inherits=Default (Light)
+
+[TorrentState]
+Uploading=RGB:#63b8ff
+PausedUploading=RGB:#4f94cd
+QueuedUploading=RGB:#00cdcd
+StalledUploading=RGB:#cccccc
+CheckingUploading=RGB:#00cdcd
+ForcedUploading=RGB:#63b8ff
+Allocating=RGB:#cccccc
+Downloading=RGB:#32cd32
+DownloadingMetadata=RGB:#32cd32
+PausedDownloading=RGB:#fa8072
+QueuedDownloading=RGB:#00cdcd
+StalledDownloading=RGB:#cccccc
+CheckingDownloading=RGB:#00cdcd
+ForcedDownloading=RGB:#32cd32
+QueuedForChecking=RGB:#00cdcd
+CheckingResumeData=RGB:#00cdcd
+
+[LogMessageType]
+INFO=RGB:lightblue
+WARNING=RGB:lightsalmon
+CRITICAL=RGB:red

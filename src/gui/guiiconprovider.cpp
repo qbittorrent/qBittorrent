@@ -28,19 +28,107 @@
  */
 
 #include "guiiconprovider.h"
-#include "base/preferences.h"
 
+#include <fstream>
+#include <regex>
+#include <stdexcept>
+#include <sstream>
+
+#include <QColor>
+#include <QCoreApplication>
+#include <QDir>
+#include <QFile>
 #include <QIcon>
+#include <QPainter>
+#include <QPalette>
+#include <QRect>
+#include <QStandardPaths>
+#include <QTransform>
+
+#include "base/preferences.h"
+#include "base/settingvalue.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "theme/colortheme.h"
+#include "theme/themeprovider.h"
+
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>
 #include <QFile>
 #endif
 
-GuiIconProvider::GuiIconProvider(QObject *parent)
-    : IconProvider(parent)
+namespace
 {
-    configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    const QLatin1String speedometerIconName {"speedometer"};
+    const QLatin1String speedometerFlippedIconName {"speedometer-flipped"};
+}
+
+class GuiIconProvider::SVGManipulator
+{
+public:
+    SVGManipulator();
+
+    void replaceSVGFillColor(const QString& svgFile, const QString &newSvgFile, const QColor& newColor);
+private:
+    // !! Both regular expressions contain the same number of caption groups !!
+    // matches "color:xxxxx"
+    std::regex m_cssColorRegex;
+    // matches "fill="color" or "fill:color;"
+    std::regex m_fillColorRegex;
+};
+
+GuiIconProvider::SVGManipulator::SVGManipulator()
+    : m_cssColorRegex(R"regex((color)(:"?)[^;|^\s]+(;"?))regex")
+    , m_fillColorRegex(R"regex(( fill)(:|=")(?:(?!none|;|").)+(;|"))regex")
+{
+}
+
+void GuiIconProvider::SVGManipulator::replaceSVGFillColor(const QString& svgFile, const QString &newSvgFile,
+                                                          const QColor& newColor)
+{
+    // TODO detect and upack zipped SVGs
+    QFile inp(svgFile);
+    if (!inp.open(QIODevice::ReadOnly))
+        throw std::runtime_error("Could not read input file");
+
+    std::ofstream res(newSvgFile.toStdString());
+
+    if (res.fail())
+        throw std::runtime_error("Could not create result file");
+
+    Q_ASSERT(inp.size() < 100 * 1024); // SVG icons are small files
+
+    std::stringstream svgContentsStream;
+    svgContentsStream << inp.readAll().constData();
+    std::string svgContents = svgContentsStream.str();
+
+    // we support two types of colored icons:
+    // 1) the file defines CSS classes, that contains 'color:#xxxxxx;'
+    // 2) the file uses 'fill' attribute with explicit colors.
+
+    // in case 1) we replace only CSS styled colors, in case 2) we replace color in all 'fill'
+    // attributes
+    // this code probably needs to be re-written using XML parser if the number of cases increases
+
+    const bool svgContainsCSSStyles = svgContents.find("style type=\"text/css\"") != std::string::npos;
+
+    res << std::regex_replace(svgContents,
+                                svgContainsCSSStyles ? m_cssColorRegex : m_fillColorRegex,
+                                "$1$2" + newColor.name().toStdString() + "$3");
+}
+
+GuiIconProvider::GuiIconProvider(QObject *parent)
+    : IconProvider {parent}
+    , m_iconsTemporaryDir {temporaryDirForIcons()}
+    , m_coloredIconsDir(m_iconsTemporaryDir.path() + QDir::separator() + QLatin1String("colorized"))
+    , m_svgManipulator(new SVGManipulator())
+{
+    if (!m_coloredIconsDir.isValid())
+        qCWarning(theme, "Could not create temporary directory '%s' for colorized icons", qUtf8Printable(m_coloredIconsDir.path()));
+
+    connect(&Theme::ThemeProvider::instance(), &Theme::ThemeProvider::colorThemeChanged,
+            this, &GuiIconProvider::colorThemeChanged);
+    update();
 }
 
 GuiIconProvider::~GuiIconProvider() = default;
@@ -63,12 +151,15 @@ QIcon GuiIconProvider::getIcon(const QString &iconId)
 
 QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
 {
+    const auto it = m_generatedIcons.find(iconId);
+    if (it != m_generatedIcons.end()) {
+        return it.value();
+    }
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (m_useSystemTheme) {
+    if (iconSet() == IconSet::SystemTheme) {
         QIcon icon = QIcon::fromTheme(iconId);
-        if (icon.name() != iconId)
+        if (icon.isNull() || icon.name() != iconId)
             icon = QIcon::fromTheme(fallback, QIcon(IconProvider::getIconPath(iconId)));
-        icon = generateDifferentSizes(icon);
         return icon;
     }
 #else
@@ -83,64 +174,186 @@ QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
     return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".png");
 }
 
-// Makes sure the icon is at least available in 16px and 24px size
-// It scales the icon from the theme if necessary
-// Otherwise, the UI looks broken if the icon is not available
-// in the correct size.
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
+QIcon GuiIconProvider::icon(BitTorrent::TorrentState state) const
 {
-    // if icon is loaded from SVG format, it already contains all the required sizes and we shall not resize it
-    // In that case it will be available in the following sizes:
-    // (QSize(16, 16), QSize(22, 22), QSize(32, 32), QSize(48, 48), QSize(64, 64), QSize(128, 128), QSize(256, 256))
-
-    if (icon.availableSizes(QIcon::Normal, QIcon::On).size() > 6)
-        return icon;
-
-    QIcon newIcon;
-    QList<QSize> requiredSizes;
-    requiredSizes << QSize(16, 16) << QSize(24, 24) << QSize(32, 32);
-    QList<QIcon::Mode> modes;
-    modes << QIcon::Normal << QIcon::Active << QIcon::Selected << QIcon::Disabled;
-    foreach (const QSize &size, requiredSizes) {
-        foreach (QIcon::Mode mode, modes) {
-            QPixmap pixoff = icon.pixmap(size, mode, QIcon::Off);
-            if (pixoff.height() > size.height())
-                pixoff = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
-            newIcon.addPixmap(pixoff, mode, QIcon::Off);
-            QPixmap pixon = icon.pixmap(size, mode, QIcon::On);
-            if (pixon.height() > size.height())
-                pixon = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
-            newIcon.addPixmap(pixon, mode, QIcon::On);
-        }
-    }
-
-    return newIcon;
-}
-#endif
-
-QString GuiIconProvider::getIconPath(const QString &iconId)
-{
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (m_useSystemTheme) {
-        QString path = QDir::temp().absoluteFilePath(iconId + ".png");
-        if (!QFile::exists(path)) {
-            const QIcon icon = QIcon::fromTheme(iconId);
-            if (!icon.isNull())
-                icon.pixmap(32).save(path);
-            else
-                path = IconProvider::getIconPath(iconId);
-        }
-
-        return path;
-    }
-#endif
-    return IconProvider::getIconPath(iconId);
+    return m_torrentStateIcons.value(state);
 }
 
-void GuiIconProvider::configure()
+GuiIconProvider::IconSet GuiIconProvider::iconSet()
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    m_useSystemTheme = Preferences::instance()->useSystemIconTheme();
+    return iconSetSetting();
+}
+
+void GuiIconProvider::setIconSet(GuiIconProvider::IconSet v)
+{
+    if (iconSet() != v) {
+        iconSetSetting() = v;
+        instance()->update();
+    }
+}
+
+bool GuiIconProvider::stateIconsAreColorized()
+{
+    return stateIconsAreColorizedSetting();
+}
+
+void GuiIconProvider::setStateIconsAreColorized(bool v)
+{
+    if (v != stateIconsAreColorized()) {
+        stateIconsAreColorizedSetting() = v;
+        instance()->update();
+    }
+}
+
+void GuiIconProvider::colorThemeChanged()
+{
+    update();
+}
+
+void GuiIconProvider::reset()
+{
+    using BitTorrent::TorrentState;
+    m_torrentStateIcons[TorrentState::Downloading] =
+    m_torrentStateIcons[TorrentState::ForcedDownloading] =
+    m_torrentStateIcons[TorrentState::DownloadingMetadata] = QIcon(":/icons/skin/downloading.svg");
+    m_torrentStateIcons[TorrentState::Allocating] =
+    m_torrentStateIcons[TorrentState::StalledDownloading] = QIcon(":/icons/skin/stalledDL.svg");
+    m_torrentStateIcons[TorrentState::StalledUploading] = QIcon(":/icons/skin/stalledUP.svg");
+    m_torrentStateIcons[TorrentState::Uploading] =
+    m_torrentStateIcons[TorrentState::ForcedUploading] = QIcon(":/icons/skin/uploading.svg");
+    m_torrentStateIcons[TorrentState::PausedDownloading] = QIcon(":/icons/skin/paused.svg");
+    m_torrentStateIcons[TorrentState::PausedUploading] = QIcon(":/icons/skin/completed.svg");
+    m_torrentStateIcons[TorrentState::QueuedDownloading] =
+    m_torrentStateIcons[TorrentState::QueuedUploading] = QIcon(":/icons/skin/queued.svg");
+    m_torrentStateIcons[TorrentState::CheckingDownloading] =
+    m_torrentStateIcons[TorrentState::CheckingUploading] =
+#if LIBTORRENT_VERSION_NUM < 10100
+    m_torrentStateIcons[TorrentState::QueuedForChecking] =
 #endif
+    m_torrentStateIcons[TorrentState::CheckingResumeData] = QIcon(":/icons/skin/checking.svg");
+    m_torrentStateIcons[TorrentState::Unknown] =
+    m_torrentStateIcons[TorrentState::MissingFiles] =
+    m_torrentStateIcons[TorrentState::Error] = QIcon(":/icons/skin/error.svg");
+}
+
+void GuiIconProvider::update()
+{
+    if (iconSet() == IconSet::Monochrome) {
+        decolorizeIcons();
+        setIconDir(m_coloredIconsDir.path());
+    }
+    else {
+        setIconDir(IconProvider::defaultIconDir());
+    }
+
+    m_generatedIcons[speedometerFlippedIconName] = flipIcon(getIcon(speedometerIconName), true, false);
+
+    using BitTorrent::TorrentState;
+    const auto trySetColorizedIcon = [this](BitTorrent::TorrentState state, const char *stateName, const char *iconName)
+    {
+        const QString iconPath = QString(QLatin1String(":/icons/skin/%1.svg")).arg(QLatin1String(iconName));
+        const QString colorizedIconPath = QDir(this->m_coloredIconsDir.path())
+            .filePath(QLatin1String(stateName) + QLatin1String(".svg"));
+        try {
+            m_svgManipulator->replaceSVGFillColor(iconPath, colorizedIconPath,
+                                                  Theme::ColorTheme::current().torrentStateColor(state));
+            m_torrentStateIcons[state] = QIcon(colorizedIconPath);
+        }
+        catch (std::runtime_error &ex) {
+            qCWarning(theme, "Could not colorize icon '%s': '%s'", iconName, ex.what());
+            m_torrentStateIcons[state] = QIcon(iconPath);
+        }
+    };
+
+    if (stateIconsAreColorized() && m_coloredIconsDir.isValid()) {
+        trySetColorizedIcon(TorrentState::Downloading, "torrent-state-downloading", "downloading");
+        trySetColorizedIcon(TorrentState::ForcedDownloading, "torrent-state-forceddownloading", "downloading");
+        trySetColorizedIcon(TorrentState::DownloadingMetadata, "torrent-state-downloadingmetadata", "downloading");
+        trySetColorizedIcon(TorrentState::Allocating, "torrent-state-allocating", "stalledDL");
+        trySetColorizedIcon(TorrentState::StalledDownloading, "torrent-state-stalleddownloading", "stalledDL");
+        trySetColorizedIcon(TorrentState::StalledUploading, "torrent-state-stalleduploading", "stalledUP");
+        trySetColorizedIcon(TorrentState::Uploading, "torrent-state-Uploading", "uploading");
+        trySetColorizedIcon(TorrentState::ForcedUploading, "torrent-state-forceduploading", "uploading");
+        trySetColorizedIcon(TorrentState::PausedDownloading, "torrent-state-pauseddownloading", "paused");
+        trySetColorizedIcon(TorrentState::PausedUploading, "torrent-state-pauseduploading", "completed");
+        trySetColorizedIcon(TorrentState::QueuedDownloading, "torrent-state-queueddownloading", "queued");
+        trySetColorizedIcon(TorrentState::QueuedUploading, "torrent-state-queueduploading", "queued");
+        trySetColorizedIcon(TorrentState::CheckingDownloading, "torrent-state-checkingdownloading", "checking");
+        trySetColorizedIcon(TorrentState::CheckingUploading, "torrent-state-checkinguploading", "checking");
+#if LIBTORRENT_VERSION_NUM < 10100
+        trySetColorizedIcon(TorrentState::QueuedForChecking, "torrent-state-queuedforchecking", "checking");
+#endif
+        trySetColorizedIcon(TorrentState::CheckingResumeData, "torrent-state-checkingresumedata", "checking");
+        trySetColorizedIcon(TorrentState::Unknown, "torrent-state-unknown", "error");
+        trySetColorizedIcon(TorrentState::MissingFiles, "torrent-state-missingfiles", "error");
+        trySetColorizedIcon(TorrentState::Error, "torrent-state-error", "error");
+    }
+    else {
+        reset();
+    }
+
+    emit iconsChanged();
+}
+
+void GuiIconProvider::decolorizeIcons()
+{
+    // process every svg file from :/icons/qbt-theme/
+    QDir srcIconsDir(QLatin1String(":/icons/qbt-theme/"));
+    const QStringList icons = srcIconsDir.entryList({QLatin1String("*.svg")}, QDir::Files);
+    const QColor newIconColor = QPalette().color(QPalette::WindowText);
+    for (const QString &iconFile: icons) {
+        try {
+            m_svgManipulator->replaceSVGFillColor(srcIconsDir.absoluteFilePath(iconFile),
+                                                  m_coloredIconsDir.path() + QDir::separator() + iconFile, newIconColor);
+        }
+        catch (std::runtime_error &ex) {
+            qCWarning(theme, "Could not colorize icon '%s': '%s'", qPrintable(iconFile), ex.what());
+        }
+    }
+}
+
+QString GuiIconProvider::temporaryDirForIcons()
+{
+    // TODO Application should create QTemporaryDir for /run/user/<USERID>/<ApplicationName>/<PID>
+    // and we then will be able to create directory "icons" inside
+
+    QString runPath = QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation);
+    if (runPath.isEmpty()) runPath = QDir::tempPath();
+
+    return runPath + QDir::separator() +
+        QCoreApplication::applicationName() +
+        QLatin1String("_icons_");
+}
+
+CachedSettingValue<GuiIconProvider::IconSet> &GuiIconProvider::iconSetSetting()
+{
+    static CachedSettingValue<IconSet> setting("Appearance/IconSet", IconSet::Default);
+    return setting;
+}
+
+CachedSettingValue<bool> &GuiIconProvider::stateIconsAreColorizedSetting()
+{
+    static CachedSettingValue<bool> setting("Appearance/StateIconColorization", true);
+    return setting;
+}
+
+QIcon GuiIconProvider::flipIcon(const QIcon& icon, bool horizontal, bool vertical)
+{
+    QIcon res;
+    const QList<QSize> sizes = !icon.availableSizes().isEmpty()
+                        ? icon.availableSizes()
+                        : QList<QSize>{{16, 16}, {32, 32}, {64, 64}, {128, 128}, {256, 256}};
+    for (const auto &size : sizes) {
+        QPixmap px {size};
+        px.fill({0, 0, 0, 0});
+        QPainter painter {&px};
+        QRect bounds {0, 0, size.width(), size.height()};
+        QTransform tr;
+        tr.scale(horizontal ? -1. : 1., vertical ? -1. : 1.);
+        tr.translate(horizontal ? -size.width() : 0, vertical ? -size.height() : 0);
+        painter.setTransform(tr);
+        painter.drawPixmap(0, 0, icon.pixmap(size));
+        res.addPixmap(px);
+    }
+    return res;
 }

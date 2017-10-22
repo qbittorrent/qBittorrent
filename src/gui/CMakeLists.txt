@@ -74,6 +74,20 @@ transferlistfilterswidget.h
 transferlistsortmodel.h
 transferlistwidget.h
 updownratiodlg.h
+theme/colorprovider_p.h
+theme/colorproviders.h
+theme/colortheme.h
+theme/fontprovider_p.h
+theme/fontproviders.h
+theme/fonttheme.h
+theme/provider_p.h
+theme/serializabletheme.h
+theme/serializablecolortheme.h
+theme/serializablefonttheme.h
+theme/themecommon.h
+theme/themeexceptions.h
+theme/themeinfo.h
+theme/themeprovider.h
 )
 
 set(QBT_GUI_SOURCES
@@ -118,6 +132,20 @@ transferlistfilterswidget.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodlg.cpp
+theme/colorprovider_p.cpp
+theme/colorproviders.cpp
+theme/colortheme.cpp
+theme/fonttheme.cpp
+theme/fontprovider_p.cpp
+theme/fontproviders.cpp
+theme/provider_p.cpp
+theme/serializabletheme.cpp
+theme/serializablecolortheme.cpp
+theme/serializablefonttheme.cpp
+theme/themecommon.cpp
+theme/themeexceptions.cpp
+theme/themeinfo.cpp
+theme/themeprovider.cpp
 )
 
 if (APPLE)
@@ -129,6 +157,19 @@ if (WIN32 OR APPLE)
     list(APPEND QBT_GUI_HEADERS programupdater.h)
     list(APPEND QBT_GUI_SOURCES programupdater.cpp)
 endif (WIN32 OR APPLE)
+
+if (PLASMA_INTEGRATION)
+    list(APPEND QBT_GUI_HEADERS
+        theme/plasmacolorprovider.h
+        utils/colorutils.h
+        utils/plasmacolorscheme.h
+        )
+    list(APPEND QBT_GUI_SOURCES
+        theme/plasmacolorprovider.cpp
+        utils/colorutils.cpp
+        utils/plasmacolorscheme.cpp
+        )
+endif (PLASMA_INTEGRATION)
 
 set(QBT_GUI_FORMS
 mainwindow.ui
@@ -151,7 +192,7 @@ torrentcreatordlg.ui
 shutdownconfirmdlg.ui
 )
 
-qbt_target_sources(about.qrc)
+qbt_target_sources(about.qrc theme/builtinthemes.qrc)
 
 add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_FORMS})
 target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine

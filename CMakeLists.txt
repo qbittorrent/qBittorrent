@@ -46,6 +46,7 @@ option(WEBUI "Allows to disable the WebUI." ON)
 if (WIN32)
     option(STACKTRACE_WIN "")
 else (WIN32)
+    option(PLASMA_INTEGRATION "Enable KDE/Plasma integration" OFF)
     cmake_dependent_option(SYSTEMD "Install the systemd service file (headless only)" OFF
         "NOT GUI" OFF)
     cmake_dependent_option(DBUS "Enable use of QtDBus (GUI only)" ON "GUI" OFF)

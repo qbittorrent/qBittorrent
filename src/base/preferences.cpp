@@ -31,6 +31,7 @@
  */
 
 #include <QCryptographicHash>
+#include <QDebug>
 #include <QDir>
 #include <QLocale>
 #include <QPair>
@@ -90,17 +91,28 @@ void Preferences::setValue(const QString &key, const QVariant &value)
     SettingsStorage::instance()->storeValue(key, value);
 }
 
-// General options
+// Appearance/Language options
 QString Preferences::getLocale() const
 {
-    return value("Preferences/General/Locale", QLocale::system().name()).toString();
+    return value("Appearance/Locale", QLocale::system().name()).toString();
 }
 
 void Preferences::setLocale(const QString &locale)
 {
-    setValue("Preferences/General/Locale", locale);
+    setValue("Appearance/Locale", locale);
 }
 
+bool Preferences::useAlternatingRowColors() const
+{
+    return value("Appearance/AlternatingRowColors", true).toBool();
+}
+
+void Preferences::setAlternatingRowColors(bool b)
+{
+    setValue("Appearance/AlternatingRowColors", b);
+}
+
+// General options
 bool Preferences::deleteTorrentFilesAsDefault() const
 {
     return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
@@ -129,16 +141,6 @@ bool Preferences::speedInTitleBar() const
 void Preferences::showSpeedInTitleBar(bool show)
 {
     setValue("Preferences/General/SpeedInTitleBar", show);
-}
-
-bool Preferences::useAlternatingRowColors() const
-{
-    return value("Preferences/General/AlternatingRowColors", true).toBool();
-}
-
-void Preferences::setAlternatingRowColors(bool b)
-{
-    setValue("Preferences/General/AlternatingRowColors", b);
 }
 
 bool Preferences::getHideZeroValues() const
@@ -739,18 +741,6 @@ void Preferences::resolvePeerHostNames(bool resolve)
 {
     setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
 }
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-bool Preferences::useSystemIconTheme() const
-{
-    return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
-}
-
-void Preferences::useSystemIconTheme(bool enabled)
-{
-    setValue("Preferences/Advanced/useSystemIconTheme", enabled);
-}
-#endif
 
 bool Preferences::recursiveDownloadDisabled() const
 {
@@ -1466,6 +1456,25 @@ void Preferences::setSpeedWidgetGraphEnable(int id, const bool enable)
 
 void Preferences::upgrade()
 {
+    // Migrate single-value prefs to new section/name
+    QList<QPair<QString, QString>> prefsToMigrate = {
+        { "Preferences/General/Locale", "Appearance/Locale" },
+        { "Preferences/General/AlternatingRowColors", "Appearance/AlternatingRowColors" },
+    };
+
+    for (auto iter = prefsToMigrate.begin(); iter != prefsToMigrate.end(); ++iter) {
+        QString pre(iter->first);
+        QString post(iter->second);
+
+        QVariant preValue = value(pre);
+
+        if (!preValue.isNull()) {
+            qDebug() << "Migrating preference" << pre << "->" << post;
+            setValue(post, preValue);
+            SettingsStorage::instance()->removeValue(pre);
+        }
+    }
+
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.isEmpty()) {
         QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
@@ -1478,6 +1487,15 @@ void Preferences::upgrade()
     }
 
     SettingsStorage::instance()->removeValue("Preferences/Downloads/AppendLabel");
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    const QLatin1String UseSystemIconsOldKey = QLatin1String("Preferences/Advanced/useSystemIconTheme");
+    if (SettingsStorage::instance()->loadValue(UseSystemIconsOldKey, false).toBool()) {
+        // see GUiIconsProvider for the new key
+        SettingsStorage::instance()->storeValue(QLatin1String("Appearance/IconSet"), QLatin1String("SystemTheme"));
+    }
+    SettingsStorage::instance()->removeValue(UseSystemIconsOldKey);
+#endif
 }
 
 void Preferences::apply()

@@ -55,6 +55,9 @@ protected slots:
 protected:
     void keyPressEvent(QKeyEvent *event);
 
+private slots:
+    void applyFontTheme();
+
 private:
     int m_maxLines;
     Log::MsgTypes m_types;

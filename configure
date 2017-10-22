@@ -721,6 +721,7 @@ enable_gui
 enable_systemd
 enable_webui
 enable_qt_dbus
+enable_plasma_integration
 with_boost
 with_boost_libdir
 with_boost_system
@@ -1387,6 +1388,8 @@ Optional Features:
   --enable-systemd        Install the systemd service file (headless only).
   --disable-webui         Disable the WebUI.
   --disable-qt-dbus       Disable use of QtDBus (GUI only)
+  --enable-plasma-integration
+                          Enable KDE/Plasma integration
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -4221,6 +4224,14 @@ else
 fi
 
 
+# Check whether --enable-plasma-integration was given.
+if test "${enable_plasma_integration+set}" = set; then :
+  enableval=$enable_plasma_integration;
+else
+  enable_plasma_integration=no
+fi
+
+
 # Detect OS
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
 $as_echo_n "checking whether OS is FreeBSD... " >&6; }
@@ -4632,7 +4643,22 @@ $as_echo "no" >&6; }
 $as_echo "$enable_qt_dbus" >&6; }
         as_fn_error $? "Unknown option \"$enable_qt_dbus\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
-
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether KDE/Plasma integration should be enabled" >&5
+$as_echo_n "checking whether KDE/Plasma integration should be enabled... " >&6; }
+case "x$enable_plasma_integration" in #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG plasma_integration" ;; #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG plasma_integration" ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_plasma_integration" >&5
+$as_echo "$enable_plasma_integration" >&6; }
+        as_fn_error $? "Unknown option \"$plasma_integration\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
 
 
 

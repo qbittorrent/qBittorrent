@@ -35,6 +35,8 @@
 #include <QAbstractListModel>
 #include <QList>
 
+template <typename T> class CachedSettingValue;
+
 namespace BitTorrent
 {
     class InfoHash;
@@ -94,6 +96,9 @@ public:
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
+    static bool textIsColorized();
+    static void setTextIsColorized(bool v);
+
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
@@ -101,6 +106,8 @@ private slots:
     void handleTorrentsUpdated();
 
 private:
+    static CachedSettingValue<bool> &textIsColorizedSetting();
+
     QList<BitTorrent::TorrentHandle *> m_torrents;
 };
 

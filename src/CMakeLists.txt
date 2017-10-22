@@ -54,6 +54,11 @@ endif (NOT WEBUI)
 if (STACKTRACE_WIN)
     add_definitions(-DSTACKTRACE_WIN)
 endif(STACKTRACE_WIN)
+
+if (PLASMA_INTEGRATION)
+    add_definitions(-DPLASMA_INTEGRATION)
+endif (PLASMA_INTEGRATION)
+
 # nogui {
 #     TARGET = qbittorrent-nox
 # } else {

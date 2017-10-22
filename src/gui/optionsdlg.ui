@@ -49,6 +49,11 @@
       </property>
       <item>
        <property name="text">
+        <string>Appearance</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Behavior</string>
        </property>
       </item>
@@ -90,10 +95,10 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
-      <widget class="QWidget" name="tabBehaviorPage">
-       <layout class="QVBoxLayout" name="verticalLayout_10">
+      <widget class="QWidget" name="tabAppearancePage">
+       <layout class="QVBoxLayout" name="verticalLayout_21">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -107,7 +112,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QScrollArea" name="scrollArea">
+         <widget class="QScrollArea" name="scrollArea_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -117,16 +122,16 @@
           <property name="widgetResizable">
            <bool>true</bool>
           </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
+          <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>549</width>
+             <height>540</height>
             </rect>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <layout class="QVBoxLayout" name="verticalLayout_25">
             <item>
              <widget class="QGroupBox" name="UISettingsBox">
               <property name="title">
@@ -192,6 +197,257 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBoxAppearanceDesktop">
+              <property name="title">
+               <string>Desktop</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_27">
+                 <property name="text">
+                  <string>Icon theme:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QComboBox" name="comboIconTheme">
+                   <item>
+                    <property name="text">
+                     <string>Default</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Monochrome</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>System theme</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lbl_icontheme_info">
+                   <property name="font">
+                    <font>
+                     <italic>true</italic>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>(Requires restart)</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>Transfer List</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_26">
+               <item>
+                <widget class="QCheckBox" name="checkAltRowColors">
+                 <property name="text">
+                  <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBoxThemes">
+              <property name="title">
+               <string>Themes</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout_6">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_24">
+                 <property name="text">
+                  <string>Color theme:</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_18"/>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <item>
+                  <widget class="QComboBox" name="comboBoxColorTheme">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelColorThemeDescription">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>TextLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonExportColorTheme">
+                   <property name="toolTip">
+                    <string>Export color theme into a file</string>
+                   </property>
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="document-export">
+                     <normaloff>.</normaloff>.</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="checkColorizeTransferList">
+                 <property name="text">
+                  <string>Colorize text in transfer list</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QCheckBox" name="checkColorizeStateIcons">
+                 <property name="text">
+                  <string>Colorize state icons</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_25">
+                 <property name="text">
+                  <string>Font theme:</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_19"/>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QComboBox" name="comboBoxFontTheme">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelFontThemeDescription">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>TextLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonExportFontTheme">
+                   <property name="toolTip">
+                    <string>Export font theme into a file</string>
+                   </property>
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="document-export">
+                     <normaloff>.</normaloff>.</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabBehaviorPage">
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>448</width>
+             <height>887</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
              <widget class="QGroupBox" name="groupBox_4">
               <property name="title">
                <string>Transfer List</string>
@@ -201,16 +457,6 @@
                 <widget class="QCheckBox" name="confirmDeletion">
                  <property name="text">
                   <string>Confirm when deleting torrents</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkAltRowColors">
-                 <property name="text">
-                  <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -671,8 +917,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>623</width>
+             <height>1213</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1245,8 +1491,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>535</width>
+             <height>816</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1748,8 +1994,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>549</width>
+             <height>540</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1813,9 +2059,9 @@
                 </widget>
                </item>
                <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="label_5">
+                <widget class="QLabel" name="labelRateLimitIcon">
                  <property name="pixmap">
-                  <pixmap resource="../icons.qrc">:/icons/slow_off.png</pixmap>
+                  <pixmap resource="../icons.qrc">:/icons/qbt-theme/speedometer.svg</pixmap>
                  </property>
                 </widget>
                </item>
@@ -1960,9 +2206,9 @@
                 </widget>
                </item>
                <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="label_16">
+                <widget class="QLabel" name="labelAltRateLimitIcon">
                  <property name="pixmap">
-                  <pixmap resource="../icons.qrc">:/icons/slow.png</pixmap>
+                  <pixmap resource="../icons.qrc">:/icons/qbt-theme/speedometer.svg</pixmap>
                  </property>
                 </widget>
                </item>
@@ -2115,8 +2361,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>552</width>
+             <height>680</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2590,8 +2836,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>430</width>
+             <height>259</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2740,8 +2986,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>470</width>
+             <height>616</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3168,7 +3414,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
-  <tabstop>comboI18n</tabstop>
+  <tabstop>textSavePath</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>

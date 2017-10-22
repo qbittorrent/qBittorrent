@@ -88,10 +88,6 @@ private:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     QCheckBox cb_update_check;
 #endif
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QCheckBox cb_use_icon_theme;
-#endif
 };
 
 #endif // ADVANCEDSETTINGS_H

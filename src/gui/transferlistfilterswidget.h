@@ -80,6 +80,7 @@ public:
 
 private slots:
     void updateTorrentNumbers();
+    void updateStatusIcons();
 
 private:
     // These 4 methods are virtual slots in the base class.

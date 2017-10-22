@@ -30,9 +30,19 @@
 #ifndef GUIICONPROVIDER_H
 #define GUIICONPROVIDER_H
 
+#include <QMap>
+#include <QTemporaryDir>
+#include <QScopedPointer>
+
 #include "base/iconprovider.h"
 
 class QIcon;
+template <typename T> class CachedSettingValue;
+
+namespace BitTorrent
+{
+    enum class TorrentState;
+}
 
 class GuiIconProvider : public IconProvider
 {
@@ -46,19 +56,50 @@ public:
     QIcon getIcon(const QString &iconId);
     QIcon getIcon(const QString &iconId, const QString &fallback);
     QIcon getFlagIcon(const QString &countryIsoCode);
-    QString getIconPath(const QString &iconId);
+
+    QIcon icon(BitTorrent::TorrentState state) const;
+
+    enum class IconSet
+    {
+        Default,
+        Monochrome,
+        SystemTheme,
+    };
+
+    static bool stateIconsAreColorized();
+    static void setStateIconsAreColorized(bool v);
+
+    static IconSet iconSet();
+    static void setIconSet(IconSet v);
+
+signals:
+    void iconsChanged();
 
 private slots:
-    void configure();
+    void colorThemeChanged();
 
 private:
     explicit GuiIconProvider(QObject *parent = 0);
     ~GuiIconProvider();
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QIcon generateDifferentSizes(const QIcon &icon);
 
-    bool m_useSystemTheme;
-#endif
+    Q_ENUM(IconSet)
+
+    class SVGManipulator;
+
+    void update();
+    void reset();
+    void decolorizeIcons();
+    static QIcon flipIcon(const QIcon &icon, bool horizontal, bool vertical);
+
+    static QString temporaryDirForIcons();
+    static CachedSettingValue<IconSet> &iconSetSetting();
+    static CachedSettingValue<bool> &stateIconsAreColorizedSetting();
+
+    QMap<BitTorrent::TorrentState, QIcon> m_torrentStateIcons; // these icons are needed frequently
+    QTemporaryDir m_iconsTemporaryDir;
+    QTemporaryDir m_coloredIconsDir;
+    QMap<QString, QIcon> m_generatedIcons;
+    QScopedPointer<SVGManipulator> m_svgManipulator;
 };
 
 #endif // GUIICONPROVIDER_H
