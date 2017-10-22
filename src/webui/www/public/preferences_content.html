@@ -410,8 +410,9 @@
 
 <fieldset class="settings">
   <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
-  <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
+  <label for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_address_value"/>
   <label for="webui_port_value">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;"/><br/>
+  <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
   <input type="checkbox" id="webui_upnp_checkbox"/>
   <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
   <fieldset class="settings">
@@ -1046,6 +1047,7 @@ loadPreferences = function() {
 
                     // HTTP Server
                     $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
+                    $('webui_address_value').setProperty('value', pref.web_ui_address);
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
                     $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
                     $('use_https_checkbox').setProperty('checked', pref.use_https);
@@ -1314,11 +1316,13 @@ applyPreferences = function() {
 
   // HTTP Server
   settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
+  var web_ui_address = $('webui_address_value').getProperty('value').toString();
   var web_ui_port = $('webui_port_value').getProperty('value').toInt();
   if(isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
     alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
     return;
   }
+  settings.set('web_ui_address', web_ui_address);
   settings.set('web_ui_port', web_ui_port);
   settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
   settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
