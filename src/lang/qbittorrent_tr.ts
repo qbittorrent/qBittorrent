@@ -83,6 +83,45 @@
     </message>
 </context>
 <context>
+    <name>AbstractWebApplication</name>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="416"/>
+        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="417"/>
+        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="426"/>
+        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="427"/>
+        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="444"/>
+        <source>WebUI: Invalid Host header, port mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="445"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="475"/>
+        <source>Source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/abstractwebapplication.cpp" line="474"/>
+        <source>WebUI: Invalid Host header</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="58"/>
@@ -282,14 +321,6 @@ Error: %2</source>
 Hata: %2</translation>
     </message>
     <message>
-        <source>Torrent is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation type="obsolete">Torrent zaten indirme listesinde. İzleyiciler birleştirilemedi çünkü bu özel bir torrent&apos;tir.</translation>
-    </message>
-    <message>
-        <source>Torrent is already in download list. Trackers were merged.</source>
-        <translation type="obsolete">Torrent zaten indirme listesinde. İzleyiciler birleştirildi.</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="275"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
         <source>Cannot add torrent</source>
@@ -304,10 +335,6 @@ Hata: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
         <source>This magnet link was not recognized</source>
         <translation>Bu magnet bağlantısı tanınamadı</translation>
-    </message>
-    <message>
-        <source>Magnet link is already in download list. Trackers were merged.</source>
-        <translation type="obsolete">Magnet bağlantısı zaten indirme listesinde. İzleyiciler birleştirildi.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
@@ -344,17 +371,17 @@ Hata: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent &apos;%1&apos; zaten indirme listesinde. İzleyiciler birleştirilmedi çünkü bu özel bir torrent&apos;tir.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent &apos;%1&apos; zaten indirme listesinde. İzleyiciler birleştirildi.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Magnet link &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet bağlantısı &apos;%1&apos; zaten indirme listesinde. İzleyiciler birleştirildi.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -405,10 +432,6 @@ Hata: %2</translation>
 </context>
 <context>
     <name>AdvancedSettings</name>
-    <message>
-        <source>Disk write cache size</source>
-        <translation type="obsolete">Disk yazma önbelleği boyutu</translation>
-    </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="229"/>
         <source> MiB</source>
@@ -485,7 +508,7 @@ Hata: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="298"/>
         <source>Disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk önbelleği</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="303"/>
@@ -539,10 +562,6 @@ Hata: %2</translation>
         <source> m</source>
         <comment> minutes</comment>
         <translation> d</translation>
-    </message>
-    <message>
-        <source>uTP-TCP mixed mode algorithm</source>
-        <translation type="obsolete">uTP-TCP karışık kip algoritması</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="352"/>
@@ -635,7 +654,7 @@ Hata: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="349"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1-TCP karışık kip algoritması</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="372"/>
@@ -1103,124 +1122,114 @@ Hata: %2</translation>
         <translation>Gömülü İzleyici [KAPALI]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2387"/>
+        <location filename="../base/bittorrent/session.cpp" line="2389"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Sistem ağ durumu %1 olarak değişti</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2387"/>
+        <location filename="../base/bittorrent/session.cpp" line="2389"/>
         <source>ONLINE</source>
         <translation>ÇEVRİMİÇİ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2387"/>
+        <location filename="../base/bittorrent/session.cpp" line="2389"/>
         <source>OFFLINE</source>
         <translation>ÇEVRİMDIŞI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2409"/>
+        <location filename="../base/bittorrent/session.cpp" line="2411"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>%1 ağ yapılandırması değişti, oturum bağlaması yenileniyor</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2426"/>
+        <location filename="../base/bittorrent/session.cpp" line="2428"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
         <translation>Yapılandırılan ağ arayüzü adresi %1 geçersiz.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2765"/>
+        <location filename="../base/bittorrent/session.cpp" line="2767"/>
         <source>Encryption support [%1]</source>
         <translation>Şifreleme desteği [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2766"/>
+        <location filename="../base/bittorrent/session.cpp" line="2768"/>
         <source>FORCED</source>
         <translation>ZORLANDI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2890"/>
+        <location filename="../base/bittorrent/session.cpp" line="2892"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation>%1 geçerli bir IP adresi değil ve yasaklanan adresler listesi uygulanırken reddedildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3101"/>
+        <location filename="../base/bittorrent/session.cpp" line="3103"/>
         <source>Anonymous mode [%1]</source>
         <translation>İsimsiz kipi [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3527"/>
+        <location filename="../base/bittorrent/session.cpp" line="3529"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>&apos;%1&apos; torrent dosyası çözülemiyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3664"/>
+        <location filename="../base/bittorrent/session.cpp" line="3666"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>&apos;%1&apos; dosyasının tekrarlayan indirmesi &apos;%2&apos; torrent&apos;i içine gömüldü</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3763"/>
+        <location filename="../base/bittorrent/session.cpp" line="3765"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation>Kuyruk konumları %1 devam eden dosya olarak düzeltildi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3989"/>
+        <location filename="../base/bittorrent/session.cpp" line="3991"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>&apos;%1.torrent&apos; dosyası kaydedilemedi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4039"/>
+        <location filename="../base/bittorrent/session.cpp" line="4041"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; dosyası aktarım listesinden kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4052"/>
+        <location filename="../base/bittorrent/session.cpp" line="4054"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; dosyası aktarım listesinden ve sabit diskten kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4064"/>
+        <location filename="../base/bittorrent/session.cpp" line="4066"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; dosyası aktarım listesinden kaldırıldı ancak dosyalar silinemedi. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4124"/>
+        <location filename="../base/bittorrent/session.cpp" line="4126"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>engellendi çünkü %1 etkisizleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4127"/>
+        <location filename="../base/bittorrent/session.cpp" line="4129"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>engellendi çünkü %1 etkisizleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4145"/>
+        <location filename="../base/bittorrent/session.cpp" line="4147"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL gönderimi arama şu URL için başarısız oldu: &apos;%1&apos;, ileti: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4191"/>
+        <location filename="../base/bittorrent/session.cpp" line="4193"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent, %1 arayüzünde şu bağlantı noktasını dinlemede başarısız oldu: %2/%3. Sebep: %4.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">&apos;%1&apos; dosyası aktarım listesinden ve sabit diskten kaldırıldı.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">&apos;%1&apos; dosyası aktarım listesinden kaldırıldı.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2056"/>
@@ -1230,19 +1239,19 @@ Hata: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1187"/>
-        <location filename="../base/bittorrent/session.cpp" line="2503"/>
+        <location filename="../base/bittorrent/session.cpp" line="2505"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent, herhangi bir arayüz bağlantı noktasını dinlemeyi deniyor: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2445"/>
+        <location filename="../base/bittorrent/session.cpp" line="2447"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Tanımlanan ağ arayüzü geçersiz: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1200"/>
-        <location filename="../base/bittorrent/session.cpp" line="2514"/>
+        <location filename="../base/bittorrent/session.cpp" line="2516"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent, %1 arayüzünde şu bağlantı noktasını dinlemeyi deniyor: %2</translation>
@@ -1255,16 +1264,16 @@ Hata: %2</translation>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="547"/>
         <location filename="../base/bittorrent/session.cpp" line="562"/>
-        <location filename="../base/bittorrent/session.cpp" line="2766"/>
-        <location filename="../base/bittorrent/session.cpp" line="3101"/>
+        <location filename="../base/bittorrent/session.cpp" line="2768"/>
+        <location filename="../base/bittorrent/session.cpp" line="3103"/>
         <source>ON</source>
         <translation>AÇIK</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="547"/>
         <location filename="../base/bittorrent/session.cpp" line="562"/>
-        <location filename="../base/bittorrent/session.cpp" line="2766"/>
-        <location filename="../base/bittorrent/session.cpp" line="3101"/>
+        <location filename="../base/bittorrent/session.cpp" line="2768"/>
+        <location filename="../base/bittorrent/session.cpp" line="3103"/>
         <source>OFF</source>
         <translation>KAPALI</translation>
     </message>
@@ -1294,118 +1303,118 @@ Hata: %2</translation>
         <translation>&apos;%1&apos;, ayarladığınız en fazla gönderim süresine ulaştı. Duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2479"/>
+        <location filename="../base/bittorrent/session.cpp" line="2481"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent dinlemek için bir %1 yerel adresi bulamadı</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2507"/>
+        <location filename="../base/bittorrent/session.cpp" line="2509"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent, herhangi bir arayüz bağlantı noktasını dinlemede başarısız oldu: %1. Sebep: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3438"/>
+        <location filename="../base/bittorrent/session.cpp" line="3440"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>İzleyici &apos;%1&apos;, &apos;%2&apos; torrent&apos;ine eklendi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3448"/>
+        <location filename="../base/bittorrent/session.cpp" line="3450"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>İzleyici &apos;%1&apos;, &apos;%2&apos; torrent&apos;inden silindi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3463"/>
+        <location filename="../base/bittorrent/session.cpp" line="3465"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Gönderim URL&apos;si &apos;%1&apos;, &apos;%2&apos; torrent&apos;ine eklendi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3469"/>
+        <location filename="../base/bittorrent/session.cpp" line="3471"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Gönderim URL&apos;si &apos;%1&apos;, &apos;%2&apos; torrent&apos;inden kaldırıldı</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3712"/>
+        <location filename="../base/bittorrent/session.cpp" line="3714"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>&apos;%1&apos; torrent dosyası devam ettirilemiyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3797"/>
+        <location filename="../base/bittorrent/session.cpp" line="3799"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Verilen IP süzgeci başarılı olarak ayrıştırıldı: %1 kural uygulandı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3807"/>
+        <location filename="../base/bittorrent/session.cpp" line="3809"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Hata: Verilen IP süzgecini ayrıştırma başarısız.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4023"/>
+        <location filename="../base/bittorrent/session.cpp" line="4025"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Torrent eklenemedi. Sebep: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3972"/>
+        <location filename="../base/bittorrent/session.cpp" line="3974"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; dosyasına devam edildi. (hızlı devam)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3999"/>
+        <location filename="../base/bittorrent/session.cpp" line="4001"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; dosyası indirme listesine eklendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4088"/>
+        <location filename="../base/bittorrent/session.cpp" line="4090"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4096"/>
+        <location filename="../base/bittorrent/session.cpp" line="4098"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Bağlantı noktası eşleme başarısız, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4102"/>
+        <location filename="../base/bittorrent/session.cpp" line="4104"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Bağlantı noktası eşleme başarılı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4112"/>
+        <location filename="../base/bittorrent/session.cpp" line="4114"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>IP süzgecinden dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4115"/>
+        <location filename="../base/bittorrent/session.cpp" line="4117"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>bağlantı noktası süzgecinden dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4118"/>
+        <location filename="../base/bittorrent/session.cpp" line="4120"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>i2p karışık kip kısıtlamalarından dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4121"/>
+        <location filename="../base/bittorrent/session.cpp" line="4123"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>engellendi çünkü düşük bir bağlantı noktasına sahip.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4165"/>
+        <location filename="../base/bittorrent/session.cpp" line="4167"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent, %1 arayüzünde şu bağlantı noktasını başarılı olarak dinliyor: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4200"/>
+        <location filename="../base/bittorrent/session.cpp" line="4202"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Dış IP: %1</translation>
@@ -1414,17 +1423,17 @@ Hata: %2</translation>
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1468"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1472"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Torrent taşınamadı: &apos;%1&apos;. Sebep: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1646"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1650"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>&apos;%1&apos; torrent&apos;i için dosya boyutu uyuşmuyor, duraklatılıyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1652"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1656"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Hızlı devam verisi &apos;%1&apos; torrent&apos;i için reddedildi. Sebep: &apos;%2&apos;. Tekrar kontrol ediliyor...</translation>
     </message>
@@ -1462,7 +1471,7 @@ Hata: %2</translation>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="129"/>
         <source>Edit category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoriyi düzenle...</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="134"/>
@@ -1488,38 +1497,6 @@ Hata: %2</translation>
         <location filename="../gui/categoryfilterwidget.cpp" line="157"/>
         <source>Delete torrents</source>
         <translation>Torrent&apos;leri sil</translation>
-    </message>
-    <message>
-        <source>New Category</source>
-        <translation type="obsolete">Yeni Kategori</translation>
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="obsolete">Kategori:</translation>
-    </message>
-    <message>
-        <source>Invalid category name</source>
-        <translation type="obsolete">Geçersiz kategori adı</translation>
-    </message>
-    <message>
-        <source>Category name must not contain &apos;\&apos;.
-Category name must not start/end with &apos;/&apos;.
-Category name must not contain &apos;//&apos; sequence.</source>
-        <translation type="obsolete">Kategori adı &apos;\&apos; içeremez.
-Kategori adı &apos;/&apos; ile başlayamaz/bitemez.
-Kategori adı &apos;//&apos; dizisini içeremez.</translation>
-    </message>
-    <message>
-        <source>Category exists</source>
-        <translation type="obsolete">Kategori var</translation>
-    </message>
-    <message>
-        <source>Category name already exists.</source>
-        <translation type="obsolete">Kategori adı zaten var.</translation>
-    </message>
-    <message>
-        <source>Subcategory name already exists in selected category.</source>
-        <translation type="obsolete">Seçilen kategoride alt kategori adı zaten var.</translation>
     </message>
 </context>
 <context>
@@ -1911,7 +1888,7 @@ Lütfen kategori adı içinde hiçbir özel karakter kullanmayın.</translation>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="90"/>
+        <location filename="../webui/extra_translations.h" line="93"/>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
         <translation>Torrent&apos;leri Gönder</translation>
@@ -1952,49 +1929,64 @@ Lütfen kategori adı içinde hiçbir özel karakter kullanmayın.</translation>
         <translation>Konum ayarla</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="82"/>
+        <location filename="../webui/extra_translations.h" line="79"/>
+        <source>Limit upload rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="80"/>
+        <source>Limit download rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="81"/>
+        <source>Rename torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="85"/>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
         <translation>Diğer...</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="83"/>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Pazartesi</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="84"/>
+        <location filename="../webui/extra_translations.h" line="87"/>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Salı</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="88"/>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Çarşamba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="86"/>
+        <location filename="../webui/extra_translations.h" line="89"/>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Perşembe</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="87"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Cuma</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="88"/>
+        <location filename="../webui/extra_translations.h" line="91"/>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Cumartesi</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="89"/>
+        <location filename="../webui/extra_translations.h" line="92"/>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Pazar</translation>
@@ -2179,7 +2171,7 @@ Lütfen kategori adı içinde hiçbir özel karakter kullanmayın.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="341"/>
         <source>L&amp;ock qBittorrent</source>
-        <translation>qBittorrent&apos;i Kilitle</translation>
+        <translation>qBittorrent&apos;i Kili&amp;tle</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="352"/>
@@ -4368,11 +4360,23 @@ Lütfen el ile yükleyin.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2765"/>
+        <source>IP address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2772"/>
+        <source>IP address that the Web UI will bind to.
+Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
+&quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="2805"/>
         <source>Server domains:</source>
         <translation>Sunucu etki alanları:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2772"/>
+        <location filename="../gui/optionsdlg.ui" line="2812"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -4385,12 +4389,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
 Çoklu girişleri bölmek için &apos;;&apos; kullanın. &apos;*&apos; joker karakteri kullanılabilir.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2832"/>
+        <location filename="../gui/optionsdlg.ui" line="2835"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>HTTP yerine HTTPS &amp;kullan</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3019"/>
+        <location filename="../gui/optionsdlg.ui" line="3022"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>Değişken etki alanı adımı &amp;güncelle</translation>
     </message>
@@ -4678,35 +4682,35 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1154"/>
-        <location filename="../gui/optionsdlg.ui" line="2963"/>
+        <location filename="../gui/optionsdlg.ui" line="2966"/>
         <source>Authentication</source>
         <translation>Kimlik Doğrulaması</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1166"/>
         <location filename="../gui/optionsdlg.ui" line="1616"/>
-        <location filename="../gui/optionsdlg.ui" line="3002"/>
-        <location filename="../gui/optionsdlg.ui" line="3077"/>
+        <location filename="../gui/optionsdlg.ui" line="3005"/>
+        <location filename="../gui/optionsdlg.ui" line="3080"/>
         <source>Username:</source>
         <translation>Kullanıcı adı:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1176"/>
         <location filename="../gui/optionsdlg.ui" line="1626"/>
-        <location filename="../gui/optionsdlg.ui" line="3009"/>
-        <location filename="../gui/optionsdlg.ui" line="3091"/>
+        <location filename="../gui/optionsdlg.ui" line="3012"/>
+        <location filename="../gui/optionsdlg.ui" line="3094"/>
         <source>Password:</source>
         <translation>Parola:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1264"/>
         <source>Enabled protocol:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etkinleştirilmiş protokol:</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/optionsdlg.ui" line="1272"/>
         <source>TCP and μTP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP ve μTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1292"/>
@@ -4795,7 +4799,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1538"/>
-        <location filename="../gui/optionsdlg.ui" line="2787"/>
+        <location filename="../gui/optionsdlg.ui" line="2781"/>
         <source>Port:</source>
         <translation>B.Noktası:</translation>
     </message>
@@ -4932,10 +4936,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Oran sınırını aktarım ekyüküne uygula</translation>
     </message>
     <message utf8="true">
-        <source>Enable µTP protocol</source>
-        <translation type="obsolete">µTP protokolünü etkinleştir</translation>
-    </message>
-    <message utf8="true">
         <location filename="../gui/optionsdlg.ui" line="2054"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Oran sınırını µTP protokolüne uygula</translation>
@@ -5051,52 +5051,52 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Bunları kaldır</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2822"/>
+        <location filename="../gui/optionsdlg.ui" line="2825"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Yönlendiricimden bağlantı noktasını yönlendirmek için UPnP / NAT-PMP kullan</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2863"/>
+        <location filename="../gui/optionsdlg.ui" line="2866"/>
         <source>Certificate:</source>
         <translation>Sertifika:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2875"/>
+        <location filename="../gui/optionsdlg.ui" line="2878"/>
         <source>Import SSL Certificate</source>
         <translation>SSL Sertifikasını İçe Aktar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2916"/>
+        <location filename="../gui/optionsdlg.ui" line="2919"/>
         <source>Key:</source>
         <translation>Anahtar:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2928"/>
+        <location filename="../gui/optionsdlg.ui" line="2931"/>
         <source>Import SSL Key</source>
         <translation>SSL Anahtarını İçe Aktar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2950"/>
+        <location filename="../gui/optionsdlg.ui" line="2953"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Sertifikalar hakkında bilgi&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="2995"/>
+        <location filename="../gui/optionsdlg.ui" line="2998"/>
         <source>Bypass authentication for localhost</source>
         <translation>Yerel makineler için kimlik doğrulamasını atlat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3031"/>
+        <location filename="../gui/optionsdlg.ui" line="3034"/>
         <source>Service:</source>
         <translation>Hizmet:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3054"/>
+        <location filename="../gui/optionsdlg.ui" line="3057"/>
         <source>Register</source>
         <translation>Kaydol</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3063"/>
+        <location filename="../gui/optionsdlg.ui" line="3066"/>
         <source>Domain name:</source>
         <translation>Etki alanı adı:</translation>
     </message>
@@ -5171,93 +5171,93 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>İpucu: Metnin boşluktan kesilmesini önlemek için parametreyi tırnak işaretleri arasına alın (örn., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1437"/>
+        <location filename="../gui/optionsdlg.cpp" line="1440"/>
         <source>Select folder to monitor</source>
         <translation>İzlemek için bir klasör seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1444"/>
+        <location filename="../gui/optionsdlg.cpp" line="1447"/>
         <source>Folder is already being monitored:</source>
         <translation>Klasör zaten izleniyor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1447"/>
+        <location filename="../gui/optionsdlg.cpp" line="1450"/>
         <source>Folder does not exist:</source>
         <translation>Klasör mevcut değil:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1453"/>
         <source>Folder is not readable:</source>
         <translation>Klasör okunabilir değil:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1461"/>
+        <location filename="../gui/optionsdlg.cpp" line="1464"/>
         <source>Adding entry failed</source>
         <translation>Giriş ekleme başarısız oldu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="377"/>
-        <location filename="../gui/optionsdlg.cpp" line="380"/>
-        <location filename="../gui/optionsdlg.cpp" line="1489"/>
-        <location filename="../gui/optionsdlg.cpp" line="1491"/>
+        <location filename="../gui/optionsdlg.cpp" line="378"/>
+        <location filename="../gui/optionsdlg.cpp" line="381"/>
+        <location filename="../gui/optionsdlg.cpp" line="1492"/>
+        <location filename="../gui/optionsdlg.cpp" line="1494"/>
         <source>Choose export directory</source>
         <translation>Dışa aktarma dizini seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="374"/>
-        <location filename="../gui/optionsdlg.cpp" line="387"/>
-        <location filename="../gui/optionsdlg.cpp" line="390"/>
+        <location filename="../gui/optionsdlg.cpp" line="375"/>
+        <location filename="../gui/optionsdlg.cpp" line="388"/>
+        <location filename="../gui/optionsdlg.cpp" line="391"/>
         <source>Choose a save directory</source>
         <translation>Bir kaydetme dizini seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="383"/>
+        <location filename="../gui/optionsdlg.cpp" line="384"/>
         <source>Choose an IP filter file</source>
         <translation>Bir IP süzgeci dosyası seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="384"/>
+        <location filename="../gui/optionsdlg.cpp" line="385"/>
         <source>All supported filters</source>
         <translation>Tüm desteklenen süzgeçler</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1530"/>
+        <location filename="../gui/optionsdlg.cpp" line="1528"/>
         <source>SSL Certificate</source>
         <translation>SSL Sertifikası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1580"/>
+        <location filename="../gui/optionsdlg.cpp" line="1578"/>
         <source>Parsing error</source>
         <translation>Ayrıştırma hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1580"/>
+        <location filename="../gui/optionsdlg.cpp" line="1578"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Verilen IP süzgecini ayrıştırma başarısız</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1582"/>
+        <location filename="../gui/optionsdlg.cpp" line="1580"/>
         <source>Successfully refreshed</source>
         <translation>Başarılı olarak yenilendi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1582"/>
+        <location filename="../gui/optionsdlg.cpp" line="1580"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Verilen IP süzgeci başarılı olarak ayrıştırıldı: %1 kural uygulandı.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1555"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>Invalid key</source>
         <translation>Geçersiz anahtar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1555"/>
+        <location filename="../gui/optionsdlg.cpp" line="1553"/>
         <source>This is not a valid SSL key.</source>
         <translation>Bu geçerli bir SSL anahtarı değil.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1540"/>
+        <location filename="../gui/optionsdlg.cpp" line="1538"/>
         <source>Invalid certificate</source>
         <translation>Geçersiz sertifika</translation>
     </message>
@@ -5267,48 +5267,48 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Tercihler</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1530"/>
+        <location filename="../gui/optionsdlg.cpp" line="1528"/>
         <source>Import SSL certificate</source>
         <translation>SSL sertifikasını içe aktar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1540"/>
+        <location filename="../gui/optionsdlg.cpp" line="1538"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Geçerli bir SSL sertifikası değil.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1545"/>
+        <location filename="../gui/optionsdlg.cpp" line="1543"/>
         <source>Import SSL key</source>
         <translation>SSL anahtarını içe aktar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1545"/>
+        <location filename="../gui/optionsdlg.cpp" line="1543"/>
         <source>SSL key</source>
         <translation>SSL anahtarı</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1705"/>
+        <location filename="../gui/optionsdlg.cpp" line="1703"/>
         <source>Time Error</source>
         <translation>Zaman Hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1705"/>
+        <location filename="../gui/optionsdlg.cpp" line="1703"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Başlangıç zamanı ve bitiş zamanı aynı olamaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1714"/>
-        <location filename="../gui/optionsdlg.cpp" line="1718"/>
+        <location filename="../gui/optionsdlg.cpp" line="1712"/>
+        <location filename="../gui/optionsdlg.cpp" line="1716"/>
         <source>Length Error</source>
         <translation>Uzunluk Hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1714"/>
+        <location filename="../gui/optionsdlg.cpp" line="1712"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web Arayüzü kullanıcı adı en az 3 karakter uzunluğunda olmak zorundadır.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1718"/>
+        <location filename="../gui/optionsdlg.cpp" line="1716"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Web Arayüzü parolası en az 6 karakter uzunluğunda olmak zorundadır.</translation>
     </message>
@@ -5475,7 +5475,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="251"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
-        <translation>Kişi &apos;%1&apos; el ile ekleniyor...</translation>
+        <translation>El ile eklenen kişi &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="255"/>
@@ -5485,7 +5485,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="288"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
-        <translation>Kişi &apos;%1&apos; el ile yasaklanıyor...</translation>
+        <translation>El ile yasaklanan kişi &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="259"/>
@@ -5788,61 +5788,38 @@ Bu eklentiler etkisizleştirildi.</translation>
     </message>
 </context>
 <context>
-    <name>PreviewSelect</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Adı</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Boyut</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">İlerleme</translation>
-    </message>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Önizleme imkansız</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Üzgünüz, bu dosyanın önizlemesini yapamıyoruz</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="54"/>
         <source>Preview</source>
-        <translation type="unfinished">Önizle</translation>
+        <translation>Önizle</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="61"/>
         <source>Name</source>
-        <translation type="unfinished">Adı</translation>
+        <translation>Adı</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="62"/>
         <source>Size</source>
-        <translation type="unfinished">Boyut</translation>
+        <translation>Boyut</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="63"/>
         <source>Progress</source>
-        <translation type="unfinished">İlerleme</translation>
+        <translation>İlerleme</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="96"/>
         <location filename="../gui/previewselectdialog.cpp" line="141"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Önizleme imkansız</translation>
+        <translation>Önizleme imkansız</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="96"/>
         <location filename="../gui/previewselectdialog.cpp" line="141"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Üzgünüz, bu dosyanın önizlemesini yapamıyoruz</translation>
+        <translation>Üzgünüz, bu dosyanın önizlemesini yapamıyoruz</translation>
     </message>
 </context>
 <context>
@@ -6141,7 +6118,7 @@ Bu eklentiler etkisizleştirildi.</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="399"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
         <source>%1 (%2 this session)</source>
-        <translation>%1 (bu oturumda %2):</translation>
+        <translation>%1 (bu oturumda %2)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
@@ -6282,24 +6259,24 @@ Bu eklentiler etkisizleştirildi.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="134"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="135"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>IP adresiniz çok fazla başarısız kimlik doğrulaması denemesinden sonra yasaklandı.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="482"/>
+        <location filename="../webui/webapplication.cpp" line="497"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.
 </source>
         <translation>Hata: &apos;%1&apos; geçerli bir torrent dosyası değil.
 </translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="495"/>
+        <location filename="../webui/webapplication.cpp" line="515"/>
         <source>Error: Could not add torrent to session.</source>
         <translation>Hata: Torrent oturuma eklenemedi.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="475"/>
+        <location filename="../webui/webapplication.cpp" line="490"/>
         <source>I/O Error: Could not create temporary file.</source>
         <translation>G/Ç Hatası: Geçici dosya oluşturamadı.</translation>
     </message>
@@ -6961,7 +6938,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="397"/>
         <source>Default save location</source>
-        <translation>Varsayılan kaydetme yolu</translation>
+        <translation>Varsayılan kaydetme yeri</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="399"/>
@@ -7463,82 +7440,82 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
 <context>
     <name>SpeedWidget</name>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="67"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="68"/>
         <source>Period:</source>
         <translation>Süre:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="70"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
         <source>1 Minute</source>
         <translation>1 Dakika</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="71"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="72"/>
         <source>5 Minutes</source>
         <translation>5 Dakika</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="72"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="73"/>
         <source>30 Minutes</source>
         <translation>30 Dakika</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="73"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="74"/>
         <source>6 Hours</source>
         <translation>6 Saat</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="105"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="106"/>
         <source>Select Graphs</source>
         <translation>Grafikleri Seç</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="79"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
         <source>Total Upload</source>
         <translation>Toplam Gönderme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
         <source>Total Download</source>
         <translation>Toplam İndirme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
         <source>Payload Upload</source>
         <translation>Yük Gönderme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>Payload Download</source>
         <translation>Yük İndirme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>Overhead Upload</source>
         <translation>Ek Yük Gönderme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Overhead Download</source>
         <translation>Ek Yük İndirme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>DHT Upload</source>
         <translation>DHT Gönderme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
         <source>DHT Download</source>
         <translation>DHT İndirme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
         <source>Tracker Upload</source>
         <translation>İzleyici Gönderme</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="89"/>
         <source>Tracker Download</source>
         <translation>İzleyici İndirme</translation>
     </message>
@@ -7874,45 +7851,48 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="14"/>
         <source>Torrent Category Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Kategorisi Özellikleri</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">Adı:</translation>
+        <translation>Adı:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished">Kaydetme yolu:</translation>
+        <translation>Kaydetme yolu:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
-        <translation type="unfinished">Yeni Kategori</translation>
+        <translation>Yeni Kategori</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="67"/>
         <source>Invalid category name</source>
-        <translation type="unfinished">Geçersiz kategori adı</translation>
+        <translation>Geçersiz kategori adı</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="68"/>
         <source>Category name cannot contain &apos;\&apos;.
 Category name cannot start/end with &apos;/&apos;.
 Category name cannot contain &apos;//&apos; sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori adı &apos;\&apos; içeremez.
+Kategori adı &apos;/&apos; ile başlayamaz/bitemez.
+Kategori adı &apos;//&apos; şeklinde dizi içeremez.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="74"/>
         <source>Category creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori oluşturma hatası</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="75"/>
         <source>Category with the given name already exists.
 Please choose a different name and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verilen isimde kategori zaten var.
+Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
     </message>
 </context>
 <context>
@@ -8181,13 +8161,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentmodel.cpp" line="101"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Gönderimler</translation>
+        <translation>Gönderim</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="102"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Kişiler</translation>
+        <translation>Kişi</translation>
     </message>
     <message>
         <location filename="../gui/torrentmodel.cpp" line="103"/>
@@ -8414,7 +8394,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="592"/>
         <source>Peers</source>
-        <translation>Kişiler</translation>
+        <translation>Kişi</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="593"/>
@@ -8721,7 +8701,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="660"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Seçilen torrent(ler)i yeniden kontrol etmek istediğinize emin misiniz?</translation>
+        <translation>Seçilen torrent&apos;(ler)i yeniden kontrol etmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="802"/>
@@ -8756,26 +8736,6 @@ Please choose a different name and try again.</source>
         <source>Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <comment>Set location: moving &quot;ubuntu_16_04.iso&quot;, from &quot;/home/dir1&quot; to &quot;/home/dir2&quot;</comment>
         <translation>Yeri ayarla: taşınan &quot;%1&quot;, &quot;%2&quot; yerinden &quot;%3&quot; yerine</translation>
-    </message>
-    <message>
-        <source>New Category</source>
-        <translation type="obsolete">Yeni Kategori</translation>
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="obsolete">Kategori:</translation>
-    </message>
-    <message>
-        <source>Invalid category name</source>
-        <translation type="obsolete">Geçersiz kategori adı</translation>
-    </message>
-    <message>
-        <source>Category name must not contain &apos;\&apos;.
-Category name must not start/end with &apos;/&apos;.
-Category name must not contain &apos;//&apos; sequence.</source>
-        <translation type="obsolete">Kategori adı &apos;\&apos; içeremez.
-Kategori adı &apos;/&apos; ile başlayamaz/bitemez.
-Kategori adı &apos;//&apos; dizisini içeremez.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="744"/>
@@ -8865,7 +8825,7 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="863"/>
         <source>Set location...</source>
-        <translation>Konum ayarla...</translation>
+        <translation>Yeri ayarla...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="869"/>
@@ -9010,12 +8970,12 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="812"/>
+        <location filename="../webui/webapplication.cpp" line="832"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>Web Arayüzü Ayar konumu: taşınan &quot;%1&quot;, &quot;%2&quot; yerinden &quot;%3&quot; yerine</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="890"/>
+        <location filename="../webui/webapplication.cpp" line="910"/>
         <source>Incorrect category name</source>
         <translation>Yanlış kategori adı</translation>
     </message>
@@ -9023,36 +8983,24 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
 <context>
     <name>WebUI</name>
     <message>
-        <source>Web UI: https setup successful</source>
-        <translation type="obsolete">Web Arayüzü: https kurulumu başarılı</translation>
-    </message>
-    <message>
-        <source>Web UI: https setup failed, fallback to http</source>
-        <translation type="obsolete">Web Arayüzü: https kurulumu başarısız, http&apos;ye geri çekiliyor</translation>
-    </message>
-    <message>
         <location filename="../webui/webui.cpp" line="86"/>
         <source>Web UI: HTTPS setup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: HTTPS kurulumu başarılı</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="88"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: HTTPS kurulumu başarısız, HTTP&apos;ye geri çekiliyor</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="98"/>
+        <location filename="../webui/webui.cpp" line="102"/>
         <source>Web UI: Now listening on port %1</source>
         <translation>Web Arayüzü: Şu an %1 nolu bağlantı noktasında dinleniyor</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="101"/>
+        <location filename="../webui/webui.cpp" line="105"/>
         <source>Web UI: Unable to bind to port %1. %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to port %1</source>
-        <translation type="obsolete">Web Arayüzü: %1 nolu bağlantı noktasına bağlanamıyor</translation>
+        <translation>Web Arayüzü: %1 nolu bağlantı noktasına bağlanamıyor. %2</translation>
     </message>
 </context>
 <context>
@@ -9129,14 +9077,6 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
         <source>Password:</source>
         <translation>Parola:</translation>
     </message>
-    <message>
-        <source>Log in</source>
-        <translation type="obsolete">Oturum aç</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">İptal</translation>
-    </message>
 </context>
 <context>
     <name>confirmDeletionDlg</name>
@@ -9185,10 +9125,6 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
         <location filename="../gui/downloadfromurldlg.h" line="55"/>
         <source>Download</source>
         <translation>İndir</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">İptal</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldlg.h" line="109"/>
@@ -9318,22 +9254,22 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
         <translation>%1d</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="797"/>
+        <location filename="../webui/btjson.cpp" line="798"/>
         <source>Working</source>
         <translation>Çalışıyor</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="795"/>
+        <location filename="../webui/btjson.cpp" line="796"/>
         <source>Updating...</source>
         <translation>Güncelleniyor...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="799"/>
+        <location filename="../webui/btjson.cpp" line="800"/>
         <source>Not working</source>
         <translation>Çalışmıyor</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="793"/>
+        <location filename="../webui/btjson.cpp" line="794"/>
         <source>Not contacted yet</source>
         <translation>Henüz bağlanmadı</translation>
     </message>
@@ -9350,21 +9286,13 @@ Kategori adı &apos;//&apos; dizisini içeremez.</translation>
         <source>The following files support previewing, please select one of them:</source>
         <translation>Aşağıdaki dosyalar önizlemeyi destekler, lütfen bunlardan birini seçin:</translation>
     </message>
-    <message>
-        <source>Preview</source>
-        <translation type="obsolete">Önizle</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">İptal</translation>
-    </message>
 </context>
 <context>
     <name>trackerLogin</name>
     <message>
         <location filename="../gui/trackerlogin.cpp" line="44"/>
         <source>Log in</source>
-        <translation type="unfinished">Oturum aç</translation>
+        <translation>Oturum aç</translation>
     </message>
 </context>
 </TS>
