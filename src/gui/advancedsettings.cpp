@@ -450,7 +450,7 @@ void AdvancedSettings::loadAdvancedSettings()
 
     // Remove all tags confirmation
     cb_confirm_remove_all_tags.setChecked(pref->confirmRemoveAllTags());
-    addRow(CONFIRM_REMOVE_ALL_TAGS, tr("Confirm remove all tags"), &cb_confirm_remove_all_tags);
+    addRow(CONFIRM_REMOVE_ALL_TAGS, tr("Confirm removal of all tags"), &cb_confirm_remove_all_tags);
 
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());

@@ -543,7 +543,8 @@ QString makeUsage(const QString &prgName)
            << wrapText(QObject::tr("Hack into libtorrent fastresume files and make file paths relative "
                                          "to the profile directory")) << '\n';
     stream << PORTABLE_OPTION.usage()
-           << wrapText(QObject::tr("Shortcut for --profile=<exe dir>/profile --relative-fastresume")) << '\n';
+           << wrapText(QObject::tr("Shortcut for %1", "Shortcut for --profile=<exe dir>/profile --relative-fastresume")
+                       .arg(QLatin1String("--profile=<exe dir>/profile --relative-fastresume"))) << '\n';
     stream << Option::padUsageText(QObject::tr("files or URLs"))
            << wrapText(QObject::tr("Download the torrents passed by the user")) << '\n'
            << '\n';
