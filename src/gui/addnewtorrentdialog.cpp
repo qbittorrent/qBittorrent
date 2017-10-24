@@ -263,12 +263,12 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
-                MessageBoxRaised::critical(this, tr("Already in download list"), tr("Torrent '%1' is already in download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                MessageBoxRaised::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                MessageBoxRaised::information(this, tr("Already in download list"), tr("Torrent '%1' is already in download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                MessageBoxRaised::information(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {
@@ -297,12 +297,12 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate()) {
-                MessageBoxRaised::critical(this, tr("Already in download list"), tr("Torrent '%1' is already in download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                MessageBoxRaised::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(magnetUri.trackers());
                 torrent->addUrlSeeds(magnetUri.urlSeeds());
-                MessageBoxRaised::information(this, tr("Already in download list"), tr("Magnet link '%1' is already in download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                MessageBoxRaised::information(this, tr("Already in the download list"), tr("Magnet link '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {

@@ -146,7 +146,7 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     // test if readable
     const QFileInfo fi(input);
     if (!fi.isReadable()) {
-        QMessageBox::critical(this, tr("Torrent creator failed"), tr("Reason: Path to file/folder is not readable."));
+        QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Path to file/folder is not readable."));
         return;
     }
     input = fi.canonicalFilePath();
@@ -176,7 +176,7 @@ void TorrentCreatorDlg::handleCreationFailure(const QString &msg)
 {
     // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Torrent creator failed"), tr("Reason: %1").arg(msg));
+    QMessageBox::information(this, tr("Torrent creation failed"), tr("Reason: %1").arg(msg));
     setInteractionEnabled(true);
 }
 
@@ -188,7 +188,7 @@ void TorrentCreatorDlg::handleCreationSuccess(const QString &path, const QString
         // Create save path temp data
         BitTorrent::TorrentInfo t = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
         if (!t.isValid()) {
-            QMessageBox::critical(this, tr("Torrent creator failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
+            QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
             return;
         }
 
@@ -199,7 +199,7 @@ void TorrentCreatorDlg::handleCreationSuccess(const QString &path, const QString
 
         BitTorrent::Session::instance()->addTorrent(t, params);
     }
-    QMessageBox::information(this, tr("Torrent creator"), QString("%1\n%2").arg(tr("Create torrent success:")).arg(Utils::Fs::toNativePath(path)));
+    QMessageBox::information(this, tr("Torrent creator"), QString("%1\n%2").arg(tr("Torrent created:")).arg(Utils::Fs::toNativePath(path)));
     setInteractionEnabled(true);
 }
 

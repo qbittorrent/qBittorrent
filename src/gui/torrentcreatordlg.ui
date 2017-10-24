@@ -169,7 +169,7 @@
         <item>
          <widget class="QPushButton" name="buttonCalcTotalPieces">
           <property name="text">
-           <string>Calculate total pieces:</string>
+           <string>Calculate number of pieces:</string>
           </property>
          </widget>
         </item>

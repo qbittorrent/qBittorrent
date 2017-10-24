@@ -124,7 +124,7 @@ int FilterParserThread::parseDATFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open IP filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -258,7 +258,7 @@ int FilterParserThread::parseP2PFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open IP filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
@@ -405,7 +405,7 @@ int FilterParserThread::parseP2BFilterFile()
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly)) {
-        LogMsg(tr("I/O Error: Could not open ip filter file in read mode."), Log::CRITICAL);
+        LogMsg(tr("I/O Error: Could not open IP filter file in read mode."), Log::CRITICAL);
         return ruleCount;
     }
 
