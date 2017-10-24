@@ -256,12 +256,8 @@
         <translation>Nieprawidłowy torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Already in download list</source>
-        <translation>Już jest na liście pobierania</translation>
+        <translation type="obsolete">Już jest na liście pobierania</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -321,6 +317,25 @@ Error: %2</source>
 Błąd: %2</translation>
     </message>
     <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Already in the download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers weren&apos;t merged because it is a private torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="275"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
         <source>Cannot add torrent</source>
@@ -335,6 +350,11 @@ Błąd: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
         <source>This magnet link was not recognized</source>
         <translation>Odnośnik magnet nie został rozpoznany</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Magnet link &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
@@ -368,20 +388,16 @@ Błąd: %2</translation>
         <translation>Wybierz ścieżkę zapisu</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation>Torrent &apos;%1&apos; jest już na liście pobierania. Trackery nie zostały połączone, ponieważ jest to torrent prywatny.</translation>
+        <translation type="obsolete">Torrent &apos;%1&apos; jest już na liście pobierania. Trackery nie zostały połączone, ponieważ jest to torrent prywatny.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation>Torrent &apos;%1&apos; jest już na liście pobierania. Trackery zostały połączone.</translation>
+        <translation type="obsolete">Torrent &apos;%1&apos; jest już na liście pobierania. Trackery zostały połączone.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Magnet link &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation>Odnośnik magnet &apos;%1&apos; jest już na liście pobierania. Trackery zostały połączone.</translation>
+        <translation type="obsolete">Odnośnik magnet &apos;%1&apos; jest już na liście pobierania. Trackery zostały połączone.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -630,8 +646,12 @@ Błąd: %2</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="453"/>
+        <source>Confirm removal of all tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Confirm remove all tags</source>
-        <translation>Potwierdź usunięcie wszystkich znaczników</translation>
+        <translation type="obsolete">Potwierdź usunięcie wszystkich znaczników</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="457"/>
@@ -1645,11 +1665,15 @@ Błąd: %2</translation>
 <context>
     <name>FilterParserThread</name>
     <message>
+        <source>I/O Error: Could not open ip filter file in read mode.</source>
+        <translation type="obsolete">Błąd we/wy: nie można otworzyć pliku filtra IP w trybie odczytu.</translation>
+    </message>
+    <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="127"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="261"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="408"/>
-        <source>I/O Error: Could not open ip filter file in read mode.</source>
-        <translation>Błąd we/wy: nie można otworzyć pliku filtra IP w trybie odczytu.</translation>
+        <source>I/O Error: Could not open IP filter file in read mode.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="205"/>
@@ -6383,7 +6407,7 @@ Tamte wtyczki zostały wyłączone.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="540"/>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
+        <location filename="../app/cmdoptions.cpp" line="556"/>
         <source>name</source>
         <translation>nazwa</translation>
     </message>
@@ -6398,77 +6422,82 @@ Tamte wtyczki zostały wyłączone.</translation>
         <translation>Włam się do plików fastresume libtorrent i uczyń ścieżki plików względnymi do katalogu profilu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="546"/>
         <source>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</source>
-        <translation>Skrót do --profile=&lt;exe dir&gt;/profile --relative-fastresume</translation>
+        <translation type="obsolete">Skrót do --profile=&lt;exe dir&gt;/profile --relative-fastresume</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="547"/>
+        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>files or URLs</source>
         <translation>pliki albo adresy URL</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Download the torrents passed by the user</source>
         <translation>Pobierz pliki torrent podane przez użytkownika</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="562"/>
+        <location filename="../app/cmdoptions.cpp" line="563"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
         <translation>Określ, czy otwierać okno &quot;Dodaj nowy plik torrent&quot; podczas dodawnia torrenta.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="551"/>
+        <location filename="../app/cmdoptions.cpp" line="552"/>
         <source>Options when adding new torrents:</source>
         <translation>Opcje podczas dodawania nowych torrentów:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="546"/>
+        <source>Shortcut for %1</source>
+        <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>path</source>
         <translation>ścieżka</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>Torrent save path</source>
         <translation>Ścieżka zapisu torrenta</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="553"/>
+        <location filename="../app/cmdoptions.cpp" line="554"/>
         <source>Add torrents as started or paused</source>
         <translation>Dodaj torrenty jako rozpoczęte lub wstrzymane</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="554"/>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>Skip hash check</source>
         <translation>Pomiń sprawdzanie sumy kontrolnej</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="556"/>
+        <location filename="../app/cmdoptions.cpp" line="557"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>Przypisz torrenty do kategorii. Jeśli kategoria nie istnieje, zostanie utworzona.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <location filename="../app/cmdoptions.cpp" line="559"/>
         <source>Download files in sequential order</source>
         <translation>Pobierz pliki w kolejności sekwencyjnej</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="560"/>
+        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Download first and last pieces first</source>
         <translation>Pobierz najpierw część pierwszą i ostatnią</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="566"/>
+        <location filename="../app/cmdoptions.cpp" line="567"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation>Wartości opcji mogą być dostarczane za pośrednictwem zmiennych środowiskowych. Dla opcji nazwanej &apos;parameter-name&apos;, nazwa zmiennej środowiskowej to &apos;QBT_PARAMETER_NAME&apos; (w trybie wielkich liter &apos;-&apos; zastąpione jest &apos;_&apos;). Aby przekazać wartości flagi, ustaw zmienną na &apos;1&apos; albo &apos;TRUE&apos;. Na przykład, aby wyłączyć ekran powitalny: </translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="571"/>
+        <location filename="../app/cmdoptions.cpp" line="572"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation>Parametry linii poleceń mają pierwszeństwo przed zmiennymi środowiskowymi</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="582"/>
+        <location filename="../app/cmdoptions.cpp" line="583"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
@@ -7936,16 +7965,20 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
         <translation>Utwórz torrenta</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
         <source>Torrent creator failed</source>
-        <translation>Niepowodzenie kreatora torrenta</translation>
+        <translation type="obsolete">Niepowodzenie kreatora torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Powód: Nie można odczytać ścieżki do pliku lub folderu.</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <source>Torrent creation failed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
@@ -7974,8 +8007,12 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <source>Torrent created:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create torrent success:</source>
-        <translation>Powodzenie utworzenia torrenta:</translation>
+        <translation type="obsolete">Powodzenie utworzenia torrenta:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="17"/>
@@ -8081,8 +8118,12 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="172"/>
+        <source>Calculate number of pieces:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Calculate total pieces:</source>
-        <translation>Oblicz całość części:</translation>
+        <translation type="obsolete">Oblicz całość części:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="201"/>
@@ -8970,12 +9011,12 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="832"/>
+        <location filename="../webui/webapplication.cpp" line="834"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>Interfejs WWW Ustaw położenie: przenoszenie &quot;%1&quot;, z &quot;%2&quot; do &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="910"/>
+        <location filename="../webui/webapplication.cpp" line="911"/>
         <source>Incorrect category name</source>
         <translation>Nieprawidłowa nazwa kategorii</translation>
     </message>
@@ -8983,12 +9024,12 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="86"/>
+        <location filename="../webui/webui.cpp" line="88"/>
         <source>Web UI: HTTPS setup successful</source>
         <translation>Interfejs WWW: pomyślna konfiguracja HTTPS</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="88"/>
+        <location filename="../webui/webui.cpp" line="90"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
         <translation>Interfejs WWW: nieprawidłowa konfiguracja HTTPS, powrót do HTTP</translation>
     </message>

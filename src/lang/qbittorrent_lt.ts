@@ -256,12 +256,8 @@
         <translation>Netaisyklingas torentas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Already in download list</source>
-        <translation>Jau yra siuntimų sąraše</translation>
+        <translation type="obsolete">Jau yra siuntimų sąraše</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -321,6 +317,25 @@ Error: %2</source>
 Klaida: %2</translation>
     </message>
     <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Already in the download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers weren&apos;t merged because it is a private torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="275"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
         <source>Cannot add torrent</source>
@@ -335,6 +350,11 @@ Klaida: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
         <source>This magnet link was not recognized</source>
         <translation>Ši magnet nuoroda neatpažinta</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Magnet link &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
@@ -368,20 +388,16 @@ Klaida: %2</translation>
         <translation>Pasirinkite išsaugojimo vietą</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation>Torentas &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai nebuvo sulieti, nes tai yra privatus torentas. </translation>
+        <translation type="obsolete">Torentas &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai nebuvo sulieti, nes tai yra privatus torentas. </translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
         <source>Torrent &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation>Torentas &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai buvo sulieti.</translation>
+        <translation type="obsolete">Torentas &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai buvo sulieti.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Magnet link &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation>Magnet nuoroda &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai buvo sulieti.</translation>
+        <translation type="obsolete">Magnet nuoroda &quot;%1&quot; jau yra atsiuntimų sąraše. Seklių sąrašai buvo sulieti.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -630,8 +646,12 @@ Klaida: %2</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="453"/>
+        <source>Confirm removal of all tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Confirm remove all tags</source>
-        <translation>Patvirtinti visų žymių šalinimą</translation>
+        <translation type="obsolete">Patvirtinti visų žymių šalinimą</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="457"/>
@@ -1645,11 +1665,15 @@ Klaida: %2</translation>
 <context>
     <name>FilterParserThread</name>
     <message>
+        <source>I/O Error: Could not open ip filter file in read mode.</source>
+        <translation type="obsolete">I/O Klaida: Nepavyko atverti ip filtrų failo skaitymo veiksenoje.</translation>
+    </message>
+    <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="127"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="261"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="408"/>
-        <source>I/O Error: Could not open ip filter file in read mode.</source>
-        <translation>I/O Klaida: Nepavyko atverti ip filtrų failo skaitymo veiksenoje.</translation>
+        <source>I/O Error: Could not open IP filter file in read mode.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="205"/>
@@ -6385,7 +6409,7 @@ Tie papildiniai buvo išjungti.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="540"/>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
+        <location filename="../app/cmdoptions.cpp" line="556"/>
         <source>name</source>
         <translation>pavadinimas</translation>
     </message>
@@ -6400,77 +6424,82 @@ Tie papildiniai buvo išjungti.</translation>
         <translation>Įsilaužti į libtorrent greitojo pratęsimo failus ir padaryti failų kelius santykinius profilio katalogui</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="546"/>
         <source>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</source>
-        <translation>Šaukinys, skirtas --profile=&lt;exe dir&gt;/profile --relative-fastresume</translation>
+        <translation type="obsolete">Šaukinys, skirtas --profile=&lt;exe dir&gt;/profile --relative-fastresume</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="547"/>
+        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>files or URLs</source>
         <translation>failai ar URL</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Download the torrents passed by the user</source>
         <translation>Atsisiųsti naudotojo perduotus torentus</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="562"/>
+        <location filename="../app/cmdoptions.cpp" line="563"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
         <translation>Nurodyti ar pridedant torentą bus atveriamas &quot;Pridėti naują torentą&quot; dialogas</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="551"/>
+        <location filename="../app/cmdoptions.cpp" line="552"/>
         <source>Options when adding new torrents:</source>
         <translation>Parinktys, pridedant naujus torentus:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="546"/>
+        <source>Shortcut for %1</source>
+        <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>path</source>
         <translation>kelias</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>Torrent save path</source>
         <translation>Torento išsaugojimo kelias</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="553"/>
+        <location filename="../app/cmdoptions.cpp" line="554"/>
         <source>Add torrents as started or paused</source>
         <translation>Pridėti torentus kaip pradėtus ar pristabdytus</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="554"/>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>Skip hash check</source>
         <translation>Praleisti maišos tikrinimą</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="556"/>
+        <location filename="../app/cmdoptions.cpp" line="557"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>Priskirti torentus kategorijai. Jeigu kategorijos nėra, ji bus sukurta.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <location filename="../app/cmdoptions.cpp" line="559"/>
         <source>Download files in sequential order</source>
         <translation>Atsisiųsti failus eilės tvarka</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="560"/>
+        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Download first and last pieces first</source>
         <translation>Visų pirma siųsti pirmas ir paskutines dalis</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="566"/>
+        <location filename="../app/cmdoptions.cpp" line="567"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation>Parinkties reikšmės gali būti pateikiamos per aplinkos kintamuosius. Parinkčiai, pavadinimu &quot;parameter-name&quot;, aplinkos kintamojo pavadinimas bus &quot;QBT_PARAMETER_NAME&quot; (rašant didžiosiomis raidėmis, &quot;-&quot; pakeičiami &quot;_&quot;). Norėdami perduoti vėliavėlių reikšmes, nustatykite kintamąjį į &quot;1&quot; arba &quot;TRUE&quot;. Pavyzdžiui, norint išjungti prisistatymo langą: </translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="571"/>
+        <location filename="../app/cmdoptions.cpp" line="572"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation>Komandų eilutės parametrai turi pirmumo teisę prieš aplinkos kintamuosius</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="582"/>
+        <location filename="../app/cmdoptions.cpp" line="583"/>
         <source>Help</source>
         <translation>Žinynas</translation>
     </message>
@@ -7938,16 +7967,20 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Sukurti torentą</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
         <source>Torrent creator failed</source>
-        <translation>Torento sukūrimas nepavyko</translation>
+        <translation type="obsolete">Torento sukūrimas nepavyko</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Priežastis: Kelias į failą/aplanką nėra skaitomas.</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <source>Torrent creation failed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
@@ -7976,8 +8009,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <source>Torrent created:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create torrent success:</source>
-        <translation>Torentas sėkmingai sukurtas:</translation>
+        <translation type="obsolete">Torentas sėkmingai sukurtas:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="17"/>
@@ -8083,8 +8120,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="172"/>
+        <source>Calculate number of pieces:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Calculate total pieces:</source>
-        <translation>Paskaičiuoti visas dalis:</translation>
+        <translation type="obsolete">Paskaičiuoti visas dalis:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="201"/>
@@ -8972,12 +9013,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="832"/>
+        <location filename="../webui/webapplication.cpp" line="834"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>Tinklo sąsaja Nustatyti vietą: perkeliama &quot;%1&quot;, iš &quot;%2&quot; į &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="910"/>
+        <location filename="../webui/webapplication.cpp" line="911"/>
         <source>Incorrect category name</source>
         <translation>Neteisingas kategorijos pavadinimas</translation>
     </message>
@@ -8985,12 +9026,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="86"/>
+        <location filename="../webui/webui.cpp" line="88"/>
         <source>Web UI: HTTPS setup successful</source>
         <translation>Tinklo sąsaja: HTTPS sąranka sėkminga</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="88"/>
+        <location filename="../webui/webui.cpp" line="90"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
         <translation>Tinklo sąsaja: HTTPS sąranka nepavyko, grįžtama prie HTTP</translation>
     </message>

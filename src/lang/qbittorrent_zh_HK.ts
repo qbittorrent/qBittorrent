@@ -256,12 +256,8 @@
         <translation>無效Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Already in download list</source>
-        <translation>已於下載清單。</translation>
+        <translation type="obsolete">已於下載清單。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -321,6 +317,25 @@ Error: %2</source>
 錯誤：%2</translation>
     </message>
     <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Already in the download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers weren&apos;t merged because it is a private torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
+        <source>Torrent &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="275"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
         <source>Cannot add torrent</source>
@@ -335,6 +350,11 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
         <source>This magnet link was not recognized</source>
         <translation>無法辨認這磁性連結</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
+        <source>Magnet link &apos;%1&apos; is already in the download list. Trackers were merged.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
@@ -366,22 +386,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="95"/>
         <source>Choose save path</source>
         <translation>選取儲存路徑</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="266"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="300"/>
-        <source>Torrent &apos;%1&apos; is already in download list. Trackers weren&apos;t merged because it is a private torrent.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="271"/>
-        <source>Torrent &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
-        <source>Magnet link &apos;%1&apos; is already in download list. Trackers were merged.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="457"/>
@@ -630,7 +634,7 @@ Error: %2</source>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="453"/>
-        <source>Confirm remove all tags</source>
+        <source>Confirm removal of all tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1645,11 +1649,15 @@ Error: %2</source>
 <context>
     <name>FilterParserThread</name>
     <message>
+        <source>I/O Error: Could not open ip filter file in read mode.</source>
+        <translation type="obsolete">入出錯誤：讀取模式下無法開啟IP過濾器檔。</translation>
+    </message>
+    <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="127"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="261"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="408"/>
-        <source>I/O Error: Could not open ip filter file in read mode.</source>
-        <translation>入出錯誤：讀取模式下無法開啟IP過濾器檔。</translation>
+        <source>I/O Error: Could not open IP filter file in read mode.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="205"/>
@@ -6375,7 +6383,7 @@ Those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="540"/>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
+        <location filename="../app/cmdoptions.cpp" line="556"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6390,77 +6398,78 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="546"/>
-        <source>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="547"/>
+        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>files or URLs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Download the torrents passed by the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="562"/>
+        <location filename="../app/cmdoptions.cpp" line="563"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="551"/>
+        <location filename="../app/cmdoptions.cpp" line="552"/>
         <source>Options when adding new torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
-        <source>path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
-        <source>Torrent save path</source>
+        <location filename="../app/cmdoptions.cpp" line="546"/>
+        <source>Shortcut for %1</source>
+        <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="553"/>
-        <source>Add torrents as started or paused</source>
+        <source>path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
+        <source>Torrent save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="554"/>
+        <source>Add torrents as started or paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>Skip hash check</source>
         <translation type="unfinished">略過驗證碼檢查</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="556"/>
+        <location filename="../app/cmdoptions.cpp" line="557"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <location filename="../app/cmdoptions.cpp" line="559"/>
         <source>Download files in sequential order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="560"/>
+        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Download first and last pieces first</source>
         <translation type="unfinished">先下載首片段和最後片段</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="566"/>
+        <location filename="../app/cmdoptions.cpp" line="567"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="571"/>
+        <location filename="../app/cmdoptions.cpp" line="572"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="582"/>
+        <location filename="../app/cmdoptions.cpp" line="583"/>
         <source>Help</source>
         <translation>說明</translation>
     </message>
@@ -7925,14 +7934,14 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
-        <source>Torrent creator failed</source>
+        <source>Reason: Path to file/folder is not readable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <source>Reason: Path to file/folder is not readable.</source>
+        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <source>Torrent creation failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7962,7 +7971,7 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
-        <source>Create torrent success:</source>
+        <source>Torrent created:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8069,7 +8078,7 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="172"/>
-        <source>Calculate total pieces:</source>
+        <source>Calculate number of pieces:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8958,12 +8967,12 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="832"/>
+        <location filename="../webui/webapplication.cpp" line="834"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="910"/>
+        <location filename="../webui/webapplication.cpp" line="911"/>
         <source>Incorrect category name</source>
         <translation>錯誤分類名稱</translation>
     </message>
@@ -8971,12 +8980,12 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="86"/>
+        <location filename="../webui/webui.cpp" line="88"/>
         <source>Web UI: HTTPS setup successful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="88"/>
+        <location filename="../webui/webui.cpp" line="90"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
         <translation type="unfinished"></translation>
     </message>
