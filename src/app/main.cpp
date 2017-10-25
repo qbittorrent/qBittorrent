@@ -84,10 +84,17 @@ void sigNormalHandler(int signum);
 void sigAbnormalHandler(int signum);
 // sys_signame[] is only defined in BSD
 const char *sysSigName[] = {
+#if defined(Q_OS_WIN)
+    "", "", "SIGINT", "", "SIGILL", "", "SIGABRT_COMPAT", "", "SIGFPE", "",
+    "", "SIGSEGV", "", "", "", "SIGTERM", "", "", "", "",
+    "", "SIGBREAK", "SIGABRT", "", "", "", "", "", "", "",
+    "", ""
+#else
     "", "SIGHUP", "SIGINT", "SIGQUIT", "SIGILL", "SIGTRAP", "SIGABRT", "SIGBUS", "SIGFPE", "SIGKILL",
     "SIGUSR1", "SIGSEGV", "SIGUSR2", "SIGPIPE", "SIGALRM", "SIGTERM", "SIGSTKFLT", "SIGCHLD", "SIGCONT", "SIGSTOP",
     "SIGTSTP", "SIGTTIN", "SIGTTOU", "SIGURG", "SIGXCPU", "SIGXFSZ", "SIGVTALRM", "SIGPROF", "SIGWINCH", "SIGIO",
     "SIGPWR", "SIGUNUSED"
+#endif
 };
 #endif
 
@@ -214,7 +221,7 @@ int main(int argc, char *argv[])
         QByteArray path = "/usr/local/bin:";
         path += qgetenv("PATH");
         qputenv("PATH", path.constData());
-        
+
         // On OS X the standard is to not show icons in the menus
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
@@ -276,12 +283,11 @@ void reportToUser(const char* str)
 void sigNormalHandler(int signum)
 {
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    const char str1[] = "Catching signal: ";
-    const char *sigName = sysSigName[signum];
-    const char str2[] = "\nExiting cleanly\n";
-    reportToUser(str1);
-    reportToUser(sigName);
-    reportToUser(str2);
+    const char msg1[] = "Catching signal: ";
+    const char msg2[] = "\nExiting cleanly\n";
+    reportToUser(msg1);
+    reportToUser(sysSigName[signum]);
+    reportToUser(msg2);
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
     signal(signum, SIG_DFL);
     qApp->exit();  // unsafe, but exit anyway
@@ -289,19 +295,20 @@ void sigNormalHandler(int signum)
 
 void sigAbnormalHandler(int signum)
 {
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    const char str1[] = "\n\n*************************************************************\nCatching signal: ";
     const char *sigName = sysSigName[signum];
-    const char str2[] = "\nPlease file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
-    "qBittorrent version: " QBT_VERSION "\n";
-    reportToUser(str1);
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+    const char msg[] = "\n\n*************************************************************\n"
+        "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
+        "qBittorrent version: " QBT_VERSION "\n\n"
+        "Caught signal: ";
+    reportToUser(msg);
     reportToUser(sigName);
-    reportToUser(str2);
+    reportToUser("\n");
     print_stacktrace();  // unsafe
 #endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #ifdef STACKTRACE_WIN
     StraceDlg dlg;  // unsafe
-    dlg.setStacktraceString(straceWin::getBacktrace());
+    dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
     dlg.exec();
 #endif // STACKTRACE_WIN
     signal(signum, SIG_DFL);

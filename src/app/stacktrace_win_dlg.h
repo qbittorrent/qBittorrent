@@ -40,13 +40,13 @@ class StraceDlg : public QDialog, private Ui::errorDialog
     Q_OBJECT
 
 public:
-    StraceDlg(QWidget* parent = 0)
+    StraceDlg(QWidget *parent = nullptr)
         : QDialog(parent)
     {
         setupUi(this);
     }
 
-    void setStacktraceString(const QString& trace)
+    void setStacktraceString(const QString &sigName, const QString &trace)
     {
         // try to call Qt function as less as possible
         QString htmlStr = QString(
@@ -68,14 +68,16 @@ public:
             "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
             "Boost version: %2<br/>"
-            "OS version: %3"
-            "</font></p><br/>"
-            "<pre><code>%4</code></pre>"
+            "OS version: %3<br/><br/>"
+            "Caught signal: %4"
+            "</font></p>"
+            "<pre><code>%5</code></pre>"
             "<br/><hr><br/><br/>")
-            .arg(Utils::Misc::libtorrentVersionString())
-            .arg(Utils::Misc::boostVersionString())
-            .arg(Utils::Misc::osName())
-            .arg(trace);
+                .arg(Utils::Misc::libtorrentVersionString())
+                .arg(Utils::Misc::boostVersionString())
+                .arg(Utils::Misc::osName())
+                .arg(sigName)
+                .arg(trace);
 
         errorText->setHtml(htmlStr);
     }
