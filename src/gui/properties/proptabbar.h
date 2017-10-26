@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PROPTABBAR_H
@@ -33,9 +31,7 @@
 
 #include <QHBoxLayout>
 
-QT_BEGIN_NAMESPACE
 class QButtonGroup;
-QT_END_NAMESPACE
 
 class PropTabBar : public QHBoxLayout
 {
@@ -43,24 +39,30 @@ class PropTabBar : public QHBoxLayout
   Q_DISABLE_COPY(PropTabBar)
 
 public:
-  enum PropertyTab {MAIN_TAB, TRACKERS_TAB, PEERS_TAB, URLSEEDS_TAB, FILES_TAB, SPEED_TAB};
+    enum PropertyTab
+    {
+        MainTab,
+        TrackersTab,
+        PeersTab,
+        URLSeedsTab,
+        FilesTab,
+        SpeedTab
+    };
 
-public:
-  explicit PropTabBar(QWidget *parent = 0);
-  ~PropTabBar();
-  int currentIndex() const;
+    explicit PropTabBar(QWidget *parent = nullptr);
+    ~PropTabBar();
+    int currentIndex() const;
 
 signals:
-  void tabChanged(int index);
-  void visibilityToggled(bool visible);
+    void tabChanged(int index);
+    void visibilityToggled(bool visible);
 
 public slots:
-  void setCurrentIndex(int index);
+    void setCurrentIndex(int index);
 
 private:
-  QButtonGroup *m_btnGroup;
-  int m_currentIndex;
-
+    QButtonGroup *m_btnGroup;
+    int m_currentIndex;
 };
 
 #endif // PROPTABBAR_H
