@@ -38,10 +38,10 @@
 
 #include <libtorrent/session_status.hpp>
 
-#include "propertieswidget.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
+#include "propertieswidget.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)

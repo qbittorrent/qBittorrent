@@ -29,8 +29,8 @@
 #ifndef SPEEDWIDGET_H
 #define SPEEDWIDGET_H
 
-#include <QWidget>
 #include <QComboBox>
+#include <QWidget>
 
 #include "speedplotview.h"
 
@@ -44,6 +44,7 @@ class PropertiesWidget;
 class ComboBoxMenuButton : public QComboBox
 {
     Q_OBJECT
+
 public:
     ComboBoxMenuButton(QWidget *parent, QMenu *menu);
     virtual void showPopup();
@@ -56,6 +57,7 @@ private:
 class SpeedWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     SpeedWidget(PropertiesWidget *parent);
     ~SpeedWidget();

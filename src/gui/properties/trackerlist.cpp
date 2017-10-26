@@ -399,13 +399,13 @@ void TrackerList::copyTrackerUrl()
     QList<QTreeWidgetItem *> selectedTrackerItems = getSelectedTrackerItems();
     if (selectedTrackerItems.isEmpty()) return;
 
-    QStringList URLsToCopy;
+    QStringList urlsToCopy;
     foreach (QTreeWidgetItem *item, selectedTrackerItems) {
         QString trackerURL = item->data(COL_URL, Qt::DisplayRole).toString();
         qDebug() << QString("Copy: ") + trackerURL;
-        URLsToCopy << trackerURL;
+        urlsToCopy << trackerURL;
     }
-    QApplication::clipboard()->setText(URLsToCopy.join("\n"));
+    QApplication::clipboard()->setText(urlsToCopy.join("\n"));
 }
 
 
@@ -420,10 +420,10 @@ void TrackerList::deleteSelectedTrackers()
     QList<QTreeWidgetItem *> selectedTrackerItems = getSelectedTrackerItems();
     if (selectedTrackerItems.isEmpty()) return;
 
-    QStringList URLsToRemove;
+    QStringList urlsToRemove;
     foreach (QTreeWidgetItem *item, selectedTrackerItems) {
         QString trackerURL = item->data(COL_URL, Qt::DisplayRole).toString();
-        URLsToRemove << trackerURL;
+        urlsToRemove << trackerURL;
         m_trackerItems.remove(trackerURL);
         delete item;
     }
@@ -432,7 +432,7 @@ void TrackerList::deleteSelectedTrackers()
     QList<BitTorrent::TrackerEntry> remainingTrackers;
     QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     foreach (const BitTorrent::TrackerEntry &entry, trackers) {
-        if (!URLsToRemove.contains(entry.url()))
+        if (!urlsToRemove.contains(entry.url()))
             remainingTrackers.push_back(entry);
     }
 

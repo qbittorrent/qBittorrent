@@ -41,7 +41,7 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class PiecesBar: public QWidget
+class PiecesBar : public QWidget
 {
     using base = QWidget;
     Q_OBJECT

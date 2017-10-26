@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "downloadedpiecesbar.h"
@@ -127,24 +125,24 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
         return true;
     }
 
-    QVector<float> scaled_pieces = bitfieldToFloatVector(m_pieces, image2.width());
-    QVector<float> scaled_pieces_dl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
+    QVector<float> scaledPieces = bitfieldToFloatVector(m_pieces, image2.width());
+    QVector<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
 
     // filling image
-    for (int x = 0; x < scaled_pieces.size(); ++x) {
-        float pieces2_val = scaled_pieces.at(x);
-        float pieces2_val_dl = scaled_pieces_dl.at(x);
-        if (pieces2_val_dl != 0) {
-            float fill_ratio = pieces2_val + pieces2_val_dl;
-            float ratio = pieces2_val_dl / fill_ratio;
+    for (int x = 0; x < scaledPieces.size(); ++x) {
+        float piecesToValue = scaledPieces.at(x);
+        float piecesToValueDl = scaledPiecesDl.at(x);
+        if (piecesToValueDl != 0) {
+            float fillRatio = piecesToValue + piecesToValueDl;
+            float ratio = piecesToValueDl / fillRatio;
 
             QRgb mixedColor = mixTwoColors(pieceColor().rgb(), m_dlPieceColor.rgb(), ratio);
-            mixedColor = mixTwoColors(backgroundColor().rgb(), mixedColor, fill_ratio);
+            mixedColor = mixTwoColors(backgroundColor().rgb(), mixedColor, fillRatio);
 
             image2.setPixel(x, 0, mixedColor);
         }
         else {
-            image2.setPixel(x, 0, pieceColors()[pieces2_val * 255]);
+            image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
         }
     }
     image = image2;

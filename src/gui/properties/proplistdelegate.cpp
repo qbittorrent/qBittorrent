@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "proplistdelegate.h"
@@ -83,53 +81,53 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case PROGRESS: {
-        if (index.data().toDouble() < 0)
-            break;
+            if (index.data().toDouble() < 0)
+                break;
 
-        QStyleOptionProgressBar newopt;
-        qreal progress = index.data().toDouble() * 100.;
-        newopt.rect = opt.rect;
-        newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
-        newopt.progress = int(progress);
-        newopt.maximum = 100;
-        newopt.minimum = 0;
-        newopt.textVisible = true;
-        if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
-            newopt.state &= ~QStyle::State_Enabled;
-            newopt.palette = progressBarDisabledPalette();
-        }
-        else {
-            newopt.state |= QStyle::State_Enabled;
-        }
+            QStyleOptionProgressBar newopt;
+            qreal progress = index.data().toDouble() * 100.;
+            newopt.rect = opt.rect;
+            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+            newopt.progress = int(progress);
+            newopt.maximum = 100;
+            newopt.minimum = 0;
+            newopt.textVisible = true;
+            if (index.sibling(index.row(), PRIORITY).data().toInt() == prio::IGNORED) {
+                newopt.state &= ~QStyle::State_Enabled;
+                newopt.palette = progressBarDisabledPalette();
+            }
+            else {
+                newopt.state |= QStyle::State_Enabled;
+            }
 
 #ifndef Q_OS_WIN
-        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-        // XXX: To avoid having the progress text on the right of the bar
-        QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+            // XXX: To avoid having the progress text on the right of the bar
+            QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
-    }
-    break;
-    case PRIORITY: {
-        QString text = "";
-        switch (index.data().toInt()) {
-        case prio::MIXED:
-            text = tr("Mixed", "Mixed (priorities");
-            break;
-        case prio::IGNORED:
-            text = tr("Not downloaded");
-            break;
-        case prio::HIGH:
-            text = tr("High", "High (priority)");
-            break;
-        case prio::MAXIMUM:
-            text = tr("Maximum", "Maximum (priority)");
-            break;
-        default:
-            text = tr("Normal", "Normal (priority)");
-            break;
         }
-        QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+        break;
+    case PRIORITY: {
+            QString text = "";
+            switch (index.data().toInt()) {
+            case prio::MIXED:
+                text = tr("Mixed", "Mixed (priorities");
+                break;
+            case prio::IGNORED:
+                text = tr("Not downloaded");
+                break;
+            case prio::HIGH:
+                text = tr("High", "High (priority)");
+                break;
+            case prio::MAXIMUM:
+                text = tr("Maximum", "Maximum (priority)");
+                break;
+            default:
+                text = tr("Normal", "Normal (priority)");
+                break;
+            }
+            QItemDelegate::drawDisplay(painter, opt, option.rect, text);
         }
         break;
     case AVAILABILITY: {
@@ -174,16 +172,16 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
 
 QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
-    if (index.column() != PRIORITY) return 0;
+    if (index.column() != PRIORITY) return nullptr;
 
     if (m_properties) {
         BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
         if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
-            return 0;
+            return nullptr;
     }
 
     if (index.data().toInt() == prio::MIXED)
-        return 0;
+        return nullptr;
 
     QComboBox *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
