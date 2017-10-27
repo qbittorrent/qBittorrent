@@ -1119,25 +1119,35 @@
               <layout class="QVBoxLayout" name="verticalLayout_171">
                <item>
                 <layout class="QGridLayout" name="gridLayout_9">
-                 <item row="0" column="1">
+                 <item row="1" column="1">
                   <widget class="QLineEdit" name="dest_email_txt"/>
                  </item>
-                 <item row="0" column="0">
+                 <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
                    <property name="text">
-                    <string>Destination email:</string>
+                    <string>To:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0">
                   <widget class="QLabel" name="label_3">
                    <property name="text">
                     <string>SMTP server:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
+                 <item row="2" column="1">
                   <widget class="QLineEdit" name="smtp_server_txt"/>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="senderEmailTxt"/>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_25">
+                   <property name="text">
+                    <string>From:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>

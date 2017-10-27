@@ -248,6 +248,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->addScanFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->removeScanFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->dest_email_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->smtp_server_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkSmtpSSL, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -567,6 +568,7 @@ void OptionsDialog::saveOptions()
     session->setTorrentExportDirectory(getTorrentExportDir());
     session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
+    pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->dest_email_txt->text());
     pref->setMailNotificationSMTP(m_ui->smtp_server_txt->text());
     pref->setMailNotificationSMTPSSL(m_ui->checkSmtpSSL->isChecked());
@@ -815,6 +817,7 @@ void OptionsDialog::loadOptions()
     }
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
+    m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->dest_email_txt->setText(pref->getMailNotificationEmail());
     m_ui->smtp_server_txt->setText(pref->getMailNotificationSMTP());
     m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());

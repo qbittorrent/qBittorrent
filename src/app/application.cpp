@@ -307,22 +307,22 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
 #endif
 }
 
-void Application::sendNotificationEmail(BitTorrent::TorrentHandle *const torrent)
+void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent)
 {
     // Prepare mail content
-    QString content = QObject::tr("Torrent name: %1").arg(torrent->name()) + "\n";
-    content += QObject::tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + "\n";
-    content += QObject::tr("Save path: %1").arg(torrent->savePath()) + "\n\n";
-    content += QObject::tr("The torrent was downloaded in %1.",
-                  "The torrent was downloaded in 1 hour and 20 seconds")
-            .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n";
-    content += QObject::tr("Thank you for using qBittorrent.") + "\n";
+    const QString content = tr("Torrent name: %1").arg(torrent->name()) + "\n"
+        + tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + "\n"
+        + tr("Save path: %1").arg(torrent->savePath()) + "\n\n"
+        + tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds")
+            .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n"
+        + tr("Thank you for using qBittorrent.") + "\n";
 
     // Send the notification email
-    Net::Smtp *sender = new Net::Smtp;
-    sender->sendMail("notification@qbittorrent.org",
-                     Preferences::instance()->getMailNotificationEmail(),
-                     QObject::tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
+    const Preferences *pref = Preferences::instance();
+    Net::Smtp *smtp = new Net::Smtp(this);
+    smtp->sendMail(pref->getMailNotificationSender(),
+                     pref->getMailNotificationEmail(),
+                     tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
                      content);
 }
 

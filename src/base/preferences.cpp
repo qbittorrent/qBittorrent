@@ -308,6 +308,16 @@ void Preferences::setMailNotificationEnabled(bool enabled)
     setValue("Preferences/MailNotification/enabled", enabled);
 }
 
+QString Preferences::getMailNotificationSender() const
+{
+    return value("Preferences/MailNotification/sender", "qBittorrent_notification@example.com").toString();
+}
+
+void Preferences::setMailNotificationSender(const QString &mail)
+{
+    setValue("Preferences/MailNotification/sender", mail);
+}
+
 QString Preferences::getMailNotificationEmail() const
 {
     return value("Preferences/MailNotification/email").toString();

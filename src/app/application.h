@@ -145,7 +145,7 @@ private:
     void initializeTranslation();
     void processParams(const QStringList &params);
     void runExternalProgram(BitTorrent::TorrentHandle *const torrent) const;
-    void sendNotificationEmail(BitTorrent::TorrentHandle *const torrent);
+    void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
     void validateCommandLineParameters();
 };
 
