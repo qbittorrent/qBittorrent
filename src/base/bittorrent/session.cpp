@@ -275,6 +275,7 @@ Session::Session(QObject *parent)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY("TrackerFilteringEnabled"), false)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), true)
+    , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
@@ -1286,9 +1287,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     }
     settingsPack.set_bool(libt::settings_pack::force_proxy, m_useProxy ? isForceProxyEnabled() : false);
 
-    const bool announceToAll = announceToAllTrackers();
-    settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAll);
-    settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAll);
+    settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
+    settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
     settingsPack.set_int(libt::settings_pack::cache_size, cacheSize);
@@ -1569,9 +1569,8 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     }
     sessionSettings.force_proxy = m_useProxy ? isForceProxyEnabled() : false;
 
-    bool announceToAll = announceToAllTrackers();
-    sessionSettings.announce_to_all_trackers = announceToAll;
-    sessionSettings.announce_to_all_tiers = announceToAll;
+    sessionSettings.announce_to_all_trackers = announceToAllTrackers();
+    sessionSettings.announce_to_all_tiers = announceToAllTiers();
     const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
     sessionSettings.cache_size = cacheSize;
     sessionSettings.cache_expiry = diskCacheTTL();
@@ -2964,6 +2963,19 @@ void Session::setAnnounceToAllTrackers(bool val)
 {
     if (val != m_announceToAllTrackers) {
         m_announceToAllTrackers = val;
+        configureDeferred();
+    }
+}
+
+bool Session::announceToAllTiers() const
+{
+    return m_announceToAllTiers;
+}
+
+void Session::setAnnounceToAllTiers(bool val)
+{
+    if (val != m_announceToAllTiers) {
+        m_announceToAllTiers = val;
         configureDeferred();
     }
 }

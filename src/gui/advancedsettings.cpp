@@ -99,6 +99,7 @@ enum AdvSettingsRows
     SUPER_SEEDING,
     // tracker
     ANNOUNCE_ALL_TRACKERS,
+    ANNOUNCE_ALL_TIERS,
     ANNOUNCE_IP,
 
     ROW_COUNT
@@ -217,6 +218,7 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setConfirmRemoveAllTags(cb_confirm_remove_all_tags.isChecked());
 
     session->setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
+    session->setAnnounceToAllTiers(cb_announce_all_tiers.isChecked());
 }
 
 void AdvancedSettings::updateCacheSpinSuffix(int value)
@@ -452,9 +454,13 @@ void AdvancedSettings::loadAdvancedSettings()
     cb_confirm_remove_all_tags.setChecked(pref->confirmRemoveAllTags());
     addRow(CONFIRM_REMOVE_ALL_TAGS, tr("Confirm removal of all tags"), &cb_confirm_remove_all_tags);
 
-    // Announce to all trackers
+    // Announce to all trackers in a tier
     cb_announce_all_trackers.setChecked(session->announceToAllTrackers());
-    addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
+    addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers in a tier"), &cb_announce_all_trackers);
+
+    // Announce to all tiers
+    cb_announce_all_tiers.setChecked(session->announceToAllTiers());
+    addRow(ANNOUNCE_ALL_TIERS, tr("Always announce to all tiers"), &cb_announce_all_tiers);
 }
 
 template <typename T>
