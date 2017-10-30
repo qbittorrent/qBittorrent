@@ -424,7 +424,6 @@ Session::Session(QObject *parent)
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
     pack.set_bool(libt::settings_pack::listen_system_port_fallback, false);
     pack.set_str(libt::settings_pack::user_agent, USER_AGENT);
-    pack.set_bool(libt::settings_pack::upnp_ignore_nonrouters, true);
     pack.set_bool(libt::settings_pack::use_dht_as_fallback, false);
     // Disable support for SSL torrents for now
     pack.set_int(libt::settings_pack::ssl_listen, 0);
@@ -440,6 +439,11 @@ Session::Session(QObject *parent)
     // Soon to be deprecated there
     // More info: https://github.com/arvidn/libtorrent/issues/2251
     pack.set_bool(libt::settings_pack::use_disk_cache_pool, false);
+    // libtorrent 1.1 enables UPnP & NAT-PMP by default
+    // turn them off before `libt::session` ctor to avoid split second effects
+    pack.set_bool(libt::settings_pack::enable_upnp, false);
+    pack.set_bool(libt::settings_pack::enable_natpmp, false);
+    pack.set_bool(libt::settings_pack::upnp_ignore_nonrouters, true);
     configure(pack);
 
     m_nativeSession = new libt::session(pack, 0);
