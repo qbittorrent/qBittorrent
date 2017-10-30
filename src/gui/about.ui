@@ -314,7 +314,11 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_license"/>
+        <widget class="QTextBrowser" name="te_license">
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
