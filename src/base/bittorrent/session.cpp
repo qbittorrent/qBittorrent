@@ -370,10 +370,10 @@ Session::Session(QObject *parent)
 
     m_seedingLimitTimer = new QTimer(this);
     m_seedingLimitTimer->setInterval(10000);
-    connect(m_seedingLimitTimer, SIGNAL(timeout()), SLOT(processShareLimits()));
+    connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
     // Set severity level of libtorrent session
-    int alertMask = libt::alert::error_notification
+    const int alertMask = libt::alert::error_notification
                     | libt::alert::peer_notification
                     | libt::alert::port_mapping_notification
                     | libt::alert::storage_notification
@@ -381,8 +381,7 @@ Session::Session(QObject *parent)
                     | libt::alert::status_notification
                     | libt::alert::ip_block_notification
                     | libt::alert::progress_notification
-                    | libt::alert::stats_notification
-                    ;
+                    | libt::alert::stats_notification;
 
 #if LIBTORRENT_VERSION_NUM < 10100
     libt::fingerprint fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
@@ -418,7 +417,7 @@ Session::Session(QObject *parent)
         dispatchAlerts(alertPtr.release());
     });
 #else
-    std::string peerId = libt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
+    const std::string peerId = libt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
     libt::settings_pack pack;
     pack.set_int(libt::settings_pack::alert_mask, alertMask);
     pack.set_str(libt::settings_pack::peer_fingerprint, peerId);
@@ -497,13 +496,13 @@ Session::Session(QObject *parent)
 
     m_refreshTimer = new QTimer(this);
     m_refreshTimer->setInterval(refreshInterval());
-    connect(m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
+    connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
     m_refreshTimer->start();
 
     // Regular saving of fastresume data
     m_resumeDataTimer = new QTimer(this);
     m_resumeDataTimer->setInterval(saveResumeDataInterval() * 60 * 1000);
-    connect(m_resumeDataTimer, SIGNAL(timeout()), SLOT(generateResumeData()));
+    connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
 
     m_statistics = new Statistics(this);
 
@@ -523,7 +522,7 @@ Session::Session(QObject *parent)
     m_ioThread = new QThread(this);
     m_resumeDataSavingManager = new ResumeDataSavingManager(m_resumeFolderPath);
     m_resumeDataSavingManager->moveToThread(m_ioThread);
-    connect(m_ioThread, SIGNAL(finished()), m_resumeDataSavingManager, SLOT(deleteLater()));
+    connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
     m_ioThread->start();
     m_resumeDataTimer->start();
 
