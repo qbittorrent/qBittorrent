@@ -54,7 +54,7 @@
 #include "prefjson.h"
 #include "websessiondata.h"
 
-static const int API_VERSION = 15;
+static const int API_VERSION = 16;
 static const int API_VERSION_MIN = 15;
 
 const QString WWW_FOLDER = ":/www/public/";
