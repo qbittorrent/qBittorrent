@@ -407,12 +407,18 @@ window.addEvent('load', function () {
             torrentsTable.columns['priority'].force_hide = !queueing_enabled;
             torrentsTable.updateColumn('priority');
             if (queueing_enabled) {
-                $('queueingLinks').removeClass('invisible');
+                $('topPrioItem').removeClass('invisible');
+                $('increasePrioItem').removeClass('invisible');
+                $('decreasePrioItem').removeClass('invisible');
+                $('bottomPrioItem').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
                 $('queueingMenuItems').removeClass('invisible');
             }
             else {
-                $('queueingLinks').addClass('invisible');
+                $('topPrioItem').addClass('invisible');
+                $('increasePrioItem').addClass('invisible');
+                $('decreasePrioItem').addClass('invisible');
+                $('bottomPrioItem').addClass('invisible');
                 $('queueingButtons').addClass('invisible');
                 $('queueingMenuItems').addClass('invisible');
             }

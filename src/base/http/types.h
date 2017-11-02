@@ -37,6 +37,9 @@
 
 namespace Http
 {
+    const char METHOD_GET[] = "GET";
+    const char METHOD_POST[] = "POST";
+
     const char HEADER_CACHE_CONTROL[] = "cache-control";
     const char HEADER_CONTENT_ENCODING[] = "content-encoding";
     const char HEADER_CONTENT_LENGTH[] = "content-length";
@@ -52,13 +55,14 @@ namespace Http
     const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
     const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
 
-    const char CONTENT_TYPE_CSS[] = "text/css; charset=UTF-8";
-    const char CONTENT_TYPE_GIF[] = "image/gif";
-    const char CONTENT_TYPE_HTML[] = "text/html; charset=UTF-8";
-    const char CONTENT_TYPE_JS[] = "application/javascript; charset=UTF-8";
+    const char CONTENT_TYPE_HTML[] = "text/html";
+    const char CONTENT_TYPE_JS[] = "application/javascript";
     const char CONTENT_TYPE_JSON[] = "application/json";
+    const char CONTENT_TYPE_BMP[] = "image/bmp";
+    const char CONTENT_TYPE_GIF[] = "image/gif";
+    const char CONTENT_TYPE_JPEG[] = "image/jpeg";
     const char CONTENT_TYPE_PNG[] = "image/png";
-    const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
+    const char CONTENT_TYPE_TXT[] = "text/plain";
     const char CONTENT_TYPE_SVG[] = "image/svg+xml";
 
     // portability: "\r\n" doesn't guarantee mapping to the correct value

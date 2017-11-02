@@ -17,7 +17,7 @@
   <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
   </span><br/><br/>
   QBT_TR(Automatically add torrents from:)QBT_TR[CONTEXT=OptionsDialog]<br/>
-    <table border="1" id="watched_folders_tab">
+    <table id="watched_folders_tab" style="border: 1px solid black;">
     <thead><tr><th>QBT_TR(Monitored Folder)QBT_TR[CONTEXT=ScanFoldersModel]</th><th>QBT_TR(Override Save Location)QBT_TR[CONTEXT=ScanFoldersModel]</th></tr></thead>
     <tbody></tbody>
     <tfoot><tr>
@@ -70,7 +70,7 @@
     <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/>
     <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
     <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-    <i>QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
+    <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
     <ul>
     <li>QBT_TR(%N: Torrent name)QBT_TR[CONTEXT=OptionsDialog]</li>
     <li>QBT_TR(%L: Category)QBT_TR[CONTEXT=OptionsDialog]</li>
@@ -83,7 +83,7 @@
     <li>QBT_TR(%I: Info hash)QBT_TR[CONTEXT=OptionsDialog]</li>
     </ul>
     QBT_TR(Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N"))QBT_TR[CONTEXT=OptionsDialog]
-    </i>
+    </div>
 </fieldset>
 </div>
 
@@ -256,7 +256,7 @@
   <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
   <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
   </select>
-  </br/>
+  <br/>
   </fieldset>
 </fieldset>
 
@@ -472,7 +472,7 @@
 </div>
 
 <br/>
-<center><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();"/></center>
+<div style="text-align: center;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();"/></div>
 
 <script type="text/javascript">
 // Downloads tab

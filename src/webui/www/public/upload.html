@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="${LANG}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
@@ -23,7 +23,7 @@
 </div>
 <div class="formRow">
     <label for="rename" class="leftLabelLarge">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
-    <input type="text" name="rename" style="width: 16em;"/>
+    <input type="text" id="rename" name="rename" style="width: 16em;"/>
 </div>
 <div class="formRow">
     <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
@@ -36,27 +36,27 @@
 </div>
 <div class="formRow">
     <label for="skip_checking" class="leftLabelLarge">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-    <input type="checkbox" name="skip_checking" value="true"/>
+    <input type="checkbox" id="skip_checking" name="skip_checking" value="true"/>
 </div>
 <div class="formRow">
     <label for="root_folder" class="leftLabelLarge">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-    <input type="checkbox" name="root_folder" value="true" checked="checked"/>
+    <input type="checkbox" id="root_folder" name="root_folder" value="true" checked="checked"/>
 </div>
 <div class="formRow">
     <label for="sequentialDownload" class="leftLabelLarge">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
-    <input type="checkbox" name="sequentialDownload" value="true"/>
+    <input type="checkbox" id="sequentialDownload" name="sequentialDownload" value="true"/>
 </div>
 <div class="formRow">
     <label for="firstLastPiecePrio" class="leftLabelLarge">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
-    <input type="checkbox" name="firstLastPiecePrio" value="true"/>
+    <input type="checkbox" id="firstLastPiecePrio" name="firstLastPiecePrio" value="true"/>
 </div>
 <div class="formRow">
     <label for="dlLimit" class="leftLabelLarge">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
-    <input type="text" name="dlLimit" style="width: 16em;" placeholder="Bytes/s"/>
+    <input type="text" id="dlLimit" name="dlLimit" style="width: 16em;" placeholder="Bytes/s"/>
 </div>
 <div class="formRow">
     <label for="upLimit" class="leftLabelLarge">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
-    <input type="text" name="upLimit" style="width: 16em;" placeholder="Bytes/s"/>
+    <input type="text" id="upLimit" name="upLimit" style="width: 16em;" placeholder="Bytes/s"/>
 </div>
 <div id="submitbutton" style="margin-top: 30px; text-align: center;">
         <button type="submit" style="font-size: 1em;">QBT_TR(Upload Torrents)QBT_TR[CONTEXT=HttpServer]</button>
