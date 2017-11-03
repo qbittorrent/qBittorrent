@@ -30,7 +30,6 @@ set(QBT_GUI_HEADERS
 about_imp.h
 addnewtorrentdialog.h
 advancedsettings.h
-advancedsettings.h
 autoexpandabledialog.h
 banlistoptions.h
 categoryfiltermodel.h
