@@ -47,14 +47,21 @@ class AbstractWebApplication;
 class WebUI : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(WebUI)
 
 public:
-    explicit WebUI(QObject *parent = 0);
+    WebUI();
+
+    bool isErrored() const;
+
+signals:
+    void fatalError();
 
 private slots:
-    void init();
+    void configure();
 
 private:
+    bool m_isErrored;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<AbstractWebApplication> m_webapp;
