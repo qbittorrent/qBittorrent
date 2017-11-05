@@ -146,6 +146,13 @@ Application::Application(const QString &id, int &argc, char **argv)
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
 }
 
+Application::~Application()
+{
+    // we still need to call cleanup()
+    // in case the App failed to start
+    cleanup();
+}
+
 #ifndef DISABLE_GUI
 QPointer<MainWindow> Application::mainWindow()
 {
@@ -483,7 +490,12 @@ int Application::exec(const QStringList &params)
 
 #ifndef DISABLE_WEBUI
     m_webui = new WebUI;
-#endif
+#ifdef DISABLE_GUI
+    if (m_webui->isErrored())
+        return 1;
+    connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
+#endif // DISABLE_GUI
+#endif // DISABLE_WEBUI
 
     new RSS::Session; // create RSS::Session singleton
     new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
@@ -642,37 +654,36 @@ void Application::shutdownCleanup(QSessionManager &manager)
 
 void Application::cleanup()
 {
-#ifndef DISABLE_GUI
-#ifdef Q_OS_WIN
     // cleanup() can be called multiple times during shutdown. We only need it once.
     static QAtomicInt alreadyDone;
     if (!alreadyDone.testAndSetAcquire(0, 1))
         return;
-#endif // Q_OS_WIN
 
-    // Hide the window and not leave it on screen as
-    // unresponsive. Also for Windows take the WinId
-    // after it's hidden, because hide() may cause a
-    // WinId change.
-    m_window->hide();
+#ifndef DISABLE_GUI
+    if (m_window) {
+        // Hide the window and not leave it on screen as
+        // unresponsive. Also for Windows take the WinId
+        // after it's hidden, because hide() may cause a
+        // WinId change.
+        m_window->hide();
 
 #ifdef Q_OS_WIN
-    typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
-    PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
-    // Only available on Vista+
-    if (shutdownBRCreate)
-        shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
+        typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
+        PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
+        // Only available on Vista+
+        if (shutdownBRCreate)
+            shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
 #endif // Q_OS_WIN
 
-    // Do manual cleanup in MainWindow to force widgets
-    // to save their Preferences, stop all timers and
-    // delete as many widgets as possible to leave only
-    // a 'shell' MainWindow.
-    // We need a valid window handle for Windows Vista+
-    // otherwise the system shutdown will continue even
-    // though we created a ShutdownBlockReason
-    m_window->cleanup();
-
+        // Do manual cleanup in MainWindow to force widgets
+        // to save their Preferences, stop all timers and
+        // delete as many widgets as possible to leave only
+        // a 'shell' MainWindow.
+        // We need a valid window handle for Windows Vista+
+        // otherwise the system shutdown will continue even
+        // though we created a ShutdownBlockReason
+        m_window->cleanup();
+    }
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -697,14 +708,16 @@ void Application::cleanup()
     Utils::Fs::removeDirRecursive(Utils::Fs::tempPath());
 
 #ifndef DISABLE_GUI
+    if (m_window) {
 #ifdef Q_OS_WIN
-    typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
-    PSHUTDOWNBRDESTROY shutdownBRDestroy = (PSHUTDOWNBRDESTROY)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonDestroy");
-    // Only available on Vista+
-    if (shutdownBRDestroy)
-        shutdownBRDestroy((HWND)m_window->effectiveWinId());
+        typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
+        PSHUTDOWNBRDESTROY shutdownBRDestroy = (PSHUTDOWNBRDESTROY)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonDestroy");
+        // Only available on Vista+
+        if (shutdownBRDestroy)
+            shutdownBRDestroy((HWND)m_window->effectiveWinId());
 #endif // Q_OS_WIN
-    delete m_window;
+        delete m_window;
+    }
 #endif // DISABLE_GUI
 
     if (m_shutdownAct != ShutdownDialogAction::Exit) {
