@@ -38,6 +38,7 @@
 
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
+#include "base/settingvalue.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #include "base/bittorrent/session.h"
@@ -58,23 +59,27 @@
 #include "ui_addnewtorrentdialog.h"
 #include "addnewtorrentdialog.h"
 
-#define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
-const QString KEY_ENABLED = SETTINGS_KEY("Enabled");
-const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
-const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
-const QString KEY_WIDTH = SETTINGS_KEY("Width");
-const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
-const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
-const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
-
 namespace
 {
+#define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
+    const QString KEY_ENABLED = SETTINGS_KEY("Enabled");
+    const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
+    const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
+    const QString KEY_WIDTH = SETTINGS_KEY("Width");
+    const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
+    const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
+    const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
+    const char KEY_SAVEPATHHISTORYLENGTH[] = SETTINGS_KEY("SavePathHistoryLength");
+
     // just a shortcut
     inline SettingsStorage *settings()
     {
         return SettingsStorage::instance();
     }
 }
+
+constexpr int AddNewTorrentDialog::minPathHistoryLength;
+constexpr int AddNewTorrentDialog::maxPathHistoryLength;
 
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
@@ -93,6 +98,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     ui->savePath->setDialogCaption(tr("Choose save path"));
+    ui->savePath->setMaxVisibleItems(20);
 
     auto session = BitTorrent::Session::instance();
 
@@ -173,6 +179,34 @@ bool AddNewTorrentDialog::isTopLevel()
 void AddNewTorrentDialog::setTopLevel(bool value)
 {
     SettingsStorage::instance()->storeValue(KEY_TOPLEVEL, value);
+}
+
+int AddNewTorrentDialog::savePathHistoryLength()
+{
+    return savePathHistoryLengthSetting();
+}
+
+void AddNewTorrentDialog::setSavePathHistoryLength(int value)
+{
+    Q_ASSERT(value >= minPathHistoryLength);
+    Q_ASSERT(value <= maxPathHistoryLength);
+    const int oldValue = savePathHistoryLength();
+    if (oldValue != value) {
+        savePathHistoryLengthSetting() = value;
+        settings()->storeValue(KEY_SAVEPATHHISTORY,
+                               QStringList(settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList().mid(0, value)));
+    }
+}
+
+CachedSettingValue<int> &AddNewTorrentDialog::savePathHistoryLengthSetting()
+{
+    const int defaultHistoryLength = 8;
+    static CachedSettingValue<int> setting(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength,
+        [](int v)
+        {
+            return std::max(minPathHistoryLength, std::min(maxPathHistoryLength, v));
+        });
+    return setting;
 }
 
 void AddNewTorrentDialog::loadState()
@@ -362,6 +396,8 @@ void AddNewTorrentDialog::saveSavePathHistory() const
     QDir selectedSavePath(ui->savePath->selectedPath());
     // Get current history
     QStringList history = settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList();
+    if (history.size() > savePathHistoryLength())
+        history = history.mid(0, savePathHistoryLength());
     QList<QDir> historyDirs;
     foreach (const QString dir, history)
         historyDirs << QDir(dir);
@@ -369,7 +405,7 @@ void AddNewTorrentDialog::saveSavePathHistory() const
         // Add save path to history
         history.push_front(selectedSavePath.absolutePath());
         // Limit list size
-        if (history.size() > 8)
+        if (history.size() > savePathHistoryLength())
             history.pop_back();
         // Save history
         settings()->storeValue(KEY_SAVEPATHHISTORY, history);

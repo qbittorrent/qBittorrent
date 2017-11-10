@@ -362,6 +362,16 @@ void FileSystemPathComboEdit::setCurrentIndex(int index)
     editWidget<WidgetType>()->setCurrentIndex(index);
 }
 
+int FileSystemPathComboEdit::maxVisibleItems() const
+{
+    return editWidget<WidgetType>()->maxVisibleItems();
+}
+
+void FileSystemPathComboEdit::setMaxVisibleItems(int maxItems)
+{
+    editWidget<WidgetType>()->setMaxVisibleItems(maxItems);
+}
+
 QString FileSystemPathComboEdit::editWidgetText() const
 {
     return editWidget<WidgetType>()->currentText();
