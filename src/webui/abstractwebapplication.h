@@ -106,7 +106,7 @@ private:
 
     QStringMap parseCookie(const Http::Request &request) const;
     bool isCrossSiteRequest(const Http::Request &request) const;
-    bool validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const;
+    bool validateHostHeader(const QStringList &domains) const;
 
     static void translateDocument(QString &data);
 

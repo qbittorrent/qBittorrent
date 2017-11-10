@@ -121,7 +121,7 @@ Http::Response AbstractWebApplication::processRequest(const Http::Request &reque
     header(Http::HEADER_CONTENT_SECURITY_POLICY, "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
 
     // block cross-site requests
-    if (isCrossSiteRequest(request_) || !validateHostHeader(request_, env, domainList)) {
+    if (isCrossSiteRequest(request_) || !validateHostHeader(domainList)) {
         status(401, "Unauthorized");
         return response();
     }
@@ -433,23 +433,25 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
     return true;
 }
 
-bool AbstractWebApplication::validateHostHeader(const Http::Request &request, const Http::Environment &env, const QStringList &domains) const
+bool AbstractWebApplication::validateHostHeader(const QStringList &domains) const
 {
-    const QUrl hostHeader = QUrl::fromUserInput(request.headers.value(Http::HEADER_HOST));
+    const QUrl hostHeader = QUrl::fromUserInput(request().headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
 
     // (if present) try matching host header's port with local port
     const int requestPort = hostHeader.port();
-    if ((requestPort != -1) && (env.localPort != requestPort)) {
-        Logger::instance()->addMessage(tr("WebUI: Invalid Host header, port mismatch") + "\n"
-                + tr("Source IP: '%1'. Received Host header: '%2'").arg(env.clientAddress.toString()).arg(requestHost)
+    if ((requestPort != -1) && (env().localPort != requestPort)) {
+        Logger::instance()->addMessage(tr("WebUI: Invalid Host header, port mismatch.") + "\n"
+                + tr("Request source IP: '%1'. Server port: '%2'. Received Host header: '%3'")
+                .arg(env().clientAddress.toString()).arg(env().localPort)
+                .arg(request().headers[Http::HEADER_HOST])
             , Log::WARNING);
         return false;
     }
 
     // try matching host header with local address
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
-    const bool sameAddr = env.localAddress.isEqual(QHostAddress(requestHost));
+    const bool sameAddr = env().localAddress.isEqual(QHostAddress(requestHost));
 #else
     const auto equal = [](const Q_IPV6ADDR &l, const Q_IPV6ADDR &r) -> bool {
         for (int i = 0; i < 16; ++i) {
@@ -458,7 +460,7 @@ bool AbstractWebApplication::validateHostHeader(const Http::Request &request, co
         }
         return true;
     };
-    const bool sameAddr = equal(env.localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
+    const bool sameAddr = equal(env().localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
 #endif
 
     if (sameAddr)
@@ -471,8 +473,9 @@ bool AbstractWebApplication::validateHostHeader(const Http::Request &request, co
             return true;
     }
 
-    Logger::instance()->addMessage(tr("WebUI: Invalid Host header") + "\n"
-            + tr("Source IP: '%1'. Received Host header: '%2'").arg(env.clientAddress.toString()).arg(requestHost)
+    Logger::instance()->addMessage(tr("WebUI: Invalid Host header.") + "\n"
+            + tr("Request source IP: '%1'. Received Host header: '%2'")
+            .arg(env().clientAddress.toString()).arg(request().headers[Http::HEADER_HOST])
         , Log::WARNING);
     return false;
 }
