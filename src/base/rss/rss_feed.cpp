@@ -187,16 +187,19 @@ void Feed::handleDownloadFailed(const QString &url, const QString &error)
 {
     m_isLoading = false;
     m_hasError = true;
+
+    LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2").arg(url).arg(error)
+           , Log::WARNING);
+
     emit stateChanged(this);
-    qWarning() << "Failed to download RSS feed at" << url;
-    qWarning() << "Reason:" << error;
 }
 
 void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 {
     if (!result.error.isEmpty()) {
-        qWarning() << "Failed to parse RSS feed at" << m_url;
-        qWarning() << "Reason:" << result.error;
+        m_hasError = true;
+        LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url).arg(result.error)
+               , Log::WARNING);
     }
     else {
         if (title() != result.title) {
@@ -206,22 +209,27 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 
         m_lastBuildDate = result.lastBuildDate;
 
+        int newArticlesCount = 0;
         foreach (const QVariantHash &varHash, result.articles) {
             try {
                 auto article = new Article(this, varHash);
-                if (!addArticle(article))
-                    delete article;
+                if (addArticle(article))
+                    ++newArticlesCount;
                 else
-                    m_dirty = true;
+                    delete article;
             }
             catch (const std::runtime_error&) {}
         }
 
+        m_dirty = (newArticlesCount > 0);
+
         store();
+        m_hasError = false;
+        LogMsg(tr("RSS feed at '%1' successfully updated. Added %2 new articles.")
+               .arg(m_url).arg(newArticlesCount));
     }
 
     m_isLoading = false;
-    m_hasError = false;
     emit stateChanged(this);
 }
 
@@ -239,9 +247,9 @@ void Feed::load()
         file.close();
     }
     else {
-        Logger::instance()->addMessage(
-                    QString("Couldn't read RSS AutoDownloader rules from %1. Error: %2")
-                    .arg(m_dataFileName).arg(file.errorString()), Log::WARNING);
+        LogMsg(tr("Couldn't read RSS Session data from %1. Error: %2")
+               .arg(m_dataFileName).arg(file.errorString())
+               , Log::WARNING);
     }
 }
 
@@ -250,15 +258,13 @@ void Feed::loadArticles(const QByteArray &data)
     QJsonParseError jsonError;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
-        Logger::instance()->addMessage(
-                    QString("Couldn't parse RSS Session data. Error: %1")
-                    .arg(jsonError.errorString()), Log::WARNING);
+        LogMsg(tr("Couldn't parse RSS Session data. Error: %1").arg(jsonError.errorString())
+               , Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isArray()) {
-        Logger::instance()->addMessage(
-                    QString("Couldn't load RSS Session data. Invalid data format."), Log::WARNING);
+        LogMsg(tr("Couldn't load RSS Session data. Invalid data format."), Log::WARNING);
         return;
     }
 
@@ -267,9 +273,8 @@ void Feed::loadArticles(const QByteArray &data)
     foreach (const QJsonValue &jsonVal, jsonArr) {
         ++i;
         if (!jsonVal.isObject()) {
-            Logger::instance()->addMessage(
-                        QString("Couldn't load RSS article '%1#%2'. Invalid data format.").arg(m_url).arg(i)
-                        , Log::WARNING);
+            LogMsg(tr("Couldn't load RSS article '%1#%2'. Invalid data format.").arg(m_url).arg(i)
+                   , Log::WARNING);
             continue;
         }
 
