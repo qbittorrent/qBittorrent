@@ -306,7 +306,8 @@ void AutomatedRssDownloader::initCategoryCombobox()
 {
     // Load torrent categories
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
+    std::sort(categories.begin(), categories.end(),
+        [](const QString &l, const QString &r) { return (Utils::String::naturalCompareCaseInsensitive(l, r) < 0); });
     m_ui->comboCategory->addItem("");
     m_ui->comboCategory->addItems(categories);
 }

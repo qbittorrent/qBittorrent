@@ -988,7 +988,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
         listMenu.addAction(&actionRename);
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalCompareCaseInsensitive);
+    std::sort(categories.begin(), categories.end(),
+        [](const QString &l, const QString &r) { return (Utils::String::naturalCompareCaseInsensitive(l, r) < 0); });
     QList<QAction*> categoryActions;
     QMenu *categoryMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Category"));
     categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New category..."));
@@ -1007,7 +1008,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
 
     // Tag Menu
     QStringList tags(BitTorrent::Session::instance()->tags().toList());
-    std::sort(tags.begin(), tags.end(), Utils::String::naturalCompareCaseInsensitive);
+    std::sort(tags.begin(), tags.end(),
+        [](const QString &l, const QString &r) { return (Utils::String::naturalCompareCaseInsensitive(l, r) < 0); });
     QList<QAction *> tagsActions;
     QMenu *tagsMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Tags"));
     tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags..."));
