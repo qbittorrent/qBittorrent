@@ -76,41 +76,41 @@ namespace
             // Return value <0: `left` is smaller than `right`
             // Return value >0: `left` is greater than `right`
             // Return value =0: both strings are equal
+
             int posL = 0;
             int posR = 0;
             while (true) {
-                while (true) {
-                    if ((posL == left.size()) || (posR == right.size()))
-                        return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+                if ((posL == left.size()) || (posR == right.size()))
+                    return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
 
-                    const QChar leftChar = m_isCaseSensitive ? left[posL] : left[posL].toLower();
-                    const QChar rightChar = m_isCaseSensitive ? right[posR] : right[posR].toLower();
-                    if (leftChar == rightChar)
-                        ;  // compare next character
-                    else if (leftChar.isDigit() && rightChar.isDigit())
-                        break;  // Both are digits, break this loop and compare the numbers
-                    else
-                        return (leftChar.unicode() - rightChar.unicode());
-
+                const QChar leftChar = m_isCaseSensitive ? left[posL] : left[posL].toLower();
+                const QChar rightChar = m_isCaseSensitive ? right[posR] : right[posR].toLower();
+                if (leftChar == rightChar) {
+                    // compare next character
                     ++posL;
                     ++posR;
                 }
+                else if (leftChar.isDigit() && rightChar.isDigit()) {
+                    // Both are digits, compare the numbers
+                    const auto consumeNumber = [](const QString &str, int &pos) -> int
+                    {
+                        const int start = pos;
+                        while ((pos < str.size()) && str[pos].isDigit())
+                            ++pos;
+                        return str.midRef(start, (pos - start)).toInt();
+                    };
 
-                const auto consumeNumber = [](const QString &str, int &pos) -> int
-                {
-                    const int start = pos;
-                    while ((pos < str.size()) && str[pos].isDigit())
-                        ++pos;
-                    return str.midRef(start, (pos - start)).toInt();
-                };
+                    const int numL = consumeNumber(left, posL);
+                    const int numR = consumeNumber(right, posR);
+                    if (numL != numR)
+                        return (numL - numR);
 
-                const int numL = consumeNumber(left, posL);
-                const int numR = consumeNumber(right, posR);
-                if (numL != numR)
-                    return (numL - numR);
-
-                // String + digits do match and we haven't hit the end of both strings
-                // then continue to consume the remainings
+                    // String + digits do match and we haven't hit the end of both strings
+                    // then continue to consume the remainings
+                }
+                else {
+                    return (leftChar.unicode() - rightChar.unicode());
+                }
             }
         }
 
