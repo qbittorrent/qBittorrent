@@ -45,8 +45,8 @@ namespace Utils
         // Taken from https://crackstation.net/hashing-security.htm
         bool slowEquals(const QByteArray &a, const QByteArray &b);
 
-        bool naturalCompareCaseSensitive(const QString &left, const QString &right);
-        bool naturalCompareCaseInsensitive(const QString &left, const QString &right);
+        int naturalCompareCaseSensitive(const QString &left, const QString &right);
+        int naturalCompareCaseInsensitive(const QString &left, const QString &right);
 
         QString wildcardToRegex(const QString &pattern);
 
