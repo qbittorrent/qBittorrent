@@ -107,7 +107,7 @@ void WebUI::init()
                 logger->addMessage(errorMsg, Log::CRITICAL);
 #ifdef DISABLE_GUI
                 qCritical() << errorMsg;
-                QCoreApplication::exit(1);
+                exit(1);
 #endif
             }
         }
