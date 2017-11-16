@@ -112,7 +112,7 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
     case ENGINE_URL: {
             const QString strL = left.data().toString();
             const QString strR = right.data().toString();
-            const int result = Utils::String::naturalCompareCaseInsensitive(strL, strR);
+            const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
             if (result != 0)
                 return (result < 0);
 

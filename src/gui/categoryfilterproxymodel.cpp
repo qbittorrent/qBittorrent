@@ -52,7 +52,8 @@ bool CategoryFilterProxyModel::lessThan(const QModelIndex &left, const QModelInd
     if (CategoryFilterModel::isSpecialItem(left) || CategoryFilterModel::isSpecialItem(right))
         return (left < right);
 
-    int result = Utils::String::naturalCompareCaseInsensitive(left.data().toString(), right.data().toString());
+    int result = Utils::String::naturalCompare(left.data().toString(), right.data().toString()
+        , Qt::CaseInsensitive);
     if (result != 0)
         return (result < 0);
 

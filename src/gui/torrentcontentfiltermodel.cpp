@@ -94,7 +94,7 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
             if (leftType == rightType) {
                 const QString strL = left.data().toString();
                 const QString strR = right.data().toString();
-                return (Utils::String::naturalCompareCaseInsensitive(strL, strR) < 0);
+                return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
             }
             else if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
                 return true;

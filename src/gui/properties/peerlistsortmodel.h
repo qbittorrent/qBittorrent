@@ -52,7 +52,7 @@ protected:
         case PeerListDelegate::CLIENT: {
                 const QString strL = left.data().toString();
                 const QString strR = right.data().toString();
-                const int result = Utils::String::naturalCompareCaseInsensitive(strL, strR);
+                const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
                 if (result != 0)
                     return (result < 0);
 

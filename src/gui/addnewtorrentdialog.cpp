@@ -128,8 +128,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     // Load categories
     QStringList categories = session->categories().keys();
-    std::sort(categories.begin(), categories.end(),
-        [](const QString &l, const QString &r) { return (Utils::String::naturalCompareCaseInsensitive(l, r) < 0); });
+    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
     QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
 
     if (!m_torrentParams.category.isEmpty())

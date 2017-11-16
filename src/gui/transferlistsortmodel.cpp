@@ -94,7 +94,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         if (!vL.isValid() || !vR.isValid() || (vL == vR))
             return lowerPositionThan(left, right);
 
-        const int result = Utils::String::naturalCompareCaseInsensitive(vL.toString(), vR.toString());
+        const int result = Utils::String::naturalCompare(vL.toString(), vR.toString(), Qt::CaseInsensitive);
         if (result != 0)
             return (result < 0);
 

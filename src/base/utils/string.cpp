@@ -45,8 +45,8 @@ namespace
     class NaturalCompare
     {
     public:
-        explicit NaturalCompare(const bool isCaseSensitive = true)
-            : m_isCaseSensitive(isCaseSensitive)
+        explicit NaturalCompare(const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive)
+            : m_caseSensitivity(caseSensitivity)
         {
 #ifdef Q_OS_WIN
             // Without ICU library, QCollator uses the native API on Windows 7+. But that API
@@ -57,7 +57,7 @@ namespace
             // Without ICU library, QCollator doesn't support `setNumericMode(true)` on an OS older than Win7
 #else
             m_collator.setNumericMode(true);
-            m_collator.setCaseSensitivity(isCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+            m_collator.setCaseSensitivity(caseSensitivity);
 #endif
         }
 
@@ -83,8 +83,8 @@ namespace
                 if ((posL == left.size()) || (posR == right.size()))
                     return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
 
-                const QChar leftChar = m_isCaseSensitive ? left[posL] : left[posL].toLower();
-                const QChar rightChar = m_isCaseSensitive ? right[posR] : right[posR].toLower();
+                const QChar leftChar = (m_caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toLower();
+                const QChar rightChar = (m_caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toLower();
                 if (leftChar == rightChar) {
                     // compare next character
                     ++posL;
@@ -115,36 +115,33 @@ namespace
         }
 
         QCollator m_collator;
-        const bool m_isCaseSensitive;
+        const Qt::CaseSensitivity m_caseSensitivity;
     };
 }
 
-int Utils::String::naturalCompareCaseSensitive(const QString &left, const QString &right)
+int Utils::String::naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity)
 {
     // provide a single `NaturalCompare` instance for easy use
     // https://doc.qt.io/qt-5/threads-reentrancy.html
+    if (caseSensitivity == Qt::CaseSensitive) {
 #ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
-    static QThreadStorage<NaturalCompare> nCmp;
-    if (!nCmp.hasLocalData())
-        nCmp.setLocalData(NaturalCompare(true));
-    return (nCmp.localData())(left, right);
+        static QThreadStorage<NaturalCompare> nCmp;
+        if (!nCmp.hasLocalData())
+            nCmp.setLocalData(NaturalCompare(Qt::CaseSensitive));
+        return (nCmp.localData())(left, right);
 #else
-    thread_local NaturalCompare nCmp(true);
-    return nCmp(left, right);
+        thread_local NaturalCompare nCmp(Qt::CaseSensitive);
+        return nCmp(left, right);
 #endif
-}
+    }
 
-int Utils::String::naturalCompareCaseInsensitive(const QString &left, const QString &right)
-{
-    // provide a single `NaturalCompare` instance for easy use
-    // https://doc.qt.io/qt-5/threads-reentrancy.html
-#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+#ifdef Q_OS_MAC
     static QThreadStorage<NaturalCompare> nCmp;
     if (!nCmp.hasLocalData())
-        nCmp.setLocalData(NaturalCompare(false));
+        nCmp.setLocalData(NaturalCompare(Qt::CaseInsensitive));
     return (nCmp.localData())(left, right);
 #else
-    thread_local NaturalCompare nCmp(false);
+    thread_local NaturalCompare nCmp(Qt::CaseInsensitive);
     return nCmp(left, right);
 #endif
 }
