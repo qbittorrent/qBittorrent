@@ -121,7 +121,7 @@ AS_IF([test "x$QT_QMAKE" = "x"],
       ])
 AS_IF([test "x$enable_gui" = "xyes"],
       [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.5.1])
-      ])                 
+      ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
         ["xyes"],
@@ -138,22 +138,16 @@ AS_CASE(["x$enable_qt_dbus"],
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
 
 
-AX_BOOST_BASE([1.35])
-# HAVE_BOOST is set to an empty value when Boost is found. I don't know
-# how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_CPPFLAGS" = "x"],
-      [AC_MSG_ERROR([Could not find Boost])],
-      [AC_MSG_NOTICE([Boost CPPFLAGS: $BOOST_CPPFLAGS])
-      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"])
+AX_BOOST_BASE([1.35],
+              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"
+                Boost LDFLAGS: "$BOOST_LDFLAGS"])],
+              [AC_MSG_ERROR([Could not find Boost])])
+CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 AX_BOOST_SYSTEM()
-# HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
-# I don't know how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
-      [AC_MSG_ERROR([Could not find Boost.System])],
-      [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
-      LIBS="$BOOST_SYSTEM_LIB $LIBS"])
+AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
+LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 AC_MSG_CHECKING([which qtsingleapplication to use])
 AS_CASE(["x$with_qtsingleapplication"],
@@ -240,4 +234,3 @@ AS_IF([test "x$ret" = "x0"],
       [AC_MSG_NOTICE([Good, your configure finished.])],
       [AC_MSG_ERROR([Failed running $QT_QMAKE to generate the makefile])])
 AS_ECHO()
-
