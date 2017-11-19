@@ -4640,15 +4640,14 @@ esac
 # Check whether --with-boost was given.
 if test "${with_boost+set}" = set; then :
   withval=$with_boost;
-    if test "$withval" = "no"; then
-        want_boost="no"
-    elif test "$withval" = "yes"; then
-        want_boost="yes"
-        ac_boost_path=""
-    else
-        want_boost="yes"
-        ac_boost_path="$withval"
-    fi
+     case $withval in #(
+  no) :
+    want_boost="no";_AX_BOOST_BASE_boost_path="" ;; #(
+  yes) :
+    want_boost="yes";_AX_BOOST_BASE_boost_path="" ;; #(
+  *) :
+    want_boost="yes";_AX_BOOST_BASE_boost_path="$withval" ;;
+esac
 
 else
   want_boost="yes"
@@ -4660,78 +4659,122 @@ fi
 # Check whether --with-boost-libdir was given.
 if test "${with_boost_libdir+set}" = set; then :
   withval=$with_boost_libdir;
-        if test -d "$withval"
-        then
-                ac_boost_lib_path="$withval"
-        else
-                as_fn_error $? "--with-boost-libdir expected directory name" "$LINENO" 5
-        fi
+   if test -d "$withval"; then :
+  _AX_BOOST_BASE_boost_lib_path="$withval"
+else
+  as_fn_error $? "--with-boost-libdir expected directory name" "$LINENO" 5
+fi
 
 else
-  ac_boost_lib_path=""
-
+  _AX_BOOST_BASE_boost_lib_path=""
 fi
 
 
-if test "x$want_boost" = "xyes"; then
-    boost_lib_version_req=1.35
-    boost_lib_version_req_shorten=`expr $boost_lib_version_req : '\([0-9]*\.[0-9]*\)'`
-    boost_lib_version_req_major=`expr $boost_lib_version_req : '\([0-9]*\)'`
-    boost_lib_version_req_minor=`expr $boost_lib_version_req : '[0-9]*\.\([0-9]*\)'`
-    boost_lib_version_req_sub_minor=`expr $boost_lib_version_req : '[0-9]*\.[0-9]*\.\([0-9]*\)'`
-    if test "x$boost_lib_version_req_sub_minor" = "x" ; then
-        boost_lib_version_req_sub_minor="0"
-        fi
-    WANT_BOOST_VERSION=`expr $boost_lib_version_req_major \* 100000 \+  $boost_lib_version_req_minor \* 100 \+ $boost_lib_version_req_sub_minor`
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= $boost_lib_version_req" >&5
-$as_echo_n "checking for boostlib >= $boost_lib_version_req... " >&6; }
+BOOST_LDFLAGS=""
+BOOST_CPPFLAGS=""
+if test "x$want_boost" = "xyes"; then :
+
+
+  if test "x1.35" = "x"; then :
+  _AX_BOOST_BASE_TONUMERICVERSION_req="1.20.0"
+else
+  _AX_BOOST_BASE_TONUMERICVERSION_req="1.35"
+fi
+  _AX_BOOST_BASE_TONUMERICVERSION_req_shorten=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '\([0-9]*\.[0-9]*\)'`
+  _AX_BOOST_BASE_TONUMERICVERSION_req_major=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '\([0-9]*\)'`
+  if test "x$_AX_BOOST_BASE_TONUMERICVERSION_req_major" = "x"; then :
+  as_fn_error $? "You should at least specify libboost major version" "$LINENO" 5
+fi
+  _AX_BOOST_BASE_TONUMERICVERSION_req_minor=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '[0-9]*\.\([0-9]*\)'`
+  if test "x$_AX_BOOST_BASE_TONUMERICVERSION_req_minor" = "x"; then :
+  _AX_BOOST_BASE_TONUMERICVERSION_req_minor="0"
+fi
+  _AX_BOOST_BASE_TONUMERICVERSION_req_sub_minor=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '[0-9]*\.[0-9]*\.\([0-9]*\)'`
+  if test "X$_AX_BOOST_BASE_TONUMERICVERSION_req_sub_minor" = "X"; then :
+  _AX_BOOST_BASE_TONUMERICVERSION_req_sub_minor="0"
+fi
+  _AX_BOOST_BASE_TONUMERICVERSION_RET=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req_major \* 100000 \+  $_AX_BOOST_BASE_TONUMERICVERSION_req_minor \* 100 \+ $_AX_BOOST_BASE_TONUMERICVERSION_req_sub_minor`
+  WANT_BOOST_VERSION=$_AX_BOOST_BASE_TONUMERICVERSION_RET
+
     succeeded=no
 
-                        libsubdirs="lib"
-    ax_arch=`uname -m`
-    case $ax_arch in
-      x86_64)
-        libsubdirs="lib64 libx32 lib lib64"
-        ;;
-      ppc64|s390x|sparc64|aarch64|ppc64le)
-        libsubdirs="lib64 lib lib64 ppc64le"
-        ;;
-    esac
 
 
-    libsubdirs="lib/${host_cpu}-${host_os} $libsubdirs"
+                        case ${host_cpu} in #(
+  x86_64) :
+    libsubdirs="lib64 libx32 lib lib64" ;; #(
+  ppc64|s390x|sparc64|aarch64|ppc64le) :
+    libsubdirs="lib64 lib lib64" ;; #(
+  libsubdirs="lib") :
+     ;; #(
+  *) :
+     ;;
+esac
 
-    case ${host_cpu} in
-      i?86)
-        libsubdirs="lib/i386-${host_os} $libsubdirs"
-        ;;
-    esac
+                case ${host_cpu} in #(
+  i?86) :
+    multiarch_libsubdir="lib/i386-${host_os}" ;; #(
+  *) :
+    multiarch_libsubdir="lib/${host_cpu}-${host_os}"
+     ;;
+esac
 
-                if test "$ac_boost_path" != ""; then
-        BOOST_CPPFLAGS="-I$ac_boost_path/include"
-        for ac_boost_path_tmp in $libsubdirs; do
-                if test -d "$ac_boost_path"/"$ac_boost_path_tmp" ; then
-                        BOOST_LDFLAGS="-L$ac_boost_path/$ac_boost_path_tmp"
-                        break
-                fi
-        done
-    elif test "$cross_compiling" != yes; then
-        for ac_boost_path_tmp in /usr /usr/local /opt /opt/local ; do
-            if test -d "$ac_boost_path_tmp/include/boost" && test -r "$ac_boost_path_tmp/include/boost"; then
-                for libsubdir in $libsubdirs ; do
-                    if ls "$ac_boost_path_tmp/$libsubdir/libboost_"* >/dev/null 2>&1 ; then break; fi
+                if test "x$_AX_BOOST_BASE_boost_path" != "x"; then :
+
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"" >&5
+$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"... " >&6; }
+         if test -d "$_AX_BOOST_BASE_boost_path/include" && test -r "$_AX_BOOST_BASE_boost_path/include"; then :
+
+           { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+           BOOST_CPPFLAGS="-I$_AX_BOOST_BASE_boost_path/include"
+           for _AX_BOOST_BASE_boost_path_tmp in $multiarch_libsubdir $libsubdirs; do
+                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"" >&5
+$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"... " >&6; }
+                if test -d "$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp" && test -r "$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp" ; then :
+
+                        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+                        BOOST_LDFLAGS="-L$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp";
+                        break;
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+           done
+else
+
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+else
+
+        if test X"$cross_compiling" = Xyes; then
+            search_libsubdirs=$multiarch_libsubdir
+        else
+            search_libsubdirs="$multiarch_libsubdir $libsubdirs"
+        fi
+        for _AX_BOOST_BASE_boost_path_tmp in /usr /usr/local /opt /opt/local ; do
+            if test -d "$_AX_BOOST_BASE_boost_path_tmp/include/boost" && test -r "$_AX_BOOST_BASE_boost_path_tmp/include/boost" ; then
+                for libsubdir in $search_libsubdirs ; do
+                    if ls "$_AX_BOOST_BASE_boost_path_tmp/$libsubdir/libboost_"* >/dev/null 2>&1 ; then break; fi
                 done
-                BOOST_LDFLAGS="-L$ac_boost_path_tmp/$libsubdir"
-                BOOST_CPPFLAGS="-I$ac_boost_path_tmp/include"
+                BOOST_LDFLAGS="-L$_AX_BOOST_BASE_boost_path_tmp/$libsubdir"
+                BOOST_CPPFLAGS="-I$_AX_BOOST_BASE_boost_path_tmp/include"
                 break;
             fi
         done
-    fi
 
-            if test "$ac_boost_lib_path" != ""; then
-       BOOST_LDFLAGS="-L$ac_boost_lib_path"
-    fi
+fi
 
+            if test "x$_AX_BOOST_BASE_boost_lib_path" != "x"; then :
+  BOOST_LDFLAGS="-L$_AX_BOOST_BASE_boost_lib_path"
+fi
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION)" >&5
+$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION)... " >&6; }
     CPPFLAGS_SAVED="$CPPFLAGS"
     CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"
     export CPPFLAGS
@@ -4750,17 +4793,13 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-    #include <boost/version.hpp>
+#include <boost/version.hpp>
 
 int
 main ()
 {
 
-    #if BOOST_VERSION >= $WANT_BOOST_VERSION
-    // Everything is okay
-    #else
-    #  error Boost version is too old
-    #endif
+(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($WANT_BOOST_VERSION))]));
 
   ;
   return 0;
@@ -4784,39 +4823,47 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 
 
-            if test "x$succeeded" != "xyes"; then
+            if test "x$succeeded" != "xyes" ; then
         CPPFLAGS="$CPPFLAGS_SAVED"
         LDFLAGS="$LDFLAGS_SAVED"
         BOOST_CPPFLAGS=
-        BOOST_LDFLAGS=
+        if test -z "$_AX_BOOST_BASE_boost_lib_path" ; then
+            BOOST_LDFLAGS=
+        fi
         _version=0
-        if test "$ac_boost_path" != ""; then
-            if test -d "$ac_boost_path" && test -r "$ac_boost_path"; then
-                for i in `ls -d $ac_boost_path/include/boost-* 2>/dev/null`; do
-                    _version_tmp=`echo $i | sed "s#$ac_boost_path##" | sed 's/\/include\/boost-//' | sed 's/_/./'`
+        if test -n "$_AX_BOOST_BASE_boost_path" ; then
+            if test -d "$_AX_BOOST_BASE_boost_path" && test -r "$_AX_BOOST_BASE_boost_path"; then
+                for i in `ls -d $_AX_BOOST_BASE_boost_path/include/boost-* 2>/dev/null`; do
+                    _version_tmp=`echo $i | sed "s#$_AX_BOOST_BASE_boost_path##" | sed 's/\/include\/boost-//' | sed 's/_/./'`
                     V_CHECK=`expr $_version_tmp \> $_version`
-                    if test "$V_CHECK" = "1" ; then
+                    if test "x$V_CHECK" = "x1" ; then
                         _version=$_version_tmp
                     fi
                     VERSION_UNDERSCORE=`echo $_version | sed 's/\./_/'`
-                    BOOST_CPPFLAGS="-I$ac_boost_path/include/boost-$VERSION_UNDERSCORE"
+                    BOOST_CPPFLAGS="-I$_AX_BOOST_BASE_boost_path/include/boost-$VERSION_UNDERSCORE"
                 done
                                 if test -z "$BOOST_CPPFLAGS"; then
-                    if test -d "$ac_boost_path/boost" && test -r "$ac_boost_path/boost"; then
-                        BOOST_CPPFLAGS="-I$ac_boost_path"
+                    if test -d "$_AX_BOOST_BASE_boost_path/boost" && test -r "$_AX_BOOST_BASE_boost_path/boost"; then
+                        BOOST_CPPFLAGS="-I$_AX_BOOST_BASE_boost_path"
                     fi
+                fi
+                                                if test -n "$BOOST_CPPFLAGS" && test -z "$BOOST_LDFLAGS"; then
+                    for libsubdir in $libsubdirs ; do
+                        if ls "$_AX_BOOST_BASE_boost_path/$libsubdir/libboost_"* >/dev/null 2>&1 ; then break; fi
+                    done
+                    BOOST_LDFLAGS="-L$_AX_BOOST_BASE_boost_path/$libsubdir"
                 fi
             fi
         else
-            if test "$cross_compiling" != yes; then
-                for ac_boost_path in /usr /usr/local /opt /opt/local ; do
-                    if test -d "$ac_boost_path" && test -r "$ac_boost_path"; then
-                        for i in `ls -d $ac_boost_path/include/boost-* 2>/dev/null`; do
-                            _version_tmp=`echo $i | sed "s#$ac_boost_path##" | sed 's/\/include\/boost-//' | sed 's/_/./'`
+            if test "x$cross_compiling" != "xyes" ; then
+                for _AX_BOOST_BASE_boost_path in /usr /usr/local /opt /opt/local ; do
+                    if test -d "$_AX_BOOST_BASE_boost_path" && test -r "$_AX_BOOST_BASE_boost_path" ; then
+                        for i in `ls -d $_AX_BOOST_BASE_boost_path/include/boost-* 2>/dev/null`; do
+                            _version_tmp=`echo $i | sed "s#$_AX_BOOST_BASE_boost_path##" | sed 's/\/include\/boost-//' | sed 's/_/./'`
                             V_CHECK=`expr $_version_tmp \> $_version`
-                            if test "$V_CHECK" = "1" ; then
+                            if test "x$V_CHECK" = "x1" ; then
                                 _version=$_version_tmp
-                                best_path=$ac_boost_path
+                                best_path=$_AX_BOOST_BASE_boost_path
                             fi
                         done
                     fi
@@ -4824,7 +4871,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
                 VERSION_UNDERSCORE=`echo $_version | sed 's/\./_/'`
                 BOOST_CPPFLAGS="-I$best_path/include/boost-$VERSION_UNDERSCORE"
-                if test "$ac_boost_lib_path" = ""; then
+                if test -z "$_AX_BOOST_BASE_boost_lib_path" ; then
                     for libsubdir in $libsubdirs ; do
                         if ls "$best_path/$libsubdir/libboost_"* >/dev/null 2>&1 ; then break; fi
                     done
@@ -4832,7 +4879,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
                 fi
             fi
 
-            if test "x$BOOST_ROOT" != "x"; then
+            if test -n "$BOOST_ROOT" ; then
                 for libsubdir in $libsubdirs ; do
                     if ls "$BOOST_ROOT/stage/$libsubdir/libboost_"* >/dev/null 2>&1 ; then break; fi
                 done
@@ -4841,7 +4888,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
                     stage_version=`echo $version_dir | sed 's/boost_//' | sed 's/_/./g'`
                         stage_version_shorten=`expr $stage_version : '\([0-9]*\.[0-9]*\)'`
                     V_CHECK=`expr $stage_version_shorten \>\= $_version`
-                    if test "$V_CHECK" = "1" -a "$ac_boost_lib_path" = "" ; then
+                    if test "x$V_CHECK" = "x1" && test -z "$_AX_BOOST_BASE_boost_lib_path" ; then
                         { $as_echo "$as_me:${as_lineno-$LINENO}: We will use a staged boost library from $BOOST_ROOT" >&5
 $as_echo "$as_me: We will use a staged boost library from $BOOST_ROOT" >&6;}
                         BOOST_CPPFLAGS="-I$BOOST_ROOT"
@@ -4865,17 +4912,13 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
             cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-        #include <boost/version.hpp>
+#include <boost/version.hpp>
 
 int
 main ()
 {
 
-        #if BOOST_VERSION >= $WANT_BOOST_VERSION
-        // Everything is okay
-        #else
-        #  error Boost version is too old
-        #endif
+(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($WANT_BOOST_VERSION))]));
 
   ;
   return 0;
@@ -4898,41 +4941,37 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
     fi
 
-    if test "$succeeded" != "yes" ; then
-        if test "$_version" = "0" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version $boost_lib_version_req_shorten or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
-$as_echo "$as_me: We could not detect the boost libraries (version $boost_lib_version_req_shorten or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
+    if test "x$succeeded" != "xyes" ; then
+        if test "x$_version" = "x0" ; then
+            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
+$as_echo "$as_me: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
         else
             { $as_echo "$as_me:${as_lineno-$LINENO}: Your boost libraries seems to old (version $_version)." >&5
 $as_echo "$as_me: Your boost libraries seems to old (version $_version)." >&6;}
         fi
         # execute ACTION-IF-NOT-FOUND (if present):
-        :
+        as_fn_error $? "Could not find Boost" "$LINENO" 5
     else
-
-
 
 $as_echo "#define HAVE_BOOST /**/" >>confdefs.h
 
         # execute ACTION-IF-FOUND (if present):
-        :
+        { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"
+                Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&5
+$as_echo "$as_me: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"
+                Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&6;}
     fi
 
     CPPFLAGS="$CPPFLAGS_SAVED"
     LDFLAGS="$LDFLAGS_SAVED"
+
+
 fi
 
 
-# HAVE_BOOST is set to an empty value when Boost is found. I don't know
-# how to test for a set vs unset variable.
-if test "x$BOOST_CPPFLAGS" = "x"; then :
-  as_fn_error $? "Could not find Boost" "$LINENO" 5
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLAGS: $BOOST_CPPFLAGS" >&5
-$as_echo "$as_me: Boost CPPFLAGS: $BOOST_CPPFLAGS" >&6;}
-      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
-fi
+
+CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 
 
@@ -5176,15 +5215,9 @@ fi
 	LDFLAGS="$LDFLAGS_SAVED"
 	fi
 
-# HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
-# I don't know how to test for a set vs unset variable.
-if test "x$BOOST_SYSTEM_LIB" = "x"; then :
-  as_fn_error $? "Could not find Boost.System" "$LINENO" 5
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: Boost.System LIB: $BOOST_SYSTEM_LIB" >&5
-$as_echo "$as_me: Boost.System LIB: $BOOST_SYSTEM_LIB" >&6;}
-      LIBS="$BOOST_SYSTEM_LIB $LIBS"
-fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: Boost.System LIB: \"$BOOST_SYSTEM_LIB\"" >&5
+$as_echo "$as_me: Boost.System LIB: \"$BOOST_SYSTEM_LIB\"" >&6;}
+LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking which qtsingleapplication to use" >&5
 $as_echo_n "checking which qtsingleapplication to use... " >&6; }
@@ -8141,4 +8174,3 @@ else
   as_fn_error $? "Failed running $QT_QMAKE to generate the makefile" "$LINENO" 5
 fi
 $as_echo
-
