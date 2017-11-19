@@ -34,6 +34,14 @@ Code from other projects:
   license: GPLv2/3
 
 Images Authors:
+* files: src/icons/skin/qbittorrent-tray.svg (and related pngs)
+  copyright: Provided by HVS <hvs linuxmail org> (raster first proposal) and Atif Afzal(@atfzl github) <atif5801@gmail.com> (vectorized and modified)
+  license: GPLv2+
+
+* files: src/qbittorrent_file.ico src/icons/fileicon.svg
+  copyright: 'uknown.svg' (LGPLv3+) from Oxygen Icon Theme was used as base which was slightly modified and 'qbittorrent-tray.svg' (GPLv2+) was overlayed above it.
+  license: GPLv3+
+
 * files: src/icons/*.png
   copyright: Gnome Icon Theme
   license: GPLv2

@@ -251,7 +251,6 @@
         <file>icons/flags/zw.svg</file>
         <file>icons/L.gif</file>
         <file>icons/loading.png</file>
-        <file>icons/qbittorrent.png</file>
         <file>icons/qbt-theme/application-exit.png</file>
         <file>icons/qbt-theme/application-rss+xml.png</file>
         <file>icons/qbt-theme/application-x-mswinurl.png</file>
@@ -359,10 +358,10 @@
         <file>icons/skin/logo2.gif</file>
         <file>icons/skin/mascot.png</file>
         <file>icons/skin/paused.png</file>
+        <file>icons/skin/qbittorrent-tray.svg</file>
         <file>icons/skin/qbittorrent-tray-dark.svg</file>
         <file>icons/skin/qbittorrent-tray-light.svg</file>
         <file>icons/skin/qbittorrent16.png</file>
-        <file>icons/skin/qbittorrent22.png</file>
         <file>icons/skin/qbittorrent32.png</file>
         <file>icons/skin/queued.png</file>
         <file>icons/skin/ratio.png</file>
