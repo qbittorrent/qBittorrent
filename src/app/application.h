@@ -73,9 +73,11 @@ namespace RSS
 class Application : public BaseApplication
 {
     Q_OBJECT
+    Q_DISABLE_COPY(Application)
 
 public:
     Application(const QString &id, int &argc, char **argv);
+    ~Application() override;
 
  #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
@@ -132,7 +134,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    QPointer<WebUI> m_webui;
+    WebUI *m_webui;
 #endif
 
     // FileLog

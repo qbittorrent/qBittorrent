@@ -28,10 +28,6 @@
 
 #include "webui.h"
 
-#ifdef DISABLE_GUI
-#include <QCoreApplication>
-#endif
-
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
@@ -39,18 +35,20 @@
 #include "base/preferences.h"
 #include "webapplication.h"
 
-WebUI::WebUI(QObject *parent)
-    : QObject(parent)
+WebUI::WebUI()
+    : m_isErrored(false)
     , m_port(0)
 {
-    init();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(init()));
+    configure();
+    connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
 }
 
-void WebUI::init()
+void WebUI::configure()
 {
-    Logger* const logger = Logger::instance();
-    Preferences* const pref = Preferences::instance();
+    m_isErrored = false; // clear previous error state
+
+    Logger *const logger = Logger::instance();
+    Preferences *const pref = Preferences::instance();
 
     const quint16 oldPort = m_port;
     m_port = pref->getWebUiPort();
@@ -105,10 +103,10 @@ void WebUI::init()
                 const QString errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
                     .arg(serverAddressString).arg(m_port).arg(m_httpServer->errorString());
                 logger->addMessage(errorMsg, Log::CRITICAL);
-#ifdef DISABLE_GUI
                 qCritical() << errorMsg;
-                QCoreApplication::exit(1);
-#endif
+
+                m_isErrored = true;
+                emit fatalError();
             }
         }
 
@@ -136,4 +134,9 @@ void WebUI::init()
         if (m_dnsUpdater)
             delete m_dnsUpdater;
     }
+}
+
+bool WebUI::isErrored() const
+{
+    return m_isErrored;
 }
