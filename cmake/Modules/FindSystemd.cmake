@@ -7,7 +7,7 @@
 find_package(PkgConfig QUIET REQUIRED)
 
 if (NOT SYSTEMD_FOUND)
-    pkg_check_modules(SYSTEMD "systemd")
+    pkg_search_module(SYSTEMD "systemd" "libsystemd")
 endif(NOT SYSTEMD_FOUND)
 
 if (SYSTEMD_FOUND AND "${SYSTEMD_SERVICES_INSTALL_DIR}" STREQUAL "")
