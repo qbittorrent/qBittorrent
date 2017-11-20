@@ -16,7 +16,7 @@ else (GUI)
     list(APPEND QBT_QTSINGLEAPPLICATION_SOURCES qtsinglecoreapplication.cpp)
 endif (GUI)
 
-add_library(qtsingleapplication ${QBT_QTSINGLEAPPLICATION_HEADERS} ${QBT_QTSINGLEAPPLICATION_SOURCES})
+add_library(qtsingleapplication STATIC ${QBT_QTSINGLEAPPLICATION_HEADERS} ${QBT_QTSINGLEAPPLICATION_SOURCES})
 target_include_directories(qtsingleapplication INTERFACE "${qtsingleapplication_SOURCE_DIR}")
 target_link_qt_components(qtsingleapplication Network)
 
