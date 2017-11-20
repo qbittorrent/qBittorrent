@@ -519,15 +519,15 @@ int Application::exec(const QStringList &params)
 #endif // DISABLE_GUI
 
     m_running = true;
+
+    // Now UI is ready to process signals from Session
+    BitTorrent::Session::instance()->startUpTorrents();
+
     m_paramsQueue = params + m_paramsQueue;
     if (!m_paramsQueue.isEmpty()) {
         processParams(m_paramsQueue);
         m_paramsQueue.clear();
     }
-
-    // Now UI is ready to process signals from Session
-    BitTorrent::Session::instance()->startUpTorrents();
-
     return BaseApplication::exec();
 }
 
