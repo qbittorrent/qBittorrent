@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Alexandr Milovantsev <dzmat@yandex.ru>
+ * Copyright (C) 2017  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,29 +26,39 @@
  * exception statement from your version.
  */
 
-#ifndef BASE_UTILS_NET_H
-#define BASE_UTILS_NET_H
+#ifndef OPTIONS_IPSUBNETWHITELIST_H
+#define OPTIONS_IPSUBNETWHITELIST_H
 
-#include <QList>
-#include <QPair>
+#include <QDialog>
 
-class QHostAddress;
-class QString;
-class QStringList;
+class QSortFilterProxyModel;
+class QStringListModel;
 
-namespace Utils
+namespace Ui
 {
-    namespace Net
-    {
-        using Subnet = QPair<QHostAddress, int>;
-
-        bool isValidIP(const QString &ip);
-        Subnet parseSubnet(const QString &subnetStr, bool *ok = nullptr);
-        bool canParseSubnet(const QString &subnetStr);
-        bool isLoopbackAddress(const QHostAddress &addr);
-        bool isIPInRange(const QHostAddress &addr, const QList<Subnet> &subnets);
-        QString subnetToString(const Subnet &subnet);
-    }
+    class IPSubnetWhitelistOptionsDialog;
 }
 
-#endif // BASE_UTILS_NET_H
+class IPSubnetWhitelistOptionsDialog : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(IPSubnetWhitelistOptionsDialog)
+
+public:
+    explicit IPSubnetWhitelistOptionsDialog(QWidget *parent = nullptr);
+    ~IPSubnetWhitelistOptionsDialog();
+
+private slots:
+    void on_buttonBox_accepted();
+    void on_buttonWhitelistIPSubnet_clicked();
+    void on_buttonDeleteIPSubnet_clicked();
+    void on_txtIPSubnet_textChanged(const QString &subnetStr);
+
+private:
+    Ui::IPSubnetWhitelistOptionsDialog *m_ui;
+    QStringListModel *m_model;
+    QSortFilterProxyModel *m_sortFilter;
+    bool m_modified;
+};
+
+#endif // OPTIONS_IPSUBNETWHITELIST_H

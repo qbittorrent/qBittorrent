@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Alexandr Milovantsev <dzmat@yandex.ru>
+ * Copyright (C) 2017  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,50 +26,55 @@
  * exception statement from your version.
  */
 
-#include "banlistoptions.h"
+#include "ipsubnetwhitelistoptionsdialog.h"
 
 #include <QHostAddress>
 #include <QMessageBox>
+#include <QPair>
 #include <QSortFilterProxyModel>
 #include <QStringListModel>
 
-#include "base/bittorrent/session.h"
+#include "base/preferences.h"
 #include "base/utils/net.h"
-#include "ui_banlistoptions.h"
+#include "ui_ipsubnetwhitelistoptionsdialog.h"
 
-BanListOptions::BanListOptions(QWidget *parent)
+IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::BanListOptions)
+    , m_ui(new Ui::IPSubnetWhitelistOptionsDialog)
     , m_modified(false)
 {
     m_ui->setupUi(this);
-    m_model = new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this);
+
+    QStringList authSubnetWhitelistStringList;
+    for (const Utils::Net::Subnet &subnet : Preferences::instance()->getWebUiAuthSubnetWhitelist())
+        authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
+    m_model = new QStringListModel(authSubnetWhitelistStringList, this);
 
     m_sortFilter = new QSortFilterProxyModel(this);
     m_sortFilter->setDynamicSortFilter(true);
     m_sortFilter->setSourceModel(m_model);
 
-    m_ui->bannedIPList->setModel(m_sortFilter);
-    m_ui->bannedIPList->sortByColumn(0, Qt::AscendingOrder);
-    m_ui->buttonBanIP->setEnabled(false);
+    m_ui->whitelistedIPSubnetList->setModel(m_sortFilter);
+    m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
+    m_ui->buttonWhitelistIPSubnet->setEnabled(false);
 }
 
-BanListOptions::~BanListOptions()
+IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()
 {
     delete m_ui;
 }
 
-void BanListOptions::on_buttonBox_accepted()
+void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
 {
     if (m_modified) {
         // save to session
-        QStringList IPList;
+        QList<Utils::Net::Subnet> subnets;
         // Operate on the m_sortFilter to grab the strings in sorted order
         for (int i = 0; i < m_sortFilter->rowCount(); ++i) {
-            QModelIndex index = m_sortFilter->index(i, 0);
-            IPList << index.data().toString();
+            const QString subnet = m_sortFilter->index(i, 0).data().toString();
+            subnets.append(QHostAddress::parseSubnet(subnet));
         }
-        BitTorrent::Session::instance()->setBannedIPs(IPList);
+        Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
         QDialog::accept();
     }
     else {
@@ -77,41 +82,30 @@ void BanListOptions::on_buttonBox_accepted()
     }
 }
 
-void BanListOptions::on_buttonBanIP_clicked()
+void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 {
-    QString ip = m_ui->txtIP->text();
-    if (!Utils::Net::isValidIP(ip)) {
-        QMessageBox::warning(this, tr("Warning"), tr("The entered IP address is invalid."));
+    bool ok = false;
+    const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text(), &ok);
+    if (!ok) {
+        QMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
         return;
-    }
-    // the same IPv6 addresses could be written in different forms;
-    // QHostAddress::toString() result format follows RFC5952;
-    // thus we avoid duplicate entries pointing to the same address
-    ip = QHostAddress(ip).toString();
-    for (int i = 0; i < m_sortFilter->rowCount(); ++i) {
-        QModelIndex index = m_sortFilter->index(i, 0);
-        if (ip == index.data().toString()) {
-            QMessageBox::warning(this, tr("Warning"), tr("The entered IP is already banned."));
-            return;
-        }
     }
 
     m_model->insertRow(m_model->rowCount());
-    m_model->setData(m_model->index(m_model->rowCount() - 1, 0), ip);
-    m_ui->txtIP->clear();
+    m_model->setData(m_model->index(m_model->rowCount() - 1, 0), Utils::Net::subnetToString(subnet));
+    m_ui->txtIPSubnet->clear();
     m_modified = true;
 }
 
-void BanListOptions::on_buttonDeleteIP_clicked()
+void IPSubnetWhitelistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
 {
-    QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
-    for (auto &i : selection)
+    for (const auto &i : m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes())
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;
 }
 
-void BanListOptions::on_txtIP_textChanged(const QString &ip)
+void IPSubnetWhitelistOptionsDialog::on_txtIPSubnet_textChanged(const QString &subnetStr)
 {
-    m_ui->buttonBanIP->setEnabled(Utils::Net::isValidIP(ip));
+    m_ui->buttonWhitelistIPSubnet->setEnabled(Utils::Net::canParseSubnet(subnetStr));
 }

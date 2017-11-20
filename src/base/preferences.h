@@ -33,15 +33,18 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QTime>
 #include <QDateTime>
+#include <QHostAddress>
 #include <QList>
-#include <QSize>
-#include <QTimer>
-#include <QReadWriteLock>
 #include <QNetworkCookie>
+#include <QReadWriteLock>
+#include <QSize>
+#include <QStringList>
+#include <QTime>
+#include <QTimer>
 #include <QVariant>
 
+#include "base/utils/net.h"
 #include "types.h"
 
 enum scheduler_days
@@ -170,10 +173,9 @@ public:
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);
 
+    // HTTP Server
     bool isWebUiEnabled() const;
     void setWebUiEnabled(bool enabled);
-    bool isWebUiLocalAuthEnabled() const;
-    void setWebUiLocalAuthEnabled(bool enabled);
     QString getServerDomains() const;
     void setServerDomains(const QString &str);
     QString getWebUiAddress() const;
@@ -182,16 +184,28 @@ public:
     void setWebUiPort(quint16 port);
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
+
+    // Authentication
+    bool isWebUiLocalAuthEnabled() const;
+    void setWebUiLocalAuthEnabled(bool enabled);
+    bool isWebUiAuthSubnetWhitelistEnabled() const;
+    void setWebUiAuthSubnetWhitelistEnabled(bool enabled);
+    QList<Utils::Net::Subnet> getWebUiAuthSubnetWhitelist() const;
+    void setWebUiAuthSubnetWhitelist(const QList<Utils::Net::Subnet> &subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
     QString getWebUiPassword() const;
     void setWebUiPassword(const QString &new_password);
+
+    // HTTPS
     bool isWebUiHttpsEnabled() const;
     void setWebUiHttpsEnabled(bool enabled);
     QByteArray getWebUiHttpsCertificate() const;
     void setWebUiHttpsCertificate(const QByteArray &data);
     QByteArray getWebUiHttpsKey() const;
     void setWebUiHttpsKey(const QByteArray &data);
+
+    // Dynamic DNS
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);
     DNS::Service getDynDNSService() const;

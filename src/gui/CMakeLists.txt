@@ -30,7 +30,6 @@ set(QBT_GUI_HEADERS
 about_imp.h
 addnewtorrentdialog.h
 advancedsettings.h
-advancedsettings.h
 autoexpandabledialog.h
 banlistoptions.h
 categoryfiltermodel.h
@@ -45,6 +44,7 @@ fspathedit.h
 fspathedit_p.h
 guiiconprovider.h
 hidabletabwidget.h
+ipsubnetwhitelistoptionsdialog.h
 loglistwidget.h
 mainwindow.h
 messageboxraised.h
@@ -90,6 +90,7 @@ executionlog.cpp
 fspathedit.cpp
 fspathedit_p.cpp
 guiiconprovider.cpp
+ipsubnetwhitelistoptionsdialog.cpp
 loglistwidget.cpp
 mainwindow.cpp
 messageboxraised.cpp
@@ -135,6 +136,7 @@ mainwindow.ui
 about.ui
 banlistoptions.ui
 cookiesdialog.ui
+ipsubnetwhitelistoptionsdialog.ui
 previewselectdialog.ui
 login.ui
 downloadfromurldlg.ui

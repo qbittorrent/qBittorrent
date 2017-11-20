@@ -438,9 +438,17 @@
   <div class="formRow">
   <label for="webui_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="webui_password_text" />
   </div>
-
-  <input type="checkbox" id="bypass_local_auth_checkbox" />
-  <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
+  <div class="formRow">
+    <input type="checkbox" id="bypass_local_auth_checkbox" />
+    <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
+  </div>
+  <div class="formRow">
+    <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="updateBypasssAuthSettings();" />
+    <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in these IP subnets (CIDR notation))QBT_TR[CONTEXT=OptionsDialog]</label>
+  </div>
+  <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
+    <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
+  </div>
 </fieldset>
 
 <fieldset class="settings">
@@ -781,6 +789,13 @@ updateHttpsSettings = function() {
   }
 }
 
+updateBypasssAuthSettings = function() {
+  if ($('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'))
+    $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', false);
+  else
+    $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', true);
+};
+
 updateDynDnsSettings = function() {
   if($('use_dyndns_checkbox').getProperty('checked')) {
     $('dyndns_select').setProperty('disabled', false);
@@ -1059,6 +1074,9 @@ loadPreferences = function() {
                     $('webui_username_text').setProperty('value', pref.web_ui_username);
                     $('webui_password_text').setProperty('value', pref.web_ui_password);
                     $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
+                    $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
+                    $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
+                    updateBypasssAuthSettings();
 
                     // Update my dynamic domain name
                     $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -1343,6 +1361,8 @@ applyPreferences = function() {
   settings.set('web_ui_username', web_ui_username);
   settings.set('web_ui_password', web_ui_password);
   settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
+  settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
+  settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
 
   // Update my dynamic domain name
   settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
