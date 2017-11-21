@@ -35,8 +35,8 @@
 #include <boost/bind.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
-#include <libtorrent/torrent_info.hpp>
 #include <libtorrent/storage.hpp>
+#include <libtorrent/torrent_info.hpp>
 
 #include <QFile>
 
@@ -44,15 +44,18 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
+namespace
+{
+    // do not include files and folders whose
+    // name starts with a .
+    bool fileFilter(const std::string &f)
+    {
+        return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
+    }
+}
+
 namespace libt = libtorrent;
 using namespace BitTorrent;
-
-// do not include files and folders whose
-// name starts with a .
-bool fileFilter(const std::string &f)
-{
-    return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
-}
 
 TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
     : QThread(parent)
@@ -64,7 +67,7 @@ TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
 TorrentCreatorThread::~TorrentCreatorThread()
 {
     requestInterruption();
-    wait(1000);
+    wait();
 }
 
 void TorrentCreatorThread::create(const QString &inputPath, const QString &savePath, const QStringList &trackers,
