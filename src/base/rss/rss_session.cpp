@@ -163,7 +163,7 @@ bool Session::moveItem(const QString &itemPath, const QString &destPath, QString
     auto item = m_itemsByPath.value(itemPath);
     if (!item) {
         if (error)
-            *error = tr("Item doesn't exists: %1.").arg(itemPath);
+            *error = tr("Item doesn't exist: %1.").arg(itemPath);
         return false;
     }
 
@@ -201,7 +201,7 @@ bool Session::removeItem(const QString &itemPath, QString *error)
     auto item = m_itemsByPath.value(itemPath);
     if (!item) {
         if (error)
-            *error = tr("Item doesn't exists: %1.").arg(itemPath);
+            *error = tr("Item doesn't exist: %1.").arg(itemPath);
         return false;
     }
 
