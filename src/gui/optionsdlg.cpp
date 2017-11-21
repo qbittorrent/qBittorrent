@@ -259,7 +259,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRun_txt, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
-    const QString autoRunStr = QString::fromUtf8("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
+    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
                                .arg(tr("%N: Torrent name"))
                                .arg(tr("%L: Category"))
@@ -489,7 +489,7 @@ void OptionsDialog::saveOptions()
     QString locale = getLocale();
     if (pref->getLocale() != locale) {
         QTranslator *translator = new QTranslator;
-        if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale))
+        if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale))
             qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
         else
             qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));

@@ -600,15 +600,15 @@ void Application::initializeTranslation()
     // Load translation
     QString localeStr = pref->getLocale();
 
-    if (m_qtTranslator.load(QString::fromUtf8("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load(QString::fromUtf8("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (m_qtTranslator.load(QLatin1String("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
+        m_qtTranslator.load(QLatin1String("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
             qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
         qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
 
     installTranslator(&m_qtTranslator);
 
-    if (m_translator.load(QString::fromUtf8(":/lang/qbittorrent_") + localeStr))
+    if (m_translator.load(QLatin1String(":/lang/qbittorrent_") + localeStr))
         qDebug("%s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
         qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
