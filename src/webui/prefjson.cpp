@@ -394,7 +394,7 @@ void prefjson::setPreferences(const QString& json)
         QString locale = m["locale"].toString();
         if (pref->getLocale() != locale) {
             QTranslator *translator = new QTranslator;
-            if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
+            if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale)) {
                 qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
             }else{
                 qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));

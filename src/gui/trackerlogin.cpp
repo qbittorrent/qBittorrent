@@ -43,7 +43,7 @@ trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const tor
 
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Log in"));
 
-  login_logo->setPixmap(QPixmap(QString::fromUtf8(":/icons/qbt-theme/encrypted.png")));
+  login_logo->setPixmap(QPixmap(QLatin1String(":/icons/qbt-theme/encrypted.png")));
 
   tracker_url->setText(torrent->currentTracker());
 
