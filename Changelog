@@ -1,3 +1,14 @@
+* Wed Nov 22 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.1
+    - BUGFIX: Fix crash on opening torrent/magnet (uninitialized pointer). Closes #7739 #7723. (sledgehammer999)
+    - BUGFIX: Enable preferences Apply button when ip banlist is modified (Thomas Piccirello)
+    - BUGFIX: Allow drag-n-drop magnet links to mainwindow. Closes #7742. (Chocobo1)
+    - BUGFIX: Fix crash when aborting a torrent creation process. Closes #7783. (Chocobo1)
+    - BUGFIX: Correctly check if torrent passed during application start already exists. (sledgehammer999)
+    - WEBUI: Add ip subnet whitelist for bypassing webui auth (Thomas Piccirello)
+    - WEBUI: Fix logo missing in login page (Chocobo1)
+    - COSMETIC: Fix english typo. (sledgehammer999)
+    - OTHER: cmake: qtsingleapplication should always be built statically (luigino)
+
 * Mon Nov 20 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.0
     - FEATURE: Change qbittorrent logo. Issue #6467. (HVS, Atif Afzal, sledgehammer999)
     - FEATURE: New icon theme with SVG source, so we can scale it appropriately in the future. (Bert Verhelst)
