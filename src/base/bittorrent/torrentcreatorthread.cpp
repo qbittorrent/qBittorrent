@@ -67,7 +67,7 @@ TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
 TorrentCreatorThread::~TorrentCreatorThread()
 {
     requestInterruption();
-    wait(1000);
+    wait();
 }
 
 void TorrentCreatorThread::create(const QString &inputPath, const QString &savePath, const QStringList &trackers,
