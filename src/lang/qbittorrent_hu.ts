@@ -85,52 +85,44 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="416"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>WebUI: az Origin fejléc és a cél eredete eltér!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="417"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Forrás IP: „%1”. Origin fejléc: „%2”. Cél eredete: „%3”</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="426"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>WebUI: a Referer fejléc és a cél eredete eltér!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="427"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Forrás IP: „%1”. Referer fejléc: „%2”. Cél eredete: „%3”</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="444"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="445"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="476"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
         <source>WebUI: Invalid Host header.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="477"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch</source>
-        <translation type="obsolete">WebUI: érvénytelen Host fejléc, port eltérés</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">Forrás IP: „%1”. Fogadott Host fejléc: „%2”</translation>
     </message>
 </context>
 <context>
@@ -661,10 +653,6 @@ Hiba: %2</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Always announce to all trackers</source>
-        <translation type="obsolete">Mindig jelentsen az összes tracker felé</translation>
-    </message>
-    <message>
         <location filename="../gui/advancedsettings.cpp" line="382"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
@@ -716,94 +704,94 @@ Hiba: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="146"/>
+        <location filename="../app/application.cpp" line="147"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 elindult</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="287"/>
+        <location filename="../app/application.cpp" line="288"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent: %1, külső program futtatása, parancs: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="296"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
         <translation>Torrent: %1, külső program futtatási parancs túl hosszú (hossz &gt; %2), végrehajtás sikertelen.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="320"/>
-        <source>Torrent name: %1</source>
-        <translation type="unfinished">Torrent neve: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="321"/>
-        <source>Torrent size: %1</source>
-        <translation type="unfinished">Torrent mérete: %1</translation>
+        <source>Torrent name: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="322"/>
-        <source>Save path: %1</source>
-        <translation type="unfinished">Mentés helye: %1</translation>
+        <source>Torrent size: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="323"/>
+        <source>Save path: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="324"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">A torrent letöltve %1 alatt.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="325"/>
+        <location filename="../app/application.cpp" line="326"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Köszönjük, hogy a qBittorentet használod.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="332"/>
+        <location filename="../app/application.cpp" line="333"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] %1 letöltése befejeződött</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="346"/>
+        <location filename="../app/application.cpp" line="347"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent: %1, értesítő levél küldése</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="507"/>
+        <location filename="../app/application.cpp" line="508"/>
         <source>Information</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="508"/>
+        <location filename="../app/application.cpp" line="509"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>A qBittorrent vezérléséhez, nyisd meg ezt a címet: http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="509"/>
+        <location filename="../app/application.cpp" line="510"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web UI adminisztrátor felhasználó neve: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="512"/>
+        <location filename="../app/application.cpp" line="513"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web UI adminisztrátor jelszó még az alapértelmezett: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="513"/>
+        <location filename="../app/application.cpp" line="514"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Ez biztonsági kockázatot jelent. Kérlek változtass jelszót a program beállításinál.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="675"/>
+        <location filename="../app/application.cpp" line="676"/>
         <source>Saving torrent progress...</source>
         <translation>Torrent állapotának mentése...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>A hordozható mód, és a konkrétan megadott profilkönyvtár kölcsönösen kizárják egymást</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="735"/>
+        <location filename="../app/application.cpp" line="736"/>
         <source>Portable mode implies relative fastresume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1135,18 +1123,18 @@ Hiba: %2</translation>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>Warning</source>
         <translation>Figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
         <source>The entered IP address is invalid.</source>
         <translation>A megadott IP-cím érvénytelen.</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>The entered IP is already banned.</source>
         <translation>A megadott IP-cím már ki lett tiltva.</translation>
     </message>
@@ -1528,7 +1516,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="129"/>
         <source>Edit category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategória szerkesztése…</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="134"/>
@@ -2120,6 +2108,39 @@ Ne használjon különleges karaktereket a kategórianévben.</translation>
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>A qBittorrent leállításra került.</translation>
+    </message>
+</context>
+<context>
+    <name>IPSubnetWhitelistOptionsDialog</name>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
+        <source>List of whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <source>Add subnet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <source>Delete</source>
+        <translation type="unfinished">Törlés</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>Error</source>
+        <translation type="unfinished">Hiba</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>The entered subnet is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4453,7 +4474,7 @@ Kérlek telepítsd fel kézzel.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2775"/>
         <source>IP address:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-cím:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2782"/>
@@ -4486,7 +4507,22 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
         <translation>&amp;HTTPS használata HTTP helyett</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3032"/>
+        <location filename="../gui/optionsdlg.ui" line="3008"/>
+        <source>Bypass authentication for clients on localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3015"/>
+        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3028"/>
+        <source>IP subnet whitelist...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3052"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>&amp;Dinamikus domain név frissítése</translation>
     </message>
@@ -4758,10 +4794,6 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
         <translation>Bejegyzés eltávolítása</translation>
     </message>
     <message>
-        <source>Destination email:</source>
-        <translation type="obsolete">Cél e-mail:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="1135"/>
         <source>SMTP server:</source>
         <translation>SMTP-kiszolgáló:</translation>
@@ -4780,16 +4812,16 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
     <message>
         <location filename="../gui/optionsdlg.ui" line="1176"/>
         <location filename="../gui/optionsdlg.ui" line="1626"/>
-        <location filename="../gui/optionsdlg.ui" line="3015"/>
-        <location filename="../gui/optionsdlg.ui" line="3090"/>
+        <location filename="../gui/optionsdlg.ui" line="3035"/>
+        <location filename="../gui/optionsdlg.ui" line="3110"/>
         <source>Username:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1186"/>
         <location filename="../gui/optionsdlg.ui" line="1636"/>
-        <location filename="../gui/optionsdlg.ui" line="3022"/>
-        <location filename="../gui/optionsdlg.ui" line="3104"/>
+        <location filename="../gui/optionsdlg.ui" line="3042"/>
+        <location filename="../gui/optionsdlg.ui" line="3124"/>
         <source>Password:</source>
         <translation>Jelszó:</translation>
     </message>
@@ -4801,7 +4833,7 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
     <message utf8="true">
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP és μTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1302"/>
@@ -5174,234 +5206,233 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Információk a tanúsítványokról&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3008"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Hitelesítés mellőzése helyi gép esetén</translation>
+        <translation type="obsolete">Hitelesítés mellőzése helyi gép esetén</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3044"/>
+        <location filename="../gui/optionsdlg.ui" line="3064"/>
         <source>Service:</source>
         <translation>Szolgáltatás:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3067"/>
+        <location filename="../gui/optionsdlg.ui" line="3087"/>
         <source>Register</source>
         <translation>Regisztráció</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3076"/>
+        <location filename="../gui/optionsdlg.ui" line="3096"/>
         <source>Domain name:</source>
         <translation>Domain név:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="112"/>
+        <location filename="../gui/optionsdlg.cpp" line="113"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Ezeket a beállításokat bekapcsolva, &lt;strong&gt;véglegesen elveszítheti&lt;/strong&gt; a .torrent fájljait!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="114"/>
+        <location filename="../gui/optionsdlg.cpp" line="115"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>Ha ezek a beállítások be vannak kapcsolva, akkor a qBittorrent &lt;strong&gt;törli&lt;/strong&gt; a .torrent fájlokat, ha sikeresen (első lehetőség) vagy sikertelenül (második lehetőség) a letöltési sorba kerültek. Ez &lt;strong&gt;nem csak&lt;/strong&gt; a &amp;ldquo;Torrent hozzáadása&amp;rdquo; menüművelen, hanem a &lt;strong&gt;fájltípus társításon&lt;/strong&gt;keresztül megnyitott fájlokra is érvényes</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="119"/>
+        <location filename="../gui/optionsdlg.cpp" line="120"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Ha engedélyezi a második lehetőséget (&amp;ldquo;Akkor is, ha meg lett szakítva a hozzáadás&amp;rdquo;), akkor a .torrent fájl &lt;strong&gt;törölve lesz&lt;/strong&gt;, akkor is ha a &amp;ldquo;&lt;strong&gt;Mégse&lt;/strong&gt;&amp;rdquo; gombot nyomja meg a &amp;ldquo;Torrent hozzáadása&amp;rdquo; párbeszédablakon</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="262"/>
+        <location filename="../gui/optionsdlg.cpp" line="263"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Támogatott paraméterek (kis- és nagybetű érzékeny):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="263"/>
+        <location filename="../gui/optionsdlg.cpp" line="264"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torrent neve</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="264"/>
+        <location filename="../gui/optionsdlg.cpp" line="265"/>
         <source>%L: Category</source>
         <translation>%L: Kategória</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="265"/>
+        <location filename="../gui/optionsdlg.cpp" line="266"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Tartalom útvonala (többfájlok torrenteknél ugyanaz mint a gyökér útvonal)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="266"/>
+        <location filename="../gui/optionsdlg.cpp" line="267"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Gyökér útvonala (első torrent alkönyvtár útvonala)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="267"/>
+        <location filename="../gui/optionsdlg.cpp" line="268"/>
         <source>%D: Save path</source>
         <translation>%D: Mentés útvonala</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="268"/>
+        <location filename="../gui/optionsdlg.cpp" line="269"/>
         <source>%C: Number of files</source>
         <translation>%C: Fájlok száma</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="269"/>
+        <location filename="../gui/optionsdlg.cpp" line="270"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torrent mérete (bájtok)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="270"/>
+        <location filename="../gui/optionsdlg.cpp" line="271"/>
         <source>%T: Current tracker</source>
         <translation>%T: Jelenlegi követő</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="271"/>
+        <location filename="../gui/optionsdlg.cpp" line="272"/>
         <source>%I: Info hash</source>
         <translation>%I: Hash információ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="272"/>
+        <location filename="../gui/optionsdlg.cpp" line="273"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1443"/>
+        <location filename="../gui/optionsdlg.cpp" line="1451"/>
         <source>Select folder to monitor</source>
         <translation>Válassz egy megfigyelni kívánt könyvtárat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1458"/>
         <source>Folder is already being monitored:</source>
         <translation>A könyvtár már megfigyelés alatt van:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
+        <location filename="../gui/optionsdlg.cpp" line="1461"/>
         <source>Folder does not exist:</source>
         <translation>A könyvtár nem létezik:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1464"/>
         <source>Folder is not readable:</source>
         <translation>A könyvtár nem olvasható:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1475"/>
         <source>Adding entry failed</source>
         <translation>Bejegyzés hozzáadása sikertelen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="382"/>
-        <location filename="../gui/optionsdlg.cpp" line="1495"/>
-        <location filename="../gui/optionsdlg.cpp" line="1497"/>
+        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="1503"/>
+        <location filename="../gui/optionsdlg.cpp" line="1505"/>
         <source>Choose export directory</source>
         <translation>Export könyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="376"/>
-        <location filename="../gui/optionsdlg.cpp" line="389"/>
+        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="392"/>
+        <location filename="../gui/optionsdlg.cpp" line="395"/>
         <source>Choose a save directory</source>
         <translation>Mentési könyvtár választása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="388"/>
         <source>Choose an IP filter file</source>
         <translation>Válassz egy IP-szűrő fájlt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="386"/>
+        <location filename="../gui/optionsdlg.cpp" line="389"/>
         <source>All supported filters</source>
         <translation>Minden támogatott szűrő</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>SSL Certificate</source>
         <translation>SSL tanúsítvány</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Parsing error</source>
         <translation>Feldolgozási hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Megadott IP szűrő feldogozása sikertelen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully refreshed</source>
         <translation>Sikeresen frissítve</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>A következő IP szűrő sikeresen feldolgozva: %1 szabály alkalmazva.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>Invalid key</source>
         <translation>Érvénytelen kulcs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>This is not a valid SSL key.</source>
         <translation>Ez egy érvénytelen SSL kulcs.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>Invalid certificate</source>
         <translation>Érvénytelen tanúsítvány</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="85"/>
+        <location filename="../gui/optionsdlg.cpp" line="86"/>
         <source>Preferences</source>
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Import SSL certificate</source>
         <translation>SSL tanúsítvány importálása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ez egy érvénytelen SSL tanúsítvány.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>Import SSL key</source>
         <translation>SSL kulcs importálása</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>SSL key</source>
         <translation>SSL kulcs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>Time Error</source>
         <translation>Idő hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>A kezdés és befejezés ideje nem lehet ugyanaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>Length Error</source>
         <translation>Hossz hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>A webes felület felhasználónevének legalább 3 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>A webes felület jelszavának legalább 6 karakter hosszúnak kell lennie.</translation>
     </message>
@@ -5885,22 +5916,22 @@ Ezek a kiegészítők letiltásra kerültek.</translation>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="54"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="61"/>
         <source>Name</source>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="62"/>
         <source>Size</source>
-        <translation type="unfinished">Méret</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="63"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Folyamat</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="96"/>
@@ -6352,7 +6383,7 @@ Ezek a kiegészítők letiltásra kerültek.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="135"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Az IP címe tiltásra került a túl gyakori hibás hitelesítési kérelmek miatt.</translation>
     </message>
@@ -6617,31 +6648,6 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation>Elfogadom</translation>
     </message>
     <message>
-        <source>Torrent name: %1</source>
-        <translation type="obsolete">Torrent neve: %1</translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="obsolete">Torrent mérete: %1</translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="obsolete">Mentés helye: %1</translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">A torrent letöltve %1 alatt.</translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="obsolete">Köszönjük, hogy a qBittorentet használod.</translation>
-    </message>
-    <message>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="obsolete">[qBittorrent] %1 letöltése befejeződött</translation>
-    </message>
-    <message>
         <location filename="../base/net/downloadhandler.cpp" line="205"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>A távoli kiszolgálónév nem található (érvénytelen hosztnév)</translation>
@@ -6814,9 +6820,13 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Item doesn&apos;t exists: %1.</source>
+        <translation type="obsolete">Az elem nem létezik: %1.</translation>
+    </message>
+    <message>
         <location filename="../base/rss/rss_session.cpp" line="166"/>
         <location filename="../base/rss/rss_session.cpp" line="204"/>
-        <source>Item doesn&apos;t exists: %1.</source>
+        <source>Item doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7943,7 +7953,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">Név:</translation>
+        <translation>Név:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
@@ -7953,12 +7963,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Új kategória</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="67"/>
         <source>Invalid category name</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen kategórianév</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="68"/>
@@ -8020,44 +8030,44 @@ Please choose a different name and try again.</source>
         <translation>Torrent létrehozása</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Ok: a fájl/mappa útvonala nem olvasható.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Torrent creation failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Torrent fájlok (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Select where to save the new torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok: %1</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent creator</source>
         <translation>Torrent készítő</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent created:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8083,13 +8093,13 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="68"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="109"/>
         <source>Select file</source>
         <translation>Válasszon fájlt</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="75"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="105"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="102"/>
         <source>Select folder</source>
         <translation>Válasszon mappát</translation>
     </message>
@@ -9376,7 +9386,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/trackerlogin.cpp" line="44"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezés</translation>
     </message>
 </context>
 </TS>

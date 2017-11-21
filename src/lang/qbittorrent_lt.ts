@@ -85,56 +85,44 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="416"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>Tinklo sąsaja: Kilmės antraštės ir paskirties kilmės neatitikimas!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="417"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Šaltinio IP: &quot;%1&quot;. Kilmės antraštė: &quot;%2&quot;. Paskirties kilmė: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="426"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>Tinklo sąsaja: Nukreipėjo antraštės ir paskirties kilmės neatitikimas!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="427"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Šaltinio IP: &quot;%1&quot;. Nukreipėjo antraštė: &quot;%2&quot;. Paskirties kilmė: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="444"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinklo sąsaja: Neteisinga serverio antraštė, prievadų neatitikimas.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="445"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Užklausos šaltinio IP: &quot;%1&quot;. Serverio prievadas: &quot;%2&quot;. Gauta serverio antraštė: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="476"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
         <source>WebUI: Invalid Host header.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinklo sąsaja: Neteisinga serverio antraštė.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="477"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch</source>
-        <translation type="obsolete">Tinklo sąsaja: Neteisinga serverio antraštė, prievadų neatitikimas</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">Šaltinio IP: &quot;%1&quot;. Gauta serverio antraštė: &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header</source>
-        <translation type="obsolete">Tinklo sąsaja: Neteisinga serverio antraštė</translation>
+        <translation>Užklausos šaltinio IP: &quot;%1&quot;. Gauta serverio antraštė: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -632,7 +620,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="429"/>
         <source>Save path history length</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugojimo kelio istorijos ilgis</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="441"/>
@@ -657,16 +645,12 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="465"/>
         <source>Always announce to all trackers in a tier</source>
-        <translation type="unfinished"></translation>
+        <translation>Visada siųsti atnaujinimus visiems sekliams pakopoje</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="469"/>
         <source>Always announce to all tiers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always announce to all trackers</source>
-        <translation type="obsolete">Visada siųsti atnaujinimus visiems sekliams</translation>
+        <translation>Visada siųsti atnaujinimus visoms pakopoms</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="382"/>
@@ -720,94 +704,94 @@ Klaida: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="146"/>
+        <location filename="../app/application.cpp" line="147"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 paleista</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="287"/>
+        <location filename="../app/application.cpp" line="288"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torentas: %1, vykdoma išorinė programa, komanda: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="296"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
         <translation>Torentas: %1, išorinės programos komanda buvo vykdoma per ilgai (trukmė &gt; %2), vykdymas nepavyko.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="320"/>
-        <source>Torrent name: %1</source>
-        <translation type="unfinished">Torento pavadinimas: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="321"/>
-        <source>Torrent size: %1</source>
-        <translation type="unfinished">Torento dydis: %1</translation>
+        <source>Torrent name: %1</source>
+        <translation>Torento pavadinimas: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="322"/>
-        <source>Save path: %1</source>
-        <translation type="unfinished">Atsiuntimo vieta: %1</translation>
+        <source>Torrent size: %1</source>
+        <translation>Torento dydis: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="323"/>
+        <source>Save path: %1</source>
+        <translation>Atsiuntimo vieta: %1</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="324"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Torentas atsiųstas per %1.</translation>
+        <translation>Torentas atsiųstas per %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="325"/>
+        <location filename="../app/application.cpp" line="326"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Ačiū, kad naudojatės qBittorrent.</translation>
+        <translation>Ačiū, kad naudojatės qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="332"/>
+        <location filename="../app/application.cpp" line="333"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] &quot;%1&quot; atsiuntimas užbaigtas</translation>
+        <translation>[qBittorrent] &quot;%1&quot; atsiuntimas užbaigtas</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="346"/>
+        <location filename="../app/application.cpp" line="347"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torentas: %1, siunčiamas pašto pranešimas</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="507"/>
+        <location filename="../app/application.cpp" line="508"/>
         <source>Information</source>
         <translation>Informacija</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="508"/>
+        <location filename="../app/application.cpp" line="509"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Kad valdytumėte qBittorrent, prisijunkite prie tinklo naudotojo sąsajos adresu http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="509"/>
+        <location filename="../app/application.cpp" line="510"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Tinklo naudotojo sąsajos administratoriaus naudotojo vardas yra: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="512"/>
+        <location filename="../app/application.cpp" line="513"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Tinklo naudotojo sąsajos administratoriaus slaptažodis vis dar yra numatytasis: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="513"/>
+        <location filename="../app/application.cpp" line="514"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Yra saugumo spragos rizika, pasikeiskite savo slaptažodį programos nustatymuose.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="675"/>
+        <location filename="../app/application.cpp" line="676"/>
         <source>Saving torrent progress...</source>
         <translation>Išsaugoma torento eiga...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>Perkeliamos veiksenos ir išreikštinio profilio katalogo parinktys yra viena kitą paneigiančios</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="735"/>
+        <location filename="../app/application.cpp" line="736"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>Perkeliama veiksena numano santykinį greitąjį pratęsimą</translation>
     </message>
@@ -1139,18 +1123,18 @@ Klaida: %2</translation>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>Warning</source>
         <translation>Įspėjimas</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
         <source>The entered IP address is invalid.</source>
         <translation>Įvestas IP adresas yra netaisyklingas.</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>The entered IP is already banned.</source>
         <translation>Įvestas IP adresas jau yra uždraustas.</translation>
     </message>
@@ -1659,37 +1643,37 @@ Klaida: %2</translation>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="191"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atsisiųsti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="201"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko išnagrinėti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="228"/>
         <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanalas ties &quot;%1&quot; sėkmingai atnaujintas. Pridėta %2 naujų įrašų.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="250"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perskaityti RSS seanso duomenų iš %1. Klaida: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="261"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko išnagrinėti RSS seanso duomenų. Klaida: %1</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti RSS seanso duomenų. Neteisingas duomenų formatas.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="276"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti RSS įrašo &quot;%1#%2&quot;. Neteisingas duomenų formatas.</translation>
     </message>
 </context>
 <context>
@@ -2124,6 +2108,39 @@ Prašome kategorijos pavadinime nenaudoti jokių specialių simbolių.</translat
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent buvo išjungtas.</translation>
+    </message>
+</context>
+<context>
+    <name>IPSubnetWhitelistOptionsDialog</name>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
+        <source>List of whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <source>Add subnet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <source>Delete</source>
+        <translation type="unfinished">Ištrinti</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>Error</source>
+        <translation type="unfinished">Klaida</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>The entered subnet is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4497,7 +4514,22 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <translation>Na&amp;udoti HTTPS vietoje HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3032"/>
+        <location filename="../gui/optionsdlg.ui" line="3008"/>
+        <source>Bypass authentication for clients on localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3015"/>
+        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3028"/>
+        <source>IP subnet whitelist...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3052"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>Atn&amp;aujinti mano dinaminį domeno vardą</translation>
     </message>
@@ -4769,10 +4801,6 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <translation>Šalinti įrašą</translation>
     </message>
     <message>
-        <source>Destination email:</source>
-        <translation type="obsolete">Gavėjo el. pašto adresas:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="1135"/>
         <source>SMTP server:</source>
         <translation>SMTP serveris:</translation>
@@ -4791,16 +4819,16 @@ pakaitos simbolį &quot;*&quot;.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1176"/>
         <location filename="../gui/optionsdlg.ui" line="1626"/>
-        <location filename="../gui/optionsdlg.ui" line="3015"/>
-        <location filename="../gui/optionsdlg.ui" line="3090"/>
+        <location filename="../gui/optionsdlg.ui" line="3035"/>
+        <location filename="../gui/optionsdlg.ui" line="3110"/>
         <source>Username:</source>
         <translation>Naudotojo vardas:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1186"/>
         <location filename="../gui/optionsdlg.ui" line="1636"/>
-        <location filename="../gui/optionsdlg.ui" line="3022"/>
-        <location filename="../gui/optionsdlg.ui" line="3104"/>
+        <location filename="../gui/optionsdlg.ui" line="3042"/>
+        <location filename="../gui/optionsdlg.ui" line="3124"/>
         <source>Password:</source>
         <translation>Slaptažodis:</translation>
     </message>
@@ -5185,234 +5213,233 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informacija apie liudijimus&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3008"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Apeiti vietinio serverio atpažinimą</translation>
+        <translation type="obsolete">Apeiti vietinio serverio atpažinimą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3044"/>
+        <location filename="../gui/optionsdlg.ui" line="3064"/>
         <source>Service:</source>
         <translation>Paslauga:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3067"/>
+        <location filename="../gui/optionsdlg.ui" line="3087"/>
         <source>Register</source>
         <translation>Registruotis</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3076"/>
+        <location filename="../gui/optionsdlg.ui" line="3096"/>
         <source>Domain name:</source>
         <translation>Domeno vardas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="112"/>
+        <location filename="../gui/optionsdlg.cpp" line="113"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Įjungdami šias parinktis, jūs galite &lt;strong&gt;neatšaukiamai prarasti&lt;/strong&gt; savo .torrent failus!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="114"/>
+        <location filename="../gui/optionsdlg.cpp" line="115"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>Kai šios parinktys yra įjungtos, qBittorent &lt;strong&gt;ištrins&lt;/strong&gt; .torrent failus po to kai jie bus sėkmingai (pirmas variantas) arba nesėkmingai (antras variantas) pridėti į atsiuntimų eilę. Tai bus taikoma &lt;strong&gt;ne tik&lt;/strong&gt; failams, kurie bus atveriami per meniu veiksmą &amp;ldquo;Pridėti torentą&amp;rdquo;, tačiau ir tiems failams, kurie bus atveriami per &lt;strong&gt;failo tipo susiejimus&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="119"/>
+        <location filename="../gui/optionsdlg.cpp" line="120"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Jeigu įjungsite antrą parinktį (&amp;ldquo;Taip pat kai pridėjimas yra atšaukiamas&amp;rdquo;), tuomet .torrent failas &lt;strong&gt;bus ištrinamas&lt;/strong&gt; netgi tuo atveju, jei dialoge &amp;ldquo;Pridėti torentą&amp;rdquo; nuspausite &amp;ldquo;&lt;strong&gt;Atsisakyti&lt;/strong&gt;&amp;rdquo;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="262"/>
+        <location filename="../gui/optionsdlg.cpp" line="263"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Palaikomi parametrai (skiriant raidžių dydį):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="263"/>
+        <location filename="../gui/optionsdlg.cpp" line="264"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torento pavadinimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="264"/>
+        <location filename="../gui/optionsdlg.cpp" line="265"/>
         <source>%L: Category</source>
         <translation>%L: Kategorija</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="265"/>
+        <location filename="../gui/optionsdlg.cpp" line="266"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Turinio kelias (toks pats kaip šaknies kelias kelių failų torente)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="266"/>
+        <location filename="../gui/optionsdlg.cpp" line="267"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Šaknies kelias (pirmas torento pakatalogio kelias)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="267"/>
+        <location filename="../gui/optionsdlg.cpp" line="268"/>
         <source>%D: Save path</source>
         <translation>%D: Išsaugojimo kelias</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="268"/>
+        <location filename="../gui/optionsdlg.cpp" line="269"/>
         <source>%C: Number of files</source>
         <translation>%C: Failų skaičius</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="269"/>
+        <location filename="../gui/optionsdlg.cpp" line="270"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torento dydis (baitais)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="270"/>
+        <location filename="../gui/optionsdlg.cpp" line="271"/>
         <source>%T: Current tracker</source>
         <translation>%T: Esamas seklys</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="271"/>
+        <location filename="../gui/optionsdlg.cpp" line="272"/>
         <source>%I: Info hash</source>
         <translation>%I: Informacijos maiša</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="272"/>
+        <location filename="../gui/optionsdlg.cpp" line="273"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Patarimas: Tam, kad tekstas nebūtų apkirptas ties tarpais, rašykite parametrą kabutėse (pvz., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1443"/>
+        <location filename="../gui/optionsdlg.cpp" line="1451"/>
         <source>Select folder to monitor</source>
         <translation>Pasirinkite aplanką, kurį stebėti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1458"/>
         <source>Folder is already being monitored:</source>
         <translation>Aplankas jau yra stebimas:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
+        <location filename="../gui/optionsdlg.cpp" line="1461"/>
         <source>Folder does not exist:</source>
         <translation>Aplanko nėra:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1464"/>
         <source>Folder is not readable:</source>
         <translation>Aplanko skaityti nepavyko:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1475"/>
         <source>Adding entry failed</source>
         <translation>Įrašo pridėjimas nepavyko</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="382"/>
-        <location filename="../gui/optionsdlg.cpp" line="1495"/>
-        <location filename="../gui/optionsdlg.cpp" line="1497"/>
+        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="1503"/>
+        <location filename="../gui/optionsdlg.cpp" line="1505"/>
         <source>Choose export directory</source>
         <translation>Pasirinkite eksportavimo katalogą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="376"/>
-        <location filename="../gui/optionsdlg.cpp" line="389"/>
+        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="392"/>
+        <location filename="../gui/optionsdlg.cpp" line="395"/>
         <source>Choose a save directory</source>
         <translation>Pasirinkite išsaugojimo katalogą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="388"/>
         <source>Choose an IP filter file</source>
         <translation>Pasirinkite IP filtrų failą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="386"/>
+        <location filename="../gui/optionsdlg.cpp" line="389"/>
         <source>All supported filters</source>
         <translation>Visi palaikomi filtrai</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>SSL Certificate</source>
         <translation>SSL liudijimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Parsing error</source>
         <translation>Analizavimo klaida</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Nepavyko išanalizuoti pateikto IP filtro</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully refreshed</source>
         <translation>Sėkmingai atnaujinta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Pateiktas IP filtras sėkmingai išanalizuotas. Pritaikytos %1 taisyklės.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>Invalid key</source>
         <translation>Netaisyklingas raktas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>This is not a valid SSL key.</source>
         <translation>Šis raktas nėra taisyklingas SSL raktas.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>Invalid certificate</source>
         <translation>Netaisyklingas liudijimas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="85"/>
+        <location filename="../gui/optionsdlg.cpp" line="86"/>
         <source>Preferences</source>
         <translation>Nuostatos</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Import SSL certificate</source>
         <translation>Importuoti SSL liudijimą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Šis liudijimas nėra taisyklingas SSL liudijimas.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>Import SSL key</source>
         <translation>Importuoti SSL raktą</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>SSL key</source>
         <translation>SSL raktas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>Time Error</source>
         <translation>Laiko klaida</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Pradžios bei pabaigos laikai negali sutapti.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>Length Error</source>
         <translation>Ilgio klaida</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Tinklo sąsajos naudotojo vardas privalo būti bent 3 simbolių ilgio.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Tinklo sąsajos naudotojo slaptažodis privalo būti bent 6 simbolių ilgio.</translation>
     </message>
@@ -6363,7 +6390,7 @@ Tie papildiniai buvo išjungti.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="135"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Jūsų IP adresas buvo uždraustas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
     </message>
@@ -6628,31 +6655,6 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <translation>Sutinku</translation>
     </message>
     <message>
-        <source>Torrent name: %1</source>
-        <translation type="obsolete">Torento pavadinimas: %1</translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="obsolete">Torento dydis: %1</translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="obsolete">Atsiuntimo vieta: %1</translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">Torentas atsiųstas per %1.</translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="obsolete">Ačiū, kad naudojatės qBittorrent.</translation>
-    </message>
-    <message>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="obsolete">[qBittorrent] &quot;%1&quot; atsiuntimas užbaigtas</translation>
-    </message>
-    <message>
         <location filename="../base/net/downloadhandler.cpp" line="205"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Nuotolinio serverio vardas nerastas (negaliojantis serverio vardas)</translation>
@@ -6825,10 +6827,14 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <translation>Nepavyksta perkelti šakninio aplanko.</translation>
     </message>
     <message>
+        <source>Item doesn&apos;t exists: %1.</source>
+        <translation type="obsolete">Elemento nėra: %1.</translation>
+    </message>
+    <message>
         <location filename="../base/rss/rss_session.cpp" line="166"/>
         <location filename="../base/rss/rss_session.cpp" line="204"/>
-        <source>Item doesn&apos;t exists: %1.</source>
-        <translation>Elemento nėra: %1.</translation>
+        <source>Item doesn&apos;t exist: %1.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="197"/>
@@ -8035,44 +8041,44 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Sukurti torentą</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Priežastis: Kelias į failą/aplanką nėra skaitomas.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Torrent creation failed</source>
         <translation>Torento sukūrimas nepavyko</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Torentų failai (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Select where to save the new torrent</source>
         <translation>Pasirinkite kur išsaugoti naują torentą</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Reason: %1</source>
         <translation>Priežastis: %1</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
         <translation>Priežastis: Sukurtas torentas yra sugadintas. Jis nebus pridėtas į siuntimų sąrašą.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent creator</source>
         <translation>Sukurti torentą</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent created:</source>
         <translation>Torentas sukurtas:</translation>
     </message>
@@ -8098,13 +8104,13 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="68"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="109"/>
         <source>Select file</source>
         <translation>Pasirinkti failą</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="75"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="105"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="102"/>
         <source>Select folder</source>
         <translation>Pasirinkti aplanką</translation>
     </message>
@@ -9094,20 +9100,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="100"/>
         <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinklo sąsaja: Dabar klausomasi ties IP: %1, prievadas: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="103"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on port %1</source>
-        <translation type="obsolete">Tinklo sąsaja: Dabar klausomasi ties prievadu %1</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to port %1. %2</source>
-        <translation type="obsolete">Tinklo sąsaja: Nepavyko susieti su prievadu %1. %2</translation>
+        <translation>Tinklo sąsaja: Nepavyko susieti su IP: %1, prievadas: %2. Priežastis: %3</translation>
     </message>
 </context>
 <context>

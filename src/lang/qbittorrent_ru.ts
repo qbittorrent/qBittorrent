@@ -85,56 +85,44 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="416"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>Веб-интерфейс: Оригинальный и целевой заголовки не совпадают!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="417"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP источника: &apos;%1&apos;. Оригинальный заголовок: &apos;%2&apos;. Целевой источник: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="426"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>Веб-интерфейс: Заголовок источника и целевой заголовок не совпадают!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="427"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP источника: &apos;%1&apos;. Заголовок источника: &apos;%2&apos;. Целевой источник: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="444"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-интерфейс: Недопустимый заголовок хоста, не совпадение порта.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="445"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрос IP источника: &apos;%1&apos;. Порт сервера: &apos;%2&apos;. Полученный заголовок хоста: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="476"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
         <source>WebUI: Invalid Host header.</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-интерфейс: Недопустимый заголовок хоста.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="477"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch</source>
-        <translation type="obsolete">Веб-интерфейс: Недопустимый заголовок хоста, не совпадение порта</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">IP источника: &apos;%1&apos;. Полученный заголовок хоста: &apos;%2&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header</source>
-        <translation type="obsolete">Веб-интерфейс: Недопустимый заголовок хоста</translation>
+        <translation>Запрос IP источника: &apos;%1&apos;. Полученный заголовок хоста: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -147,7 +135,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="67"/>
         <source>Set as default save path</source>
-        <translation>Установить как путь сохранения по умолчанию</translation>
+        <translation>Выбрать как путь сохранения по умолчанию</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="87"/>
@@ -162,7 +150,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="110"/>
         <source>Set as default category</source>
-        <translation>Установить в качестве категории по умолчанию</translation>
+        <translation>Выбрать в качестве категории по умолчанию</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="119"/>
@@ -269,7 +257,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="288"/>
         <source>Invalid torrent</source>
-        <translation>Неправильный торрент</translation>
+        <translation>Недопустимый торрент</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="493"/>
@@ -307,7 +295,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="323"/>
         <source>Invalid magnet link</source>
-        <translation>Неправильная магнет-ссылка</translation>
+        <translation>Недействительная магнет-ссылка</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="274"/>
@@ -632,7 +620,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="429"/>
         <source>Save path history length</source>
-        <translation type="unfinished"></translation>
+        <translation>Длина истории пути сохранения</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="441"/>
@@ -657,16 +645,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="465"/>
         <source>Always announce to all trackers in a tier</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда анонсировать на все трекеры в тире</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="469"/>
         <source>Always announce to all tiers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always announce to all trackers</source>
-        <translation type="obsolete">Всегда анонсировать на все трекеры</translation>
+        <translation>Всегда анонсировать на все тиры</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="382"/>
@@ -720,94 +704,94 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="146"/>
+        <location filename="../app/application.cpp" line="147"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 запущен</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="287"/>
+        <location filename="../app/application.cpp" line="288"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Торрент: %1, запуск внешней программы, команда: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="296"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
         <translation>Торрент: %1, слишком длинная команда запуска внешней программы (длина &gt; %2), запуск не удался.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="320"/>
-        <source>Torrent name: %1</source>
-        <translation type="unfinished">Имя торрента: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="321"/>
-        <source>Torrent size: %1</source>
-        <translation type="unfinished">Размер торрента: %1</translation>
+        <source>Torrent name: %1</source>
+        <translation>Имя торрента: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="322"/>
-        <source>Save path: %1</source>
-        <translation type="unfinished">Путь сохранения: %1</translation>
+        <source>Torrent size: %1</source>
+        <translation>Размер торрента: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="323"/>
+        <source>Save path: %1</source>
+        <translation>Путь сохранения: %1</translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="324"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Торрент был загружен за %1.</translation>
+        <translation>Торрент был загружен за %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="325"/>
+        <location filename="../app/application.cpp" line="326"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Спасибо за использование qBittorrent.</translation>
+        <translation>Спасибо за использование qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="332"/>
+        <location filename="../app/application.cpp" line="333"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] загрузка &apos;%1&apos; завершена</translation>
+        <translation>[qBittorrent] загрузка &apos;%1&apos; завершена</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="346"/>
+        <location filename="../app/application.cpp" line="347"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Торрент: %1, отправка уведомления на почту</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="507"/>
+        <location filename="../app/application.cpp" line="508"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="508"/>
+        <location filename="../app/application.cpp" line="509"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Войдите в веб-интерфейс для управления qBittorrent: http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="509"/>
+        <location filename="../app/application.cpp" line="510"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Имя администратора веб-интерфейса: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="512"/>
+        <location filename="../app/application.cpp" line="513"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Пароль администратора веб-интерфейса всё ещё стандартный: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="513"/>
+        <location filename="../app/application.cpp" line="514"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Это небезопасно, пожалуйста, измените свой пароль в настройках программы.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="675"/>
+        <location filename="../app/application.cpp" line="676"/>
         <source>Saving torrent progress...</source>
         <translation>Сохранение состояния торрента…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>Портативный режим и отдельный путь профиля являются взаимоисключающими параметрами</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="735"/>
+        <location filename="../app/application.cpp" line="736"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>Портативный режим подразумевает относительное быстрое возобновление</translation>
     </message>
@@ -928,7 +912,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
         <source>Matches articles based on episode filter.</source>
-        <translation>Указывает на статьи, основанные на фильтре эпизодов.</translation>
+        <translation>Указывает на заголовки, основанные на фильтре эпизодов.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
@@ -1139,18 +1123,18 @@ Error: %2</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="81"/>
+        <location filename="../gui/banlistoptions.cpp" line="84"/>
         <source>The entered IP address is invalid.</source>
         <translation>Введённый адрес IP  недопустим.</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptions.cpp" line="91"/>
+        <location filename="../gui/banlistoptions.cpp" line="94"/>
         <source>The entered IP is already banned.</source>
         <translation>Введённый адрес IP уже запрещён.</translation>
     </message>
@@ -1659,37 +1643,37 @@ Error: %2</source>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="191"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить RSS-канал с &apos;%1&apos;. Причина: %2.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="201"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось разобрать RSS-канал с &apos;%1&apos;. Причина: %2.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="228"/>
         <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-канал с &apos;%1&apos; успешно обновлён. Добавлены %2 новых заголовка.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="250"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось прочесть данные сеанса RSS из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="261"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось разобрать данные сеанса RSS. Ошибка: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить данные сеанса RSS из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="276"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить заголовок RSS &apos;%1#%2&apos;. Не верный формат данных.</translation>
     </message>
 </context>
 <context>
@@ -2124,6 +2108,39 @@ Please do not use any special characters in the category name.</source>
         <location filename="../webui/extra_translations.h" line="57"/>
         <source>qBittorrent has been shutdown.</source>
         <translation>qBittorrent был выключен.</translation>
+    </message>
+</context>
+<context>
+    <name>IPSubnetWhitelistOptionsDialog</name>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
+        <source>List of whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <source>Add subnet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <source>Delete</source>
+        <translation type="unfinished">Удалить</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>Error</source>
+        <translation type="unfinished">Ошибка</translation>
+    </message>
+    <message>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
+        <source>The entered subnet is invalid.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4429,7 +4446,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2636"/>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимальное число статей на канал:</translation>
+        <translation>Максимальное число заголовков на канал:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2646"/>
@@ -4494,7 +4511,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>&amp;Использовать HTTPS вместо HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3032"/>
+        <location filename="../gui/optionsdlg.ui" line="3008"/>
+        <source>Bypass authentication for clients on localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3015"/>
+        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3028"/>
+        <source>IP subnet whitelist...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdlg.ui" line="3052"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>О&amp;бновлять мой динамический DNS</translation>
     </message>
@@ -4766,10 +4798,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Удалить запись</translation>
     </message>
     <message>
-        <source>Destination email:</source>
-        <translation type="obsolete">Эл. почта получателя:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="1135"/>
         <source>SMTP server:</source>
         <translation>SMTP-сервер:</translation>
@@ -4788,16 +4816,16 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="1176"/>
         <location filename="../gui/optionsdlg.ui" line="1626"/>
-        <location filename="../gui/optionsdlg.ui" line="3015"/>
-        <location filename="../gui/optionsdlg.ui" line="3090"/>
+        <location filename="../gui/optionsdlg.ui" line="3035"/>
+        <location filename="../gui/optionsdlg.ui" line="3110"/>
         <source>Username:</source>
         <translation>Имя пользователя:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1186"/>
         <location filename="../gui/optionsdlg.ui" line="1636"/>
-        <location filename="../gui/optionsdlg.ui" line="3022"/>
-        <location filename="../gui/optionsdlg.ui" line="3104"/>
+        <location filename="../gui/optionsdlg.ui" line="3042"/>
+        <location filename="../gui/optionsdlg.ui" line="3124"/>
         <source>Password:</source>
         <translation>Пароль:</translation>
     </message>
@@ -5182,234 +5210,233 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Информация о сертификатах&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3008"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Пропускать аутентификацию для localhost</translation>
+        <translation type="obsolete">Пропускать аутентификацию для localhost</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3044"/>
+        <location filename="../gui/optionsdlg.ui" line="3064"/>
         <source>Service:</source>
         <translation>Служба:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3067"/>
+        <location filename="../gui/optionsdlg.ui" line="3087"/>
         <source>Register</source>
         <translation>Регистрация</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="3076"/>
+        <location filename="../gui/optionsdlg.ui" line="3096"/>
         <source>Domain name:</source>
         <translation>Доменное имя:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="112"/>
+        <location filename="../gui/optionsdlg.cpp" line="113"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>После включения данной настройки вы можете &lt;strong&gt;безвозвратно потерять&lt;/strong&gt; свои торрент-файлы!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="114"/>
+        <location filename="../gui/optionsdlg.cpp" line="115"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>Если данные параметры включены, qBittorrent будет &lt;strong&gt;удалять&lt;/strong&gt; торрент-файлы после их успешного (первый параметр) или неуспешного (второй параметр) добавления в очередь загрузок. Это применяется не только для файлов, добавленных через меню &amp;ldquo;Добавить торрент&amp;rdquo;, но и для тех, что были открыты через &lt;strong&gt;файловую ассоциацию&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="119"/>
+        <location filename="../gui/optionsdlg.cpp" line="120"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Если включить второй параметр (&amp;ldquo;а так же если добавление отменено&amp;rdquo;) торрент-файл &lt;strong&gt;будет удалён&lt;/strong&gt; даже если вы нажмёте на &amp;ldquo;&lt;strong&gt;Отмену&lt;/strong&gt;&amp;rdquo; в окне &amp;ldquo;Добавить торрент&amp;rdquo;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="262"/>
+        <location filename="../gui/optionsdlg.cpp" line="263"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Поддерживаемые параметры (с учётом регистра):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="263"/>
+        <location filename="../gui/optionsdlg.cpp" line="264"/>
         <source>%N: Torrent name</source>
         <translation>%N: Имя торрента</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="264"/>
+        <location filename="../gui/optionsdlg.cpp" line="265"/>
         <source>%L: Category</source>
         <translation>%L: Категория</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="265"/>
+        <location filename="../gui/optionsdlg.cpp" line="266"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Папка содержимого (та же, что и корневая папка для множественных торрентов)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="266"/>
+        <location filename="../gui/optionsdlg.cpp" line="267"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Корневая папка (главный путь для подкаталога торрента)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="267"/>
+        <location filename="../gui/optionsdlg.cpp" line="268"/>
         <source>%D: Save path</source>
         <translation>%D: Путь сохранения</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="268"/>
+        <location filename="../gui/optionsdlg.cpp" line="269"/>
         <source>%C: Number of files</source>
         <translation>%C: Количество файлов</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="269"/>
+        <location filename="../gui/optionsdlg.cpp" line="270"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Размер торрента (в байтах)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="270"/>
+        <location filename="../gui/optionsdlg.cpp" line="271"/>
         <source>%T: Current tracker</source>
         <translation>%T: Текущий трекер</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="271"/>
+        <location filename="../gui/optionsdlg.cpp" line="272"/>
         <source>%I: Info hash</source>
         <translation>%I: Хеш-сумма</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="272"/>
+        <location filename="../gui/optionsdlg.cpp" line="273"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Подсказка: включите параметр в кавычки во избежание обрезки на пробелах (напр. &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1443"/>
+        <location filename="../gui/optionsdlg.cpp" line="1451"/>
         <source>Select folder to monitor</source>
         <translation>Выберите папку для мониторинга</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1450"/>
+        <location filename="../gui/optionsdlg.cpp" line="1458"/>
         <source>Folder is already being monitored:</source>
         <translation>Папка уже мониторится:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1453"/>
+        <location filename="../gui/optionsdlg.cpp" line="1461"/>
         <source>Folder does not exist:</source>
         <translation>Папка не существует:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1456"/>
+        <location filename="../gui/optionsdlg.cpp" line="1464"/>
         <source>Folder is not readable:</source>
         <translation>Папка недоступна для чтения:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1467"/>
+        <location filename="../gui/optionsdlg.cpp" line="1475"/>
         <source>Adding entry failed</source>
         <translation>Добавление записи не удалось</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="382"/>
-        <location filename="../gui/optionsdlg.cpp" line="1495"/>
-        <location filename="../gui/optionsdlg.cpp" line="1497"/>
+        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="1503"/>
+        <location filename="../gui/optionsdlg.cpp" line="1505"/>
         <source>Choose export directory</source>
         <translation>Выберите папку для экспорта</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="376"/>
-        <location filename="../gui/optionsdlg.cpp" line="389"/>
+        <location filename="../gui/optionsdlg.cpp" line="379"/>
         <location filename="../gui/optionsdlg.cpp" line="392"/>
+        <location filename="../gui/optionsdlg.cpp" line="395"/>
         <source>Choose a save directory</source>
         <translation>Выберите путь сохранения</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="385"/>
+        <location filename="../gui/optionsdlg.cpp" line="388"/>
         <source>Choose an IP filter file</source>
         <translation>Укажите файл IP-фильтра</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="386"/>
+        <location filename="../gui/optionsdlg.cpp" line="389"/>
         <source>All supported filters</source>
         <translation>Все поддерживаемые фильтры</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>SSL Certificate</source>
         <translation>Сертификат SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Parsing error</source>
         <translation>Ошибка разбора</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1581"/>
+        <location filename="../gui/optionsdlg.cpp" line="1589"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Не удалось разобрать данный IP-фильтр</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully refreshed</source>
         <translation>Успешно обновлён</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1583"/>
+        <location filename="../gui/optionsdlg.cpp" line="1591"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Указанный IP-фильтр был успешно проанализирован: применено %1 правил.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>Invalid key</source>
         <translation>Недействительный ключ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1556"/>
+        <location filename="../gui/optionsdlg.cpp" line="1564"/>
         <source>This is not a valid SSL key.</source>
         <translation>Это недействительный ключ SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>Invalid certificate</source>
         <translation>Недействительный сертификат</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="85"/>
+        <location filename="../gui/optionsdlg.cpp" line="86"/>
         <source>Preferences</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1531"/>
+        <location filename="../gui/optionsdlg.cpp" line="1539"/>
         <source>Import SSL certificate</source>
         <translation>Импортировать сертификат SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1541"/>
+        <location filename="../gui/optionsdlg.cpp" line="1549"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Это недействительный сертификат SSL.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>Import SSL key</source>
         <translation>Импортировать ключ SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1546"/>
+        <location filename="../gui/optionsdlg.cpp" line="1554"/>
         <source>SSL key</source>
         <translation>Ключ SSL</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>Time Error</source>
         <translation>Ошибка времени</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1706"/>
+        <location filename="../gui/optionsdlg.cpp" line="1714"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Время начала и завершения не могут быть одинаковыми.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>Length Error</source>
         <translation>Ошибка размера</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1715"/>
+        <location filename="../gui/optionsdlg.cpp" line="1723"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Имя пользователя веб-интерфейса должно быть не менее 3 символов.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.cpp" line="1719"/>
+        <location filename="../gui/optionsdlg.cpp" line="1727"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Пароль веб-интерфейса должен быть не менее 6 символов.</translation>
     </message>
@@ -6361,7 +6388,7 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="135"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ваш IP-адрес был заблокирован после слишком большого количества неудачных попыток аутентификации.</translation>
     </message>
@@ -6626,31 +6653,6 @@ No further notices will be issued.</source>
         <translation>Я согласен</translation>
     </message>
     <message>
-        <source>Torrent name: %1</source>
-        <translation type="obsolete">Имя торрента: %1</translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="obsolete">Размер торрента: %1</translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="obsolete">Путь сохранения: %1</translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">Торрент был загружен за %1.</translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="obsolete">Спасибо за использование qBittorrent.</translation>
-    </message>
-    <message>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="obsolete">[qBittorrent] загрузка &apos;%1&apos; завершена</translation>
-    </message>
-    <message>
         <location filename="../base/net/downloadhandler.cpp" line="205"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Удалённый хост не был найден (неверное имя хоста)</translation>
@@ -6823,10 +6825,14 @@ No further notices will be issued.</source>
         <translation>Невозможно переместить корневую папку.</translation>
     </message>
     <message>
+        <source>Item doesn&apos;t exists: %1.</source>
+        <translation type="obsolete">Элемент не существует: %1.</translation>
+    </message>
+    <message>
         <location filename="../base/rss/rss_session.cpp" line="166"/>
         <location filename="../base/rss/rss_session.cpp" line="204"/>
-        <source>Item doesn&apos;t exists: %1.</source>
-        <translation>Элемент не существует: %1.</translation>
+        <source>Item doesn&apos;t exist: %1.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="197"/>
@@ -8033,44 +8039,44 @@ Please choose a different name and try again.</source>
         <translation>Создать торрент</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Причина: Путь к файлу или папке недоступен для чтения.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="146"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Torrent creation failed</source>
         <translation>Не удалось создать торрент</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Торрент-файлы (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="156"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="153"/>
         <source>Select where to save the new torrent</source>
         <translation>Выберите папку для сохранения нового торрента</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="176"/>
         <source>Reason: %1</source>
         <translation>Причина: %1</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="191"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="188"/>
         <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
         <translation>Причина: Созданный torrent файл испорчен. Он не будет добавлен в список загрузок.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent creator</source>
         <translation>Создать торрент</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordlg.cpp" line="202"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="199"/>
         <source>Torrent created:</source>
         <translation>Торрент создан:</translation>
     </message>
@@ -8096,13 +8102,13 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="68"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="109"/>
         <source>Select file</source>
         <translation>Выберите файл</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="75"/>
-        <location filename="../gui/torrentcreatordlg.cpp" line="105"/>
+        <location filename="../gui/torrentcreatordlg.cpp" line="102"/>
         <source>Select folder</source>
         <translation>Выберите папку</translation>
     </message>
@@ -9092,20 +9098,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webui.cpp" line="100"/>
         <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-интерфейс: сейчас используется IP: %1, порт: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="103"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on port %1</source>
-        <translation type="obsolete">Веб-интерфейс: сейчас используется порт %1</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to port %1. %2</source>
-        <translation type="obsolete">Веб-интерфейс: невозможно занять порт %1. %2</translation>
+        <translation>Веб-интерфейс: невозможно занять IP: %1, порт: %2. Причина: %3</translation>
     </message>
 </context>
 <context>
