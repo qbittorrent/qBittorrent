@@ -74,7 +74,7 @@ void SpeedLimitDialog::updateSpinValue(int val) const
     if (val <= 0) {
         m_ui->spinBandwidth->setValue(0);
         m_ui->spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
-        m_ui->spinBandwidth->setSuffix(QString::fromUtf8(""));
+        m_ui->spinBandwidth->setSuffix("");
     }
     else {
         m_ui->spinBandwidth->setValue(val);
@@ -87,7 +87,7 @@ void SpeedLimitDialog::updateSliderValue(int val) const
     if (val <= 0) {
         m_ui->spinBandwidth->setValue(0);
         m_ui->spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
-        m_ui->spinBandwidth->setSuffix(QString::fromUtf8(""));
+        m_ui->spinBandwidth->setSuffix("");
     }
     if (val > m_ui->bandwidthSlider->maximum())
         m_ui->bandwidthSlider->setMaximum(val);

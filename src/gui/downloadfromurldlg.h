@@ -60,7 +60,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL
 
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
-      QStringList clip_txt_list = clip_txt.split(QString::fromUtf8("\n"));
+      QStringList clip_txt_list = clip_txt.split(QLatin1Char('\n'));
       clip_txt.clear();
       QStringList clip_txt_list_cleaned;
       foreach (clip_txt, clip_txt_list) {
@@ -94,7 +94,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL
     void downloadButtonClicked()
     {
       QString urls = textUrls->toPlainText();
-      QStringList url_list = urls.split(QString::fromUtf8("\n"));
+      QStringList url_list = urls.split(QLatin1Char('\n'));
       QString url;
       QStringList url_list_cleaned;
       foreach (url, url_list) {

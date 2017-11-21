@@ -799,7 +799,7 @@ void PropertiesWidget::askWebSeed()
     // Ask user for a new url seed
     const QString url_seed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
-                                                           QString::fromUtf8("http://www."), &ok);
+                                                           QLatin1String("http://www."), &ok);
     if (!ok) return;
     qDebug("Adding %s web seed", qUtf8Printable(url_seed));
     if (!m_ui->listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
