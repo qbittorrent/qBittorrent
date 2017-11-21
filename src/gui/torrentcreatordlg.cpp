@@ -86,9 +86,6 @@ TorrentCreatorDlg::~TorrentCreatorDlg()
 {
     saveSettings();
 
-    if (m_creatorThread)
-        delete m_creatorThread;
-
     delete m_ui;
 }
 
