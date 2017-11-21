@@ -67,14 +67,14 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
 
-    connect(m_ui->addFileButton, SIGNAL(clicked(bool)), SLOT(onAddFileButtonClicked()));
-    connect(m_ui->addFolderButton, SIGNAL(clicked(bool)), SLOT(onAddFolderButtonClicked()));
-    connect(m_ui->buttonBox, SIGNAL(accepted()), SLOT(onCreateButtonClicked()));
-    connect(m_ui->buttonCalcTotalPieces, &QAbstractButton::clicked, this, &TorrentCreatorDlg::updatePiecesCount);
+    connect(m_ui->addFileButton, &QPushButton::clicked, this, &TorrentCreatorDlg::onAddFileButtonClicked);
+    connect(m_ui->addFolderButton, &QPushButton::clicked, this, &TorrentCreatorDlg::onAddFolderButtonClicked);
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &TorrentCreatorDlg::onCreateButtonClicked);
+    connect(m_ui->buttonCalcTotalPieces, &QPushButton::clicked, this, &TorrentCreatorDlg::updatePiecesCount);
 
-    connect(m_creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
-    connect(m_creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
-    connect(m_creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
+    connect(m_creatorThread, &BitTorrent::TorrentCreatorThread::creationSuccess, this, &TorrentCreatorDlg::handleCreationSuccess);
+    connect(m_creatorThread, &BitTorrent::TorrentCreatorThread::creationFailure, this, &TorrentCreatorDlg::handleCreationFailure);
+    connect(m_creatorThread, &BitTorrent::TorrentCreatorThread::updateProgress, this, &TorrentCreatorDlg::updateProgressBar);
 
     loadSettings();
     updateInputPath(defaultPath);
