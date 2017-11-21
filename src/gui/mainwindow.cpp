@@ -1242,7 +1242,8 @@ void MainWindow::dropEvent(QDropEvent *event)
     // differentiate ".torrent" files and others
     QStringList torrentFiles, otherFiles;
     foreach (const QString &file, files) {
-        if (file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+        if (file.startsWith("magnet:", Qt::CaseInsensitive)
+                || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
             torrentFiles << file;
         else
             otherFiles << file;
@@ -1251,7 +1252,6 @@ void MainWindow::dropEvent(QDropEvent *event)
     // Download torrents
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (const QString &file, torrentFiles) {
-        qDebug("Dropped file %s on download list", qUtf8Printable(file));
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(file, this);
         else
