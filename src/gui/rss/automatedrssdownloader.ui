@@ -386,7 +386,7 @@
      <item>
       <widget class="QPushButton" name="importBtn">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>&amp;Import...</string>
@@ -396,7 +396,7 @@
      <item>
       <widget class="QPushButton" name="exportBtn">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>&amp;Export...</string>
