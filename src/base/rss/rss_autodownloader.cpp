@@ -28,6 +28,7 @@
 
 #include "rss_autodownloader.h"
 
+#include <QDataStream>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -174,6 +175,35 @@ void AutoDownloader::removeRule(const QString &ruleName)
     }
 }
 
+QByteArray AutoDownloader::exportRulesToLegacyFormat() const
+{
+    QVariantHash dict;
+    for (const auto &rule : rules())
+        dict[rule.name()] = rule.toLegacyDict();
+
+    QByteArray data;
+    QDataStream out(&data, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_5);
+    out << dict;
+
+    return data;
+}
+
+bool AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
+{
+    QDataStream in(data);
+    in.setVersion(QDataStream::Qt_4_5);
+    QVariantHash dict;
+    in >> dict;
+    if (in.status() != QDataStream::Ok)
+        return false;
+
+    for (const QVariant &val : dict)
+        insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
+
+    return true;
+}
+
 void AutoDownloader::process()
 {
     if (m_processingQueue.isEmpty()) return; // processing was disabled
@@ -317,7 +347,7 @@ void AutoDownloader::loadRulesLegacy()
     SettingsPtr settings = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss"));
     QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
     foreach (const QVariant &ruleVar, rules) {
-        auto rule = AutoDownloadRule::fromVariantHash(ruleVar.toHash());
+        auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
         if (!rule.name().isEmpty())
             insertRule(rule);
     }

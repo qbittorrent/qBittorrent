@@ -384,31 +384,50 @@ void AutomatedRssDownloader::on_browseSP_clicked()
 
 void AutomatedRssDownloader::on_exportBtn_clicked()
 {
-//    if (m_editableRuleList->isEmpty()) {
-//        QMessageBox::warning(this, tr("Invalid action"), tr("The list is empty, there is nothing to export."));
-//        return;
-//    }
-//    // Ask for a save path
-//    QString save_path = QFileDialog::getSaveFileName(this, tr("Where would you like to save the list?"), QDir::homePath(), tr("Rules list (*.rssrules)"));
-//    if (save_path.isEmpty()) return;
-//    if (!save_path.endsWith(".rssrules", Qt::CaseInsensitive))
-//        save_path += ".rssrules";
-//    if (!m_editableRuleList->serialize(save_path)) {
-//        QMessageBox::warning(this, tr("I/O Error"), tr("Failed to create the destination file"));
-//        return;
-//    }
+    if (RSS::AutoDownloader::instance()->rules().isEmpty()) {
+        QMessageBox::warning(this, tr("Invalid action")
+                             , tr("The list is empty, there is nothing to export."));
+        return;
+    }
+
+    QString path = QFileDialog::getSaveFileName(
+                this, tr("Where would you like to save the list?")
+                , QDir::homePath(), tr("Rules list (legacy)") + QString(" (*.rssrules)"));
+    if (path.isEmpty()) return;
+
+    if (!path.endsWith(".rssrules", Qt::CaseInsensitive))
+        path += ".rssrules";
+
+    QFile file(path);
+    if (!file.open(QFile::WriteOnly)
+            || (file.write(RSS::AutoDownloader::instance()->exportRulesToLegacyFormat()) == -1)) {
+        QMessageBox::critical(
+                    this, tr("I/O Error")
+                    , tr("Failed to create the destination file. Reason: %1").arg(file.errorString()));
+    }
 }
 
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
-//    // Ask for filter path
-//    QString load_path = QFileDialog::getOpenFileName(this, tr("Please point to the RSS download rules file"), QDir::homePath(), tr("Rules list") + QString(" (*.rssrules *.filters)"));
-//    if (load_path.isEmpty() || !QFile::exists(load_path)) return;
-//    // Load it
-//    if (!m_editableRuleList->unserialize(load_path)) {
-//        QMessageBox::warning(this, tr("Import Error"), tr("Failed to import the selected rules file"));
-//        return;
-//    }
+    QString path = QFileDialog::getOpenFileName(
+                this, tr("Please point to the RSS download rules file")
+                , QDir::homePath(), tr("Rules list (legacy)") + QString(" (*.rssrules)"));
+    if (path.isEmpty() || !QFile::exists(path))
+        return;
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::critical(
+                    this, tr("I/O Error")
+                    , tr("Failed to open the file. Reason: %1").arg(file.errorString()));
+        return;
+    }
+
+    if (!RSS::AutoDownloader::instance()->importRulesFromLegacyFormat(file.readAll())) {
+        QMessageBox::critical(
+                    this, tr("Import Error")
+                    , tr("Failed to import the selected rules file."));
+    }
 }
 
 void AutomatedRssDownloader::displayRulesListMenu()

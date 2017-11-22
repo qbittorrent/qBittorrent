@@ -73,6 +73,9 @@ namespace RSS
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
+        QByteArray exportRulesToLegacyFormat() const;
+        bool importRulesFromLegacyFormat(const QByteArray &data);
+
     signals:
         void processingStateChanged(bool enabled);
         void ruleAdded(const QString &ruleName);
