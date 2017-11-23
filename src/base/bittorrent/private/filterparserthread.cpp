@@ -102,6 +102,7 @@ namespace
     }
 
     const int BUFFER_SIZE = 2 * 1024 * 1024; // 2 MiB
+    const int MAX_LOGGED_ERRORS = 5;
 }
 
 FilterParserThread::FilterParserThread(QObject *parent)
@@ -134,6 +135,12 @@ int FilterParserThread::parseDATFilterFile()
     int start = 0;
     int endOfLine = -1;
     int nbLine = 0;
+    int parseErrorCount = 0;
+    const auto addLog = [&parseErrorCount](const QString &msg)
+    {
+        if (parseErrorCount <= MAX_LOGGED_ERRORS)
+            LogMsg(msg, Log::CRITICAL);
+    };
 
     while (true) {
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
@@ -202,7 +209,8 @@ int FilterParserThread::parseDATFilterFile()
             int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
             int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
             if (delimIP == -1) {
-                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -210,7 +218,8 @@ int FilterParserThread::parseDATFilterFile()
             libt::address startAddr;
             int newStart = trim(buffer.data(), start, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
-                LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -218,14 +227,16 @@ int FilterParserThread::parseDATFilterFile()
             libt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfIPRange);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
-                LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
 
             if ((startAddr.is_v4() != endAddr.is_v4())
                 || (startAddr.is_v6() != endAddr.is_v6())) {
-                LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -238,8 +249,9 @@ int FilterParserThread::parseDATFilterFile()
                 ++ruleCount;
             }
             catch (std::exception &e) {
-                LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
-                                               .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
+                       .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
             }
         }
 
@@ -247,6 +259,9 @@ int FilterParserThread::parseDATFilterFile()
             offset = 0;
     }
 
+    if (parseErrorCount > MAX_LOGGED_ERRORS)
+        LogMsg(tr("%1 extra IP filter parsing errors occurred.", "513 extra IP filter parsing errors occurred.")
+               .arg(parseErrorCount - MAX_LOGGED_ERRORS), Log::CRITICAL);
     return ruleCount;
 }
 
@@ -268,6 +283,12 @@ int FilterParserThread::parseP2PFilterFile()
     int start = 0;
     int endOfLine = -1;
     int nbLine = 0;
+    int parseErrorCount = 0;
+    const auto addLog = [&parseErrorCount](const QString &msg)
+    {
+        if (parseErrorCount <= MAX_LOGGED_ERRORS)
+            LogMsg(msg, Log::CRITICAL);
+    };
 
     while (true) {
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
@@ -319,7 +340,8 @@ int FilterParserThread::parseP2PFilterFile()
             // The "Some organization" part might contain a ':' char itself so we find the last occurrence
             int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
             if (partsDelimiter == -1) {
-                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -327,7 +349,8 @@ int FilterParserThread::parseP2PFilterFile()
             // IP Range should be split by a dash
             int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
             if (delimIP == -1) {
-                LogMsg(tr("IP filter line %1 is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -335,7 +358,8 @@ int FilterParserThread::parseP2PFilterFile()
             libt::address startAddr;
             int newStart = trim(buffer.data(), partsDelimiter + 1, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
-                LogMsg(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. Start IP of the range is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -343,14 +367,16 @@ int FilterParserThread::parseP2PFilterFile()
             libt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfLine);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
-                LogMsg(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. End IP of the range is malformed.").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
 
             if ((startAddr.is_v4() != endAddr.is_v4())
                 || (startAddr.is_v6() != endAddr.is_v6())) {
-                LogMsg(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine));
                 start = endOfLine;
                 continue;
             }
@@ -362,8 +388,9 @@ int FilterParserThread::parseP2PFilterFile()
                 ++ruleCount;
             }
             catch (std::exception &e) {
-                LogMsg(tr("IP filter exception thrown for line %1. Exception is: %2").arg(nbLine)
-                       .arg(QString::fromLocal8Bit(e.what())), Log::CRITICAL);
+                ++parseErrorCount;
+                addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
+                       .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
             }
         }
 
@@ -371,6 +398,9 @@ int FilterParserThread::parseP2PFilterFile()
             offset = 0;
     }
 
+    if (parseErrorCount > MAX_LOGGED_ERRORS)
+        LogMsg(tr("%1 extra IP filter parsing errors occurred.", "513 extra IP filter parsing errors occurred.")
+               .arg(parseErrorCount - MAX_LOGGED_ERRORS), Log::CRITICAL);
     return ruleCount;
 }
 
