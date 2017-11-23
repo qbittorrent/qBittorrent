@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <stdexcept>
+
 #include <QBasicTimer>
 #include <QHash>
 #include <QList>
@@ -49,6 +51,13 @@ namespace RSS
 
     class AutoDownloadRule;
 
+    class ParsingError : public std::runtime_error
+    {
+    public:
+        explicit ParsingError(const QString &message);
+        QString message() const;
+    };
+
     class AutoDownloader final: public QObject
     {
         Q_OBJECT
@@ -60,6 +69,12 @@ namespace RSS
         ~AutoDownloader() override;
 
     public:
+        enum class RulesFileFormat
+        {
+            Legacy,
+            JSON
+        };
+
         static AutoDownloader *instance();
 
         bool isProcessingEnabled() const;
@@ -73,8 +88,8 @@ namespace RSS
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
-        QByteArray exportRulesToLegacyFormat() const;
-        bool importRulesFromLegacyFormat(const QByteArray &data);
+        QByteArray exportRules(RulesFileFormat format = RulesFileFormat::JSON) const;
+        void importRules(const QByteArray &data, RulesFileFormat format = RulesFileFormat::JSON);
 
     signals:
         void processingStateChanged(bool enabled);
@@ -101,6 +116,10 @@ namespace RSS
         void loadRulesLegacy();
         void store();
         void storeDeferred();
+        QByteArray exportRulesToJSONFormat() const;
+        void importRulesFromJSONFormat(const QByteArray &data);
+        QByteArray exportRulesToLegacyFormat() const;
+        void importRulesFromLegacyFormat(const QByteArray &data);
 
         static QPointer<AutoDownloader> m_instance;
 
