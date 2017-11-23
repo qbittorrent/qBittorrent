@@ -38,6 +38,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QVariant>
+#include <QVector>
 
 #include "../bittorrent/magneturi.h"
 #include "../bittorrent/session.h"
@@ -64,6 +65,32 @@ const QString RulesFileName(QStringLiteral("download_rules.json"));
 
 const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/AutoDownloader/EnableProcessing"));
 
+namespace
+{
+    QVector<RSS::AutoDownloadRule> rulesFromJSON(const QByteArray &jsonData)
+    {
+        QJsonParseError jsonError;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &jsonError);
+        if (jsonError.error != QJsonParseError::NoError)
+            throw RSS::ParsingError(jsonError.errorString());
+
+        if (!jsonDoc.isObject())
+            throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
+
+        const QJsonObject jsonObj {jsonDoc.object()};
+        QVector<RSS::AutoDownloadRule> rules;
+        for (auto it = jsonObj.begin(); it != jsonObj.end(); ++it) {
+            const QJsonValue jsonVal {it.value()};
+            if (!jsonVal.isObject())
+                throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
+
+            rules.append(RSS::AutoDownloadRule::fromJsonObject(jsonVal.toObject(), it.key()));
+        }
+
+        return rules;
+    }
+}
+
 using namespace RSS;
 
 QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
@@ -85,8 +112,8 @@ AutoDownloader::AutoDownloader()
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
     connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
     {
-        Logger::instance()->addMessage(QString("Couldn't save RSS AutoDownloader data in %1. Error: %2")
-                                       .arg(fileName).arg(errorString), Log::WARNING);
+        LogMsg(tr("Couldn't save RSS AutoDownloader data in %1. Error: %2")
+               .arg(fileName).arg(errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
@@ -175,6 +202,43 @@ void AutoDownloader::removeRule(const QString &ruleName)
     }
 }
 
+QByteArray AutoDownloader::exportRules(AutoDownloader::RulesFileFormat format) const
+{
+    switch (format) {
+    case RulesFileFormat::Legacy:
+        return exportRulesToLegacyFormat();
+    default:
+        return exportRulesToJSONFormat();
+    }
+}
+
+void AutoDownloader::importRules(const QByteArray &data, AutoDownloader::RulesFileFormat format)
+{
+    switch (format) {
+    case RulesFileFormat::Legacy:
+        importRulesFromLegacyFormat(data);
+        break;
+    default:
+        importRulesFromJSONFormat(data);
+    }
+}
+
+QByteArray AutoDownloader::exportRulesToJSONFormat() const
+{
+    QJsonObject jsonObj;
+    for (const auto &rule : rules())
+        jsonObj.insert(rule.name(), rule.toJsonObject());
+
+    return QJsonDocument(jsonObj).toJson();
+}
+
+void AutoDownloader::importRulesFromJSONFormat(const QByteArray &data)
+{
+    const auto rules = rulesFromJSON(data);
+    for (const auto &rule : rules)
+        insertRule(rule);
+}
+
 QByteArray AutoDownloader::exportRulesToLegacyFormat() const
 {
     QVariantHash dict;
@@ -189,19 +253,17 @@ QByteArray AutoDownloader::exportRulesToLegacyFormat() const
     return data;
 }
 
-bool AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
+void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
 {
     QDataStream in(data);
     in.setVersion(QDataStream::Qt_4_5);
     QVariantHash dict;
     in >> dict;
     if (in.status() != QDataStream::Ok)
-        return false;
+        throw ParsingError(tr("Invalid data format"));
 
     for (const QVariant &val : dict)
         insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
-
-    return true;
 }
 
 void AutoDownloader::process()
@@ -306,39 +368,20 @@ void AutoDownloader::load()
     else if (rulesFile.open(QFile::ReadOnly))
         loadRules(rulesFile.readAll());
     else
-        Logger::instance()->addMessage(
-                    QString("Couldn't read RSS AutoDownloader rules from %1. Error: %2")
-                    .arg(rulesFile.fileName()).arg(rulesFile.errorString()), Log::WARNING);
+        LogMsg(tr("Couldn't read RSS AutoDownloader rules from %1. Error: %2")
+               .arg(rulesFile.fileName()).arg(rulesFile.errorString()), Log::CRITICAL);
 }
 
 void AutoDownloader::loadRules(const QByteArray &data)
 {
-    QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
-    if (jsonError.error != QJsonParseError::NoError) {
-        Logger::instance()->addMessage(
-                    QString("Couldn't parse RSS AutoDownloader rules. Error: %1")
-                    .arg(jsonError.errorString()), Log::WARNING);
-        return;
+    try {
+        const auto rules = rulesFromJSON(data);
+        for (const auto &rule : rules)
+            setRule_impl(rule);
     }
-
-    if (!jsonDoc.isObject()) {
-        Logger::instance()->addMessage(
-                    QString("Couldn't load RSS AutoDownloader rules. Invalid data format."), Log::WARNING);
-        return;
-    }
-
-    QJsonObject jsonObj = jsonDoc.object();
-    foreach (const QString &key, jsonObj.keys()) {
-        const QJsonValue jsonVal = jsonObj.value(key);
-        if (!jsonVal.isObject()) {
-            Logger::instance()->addMessage(
-                        QString("Couldn't load RSS AutoDownloader rule '%1'. Invalid data format.")
-                        .arg(key), Log::WARNING);
-            continue;
-        }
-
-        setRule_impl(AutoDownloadRule::fromJsonObject(jsonVal.toObject(), key));
+    catch (const ParsingError &error) {
+        LogMsg(tr("Couldn't load RSS AutoDownloader rules. Reason: %1")
+               .arg(error.message()), Log::CRITICAL);
     }
 }
 
@@ -414,4 +457,14 @@ void AutoDownloader::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
     store();
+}
+
+ParsingError::ParsingError(const QString &message)
+    : std::runtime_error(message.toUtf8().data())
+{
+}
+
+QString ParsingError::message() const
+{
+    return what();
 }
