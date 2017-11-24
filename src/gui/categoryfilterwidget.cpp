@@ -35,11 +35,11 @@
 #include <QMessageBox>
 
 #include "base/bittorrent/session.h"
-#include "base/utils/misc.h"
 #include "categoryfiltermodel.h"
 #include "categoryfilterproxymodel.h"
 #include "guiiconprovider.h"
 #include "torrentcategorydialog.h"
+#include "utils.h"
 
 namespace
 {
@@ -70,7 +70,7 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     setUniformRowHeights(true);
     setHeaderHidden(true);
-    setIconSize(Utils::Misc::smallIconSize());
+    setIconSize(Utils::Gui::smallIconSize());
 #ifdef Q_OS_MAC
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif

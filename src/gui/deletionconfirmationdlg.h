@@ -33,11 +33,13 @@
 
 #include <QDialog>
 #include <QPushButton>
-#include "ui_confirmdeletiondlg.h"
+
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "guiiconprovider.h"
+#include "ui_confirmdeletiondlg.h"
+#include "utils.h"
 
 class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   Q_OBJECT
@@ -50,9 +52,11 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     else
       label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
     // Icons
-    lbl_warn->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(lbl_warn->height()));
-    lbl_warn->setFixedWidth(lbl_warn->height());
+    const QSize iconSize = Utils::Gui::largeIconSize();
+    lbl_warn->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(iconSize));
+    lbl_warn->setFixedWidth(iconSize.width());
     rememberBtn->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
+    rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
     checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(checkPermDelete, SIGNAL(clicked()), this, SLOT(updateRememberButtonState()));

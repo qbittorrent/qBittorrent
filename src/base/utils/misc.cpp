@@ -632,19 +632,6 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
 #endif
 }
 
-QSize Utils::Misc::smallIconSize()
-{
-    // Get DPI scaled icon size (device-dependent), see QT source
-    int s = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
-    return QSize(s, s);
-}
-
-QSize Utils::Misc::largeIconSize()
-{
-    // Get DPI scaled icon size (device-dependent), see QT source
-    int s = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize);
-    return QSize(s, s);
-}
 #endif // DISABLE_GUI
 
 QString Utils::Misc::osName()

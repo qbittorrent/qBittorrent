@@ -38,6 +38,7 @@
 #include <QMessageBox>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include <QUrl>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -48,7 +49,6 @@
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "categoryfilterwidget.h"
@@ -57,6 +57,7 @@
 #include "torrentmodel.h"
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
+#include "utils.h"
 
 const QLatin1String GOOGLE_FAVICON_URL("https://www.google.com/s2/favicons?domain=");
 
@@ -71,7 +72,7 @@ FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     setUniformItemSizes(true);
     setSpacing(0);
 
-    setIconSize(Utils::Misc::smallIconSize());
+    setIconSize(Utils::Gui::smallIconSize());
 
 #if defined(Q_OS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);

@@ -31,10 +31,12 @@
 #ifndef ABOUT_H
 #define ABOUT_H
 
-#include "ui_about.h"
 #include <QFile>
+
 #include "base/utils/misc.h"
 #include "base/unicodestrings.h"
+#include "ui_about.h"
+#include "utils.h"
 
 class about: public QDialog, private Ui::AboutDlg
 {
@@ -53,6 +55,8 @@ public:
         lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
 #endif
 
+        logo->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/qbittorrent32.png", this));
+
         // About
         QString aboutText = QString(
             "<p style=\"white-space: pre-wrap;\">"
@@ -70,6 +74,8 @@ public:
             .arg(tr("Forum:"))
             .arg(tr("Bug Tracker:"));
         lb_about->setText(aboutText);
+
+        labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
 
         // Thanks
         QFile thanksfile(":/thanks.html");

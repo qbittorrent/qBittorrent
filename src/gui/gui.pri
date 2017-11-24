@@ -64,6 +64,7 @@ HEADERS += \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/utils.h \
 
 SOURCES += \
     $$PWD/mainwindow.cpp \
@@ -119,6 +120,7 @@ SOURCES += \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/utils.cpp \
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h

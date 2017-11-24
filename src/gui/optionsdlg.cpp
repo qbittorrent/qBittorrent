@@ -68,6 +68,7 @@
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
+#include "utils.h"
 
 #include "ui_optionsdlg.h"
 
@@ -99,12 +100,20 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+
+    // set uniform size for all icons
+    int maxHeight = -1;
+    for (int i = 0; i < m_ui->tabSelection->count(); ++i)
+        maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(m_ui->tabSelection->item(i)).size().height());
     for (int i = 0; i < m_ui->tabSelection->count(); ++i) {
-        // uniform size for all icons
-        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 62));
+        const QSize size(std::numeric_limits<int>::max(), static_cast<int>(maxHeight * 1.2));
+        m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
     m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.png", this, 16));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.png", this, 16));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -1675,11 +1684,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1694,11 +1703,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
         m_sslCert.clear();
     }
     return isCertValid;

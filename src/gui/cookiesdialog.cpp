@@ -35,6 +35,7 @@
 #include "cookiesmodel.h"
 #include "guiiconprovider.h"
 #include "ui_cookiesdialog.h"
+#include "utils.h"
 
 #define SETTINGS_KEY(name) "CookiesDialog/" name
 const QString KEY_SIZE = SETTINGS_KEY("Size");
@@ -50,6 +51,8 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     setWindowIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
     m_ui->buttonAdd->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     m_ui->buttonDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
+    m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
 
     m_ui->treeView->setModel(m_cookiesModel);
     if (m_cookiesModel->rowCount() > 0)

@@ -93,6 +93,7 @@
 #include "transferlistfilterswidget.h"
 #include "transferlistwidget.h"
 #include "ui_mainwindow.h"
+#include "utils.h"
 
 #ifdef Q_OS_WIN
 #include "base/net/downloadhandler.h"
@@ -230,7 +231,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_searchFilter = new LineEdit(this);
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     m_searchFilter->setPlaceholderText(tr("Filter torrent list..."));
-    m_searchFilter->setFixedWidth(200);
+    m_searchFilter->setFixedWidth(200 * Utils::Gui::screenScalingFactor(this));
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
