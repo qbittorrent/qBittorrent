@@ -18,11 +18,7 @@
    <item>
     <layout class="QHBoxLayout" name="titleHBoxLayout">
      <item>
-      <widget class="QLabel" name="logo">
-       <property name="pixmap">
-        <pixmap resource="../icons.qrc">:/icons/skin/qbittorrent32.png</pixmap>
-       </property>
-      </widget>
+      <widget class="QLabel" name="logo"/>
      </item>
      <item>
       <widget class="QLabel" name="lb_name">
@@ -57,11 +53,7 @@
       </attribute>
       <layout class="QGridLayout" name="aboutTabLayout">
        <item row="0" column="0">
-        <widget class="QLabel" name="mascot_lbl">
-         <property name="pixmap">
-          <pixmap resource="../icons.qrc">:/icons/skin/mascot.png</pixmap>
-         </property>
-        </widget>
+        <widget class="QLabel" name="labelMascot"/>
        </item>
        <item row="0" column="1">
         <widget class="QLabel" name="lb_about">
