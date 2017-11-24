@@ -61,6 +61,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 {
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
+    m_layout->setSpacing(3);
 
     m_hlayout = new QHBoxLayout();
     m_hlayout->setContentsMargins(0, 0, 0, 0);
