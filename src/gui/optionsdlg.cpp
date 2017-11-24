@@ -139,7 +139,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(ScanFoldersModel::instance(), &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleScanFolderViewSelectionChanged);
 
-    connect(m_ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
+    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &OptionsDialog::applySettings);
     // Languages supported
     initializeLanguageCombo();
 
@@ -1578,7 +1578,7 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     session->setIPFilteringEnabled(true);
     session->setIPFilterFile(""); // forcing Session reload filter file
     session->setIPFilterFile(getFilter());
-    connect(session, SIGNAL(IPFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+    connect(session, &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
     setCursor(QCursor(Qt::WaitCursor));
 }
 
@@ -1590,7 +1590,7 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
     else
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
-    disconnect(BitTorrent::Session::instance(), SIGNAL(IPFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
 }
 
 QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
