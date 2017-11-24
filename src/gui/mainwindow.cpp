@@ -30,83 +30,82 @@
 
 #include "mainwindow.h"
 
-#ifdef Q_OS_MAC
-#include <QtMacExtras>
-#include <QtMac>
-#endif
-
+#include <QClipboard>
+#include <QCloseEvent>
+#include <QCryptographicHash>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QFileDialog>
+#include <QFileSystemWatcher>
+#include <QMessageBox>
+#include <QMimeData>
+#include <QProcess>
+#include <QScrollBar>
+#include <QShortcut>
+#include <QSplitter>
+#include <QStatusBar>
+#include <QSysInfo>
 #include <QtGlobal>
+#include <QTimer>
+
+#ifdef Q_OS_MAC
+#include <QtMac>
+#include <QtMacExtras>
+#endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "notifications.h"
 #endif
-#include <QDebug>
-#include <QFileDialog>
-#include <QFileSystemWatcher>
-#include <QMessageBox>
-#include <QTimer>
-#include <QDesktopServices>
-#include <QStatusBar>
-#include <QClipboard>
-#include <QCloseEvent>
-#include <QShortcut>
-#include <QScrollBar>
-#include <QSplitter>
-#include <QSysInfo>
-#include <QMimeData>
-#include <QCryptographicHash>
-#include <QProcess>
 
-#include "base/preferences.h"
-#include "base/settingsstorage.h"
-#include "base/logger.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#ifdef Q_OS_WIN
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
-#endif
+#include "about_imp.h"
+#include "addnewtorrentdialog.h"
+#include "application.h"
+#include "autoexpandabledialog.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
+#include "base/logger.h"
+#include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
+#include "base/settingsstorage.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "cookiesdialog.h"
+#include "downloadfromurldlg.h"
+#include "executionlog.h"
+#include "guiiconprovider.h"
+#include "hidabletabwidget.h"
+#include "lineedit.h"
+#include "optionsdlg.h"
+#include "peerlistwidget.h"
+#include "powermanagement.h"
+#include "propertieswidget.h"
+#include "rss/rsswidget.h"
+#include "search/searchwidget.h"
+#include "speedlimitdlg.h"
+#include "statsdialog.h"
+#include "statusbar.h"
+#include "torrentcreatordlg.h"
+#include "torrentmodel.h"
+#include "trackerlist.h"
+#include "transferlistfilterswidget.h"
+#include "transferlistwidget.h"
+#include "ui_mainwindow.h"
 
-#include "application.h"
+#ifdef Q_OS_WIN
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
+#endif
+#ifdef Q_OS_MAC
+#include "macutilities.h"
+#endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 #include "programupdater.h"
 #endif
-#include "powermanagement.h"
-#include "guiiconprovider.h"
-#include "torrentmodel.h"
-#include "autoexpandabledialog.h"
-#include "torrentcreatordlg.h"
-#include "downloadfromurldlg.h"
-#include "addnewtorrentdialog.h"
-#include "statsdialog.h"
-#include "cookiesdialog.h"
-#include "speedlimitdlg.h"
-#include "transferlistwidget.h"
-#include "search/searchwidget.h"
-#include "trackerlist.h"
-#include "peerlistwidget.h"
-#include "transferlistfilterswidget.h"
-#include "propertieswidget.h"
-#include "statusbar.h"
-#include "rss/rsswidget.h"
-#include "about_imp.h"
-#include "optionsdlg.h"
 #if LIBTORRENT_VERSION_NUM < 10100
 #include "trackerlogin.h"
-#endif
-#include "lineedit.h"
-#include "executionlog.h"
-#include "hidabletabwidget.h"
-#include "ui_mainwindow.h"
-
-#ifdef Q_OS_MAC
-#include "macutilities.h"
 #endif
 
 #ifdef Q_OS_MAC
