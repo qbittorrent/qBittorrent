@@ -84,7 +84,9 @@ namespace RSS
 
         QJsonObject toJsonObject() const;
         static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = "");
-        static AutoDownloadRule fromVariantHash(const QVariantHash &varHash);
+
+        QVariantHash toLegacyDict() const;
+        static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);
 
     private:
         bool matches(const QString &articleTitle, const QString &expression) const;
