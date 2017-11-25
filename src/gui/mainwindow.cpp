@@ -66,6 +66,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #endif
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -155,7 +156,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle("qBittorrent " QBT_VERSION);
+    setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(QBT_VERSION)));
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MAC
@@ -340,6 +341,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::checkForActiveTorrents);
+    m_UnbanTimer = new QTimer(this);
+    m_UnbanTimer->setInterval(500);
+    connect(m_UnbanTimer, SIGNAL(timeout()), SLOT(processUnbanRequest()));
 
     // Configure BT session according to options
     loadPreferences(false);
@@ -395,6 +399,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionAutoHibernate->setDisabled(true);
 #endif
     m_ui->actionAutoExit->setChecked(pref->shutdownqBTWhenDownloadsComplete());
+    m_ui->actionResetIPFilter->setChecked(false);
 
     if (!autoShutdownGroup->checkedAction())
         m_ui->actionAutoShutdownDisabled->setChecked(true);
@@ -1150,6 +1155,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
         m_systrayIcon->hide();
 #endif
     // Accept exit
+    if(m_ui->actionResetIPFilter->isChecked()) {
+            BitTorrent::Session::instance()->unbanIP();
+    }
     e->accept();
     qApp->exit();
 }
@@ -1490,6 +1498,40 @@ void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const 
 #endif
 }
 
+// Unban Timer
+void MainWindow::processUnbanRequest()
+{
+    if (bannedIPs.isEmpty() && UnbanTime.isEmpty()) {
+        m_UnbanTimer->stop();
+    }
+    else if (m_isActive) {
+        return;
+    }
+    else {
+        m_isActive = true;
+        int64_t currentTime = QDateTime::currentMSecsSinceEpoch();
+        int64_t nextTime = UnbanTime.dequeue();
+        int delayTime = int(nextTime - currentTime);
+        QString nextIP = bannedIPs.dequeue();
+        if (delayTime < 0) {
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
+        else {
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
+    }
+}
+
+void MainWindow::insertQueue(QString ip)
+{
+    bannedIPs.enqueue(ip);
+    UnbanTime.enqueue(QDateTime::currentMSecsSinceEpoch() + 60 * 60 * 1000);
+
+    if (!m_UnbanTimer->isActive()) {
+        m_UnbanTimer->start();
+    }
+}
+
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
@@ -1529,6 +1571,38 @@ void MainWindow::updateGUI()
                        .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
                        .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
                        .arg(QBT_VERSION));
+    }
+
+    //New Method
+    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+        QList<BitTorrent::PeerInfo> peers = torrent->peers();
+        foreach (const BitTorrent::PeerInfo &peer, peers) {
+            BitTorrent::PeerAddress addr = peer.address();
+            if (addr.ip.isNull()) continue;
+            QString ip = addr.ip.toString();
+            QString client = peer.client();
+            QString ptoc = peer.pidtoclient();
+            QString pid = peer.pid().left(8);
+            QString country = peer.country();
+
+            QRegExp filter("-(XL\\d+|SD\\d+|XF\\d+|QD\\d+|BN\\d+)-");
+            if (filter.exactMatch(pid)) {
+                qDebug("Auto Banning bad Peer %s...", ip.toLocal8Bit().data());
+                Logger::instance()->addMessage(tr("Auto banning bad Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+                BitTorrent::Session::instance()->tempblockIP(ip);
+                insertQueue(ip);
+                continue;
+            }
+
+            if(m_AutoBan) {
+                if(client.contains("Unknown") && country == "CN") {
+                    qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
+                    Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
+                    BitTorrent::Session::instance()->tempblockIP(ip);
+                    insertQueue(ip);
+                }
+            }
+        }
     }
 }
 
@@ -1707,7 +1781,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     if (m_displaySpeedInTitle)
         updateGUI();
     else
-        setWindowTitle("qBittorrent " QBT_VERSION);
+        setWindowTitle(QString("qBittorrent %1 (Enhanced Edition)").arg(QString::fromUtf8(QBT_VERSION)));
 }
 
 void MainWindow::on_actionRSSReader_triggered()
@@ -1803,12 +1877,12 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 
-void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser)
+void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, QString nextUpdate, bool invokedByUser)
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (updateAvailable) {
         answer = QMessageBox::question(this, tr("qBittorrent Update Available"),
-                                       tr("A new version is available.\nDo you want to download %1?").arg(newVersion),
+                                       tr("A new version is available.\nDo you want to download %1?\n%2").arg(newVersion).arg(newContent),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update
@@ -1818,7 +1892,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
     }
     else if (invokedByUser) {
         QMessageBox::information(this, tr("Already Using the Latest qBittorrent Version"),
-                                 tr("No updates available.\nYou are already using the latest version."));
+                                 tr("No updates available.\nYou are already using the latest version.\n%1").arg(nextUpdate));
     }
     sender()->deleteLater();
     m_ui->actionCheckForUpdates->setEnabled(true);

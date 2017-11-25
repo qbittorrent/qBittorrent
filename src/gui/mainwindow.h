@@ -33,6 +33,9 @@
 
 #include <QMainWindow>
 #include <QPointer>
+#include <QQueue>
+#include <QStringList>
+#include <QTimer>
 
 #ifndef Q_OS_MAC
 #include <QSystemTrayIcon>
@@ -104,6 +107,16 @@ public:
 
     void showNotificationBaloon(QString title, QString msg) const;
 
+    // Unban Timer
+    bool m_isActive = false;
+    QQueue<QString> bannedIPs;
+    QQueue<int64_t> UnbanTime;
+    QTimer *m_UnbanTimer;
+    void insertQueue(QString ip);
+
+public slots:
+    void processUnbanRequest();
+
 private slots:
     void balloonClicked();
     void writeSettings();
@@ -133,7 +146,7 @@ private slots:
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
+    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, QString nextUpdate, bool invokedByUser);
 #endif
     void toggleAlternativeSpeeds();
 
@@ -259,6 +272,7 @@ private:
 #endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
+    bool m_AutoBan;
 };
 
 #endif // MAINWINDOW_H

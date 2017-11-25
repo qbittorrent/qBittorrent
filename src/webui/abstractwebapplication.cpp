@@ -41,6 +41,7 @@
 #include <QUrl>
 
 #include "base/logger.h"
+#include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/net.h"
@@ -93,7 +94,10 @@ AbstractWebApplication::AbstractWebApplication(QObject *parent)
     , session_(0)
 {
     QTimer *timer = new QTimer(this);
+    m_UnbanTimer = new QTimer(this);
+    m_UnbanTimer->setInterval(500);
     connect(timer, &QTimer::timeout, this, &AbstractWebApplication::removeInactiveSessions);
+    connect(m_UnbanTimer, &QTimer::timeout, this, &AbstractWebApplication::processUnbanRequest);
     timer->start(60 * 1000);  // 1 min.
 
     reloadDomainList();
@@ -317,6 +321,30 @@ void AbstractWebApplication::increaseFailedAttempts()
         ubantimer->start();
     }
 }
+
+void AbstractWebApplication::processUnbanRequest()
+{
+    if (bannedIPs.isEmpty() && UnbanTime.isEmpty()) {
+        m_UnbanTimer->stop();
+    }
+    else if (m_isActive) {
+        return;
+    }
+    else {
+        m_isActive = true;
+        int64_t currentTime = QDateTime::currentMSecsSinceEpoch();
+        int64_t nextTime = UnbanTime.dequeue();
+        int delayTime = int(nextTime - currentTime);
+        QString nextIP = bannedIPs.dequeue();
+        if (delayTime < 0) {
+            QTimer::singleShot(0, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
+        else {
+            QTimer::singleShot(delayTime, [=] { BitTorrent::Session::instance()->removeBlockedIP(nextIP); m_isActive = false; });
+        }
+    }
+}
+
 
 bool AbstractWebApplication::isAuthNeeded()
 {

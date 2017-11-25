@@ -339,7 +339,9 @@ namespace BitTorrent
         void setBandwidthSchedulerEnabled(bool enabled);
 
         uint saveResumeDataInterval() const;
+        bool isAutoBanUnknownPeerEnabled() const;
         void setSaveResumeDataInterval(uint value);
+        void setAutoBanUnknownPeer(bool value);
         int port() const;
         void setPort(int port);
         bool useRandomPort() const;
@@ -453,6 +455,12 @@ namespace BitTorrent
         void setMaxRatioAction(MaxRatioAction act);
 
         void banIP(const QString &ip);
+        bool checkAccessFlags(const QString &ip);
+        void tempblockIP(const QString &ip);
+        void removeBlockedIP(const QString &ip);
+        void EraseIPFilter();
+        void unbanIP();
+
 
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
@@ -689,6 +697,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<uint> m_saveResumeDataInterval;
+        CachedSettingValue<bool> m_autoBanUnknownPeer;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;
         CachedSettingValue<QString> m_networkInterface;

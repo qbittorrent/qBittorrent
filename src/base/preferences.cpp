@@ -1153,6 +1153,16 @@ void Preferences::setTrayIconStyle(TrayIcon::Style style)
 }
 #endif
 
+bool Preferences::getAutoBanUnknownPeer() const
+{
+    return value("Preferences/Advanced/AutoBanUnknownPeer", false).toBool();
+}
+
+void Preferences::setAutoBanUnknownPeer(const bool checked)
+{
+    setValue("Preferences/Advanced/AutoBanUnknownPeer", checked);
+}
+
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
 

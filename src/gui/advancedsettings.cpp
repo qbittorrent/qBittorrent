@@ -57,6 +57,7 @@ enum AdvSettingsRows
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
+    CONFIRM_AUTO_BAN,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

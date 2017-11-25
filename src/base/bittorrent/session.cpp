@@ -325,6 +325,7 @@ Session::Session(QObject *parent)
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 3)
+    , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
@@ -1871,6 +1872,42 @@ void Session::banIP(const QString &ip)
     }
 }
 
+bool Session::checkAccessFlags(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    return filter.access(addr);
+}
+
+void Session::tempblockIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    filter.add_rule(addr, addr, libt::ip_filter::blocked);
+    m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::removeBlockedIP(const QString &ip)
+{
+    libt::ip_filter filter = m_nativeSession->get_ip_filter();
+    libt::address addr = libt::address::from_string(ip.toLatin1().constData());
+    filter.add_rule(addr, addr, 0);
+    m_nativeSession->set_ip_filter(filter);
+}
+
+void Session::EraseIPFilter()
+{
+    m_nativeSession->set_ip_filter(libt::ip_filter());
+    disableIPFilter();
+    enableIPFilter();
+}
+
+void Session::unbanIP()
+{
+    SettingsStorage::instance()->storeValue("Preferences/IPFilter/BannedIPs", QString());
+}
+
+
 // Delete a torrent from the session, given its hash
 // deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
 bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
@@ -2675,6 +2712,18 @@ void Session::setSaveResumeDataInterval(uint value)
     if (value != saveResumeDataInterval()) {
         m_saveResumeDataInterval = value;
         m_resumeDataTimer->setInterval(value * 60 * 1000);
+    }
+}
+
+bool Session::isAutoBanUnknownPeerEnabled() const
+{
+    return m_autoBanUnknownPeer;
+}
+
+void Session::setAutoBanUnknownPeer(bool value)
+{
+    if (value != isAutoBanUnknownPeerEnabled()) {
+        m_autoBanUnknownPeer = value;
     }
 }
 
