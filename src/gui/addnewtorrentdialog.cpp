@@ -102,12 +102,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     auto session = BitTorrent::Session::instance();
 
-    if (m_torrentParams.addPaused == TriStateBool::True)
-        ui->startTorrentCheckBox->setChecked(false);
-    else if (m_torrentParams.addPaused == TriStateBool::False)
-        ui->startTorrentCheckBox->setChecked(true);
-    else
-        ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
+    ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.get_value_or(session->isAddTorrentPaused()));
 
     ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
@@ -116,12 +111,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     connect(ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
-    if (m_torrentParams.createSubfolder == TriStateBool::True)
-        ui->createSubfolderCheckBox->setChecked(true);
-    else if (m_torrentParams.createSubfolder == TriStateBool::False)
-        ui->createSubfolderCheckBox->setChecked(false);
-    else
-        ui->createSubfolderCheckBox->setChecked(session->isCreateTorrentSubfolder());
+    ui->createSubfolderCheckBox->setChecked(m_torrentParams.createSubfolder.get_value_or(session->isCreateTorrentSubfolder()));
 
     ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
@@ -655,19 +645,19 @@ void AddNewTorrentDialog::accept()
     if (m_contentModel)
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
-    m_torrentParams.addPaused = TriStateBool(!ui->startTorrentCheckBox->isChecked());
-    m_torrentParams.createSubfolder = TriStateBool(ui->createSubfolderCheckBox->isChecked());
+    m_torrentParams.addPaused = !ui->startTorrentCheckBox->isChecked();
+    m_torrentParams.createSubfolder = ui->createSubfolderCheckBox->isChecked();
 
     QString savePath = ui->savePath->selectedPath();
     if (ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
-        m_torrentParams.useAutoTMM = TriStateBool::False;
+        m_torrentParams.useAutoTMM = false;
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
         if (ui->defaultSavePathCheckBox->isChecked())
             BitTorrent::Session::instance()->setDefaultSavePath(savePath);
     }
     else {
-        m_torrentParams.useAutoTMM = TriStateBool::True;
+        m_torrentParams.useAutoTMM = true;
     }
 
     setEnabled(!ui->never_show_cb->isChecked());
