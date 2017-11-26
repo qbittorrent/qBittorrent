@@ -439,6 +439,7 @@ void WebApplication::action_command_download()
         }
     }
 
+    // TODO Populate?
     BitTorrent::AddTorrentParams params;
     // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
@@ -457,7 +458,7 @@ void WebApplication::action_command_download()
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, params);
+            partialSuccess |= BitTorrent::Session::instance()->fetchAndAddTorrent(url, params);
         }
     }
 
@@ -497,6 +498,7 @@ void WebApplication::action_command_upload()
             print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
         }
         else {
+            // TODO populate?
             BitTorrent::AddTorrentParams params;
             // TODO: Check if destination actually exists
             params.skipChecking = skipChecking;

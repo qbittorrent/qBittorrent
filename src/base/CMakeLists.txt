@@ -69,6 +69,7 @@ unicodestrings.h
 )
 
 set(QBT_BASE_SOURCES
+bittorrent/addtorrentparams.cpp
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp

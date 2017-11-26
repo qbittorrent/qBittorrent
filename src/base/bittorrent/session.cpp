@@ -2048,7 +2048,7 @@ TorrentStatusReport Session::torrentStatusReport() const
 }
 
 // source - .torrent file path/url or magnet uri
-bool Session::addTorrent(QString source, const AddTorrentParams &params)
+bool Session::fetchAndAddTorrent(QString source, const AddTorrentParams &params)
 {
     MagnetUri magnetUri(source);
     if (magnetUri.isValid()) {
@@ -3681,10 +3681,14 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
                         .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
             const QString torrentFullpath = torrent->savePath() + "/" + torrentRelpath;
 
-            AddTorrentParams params;
-            // Passing the save path along to the sub torrent file
-            params.savePath = torrent->savePath();
-            addTorrent(TorrentInfo::loadFromFile(torrentFullpath), params);
+            const TorrentInfo info = TorrentInfo::loadFromFile(torrentFullpath);
+            AddTorrentParams params = AddTorrentParamsBuilder::fromTorrentInfo(info);
+            if (params.savePath.isEmpty()) {
+                // If we didn't determine a save path from the torrent
+                // metadata, inherit the parent's.
+                params.savePath = torrent->savePath();
+            }
+            addTorrent(info, params);
         }
     }
 }
