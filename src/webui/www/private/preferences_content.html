@@ -162,7 +162,7 @@
     <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
     <div class="formRow">
-    <input type="checkbox" id="force_proxy_checkbox"/>
+    <input type="checkbox" id="force_proxy_checkbox" onclick="updateForceProxySettings();"/>
     <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
     <div class="formRow">
@@ -670,7 +670,16 @@ updatePeerProxySettings = function() {
     $('peer_proxy_auth_checkbox').setProperty('checked', false);
     updatePeerProxyAuthSettings();
   }
-}
+
+  updateForceProxySettings();
+};
+
+updateForceProxySettings = function() {
+  var isForceProxyEnabled = (!$('force_proxy_checkbox').getProperty('disabled')) && ($('force_proxy_checkbox').getProperty('checked'));
+  $('upnp_checkbox').setProperty('disabled', isForceProxyEnabled);
+  $('dht_checkbox').setProperty('disabled', isForceProxyEnabled);
+  $('lsd_checkbox').setProperty('disabled', isForceProxyEnabled);
+};
 
 updatePeerProxyAuthSettings = function() {
   if($('peer_proxy_auth_checkbox').getProperty('checked')) {
@@ -962,6 +971,7 @@ loadPreferences = function() {
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
                     $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
+                    updateForceProxySettings();
                     $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
