@@ -230,10 +230,10 @@ namespace
 
     // Option that is explicitly set to true or false, and whose value is undefined when unspecified.
     // May not have a shortcut.
-    class TriStateBoolOption: protected Option
+    class OptionalBoolOption: protected Option
     {
     public:
-        constexpr TriStateBoolOption(const char *name, bool defaultValue)
+        constexpr OptionalBoolOption(const char *name, bool defaultValue)
             : Option {name, 0}
             , m_defaultValue(defaultValue)
         {
@@ -250,21 +250,21 @@ namespace
             return padUsageText(fullParameter() + QLatin1String("=<true|false>"));
         }
 
-        TriStateBool value(const QString &arg) const
+        boost::optional<bool> value(const QString &arg) const
         {
             QStringList parts = arg.split(QLatin1Char('='));
 
             if (parts.size() == 1) {
-                return TriStateBool(m_defaultValue);
+                return m_defaultValue;
             }
             else if (parts.size() == 2) {
                 QString val = parts[1];
 
                 if (val.toUpper() == QLatin1String("TRUE") || val == QLatin1String("1")) {
-                    return TriStateBool::True;
+                    return true;
                 }
                 else if (val.toUpper() == QLatin1String("FALSE") || val == QLatin1String("0")) {
-                    return TriStateBool::False;
+                    return false;
                 }
             }
 
@@ -275,33 +275,33 @@ namespace
                                             .arg(QLatin1String("<true|false>")));
         }
 
-        TriStateBool value(const QProcessEnvironment &env) const
+        boost::optional<bool> value(const QProcessEnvironment &env) const
         {
             QString val = env.value(envVarName(), "-1");
 
             if (val.isEmpty()) {
-                return TriStateBool(m_defaultValue);
+                return m_defaultValue;
             }
             else if (val == QLatin1String("-1")) {
-                return TriStateBool::Undefined;
+                return boost::none;
             }
             else if (val.toUpper() == QLatin1String("TRUE") || val == QLatin1String("1")) {
-                return TriStateBool::True;
+                return true;
             }
             else if (val.toUpper() == QLatin1String("FALSE") || val == QLatin1String("0")) {
-                return TriStateBool::False;
+                return false;
             }
             else {
                 qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
                     .arg(QLatin1String("true|false")).arg(envVarName()).arg(val);
-                return TriStateBool::Undefined;
+                return boost::none;
             }
         }
 
         bool m_defaultValue;
     };
 
-    bool operator==(const QString &s, const TriStateBoolOption &o)
+    bool operator==(const QString &s, const OptionalBoolOption &o)
     {
         return o == s;
     }
@@ -319,12 +319,12 @@ namespace
     constexpr const BoolOption PORTABLE_OPTION = {"portable"};
     constexpr const BoolOption RELATIVE_FASTRESUME = {"relative-fastresume"};
     constexpr const StringOption SAVE_PATH_OPTION = {"save-path"};
-    constexpr const TriStateBoolOption PAUSED_OPTION = {"add-paused", true};
+    constexpr const OptionalBoolOption PAUSED_OPTION = {"add-paused", true};
     constexpr const BoolOption SKIP_HASH_CHECK_OPTION = {"skip-hash-check"};
     constexpr const StringOption CATEGORY_OPTION = {"category"};
     constexpr const BoolOption SEQUENTIAL_OPTION = {"sequential"};
     constexpr const BoolOption FIRST_AND_LAST_OPTION = {"first-and-last"};
-    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION = {"skip-dialog", true};
+    constexpr const OptionalBoolOption SKIP_DIALOG_OPTION = {"skip-dialog", true};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
@@ -366,12 +366,10 @@ QStringList QBtCommandLineParameters::paramList() const
     if (!savePath.isEmpty())
         result.append(QString("@savePath=%1").arg(savePath));
 
-    if (addPaused == TriStateBool::True) {
+    if (addPaused == true)
         result.append(QLatin1String("@addPaused=1"));
-    }
-    else if (addPaused == TriStateBool::False) {
+    else if (addPaused == false)
         result.append(QLatin1String("@addPaused=0"));
-    }
 
     if (skipChecking)
         result.append(QLatin1String("@skipChecking"));
@@ -385,12 +383,10 @@ QStringList QBtCommandLineParameters::paramList() const
     if (firstLastPiecePriority)
         result.append(QLatin1String("@firstLastPiecePriority"));
 
-    if (skipDialog == TriStateBool::True) {
+    if (skipDialog == true)
         result.append(QLatin1String("@skipDialog=1"));
-    }
-    else if (skipDialog == TriStateBool::False) {
+    else if (skipDialog == false)
         result.append(QLatin1String("@skipDialog=0"));
-    }
 
     result += torrents;
     return result;
