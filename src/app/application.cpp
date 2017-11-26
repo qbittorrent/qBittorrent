@@ -459,7 +459,7 @@ void Application::processParams(const QStringList &params)
 
 #ifndef DISABLE_GUI
         // If the user explicitly set the option, honor it. Otherwise use the global default.
-        const bool showDialogForThisTorrent = showTorrentDialog.value_or(AddNewTorrentDialog::isEnabled());
+        const bool showDialogForThisTorrent = showTorrentDialog.get_value_or(AddNewTorrentDialog::isEnabled());
         if (showDialogForThisTorrent)
             AddNewTorrentDialog::show(param, torrentParams, m_window);
         else

@@ -114,16 +114,16 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , firstLastPiecePriority(params.firstLastPiecePriority)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder.value_or(Session::instance()->isCreateTorrentSubfolder()))
-    , addForced(params.addForced.value_or(false))
-    , addPaused(params.addPaused.value_or(Session::instance()->isAddTorrentPaused()))
+    , hasRootFolder(params.createSubfolder.get_value_or(Session::instance()->isCreateTorrentSubfolder()))
+    , addForced(params.addForced.get_value_or(false))
+    , addPaused(params.addPaused.get_value_or(Session::instance()->isAddTorrentPaused()))
     , uploadLimit(params.uploadLimit)
     , downloadLimit(params.downloadLimit)
     , filePriorities(params.filePriorities)
     , ratioLimit(params.ignoreShareLimits ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
     , seedingTimeLimit(params.ignoreShareLimits ? TorrentHandle::NO_SEEDING_TIME_LIMIT : TorrentHandle::USE_GLOBAL_SEEDING_TIME)
 {
-    const bool useAutoTMM = params.useAutoTMM.value_or(!Session::instance()->isAutoTMMDisabledByDefault());
+    const bool useAutoTMM = params.useAutoTMM.get_value_or(!Session::instance()->isAutoTMMDisabledByDefault());
     if (useAutoTMM)
         savePath = "";
     else if (savePath.trimmed().isEmpty())

@@ -367,7 +367,7 @@ QStringList QBtCommandLineParameters::paramList() const
         result.append(QString("@savePath=%1").arg(savePath));
 
     if (addPaused) {
-        if (addPaused.value())
+        if (addPaused.get())
             result.append(QLatin1String("@addPaused=1"));
         else
             result.append(QLatin1String("@addPaused=0"));
@@ -386,7 +386,7 @@ QStringList QBtCommandLineParameters::paramList() const
         result.append(QLatin1String("@firstLastPiecePriority"));
 
     if (skipDialog) {
-        if (skipDialog.value())
+        if (skipDialog.get())
             result.append(QLatin1String("@skipDialog=1"));
         else
             result.append(QLatin1String("@skipDialog=0"));

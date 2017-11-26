@@ -259,7 +259,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
             m_ui->comboCategory->clearEditText();
         int index = 0;
         if (m_currentRule.addPaused()) {
-            if (m_currentRule.addPaused().value())
+            if (m_currentRule.addPaused().get())
                 index = 1;
             else
                 index = 2;

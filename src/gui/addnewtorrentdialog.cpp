@@ -102,7 +102,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     auto session = BitTorrent::Session::instance();
 
-    ui->startTorrentCheckBox->setChecked(m_torrentParams.addPaused.value_or(!session->isAddTorrentPaused()));
+    ui->startTorrentCheckBox->setChecked(m_torrentParams.addPaused.get_value_or(!session->isAddTorrentPaused()));
 
     ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
     ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
@@ -111,7 +111,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     connect(ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
     ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
 
-    ui->createSubfolderCheckBox->setChecked(m_torrentParams.createSubfolder.value_or(session->isCreateTorrentSubfolder()));
+    ui->createSubfolderCheckBox->setChecked(m_torrentParams.createSubfolder.get_value_or(session->isCreateTorrentSubfolder()));
 
     ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
