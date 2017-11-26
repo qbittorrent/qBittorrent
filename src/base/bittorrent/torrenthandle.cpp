@@ -50,6 +50,7 @@
 #endif
 
 #include <boost/bind.hpp>
+#include <boost/optional.hpp>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -113,22 +114,16 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , firstLastPiecePriority(params.firstLastPiecePriority)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
-                    ? Session::instance()->isCreateTorrentSubfolder()
-                    : params.createSubfolder == TriStateBool::True)
-    , addForced(params.addForced == TriStateBool::True)
-    , addPaused(params.addPaused == TriStateBool::Undefined
-                ? Session::instance()->isAddTorrentPaused()
-                : params.addPaused == TriStateBool::True)
+    , hasRootFolder(params.createSubfolder.value_or(Session::instance()->isCreateTorrentSubfolder()))
+    , addForced(params.addForced.value_or(false))
+    , addPaused(params.addPaused.value_or(Session::instance()->isAddTorrentPaused()))
     , uploadLimit(params.uploadLimit)
     , downloadLimit(params.downloadLimit)
     , filePriorities(params.filePriorities)
     , ratioLimit(params.ignoreShareLimits ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
     , seedingTimeLimit(params.ignoreShareLimits ? TorrentHandle::NO_SEEDING_TIME_LIMIT : TorrentHandle::USE_GLOBAL_SEEDING_TIME)
 {
-    bool useAutoTMM = (params.useAutoTMM == TriStateBool::Undefined
-                       ? !Session::instance()->isAutoTMMDisabledByDefault()
-                       : params.useAutoTMM == TriStateBool::True);
+    const bool useAutoTMM = params.useAutoTMM.value_or(!Session::instance()->isAutoTMMDisabledByDefault());
     if (useAutoTMM)
         savePath = "";
     else if (savePath.trimmed().isEmpty())
