@@ -754,6 +754,7 @@ var TorrentsTable = new Class({
             this.newColumn('downloaded_session', '', 'QBT_TR(Session Download)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('uploaded_session', '', 'QBT_TR(Session Upload)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('amount_left', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('time_active', '', 'QBT_TR(Time Active)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('save_path', '', 'QBT_TR(Save path)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('completed', '', 'QBT_TR(Completed)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('ratio_limit', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
@@ -1020,6 +1021,12 @@ var TorrentsTable = new Class({
                     td.set('html', '∞');
                 else
                     td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val, true)));
+            };
+
+            // time active
+            this.columns['time_active'].updateTd = function (td, row) {
+                var time = this.getRowValue(row);
+                td.set('html', friendlyDuration(time));
             };
         },
 
