@@ -94,6 +94,7 @@ static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_CATEGORY[] = "category";
+static const char KEY_TORRENT_TAGS[] = "tags";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
@@ -370,6 +371,7 @@ namespace
         if (torrent->hasMetadata())
             ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
         ret[KEY_TORRENT_CATEGORY] = torrent->category();
+        ret[KEY_TORRENT_TAGS] = torrent->tags().toList().join(", ");
         ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
         ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
         ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());

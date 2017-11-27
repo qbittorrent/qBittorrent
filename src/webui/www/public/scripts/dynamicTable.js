@@ -743,6 +743,7 @@ var TorrentsTable = new Class({
             this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('category', '', 'QBT_TR(Category)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('tags', '', 'QBT_TR(Tags)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('completion_on', '', 'QBT_TR(Completed On)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('tracker', '', 'QBT_TR(Tracker)QBT_TR[CONTEXT=TorrentModel]', 100, false);
@@ -960,6 +961,9 @@ var TorrentsTable = new Class({
                     html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
                 td.set('html', html);
             };
+
+            // tags
+            this.columns['tags'].updateTd = this.columns['name'].updateTd;
 
             // added on
             this.columns['added_on'].updateTd = function (td, row) {
