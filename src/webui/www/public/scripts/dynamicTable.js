@@ -733,6 +733,7 @@ var TorrentsTable = new Class({
             this.newColumn('state_icon', 'cursor: default', '', 22, true);
             this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TorrentModel]', 200, true);
             this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR[CONTEXT=TorrentModel]', 85, true);
             this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TorrentModel]', 100, true);
@@ -757,7 +758,6 @@ var TorrentsTable = new Class({
             this.newColumn('ratio_limit', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TorrentModel]', 100, false);
-            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TorrentModel]', 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
