@@ -37,6 +37,8 @@
 #include <QRegularExpression>
 #include <QTimer>
 
+#include <boost/optional.hpp>
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
@@ -45,7 +47,6 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
-#include "base/tristatebool.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -165,13 +166,13 @@ namespace
         return (string.compare("true", Qt::CaseInsensitive) == 0) ? true : false;
     }
 
-    TriStateBool parseTristatebool(const QString &string)
+    boost::optional<bool> parseOptionalBool(const QString &string)
     {
         if (string.compare("true", Qt::CaseInsensitive) == 0)
-            return TriStateBool::True;
+            return true;
         if (string.compare("false", Qt::CaseInsensitive) == 0)
-            return TriStateBool::False;
-        return TriStateBool::Undefined;
+            return false;
+        return boost::none;
     }
 }
 
@@ -416,8 +417,8 @@ void WebApplication::action_command_download()
     const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
     const bool seqDownload = parseBool(request().posts.value("sequentialDownload"), false);
     const bool firstLastPiece = parseBool(request().posts.value("firstLastPiecePrio"), false);
-    const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
-    const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
+    const boost::optional<bool> addPaused = parseOptionalBool(request().posts.value("paused"));
+    const boost::optional<bool> rootFolder = parseOptionalBool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
     const QString cookie = request().posts.value("cookie");
@@ -475,8 +476,8 @@ void WebApplication::action_command_upload()
     const bool skipChecking = parseBool(request().posts.value("skip_checking"), false);
     const bool seqDownload = parseBool(request().posts.value("sequentialDownload"), false);
     const bool firstLastPiece = parseBool(request().posts.value("firstLastPiecePrio"), false);
-    const TriStateBool addPaused = parseTristatebool(request().posts.value("paused"));
-    const TriStateBool rootFolder = parseTristatebool(request().posts.value("root_folder"));
+    const boost::optional<bool> addPaused = parseOptionalBool(request().posts.value("paused"));
+    const boost::optional<bool> rootFolder = parseOptionalBool(request().posts.value("root_folder"));
     const QString savepath = request().posts.value("savepath").trimmed();
     const QString category = request().posts.value("category").trimmed();
     const QString torrentName = request().posts.value("rename").trimmed();

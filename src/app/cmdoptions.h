@@ -38,7 +38,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "base/tristatebool.h"
+#include <boost/optional.hpp>
 
 class QProcessEnvironment;
 
@@ -54,7 +54,7 @@ struct QBtCommandLineParameters
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    TriStateBool addPaused, skipDialog;
+    boost::optional<bool> addPaused, skipDialog;
     QStringList torrents;
     QString profileDir, configurationName, savePath, category, unknownParameter;
 

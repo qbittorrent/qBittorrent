@@ -32,7 +32,7 @@
 #include <QString>
 #include <QVector>
 
-#include "../tristatebool.h"
+#include <boost/optional.hpp>
 
 namespace BitTorrent
 {
@@ -48,13 +48,13 @@ namespace BitTorrent
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
         bool firstLastPiecePriority = false;
-        TriStateBool addForced;
-        TriStateBool addPaused;
+        boost::optional<bool> addForced;
+        boost::optional<bool> addPaused;
         QVector<int> filePriorities; // used if TorrentInfo is set
         bool ignoreShareLimits = false;
         bool skipChecking = false;
-        TriStateBool createSubfolder;
-        TriStateBool useAutoTMM;
+        boost::optional<bool> createSubfolder;
+        boost::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
     };

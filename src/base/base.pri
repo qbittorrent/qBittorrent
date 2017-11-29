@@ -1,7 +1,6 @@
 HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/types.h \
-    $$PWD/tristatebool.h \
     $$PWD/filesystemwatcher.h \
     $$PWD/logger.h \
     $$PWD/settingsstorage.h \
@@ -68,7 +67,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
-    $$PWD/tristatebool.cpp \
     $$PWD/filesystemwatcher.cpp \
     $$PWD/logger.cpp \
     $$PWD/settingsstorage.cpp \

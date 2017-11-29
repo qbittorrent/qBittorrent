@@ -46,7 +46,6 @@
 #include "../logger.h"
 #include "../profile.h"
 #include "../settingsstorage.h"
-#include "../tristatebool.h"
 #include "../utils/fs.h"
 #include "rss_article.h"
 #include "rss_autodownloadrule.h"

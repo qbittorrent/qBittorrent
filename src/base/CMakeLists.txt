@@ -63,7 +63,6 @@ searchengine.h
 settingsstorage.h
 torrentfileguard.h
 torrentfilter.h
-tristatebool.h
 types.h
 unicodestrings.h
 )
@@ -124,7 +123,6 @@ searchengine.cpp
 settingsstorage.cpp
 torrentfileguard.cpp
 torrentfilter.cpp
-tristatebool.cpp
 )
 
 add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
