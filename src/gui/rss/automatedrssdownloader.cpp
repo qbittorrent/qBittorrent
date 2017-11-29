@@ -258,10 +258,12 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         if (m_currentRule.assignedCategory().isEmpty())
             m_ui->comboCategory->clearEditText();
         int index = 0;
-        if (m_currentRule.addPaused() == TriStateBool::True)
-            index = 1;
-        else if (m_currentRule.addPaused() == TriStateBool::False)
-            index = 2;
+        if (m_currentRule.addPaused()) {
+            if (m_currentRule.addPaused().get())
+                index = 1;
+            else
+                index = 2;
+        }
         m_ui->comboAddPaused->setCurrentIndex(index);
         m_ui->spinIgnorePeriod->setValue(m_currentRule.ignoreDays());
         QDateTime dateTime = m_currentRule.lastMatch();
@@ -327,11 +329,11 @@ void AutomatedRssDownloader::updateEditedRule()
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
     m_currentRule.setSavePath(m_ui->saveDiffDir_check->isChecked() ? m_ui->lineSavePath->text() : "");
     m_currentRule.setCategory(m_ui->comboCategory->currentText());
-    TriStateBool addPaused; // Undefined by default
+    boost::optional<bool> addPaused; // Undefined by default
     if (m_ui->comboAddPaused->currentIndex() == 1)
-        addPaused = TriStateBool::True;
+        addPaused = true;
     else if (m_ui->comboAddPaused->currentIndex() == 2)
-        addPaused = TriStateBool::False;
+        addPaused = false;
     m_currentRule.setAddPaused(addPaused);
     m_currentRule.setIgnoreDays(m_ui->spinIgnorePeriod->value());
 }

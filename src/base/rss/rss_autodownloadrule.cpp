@@ -41,7 +41,6 @@
 #include <QStringList>
 
 #include "../preferences.h"
-#include "../tristatebool.h"
 #include "../utils/fs.h"
 #include "../utils/string.h"
 #include "rss_feed.h"
@@ -49,42 +48,43 @@
 
 namespace
 {
-    TriStateBool jsonValueToTriStateBool(const QJsonValue &jsonVal)
+    boost::optional<bool> jsonValueToOptional(const QJsonValue &jsonVal)
     {
         if (jsonVal.isBool())
-            return TriStateBool(jsonVal.toBool());
+            return jsonVal.toBool();
 
         if (!jsonVal.isNull())
             qDebug() << Q_FUNC_INFO << "Incorrect value" << jsonVal.toVariant();
 
-        return TriStateBool::Undefined;
+        return boost::none;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
+    QJsonValue optionalToJsonValue(const boost::optional<bool> &opt)
     {
-        switch (static_cast<int>(triStateBool)) {
-        case 0:  return false;
-        case 1:  return true;
-        default: return QJsonValue();
-        }
+        if (opt)
+            return QJsonValue(*opt);
+        return QJsonValue();
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(int val)
+    boost::optional<bool> addPausedLegacyToOptional(int val)
     {
         switch (val) {
-        case 1:  return TriStateBool::True; // always
-        case 2:  return TriStateBool::False; // never
-        default: return TriStateBool::Undefined; // default
+        case 1:  return true; // always
+        case 2:  return false; // never
+        default: return boost::none; // default
         }
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    int optionalToAddPausedLegacy(const boost::optional<bool> &opt)
     {
-        switch (static_cast<int>(triStateBool)) {
-        case 0:  return 2; // never
-        case 1:  return 1; // always
-        default: return 0; // default
+        int ret = 0; // default;
+        if (opt) {
+            if (*opt)
+                ret = 1; // always
+            else
+                ret = 2; // never
         }
+        return ret;
     }
 }
 
@@ -118,7 +118,7 @@ namespace RSS
 
         QString savePath;
         QString category;
-        TriStateBool addPaused = TriStateBool::Undefined;
+        boost::optional<bool> addPaused;
 
         mutable QHash<QString, QRegularExpression> cachedRegexes;
 
@@ -367,7 +367,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_AssignedCategory, assignedCategory()}
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
-        , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}};
+        , {Str_AddPaused, optionalToJsonValue(addPaused())}};
 }
 
 AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, const QString &name)
@@ -381,7 +381,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
-    rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
+    rule.setAddPaused(jsonValueToOptional(jsonObj.value(Str_AddPaused)));
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
 
@@ -406,7 +406,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
         {"enabled", isEnabled()},
         {"category_assigned", assignedCategory()},
         {"use_regex", useRegex()},
-        {"add_paused", triStateBoolToAddPausedLegacy(addPaused())},
+        {"add_paused", optionalToAddPausedLegacy(addPaused())},
         {"episode_filter", episodeFilter()},
         {"last_match", lastMatch()},
         {"ignore_days", ignoreDays()}};
@@ -424,7 +424,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEnabled(dict.value("enabled", false).toBool());
     rule.setSavePath(dict.value("save_path").toString());
     rule.setCategory(dict.value("category_assigned").toString());
-    rule.setAddPaused(addPausedLegacyToTriStateBool(dict.value("add_paused").toInt()));
+    rule.setAddPaused(addPausedLegacyToOptional(dict.value("add_paused").toInt()));
     rule.setLastMatch(dict.value("last_match").toDateTime());
     rule.setIgnoreDays(dict.value("ignore_days").toInt());
 
@@ -489,12 +489,12 @@ void AutoDownloadRule::setSavePath(const QString &savePath)
     m_dataPtr->savePath = Utils::Fs::fromNativePath(savePath);
 }
 
-TriStateBool AutoDownloadRule::addPaused() const
+boost::optional<bool> AutoDownloadRule::addPaused() const
 {
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
+void AutoDownloadRule::setAddPaused(const boost::optional<bool> &addPaused)
 {
     m_dataPtr->addPaused = addPaused;
 }

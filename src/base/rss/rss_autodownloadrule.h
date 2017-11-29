@@ -33,9 +33,10 @@
 #include <QSharedDataPointer>
 #include <QVariant>
 
+#include <boost/optional.hpp>
+
 class QJsonObject;
 class QRegularExpression;
-class TriStateBool;
 
 namespace RSS
 {
@@ -71,8 +72,8 @@ namespace RSS
 
         QString savePath() const;
         void setSavePath(const QString &savePath);
-        TriStateBool addPaused() const;
-        void setAddPaused(const TriStateBool &addPaused);
+        boost::optional<bool> addPaused() const;
+        void setAddPaused(const boost::optional<bool> &addPaused);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 
