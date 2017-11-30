@@ -704,96 +704,119 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="147"/>
+        <location filename="../app/application.cpp" line="149"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 已开始</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="288"/>
+        <location filename="../app/application.cpp" line="290"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent：%1，运行外部程序，指令：%2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="297"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
         <translation>Torrent：%1，运行外部程序的指令过长（长度 &gt; %2），执行失败。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="321"/>
+        <location filename="../app/application.cpp" line="323"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="322"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="323"/>
+        <location filename="../app/application.cpp" line="325"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="324"/>
+        <location filename="../app/application.cpp" line="326"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="326"/>
+        <location filename="../app/application.cpp" line="328"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="333"/>
+        <location filename="../app/application.cpp" line="335"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="347"/>
+        <location filename="../app/application.cpp" line="349"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，发送邮件提醒</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="508"/>
+        <location filename="../app/application.cpp" line="510"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="509"/>
+        <location filename="../app/application.cpp" line="511"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>欲通过 Web 用户界面控制 qBittorrent，你需要访问 http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="510"/>
+        <location filename="../app/application.cpp" line="512"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web 用户界面管理员的用户名是：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="513"/>
+        <location filename="../app/application.cpp" line="515"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web 用户界面管理员密码设置为默认密码：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="514"/>
+        <location filename="../app/application.cpp" line="516"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>存在安全风险！请考虑在设置更改密码！</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="676"/>
+        <location filename="../app/application.cpp" line="678"/>
         <source>Saving torrent progress...</source>
         <translation>保存 torrent 进程...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="733"/>
+        <location filename="../app/application.cpp" line="735"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>便携模式选项与指定设置存放目录的选项是互斥的</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="736"/>
+        <location filename="../app/application.cpp" line="738"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>便携模式包含相对的快速恢复文件</translation>
+    </message>
+</context>
+<context>
+    <name>AutoDownloader</name>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="115"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="383"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -910,197 +933,253 @@ Error: %2</source>
         <translation>导出...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
         <source>Matches articles based on episode filter.</source>
         <translation>基于剧集过滤器匹配的文章。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="81"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
         <source>Example: </source>
         <translation>示例：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation>将匹配第 1 季中的 2、5、8 到 15、30 及之后的剧集</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
         <source>Episode filter rules: </source>
         <translation>剧集过滤规则：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>季度数必须是一个非零值</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="85"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
         <source>Filter must end with semicolon</source>
         <translation>过滤规则必须以分号结束</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="86"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
         <source>Three range types for episodes are supported: </source>
         <translation>支持三种范围类型的剧集过滤规则：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>单一数字：&lt;b&gt;1x25;&lt;/b&gt; 匹配第 1 季的第 25 集</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>一般范围：&lt;b&gt;1x25-40;&lt;/b&gt; 匹配第 1 季的第 25-40 集</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="84"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
         <source>Episode number is a mandatory positive value</source>
         <translation>剧集数必须是一个非零值</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
+        <source>Rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
+        <source>Rules (legacy)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
         <translation>无限范围：&lt;b&gt;1x25-;&lt;/b&gt; 匹配第 1 季的第 25 集及之后的剧集，以及之后所有的季度的剧集</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="265"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="270"/>
         <source>Last Match: %1 days ago</source>
         <translation>最后匹配：%1 天前</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="267"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="272"/>
         <source>Last Match: Unknown</source>
         <translation>最后匹配：未知</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="348"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="353"/>
         <source>New rule name</source>
         <translation>新规则名称</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="348"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="353"/>
         <source>Please type the name of the new download rule.</source>
         <translation>请命名新的下载规则。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="353"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="358"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="504"/>
         <source>Rule name conflict</source>
         <translation>规则名称冲突</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="354"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="458"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="359"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="505"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>该名称已被另一规则使用，请重新命名。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="368"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="373"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>您确定要移除名为 &apos;%1&apos; 的下载规则吗？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="370"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="375"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>您确定要移除选中的规则吗？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="371"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="376"/>
         <source>Rule deletion confirmation</source>
         <translation>确认删除规则</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
         <source>Destination directory</source>
         <translation>目标目录</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="417"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="393"/>
+        <source>Invalid action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
+        <source>Export RSS rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="440"/>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O 错误</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
+        <source>Failed to create the destination file. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
+        <source>Import RSS rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
+        <source>Failed to open the file. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="456"/>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
+        <source>Failed to import the selected rules file. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="464"/>
         <source>Add new rule...</source>
         <translation>添加新规则...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="470"/>
         <source>Delete rule</source>
         <translation>删除规则</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="472"/>
         <source>Rename rule...</source>
         <translation>重命名规则...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="428"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="475"/>
         <source>Delete selected rules</source>
         <translation>删除选中的规则</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="498"/>
         <source>Rule renaming</source>
         <translation>重命名规则</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="498"/>
         <source>Please type the new rule name</source>
         <translation>请输入新的规则名称</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="568"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="615"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
         <translation>正则表达式模式：使用兼容于 Perl 的正则表达式</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="610"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="648"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="657"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="695"/>
         <source>Position %1: %2</source>
         <translation>位置 %1：%2</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="571"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="618"/>
         <source>Wildcard mode: you can use</source>
         <translation>通配符模式：你可以使用</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="572"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="619"/>
         <source>? to match any single character</source>
         <translation>? 以匹配任意单个字符</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="573"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="620"/>
         <source>* to match zero or more of any characters</source>
         <translation>* 以匹配 0 个或任意个任意字符</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="574"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="621"/>
         <source>Whitespaces count as AND operators (all words, any order)</source>
         <translation>空格视为“与”操作符（所有的关键词，任意顺序）</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="575"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="622"/>
         <source>| is used as OR operator</source>
         <translation>| 视为“或”操作符</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="576"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="623"/>
         <source>If word order is important use * instead of whitespace.</source>
         <translation>如果需要考虑关键词顺序，使用 * 替代空格</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="583"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="630"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
         <translation>一个空白分句 %1 抛出了一个异常（例如 %2）</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="587"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="634"/>
         <source> will match all articles.</source>
         <translation>将匹配所有文章。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="588"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="635"/>
         <source> will exclude all articles.</source>
         <translation>将排除所有文章。</translation>
     </message>
@@ -1152,151 +1231,151 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1726"/>
+        <location filename="../base/bittorrent/session.cpp" line="1729"/>
         <source>Embedded Tracker [ON]</source>
         <translation>内置 Tracker [开]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1728"/>
+        <location filename="../base/bittorrent/session.cpp" line="1731"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>无法启动内置 tracker！</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1731"/>
+        <location filename="../base/bittorrent/session.cpp" line="1734"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>内置 Tracker [关]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2389"/>
+        <location filename="../base/bittorrent/session.cpp" line="2392"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>系统网络状态变更至 %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2389"/>
+        <location filename="../base/bittorrent/session.cpp" line="2392"/>
         <source>ONLINE</source>
         <translation>在线</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2389"/>
+        <location filename="../base/bittorrent/session.cpp" line="2392"/>
         <source>OFFLINE</source>
         <translation>离线</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2411"/>
+        <location filename="../base/bittorrent/session.cpp" line="2414"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>网络配置 %1 发生改变，刷新会话绑定</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2428"/>
+        <location filename="../base/bittorrent/session.cpp" line="2431"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
         <translation>设置的网络接口地址 %1 无效。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2767"/>
+        <location filename="../base/bittorrent/session.cpp" line="2770"/>
         <source>Encryption support [%1]</source>
         <translation>加密支持 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2768"/>
+        <location filename="../base/bittorrent/session.cpp" line="2771"/>
         <source>FORCED</source>
         <translation>强制</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2892"/>
+        <location filename="../base/bittorrent/session.cpp" line="2895"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation>在添加 %1 至被禁止 IP 列表时被拒绝，它不是一个有效的 IP 地址。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3116"/>
+        <location filename="../base/bittorrent/session.cpp" line="3119"/>
         <source>Anonymous mode [%1]</source>
         <translation>匿名模式 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3542"/>
+        <location filename="../base/bittorrent/session.cpp" line="3545"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>无法解析 &apos;%1&apos; torrent 文件。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3679"/>
+        <location filename="../base/bittorrent/session.cpp" line="3682"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>递归下载包含在 torrent ‘%2’ 内的文件 &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3778"/>
+        <location filename="../base/bittorrent/session.cpp" line="3781"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation>队列位置被定位于 %1 个恢复文件中</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4004"/>
+        <location filename="../base/bittorrent/session.cpp" line="4007"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>无法保存 &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4054"/>
+        <location filename="../base/bittorrent/session.cpp" line="4057"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4067"/>
+        <location filename="../base/bittorrent/session.cpp" line="4070"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4079"/>
+        <location filename="../base/bittorrent/session.cpp" line="4082"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4139"/>
+        <location filename="../base/bittorrent/session.cpp" line="4142"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>因为 %1 已被禁用。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4142"/>
+        <location filename="../base/bittorrent/session.cpp" line="4145"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>因为 %1 已被禁用。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4160"/>
+        <location filename="../base/bittorrent/session.cpp" line="4163"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>找不到 URL 种子：&apos;%1&apos;，消息：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4206"/>
+        <location filename="../base/bittorrent/session.cpp" line="4209"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation>qBittorrent 监听接口 %1 端口：%2/%3 失败。原因：%4。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2058"/>
+        <location filename="../base/bittorrent/session.cpp" line="2061"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; 下载中，请等待...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1191"/>
-        <location filename="../base/bittorrent/session.cpp" line="2505"/>
+        <location filename="../base/bittorrent/session.cpp" line="2508"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent 正在尝试监听任意网络接口上的端口：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2447"/>
+        <location filename="../base/bittorrent/session.cpp" line="2450"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>网络界面定义无效：%1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1204"/>
-        <location filename="../base/bittorrent/session.cpp" line="2516"/>
+        <location filename="../base/bittorrent/session.cpp" line="2519"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent 试图监听接口 %1 端口：%2</translation>
@@ -1309,16 +1388,16 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="551"/>
         <location filename="../base/bittorrent/session.cpp" line="566"/>
-        <location filename="../base/bittorrent/session.cpp" line="2768"/>
-        <location filename="../base/bittorrent/session.cpp" line="3116"/>
+        <location filename="../base/bittorrent/session.cpp" line="2771"/>
+        <location filename="../base/bittorrent/session.cpp" line="3119"/>
         <source>ON</source>
         <translation>开启</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="551"/>
         <location filename="../base/bittorrent/session.cpp" line="566"/>
-        <location filename="../base/bittorrent/session.cpp" line="2768"/>
-        <location filename="../base/bittorrent/session.cpp" line="3116"/>
+        <location filename="../base/bittorrent/session.cpp" line="2771"/>
+        <location filename="../base/bittorrent/session.cpp" line="3119"/>
         <source>OFF</source>
         <translation>关闭</translation>
     </message>
@@ -1328,138 +1407,138 @@ Error: %2</source>
         <translation>本地资源搜索支持 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1776"/>
+        <location filename="../base/bittorrent/session.cpp" line="1779"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation>&apos;%1&apos; 达到了您设定的最大比率，已删除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1781"/>
+        <location filename="../base/bittorrent/session.cpp" line="1784"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation>&apos;%1&apos; 达到了您设定的最大比率，已暂停。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1800"/>
+        <location filename="../base/bittorrent/session.cpp" line="1803"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation>&apos;%1&apos; 达到了您设定的最大做种时间，已删除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1805"/>
+        <location filename="../base/bittorrent/session.cpp" line="1808"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation>&apos;%1&apos; 达到了您设定的最大做种时间，已暂停。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2481"/>
+        <location filename="../base/bittorrent/session.cpp" line="2484"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent 无法找到一个本地的 %1 地址进行监听</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2509"/>
+        <location filename="../base/bittorrent/session.cpp" line="2512"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
         <translation>qBittorrent 监听接口端口 %1 失败。原因：%2。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3453"/>
+        <location filename="../base/bittorrent/session.cpp" line="3456"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; 已被添加到 torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3463"/>
+        <location filename="../base/bittorrent/session.cpp" line="3466"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Tracker &apos;%1&apos; 已被添加到 torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3478"/>
+        <location filename="../base/bittorrent/session.cpp" line="3481"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL 种子 &apos;%1&apos; 已被添加到 torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3484"/>
+        <location filename="../base/bittorrent/session.cpp" line="3487"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL 种子 &apos;%1&apos; 已被添加到 torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3727"/>
+        <location filename="../base/bittorrent/session.cpp" line="3730"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>无法恢复 torrent：&apos;%1&apos;。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3812"/>
+        <location filename="../base/bittorrent/session.cpp" line="3815"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>解析提供的 IP 过滤规则成功：%1 条规则被应用。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3822"/>
+        <location filename="../base/bittorrent/session.cpp" line="3825"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>错误：无法解析提供的 IP 过滤规则。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4038"/>
+        <location filename="../base/bittorrent/session.cpp" line="4041"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>不能添加 torrent：&apos;%1&apos;。原因：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3987"/>
+        <location filename="../base/bittorrent/session.cpp" line="3990"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; 已恢复（快速恢复）。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4014"/>
+        <location filename="../base/bittorrent/session.cpp" line="4017"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; 已添加到下载列表。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4103"/>
+        <location filename="../base/bittorrent/session.cpp" line="4106"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>出现 I/O 错误，&apos;%1&apos; 暂停。%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4111"/>
+        <location filename="../base/bittorrent/session.cpp" line="4114"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP：端口映射失败，消息: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4117"/>
+        <location filename="../base/bittorrent/session.cpp" line="4120"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP：端口映射成功，消息: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4127"/>
+        <location filename="../base/bittorrent/session.cpp" line="4130"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>是因为 IP 过滤规则。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4130"/>
+        <location filename="../base/bittorrent/session.cpp" line="4133"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>是因为端口过滤规则。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4133"/>
+        <location filename="../base/bittorrent/session.cpp" line="4136"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>是因为 I2P 混合模式的限制。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4136"/>
+        <location filename="../base/bittorrent/session.cpp" line="4139"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>因为它有一个低端口号。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4180"/>
+        <location filename="../base/bittorrent/session.cpp" line="4183"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent 成功监听接口 %1 端口：%2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4215"/>
+        <location filename="../base/bittorrent/session.cpp" line="4218"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>外部 IP：%1</translation>
@@ -1598,17 +1677,17 @@ Error: %2</source>
 <context>
     <name>DownloadedPiecesBar</name>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="177"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="175"/>
         <source>White: Missing pieces</source>
         <translation>白色：缺失部分</translation>
     </message>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="178"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="176"/>
         <source>Green: Partial pieces</source>
         <translation>绿色：未完成部分</translation>
     </message>
     <message>
-        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="179"/>
+        <location filename="../gui/properties/downloadedpiecesbar.cpp" line="177"/>
         <source>Blue: Completed pieces</source>
         <translation>蓝色：完成部分</translation>
     </message>
@@ -1641,37 +1720,37 @@ Error: %2</source>
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="191"/>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="201"/>
+        <location filename="../base/rss/rss_feed.cpp" line="202"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="228"/>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="250"/>
+        <location filename="../base/rss/rss_feed.cpp" line="251"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="261"/>
+        <location filename="../base/rss/rss_feed.cpp" line="262"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <location filename="../base/rss/rss_feed.cpp" line="268"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="276"/>
+        <location filename="../base/rss/rss_feed.cpp" line="277"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1728,51 +1807,58 @@ Error: %2</source>
 <context>
     <name>FilterParserThread</name>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="127"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="261"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="408"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="128"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="276"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="438"/>
         <source>I/O Error: Could not open IP filter file in read mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="205"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="322"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="330"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="213"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="344"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="353"/>
         <source>IP filter line %1 is malformed.</source>
         <translation>IP 过滤规则的第 %1 行格式不正确。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="213"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="338"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="222"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="362"/>
         <source>IP filter line %1 is malformed. Start IP of the range is malformed.</source>
         <translation>IP 过滤规则的第 %1 行格式不正确。地址段的起始 IP 格式不正确。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="221"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="346"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="231"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="371"/>
         <source>IP filter line %1 is malformed. End IP of the range is malformed.</source>
         <translation>IP 过滤规则的第 %1 行格式不正确。地址段的结束 IP 格式不正确。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="228"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="353"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="239"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="379"/>
         <source>IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!</source>
         <translation>IP 过滤规则的第 %1 行格式不正确。其中一个 IP 是 IPv4，而另一个是  IPv6。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="241"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="365"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="253"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="392"/>
         <source>IP filter exception thrown for line %1. Exception is: %2</source>
         <translation>IP 过滤规则在第 %1 行抛出异常。异常信息为：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="419"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="431"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="452"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="263"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="402"/>
+        <source>%1 extra IP filter parsing errors occurred.</source>
+        <comment>513 extra IP filter parsing errors occurred.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="449"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="461"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="471"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="481"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="482"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="491"/>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="501"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="511"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="531"/>
         <source>Parsing Error: The filter file is not a valid PeerGuardian P2B file.</source>
         <translation>解析错误：过滤规则文件不是一个有效的 P2B 流量过滤表文件。</translation>
     </message>
@@ -5209,10 +5295,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;关于证书&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>Bypass authentication for localhost</source>
-        <translation type="obsolete">绕过对本地主机的验证</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="3064"/>
         <source>Service:</source>
         <translation>服务：</translation>
@@ -5595,17 +5677,17 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="239"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
         <source>Ban peer permanently</source>
         <translation>永久禁止用户</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="251"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="252"/>
         <source>Manually adding peer &apos;%1&apos;...</source>
         <translation>手动添加用户 &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="255"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="256"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
         <translation>用户 &apos;%1&apos; 无法被添加到此 torrent。</translation>
     </message>
@@ -5615,8 +5697,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>手动禁止用户 &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="259"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="262"/>
         <source>Peer addition</source>
         <translation>添加用户</translation>
     </message>
@@ -5631,27 +5713,27 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>复制 IP:端口</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="259"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
         <source>Some peers could not be added. Check the Log for details.</source>
         <translation>部分用户无法被添加。请查看日志以了解更多。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="261"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="262"/>
         <source>The peers were added to this torrent.</source>
         <translation>这些用户已添加到此 torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>您确定要永久禁止被选中的用户吗？</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>&amp;Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="279"/>
         <source>&amp;No</source>
         <translation>否</translation>
     </message>
@@ -5659,22 +5741,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="64"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
         <source>No peer entered</source>
         <translation>未输入用户</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="65"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
         <source>Please type at least one peer.</source>
         <translation>请至少输入一个用户。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="75"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
         <source>Invalid peer</source>
         <translation>错误的用户</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="76"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>用户 &apos;%1&apos; 无效。</translation>
     </message>
@@ -5682,12 +5764,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PieceAvailabilityBar</name>
     <message>
-        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="163"/>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="161"/>
         <source>White: Unavailable pieces</source>
         <translation>白色：不可用部分</translation>
     </message>
     <message>
-        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="164"/>
+        <location filename="../gui/properties/pieceavailabilitybar.cpp" line="162"/>
         <source>Blue: Available pieces</source>
         <translation>蓝色：可用部分</translation>
     </message>
@@ -5980,44 +6062,44 @@ Those plugins were disabled.</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="120"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="118"/>
         <source>Not downloaded</source>
         <translation>未下载</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="129"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="191"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="127"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="189"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="138"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="136"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="190"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="188"/>
         <source>Do not download</source>
         <comment>Do not download (priority)</comment>
         <translation>不下载</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="123"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="192"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="121"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="190"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="117"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="115"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>混合的</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="126"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="193"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="124"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="191"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最高</translation>
@@ -6231,101 +6313,101 @@ Those plugins were disabled.</source>
         <translation>不下载</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="447"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="460"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="454"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="467"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (已完成 %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="399"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="412"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="415"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (本次会话 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (已做种 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="418"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="431"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (最大 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="431"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="435"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="444"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="448"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (总计 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="439"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="443"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="452"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="456"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (平均 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="590"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="595"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="591"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="596"/>
         <source>Open Containing Folder</source>
         <translation>打开包含文件夹</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="592"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="597"/>
         <source>Rename...</source>
         <translation>重命名...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="597"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="602"/>
         <source>Priority</source>
         <translation>优先</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="647"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="650"/>
         <source>New Web seed</source>
         <translation>新建 Web 种子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="653"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="656"/>
         <source>Remove Web seed</source>
         <translation>移除 Web 种子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="655"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="658"/>
         <source>Copy Web seed URL</source>
         <translation>复制 Web 种子 URL</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="656"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="659"/>
         <source>Edit Web seed URL</source>
         <translation>编辑 Web 种子 URL</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="684"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="687"/>
         <source>New name:</source>
         <translation>新文件名：</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="716"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="754"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="719"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="757"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>该名称已被使用，请重新命名。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="753"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="756"/>
         <source>The folder could not be renamed</source>
         <translation>文件夹不能被重命名</translation>
     </message>
@@ -6335,50 +6417,50 @@ Those plugins were disabled.</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="90"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="88"/>
         <source>Filter files...</source>
         <translation>过滤文件...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="684"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="687"/>
         <source>Renaming</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="715"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="718"/>
         <source>Rename error</source>
         <translation>重命名错误</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="690"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="693"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
         <translation>文件名为空或包含被禁止的字符，请重新命名。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="800"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="803"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>新建 URL 种子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="801"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="804"/>
         <source>New URL seed:</source>
         <translation>新建 URL 种子：</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="807"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="810"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="861"/>
         <source>This URL seed is already in the list.</source>
         <translation>该 URL 种子已在列表中。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="853"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="854"/>
         <source>Web seed editing</source>
         <translation>编辑 Web 种子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="854"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="855"/>
         <source>Web seed URL:</source>
         <translation> Web 种子 URL：</translation>
     </message>
@@ -6803,11 +6885,25 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>RSS::AutoDownloader</name>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="78"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="85"/>
+        <source>Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/private/rss_parser.cpp" line="264"/>
+        <location filename="../base/rss/private/rss_parser.cpp" line="261"/>
         <source>Invalid RSS feed.</source>
         <translation>无效的 RSS 订阅。</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/private/rss_parser.cpp" line="264"/>
+        <source>%1 (line: %2, column: %3, offset: %4).</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6821,10 +6917,6 @@ No further notices will be issued.</source>
         <location filename="../base/rss/rss_session.cpp" line="159"/>
         <source>Cannot move root folder.</source>
         <translation>不能移动根文件夹。</translation>
-    </message>
-    <message>
-        <source>Item doesn&apos;t exists: %1.</source>
-        <translation type="obsolete">项目不存在：%1。</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="166"/>
@@ -8615,32 +8707,32 @@ Please choose a different name and try again.</source>
         <translation>µTorrent 兼容的 URL 列表：</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="86"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="84"/>
         <source>I/O Error</source>
         <translation>I/O 错误</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="86"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="84"/>
         <source>Error while trying to open the downloaded file.</source>
         <translation>打开已下载的文件时出错。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="124"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="122"/>
         <source>No change</source>
         <translation>无变化</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="124"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="122"/>
         <source>No additional trackers were found.</source>
         <translation>未找到其他的 trackers。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="132"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="130"/>
         <source>Download error</source>
         <translation>下载错误</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondlg.cpp" line="132"/>
+        <location filename="../gui/properties/trackersadditiondlg.cpp" line="130"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
         <translation>无法下载 trackers 列表，原因：%1</translation>
     </message>
