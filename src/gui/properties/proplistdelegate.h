@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PROPLISTDELEGATE_H
@@ -33,10 +31,10 @@
 
 #include <QItemDelegate>
 
-class QPainter;
-class QModelIndex;
-class QStyleOptionViewItem;
 class QAbstractItemModel;
+class QModelIndex;
+class QPainter;
+class QStyleOptionViewItem;
 class PropertiesWidget;
 
 // Defines for properties list columns
@@ -50,7 +48,7 @@ enum PropColumn
     AVAILABILITY
 };
 
-class PropListDelegate: public QItemDelegate
+class PropListDelegate : public QItemDelegate
 {
     Q_OBJECT
 
@@ -72,5 +70,4 @@ private:
     PropertiesWidget *m_properties;
 };
 
-#endif
-
+#endif // PROPLISTDELEGATE_H

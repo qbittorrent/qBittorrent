@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PEERADDITION_H
@@ -42,7 +40,7 @@ namespace Ui
     class addPeersDialog;
 }
 
-class PeersAdditionDlg: public QDialog
+class PeersAdditionDlg : public QDialog
 {
     Q_OBJECT
 
@@ -60,7 +58,6 @@ private:
 
     Ui::addPeersDialog *m_ui;
     QList<BitTorrent::PeerAddress> m_peersList;
-
 };
 
 #endif // PEERADDITION_H

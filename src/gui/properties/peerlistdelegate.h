@@ -61,7 +61,6 @@ public:
         COL_COUNT
     };
 
-public:
     PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
     ~PeerListDelegate() {}
