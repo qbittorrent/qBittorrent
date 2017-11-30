@@ -1,3 +1,16 @@
+* Fri Dec 01 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.2
+    - BUGFIX: Fix crash on some systems when creating address object for 255.255.255.255. Closes #7735. (sledgehammer999)
+    - PERFORMANCE: Change MixedModeAlgorithm default to TCP. This was the v3_3_x default and should sustain higher speeds. Closes #7779. (Chocobo1)
+    - PERFORMANCE: Stop logging IP filter parsing errors after a while, otherwise the GUI freezes or qBittorrent doesn't start. (sledgehammer999)
+    - GUI: Implement stable sort. Rows in transfer list shouldn't flicker anymore. (Chocobo1)
+    - WEBUI: Fix build when webui is disabled. (Heiko Becker)
+    - RSS: Fix build because of missing header. Closes #7805. (thoradia)
+    - RSS: Fix RSS parser. (glassez)
+    - RSS: Implement Import/Export RSS rules in legacy(aka v3_3_x) format. (glassez)
+    - RSS: Implement Import/Export RSS rules in JSON format. (glassez)
+    - WINDOWS: Fixed blurry text under Windows by setting DPI awareness to default. (TheNicker)
+    - LINUX: Fix i386 build. (Evgeny Lensky)
+
 * Wed Nov 22 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.1
     - BUGFIX: Fix crash on opening torrent/magnet (uninitialized pointer). Closes #7739 #7723. (sledgehammer999)
     - BUGFIX: Enable preferences Apply button when ip banlist is modified (Thomas Piccirello)
