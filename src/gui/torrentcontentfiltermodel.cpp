@@ -88,21 +88,24 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
 {
     switch (sortColumn()) {
     case TorrentContentModelItem::COL_NAME: {
-            QString vL = left.data().toString();
-            QString vR = right.data().toString();
-            TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
-            TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
+            const TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
+            const TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
 
-            if (leftType == rightType)
-                return Utils::String::naturalCompareCaseInsensitive(vL, vR);
-            else if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder))
+            if (leftType == rightType) {
+                const QString strL = left.data().toString();
+                const QString strR = right.data().toString();
+                return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
+            }
+            else if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
                 return true;
-            else
+            }
+            else {
                 return false;
+            }
         }
+    default:
+        return QSortFilterProxyModel::lessThan(left, right);
     };
-
-    return QSortFilterProxyModel::lessThan(left, right);
 }
 
 void TorrentContentFilterModel::selectAll()
