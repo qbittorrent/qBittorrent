@@ -57,5 +57,5 @@ bool TagFilterProxyModel::lessThan(const QModelIndex &left, const QModelIndex &r
     if (result != 0)
         return (result < 0);
 
-    return (mapFromSource(left) < mapFromSource(right));
+    return (left < right);
 }
