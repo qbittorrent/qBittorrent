@@ -56,14 +56,14 @@ protected:
                 if (result != 0)
                     return (result < 0);
 
-                return (mapFromSource(left) < mapFromSource(right));
+                return (left < right);
             }
             break;
         default:
             if (left.data() != right.data())
                 return QSortFilterProxyModel::lessThan(left, right);
 
-            return (mapFromSource(left) < mapFromSource(right));
+            return (left < right);
         };
     }
 };
