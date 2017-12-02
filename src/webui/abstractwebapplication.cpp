@@ -490,7 +490,8 @@ const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
     { "css", Http::CONTENT_TYPE_CSS },
     { "gif", Http::CONTENT_TYPE_GIF },
     { "png", Http::CONTENT_TYPE_PNG },
-    { "js", Http::CONTENT_TYPE_JS }
+    { "js", Http::CONTENT_TYPE_JS },
+    { "svg", Http::CONTENT_TYPE_SVG }
 };
 
 QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) const
