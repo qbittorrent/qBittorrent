@@ -612,7 +612,7 @@ initializeWindows = function() {
         new Event(e).stop();
         new Request({
             url: 'logout',
-            method: 'get',
+            method: 'post',
             onSuccess: function() {
                 window.location.reload();
             }
