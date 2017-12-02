@@ -1225,25 +1225,26 @@ void MainWindow::dropEvent(QDropEvent *event)
     // remove scheme
     QStringList files;
     if (event->mimeData()->hasUrls()) {
-        const QList<QUrl> urls = event->mimeData()->urls();
-        foreach (const QUrl &url, urls) {
-            if (!url.isEmpty()) {
-                if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
-                    files << url.toLocalFile();
-                else
-                    files << url.toString();
-            }
+        foreach (const QUrl &url, event->mimeData()->urls()) {
+            if (url.isEmpty())
+                continue;
+
+            files << ((url.scheme().compare("file", Qt::CaseInsensitive) == 0)
+                ? url.toLocalFile()
+                : url.toString());
         }
     }
     else {
         files = event->mimeData()->text().split('\n');
     }
 
-    // differentiate ".torrent" files and others
+    // differentiate ".torrent" files/links & magnet links from others
     QStringList torrentFiles, otherFiles;
     foreach (const QString &file, files) {
-        if (file.startsWith("magnet:", Qt::CaseInsensitive)
-                || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+        const bool isTorrentLink = (file.startsWith("magnet:", Qt::CaseInsensitive)
+            || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
+            || Utils::Misc::isUrl(file));
+        if (isTorrentLink)
             torrentFiles << file;
         else
             otherFiles << file;
