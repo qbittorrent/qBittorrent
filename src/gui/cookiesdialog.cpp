@@ -60,7 +60,7 @@ CookiesDialog::CookiesDialog(QWidget *parent)
                     m_cookiesModel->index(0, 0),
                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
-    resize(SettingsStorage::instance()->loadValue(KEY_SIZE, size()).toSize());
+    Utils::Gui::resize(this, SettingsStorage::instance()->loadValue(KEY_SIZE).toSize());
     m_ui->treeView->header()->restoreState(
                 SettingsStorage::instance()->loadValue(KEY_COOKIESVIEWSTATE).toByteArray());
 }

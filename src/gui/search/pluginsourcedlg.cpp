@@ -31,6 +31,7 @@
 #include "pluginsourcedlg.h"
 
 #include "ui_pluginsourcedlg.h"
+#include "utils.h"
 
 PluginSourceDlg::PluginSourceDlg(QWidget *parent)
     : QDialog(parent)
@@ -38,6 +39,8 @@ PluginSourceDlg::PluginSourceDlg(QWidget *parent)
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    Utils::Gui::resize(this);
     show();
 }
 

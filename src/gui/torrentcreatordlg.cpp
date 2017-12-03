@@ -41,8 +41,8 @@
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
-
 #include "ui_torrentcreatordlg.h"
+#include "utils.h"
 
 #define SETTINGS_KEY(name) "TorrentCreator/" name
 
@@ -264,6 +264,5 @@ void TorrentCreatorDlg::loadSettings()
     m_ui->txtComment->setPlainText(m_storeComments);
     m_ui->lineEditSource->setText(m_storeSource);
 
-    if (m_storeDialogSize.value().isValid())
-        resize(m_storeDialogSize);
+    Utils::Gui::resize(this, m_storeDialogSize);
 }

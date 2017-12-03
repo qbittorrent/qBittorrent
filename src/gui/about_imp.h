@@ -103,6 +103,7 @@ public:
         label_12->setText(Utils::Misc::libtorrentVersionString());
         label_13->setText(Utils::Misc::boostVersionString());
 
+        Utils::Gui::resize(this);
         show();
     }
 };

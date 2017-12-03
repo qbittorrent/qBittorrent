@@ -40,6 +40,7 @@
 #include <QStringList>
 
 #include "ui_downloadfromurldlg.h"
+#include "utils.h"
 
 class downloadFromURL : public QDialog, private Ui::downloadFromURL
 {
@@ -82,6 +83,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL
       if (clip_txt_list_cleaned.size() > 0)
         textUrls->setText(clip_txt_list_cleaned.join("\n"));
 
+      Utils::Gui::resize(this);
       show();
     }
 

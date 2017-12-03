@@ -30,9 +30,12 @@
 
 #include "trackerlogin.h"
 
-#include <QPushButton>
 #include <libtorrent/version.hpp>
+
+#include <QPushButton>
+
 #include "base/bittorrent/torrenthandle.h"
+#include "utils.h"
 
 trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
   : QDialog(parent)
@@ -53,6 +56,7 @@ trackerLogin::trackerLogin(QWidget *parent, BitTorrent::TorrentHandle *const tor
   connect(this, SIGNAL(trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString>)),  // TODO: use Qt5 connect syntax
     parent, SLOT(addUnauthenticatedTracker(QPair<BitTorrent::TorrentHandle*, QString>)));
 
+  Utils::Gui::resize(this);
   show();
 }
 

@@ -36,6 +36,7 @@
 #include "base/bittorrent/session.h"
 #include "base/utils/net.h"
 #include "ui_banlistoptions.h"
+#include "utils.h"
 
 BanListOptions::BanListOptions(QWidget *parent)
     : QDialog(parent)
@@ -52,6 +53,8 @@ BanListOptions::BanListOptions(QWidget *parent)
     m_ui->bannedIPList->setModel(m_sortFilter);
     m_ui->bannedIPList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonBanIP->setEnabled(false);
+
+    Utils::Gui::resize(this);
 }
 
 BanListOptions::~BanListOptions()

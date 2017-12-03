@@ -39,6 +39,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "previewlistdelegate.h"
+#include "utils.h"
 
 #define SETTINGS_KEY(name) "PreviewSelectDialog/" name
 
@@ -146,7 +147,7 @@ void PreviewSelectDialog::previewButtonClicked()
 void PreviewSelectDialog::saveWindowState()
 {
     // Persist dialog size
-    m_storeDialogSize = this->size();
+    m_storeDialogSize = size();
     // Persist TreeView Header state
     m_storeTreeHeaderState = previewList->header()->saveState();
 }
@@ -154,9 +155,8 @@ void PreviewSelectDialog::saveWindowState()
 void PreviewSelectDialog::loadWindowState()
 {
     // Restore dialog size
-    if (m_storeDialogSize.value().isValid()) {
-        resize(m_storeDialogSize);
-    }
+    Utils::Gui::resize(this, m_storeDialogSize);
+
     // Restore TreeView Header state
     if (!m_storeTreeHeaderState.value().isEmpty()) {
         m_headerStateInitialized = previewList->header()->restoreState(m_storeTreeHeaderState);

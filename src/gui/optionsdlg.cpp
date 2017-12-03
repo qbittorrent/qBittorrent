@@ -454,25 +454,19 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 
 void OptionsDialog::loadWindowState()
 {
-    const Preferences* const pref = Preferences::instance();
-
-    resize(pref->getPrefSize(this->size()));
+    Utils::Gui::resize(this, Preferences::instance()->getPrefSize());
 }
 
 void OptionsDialog::loadSplitterState()
 {
-    const Preferences* const pref = Preferences::instance();
+    const QStringList sizesStr = Preferences::instance()->getPrefHSplitterSizes();
 
-    const QStringList sizes_str = pref->getPrefHSplitterSizes();
-    QList<int> sizes;
-    if (sizes_str.size() == 2) {
-        sizes << sizes_str.first().toInt();
-        sizes << sizes_str.last().toInt();
-    }
-    else {
-        sizes << 116;
-        sizes << m_ui->hsplitter->width() - 116;
-    }
+    // width has been modified, use height as width reference instead
+    const int width = Utils::Gui::scaledSize(this
+        , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+    QList<int> sizes {width, (m_ui->hsplitter->width() - width)};
+    if (sizesStr.size() == 2)
+        sizes = {sizesStr.first().toInt(), sizesStr.last().toInt()};
     m_ui->hsplitter->setSizes(sizes);
 }
 

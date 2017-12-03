@@ -231,7 +231,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_searchFilter = new LineEdit(this);
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     m_searchFilter->setPlaceholderText(tr("Filter torrent list..."));
-    m_searchFilter->setFixedWidth(200 * Utils::Gui::screenScalingFactor(this));
+    m_searchFilter->setFixedWidth(Utils::Gui::scaledSize(this, 200));
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);

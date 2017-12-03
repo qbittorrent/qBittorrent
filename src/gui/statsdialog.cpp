@@ -35,6 +35,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
+#include "utils.h"
 
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)
@@ -48,6 +49,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
 
+    Utils::Gui::resize(this);
     show();
 }
 

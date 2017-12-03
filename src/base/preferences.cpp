@@ -1216,9 +1216,9 @@ void Preferences::setMainLastDir(const QString &path)
     setValue("MainWindowLastDir", path);
 }
 
-QSize Preferences::getPrefSize(const QSize &defaultSize) const
+QSize Preferences::getPrefSize() const
 {
-    return value("Preferences/State/size", defaultSize).toSize();
+    return value("Preferences/State/size").toSize();
 }
 
 void Preferences::setPrefSize(const QSize &size)
@@ -1296,9 +1296,9 @@ void Preferences::setPropTrackerListState(const QByteArray &state)
     setValue("TorrentProperties/Trackers/qt5/TrackerListState", state);
 }
 
-QSize Preferences::getRssGeometrySize(const QSize &defaultSize) const
+QSize Preferences::getRssGeometrySize() const
 {
-    return value("RssFeedDownloader/geometrySize", defaultSize).toSize();
+    return value("RssFeedDownloader/geometrySize").toSize();
 }
 
 void Preferences::setRssGeometrySize(const QSize &geometry)

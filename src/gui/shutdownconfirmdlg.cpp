@@ -37,6 +37,7 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "ui_shutdownconfirmdlg.h"
+#include "utils.h"
 
 ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogAction &action)
     : QDialog(parent)
@@ -66,6 +67,8 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogActi
 
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
+
+    Utils::Gui::resize(this);
 }
 
 ShutdownConfirmDlg::~ShutdownConfirmDlg()
