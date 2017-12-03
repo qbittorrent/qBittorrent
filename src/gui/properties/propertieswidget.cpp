@@ -92,7 +92,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     // Torrent content filtering
     m_contentFilterLine = new LineEdit(this);
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
-    m_contentFilterLine->setFixedWidth(300 * Utils::Gui::screenScalingFactor(this));
+    m_contentFilterLine->setFixedWidth(Utils::Gui::scaledSize(this, 300));
     connect(m_contentFilterLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
@@ -114,7 +114,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_ui->filesList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this, SLOT(saveSettings()));
 
     // set bar height relative to screen dpi
-    const int barHeight = 18 * Utils::Gui::screenScalingFactor(this);
+    const int barHeight = Utils::Gui::scaledSize(this, 18);
 
     // Downloaded pieces progress bar
     m_ui->tempProgressBarArea->setVisible(false);

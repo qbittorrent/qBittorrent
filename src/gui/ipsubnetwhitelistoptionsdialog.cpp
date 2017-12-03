@@ -37,6 +37,7 @@
 #include "base/preferences.h"
 #include "base/utils/net.h"
 #include "ui_ipsubnetwhitelistoptionsdialog.h"
+#include "utils.h"
 
 IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     : QDialog(parent)
@@ -57,6 +58,8 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->whitelistedIPSubnetList->setModel(m_sortFilter);
     m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonWhitelistIPSubnet->setEnabled(false);
+
+    Utils::Gui::resize(this);
 }
 
 IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()

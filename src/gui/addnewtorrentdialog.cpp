@@ -28,36 +28,38 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QDebug>
-#include <QString>
-#include <QFile>
-#include <QUrl>
-#include <QMenu>
-#include <QFileDialog>
-#include <QPushButton>
+#include "addnewtorrentdialog.h"
 
+#include <QDebug>
+#include <QFile>
+#include <QFileDialog>
+#include <QMenu>
+#include <QPushButton>
+#include <QString>
+#include <QUrl>
+
+#include "autoexpandabledialog.h"
+#include "base/bittorrent/magneturi.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
 #include "base/settingvalue.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/magneturi.h"
-#include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/torrentfileguard.h"
+#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "base/torrentfileguard.h"
-#include "base/unicodestrings.h"
 #include "guiiconprovider.h"
-#include "autoexpandabledialog.h"
 #include "messageboxraised.h"
 #include "proplistdelegate.h"
-#include "torrentcontentmodel.h"
 #include "torrentcontentfiltermodel.h"
+#include "torrentcontentmodel.h"
 #include "ui_addnewtorrentdialog.h"
-#include "addnewtorrentdialog.h"
+#include "utils.h"
 
 namespace
 {
@@ -212,10 +214,11 @@ CachedSettingValue<int> &AddNewTorrentDialog::savePathHistoryLengthSetting()
 void AddNewTorrentDialog::loadState()
 {
     m_headerState = settings()->loadValue(KEY_TREEHEADERSTATE).toByteArray();
-    int width = settings()->loadValue(KEY_WIDTH, -1).toInt();
-    QSize geo = size();
-    geo.setWidth(width);
-    resize(geo);
+
+    const QSize newSize = Utils::Gui::scaledSize(this, size());
+    const int width = settings()->loadValue(KEY_WIDTH, newSize.width()).toInt();
+    const int height = newSize.height();
+    resize(width, height);
 
     ui->adv_button->setChecked(settings()->loadValue(KEY_EXPANDED).toBool());
 }

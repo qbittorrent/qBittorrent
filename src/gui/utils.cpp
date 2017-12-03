@@ -35,6 +35,14 @@
 #include <QWidget>
 #include <QWindow>
 
+void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
+{
+    if (newSize.isValid())
+        widget->resize(newSize);
+    else  // depends on screen DPI
+        widget->resize(widget->size() * screenScalingFactor(widget));
+}
+
 qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 {
 #ifdef Q_OS_WIN

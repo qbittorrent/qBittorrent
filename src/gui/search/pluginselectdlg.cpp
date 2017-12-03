@@ -31,25 +31,26 @@
 
 #include "pluginselectdlg.h"
 
+#include <QClipboard>
+#include <QDropEvent>
+#include <QFileDialog>
 #include <QHeaderView>
+#include <QImageReader>
 #include <QMenu>
 #include <QMessageBox>
-#include <QFileDialog>
-#include <QDropEvent>
 #include <QMimeData>
-#include <QClipboard>
 #include <QTableView>
-#include <QImageReader>
 
+#include "autoexpandabledialog.h"
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
-#include "searchwidget.h"
-#include "pluginsourcedlg.h"
 #include "guiiconprovider.h"
-#include "autoexpandabledialog.h"
+#include "pluginsourcedlg.h"
+#include "searchwidget.h"
 #include "ui_pluginselectdlg.h"
+#include "utils.h"
 
 enum PluginColumns
 {
@@ -99,6 +100,7 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     connect(m_pluginManager, &SearchEngine::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchEngine::checkForUpdatesFailed, this, &PluginSelectDlg::checkForUpdatesFailed);
 
+    Utils::Gui::resize(this);
     show();
 }
 
