@@ -1481,14 +1481,10 @@ void Session::configurePeerClasses()
     peerClassTypeFilter.add(libt::peer_class_type_filter::tcp_socket, libt::session::tcp_peer_class_id);
     peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_tcp_socket, libt::session::tcp_peer_class_id);
     peerClassTypeFilter.add(libt::peer_class_type_filter::i2p_socket, libt::session::tcp_peer_class_id);
-    if (isUTPRateLimited()) {
-        peerClassTypeFilter.add(libt::peer_class_type_filter::utp_socket
-            , libt::session::local_peer_class_id);
-        peerClassTypeFilter.add(libt::peer_class_type_filter::utp_socket
+    if (!isUTPRateLimited()) {
+        peerClassTypeFilter.disallow(libt::peer_class_type_filter::utp_socket
             , libt::session::global_peer_class_id);
-        peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_utp_socket
-            , libt::session::local_peer_class_id);
-        peerClassTypeFilter.add(libt::peer_class_type_filter::ssl_utp_socket
+        peerClassTypeFilter.disallow(libt::peer_class_type_filter::ssl_utp_socket
             , libt::session::global_peer_class_id);
     }
     m_nativeSession->set_peer_class_type_filter(peerClassTypeFilter);
