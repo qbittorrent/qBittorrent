@@ -98,7 +98,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         if (result != 0)
             return (result < 0);
 
-        return (mapFromSource(left) < mapFromSource(right));
+        return (left < right);
     }
 
     case TorrentModel::TR_ADD_DATE:
