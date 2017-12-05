@@ -85,6 +85,7 @@ private:
     CachedSettingValue<QString> m_storeWebSeedList;
     CachedSettingValue<QString> m_storeComments;
     CachedSettingValue<QString> m_storeLastSavePath;
+    CachedSettingValue<QString> m_storeSource;
 };
 
 #endif

@@ -124,6 +124,14 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
+        libt::entry entry = newTorrent.generate();
+
+        // add source field
+        if (!m_params.source.isEmpty())
+            entry["info"]["source"] = m_params.source.toStdString();
+
+        if (isInterruptionRequested()) return;
+
         // create the torrent
         std::ofstream outfile(
 #ifdef _MSC_VER
@@ -137,7 +145,7 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
-        libt::bencode(std::ostream_iterator<char>(outfile), newTorrent.generate());
+        libt::bencode(std::ostream_iterator<char>(outfile), entry);
         outfile.close();
 
         emit updateProgress(100);
