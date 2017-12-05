@@ -161,12 +161,13 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     setInteractionEnabled(false);
     setCursor(QCursor(Qt::WaitCursor));
 
-    QStringList trackers = m_ui->trackersList->toPlainText().split("\n");
-    QStringList urlSeeds = m_ui->URLSeedsList->toPlainText().split("\n");
-    QString comment = m_ui->txtComment->toPlainText();
+    const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
+        .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
+    const QStringList urlSeeds = m_ui->URLSeedsList->toPlainText().split('\n', QString::SkipEmptyParts);
+    const QString comment = m_ui->txtComment->toPlainText();
 
     // run the creator thread
-    m_creatorThread->create(input, destination, trackers, urlSeeds, comment, m_ui->checkPrivate->isChecked(), getPieceSize());
+    m_creatorThread->create({ m_ui->checkPrivate->isChecked(), getPieceSize(), input, destination, comment, trackers, urlSeeds });
 }
 
 void TorrentCreatorDlg::handleCreationFailure(const QString &msg)

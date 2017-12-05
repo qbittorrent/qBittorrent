@@ -36,16 +36,26 @@
 
 namespace BitTorrent
 {
+    struct TorrentCreatorParams
+    {
+        bool isPrivate;
+        int pieceSize;
+        QString inputPath;
+        QString savePath;
+        QString comment;
+        QStringList trackers;
+        QStringList urlSeeds;
+    };
+
     class TorrentCreatorThread : public QThread
     {
         Q_OBJECT
 
     public:
-        TorrentCreatorThread(QObject *parent = 0);
+        TorrentCreatorThread(QObject *parent = nullptr);
         ~TorrentCreatorThread();
 
-        void create(const QString &inputPath, const QString &savePath, const QStringList &trackers,
-                    const QStringList &urlSeeds, const QString &comment, bool isPrivate, int pieceSize);
+        void create(const TorrentCreatorParams &params);
 
         static int calculateTotalPieces(const QString &inputPath, const int pieceSize);
 
@@ -58,15 +68,9 @@ namespace BitTorrent
         void updateProgress(int progress);
 
     private:
-        void sendProgressSignal(int numHashes, int numPieces);
+        void sendProgressSignal(int currentPieceIdx, int totalPieces);
 
-        QString m_inputPath;
-        QString m_savePath;
-        QStringList m_trackers;
-        QStringList m_urlSeeds;
-        QString m_comment;
-        bool m_private;
-        int m_pieceSize;
+        TorrentCreatorParams m_params;
     };
 }
 
