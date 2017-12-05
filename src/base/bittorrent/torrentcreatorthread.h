@@ -43,6 +43,7 @@ namespace BitTorrent
         QString inputPath;
         QString savePath;
         QString comment;
+        QString source;
         QStringList trackers;
         QStringList urlSeeds;
     };

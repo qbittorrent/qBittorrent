@@ -60,6 +60,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     , m_storeWebSeedList(SETTINGS_KEY("WebSeedList"))
     , m_storeComments(SETTINGS_KEY("Comments"))
     , m_storeLastSavePath(SETTINGS_KEY("LastSavePath"), QDir::homePath())
+    , m_storeSource(SETTINGS_KEY("Source"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -165,9 +166,11 @@ void TorrentCreatorDlg::onCreateButtonClicked()
         .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
     const QStringList urlSeeds = m_ui->URLSeedsList->toPlainText().split('\n', QString::SkipEmptyParts);
     const QString comment = m_ui->txtComment->toPlainText();
+    const QString source = m_ui->lineEditSource->text();
 
     // run the creator thread
-    m_creatorThread->create({ m_ui->checkPrivate->isChecked(), getPieceSize(), input, destination, comment, trackers, urlSeeds });
+    m_creatorThread->create({ m_ui->checkPrivate->isChecked(), getPieceSize()
+        , input, destination, comment, source, trackers, urlSeeds });
 }
 
 void TorrentCreatorDlg::handleCreationFailure(const QString &msg)
@@ -241,6 +244,7 @@ void TorrentCreatorDlg::saveSettings()
     m_storeTrackerList = m_ui->trackersList->toPlainText();
     m_storeWebSeedList = m_ui->URLSeedsList->toPlainText();
     m_storeComments = m_ui->txtComment->toPlainText();
+    m_storeSource = m_ui->lineEditSource->text();
 
     m_storeDialogSize = size();
 }
@@ -258,6 +262,7 @@ void TorrentCreatorDlg::loadSettings()
     m_ui->trackersList->setPlainText(m_storeTrackerList);
     m_ui->URLSeedsList->setPlainText(m_storeWebSeedList);
     m_ui->txtComment->setPlainText(m_storeComments);
+    m_ui->lineEditSource->setText(m_storeSource);
 
     if (m_storeDialogSize.value().isValid())
         resize(m_storeDialogSize);
