@@ -437,16 +437,8 @@ void prefjson::setPreferences(const QString& json)
     if (m.contains("bypass_auth_subnet_whitelist_enabled"))
         pref->setWebUiAuthSubnetWhitelistEnabled(m["bypass_auth_subnet_whitelist_enabled"].toBool());
     if (m.contains("bypass_auth_subnet_whitelist")) {
-        QList<Utils::Net::Subnet> subnets;
-        // recognize new line and comma as delimiters
-        foreach (QString subnetString, m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts)) {
-            bool ok = false;
-            const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(subnetString.trimmed(), &ok);
-            if (ok)
-                subnets.append(subnet);
-        }
-
-        pref->setWebUiAuthSubnetWhitelist(subnets);
+        // recognize new lines and commas as delimiters
+        pref->setWebUiAuthSubnetWhitelist(m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
     // Update my dynamic domain name
     if (m.contains("dyndns_enabled"))

@@ -487,10 +487,18 @@ QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
     return subnets;
 }
 
-void Preferences::setWebUiAuthSubnetWhitelist(const QList<Utils::Net::Subnet> &subnets)
+void Preferences::setWebUiAuthSubnetWhitelist(const QStringList &subnets)
 {
+    QList<Utils::Net::Subnet> filteredSubnets;
+    foreach (QString subnetString, subnets) {
+        bool ok = false;
+        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(subnetString.trimmed(), &ok);
+        if (ok)
+            filteredSubnets.append(subnet);
+    }
+
     QStringList subnetsStringList;
-    for (const Utils::Net::Subnet &subnet : subnets)
+    for (const Utils::Net::Subnet &subnet : filteredSubnets)
         subnetsStringList.append(Utils::Net::subnetToString(subnet));
 
     setValue("Preferences/WebUI/AuthSubnetWhitelist", subnetsStringList);
