@@ -68,12 +68,10 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
 {
     if (m_modified) {
         // save to session
-        QList<Utils::Net::Subnet> subnets;
+        QStringList subnets;
         // Operate on the m_sortFilter to grab the strings in sorted order
-        for (int i = 0; i < m_sortFilter->rowCount(); ++i) {
-            const QString subnet = m_sortFilter->index(i, 0).data().toString();
-            subnets.append(QHostAddress::parseSubnet(subnet));
-        }
+        for (int i = 0; i < m_sortFilter->rowCount(); ++i)
+            subnets.append(m_sortFilter->index(i, 0).data().toString());
         Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
         QDialog::accept();
     }
