@@ -25,7 +25,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_21">
+     <layout class="QVBoxLayout" name="verticalLayout_31">
       <item>
        <widget class="QTreeView" name="whitelistedIPSubnetList">
         <property name="rootIsDecorated">
@@ -46,7 +46,7 @@
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_18">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLineEdit" name="txtIPSubnet">
           <property name="placeholderText">
@@ -54,6 +54,10 @@
           </property>
          </widget>
         </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
         <item>
          <widget class="QPushButton" name="buttonWhitelistIPSubnet">
           <property name="text">
