@@ -35,6 +35,7 @@
 #include <QCryptographicHash>
 #include <QDir>
 #include <QLocale>
+#include <QMutableListIterator>
 #include <QPair>
 #include <QSettings>
 
@@ -487,21 +488,17 @@ QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
     return subnets;
 }
 
-void Preferences::setWebUiAuthSubnetWhitelist(const QStringList &subnets)
+void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
-    QList<Utils::Net::Subnet> filteredSubnets;
-    foreach (QString subnetString, subnets) {
+    QMutableListIterator<QString> i(subnets);
+    while (i.hasNext()) {
         bool ok = false;
-        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(subnetString.trimmed(), &ok);
-        if (ok)
-            filteredSubnets.append(subnet);
+        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(i.next().trimmed(), &ok);
+        if (!ok)
+            i.remove();
     }
 
-    QStringList subnetsStringList;
-    for (const Utils::Net::Subnet &subnet : filteredSubnets)
-        subnetsStringList.append(Utils::Net::subnetToString(subnet));
-
-    setValue("Preferences/WebUI/AuthSubnetWhitelist", subnetsStringList);
+    setValue("Preferences/WebUI/AuthSubnetWhitelist", subnets);
 }
 
 QString Preferences::getServerDomains() const
