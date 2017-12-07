@@ -64,6 +64,15 @@ function friendlyDuration(seconds) {
     return "∞";
 }
 
+function friendlyPercentage(value) {
+    var percentage = (value * 100).round(1);
+    if (isNaN(percentage) || (percentage < 0))
+        percentage = 0;
+    if (percentage > 100)
+        percentage = 100;
+    return percentage + "%";
+}
+
 /*
  * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
  */
