@@ -371,9 +371,7 @@ void PropertiesWidget::readSettings()
     }
     const int current_tab = pref->getPropCurTab();
     const bool visible = pref->getPropVisible();
-    // the following will call saveSettings but shouldn't change any state
-    if (!m_ui->filesList->header()->restoreState(pref->getPropFileListState()))
-        m_ui->filesList->header()->resizeSection(0, 400); // Default
+    m_ui->filesList->header()->restoreState(pref->getPropFileListState());
     m_tabBar->setCurrentIndex(current_tab);
     if (!visible)
         setVisibility(false);

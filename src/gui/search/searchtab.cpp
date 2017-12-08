@@ -334,10 +334,9 @@ void SearchTab::displayToggleColumnsMenu(const QPoint&)
         Q_ASSERT(visibleCols > 0);
         if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (visibleCols == 1))
             return;
-        qDebug("Toggling column %d visibility", col);
         m_ui->resultsBrowser->setColumnHidden(col, !m_ui->resultsBrowser->isColumnHidden(col));
         if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (m_ui->resultsBrowser->columnWidth(col) <= 5))
-            m_ui->resultsBrowser->setColumnWidth(col, 100);
+            m_ui->resultsBrowser->resizeColumnToContents(col);
         saveSettings();
     }
 }

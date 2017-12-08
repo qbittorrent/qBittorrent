@@ -79,9 +79,6 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
     m_ui->pluginsTree->setRootIsDecorated(false);
-    m_ui->pluginsTree->header()->resizeSection(0, 160);
-    m_ui->pluginsTree->header()->resizeSection(1, 80);
-    m_ui->pluginsTree->header()->resizeSection(2, 200);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
