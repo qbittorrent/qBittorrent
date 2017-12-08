@@ -180,10 +180,9 @@ void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
         Q_ASSERT(visibleCols > 0);
         if (!isColumnHidden(col) && (visibleCols == 1))
             return;
-        qDebug("Toggling column %d visibility", col);
         setColumnHidden(col, !isColumnHidden(col));
         if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-            setColumnWidth(col, 100);
+            resizeColumnToContents(col);
         saveSettings();
     }
 }
