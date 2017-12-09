@@ -30,9 +30,12 @@ function friendlyUnit(value, isSpeed) {
     var ret;
     if (i === 0)
         ret = value + " " + units[i];
-    else
-        ret = (Math.floor(10 * value) / 10).toFixed(friendlyUnitPrecision(i)) //Don't round up
-            + " " + units[i];
+    else {
+        var precision = friendlyUnitPrecision(i);
+        var offset = Math.pow(10, precision);
+        // Don't round up
+        ret = (Math.floor(offset * value) / offset).toFixed(precision) + " " + units[i];
+    }
 
     if (isSpeed)
         ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
@@ -70,7 +73,7 @@ function friendlyPercentage(value) {
         percentage = 0;
     if (percentage > 100)
         percentage = 100;
-    return percentage + "%";
+    return percentage.toFixed(1) + "%";
 }
 
 /*
