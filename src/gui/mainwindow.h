@@ -187,7 +187,9 @@ private slots:
     void toolbarTextBeside();
     void toolbarTextUnder();
     void toolbarFollowSystem();
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
+    void on_actionCloseWindow_triggered();
+#else
     void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
     void createSystrayDelayed();
     void updateTrayIconMenu();
