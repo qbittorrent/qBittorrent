@@ -46,7 +46,6 @@
 
 #include <boost/function.hpp>
 
-#include "base/tristatebool.h"
 #include "private/speedmonitor.h"
 #include "infohash.h"
 #include "torrentinfo.h"
