@@ -559,7 +559,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         QString path = torrent->contentPath(true);
         pathsList.insert(path);
     }
-    openFiles(pathsList);
+    MacUtils::openFiles(pathsList);
 #else
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
         QString path = torrent->contentPath(true);

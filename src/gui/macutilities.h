@@ -33,9 +33,12 @@
 #include <QSize>
 #include <objc/objc.h>
 
-QPixmap pixmapForExtension(const QString &ext, const QSize &size);
-void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
-void displayNotification(const QString &title, const QString &message);
-void openFiles(const QSet<QString> &pathsList);
+namespace MacUtils
+{
+    QPixmap pixmapForExtension(const QString &ext, const QSize &size);
+    void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
+    void displayNotification(const QString &title, const QString &message);
+    void openFiles(const QSet<QString> &pathsList);
+}
 
 #endif // MACUTILITIES_H

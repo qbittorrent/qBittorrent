@@ -150,7 +150,7 @@ namespace
     {
         QPixmap pixmapForExtension(const QString &ext) const override
         {
-            return ::pixmapForExtension(ext, QSize(32, 32));
+            return MacUtils::pixmapForExtension(ext, QSize(32, 32));
         }
     };
 #else
