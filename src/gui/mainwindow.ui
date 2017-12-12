@@ -90,6 +90,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionDownloadFromURL"/>
+    <addaction name="actionCloseWindow"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -464,6 +465,11 @@
    </property>
    <property name="text">
     <string>Critical Messages</string>
+   </property>
+  </action>
+  <action name="actionCloseWindow">
+   <property name="text">
+    <string>Close Window</string>
    </property>
   </action>
  </widget>

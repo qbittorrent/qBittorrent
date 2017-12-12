@@ -843,6 +843,11 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
     m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
+#ifdef Q_OS_MAC
+    m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+#else
+    m_ui->actionCloseWindow->setVisible(false);
+#endif
 
     QShortcut *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
@@ -977,6 +982,16 @@ void MainWindow::on_actionExit_triggered()
     m_forceExit = true;
     close();
 }
+
+#ifdef Q_OS_MAC
+void MainWindow::on_actionCloseWindow_triggered()
+{
+    // On macOS window close is basically equivalent to window hide.
+    // If you decide to implement this functionality for other OS,
+    // then you will also need ui lock checks like in actionExit. 
+    close();
+}
+#endif
 
 QWidget *MainWindow::currentTabWidget() const
 {
