@@ -36,6 +36,9 @@
 
 namespace BitTorrent
 {
+    class AddTorrentParamsBuilder;
+    class TorrentInfo;
+
     struct AddTorrentParams
     {
         QString name;
@@ -54,5 +57,15 @@ namespace BitTorrent
         boost::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
+    };
+
+    class AddTorrentParamsBuilder
+    {
+    public:
+        static AddTorrentParams defaults() { return AddTorrentParams(); }
+
+        static AddTorrentParams fromTorrentInfo(const TorrentInfo &info);
+
+        static AddTorrentParams fromTorrentFile(const QString &path);
     };
 }

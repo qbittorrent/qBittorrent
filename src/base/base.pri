@@ -86,6 +86,7 @@ SOURCES += \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
     $$PWD/net/private/geoipdatabase.cpp \
+    $$PWD/bittorrent/addtorrentparams.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/magneturi.cpp \

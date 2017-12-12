@@ -248,10 +248,11 @@ void SearchWidget::selectMultipleBox(int index)
 
 void SearchWidget::addTorrentToSession(const QString &source)
 {
+    const BitTorrent::AddTorrentParams params = BitTorrent::AddTorrentParamsBuilder::defaults();
     if (AddNewTorrentDialog::isEnabled())
         AddNewTorrentDialog::show(source, this);
     else
-        BitTorrent::Session::instance()->addTorrent(source);
+        BitTorrent::Session::instance()->fetchAndAddTorrent(source, params);
 }
 
 void SearchWidget::on_pluginsButton_clicked()
