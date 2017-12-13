@@ -60,23 +60,32 @@ TorrentInfo &TorrentInfo::operator=(const TorrentInfo &other)
     return *this;
 }
 
-TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString &error)
+TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
 {
-    error.clear();
     libt::error_code ec;
-    TorrentInfo info(NativePtr(new libt::torrent_info(Utils::Fs::toNativePath(path).toStdString(), ec)));
-    if (ec) {
-        error = QString::fromUtf8(ec.message().c_str());
-        qDebug("Cannot load .torrent file: %s", qUtf8Printable(error));
+    TorrentInfo info(NativePtr(new libt::torrent_info(data.constData(), data.size(), ec)));
+    if (error) {
+        if (ec)
+            *error = QString::fromStdString(ec.message());
+        else
+            error->clear();
     }
 
     return info;
 }
 
-TorrentInfo TorrentInfo::loadFromFile(const QString &path)
+TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexcept
 {
-    QString error;
-    return loadFromFile(path, error);
+    libt::error_code ec;
+    TorrentInfo info(NativePtr(new libt::torrent_info(Utils::Fs::toNativePath(path).toStdString(), ec)));
+    if (error) {
+        if (ec)
+            *error = QString::fromStdString(ec.message());
+        else
+            error->clear();
+    }
+
+    return info;
 }
 
 bool TorrentInfo::isValid() const

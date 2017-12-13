@@ -63,8 +63,8 @@ namespace BitTorrent
         explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());
         TorrentInfo(const TorrentInfo &other);
 
-        static TorrentInfo loadFromFile(const QString &path, QString &error);
-        static TorrentInfo loadFromFile(const QString &path);
+        static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
+        static TorrentInfo loadFromFile(const QString &path, QString *error = nullptr) noexcept;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 

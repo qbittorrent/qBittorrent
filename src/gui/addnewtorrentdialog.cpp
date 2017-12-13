@@ -286,7 +286,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
 
     m_hasMetadata = true;
     QString error;
-    m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, error);
+    m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, &error);
     if (!m_torrentInfo.isValid()) {
         MessageBoxRaised::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
         return false;
