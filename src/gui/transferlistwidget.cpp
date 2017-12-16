@@ -362,10 +362,14 @@ void TransferListWidget::torrentDoubleClicked()
             torrent->pause();
         break;
     case OPEN_DEST:
+#ifdef Q_OS_MAC
+        MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
+#else
         if (torrent->filesCount() == 1)
             Utils::Misc::openFolderSelect(torrent->contentPath(true));
         else
             Utils::Misc::openPath(torrent->contentPath(true));
+#endif
         break;
     }
 }
