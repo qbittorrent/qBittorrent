@@ -65,6 +65,10 @@
 
 #include "ui_propertieswidget.h"
 
+#ifdef Q_OS_MAC
+#include "macutilities.h"
+#endif
+
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, TransferListWidget *transferList)
     : QWidget(parent)
     , m_ui(new Ui::PropertiesWidget())
@@ -574,10 +578,14 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
 
     // Flush data
     m_torrent->flushCache();
+#ifdef Q_OS_MAC
+    MacUtils::openFiles(QSet<QString>{absolutePath});
+#else
     if (containingFolder)
         Utils::Misc::openFolderSelect(absolutePath);
     else
         Utils::Misc::openPath(absolutePath);
+#endif
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint &)
