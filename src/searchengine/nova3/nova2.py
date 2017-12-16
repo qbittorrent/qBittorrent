@@ -127,8 +127,8 @@ def run_search(engine_list):
         engine = engine()
         #avoid exceptions due to invalid category
         if hasattr(engine, 'supported_categories'):
-            cat = cat if cat in engine.supported_categories else "all"
-            engine.search(what, cat)
+            if cat in engine.supported_categories:
+                engine.search(what, cat)
         else:
             engine.search(what)
 
