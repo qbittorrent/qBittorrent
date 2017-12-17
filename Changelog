@@ -1,3 +1,13 @@
+* Sun Dec 17 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.3
+    - BUGFIX: Add height padding to the transfer list icons. Closes #7951. (sledgehammer999)
+    - BUGFIX: Allow to drag-n-drop URLs into mainwindow to initiate download. (Chocobo1)
+    - BUGFIX: Fix crash when fitlering search results. Stable sorting is removed. Closes #7952.(Chocobo1)
+    - WEBUI: Fix missing qbt logo on login page in webUI. Closes #7953. (Chocobo1)
+    - WEBUI: Add check to avoid type error after logout. (Chocobo1)
+    - WEBUI: Use POST for logout command. This is to avoid browser being smart to prefetch the link then logging out the user. (Chocobo1)
+    - WEBUI: Fix WebUI is not reachable via IPv6. (glassez)
+    - WINDOWS: Disable the "?" help button in all dialogs on Windows. Closes #7365. Requires Qt 5.10. (Chocobo1)
+
 * Fri Dec 01 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.2
     - BUGFIX: Fix crash on some systems when creating address object for 255.255.255.255. Closes #7735. (sledgehammer999)
     - PERFORMANCE: Change MixedModeAlgorithm default to TCP. This was the v3_3_x default and should sustain higher speeds. Closes #7779. (Chocobo1)
