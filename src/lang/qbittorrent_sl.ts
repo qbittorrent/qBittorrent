@@ -85,42 +85,42 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="428"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>WebUI: Glava izvirnika &amp; Izvor tarče se ne ujemata!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="429"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP vira: &apos;%1&apos;. Glava izvirnika: &apos;%2&apos;. Izvor tarče: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="438"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>WebUI: Glava nanašalca &amp; Izvor tarče se ne ujemata!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="439"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP vira: &apos;%1&apos;. Glava nanašalca: &apos;%2&apos;. Izvor tarče: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="456"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
         <translation>WebUI: Neveljavna Glava Gostitelja, neujemanje vrat.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="457"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>Zahteva za IP vira: &apos;%1&apos;. Vrata strežnika: &apos;%2&apos;. Prejeta Glava izvirnika: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="488"/>
         <source>WebUI: Invalid Host header.</source>
         <translation>WebUI: Neveljavna Glava Gostitelja.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="489"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>Zahteva za IP vira: &apos;%1&apos;. Prejeta Glava izvirnika: &apos;%2&apos;</translation>
     </message>
@@ -533,7 +533,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="315"/>
         <source>Guided read cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Vodeno branje predpomnilnika</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="318"/>
@@ -668,7 +668,7 @@ Napaka: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="354"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1-TCP algoritem mešanega načina</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="377"/>
@@ -788,7 +788,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="735"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
-        <translation type="unfinished"></translation>
+        <translation>Prenosni način in izrecne možnosti profilne mape in se medsebojno izlkjučujeta</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="738"/>
@@ -801,22 +801,22 @@ Napaka: %2</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="115"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Podatkov Samodejnega prejemnika RSS ni bilo mogoče shraniti na %1. Napaka: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavna oblika podatkov</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravil Samodejnega prejemnika RSS ni bilo mogoče brati z %1. Napaka: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="383"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravil Samodejnega prejemnika RSS ni bilo mogoče naložiti. Razlog: %1</translation>
     </message>
 </context>
 <context>
@@ -986,12 +986,12 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravila (legacy)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
@@ -1053,48 +1053,48 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="393"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavno dejanje</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam je prazen. Ničesar ni za izvoz.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
         <source>Export RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvozi RSS pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="440"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O Napaka</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Spodletelo ustvarjanje ciljne datoteke. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Import RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Uvozi RSS pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpiranje datoteka je spodletelo. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="456"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka uvoza</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Spodletelo uvažanje izbrane datoteke s pravili. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="464"/>
@@ -1228,7 +1228,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1227"/>
         <source>Could not get GUID of configured network interface. Binding to IP %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridobitev GUID konfiguriranega mrežnega vmesnika ni bila mogoča. Povezujem na IP %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1729"/>
@@ -1732,7 +1732,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation>RSS vir z &apos;%1&apos; uspešno posodobljena. Dodanih %2 novih člankov.</translation>
+        <translation>RSS vir z &apos;%1&apos; uspešno posodobljen. Dodanih %2 novih člankov.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="251"/>
@@ -1849,7 +1849,7 @@ Napaka: %2</translation>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="402"/>
         <source>%1 extra IP filter parsing errors occurred.</source>
         <comment>513 extra IP filter parsing errors occurred.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pojavila se je %1 dodatna napaka razčlenjevanja IP filtra.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="449"/>
@@ -2201,7 +2201,7 @@ Ne uporabljajte posebnih znakov v imenu kategorije.</translation>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
         <source>List of whitelisted IP subnets</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam dovoljenih IP podmrež</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
@@ -2513,12 +2513,12 @@ Ne uporabljajte posebnih znakov v imenu kategorije.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="400"/>
         <location filename="../gui/mainwindow.ui" line="434"/>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Show</source>
         <translation>Pokaži</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1826"/>
+        <location filename="../gui/mainwindow.cpp" line="1827"/>
         <source>Check for program updates</source>
         <translation>Preveri posodobitve programa</translation>
     </message>
@@ -2533,7 +2533,7 @@ Ne uporabljajte posebnih znakov v imenu kategorije.</translation>
         <translation>Če vam je qBittorrent všeč, potem prosim donirajte! </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1860"/>
+        <location filename="../gui/mainwindow.cpp" line="1861"/>
         <source>Execution Log</source>
         <translation>Dnevnik izvedb</translation>
     </message>
@@ -2741,42 +2741,42 @@ Ali želite qBittorrent povezati z datotekami torrent in magnetnimi povezavami?<
         <translation>&amp;Vedno da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1521"/>
+        <location filename="../gui/mainwindow.cpp" line="1522"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1/s</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Old Python Interpreter</source>
         <translation>Star Python tolmač</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
         <translation>Vaša različica Pythona (%1) je zastarela. Za delovanje iskalnikov morate Python nadgraditi na zadnjo različico.
 Najmanjša zahteva je: 2.7.9/3.3.0</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1810"/>
+        <location filename="../gui/mainwindow.cpp" line="1811"/>
         <source>qBittorrent Update Available</source>
         <translation>Na voljo je posodobitev</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1811"/>
+        <location filename="../gui/mainwindow.cpp" line="1812"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>Na voljo je nova različica.
 Želite prenesti različico %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1820"/>
+        <location filename="../gui/mainwindow.cpp" line="1821"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Že uporabljate zadnjo različico</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Undetermined Python version</source>
         <translation>Nedoločena različica Pythona</translation>
     </message>
@@ -2806,68 +2806,68 @@ Razlog: %2</translation>
         <translation>Datoteke na URL-ju &apos;%1&apos; ni mogoče prejeti. Razlog: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1727"/>
+        <location filename="../gui/mainwindow.cpp" line="1728"/>
         <source>Python found in %1: %2</source>
         <comment>Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin</comment>
         <translation>Python najden v %1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Ni mogoče razbrati vaše različice Pythona (%1). Iskalnik je onemogočen.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1766"/>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Missing Python Interpreter</source>
         <translation>Manjka Python tolmač</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1768"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Za uporabo iskalnika potrebujete Python. Ta pa ni nameščen.
 Ali ga želite namestiti sedaj?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python je potreben za uporabo iskalnika, vendar ta ni nameščen.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1821"/>
+        <location filename="../gui/mainwindow.cpp" line="1822"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Ni posodobitev.
 Že uporabljate zadnjo različico.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1825"/>
+        <location filename="../gui/mainwindow.cpp" line="1826"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Preveri za posodobitve</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1984"/>
+        <location filename="../gui/mainwindow.cpp" line="1985"/>
         <source>Checking for Updates...</source>
         <translation>Preverjam za posodobitve ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1985"/>
+        <location filename="../gui/mainwindow.cpp" line="1986"/>
         <source>Already checking for program updates in the background</source>
         <translation>Že v ozadju preverjam posodobitve programa</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2001"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python najden v &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Download error</source>
         <translation>Napaka prejema</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Namestitev za Python ni bilo mogoče prejeti. Razlog: %1
@@ -2896,27 +2896,27 @@ Namestite Python ročno.</translation>
         <translation>Geslo je neveljavno</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1506"/>
-        <location filename="../gui/mainwindow.cpp" line="1513"/>
+        <location filename="../gui/mainwindow.cpp" line="1507"/>
+        <location filename="../gui/mainwindow.cpp" line="1514"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Hitrost prejema: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1509"/>
-        <location filename="../gui/mainwindow.cpp" line="1515"/>
+        <location filename="../gui/mainwindow.cpp" line="1510"/>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Hitrost pošiljanja: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1528"/>
+        <location filename="../gui/mainwindow.cpp" line="1529"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[Pr: %1, Po: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Hide</source>
         <translation>Skrij</translation>
     </message>
@@ -2926,17 +2926,17 @@ Namestite Python ročno.</translation>
         <translation>Izhod  qBittorrenta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1319"/>
+        <location filename="../gui/mainwindow.cpp" line="1320"/>
         <source>Open Torrent Files</source>
         <translation>Odpri datoteke torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1320"/>
+        <location filename="../gui/mainwindow.cpp" line="1321"/>
         <source>Torrent Files</source>
         <translation>Torrent datoteke</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1370"/>
+        <location filename="../gui/mainwindow.cpp" line="1371"/>
         <source>Options were saved successfully.</source>
         <translation>Možnosti so bile uspešno shranjene</translation>
     </message>
@@ -4586,7 +4586,11 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam dovoljenj za filtriranje vrednosti HTTP Glave gostitelja.
+Da se obraniš pred napadom DNS povezovanja,
+vstavi imena domen, ki jih uporablja WebUI strežnik.
+
+Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos;*&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2845"/>
@@ -4596,17 +4600,17 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="3008"/>
         <source>Bypass authentication for clients on localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Obidi overitev za odjemalce na lokalnem gostitelju</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3015"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation type="unfinished"></translation>
+        <translation>Obidi overitev za odjemalce na seznamu dovoljenih IP podmrež</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3028"/>
         <source>IP subnet whitelist...</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam dovoljenih IP podmrež...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3052"/>
@@ -6466,7 +6470,7 @@ Tisti vstavki so bili onemogočeni.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="144"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Vaš naslov IP je bil izobčen zaradi prevelikega števila neuspešnih poskusov overitve.</translation>
     </message>
@@ -6602,7 +6606,7 @@ Tisti vstavki so bili onemogočeni.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vdri v libtorrent datoteke za hitro nadaljevanje in ustvari poti datotek ki se nanašajo na profilno mapo</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="548"/>
@@ -6668,7 +6672,7 @@ Tisti vstavki so bili onemogočeni.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="567"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation type="unfinished"></translation>
+        <translation>Vrednosti možnosti so lahko posredovane preko okoljskih spremenljivk. Za možnost imenovano &apos;parameter-name&apos;, je ime okoljske spremenljivke &apos;QBT_PARAMETER_NAME&apos; (veliki znaki, &apos;-&apos; je zamenjan z &apos;_&apos;). Da preideš zastavljene vrednost nastavi spremenljivko na  &apos;1&apos; ali &apos;TRUE&apos;. Na primer, da onemogočiš pozdravno okno:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="572"/>
@@ -6681,28 +6685,28 @@ Tisti vstavki so bili onemogočeni.</translation>
         <translation>Pomoč</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="350"/>
+        <location filename="../app/main.cpp" line="354"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Zaženite program z možnosti -h, če želite prebrati več o parametrih ukazne vrstice.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Bad command line</source>
         <translation>Napačna ukazna vrstica</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="362"/>
         <source>Bad command line: </source>
         <translation>Napačna ukazna vrstica:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="371"/>
+        <location filename="../app/main.cpp" line="375"/>
         <source>Legal Notice</source>
         <translation>Pravno obvestilo</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
-        <location filename="../app/main.cpp" line="382"/>
+        <location filename="../app/main.cpp" line="376"/>
+        <location filename="../app/main.cpp" line="386"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -6711,22 +6715,22 @@ No further notices will be issued.</source>
 Ne bo nadaljnjih obvestil.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="377"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Pritisnite tipko %1 za sprejem in nadaljevanje ...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="383"/>
+        <location filename="../app/main.cpp" line="387"/>
         <source>Legal notice</source>
         <translation>Pravno obvestilo</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="384"/>
+        <location filename="../app/main.cpp" line="388"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="385"/>
+        <location filename="../app/main.cpp" line="389"/>
         <source>I Agree</source>
         <translation>Se strinjam</translation>
     </message>
@@ -6888,7 +6892,7 @@ Ne bo nadaljnjih obvestil.</translation>
         <location filename="../base/rss/rss_autodownloader.cpp" line="78"/>
         <location filename="../base/rss/rss_autodownloader.cpp" line="85"/>
         <source>Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavna oblika podatkov.</translation>
     </message>
 </context>
 <context>
@@ -6901,7 +6905,7 @@ Ne bo nadaljnjih obvestil.</translation>
     <message>
         <location filename="../base/rss/private/rss_parser.cpp" line="264"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (vrstica: %2, stolpec: %3, odmik: %4).</translation>
     </message>
 </context>
 <context>
