@@ -85,42 +85,42 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="428"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>WebUI: Ursprungs-Header &amp; -Ziel stimmen nicht überein!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="429"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Quell-IP: &apos;%1&apos;. Ursprungs-Header: &apos;%2&apos;. Ziel-Ursprung: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="438"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>WebUI: Referenz-Header &amp; -Ziel stimmen nicht überein!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="439"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Quell-IP: &apos;%1&apos;. Referenz-Header: &apos;%2&apos;. Ziel-Ursprung: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="456"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
         <translation>WebUI: Ungültiger Host-Header, Ports stimmen nicht überein.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="457"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>Angefragte Quell-IP: &apos;%1&apos;. Server-Port: &apos;%2&apos;. Empfangener Host-Header: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="488"/>
         <source>WebUI: Invalid Host header.</source>
         <translation>WebUI: Ungültiger Host-Header.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="489"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>Angefragte Quell-IP: &apos;%1&apos;. Empfangener Host-Header: &apos;%2&apos;</translation>
     </message>
@@ -801,22 +801,22 @@ Grund: %2</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="115"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Daten des RSS-AutoDownloader nicht in %1 speichern. Fehler: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Datenformat</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Regeln des RSS-AutoDownloader nicht von %1 lesen. Fehler: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="383"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Regeln des RSS-AutoDownloader nicht laden. Grund: %1</translation>
     </message>
 </context>
 <context>
@@ -986,12 +986,12 @@ Grund: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Regeln</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Regeln (Historie)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
@@ -1053,48 +1053,48 @@ Grund: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="393"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Aktion</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Liste ist leer, es gibt nichts zu exportieren.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
         <source>Export RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-Regeln exportieren</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="440"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O Fehler</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Erstellen der Zieldatei. Grund: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Import RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS-Regeln importieren</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Öffnen der Datei. Grund: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="456"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Import</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Import der ausgewählten Regeldatei fehlgeschlagen. Grund: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="464"/>
@@ -1849,7 +1849,7 @@ Grund: %2</translation>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="402"/>
         <source>%1 extra IP filter parsing errors occurred.</source>
         <comment>513 extra IP filter parsing errors occurred.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 zusätzliche IP-Filter Analysefehler aufgetreten.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="449"/>
@@ -2512,12 +2512,12 @@ Please do not use any special characters in the category name.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="400"/>
         <location filename="../gui/mainwindow.ui" line="434"/>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Show</source>
         <translation>Anzeigen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1826"/>
+        <location filename="../gui/mainwindow.cpp" line="1827"/>
         <source>Check for program updates</source>
         <translation>Auf Programm-Updates prüfen</translation>
     </message>
@@ -2532,7 +2532,7 @@ Please do not use any special characters in the category name.</source>
         <translation>Bitte unterstützen Sie qBittorrent wenn es Ihnen gefällt!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1860"/>
+        <location filename="../gui/mainwindow.cpp" line="1861"/>
         <source>Execution Log</source>
         <translation>Ausführungs-Log</translation>
     </message>
@@ -2740,41 +2740,41 @@ Sollen Torrent-Dateien und Magnet-Links immer mit qBittorent geöffnet werden?</
         <translation>&amp;Immer ja</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1521"/>
+        <location filename="../gui/mainwindow.cpp" line="1522"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1/s</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Old Python Interpreter</source>
         <translation>Veralteter Python-Interpreter</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
         <translation>Die installierte Version von Python (%1) ist veraltet. Für die Funktion der Suchmaschine muss mindestens auf die Version 2.7.9 / 3.3.0 aktualisiert werden.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1810"/>
+        <location filename="../gui/mainwindow.cpp" line="1811"/>
         <source>qBittorrent Update Available</source>
         <translation>Aktualisierung von qBittorrent verfügbar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1811"/>
+        <location filename="../gui/mainwindow.cpp" line="1812"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>Eine neue Version ist verfügbar.
 Auf Version %1 aktualisieren?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1820"/>
+        <location filename="../gui/mainwindow.cpp" line="1821"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>qBittorrent ist auf Letztstand!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Undetermined Python version</source>
         <translation>Unbekannte Version von Python</translation>
     </message>
@@ -2804,68 +2804,68 @@ Ursache: &apos;%2&apos;</translation>
         <translation>Konnte Datei von URL &apos;%1&apos; nicht laden. Grund: &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1727"/>
+        <location filename="../gui/mainwindow.cpp" line="1728"/>
         <source>Python found in %1: %2</source>
         <comment>Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin</comment>
         <translation>Python gefunden in %1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Konnte Python-Version nicht feststellen (%1). Suchmaschine wurde deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1766"/>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Missing Python Interpreter</source>
         <translation>Fehlender Python-Interpreter</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1768"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python wird benötigt um die Suchmaschine benutzen zu können, scheint aber nicht installiert zu sein.
 Soll Python jetzt installiert werden?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python wird benötigt um die Suchmaschine benutzen zu können, scheint aber nicht installiert zu sein.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1821"/>
+        <location filename="../gui/mainwindow.cpp" line="1822"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Es ist keine Aktualisierung verfügbar da
 bereits die neueste Version verwendet wird.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1825"/>
+        <location filename="../gui/mainwindow.cpp" line="1826"/>
         <source>&amp;Check for Updates</source>
         <translation>Auf Aktualisierungen prüfen</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1984"/>
+        <location filename="../gui/mainwindow.cpp" line="1985"/>
         <source>Checking for Updates...</source>
         <translation>Prüfe auf Aktualisierungen ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1985"/>
+        <location filename="../gui/mainwindow.cpp" line="1986"/>
         <source>Already checking for program updates in the background</source>
         <translation>Überprüfung auf Programm-Aktualisierungen läuft bereits im Hintergrund</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2001"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python in &apos;%1&apos; gefunden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Download error</source>
         <translation>Downloadfehler</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python konnte nicht heruntergeladen werden; Grund: %1.
@@ -2894,27 +2894,27 @@ Bitte manuell installieren.</translation>
         <translation>Das Passwort ist ungültig</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1506"/>
-        <location filename="../gui/mainwindow.cpp" line="1513"/>
+        <location filename="../gui/mainwindow.cpp" line="1507"/>
+        <location filename="../gui/mainwindow.cpp" line="1514"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL-Geschw.: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1509"/>
-        <location filename="../gui/mainwindow.cpp" line="1515"/>
+        <location filename="../gui/mainwindow.cpp" line="1510"/>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UL-Geschw.: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1528"/>
+        <location filename="../gui/mainwindow.cpp" line="1529"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Hide</source>
         <translation>Ausblenden</translation>
     </message>
@@ -2924,17 +2924,17 @@ Bitte manuell installieren.</translation>
         <translation>Beende qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1319"/>
+        <location filename="../gui/mainwindow.cpp" line="1320"/>
         <source>Open Torrent Files</source>
         <translation>Öffne Torrent-Dateien</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1320"/>
+        <location filename="../gui/mainwindow.cpp" line="1321"/>
         <source>Torrent Files</source>
         <translation>Torrent-Dateien</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1370"/>
+        <location filename="../gui/mainwindow.cpp" line="1371"/>
         <source>Options were saved successfully.</source>
         <translation>Einstellungen wurden erfolgreich gespeichert.</translation>
     </message>
@@ -6471,7 +6471,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="144"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Die IP-Adresse wurde wegen zu vieler Authentifizierungsversuche gebannt.</translation>
     </message>
@@ -6686,28 +6686,28 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="350"/>
+        <location filename="../app/main.cpp" line="354"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Programm mit -h starten um Info über Kommandozeilen-Parameter zu erhalten.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Bad command line</source>
         <translation>Falsche Kommandozeile</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="362"/>
         <source>Bad command line: </source>
         <translation>Falsche Kommandozeile:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="371"/>
+        <location filename="../app/main.cpp" line="375"/>
         <source>Legal Notice</source>
         <translation>Rechtshinweis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
-        <location filename="../app/main.cpp" line="382"/>
+        <location filename="../app/main.cpp" line="376"/>
+        <location filename="../app/main.cpp" line="386"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -6716,22 +6716,22 @@ No further notices will be issued.</source>
 Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantwortung und es erfolgt auch kein weiterer Hinweis diesbezüglich.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="377"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Zum Bestätigen und Fortfahren bitte %1-Taste drücken ...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="383"/>
+        <location filename="../app/main.cpp" line="387"/>
         <source>Legal notice</source>
         <translation>Rechtshinweis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="384"/>
+        <location filename="../app/main.cpp" line="388"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="385"/>
+        <location filename="../app/main.cpp" line="389"/>
         <source>I Agree</source>
         <translation>Ich stimme zu</translation>
     </message>
@@ -6894,7 +6894,7 @@ Es wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwendet.<
         <location filename="../base/rss/rss_autodownloader.cpp" line="78"/>
         <location filename="../base/rss/rss_autodownloader.cpp" line="85"/>
         <source>Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Datenformat.</translation>
     </message>
 </context>
 <context>
@@ -6907,7 +6907,7 @@ Es wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwendet.<
     <message>
         <location filename="../base/rss/private/rss_parser.cpp" line="264"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Zeile: %2, Spalte: %3, Offset: %4).</translation>
     </message>
 </context>
 <context>

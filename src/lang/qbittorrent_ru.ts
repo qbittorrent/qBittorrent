@@ -85,42 +85,42 @@
 <context>
     <name>AbstractWebApplication</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="420"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="428"/>
         <source>WebUI: Origin header &amp; Target origin mismatch!</source>
         <translation>Веб-интерфейс: Оригинальный и целевой заголовки не совпадают!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="421"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="429"/>
         <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP источника: &apos;%1&apos;. Оригинальный заголовок: &apos;%2&apos;. Целевой источник: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="430"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="438"/>
         <source>WebUI: Referer header &amp; Target origin mismatch!</source>
         <translation>Веб-интерфейс: Заголовок источника и целевой заголовок не совпадают!</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="431"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="439"/>
         <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>IP источника: &apos;%1&apos;. Заголовок источника: &apos;%2&apos;. Целевой источник: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="448"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="456"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
         <translation>Веб-интерфейс: Недопустимый заголовок хоста, несовпадение порта.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="449"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="457"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>Запрос IP источника: &apos;%1&apos;. Порт сервера: &apos;%2&apos;. Полученный заголовок хоста: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="480"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="488"/>
         <source>WebUI: Invalid Host header.</source>
         <translation>Веб-интерфейс: Недопустимый заголовок хоста.</translation>
     </message>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="481"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="489"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>Запрос IP источника: &apos;%1&apos;. Полученный заголовок хоста: &apos;%2&apos;</translation>
     </message>
@@ -801,22 +801,22 @@ Error: %2</source>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="115"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось сохранить данные Автозагрузчика RSS из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверный формат данных</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось прочесть правила Автозагрузчика RSS из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="383"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить данные Автозагрузчика RSS. Причина: %1</translation>
     </message>
 </context>
 <context>
@@ -986,12 +986,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Правила</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Правила (устаревшие)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
@@ -1053,48 +1053,48 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="393"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверное действие</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Список пуст, нечего экспортировать.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
         <source>Export RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортировать правила RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="440"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Ошибка ввода/вывода</translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось создать целевой файл. Причина: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Import RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Импортировать правила RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось открыть файл. Причина: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="456"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка импорта</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось импортировать выбранный файл правил. Причина: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="464"/>
@@ -1849,7 +1849,7 @@ Error: %2</source>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="402"/>
         <source>%1 extra IP filter parsing errors occurred.</source>
         <comment>513 extra IP filter parsing errors occurred.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Произошло %1 дополнительных ошибок разбора IP-фильтра.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="449"/>
@@ -2513,12 +2513,12 @@ Please do not use any special characters in the category name.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="400"/>
         <location filename="../gui/mainwindow.ui" line="434"/>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Show</source>
         <translation>Показать</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1826"/>
+        <location filename="../gui/mainwindow.cpp" line="1827"/>
         <source>Check for program updates</source>
         <translation>Проверить наличие обновлений</translation>
     </message>
@@ -2533,7 +2533,7 @@ Please do not use any special characters in the category name.</source>
         <translation>Если вам нравится qBittorrent, пожалуйста, поддержите!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1860"/>
+        <location filename="../gui/mainwindow.cpp" line="1861"/>
         <source>Execution Log</source>
         <translation>Журнал активности</translation>
     </message>
@@ -2741,41 +2741,41 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>&amp;Всегда да</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1521"/>
+        <location filename="../gui/mainwindow.cpp" line="1522"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1/с</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Old Python Interpreter</source>
         <translation>Старый интерпретатор Python</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1745"/>
+        <location filename="../gui/mainwindow.cpp" line="1746"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
         <translation>Ваша версия Python %1 устарела. Пожалуйста, обновитесь до последней версии для использования поисковых плагинов. Требуются как минимум 2.7.9 или 3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1810"/>
+        <location filename="../gui/mainwindow.cpp" line="1811"/>
         <source>qBittorrent Update Available</source>
         <translation>Обновление qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1811"/>
+        <location filename="../gui/mainwindow.cpp" line="1812"/>
         <source>A new version is available.
 Do you want to download %1?</source>
         <translation>Доступна новая версия.
 Хотите скачать %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1820"/>
+        <location filename="../gui/mainwindow.cpp" line="1821"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Используется последняя версия qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Undetermined Python version</source>
         <translation>Версия Python не определена</translation>
     </message>
@@ -2805,68 +2805,68 @@ Do you want to download %1?</source>
         <translation>Не удалось загрузить файл по ссылке: &apos;%1&apos;, причина: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1727"/>
+        <location filename="../gui/mainwindow.cpp" line="1728"/>
         <source>Python found in %1: %2</source>
         <comment>Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin</comment>
         <translation>Python найден в %1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1755"/>
+        <location filename="../gui/mainwindow.cpp" line="1756"/>
         <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
         <translation>Не удалось определить вашу версию Python (%1). Поисковик выключен.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1766"/>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Missing Python Interpreter</source>
         <translation>Отсутствует интерпретатор Python</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1767"/>
+        <location filename="../gui/mainwindow.cpp" line="1768"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Для использования поисковика требуется Python, но, видимо, он не установлен.
 Хотите установить его сейчас?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1778"/>
+        <location filename="../gui/mainwindow.cpp" line="1779"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Для использования поисковика требуется Python, но он, видимо, не установлен.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1821"/>
+        <location filename="../gui/mainwindow.cpp" line="1822"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Обновлений нет.
 Вы используете последнюю версию программы.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1825"/>
+        <location filename="../gui/mainwindow.cpp" line="1826"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Проверить обновления</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1984"/>
+        <location filename="../gui/mainwindow.cpp" line="1985"/>
         <source>Checking for Updates...</source>
         <translation>Проверка обновлений…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1985"/>
+        <location filename="../gui/mainwindow.cpp" line="1986"/>
         <source>Already checking for program updates in the background</source>
         <translation>Проверка обновлений уже выполняется</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2001"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
         <source>Python found in &apos;%1&apos;</source>
         <translation>Python найден в &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Download error</source>
         <translation>Ошибка при загрузке</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2070"/>
+        <location filename="../gui/mainwindow.cpp" line="2071"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Установщик Python не может быть загружен по причине: %1.
@@ -2895,27 +2895,27 @@ Please install it manually.</source>
         <translation>Неверный пароль</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1506"/>
-        <location filename="../gui/mainwindow.cpp" line="1513"/>
+        <location filename="../gui/mainwindow.cpp" line="1507"/>
+        <location filename="../gui/mainwindow.cpp" line="1514"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Загрузка: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1509"/>
-        <location filename="../gui/mainwindow.cpp" line="1515"/>
+        <location filename="../gui/mainwindow.cpp" line="1510"/>
+        <location filename="../gui/mainwindow.cpp" line="1516"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Отдача: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1528"/>
+        <location filename="../gui/mainwindow.cpp" line="1529"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[З: %1, О: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1622"/>
+        <location filename="../gui/mainwindow.cpp" line="1623"/>
         <source>Hide</source>
         <translation>Скрыть</translation>
     </message>
@@ -2925,17 +2925,17 @@ Please install it manually.</source>
         <translation>Завершение работы qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1319"/>
+        <location filename="../gui/mainwindow.cpp" line="1320"/>
         <source>Open Torrent Files</source>
         <translation>Открыть торрент-файлы</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1320"/>
+        <location filename="../gui/mainwindow.cpp" line="1321"/>
         <source>Torrent Files</source>
         <translation>Торрент-файлы</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1370"/>
+        <location filename="../gui/mainwindow.cpp" line="1371"/>
         <source>Options were saved successfully.</source>
         <translation>Настройки были успешно сохранены.</translation>
     </message>
@@ -5163,7 +5163,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="2142"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Включить DHT (децентрализованную сеть), чтобы найти больше пиров</translation>
+        <translation>Включить DHT (децентрализованную сеть) для поиска пиров</translation>
     </message>
     <message utf8="true">
         <location filename="../gui/optionsdlg.ui" line="2152"/>
@@ -5173,7 +5173,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Включить обмен пирами (PeX), чтобы найти больше пиров</translation>
+        <translation>Включить обмен пирами (PeX)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2165"/>
@@ -5183,7 +5183,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="2168"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Включить обнаружение локальных пиров, чтобы найти больше пиров</translation>
+        <translation>Включить обнаружение локальных пиров</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2180"/>
@@ -5383,12 +5383,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1451"/>
         <source>Select folder to monitor</source>
-        <translation>Выберите папку для мониторинга</translation>
+        <translation>Выберите папку для наблюдения</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1458"/>
         <source>Folder is already being monitored:</source>
-        <translation>Папка уже мониторится:</translation>
+        <translation>Папка уже наблюдается:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1461"/>
@@ -6470,7 +6470,7 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../webui/abstractwebapplication.cpp" line="136"/>
+        <location filename="../webui/abstractwebapplication.cpp" line="144"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ваш IP-адрес был заблокирован после слишком большого количества неудачных попыток аутентификации.</translation>
     </message>
@@ -6685,28 +6685,28 @@ Those plugins were disabled.</source>
         <translation>Справка</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="350"/>
+        <location filename="../app/main.cpp" line="354"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Запустите программу с параметром -h, чтобы получить справку по параметрам командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Bad command line</source>
         <translation>Недопустимая командная строка</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="362"/>
         <source>Bad command line: </source>
         <translation>Недопустимая командная строка:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="371"/>
+        <location filename="../app/main.cpp" line="375"/>
         <source>Legal Notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
-        <location filename="../app/main.cpp" line="382"/>
+        <location filename="../app/main.cpp" line="376"/>
+        <location filename="../app/main.cpp" line="386"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -6715,22 +6715,22 @@ No further notices will be issued.</source>
 Никаких дальнейших уведомлений выводиться не будет.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="377"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Нажмите %1, чтобы принять и продолжить…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="383"/>
+        <location filename="../app/main.cpp" line="387"/>
         <source>Legal notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="384"/>
+        <location filename="../app/main.cpp" line="388"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="385"/>
+        <location filename="../app/main.cpp" line="389"/>
         <source>I Agree</source>
         <translation>Я согласен</translation>
     </message>
@@ -6892,7 +6892,7 @@ No further notices will be issued.</source>
         <location filename="../base/rss/rss_autodownloader.cpp" line="78"/>
         <location filename="../base/rss/rss_autodownloader.cpp" line="85"/>
         <source>Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверный формат данных.</translation>
     </message>
 </context>
 <context>
@@ -6905,7 +6905,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/private/rss_parser.cpp" line="264"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (линия: %2,  колонка: %3, смещение: %4).</translation>
     </message>
 </context>
 <context>
@@ -7118,7 +7118,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="151"/>
         <source>Monitored Folder</source>
-        <translation>Папка для мониторинга</translation>
+        <translation>Папка для наблюдения</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="154"/>
@@ -7128,7 +7128,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="395"/>
         <source>Monitored folder</source>
-        <translation>Папка для мониторинга</translation>
+        <translation>Папка для наблюдения</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="397"/>
