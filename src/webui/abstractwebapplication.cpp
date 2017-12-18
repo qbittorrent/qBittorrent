@@ -90,7 +90,9 @@ namespace
 {
     inline QUrl urlFromHostHeader(const QString &hostHeader)
     {
-        return QUrl(QLatin1String("http://") + hostHeader);
+        if (!hostHeader.contains(QLatin1String("://")))
+            return QUrl(QLatin1String("http://") + hostHeader);
+        return hostHeader;
     }
 }
 
