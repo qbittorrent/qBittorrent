@@ -55,6 +55,7 @@ public:
         DHT_DOWN,
         TRACKER_UP,
         TRACKER_DOWN,
+
         NB_GRAPHS
     };
 
@@ -82,7 +83,7 @@ public:
     void replot();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
 private:
     enum PeriodInSeconds
@@ -110,6 +111,9 @@ private:
         bool enable;
     };
 
+    int maxYValue();
+    boost::circular_buffer<PointData> &getCurrentData();
+
     boost::circular_buffer<PointData> m_data5Min;
     boost::circular_buffer<PointData> m_data30Min;
     boost::circular_buffer<PointData> m_data6Hour;
@@ -120,10 +124,6 @@ private:
 
     int m_counter30Min;
     int m_counter6Hour;
-
-    int maxYValue();
-
-    boost::circular_buffer<PointData> &getCurrentData();
 };
 
 #endif // SPEEDPLOTVIEW_H

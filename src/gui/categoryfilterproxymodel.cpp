@@ -50,8 +50,12 @@ bool CategoryFilterProxyModel::lessThan(const QModelIndex &left, const QModelInd
 {
     // "All" and "Uncategorized" must be left in place
     if (CategoryFilterModel::isSpecialItem(left) || CategoryFilterModel::isSpecialItem(right))
-        return left.row() < right.row();
-    else
-        return Utils::String::naturalCompareCaseInsensitive(
-                left.data().toString(), right.data().toString());
+        return (left < right);
+
+    int result = Utils::String::naturalCompare(left.data().toString(), right.data().toString()
+        , Qt::CaseInsensitive);
+    if (result != 0)
+        return (result < 0);
+
+    return (left < right);
 }

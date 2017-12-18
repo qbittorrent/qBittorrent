@@ -232,8 +232,8 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         addPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
         emptyMenu = false;
     }
-    QAction *banAct = 0;
-    QAction *copyPeerAct = 0;
+    QAction *banAct = nullptr;
+    QAction *copyPeerAct = nullptr;
     if (!selectionModel()->selectedRows().isEmpty()) {
         copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
         menu.addSeparator();
@@ -242,7 +242,8 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     }
     if (emptyMenu) return;
     QAction *act = menu.exec(QCursor::pos());
-    if (act == 0) return;
+    if (!act) return;
+
     if (act == addPeerAct) {
         QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers(this);
         int peerCount = 0;
@@ -250,7 +251,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
             if (torrent->connectPeer(addr)) {
                 qDebug("Adding peer %s...", qUtf8Printable(addr.ip.toString()));
                 Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
-                peerCount++;
+                ++peerCount;
             }
             else {
                 Logger::instance()->addMessage(tr("The peer '%1' could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
@@ -278,8 +279,7 @@ void PeerListWidget::banSelectedPeers()
     int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to ban permanently the selected peers?"),
                                     tr("&Yes"), tr("&No"),
                                     QString(), 0, 1);
-    if (ret)
-        return;
+    if (ret) return;
 
     QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     foreach (const QModelIndex &index, selectedIndexes) {

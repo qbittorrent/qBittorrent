@@ -280,7 +280,9 @@ window.addEvent('load', function () {
             noCache : true,
             method : 'get',
             onFailure : function () {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                var errorDiv = $('error_div');
+                if (errorDiv)
+                    errorDiv.set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(syncMainDataTimer);
                 syncMainDataTimer = syncMainData.delay(2000);
             },

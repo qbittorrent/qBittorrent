@@ -304,7 +304,7 @@ Session::Session(QObject *parent)
     , m_btProtocol(BITTORRENT_SESSION_KEY("BTProtocol"), BTProtocol::Both
         , clampValue(BTProtocol::Both, BTProtocol::UTP))
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
-    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::Proportional
+    , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::TCP
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
@@ -1419,8 +1419,11 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 void Session::configurePeerClasses()
 {
     libt::ip_filter f;
-    f.add_rule(libt::address_v4::from_string("0.0.0.0")
-               , libt::address_v4::from_string("255.255.255.255")
+    // address_v4::from_string("255.255.255.255") crashes on some people's systems
+    // so instead we use address_v4::broadcast()
+    // Proactively do the same for 0.0.0.0 and address_v4::any()
+    f.add_rule(libt::address_v4::any()
+               , libt::address_v4::broadcast()
                , 1 << libt::session::global_peer_class_id);
 #if TORRENT_USE_IPV6
     // IPv6 may not be available on OS and the parsing

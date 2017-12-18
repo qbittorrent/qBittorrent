@@ -114,7 +114,7 @@ AC_DEFUN([_AX_BOOST_BASE_RUNDETECT],[
     AS_CASE([${host_cpu}],
       [x86_64],[libsubdirs="lib64 libx32 lib lib64"],
       [ppc64|s390x|sparc64|aarch64|ppc64le],[libsubdirs="lib64 lib lib64"],
-      [libsubdirs="lib"],
+      [libsubdirs="lib"]
     )
 
     dnl allow for real multi-arch paths e.g. /usr/lib/x86_64-linux-gnu. Give

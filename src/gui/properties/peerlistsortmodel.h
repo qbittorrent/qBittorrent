@@ -50,13 +50,21 @@ protected:
         switch (sortColumn()) {
         case PeerListDelegate::IP:
         case PeerListDelegate::CLIENT: {
-                QString vL = left.data().toString();
-                QString vR = right.data().toString();
-                return Utils::String::naturalCompareCaseInsensitive(vL, vR);
-            }
-        };
+                const QString strL = left.data().toString();
+                const QString strR = right.data().toString();
+                const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
+                if (result != 0)
+                    return (result < 0);
 
-        return QSortFilterProxyModel::lessThan(left, right);
+                return (left < right);
+            }
+            break;
+        default:
+            if (left.data() != right.data())
+                return QSortFilterProxyModel::lessThan(left, right);
+
+            return (left < right);
+        };
     }
 };
 

@@ -63,9 +63,27 @@ namespace
     QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
     {
         switch (static_cast<int>(triStateBool)) {
-        case 0:  return false; break;
-        case 1:  return true; break;
+        case 0:  return false;
+        case 1:  return true;
         default: return QJsonValue();
+        }
+    }
+
+    TriStateBool addPausedLegacyToTriStateBool(int val)
+    {
+        switch (val) {
+        case 1:  return TriStateBool::True; // always
+        case 2:  return TriStateBool::False; // never
+        default: return TriStateBool::Undefined; // default
+        }
+    }
+
+    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    {
+        switch (static_cast<int>(triStateBool)) {
+        case 0:  return 2; // never
+        case 1:  return 1; // always
+        default: return 0; // default
         }
     }
 }
@@ -378,21 +396,37 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     return rule;
 }
 
-AutoDownloadRule AutoDownloadRule::fromVariantHash(const QVariantHash &varHash)
+QVariantHash AutoDownloadRule::toLegacyDict() const
 {
-    AutoDownloadRule rule(varHash.value("name").toString());
+    return {{"name", name()},
+        {"must_contain", mustContain()},
+        {"must_not_contain", mustNotContain()},
+        {"save_path", savePath()},
+        {"affected_feeds", feedURLs()},
+        {"enabled", isEnabled()},
+        {"category_assigned", assignedCategory()},
+        {"use_regex", useRegex()},
+        {"add_paused", triStateBoolToAddPausedLegacy(addPaused())},
+        {"episode_filter", episodeFilter()},
+        {"last_match", lastMatch()},
+        {"ignore_days", ignoreDays()}};
+}
 
-    rule.setUseRegex(varHash.value("use_regex", false).toBool());
-    rule.setMustContain(varHash.value("must_contain").toString());
-    rule.setMustNotContain(varHash.value("must_not_contain").toString());
-    rule.setEpisodeFilter(varHash.value("episode_filter").toString());
-    rule.setFeedURLs(varHash.value("affected_feeds").toStringList());
-    rule.setEnabled(varHash.value("enabled", false).toBool());
-    rule.setSavePath(varHash.value("save_path").toString());
-    rule.setCategory(varHash.value("category_assigned").toString());
-    rule.setAddPaused(TriStateBool(varHash.value("add_paused").toInt() - 1));
-    rule.setLastMatch(varHash.value("last_match").toDateTime());
-    rule.setIgnoreDays(varHash.value("ignore_days").toInt());
+AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
+{
+    AutoDownloadRule rule(dict.value("name").toString());
+
+    rule.setUseRegex(dict.value("use_regex", false).toBool());
+    rule.setMustContain(dict.value("must_contain").toString());
+    rule.setMustNotContain(dict.value("must_not_contain").toString());
+    rule.setEpisodeFilter(dict.value("episode_filter").toString());
+    rule.setFeedURLs(dict.value("affected_feeds").toStringList());
+    rule.setEnabled(dict.value("enabled", false).toBool());
+    rule.setSavePath(dict.value("save_path").toString());
+    rule.setCategory(dict.value("category_assigned").toString());
+    rule.setAddPaused(addPausedLegacyToTriStateBool(dict.value("add_paused").toInt()));
+    rule.setLastMatch(dict.value("last_match").toDateTime());
+    rule.setIgnoreDays(dict.value("ignore_days").toInt());
 
     return rule;
 }

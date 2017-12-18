@@ -87,6 +87,14 @@ struct WebSession
     }
 };
 
+namespace
+{
+    inline QUrl urlFromHostHeader(const QString &hostHeader)
+    {
+        return QUrl(QLatin1String("http://") + hostHeader);
+    }
+}
+
 // AbstractWebApplication
 
 AbstractWebApplication::AbstractWebApplication(QObject *parent)
@@ -443,7 +451,7 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
 
     // sent with CORS requests, as well as with POST requests
     if (!originValue.isEmpty()) {
-        const bool isInvalid = !isSameOrigin(QUrl::fromUserInput(targetOrigin), originValue);
+        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
         if (isInvalid)
             Logger::instance()->addMessage(tr("WebUI: Origin header & Target origin mismatch!") + "\n"
                 + tr("Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
@@ -453,7 +461,7 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
     }
 
     if (!refererValue.isEmpty()) {
-        const bool isInvalid = !isSameOrigin(QUrl::fromUserInput(targetOrigin), refererValue);
+        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
         if (isInvalid)
             Logger::instance()->addMessage(tr("WebUI: Referer header & Target origin mismatch!") + "\n"
                 + tr("Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
@@ -467,7 +475,7 @@ bool AbstractWebApplication::isCrossSiteRequest(const Http::Request &request) co
 
 bool AbstractWebApplication::validateHostHeader(const QStringList &domains) const
 {
-    const QUrl hostHeader = QUrl::fromUserInput(request().headers[Http::HEADER_HOST]);
+    const QUrl hostHeader = urlFromHostHeader(request().headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
 
     // (if present) try matching host header's port with local port
@@ -518,7 +526,8 @@ const QStringMap AbstractWebApplication::CONTENT_TYPE_BY_EXT = {
     { "css", Http::CONTENT_TYPE_CSS },
     { "gif", Http::CONTENT_TYPE_GIF },
     { "png", Http::CONTENT_TYPE_PNG },
-    { "js", Http::CONTENT_TYPE_JS }
+    { "js", Http::CONTENT_TYPE_JS },
+    { "svg", Http::CONTENT_TYPE_SVG }
 };
 
 QStringMap AbstractWebApplication::parseCookie(const Http::Request &request) const

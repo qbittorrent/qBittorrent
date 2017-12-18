@@ -110,13 +110,20 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
     switch (sortColumn()) {
     case NAME:
     case ENGINE_URL: {
-        QString vL = left.data().toString();
-        QString vR = right.data().toString();
-        return Utils::String::naturalCompareCaseInsensitive(vL, vR);
-    }
+            const QString strL = left.data().toString();
+            const QString strR = right.data().toString();
+            const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
+            if (result != 0)
+                return (result < 0);
 
+            return (left < right);
+        }
+        break;
     default:
-        return base::lessThan(left, right);
+        if (left.data() != right.data())
+            return base::lessThan(left, right);
+
+        return (left < right);
     };
 }
 
