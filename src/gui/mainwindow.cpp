@@ -1568,7 +1568,7 @@ void MainWindow::updateGUI()
 #endif // Q_OS_MAC
 
     if (m_displaySpeedInTitle) {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3 (Enhanced Edition)", "D = Download; U = Upload; %3 is qBittorrent version")
                        .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
                        .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
                        .arg(QBT_VERSION));
