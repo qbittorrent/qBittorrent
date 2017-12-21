@@ -85,7 +85,10 @@ namespace
 
                 const QChar leftChar = (m_caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toLower();
                 const QChar rightChar = (m_caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toLower();
-                if (leftChar == rightChar) {
+                // Compare only non-digits.
+                // Numbers should be compared as a whole
+                // otherwise the string->int conversion can yield a wrong value
+                if ((leftChar == rightChar) && !leftChar.isDigit()) {
                     // compare next character
                     ++posL;
                     ++posR;
