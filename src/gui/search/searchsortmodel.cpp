@@ -113,17 +113,11 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
             const QString strL = left.data().toString();
             const QString strR = right.data().toString();
             const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
-            if (result != 0)
-                return (result < 0);
-
-            return (left < right);
-        }
+            return (result < 0);
+    }
         break;
     default:
-        if (left.data() != right.data())
-            return base::lessThan(left, right);
-
-        return (left < right);
+        return base::lessThan(left, right);
     };
 }
 
