@@ -1298,7 +1298,7 @@ static bool dockClickHandler(id self, SEL cmd, ...)
 void MainWindow::setupDockClickHandler()
 {
     dockMainWindowHandle = this;
-    overrideDockClickHandler(dockClickHandler);
+    MacUtils::overrideDockClickHandler(dockClickHandler);
 }
 
 #endif
@@ -1557,7 +1557,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     if (!reply.isError())
         return;
 #elif defined(Q_OS_MAC)
-    displayNotification(title, msg);
+    MacUtils::displayNotification(title, msg);
 #else
     if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
         m_systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);

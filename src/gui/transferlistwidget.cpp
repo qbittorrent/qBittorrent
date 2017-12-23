@@ -62,6 +62,10 @@
 #include "transferlistsortmodel.h"
 #include "updownratiodlg.h"
 
+#ifdef Q_OS_MAC
+#include "macutilities.h"
+#endif
+
 namespace
 {
     using ToggleFn = std::function<void (Qt::CheckState)>;
@@ -358,10 +362,14 @@ void TransferListWidget::torrentDoubleClicked()
             torrent->pause();
         break;
     case OPEN_DEST:
+#ifdef Q_OS_MAC
+        MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
+#else
         if (torrent->filesCount() == 1)
             Utils::Misc::openFolderSelect(torrent->contentPath(true));
         else
             Utils::Misc::openPath(torrent->contentPath(true));
+#endif
         break;
     }
 }
@@ -548,6 +556,15 @@ void TransferListWidget::hidePriorityColumn(bool hide)
 void TransferListWidget::openSelectedTorrentsFolder() const
 {
     QSet<QString> pathsList;
+#ifdef Q_OS_MAC
+    // On macOS you expect both the files and folders to be opened in their parent
+    // folders prehilighted for opening, so we use a custom method.
+    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
+        QString path = torrent->contentPath(true);
+        pathsList.insert(path);
+    }
+    MacUtils::openFiles(pathsList);
+#else
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
         QString path = torrent->contentPath(true);
         if (!pathsList.contains(path)) {
@@ -558,6 +575,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         }
         pathsList.insert(path);
     }
+#endif
 }
 
 void TransferListWidget::previewSelectedTorrents()
