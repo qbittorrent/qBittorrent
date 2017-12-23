@@ -755,6 +755,7 @@ void AutomatedRssDownloader::handleRuleChanged(const QString &ruleName)
 
 void AutomatedRssDownloader::handleRuleAboutToBeRemoved(const QString &ruleName)
 {
+    m_currentRuleItem = nullptr;
     delete m_itemsByRuleName.take(ruleName);
 }
 
