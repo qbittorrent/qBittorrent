@@ -95,10 +95,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             return lowerPositionThan(left, right);
 
         const int result = Utils::String::naturalCompare(vL.toString(), vR.toString(), Qt::CaseInsensitive);
-        if (result != 0)
-            return (result < 0);
-
-        return (left < right);
+        return (result < 0);
     }
 
     case TorrentModel::TR_ADD_DATE:
