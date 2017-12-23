@@ -154,7 +154,9 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
     switch (m_mode) {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
-        pixmap = QStyle::SP_DialogOpenButton;
+#ifdef Q_OS_WIN
+        pixmap = QStyle::SP_DirOpenIcon;
+#endif
         showDirsOnly = false;
         break;
     case FileSystemPathEdit::Mode::DirectoryOpen:
