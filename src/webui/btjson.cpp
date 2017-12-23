@@ -182,6 +182,7 @@ static const char KEY_FILE_PROGRESS[] = "progress";
 static const char KEY_FILE_PRIORITY[] = "priority";
 static const char KEY_FILE_IS_SEED[] = "is_seed";
 static const char KEY_FILE_PIECE_RANGE[] = "piece_range";
+static const char KEY_FILE_AVAILABILITY[] = "availability";
 
 // TransferInfo keys
 static const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
@@ -954,12 +955,14 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
 
     const QVector<int> priorities = torrent->filePriorities();
     const QVector<qreal> fp = torrent->filesProgress();
+    const QVector<qreal> fileAvailability = torrent->availableFileFractions();
     const BitTorrent::TorrentInfo info = torrent->info();
     for (int i = 0; i < torrent->filesCount(); ++i) {
         QVariantMap fileDict;
         fileDict[KEY_FILE_PROGRESS] = fp[i];
         fileDict[KEY_FILE_PRIORITY] = priorities[i];
         fileDict[KEY_FILE_SIZE] = torrent->fileSize(i);
+        fileDict[KEY_FILE_AVAILABILITY] = fileAvailability[i];
 
         QString fileName = torrent->filePath(i);
         if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))

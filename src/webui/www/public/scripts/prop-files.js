@@ -317,6 +317,9 @@ var loadTorrentFilesData = function() {
                     if (row[3] == 100.0 && file.progress < 1.0)
                         row[3] = 99.9;
                     row[4] = file.priority;
+                    row[5] = friendlyUnit(file.size * (1.0 - file.progress));
+                    row[6] = friendlyPercentage(file.availability);
+
                     fTable.insertRow(i, row);
                     i++;
                 }.bind(this));

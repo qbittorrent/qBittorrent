@@ -30,9 +30,12 @@ function friendlyUnit(value, isSpeed) {
     var ret;
     if (i === 0)
         ret = value + " " + units[i];
-    else
-        ret = (Math.floor(10 * value) / 10).toFixed(friendlyUnitPrecision(i)) //Don't round up
-            + " " + units[i];
+    else {
+        var precision = friendlyUnitPrecision(i);
+        var offset = Math.pow(10, precision);
+        // Don't round up
+        ret = (Math.floor(offset * value) / offset).toFixed(precision) + " " + units[i];
+    }
 
     if (isSpeed)
         ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
@@ -62,6 +65,15 @@ function friendlyDuration(seconds) {
     if (days < 100)
         return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours));
     return "∞";
+}
+
+function friendlyPercentage(value) {
+    var percentage = (value * 100).round(1);
+    if (isNaN(percentage) || (percentage < 0))
+        percentage = 0;
+    if (percentage > 100)
+        percentage = 100;
+    return percentage.toFixed(1) + "%";
 }
 
 /*
