@@ -94,6 +94,7 @@ static const char KEY_TORRENT_STATE[] = "state";
 static const char KEY_TORRENT_SEQUENTIAL_DOWNLOAD[] = "seq_dl";
 static const char KEY_TORRENT_FIRST_LAST_PIECE_PRIO[] = "f_l_piece_prio";
 static const char KEY_TORRENT_CATEGORY[] = "category";
+static const char KEY_TORRENT_TAGS[] = "tags";
 static const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 static const char KEY_TORRENT_FORCE_START[] = "force_start";
 static const char KEY_TORRENT_SAVE_PATH[] = "save_path";
@@ -113,6 +114,7 @@ static const char KEY_TORRENT_LAST_SEEN_COMPLETE_TIME[] = "seen_complete";
 static const char KEY_TORRENT_LAST_ACTIVITY_TIME[] = "last_activity";
 static const char KEY_TORRENT_TOTAL_SIZE[] = "total_size";
 static const char KEY_TORRENT_AUTO_TORRENT_MANAGEMENT[] = "auto_tmm";
+static const char KEY_TORRENT_TIME_ACTIVE[] = "time_active";
 
 // Peer keys
 static const char KEY_PEER_IP[] = "ip";
@@ -371,6 +373,7 @@ namespace
         if (torrent->hasMetadata())
             ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent->hasFirstLastPiecePriority();
         ret[KEY_TORRENT_CATEGORY] = torrent->category();
+        ret[KEY_TORRENT_TAGS] = torrent->tags().toList().join(", ");
         ret[KEY_TORRENT_SUPER_SEEDING] = torrent->superSeeding();
         ret[KEY_TORRENT_FORCE_START] = torrent->isForced();
         ret[KEY_TORRENT_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
@@ -388,6 +391,7 @@ namespace
         ret[KEY_TORRENT_RATIO_LIMIT] = torrent->maxRatio();
         ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent->lastSeenComplete().toTime_t();
         ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent->isAutoTMMEnabled();
+        ret[KEY_TORRENT_TIME_ACTIVE] = torrent->activeTime();
 
         if (torrent->isPaused() || torrent->isChecking())
             ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;

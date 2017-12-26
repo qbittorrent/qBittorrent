@@ -733,6 +733,7 @@ var TorrentsTable = new Class({
             this.newColumn('state_icon', 'cursor: default', '', 22, true);
             this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TorrentModel]', 200, true);
             this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR[CONTEXT=TorrentModel]', 85, true);
             this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TorrentModel]', 100, true);
@@ -742,6 +743,7 @@ var TorrentsTable = new Class({
             this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('category', '', 'QBT_TR(Category)QBT_TR[CONTEXT=TorrentModel]', 100, true);
+            this.newColumn('tags', '', 'QBT_TR(Tags)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR[CONTEXT=TorrentModel]', 100, true);
             this.newColumn('completion_on', '', 'QBT_TR(Completed On)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('tracker', '', 'QBT_TR(Tracker)QBT_TR[CONTEXT=TorrentModel]', 100, false);
@@ -752,12 +754,12 @@ var TorrentsTable = new Class({
             this.newColumn('downloaded_session', '', 'QBT_TR(Session Download)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('uploaded_session', '', 'QBT_TR(Session Upload)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('amount_left', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+            this.newColumn('time_active', '', 'QBT_TR(Time Active)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('save_path', '', 'QBT_TR(Save path)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('completed', '', 'QBT_TR(Completed)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('ratio_limit', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TorrentModel]', 100, false);
             this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TorrentModel]', 100, false);
-            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TorrentModel]', 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -961,6 +963,9 @@ var TorrentsTable = new Class({
                 td.set('html', html);
             };
 
+            // tags
+            this.columns['tags'].updateTd = this.columns['name'].updateTd;
+
             // added on
             this.columns['added_on'].updateTd = function (td, row) {
                 var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
@@ -1016,6 +1021,12 @@ var TorrentsTable = new Class({
                     td.set('html', '∞');
                 else
                     td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val, true)));
+            };
+
+            // time active
+            this.columns['time_active'].updateTd = function (td, row) {
+                var time = this.getRowValue(row);
+                td.set('html', friendlyDuration(time));
             };
         },
 
