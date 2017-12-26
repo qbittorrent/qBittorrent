@@ -35,7 +35,7 @@ You can also download it from [here](https://github.com/qbittorrent/qBittorrent/
 
 ### Misc:
 For more information please visit:
-http://www.qbittorrent.org
+https://www.qbittorrent.org
 
 or our wiki here:
 http://wiki.qbittorrent.org
