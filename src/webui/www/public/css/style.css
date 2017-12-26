@@ -479,3 +479,8 @@ td.statusBarSeparator {
     background-position: center 1px;
     background-size: 2px 18px;
 }
+
+/* Statistics */
+.statisticsValue {
+    text-align: right;
+}
