@@ -583,7 +583,7 @@ PACKAGE_TARNAME='qbittorrent'
 PACKAGE_VERSION='v3.2.0alpha'
 PACKAGE_STRING='qbittorrent v3.2.0alpha'
 PACKAGE_BUGREPORT='bugs.qbittorrent.org'
-PACKAGE_URL='http://www.qbittorrent.org/'
+PACKAGE_URL='https://www.qbittorrent.org/'
 
 ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
@@ -1426,7 +1426,7 @@ Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <bugs.qbittorrent.org>.
-qbittorrent home page: <http://www.qbittorrent.org/>.
+qbittorrent home page: <https://www.qbittorrent.org/>.
 _ACEOF
 ac_status=$?
 fi
@@ -6139,7 +6139,7 @@ Configuration commands:
 $config_commands
 
 Report bugs to <bugs.qbittorrent.org>.
-qbittorrent home page: <http://www.qbittorrent.org/>."
+qbittorrent home page: <https://www.qbittorrent.org/>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
@@ -7454,7 +7454,7 @@ Configuration commands:
 $config_commands
 
 Report bugs to <bugs.qbittorrent.org>.
-qbittorrent home page: <http://www.qbittorrent.org/>."
+qbittorrent home page: <https://www.qbittorrent.org/>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1

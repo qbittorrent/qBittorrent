@@ -988,7 +988,7 @@ void MainWindow::on_actionCloseWindow_triggered()
 {
     // On macOS window close is basically equivalent to window hide.
     // If you decide to implement this functionality for other OS,
-    // then you will also need ui lock checks like in actionExit. 
+    // then you will also need ui lock checks like in actionExit.
     close();
 }
 #endif
@@ -1854,7 +1854,7 @@ void MainWindow::toggleAlternativeSpeeds()
 
 void MainWindow::on_actionDonateMoney_triggered()
 {
-    QDesktopServices::openUrl(QUrl("http://www.qbittorrent.org/donate"));
+    QDesktopServices::openUrl(QUrl("https://www.qbittorrent.org/donate"));
 }
 
 void MainWindow::showConnectionSettings()

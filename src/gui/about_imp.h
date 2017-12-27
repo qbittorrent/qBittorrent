@@ -59,7 +59,7 @@ public:
             "%1\n\n"
             "%2\n\n"
             "<table>"
-            "<tr><td>%3</td><td><a href=\"http://www.qbittorrent.org\">http://www.qbittorrent.org</a></td></tr>"
+            "<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
             "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
             "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
             "</table>"
