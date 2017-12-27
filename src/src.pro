@@ -62,8 +62,8 @@ INCLUDEPATH += $$PWD
 
 include(app/app.pri)
 include(base/base.pri)
-!nowebui: include(webui/webui.pri)
 !nogui: include(gui/gui.pri)
+!nowebui: include(webui/webui.pri)
 
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5

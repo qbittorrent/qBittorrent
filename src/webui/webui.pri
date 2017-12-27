@@ -1,18 +1,18 @@
 HEADERS += \
-    $$PWD/webui.h \
+    $$PWD/abstractwebapplication.h \
     $$PWD/btjson.h \
-    $$PWD/prefjson.h \
-    $$PWD/jsonutils.h \
     $$PWD/extra_translations.h \
+    $$PWD/jsonutils.h \
+    $$PWD/prefjson.h \
     $$PWD/webapplication.h \
     $$PWD/websessiondata.h \
-    $$PWD/abstractwebapplication.h
+    $$PWD/webui.h
 
 SOURCES += \
-    $$PWD/webui.cpp \
+    $$PWD/abstractwebapplication.cpp \
     $$PWD/btjson.cpp \
     $$PWD/prefjson.cpp \
     $$PWD/webapplication.cpp \
-    $$PWD/abstractwebapplication.cpp
+    $$PWD/webui.cpp
 
 RESOURCES += $$PWD/webui.qrc
