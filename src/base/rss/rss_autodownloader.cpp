@@ -424,6 +424,8 @@ bool AutoDownloader::isProcessingEnabled() const
 void AutoDownloader::resetProcessingQueue()
 {
     m_processingQueue.clear();
+    if (!m_processingEnabled) return;
+
     foreach (Article *article, Session::instance()->rootFolder()->articles()) {
         if (!article->isRead() && !article->torrentUrl().isEmpty())
             addJobForArticle(article);
