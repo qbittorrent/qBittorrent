@@ -161,11 +161,20 @@ window.addEvent('load', function () {
         $('mochaToolbar').addClass('invisible');
     }
 
+    // Show Status Bar is enabled by default
+    var showStatusBar = true;
+    if (localStorage.getItem('show_status_bar') !== null)
+        showStatusBar = localStorage.getItem('show_status_bar') === "true";
+    if (!showStatusBar) {
+        $('showStatusBarLink').firstChild.style.opacity = '0';
+        $('desktopFooterWrapper').addClass('invisible');
+    }
+
     var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
-    // After Show Top Toolbar
+    // After showing/hiding the toolbar + status bar
     MochaUI.Desktop.setDesktopSize();
 
     var syncMainDataLastResponseId = 0;
@@ -471,6 +480,20 @@ window.addEvent('load', function () {
         else {
             $('showTopToolbarLink').firstChild.style.opacity = '0';
             $('mochaToolbar').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
+    });
+
+    $('showStatusBarLink').addEvent('click', function(e) {
+        showStatusBar = !showStatusBar;
+        localStorage.setItem('show_status_bar', showStatusBar.toString());
+        if (showStatusBar) {
+            $('showStatusBarLink').firstChild.style.opacity = '1';
+            $('desktopFooterWrapper').removeClass('invisible');
+        }
+        else {
+            $('showStatusBarLink').firstChild.style.opacity = '0';
+            $('desktopFooterWrapper').addClass('invisible');
         }
         MochaUI.Desktop.setDesktopSize();
     });
