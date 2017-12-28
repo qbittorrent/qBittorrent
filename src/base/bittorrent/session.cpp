@@ -2413,6 +2413,21 @@ void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
     }
 }
 
+bool Session::addressPatternMatches(const QString &ipAddress, const QString &pattern)
+{
+    const QStringList ipPieces = ipAddress.split(".");
+    const QStringList patternPieces = pattern.split(".");
+
+    if (ipPieces.size() != patternPieces.size())
+        return false;
+
+    for (int i = 0; i < ipPieces.size(); i++)
+        if ((patternPieces[i] != "*") && (ipPieces[i] != patternPieces[i]))
+            return false;
+
+    return true;
+}
+
 const QStringList Session::getListeningIPs()
 {
     Logger* const logger = Logger::instance();
@@ -2420,6 +2435,8 @@ const QStringList Session::getListeningIPs()
 
     const QString ifaceName = networkInterface();
     const QString ifaceAddr = networkInterfaceAddress();
+    const QString ifaceAddrPattern = bindAddressPattern();
+
     const bool listenIPv6 = isIPv6Enabled();
 
     if (!ifaceAddr.isEmpty()) {
@@ -2432,10 +2449,23 @@ const QStringList Session::getListeningIPs()
     }
 
     if (ifaceName.isEmpty()) {
-        if (!ifaceAddr.isEmpty())
-            IPs.append(ifaceAddr);
-        else
-            IPs.append(QString());
+        if (!ifaceAddr.isEmpty()) {
+            if (!ifaceAddrPattern.isEmpty() && !addressPatternMatches(ifaceAddr, ifaceAddrPattern)) {
+                logger->addMessage(tr("Configured network interface address %1 doesn't match the given pattern.", "Configured network interface address 124.51.168.1 doesn't match the given pattern.").arg(ifaceAddr), Log::CRITICAL);
+                IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+                return IPs;
+            }
+            else {
+                IPs.append(ifaceAddr);
+            }
+        }
+        else if (!ifaceAddrPattern.isEmpty()) {
+            logger->addMessage(tr("No network interface/address is specified, but address pattern is set."), Log::CRITICAL);
+            IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        }
+        else {
+            IPs.append(QString()); // no constraints, listen on any interface/address
+        }
 
         return IPs;
     }
@@ -2462,6 +2492,17 @@ const QStringList Session::getListeningIPs()
         if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
             || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
+
+        // If an iface address pattern has been defined only allow ips that match it to go
+        // through. Note that this will discard ipv6 addresses (the wildcard matching is supported
+        // only for ipv4).
+        if (!ifaceAddrPattern.isEmpty() && !addressPatternMatches(ipString, ifaceAddrPattern)) {
+            logger->addMessage(tr("Blocked address %1 on pattern %2", "Blocked address 124.51.168.1 on pattern 10.*.*.*").arg(ipString, ifaceAddrPattern), Log::INFO);
+            continue;
+        }
+        else {
+            logger->addMessage(tr("Allowed address %1 on pattern %2", "Allowed address 10.5.168.1 on pattern 10.*.*.*").arg(ipString, ifaceAddrPattern), Log::INFO);
+        }
 
         //If an iface address has been defined only allow ip's that match it to go through
         if (!ifaceAddr.isEmpty()) {

@@ -581,6 +581,7 @@ namespace BitTorrent
         void applyBandwidthLimits();
         void processBannedIPs(libtorrent::ip_filter &filter);
         const QStringList getListeningIPs();
+        static bool addressPatternMatches(const QString &address, const QString &pattern);
         void configureListeningInterface();
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
