@@ -1,0 +1,644 @@
+<style type="text/css">
+    #searchPattern {
+        width: 500px;
+        line-height: 2em;
+        padding: 1px 5px 1px 2em;
+        background-image: url("../images/qbt-theme/edit-find.svg");
+        background-repeat: no-repeat;
+        background-size: 1.5em;
+        background-position: left;
+    }
+
+    #categorySelect {
+        width: 150px;
+        height: 20px;
+    }
+
+    #pluginsSelect {
+        width: 150px;
+        height: 20px;
+    }
+
+    #startSearchButton {
+        width: 90px;
+        height: 20px;
+    }
+
+    #searchResultsNoPlugins {
+        height: calc(100% - 110px);
+    }
+
+    #searchResultsNoPlugins table {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    #searchResultsFilters {
+        height: 30px;
+        overflow: auto;
+    }
+
+    #searchInNameFilter {
+        width: 150px;
+        margin-right: 20px;
+    }
+
+    #searchMinSeedsFilter, #searchMaxSeedsFilter, #searchMinSizeFilter, #searchMaxSizeFilter {
+        width: 4em;
+    }
+
+    #downloadSearchTorrent, #openSearchTorrentDescription, #copyDescriptionPageUrl {
+        line-height: 1.5em;
+    }
+
+    #manageSearchPlugins {
+        line-height: 1.5em;
+        float: right;
+    }
+</style>
+
+<div id="searchResults">
+    <div style="overflow: hidden; height: 70px;">
+        <div style="margin: 20px 0; height: 30px;">
+            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+            <select id="categorySelect" class="searchInputField" onchange="categorySelected()"></select>
+            <select id="pluginsSelect" class="searchInputField" onchange="pluginSelected()"></select>
+            <button id="startSearchButton" class="searchInputField" onclick="startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        </div>
+    </div>
+
+    <div id="searchResultsNoPlugins">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        There aren't any search plugins installed.<br/>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span></span>
+    </div>
+
+    <div id="searchResultsFilters">
+        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+
+        <span>QBT_TR(Results (showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsTotal" class="numSearchResults">0</span>):</span>
+
+        <div style="display: inline-block; float: right;">
+            <label for="searchInTorrentName" style="margin-left: 15px;">QBT_TR(Search in:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <select id="searchInTorrentName" onchange="searchInTorrentName()">
+                <option value="names">QBT_TR(Torrent names only)QBT_TR[CONTEXT=SearchEngineWidget]</option>
+                <option value="everywhere">QBT_TR(Everywhere)QBT_TR[CONTEXT=SearchEngineWidget]</option>
+            </select>
+
+            <span style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+            <input type="number" min="0" max="1000" id="searchMinSeedsFilter" value="0" onchange="searchSeedsFilterChanged()">
+            <span>to</span>
+            <input type="number" min="0" max="1000" id="searchMaxSeedsFilter" value="0" onchange="searchSeedsFilterChanged()">
+
+            <span style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+            <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="searchSizeFilterChanged()">
+            <select id="searchMinSizePrefix" onchange="searchSizeFilterPrefixChanged()">
+                <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+            </select>
+            <span>to</span>
+            <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="searchSizeFilterChanged()">
+            <select id="searchMaxSizePrefix" onchange="searchSizeFilterPrefixChanged()">
+                <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="searchResultsTableContainer">
+        <div id="searchResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable unselectable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="searchResultsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable unselectable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="height: 30px; padding-top: 10px;">
+        <button id="downloadSearchTorrent" onclick="downloadSearchTorrent()">QBT_TR(Download)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        <button id="openSearchTorrentDescription" onclick="openSearchTorrentDescription()">QBT_TR(Go to description page)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        <button class="copyToClipboard" id="copyDescriptionPageUrl">QBT_TR(Copy description page URL)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        <button id="manageSearchPlugins" onclick="manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+    </div>
+</div>
+
+<script>
+    'use strict';
+
+    var loadSearchResultsTimer;
+    var loadSearchPluginsTimer;
+    var searchResultsRowId = 0;
+    var searchRunning = false;
+    var requestCount = 0;
+    var searchPlugins = [];
+    var prevSearchPluginsResponse;
+    var searchPattern = "";
+    var searchFilterPattern = "";
+    var searchSeedsFilter = {
+        min: 0,
+        max: 0
+    };
+    var searchSizeFilter = {
+        min: 0.00,
+        minUnit: 2, // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
+        max: 0.00,
+        maxUnit: 3
+    };
+    var prevNameFilterValue;
+    var selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
+    var selectedPlugin = "all";
+    var prevSelectedPlugin;
+    var activeSearchId = null;
+
+    var initSearchTab = function() {
+        // load "Search in" preference from local storage
+        $('searchInTorrentName').set('value', (localStorage.getItem('search_in_filter') === "names") ? "names" : "everywhere");
+
+        searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', null);
+        getPlugins();
+
+        var searchInNameFilterTimer = null;
+        // listen for changes to searchInNameFilter
+        $('searchInNameFilter').addEvent('input', function() {
+            var value = $('searchInNameFilter').get("value");
+            if (value !== prevNameFilterValue) {
+                prevNameFilterValue = value;
+                clearTimeout(searchInNameFilterTimer);
+                searchInNameFilterTimer = setTimeout(function() {
+                    searchFilterPattern = value;
+                    searchFilterChanged();
+                }, 400);
+            }
+        });
+
+        var searchKeyboardEvents = new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'enter': function (e) {
+                    // accept enter key as a click
+                    new Event(e).stop();
+
+                    var elem = e.event.srcElement;
+                    if (elem.className.contains("searchInputField")) {
+                        $('startSearchButton').click();
+                        return;
+                    }
+
+                    switch (elem.id) {
+                        case "downloadSearchTorrent":
+                            downloadSearchTorrent();
+                            break;
+                        case "openSearchTorrentDescription":
+                            openSearchTorrentDescription();
+                            break;
+                        case "copyDescriptionPageUrl":
+                            copySearchTorrentUrl();
+                            break;
+                        case "manageSearchPlugins":
+                            manageSearchPlugins();
+                            break;
+                    }
+                }
+            }
+        });
+        searchKeyboardEvents.activate();
+    };
+
+    var startSearch = function(pattern, category, plugins) {
+        clearTimeout(loadSearchResultsTimer);
+        searchResultsTable.clear();
+        $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+        $('numSearchResultsTotal').set('html', searchResultsTable.getRowIds().length);
+        searchResultsRowId = 0;
+        requestCount = 0;
+
+        var url = new URI('api/v2/search/start');
+        new Request.JSON({
+            url: url,
+            noCache: true,
+            method: 'post',
+            data: {
+                pattern: pattern,
+                category: category,
+                plugins: plugins
+            },
+            onSuccess: function(response) {
+                $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
+                searchRunning = true;
+                activeSearchId = response.id;
+                updateSearchResultsData();
+            }
+        }).send();
+    };
+
+    var stopSearch = function() {
+        var url = new URI('api/v2/search/stop');
+        new Request({
+            url: url,
+            noCache: true,
+            method: 'post',
+            data: {
+                id: activeSearchId
+            },
+            onSuccess: function(response) {
+                resetSearchState();
+            }
+        }).send();
+    };
+
+    var startStopSearch = function() {
+        if (!searchRunning || !activeSearchId) {
+            var pattern = $('searchPattern').getProperty('value').trim();
+            var category = $('categorySelect').getProperty('value');
+            var plugins = $('pluginsSelect').getProperty('value');
+
+            if (!pattern || !category || !plugins) return;
+            if (category === "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]")
+                category = "all";
+
+            resetFilters();
+
+            searchPattern = pattern;
+            startSearch(pattern, category, plugins);
+        }
+        else {
+            stopSearch();
+        }
+    };
+
+    var openSearchTorrentDescription = function() {
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
+        });
+    };
+
+    var copySearchTorrentUrl = function() {
+        var urls = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
+        });
+        return urls.join("\n");
+    };
+
+    var downloadSearchTorrent = function() {
+        var urls = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            urls.push(encodeURIComponent(searchResultsTable.rows.get(rowId).full_data.fileUrl));
+        });
+
+        // only proceed if at least 1 row was selected
+        if (!urls.length) return;
+
+        showDownloadPage(urls);
+    };
+
+    var manageSearchPlugins = function() {
+        var id = 'searchPlugins';
+        if (!$(id))
+            new MochaUI.Window({
+                id: id,
+                title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                loadMethod: 'xhr',
+                contentURL: 'searchplugins.html',
+                scrollbars: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: loadWindowWidth(id, 600),
+                height: loadWindowHeight(id, 360),
+                onResize: function() {
+                    saveWindowSize(id);
+                },
+                onBeforeBuild: function() {
+                    loadSearchPlugins();
+                },
+                onClose: function() {
+                    clearTimeout(loadSearchPluginsTimer);
+                }
+            });
+    };
+
+    var loadSearchPlugins = function() {
+        getPlugins();
+        loadSearchPluginsTimer = loadSearchPlugins.delay(2000);
+    };
+
+    var categorySelected = function() {
+        selectedCategory = $("categorySelect").get("value");
+    };
+
+    var pluginSelected = function() {
+        selectedPlugin = $("pluginsSelect").get("value");
+
+        if (selectedPlugin !== prevSelectedPlugin) {
+            prevSelectedPlugin = selectedPlugin;
+            getSearchCategories();
+        }
+    };
+
+    var reselectCategory = function() {
+        for (var i = 0; i < $("categorySelect").options.length; ++i)
+            if ($("categorySelect").options[i].get("value") === selectedCategory)
+                $("categorySelect").options[i].selected = true;
+
+        categorySelected();
+    };
+
+    var reselectPlugin = function() {
+        for (var i = 0; i < $("pluginsSelect").options.length; ++i)
+            if ($("pluginsSelect").options[i].get("value") === selectedPlugin)
+                $("pluginsSelect").options[i].selected = true;
+
+        pluginSelected();
+    };
+
+    var resetSearchState = function() {
+        clearTimeout(loadSearchResultsTimer);
+        $('startSearchButton').set('text', 'QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]');
+        searchResultsRowId = 0;
+        searchRunning = false;
+        activeSearchId = null;
+    };
+
+    var getSearchCategories = function() {
+        var populateCategorySelect = function(categories) {
+            var categoryHtml = [];
+            categories.each(function(category) {
+                categoryHtml.push("<option>" + category + "</option>");
+            });
+
+            // first category is "All Categories"
+            if (categoryHtml.length > 1)
+                // add separator
+                categoryHtml.splice(1, 0, "<option disabled>──────────</option>");
+
+            $('categorySelect').set('html', categoryHtml.join(""));
+        };
+
+        var selectedPlugin = $('pluginsSelect').get("value");
+        if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
+            var url = new URI('api/v2/search/categories');
+            url.setData('name', selectedPlugin);
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'get',
+                onSuccess: function(response) {
+                    populateCategorySelect(response);
+                }
+            }).send();
+        }
+        else {
+            var plugins = ["QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]"];
+            var plugin = getPlugin(selectedPlugin);
+            if (plugin !== null)
+                plugins = plugins.concat(plugin.supportedCategories);
+
+            populateCategorySelect(plugins);
+        }
+
+        reselectCategory();
+    };
+
+    var getPlugins = function() {
+        new Request.JSON({
+            url: new URI('api/v2/search/plugins'),
+            noCache: true,
+            method: 'get',
+            onSuccess: function(response) {
+                if (response !== prevSearchPluginsResponse) {
+                    prevSearchPluginsResponse = response;
+                    searchPlugins = response;
+
+                    var pluginsHtml = [];
+                    pluginsHtml.push('<option value="enabled">QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
+                    pluginsHtml.push('<option value="all">QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
+
+                    var searchPluginsEmpty = (searchPlugins.length === 0);
+                    if (searchPluginsEmpty) {
+                        $('searchResultsNoPlugins').style.display = "block";
+                        $('searchResultsFilters').style.display = "none";
+                        $('searchResultsTableContainer').style.display = "none";
+                    }
+                    else {
+                        $('searchResultsNoPlugins').style.display = "none";
+                        $('searchResultsFilters').style.display = "block";
+                        $('searchResultsTableContainer').style.display = "block";
+
+                        // sort plugins alphabetically
+                        var allPlugins = searchPlugins.sort(function(pluginA, pluginB){
+                            var a = pluginA.fullName.toLowerCase();
+                            var b = pluginB.fullName.toLowerCase();
+                            if (a < b) return -1;
+                            if (a > b) return 1;
+                            return 0;
+                        });
+
+                        allPlugins.each(function(plugin) {
+                            if (plugin.enabled === true)
+                                pluginsHtml.push("<option value='" + escapeHtml(plugin.name) + "'>" + escapeHtml(plugin.fullName) + "</option>");
+                        });
+
+                        if (pluginsHtml.length > 2)
+                            pluginsHtml.splice(2, 0, "<option disabled>──────────</option>");
+                    }
+
+                    $('pluginsSelect').set('html', pluginsHtml.join(""));
+
+                    $('searchPattern').setProperty('disabled', searchPluginsEmpty);
+                    $('categorySelect').setProperty('disabled', searchPluginsEmpty);
+                    $('pluginsSelect').setProperty('disabled', searchPluginsEmpty);
+                    $('startSearchButton').setProperty('disabled', searchPluginsEmpty);
+                    $('downloadSearchTorrent').setProperty('disabled', searchPluginsEmpty);
+                    $('openSearchTorrentDescription').setProperty('disabled', searchPluginsEmpty);
+                    $('copyDescriptionPageUrl').setProperty('disabled', searchPluginsEmpty);
+
+                    if (typeof updateSearchPluginsTable === "function")
+                        updateSearchPluginsTable();
+
+                    reselectPlugin();
+                }
+            }
+        }).send();
+    };
+
+    var getPlugin = function(name) {
+        for (var i = 0; i < searchPlugins.length; ++i)
+            if (searchPlugins[i].name === name)
+                return searchPlugins[i];
+
+        return null;
+    };
+
+    var searchInTorrentName = function() {
+        if ($('searchInTorrentName').get('value') === "names")
+            localStorage.setItem('search_in_filter', "names");
+        else
+            localStorage.setItem('search_in_filter', "everywhere");
+
+        searchFilterChanged();
+    };
+
+    var resetFilters = function() {
+        // reset filters
+        $('searchMinSeedsFilter').set('value', '0');
+        $('searchMaxSeedsFilter').set('value', '0');
+        $('searchMinSizeFilter').set('value', '0.00');
+        $('searchMinSizePrefix').set('value', '2'); // MiB
+        $('searchMaxSizeFilter').set('value', '0.00');
+        $('searchMaxSizePrefix').set('value', '3'); // GiB
+    };
+
+    var searchSeedsFilterChanged = function() {
+        searchSeedsFilter.min = $('searchMinSeedsFilter').get('value');
+        searchSeedsFilter.max = $('searchMaxSeedsFilter').get('value');
+
+        searchFilterChanged();
+    };
+
+    var searchSizeFilterChanged = function() {
+        searchSizeFilter.min = $('searchMinSizeFilter').get('value');
+        searchSizeFilter.minUnit = $('searchMinSizePrefix').get('value');
+        searchSizeFilter.max = $('searchMaxSizeFilter').get('value');
+        searchSizeFilter.maxUnit = $('searchMaxSizePrefix').get('value');
+
+        searchFilterChanged();
+    };
+
+    var searchSizeFilterPrefixChanged = function() {
+        if (($('searchMinSizeFilter').get('value') != 0) || ($('searchMaxSizeFilter').get('value') != 0))
+            searchSizeFilterChanged();
+    };
+
+    var searchFilterChanged = function() {
+        searchResultsTable.updateTable();
+        $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+    };
+
+    var setupSearchTableEvents = function(enable) {
+        if (enable)
+            $$(".searchTableRow").each(function(target) {
+                target.addEventListener('dblclick', downloadSearchTorrent, false);
+            });
+        else
+            $$(".searchTableRow").each(function(target) {
+                target.removeEventListener('dblclick', downloadSearchTorrent, false);
+            });
+    };
+
+    var loadSearchResultsData = function() {
+        var maxResults = 500;
+        var url = new URI('api/v2/search/results');
+        new Request.JSON({
+            url: url,
+            noCache: true,
+            method: 'post',
+            data: {
+                id: activeSearchId,
+                limit: maxResults,
+                offset: searchResultsRowId
+            },
+            onFailure: function(response) {
+                if (response.status === 400) {
+                    // bad params. search id is invalid
+                    resetSearchState();
+                }
+                else {
+                    clearTimeout(loadSearchResultsTimer);
+                    loadSearchResultsTimer = loadSearchResultsData.delay(3000);
+                }
+            },
+            onSuccess: function(response) {
+                $('error_div').set('html', '');
+
+                // check if user stopped the search prior to receiving the response
+                if (!searchRunning) {
+                    clearTimeout(loadSearchResultsTimer);
+                    searchResultsRowId = 0;
+                    return;
+                }
+
+                if (response) {
+                    setupSearchTableEvents(false);
+
+                    if (response.results) {
+                        var results = response.results;
+                        for (var i = 0; i < results.length; ++i) {
+                            var result = results[i];
+                            var row = {
+                                rowId: searchResultsRowId,
+                                descrLink: result.descrLink,
+                                fileName: result.fileName,
+                                fileSize: result.fileSize,
+                                fileUrl: result.fileUrl,
+                                nbLeechers: result.nbLeechers,
+                                nbSeeders: result.nbSeeders,
+                                siteUrl: result.siteUrl,
+                            };
+
+                            searchResultsTable.updateRowData(row);
+                            ++searchResultsRowId;
+                        }
+
+                        $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+                        $('numSearchResultsTotal').set('html', searchResultsTable.getRowIds().length);
+                    }
+
+                    searchResultsTable.updateTable();
+                    searchResultsTable.altRow();
+
+                    if ((response.status === "Stopped") && (searchResultsRowId >= response.total)) {
+                        resetSearchState();
+                        return;
+                    }
+
+                    setupSearchTableEvents(true);
+                }
+
+                var timeout = 1000;
+                if (requestCount > 30)
+                    timeout = 3000;
+                else if (requestCount > 10)
+                    timeout = 2000;
+
+                clearTimeout(loadSearchResultsTimer);
+                loadSearchResultsTimer = loadSearchResultsData.delay(timeout);
+                ++requestCount;
+            }
+        }).send();
+    };
+
+    var updateSearchResultsData = function() {
+        clearTimeout(loadSearchResultsTimer);
+        loadSearchResultsTimer = loadSearchResultsData.delay(500);
+    };
+
+    initSearchTab();
+</script>

@@ -320,6 +320,9 @@ a.propButton img {
 
 #mochaToolbar {
     margin-top: 5px;
+    position: relative;
+    height: 29px;
+    overflow-y: hidden;
 }
 
 #mochaToolbar .divider {
@@ -334,6 +337,11 @@ a.propButton img {
     margin-left: -18px;
     margin-bottom: -3px;
     padding-right: 5px;
+}
+
+#mainWindowTabs {
+    float: right;
+    margin: 4px 5px 0 0;
 }
 
 /* Tri-state checkbox */
@@ -549,4 +557,48 @@ td.statusBarSeparator {
 /* Statistics window */
 .statisticsValue {
     text-align: right;
+}
+
+/* Search tab */
+
+#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+    height: inherit;
+}
+
+#searchResults {
+    padding: 0 20px;
+    height: 100%;
+}
+
+#searchResultsTableContainer {
+    height: calc(100% - 140px);
+    -moz-height: calc(100% - 140px);
+    -webkit-height: calc(100% - 140px);
+    overflow: auto;
+}
+
+#searchResultsTableDiv {
+    height: calc(100% - 26px) !important;
+    -moz-height: calc(100% - 26px) !important;
+    -webkit-height: calc(100% - 26px) !important;
+}
+
+#searchResults .dynamicTable {
+    width: 100%;
+}
+
+#searchResults .numSearchResults {
+    font-style: italic;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.searchPluginsTableRow {
+    cursor: pointer;
 }

@@ -400,3 +400,21 @@ var CategoriesFilterContextMenu = new Class({
         }
     }
 });
+
+var SearchPluginsTableContextMenu = new Class({
+    Extends: ContextMenu,
+
+    updateMenuItems: function () {
+        var enabledColumnIndex = function(text) {
+            var columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
+            for (var i = 0; i < columns.length; ++i)
+                if (columns[i].get("html") === "Enabled")
+                    return i;
+        };
+
+        this.showItem('Enabled');
+        this.setItemChecked('Enabled', this.options.element.getChildren("td")[enabledColumnIndex()].get("html") === "Yes");
+
+        this.showItem('Uninstall');
+    }
+});
