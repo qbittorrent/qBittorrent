@@ -36,6 +36,7 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QTimer>
+#include <QVector>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -52,6 +53,7 @@
 #include "btjson.h"
 #include "jsonutils.h"
 #include "prefjson.h"
+#include "websearchengine.h"
 #include "websessiondata.h"
 
 static const int API_VERSION = 17;
@@ -90,6 +92,7 @@ QMap<QString, QMap<QString, WebApplication::Action>> WebApplication::initializeA
     ADD_ACTION(query, getPeerLog);
     ADD_ACTION(query, getPieceHashes);
     ADD_ACTION(query, getPieceStates);
+    ADD_ACTION(query, getSearchResults);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
@@ -130,6 +133,14 @@ QMap<QString, QMap<QString, WebApplication::Action>> WebApplication::initializeA
     ADD_ACTION(command, addCategory);
     ADD_ACTION(command, removeCategories);
     ADD_ACTION(command, getSavePath);
+    ADD_ACTION(command, startSearch);
+    ADD_ACTION(command, cancelSearch);
+    ADD_ACTION(command, getSearchCategories);
+    ADD_ACTION(command, allPlugins);
+    ADD_ACTION(command, installSearchPlugin);
+    ADD_ACTION(command, uninstallSearchPlugin);
+    ADD_ACTION(command, enableSearchPlugin);
+    ADD_ACTION(command, updateSearchPlugins);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -354,6 +365,13 @@ void WebApplication::action_query_getPieceStates()
 {
     CHECK_URI(1);
     print(btjson::getPieceStatesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_query_getSearchResults()
+{
+    CHECK_URI(0);
+    const QList<SearchResult> bufferedSearchOutput = m_webSearchEngine->readBufferedSearchOutput();
+    print(btjson::getSearchResults(bufferedSearchOutput, m_webSearchEngine->isActive(), m_webSearchEngine->getQueueSize()), Http::CONTENT_TYPE_JSON);
 }
 
 // GET param:
@@ -931,6 +949,108 @@ void WebApplication::action_command_getSavePath()
     print(BitTorrent::Session::instance()->defaultSavePath());
 }
 
+void WebApplication::action_command_startSearch()
+{
+    // void startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
+    CHECK_URI(0);
+    CHECK_PARAMETERS("pattern" << "category" << "plugins");
+
+    if (Utils::Misc::pythonVersion() < 0) {
+        print(QByteArray("Please install Python to use the Search Engine."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (m_webSearchEngine->isActive())
+        m_webSearchEngine->cancelSearch();
+
+    const QString pattern = request().posts["pattern"].trimmed();
+    const QString category = request().posts["category"].trimmed();
+    QStringList plugins;
+    if (request().posts["plugins"].trimmed() == "all")
+        plugins = m_webSearchEngine->allPlugins();
+    else if (request().posts["plugins"].trimmed() == "enabled")
+        plugins = m_webSearchEngine->enabledPlugins();
+    else if (request().posts["plugins"].trimmed() == "multi")
+        plugins = m_webSearchEngine->enabledPlugins();
+    else
+        plugins << request().posts["plugins"].trimmed();
+
+    // No search pattern entered
+    if (pattern.isEmpty()) {
+        print(QByteArray("Empty search pattern."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    m_webSearchEngine->startSearch(pattern, category, plugins);
+    print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_cancelSearch()
+{
+    CHECK_URI(0);
+
+    if (!m_webSearchEngine->isActive()) {
+        print(QByteArray("Nothing to cancel."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    m_webSearchEngine->cancelSearch();
+    print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_getSearchCategories()
+{
+    CHECK_URI(0);
+
+    QStringList categories;
+
+    categories << m_webSearchEngine->categoryFullName("all"), QVariant("all");
+    foreach (const QString &cat, m_webSearchEngine->supportedCategories())
+        categories << m_webSearchEngine->categoryFullName(cat);
+
+
+    print(categories.join(","), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_allPlugins()
+{
+    CHECK_URI(0);
+
+    print(btjson::getPlugins(m_webSearchEngine->getAllPlugins()), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_command_installSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("source");
+
+    m_webSearchEngine->installPlugin(request().posts["source"].trimmed());
+}
+
+void WebApplication::action_command_uninstallSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("name");
+
+    m_webSearchEngine->uninstallPlugin(request().posts["name"].trimmed());
+}
+
+void WebApplication::action_command_enableSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("name" << "enable");
+
+    const QString boolStr = request().posts["enable"].trimmed();
+    m_webSearchEngine->enablePlugin(request().posts["name"].trimmed(), (boolStr == QLatin1String("1") || boolStr.toUpper() == QLatin1String("TRUE")));
+}
+
+void WebApplication::action_command_updateSearchPlugins()
+{
+    CHECK_URI(0);
+
+    m_webSearchEngine->checkForUpdates();
+}
+
 bool WebApplication::isPublicScope()
 {
     return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
@@ -985,6 +1105,7 @@ void WebApplication::parsePath()
 WebApplication::WebApplication(QObject *parent)
     : AbstractWebApplication(parent)
 {
+     m_webSearchEngine = new WebSearchEngine;
 }
 
 QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::actions_ = WebApplication::initializeActions();

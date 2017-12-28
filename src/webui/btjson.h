@@ -35,6 +35,8 @@
 #include <QString>
 #include <QVariant>
 
+#include "base/searchengine.h"
+
 class btjson
 {
     Q_DECLARE_TR_FUNCTIONS(misc)
@@ -57,6 +59,8 @@ public:
     static QByteArray getTorrentsRatesLimits(QStringList& hashes, bool downloadLimits);
     static QByteArray getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId);
     static QByteArray getPeerLog(int lastKnownId);
+    static QByteArray getSearchResults(const QList<SearchResult> searchResults, const bool isSearchActive, const int queueSize);
+    static QByteArray getPlugins(const QList<PluginInfo*> plugins);
 }; // class btjson
 
 #endif // BTJSON_H
