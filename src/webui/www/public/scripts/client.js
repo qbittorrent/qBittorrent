@@ -24,6 +24,7 @@
 
 torrentsTable = new TorrentsTable();
 torrentPeersTable = new TorrentPeersTable();
+searchResultsTable = new SearchResultsTable();
 
 var updatePropertiesPanel = function () {};
 
@@ -37,6 +38,10 @@ var updateMainData = function () {};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
+
+var updateSearchResultsData = function () {};
+var searchResultsRowId = 0;
+var searchRunning = false;
 
 var clipboardEvent;
 
@@ -86,24 +91,41 @@ window.addEvent('load', function () {
     });*/
     MochaUI.Desktop.initialize();
 
-    var filt_w = localStorage.getItem('filters_width');
-    if ($defined(filt_w))
-        filt_w = filt_w.toInt();
-    else
-        filt_w = 120;
-    new MochaUI.Column({
-        id : 'filtersColumn',
-        placement : 'left',
-        onResize : saveColumnSizes,
-        width : filt_w,
-        resizeLimit : [100, 300]
-    });
-    new MochaUI.Column({
-        id : 'mainColumn',
-        placement : 'main',
-        width : null,
-        resizeLimit : [100, 300]
-    });
+    var buildTransfersTab = function() {
+        var filt_w = localStorage.getItem('filters_width');
+        if ($defined(filt_w))
+            filt_w = filt_w.toInt();
+        else
+            filt_w = 120;
+        new MochaUI.Column({
+            id : 'filtersColumn',
+            placement : 'left',
+            onResize : saveColumnSizes,
+            width : filt_w,
+            resizeLimit : [100, 300]
+        });
+
+        new MochaUI.Column({
+            id : 'mainColumn',
+            placement : 'main',
+            width : null,
+            resizeLimit : [100, 300]
+        });
+    };
+
+    var buildSearchTab = function() {
+        new MochaUI.Column({
+            id : 'searchTabColumn',
+            placement : 'main',
+            width : null
+        });
+
+        // start off hidden
+        $("searchTabColumn").addClass("invisible");
+    };
+
+    buildTransfersTab();
+    buildSearchTab();
 
     setCategoryFilter = function(hash) {
         selected_category = hash;
@@ -617,6 +639,65 @@ window.addEvent('load', function () {
         column : 'mainColumn',
         height : prop_h
     });
+
+    new MochaUI.Panel({
+        id : 'SearchPanel',
+        title : 'Search',
+        header : false,
+        padding : {
+            top : 0,
+            right : 0,
+            bottom : 0,
+            left : 0
+        },
+        loadMethod : 'xhr',
+        contentURL : 'search.html',
+        content: '',
+        onContentLoaded : function () {
+            getSearchCategories();
+            // TODO move this to search.html and remove onContentLoaded
+
+            manageSearchPlugins = function() {
+
+            };
+        },
+        column : 'searchTabColumn',
+        height : null
+    });
+
+    // Tabs
+    MochaUI.initializeTabs('mainWindowTabs');
+
+    var showTransfersTab = function(show) {
+        if (show === false) {
+            $("filtersColumn").addClass("invisible");
+            $("filtersColumn_handle").addClass("invisible");
+            $("mainColumn").addClass("invisible");
+        }
+        else {
+            $("filtersColumn").removeClass("invisible");
+            $("filtersColumn_handle").removeClass("invisible");
+            $("mainColumn").removeClass("invisible");
+        }
+    };
+
+    var showSearchTab = function(show) {
+        if (show === false)
+            $("searchTabColumn").addClass("invisible");
+        else
+            $("searchTabColumn").removeClass("invisible");
+    };
+
+    $('transfersTabLink').addEvent('click', function(e) {
+        showTransfersTab();
+        showSearchTab(false);
+    });
+
+    $('searchTabLink').addEvent('click', function(e){
+        showTransfersTab(false);
+        showSearchTab();
+    });
+
 });
 
 function closeWindows() {
@@ -641,6 +722,8 @@ function setupCopyEventHandler() {
                 case "CopyHash":
                     textToCopy = copyHashFN();
                     break;
+                case "copyDescriptionPageUrl":
+                    return copySearchTorrentUrl();
             }
 
             return textToCopy;
@@ -741,4 +824,71 @@ var loadTorrentPeersData = function(){
 updateTorrentPeersData = function(){
     clearTimeout(loadTorrentPeersTimer);
     loadTorrentPeersData();
+};
+
+var loadSearchResultsTimer;
+var loadSearchResultsData = function() {
+    var url = new URI('query/getSearchResults');
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+            clearTimeout(loadSearchResultsTimer);
+            loadSearchResultsTimer = loadSearchResultsData.delay(3000);
+        },
+        onSuccess: function(response) {
+            $('error_div').set('html', '');
+
+            // check if user stopped the search prior to receiving the response
+            if (!searchRunning) {
+                clearTimeout(loadSearchResultsTimer);
+                searchResultsRowId = 0;
+                return;
+            }
+
+            if (response) {
+                if (response['results']) {
+                    var results = response['results'];
+                    for (var i = 0; i < results.length; i++) {
+                        var result = results[i];
+                        var row = {
+                            rowId: searchResultsRowId,
+                            descrLink: result.descrLink,
+                            fileName: escapeHtml(result.fileName),
+                            fileSize: result.fileSize,
+                            fileUrl: result.fileUrl,
+                            nbLeechers: result.nbLeechers,
+                            nbSeeders: result.nbSeeders,
+                            siteUrl: result.siteUrl,
+                        };
+
+                        searchResultsTable.updateRowData(row);
+                        searchResultsRowId++;
+                    }
+
+                    $('numSearchResults').set('html', searchResultsTable.getRowIds().length);
+                }
+
+                searchResultsTable.updateTable();
+                searchResultsTable.altRow();
+
+                if ((response['status']) && (response['status'] === "Finished.")) {
+                    clearTimeout(loadSearchResultsTimer);
+                    $('startSearchButton').set('text', 'Search');
+                    searchResultsRowId = 0;
+                    searchRunning = false;
+                    return;
+                }
+            }
+            clearTimeout(loadSearchResultsTimer);
+            loadSearchResultsTimer = loadSearchResultsData.delay(1000);
+        }
+    }).send();
+};
+
+updateSearchResultsData = function(){
+    clearTimeout(loadSearchResultsTimer);
+    loadSearchResultsTimer = loadSearchResultsData.delay(100);
 };

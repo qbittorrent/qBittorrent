@@ -38,6 +38,7 @@
         <file>www/public/scripts/prop-general.js</file>
         <file>www/public/scripts/prop-trackers.js</file>
         <file>www/public/scripts/prop-webseeds.js</file>
+        <file>www/public/search.html</file>
         <file>www/public/setlocation.html</file>
         <file>www/public/statistics.html</file>
         <file>www/public/transferlist.html</file>
