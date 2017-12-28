@@ -330,6 +330,7 @@ Session::Session(QObject *parent)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
+    , m_bindAddressPattern(BITTORRENT_SESSION_KEY("BindAddressPattern"))
     , m_isIPv6Enabled(BITTORRENT_SESSION_KEY("IPv6Enabled"), false)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
@@ -2735,6 +2736,19 @@ void Session::setNetworkInterfaceAddress(const QString &address)
 {
     if (address != networkInterfaceAddress()) {
         m_networkInterfaceAddress = address;
+        configureListeningInterface();
+    }
+}
+
+QString Session::bindAddressPattern() const
+{
+    return m_bindAddressPattern;
+}
+
+void Session::setBindAddressPattern(const QString &pattern)
+{
+    if (pattern != bindAddressPattern()) {
+        m_bindAddressPattern = pattern;
         configureListeningInterface();
     }
 }

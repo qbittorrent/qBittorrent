@@ -82,7 +82,7 @@ private:
               cb_confirm_torrent_recheck, cb_confirm_remove_all_tags, cb_listen_ipv6, cb_announce_all_trackers, cb_announce_all_tiers,
               cbGuidedReadCache, cbMultiConnectionsPerIp, cbSuggestMode;
     QComboBox combo_iface, combo_iface_address, comboUtpMixedMode, comboChokingAlgorithm, comboSeedChokingAlgorithm;
-    QLineEdit txtAnnounceIP;
+    QLineEdit txtAnnounceIP, txtBindIPPattern;
 
     // OS dependent settings
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)

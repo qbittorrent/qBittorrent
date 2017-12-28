@@ -350,6 +350,8 @@ namespace BitTorrent
         void setNetworkInterfaceName(const QString &name);
         QString networkInterfaceAddress() const;
         void setNetworkInterfaceAddress(const QString &address);
+        QString bindAddressPattern() const;
+        void setBindAddressPattern(const QString &pattern);
         bool isIPv6Enabled() const;
         void setIPv6Enabled(bool enabled);
         int encryption() const;
@@ -694,6 +696,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
+        CachedSettingValue<QString> m_bindAddressPattern;
         CachedSettingValue<bool> m_isIPv6Enabled;
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<bool> m_isForceProxyEnabled;

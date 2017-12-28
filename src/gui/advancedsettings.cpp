@@ -54,6 +54,7 @@ enum AdvSettingsRows
     NETWORK_IFACE,
     //Optional network address
     NETWORK_IFACE_ADDRESS,
+    NETWORK_IFACE_ADDRESS_PATTERN,
     NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
@@ -188,6 +189,9 @@ void AdvancedSettings::saveAdvancedSettings()
         QHostAddress ifaceAddr(combo_iface_address.currentText().trimmed());
         ifaceAddr.isNull() ? session->setNetworkInterfaceAddress(QString::null) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
     }
+
+    session->setBindAddressPattern(txtBindIPPattern.text().trimmed());
+
     session->setIPv6Enabled(cb_listen_ipv6.isChecked());
     // Announce IP
     QHostAddress addr(txtAnnounceIP.text().trimmed());
@@ -406,6 +410,12 @@ void AdvancedSettings::loadAdvancedSettings()
     // Network interface address
     updateInterfaceAddressCombo();
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &combo_iface_address);
+
+    addRow(NETWORK_IFACE_ADDRESS_PATTERN,
+           tr("Optional pattern of the IPv4 Address (e.g. '10.*.*.*') to bind to (requires restart)"),
+           &txtBindIPPattern);
+    txtBindIPPattern.setText(session->bindAddressPattern());
+
     // Listen on IPv6 address
     cb_listen_ipv6.setChecked(session->isIPv6Enabled());
     addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &cb_listen_ipv6);
