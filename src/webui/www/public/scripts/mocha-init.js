@@ -45,11 +45,19 @@ initializeWindows = function() {
 
     addClickEvent('download', function(e) {
         new Event(e).stop();
+        showDownloadPage();
+    });
+
+    showDownloadPage = function(urls) {
+        var contentUrl = 'download.html';
+        if (urls && urls.length)
+            contentUrl += '?urls=' + urls.join("|");
+
         new MochaUI.Window({
             id: 'downloadPage',
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: 'iframe',
-            contentURL: 'download.html',
+            contentURL: contentUrl,
             scrollbars: true,
             resizable: false,
             maximizable: false,
@@ -60,7 +68,7 @@ initializeWindows = function() {
             height: 420
         });
         updateMainData();
-    });
+    };
 
     addClickEvent('preferences', function(e) {
         new Event(e).stop();

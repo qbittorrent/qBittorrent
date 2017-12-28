@@ -1274,4 +1274,34 @@ var TorrentPeersTable = new Class({
         }
     });
 
+var SearchResultsTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns : function () {
+            this.newColumn('fileName', '', 'QBT_TR(Name)QBT_TR[CONTEXT=SearchResultsTable]', 500, true);
+            this.newColumn('fileSize', '', 'QBT_TR(Size)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
+            this.newColumn('nbSeeders', '', 'QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
+            this.newColumn('nbLeechers', '', 'QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
+            this.newColumn('siteUrl', '', 'QBT_TR(Search engine)QBT_TR[CONTEXT=SearchResultsTable]', 250, true);
+
+            this.initColumnsFunctions();
+        },
+
+        initColumnsFunctions : function () {
+            this.columns['fileName'].updateTd = function (td, row) {
+                td.set('html', escapeHtml(this.getRowValue(row)));
+            };
+
+            this.columns['fileSize'].updateTd = function (td, row) {
+                var size = this.getRowValue(row);
+                td.set('html', friendlyUnit(size, false));
+            };
+
+            this.columns['nbSeeders'].updateTd = this.columns['fileName'].updateTd;
+            this.columns['nbLeechers'].updateTd = this.columns['fileName'].updateTd;
+            this.columns['siteUrl'].updateTd = this.columns['fileName'].updateTd;
+
+        }
+    });
+
 /*************************************************************/

@@ -58,7 +58,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
-#include "base/searchengine.h"
+#include "searchenginewidget.h"
 #include "searchlistdelegate.h"
 #include "mainwindow.h"
 #include "addnewtorrentdialog.h"
@@ -114,12 +114,12 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
 
-    m_searchEngine = new SearchEngine;
-    connect(m_searchEngine, &SearchEngine::searchStarted, this, &SearchWidget::searchStarted);
-    connect(m_searchEngine, &SearchEngine::newSearchResults, this, &SearchWidget::appendSearchResults);
-    connect(m_searchEngine, &SearchEngine::searchFinished, this, &SearchWidget::searchFinished);
-    connect(m_searchEngine, &SearchEngine::searchFailed, this, &SearchWidget::searchFailed);
-    connect(m_searchEngine, &SearchEngine::torrentFileDownloaded, this, &SearchWidget::addTorrentToSession);
+    m_searchEngineWidget = new SearchEngineWidget;
+    connect(m_searchEngineWidget, &SearchEngineWidget::searchStarted, this, &SearchWidget::searchStarted);
+    connect(m_searchEngineWidget, &SearchEngineWidget::newSearchResults, this, &SearchWidget::appendSearchResults);
+    connect(m_searchEngineWidget, &SearchEngineWidget::searchFinished, this, &SearchWidget::searchFinished);
+    connect(m_searchEngineWidget, &SearchEngineWidget::searchFailed, this, &SearchWidget::searchFailed);
+    connect(m_searchEngineWidget, &SearchEngineWidget::torrentFileDownloaded, this, &SearchWidget::addTorrentToSession);
 
     const auto onPluginChanged = [this]()
     {
@@ -127,10 +127,10 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
         fillPluginComboBox();
         selectActivePage();
     };
-    connect(m_searchEngine, &SearchEngine::pluginInstalled, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginUninstalled, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginUpdated, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginEnabled, this, onPluginChanged);
+    connect(m_searchEngineWidget, &SearchEngineWidget::pluginInstalled, this, onPluginChanged);
+    connect(m_searchEngineWidget, &SearchEngineWidget::pluginUninstalled, this, onPluginChanged);
+    connect(m_searchEngineWidget, &SearchEngineWidget::pluginUpdated, this, onPluginChanged);
+    connect(m_searchEngineWidget, &SearchEngineWidget::pluginEnabled, this, onPluginChanged);
 
     // Fill in category combobox
     onPluginChanged();
@@ -143,13 +143,13 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 void SearchWidget::fillCatCombobox()
 {
     m_ui->comboCategory->clear();
-    m_ui->comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
+    m_ui->comboCategory->addItem(SearchEngineWidget::categoryFullName("all"), QVariant("all"));
     m_ui->comboCategory->insertSeparator(1);
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &cat, m_searchEngine->supportedCategories())
-        tmpList << qMakePair(SearchEngine::categoryFullName(cat), cat);
+    foreach (const QString &cat, m_searchEngineWidget->supportedCategories())
+        tmpList << qMakePair(SearchEngineWidget::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     foreach (const QStrPair &p, tmpList) {
@@ -168,8 +168,8 @@ void SearchWidget::fillPluginComboBox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &name, m_searchEngine->enabledPlugins())
-        tmpList << qMakePair(m_searchEngine->pluginFullName(name), name);
+    foreach (const QString &name, m_searchEngineWidget->enabledPlugins())
+        tmpList << qMakePair(m_searchEngineWidget->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
     foreach (const QStrPair &p, tmpList)
@@ -188,7 +188,7 @@ QString SearchWidget::selectedPlugin() const
 
 void SearchWidget::selectActivePage()
 {
-    if (m_searchEngine->allPlugins().isEmpty()) {
+    if (m_searchEngineWidget->allPlugins().isEmpty()) {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
         m_ui->m_searchPattern->setEnabled(false);
         m_ui->comboCategory->setEnabled(false);
@@ -207,7 +207,7 @@ void SearchWidget::selectActivePage()
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-    delete m_searchEngine;
+    delete m_searchEngineWidget;
     delete m_ui;
 }
 
@@ -216,7 +216,7 @@ void SearchWidget::downloadTorrent(const QString &siteUrl, const QString &url)
     if (url.startsWith("bc://bt/", Qt::CaseInsensitive) || url.startsWith("magnet:", Qt::CaseInsensitive))
         addTorrentToSession(url);
     else
-        m_searchEngine->downloadTorrent(siteUrl, url);
+        m_searchEngineWidget->downloadTorrent(siteUrl, url);
 }
 
 void SearchWidget::tab_changed(int t)
@@ -256,7 +256,7 @@ void SearchWidget::addTorrentToSession(const QString &source)
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    new PluginSelectDlg(m_searchEngine, this);
+    new PluginSelectDlg(m_searchEngineWidget, this);
 }
 
 void SearchWidget::searchTextEdited(QString)
@@ -284,8 +284,8 @@ void SearchWidget::on_searchButton_clicked()
         return;
     }
 
-    if (m_searchEngine->isActive()) {
-        m_searchEngine->cancelSearch();
+    if (m_searchEngineWidget->isActive()) {
+        m_searchEngineWidget->cancelSearch();
 
         if (!m_isNewQueryString) {
             m_ui->searchButton->setText(tr("Search"));
@@ -313,26 +313,26 @@ void SearchWidget::on_searchButton_clicked()
     m_currentSearchTab->getCurrentSearchListProxy()->setNameFilter(pattern);
 
     QStringList plugins;
-    if (selectedPlugin() == "all") plugins = m_searchEngine->allPlugins();
-    else if (selectedPlugin() == "enabled") plugins = m_searchEngine->enabledPlugins();
-    else if (selectedPlugin() == "multi") plugins = m_searchEngine->enabledPlugins();
+    if (selectedPlugin() == "all") plugins = m_searchEngineWidget->allPlugins();
+    else if (selectedPlugin() == "enabled") plugins = m_searchEngineWidget->enabledPlugins();
+    else if (selectedPlugin() == "multi") plugins = m_searchEngineWidget->enabledPlugins();
     else plugins << selectedPlugin();
 
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
-    // Update SearchEngine widgets
+    // Update SearchEngineWidget widgets
     m_noSearchResults = true;
 
     // Changing the text of the current label
     m_activeSearchTab->updateResultsCount();
 
     // Launch search
-    m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
+    m_searchEngineWidget->startSearch(pattern, selectedCategory(), plugins);
 }
 
 void SearchWidget::searchStarted()
 {
-    // Update SearchEngine widgets
+    // Update SearchEngineWidget widgets
     m_activeSearchTab->setStatus(SearchTab::Status::Ongoing);
     m_ui->searchButton->setText(tr("Stop"));
 }
@@ -375,7 +375,7 @@ void SearchWidget::searchFailed()
 void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
 {
     if (m_activeSearchTab.isNull()) {
-        m_searchEngine->cancelSearch();
+        m_searchEngineWidget->cancelSearch();
         return;
     }
 
@@ -412,8 +412,8 @@ void SearchWidget::closeTab(int index)
     // Search is run for active tab so if user decided to close it, then stop search
     if (!m_activeSearchTab.isNull() && index == m_ui->tabWidget->indexOf(m_activeSearchTab)) {
         qDebug("Closed active search Tab");
-        if (m_searchEngine->isActive())
-            m_searchEngine->cancelSearch();
+        if (m_searchEngineWidget->isActive())
+            m_searchEngineWidget->cancelSearch();
         m_activeSearchTab = 0;
     }
 

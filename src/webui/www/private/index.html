@@ -63,8 +63,9 @@
                         <a class="returnFalse">QBT_TR(&View)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
                         <li><a id="showTopToolbarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(&Top Toolbar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Top Toolbar)QBT_TR[CONTEXT=MainWindow]</a></li>
+                        <li><a id="showStatusBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(&Status Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Status Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
                         <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(S&peed in Title Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(S&peed in Title Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
-                        <li><a id=StatisticsLink ><img class="MyMenuIcon" src="theme/view-statistics" alt="QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]</a></li>
+                        <li class="divider"><a id=StatisticsLink ><img class="MyMenuIcon" src="theme/view-statistics" alt="QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]</a></li>
                         </ul>
                     </li>
                     <li>
@@ -97,6 +98,13 @@
                     <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
                 </span>
                 <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="theme/configure" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24" onload="fixPNG(this)"/></a>
+                <div class="toolbarTabs">
+                    <ul id="mainWindowTabs" class="tab-menu">
+                        <li id="transfersTabLink" class="selected"><a id="searchTab" class="tab">QBT_TR(Transfers)QBT_TR[CONTEXT=MainWindow]</a></li>
+                        <li id="searchTabLink"><a id="transfersTab" class="tab">QBT_TR(Search)QBT_TR[CONTEXT=MainWindow]</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
             </div>
         </div>
         <div id="pageWrapper">

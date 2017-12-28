@@ -73,6 +73,7 @@ public:
     SearchEngine();
     ~SearchEngine();
 
+    QList<PluginInfo*> getAllPlugins() const;
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
     QStringList supportedCategories() const;
@@ -97,6 +98,11 @@ public:
     QString pluginFullName(const QString &pluginName);
     static QString pluginsLocation();
 
+protected:
+    bool parseSearchResult(const QString &line, SearchResult &searchResult) const;
+
+    QProcess *m_searchProcess;
+
 signals:
     void searchStarted();
     void searchFinished(bool cancelled);
@@ -115,9 +121,8 @@ signals:
 
     void torrentFileDownloaded(const QString &path);
 
-private slots:
+protected slots:
     void onTimeout();
-    void readSearchOutput();
     void processFinished(int exitcode);
     void versionInfoDownloaded(const QString &url, const QByteArray &data);
     void versionInfoDownloadFailed(const QString &url, const QString &reason);
@@ -128,7 +133,6 @@ private slots:
 private:
     void update();
     void updateNova();
-    bool parseSearchResult(const QString &line, SearchResult &searchResult);
     void parseVersionInfo(const QByteArray &info);
     void installPlugin_impl(const QString &name, const QString &path);
     bool isUpdateNeeded(QString pluginName, PluginVersion newVersion) const;
@@ -142,10 +146,8 @@ private:
     const QString m_updateUrl;
 
     QHash<QString, PluginInfo*> m_plugins;
-    QProcess *m_searchProcess;
     bool m_searchStopped;
     QTimer *m_searchTimeout;
-    QByteArray m_searchResultLineTruncated;
     QList<QProcess*> m_downloaders;
 };
 

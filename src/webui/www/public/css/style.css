@@ -298,6 +298,15 @@ a.propButton img {
     padding-right: 5px;
 }
 
+#mochaToolbar .toolbarTabs {
+    float: right;
+    margin-right: 5px;
+}
+
+#mochaToolbar .toolbarTabs #mainWindowTabs li {
+    margin: 0;
+}
+
 /* Tri-state checkbox */
 
 label.tristate {
@@ -478,4 +487,36 @@ td.statusBarSeparator {
     background-repeat: no-repeat;
     background-position: center 1px;
     background-size: 2px 18px;
+}
+
+/* Statistics */
+.statisticsValue {
+    text-align: right;
+}
+
+/* Search tab */
+
+#searchTabColumn {
+    width: 100% !important;
+}
+
+#searchTabColumn.invisible {
+    width: 0 !important;
+}
+
+#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+    height: inherit;
+}
+
+#searchResults {
+    padding: 0 20px;
+    height: 100%;
+}
+
+#searchResultsTableDiv {
+    height: calc(100% - 26px) !important;
+}
+
+#searchResults .dynamicTable {
+    width: 100%;
 }

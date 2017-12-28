@@ -24,6 +24,7 @@
 
 torrentsTable = new TorrentsTable();
 torrentPeersTable = new TorrentPeersTable();
+searchResultsTable = new SearchResultsTable();
 
 var updatePropertiesPanel = function () {};
 
@@ -37,6 +38,10 @@ var updateMainData = function () {};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
+
+var updateSearchResultsData = function () {};
+var searchResultsRowId = 0;
+var searchRunning = false;
 
 var clipboardEvent;
 
@@ -86,24 +91,41 @@ window.addEvent('load', function () {
     });*/
     MochaUI.Desktop.initialize();
 
-    var filt_w = localStorage.getItem('filters_width');
-    if ($defined(filt_w))
-        filt_w = filt_w.toInt();
-    else
-        filt_w = 120;
-    new MochaUI.Column({
-        id : 'filtersColumn',
-        placement : 'left',
-        onResize : saveColumnSizes,
-        width : filt_w,
-        resizeLimit : [100, 300]
-    });
-    new MochaUI.Column({
-        id : 'mainColumn',
-        placement : 'main',
-        width : null,
-        resizeLimit : [100, 300]
-    });
+    var buildTransfersTab = function() {
+        var filt_w = localStorage.getItem('filters_width');
+        if ($defined(filt_w))
+            filt_w = filt_w.toInt();
+        else
+            filt_w = 120;
+        new MochaUI.Column({
+            id : 'filtersColumn',
+            placement : 'left',
+            onResize : saveColumnSizes,
+            width : filt_w,
+            resizeLimit : [100, 300]
+        });
+
+        new MochaUI.Column({
+            id : 'mainColumn',
+            placement : 'main',
+            width : null,
+            resizeLimit : [100, 300]
+        });
+    };
+
+    var buildSearchTab = function() {
+        new MochaUI.Column({
+            id : 'searchTabColumn',
+            placement : 'main',
+            width : null
+        });
+
+        // start off hidden
+        $("searchTabColumn").addClass("invisible");
+    };
+
+    buildTransfersTab();
+    buildSearchTab();
 
     setCategoryFilter = function(hash) {
         selected_category = hash;
@@ -161,11 +183,20 @@ window.addEvent('load', function () {
         $('mochaToolbar').addClass('invisible');
     }
 
+    // Show Status Bar is enabled by default
+    var showStatusBar = true;
+    if (localStorage.getItem('show_status_bar') !== null)
+        showStatusBar = localStorage.getItem('show_status_bar') == "true";
+    if (!showStatusBar) {
+        $('showStatusBarLink').firstChild.style.opacity = '0';
+        $('desktopFooterWrapper').addClass('invisible');
+    }
+
     var speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
-    // After Show Top Toolbar
+    // After Show Top Toolbar + Show Status Bar
     MochaUI.Desktop.setDesktopSize();
 
     var syncMainDataLastResponseId = 0;
@@ -381,18 +412,18 @@ window.addEvent('load', function () {
 
         // Statistics dialog
         if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', 'QBT_TR(Alltime download:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_dl, false));
-            $('AlltimeUL').set('html', 'QBT_TR(Alltime upload:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_ul, false));
-            $('TotalWastedSession').set('html', 'QBT_TR(Total wasted (this session):)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_wasted_session, false));
-            $('GlobalRatio').set('html', 'QBT_TR(Global ratio:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.global_ratio);
-            $('TotalPeerConnections').set('html', 'QBT_TR(Total peer connections:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.total_peer_connections);
-            $('ReadCacheHits').set('html', 'QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_hits);
-            $('TotalBuffersSize').set('html', 'QBT_TR(Total buffers size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_buffers_size, false));
-            $('WriteCacheOverload').set('html', 'QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.write_cache_overload);
-            $('ReadCacheOverload').set('html', 'QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_overload);
-            $('QueuedIOJobs').set('html', 'QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.queued_io_jobs);
-            $('AverageTimeInQueue').set('html', 'QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.average_time_queue);
-            $('TotalQueuedSize').set('html', 'QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_queued_size, false));
+            $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
+            $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
+            $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
+            $('GlobalRatio').set('html', serverState.global_ratio);
+            $('TotalPeerConnections').set('html', serverState.total_peer_connections);
+            $('ReadCacheHits').set('html', serverState.read_cache_hits);
+            $('TotalBuffersSize').set('html', friendlyUnit(serverState.total_buffers_size, false));
+            $('WriteCacheOverload').set('html', serverState.write_cache_overload + "%");
+            $('ReadCacheOverload').set('html', serverState.read_cache_overload + "%");
+            $('QueuedIOJobs').set('html', serverState.queued_io_jobs);
+            $('AverageTimeInQueue').set('html', serverState.average_time_queue + " ms");
+            $('TotalQueuedSize').set('html', friendlyUnit(serverState.total_queued_size, false));
         }
 
         if (serverState.connection_status == "connected")
@@ -465,6 +496,20 @@ window.addEvent('load', function () {
         else {
             $('showTopToolbarLink').firstChild.style.opacity = '0';
             $('mochaToolbar').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
+    });
+
+    $('showStatusBarLink').addEvent('click', function(e) {
+        showStatusBar = !showStatusBar;
+        localStorage.setItem('show_status_bar', showStatusBar.toString());
+        if (showStatusBar) {
+            $('showStatusBarLink').firstChild.style.opacity = '1';
+            $('desktopFooterWrapper').removeClass('invisible');
+        }
+        else {
+            $('showStatusBarLink').firstChild.style.opacity = '0';
+            $('desktopFooterWrapper').addClass('invisible');
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -594,6 +639,65 @@ window.addEvent('load', function () {
         column : 'mainColumn',
         height : prop_h
     });
+
+    new MochaUI.Panel({
+        id : 'SearchPanel',
+        title : 'Search',
+        header : false,
+        padding : {
+            top : 0,
+            right : 0,
+            bottom : 0,
+            left : 0
+        },
+        loadMethod : 'xhr',
+        contentURL : 'search.html',
+        content: '',
+        onContentLoaded : function () {
+            getSearchCategories();
+            // TODO move this to search.html and remove onContentLoaded
+
+            manageSearchPlugins = function() {
+
+            };
+        },
+        column : 'searchTabColumn',
+        height : null
+    });
+
+    // Tabs
+    MochaUI.initializeTabs('mainWindowTabs');
+
+    var showTransfersTab = function(show) {
+        if (show === false) {
+            $("filtersColumn").addClass("invisible");
+            $("filtersColumn_handle").addClass("invisible");
+            $("mainColumn").addClass("invisible");
+        }
+        else {
+            $("filtersColumn").removeClass("invisible");
+            $("filtersColumn_handle").removeClass("invisible");
+            $("mainColumn").removeClass("invisible");
+        }
+    };
+
+    var showSearchTab = function(show) {
+        if (show === false)
+            $("searchTabColumn").addClass("invisible");
+        else
+            $("searchTabColumn").removeClass("invisible");
+    };
+
+    $('transfersTabLink').addEvent('click', function(e) {
+        showTransfersTab();
+        showSearchTab(false);
+    });
+
+    $('searchTabLink').addEvent('click', function(e){
+        showTransfersTab(false);
+        showSearchTab();
+    });
+
 });
 
 function closeWindows() {
@@ -606,21 +710,18 @@ function setupCopyEventHandler() {
 
     clipboardEvent = new Clipboard('.copyToClipboard', {
         text: function(trigger) {
-            var textToCopy;
-
             switch (trigger.id) {
                 case "CopyName":
-                    textToCopy = copyNameFN();
-                    break;
+                    return copyNameFN();
                 case "CopyMagnetLink":
-                    textToCopy = copyMagnetLinkFN();
-                    break;
+                    return copyMagnetLinkFN();
                 case "CopyHash":
-                    textToCopy = copyHashFN();
-                    break;
+                    return copyHashFN();
+                case "copyDescriptionPageUrl":
+                    return copySearchTorrentUrl();
+                default:
+                    return "";
             }
-
-            return textToCopy;
         }
     });
 }
@@ -718,4 +819,71 @@ var loadTorrentPeersData = function(){
 updateTorrentPeersData = function(){
     clearTimeout(loadTorrentPeersTimer);
     loadTorrentPeersData();
+};
+
+var loadSearchResultsTimer;
+var loadSearchResultsData = function() {
+    var url = new URI('query/getSearchResults');
+    var request = new Request.JSON({
+        url: url,
+        noCache: true,
+        method: 'get',
+        onFailure: function() {
+            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+            clearTimeout(loadSearchResultsTimer);
+            loadSearchResultsTimer = loadSearchResultsData.delay(3000);
+        },
+        onSuccess: function(response) {
+            $('error_div').set('html', '');
+
+            // check if user stopped the search prior to receiving the response
+            if (!searchRunning) {
+                clearTimeout(loadSearchResultsTimer);
+                searchResultsRowId = 0;
+                return;
+            }
+
+            if (response) {
+                if (response['results']) {
+                    var results = response['results'];
+                    for (var i = 0; i < results.length; i++) {
+                        var result = results[i];
+                        var row = {
+                            rowId: searchResultsRowId,
+                            descrLink: result.descrLink,
+                            fileName: escapeHtml(result.fileName),
+                            fileSize: result.fileSize,
+                            fileUrl: result.fileUrl,
+                            nbLeechers: result.nbLeechers,
+                            nbSeeders: result.nbSeeders,
+                            siteUrl: result.siteUrl,
+                        };
+
+                        searchResultsTable.updateRowData(row);
+                        searchResultsRowId++;
+                    }
+
+                    $('numSearchResults').set('html', searchResultsTable.getRowIds().length);
+                }
+
+                searchResultsTable.updateTable();
+                searchResultsTable.altRow();
+
+                if ((response['status']) && (response['status'] === "Finished.")) {
+                    clearTimeout(loadSearchResultsTimer);
+                    $('startSearchButton').set('text', 'Search');
+                    searchResultsRowId = 0;
+                    searchRunning = false;
+                    return;
+                }
+            }
+            clearTimeout(loadSearchResultsTimer);
+            loadSearchResultsTimer = loadSearchResultsData.delay(1000);
+        }
+    }).send();
+};
+
+updateSearchResultsData = function(){
+    clearTimeout(loadSearchResultsTimer);
+    loadSearchResultsTimer = loadSearchResultsData.delay(100);
 };

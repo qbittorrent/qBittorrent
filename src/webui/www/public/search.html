@@ -1,0 +1,189 @@
+<div id="searchResults">
+    <div style="overflow: hidden; height: 70px;">
+        <div style="margin: 20px 0; width: 1050px; height: 30px;">
+            <input type="text" id="searchPattern" class="searchInputField" style="width: 600px; height: 20px; padding: 1px 5px;" />
+            <select style="width: 150px;" id="categorySelect" class="searchInputField"></select>
+            <select style="width: 150px;" id="pluginsSelect" class="searchInputField">
+                <option value="all">Only enabled</option>
+                <option value="all">All plugins</option>
+                <option>Select...</option>
+                <option disabled>-----------------------</option>
+                <option>Option 4</option>
+            </select>
+            <button style="width: 90px; height: 20px;" id="startSearchButton" class="searchInputField" onclick="startStopSearch();">Search</button>
+        </div>
+    </div>
+
+    <div style="height: 30px;">
+        <span>Results (<span id="numSearchResults">0</span>)</span>
+    </div>
+
+    <div style="height: calc(100% - 140px); overflow: auto;">
+        <div id="searchResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="searchResultsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="height: 30px; padding-top: 10px;">
+        <input type="button" value="Download" id="downloadSearchTorrent" onclick="downloadSearchTorrent()" />
+        <input type="button" value="Go to description page" id="openSearchTorrentDescription" onclick="openSearchTorrentDescription()" />
+        <input type="button" value="Copy description page URL" class="copyToClipboard" id="copyDescriptionPageUrl" />
+        <input type="button" style="float: right;" value="Search plugins..." id="manageSearchPlugins" onclick="manageSearchPlugins()" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', null);
+
+    var renameKeyboardEvents = new Keyboard({
+        defaultEventType: 'keydown',
+        events: {
+            'enter': function (e) {
+                // accept enter key as a click
+                new Event(e).stop();
+
+                var elem = e.event.srcElement;
+                if (elem.className.contains("searchInputField"))
+                    $('startSearchButton').click();
+                else if (elem.id === "downloadSearchTorrent")
+                    downloadSearchTorrent();
+                else if (elem.id === "openSearchTorrentDescription")
+                    openSearchTorrentDescription();
+                else if (elem.id === "copyDescriptionPageUrl")
+                    copySearchTorrentUrl();
+                else if (elem.id === "manageSearchPlugins")
+                    manageSearchPlugins();
+            }
+        }
+    });
+    renameKeyboardEvents.activate();
+
+    startSearch = function(pattern, category, plugins) {
+        clearTimeout(loadSearchResultsTimer);
+        searchResultsTable.clear();
+        $('numSearchResults').set('html', searchResultsTable.getRowIds().length);
+        searchResultsRowId = 0;
+
+        var url = new URI('command/startSearch');
+        var request = new Request({
+            url: url,
+            noCache: true,
+            method: 'post',
+            data: {
+                pattern: pattern,
+                category: category,
+                plugins: plugins
+            },
+            onFailure: function() {
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+            },
+            onSuccess: function(response) {
+                if (response === "Ok.") {
+                    $('error_div').set('html', '');
+                    $('startSearchButton').set('text', 'Stop');
+                    searchRunning = true;
+                    updateSearchResultsData();
+                }
+                else {
+                    $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                }
+            }
+        }).send();
+    };
+
+    cancelSearch = function() {
+        var url = new URI('command/cancelSearch');
+        var request = new Request({
+            url: url,
+            noCache: true,
+            method: 'post',
+            onFailure: function() {
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+            },
+            onSuccess: function(response) {
+                $('error_div').set('html', '');
+                $('startSearchButton').set('text', 'Search');
+                searchRunning = false;
+                clearTimeout(loadSearchResultsTimer);
+            }
+        }).send();
+    };
+
+    startStopSearch = function() {
+        if (!searchRunning) {
+            var pattern = $('searchPattern').getProperty('value').trim();
+            var category = $('categorySelect').getProperty('value');
+            var plugins = $('pluginsSelect').getProperty('value');
+
+            if (!pattern || !category || !plugins) return;
+
+            startSearch(pattern, category, plugins);
+        }
+        else {
+            cancelSearch();
+        }
+    };
+
+    openSearchTorrentDescription = function() {
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
+        });
+    };
+
+    copySearchTorrentUrl = function() {
+        var urls = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
+        });
+        return urls.join("\n");
+    };
+
+    downloadSearchTorrent = function() {
+        var urls = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            urls.push(encodeURIComponent(searchResultsTable.rows.get(rowId).full_data.fileUrl));
+        });
+
+        // only proceed if at least 1 row was selected
+        if (!urls.length) return;
+
+        showDownloadPage(urls);
+    };
+
+    getSearchCategories = function() {
+        var request = new Request({
+            url: new URI('command/getSearchCategories'),
+            noCache: true,
+            method: 'get',
+            onFailure: function() {
+                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+            },
+            onSuccess: function(response) {
+                var categoryHtml = ["<option value='all'>All categories</option>"];
+
+                response.split(",").filter(function(cat) {
+                    if (cat !== (undefined || null || ''))
+                        categoryHtml.push("<option>" + cat + "</option>");
+                });
+
+                if (categoryHtml.length > 1)
+                    // add separator as second item
+                    categoryHtml.splice(1, 0, "<option disabled>-----------------------</option>");
+
+                $('categorySelect').set('html', categoryHtml.join(""));
+            }
+        }).send();
+    };
+</script>

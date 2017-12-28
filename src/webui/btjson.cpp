@@ -596,8 +596,8 @@ namespace
  *   - "force_start": Torrent force start state
  *   - "category": Torrent category
  */
-QByteArray btjson::getTorrents(QString filter, QString category,
-                               QString sortedColumn, bool reverse, int limit, int offset)
+QByteArray btjson::getTorrents(const QString filter, const QString category,
+                               const QString sortedColumn, const bool reverse, int limit, int offset)
 {
     QVariantList torrentList;
     TorrentFilter torrentFilter(filter, TorrentFilter::AnyHash, category);
@@ -679,7 +679,7 @@ QByteArray btjson::getTorrents(QString filter, QString category,
  *  - "queueing": priority system usage flag
  *  - "refresh_interval": torrents table refresh interval
  */
-QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
+QByteArray btjson::getSyncMainData(const int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData)
 {
     QVariantMap data;
     QVariantHash torrents;
@@ -719,7 +719,7 @@ QByteArray btjson::getSyncMainData(int acceptedResponseId, QVariantMap &lastData
     return json::toJson(generateSyncData(acceptedResponseId, data, lastAcceptedData, lastData));
 }
 
-QByteArray btjson::getSyncTorrentPeersData(int acceptedResponseId, QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData)
+QByteArray btjson::getSyncTorrentPeersData(const int acceptedResponseId, const QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData)
 {
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent) {
@@ -1057,7 +1057,7 @@ QByteArray btjson::getTransferInfo()
     return json::toJson(getTranserInfoMap());
 }
 
-QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimits)
+QByteArray btjson::getTorrentsRatesLimits(const QStringList &hashes, const bool downloadLimits)
 {
     QVariantMap map;
 
@@ -1082,7 +1082,7 @@ QByteArray btjson::getTorrentsRatesLimits(QStringList &hashes, bool downloadLimi
  *   - "type": type of the message (int, see MsgType)
  *   - "message": text of the message
  */
-QByteArray btjson::getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId)
+QByteArray btjson::getLog(const bool normal, const bool info, const bool warning, const bool critical, const int lastKnownId)
 {
     Logger* const logger = Logger::instance();
     QVariantList msgList;
@@ -1115,7 +1115,7 @@ QByteArray btjson::getLog(bool normal, bool info, bool warning, bool critical, i
  *   - "blocked": whether or not the peer was blocked
  *   - "reason": reason of the block
  */
-QByteArray btjson::getPeerLog(int lastKnownId)
+QByteArray btjson::getPeerLog(const int lastKnownId)
 {
     Logger* const logger = Logger::instance();
     QVariantList peerList;
@@ -1131,4 +1131,77 @@ QByteArray btjson::getPeerLog(int lastKnownId)
     }
 
     return json::toJson(peerList);
+}
+
+/**
+ * Returns the search results in JSON format.
+ *
+ * The return value is an object with a status and an array of dictionaries.
+ * The dictionary keys are:
+ *   - "fileName"
+ *   - "fileUrl"
+ *   - "fileSize"
+ *   - "nbSeeders"
+ *   - "nbLeechers"
+ *   - "siteUrl"
+ *   - "descrLink"
+ */
+QByteArray btjson::getSearchResults(const QList<SearchResult> searchResults, const bool isSearchActive, const int queueSize)
+{
+    QVariantList searchResultsVariantList;
+    for (const SearchResult searchResult : searchResults) {
+        QMap<QString, QVariant> searchResultMap;
+
+        searchResultMap.insert("fileName", searchResult.fileName);
+        searchResultMap.insert("fileUrl", searchResult.fileUrl);
+        searchResultMap.insert("fileSize", searchResult.fileSize);
+        searchResultMap.insert("nbSeeders", searchResult.nbSeeders);
+        searchResultMap.insert("nbLeechers", searchResult.nbLeechers);
+        searchResultMap.insert("siteUrl", searchResult.siteUrl);
+        searchResultMap.insert("descrLink", searchResult.descrLink);
+
+        searchResultsVariantList << searchResultMap;
+    }
+
+    qDebug() << "Number of search results" << searchResultsVariantList.size();
+
+    QMap<QString, QVariant> resultMap;
+    resultMap.insert("status", ((isSearchActive) || (queueSize > 0)) ? "Loading." : "Finished.");
+    resultMap.insert("results", searchResultsVariantList);
+
+    return json::toJson(resultMap);
+}
+
+/**
+ * Returns the search plugins in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "name"
+ *   - "version"
+ *   - "fullName"
+ *   - "url"
+ *   - "supportedCategories"
+ *   - "iconPath"
+ *   - "enabled"
+ */
+QByteArray btjson::getPlugins(const QList<PluginInfo*> plugins)
+{
+    QVariantList pluginsList;
+
+    for (const PluginInfo *plugin : plugins) {
+        QVariantMap pluginMap;
+
+        pluginMap.insert("name", plugin->name);
+        pluginMap.insert("version", QString(plugin->version));
+        pluginMap.insert("fullName", plugin->fullName);
+        pluginMap.insert("url", plugin->url);
+        pluginMap.insert("supportedCategories", plugin->supportedCategories);
+        pluginMap.insert("iconPath", plugin->iconPath);
+        pluginMap.insert("enabled", plugin->enabled);
+
+        pluginsList << pluginMap;
+    }
+
+    return json::toJson(pluginsList);
 }

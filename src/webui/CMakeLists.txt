@@ -5,6 +5,7 @@ extra_translations.h
 jsonutils.h
 prefjson.h
 webapplication.h
+websearchengine.h
 websessiondata.h
 webui.h
 )
@@ -14,6 +15,7 @@ abstractwebapplication.cpp
 btjson.cpp
 prefjson.cpp
 webapplication.cpp
+websearchengine.cpp
 webui.cpp
 )
 
