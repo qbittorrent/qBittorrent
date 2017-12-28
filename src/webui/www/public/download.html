@@ -4,8 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-        <link rel="stylesheet" href="css/Window.css" type="text/css" />
+    <link rel="stylesheet" href="css/Window.css" type="text/css" />
     <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/download.js" charset="utf-8"></script>
 </head>
 <body>
@@ -69,6 +70,16 @@
 </center>
 </form>
 <script type="text/javascript">
+var encodedUrls = new URI().getData('urls');
+if (encodedUrls) {
+    var urls = [];
+    encodedUrls.split('|').each(function(url) {
+        urls.push(decodeURIComponent(url));
+    });
+
+    if (urls.length)
+        $('urls').set('value', urls.join("\n"));
+}
 
 var submitted = false;
 
