@@ -5,6 +5,7 @@ HEADERS += \
     $$PWD/jsonutils.h \
     $$PWD/extra_translations.h \
     $$PWD/webapplication.h \
+    $$PWD/websearchengine.h \
     $$PWD/websessiondata.h \
     $$PWD/abstractwebapplication.h
 
@@ -13,6 +14,7 @@ SOURCES += \
     $$PWD/btjson.cpp \
     $$PWD/prefjson.cpp \
     $$PWD/webapplication.cpp \
+    $$PWD/websearchengine.cpp \
     $$PWD/abstractwebapplication.cpp
 
 RESOURCES += $$PWD/webui.qrc

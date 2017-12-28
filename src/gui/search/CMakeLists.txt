@@ -7,6 +7,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/../lineedit/src
 set(QBT_SEARCHENGINE_FORMS
 pluginselectdlg.ui
 pluginsourcedlg.ui
+searchenginewidget.ui
 searchwidget.ui
 )
 
@@ -16,6 +17,7 @@ pluginsourcedlg.h
 searchlistdelegate.h
 searchsortmodel.h
 searchtab.h
+searchenginewidget.h
 searchwidget.h
 )
 
@@ -25,6 +27,7 @@ pluginsourcedlg.cpp
 searchlistdelegate.cpp
 searchsortmodel.cpp
 searchtab.cpp
+searchenginewidget.cpp
 searchwidget.cpp
 )
 
