@@ -710,23 +710,18 @@ function setupCopyEventHandler() {
 
     clipboardEvent = new Clipboard('.copyToClipboard', {
         text: function(trigger) {
-            var textToCopy;
-
             switch (trigger.id) {
                 case "CopyName":
-                    textToCopy = copyNameFN();
-                    break;
+                    return copyNameFN();
                 case "CopyMagnetLink":
-                    textToCopy = copyMagnetLinkFN();
-                    break;
+                    return copyMagnetLinkFN();
                 case "CopyHash":
-                    textToCopy = copyHashFN();
-                    break;
+                    return copyHashFN();
                 case "copyDescriptionPageUrl":
                     return copySearchTorrentUrl();
+                default:
+                    return "";
             }
-
-            return textToCopy;
         }
     });
 }
