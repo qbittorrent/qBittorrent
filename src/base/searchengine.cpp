@@ -238,7 +238,7 @@ void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
 bool SearchEngine::uninstallPlugin(const QString &name)
 {
     // remove it from hard drive
-    QDir pluginsFolder(pluginsLocation());
+    const QDir pluginsFolder(pluginsLocation());
     QStringList filters;
     filters << name + ".*";
     QStringList files = pluginsFolder.entryList(filters, QDir::Files, QDir::Unsorted);
