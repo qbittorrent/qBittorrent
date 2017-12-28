@@ -59,12 +59,20 @@ initializeWindows = function() {
 
     addClickEvent('download', function(e) {
         new Event(e).stop();
+        showDownloadPage();
+    });
+
+    showDownloadPage = function(urls) {
         var id = 'downloadPage';
+        var contentUrl = 'download.html';
+        if (urls && urls.length)
+            contentUrl += '?urls=' + urls.join("|");
+
         new MochaUI.Window({
             id: id,
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: 'iframe',
-            contentURL: 'download.html',
+            contentURL: contentUrl,
             addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
@@ -78,7 +86,7 @@ initializeWindows = function() {
             }
         });
         updateMainData();
-    });
+    };
 
     addClickEvent('preferences', function(e) {
         new Event(e).stop();
