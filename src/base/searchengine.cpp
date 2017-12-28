@@ -72,7 +72,6 @@ SearchEngine::SearchEngine()
     m_searchProcess = new QProcess(this);
     m_searchProcess->setEnvironment(QProcess::systemEnvironment());
     connect(m_searchProcess, &QProcess::started, this, &SearchEngine::searchStarted);
-    connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchEngine::readSearchOutput);
     connect(m_searchProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished), this, &SearchEngine::processFinished);
 
     m_searchTimeout = new QTimer(this);
@@ -86,6 +85,11 @@ SearchEngine::~SearchEngine()
 {
     qDeleteAll(m_plugins.values());
     cancelSearch();
+}
+
+QList<PluginInfo *> SearchEngine::getAllPlugins() const
+{
+    return m_plugins.values();
 }
 
 QStringList SearchEngine::allPlugins() const
@@ -216,9 +220,11 @@ void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
             Utils::Fs::forceRemove(destPath + ".bak");
             // Update supported plugins
             update();
+            qDebug() << "Plugin is not supported.";
             emit pluginUpdateFailed(name, tr("Plugin is not supported."));
         }
         else {
+            qDebug() << "Plugin is not supported.";
             emit pluginInstallationFailed(name, tr("Plugin is not supported."));
         }
     }
@@ -300,13 +306,13 @@ void SearchEngine::downloadTorrent(const QString &siteUrl, const QString &url)
     downloadProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
 }
 
-void SearchEngine::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
+bool SearchEngine::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
 {
     // Search process already running or
     // No search pattern entered
     if ((m_searchProcess->state() != QProcess::NotRunning) || pattern.isEmpty()) {
         emit searchFailed();
-        return;
+        return false;
     }
 
     // Reload environment variables (proxy)
@@ -322,6 +328,8 @@ void SearchEngine::startSearch(const QString &pattern, const QString &category, 
     // Launch search
     m_searchProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
     m_searchTimeout->start(180000); // 3min
+
+    return true;
 }
 
 QString SearchEngine::categoryFullName(const QString &categoryName)
@@ -482,29 +490,6 @@ void SearchEngine::onTimeout()
     cancelSearch();
 }
 
-// search QProcess return output as soon as it gets new
-// stuff to read. We split it into lines and parse each
-// line to SearchResult calling parseSearchResult().
-void SearchEngine::readSearchOutput()
-{
-    QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
-    QList<QByteArray> lines = output.split('\n');
-    if (!m_searchResultLineTruncated.isEmpty())
-        lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
-    m_searchResultLineTruncated = lines.takeLast().trimmed();
-
-    QList<SearchResult> searchResultList;
-    foreach (const QByteArray &line, lines) {
-        SearchResult searchResult;
-        if (parseSearchResult(QString::fromUtf8(line), searchResult))
-            searchResultList << searchResult;
-    }
-
-    if (!searchResultList.isEmpty())
-        emit newSearchResults(searchResultList);
-}
-
 void SearchEngine::update()
 {
     QProcess nova;
@@ -568,7 +553,7 @@ void SearchEngine::update()
 // Parse one line of search results list
 // Line is in the following form:
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-bool SearchEngine::parseSearchResult(const QString &line, SearchResult &searchResult)
+bool SearchEngine::parseSearchResult(const QString &line, SearchResult &searchResult) const
 {
     const QStringList parts = line.split("|");
     const int nbFields = parts.size();

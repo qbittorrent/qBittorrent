@@ -39,6 +39,7 @@ HEADERS += \
     $$PWD/search/pluginselectdlg.h \
     $$PWD/search/pluginsourcedlg.h \
     $$PWD/search/searchlistdelegate.h \
+    $$PWD/search/searchenginewidget.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchtab.h \
     $$PWD/search/searchwidget.h \
@@ -94,6 +95,7 @@ SOURCES += \
     $$PWD/scanfoldersdelegate.cpp \
     $$PWD/search/pluginselectdlg.cpp \
     $$PWD/search/pluginsourcedlg.cpp \
+    $$PWD/search/searchenginewidget.cpp \
     $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchtab.cpp \
