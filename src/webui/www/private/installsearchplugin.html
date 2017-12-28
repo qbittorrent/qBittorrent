@@ -1,0 +1,69 @@
+<style type="text/css">
+    #installSearchPluginContainer {
+        margin: 10px;
+    }
+
+    #installSearchPluginContainer button {
+        padding: 3px 20px;
+    }
+
+    #newPluginPath {
+        width: 100%;
+        line-height: 2em;
+    }
+</style>
+
+<div id="installSearchPluginContainer">
+    <h2>QBT_TR(Plugin path:)QBT_TR[CONTEXT=PluginSourceDlg]</h2>
+
+    <div>
+        <input type="text" id="newPluginPath" placeholder="QBT_TR(URL or local directory)QBT_TR[CONTEXT=PluginSourceDlg]" autocorrect="off" autocapitalize="none" />
+        <div style="margin-top: 10px; text-align: center;">
+            <button id="newPluginCancel" onclick="closeSearchWindow('installSearchPlugin');">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
+            <button id="newPluginOk" onclick="newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    'use strict';
+
+    var initInstallSearchPlugin = function() {
+        var installSearchPluginKeyboardEvents = new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'enter': function (e) {
+                    // accept enter key as a click
+                    new Event(e).stop();
+
+                    var elem = e.event.srcElement;
+                    if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))
+                        newPluginOk();
+                    else if (elem.id === "newPluginCancel")
+                        closeSearchWindow('installSearchPlugin');
+                }
+            }
+        });
+        installSearchPluginKeyboardEvents.activate();
+
+        $('newPluginPath').select();
+    };
+
+    var newPluginOk = function() {
+        var path = $("newPluginPath").get("value").trim();
+        if (path)
+            new Request({
+                url: 'api/v2/search/installPlugin',
+                noCache: true,
+                method: 'post',
+                data: {
+                    sources: path,
+                },
+                onRequest: function(){
+                    closeSearchWindow('installSearchPlugin');
+                }
+            }).send();
+    };
+
+    initInstallSearchPlugin();
+</script>

@@ -24,6 +24,8 @@
 
 torrentsTable = new TorrentsTable();
 torrentPeersTable = new TorrentPeersTable();
+searchResultsTable = new SearchResultsTable();
+searchPluginsTable = new SearchPluginsTable();
 
 var updatePropertiesPanel = function() {};
 
@@ -76,8 +78,9 @@ window.addEvent('load', function() {
     };
 
     window.addEvent('resize', function() {
-        // Resizing might takes some time.
-        saveColumnSizes.delay(200);
+        // only save sizes if the columns are visible
+        if (!$("mainColumn").hasClass("invisible"))
+            saveColumnSizes.delay(200); // Resizing might takes some time.
     });
 
     /*MochaUI.Desktop = new MochaUI.Desktop();
@@ -87,22 +90,40 @@ window.addEvent('load', function() {
     });*/
     MochaUI.Desktop.initialize();
 
-    var filt_w = localStorage.getItem('filters_width');
-    if ($defined(filt_w))
-        filt_w = filt_w.toInt();
-    else
-        filt_w = 120;
-    new MochaUI.Column({
-        id: 'filtersColumn',
-        placement: 'left',
-        onResize: saveColumnSizes,
-        width: filt_w,
-        resizeLimit: [1, 300]
-    });
-    new MochaUI.Column({
-        id: 'mainColumn',
-        placement: 'main'
-    });
+    var buildTransfersTab = function() {
+        var filt_w = localStorage.getItem('filters_width');
+        if ($defined(filt_w))
+            filt_w = filt_w.toInt();
+        else
+            filt_w = 120;
+        new MochaUI.Column({
+            id: 'filtersColumn',
+            placement: 'left',
+            onResize: saveColumnSizes,
+            width: filt_w,
+            resizeLimit: [1, 300]
+        });
+
+        new MochaUI.Column({
+            id: 'mainColumn',
+            placement: 'main'
+        });
+    };
+
+    var buildSearchTab = function() {
+        new MochaUI.Column({
+            id: 'searchTabColumn',
+            placement: 'main',
+            width: null
+        });
+
+        // start off hidden
+        $("searchTabColumn").addClass("invisible");
+    };
+
+    buildTransfersTab();
+    buildSearchTab();
+    MochaUI.initializeTabs('mainWindowTabsList');
 
     setCategoryFilter = function(hash) {
         selected_category = hash;
@@ -184,6 +205,15 @@ window.addEvent('load', function() {
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
     // After showing/hiding the toolbar + status bar
+    var showSearchEngine = localStorage.getItem('show_search_engine') === "true";
+    if (!showSearchEngine) {
+        // uncheck menu option
+        $('showSearchEngineLink').firstChild.style.opacity = '0';
+        // hide tabs
+        $('mainWindowTabs').addClass('invisible');
+    }
+
+    // After Show Top Toolbar
     MochaUI.Desktop.setDesktopSize();
 
     var syncMainDataLastResponseId = 0;
@@ -543,7 +573,82 @@ window.addEvent('load', function() {
         processServerState();
     });
 
+    $('showSearchEngineLink').addEvent('click', function(e) {
+        showSearchEngine = !showSearchEngine;
+        localStorage.setItem('show_search_engine', showSearchEngine.toString());
+        if (showSearchEngine) {
+            $('showSearchEngineLink').firstChild.style.opacity = '1';
+            $('mainWindowTabs').removeClass('invisible');
+
+            addMainWindowTabsEventListener();
+            if (!MochaUI.Panels.instances.SearchPanel)
+                addSearchPanel();
+        }
+        else {
+            $('showSearchEngineLink').firstChild.style.opacity = '0';
+            $('mainWindowTabs').addClass('invisible');
+            $("transfersTabLink").click();
+
+            removeMainWindowTabsEventListener();
+        }
+    });
+
     $('StatisticsLink').addEvent('click', StatisticsLinkFN);
+
+    // main window tabs
+
+    var showTransfersTab = function() {
+        $("filtersColumn").removeClass("invisible");
+        $("filtersColumn_handle").removeClass("invisible");
+        $("mainColumn").removeClass("invisible");
+        hideSearchTab();
+    };
+
+    var hideTransfersTab = function() {
+        $("filtersColumn").addClass("invisible");
+        $("filtersColumn_handle").addClass("invisible");
+        $("mainColumn").addClass("invisible");
+        MochaUI.Desktop.resizePanels();
+    };
+
+    var showSearchTab = function() {
+        $("searchTabColumn").removeClass("invisible");
+        hideTransfersTab();
+    };
+
+    var hideSearchTab = function() {
+        $("searchTabColumn").addClass("invisible");
+        MochaUI.Desktop.resizePanels();
+    };
+
+    var addMainWindowTabsEventListener = function() {
+        $('transfersTabLink').addEvent('click', showTransfersTab);
+        $('searchTabLink').addEvent('click', showSearchTab);
+    };
+
+    var removeMainWindowTabsEventListener = function() {
+        $('transfersTabLink').removeEvent('click', showTransfersTab);
+        $('searchTabLink').removeEvent('click', showSearchTab);
+    };
+
+    var addSearchPanel = function() {
+        new MochaUI.Panel({
+            id : 'SearchPanel',
+            title : 'Search',
+            header : false,
+            padding : {
+                top : 0,
+                right : 0,
+                bottom : 0,
+                left : 0
+            },
+            loadMethod : 'xhr',
+            contentURL : 'search.html',
+            content: '',
+            column : 'searchTabColumn',
+            height : null
+        });
+    };
 
     new MochaUI.Panel({
         id: 'transferList',
@@ -658,6 +763,12 @@ window.addEvent('load', function() {
         column: 'mainColumn',
         height: prop_h
     });
+
+    if (showSearchEngine) {
+        addMainWindowTabsEventListener();
+        addSearchPanel();
+    }
+
 });
 
 function closeWindows() {
@@ -677,6 +788,8 @@ function setupCopyEventHandler() {
                     return copyMagnetLinkFN();
                 case "CopyHash":
                     return copyHashFN();
+                case "copyDescriptionPageUrl":
+                    return copySearchTorrentUrl();
                 default:
                     return "";
             }

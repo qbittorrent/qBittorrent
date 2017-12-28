@@ -13,12 +13,15 @@
         <file>private/downloadlimit.html</file>
         <file>private/filters.html</file>
         <file>private/index.html</file>
+        <file>private/installsearchplugin.html</file>
         <file>private/newcategory.html</file>
         <file>private/preferences.html</file>
         <file>private/preferences_content.html</file>
         <file>private/properties.html</file>
         <file>private/properties_content.html</file>
         <file>private/rename.html</file>
+        <file>private/search.html</file>
+        <file>private/searchplugins.html</file>
         <file>private/scripts/client.js</file>
         <file>private/scripts/contextmenu.js</file>
         <file>private/scripts/download.js</file>
