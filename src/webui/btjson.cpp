@@ -1132,3 +1132,74 @@ QByteArray btjson::getPeerLog(int lastKnownId)
 
     return json::toJson(peerList);
 }
+
+/**
+ * Returns the search results in JSON format.
+ *
+ * The return value is an object with a status and an array of dictionaries.
+ * The dictionary keys are:
+ *   - "fileName"
+ *   - "fileUrl"
+ *   - "fileSize"
+ *   - "nbSeeders"
+ *   - "nbLeechers"
+ *   - "siteUrl"
+ *   - "descrLink"
+ */
+QByteArray btjson::getSearchResults(const QList<SearchResult> searchResults, const bool isSearchActive, const int queueSize)
+{
+    QVariantList searchResultsVariantList;
+    for (const SearchResult searchResult : searchResults) {
+        QMap<QString, QVariant> searchResultMap;
+
+        searchResultMap.insert("fileName", searchResult.fileName);
+        searchResultMap.insert("fileUrl", searchResult.fileUrl);
+        searchResultMap.insert("fileSize", searchResult.fileSize);
+        searchResultMap.insert("nbSeeders", searchResult.nbSeeders);
+        searchResultMap.insert("nbLeechers", searchResult.nbLeechers);
+        searchResultMap.insert("siteUrl", searchResult.siteUrl);
+        searchResultMap.insert("descrLink", searchResult.descrLink);
+
+        searchResultsVariantList << searchResultMap;
+    }
+
+    QMap<QString, QVariant> resultMap;
+    resultMap.insert("status", ((isSearchActive) || (queueSize > 0)) ? "Loading." : "Done.");
+    resultMap.insert("results", searchResultsVariantList);
+
+    return json::toJson(resultMap);
+}
+
+/**
+ * Returns the search plugins in JSON format.
+ *
+ * The return value is an array of dictionaries.
+ * The dictionary keys are:
+ *   - "name"
+ *   - "version"
+ *   - "fullName"
+ *   - "url"
+ *   - "supportedCategories"
+ *   - "iconPath"
+ *   - "enabled"
+ */
+QByteArray btjson::getPlugins(const QList<PluginInfo*> plugins)
+{
+    QVariantList pluginsList;
+
+    for (const PluginInfo *plugin : plugins) {
+        QVariantMap pluginMap;
+
+        pluginMap.insert("name", plugin->name);
+        pluginMap.insert("version", QString(plugin->version));
+        pluginMap.insert("fullName", plugin->fullName);
+        pluginMap.insert("url", plugin->url);
+        pluginMap.insert("supportedCategories", plugin->supportedCategories);
+        pluginMap.insert("iconPath", plugin->iconPath);
+        pluginMap.insert("enabled", plugin->enabled);
+
+        pluginsList << pluginMap;
+    }
+
+    return json::toJson(pluginsList);
+}
