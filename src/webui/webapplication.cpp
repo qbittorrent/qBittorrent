@@ -458,7 +458,6 @@ void WebApplication::action_command_download()
     }
 
     BitTorrent::AddTorrentParams params;
-    // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
     params.sequential = seqDownload;
     params.firstLastPiecePriority = firstLastPiece;
@@ -469,6 +468,14 @@ void WebApplication::action_command_download()
     params.name = torrentName;
     params.uploadLimit = (upLimit > 0) ? upLimit : -1;
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+
+    // verify the save path exists
+    const QString savePathExpanded = Utils::Fs::expandPathAbs(savepath);
+    if (!QDir(savePathExpanded).exists()) {
+        qDebug() << "Unable to save torrents. Save path does not exist:" << savePathExpanded;
+        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
 
     bool partialSuccess = false;
     for (QString url : urls.split('\n')) {
@@ -516,7 +523,6 @@ void WebApplication::action_command_upload()
         }
         else {
             BitTorrent::AddTorrentParams params;
-            // TODO: Check if destination actually exists
             params.skipChecking = skipChecking;
             params.sequential = seqDownload;
             params.firstLastPiecePriority = firstLastPiece;
@@ -527,6 +533,15 @@ void WebApplication::action_command_upload()
             params.name = torrentName;
             params.uploadLimit = (upLimit > 0) ? upLimit : -1;
             params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+
+            // verify the save path exists
+            const QString savePathExpanded = Utils::Fs::expandPathAbs(savepath);
+            if (!QDir(savePathExpanded).exists()) {
+                qDebug() << "Unable to save torrents. Save path does not exist:" << savePathExpanded;
+                status(500, "Internal Server Error");
+                print(QObject::tr("Error: Save path does not exist."), Http::CONTENT_TYPE_TXT);
+                return;
+            }
 
             if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                 status(500, "Internal Server Error");
