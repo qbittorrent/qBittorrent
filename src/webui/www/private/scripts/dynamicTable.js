@@ -66,39 +66,42 @@ var DynamicTable = new Class({
 
         $(this.dynamicTableDivId).addEvent('scroll', scrollFn);
 
-        var resizeFn = function() {
-            var panel = $(this.dynamicTableDivId).getParent('.panel');
-            var h = panel.getBoundingClientRect().height - $(this.dynamicTableFixedHeaderDivId).getBoundingClientRect().height;
-            $(this.dynamicTableDivId).style.height = h + 'px';
-
-            // Workaround due to inaccurate calculation of elements heights by browser
-
-            var n = 2;
-
-            while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
-                --n;
-                h -= 0.5;
+        // if the table exists within a panel
+        if ($(this.dynamicTableDivId).getParent('.panel')) {
+            var resizeFn = function() {
+                var panel = $(this.dynamicTableDivId).getParent('.panel');
+                var h = panel.getBoundingClientRect().height - $(this.dynamicTableFixedHeaderDivId).getBoundingClientRect().height;
                 $(this.dynamicTableDivId).style.height = h + 'px';
-            }
 
-            this.lastPanelHeight = panel.getBoundingClientRect().height;
-        }.bind(this);
+                // Workaround due to inaccurate calculation of elements heights by browser
 
-        $(this.dynamicTableDivId).getParent('.panel').addEvent('resize', resizeFn);
+                var n = 2;
 
-        this.lastPanelHeight = 0;
+                while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
+                    --n;
+                    h -= 0.5;
+                    $(this.dynamicTableDivId).style.height = h + 'px';
+                }
 
-        // Workaround. Resize event is called not always (for example it isn't called when browser window changes it's size)
-
-        var checkResizeFn = function() {
-            var panel = $(this.dynamicTableDivId).getParent('.panel');
-            if (this.lastPanelHeight != panel.getBoundingClientRect().height) {
                 this.lastPanelHeight = panel.getBoundingClientRect().height;
-                panel.fireEvent('resize');
-            }
-        }.bind(this);
+            }.bind(this);
 
-        setInterval(checkResizeFn, 500);
+            $(this.dynamicTableDivId).getParent('.panel').addEvent('resize', resizeFn);
+
+            this.lastPanelHeight = 0;
+
+            // Workaround. Resize event is called not always (for example it isn't called when browser window changes it's size)
+
+            var checkResizeFn = function() {
+                var panel = $(this.dynamicTableDivId).getParent('.panel');
+                if (this.lastPanelHeight != panel.getBoundingClientRect().height) {
+                    this.lastPanelHeight = panel.getBoundingClientRect().height;
+                    panel.fireEvent('resize');
+                }
+            }.bind(this);
+
+            setInterval(checkResizeFn, 500);
+        }
     },
 
     setupHeaderEvents: function() {
