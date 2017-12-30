@@ -76,7 +76,7 @@ public:
     QList<PluginInfo *> getAllPlugins() const;
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
-    QStringList supportedCategories() const;
+    QStringList supportedCategories(const QString &name) const;
     PluginInfo *pluginInfo(const QString &name) const;
 
     bool isActive() const;

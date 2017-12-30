@@ -108,16 +108,23 @@ QStringList SearchEngine::enabledPlugins() const
     return plugins;
 }
 
-QStringList SearchEngine::supportedCategories() const
+QStringList SearchEngine::supportedCategories(const QString &name) const
 {
+    QStringList plugins;
+    if (name == "all")
+        plugins = allPlugins();
+    else if ((name == "enabled") || (name == "multi"))
+        plugins = enabledPlugins();
+    else
+        plugins << name.trimmed();
+
     QStringList result;
-    foreach (const PluginInfo *plugin, m_plugins.values()) {
-        if (plugin->enabled) {
-            foreach (QString cat, plugin->supportedCategories) {
-                if (!result.contains(cat))
-                    result << cat;
-            }
-        }
+    foreach (const QString plugin, plugins) {
+        const PluginInfo *info = pluginInfo(plugin);
+        if (info == 0) continue; // plugin wasn't found
+        foreach (const QString category, pluginInfo(plugin)->supportedCategories)
+            if (!result.contains(category))
+                result << category;
     }
 
     return result;

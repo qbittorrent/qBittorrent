@@ -1022,9 +1022,9 @@ void WebApplication::action_command_getSearchCategories()
     CHECK_URI(0);
 
     QStringList categories;
-
     categories << m_webSearchEngine->categoryFullName("all"), QVariant("all");
-    foreach (const QString &category, m_webSearchEngine->supportedCategories())
+
+    foreach (const QString &category, m_webSearchEngine->supportedCategories(request().gets["name"].trimmed()))
         categories << m_webSearchEngine->categoryFullName(category);
 
     print(categories.join(","), Http::CONTENT_TYPE_TXT);

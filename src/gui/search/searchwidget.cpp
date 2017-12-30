@@ -123,8 +123,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
     const auto onPluginChanged = [this]()
     {
-        fillCatCombobox();
         fillPluginComboBox();
+        fillCatCombobox();
         selectActivePage();
     };
     connect(m_searchEngineWidget, &SearchEngineWidget::pluginInstalled, this, onPluginChanged);
@@ -138,6 +138,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_ui->m_searchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SearchWidget::selectMultipleBox);
+    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SearchWidget::fillCatCombobox);
 }
 
 void SearchWidget::fillCatCombobox()
@@ -148,7 +149,7 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &cat, m_searchEngineWidget->supportedCategories())
+    foreach (const QString &cat, m_searchEngineWidget->supportedCategories(selectedPlugin()))
         tmpList << qMakePair(SearchEngineWidget::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
