@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2017  Mike Tzou
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,39 +24,35 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include "pluginsourcedlg.h"
+#ifndef UTILS_GUI_H
+#define UTILS_GUI_H
 
-#include "ui_pluginsourcedlg.h"
-#include "utils.h"
+#include <QtGlobal>
+#include <QPixmap>
+#include <QSize>
 
-PluginSourceDlg::PluginSourceDlg(QWidget *parent)
-    : QDialog(parent)
-    , m_ui(new Ui::PluginSourceDlg())
+class QWidget;
+
+namespace Utils
 {
-    m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
+    namespace Gui
+    {
+        void resize(QWidget *widget, const QSize &newSize = {});
+        qreal screenScalingFactor(const QWidget *widget);
 
-    Utils::Gui::resize(this);
-    show();
+        template <typename T>
+        T scaledSize(const QWidget *widget, const T &size)
+        {
+            return (size * screenScalingFactor(widget));
+        }
+
+        QPixmap scaledPixmap(const QString &path, const QWidget *widget, const int height = 0);
+        QSize smallIconSize(const QWidget *widget = nullptr);
+        QSize mediumIconSize(const QWidget *widget = nullptr);
+        QSize largeIconSize(const QWidget *widget = nullptr);
+    }
 }
 
-PluginSourceDlg::~PluginSourceDlg()
-{
-    delete m_ui;
-}
-
-void PluginSourceDlg::on_localButton_clicked()
-{
-    emit askForLocalFile();
-    close();
-}
-
-void PluginSourceDlg::on_urlButton_clicked()
-{
-    emit askForUrl();
-    close();
-}
+#endif  // UTILS_GUI_H

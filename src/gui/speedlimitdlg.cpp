@@ -30,6 +30,7 @@
 
 #include "base/unicodestrings.h"
 #include "ui_bandwidth_limit.h"
+#include "utils.h"
 
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     : QDialog(parent)
@@ -41,6 +42,8 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     // Connect to slots
     connect(m_ui->bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
     connect(m_ui->spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
+
+    Utils::Gui::resize(this);
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()

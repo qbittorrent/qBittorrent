@@ -74,6 +74,7 @@ transferlistfilterswidget.h
 transferlistsortmodel.h
 transferlistwidget.h
 updownratiodlg.h
+utils.h
 )
 
 set(QBT_GUI_SOURCES
@@ -119,6 +120,7 @@ transferlistfilterswidget.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodlg.cpp
+utils.cpp
 )
 
 if (APPLE)

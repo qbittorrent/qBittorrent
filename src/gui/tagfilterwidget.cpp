@@ -36,11 +36,11 @@
 #include <QMessageBox>
 
 #include "base/bittorrent/session.h"
-#include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "tagfiltermodel.h"
 #include "tagfilterproxymodel.h"
+#include "utils.h"
 
 namespace
 {
@@ -70,7 +70,7 @@ TagFilterWidget::TagFilterWidget(QWidget *parent)
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     setUniformRowHeights(true);
     setHeaderHidden(true);
-    setIconSize(Utils::Misc::smallIconSize());
+    setIconSize(Utils::Gui::smallIconSize());
 #if defined(Q_OS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif

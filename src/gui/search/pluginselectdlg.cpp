@@ -31,25 +31,26 @@
 
 #include "pluginselectdlg.h"
 
+#include <QClipboard>
+#include <QDropEvent>
+#include <QFileDialog>
 #include <QHeaderView>
+#include <QImageReader>
 #include <QMenu>
 #include <QMessageBox>
-#include <QFileDialog>
-#include <QDropEvent>
 #include <QMimeData>
-#include <QClipboard>
 #include <QTableView>
-#include <QImageReader>
 
+#include "autoexpandabledialog.h"
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
-#include "searchwidget.h"
-#include "pluginsourcedlg.h"
 #include "guiiconprovider.h"
-#include "autoexpandabledialog.h"
+#include "pluginsourcedlg.h"
+#include "searchwidget.h"
 #include "ui_pluginselectdlg.h"
+#include "utils.h"
 
 enum PluginColumns
 {
@@ -78,9 +79,6 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
     m_ui->pluginsTree->setRootIsDecorated(false);
-    m_ui->pluginsTree->header()->resizeSection(0, 160);
-    m_ui->pluginsTree->header()->resizeSection(1, 80);
-    m_ui->pluginsTree->header()->resizeSection(2, 200);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
@@ -99,6 +97,7 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
     connect(m_pluginManager, &SearchEngine::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchEngine::checkForUpdatesFailed, this, &PluginSelectDlg::checkForUpdatesFailed);
 
+    Utils::Gui::resize(this);
     show();
 }
 

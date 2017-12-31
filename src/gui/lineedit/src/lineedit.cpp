@@ -8,37 +8,35 @@
 ****************************************************************************/
 
 #include "lineedit.h"
+
 #include <algorithm>
+
+#include <QResizeEvent>
 #include <QStyle>
 #include <QToolButton>
-#include <QResizeEvent>
+
+#include "guiiconprovider.h"
 
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    QPixmap pixmap1(":/lineeditimages/search.png");
-    searchButton = new QToolButton(this);
-    searchButton->setIcon(QIcon(pixmap1));
-    searchButton->setIconSize(pixmap1.size());
-    searchButton->setCursor(Qt::ArrowCursor);
-    searchButton->setStyleSheet("QToolButton { border: none; padding: 2px; }");
-    QSize searchButtonHint = searchButton->sizeHint();
+    m_searchButton = new QToolButton(this);
+    m_searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
+    m_searchButton->setCursor(Qt::ArrowCursor);
+    m_searchButton->setStyleSheet("QToolButton {border: none; padding: 2px;}");
 
-    QSize clearButtonHint(0, 0);
+    // padding between text and widget borders
+    setStyleSheet(QString("QLineEdit {padding-left: %1px;}").arg(m_searchButton->sizeHint().width()));
+
     setClearButtonEnabled(true);
-    setStyleSheet(QString("QLineEdit { padding-left: %1px; }").arg(searchButtonHint.width()));  // padding between text and widget borders
 
-    QSize widgetHint = sizeHint();
-    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-    setMaximumHeight(std::max({ widgetHint.height(), searchButtonHint.height(), clearButtonHint.height() }) + frameWidth * 2);
+    const int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+    setMaximumHeight(std::max(sizeHint().height(), m_searchButton->sizeHint().height()) + frameWidth * 2);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 }
 
 void LineEdit::resizeEvent(QResizeEvent *e)
 {
-    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-
-    QSize sz = searchButton->sizeHint();
-    searchButton->move(frameWidth, (e->size().height() - sz.height()) / 2);
+    const int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+    m_searchButton->move(frameWidth, (e->size().height() - m_searchButton->sizeHint().height()) / 2);
 }
-

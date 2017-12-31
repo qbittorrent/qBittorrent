@@ -53,6 +53,7 @@
 #include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
 #include "ui_automatedrssdownloader.h"
+#include "utils.h"
 
 const QString EXT_JSON {QStringLiteral(".json")};
 const QString EXT_LEGACY {QStringLiteral(".rssrules")};
@@ -155,14 +156,14 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 void AutomatedRssDownloader::loadSettings()
 {
     const Preferences *const pref = Preferences::instance();
-    resize(pref->getRssGeometrySize(this->size()));
+    Utils::Gui::resize(this, pref->getRssGeometrySize());
     m_ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
     Preferences *const pref = Preferences::instance();
-    pref->setRssGeometrySize(this->size());
+    pref->setRssGeometrySize(size());
     pref->setRssHSplitterSizes(m_ui->hsplitter->saveState());
 }
 

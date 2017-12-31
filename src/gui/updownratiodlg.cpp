@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "ui_updownratiodlg.h"
+#include "utils.h"
 
 UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialRatioValue,
                                qreal maxRatioValue, int initialTimeValue,
@@ -73,6 +74,8 @@ UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialRatioValue,
     connect(m_ui->checkMaxTime, SIGNAL(toggled(bool)), this, SLOT(enableTimeSpin()));
 
     handleRatioTypeChanged();
+
+    Utils::Gui::resize(this);
 }
 
 void UpDownRatioDlg::accept()

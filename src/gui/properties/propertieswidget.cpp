@@ -62,6 +62,7 @@
 #include "torrentcontentmodel.h"
 #include "trackerlist.h"
 #include "transferlistwidget.h"
+#include "utils.h"
 
 #include "ui_propertieswidget.h"
 
@@ -87,10 +88,11 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_propListDelegate = new PropListDelegate(this);
     m_ui->filesList->setItemDelegate(m_propListDelegate);
     m_ui->filesList->setSortingEnabled(true);
+
     // Torrent content filtering
     m_contentFilterLine = new LineEdit(this);
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
-    m_contentFilterLine->setMaximumSize(300, m_contentFilterLine->size().height());
+    m_contentFilterLine->setFixedWidth(Utils::Gui::scaledSize(this, 300));
     connect(m_contentFilterLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
@@ -112,7 +114,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_ui->filesList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this, SLOT(saveSettings()));
 
     // set bar height relative to screen dpi
-    int barHeight = devicePixelRatio() * 18;
+    const int barHeight = Utils::Gui::scaledSize(this, 18);
 
     // Downloaded pieces progress bar
     m_ui->tempProgressBarArea->setVisible(false);
@@ -131,9 +133,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     // Tracker list
     m_trackerList = new TrackerList(this);
     m_ui->trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
-    m_ui->trackerUpButton->setIconSize(Utils::Misc::smallIconSize());
+    m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
     m_ui->trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
-    m_ui->trackerDownButton->setIconSize(Utils::Misc::smallIconSize());
+    m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, SIGNAL(clicked()), m_trackerList, SLOT(moveSelectionUp()));
     connect(m_ui->trackerDownButton, SIGNAL(clicked()), m_trackerList, SLOT(moveSelectionDown()));
     m_ui->horizontalLayout_trackers->insertWidget(0, m_trackerList);
@@ -369,9 +371,7 @@ void PropertiesWidget::readSettings()
     }
     const int current_tab = pref->getPropCurTab();
     const bool visible = pref->getPropVisible();
-    // the following will call saveSettings but shouldn't change any state
-    if (!m_ui->filesList->header()->restoreState(pref->getPropFileListState()))
-        m_ui->filesList->header()->resizeSection(0, 400); // Default
+    m_ui->filesList->header()->restoreState(pref->getPropFileListState());
     m_tabBar->setCurrentIndex(current_tab);
     if (!visible)
         setVisibility(false);

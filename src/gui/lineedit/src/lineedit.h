@@ -22,10 +22,10 @@ public:
     LineEdit(QWidget *parent);
 
 protected:
-    void resizeEvent(QResizeEvent *e);
+    void resizeEvent(QResizeEvent *e) override;
 
 private:
-    QToolButton *searchButton;
+    QToolButton *m_searchButton;
 };
 
 #endif // LIENEDIT_H

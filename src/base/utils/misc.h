@@ -103,8 +103,6 @@ namespace Utils
         void openFolderSelect(const QString& absolutePath);
 
         QPoint screenCenter(const QWidget *w);
-        QSize smallIconSize();
-        QSize largeIconSize();
 #endif
 
 #ifdef Q_OS_WIN

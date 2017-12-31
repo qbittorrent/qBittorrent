@@ -41,6 +41,7 @@
 #include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "speedlimitdlg.h"
+#include "utils.h"
 
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
@@ -100,15 +101,15 @@ StatusBar::StatusBar(QWidget *parent)
     // Because on some platforms the default icon size is bigger
     // and it will result in taller/fatter statusbar, even if the
     // icons are actually 16x16
-    m_connecStatusLblIcon->setIconSize(QSize(16, 16));
-    m_dlSpeedLbl->setIconSize(QSize(16, 16));
-    m_upSpeedLbl->setIconSize(QSize(16, 16));
-    m_altSpeedsBtn->setIconSize(QSize(28, 16));
+    m_connecStatusLblIcon->setIconSize(Utils::Gui::smallIconSize());
+    m_dlSpeedLbl->setIconSize(Utils::Gui::smallIconSize());
+    m_upSpeedLbl->setIconSize(Utils::Gui::smallIconSize());
+    m_altSpeedsBtn->setIconSize(QSize(Utils::Gui::mediumIconSize().width(), Utils::Gui::smallIconSize().height()));
 
     // Set to the known maximum width(plus some padding)
     // so the speed widgets will take the rest of the space
-    m_connecStatusLblIcon->setMaximumWidth(16 + 6);
-    m_altSpeedsBtn->setMaximumWidth(28 + 6);
+    m_connecStatusLblIcon->setMaximumWidth(Utils::Gui::largeIconSize().width());
+    m_altSpeedsBtn->setMaximumWidth(Utils::Gui::largeIconSize().width());
 
     QFrame *statusSep1 = new QFrame(this);
     statusSep1->setFrameStyle(QFrame::VLine);

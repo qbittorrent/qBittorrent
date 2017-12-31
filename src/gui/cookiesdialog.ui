@@ -49,12 +49,6 @@
          <property name="text">
           <string notr="true"/>
          </property>
-         <property name="iconSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
         </widget>
        </item>
        <item>
@@ -77,12 +71,6 @@
         <widget class="QToolButton" name="buttonDelete">
          <property name="text">
           <string notr="true"/>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
          </property>
         </widget>
        </item>

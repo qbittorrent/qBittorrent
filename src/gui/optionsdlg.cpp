@@ -68,6 +68,7 @@
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
 #include "scanfoldersdelegate.h"
+#include "utils.h"
 
 #include "ui_optionsdlg.h"
 
@@ -99,12 +100,20 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+
+    // set uniform size for all icons
+    int maxHeight = -1;
+    for (int i = 0; i < m_ui->tabSelection->count(); ++i)
+        maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(m_ui->tabSelection->item(i)).size().height());
     for (int i = 0; i < m_ui->tabSelection->count(); ++i) {
-        // uniform size for all icons
-        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), 62));
+        const QSize size(std::numeric_limits<int>::max(), static_cast<int>(maxHeight * 1.2));
+        m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
     m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.png", this, 16));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.png", this, 16));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -139,7 +148,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(ScanFoldersModel::instance(), &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleScanFolderViewSelectionChanged);
 
-    connect(m_ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
+    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &OptionsDialog::applySettings);
     // Languages supported
     initializeLanguageCombo();
 
@@ -445,25 +454,19 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 
 void OptionsDialog::loadWindowState()
 {
-    const Preferences* const pref = Preferences::instance();
-
-    resize(pref->getPrefSize(this->size()));
+    Utils::Gui::resize(this, Preferences::instance()->getPrefSize());
 }
 
 void OptionsDialog::loadSplitterState()
 {
-    const Preferences* const pref = Preferences::instance();
+    const QStringList sizesStr = Preferences::instance()->getPrefHSplitterSizes();
 
-    const QStringList sizes_str = pref->getPrefHSplitterSizes();
-    QList<int> sizes;
-    if (sizes_str.size() == 2) {
-        sizes << sizes_str.first().toInt();
-        sizes << sizes_str.last().toInt();
-    }
-    else {
-        sizes << 116;
-        sizes << m_ui->hsplitter->width() - 116;
-    }
+    // width has been modified, use height as width reference instead
+    const int width = Utils::Gui::scaledSize(this
+        , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+    QList<int> sizes {width, (m_ui->hsplitter->width() - width)};
+    if (sizesStr.size() == 2)
+        sizes = {sizesStr.first().toInt(), sizesStr.last().toInt()};
     m_ui->hsplitter->setSizes(sizes);
 }
 
@@ -1578,7 +1581,7 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     session->setIPFilteringEnabled(true);
     session->setIPFilterFile(""); // forcing Session reload filter file
     session->setIPFilterFile(getFilter());
-    connect(session, SIGNAL(IPFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+    connect(session, &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
     setCursor(QCursor(Qt::WaitCursor));
 }
 
@@ -1590,7 +1593,7 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
     else
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
-    disconnect(BitTorrent::Session::instance(), SIGNAL(IPFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
 }
 
 QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
@@ -1675,11 +1678,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1694,11 +1697,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-high.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(QPixmap(":/icons/qbt-theme/security-low.png").scaledToHeight(20, Qt::SmoothTransformation));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
         m_sslCert.clear();
     }
     return isCertValid;
