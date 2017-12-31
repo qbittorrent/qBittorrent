@@ -366,12 +366,10 @@ QStringList QBtCommandLineParameters::paramList() const
     if (!savePath.isEmpty())
         result.append(QString("@savePath=%1").arg(savePath));
 
-    if (addPaused) {
-        if (*addPaused)
-            result.append(QLatin1String("@addPaused=1"));
-        else
-            result.append(QLatin1String("@addPaused=0"));
-    }
+    if (addPaused == true)
+        result.append(QLatin1String("@addPaused=1"));
+    else if (addPaused == false)
+        result.append(QLatin1String("@addPaused=0"));
 
     if (skipChecking)
         result.append(QLatin1String("@skipChecking"));
@@ -385,12 +383,10 @@ QStringList QBtCommandLineParameters::paramList() const
     if (firstLastPiecePriority)
         result.append(QLatin1String("@firstLastPiecePriority"));
 
-    if (skipDialog) {
-        if (*skipDialog)
-            result.append(QLatin1String("@skipDialog=1"));
-        else
-            result.append(QLatin1String("@skipDialog=0"));
-    }
+    if (skipDialog == true)
+        result.append(QLatin1String("@skipDialog=1"));
+    else if (skipDialog == false)
+        result.append(QLatin1String("@skipDialog=0"));
 
     result += torrents;
     return result;
