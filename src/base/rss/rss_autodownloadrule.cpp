@@ -48,7 +48,7 @@
 
 namespace
 {
-    boost::optional<bool> jsonValueToOptional(const QJsonValue &jsonVal)
+    boost::optional<bool> jsonValueToOptionalBool(const QJsonValue &jsonVal)
     {
         if (jsonVal.isBool())
             return jsonVal.toBool();
@@ -59,7 +59,7 @@ namespace
         return boost::none;
     }
 
-    QJsonValue optionalToJsonValue(const boost::optional<bool> &opt)
+    QJsonValue optionalBoolToJsonValue(const boost::optional<bool> &opt)
     {
         if (!opt)
             return QJsonValue();
@@ -75,14 +75,12 @@ namespace
         }
     }
 
-    int optionalToAddPausedLegacy(const boost::optional<bool> &opt)
+    int optionalBoolToAddPausedLegacy(const boost::optional<bool> &opt)
     {
-        if (opt) {
-            if (*opt)
-                return 1; // always
-            else
-                return 2; // never
-        }
+        if (opt == true)
+            return 1; // always
+        else if (opt == false)
+            return 2; // never
         return 0; // use default
     }
 }
@@ -366,7 +364,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_AssignedCategory, assignedCategory()}
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
-        , {Str_AddPaused, optionalToJsonValue(addPaused())}};
+        , {Str_AddPaused, optionalBoolToJsonValue(addPaused())}};
 }
 
 AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, const QString &name)
@@ -380,7 +378,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
-    rule.setAddPaused(jsonValueToOptional(jsonObj.value(Str_AddPaused)));
+    rule.setAddPaused(jsonValueToOptionalBool(jsonObj.value(Str_AddPaused)));
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
 
@@ -405,7 +403,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
         {"enabled", isEnabled()},
         {"category_assigned", assignedCategory()},
         {"use_regex", useRegex()},
-        {"add_paused", optionalToAddPausedLegacy(addPaused())},
+        {"add_paused", optionalBoolToAddPausedLegacy(addPaused())},
         {"episode_filter", episodeFilter()},
         {"last_match", lastMatch()},
         {"ignore_days", ignoreDays()}};
