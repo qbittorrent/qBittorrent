@@ -98,6 +98,20 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         return (result < 0);
     }
 
+    case TorrentModel::TR_STATUS: {
+        // QSortFilterProxyModel::lessThan() uses the < operator only for specific QVariant types
+        // so our custom type is outside that list.
+        // In this case QSortFilterProxyModel::lessThan() converts other types to QString and
+        // sorts them.
+        // Thus we can't use the code in the default label.
+        const BitTorrent::TorrentState leftValue = left.data().value<BitTorrent::TorrentState>();
+        const BitTorrent::TorrentState rightValue = right.data().value<BitTorrent::TorrentState>();
+        if (leftValue != rightValue)
+            return leftValue < rightValue;
+
+        return lowerPositionThan(left, right);
+    }
+
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
     case TorrentModel::TR_SEEN_COMPLETE_DATE: {
