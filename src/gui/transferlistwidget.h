@@ -85,6 +85,7 @@ public slots:
     void copySelectedHashes() const;
     void openSelectedTorrentsFolder() const;
     void recheckSelectedTorrents();
+    void reannounceSelectedTorrents();
     void setDlLimitSelectedTorrents();
     void setUpLimitSelectedTorrents();
     void setMaxRatioSelectedTorrents();
