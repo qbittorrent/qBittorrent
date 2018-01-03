@@ -35,6 +35,8 @@
 #include <QProcess>
 #include <QAtomicInt>
 
+#include <boost/optional.hpp>
+
 #ifndef DISABLE_GUI
 #include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN
@@ -392,7 +394,7 @@ void Application::processParams(const QStringList &params)
     }
 #endif
     BitTorrent::AddTorrentParams torrentParams;
-    TriStateBool skipTorrentDialog;
+    boost::optional<bool> showTorrentDialog;
 
     foreach (QString param, params) {
         param = param.trimmed();
@@ -405,7 +407,7 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@addPaused="))) {
-            torrentParams.addPaused = param.mid(11).toInt() ? TriStateBool::True : TriStateBool::False;
+            torrentParams.addPaused = param.mid(11).toInt() != 0;
             continue;
         }
 
@@ -430,19 +432,13 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@skipDialog="))) {
-            skipTorrentDialog = param.mid(12).toInt() ? TriStateBool::True : TriStateBool::False;
+            showTorrentDialog = param.mid(12).toInt() == 0;
             continue;
         }
 
 #ifndef DISABLE_GUI
-        // There are two circumstances in which we want to show the torrent
-        // dialog. One is when the application settings specify that it should
-        // be shown and skipTorrentDialog is undefined. The other is when
-        // skipTorrentDialog is false, meaning that the application setting
-        // should be overridden.
-        const bool showDialogForThisTorrent =
-            ((AddNewTorrentDialog::isEnabled() && skipTorrentDialog == TriStateBool::Undefined)
-             || skipTorrentDialog == TriStateBool::False);
+        // If the user explicitly set the option, honor it. Otherwise use the global default.
+        const bool showDialogForThisTorrent = showTorrentDialog.get_value_or(AddNewTorrentDialog::isEnabled());
         if (showDialogForThisTorrent)
             AddNewTorrentDialog::show(param, torrentParams, m_window);
         else
