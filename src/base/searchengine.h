@@ -85,7 +85,7 @@ public:
     void updatePlugin(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
-    static void updateIconPath(PluginInfo * const plugin);
+    static void updateIconPath(PluginInfo *const plugin);
     void checkForUpdates();
 
     bool startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
@@ -145,10 +145,10 @@ private:
 
     const QString m_updateUrl;
 
-    QHash<QString, PluginInfo*> m_plugins;
+    QHash<QString, PluginInfo *> m_plugins;
     bool m_searchStopped;
     QTimer *m_searchTimeout;
-    QList<QProcess*> m_downloaders;
+    QList<QProcess *> m_downloaders;
 };
 
 #endif // SEARCHENGINE_H

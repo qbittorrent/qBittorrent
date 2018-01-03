@@ -100,10 +100,9 @@ QStringList SearchEngine::allPlugins() const
 QStringList SearchEngine::enabledPlugins() const
 {
     QStringList plugins;
-    foreach (const PluginInfo *plugin, m_plugins.values()) {
+    foreach (const PluginInfo *plugin, m_plugins.values())
         if (plugin->enabled)
             plugins << plugin->name;
-    }
 
     return plugins;
 }
@@ -259,7 +258,7 @@ bool SearchEngine::uninstallPlugin(const QString &name)
     return true;
 }
 
-void SearchEngine::updateIconPath(PluginInfo * const plugin)
+void SearchEngine::updateIconPath(PluginInfo *const plugin)
 {
     if (!plugin) return;
     QString iconPath = QString("%1/%2.png").arg(pluginsLocation()).arg(plugin->name);
@@ -413,7 +412,7 @@ void SearchEngine::pluginDownloadFailed(const QString &url, const QString &reaso
 
 void SearchEngine::torrentFileDownloadFinished(int exitcode)
 {
-    QProcess *downloadProcess = static_cast<QProcess*>(sender());
+    QProcess *downloadProcess = static_cast<QProcess *>(sender());
     if (exitcode == 0) {
         QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
         QStringList parts = line.split(' ');
@@ -670,10 +669,9 @@ PluginVersion SearchEngine::getPluginVersion(QString filePath)
         if (line.startsWith("#VERSION: ")) {
             line = line.split(' ').last().trimmed();
             version = PluginVersion::tryParse(line, invalidVersion);
-            if (version == invalidVersion) {
+            if (version == invalidVersion)
                 LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
-                    .arg(Utils::Fs::fileName(filePath)).arg(QString::fromUtf8(line)), Log::MsgType::WARNING);
-            }
+                       .arg(Utils::Fs::fileName(filePath)).arg(QString::fromUtf8(line)), Log::MsgType::WARNING);
             else
                 qDebug() << "plugin" << filePath << "version: " << version;
             break;
