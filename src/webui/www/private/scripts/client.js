@@ -289,9 +289,11 @@ window.addEvent('load', function () {
             onSuccess : function (response) {
                 $('error_div').set('html', '');
                 if (response) {
+                    var torrentsTableSelectedRows;
                     var update_categories = false;
                     var full_update = (response['full_update'] === true);
                     if (full_update) {
+                        torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
                         torrentsTable.clear();
                         category_list = {};
                     }
@@ -348,6 +350,10 @@ window.addEvent('load', function () {
                         updateCategoryList();
                         torrentsTableContextMenu.updateCategoriesSubMenu(category_list);
                     }
+
+                    if (full_update)
+                        // re-select previously selected rows
+                        torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
                 clearTimeout(syncMainDataTimer);
                 syncMainDataTimer = syncMainData.delay(syncMainDataTimerPeriod);

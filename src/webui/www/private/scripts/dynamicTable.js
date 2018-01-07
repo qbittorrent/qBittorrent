@@ -500,6 +500,15 @@ var DynamicTable = new Class({
             this.onSelectedRowChanged();
         },
 
+        reselectRows : function(rowIds) {
+            this.deselectAll();
+            this.selectedRows = rowIds.slice();
+            this.tableBody.getElements('tr').each(function(tr) {
+                if (rowIds.indexOf(tr.rowId) > -1)
+                    tr.addClass('selected');
+            });
+        },
+
         onSelectedRowChanged : function () {},
 
         updateRowData : function (data) {
