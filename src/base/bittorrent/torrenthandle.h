@@ -155,6 +155,7 @@ namespace BitTorrent
 
     class TorrentHandle : public QObject
     {
+        Q_OBJECT
         Q_DISABLE_COPY(TorrentHandle)
 
     public:
