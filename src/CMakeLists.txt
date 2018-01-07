@@ -106,3 +106,4 @@ if (WEBUI)
     add_subdirectory(webui)
 endif (WEBUI)
 
+qbt_target_sources(searchengine.qrc)
