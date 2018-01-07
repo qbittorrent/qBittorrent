@@ -156,6 +156,8 @@ const int TorrentHandle::MAX_SEEDING_TIME = 525600;
 // The following can be removed after one or two libtorrent releases on each branch.
 namespace
 {
+    const char i18nContext[] = "TorrentHandle";
+
     // new constructor is available
     template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
     T makeTorrentCreator(const libtorrent::torrent_info & ti)
@@ -1469,7 +1471,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
         return;
     }
 
-    Logger::instance()->addMessage(tr("Could not move torrent: '%1'. Reason: %2")
+    LogMsg(QCoreApplication::translate(i18nContext, "Could not move torrent: '%1'. Reason: %2")
                                    .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
 
     m_moveStorageInfo.newPath.clear();
@@ -1647,13 +1649,13 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
     updateStatus();
     if (p->error.value() == libt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
-        logger->addMessage(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
+        logger->addMessage(QCoreApplication::translate(i18nContext, "File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
         m_hasMissingFiles = true;
         if (!isPaused())
             pause();
     }
     else {
-        logger->addMessage(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
+        logger->addMessage(QCoreApplication::translate(i18nContext, "Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
                            .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
     }
 }
