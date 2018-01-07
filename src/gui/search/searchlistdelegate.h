@@ -35,6 +35,8 @@
 
 class SearchListDelegate: public QItemDelegate
 {
+    Q_OBJECT
+
 public:
     explicit SearchListDelegate(QObject *parent);
 
