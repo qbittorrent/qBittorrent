@@ -489,19 +489,14 @@ var DynamicTable = new Class({
         },
 
         selectRow : function (rowId) {
-            this.selectedRows.empty();
+            this.deselectAll();
             this.selectedRows.push(rowId);
-            var trs = this.tableBody.getElements('tr');
-            for (var i = 0; i < trs.length; i++) {
-                var tr = trs[i];
-                if (tr.rowId == rowId) {
-                    if (!tr.hasClass('selected'))
-                        tr.addClass('selected');
-                }
+            this.tableBody.getElements('tr').each(function(tr) {
+                if (tr.rowId == rowId)
+                    tr.addClass('selected');
                 else
-                if (tr.hasClass('selected'))
                     tr.removeClass('selected');
-            }
+            });
             this.onSelectedRowChanged();
         },
 
