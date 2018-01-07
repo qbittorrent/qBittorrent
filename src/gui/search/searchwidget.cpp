@@ -265,6 +265,10 @@ void SearchWidget::on_searchButton_clicked()
     }
 
     // Tab Addition
+    if (m_allTabs.size() > 0) {
+        closeTab(0);
+    }
+
     m_currentSearchTab = new SearchTab(this);
     m_activeSearchTab = m_currentSearchTab;
     connect(m_currentSearchTab->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveResultsColumnsWidth()));
