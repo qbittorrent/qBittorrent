@@ -164,6 +164,11 @@
             <string>16 MiB</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>32 MiB</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
