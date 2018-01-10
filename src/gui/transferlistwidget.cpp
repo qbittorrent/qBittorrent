@@ -683,6 +683,12 @@ void TransferListWidget::recheckSelectedTorrents()
         torrent->forceRecheck();
 }
 
+void TransferListWidget::reannounceSelectedTorrents()
+{
+    foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
+        torrent->forceReannounce();
+}
+
 // hide/show columns menu
 void TransferListWidget::displayDLHoSMenu(const QPoint&)
 {
@@ -881,6 +887,8 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionSetTorrentPath, SIGNAL(triggered()), this, SLOT(setSelectedTorrentsLocation()));
     QAction actionForce_recheck(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), 0);
     connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
+    QAction actionForce_reannounce(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), 0);
+    connect(&actionForce_reannounce, SIGNAL(triggered()), this, SLOT(reannounceSelectedTorrents()));
     QAction actionCopy_magnet_link(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Copy magnet link"), 0);
     connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
     QAction actionCopy_name(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), 0);
@@ -1084,6 +1092,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         listMenu.addSeparator();
     if (one_has_metadata) {
         listMenu.addAction(&actionForce_recheck);
+        listMenu.addAction(&actionForce_reannounce);
         listMenu.addSeparator();
     }
     listMenu.addAction(&actionOpen_destination_folder);
