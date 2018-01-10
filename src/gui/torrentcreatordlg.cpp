@@ -113,7 +113,7 @@ void TorrentCreatorDlg::onAddFileButtonClicked()
 
 int TorrentCreatorDlg::getPieceSize() const
 {
-    const int pieceSizes[] = {0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};  // base unit in KiB
+    const int pieceSizes[] = {0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};  // base unit in KiB
     return pieceSizes[m_ui->comboPieceSize->currentIndex()] * 1024;
 }
 
