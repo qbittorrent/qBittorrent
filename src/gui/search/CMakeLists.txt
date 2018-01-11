@@ -16,6 +16,7 @@ pluginsourcedlg.h
 searchlistdelegate.h
 searchsortmodel.h
 searchtab.h
+searchenginewidget.h
 searchwidget.h
 )
 
@@ -25,6 +26,7 @@ pluginsourcedlg.cpp
 searchlistdelegate.cpp
 searchsortmodel.cpp
 searchtab.cpp
+searchenginewidget.cpp
 searchwidget.cpp
 )
 

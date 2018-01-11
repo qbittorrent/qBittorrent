@@ -36,6 +36,7 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QTimer>
+#include <QVector>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -52,6 +53,7 @@
 #include "btjson.h"
 #include "jsonutils.h"
 #include "prefjson.h"
+#include "websearchengine.h"
 #include "websessiondata.h"
 
 static const int API_VERSION = 17;
@@ -90,6 +92,7 @@ QMap<QString, QMap<QString, WebApplication::Action>> WebApplication::initializeA
     ADD_ACTION(query, getPeerLog);
     ADD_ACTION(query, getPieceHashes);
     ADD_ACTION(query, getPieceStates);
+    ADD_ACTION(query, getSearchResults);
     ADD_ACTION(sync, maindata);
     ADD_ACTION(sync, torrent_peers);
     ADD_ACTION(command, shutdown);
@@ -130,6 +133,14 @@ QMap<QString, QMap<QString, WebApplication::Action>> WebApplication::initializeA
     ADD_ACTION(command, addCategory);
     ADD_ACTION(command, removeCategories);
     ADD_ACTION(command, getSavePath);
+    ADD_ACTION(command, startSearch);
+    ADD_ACTION(command, cancelSearch);
+    ADD_ACTION(command, getSearchCategories);
+    ADD_ACTION(command, getPlugins);
+    ADD_ACTION(command, installSearchPlugin);
+    ADD_ACTION(command, uninstallSearchPlugin);
+    ADD_ACTION(command, enableSearchPlugin);
+    ADD_ACTION(command, updateSearchPlugins);
     ADD_ACTION(version, api);
     ADD_ACTION(version, api_min);
     ADD_ACTION(version, qbittorrent);
@@ -356,6 +367,13 @@ void WebApplication::action_query_getPieceStates()
     print(btjson::getPieceStatesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
 }
 
+void WebApplication::action_query_getSearchResults()
+{
+    CHECK_URI(0);
+    const QList<SearchResult> bufferedSearchOutput = m_webSearchEngine->readBufferedSearchOutput();
+    print(btjson::getSearchResults(bufferedSearchOutput, m_webSearchEngine->isActive(), m_webSearchEngine->getQueueSize()), Http::CONTENT_TYPE_JSON);
+}
+
 // GET param:
 //   - rid (int): last response id
 void WebApplication::action_sync_maindata()
@@ -440,7 +458,6 @@ void WebApplication::action_command_download()
     }
 
     BitTorrent::AddTorrentParams params;
-    // TODO: Check if destination actually exists
     params.skipChecking = skipChecking;
     params.sequential = seqDownload;
     params.firstLastPiecePriority = firstLastPiece;
@@ -451,6 +468,14 @@ void WebApplication::action_command_download()
     params.name = torrentName;
     params.uploadLimit = (upLimit > 0) ? upLimit : -1;
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+
+    // verify the save path exists
+    const QString savePathExpanded = Utils::Fs::expandPathAbs(savepath);
+    if (!QDir(savePathExpanded).exists()) {
+        qDebug() << "Unable to save torrents. Save path does not exist:" << savePathExpanded;
+        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
 
     bool partialSuccess = false;
     for (QString url : urls.split('\n')) {
@@ -498,7 +523,6 @@ void WebApplication::action_command_upload()
         }
         else {
             BitTorrent::AddTorrentParams params;
-            // TODO: Check if destination actually exists
             params.skipChecking = skipChecking;
             params.sequential = seqDownload;
             params.firstLastPiecePriority = firstLastPiece;
@@ -509,6 +533,15 @@ void WebApplication::action_command_upload()
             params.name = torrentName;
             params.uploadLimit = (upLimit > 0) ? upLimit : -1;
             params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+
+            // verify the save path exists
+            const QString savePathExpanded = Utils::Fs::expandPathAbs(savepath);
+            if (!QDir(savePathExpanded).exists()) {
+                qDebug() << "Unable to save torrents. Save path does not exist:" << savePathExpanded;
+                status(500, "Internal Server Error");
+                print(QObject::tr("Error: Save path does not exist."), Http::CONTENT_TYPE_TXT);
+                return;
+            }
 
             if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
                 status(500, "Internal Server Error");
@@ -931,6 +964,111 @@ void WebApplication::action_command_getSavePath()
     print(BitTorrent::Session::instance()->defaultSavePath());
 }
 
+void WebApplication::action_command_startSearch()
+{
+    // void startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
+    CHECK_URI(0);
+    CHECK_PARAMETERS("pattern" << "category" << "plugins");
+
+    if (Utils::Misc::pythonVersion() < 0) {
+        print(QByteArray("Please install Python to use the Search Engine."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    const QString pattern = request().posts["pattern"].trimmed();
+    const QString category = request().posts["category"].trimmed();
+    const QString pluginsParam = request().posts["plugins"].trimmed().toLower();
+
+    // No search pattern entered
+    if (pattern.isEmpty()) {
+        print(QByteArray("Fails. Empty search pattern."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    if (m_webSearchEngine->isActive())
+        m_webSearchEngine->cancelSearch();
+
+    QStringList plugins;
+    if (pluginsParam == "all")
+        plugins = m_webSearchEngine->allPlugins();
+    else if (pluginsParam == "enabled")
+        plugins = m_webSearchEngine->enabledPlugins();
+    else if (pluginsParam == "multi")
+        plugins = m_webSearchEngine->enabledPlugins();
+    else
+        plugins << request().posts["plugins"].trimmed();
+
+    if (m_webSearchEngine->startSearch(pattern, category, plugins))
+        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+    else
+        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_cancelSearch()
+{
+    CHECK_URI(0);
+
+    if (!m_webSearchEngine->isActive()) {
+        print(QByteArray("Nothing to cancel."), Http::CONTENT_TYPE_TXT);
+        return;
+    }
+
+    m_webSearchEngine->cancelSearch();
+    print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_getSearchCategories()
+{
+    CHECK_URI(0);
+
+    QStringList categories;
+    categories << m_webSearchEngine->categoryFullName("all"), QVariant("all");
+
+    foreach (const QString &category, m_webSearchEngine->supportedCategories(request().gets["name"].trimmed()))
+        categories << m_webSearchEngine->categoryFullName(category);
+
+    print(categories.join(","), Http::CONTENT_TYPE_TXT);
+}
+
+void WebApplication::action_command_getPlugins()
+{
+    CHECK_URI(0);
+
+    print(btjson::getPlugins(m_webSearchEngine->getAllPlugins()), Http::CONTENT_TYPE_JSON);
+}
+
+void WebApplication::action_command_installSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("source");
+
+    m_webSearchEngine->installPlugin(request().posts["source"].trimmed());
+}
+
+void WebApplication::action_command_uninstallSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("name");
+
+    m_webSearchEngine->uninstallPlugin(request().posts["name"].trimmed());
+}
+
+void WebApplication::action_command_enableSearchPlugin()
+{
+    CHECK_URI(0);
+    CHECK_PARAMETERS("name" << "enable");
+
+    const QString boolStr = request().posts["enable"].trimmed();
+    m_webSearchEngine->enablePlugin(request().posts["name"].trimmed(), (boolStr == QLatin1String("1") || boolStr.toUpper() == QLatin1String("TRUE")));
+}
+
+void WebApplication::action_command_updateSearchPlugins()
+{
+    CHECK_URI(0);
+
+    m_webSearchEngine->checkForUpdates();
+}
+
 bool WebApplication::isPublicScope()
 {
     return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
@@ -985,6 +1123,7 @@ void WebApplication::parsePath()
 WebApplication::WebApplication(QObject *parent)
     : AbstractWebApplication(parent)
 {
+    m_webSearchEngine = new WebSearchEngine;
 }
 
 QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::actions_ = WebApplication::initializeActions();

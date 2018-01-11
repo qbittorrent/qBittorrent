@@ -35,6 +35,8 @@
 #include <QString>
 #include <QVariant>
 
+#include "base/searchengine.h"
+
 class btjson
 {
     Q_DECLARE_TR_FUNCTIONS(misc)
@@ -43,10 +45,10 @@ private:
     btjson() {}
 
 public:
-    static QByteArray getTorrents(QString filter = "all", QString category = QString(),
-        QString sortedColumn = "name", bool reverse = false, int limit = 0, int offset = 0);
-    static QByteArray getSyncMainData(int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData);
-    static QByteArray getSyncTorrentPeersData(int acceptedResponseId, QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData);
+    static QByteArray getTorrents(const QString filter = "all", const QString category = QString(),
+        const QString sortedColumn = "name", const bool reverse = false, int limit = 0, int offset = 0);
+    static QByteArray getSyncMainData(const int acceptedResponseId, QVariantMap &lastData, QVariantMap &lastAcceptedData);
+    static QByteArray getSyncTorrentPeersData(const int acceptedResponseId, const QString hash, QVariantMap &lastData, QVariantMap &lastAcceptedData);
     static QByteArray getTrackersForTorrent(const QString& hash);
     static QByteArray getWebSeedsForTorrent(const QString& hash);
     static QByteArray getPropertiesForTorrent(const QString& hash);
@@ -54,9 +56,11 @@ public:
     static QByteArray getPieceHashesForTorrent(const QString &hash);
     static QByteArray getPieceStatesForTorrent(const QString &hash);
     static QByteArray getTransferInfo();
-    static QByteArray getTorrentsRatesLimits(QStringList& hashes, bool downloadLimits);
-    static QByteArray getLog(bool normal, bool info, bool warning, bool critical, int lastKnownId);
-    static QByteArray getPeerLog(int lastKnownId);
+    static QByteArray getTorrentsRatesLimits(const QStringList& hashes, const bool downloadLimits);
+    static QByteArray getLog(const bool normal, const bool info, const bool warning, const bool critical, const int lastKnownId);
+    static QByteArray getPeerLog(const int lastKnownId);
+    static QByteArray getSearchResults(const QList<SearchResult> searchResults, const bool isSearchActive, const int queueSize);
+    static QByteArray getPlugins(const QList<PluginInfo*> plugins);
 }; // class btjson
 
 #endif // BTJSON_H

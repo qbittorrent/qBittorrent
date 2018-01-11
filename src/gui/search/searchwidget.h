@@ -39,7 +39,7 @@
 class QTabWidget;
 
 class MainWindow;
-class SearchEngine;
+class SearchEngineWidget;
 struct SearchResult;
 class SearchTab;
 
@@ -90,7 +90,7 @@ private:
     QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui;
-    SearchEngine *m_searchEngine;
+    SearchEngineWidget *m_searchEngineWidget;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
     QPointer<SearchTab> m_activeSearchTab; // Tab with running search
     QList<QPointer<SearchTab>> m_allTabs; // To store all tabs
