@@ -39,13 +39,13 @@ WebSearchEngine::WebSearchEngine()
 
 bool WebSearchEngine::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
 {
-    m_stdoutQueue.clear();
+    clearQueue();
     return SearchEngine::startSearch(pattern, category, usedPlugins);
 }
 
 void WebSearchEngine::cancelSearch()
 {
-    m_stdoutQueue.clear();
+    clearQueue();
     SearchEngine::cancelSearch();
 }
 
