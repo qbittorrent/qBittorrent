@@ -811,26 +811,62 @@ var TorrentsTable = new Class({
 
             // status
             this.columns['status'].updateTd = function (td, row) {
-                var status = this.getRowValue(row);
-                if (!status) return;
+                var state = this.getRowValue(row);
+                if (!state) return;
 
-                if ((status === "downloading") || (status === "forcedDL") || (status === "metaDL"))
-                    status = "Downloading";
-                else if ((status === "stalledDL") || (status === "stalledUP") || (status === "allocating"))
-                    status = "Stalled";
-                else if ((status === "uploading") || (status === "forcedUP"))
-                    status = "Uploading";
-                else if (status === "pausedDL")
-                    status = "Paused";
-                else if (status === "pausedUP")
-                    status = "Completed";
-                else if ((status === "queuedDL") || (status === "queuedUP"))
-                    status = "Queued";
-                else if ((status === "checkingDL") || (status === "checkingUP") ||
-                        (status === "queuedForChecking") || (status === "checkingResumeData"))
-                    status = "Checking";
-                else if ((status === "unknown") || (status === "error") || (status === "missingFiles"))
-                    status = "Error";
+                var status;
+                switch (state) {
+                    case "downloading":
+                        status = "Downloading";
+                        break;
+                    case "stalledDL":
+                        status = "Stalled";
+                        break;
+                    case "metaDL":
+                        status = "Downloading metadata";
+                        break;
+                    case "forcedDL":
+                        status = "[F] Downloading";
+                        break;
+                    case "allocating":
+                        status = "Allocating";
+                        break;
+                    case "uploading":
+                    case "stalledUP":
+                        status = "Seeding";
+                        break;
+                    case "forcedUP":
+                        status = "[F] Seeding";
+                        break;
+                    case "queuedDL":
+                    case "queuedUP":
+                        status = "Queued";
+                        break;
+                    case "checkingDL":
+                    case "checkingUP":
+                        status = "Checking";
+                        break;
+                    case "queuedForChecking":
+                        status = "Queued for checking";
+                        break;
+                    case "checkingResumeData":
+                        status = "Checking resume data";
+                        break;
+                    case "pausedDL":
+                        status = "Paused";
+                        break;
+                    case "pausedUP":
+                        status = "Completed";
+                        break;
+                    case "missingFiles":
+                        status = "Missing Files";
+                        break;
+                    case "error":
+                        status = "Errored";
+                        break;
+                    default:
+                        status = "Unknown";
+                }
 
                 td.set('html', status);
             };
