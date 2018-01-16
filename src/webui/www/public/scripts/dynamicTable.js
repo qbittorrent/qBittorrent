@@ -807,6 +807,7 @@ var TorrentsTable = new Class({
                     case "unknown":
                     case "error":
                     case "missingFiles":
+                    default:
                         state = "error";
                         break;
                 }
