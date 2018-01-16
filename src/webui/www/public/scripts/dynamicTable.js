@@ -777,23 +777,39 @@ var TorrentsTable = new Class({
             this.columns['state_icon'].updateTd = function (td, row) {
                 var state = this.getRowValue(row);
 
-                if ((state === "forcedDL") || (state === "metaDL"))
-                    state = "downloading";
-                else if (state === "allocating")
-                    state = "stalledDL";
-                else if (state === "forcedUP")
-                    state = "uploading";
-                else if (state === "pausedDL")
-                    state = "paused";
-                else if (state === "pausedUP")
-                    state = "completed";
-                else if ((state === "queuedDL") || (state === "queuedUP"))
-                    state = "queued";
-                else if ((state === "checkingDL") || (state === "checkingUP") ||
-                        (state === "queuedForChecking") || (state === "checkingResumeData"))
-                    state = "checking";
-                else if ((state === "unknown") || (state === "error") || (state === "missingFiles"))
-                    state = "error";
+                switch (state) {
+                    case "forcedDL":
+                    case "metaDL":
+                        state = "downloading";
+                        break;
+                    case "allocating":
+                        state = "stalledDL";
+                        break;
+                    case "forcedUP":
+                        state = "uploading";
+                        break;
+                    case "pausedDL":
+                        state = "paused";
+                        break;
+                    case "pausedUP":
+                        state = "completed";
+                        break;
+                    case "queuedDL":
+                    case "queuedUP":
+                        state = "queued";
+                        break;
+                    case "checkingDL":
+                    case "checkingUP":
+                    case "queuedForChecking":
+                    case "checkingResumeData":
+                        state = "checking";
+                        break;
+                    case "unknown":
+                    case "error":
+                    case "missingFiles":
+                        state = "error";
+                        break;
+                }
 
                 var img_path = 'images/skin/' + state + '.png';
 
