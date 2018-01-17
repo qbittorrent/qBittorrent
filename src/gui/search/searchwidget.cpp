@@ -144,7 +144,6 @@ void SearchWidget::fillCatCombobox()
 {
     m_ui->comboCategory->clear();
     m_ui->comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
-    m_ui->comboCategory->insertSeparator(1);
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
@@ -156,6 +155,9 @@ void SearchWidget::fillCatCombobox()
         qDebug("Supported category: %s", qUtf8Printable(p.second));
         m_ui->comboCategory->addItem(p.first, QVariant(p.second));
     }
+    
+    if (m_ui->comboCategory->count() > 1)
+        m_ui->comboCategory->insertSeparator(1);
 }
 
 void SearchWidget::fillPluginComboBox()
@@ -164,7 +166,6 @@ void SearchWidget::fillPluginComboBox()
     m_ui->selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
     m_ui->selectPlugin->addItem(tr("All plugins"), QVariant("all"));
     m_ui->selectPlugin->addItem(tr("Select..."), QVariant("multi"));
-    m_ui->selectPlugin->insertSeparator(3);
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
@@ -174,6 +175,9 @@ void SearchWidget::fillPluginComboBox()
 
     foreach (const QStrPair &p, tmpList)
         m_ui->selectPlugin->addItem(p.first, QVariant(p.second));
+
+    if (m_ui->selectPlugin->count() > 3)
+        m_ui->selectPlugin->insertSeparator(3);
 }
 
 QString SearchWidget::selectedCategory() const
