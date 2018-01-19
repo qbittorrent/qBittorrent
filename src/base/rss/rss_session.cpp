@@ -102,6 +102,27 @@ Session::Session()
         m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
         refresh();
     }
+
+    // Remove legacy/corrupted settings
+    // (at least on Windows, QSettings is case-insensitive and it can get
+    // confused when asked about settings that differ only in their case)
+    auto settingsStorage = SettingsStorage::instance();
+    settingsStorage->removeValue("Rss/streamList");
+    settingsStorage->removeValue("Rss/streamAlias");
+    settingsStorage->removeValue("Rss/open_folders");
+    settingsStorage->removeValue("Rss/qt5/splitter_h");
+    settingsStorage->removeValue("Rss/qt5/splitterMain");
+    settingsStorage->removeValue("Rss/hosts_cookies");
+    settingsStorage->removeValue("RSS/streamList");
+    settingsStorage->removeValue("RSS/streamAlias");
+    settingsStorage->removeValue("RSS/open_folders");
+    settingsStorage->removeValue("RSS/qt5/splitter_h");
+    settingsStorage->removeValue("RSS/qt5/splitterMain");
+    settingsStorage->removeValue("RSS/hosts_cookies");
+    settingsStorage->removeValue("Rss/Session/EnableProcessing");
+    settingsStorage->removeValue("Rss/Session/RefreshInterval");
+    settingsStorage->removeValue("Rss/Session/MaxArticlesPerFeed");
+    settingsStorage->removeValue("Rss/AutoDownloader/EnableProcessing");
 }
 
 Session::~Session()
@@ -295,20 +316,6 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 
 void Session::loadLegacy()
 {
-    struct LegacySettingsDeleter
-    {
-        ~LegacySettingsDeleter()
-        {
-            auto settingsStorage = SettingsStorage::instance();
-            settingsStorage->removeValue("Rss/streamList");
-            settingsStorage->removeValue("Rss/streamAlias");
-            settingsStorage->removeValue("Rss/open_folders");
-            settingsStorage->removeValue("Rss/qt5/splitter_h");
-            settingsStorage->removeValue("Rss/qt5/splitterMain");
-            settingsStorage->removeValue("Rss/hosts_cookies");
-        }
-    } legacySettingsDeleter;
-
     const QStringList legacyFeedPaths = SettingsStorage::instance()->loadValue("Rss/streamList").toStringList();
     const QStringList feedAliases = SettingsStorage::instance()->loadValue("Rss/streamAlias").toStringList();
     if (legacyFeedPaths.size() != feedAliases.size()) {
