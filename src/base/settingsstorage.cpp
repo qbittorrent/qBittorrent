@@ -297,6 +297,7 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
 QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data)
 {
     SettingsPtr settings = Profile::instance().applicationSettings(name);
+    settings->clear();
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 
