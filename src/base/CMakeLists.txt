@@ -51,6 +51,7 @@ utils/random.h
 utils/string.h
 utils/version.h
 asyncfilestorage.h
+exceptions.h
 filesystemwatcher.h
 global.h
 iconprovider.h
@@ -113,6 +114,7 @@ utils/net.cpp
 utils/random.cpp
 utils/string.cpp
 asyncfilestorage.cpp
+exceptions.cpp
 filesystemwatcher.cpp
 iconprovider.cpp
 logger.cpp
