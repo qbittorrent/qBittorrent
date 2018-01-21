@@ -240,7 +240,23 @@ Example:
 
 ```
 
-### 9. Misc. ###
+### 9. Include guard. ###
+`#pragma once` should be used instead of "include guard" in new code:
+```c++
+// examplewidget.h
+
+#pragma once
+
+#include <QWidget>
+
+class ExampleWidget : public QWidget
+{
+    // (some code omitted)
+};
+
+```
+
+### 10. Misc. ###
 
 * Line breaks for long lines with operation:
 
