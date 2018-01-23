@@ -776,7 +776,7 @@ var TorrentsTable = new Class({
             // state_icon
             this.columns['state_icon'].updateTd = function (td, row) {
                 var state = this.getRowValue(row);
-
+                // normalize states
                 switch (state) {
                     case "forcedDL":
                     case "metaDL":
@@ -805,11 +805,11 @@ var TorrentsTable = new Class({
                         state = "checking";
                         break;
                     case "unknown":
-                    case "error":
                     case "missingFiles":
-                    default:
                         state = "error";
                         break;
+                    default:
+                        break; // do nothing
                 }
 
                 var img_path = 'images/skin/' + state + '.png';
