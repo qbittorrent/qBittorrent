@@ -381,18 +381,18 @@ window.addEvent('load', function () {
 
         // Statistics dialog
         if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', 'QBT_TR(Alltime download:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_dl, false));
-            $('AlltimeUL').set('html', 'QBT_TR(Alltime upload:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.alltime_ul, false));
-            $('TotalWastedSession').set('html', 'QBT_TR(Total wasted (this session):)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_wasted_session, false));
-            $('GlobalRatio').set('html', 'QBT_TR(Global ratio:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.global_ratio);
-            $('TotalPeerConnections').set('html', 'QBT_TR(Total peer connections:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.total_peer_connections);
-            $('ReadCacheHits').set('html', 'QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_hits);
-            $('TotalBuffersSize').set('html', 'QBT_TR(Total buffers size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_buffers_size, false));
-            $('WriteCacheOverload').set('html', 'QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.write_cache_overload);
-            $('ReadCacheOverload').set('html', 'QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.read_cache_overload);
-            $('QueuedIOJobs').set('html', 'QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.queued_io_jobs);
-            $('AverageTimeInQueue').set('html', 'QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]' + " " + serverState.average_time_queue);
-            $('TotalQueuedSize').set('html', 'QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]' + " " + friendlyUnit(serverState.total_queued_size, false));
+            $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
+            $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
+            $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
+            $('GlobalRatio').set('html', serverState.global_ratio);
+            $('TotalPeerConnections').set('html', serverState.total_peer_connections);
+            $('ReadCacheHits').set('html', serverState.read_cache_hits);
+            $('TotalBuffersSize').set('html', friendlyUnit(serverState.total_buffers_size, false));
+            $('WriteCacheOverload').set('html', serverState.write_cache_overload + "%");
+            $('ReadCacheOverload').set('html', serverState.read_cache_overload + "%");
+            $('QueuedIOJobs').set('html', serverState.queued_io_jobs);
+            $('AverageTimeInQueue').set('html', serverState.average_time_queue + " ms");
+            $('TotalQueuedSize').set('html', friendlyUnit(serverState.total_queued_size, false));
         }
 
         if (serverState.connection_status == "connected")
