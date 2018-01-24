@@ -66,7 +66,6 @@ initializeWindows = function() {
             loadMethod: 'iframe',
             contentURL: 'download.html',
             scrollbars: true,
-            resizable: false,
             maximizable: false,
             closable: true,
             paddingVertical: 0,
@@ -93,7 +92,6 @@ initializeWindows = function() {
                 css: ['css/Tabs.css']
             },
             toolbarURL: 'preferences.html',
-            resizable: true,
             maximizable: false,
             closable: true,
             paddingVertical: 0,
@@ -115,7 +113,6 @@ initializeWindows = function() {
             loadMethod: 'iframe',
             contentURL: 'upload.html',
             scrollbars: true,
-            resizable: false,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
