@@ -139,8 +139,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     auto *searchManager = new SearchPluginManager;
     const auto onPluginChanged = [this]()
     {
-        fillCatCombobox();
         fillPluginComboBox();
+        fillCatCombobox();
         selectActivePage();
     };
     connect(searchManager, &SearchPluginManager::pluginInstalled, this, onPluginChanged);
@@ -155,6 +155,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::selectMultipleBox);
+    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+            , this, &SearchWidget::fillCatCombobox);
 }
 
 void SearchWidget::fillCatCombobox()
@@ -164,7 +166,7 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &cat, SearchPluginManager::instance()->supportedCategories())
+    foreach (const QString &cat, SearchPluginManager::instance()->getPluginCategories(selectedPlugin()))
         tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
@@ -172,7 +174,7 @@ void SearchWidget::fillCatCombobox()
         qDebug("Supported category: %s", qUtf8Printable(p.second));
         m_ui->comboCategory->addItem(p.first, QVariant(p.second));
     }
-    
+
     if (m_ui->comboCategory->count() > 1)
         m_ui->comboCategory->insertSeparator(1);
 }

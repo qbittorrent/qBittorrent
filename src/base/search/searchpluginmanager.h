@@ -66,6 +66,7 @@ public:
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
     QStringList supportedCategories() const;
+    QStringList getPluginCategories(const QString &pluginName) const;
     PluginInfo *pluginInfo(const QString &name) const;
 
     void enablePlugin(const QString &name, bool enabled = true);

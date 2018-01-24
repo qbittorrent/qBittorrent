@@ -38,6 +38,7 @@
 #include <QPointer>
 #include <QProcess>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
@@ -120,6 +121,27 @@ QStringList SearchPluginManager::supportedCategories() const
     }
 
     return result;
+}
+
+QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) const
+{
+    QStringList plugins;
+    if (pluginName == "all")
+        plugins = allPlugins();
+    else if ((pluginName == "enabled") || (pluginName == "multi"))
+        plugins = enabledPlugins();
+    else
+        plugins << pluginName.trimmed();
+
+    QSet<QString> categories;
+    for (const QString &pluginName : qAsConst(plugins)) {
+        const PluginInfo *plugin = pluginInfo(pluginName);
+        if (!plugin) continue; // plugin wasn't found
+        for (const QString &category : plugin->supportedCategories)
+            categories << category;
+    }
+
+    return categories.toList();
 }
 
 PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
