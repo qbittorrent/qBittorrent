@@ -35,6 +35,20 @@ var pauseFN = function() {};
 
 initializeWindows = function() {
 
+    saveWindowSize = function(windowId) {
+        var size = $(windowId).getSize();
+        localStorage.setItem('window_' + windowId + '_width', size.x);
+        localStorage.setItem('window_' + windowId + '_height', size.y);
+    };
+
+    loadWindowWidth = function(windowId, defaultValue) {
+        return getLocalStorageItem('window_' + windowId + '_width', defaultValue);
+    };
+
+    loadWindowHeight = function(windowId, defaultValue) {
+        return getLocalStorageItem('window_' + windowId + '_height', defaultValue);
+    };
+
     function addClickEvent(el, fn) {
         ['Link', 'Button'].each(function(item) {
             if ($(el + item)) {
@@ -45,8 +59,9 @@ initializeWindows = function() {
 
     addClickEvent('download', function(e) {
         new Event(e).stop();
+        var id = 'downloadPage';
         new MochaUI.Window({
-            id: 'downloadPage',
+            id: id,
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: 'iframe',
             contentURL: 'download.html',
@@ -56,16 +71,20 @@ initializeWindows = function() {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 500,
-            height: 420
+            width: loadWindowWidth(id, 500),
+            height: loadWindowHeight(id, 420),
+            onResize: function() {
+                saveWindowSize(id);
+            }
         });
         updateMainData();
     });
 
     addClickEvent('preferences', function(e) {
         new Event(e).stop();
+        var id = 'preferencesPage';
         new MochaUI.Window({
-            id: 'preferencesPage',
+            id: id,
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: 'xhr',
             toolbar: true,
@@ -79,15 +98,19 @@ initializeWindows = function() {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 700,
-            height: 300
+            width: loadWindowWidth(id, 700),
+            height: loadWindowHeight(id, 300),
+            onResize: function() {
+                saveWindowSize(id);
+            }
         });
     });
 
     addClickEvent('upload', function(e) {
         new Event(e).stop();
+        var id = 'uploadPage';
         new MochaUI.Window({
-            id: 'uploadPage',
+            id: id,
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: 'iframe',
             contentURL: 'upload.html',
@@ -96,8 +119,11 @@ initializeWindows = function() {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 500,
-            height: 260
+            width: loadWindowWidth(id, 500),
+            height: loadWindowHeight(id, 260),
+            onResize: function() {
+                saveWindowSize(id);
+            }
         });
         updateMainData();
     });
@@ -593,14 +619,18 @@ initializeWindows = function() {
 
     addClickEvent('about', function(e) {
         new Event(e).stop();
+        var id = 'aboutpage';
         new MochaUI.Window({
-            id: 'aboutpage',
+            id: id,
             title: 'QBT_TR(About)QBT_TR[CONTEXT=AboutDlg]',
             loadMethod: 'xhr',
             contentURL: 'about.html',
-            width: 550,
-            height: 290,
-            padding: 10
+            padding: 10,
+            width: loadWindowWidth(id, 550),
+            height: loadWindowHeight(id, 290),
+            onResize: function() {
+                saveWindowSize(id);
+            }
         });
     });
 
