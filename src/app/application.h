@@ -101,7 +101,7 @@ public:
     bool isFileLoggerDeleteOld() const;
     void setFileLoggerDeleteOld(bool value);
     int fileLoggerMaxSize() const;
-    void setFileLoggerMaxSize(const int value);
+    void setFileLoggerMaxSize(const int bytes);
     int fileLoggerAge() const;
     void setFileLoggerAge(const int value);
     int fileLoggerAgeType() const;
