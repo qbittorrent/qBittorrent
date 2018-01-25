@@ -128,7 +128,6 @@ Application::Application(const QString &id, int &argc, char **argv)
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
 
-    setApplicationName("qBittorrent");
     initializeTranslation();
 
 #if !defined(DISABLE_GUI)
