@@ -45,6 +45,7 @@
 #include "../utils/string.h"
 #include "rss_feed.h"
 #include "rss_article.h"
+#include "rss_autodownloader.h"
 
 namespace
 {
@@ -150,40 +151,26 @@ using namespace RSS;
 
 QString computeEpisodeName(const QString &article)
 {
-    const QRegularExpression episodeRegex(
-                    "(?:^|[^a-z0-9])(?:"
-
-                    //Format 1: s01e01
-                    "(?:s(\\d+)e(\\d+))|"
-
-                    //Format 2: 01x01
-                    "(?:(\\d+)x(\\d+))|"
-
-                    //Format 3: 2017.01.01
-                    "((?:\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})|"
-
-                    //Format 4: 01.01.2017
-                    "(?:\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4}))"
-
-                    ")(?:[^a-z0-9]|$)",
-                    QRegularExpression::CaseInsensitiveOption
-                    | QRegularExpression::ExtendedPatternSyntaxOption);
-
-    QRegularExpressionMatch match = episodeRegex.match(article);
+    const QRegularExpression episodeRegex = AutoDownloader::instance()->smartEpisodeRegex();
+    const QRegularExpressionMatch match = episodeRegex.match(article);
 
     // See if we can extract an season/episode number or date from the title
-    if (!match.hasMatch()) {
+    if (!match.hasMatch())
         return QString();
-    }
 
-    int lastCapturedIndex = match.lastCapturedIndex();
-    if (lastCapturedIndex == 5) {
-        return match.captured(5);
+    QStringList ret;
+    for (int i = 1; i <= match.lastCapturedIndex(); ++i) {
+        QString cap = match.captured(i);
+
+        if (cap.isEmpty())
+            continue;
+
+        bool isInt = false;
+        int x = cap.toInt(&isInt);
+
+        ret.append(isInt ? QString::number(x) : cap);
     }
-    else {
-        return QString("%1x%2").arg(match.captured(lastCapturedIndex - 1).toInt())
-                               .arg(match.captured(lastCapturedIndex).toInt());
-    }
+    return ret.join('x');
 }
 
 AutoDownloadRule::AutoDownloadRule(const QString &name)
@@ -383,14 +370,14 @@ bool AutoDownloadRule::matches(const QString &articleTitle) const
 
     if (useSmartFilter()) {
         // now see if this episode has been downloaded before
-        QString episodeStr = computeEpisodeName(articleTitle);
+        const QString episodeStr = computeEpisodeName(articleTitle);
 
         if (!episodeStr.isEmpty()) {
             bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
             bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive) || articleTitle.contains("PROPER", Qt::CaseInsensitive);
-            if (previouslyMatched && !isRepack) {
+            if (previouslyMatched && !isRepack)
                 return false;
-            }
+
             m_dataPtr->lastComputedEpisode = episodeStr;
         }
     }

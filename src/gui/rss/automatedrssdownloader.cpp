@@ -532,7 +532,7 @@ void AutomatedRssDownloader::handleRuleCheckStateChange(QListWidgetItem *ruleIte
 
 void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
 {
-    QMessageBox::StandardButton reply = QMessageBox::question(
+    const QMessageBox::StandardButton reply = QMessageBox::question(
                 this,
                 tr("Clear downloaded episodes"),
                 tr("Are you sure you want to clear the list of downloaded episodes for the selected rule?"),
