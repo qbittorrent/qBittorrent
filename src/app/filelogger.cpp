@@ -135,7 +135,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     str << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
 
-    if (m_backup && (m_logFile->size() >= (m_maxSize * 1024 * 1024))) {
+    if (m_backup && (m_logFile->size() >= m_maxSize)) {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";

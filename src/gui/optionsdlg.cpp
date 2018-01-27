@@ -537,7 +537,7 @@ void OptionsDialog::saveOptions()
     Application * const app = static_cast<Application*>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
-    app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value());
+    app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
     app->setFileLoggerAge(m_ui->spinFileLogAge->value());
     app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
     app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
@@ -765,7 +765,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
     m_ui->spinFileLogAge->setEnabled(fileLogDelete);
     m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
-    m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize());
+    m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
     // End General preferences
