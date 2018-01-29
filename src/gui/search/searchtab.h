@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,12 +25,9 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef SEARCHTAB_H
-#define SEARCHTAB_H
+#pragma once
 
 #include <QWidget>
 
@@ -38,45 +36,35 @@
 
 class QLabel;
 class QModelIndex;
-class QTreeView;
 class QHeaderView;
+class QStandardItem;
 class QStandardItemModel;
 class QVBoxLayout;
 
 template <typename T> class CachedSettingValue;
 
+class SearchHandler;
 class SearchSortModel;
 class SearchListDelegate;
-class SearchWidget;
+struct SearchResult;
 
 namespace Ui
 {
     class SearchTab;
 }
 
-class SearchTab: public QWidget
+class SearchTab : public QWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SearchTab)
 
 public:
-
     enum class NameFilteringMode
     {
         Everywhere,
         OnlyNames
     };
-
     Q_ENUM(NameFilteringMode)
-
-    explicit SearchTab(SearchWidget *parent);
-    ~SearchTab();
-
-    QStandardItemModel* getCurrentSearchListModel() const;
-    SearchSortModel* getCurrentSearchListProxy() const;
-    QTreeView* getCurrentTreeView() const;
-    QHeaderView* header() const;
-
-    void setRowColor(int row, const QColor &color);
 
     enum class Status
     {
@@ -87,36 +75,50 @@ public:
         NoResults
     };
 
-    void setStatus(Status value);
+    explicit SearchTab(SearchHandler *searchHandler, QWidget *parent = nullptr);
+    ~SearchTab() override;
+
     Status status() const;
+    int visibleResultsCount() const;
 
-    void updateResultsCount();
+    void cancelSearch();
 
-public slots:
-    void downloadItem(const QModelIndex &index);
+    void downloadTorrents();
+    void openTorrentPages();
+    void copyTorrentURLs();
 
-private slots:
+signals:
+    void resultsCountUpdated();
+    void statusChanged();
+
+private:
     void loadSettings();
     void saveSettings() const;
     void updateFilter();
     void displayToggleColumnsMenu(const QPoint&);
-
-private:
+    void onItemDoubleClicked(const QModelIndex &index);
+    void searchFinished(bool cancelled);
+    void searchFailed();
+    void appendSearchResults(const QList<SearchResult> &results);
+    void updateResultsCount();
+    void setStatus(Status value);
+    void downloadTorrent(const QModelIndex &rowIndex);
+    void addTorrentToSession(const QString &source);
     void fillFilterComboBoxes();
     NameFilteringMode filteringMode() const;
-    static QString statusText(Status st);
-    static QString statusIconName(Status st);
+    QHeaderView *header() const;
+    void setRowColor(int row, const QColor &color);
 
+    static QString statusText(Status st);
     static CachedSettingValue<NameFilteringMode>& nameFilteringModeSetting();
 
     Ui::SearchTab *m_ui;
+    SearchHandler *m_searchHandler;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
     SearchListDelegate *m_searchDelegate;
-    SearchWidget *m_parent;
-    Status m_status;
+    Status m_status = Status::Ongoing;
+    bool m_noSearchResults = true;
 };
 
 Q_DECLARE_METATYPE(SearchTab::NameFilteringMode)
-
-#endif // SEARCHTAB_H

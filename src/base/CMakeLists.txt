@@ -44,6 +44,9 @@ rss/rss_feed.h
 rss/rss_folder.h
 rss/rss_item.h
 rss/rss_session.h
+search/searchdownloadhandler.h
+search/searchhandler.h
+search/searchpluginmanager.h
 utils/fs.h
 utils/gzip.h
 utils/misc.h
@@ -61,7 +64,6 @@ logger.h
 preferences.h
 profile.h
 scanfoldersmodel.h
-searchengine.h
 settingsstorage.h
 torrentfileguard.h
 torrentfilter.h
@@ -109,6 +111,9 @@ rss/rss_feed.cpp
 rss/rss_folder.cpp
 rss/rss_item.cpp
 rss/rss_session.cpp
+search/searchdownloadhandler.cpp
+search/searchhandler.cpp
+search/searchpluginmanager.cpp
 utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
@@ -123,7 +128,6 @@ logger.cpp
 preferences.cpp
 profile.cpp
 scanfoldersmodel.cpp
-searchengine.cpp
 settingsstorage.cpp
 torrentfileguard.cpp
 torrentfilter.cpp

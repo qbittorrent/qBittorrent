@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -27,33 +27,25 @@
  * exception statement from your version.
  */
 
-#include <QDomDocument>
-#include <QDomNode>
-#include <QDomElement>
-#include <QDir>
-#include <QProcess>
-#include <QDebug>
+#include "searchpluginmanager.h"
 
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
+#include <QDebug>
+#include <QDir>
+#include <QDomDocument>
+#include <QDomElement>
+#include <QDomNode>
+#include <QList>
+#include <QProcess>
+
 #include "base/logger.h"
-#include "base/preferences.h"
-#include "base/profile.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
-#include "searchengine.h"
-
-enum SearchResultColumn
-{
-    PL_DL_LINK,
-    PL_NAME,
-    PL_SIZE,
-    PL_SEEDS,
-    PL_LEECHS,
-    PL_ENGINE_URL,
-    PL_DESC_LINK,
-    NB_PLUGIN_COLUMNS
-};
+#include "base/preferences.h"
+#include "base/profile.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "searchdownloadhandler.h"
+#include "searchhandler.h"
 
 static inline void removePythonScriptIfExists(const QString &scriptPath)
 {
@@ -61,39 +53,36 @@ static inline void removePythonScriptIfExists(const QString &scriptPath)
     Utils::Fs::forceRemove(scriptPath + "c");
 }
 
-const QHash<QString, QString> SearchEngine::m_categoryNames = SearchEngine::initializeCategoryNames();
+const QHash<QString, QString> SearchPluginManager::m_categoryNames {
+    {"all", QT_TRANSLATE_NOOP("SearchEngine", "All categories")},
+    {"movies", QT_TRANSLATE_NOOP("SearchEngine", "Movies")},
+    {"tv", QT_TRANSLATE_NOOP("SearchEngine", "TV shows")},
+    {"music", QT_TRANSLATE_NOOP("SearchEngine", "Music")},
+    {"games", QT_TRANSLATE_NOOP("SearchEngine", "Games")},
+    {"anime", QT_TRANSLATE_NOOP("SearchEngine", "Anime")},
+    {"software", QT_TRANSLATE_NOOP("SearchEngine", "Software")},
+    {"pictures", QT_TRANSLATE_NOOP("SearchEngine", "Pictures")},
+    {"books", QT_TRANSLATE_NOOP("SearchEngine", "Books")}
+};
 
-SearchEngine::SearchEngine()
+SearchPluginManager::SearchPluginManager()
     : m_updateUrl(QString("http://searchplugins.qbittorrent.org/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
-    , m_searchStopped(false)
 {
     updateNova();
-
-    m_searchProcess = new QProcess(this);
-    m_searchProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(m_searchProcess, &QProcess::started, this, &SearchEngine::searchStarted);
-    connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchEngine::readSearchOutput);
-    connect(m_searchProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished), this, &SearchEngine::processFinished);
-
-    m_searchTimeout = new QTimer(this);
-    m_searchTimeout->setSingleShot(true);
-    connect(m_searchTimeout, &QTimer::timeout, this, &SearchEngine::onTimeout);
-
     update();
 }
 
-SearchEngine::~SearchEngine()
+SearchPluginManager::~SearchPluginManager()
 {
     qDeleteAll(m_plugins);
-    cancelSearch();
 }
 
-QStringList SearchEngine::allPlugins() const
+QStringList SearchPluginManager::allPlugins() const
 {
     return m_plugins.keys();
 }
 
-QStringList SearchEngine::enabledPlugins() const
+QStringList SearchPluginManager::enabledPlugins() const
 {
     QStringList plugins;
     foreach (const PluginInfo *plugin, m_plugins.values()) {
@@ -104,7 +93,7 @@ QStringList SearchEngine::enabledPlugins() const
     return plugins;
 }
 
-QStringList SearchEngine::supportedCategories() const
+QStringList SearchPluginManager::supportedCategories() const
 {
     QStringList result;
     foreach (const PluginInfo *plugin, m_plugins.values()) {
@@ -119,17 +108,12 @@ QStringList SearchEngine::supportedCategories() const
     return result;
 }
 
-PluginInfo *SearchEngine::pluginInfo(const QString &name) const
+PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
 {
-    return m_plugins.value(name, 0);
+    return m_plugins.value(name);
 }
 
-bool SearchEngine::isActive() const
-{
-    return (m_searchProcess->state() != QProcess::NotRunning);
-}
-
-void SearchEngine::enablePlugin(const QString &name, bool enabled)
+void SearchPluginManager::enablePlugin(const QString &name, bool enabled)
 {
     PluginInfo *plugin = m_plugins.value(name, 0);
     if (plugin) {
@@ -148,13 +132,13 @@ void SearchEngine::enablePlugin(const QString &name, bool enabled)
 }
 
 // Updates shipped plugin
-void SearchEngine::updatePlugin(const QString &name)
+void SearchPluginManager::updatePlugin(const QString &name)
 {
     installPlugin(QString("%1%2.py").arg(m_updateUrl).arg(name));
 }
 
 // Install or update plugin from file or url
-void SearchEngine::installPlugin(const QString &source)
+void SearchPluginManager::installPlugin(const QString &source)
 {
     qDebug("Asked to install plugin at %s", qUtf8Printable(source));
 
@@ -162,8 +146,8 @@ void SearchEngine::installPlugin(const QString &source)
         using namespace Net;
         DownloadHandler *handler = DownloadManager::instance()->downloadUrl(source, true);
         connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
-                , this, &SearchEngine::pluginDownloaded);
-        connect(handler, &DownloadHandler::downloadFailed, this, &SearchEngine::pluginDownloadFailed);
+                , this, &SearchPluginManager::pluginDownloaded);
+        connect(handler, &DownloadHandler::downloadFailed, this, &SearchPluginManager::pluginDownloadFailed);
     }
     else {
         QString path = source;
@@ -180,7 +164,7 @@ void SearchEngine::installPlugin(const QString &source)
     }
 }
 
-void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
+void SearchPluginManager::installPlugin_impl(const QString &name, const QString &path)
 {
     PluginVersion newVersion = getPluginVersion(path);
     qDebug() << "Version to be installed:" << newVersion;
@@ -229,7 +213,7 @@ void SearchEngine::installPlugin_impl(const QString &name, const QString &path)
     }
 }
 
-bool SearchEngine::uninstallPlugin(const QString &name)
+bool SearchPluginManager::uninstallPlugin(const QString &name)
 {
     // remove it from hard drive
     QDir pluginsFolder(pluginsLocation());
@@ -246,7 +230,7 @@ bool SearchEngine::uninstallPlugin(const QString &name)
     return true;
 }
 
-void SearchEngine::updateIconPath(PluginInfo * const plugin)
+void SearchPluginManager::updateIconPath(PluginInfo * const plugin)
 {
     if (!plugin) return;
     QString iconPath = QString("%1/%2.png").arg(pluginsLocation()).arg(plugin->name);
@@ -260,86 +244,45 @@ void SearchEngine::updateIconPath(PluginInfo * const plugin)
     }
 }
 
-void SearchEngine::checkForUpdates()
+void SearchPluginManager::checkForUpdates()
 {
     // Download version file from update server
     using namespace Net;
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(m_updateUrl + "versions.txt");
     connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
-            , this, &SearchEngine::versionInfoDownloaded);
-    connect(handler, &DownloadHandler::downloadFailed, this, &SearchEngine::versionInfoDownloadFailed);
+            , this, &SearchPluginManager::versionInfoDownloaded);
+    connect(handler, &DownloadHandler::downloadFailed, this, &SearchPluginManager::versionInfoDownloadFailed);
 }
 
-void SearchEngine::cancelSearch()
+SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &siteUrl, const QString &url)
 {
-    if (m_searchProcess->state() != QProcess::NotRunning) {
-#ifdef Q_OS_WIN
-        m_searchProcess->kill();
-#else
-        m_searchProcess->terminate();
-#endif
-        m_searchStopped = true;
-        m_searchTimeout->stop();
-
-        m_searchProcess->waitForFinished(1000);
-    }
+    return new SearchDownloadHandler {siteUrl, url, this};
 }
 
-void SearchEngine::downloadTorrent(const QString &siteUrl, const QString &url)
+SearchHandler *SearchPluginManager::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
 {
-    QProcess *downloadProcess = new QProcess(this);
-    downloadProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(downloadProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished), this, &SearchEngine::torrentFileDownloadFinished);
-    m_downloaders << downloadProcess;
-    QStringList params {
-        Utils::Fs::toNativePath(engineLocation() + "/nova2dl.py"),
-        siteUrl,
-        url
-    };
-    // Launch search
-    downloadProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
-}
-
-void SearchEngine::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
-{
-    // Search process already running or
     // No search pattern entered
-    if ((m_searchProcess->state() != QProcess::NotRunning) || pattern.isEmpty()) {
-        emit searchFailed();
-        return;
-    }
+    Q_ASSERT(!pattern.isEmpty());
 
-    // Reload environment variables (proxy)
-    m_searchProcess->setEnvironment(QProcess::systemEnvironment());
-
-    QStringList params;
-    m_searchStopped = false;
-    params << Utils::Fs::toNativePath(engineLocation() + "/nova2.py");
-    params << usedPlugins.join(",");
-    params << category;
-    params << pattern.split(" ");
-
-    // Launch search
-    m_searchProcess->start(Utils::Misc::pythonExecutable(), params, QIODevice::ReadOnly);
-    m_searchTimeout->start(180000); // 3min
+    return new SearchHandler {pattern, category, usedPlugins, this};
 }
 
-QString SearchEngine::categoryFullName(const QString &categoryName)
+QString SearchPluginManager::categoryFullName(const QString &categoryName)
 {
     return tr(m_categoryNames.value(categoryName).toUtf8().constData());
 }
 
-QString SearchEngine::pluginFullName(const QString &pluginName)
+QString SearchPluginManager::pluginFullName(const QString &pluginName)
 {
     return pluginInfo(pluginName) ? pluginInfo(pluginName)->fullName : QString();
 }
 
-QString SearchEngine::pluginsLocation()
+QString SearchPluginManager::pluginsLocation()
 {
     return QString("%1/engines").arg(engineLocation());
 }
 
-QString SearchEngine::engineLocation()
+QString SearchPluginManager::engineLocation()
 {
     QString folder = "nova";
     if (Utils::Misc::pythonVersion() >= 3)
@@ -351,32 +294,19 @@ QString SearchEngine::engineLocation()
     return location;
 }
 
-// Slot called when QProcess is Finished
-// QProcess can be finished for 3 reasons :
-// Error | Stopped by user | Finished normally
-void SearchEngine::processFinished(int exitcode)
-{
-    m_searchTimeout->stop();
-
-    if (exitcode == 0)
-        emit searchFinished(m_searchStopped);
-    else
-        emit searchFailed();
-}
-
-void SearchEngine::versionInfoDownloaded(const QString &url, const QByteArray &data)
+void SearchPluginManager::versionInfoDownloaded(const QString &url, const QByteArray &data)
 {
     Q_UNUSED(url)
     parseVersionInfo(data);
 }
 
-void SearchEngine::versionInfoDownloadFailed(const QString &url, const QString &reason)
+void SearchPluginManager::versionInfoDownloadFailed(const QString &url, const QString &reason)
 {
     Q_UNUSED(url)
     emit checkForUpdatesFailed(tr("Update server is temporarily unavailable. %1").arg(reason));
 }
 
-void SearchEngine::pluginDownloaded(const QString &url, QString filePath)
+void SearchPluginManager::pluginDownloaded(const QString &url, QString filePath)
 {
     filePath = Utils::Fs::fromNativePath(filePath);
 
@@ -386,7 +316,7 @@ void SearchEngine::pluginDownloaded(const QString &url, QString filePath)
     Utils::Fs::forceRemove(filePath);
 }
 
-void SearchEngine::pluginDownloadFailed(const QString &url, const QString &reason)
+void SearchPluginManager::pluginDownloadFailed(const QString &url, const QString &reason)
 {
     QString pluginName = url.split('/').last();
     pluginName.replace(".py", "", Qt::CaseInsensitive);
@@ -396,23 +326,8 @@ void SearchEngine::pluginDownloadFailed(const QString &url, const QString &reaso
         emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(reason));
 }
 
-void SearchEngine::torrentFileDownloadFinished(int exitcode)
-{
-    QProcess *downloadProcess = static_cast<QProcess*>(sender());
-    if (exitcode == 0) {
-        QString line = QString::fromUtf8(downloadProcess->readAllStandardOutput()).trimmed();
-        QStringList parts = line.split(' ');
-        if (parts.size() == 2)
-            emit torrentFileDownloaded(parts[0]);
-    }
-
-    qDebug() << "Deleting downloadProcess";
-    m_downloaders.removeOne(downloadProcess);
-    downloadProcess->deleteLater();
-}
-
 // Update nova.py search plugin if necessary
-void SearchEngine::updateNova()
+void SearchPluginManager::updateNova()
 {
     qDebug("Updating nova");
 
@@ -477,35 +392,7 @@ void SearchEngine::updateNova()
     Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));
 }
 
-void SearchEngine::onTimeout()
-{
-    cancelSearch();
-}
-
-// search QProcess return output as soon as it gets new
-// stuff to read. We split it into lines and parse each
-// line to SearchResult calling parseSearchResult().
-void SearchEngine::readSearchOutput()
-{
-    QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
-    QList<QByteArray> lines = output.split('\n');
-    if (!m_searchResultLineTruncated.isEmpty())
-        lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
-    m_searchResultLineTruncated = lines.takeLast().trimmed();
-
-    QList<SearchResult> searchResultList;
-    foreach (const QByteArray &line, lines) {
-        SearchResult searchResult;
-        if (parseSearchResult(QString::fromUtf8(line), searchResult))
-            searchResultList << searchResult;
-    }
-
-    if (!searchResultList.isEmpty())
-        emit newSearchResults(searchResultList);
-}
-
-void SearchEngine::update()
+void SearchPluginManager::update()
 {
     QProcess nova;
     nova.setEnvironment(QProcess::systemEnvironment());
@@ -565,34 +452,7 @@ void SearchEngine::update()
     }
 }
 
-// Parse one line of search results list
-// Line is in the following form:
-// file url | file name | file size | nb seeds | nb leechers | Search engine url
-bool SearchEngine::parseSearchResult(const QString &line, SearchResult &searchResult)
-{
-    const QStringList parts = line.split("|");
-    const int nbFields = parts.size();
-    if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
-
-    searchResult = SearchResult();
-    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed(); // download URL
-    searchResult.fileName = parts.at(PL_NAME).trimmed(); // Name
-    searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
-    bool ok = false;
-    searchResult.nbSeeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok); // Seeders
-    if (!ok || (searchResult.nbSeeders < 0))
-        searchResult.nbSeeders = -1;
-    searchResult.nbLeechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok); // Leechers
-    if (!ok || (searchResult.nbLeechers < 0))
-        searchResult.nbLeechers = -1;
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed(); // Search site URL
-    if (nbFields == NB_PLUGIN_COLUMNS)
-        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed(); // Description Link
-
-    return true;
-}
-
-void SearchEngine::parseVersionInfo(const QByteArray &info)
+void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
     qDebug("Checking if update is needed");
 
@@ -627,7 +487,7 @@ void SearchEngine::parseVersionInfo(const QByteArray &info)
         emit checkForUpdatesFinished(updateInfo);
 }
 
-bool SearchEngine::isUpdateNeeded(QString pluginName, PluginVersion newVersion) const
+bool SearchPluginManager::isUpdateNeeded(QString pluginName, PluginVersion newVersion) const
 {
     PluginInfo *plugin = pluginInfo(pluginName);
     if (!plugin) return true;
@@ -637,29 +497,12 @@ bool SearchEngine::isUpdateNeeded(QString pluginName, PluginVersion newVersion) 
     return (newVersion > oldVersion);
 }
 
-QString SearchEngine::pluginPath(const QString &name)
+QString SearchPluginManager::pluginPath(const QString &name)
 {
     return QString("%1/%2.py").arg(pluginsLocation()).arg(name);
 }
 
-QHash<QString, QString> SearchEngine::initializeCategoryNames()
-{
-    QHash<QString, QString> result;
-
-    result["all"] = QT_TRANSLATE_NOOP("SearchEngine", "All categories");
-    result["movies"] = QT_TRANSLATE_NOOP("SearchEngine", "Movies");
-    result["tv"] = QT_TRANSLATE_NOOP("SearchEngine", "TV shows");
-    result["music"] = QT_TRANSLATE_NOOP("SearchEngine", "Music");
-    result["games"] = QT_TRANSLATE_NOOP("SearchEngine", "Games");
-    result["anime"] = QT_TRANSLATE_NOOP("SearchEngine", "Anime");
-    result["software"] = QT_TRANSLATE_NOOP("SearchEngine", "Software");
-    result["pictures"] = QT_TRANSLATE_NOOP("SearchEngine", "Pictures");
-    result["books"] = QT_TRANSLATE_NOOP("SearchEngine", "Books");
-
-    return result;
-}
-
-PluginVersion SearchEngine::getPluginVersion(QString filePath)
+PluginVersion SearchPluginManager::getPluginVersion(QString filePath)
 {
     QFile plugin(filePath);
     if (!plugin.exists()) {
@@ -682,8 +525,9 @@ PluginVersion SearchEngine::getPluginVersion(QString filePath)
                 LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
                     .arg(Utils::Fs::fileName(filePath)).arg(QString::fromUtf8(line)), Log::MsgType::WARNING);
             }
-            else
+            else {
                 qDebug() << "plugin" << filePath << "version: " << version;
+            }
             break;
         }
     }

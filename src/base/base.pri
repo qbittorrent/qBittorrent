@@ -52,7 +52,9 @@ HEADERS += \
     $$PWD/rss/rss_item.h \
     $$PWD/rss/rss_session.h \
     $$PWD/scanfoldersmodel.h \
-    $$PWD/searchengine.h \
+    $$PWD/search/searchhandler.h \
+    $$PWD/search/searchdownloadhandler.h \
+    $$PWD/search/searchpluginmanager.h \
     $$PWD/settingsstorage.h \
     $$PWD/settingvalue.h \
     $$PWD/torrentfileguard.h \
@@ -115,7 +117,9 @@ SOURCES += \
     $$PWD/rss/rss_item.cpp \
     $$PWD/rss/rss_session.cpp \
     $$PWD/scanfoldersmodel.cpp \
-    $$PWD/searchengine.cpp \
+    $$PWD/search/searchdownloadhandler.cpp \
+    $$PWD/search/searchhandler.cpp \
+    $$PWD/search/searchpluginmanager.cpp \
     $$PWD/settingsstorage.cpp \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
