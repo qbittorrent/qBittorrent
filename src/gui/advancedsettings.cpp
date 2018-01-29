@@ -82,6 +82,7 @@ enum AdvSettingsRows
     DISK_CACHE_TTL,
     OS_CACHE,
     GUIDED_READ_CACHE,
+    COALESCE_RW,
     SUGGEST_MODE,
     SEND_BUF_WATERMARK,
     SEND_BUF_LOW_WATERMARK,
@@ -142,6 +143,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(cb_os_cache.isChecked());
     // Guided read cache
     session->setGuidedReadCacheEnabled(cbGuidedReadCache.isChecked());
+    // Coalesce reads & writes
+    session->setCoalesceReadWriteEnabled(cbCoalesceRW.isChecked());
     // Suggest mode
     session->setSuggestMode(cbSuggestMode.isChecked());
     // Send buffer watermark
@@ -313,6 +316,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Guided read cache
     cbGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
     addRow(GUIDED_READ_CACHE, tr("Guided read cache"), &cbGuidedReadCache);
+    // Coalesce reads & writes
+    cbCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
+#if LIBTORRENT_VERSION_NUM >= 10107
+    addRow(COALESCE_RW, tr("Coalesce reads & writes"), &cbCoalesceRW);
+#endif
     // Suggest mode
     cbSuggestMode.setChecked(session->isSuggestModeEnabled());
     addRow(SUGGEST_MODE, tr("Send upload piece suggestions"), &cbSuggestMode);
