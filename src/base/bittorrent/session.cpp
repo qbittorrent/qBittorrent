@@ -290,6 +290,9 @@ Session::Session(QObject *parent)
     , m_maxActiveUploads(BITTORRENT_SESSION_KEY("MaxActiveUploads"), 3, lowerLimited(-1))
     , m_maxActiveTorrents(BITTORRENT_SESSION_KEY("MaxActiveTorrents"), 5, lowerLimited(-1))
     , m_ignoreSlowTorrentsForQueueing(BITTORRENT_SESSION_KEY("IgnoreSlowTorrentsForQueueing"), false)
+    , m_downloadRateForSlowTorrents(BITTORRENT_SESSION_KEY("SlowTorrentsDownloadRate"), 2)
+    , m_uploadRateForSlowTorrents(BITTORRENT_SESSION_KEY("SlowTorrentsUploadRate"), 2)
+    , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY("SlowTorrentsInactivityTimer"), 60)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY("OutgoingPortsMin"), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY("OutgoingPortsMax"), 0)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), true)
@@ -1318,6 +1321,9 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 
         settingsPack.set_int(libt::settings_pack::active_seeds, maxActiveUploads());
         settingsPack.set_bool(libt::settings_pack::dont_count_slow_torrents, ignoreSlowTorrentsForQueueing());
+        settingsPack.set_int(libt::settings_pack::inactive_down_rate, downloadRateForSlowTorrents() * 1024); // KiB to Bytes
+        settingsPack.set_int(libt::settings_pack::inactive_up_rate, uploadRateForSlowTorrents() * 1024); // KiB to Bytes
+        settingsPack.set_int(libt::settings_pack::auto_manage_startup, slowTorrentsInactivityTimer());
     }
     else {
         settingsPack.set_int(libt::settings_pack::active_downloads, -1);
@@ -3183,6 +3189,48 @@ void Session::setIgnoreSlowTorrentsForQueueing(bool ignore)
         m_ignoreSlowTorrentsForQueueing = ignore;
         configureDeferred();
     }
+}
+
+int Session::downloadRateForSlowTorrents() const
+{
+    return m_downloadRateForSlowTorrents;
+}
+
+void Session::setDownloadRateForSlowTorrents(int rateInKibiBytes)
+{
+    if (rateInKibiBytes == m_downloadRateForSlowTorrents)
+        return;
+
+    m_downloadRateForSlowTorrents = rateInKibiBytes;
+    configureDeferred();
+}
+
+int Session::uploadRateForSlowTorrents() const
+{
+    return m_uploadRateForSlowTorrents;
+}
+
+void Session::setUploadRateForSlowTorrents(int rateInKibiBytes)
+{
+    if (rateInKibiBytes == m_uploadRateForSlowTorrents)
+        return;
+
+    m_uploadRateForSlowTorrents = rateInKibiBytes;
+    configureDeferred();
+}
+
+int Session::slowTorrentsInactivityTimer() const
+{
+    return m_slowTorrentsInactivityTimer;
+}
+
+void Session::setSlowTorrentsInactivityTimer(int timeInSeconds)
+{
+    if (timeInSeconds == m_slowTorrentsInactivityTimer)
+        return;
+
+    m_slowTorrentsInactivityTimer = timeInSeconds;
+    configureDeferred();
 }
 
 int Session::outgoingPortsMin() const
