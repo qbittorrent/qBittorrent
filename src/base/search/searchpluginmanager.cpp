@@ -35,6 +35,7 @@
 #include <QDomElement>
 #include <QDomNode>
 #include <QList>
+#include <QPointer>
 #include <QProcess>
 
 #include "base/logger.h"
@@ -47,11 +48,16 @@
 #include "searchdownloadhandler.h"
 #include "searchhandler.h"
 
-static inline void removePythonScriptIfExists(const QString &scriptPath)
+namespace
 {
-    Utils::Fs::forceRemove(scriptPath);
-    Utils::Fs::forceRemove(scriptPath + "c");
+    inline void removePythonScriptIfExists(const QString &scriptPath)
+    {
+        Utils::Fs::forceRemove(scriptPath);
+        Utils::Fs::forceRemove(scriptPath + "c");
+    }
 }
+
+QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
 
 const QHash<QString, QString> SearchPluginManager::m_categoryNames {
     {"all", QT_TRANSLATE_NOOP("SearchEngine", "All categories")},
@@ -68,6 +74,9 @@ const QHash<QString, QString> SearchPluginManager::m_categoryNames {
 SearchPluginManager::SearchPluginManager()
     : m_updateUrl(QString("http://searchplugins.qbittorrent.org/%1/engines/").arg(Utils::Misc::pythonVersion() >= 3 ? "nova3" : "nova"))
 {
+    Q_ASSERT(!m_instance); // only one instance is allowed
+    m_instance = this;
+
     updateNova();
     update();
 }
@@ -75,6 +84,11 @@ SearchPluginManager::SearchPluginManager()
 SearchPluginManager::~SearchPluginManager()
 {
     qDeleteAll(m_plugins);
+}
+
+SearchPluginManager *SearchPluginManager::instance()
+{
+    return m_instance;
 }
 
 QStringList SearchPluginManager::allPlugins() const

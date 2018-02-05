@@ -37,7 +37,6 @@ class QSignalMapper;
 class QTabWidget;
 
 class MainWindow;
-class SearchPluginManager;
 class SearchTab;
 
 namespace Ui
@@ -80,7 +79,6 @@ private:
     QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui;
-    SearchPluginManager *m_searchManager;
     QSignalMapper *m_tabStatusChangedMapper;
     QPointer<SearchTab> m_currentSearchTab; // Selected tab
     QPointer<SearchTab> m_activeSearchTab; // Tab with running search

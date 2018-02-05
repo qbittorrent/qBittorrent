@@ -61,6 +61,8 @@ public:
     SearchPluginManager();
     ~SearchPluginManager() override;
 
+    static SearchPluginManager *instance();
+
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
     QStringList supportedCategories() const;
@@ -107,6 +109,7 @@ private:
 
     static QString pluginPath(const QString &name);
 
+    static QPointer<SearchPluginManager> m_instance;
     static const QHash<QString, QString> m_categoryNames;
 
     const QString m_updateUrl;

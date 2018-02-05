@@ -135,17 +135,18 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped)
             , this, &SearchWidget::tabStatusChanged);
 
-    m_searchManager = new SearchPluginManager;
+    // NOTE: Although SearchManager is Application-wide component now, we still create it the legacy way.
+    auto *searchManager = new SearchPluginManager;
     const auto onPluginChanged = [this]()
     {
         fillCatCombobox();
         fillPluginComboBox();
         selectActivePage();
     };
-    connect(m_searchManager, &SearchPluginManager::pluginInstalled, this, onPluginChanged);
-    connect(m_searchManager, &SearchPluginManager::pluginUninstalled, this, onPluginChanged);
-    connect(m_searchManager, &SearchPluginManager::pluginUpdated, this, onPluginChanged);
-    connect(m_searchManager, &SearchPluginManager::pluginEnabled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginInstalled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginUninstalled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginUpdated, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginEnabled, this, onPluginChanged);
 
     // Fill in category combobox
     onPluginChanged();
@@ -163,7 +164,7 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &cat, m_searchManager->supportedCategories())
+    foreach (const QString &cat, SearchPluginManager::instance()->supportedCategories())
         tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
@@ -185,8 +186,8 @@ void SearchWidget::fillPluginComboBox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &name, m_searchManager->enabledPlugins())
-        tmpList << qMakePair(m_searchManager->pluginFullName(name), name);
+    foreach (const QString &name, SearchPluginManager::instance()->enabledPlugins())
+        tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
     foreach (const QStrPair &p, tmpList)
@@ -208,7 +209,7 @@ QString SearchWidget::selectedPlugin() const
 
 void SearchWidget::selectActivePage()
 {
-    if (m_searchManager->allPlugins().isEmpty()) {
+    if (SearchPluginManager::instance()->allPlugins().isEmpty()) {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
         m_ui->m_searchPattern->setEnabled(false);
         m_ui->comboCategory->setEnabled(false);
@@ -227,7 +228,7 @@ void SearchWidget::selectActivePage()
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-    delete m_searchManager;
+    delete SearchPluginManager::instance();
     delete m_ui;
 }
 
@@ -262,7 +263,7 @@ void SearchWidget::selectMultipleBox(int index)
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    new PluginSelectDlg(m_searchManager, this);
+    new PluginSelectDlg(SearchPluginManager::instance(), this);
 }
 
 void SearchWidget::searchTextEdited(QString)
@@ -303,15 +304,15 @@ void SearchWidget::on_searchButton_clicked()
     }
 
     QStringList plugins;
-    if (selectedPlugin() == "all") plugins = m_searchManager->allPlugins();
-    else if (selectedPlugin() == "enabled") plugins = m_searchManager->enabledPlugins();
-    else if (selectedPlugin() == "multi") plugins = m_searchManager->enabledPlugins();
+    if (selectedPlugin() == "all") plugins = SearchPluginManager::instance()->allPlugins();
+    else if (selectedPlugin() == "enabled") plugins = SearchPluginManager::instance()->enabledPlugins();
+    else if (selectedPlugin() == "multi") plugins = SearchPluginManager::instance()->enabledPlugins();
     else plugins << selectedPlugin();
 
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
     // Launch search
-    auto *searchHandler = m_searchManager->startSearch(pattern, selectedCategory(), plugins);
+    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
 
     // Tab Addition
     auto *newTab = new SearchTab(searchHandler, this);
