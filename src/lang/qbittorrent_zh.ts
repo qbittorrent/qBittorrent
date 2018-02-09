@@ -704,93 +704,89 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="149"/>
+        <location filename="../app/application.cpp" line="152"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 已开始</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="286"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent：%1，运行外部程序，指令：%2</translation>
     </message>
     <message>
-        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="obsolete">Torrent：%1，运行外部程序的指令过长（长度 &gt; %2），执行失败。</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="304"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="314"/>
+        <location filename="../app/application.cpp" line="310"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="328"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，发送邮件提醒</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="489"/>
+        <location filename="../app/application.cpp" line="485"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="490"/>
+        <location filename="../app/application.cpp" line="486"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>欲通过 Web 用户界面控制 qBittorrent，你需要访问 http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="491"/>
+        <location filename="../app/application.cpp" line="487"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web 用户界面管理员的用户名是：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="494"/>
+        <location filename="../app/application.cpp" line="490"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web 用户界面管理员密码设置为默认密码：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="495"/>
+        <location filename="../app/application.cpp" line="491"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>存在安全风险！请考虑在设置更改密码！</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Saving torrent progress...</source>
         <translation>保存 torrent 进程...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="714"/>
+        <location filename="../app/application.cpp" line="710"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>便携模式选项与指定设置存放目录的选项是互斥的</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="717"/>
+        <location filename="../app/application.cpp" line="713"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>便携模式包含相对的快速恢复文件</translation>
     </message>
@@ -1552,21 +1548,6 @@ Error: %2</source>
     </message>
 </context>
 <context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="obsolete">无法移动 torrent：&apos;%1&apos;。原因：%2</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="obsolete">文件大小与 torrent &apos;%1&apos; 不匹配，暂停中。</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="obsolete">Torrent &apos;%1&apos; 的快速恢复数据被拒绝，原因：%2。重新检查中...</translation>
-    </message>
-</context>
-<context>
     <name>CategoryFilterModel</name>
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="242"/>
@@ -1779,29 +1760,6 @@ Error: %2</source>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
         <translation>尝试写入日志文件时出现错误。已禁用写入日志。</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemPathEdit</name>
-    <message>
-        <source>...</source>
-        <comment>Launch file dialog button text (brief)</comment>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>&amp;Browse...</source>
-        <comment>Launch file dialog button text (full)</comment>
-        <translation type="obsolete">浏览...</translation>
-    </message>
-    <message>
-        <source>Choose a file</source>
-        <comment>Caption for file open/save dialog</comment>
-        <translation type="obsolete">选择一个文件</translation>
-    </message>
-    <message>
-        <source>Choose a folder</source>
-        <comment>Caption for directory open dialog</comment>
-        <translation type="obsolete">选择一个文件夹</translation>
     </message>
 </context>
 <context>
@@ -2209,22 +2167,22 @@ Please do not use any special characters in the category name.</source>
         <translation>示例: 172.17.32.0/24，fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>添加子网</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>The entered subnet is invalid.</source>
         <translation>输入的子网无效。</translation>
     </message>
@@ -4481,6 +4439,11 @@ Please install it manually.</source>
         <translation>当下载完成并自动退出时询问</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdlg.ui" line="538"/>
+        <source> KiB</source>
+        <translation type="unfinished"> KiB</translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1111"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>下载完成时发送电子邮件通知</translation>
@@ -4689,9 +4652,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>当大于指定大小时备份日志文件：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="538"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="obsolete"> MB</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="574"/>
@@ -5531,10 +5493,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 </context>
 <context>
     <name>PeerInfo</name>
-    <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">客户端期望下载但用户传输阻塞</translation>
-    </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
         <source>Interested(local) and Choked(peer)</source>
@@ -6920,38 +6878,38 @@ No further notices will be issued.</source>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="140"/>
+        <location filename="../base/rss/rss_session.cpp" line="161"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>该 URL 已在 RSS 订阅源中存在：%1。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="159"/>
+        <location filename="../base/rss/rss_session.cpp" line="180"/>
         <source>Cannot move root folder.</source>
         <translation>不能移动根文件夹。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="166"/>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="187"/>
+        <location filename="../base/rss/rss_session.cpp" line="225"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation>项目不存在: %1。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="197"/>
+        <location filename="../base/rss/rss_session.cpp" line="218"/>
         <source>Cannot delete root folder.</source>
         <translation>不能删除根文件夹。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="348"/>
+        <location filename="../base/rss/rss_session.cpp" line="355"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>不正确的 RSS 项路径：%1。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="354"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>该 RSS 项的路径已存在：%1。</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="362"/>
+        <location filename="../base/rss/rss_session.cpp" line="369"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>父文件夹不存在：%1。</translation>
     </message>
@@ -7233,13 +7191,6 @@ No further notices will be issued.</source>
         <location filename="../base/searchengine.cpp" line="682"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation>搜索插件 &quot;%1&quot; 包含无效的版本字符串 (&quot;%2&quot;)</translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">未知</translation>
     </message>
 </context>
 <context>
@@ -9229,13 +9180,9 @@ Please choose a different name and try again.</source>
         <translation>一个使用 C++ 编写的基于 Qt toolkit 和 libtorrent-rasterbar 的高级 BitTorrent 客户端</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2017 The qBittorrent project</source>
-        <translation type="obsolete">Copyright %1 2006-2017 The qBittorrent project</translation>
-    </message>
-    <message>
         <location filename="../gui/about_imp.h" line="72"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished">Copyright %1 2006-2017 The qBittorrent project {1 2006-2018 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="73"/>

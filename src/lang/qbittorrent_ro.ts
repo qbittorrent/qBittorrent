@@ -704,93 +704,89 @@ Eroare: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="149"/>
+        <location filename="../app/application.cpp" line="152"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 a pornit</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="286"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torent: %1, se rulează programul extern, comanda: %2</translation>
     </message>
     <message>
-        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="obsolete">Torent: %1, comanda ruleaza program extern este prea lungă (lungime &gt; %2), execuția a eșuat.</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="304"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă mulțumim că folosiți qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="314"/>
+        <location filename="../app/application.cpp" line="310"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="328"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torent: %1, se trimite notificare prin email</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="489"/>
+        <location filename="../app/application.cpp" line="485"/>
         <source>Information</source>
         <translation>Informație</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="490"/>
+        <location filename="../app/application.cpp" line="486"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Pentru a controla qBittorrent, accesați interfața Web la http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="491"/>
+        <location filename="../app/application.cpp" line="487"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Numele de administrator al interfeței Web este: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="494"/>
+        <location filename="../app/application.cpp" line="490"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Parola de administrator al interfeței Web este încă cea implicită: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="495"/>
+        <location filename="../app/application.cpp" line="491"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Acesta est un risc de securitate, vă rugăm să luați în calcul schimbarea parolei din preferințe.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Saving torrent progress...</source>
         <translation>Se salvează progresul torentelor...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="714"/>
+        <location filename="../app/application.cpp" line="710"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="717"/>
+        <location filename="../app/application.cpp" line="713"/>
         <source>Portable mode implies relative fastresume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -805,7 +801,7 @@ Eroare: %2</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de date nevalid</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
@@ -985,12 +981,12 @@ Eroare: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguli</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="64"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguli (moștenire)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
@@ -1052,7 +1048,7 @@ Eroare: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>acțiune nevalidă</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="395"/>
@@ -1068,7 +1064,7 @@ Eroare: %2</translation>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Eroare Intrare/Ieșire</translation>
+        <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
@@ -1552,21 +1548,6 @@ Eroare: %2</translation>
     </message>
 </context>
 <context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="obsolete">Nu s-a putut muta torrentul: „%1”. Motivul: %2</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="obsolete">Nepotrivire dimensiuni fișiere pentru torrentul „%1”, se suspendă.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="obsolete">Datele pentru reluare rapidă au fost respinse pentru torrentul „%1”. Motivul %2. Se verifică din nou...</translation>
-    </message>
-</context>
-<context>
     <name>CategoryFilterModel</name>
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="242"/>
@@ -1599,7 +1580,7 @@ Eroare: %2</translation>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="129"/>
         <source>Edit category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editare categorie...</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="134"/>
@@ -1779,29 +1760,6 @@ Eroare: %2</translation>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
         <translation>A apătut o eroare în timpul deschiderii fișierului jurnal. Jurnalizarea în fișier este dezactivată.</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemPathEdit</name>
-    <message>
-        <source>...</source>
-        <comment>Launch file dialog button text (brief)</comment>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>&amp;Browse...</source>
-        <comment>Launch file dialog button text (full)</comment>
-        <translation type="obsolete">&amp;Răsfoire...</translation>
-    </message>
-    <message>
-        <source>Choose a file</source>
-        <comment>Caption for file open/save dialog</comment>
-        <translation type="obsolete">Alegeți un fișier</translation>
-    </message>
-    <message>
-        <source>Choose a folder</source>
-        <comment>Caption for directory open dialog</comment>
-        <translation type="obsolete">Alegeți un dosar</translation>
     </message>
 </context>
 <context>
@@ -2208,22 +2166,22 @@ Please do not use any special characters in the category name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
-        <translation type="unfinished">Șterge</translation>
+        <translation>Șterge</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>Error</source>
-        <translation type="unfinished">Eroare</translation>
+        <translation>Eroare</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>The entered subnet is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2382,7 +2340,7 @@ Please do not use any special characters in the category name.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="472"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Închide fereastra</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
@@ -4480,6 +4438,11 @@ Instalați-l manual.</translation>
         <translation>Confirmare la ieșirea automată când descărcările s-au încheiat</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdlg.ui" line="538"/>
+        <source> KiB</source>
+        <translation type="unfinished"> KiO</translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1111"/>
         <source>Email notification &amp;upon download completion</source>
         <translation type="unfinished"></translation>
@@ -4682,9 +4645,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Fă o copie de rezervă a fișierului jurnal după:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="538"/>
         <source> MB</source>
-        <translation> MO</translation>
+        <translation type="obsolete"> MO</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="574"/>
@@ -5526,10 +5488,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PeerInfo</name>
     <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">interesat(local) și copleșit(partener)</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
         <source>Interested(local) and Choked(peer)</source>
         <translation type="unfinished"></translation>
@@ -6006,7 +5964,7 @@ Totuși, acele module au fost dezactivate.</translation>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="55"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previzualizare</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="62"/>
@@ -6016,12 +5974,12 @@ Totuși, acele module au fost dezactivate.</translation>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="63"/>
         <source>Size</source>
-        <translation type="unfinished">Dimensiune</translation>
+        <translation>Dimensiune</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="64"/>
         <source>Progress</source>
-        <translation type="unfinished">Progres</translation>
+        <translation>Progres</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="97"/>
@@ -6634,7 +6592,7 @@ Totuși, acele module au fost dezactivate.</translation>
         <location filename="../app/cmdoptions.cpp" line="546"/>
         <source>Shortcut for %1</source>
         <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
-        <translation type="unfinished"></translation>
+        <translation>Scurtătură pentru %1</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="553"/>
@@ -6913,40 +6871,40 @@ Nu vor fi emise alte notificări.</translation>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="140"/>
+        <location filename="../base/rss/rss_session.cpp" line="161"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="159"/>
+        <location filename="../base/rss/rss_session.cpp" line="180"/>
         <source>Cannot move root folder.</source>
         <translation>Nu se poate muta dosarul rădăcină.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="166"/>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="187"/>
+        <location filename="../base/rss/rss_session.cpp" line="225"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="197"/>
+        <location filename="../base/rss/rss_session.cpp" line="218"/>
         <source>Cannot delete root folder.</source>
         <translation>Nu se poate șterge dosarul rădăcină.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="348"/>
+        <location filename="../base/rss/rss_session.cpp" line="355"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="354"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="362"/>
+        <location filename="../base/rss/rss_session.cpp" line="369"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosarul părinte nu există: %1.</translation>
     </message>
 </context>
 <context>
@@ -7226,13 +7184,6 @@ Nu vor fi emise alte notificări.</translation>
         <location filename="../base/searchengine.cpp" line="682"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Necunoscută</translation>
     </message>
 </context>
 <context>
@@ -8051,17 +8002,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">Nume:</translation>
+        <translation>Nume:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished">Cale de salvare:</translation>
+        <translation>Cale de salvare:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categorie nouă</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="67"/>
@@ -8325,7 +8276,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="284"/>
         <source>Source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sursă:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="299"/>
@@ -8693,7 +8644,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="614"/>
         <source>Column visibility</source>
-        <translation type="unfinished">Vizibilitate coloană</translation>
+        <translation>Vizibilitatea coloanei</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlist.cpp" line="532"/>
@@ -9042,7 +8993,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="896"/>
         <source>Copy hash</source>
-        <translation type="unfinished"></translation>
+        <translation>Copy indexul</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="906"/>
@@ -9218,13 +9169,9 @@ Please choose a different name and try again.</source>
         <translation>Un client BitTorrent avansat, programat în C++, bazat pe setul de unelte Qt și pe biblioteca libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2017 The qBittorrent project</source>
-        <translation type="obsolete">Drept de autor %1 2006-2017 Proiectul qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/about_imp.h" line="72"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished">Drept de autor %1 2006-2017 Proiectul qBittorrent {1 2006-2018 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="73"/>

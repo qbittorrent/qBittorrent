@@ -704,93 +704,89 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="149"/>
+        <location filename="../app/application.cpp" line="152"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>큐빗토런트 %1 을 시작했습니다</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="286"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>토런트: %1, 외부 프로그램 실행 중, 명령어: %2</translation>
     </message>
     <message>
-        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="obsolete">토런트: %1, 외부 프로그램 실행 명령어가 너무 길어서 (길이 &gt; %2), 실행에 실패했습니다.</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent name: %1</source>
         <translation>토런트 이름: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent size: %1</source>
         <translation>토런트 크기: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="304"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Save path: %1</source>
         <translation>저장 경로: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>%1에 토런트를 다운로드했습니다.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>큐빗토런트 사용에 감사드립니다.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="314"/>
+        <location filename="../app/application.cpp" line="310"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[큐빗토런트] &apos;%1&apos; 다운로드를 완료했습니다</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="328"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>토런트: %1, 메일 알림 전송 중</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="489"/>
+        <location filename="../app/application.cpp" line="485"/>
         <source>Information</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="490"/>
+        <location filename="../app/application.cpp" line="486"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>큐빗토런트를 제어하려면 http://localhost:%1의 웹 UI에 접근하세요</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="491"/>
+        <location filename="../app/application.cpp" line="487"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>웹 UI 관리자 이름: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="494"/>
+        <location filename="../app/application.cpp" line="490"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>웹 UI 관리자 암호가 아직 기본값입니다: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="495"/>
+        <location filename="../app/application.cpp" line="491"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>보안 위험 요소가 있습니다. 프로그램 환경설정에서 비밀번호 변경을 고려해 주세요.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Saving torrent progress...</source>
         <translation>토런트 진행 상황 저장 중...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="714"/>
+        <location filename="../app/application.cpp" line="710"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>포터블 모드와 명시적인 프로파일 폴더 옵션은 함께 사용할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="717"/>
+        <location filename="../app/application.cpp" line="713"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>포터블 모드는 상대적으로 빠른 재시작을 의미합니다</translation>
     </message>
@@ -1548,22 +1544,7 @@ Error: %2</source>
     <message>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="144"/>
         <source>create new torrent file failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="obsolete"> &apos;%1&apos; 토런트를 이동할 수 없습니다. 이유: %2</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="obsolete">&apos;%1&apos; 토런트의 파일 크기가 불일치하여, 일시중지 중입니다.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="obsolete">&apos;%1&apos; 토런트의 빠른 재시작 데이터를 거부했습니다. 이유: %2. 재검사 중...</translation>
+        <translation>새 토런트 파일을 만들지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -1779,29 +1760,6 @@ Error: %2</source>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
         <translation>로그 파일을 여는 중에 오류가 발생했습니다.  파일에 로그쓰기를 비활성화합니다.</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemPathEdit</name>
-    <message>
-        <source>...</source>
-        <comment>Launch file dialog button text (brief)</comment>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>&amp;Browse...</source>
-        <comment>Launch file dialog button text (full)</comment>
-        <translation type="obsolete">찾아보기(&amp;B)...</translation>
-    </message>
-    <message>
-        <source>Choose a file</source>
-        <comment>Caption for file open/save dialog</comment>
-        <translation type="obsolete">파일 선택</translation>
-    </message>
-    <message>
-        <source>Choose a folder</source>
-        <comment>Caption for directory open dialog</comment>
-        <translation type="obsolete">폴더 선택</translation>
     </message>
 </context>
 <context>
@@ -2209,22 +2167,22 @@ Please do not use any special characters in the category name.</source>
         <translation>예: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>서브넷 추가</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>The entered subnet is invalid.</source>
         <translation>입력한 서브넷은 무효합니다.</translation>
     </message>
@@ -2383,7 +2341,7 @@ Please do not use any special characters in the category name.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="472"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>창 닫기</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
@@ -4481,6 +4439,11 @@ Please install it manually.</source>
         <translation>다운로드가 끝났을 때 자동 종료시 확인하기</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdlg.ui" line="538"/>
+        <source> KiB</source>
+        <translation type="unfinished">KiB</translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1111"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>다운로드 완료시 이메일로 알리기</translation>
@@ -4689,9 +4652,8 @@ DNS 리바인딩 공격을 방어하기 위해,
         <translation>로그 파일이 다음 크기보다 크면 백업하기:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="538"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="obsolete"> MB</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="574"/>
@@ -5532,13 +5494,9 @@ DNS 리바인딩 공격을 방어하기 위해,
 <context>
     <name>PeerInfo</name>
     <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">관심있음(로컬), 혼잡함(피어)</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
         <source>Interested(local) and Choked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>관심있음(로컬), 혼잡함(피어)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="289"/>
@@ -6920,38 +6878,38 @@ No further notices will be issued.</source>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="140"/>
+        <location filename="../base/rss/rss_session.cpp" line="161"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>주어진 URL이 있는 RSS 피드가 이미 존재합니다: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="159"/>
+        <location filename="../base/rss/rss_session.cpp" line="180"/>
         <source>Cannot move root folder.</source>
         <translation>루트 폴더를 이동할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="166"/>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="187"/>
+        <location filename="../base/rss/rss_session.cpp" line="225"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation>항목이 존재하지 않습니다: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="197"/>
+        <location filename="../base/rss/rss_session.cpp" line="218"/>
         <source>Cannot delete root folder.</source>
         <translation>루트 폴더를 삭제할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="348"/>
+        <location filename="../base/rss/rss_session.cpp" line="355"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>잘못된 RSS 항목 경로: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="354"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>주어진 경로가 있는 RSS 항목이 이미 존재합니다: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="362"/>
+        <location filename="../base/rss/rss_session.cpp" line="369"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>상위 폴더가 존재하지 않습니다: %1.</translation>
     </message>
@@ -7233,13 +7191,6 @@ No further notices will be issued.</source>
         <location filename="../base/searchengine.cpp" line="682"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation>&apos;%1&apos; 검색 플러그인에 무효한 버전 문자열(&apos;%2&apos;)이 있습니다</translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">알 수 없음</translation>
     </message>
 </context>
 <context>
@@ -8285,7 +8236,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="169"/>
         <source>32 MiB</source>
-        <translation type="unfinished">16 MiB {32 ?}</translation>
+        <translation>32 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="177"/>
@@ -8336,7 +8287,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="284"/>
         <source>Source:</source>
-        <translation type="unfinished"></translation>
+        <translation>소스:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="299"/>
@@ -9043,7 +8994,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="890"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>강제로 다시 알리기</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="894"/>
@@ -9229,13 +9180,9 @@ Please choose a different name and try again.</source>
         <translation>Qt 툴킷과 libtorrent-rasterbar 기반의 C++로 짠 고급 비트토런트 클라이언트입니다.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2017 The qBittorrent project</source>
-        <translation type="obsolete">저작권 %1 2006-2017 큐빗토런트 프로젝트</translation>
-    </message>
-    <message>
         <location filename="../gui/about_imp.h" line="72"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished">저작권 %1 2006-2017 큐빗토런트 프로젝트 {1 2006-2018 ?}</translation>
+        <translation>저작권 %1 2006-2018 큐빗토런트 프로젝트</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="73"/>

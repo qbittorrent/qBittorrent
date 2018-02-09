@@ -6,7 +6,7 @@
     <message>
         <location filename="../gui/about.ui" line="15"/>
         <source>About qBittorrent</source>
-        <translation>A qBittorrent névjegye</translation>
+        <translation>qBittorrent névjegye</translation>
     </message>
     <message>
         <location filename="../gui/about.ui" line="52"/>
@@ -107,22 +107,22 @@
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="458"/>
         <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: Érvénytelen Kiszolgáló fejléc, port nem egyezik.</translation>
     </message>
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="459"/>
         <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérés forrás IP: &apos;%1&apos;. Szerver port: &apos;%2&apos;. Fogadott Kiszolgáló fejléc: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="490"/>
         <source>WebUI: Invalid Host header.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: Érvénytelen Kiszolgáló fejléc.</translation>
     </message>
     <message>
         <location filename="../webui/abstractwebapplication.cpp" line="491"/>
         <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérés forrás IP: &apos;%1&apos;. Fogadott Kiszolgáló fejléc: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -322,7 +322,7 @@ Hiba: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="337"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="342"/>
         <source>Already in the download list</source>
-        <translation type="unfinished"></translation>
+        <translation>Már a letöltési listában van</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="303"/>
@@ -481,7 +481,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="230"/>
         <source> (disabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>(kikapcsolva)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="232"/>
@@ -512,7 +512,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="303"/>
         <source>Disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Lemez gyorsítótár</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="308"/>
@@ -533,7 +533,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="315"/>
         <source>Guided read cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Okos olvasási gyorsítótár</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="318"/>
@@ -668,7 +668,7 @@ Hiba: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="354"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1-TCP kevert-mód algoritmus</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="377"/>
@@ -704,93 +704,89 @@ Hiba: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="149"/>
+        <location filename="../app/application.cpp" line="152"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 elindult</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="286"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent: %1, külső program futtatása, parancs: %2</translation>
     </message>
     <message>
-        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="obsolete">Torrent: %1, külső program futtatási parancs túl hosszú (hossz &gt; %2), végrehajtás sikertelen.</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent neve: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent mérete: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="304"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés helye: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="314"/>
+        <location filename="../app/application.cpp" line="310"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[qBittorrent] &apos;%1&apos; befejezte a letöltést</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="328"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent: %1, értesítő levél küldése</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="489"/>
+        <location filename="../app/application.cpp" line="485"/>
         <source>Information</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="490"/>
+        <location filename="../app/application.cpp" line="486"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>A qBittorrent vezérléséhez, nyisd meg ezt a címet: http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="491"/>
+        <location filename="../app/application.cpp" line="487"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web UI adminisztrátor felhasználó neve: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="494"/>
+        <location filename="../app/application.cpp" line="490"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web UI adminisztrátor jelszó még az alapértelmezett: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="495"/>
+        <location filename="../app/application.cpp" line="491"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Ez biztonsági kockázatot jelent. Kérlek változtass jelszót a program beállításinál.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Saving torrent progress...</source>
         <translation>Torrent állapotának mentése...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="714"/>
+        <location filename="../app/application.cpp" line="710"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>A hordozható mód, és a konkrétan megadott profilkönyvtár kölcsönösen kizárják egymást</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="717"/>
+        <location filename="../app/application.cpp" line="713"/>
         <source>Portable mode implies relative fastresume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -805,7 +801,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="263"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen adat formátum</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="371"/>
@@ -985,12 +981,12 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Szabályok</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="64"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Szabályok (régi)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
@@ -1052,7 +1048,7 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Érvénytelen művelet</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="395"/>
@@ -1062,23 +1058,23 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
         <source>Export RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS szabályok exportálása</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Hiba</translation>
+        <translation>I/O Hiba</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
         <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cél fájlt nem sikerült létrehozni. Indok: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="433"/>
         <source>Import RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS szabályok importálása</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="442"/>
@@ -1088,12 +1084,12 @@ Hiba: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Import Hiba</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="458"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a kiválasztott szabály fájl importálásakor. Indok: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="465"/>
@@ -1552,21 +1548,6 @@ Hiba: %2</translation>
     </message>
 </context>
 <context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="obsolete">Nem sikerült áthelyezni a torrentet: &apos;%1&apos;. Indok: %2</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="obsolete">Fájl méret nem megfelelő ennél a torrentnél: &apos;%1&apos;, szüneteltetés.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="obsolete">Gyors folytatás adat elutasítva ennél a torrentnél: &apos;%1&apos;. Oka: &apos;%2&apos;. Újraellenőrzés...</translation>
-    </message>
-</context>
-<context>
     <name>CategoryFilterModel</name>
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="242"/>
@@ -1779,29 +1760,6 @@ Hiba: %2</translation>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
         <translation>Hiba történt a naplófájl megnyitásakor. A fájlba naplózás letiltásra került.</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemPathEdit</name>
-    <message>
-        <source>...</source>
-        <comment>Launch file dialog button text (brief)</comment>
-        <translation type="obsolete">…</translation>
-    </message>
-    <message>
-        <source>&amp;Browse...</source>
-        <comment>Launch file dialog button text (full)</comment>
-        <translation type="obsolete">&amp;Tallózás…</translation>
-    </message>
-    <message>
-        <source>Choose a file</source>
-        <comment>Caption for file open/save dialog</comment>
-        <translation type="obsolete">Válasszon fájlt</translation>
-    </message>
-    <message>
-        <source>Choose a folder</source>
-        <comment>Caption for directory open dialog</comment>
-        <translation type="obsolete">Válasszon mappát</translation>
     </message>
 </context>
 <context>
@@ -2209,22 +2167,22 @@ Ne használjon különleges karaktereket a kategórianévben.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation type="unfinished">Törlés</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>Error</source>
         <translation type="unfinished">Hiba</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>The entered subnet is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4478,6 +4436,11 @@ Kérlek telepítsd fel kézzel.</translation>
         <translation>Megerősítés kérése automatikus kilépéskor, amikor a letöltések befejeződnek</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdlg.ui" line="538"/>
+        <source> KiB</source>
+        <translation type="unfinished">KiB</translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1111"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>E-mail értesítés a letöltés &amp;végén</translation>
@@ -4684,9 +4647,8 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
         <translation>Naplófájl biztonsági mentése ennyi után:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="538"/>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="574"/>
@@ -5526,10 +5488,6 @@ Használja a „;” karaktert az elválasztásra, ha több is van. A „*” he
 </context>
 <context>
     <name>PeerInfo</name>
-    <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">érdekelt(helyi) és elfojtott(peer)</translation>
-    </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
         <source>Interested(local) and Choked(peer)</source>
@@ -6915,38 +6873,38 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="140"/>
+        <location filename="../base/rss/rss_session.cpp" line="161"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>Már létezik RSS csatorna a megadott URL-lel: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="159"/>
+        <location filename="../base/rss/rss_session.cpp" line="180"/>
         <source>Cannot move root folder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="166"/>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="187"/>
+        <location filename="../base/rss/rss_session.cpp" line="225"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="197"/>
+        <location filename="../base/rss/rss_session.cpp" line="218"/>
         <source>Cannot delete root folder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="348"/>
+        <location filename="../base/rss/rss_session.cpp" line="355"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="354"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="362"/>
+        <location filename="../base/rss/rss_session.cpp" line="369"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7228,13 +7186,6 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../base/searchengine.cpp" line="682"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -9220,13 +9171,9 @@ Please choose a different name and try again.</source>
         <translation>Egy kifinomult, C++-ban fejlesztett BitTorrent kliens, Qt és libtorrent-rasterbar programkönyvtárakra alapozva.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2017 The qBittorrent project</source>
-        <translation type="obsolete">Copyright %1 2006-2017 A qBittorrent projekt</translation>
-    </message>
-    <message>
         <location filename="../gui/about_imp.h" line="72"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished">Copyright %1 2006-2017 A qBittorrent projekt {1 2006-2018 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="73"/>

@@ -704,93 +704,89 @@ Error: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="149"/>
+        <location filename="../app/application.cpp" line="152"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 iniciat</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="290"/>
+        <location filename="../app/application.cpp" line="286"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent: %1, s&apos;executa un programa extern, ordre: %2</translation>
     </message>
     <message>
-        <source>Torrent: %1, run external program command too long (length &gt; %2), execution failed.</source>
-        <translation type="obsolete">Torrent: %1, ordre de programa d&apos;execució externa massa llarga (llargada &gt; %2), n&apos;ha fallat l&apos;execució.</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Torrent name: %1</source>
         <translation>Nom del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="299"/>
         <source>Torrent size: %1</source>
         <translation>Mida del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="304"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Save path: %1</source>
         <translation>Camí de desament: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>El Torrent s&apos;ha baixat: %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Gràcies per utilitzar el qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="314"/>
+        <location filename="../app/application.cpp" line="310"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &quot;%1&quot; ha acabat de baixar.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="328"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent: %1, enviant notificació per e-mail</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="489"/>
+        <location filename="../app/application.cpp" line="485"/>
         <source>Information</source>
         <translation>Informació</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="490"/>
+        <location filename="../app/application.cpp" line="486"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
         <translation>Per controlar el qBittorrent, accediu a la interfície web a http://localhost:%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="491"/>
+        <location filename="../app/application.cpp" line="487"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>El nom d&apos;usuari de l&apos;administrador de la interfície web és: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="494"/>
+        <location filename="../app/application.cpp" line="490"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>La contrasenya de l&apos;administrador de la interfície web encara és l&apos;original: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="495"/>
+        <location filename="../app/application.cpp" line="491"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Això és un risc de seguretat, considereu canviar la vostra contrasenya a la configuració del programa.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Saving torrent progress...</source>
         <translation>S&apos;està desant el progrés del torrent...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="714"/>
+        <location filename="../app/application.cpp" line="710"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation>El mode portable i les opcions explícites de perfil de directori són mútuament excloents.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="717"/>
+        <location filename="../app/application.cpp" line="713"/>
         <source>Portable mode implies relative fastresume</source>
         <translation>El mode portable implica una represa ràpida relativa.</translation>
     </message>
@@ -1548,22 +1544,7 @@ Error: %2</translation>
     <message>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="144"/>
         <source>create new torrent file failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="obsolete">No s&apos;ha pogut moure el torrent: &apos;%1&apos;. Raó: %2</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="obsolete">La mida del fitxer no coincideix amb el torrent «%1», es posa en pausa.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="obsolete">S&apos;han negat les dades per a la represa ràpida del torrent «%1». Raó: %2. S&apos;està comprovant de nou... </translation>
+        <translation>ha fallat la creació del nou fitxer torrent</translation>
     </message>
 </context>
 <context>
@@ -1779,29 +1760,6 @@ Error: %2</translation>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
         <translation>Error en intentar obrir el fitxer de diari. L&apos;enregistrament al fitxer està desactivat.</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemPathEdit</name>
-    <message>
-        <source>...</source>
-        <comment>Launch file dialog button text (brief)</comment>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>&amp;Browse...</source>
-        <comment>Launch file dialog button text (full)</comment>
-        <translation type="obsolete">&amp;Navega...</translation>
-    </message>
-    <message>
-        <source>Choose a file</source>
-        <comment>Caption for file open/save dialog</comment>
-        <translation type="obsolete">Trieu un fitxer</translation>
-    </message>
-    <message>
-        <source>Choose a folder</source>
-        <comment>Caption for directory open dialog</comment>
-        <translation type="obsolete">Trieu una carpeta</translation>
     </message>
 </context>
 <context>
@@ -2209,22 +2167,22 @@ Si us plau, no useu caràcters especials al nom de la categoria.</translation>
         <translation>Exemple: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="60"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>Afegeix una subxarxa</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="67"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>Suprimeix</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="91"/>
         <source>The entered subnet is invalid.</source>
         <translation>La subxarxa introduïda no és vàlida</translation>
     </message>
@@ -2383,7 +2341,7 @@ Si us plau, no useu caràcters especials al nom de la categoria.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="472"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanca la finestra</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
@@ -4481,6 +4439,11 @@ Instal·leu-lo manualment.</translation>
         <translation>Confirma el tancament automàtic quan les baixades acabin.</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdlg.ui" line="538"/>
+        <source> KiB</source>
+        <translation type="unfinished"> KiB</translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1111"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>Notificació per corre&amp;u electrònic de l&apos;acabament de les descàrregues</translation>
@@ -4689,9 +4652,8 @@ Useu &quot;;&quot; per separar les entrades. Podeu usar el comodí &quot;*&quot;
         <translation>Feu una còpia del registre desprès de:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdlg.ui" line="538"/>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="obsolete">MB</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="574"/>
@@ -5532,13 +5494,9 @@ Useu &quot;;&quot; per separar les entrades. Podeu usar el comodí &quot;*&quot;
 <context>
     <name>PeerInfo</name>
     <message>
-        <source>interested(local) and choked(peer)</source>
-        <translation type="obsolete">interessats (local) i muts (parells)</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
         <source>Interested(local) and Choked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interessats (local) i muts (parells)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="289"/>
@@ -6920,38 +6878,38 @@ No es mostraran més avisos.</translation>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="140"/>
+        <location filename="../base/rss/rss_session.cpp" line="161"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>El canal RSS amb l&apos;URL proporcionat ja existeix: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="159"/>
+        <location filename="../base/rss/rss_session.cpp" line="180"/>
         <source>Cannot move root folder.</source>
         <translation>No es pot desplaçar la carpeta d&apos;arrel.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="166"/>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="187"/>
+        <location filename="../base/rss/rss_session.cpp" line="225"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation>No existeix l&apos;element %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="197"/>
+        <location filename="../base/rss/rss_session.cpp" line="218"/>
         <source>Cannot delete root folder.</source>
         <translation>No es pot suprimir la carpeta d&apos;arrel.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="348"/>
+        <location filename="../base/rss/rss_session.cpp" line="355"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>Camí a l&apos;element RSS incorrecte: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="354"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>L&apos;element RSS amb el camí proporcionat ja existeix: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="362"/>
+        <location filename="../base/rss/rss_session.cpp" line="369"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>No existeix la carpeta mare %1.</translation>
     </message>
@@ -7233,13 +7191,6 @@ No es mostraran més avisos.</translation>
         <location filename="../base/searchengine.cpp" line="682"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation>El connector de cerca &quot;%1&quot; conté una cadena de versió no vàlida (&quot;%2&quot;)</translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Desconegut</translation>
     </message>
 </context>
 <context>
@@ -8285,7 +8236,7 @@ Si us plau, trieu-ne un altre i torneu-ho a provar.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="169"/>
         <source>32 MiB</source>
-        <translation type="unfinished">16 MiB {32 ?}</translation>
+        <translation>32 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="177"/>
@@ -8336,7 +8287,7 @@ Si us plau, trieu-ne un altre i torneu-ho a provar.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="284"/>
         <source>Source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Font:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="299"/>
@@ -9043,7 +8994,7 @@ Si us plau, trieu-ne un altre i torneu-ho a provar.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="890"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Força el reanunci</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="894"/>
@@ -9229,13 +9180,9 @@ Si us plau, trieu-ne un altre i torneu-ho a provar.</translation>
         <translation>Un client BitTorrent avançat programat en C++, basat en el joc d&apos;eines Qt i libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2017 The qBittorrent project</source>
-        <translation type="obsolete">Copyright %1 2006-2017 The qBittorrent project</translation>
-    </message>
-    <message>
         <location filename="../gui/about_imp.h" line="72"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished">Copyright %1 2006-2017 The qBittorrent project {1 2006-2018 ?}</translation>
+        <translation>Copyright %1 2006-2018, El projecte qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/about_imp.h" line="73"/>
