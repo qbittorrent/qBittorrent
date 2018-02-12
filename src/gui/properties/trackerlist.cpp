@@ -234,7 +234,7 @@ void TrackerList::moveSelectionDown()
 
 void TrackerList::clear()
 {
-    qDeleteAll(m_trackerItems.values());
+    qDeleteAll(m_trackerItems);
     m_trackerItems.clear();
     m_DHTItem->setText(COL_STATUS, "");
     m_DHTItem->setText(COL_SEEDS, "");

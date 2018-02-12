@@ -84,7 +84,7 @@ SearchEngine::SearchEngine()
 
 SearchEngine::~SearchEngine()
 {
-    qDeleteAll(m_plugins.values());
+    qDeleteAll(m_plugins);
     cancelSearch();
 }
 
