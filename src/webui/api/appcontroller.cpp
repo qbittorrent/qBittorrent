@@ -134,6 +134,7 @@ void AppController::preferencesAction()
 
     data["proxy_peer_connections"] = session->isProxyPeerConnectionsEnabled();
     data["force_proxy"] = session->isForceProxyEnabled();
+    data["proxy_torrents_only"] = proxyManager->isProxyOnlyForTorrents();
 
     // IP Filtering
     data["ip_filter_enabled"] = session->isIPFilteringEnabled();
@@ -344,6 +345,8 @@ void AppController::setPreferencesAction()
         session->setProxyPeerConnectionsEnabled(m["proxy_peer_connections"].toBool());
     if (m.contains("force_proxy"))
         session->setForceProxyEnabled(m["force_proxy"].toBool());
+    if (m.contains("proxy_torrents_only"))
+        proxyManager->setProxyOnlyForTorrents(m["proxy_torrents_only"].toBool());
 
     // IP Filtering
     if (m.contains("ip_filter_enabled"))
