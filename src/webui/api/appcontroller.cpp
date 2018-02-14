@@ -88,7 +88,7 @@ void AppController::preferencesAction()
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
     data["preallocate_all"] = session->isPreallocationEnabled();
     data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
-    QVariantHash dirs = pref->getScanDirs();
+    const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
     for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
         if (i.value().type() == QVariant::Int)
@@ -240,7 +240,7 @@ void AppController::setPreferencesAction()
     if (m.contains("incomplete_files_ext"))
         session->setAppendExtensionEnabled(m["incomplete_files_ext"].toBool());
     if (m.contains("scan_dirs")) {
-        QVariantMap nativeDirs = m["scan_dirs"].toMap();
+        const QVariantMap nativeDirs = m["scan_dirs"].toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();

@@ -66,7 +66,7 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
     Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked
                             ? Qt::Unchecked : Qt::Checked);
 
-    QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
+    const QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
 
     for (QModelIndexList::const_iterator i = selection.begin(); i != selection.end(); ++i) {
         QModelIndex index = *i;
