@@ -19,7 +19,7 @@ Homepage: http://www.qbittorrent.org/
 Package: qbittorrent
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
-         python (>= 2.7), geoip-database
+         python (>= 2.7), geoip-database, libqt5svg5
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
  BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt5
