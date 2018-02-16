@@ -33,6 +33,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
+#include "base/global.h"
 #include "rss_article.h"
 
 using namespace RSS;
@@ -122,7 +123,7 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
-    for (auto article: item->articles())
+    for (auto article: copyAsConst(item->articles()))
         emit newArticle(article);
 
     if (item->unreadCount() > 0)
@@ -133,7 +134,7 @@ void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
 
-    for (auto article: item->articles())
+    for (auto article: copyAsConst(item->articles()))
         emit articleAboutToBeRemoved(article);
 
     item->disconnect(this);

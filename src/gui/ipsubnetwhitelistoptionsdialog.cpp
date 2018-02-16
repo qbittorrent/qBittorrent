@@ -34,6 +34,7 @@
 #include <QSortFilterProxyModel>
 #include <QStringListModel>
 
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/utils/net.h"
 #include "ui_ipsubnetwhitelistoptionsdialog.h"
@@ -47,7 +48,7 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : Preferences::instance()->getWebUiAuthSubnetWhitelist())
+    for (const Utils::Net::Subnet &subnet : copyAsConst(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     m_model = new QStringListModel(authSubnetWhitelistStringList, this);
 
@@ -100,7 +101,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 
 void IPSubnetWhitelistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
 {
-    for (const auto &i : m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes())
+    for (const auto &i : copyAsConst(m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes()))
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;

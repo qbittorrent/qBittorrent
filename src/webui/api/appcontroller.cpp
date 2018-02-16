@@ -45,6 +45,7 @@
 #endif
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
@@ -200,7 +201,7 @@ void AppController::preferencesAction()
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
     data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : pref->getWebUiAuthSubnetWhitelist())
+    for (const Utils::Net::Subnet &subnet : copyAsConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
     // Update my dynamic domain name
