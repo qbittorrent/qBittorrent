@@ -204,6 +204,10 @@ public:
     void setWebUiHttpsCertificate(const QByteArray &data);
     QByteArray getWebUiHttpsKey() const;
     void setWebUiHttpsKey(const QByteArray &data);
+    bool isAltWebUiEnabled() const;
+    void setAltWebUiEnabled(bool enabled);
+    QString getWebUiRootFolder() const;
+    void setWebUiRootFolder(const QString &path);
 
     // Dynamic DNS
     bool isDynDNSEnabled() const;

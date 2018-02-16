@@ -56,6 +56,7 @@ namespace Utils
         bool sameFileNames(const QString &first, const QString &second);
         QString expandPath(const QString &path);
         QString expandPathAbs(const QString &path);
+        bool isRegularFile(const QString &path);
 
         bool smartRemoveEmptyFolderTree(const QString &path);
         bool forceRemove(const QString &filePath);

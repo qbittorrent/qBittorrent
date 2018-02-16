@@ -34,6 +34,7 @@
 
 class QByteArray;
 class QLatin1String;
+class TriStateBool;
 
 namespace Utils
 {
@@ -66,6 +67,9 @@ namespace Utils
 
             return str;
         }
+
+        bool parseBool(const QString &string, const bool defaultValue);
+        TriStateBool parseTriStateBool(const QString &string);
     }
 }
 

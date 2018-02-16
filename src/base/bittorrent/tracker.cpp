@@ -74,7 +74,7 @@ libtorrent::entry Peer::toEntry(bool noPeerId) const
 // Tracker
 
 Tracker::Tracker(QObject *parent)
-    : Http::ResponseBuilder(parent)
+    : QObject(parent)
     , m_server(new Http::Server(this, this))
 {
 }

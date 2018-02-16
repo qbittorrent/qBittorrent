@@ -609,6 +609,26 @@ void Preferences::setWebUiHttpsKey(const QByteArray &data)
     setValue("Preferences/WebUI/HTTPS/Key", data);
 }
 
+bool Preferences::isAltWebUiEnabled() const
+{
+    return value("Preferences/WebUI/AlternativeUIEnabled", false).toBool();
+}
+
+void Preferences::setAltWebUiEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/AlternativeUIEnabled", enabled);
+}
+
+QString Preferences::getWebUiRootFolder() const
+{
+    return value("Preferences/WebUI/RootFolder").toString();
+}
+
+void Preferences::setWebUiRootFolder(const QString &path)
+{
+    setValue("Preferences/WebUI/RootFolder", path);
+}
+
 bool Preferences::isDynDNSEnabled() const
 {
     return value("Preferences/DynDNS/Enabled", false).toBool();

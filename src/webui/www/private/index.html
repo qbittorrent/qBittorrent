@@ -1,9 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="${LANG}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8;" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
+    <link rel="icon" type="image/png" href="images/skin/qbittorrent16.png" />
     <link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <!--<link rel="stylesheet" type="text/css" href="css/Content.css" />-->
@@ -50,12 +51,10 @@
                             <li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="QBT_TR(&Resume)QBT_TR[CONTEXT=MainWindow]" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Resume)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" alt="QBT_TR(&Pause)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Pause)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/list-remove" alt="QBT_TR(&Delete)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Delete)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <span id="queueingLinks">
-                                <li class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="theme/go-top" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                                <li><a id="increasePrioLink"><img class="MyMenuIcon" src="theme/go-up" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                                <li><a id="decreasePrioLink"><img class="MyMenuIcon" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                                <li><a id="bottomPrioLink"><img class="MyMenuIcon" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            </span>
+                            <li id="topPrioItem" class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="theme/go-top" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="increasePrioItem"><a id="increasePrioLink"><img class="MyMenuIcon" src="theme/go-up" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="decreasePrioItem"><a id="decreasePrioLink"><img class="MyMenuIcon" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="bottomPrioItem"><a id="bottomPrioLink"><img class="MyMenuIcon" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force Recheck)QBT_TR[CONTEXT=TransferListWidget]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
                         </ul>
                     </li>

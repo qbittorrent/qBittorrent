@@ -31,6 +31,7 @@
 #define BITTORRENT_TRACKER_H
 
 #include <QHash>
+#include <QObject>
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
@@ -75,7 +76,7 @@ namespace BitTorrent
 
     /* Basic Bittorrent tracker implementation in Qt */
     /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
-    class Tracker : public Http::ResponseBuilder, public Http::IRequestHandler
+    class Tracker : public QObject, public Http::IRequestHandler, private Http::ResponseBuilder
     {
         Q_OBJECT
         Q_DISABLE_COPY(Tracker)

@@ -183,6 +183,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->groupFileAssociation->setVisible(false);
 #endif
 
+    m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
+    m_ui->textWebUIRootFolder->setDialogCaption(tr("Choose Alternative UI files location"));
+
     // Connect signals / slots
     // Shortcuts for frequently used signals that have more than one overload. They would require
     // type casts and that is why we declare required member pointer here instead.
@@ -367,6 +370,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->domainNameTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->DNSUsernameTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 #endif
 
     // RSS tab
@@ -677,6 +682,9 @@ void OptionsDialog::saveOptions()
         pref->setDynDomainName(m_ui->domainNameTxt->text());
         pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
         pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
+        // Alternative UI
+        pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
+        pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
     }
     // End Web UI
     // End preferences
@@ -1069,6 +1077,9 @@ void OptionsDialog::loadOptions()
     m_ui->domainNameTxt->setText(pref->getDynDomainName());
     m_ui->DNSUsernameTxt->setText(pref->getDynDNSUsername());
     m_ui->DNSPasswordTxt->setText(pref->getDynDNSPassword());
+
+    m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
+    m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
     // End Web UI preferences
 }
 

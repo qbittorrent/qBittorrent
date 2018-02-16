@@ -29,17 +29,13 @@
 #ifndef HTTP_RESPONSEBUILDER_H
 #define HTTP_RESPONSEBUILDER_H
 
-#include <QObject>
 #include "types.h"
 
 namespace Http
 {
-    class ResponseBuilder : public QObject
+    class ResponseBuilder
     {
     public:
-        explicit ResponseBuilder(QObject *parent = nullptr);
-
-    protected:
         void status(uint code = 200, const QString &text = QLatin1String("OK"));
         void header(const QString &name, const QString &value);
         void print(const QString &text, const QString &type = CONTENT_TYPE_HTML);

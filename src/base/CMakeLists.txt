@@ -19,6 +19,7 @@ bittorrent/torrentinfo.h
 bittorrent/tracker.h
 bittorrent/trackerentry.h
 http/connection.h
+http/httperror.h
 http/irequesthandler.h
 http/requestparser.h
 http/responsebuilder.h
@@ -51,6 +52,7 @@ utils/random.h
 utils/string.h
 utils/version.h
 asyncfilestorage.h
+exceptions.h
 filesystemwatcher.h
 global.h
 iconprovider.h
@@ -84,6 +86,7 @@ bittorrent/torrentinfo.cpp
 bittorrent/tracker.cpp
 bittorrent/trackerentry.cpp
 http/connection.cpp
+http/httperror.cpp
 http/requestparser.cpp
 http/responsebuilder.cpp
 http/responsegenerator.cpp
@@ -113,6 +116,7 @@ utils/net.cpp
 utils/random.cpp
 utils/string.cpp
 asyncfilestorage.cpp
+exceptions.cpp
 filesystemwatcher.cpp
 iconprovider.cpp
 logger.cpp
