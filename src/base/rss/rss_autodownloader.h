@@ -35,6 +35,7 @@
 #include <QList>
 #include <QObject>
 #include <QPointer>
+#include <QRegularExpression>
 #include <QSharedPointer>
 
 class QThread;
@@ -79,6 +80,10 @@ namespace RSS
 
         bool isProcessingEnabled() const;
         void setProcessingEnabled(bool enabled);
+
+        QStringList smartEpisodeFilters() const;
+        void setSmartEpisodeFilters(const QStringList &filters);
+        QRegularExpression smartEpisodeRegex() const;
 
         bool hasRule(const QString &ruleName) const;
         AutoDownloadRule ruleByName(const QString &ruleName) const;
@@ -132,5 +137,6 @@ namespace RSS
         QHash<QString, QSharedPointer<ProcessingJob>> m_waitingJobs;
         bool m_dirty = false;
         QBasicTimer m_savingTimer;
+        QRegularExpression m_smartEpisodeRegex;
     };
 }

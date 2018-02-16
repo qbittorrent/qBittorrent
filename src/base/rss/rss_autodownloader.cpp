@@ -64,6 +64,7 @@ const QString ConfFolderName(QStringLiteral("rss"));
 const QString RulesFileName(QStringLiteral("download_rules.json"));
 
 const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/AutoDownloader/EnableProcessing"));
+const QString SettingsKey_SmartEpisodeFilter(QStringLiteral("RSS/AutoDownloader/SmartEpisodeFilter"));
 
 namespace
 {
@@ -95,6 +96,11 @@ using namespace RSS;
 
 QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
+QString computeSmartFilterRegex(const QStringList &filters)
+{
+    return QString("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
+}
+
 AutoDownloader::AutoDownloader()
     : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
     , m_processingTimer(new QTimer(this))
@@ -122,6 +128,13 @@ AutoDownloader::AutoDownloader()
             , this, &AutoDownloader::handleTorrentDownloadFinished);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed
             , this, &AutoDownloader::handleTorrentDownloadFailed);
+
+    // initialise the smart episode regex
+    const QString regex = computeSmartFilterRegex(smartEpisodeFilters());
+    m_smartEpisodeRegex = QRegularExpression(regex,
+                                             QRegularExpression::CaseInsensitiveOption
+                                             | QRegularExpression::ExtendedPatternSyntaxOption
+                                             | QRegularExpression::UseUnicodePropertiesOption);
 
     load();
 
@@ -266,6 +279,37 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
         insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
 }
 
+QStringList AutoDownloader::smartEpisodeFilters() const
+{
+    const QVariant filtersSetting = SettingsStorage::instance()->loadValue(SettingsKey_SmartEpisodeFilter);
+
+    if (filtersSetting.isNull()) {
+        QStringList filters = {
+            "s(\\d+)e(\\d+)",                       // Format 1: s01e01
+            "(\\d+)x(\\d+)",                        // Format 2: 01x01
+            "(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})", // Format 3: 2017.01.01
+            "(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"  // Format 4: 01.01.2017
+        };
+
+        return filters;
+    }
+
+    return filtersSetting.toStringList();
+}
+
+QRegularExpression AutoDownloader::smartEpisodeRegex() const
+{
+    return m_smartEpisodeRegex;
+}
+
+void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
+{
+    SettingsStorage::instance()->storeValue(SettingsKey_SmartEpisodeFilter, filters);
+
+    const QString regex = computeSmartFilterRegex(filters);
+    m_smartEpisodeRegex.setPattern(regex);
+}
+
 void AutoDownloader::process()
 {
     if (m_processingQueue.isEmpty()) return; // processing was disabled
@@ -333,6 +377,8 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         }
 
         rule.setLastMatch(articleDate);
+        rule.appendLastComputedEpisode();
+
         m_dirty = true;
         storeDeferred();
 

@@ -2700,6 +2700,18 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupRSSSmartEpisodeFilter">
+              <property name="title">
+               <string>RSS Smart Episode Filters</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_31">
+               <item>
+                <widget class="QPlainTextEdit" name="textSmartEpisodeFilters"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_5">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -2707,7 +2719,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>267</height>
+                <height>200</height>
                </size>
               </property>
              </spacer>

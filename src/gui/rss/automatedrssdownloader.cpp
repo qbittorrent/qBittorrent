@@ -113,6 +113,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->checkRegex, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
     connect(m_ui->checkRegex, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::updateMustLineValidity);
     connect(m_ui->checkRegex, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::updateMustNotLineValidity);
+    connect(m_ui->checkSmart, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
 
     connect(m_ui->listFeeds, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleFeedCheckStateChange);
 
@@ -255,6 +256,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         m_ui->checkRegex->blockSignals(true);
         m_ui->checkRegex->setChecked(m_currentRule.useRegex());
         m_ui->checkRegex->blockSignals(false);
+        m_ui->checkSmart->blockSignals(true);
+        m_ui->checkSmart->setChecked(m_currentRule.useSmartFilter());
+        m_ui->checkSmart->blockSignals(false);
         m_ui->comboCategory->setCurrentIndex(m_ui->comboCategory->findText(m_currentRule.assignedCategory()));
         if (m_currentRule.assignedCategory().isEmpty())
             m_ui->comboCategory->clearEditText();
@@ -299,6 +303,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
     m_ui->comboCategory->clearEditText();
     m_ui->comboCategory->setCurrentIndex(-1);
     m_ui->checkRegex->setChecked(false);
+    m_ui->checkSmart->setChecked(false);
     m_ui->spinIgnorePeriod->setValue(0);
     m_ui->comboAddPaused->clearEditText();
     m_ui->comboAddPaused->setCurrentIndex(-1);
@@ -323,6 +328,7 @@ void AutomatedRssDownloader::updateEditedRule()
 
     m_currentRule.setEnabled(m_currentRuleItem->checkState() != Qt::Unchecked);
     m_currentRule.setUseRegex(m_ui->checkRegex->isChecked());
+    m_currentRule.setUseSmartFilter(m_ui->checkSmart->isChecked());
     m_currentRule.setMustContain(m_ui->lineContains->text());
     m_currentRule.setMustNotContain(m_ui->lineNotContains->text());
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
@@ -465,7 +471,9 @@ void AutomatedRssDownloader::displayRulesListMenu()
     QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
     QAction *delAct = nullptr;
     QAction *renameAct = nullptr;
+    QAction *clearAct = nullptr;
     const QList<QListWidgetItem *> selection = m_ui->listRules->selectedItems();
+
     if (!selection.isEmpty()) {
         if (selection.count() == 1) {
             delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
@@ -475,6 +483,8 @@ void AutomatedRssDownloader::displayRulesListMenu()
         else {
             delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
         }
+        menu.addSeparator();
+        clearAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes..."));
     }
 
     QAction *act = menu.exec(QCursor::pos());
@@ -486,6 +496,8 @@ void AutomatedRssDownloader::displayRulesListMenu()
         on_removeRuleBtn_clicked();
     else if (act == renameAct)
         renameSelectedRule();
+    else if (act == clearAct)
+        clearSelectedRuleDownloadedEpisodeList();
 }
 
 void AutomatedRssDownloader::renameSelectedRule()
@@ -516,6 +528,20 @@ void AutomatedRssDownloader::renameSelectedRule()
 void AutomatedRssDownloader::handleRuleCheckStateChange(QListWidgetItem *ruleItem)
 {
     m_ui->listRules->setCurrentItem(ruleItem);
+}
+
+void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
+{
+    const QMessageBox::StandardButton reply = QMessageBox::question(
+                this,
+                tr("Clear downloaded episodes"),
+                tr("Are you sure you want to clear the list of downloaded episodes for the selected rule?"),
+                QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        m_currentRule.setPreviouslyMatchedEpisodes(QStringList());
+        handleRuleDefinitionChanged();
+    }
 }
 
 void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem)
@@ -750,7 +776,7 @@ void AutomatedRssDownloader::handleRuleRenamed(const QString &ruleName, const QS
 void AutomatedRssDownloader::handleRuleChanged(const QString &ruleName)
 {
     auto item = m_itemsByRuleName.value(ruleName);
-    if (item != m_currentRuleItem)
+    if (item && (item != m_currentRuleItem))
         item->setCheckState(RSS::AutoDownloader::instance()->ruleByName(ruleName).isEnabled() ? Qt::Checked : Qt::Unchecked);
 }
 
