@@ -280,6 +280,11 @@ Session::Session(QObject *parent)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
     , m_guidedReadCacheEnabled(BITTORRENT_SESSION_KEY("GuidedReadCache"), true)
+#ifdef Q_OS_WIN
+    , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY("CoalesceReadWrite"), true)
+#else
+    , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY("CoalesceReadWrite"), false)
+#endif
     , m_isSuggestMode(BITTORRENT_SESSION_KEY("SuggestMode"), false)
     , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
@@ -1303,6 +1308,10 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(libt::settings_pack::disk_io_write_mode, mode);
     settingsPack.set_bool(libt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
+
+    settingsPack.set_bool(libt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
+    settingsPack.set_bool(libt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
+
     settingsPack.set_int(libt::settings_pack::suggest_mode, isSuggestModeEnabled()
                          ? libt::settings_pack::suggest_read_cache : libt::settings_pack::no_piece_suggestions);
 
@@ -3046,6 +3055,19 @@ void Session::setGuidedReadCacheEnabled(bool enabled)
     if (enabled == m_guidedReadCacheEnabled) return;
 
     m_guidedReadCacheEnabled = enabled;
+    configureDeferred();
+}
+
+bool Session::isCoalesceReadWriteEnabled() const
+{
+    return m_coalesceReadWriteEnabled;
+}
+
+void Session::setCoalesceReadWriteEnabled(bool enabled)
+{
+    if (enabled == m_coalesceReadWriteEnabled) return;
+
+    m_coalesceReadWriteEnabled = enabled;
     configureDeferred();
 }
 
