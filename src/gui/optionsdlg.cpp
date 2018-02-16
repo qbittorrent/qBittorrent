@@ -512,7 +512,7 @@ void OptionsDialog::saveOptions()
     pref->setMinimizeToTray(minimizeToTray());
     pref->setStartMinimized(startMinimized());
 #endif
-    pref->setSplashScreenDisabled(isSlashScreenDisabled());
+    pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
     pref->setPreventFromSuspend(preventFromSuspend());
@@ -1320,7 +1320,7 @@ void OptionsDialog::enableProxy(int index)
     }
 }
 
-bool OptionsDialog::isSlashScreenDisabled() const
+bool OptionsDialog::isSplashScreenDisabled() const
 {
     return !m_ui->checkShowSplash->isChecked();
 }
