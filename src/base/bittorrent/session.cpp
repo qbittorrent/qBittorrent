@@ -29,10 +29,10 @@
 
 #include "session.h"
 
+#include <algorithm>
 #include <cstdlib>
 #include <queue>
 #include <string>
-#include <vector>
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -4288,11 +4288,10 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
     m_status.diskWriteQueue = p->values[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = p->values[m_metricIndices.peer.numPeersConnected];
 
-    const auto numBlocksRead = p->values[m_metricIndices.disk.numBlocksRead];
+    const int numBlocksRead = p->values[m_metricIndices.disk.numBlocksRead];
+    const int numBlocksCacheHits = p->values[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.totalUsedBuffers = p->values[m_metricIndices.disk.diskBlocksInUse];
-    m_cacheStatus.readRatio = numBlocksRead > 0
-            ? static_cast<qreal>(p->values[m_metricIndices.disk.numBlocksCacheHits]) / numBlocksRead
-            : -1;
+    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max(numBlocksCacheHits + numBlocksRead, 1);
     m_cacheStatus.jobQueueLength = p->values[m_metricIndices.disk.queuedDiskJobs];
 
     quint64 totalJobs = p->values[m_metricIndices.disk.writeJobs] + p->values[m_metricIndices.disk.readJobs]

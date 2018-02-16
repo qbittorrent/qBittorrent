@@ -77,7 +77,10 @@ void StatsDialog::update()
                 : "-");
     // Cache hits
     qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText((readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-");
+    m_ui->labelCacheHits->setText(QString("%1%").arg(
+        readRatio > 0
+        ? Utils::String::fromDouble(100 * readRatio, 2)
+        : "0"));
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent
