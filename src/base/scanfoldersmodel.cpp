@@ -340,7 +340,7 @@ void ScanFoldersModel::makePersistent()
 
 void ScanFoldersModel::configure()
 {
-    QVariantHash dirs = Preferences::instance()->getScanDirs();
+    const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
     for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
         if (i.value().type() == QVariant::Int)
