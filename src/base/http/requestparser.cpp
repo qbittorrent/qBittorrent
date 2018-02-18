@@ -217,7 +217,7 @@ bool RequestParser::parseContent(const QByteArray &data)
         QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems(QUrl::FullyDecoded));
         while (i.hasNext()) {
             QPair<QString, QString> pair = i.next();
-            m_request.posts[pair.first.toLower()] = pair.second;
+            m_request.posts[pair.first] = pair.second;
         }
 
         return true;
