@@ -76,13 +76,51 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
 
 TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexcept
 {
+    if (error)
+        error->clear();
+
+    QFile file {path};
+    if (!file.open(QIODevice::ReadOnly)) {
+        if (error)
+            *error = file.errorString();
+        return TorrentInfo();
+    }
+
+    const qint64 fileSizeLimit = 100 * 1024 * 1024;  // 100 MB
+    if (file.size() > fileSizeLimit) {
+        if (error)
+            *error = tr("File size exceeds max limit %1").arg(fileSizeLimit);
+        return TorrentInfo();
+    }
+
+    const QByteArray data = file.read(fileSizeLimit);
+    if (data.size() != file.size()) {
+        if (error)
+            *error = tr("Torrent file read error");
+        return TorrentInfo();
+    }
+
+    file.close();
+
+    // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
+    // used in `torrent_info()` constructor
+    const int depthLimit = 100;
+    const int tokenLimit = 10000000;
+    libt::bdecode_node node;
     libt::error_code ec;
-    TorrentInfo info(NativePtr(new libt::torrent_info(Utils::Fs::toNativePath(path).toStdString(), ec)));
-    if (error) {
-        if (ec)
+    bdecode(data.constData(), (data.constData() + data.size()), node, ec
+        , nullptr, depthLimit, tokenLimit);
+    if (ec) {
+        if (error)
             *error = QString::fromStdString(ec.message());
-        else
-            error->clear();
+        return TorrentInfo();
+    }
+
+    TorrentInfo info {NativePtr(new libt::torrent_info(node, ec))};
+    if (ec) {
+        if (error)
+            *error = QString::fromStdString(ec.message());
+        return TorrentInfo();
     }
 
     return info;

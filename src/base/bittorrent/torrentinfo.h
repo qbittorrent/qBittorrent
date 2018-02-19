@@ -29,6 +29,7 @@
 #ifndef BITTORRENT_TORRENTINFO_H
 #define BITTORRENT_TORRENTINFO_H
 
+#include <QCoreApplication>
 #include <QtGlobal>
 
 #include <libtorrent/torrent_info.hpp>
@@ -51,6 +52,8 @@ namespace BitTorrent
 
     class TorrentInfo
     {
+        Q_DECLARE_TR_FUNCTIONS("TorrentInfo")
+
     public:
 #if LIBTORRENT_VERSION_NUM < 10100
         typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
