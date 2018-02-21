@@ -338,7 +338,7 @@ void showSplashScreen()
 #if defined(Q_OS_UNIX)
 void setupDpi()
 {
-    if (qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+    if (qEnvironmentVariableIsEmpty("QT_AUTO_SCREEN_SCALE_FACTOR"))
         qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
 }
 #endif  // Q_OS_UNIX
