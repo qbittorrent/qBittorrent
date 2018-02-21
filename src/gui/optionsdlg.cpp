@@ -269,7 +269,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->mailNotifUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->autoRun_txt, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->autoRun_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
                                .arg(tr("Supported parameters (case sensitive):"))
@@ -589,7 +589,7 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
-    pref->setAutoRunProgram(m_ui->autoRun_txt->selectedPath().trimmed());
+    pref->setAutoRunProgram(m_ui->autoRun_txt->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
@@ -847,7 +847,7 @@ void OptionsDialog::loadOptions()
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
-    m_ui->autoRun_txt->setSelectedPath(pref->getAutoRunProgram());
+    m_ui->autoRun_txt->setText(pref->getAutoRunProgram());
     intValue = pref->getActionOnDblClOnTorrentDl();
     if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
         intValue = 0;

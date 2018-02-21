@@ -1213,7 +1213,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <item>
-                <widget class="FileSystemPathLineEdit" name="autoRun_txt" native="true"/>
+                <widget class="QLineEdit" name="autoRun_txt"/>
                </item>
                <item>
                 <widget class="QLabel" name="autoRun_param">
