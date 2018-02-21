@@ -34,6 +34,10 @@
 #include <QTabWidget>
 #include <QTabBar>
 
+#ifdef Q_OS_MAC
+#include <QStyle>
+#endif
+
 class HidableTabWidget : public QTabWidget
 {
 public:
