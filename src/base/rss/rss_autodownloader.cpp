@@ -43,6 +43,7 @@
 #include "../bittorrent/magneturi.h"
 #include "../bittorrent/session.h"
 #include "../asyncfilestorage.h"
+#include "../global.h"
 #include "../logger.h"
 #include "../profile.h"
 #include "../settingsstorage.h"
@@ -239,7 +240,7 @@ void AutoDownloader::importRules(const QByteArray &data, AutoDownloader::RulesFi
 QByteArray AutoDownloader::exportRulesToJSONFormat() const
 {
     QJsonObject jsonObj;
-    for (const auto &rule : rules())
+    for (const auto &rule : copyAsConst(rules()))
         jsonObj.insert(rule.name(), rule.toJsonObject());
 
     return QJsonDocument(jsonObj).toJson();
@@ -247,15 +248,14 @@ QByteArray AutoDownloader::exportRulesToJSONFormat() const
 
 void AutoDownloader::importRulesFromJSONFormat(const QByteArray &data)
 {
-    const auto rules = rulesFromJSON(data);
-    for (const auto &rule : rules)
+    for (const auto &rule : copyAsConst(rulesFromJSON(data)))
         insertRule(rule);
 }
 
 QByteArray AutoDownloader::exportRulesToLegacyFormat() const
 {
     QVariantHash dict;
-    for (const auto &rule : rules())
+    for (const auto &rule : copyAsConst(rules()))
         dict[rule.name()] = rule.toLegacyDict();
 
     QByteArray data;
