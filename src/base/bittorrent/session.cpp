@@ -1788,6 +1788,7 @@ void Session::processShareLimits()
                             torrent->pause();
                             logger->addMessage(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
                         }
+                        continue;
                     }
                 }
             }
