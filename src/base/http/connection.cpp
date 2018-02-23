@@ -101,12 +101,10 @@ void Connection::read()
                 if (acceptsGzipEncoding(result.request.headers["accept-encoding"]))
                     resp.headers[HEADER_CONTENT_ENCODING] = "gzip";
 
-                resp.headers[HEADER_CONNECTION] = "close";
+                resp.headers[HEADER_CONNECTION] = "keep-alive";
 
                 sendResponse(resp);
                 m_receivedData = m_receivedData.mid(result.frameSize);
-
-                m_socket->close();
             }
             break;
 
