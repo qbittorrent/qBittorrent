@@ -122,7 +122,7 @@ namespace
         map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
         qreal readRatio = cacheStatus.readRatio;
-        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-";
+        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "0";
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
