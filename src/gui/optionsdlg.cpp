@@ -347,9 +347,20 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinMaxActiveDownloads, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxActiveUploads, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxActiveTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkIgnoreSlowTorrentsForQueueing, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkIgnoreSlowTorrentsForQueueing, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinDownloadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinUploadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinSlowTorrentsInactivityTimer, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+
+    const QString slowTorrentsExplanation = QLatin1String("<html><body><p>")
+            + tr("A torrent will be considered slow if its download and upload rates stay below these values for \"Torrent inactivity timer\" seconds")
+            + QLatin1String("</p></body></html>");
+    m_ui->labelDownloadRateForSlowTorrents->setToolTip(slowTorrentsExplanation);
+    m_ui->labelUploadRateForSlowTorrents->setToolTip(slowTorrentsExplanation);
+    m_ui->labelSlowTorrentInactivityTimer->setToolTip(slowTorrentsExplanation);
+
 #ifndef DISABLE_WEBUI
     // Web UI tab
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -659,6 +670,9 @@ void OptionsDialog::saveOptions()
     session->setMaxActiveUploads(m_ui->spinMaxActiveUploads->value());
     session->setMaxActiveTorrents(m_ui->spinMaxActiveTorrents->value());
     session->setIgnoreSlowTorrentsForQueueing(m_ui->checkIgnoreSlowTorrentsForQueueing->isChecked());
+    session->setDownloadRateForSlowTorrents(m_ui->spinDownloadRateForSlowTorrents->value());
+    session->setUploadRateForSlowTorrents(m_ui->spinUploadRateForSlowTorrents->value());
+    session->setSlowTorrentsInactivityTimer(m_ui->spinSlowTorrentsInactivityTimer->value());
     // End Queueing system preferences
     // Web UI
     pref->setWebUiEnabled(isWebUiEnabled());
@@ -1033,6 +1047,9 @@ void OptionsDialog::loadOptions()
     m_ui->spinMaxActiveUploads->setValue(session->maxActiveUploads());
     m_ui->spinMaxActiveTorrents->setValue(session->maxActiveTorrents());
     m_ui->checkIgnoreSlowTorrentsForQueueing->setChecked(session->ignoreSlowTorrentsForQueueing());
+    m_ui->spinDownloadRateForSlowTorrents->setValue(session->downloadRateForSlowTorrents());
+    m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
+    m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
     if (session->globalMaxRatio() >= 0.) {
         // Enable

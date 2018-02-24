@@ -2362,10 +2362,124 @@
                 </spacer>
                </item>
                <item row="3" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkIgnoreSlowTorrentsForQueueing">
-                 <property name="text">
+                <widget class="QGroupBox" name="checkIgnoreSlowTorrentsForQueueing">
+                 <property name="title">
                   <string>Do not count slow torrents in these limits</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_8">
+                  <item row="2" column="3">
+                   <spacer name="horizontalSpacer_21">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="spinDownloadRateForSlowTorrents">
+                    <property name="suffix">
+                     <string> KiB/s</string>
+                    </property>
+                    <property name="maximum">
+                     <number>2000000</number>
+                    </property>
+                    <property name="value">
+                     <number>2</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinUploadRateForSlowTorrents">
+                    <property name="suffix">
+                     <string> KiB/s</string>
+                    </property>
+                    <property name="maximum">
+                     <number>2000000</number>
+                    </property>
+                    <property name="value">
+                     <number>2</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelUploadRateForSlowTorrents">
+                    <property name="text">
+                     <string>Upload rate threshold:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelDownloadRateForSlowTorrents">
+                    <property name="text">
+                     <string>Download rate threshold:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <spacer name="horizontalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="3">
+                   <spacer name="horizontalSpacer_15">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="spinSlowTorrentsInactivityTimer">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                    <property name="value">
+                     <number>60</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelSlowTorrentInactivityTimer">
+                    <property name="text">
+                     <string>Torrent inactivity timer:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLabel" name="labelSeconds">
+                    <property name="text">
+                     <string>seconds</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -2784,8 +2898,8 @@
                   <widget class="QLineEdit" name="textWebUiAddress">
                    <property name="toolTip">
                     <string>IP address that the Web UI will bind to.
-Specify an IPv4 or IPv6 address. You can specify "0.0.0.0" for any IPv4 address,
-"::" for any IPv6 address, or "*" for both IPv4 and IPv6.</string>
+Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
+&quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</string>
                    </property>
                   </widget>
                  </item>
@@ -2996,7 +3110,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="1" colspan="1">
+                  <item row="6" column="1">
                    <widget class="QPushButton" name="IPSubnetWhitelistButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -3303,7 +3417,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>spinMaxActiveDownloads</tabstop>
   <tabstop>spinMaxActiveUploads</tabstop>
   <tabstop>spinMaxActiveTorrents</tabstop>
-  <tabstop>checkIgnoreSlowTorrentsForQueueing</tabstop>
   <tabstop>checkMaxRatio</tabstop>
   <tabstop>spinMaxRatio</tabstop>
   <tabstop>checkMaxSeedingMinutes</tabstop>

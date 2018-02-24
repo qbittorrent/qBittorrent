@@ -398,6 +398,12 @@ namespace BitTorrent
         void setQueueingSystemEnabled(bool enabled);
         bool ignoreSlowTorrentsForQueueing() const;
         void setIgnoreSlowTorrentsForQueueing(bool ignore);
+        int downloadRateForSlowTorrents() const;
+        void setDownloadRateForSlowTorrents(int rateInKibiBytes);
+        int uploadRateForSlowTorrents() const;
+        void setUploadRateForSlowTorrents(int rateInKibiBytes);
+        int slowTorrentsInactivityTimer() const;
+        void setSlowTorrentsInactivityTimer(int timeInSeconds);
         int outgoingPortsMin() const;
         void setOutgoingPortsMin(int min);
         int outgoingPortsMax() const;
@@ -659,6 +665,9 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxActiveUploads;
         CachedSettingValue<int> m_maxActiveTorrents;
         CachedSettingValue<bool> m_ignoreSlowTorrentsForQueueing;
+        CachedSettingValue<int> m_downloadRateForSlowTorrents;
+        CachedSettingValue<int> m_uploadRateForSlowTorrents;
+        CachedSettingValue<int> m_slowTorrentsInactivityTimer;
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
