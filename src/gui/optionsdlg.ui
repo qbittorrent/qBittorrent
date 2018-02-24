@@ -2372,7 +2372,7 @@
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_8">
+                 <layout class="QGridLayout" name="gridLayout_13">
                   <item row="2" column="3">
                    <spacer name="horizontalSpacer_21">
                     <property name="orientation">
