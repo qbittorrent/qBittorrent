@@ -192,6 +192,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     void (QComboBox::*qComboBoxCurrentIndexChanged)(int) = &QComboBox::currentIndexChanged;
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
 
+    connect(m_ui->checkForceProxy, &QAbstractButton::toggled, this, &ThisType::enableForceProxy);
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableProxy);
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
@@ -962,6 +963,7 @@ void OptionsDialog::loadOptions()
 
     m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
     m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
+    enableForceProxy(session->isForceProxyEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
     enableProxy(m_ui->comboProxyType->currentIndex());
 
@@ -1317,6 +1319,13 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
+void OptionsDialog::enableForceProxy(bool enable)
+{
+    m_ui->checkUPnP->setEnabled(!enable);
+    m_ui->checkDHT->setEnabled(!enable);
+    m_ui->checkLSD->setEnabled(!enable);
+}
+
 void OptionsDialog::enableProxy(int index)
 {
     if (index) {
@@ -1337,6 +1346,7 @@ void OptionsDialog::enableProxy(int index)
             m_ui->isProxyOnlyForTorrents->setEnabled(false);
             m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
+        enableForceProxy(m_ui->checkForceProxy->isChecked());
     }
     else {
         //disable
@@ -1349,6 +1359,7 @@ void OptionsDialog::enableProxy(int index)
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
         m_ui->checkProxyAuth->setChecked(false);
+        enableForceProxy(false);
     }
 }
 

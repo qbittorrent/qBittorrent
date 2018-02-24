@@ -109,28 +109,28 @@
   <table>
   <tr>
   <td>
-    <input type="checkbox" id="max_connec_checkbox" onClick="updateMaxConnecEnabled();"/>
+    <input type="checkbox" id="max_connec_checkbox" onclick="updateMaxConnecEnabled();"/>
     <label for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="max_connec_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
-    <input type="checkbox" id="max_connec_per_torrent_checkbox" onClick="updateMaxConnecPerTorrentEnabled();"/>
+    <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="updateMaxConnecPerTorrentEnabled();"/>
     <label for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
-    <input type="checkbox" id="max_uploads_checkbox" onClick="updateMaxUploadsEnabled();"/>
+    <input type="checkbox" id="max_uploads_checkbox" onclick="updateMaxUploadsEnabled();"/>
     <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="max_uploads_value" style="width: 4em;"/></td>
   </tr>
   <tr>
   <td>
-    <input type="checkbox" id="max_uploads_per_torrent_checkbox" onClick="updateMaxUploadsPerTorrentEnabled();"/>
+    <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="updateMaxUploadsPerTorrentEnabled();"/>
     <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"/></td>
@@ -162,8 +162,8 @@
     <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
     <div class="formRow">
-    <input type="checkbox" id="force_proxy_checkbox"/>
-    <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR[CONTEXT=OptionsDialog]</label>
+    <input type="checkbox" id="force_proxy_checkbox" onclick="updateForceProxySettings();"/>
+    <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR[CONTEXT=OptionsDialog] (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies">QBT_TR(More information)QBT_TR[CONTEXT=HttpServer]</a>)</label>
     </div>
     <div class="formRow">
     <input type="checkbox" id="proxy_only_for_torrents_checkbox"/>
@@ -205,14 +205,14 @@
   <table>
   <tr>
   <td>
-    <input type="checkbox" id="up_limit_checkbox" onClick="updateUpLimitEnabled();"/>
+    <input type="checkbox" id="up_limit_checkbox" onclick="updateUpLimitEnabled();"/>
     <label for ="up_limit_checkbox">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
   </tr>
   <tr>
   <td>
-    <input type="checkbox" id="dl_limit_checkbox" onClick="updateDlLimitEnabled();"/>
+    <input type="checkbox" id="dl_limit_checkbox" onclick="updateDlLimitEnabled();"/>
     <label for="dl_limit_checkbox">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -225,14 +225,14 @@
   <table>
   <tr>
   <td>
-    <input type="checkbox" id="alt_up_limit_checkbox" onClick="updateAltUpLimitEnabled();"/>
+    <input type="checkbox" id="alt_up_limit_checkbox" onclick="updateAltUpLimitEnabled();"/>
     <label for ="alt_up_limit_checkbox">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="alt_up_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
   </tr>
   <tr>
   <td>
-    <input type="checkbox" id="alt_dl_limit_checkbox" onClick="updateAltDlLimitEnabled();"/>
+    <input type="checkbox" id="alt_dl_limit_checkbox" onclick="updateAltDlLimitEnabled();"/>
     <label for="alt_dl_limit_checkbox">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td><input type="text" id="alt_dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -240,7 +240,7 @@
   </table>
 
   <fieldset class="settings">
-  <legend><input type="checkbox" id="limit_sheduling_checkbox" onClick="updateSchedulingEnabled();"/>
+  <legend><input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();"/>
   <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
   QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
   <input type="text" id="schedule_from_hour" style="width: 1.5em;"/>:<input type="text" id="schedule_from_min" style="width: 1.5em;"/>
@@ -318,7 +318,7 @@
   <table>
   <tr>
   <td>
-  <input type="checkbox" id="max_ratio_checkbox" onClick="updateMaxRatioTimeEnabled();"/>
+  <input type="checkbox" id="max_ratio_checkbox" onclick="updateMaxRatioTimeEnabled();"/>
   <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td>
@@ -326,7 +326,7 @@
   </td>
   <tr>
   <td>
-  <input type="checkbox" id="max_seeding_time_checkbox" onClick="updateMaxRatioTimeEnabled();"/>
+  <input type="checkbox" id="max_seeding_time_checkbox" onclick="updateMaxRatioTimeEnabled();"/>
   <label for="max_seeding_time_checkbox">QBT_TR(Seed torrents until their seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
   </td>
   <td>
@@ -483,12 +483,9 @@
 var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
 updateTempDirEnabled = function() {
-  if($('temppath_checkbox').getProperty('checked')) {
-    $('temppath_text').setProperty('disabled', false);
-  } else {
-    $('temppath_text').setProperty('disabled', true);
-  }
-}
+  var isTempDirEnabled = $('temppath_checkbox').getProperty('checked');
+  $('temppath_text').setProperty('disabled', !isTempDirEnabled);
+};
 
 addWatchFolder = function() {
   var new_folder = $('new_watch_folder_txt').getProperty('value').trim();
@@ -508,7 +505,7 @@ addWatchFolder = function() {
   elt.setProperty('value', 'watch_folder');
   var text = elt.options[elt.selectedIndex].innerHTML;
   $('new_watch_folder_other_txt').setProperty('value', text);
-}
+};
 
 changeWatchFolderSelect = function(item) {
   if (item.value == "other") {
@@ -518,11 +515,11 @@ changeWatchFolderSelect = function(item) {
     var text = item.options[item.selectedIndex].innerHTML;
     item.nextElementSibling.value = text;
   }
-}
+};
 
 changeWatchFolderText = function(item) {
   item.previousElementSibling.value = 'other';
-}
+};
 
 pushWatchFolder = function(pos, folder, sel, other) {
   var myinput = "<input id='text_watch_"+ pos +"' type='text' value='" + folder + "'>";
@@ -542,7 +539,7 @@ pushWatchFolder = function(pos, folder, sel, other) {
     other = elt.options[elt.selectedIndex].innerHTML;
   }
   $('cb_watch_txt_'+ pos).setProperty('value', other);
-}
+};
 
 getWatchedFolders = function() {
   var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
@@ -561,260 +558,181 @@ getWatchedFolders = function() {
     }
   }
   return folders;
-}
+};
 
 updateExportDirEnabled = function() {
-  if($('exportdir_checkbox').getProperty('checked')) {
-    $('exportdir_text').setProperty('disabled', false);
-  } else {
-    $('exportdir_text').setProperty('disabled', true);
-  }
-}
+  var isExportDirEnabled = $('exportdir_checkbox').getProperty('checked');
+  $('exportdir_text').setProperty('disabled', !isExportDirEnabled);
+};
 
 updateExportDirFinEnabled = function() {
-  if($('exportdirfin_checkbox').getProperty('checked')) {
-    $('exportdirfin_text').setProperty('disabled', false);
-  } else {
-    $('exportdirfin_text').setProperty('disabled', true);
-  }
-}
+  var isExportDirFinEnabled = $('exportdirfin_checkbox').getProperty('checked');
+  $('exportdirfin_text').setProperty('disabled', !isExportDirFinEnabled);
+};
 
 updateMailNotification = function() {
-  if($('mail_notification_checkbox').getProperty('checked')) {
-    $('dest_email_txt').setProperty('disabled', false);
-    $('smtp_server_txt').setProperty('disabled', false);
-    $('mail_auth_checkbox').setProperty('disabled', false);
-    $('mail_ssl_checkbox').setProperty('disabled', false);
-  } else {
-    $('dest_email_txt').setProperty('disabled', true);
-    $('smtp_server_txt').setProperty('disabled', true);
-    $('mail_ssl_checkbox').setProperty('disabled', true);
-    $('mail_auth_checkbox').setProperty('disabled', true);
-    $('mail_auth_checkbox').setProperty('checked', false);
+  var isMailNotificationEnabled = $('mail_notification_checkbox').getProperty('checked');
+  $('dest_email_txt').setProperty('disabled', !isMailNotificationEnabled);
+  $('smtp_server_txt').setProperty('disabled', !isMailNotificationEnabled);
+  $('mail_ssl_checkbox').setProperty('disabled', !isMailNotificationEnabled);
+  $('mail_auth_checkbox').setProperty('disabled', !isMailNotificationEnabled);
+
+  if(!isMailNotificationEnabled) {
+    $('mail_auth_checkbox').setProperty('checked', !isMailNotificationEnabled);
     updateMailAuthSettings();
   }
-}
+};
 
 updateMailAuthSettings = function() {
-  if($('mail_auth_checkbox').getProperty('checked')) {
-    $('mail_username_text').setProperty('disabled', false);
-    $('mail_password_text').setProperty('disabled', false);
-  } else {
-    $('mail_username_text').setProperty('disabled', true);
-    $('mail_password_text').setProperty('disabled', true);
-  }
-}
+  var isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
+  $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
+  $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
+};
 
 updateAutoRun = function() {
-  if($('autorun_checkbox').getProperty('checked')) {
-    $('autorunProg_txt').setProperty('disabled', false);
-  } else {
-    $('autorunProg_txt').setProperty('disabled', true);
-  }
-}
+  var isAutoRunEnabled = $('autorun_checkbox').getProperty('checked');
+  $('autorunProg_txt').setProperty('disabled', !isAutoRunEnabled);
+};
 
 // Connection tab
 updateMaxConnecEnabled = function() {
-  if($('max_connec_checkbox').getProperty('checked')) {
-    $('max_connec_value').setProperty('disabled', false);
-  } else {
-    $('max_connec_value').setProperty('disabled', true);
-  }
-}
+  var isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
+  $('max_connec_value').setProperty('disabled', !isMaxConnecEnabled);
+};
 
 updateMaxConnecPerTorrentEnabled = function() {
-  if($('max_connec_per_torrent_checkbox').getProperty('checked')) {
-    $('max_connec_per_torrent_value').setProperty('disabled', false);
-  } else {
-    $('max_connec_per_torrent_value').setProperty('disabled', true);
-  }
-}
+  var isMaxConnecPerTorrentEnabled = $('max_connec_per_torrent_checkbox').getProperty('checked');
+  $('max_connec_per_torrent_value').setProperty('disabled', !isMaxConnecPerTorrentEnabled);
+};
 
 updateMaxUploadsEnabled = function() {
-  if($('max_uploads_checkbox').getProperty('checked')) {
-    $('max_uploads_value').setProperty('disabled', false);
-  } else {
-    $('max_uploads_value').setProperty('disabled', true);
-  }
-}
+  var isMaxUploadsEnabled = $('max_uploads_checkbox').getProperty('checked');
+  $('max_uploads_value').setProperty('disabled', !isMaxUploadsEnabled);
+};
 
 updateMaxUploadsPerTorrentEnabled = function() {
-  if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
-    $('max_uploads_per_torrent_value').setProperty('disabled', false);
-  } else {
-    $('max_uploads_per_torrent_value').setProperty('disabled', true);
-  }
-}
+  var isMaxUploadsPerTorrentEnabled = $('max_uploads_per_torrent_checkbox').getProperty('checked');
+  $('max_uploads_per_torrent_value').setProperty('disabled', !isMaxUploadsPerTorrentEnabled);
+};
 
 updatePeerProxySettings = function() {
-  if($('peer_proxy_type_select').getProperty('value') != "none") {
-    $('peer_proxy_host_text').setProperty('disabled', false);
-    $('peer_proxy_port_value').setProperty('disabled', false);
-    $('use_peer_proxy_checkbox').setProperty('disabled', false);
-    $('force_proxy_checkbox').setProperty('disabled', false);
-    $('proxy_only_for_torrents_checkbox').setProperty('disabled', false);
-    if($('peer_proxy_type_select').getProperty('value') != "socks5") {
-      $('peer_proxy_auth_checkbox').setProperty('checked', false);
-      $('peer_proxy_auth_checkbox').setProperty('disabled', true);
+  var isPeerProxyTypeSelected = $('peer_proxy_type_select').getProperty('value') != "none";
+  $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
+  $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
+  $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+  $('force_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+  $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+
+  if(isPeerProxyTypeSelected) {
+    var isPeerProxyTypeSocks5 = $('peer_proxy_type_select').getProperty('value') == "socks5";
+    $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSocks5);
+
+    if(!isPeerProxyTypeSocks5) {
+      $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSocks5);
       updatePeerProxyAuthSettings();
-    } else {
-      $('peer_proxy_auth_checkbox').setProperty('disabled', false);
     }
   } else {
-    $('peer_proxy_host_text').setProperty('disabled', true);
-    $('peer_proxy_port_value').setProperty('disabled', true);
-    $('use_peer_proxy_checkbox').setProperty('disabled', true);
-    $('force_proxy_checkbox').setProperty('disabled', true);
-    $('proxy_only_for_torrents_checkbox').setProperty('disabled', true);
-    $('peer_proxy_auth_checkbox').setProperty('disabled', true);
-    $('peer_proxy_auth_checkbox').setProperty('checked', false);
+    $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+    $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
     updatePeerProxyAuthSettings();
   }
-}
+
+  updateForceProxySettings();
+};
+
+updateForceProxySettings = function() {
+  var isForceProxyEnabled = (!$('force_proxy_checkbox').getProperty('disabled')) && ($('force_proxy_checkbox').getProperty('checked'));
+  $('upnp_checkbox').setProperty('disabled', isForceProxyEnabled);
+  $('dht_checkbox').setProperty('disabled', isForceProxyEnabled);
+  $('lsd_checkbox').setProperty('disabled', isForceProxyEnabled);
+};
 
 updatePeerProxyAuthSettings = function() {
-  if($('peer_proxy_auth_checkbox').getProperty('checked')) {
-    $('peer_proxy_username_text').setProperty('disabled', false);
-    $('peer_proxy_password_text').setProperty('disabled', false);
-  } else {
-    $('peer_proxy_username_text').setProperty('disabled', true);
-    $('peer_proxy_password_text').setProperty('disabled', true);
-  }
-}
+  var isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
+  $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
+  $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
+};
 
 updateFilterSettings = function() {
-  if($('ipfilter_enabled_checkbox').getProperty('checked')) {
-    $('ipfilter_text').setProperty('disabled', false);
-    $('ipfilter_trackers_checkbox').setProperty('disabled', false);
-    $('banned_IPs_textarea').setProperty('disabled', false);
-  } else {
-    $('ipfilter_text').setProperty('disabled', true);
-    $('ipfilter_trackers_checkbox').setProperty('disabled', true);
-    $('banned_IPs_textarea').setProperty('disabled', true);
-  }
-}
+  var isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
+  $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
+  $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
+  $('banned_IPs_textarea').setProperty('disabled', !isIPFilterEnabled);
+};
 
 // Speed tab
 updateUpLimitEnabled = function() {
-  if($('up_limit_checkbox').getProperty('checked')) {
-    $('up_limit_value').setProperty('disabled', false);
-  } else {
-    $('up_limit_value').setProperty('disabled', true);
-  }
-}
+  var isUpLimitEnabled = $('up_limit_checkbox').getProperty('checked');
+  $('up_limit_value').setProperty('disabled', !isUpLimitEnabled);
+};
 
 updateDlLimitEnabled = function() {
-  if($('dl_limit_checkbox').getProperty('checked')) {
-    $('dl_limit_value').setProperty('disabled', false);
-  } else {
-    $('dl_limit_value').setProperty('disabled', true);
-  }
-}
+  var isDlLimitEnabled = $('dl_limit_checkbox').getProperty('checked');
+  $('dl_limit_value').setProperty('disabled', !isDlLimitEnabled);
+};
 
 updateAltUpLimitEnabled = function() {
-  if($('alt_up_limit_checkbox').getProperty('checked')) {
-    $('alt_up_limit_value').setProperty('disabled', false);
-  } else {
-    $('alt_up_limit_value').setProperty('disabled', true);
-  }
-}
+  var isAltUpLimitEnabled = $('alt_up_limit_checkbox').getProperty('checked');
+  $('alt_up_limit_value').setProperty('disabled', !isAltUpLimitEnabled);
+};
 
 updateAltDlLimitEnabled = function() {
-  if($('alt_dl_limit_checkbox').getProperty('checked')) {
-    $('alt_dl_limit_value').setProperty('disabled', false);
-  } else {
-    $('alt_dl_limit_value').setProperty('disabled', true);
-  }
-}
+  var isAltDlLimitEnabled = $('alt_dl_limit_checkbox').getProperty('checked');
+  $('alt_dl_limit_value').setProperty('disabled', !isAltDlLimitEnabled);
+};
 
 updateSchedulingEnabled = function() {
-  if($('limit_sheduling_checkbox').getProperty('checked')) {
-    $('schedule_from_hour').setProperty('disabled', false);
-    $('schedule_from_min').setProperty('disabled', false);
-    $('schedule_to_hour').setProperty('disabled', false);
-    $('schedule_to_min').setProperty('disabled', false);
-    $('schedule_freq_select').setProperty('disabled', false);
-  } else {
-    $('schedule_from_hour').setProperty('disabled', true);
-    $('schedule_from_min').setProperty('disabled', true);
-    $('schedule_to_hour').setProperty('disabled', true);
-    $('schedule_to_min').setProperty('disabled', true);
-    $('schedule_freq_select').setProperty('disabled', true);
-  }
-}
+  var isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
+  $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
+  $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
+  $('schedule_to_hour').setProperty('disabled', !isLimitSchedulingEnabled);
+  $('schedule_to_min').setProperty('disabled', !isLimitSchedulingEnabled);
+  $('schedule_freq_select').setProperty('disabled', !isLimitSchedulingEnabled);
+};
 
 // Bittorrent tab
 updateQueueingSystem = function() {
-  if($('queueing_checkbox').getProperty('checked')) {
-    $('max_active_dl_value').setProperty('disabled', false);
-    $('max_active_up_value').setProperty('disabled', false);
-    $('max_active_to_value').setProperty('disabled', false);
-    $('dont_count_slow_torrents_checkbox').setProperty('disabled', false);
-  } else {
-    $('max_active_dl_value').setProperty('disabled', true);
-    $('max_active_up_value').setProperty('disabled', true);
-    $('max_active_to_value').setProperty('disabled', true);
-    $('dont_count_slow_torrents_checkbox').setProperty('disabled', true);
-  }
-}
+  var isQueueingEnabled = $('queueing_checkbox').getProperty('checked');
+  $('max_active_dl_value').setProperty('disabled', !isQueueingEnabled);
+  $('max_active_up_value').setProperty('disabled', !isQueueingEnabled);
+  $('max_active_to_value').setProperty('disabled', !isQueueingEnabled);
+  $('dont_count_slow_torrents_checkbox').setProperty('disabled', !isQueueingEnabled);
+};
 
 updateMaxRatioTimeEnabled = function() {
-  if($('max_ratio_checkbox').getProperty('checked')) {
-    $('max_ratio_value').setProperty('disabled', false);
-  } else {
-    $('max_ratio_value').setProperty('disabled', true);
-  }
-  if($('max_seeding_time_checkbox').getProperty('checked')) {
-    $('max_seeding_time_value').setProperty('disabled', false);
-  } else {
-    $('max_seeding_time_value').setProperty('disabled', true);
-  }
-  if($('max_ratio_checkbox').getProperty('checked') || $('max_seeding_time_checkbox').getProperty('checked')) {
-    $('max_ratio_act').setProperty('disabled', false);
-  } else {
-    $('max_ratio_act').setProperty('disabled', true);
-  }
-}
+  var isMaxRatioEnabled = $('max_ratio_checkbox').getProperty('checked');
+  $('max_ratio_value').setProperty('disabled', !isMaxRatioEnabled);
+
+  var isMaxSeedingTimeEnabled = $('max_seeding_time_checkbox').getProperty('checked');
+  $('max_seeding_time_value').setProperty('disabled', !isMaxSeedingTimeEnabled);
+
+  $('max_ratio_act').setProperty('disabled', !(isMaxRatioEnabled || isMaxSeedingTimeEnabled));
+};
 
 updateAddTrackersEnabled = function() {
-  if($('add_trackers_checkbox').getProperty('checked')) {
-    $('add_trackers_textarea').setProperty('disabled', false);
-  } else {
-    $('add_trackers_textarea').setProperty('disabled', true);
-  }
-}
+  var isAddTrackersEnabled = $('add_trackers_checkbox').getProperty('checked');
+  $('add_trackers_textarea').setProperty('disabled', !isAddTrackersEnabled);
+};
 
 // Web UI tab
 updateHttpsSettings = function() {
-  if($('use_https_checkbox').getProperty('checked')) {
-    $('ssl_key_textarea').setProperty('disabled', false);
-    $('ssl_cert_textarea').setProperty('disabled', false);
-  } else {
-    $('ssl_key_textarea').setProperty('disabled', true);
-    $('ssl_cert_textarea').setProperty('disabled', true);
-  }
-}
+  var isAddTrackersEnabled = $('use_https_checkbox').getProperty('checked');
+  $('ssl_key_textarea').setProperty('disabled', !isAddTrackersEnabled);
+  $('ssl_cert_textarea').setProperty('disabled', !isAddTrackersEnabled);
+};
 
 updateBypasssAuthSettings = function() {
-  if ($('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'))
-    $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', false);
-  else
-    $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', true);
+  var isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
+  $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
 };
 
 updateDynDnsSettings = function() {
-  if($('use_dyndns_checkbox').getProperty('checked')) {
-    $('dyndns_select').setProperty('disabled', false);
-    $('dyndns_domain_text').setProperty('disabled', false);
-    $('dyndns_username_text').setProperty('disabled', false);
-    $('dyndns_password_text').setProperty('disabled', false);
-  } else {
-    $('dyndns_select').setProperty('disabled', true);
-    $('dyndns_domain_text').setProperty('disabled', true);
-    $('dyndns_username_text').setProperty('disabled', true);
-    $('dyndns_password_text').setProperty('disabled', true);
-  }
-}
+  var isDynDnsEnabled = $('use_dyndns_checkbox').getProperty('checked');
+  $('dyndns_select').setProperty('disabled', !isDynDnsEnabled);
+  $('dyndns_domain_text').setProperty('disabled', !isDynDnsEnabled);
+  $('dyndns_username_text').setProperty('disabled', !isDynDnsEnabled);
+  $('dyndns_password_text').setProperty('disabled', !isDynDnsEnabled);
+};
 
 registerDynDns = function() {
   if($('dyndns_select').getProperty('value').toInt() == 1) {
@@ -822,14 +740,14 @@ registerDynDns = function() {
   } else {
     window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
   }
-}
+};
 
 time_padding = function(val) {
   ret = val.toString();
   if(ret.length == 1)
-    ret = '0' + ret
+    ret = '0' + ret;
   return ret;
-}
+};
 
 loadPreferences = function() {
   var url = 'api/v2/app/preferences';
@@ -962,6 +880,7 @@ loadPreferences = function() {
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
                     $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
+                    updateForceProxySettings();
                     $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
