@@ -49,9 +49,11 @@
 #include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
+#include "lineedit.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+#include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
@@ -126,6 +128,12 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     updateFilter();
 
+    m_lineEditSearchResultsFilter = new LineEdit(this);
+    m_lineEditSearchResultsFilter->setFixedWidth(Utils::Gui::scaledSize(this, 170));
+    m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
+    m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
+
+    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
     connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
@@ -325,6 +333,12 @@ void SearchJobWidget::fillFilterComboBoxes()
     QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().value());
     int index = m_ui->filterMode->findData(selectedMode);
     m_ui->filterMode->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void SearchJobWidget::filterSearchResults(const QString &name)
+{
+    m_proxyModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive));
+    updateResultsCount();
 }
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
