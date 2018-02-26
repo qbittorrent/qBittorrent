@@ -16,7 +16,7 @@ macro(qbt_set_compiler_options)
             "-Werror -Wno-error=deprecated-declarations"
         )
         set (_GCC_COMMON_CXX_FLAGS  "-fexceptions -frtti"
-            "-Woverloaded-virtual -Wold-style-cast -Wstrict-null-sentinel"
+            "-Woverloaded-virtual -Wold-style-cast"
             "-Wnon-virtual-dtor -Wfloat-equal -Wcast-qual -Wcast-align"
             "-Werror=overloaded-virtual"
     # 		"-Weffc++"
@@ -53,6 +53,20 @@ macro(qbt_set_compiler_options)
                 endif(GLIBC_VERSION LESS "220")
             endif(${GLIBC_VERSION})
         endif (CMAKE_SYSTEM_NAME MATCHES Linux)
+
+        if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+            # Clang 5.0 still doesn't support -Wstrict-null-sentinel
+            check_cxx_compiler_flag(-Wstrict-null-sentinel _STRICT_NULL_SENTINEL_IS_SUPPORTED)
+            if (_STRICT_NULL_SENTINEL_IS_SUPPORTED)
+                list(APPEND _GCC_COMMON_CXX_FLAGS "-Wstrict-null-sentinel")
+            endif (_STRICT_NULL_SENTINEL_IS_SUPPORTED)
+
+            # Code should be improved to render this not needed
+            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=unused-function -Wno-error=inconsistent-missing-override")
+        else ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+            # GCC supports it
+            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wstrict-null-sentinel")
+        endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
         string(REPLACE ";" " " _GCC_COMMON_C_AND_CXX_FLAGS_STRING "${_GCC_COMMON_C_AND_CXX_FLAGS}")
         string(REPLACE ";" " " _GCC_COMMON_CXX_FLAGS_STRING "${_GCC_COMMON_CXX_FLAGS}")
