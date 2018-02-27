@@ -165,7 +165,7 @@ void FileLogger::openLogFile()
         || !m_logFile->setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
         delete m_logFile;
         m_logFile = nullptr;
-        Logger::instance()->addMessage(tr("An error occured while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+        Logger::instance()->addMessage(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }
 }
 
