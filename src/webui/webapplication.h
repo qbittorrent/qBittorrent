@@ -126,7 +126,7 @@ private:
     Http::Environment m_env;
 
     const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
-    const QRegularExpression m_apiLegacyPathPattern {QLatin1String("^/(?<action>((sync|control|query)/[A-Za-z_][A-Za-z_0-9]*|login|logout))(/(?<hash>[^/]+))?$")};
+    const QRegularExpression m_apiLegacyPathPattern {QLatin1String("^/(?<action>((sync|command|query)/[A-Za-z_][A-Za-z_0-9]*|login|logout))(/(?<hash>[^/]+))?$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
