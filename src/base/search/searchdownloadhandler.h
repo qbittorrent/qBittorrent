@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,60 +28,26 @@
 
 #pragma once
 
-#include <QList>
-#include <QPointer>
-#include <QWidget>
+#include <QObject>
 
-class QSignalMapper;
-class QTabWidget;
+class QProcess;
+class SearchPluginManager;
 
-class MainWindow;
-class SearchTab;
-
-namespace Ui
-{
-    class SearchWidget;
-}
-
-class SearchWidget : public QWidget
+class SearchDownloadHandler : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY(SearchDownloadHandler)
 
-public:
-    explicit SearchWidget(MainWindow *mainWindow);
-    ~SearchWidget() override;
+    friend class SearchPluginManager;
 
-    void giveFocusToSearchInput();
+    SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager);
 
-private slots:
-    void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
-    void on_pluginsButton_clicked();
+signals:
+    void downloadFinished(const QString &path);
 
 private:
-    void tabChanged(int index);
-    void closeTab(int index);
-    void resultsCountUpdated();
-    void tabStatusChanged(QWidget *tab);
-    void selectMultipleBox(int index);
+    void downloadProcessFinished(int exitcode);
 
-    void fillCatCombobox();
-    void fillPluginComboBox();
-    void selectActivePage();
-    void searchTextEdited(QString);
-    void updateButtons();
-
-    QString selectedCategory() const;
-    QString selectedPlugin() const;
-
-    Ui::SearchWidget *m_ui;
-    QSignalMapper *m_tabStatusChangedMapper;
-    QPointer<SearchTab> m_currentSearchTab; // Selected tab
-    QPointer<SearchTab> m_activeSearchTab; // Tab with running search
-    QList<SearchTab *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow;
-    bool m_isNewQueryString;
+    SearchPluginManager *m_manager;
+    QProcess *m_downloadProcess;
 };

@@ -61,7 +61,7 @@ enum PluginColumns
     PLUGIN_ID
 };
 
-PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
+PluginSelectDlg::PluginSelectDlg(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::PluginSelectDlg())
     , m_pluginManager(pluginManager)
@@ -90,12 +90,12 @@ PluginSelectDlg::PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent)
 
     loadSupportedSearchPlugins();
 
-    connect(m_pluginManager, &SearchEngine::pluginInstalled, this, &PluginSelectDlg::pluginInstalled);
-    connect(m_pluginManager, &SearchEngine::pluginInstallationFailed, this, &PluginSelectDlg::pluginInstallationFailed);
-    connect(m_pluginManager, &SearchEngine::pluginUpdated, this, &PluginSelectDlg::pluginUpdated);
-    connect(m_pluginManager, &SearchEngine::pluginUpdateFailed, this, &PluginSelectDlg::pluginUpdateFailed);
-    connect(m_pluginManager, &SearchEngine::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
-    connect(m_pluginManager, &SearchEngine::checkForUpdatesFailed, this, &PluginSelectDlg::checkForUpdatesFailed);
+    connect(m_pluginManager, &SearchPluginManager::pluginInstalled, this, &PluginSelectDlg::pluginInstalled);
+    connect(m_pluginManager, &SearchPluginManager::pluginInstallationFailed, this, &PluginSelectDlg::pluginInstallationFailed);
+    connect(m_pluginManager, &SearchPluginManager::pluginUpdated, this, &PluginSelectDlg::pluginUpdated);
+    connect(m_pluginManager, &SearchPluginManager::pluginUpdateFailed, this, &PluginSelectDlg::pluginUpdateFailed);
+    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDlg::checkForUpdatesFinished);
+    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDlg::checkForUpdatesFailed);
 
     Utils::Gui::resize(this);
     show();
@@ -387,7 +387,7 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
             if (!plugin) continue;
 
             QString iconPath = QString("%1/%2.%3")
-                               .arg(SearchEngine::pluginsLocation())
+                               .arg(SearchPluginManager::pluginsLocation())
                                .arg(id)
                                .arg(url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
             if (QFile::copy(filePath, iconPath)) {

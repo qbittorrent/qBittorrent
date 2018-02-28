@@ -34,7 +34,7 @@
 
 #include <QDialog>
 
-#include "base/searchengine.h"
+#include "base/search/searchpluginmanager.h"
 
 class QDropEvent;
 class QStringList;
@@ -50,7 +50,7 @@ class PluginSelectDlg: public QDialog
     Q_OBJECT
 
 public:
-    explicit PluginSelectDlg(SearchEngine *pluginManager, QWidget *parent = 0);
+    explicit PluginSelectDlg(SearchPluginManager *pluginManager, QWidget *parent = 0);
     ~PluginSelectDlg();
 
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
@@ -89,7 +89,7 @@ private:
     void finishPluginUpdate();
 
     Ui::PluginSelectDlg *m_ui;
-    SearchEngine *m_pluginManager;
+    SearchPluginManager *m_pluginManager;
     QStringList m_updatedPlugins;
     int m_asyncOps;
     int m_pendingUpdates;

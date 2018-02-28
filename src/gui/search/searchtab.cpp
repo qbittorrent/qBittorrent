@@ -1,6 +1,7 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,37 +25,41 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QApplication>
-#include <QDir>
-#include <QMenu>
-#include <QTreeView>
-#include <QStandardItemModel>
-#include <QHeaderView>
-#include <QSortFilterProxyModel>
-#include <QLabel>
-#include <QPalette>
-#include <QVBoxLayout>
-#include <QTableView>
-
-#include "base/utils/misc.h"
-#include "base/preferences.h"
-#include "base/settingvalue.h"
-#include "guiiconprovider.h"
-#include "searchsortmodel.h"
-#include "searchlistdelegate.h"
-#include "searchwidget.h"
 #include "searchtab.h"
+
+#include <QApplication>
+#include <QClipboard>
+#include <QDesktopServices>
+#include <QDir>
+#include <QHeaderView>
+#include <QLabel>
+#include <QMenu>
+#include <QPalette>
+#include <QSortFilterProxyModel>
+#include <QStandardItemModel>
+#include <QTableView>
+#include <QTreeView>
+#include <QVBoxLayout>
+
+#include "base/bittorrent/session.h"
+#include "base/preferences.h"
+#include "base/search/searchdownloadhandler.h"
+#include "base/search/searchhandler.h"
+#include "base/search/searchpluginmanager.h"
+#include "base/settingvalue.h"
+#include "base/utils/misc.h"
+#include "addnewtorrentdialog.h"
+#include "guiiconprovider.h"
+#include "searchlistdelegate.h"
+#include "searchsortmodel.h"
 #include "ui_searchtab.h"
 
-SearchTab::SearchTab(SearchWidget *parent)
+SearchTab::SearchTab(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
-    , m_ui(new Ui::SearchTab())
-    , m_parent(parent)
-    , m_status(Status::NoResults)
+    , m_ui(new Ui::SearchTab)
+    , m_searchHandler(searchHandler)
 {
     m_ui->setupUi(this);
 
@@ -84,6 +89,7 @@ SearchTab::SearchTab(SearchWidget *parent)
     m_proxyModel = new SearchSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
     m_proxyModel->setSourceModel(m_searchListModel);
+    m_proxyModel->setNameFilter(searchHandler->pattern());
     m_ui->resultsBrowser->setModel(m_proxyModel);
 
     m_searchDelegate = new SearchListDelegate(this);
@@ -113,30 +119,41 @@ SearchTab::SearchTab(SearchWidget *parent)
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
 
-    // Connect signals to slots (search part)
-    connect(m_ui->resultsBrowser, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(downloadItem(const QModelIndex&)));
-
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayToggleColumnsMenu(const QPoint &)));
-    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
-    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
-    connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
+    connect(header(), &QWidget::customContextMenuRequested, this, &SearchTab::displayToggleColumnsMenu);
+    connect(header(), &QHeaderView::sectionResized, this, &SearchTab::saveSettings);
+    connect(header(), &QHeaderView::sectionMoved, this, &SearchTab::saveSettings);
+    connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchTab::saveSettings);
 
     fillFilterComboBoxes();
 
     updateFilter();
 
-    connect(m_ui->filterMode, SIGNAL(currentIndexChanged(int)), this, SLOT(updateFilter()));
-    connect(m_ui->minSeeds, SIGNAL(editingFinished()), this, SLOT(updateFilter()));
-    connect(m_ui->minSeeds, SIGNAL(valueChanged(int)), this, SLOT(updateFilter()));
-    connect(m_ui->maxSeeds, SIGNAL(editingFinished()), this, SLOT(updateFilter()));
-    connect(m_ui->maxSeeds, SIGNAL(valueChanged(int)), this, SLOT(updateFilter()));
-    connect(m_ui->minSize, SIGNAL(editingFinished()), this, SLOT(updateFilter()));
-    connect(m_ui->minSize, SIGNAL(valueChanged(double)), this, SLOT(updateFilter()));
-    connect(m_ui->maxSize, SIGNAL(editingFinished()), this, SLOT(updateFilter()));
-    connect(m_ui->maxSize, SIGNAL(valueChanged(double)), this, SLOT(updateFilter()));
-    connect(m_ui->minSizeUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(updateFilter()));
-    connect(m_ui->maxSizeUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(updateFilter()));
+    connect(m_ui->filterMode, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
+    connect(m_ui->minSeeds, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->maxSeeds, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
+    connect(m_ui->maxSeeds, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->minSize, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
+    connect(m_ui->minSize, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->maxSize, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
+    connect(m_ui->maxSize, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->minSizeUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+            , this, &SearchTab::updateFilter);
+    connect(m_ui->maxSizeUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+            , this, &SearchTab::updateFilter);
+
+    connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchTab::onItemDoubleClicked);
+
+    connect(searchHandler, &SearchHandler::newSearchResults, this, &SearchTab::appendSearchResults);
+    connect(searchHandler, &SearchHandler::searchFinished, this, &SearchTab::searchFinished);
+    connect(searchHandler, &SearchHandler::searchFailed, this, &SearchTab::searchFailed);
+    connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
 }
 
 SearchTab::~SearchTab()
@@ -145,32 +162,15 @@ SearchTab::~SearchTab()
     delete m_ui;
 }
 
-void SearchTab::downloadItem(const QModelIndex &index)
+void SearchTab::onItemDoubleClicked(const QModelIndex &index)
 {
-    QString torrentUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
-    QString siteUrl = m_proxyModel->data(m_proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
     setRowColor(index.row(), QApplication::palette().color(QPalette::LinkVisited));
-    m_parent->downloadTorrent(siteUrl, torrentUrl);
+    downloadTorrent(index);
 }
 
-QHeaderView* SearchTab::header() const
+QHeaderView *SearchTab::header() const
 {
     return m_ui->resultsBrowser->header();
-}
-
-QTreeView* SearchTab::getCurrentTreeView() const
-{
-    return m_ui->resultsBrowser;
-}
-
-SearchSortModel* SearchTab::getCurrentSearchListProxy() const
-{
-    return m_proxyModel;
-}
-
-QStandardItemModel* SearchTab::getCurrentSearchListModel() const
-{
-    return m_searchListModel;
 }
 
 // Set the color of a row in data model
@@ -188,37 +188,112 @@ SearchTab::Status SearchTab::status() const
     return m_status;
 }
 
+int SearchTab::visibleResultsCount() const
+{
+    return m_proxyModel->rowCount();
+}
+
+void SearchTab::cancelSearch()
+{
+    m_searchHandler->cancelSearch();
+}
+
+void SearchTab::downloadTorrents()
+{
+    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    for (const QModelIndex &rowIndex : rows)
+        downloadTorrent(rowIndex);
+}
+
+void SearchTab::openTorrentPages()
+{
+    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    for (const QModelIndex &rowIndex : rows) {
+        const QString descrLink = m_proxyModel->data(
+                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
+        if (!descrLink.isEmpty())
+            QDesktopServices::openUrl(QUrl::fromEncoded(descrLink.toUtf8()));
+    }
+}
+
+void SearchTab::copyTorrentURLs()
+{
+    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    QStringList urls;
+    for (const QModelIndex &rowIndex : rows) {
+        const QString descrLink = m_proxyModel->data(
+                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
+        if (!descrLink.isEmpty())
+            urls << descrLink;
+    }
+
+    if (!urls.empty()) {
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(urls.join("\n"));
+    }
+}
+
 void SearchTab::setStatus(Status value)
 {
+    if (m_status == value) return;
+
     m_status = value;
     setStatusTip(statusText(value));
-    const int thisTabIndex = m_parent->searchTabs()->indexOf(this);
-    m_parent->searchTabs()->setTabToolTip(thisTabIndex, statusTip());
-    m_parent->searchTabs()->setTabIcon(thisTabIndex, GuiIconProvider::instance()->getIcon(statusIconName(value)));
+    emit statusChanged();
+}
+
+void SearchTab::downloadTorrent(const QModelIndex &rowIndex)
+{
+    const QString torrentUrl = m_proxyModel->data(
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
+    const QString siteUrl = m_proxyModel->data(
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
+
+    if (torrentUrl.startsWith("bc://bt/", Qt::CaseInsensitive) || torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
+        addTorrentToSession(torrentUrl);
+    }
+    else {
+        SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(siteUrl, torrentUrl);
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchTab::addTorrentToSession);
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
+    }
+}
+
+void SearchTab::addTorrentToSession(const QString &source)
+{
+    if (source.isEmpty()) return;
+
+    if (AddNewTorrentDialog::isEnabled())
+        AddNewTorrentDialog::show(source, this);
+    else
+        BitTorrent::Session::instance()->addTorrent(source);
 }
 
 void SearchTab::updateResultsCount()
 {
-    const int totalResults = getCurrentSearchListModel() ? getCurrentSearchListModel()->rowCount(QModelIndex()) : 0;
-    const int filteredResults = getCurrentSearchListProxy() ? getCurrentSearchListProxy()->rowCount(QModelIndex()) : totalResults;
+    const int totalResults = m_searchListModel->rowCount();
+    const int filteredResults = m_proxyModel->rowCount();
     m_ui->resultsLbl->setText(tr("Results (showing <i>%1</i> out of <i>%2</i>):", "i.e: Search results")
                               .arg(filteredResults).arg(totalResults));
+
+    m_noSearchResults = (totalResults == 0);
+    emit resultsCountUpdated();
 }
 
 void SearchTab::updateFilter()
 {
     using Utils::Misc::SizeUnit;
-    SearchSortModel* filterModel = getCurrentSearchListProxy();
-    filterModel->enableNameFilter(filteringMode() == NameFilteringMode::OnlyNames);
+
+    m_proxyModel->enableNameFilter(filteringMode() == NameFilteringMode::OnlyNames);
     // we update size and seeds filter parameters in the model even if they are disabled
-    filterModel->setSeedsFilter(m_ui->minSeeds->value(), m_ui->maxSeeds->value());
-    filterModel->setSizeFilter(
+    m_proxyModel->setSeedsFilter(m_ui->minSeeds->value(), m_ui->maxSeeds->value());
+    m_proxyModel->setSizeFilter(
         sizeInBytes(m_ui->minSize->value(), static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex())),
         sizeInBytes(m_ui->maxSize->value(), static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex())));
 
     nameFilteringModeSetting() = filteringMode();
 
-    filterModel->invalidate();
+    m_proxyModel->invalidate();
     updateResultsCount();
 }
 
@@ -273,24 +348,6 @@ QString SearchTab::statusText(SearchTab::Status st)
     }
 }
 
-QString SearchTab::statusIconName(SearchTab::Status st)
-{
-    switch (st) {
-    case Status::Ongoing:
-        return QLatin1String("task-ongoing");
-    case Status::Finished:
-        return QLatin1String("task-complete");
-    case Status::Aborted:
-        return QLatin1String("task-reject");
-    case Status::Error:
-        return QLatin1String("task-attention");
-    case Status::NoResults:
-        return QLatin1String("task-attention");
-    default:
-        return QString();
-    }
-}
-
 SearchTab::NameFilteringMode SearchTab::filteringMode() const
 {
     return static_cast<NameFilteringMode>(m_ui->filterMode->itemData(m_ui->filterMode->currentIndex()).toInt());
@@ -339,6 +396,40 @@ void SearchTab::displayToggleColumnsMenu(const QPoint&)
             m_ui->resultsBrowser->resizeColumnToContents(col);
         saveSettings();
     }
+}
+
+void SearchTab::searchFinished(bool cancelled)
+{
+    if (cancelled)
+        setStatus(Status::Aborted);
+    else if (m_noSearchResults)
+        setStatus(Status::NoResults);
+    else
+        setStatus(Status::Finished);
+}
+
+void SearchTab::searchFailed()
+{
+    setStatus(Status::Error);
+}
+
+void SearchTab::appendSearchResults(const QList<SearchResult> &results)
+{
+    for (const SearchResult &result : results) {
+        // Add item to search result list
+        int row = m_searchListModel->rowCount();
+        m_searchListModel->insertRow(row);
+
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::NAME), result.fileName); // Name
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::LEECHES), result.nbLeechers); // Leechers
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
+        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
+    }
+
+    updateResultsCount();
 }
 
 CachedSettingValue<SearchTab::NameFilteringMode> &SearchTab::nameFilteringModeSetting()

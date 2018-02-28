@@ -29,60 +29,62 @@
 
 #pragma once
 
+#include <QByteArray>
 #include <QList>
-#include <QPointer>
-#include <QWidget>
+#include <QObject>
 
-class QSignalMapper;
-class QTabWidget;
+class QProcess;
+class QTimer;
 
-class MainWindow;
-class SearchTab;
-
-namespace Ui
+struct SearchResult
 {
-    class SearchWidget;
-}
+    QString fileName;
+    QString fileUrl;
+    qlonglong fileSize;
+    qlonglong nbSeeders;
+    qlonglong nbLeechers;
+    QString siteUrl;
+    QString descrLink;
+};
 
-class SearchWidget : public QWidget
+class SearchPluginManager;
+
+class SearchHandler : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY(SearchHandler)
+
+    friend class SearchPluginManager;
+
+    SearchHandler(const QString &pattern, const QString &category
+                  , const QStringList &usedPlugins, SearchPluginManager *manager);
 
 public:
-    explicit SearchWidget(MainWindow *mainWindow);
-    ~SearchWidget() override;
+    bool isActive() const;
+    QString pattern() const;
+    SearchPluginManager *manager() const;
+    QList<SearchResult> results() const;
 
-    void giveFocusToSearchInput();
+    void cancelSearch();
 
-private slots:
-    void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
-    void on_pluginsButton_clicked();
+signals:
+    void searchFinished(bool cancelled = false);
+    void searchFailed();
+    void newSearchResults(const QList<SearchResult> &results);
 
 private:
-    void tabChanged(int index);
-    void closeTab(int index);
-    void resultsCountUpdated();
-    void tabStatusChanged(QWidget *tab);
-    void selectMultipleBox(int index);
+    void readSearchOutput();
+    void processFailed();
+    void processFinished(int exitcode);
+    bool parseSearchResult(const QString &line, SearchResult &searchResult);
 
-    void fillCatCombobox();
-    void fillPluginComboBox();
-    void selectActivePage();
-    void searchTextEdited(QString);
-    void updateButtons();
-
-    QString selectedCategory() const;
-    QString selectedPlugin() const;
-
-    Ui::SearchWidget *m_ui;
-    QSignalMapper *m_tabStatusChangedMapper;
-    QPointer<SearchTab> m_currentSearchTab; // Selected tab
-    QPointer<SearchTab> m_activeSearchTab; // Tab with running search
-    QList<SearchTab *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow;
-    bool m_isNewQueryString;
+    const QString m_pattern;
+    const QString m_category;
+    const QStringList m_usedPlugins;
+    SearchPluginManager *m_manager;
+    QProcess *m_searchProcess;
+    QTimer *m_searchTimeout;
+    QByteArray m_searchResultLineTruncated;
+    bool m_searchCancelled = false;
+    QList<SearchResult> m_results;
 };

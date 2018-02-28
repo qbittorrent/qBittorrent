@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -27,18 +27,13 @@
  * exception statement from your version.
  */
 
-#ifndef SEARCHENGINE_H
-#define SEARCHENGINE_H
+#pragma once
 
 #include <QHash>
-#include <QList>
 #include <QMetaType>
 #include <QObject>
 
 #include "base/utils/version.h"
-
-class QProcess;
-class QTimer;
 
 using PluginVersion = Utils::Version<unsigned short, 2>;
 Q_DECLARE_METATYPE(PluginVersion)
@@ -54,31 +49,24 @@ struct PluginInfo
     bool enabled;
 };
 
-struct SearchResult
-{
-    QString fileName;
-    QString fileUrl;
-    qlonglong fileSize;
-    qlonglong nbSeeders;
-    qlonglong nbLeechers;
-    QString siteUrl;
-    QString descrLink;
-};
+class SearchDownloadHandler;
+class SearchHandler;
 
-class SearchEngine: public QObject
+class SearchPluginManager : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SearchPluginManager)
 
 public:
-    SearchEngine();
-    ~SearchEngine();
+    SearchPluginManager();
+    ~SearchPluginManager() override;
+
+    static SearchPluginManager *instance();
 
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
     QStringList supportedCategories() const;
     PluginInfo *pluginInfo(const QString &name) const;
-
-    bool isActive() const;
 
     void enablePlugin(const QString &name, bool enabled = true);
     void updatePlugin(const QString &name);
@@ -87,22 +75,16 @@ public:
     static void updateIconPath(PluginInfo * const plugin);
     void checkForUpdates();
 
-    void startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
-    void cancelSearch();
-
-    void downloadTorrent(const QString &siteUrl, const QString &url);
+    SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
+    SearchDownloadHandler *downloadTorrent(const QString &siteUrl, const QString &url);
 
     static PluginVersion getPluginVersion(QString filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName);
     static QString pluginsLocation();
+    static QString engineLocation();
 
 signals:
-    void searchStarted();
-    void searchFinished(bool cancelled);
-    void searchFailed();
-    void newSearchResults(const QList<SearchResult> &results);
-
     void pluginEnabled(const QString &name, bool enabled);
     void pluginInstalled(const QString &name);
     void pluginInstallationFailed(const QString &name, const QString &reason);
@@ -113,40 +95,24 @@ signals:
     void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
 
-    void torrentFileDownloaded(const QString &path);
-
-private slots:
-    void onTimeout();
-    void readSearchOutput();
-    void processFinished(int exitcode);
-    void versionInfoDownloaded(const QString &url, const QByteArray &data);
-    void versionInfoDownloadFailed(const QString &url, const QString &reason);
-    void pluginDownloaded(const QString &url, QString filePath);
-    void pluginDownloadFailed(const QString &url, const QString &reason);
-    void torrentFileDownloadFinished(int exitcode);
-
 private:
     void update();
     void updateNova();
-    bool parseSearchResult(const QString &line, SearchResult &searchResult);
     void parseVersionInfo(const QByteArray &info);
     void installPlugin_impl(const QString &name, const QString &path);
     bool isUpdateNeeded(QString pluginName, PluginVersion newVersion) const;
 
-    static QString engineLocation();
-    static QString pluginPath(const QString &name);
-    static QHash<QString, QString> initializeCategoryNames();
+    void versionInfoDownloaded(const QString &url, const QByteArray &data);
+    void versionInfoDownloadFailed(const QString &url, const QString &reason);
+    void pluginDownloaded(const QString &url, QString filePath);
+    void pluginDownloadFailed(const QString &url, const QString &reason);
 
+    static QString pluginPath(const QString &name);
+
+    static QPointer<SearchPluginManager> m_instance;
     static const QHash<QString, QString> m_categoryNames;
 
     const QString m_updateUrl;
 
     QHash<QString, PluginInfo*> m_plugins;
-    QProcess *m_searchProcess;
-    bool m_searchStopped;
-    QTimer *m_searchTimeout;
-    QByteArray m_searchResultLineTruncated;
-    QList<QProcess*> m_downloaders;
 };
-
-#endif // SEARCHENGINE_H
