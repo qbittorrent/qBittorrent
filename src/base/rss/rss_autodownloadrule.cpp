@@ -302,7 +302,7 @@ bool AutoDownloadRule::matches(const QString &articleTitle) const
                 QRegularExpression reg(cachedRegex(partialPattern1));
 
                 if (ep.endsWith('-')) { // Infinite range
-                    int epOurs = ep.left(ep.size() - 1).toInt();
+                    int epOurs = ep.leftRef(ep.size() - 1).toInt();
 
                     // Extract partial match from article and compare as digits
                     matcher = reg.match(articleTitle);

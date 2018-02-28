@@ -401,7 +401,7 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@addPaused="))) {
-            torrentParams.addPaused = param.mid(11).toInt() ? TriStateBool::True : TriStateBool::False;
+            torrentParams.addPaused = param.midRef(11).toInt() ? TriStateBool::True : TriStateBool::False;
             continue;
         }
 
@@ -426,7 +426,7 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@skipDialog="))) {
-            skipTorrentDialog = param.mid(12).toInt() ? TriStateBool::True : TriStateBool::False;
+            skipTorrentDialog = param.midRef(12).toInt() ? TriStateBool::True : TriStateBool::False;
             continue;
         }
 
