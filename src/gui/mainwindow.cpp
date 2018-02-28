@@ -874,8 +874,10 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionTopPriority->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
 #ifdef Q_OS_MAC
     m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
-    addAction(m_ui->actionMinimize);
+#else
+    m_ui->actionMinimize->setShortcut(Qt::Key_Escape);
 #endif
+    addAction(m_ui->actionMinimize);
 }
 
 // Keyboard shortcuts slots
