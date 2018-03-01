@@ -280,7 +280,6 @@ void WebApplication::doProcessRequest()
             {"query/preferences", {"app", "preferences"}},
             {"command/setPreferences", {"app", "setPreferences"}},
             {"command/getSavePath", {"app", "defaultSavePath"}},
-            {"version/qbittorrent", {"app", "version"}},
 
             {"query/getLog", {"log", "main"}},
             {"query/getPeerLog", {"log", "peers"}},
@@ -343,7 +342,8 @@ void WebApplication::doProcessRequest()
             (*params)["deleteFiles"] = "true";
 
         const QString hash {match.captured(QLatin1String("hash"))};
-        (*params)[QLatin1String("hash")] = hash;
+        if (!hash.isEmpty())
+            (*params)[QLatin1String("hash")] = hash;
 
         return true;
     };
@@ -354,12 +354,17 @@ void WebApplication::doProcessRequest()
     APIController *controller = m_apiControllers.value(scope);
     if (!controller) {
         if (request().path == QLatin1String("/version/api")) {
-            print(QString(COMPAT_API_VERSION), Http::CONTENT_TYPE_TXT);
+            print(QString::number(COMPAT_API_VERSION), Http::CONTENT_TYPE_TXT);
             return;
         }
 
         if (request().path == QLatin1String("/version/api_min")) {
-            print(QString(COMPAT_API_VERSION_MIN), Http::CONTENT_TYPE_TXT);
+            print(QString::number(COMPAT_API_VERSION_MIN), Http::CONTENT_TYPE_TXT);
+            return;
+        }
+
+        if (request().path == QLatin1String("/version/qbittorrent")) {
+            print(QString(QBT_VERSION), Http::CONTENT_TYPE_TXT);
             return;
         }
 
