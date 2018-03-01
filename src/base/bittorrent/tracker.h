@@ -52,7 +52,7 @@ namespace BitTorrent
     struct Peer
     {
         QString ip;
-        QString peerId;
+        QByteArray peerId;
         int port;
 
         bool operator!=(const Peer &other) const;
@@ -63,7 +63,7 @@ namespace BitTorrent
 
     struct TrackerAnnounceRequest
     {
-        QString infoHash;
+        QByteArray infoHash;
         QString event;
         int numwant;
         Peer peer;
@@ -72,7 +72,7 @@ namespace BitTorrent
     };
 
     typedef QHash<QString, Peer> PeerList;
-    typedef QHash<QString, PeerList> TorrentList;
+    typedef QHash<QByteArray, PeerList> TorrentList;
 
     /* Basic Bittorrent tracker implementation in Qt */
     /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */

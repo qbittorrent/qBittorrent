@@ -40,13 +40,12 @@
 #include "base/utils/string.h"
 
 using namespace Http;
+using namespace Utils::ByteArray;
 using QStringPair = QPair<QString, QString>;
 
 namespace
 {
     const QByteArray EOH = QByteArray(CRLF).repeated(2);
-
-    using namespace Utils::ByteArray;
 
     const QByteArray viewWithoutEndingWith(const QByteArray &in, const QByteArray &str)
     {
@@ -181,15 +180,11 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    const QUrl url = QUrl::fromEncoded(match.captured(2).toLatin1());
-    m_request.path = url.path();
-
-    // parse queries
-    QListIterator<QStringPair> i(QUrlQuery(url).queryItems());
-    while (i.hasNext()) {
-        const QStringPair pair = i.next();
-        m_request.gets[pair.first] = pair.second;
-    }
+    const QByteArray decodedUrl {QByteArray::fromPercentEncoding(match.captured(2).toLatin1())};
+    const int sepPos = decodedUrl.indexOf('?');
+    m_request.path = QString::fromUtf8(decodedUrl.constData(), (sepPos == -1 ? decodedUrl.size() : sepPos));
+    if (sepPos >= 0)
+        m_request.query = decodedUrl.mid(sepPos + 1);
 
     // HTTP-version
     m_request.version = match.captured(3);
