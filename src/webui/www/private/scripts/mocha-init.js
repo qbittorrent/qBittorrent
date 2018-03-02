@@ -241,8 +241,6 @@ initializeWindows = function() {
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
             loadMethod: 'xhr',
             contentURL: 'statistics.html',
-            scrollbars: false,
-            resizable: false,
             maximizable: false,
             width: 275,
             height: 370,
