@@ -36,6 +36,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+#include "base/utils/bytearray.h"
 #include "base/utils/string.h"
 
 using namespace Http;
@@ -45,51 +46,13 @@ namespace
 {
     const QByteArray EOH = QByteArray(CRLF).repeated(2);
 
+    using namespace Utils::ByteArray;
+
     const QByteArray viewWithoutEndingWith(const QByteArray &in, const QByteArray &str)
     {
         if (in.endsWith(str))
             return QByteArray::fromRawData(in.constData(), (in.size() - str.size()));
         return in;
-    }
-
-    QList<QByteArray> splitToViews(const QByteArray &in, const QByteArray &sep, const QString::SplitBehavior behavior = QString::KeepEmptyParts)
-    {
-        // mimic QString::split(sep, behavior)
-
-        if (sep.isEmpty())
-            return {in};
-
-        QList<QByteArray> ret;
-
-        int head = 0;
-        while (head < in.size()) {
-            int end = in.indexOf(sep, head);
-            if (end < 0)
-                end = in.size();
-
-            // omit empty parts
-            const QByteArray part = QByteArray::fromRawData((in.constData() + head), (end - head));
-            if (!part.isEmpty() || (behavior == QString::KeepEmptyParts))
-                ret += part;
-
-            head = end + sep.size();
-        }
-
-        return ret;
-    }
-
-    const QByteArray viewMid(const QByteArray &in, const int pos, const int len = -1)
-    {
-        // mimic QByteArray::mid(pos, len) but instead of returning a full-copy,
-        // we only return a partial view
-
-        if ((pos < 0) || (pos >= in.size()) || (len == 0))
-            return {};
-
-        const int validLen = ((len < 0) || (pos + len) >= in.size())
-            ? in.size() - pos
-            : len;
-        return QByteArray::fromRawData(in.constData() + pos, validLen);
     }
 
     bool parseHeaderLine(const QString &line, QStringMap &out)
@@ -152,7 +115,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
         }
 
         if (contentLength > 0) {
-            const QByteArray httpBodyView = viewMid(data, headerLength, contentLength);
+            const QByteArray httpBodyView = midView(data, headerLength, contentLength);
             if (httpBodyView.length() < contentLength) {
                 qDebug() << Q_FUNC_INFO << "incomplete request";
                 return {ParseStatus::Incomplete, Request(), 0};
