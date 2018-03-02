@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
@@ -34,6 +35,7 @@
 #include <QRegExp>
 #include <QTcpSocket>
 
+#include "base/logger.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
@@ -47,7 +49,7 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
 {
     m_socket->setParent(this);
     m_idleTimer.start();
-    connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
+    connect(m_socket, &QTcpSocket::readyRead, this, &Connection::read);
 }
 
 Connection::~Connection()
@@ -58,37 +60,64 @@ Connection::~Connection()
 void Connection::read()
 {
     m_idleTimer.restart();
-
     m_receivedData.append(m_socket->readAll());
-    Request request;
-    RequestParser::ErrorCode err = RequestParser::parse(m_receivedData, request);  // TODO: transform request headers to lowercase
 
-    switch (err) {
-    case RequestParser::IncompleteRequest:
-        // Partial request waiting for the rest
-        break;
+    while (!m_receivedData.isEmpty()) {
+        const RequestParser::ParseResult result = RequestParser::parse(m_receivedData);
 
-    case RequestParser::BadRequest:
-        sendResponse(Response(400, "Bad Request"));
-        m_receivedData.clear();
-        break;
+        switch (result.status) {
+        case RequestParser::ParseStatus::Incomplete: {
+                const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
+                if (m_receivedData.size() > bufferLimit) {
+                    Logger::instance()->addMessage(tr("Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s")
+                        .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-    case RequestParser::NoError:
-        const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
+                    Response resp(413, "Payload Too Large");
+                    resp.headers[HEADER_CONNECTION] = "close";
 
-        Response response = m_requestHandler->processRequest(request, env);
-        if (acceptsGzipEncoding(request.headers["accept-encoding"]))
-            response.headers[HEADER_CONTENT_ENCODING] = "gzip";
-        sendResponse(response);
-        m_receivedData.clear();
-        break;
+                    sendResponse(resp);
+                    m_socket->close();
+                }
+            }
+            return;
+
+        case RequestParser::ParseStatus::BadRequest: {
+                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %s")
+                    .arg(m_socket->peerAddress().toString()), Log::WARNING);
+
+                Response resp(400, "Bad Request");
+                resp.headers[HEADER_CONNECTION] = "close";
+
+                sendResponse(resp);
+                m_socket->close();
+            }
+            return;
+
+        case RequestParser::ParseStatus::OK: {
+                const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
+
+                Response resp = m_requestHandler->processRequest(result.request, env);
+
+                if (acceptsGzipEncoding(result.request.headers["accept-encoding"]))
+                    resp.headers[HEADER_CONTENT_ENCODING] = "gzip";
+
+                resp.headers[HEADER_CONNECTION] = "keep-alive";
+
+                sendResponse(resp);
+                m_receivedData = m_receivedData.mid(result.frameSize);
+            }
+            break;
+
+        default:
+            Q_ASSERT(false);
+            return;
+        }
     }
 }
 
-void Connection::sendResponse(const Response &response)
+void Connection::sendResponse(const Response &response) const
 {
     m_socket->write(toByteArray(response));
-    m_socket->close();  // TODO: remove when HTTP pipelining is supported
 }
 
 bool Connection::hasExpired(const qint64 timeout) const
