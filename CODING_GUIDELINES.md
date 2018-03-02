@@ -332,5 +332,15 @@ i++, j--;  // No
 
 * Method definitions aren't allowed in header files
 
-### 10. Not covered above ###
+### 10. Git commit message ###
+1. Limit the subject line to 50 characters. Subject should contain only the very essence of the changes (you should avoid extra details and internals)
+2. Separate subject from body with a blank line
+3. Capitalize the subject line
+4. Do not end the subject line with a period
+5. Use the imperative mood in the subject line (it's like you're ordering the program to do something (e.g. "Don't create temporary substrings")
+6. Wrap the body at 72 characters
+7. Use the body to explain what and why vs. how
+8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
+
+### 11. Not covered above ###
 If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
