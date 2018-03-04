@@ -59,7 +59,19 @@
 #include "transferlistwidget.h"
 #include "utils.h"
 
-const QLatin1String GOOGLE_FAVICON_URL("https://www.google.com/s2/favicons?domain=");
+namespace
+{
+    QString getScheme(const QString &tracker)
+    {
+        const QUrl url {tracker};
+        QString scheme = url.scheme();
+        if (scheme.isEmpty())
+            scheme = "http";
+        return scheme;
+    }
+
+    const QLatin1String GOOGLE_FAVICON_URL("https://www.google.com/s2/favicons?domain=");
+}
 
 FiltersBase::FiltersBase(QWidget *parent, TransferListWidget *transferList)
     : QListWidget(parent)
@@ -237,7 +249,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        downloadFavicon(QString("http://%1/favicon.ico").arg(host));
+        downloadFavicon(QString("%1://%2/favicon.ico").arg(getScheme(tracker), host));
     }
     if (!trackerItem) return;
 

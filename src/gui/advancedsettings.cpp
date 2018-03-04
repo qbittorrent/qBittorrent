@@ -289,7 +289,7 @@ void AdvancedSettings::loadAdvancedSettings()
 
     addRow(LIBTORRENT_HEADER, tr("libtorrent Section"), &labelLibtorrentLink);
     item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
-    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("http://www.libtorrent.org/reference.html").arg(tr("Open documentation")));
+    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html").arg(tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
     // Disk write cache
     spin_cache.setMinimum(-1);
