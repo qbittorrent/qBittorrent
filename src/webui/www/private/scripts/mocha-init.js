@@ -236,15 +236,19 @@ initializeWindows = function() {
     };
 
     StatisticsLinkFN = function() {
+        var id = 'statisticspage';
         new MochaUI.Window({
-            id: 'statisticspage',
+            id: id,
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
             loadMethod: 'xhr',
             contentURL: 'statistics.html',
             maximizable: false,
-            width: 275,
-            height: 370,
             padding: 10
+            width: loadWindowWidth(id, 275),
+            height: loadWindowHeight(id, 370),
+            onResize: function() {
+                saveWindowSize(id);
+            }
         });
     };
 
