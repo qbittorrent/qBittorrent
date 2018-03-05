@@ -401,7 +401,7 @@ window.addEvent('load', function () {
             $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
             $('GlobalRatio').set('html', serverState.global_ratio);
             $('TotalPeerConnections').set('html', serverState.total_peer_connections);
-            $('ReadCacheHits').set('html', serverState.read_cache_hits);
+            $('ReadCacheHits').set('html', serverState.read_cache_hits + "%");
             $('TotalBuffersSize').set('html', friendlyUnit(serverState.total_buffers_size, false));
             $('WriteCacheOverload').set('html', serverState.write_cache_overload + "%");
             $('ReadCacheOverload').set('html', serverState.read_cache_overload + "%");
