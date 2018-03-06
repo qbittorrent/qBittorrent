@@ -88,7 +88,7 @@ public:
     explicit WebApplication(QObject *parent = nullptr);
     ~WebApplication() override;
 
-    Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
     QString clientId() const override;
     WebSession *session() override;

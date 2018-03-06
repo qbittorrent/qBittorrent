@@ -110,7 +110,7 @@ protected:
 protected slots:
     void torrentDoubleClicked();
     void displayListMenu(const QPoint&);
-    void currentChanged(const QModelIndex& current, const QModelIndex&);
+    void currentChanged(const QModelIndex& current, const QModelIndex&) override;
     void toggleSelectedTorrentsSuperSeeding() const;
     void toggleSelectedTorrentsSequentialDownload() const;
     void toggleSelectedFirstLastPiecePrio() const;
