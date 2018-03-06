@@ -126,8 +126,8 @@ void TransferListDelegate::paint(QPainter * painter, const QStyleOptionViewItem 
         const int seedingTime = index.data(Qt::UserRole).toInt();
         const QString txt = (seedingTime > 0)
             ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-                .arg(Utils::Misc::userFriendlyDuration(elapsedTime))
-                .arg(Utils::Misc::userFriendlyDuration(seedingTime))
+                .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
+                    , Utils::Misc::userFriendlyDuration(seedingTime))
             : Utils::Misc::userFriendlyDuration(elapsedTime);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
         break;

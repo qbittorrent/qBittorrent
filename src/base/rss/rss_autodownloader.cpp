@@ -120,7 +120,7 @@ AutoDownloader::AutoDownloader()
     connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS AutoDownloader data in %1. Error: %2")
-               .arg(fileName).arg(errorString), Log::CRITICAL);
+               .arg(fileName, errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
@@ -417,7 +417,7 @@ void AutoDownloader::load()
         loadRules(rulesFile.readAll());
     else
         LogMsg(tr("Couldn't read RSS AutoDownloader rules from %1. Error: %2")
-               .arg(rulesFile.fileName()).arg(rulesFile.errorString()), Log::CRITICAL);
+               .arg(rulesFile.fileName(), rulesFile.errorString()), Log::CRITICAL);
 }
 
 void AutoDownloader::loadRules(const QByteArray &data)

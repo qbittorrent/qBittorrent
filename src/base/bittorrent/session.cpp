@@ -2280,7 +2280,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
-    QString savePath = QString("%1/%2").arg(QDir::tempPath()).arg(hash);
+    QString savePath = QString("%1/%2").arg(QDir::tempPath(), hash);
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
     // Forced start
@@ -3520,7 +3520,7 @@ void Session::handleTorrentSavingModeChanged(TorrentHandle * const torrent)
 void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers)
 {
     foreach (const TrackerEntry &newTracker, newTrackers)
-        Logger::instance()->addMessage(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url()).arg(torrent->name()));
+        Logger::instance()->addMessage(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url(), torrent->name()));
     emit trackersAdded(torrent, newTrackers);
     if (torrent->trackers().size() == newTrackers.size())
         emit trackerlessStateChanged(torrent, false);
@@ -3530,7 +3530,7 @@ void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QLi
 void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QList<TrackerEntry> &deletedTrackers)
 {
     foreach (const TrackerEntry &deletedTracker, deletedTrackers)
-        Logger::instance()->addMessage(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url()).arg(torrent->name()));
+        Logger::instance()->addMessage(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
     emit trackersRemoved(torrent, deletedTrackers);
     if (torrent->trackers().size() == 0)
         emit trackerlessStateChanged(torrent, true);
@@ -3545,13 +3545,13 @@ void Session::handleTorrentTrackersChanged(TorrentHandle *const torrent)
 void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds)
 {
     foreach (const QUrl &newUrlSeed, newUrlSeeds)
-        Logger::instance()->addMessage(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString()).arg(torrent->name()));
+        Logger::instance()->addMessage(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds)
 {
     foreach (const QUrl &urlSeed, urlSeeds)
-        Logger::instance()->addMessage(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString()).arg(torrent->name()));
+        Logger::instance()->addMessage(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
@@ -4147,8 +4147,8 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
     Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
 
     LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-           .arg(tmpRemovingTorrentData.name)
-           .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
+           .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
+           , Log::CRITICAL);
 }
 
 void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
@@ -4171,7 +4171,7 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     if (torrent) {
         QString msg = QString::fromStdString(p->message());
         Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
-                           .arg(torrent->name()).arg(msg));
+                           .arg(torrent->name(), msg));
         emit fullDiskError(torrent, msg);
     }
 }
@@ -4247,7 +4247,9 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
     else if (p->sock_type == libt::listen_succeeded_alert::tcp_ssl)
         proto = "TCP_SSL";
     qDebug() << "Successfully listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-    Logger::instance()->addMessage(tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())), Log::INFO);
+    Logger::instance()->addMessage(
+        tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881")
+            .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
     std::vector<libt::torrent_handle> torrents = m_nativeSession->get_torrents();
@@ -4273,10 +4275,11 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         proto = "SOCKS5";
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
     Logger::instance()->addMessage(
-                tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
-                   "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
-                .arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port()))
-                .arg(QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
+        tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
+            "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
+        .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())
+            , QString::fromLocal8Bit(p->error.message().c_str()))
+        , Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(libt::external_ip_alert *p)

@@ -413,11 +413,11 @@ void PropertiesWidget::loadDynamicData()
     case PropTabBar::MainTab: {
             m_ui->labelWastedVal->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
 
-            m_ui->labelUpTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload()))
-                                   .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())));
+            m_ui->labelUpTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload())
+                , Utils::Misc::friendlyUnit(m_torrent->totalPayloadUpload())));
 
-            m_ui->labelDlTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload()))
-                                   .arg(Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
+            m_ui->labelDlTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload())
+                , Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
 
             m_ui->labelUpLimitVal->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
 
@@ -426,8 +426,8 @@ void PropertiesWidget::loadDynamicData()
             QString elapsedString;
             if (m_torrent->isSeed())
                 elapsedString = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-                              .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime()))
-                              .arg(Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()));
+                    .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime())
+                        , Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()));
             else
                 elapsedString = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
             m_ui->labelElapsedVal->setText(elapsedString);
@@ -446,20 +446,20 @@ void PropertiesWidget::loadDynamicData()
             m_ui->labelShareRatioVal->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
-                                           .arg(QString::number(m_torrent->seedsCount()))
-                                           .arg(QString::number(m_torrent->totalSeedsCount())));
+                .arg(QString::number(m_torrent->seedsCount())
+                    , QString::number(m_torrent->totalSeedsCount())));
 
             m_ui->labelPeersVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
-                                           .arg(QString::number(m_torrent->leechsCount()))
-                                           .arg(QString::number(m_torrent->totalLeechersCount())));
+                .arg(QString::number(m_torrent->leechsCount())
+                    , QString::number(m_torrent->totalLeechersCount())));
 
             m_ui->labelDlSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                                              .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true))
-                                              .arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true)
+                    , Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
 
             m_ui->labelUpSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                                                  .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true))
-                                                  .arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true)
+                    , Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
 
             m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
 

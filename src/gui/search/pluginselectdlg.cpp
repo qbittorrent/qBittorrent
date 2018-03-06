@@ -387,9 +387,9 @@ void PluginSelectDlg::iconDownloaded(const QString &url, QString filePath)
             if (!plugin) continue;
 
             QString iconPath = QString("%1/%2.%3")
-                               .arg(SearchPluginManager::pluginsLocation())
-                               .arg(id)
-                               .arg(url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
+                .arg(SearchPluginManager::pluginsLocation()
+                    , id
+                    , url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
             if (QFile::copy(filePath, iconPath)) {
                 // This 2nd check is necessary. Some favicons (eg from piratebay)
                 // decode fine without an ext, but fail to do so when appending the ext
@@ -448,7 +448,8 @@ void PluginSelectDlg::pluginInstalled(const QString &name)
 void PluginSelectDlg::pluginInstallationFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
-    QMessageBox::information(this, tr("Search plugin install"), tr("Couldn't install \"%1\" search engine plugin. %2").arg(name).arg(reason));
+    QMessageBox::information(this, tr("Search plugin install")
+        , tr("Couldn't install \"%1\" search engine plugin. %2").arg(name, reason));
     finishPluginUpdate();
 }
 
@@ -465,6 +466,7 @@ void PluginSelectDlg::pluginUpdated(const QString &name)
 void PluginSelectDlg::pluginUpdateFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
-    QMessageBox::information(this, tr("Search plugin update"), tr("Couldn't update \"%1\" search engine plugin. %2").arg(name).arg(reason));
+    QMessageBox::information(this, tr("Search plugin update")
+        , tr("Couldn't update \"%1\" search engine plugin. %2").arg(name, reason));
     finishPluginUpdate();
 }

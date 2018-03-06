@@ -288,7 +288,8 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, &error);
     if (!m_torrentInfo.isValid()) {
-        MessageBoxRaised::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.").arg(Utils::Fs::toNativePath(m_filePath)).arg(error));
+        MessageBoxRaised::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
+            .arg(Utils::Fs::toNativePath(m_filePath), error));
         return false;
     }
 
@@ -768,7 +769,8 @@ void AddNewTorrentDialog::setupTreeview()
 
 void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
 {
-    MessageBoxRaised::critical(this, tr("Download Error"), QString("Cannot download '%1': %2").arg(url).arg(reason));
+    MessageBoxRaised::critical(this, tr("Download Error"),
+        QString("Cannot download '%1': %2").arg(url, reason));
     this->deleteLater();
 }
 

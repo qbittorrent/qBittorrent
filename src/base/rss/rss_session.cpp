@@ -79,7 +79,7 @@ Session::Session()
     connect(m_confFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
     {
         Logger::instance()->addMessage(QString("Couldn't save RSS Session configuration in %1. Error: %2")
-                                       .arg(fileName).arg(errorString), Log::WARNING);
+                                       .arg(fileName, errorString), Log::WARNING);
     });
 
     m_dataFileStorage = new AsyncFileStorage(
@@ -89,7 +89,7 @@ Session::Session()
     connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
     {
         Logger::instance()->addMessage(QString("Couldn't save RSS Session data in %1. Error: %2")
-                                       .arg(fileName).arg(errorString), Log::WARNING);
+                                       .arg(fileName, errorString), Log::WARNING);
     });
 
     m_itemsByPath.insert("", new Folder); // root folder
@@ -257,7 +257,7 @@ void Session::load()
     if (!itemsFile.open(QFile::ReadOnly)) {
         Logger::instance()->addMessage(
                     QString("Couldn't read RSS Session data from %1. Error: %2")
-                    .arg(itemsFile.fileName()).arg(itemsFile.errorString()), Log::WARNING);
+                    .arg(itemsFile.fileName(), itemsFile.errorString()), Log::WARNING);
         return;
     }
 
@@ -266,7 +266,7 @@ void Session::load()
     if (jsonError.error != QJsonParseError::NoError) {
         Logger::instance()->addMessage(
                     QString("Couldn't parse RSS Session data from %1. Error: %2")
-                    .arg(itemsFile.fileName()).arg(jsonError.errorString()), Log::WARNING);
+                    .arg(itemsFile.fileName(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
@@ -293,7 +293,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         else if (!val.isObject()) {
             Logger::instance()->addMessage(
                         QString("Couldn't load RSS Item '%1'. Invalid data format.")
-                        .arg(QString("%1\\%2").arg(folder->path()).arg(key)), Log::WARNING);
+                        .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
         }
         else {
             QJsonObject valObj = val.toObject();
@@ -301,7 +301,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
                 if (!valObj["url"].isString()) {
                     Logger::instance()->addMessage(
                                 QString("Couldn't load RSS Feed '%1'. URL is required.")
-                                .arg(QString("%1\\%2").arg(folder->path()).arg(key)), Log::WARNING);
+                                .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                     continue;
                 }
 

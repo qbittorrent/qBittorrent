@@ -49,7 +49,7 @@ void ResumeDataSavingManager::saveResumeData(QString infoHash, QByteArray data) 
         resumeFile.write(data);
         if (!resumeFile.commit()) {
             Logger::instance()->addMessage(QString("Couldn't save resume data in %1. Error: %2")
-                                           .arg(filepath).arg(resumeFile.errorString()), Log::WARNING);
+                                           .arg(filepath, resumeFile.errorString()), Log::WARNING);
         }
     }
 }

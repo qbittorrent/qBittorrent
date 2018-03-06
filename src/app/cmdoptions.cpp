@@ -216,7 +216,7 @@ namespace
             int res = val.toInt(&ok);
             if (!ok) {
                 qDebug() << QObject::tr("Expected integer number in environment variable '%1', but got '%2'")
-                    .arg(envVarName()).arg(val);
+                    .arg(envVarName(), val);
                 return defaultValue;
             }
             return res;
@@ -293,7 +293,7 @@ namespace
             }
             else {
                 qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
-                    .arg(QLatin1String("true|false")).arg(envVarName()).arg(val);
+                    .arg(QLatin1String("true|false"), envVarName(), val);
                 return TriStateBool::Undefined;
             }
         }

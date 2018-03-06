@@ -726,7 +726,7 @@ void TorrentsController::setLocationAction()
     applyToTorrents(hashes, [newLocation](BitTorrent::TorrentHandle *torrent)
     {
         LogMsg(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"")
-               .arg(torrent->name()).arg(torrent->savePath()).arg(newLocation));
+               .arg(torrent->name(), torrent->savePath(), newLocation));
         torrent->move(Utils::Fs::expandPathAbs(newLocation));
     });
 }

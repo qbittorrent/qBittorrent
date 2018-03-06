@@ -284,12 +284,13 @@ void AdvancedSettings::loadAdvancedSettings()
     boldFont.setBold(true);
     addRow(QBITTORRENT_HEADER, tr("qBittorrent Section"), &labelQbtLink);
     item(QBITTORRENT_HEADER, PROPERTY)->setFont(boldFont);
-    labelQbtLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced").arg(tr("Open documentation")));
+    labelQbtLink.setText(QString("<a href=\"%1\">%2</a>")
+        .arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced", tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);
 
     addRow(LIBTORRENT_HEADER, tr("libtorrent Section"), &labelLibtorrentLink);
     item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
-    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html").arg(tr("Open documentation")));
+    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
     // Disk write cache
     spin_cache.setMinimum(-1);
