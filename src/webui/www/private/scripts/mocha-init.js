@@ -243,7 +243,7 @@ initializeWindows = function() {
             loadMethod: 'xhr',
             contentURL: 'statistics.html',
             maximizable: false,
-            padding: 10
+            padding: 10,
             width: loadWindowWidth(id, 275),
             height: loadWindowHeight(id, 370),
             onResize: function() {
