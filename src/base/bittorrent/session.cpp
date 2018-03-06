@@ -71,6 +71,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include "base/algorithm.h"
 #include "base/logger.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
@@ -128,16 +129,16 @@ namespace
     QStringMap map_cast(const QVariantMap &map)
     {
         QStringMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key).toString();
+        for (auto i = map.cbegin(); i != map.cend(); ++i)
+            result[i.key()] = i.value().toString();
         return result;
     }
 
     QVariantMap map_cast(const QStringMap &map)
     {
         QVariantMap result;
-        foreach (const QString &key, map.keys())
-            result[key] = map.value(key);
+        for (auto i = map.cbegin(); i != map.cend(); ++i)
+            result[i.key()] = i.value();
         return result;
     }
 
@@ -199,7 +200,8 @@ namespace
     {
         QStringMap expanded = categories;
 
-        foreach (const QString &category, categories.keys()) {
+        for (auto i = categories.cbegin(); i != categories.cend(); ++i) {
+            const QString &category = i.key();
             foreach (const QString &subcat, Session::expandCategory(category)) {
                 if (!expanded.contains(subcat))
                     expanded[subcat] = "";
@@ -785,14 +787,16 @@ bool Session::removeCategory(const QString &name)
     bool result = false;
     if (isSubcategoriesEnabled()) {
         // remove subcategories
-        QString test = name + "/";
-        foreach (const QString &category, m_categories.keys()) {
+        const QString test = name + "/";
+        Dict::removeIf(m_categories, [this, &test, &result](const QString &category, const QString &)
+        {
             if (category.startsWith(test)) {
-                m_categories.remove(category);
                 result = true;
                 emit categoryRemoved(category);
+                return true;
             }
-        }
+            return false;
+        });
     }
 
     result = (m_categories.remove(name) > 0) || result;
@@ -2003,8 +2007,8 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
         torrentQueue.pop();
     }
 
-    foreach (const InfoHash &hash, m_loadedMetadata.keys())
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(hash));
+    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
+        torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
 }
 
 void Session::topTorrentsPriority(const QStringList &hashes)
@@ -2048,8 +2052,8 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
         torrentQueue.pop();
     }
 
-    foreach (const InfoHash &hash, m_loadedMetadata.keys())
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(hash));
+    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
+        torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
 }
 
 QHash<InfoHash, TorrentHandle *> Session::torrents() const

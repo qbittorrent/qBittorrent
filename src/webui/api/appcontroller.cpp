@@ -91,7 +91,7 @@ void AppController::preferencesAction()
     data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
     const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
-    for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
+    for (QVariantHash::const_iterator i = dirs.cbegin(), e = dirs.cend(); i != e; ++i) {
         if (i.value().type() == QVariant::Int)
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), i.value().toInt());
         else
@@ -246,7 +246,7 @@ void AppController::setPreferencesAction()
         QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
-        for (QVariantMap::const_iterator i = nativeDirs.begin(), e = nativeDirs.end(); i != e; ++i) {
+        for (QVariantMap::const_iterator i = nativeDirs.cbegin(), e = nativeDirs.cend(); i != e; ++i) {
             QString folder = Utils::Fs::fromNativePath(i.key());
             int downloadType;
             QString downloadPath;
@@ -275,8 +275,8 @@ void AppController::setPreferencesAction()
         }
 
         // Update deleted folders
-        foreach (QVariant folderVariant, oldScanDirs.keys()) {
-            QString folder = folderVariant.toString();
+        for (auto i = oldScanDirs.cbegin(); i != oldScanDirs.cend(); ++i) {
+            QString folder = i.key();
             if (!scanDirs.contains(folder)) {
                 model->removePath(folder);
                 qDebug("Removed watched folder %s", qUtf8Printable(folder));

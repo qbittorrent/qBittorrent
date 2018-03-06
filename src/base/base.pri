@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/algorithm.h \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/cachestatus.h \

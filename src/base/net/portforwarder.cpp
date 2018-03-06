@@ -121,8 +121,10 @@ void PortForwarder::start()
     settingsPack.set_bool(libt::settings_pack::enable_natpmp, true);
     m_provider->apply_settings(settingsPack);
 #endif
-    foreach (quint16 port, m_mappedPorts.keys())
-        m_mappedPorts[port] = m_provider->add_port_mapping(libt::session::tcp, port, port);
+    for (auto i = m_mappedPorts.begin(); i != m_mappedPorts.end(); ++i) {
+        // quint16 port = i.key();
+        i.value() = m_provider->add_port_mapping(libt::session::tcp, i.key(), i.key());
+    }
     m_active = true;
     Logger::instance()->addMessage(tr("UPnP / NAT-PMP support [ON]"), Log::INFO);
 }

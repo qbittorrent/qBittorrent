@@ -424,10 +424,10 @@ void PluginSelectDlg::checkForUpdatesFinished(const QHash<QString, PluginVersion
         return;
     }
 
-    foreach (const QString &pluginName, updateInfo.keys()) {
+    for (auto i = updateInfo.cbegin(); i != updateInfo.cend(); ++i) {
         startAsyncOp();
         m_pendingUpdates++;
-        m_pluginManager->updatePlugin(pluginName);
+        m_pluginManager->updatePlugin(i.key());
     }
 }
 
