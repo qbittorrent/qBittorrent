@@ -32,8 +32,10 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
+#include "base/global.h"
 #include "base/http/server.h"
 #include "base/preferences.h"
+#include "base/utils/bytearray.h"
 #include "base/utils/string.h"
 #include "tracker.h"
 
@@ -130,19 +132,30 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
 void Tracker::respondToAnnounceRequest()
 {
-    const QStringMap &gets = m_request.gets;
+    QMap<QString, QByteArray> queryParams;
+    // Parse GET parameters
+    using namespace Utils::ByteArray;
+    for (const QByteArray &param : copyAsConst(splitToViews(m_request.query, "&"))) {
+        const int sepPos = param.indexOf('=');
+        if (sepPos <= 0) continue; // ignores params without name
+
+        const QString paramName {QString::fromUtf8(param.constData(), sepPos)};
+        const QByteArray paramValue {param.mid(sepPos + 1)};
+        queryParams[paramName] = paramValue;
+    }
+
     TrackerAnnounceRequest annonceReq;
 
     // IP
     annonceReq.peer.ip = m_env.clientAddress.toString();
 
     // 1. Get info_hash
-    if (!gets.contains("info_hash")) {
+    if (!queryParams.contains("info_hash")) {
         qDebug("Tracker: Missing info_hash");
         status(101, "Missing info_hash");
         return;
     }
-    annonceReq.infoHash = gets.value("info_hash");
+    annonceReq.infoHash = queryParams.value("info_hash");
     // info_hash cannot be longer than 20 bytes
     /*if (annonce_req.info_hash.toLatin1().length() > 20) {
         qDebug("Tracker: Info_hash is not 20 byte long: %s (%d)", qUtf8Printable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
@@ -151,12 +164,12 @@ void Tracker::respondToAnnounceRequest()
       }*/
 
     // 2. Get peer ID
-    if (!gets.contains("peer_id")) {
+    if (!queryParams.contains("peer_id")) {
         qDebug("Tracker: Missing peer_id");
         status(102, "Missing peer_id");
         return;
     }
-    annonceReq.peer.peerId = gets.value("peer_id");
+    annonceReq.peer.peerId = queryParams.value("peer_id");
     // peer_id cannot be longer than 20 bytes
     /*if (annonce_req.peer.peer_id.length() > 20) {
         qDebug("Tracker: peer_id is not 20 byte long: %s", qUtf8Printable(annonce_req.peer.peer_id));
@@ -165,13 +178,13 @@ void Tracker::respondToAnnounceRequest()
       }*/
 
     // 3. Get port
-    if (!gets.contains("port")) {
+    if (!queryParams.contains("port")) {
         qDebug("Tracker: Missing port");
         status(103, "Missing port");
         return;
     }
     bool ok = false;
-    annonceReq.peer.port = gets.value("port").toInt(&ok);
+    annonceReq.peer.port = queryParams.value("port").toInt(&ok);
     if (!ok || annonceReq.peer.port < 1 || annonceReq.peer.port > 65535) {
         qDebug("Tracker: Invalid port number (%d)", annonceReq.peer.port);
         status(103, "Missing port");
@@ -180,15 +193,15 @@ void Tracker::respondToAnnounceRequest()
 
     // 4.  Get event
     annonceReq.event = "";
-    if (gets.contains("event")) {
-        annonceReq.event = gets.value("event");
+    if (queryParams.contains("event")) {
+        annonceReq.event = queryParams.value("event");
         qDebug("Tracker: event is %s", qUtf8Printable(annonceReq.event));
     }
 
     // 5. Get numwant
     annonceReq.numwant = 50;
-    if (gets.contains("numwant")) {
-        int tmp = gets.value("numwant").toInt();
+    if (queryParams.contains("numwant")) {
+        int tmp = queryParams.value("numwant").toInt();
         if (tmp > 0) {
             qDebug("Tracker: numwant = %d", tmp);
             annonceReq.numwant = tmp;
@@ -197,7 +210,7 @@ void Tracker::respondToAnnounceRequest()
 
     // 6. no_peer_id (extension)
     annonceReq.noPeerId = false;
-    if (gets.contains("no_peer_id"))
+    if (queryParams.contains("no_peer_id"))
         annonceReq.noPeerId = true;
 
     // 7. TODO: support "compact" extension

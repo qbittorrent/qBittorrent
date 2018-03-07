@@ -47,6 +47,7 @@ rss/rss_session.h
 search/searchdownloadhandler.h
 search/searchhandler.h
 search/searchpluginmanager.h
+utils/bytearray.h
 utils/fs.h
 utils/gzip.h
 utils/misc.h
@@ -114,6 +115,7 @@ rss/rss_session.cpp
 search/searchdownloadhandler.cpp
 search/searchhandler.cpp
 search/searchpluginmanager.cpp
+utils/bytearray.cpp
 utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp

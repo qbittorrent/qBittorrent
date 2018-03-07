@@ -46,10 +46,12 @@
 #include <QTimer>
 #include <QUrl>
 
+#include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -245,8 +247,6 @@ const Http::Environment &WebApplication::env() const
 
 void WebApplication::doProcessRequest()
 {
-    QStringMap *params = &((request().method == QLatin1String("GET"))
-                ? m_request.gets : m_request.posts);
     QString scope, action;
 
     const auto findAPICall = [&]() -> bool
@@ -337,13 +337,13 @@ void WebApplication::doProcessRequest()
         action = compatInfo.action;
 
         if (legacyAction == QLatin1String("command/delete"))
-            (*params)["deleteFiles"] = "false";
+            m_params["deleteFiles"] = "false";
         else if (legacyAction == QLatin1String("command/deletePerm"))
-            (*params)["deleteFiles"] = "true";
+            m_params["deleteFiles"] = "true";
 
         const QString hash {match.captured(QLatin1String("hash"))};
         if (!hash.isEmpty())
-            (*params)[QLatin1String("hash")] = hash;
+            m_params[QLatin1String("hash")] = hash;
 
         return true;
     };
@@ -379,7 +379,7 @@ void WebApplication::doProcessRequest()
             data[torrent.filename] = torrent.data;
 
         try {
-            const QVariant result = controller->run(action, *params, data);
+            const QVariant result = controller->run(action, m_params, data);
             switch (result.userType()) {
             case QMetaType::QString:
                 print(result.toString(), Http::CONTENT_TYPE_TXT);
@@ -486,6 +486,24 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     m_currentSession = nullptr;
     m_request = request;
     m_env = env;
+    m_params.clear();
+    if (m_request.method == Http::METHOD_GET) {
+        // Parse GET parameters
+        using namespace Utils::ByteArray;
+        for (const QByteArray &param : copyAsConst(splitToViews(m_request.query, "&"))) {
+            const int sepPos = param.indexOf('=');
+            if (sepPos <= 0) continue; // ignores params without name
+
+            const QString paramName {QString::fromUtf8(param.constData(), sepPos)};
+            const int valuePos = sepPos + 1;
+            const QString paramValue {
+                QString::fromUtf8(param.constData() + valuePos, param.size() - valuePos)};
+            m_params[paramName] = paramValue;
+        }
+    }
+    else {
+        m_params = m_request.posts;
+    }
 
     // clear response
     clear();
