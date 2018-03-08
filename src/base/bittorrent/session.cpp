@@ -3748,7 +3748,7 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
             Logger::instance()->addMessage(
                         tr("Recursive download of file '%1' embedded in torrent '%2'"
                            , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
-                        .arg(Utils::Fs::toNativePath(torrentRelpath)).arg(torrent->name()));
+                        .arg(Utils::Fs::toNativePath(torrentRelpath), torrent->name()));
             const QString torrentFullpath = torrent->savePath() + "/" + torrentRelpath;
 
             AddTorrentParams params;
