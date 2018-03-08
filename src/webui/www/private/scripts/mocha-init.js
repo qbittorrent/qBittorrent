@@ -65,6 +65,7 @@ initializeWindows = function() {
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: 'iframe',
             contentURL: 'download.html',
+            addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
             closable: true,
@@ -112,6 +113,7 @@ initializeWindows = function() {
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: 'iframe',
             contentURL: 'upload.html',
+            addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
             paddingVertical: 0,
