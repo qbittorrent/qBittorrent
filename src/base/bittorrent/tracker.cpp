@@ -185,7 +185,7 @@ void Tracker::respondToAnnounceRequest()
     }
     bool ok = false;
     annonceReq.peer.port = queryParams.value("port").toInt(&ok);
-    if (!ok || annonceReq.peer.port < 1 || annonceReq.peer.port > 65535) {
+    if (!ok || (annonceReq.peer.port < 0) || (annonceReq.peer.port > 65535)) {
         qDebug("Tracker: Invalid port number (%d)", annonceReq.peer.port);
         status(103, "Missing port");
         return;
@@ -216,31 +216,45 @@ void Tracker::respondToAnnounceRequest()
     // 7. TODO: support "compact" extension
 
     // Done parsing, now let's reply
-    if (m_torrents.contains(annonceReq.infoHash)) {
-        if (annonceReq.event == "stopped") {
-            qDebug("Tracker: Peer stopped downloading, deleting it from the list");
-            m_torrents[annonceReq.infoHash].remove(annonceReq.peer.uid());
-            return;
-        }
+    if (annonceReq.event == "stopped") {
+        unregisterPeer(annonceReq);
     }
     else {
+        registerPeer(annonceReq);
+        replyWithPeerList(annonceReq);
+    }
+}
+
+void Tracker::registerPeer(const TrackerAnnounceRequest &annonceReq)
+{
+    if (annonceReq.peer.port == 0) return;
+
+    if (!m_torrents.contains(annonceReq.infoHash)) {
         // Unknown torrent
         if (m_torrents.size() == MAX_TORRENTS) {
             // Reached max size, remove a random torrent
             m_torrents.erase(m_torrents.begin());
         }
     }
+
     // Register the user
-    PeerList peers = m_torrents.value(annonceReq.infoHash);
-    if (peers.size() == MAX_PEERS_PER_TORRENT) {
-        // Too many peers, remove a random one
-        peers.erase(peers.begin());
+    PeerList &peers = m_torrents[annonceReq.infoHash];
+    if (!peers.contains(annonceReq.peer.uid())) {
+        // Unknown peer
+        if (peers.size() == MAX_PEERS_PER_TORRENT) {
+            // Too many peers, remove a random one
+            peers.erase(peers.begin());
+        }
     }
     peers[annonceReq.peer.uid()] = annonceReq.peer;
-    m_torrents[annonceReq.infoHash] = peers;
+}
 
-    // Reply
-    replyWithPeerList(annonceReq);
+void Tracker::unregisterPeer(const TrackerAnnounceRequest &annonceReq)
+{
+    if (annonceReq.peer.port == 0) return;
+
+    if (m_torrents[annonceReq.infoHash].remove(annonceReq.peer.uid()) > 0)
+        qDebug("Tracker: Peer stopped downloading, deleting it from the list");
 }
 
 void Tracker::replyWithPeerList(const TrackerAnnounceRequest &annonceReq)
@@ -248,18 +262,16 @@ void Tracker::replyWithPeerList(const TrackerAnnounceRequest &annonceReq)
     // Prepare the entry for bencoding
     libtorrent::entry::dictionary_type replyDict;
     replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
-    QList<Peer> peers = m_torrents.value(annonceReq.infoHash).values();
+
     libtorrent::entry::list_type peerList;
-    foreach (const Peer &p, peers) {
-        //if (p != annonce_req.peer)
+    for (const Peer &p : m_torrents.value(annonceReq.infoHash))
         peerList.push_back(p.toEntry(annonceReq.noPeerId));
-    }
     replyDict["peers"] = libtorrent::entry(peerList);
-    libtorrent::entry replyEntry(replyDict);
+
+    const libtorrent::entry replyEntry(replyDict);
     // bencode
-    std::vector<char> buf;
-    libtorrent::bencode(std::back_inserter(buf), replyEntry);
-    QByteArray reply(&buf[0], static_cast<int>(buf.size()));
+    QByteArray reply;
+    libtorrent::bencode(std::back_inserter(reply), replyEntry);
     qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
 
     // HTTP reply
