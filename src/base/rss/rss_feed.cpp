@@ -189,7 +189,7 @@ void Feed::handleDownloadFailed(const QString &url, const QString &error)
     m_isLoading = false;
     m_hasError = true;
 
-    LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2").arg(url).arg(error)
+    LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2").arg(url, error)
            , Log::WARNING);
 
     emit stateChanged(this);
@@ -199,7 +199,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 {
     if (!result.error.isEmpty()) {
         m_hasError = true;
-        LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url).arg(result.error)
+        LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url, result.error)
                , Log::WARNING);
     }
     else {
@@ -249,7 +249,7 @@ void Feed::load()
     }
     else {
         LogMsg(tr("Couldn't read RSS Session data from %1. Error: %2")
-               .arg(m_dataFileName).arg(file.errorString())
+               .arg(m_dataFileName, file.errorString())
                , Log::WARNING);
     }
 }
@@ -389,7 +389,7 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme()).arg(url.host());
+    auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl, true);
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)

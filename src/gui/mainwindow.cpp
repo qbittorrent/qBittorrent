@@ -832,7 +832,9 @@ void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 // Notification when disk is full
 void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
 {
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent '%1'.\n Reason: %2", "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name()).arg(msg));
+    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
+        , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
+            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
 }
 
 void MainWindow::createKeyboardShortcuts()
@@ -937,7 +939,8 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
 void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 {
     // Display a message box
-    showNotificationBaloon(tr("URL download error"), tr("Couldn't download file at URL '%1', reason: %2.").arg(url).arg(reason));
+    showNotificationBaloon(tr("URL download error")
+        , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
 }
 
 void MainWindow::on_actionSetGlobalUploadLimit_triggered()
@@ -1542,9 +1545,9 @@ void MainWindow::updateGUI()
 
     if (m_displaySpeedInTitle) {
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-                       .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                       .arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
-                       .arg(QBT_VERSION));
+            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
+                , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
+                , QBT_VERSION));
     }
 }
 
@@ -1740,7 +1743,8 @@ void MainWindow::on_actionSearchWidget_triggered()
         // Check if python is already in PATH
         if (pythonVersion > 0)
             // Prevent translators from messing with PATH
-            Logger::instance()->addMessage(tr("Python found in %1: %2", "Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin").arg("PATH").arg(qgetenv("PATH").constData()), Log::INFO);
+            Logger::instance()->addMessage(tr("Python found in %1: %2", "Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin")
+                .arg("PATH", qgetenv("PATH").constData()), Log::INFO);
 #ifdef Q_OS_WIN
         else if (addPythonPathToEnv())
             pythonVersion = Utils::Misc::pythonVersion();

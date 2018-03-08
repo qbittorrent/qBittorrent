@@ -148,7 +148,7 @@ void SearchPluginManager::enablePlugin(const QString &name, bool enabled)
 // Updates shipped plugin
 void SearchPluginManager::updatePlugin(const QString &name)
 {
-    installPlugin(QString("%1%2.py").arg(m_updateUrl).arg(name));
+    installPlugin(QString("%1%2.py").arg(m_updateUrl, name));
 }
 
 // Install or update plugin from file or url
@@ -247,12 +247,12 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
 void SearchPluginManager::updateIconPath(PluginInfo * const plugin)
 {
     if (!plugin) return;
-    QString iconPath = QString("%1/%2.png").arg(pluginsLocation()).arg(plugin->name);
+    QString iconPath = QString("%1/%2.png").arg(pluginsLocation(), plugin->name);
     if (QFile::exists(iconPath)) {
         plugin->iconPath = iconPath;
     }
     else {
-        iconPath = QString("%1/%2.ico").arg(pluginsLocation()).arg(plugin->name);
+        iconPath = QString("%1/%2.ico").arg(pluginsLocation(), plugin->name);
         if (QFile::exists(iconPath))
             plugin->iconPath = iconPath;
     }
@@ -513,7 +513,7 @@ bool SearchPluginManager::isUpdateNeeded(QString pluginName, PluginVersion newVe
 
 QString SearchPluginManager::pluginPath(const QString &name)
 {
-    return QString("%1/%2.py").arg(pluginsLocation()).arg(name);
+    return QString("%1/%2.py").arg(pluginsLocation(), name);
 }
 
 PluginVersion SearchPluginManager::getPluginVersion(QString filePath)
@@ -537,7 +537,7 @@ PluginVersion SearchPluginManager::getPluginVersion(QString filePath)
             version = PluginVersion::tryParse(line, invalidVersion);
             if (version == invalidVersion) {
                 LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
-                    .arg(Utils::Fs::fileName(filePath)).arg(QString::fromUtf8(line)), Log::MsgType::WARNING);
+                    .arg(Utils::Fs::fileName(filePath), QString::fromUtf8(line)), Log::MsgType::WARNING);
             }
             else {
                 qDebug() << "plugin" << filePath << "version: " << version;

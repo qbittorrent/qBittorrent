@@ -121,7 +121,7 @@ void DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
         // Total number of bytes is available
         if (bytesTotal > m_sizeLimit) {
             m_reply->abort();
-            emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesTotal)).arg(Utils::Misc::friendlyUnit(m_sizeLimit)));
+            emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesTotal), Utils::Misc::friendlyUnit(m_sizeLimit)));
         }
         else {
             disconnect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(checkDownloadSize(qint64, qint64)));
@@ -129,7 +129,7 @@ void DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
     }
     else if (bytesReceived  > m_sizeLimit) {
         m_reply->abort();
-        emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesReceived)).arg(Utils::Misc::friendlyUnit(m_sizeLimit)));
+        emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesReceived), Utils::Misc::friendlyUnit(m_sizeLimit)));
     }
 }
 

@@ -460,12 +460,12 @@ QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
     qlonglong hours = minutes / 60;
     minutes -= hours * 60;
     if (hours < 24)
-        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
+        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
 
     qlonglong days = hours / 24;
     hours -= days * 24;
     if (days < 100)
-        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
+        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
 
     return QString::fromUtf8(C_INFINITY);
 }
@@ -639,9 +639,9 @@ QString Utils::Misc::osName()
     // static initialization for usage in signal handler
     static const QString name =
         QString("%1 %2 %3")
-        .arg(QSysInfo::prettyProductName())
-        .arg(QSysInfo::kernelVersion())
-        .arg(QSysInfo::currentCpuArchitecture());
+        .arg(QSysInfo::prettyProductName()
+            , QSysInfo::kernelVersion()
+            , QSysInfo::currentCpuArchitecture());
     return name;
 }
 

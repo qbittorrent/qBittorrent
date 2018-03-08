@@ -273,17 +273,17 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->autoRun_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
-                               .arg(tr("Supported parameters (case sensitive):"))
-                               .arg(tr("%N: Torrent name"))
-                               .arg(tr("%L: Category"))
-                               .arg(tr("%F: Content path (same as root path for multifile torrent)"))
-                               .arg(tr("%R: Root path (first torrent subdirectory path)"))
-                               .arg(tr("%D: Save path"))
-                               .arg(tr("%C: Number of files"))
-                               .arg(tr("%Z: Torrent size (bytes)"))
-                               .arg(tr("%T: Current tracker"))
-                               .arg(tr("%I: Info hash"))
-                               .arg(tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
+        .arg(tr("Supported parameters (case sensitive):")
+            , tr("%N: Torrent name")
+            , tr("%L: Category")
+            , tr("%F: Content path (same as root path for multifile torrent)")
+            , tr("%R: Root path (first torrent subdirectory path)")
+            , tr("%D: Save path")
+            , tr("%C: Number of files")
+            , tr("%Z: Torrent size (bytes)")
+            , tr("%T: Current tracker"))
+        .arg(tr("%I: Info hash")
+            , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->autoRun_param->setText(autoRunStr);
 
     // Connection tab
@@ -1518,7 +1518,7 @@ void OptionsDialog::on_addScanFolderButton_clicked()
         }
 
         if (!error.isEmpty())
-            QMessageBox::critical(this, tr("Adding entry failed"), QString("%1\n%2").arg(error).arg(dir));
+            QMessageBox::critical(this, tr("Adding entry failed"), QString("%1\n%2").arg(error, dir));
     }
 }
 

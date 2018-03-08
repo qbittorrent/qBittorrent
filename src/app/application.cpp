@@ -283,7 +283,7 @@ void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) c
     program.replace("%I", torrent->hash());
 
     Logger *logger = Logger::instance();
-    logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name()).arg(program));
+    logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
 #if defined(Q_OS_UNIX)
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});

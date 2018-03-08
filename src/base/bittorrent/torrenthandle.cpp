@@ -1472,7 +1472,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
     }
 
     LogMsg(QCoreApplication::translate(i18nContext, "Could not move torrent: '%1'. Reason: %2")
-                                   .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
+                                   .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
 
     m_moveStorageInfo.newPath.clear();
     if (!m_moveStorageInfo.queuedPath.isEmpty()) {
@@ -1656,7 +1656,7 @@ void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejecte
     }
     else {
         logger->addMessage(QCoreApplication::translate(i18nContext, "Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-                           .arg(name()).arg(QString::fromStdString(p->message())), Log::CRITICAL);
+                           .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
     }
 }
 
@@ -1679,7 +1679,7 @@ void TorrentHandle::handleFileRenamedAlert(libtorrent::file_renamed_alert *p)
         QString newPath = newPathParts.join("/");
         if (!newPathParts.isEmpty() && (oldPath != newPath)) {
             qDebug("oldPath(%s) != newPath(%s)", qUtf8Printable(oldPath), qUtf8Printable(newPath));
-            oldPath = QString("%1/%2").arg(savePath(true)).arg(oldPath);
+            oldPath = QString("%1/%2").arg(savePath(true), oldPath);
             qDebug("Detected folder renaming, attempt to delete old folder: %s", qUtf8Printable(oldPath));
             QDir().rmpath(oldPath);
         }

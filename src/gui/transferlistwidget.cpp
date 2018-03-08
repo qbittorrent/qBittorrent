@@ -398,7 +398,9 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
     // Actually move storage
     foreach (BitTorrent::TorrentHandle *const torrent, torrents) {
-        Logger::instance()->addMessage(tr("Set location: moving \"%1\", from \"%2\" to \"%3\"", "Set location: moving \"ubuntu_16_04.iso\", from \"/home/dir1\" to \"/home/dir2\"").arg(torrent->name()).arg(torrent->savePath()).arg(newLocation));
+        Logger::instance()->addMessage(tr("Set location: moving \"%1\", from \"%2\" to \"%3\""
+            , "Set location: moving \"ubuntu_16_04.iso\", from \"/home/dir1\" to \"/home/dir2\"")
+            .arg(torrent->name(), torrent->savePath(), newLocation));
         torrent->move(Utils::Fs::expandPathAbs(newLocation));
     }
 }

@@ -105,7 +105,8 @@ void ExecutionLog::addPeerMessage(const Log::Peer& peer)
     QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
 
     if (peer.blocked)
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip).arg(peer.reason);
+        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - "
+            + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip, peer.reason);
     else
         text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
 

@@ -68,11 +68,11 @@ public:
             "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
             "</table>"
             "</p>")
-            .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar."))
-            .arg(tr("Copyright %1 2006-2018 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT)))
-            .arg(tr("Home Page:"))
-            .arg(tr("Forum:"))
-            .arg(tr("Bug Tracker:"));
+            .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
+                , tr("Copyright %1 2006-2018 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+                , tr("Home Page:")
+                , tr("Forum:")
+                , tr("Bug Tracker:"));
         lb_about->setText(aboutText);
 
         labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
