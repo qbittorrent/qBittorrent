@@ -53,7 +53,7 @@ private:
     struct FailedLogin
     {
         int failedAttemptsCount = 0;
-        uint bannedAt = 0;
+        qint64 bannedAt = 0;
     };
     mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };

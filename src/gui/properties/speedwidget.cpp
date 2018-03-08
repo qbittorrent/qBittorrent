@@ -137,7 +137,7 @@ void SpeedWidget::update()
     const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
 
     SpeedPlotView::PointData point;
-    point.x = QDateTime::currentDateTime().toTime_t();
+    point.x = QDateTime::currentMSecsSinceEpoch() / 1000;
     point.y[SpeedPlotView::UP] = btStatus.uploadRate;
     point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
     point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;

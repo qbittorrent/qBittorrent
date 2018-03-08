@@ -59,7 +59,7 @@ public:
     explicit WebSession(const QString &sid);
 
     QString id() const override;
-    uint timestamp() const;
+    qint64 timestamp() const;
 
     QVariant getData(const QString &id) const override;
     void setData(const QString &id, const QVariant &data) override;
@@ -68,7 +68,7 @@ private:
     void updateTimestamp();
 
     const QString m_sid;
-    uint m_timestamp;
+    qint64 m_timestamp;
     QVariantHash m_data;
 };
 
