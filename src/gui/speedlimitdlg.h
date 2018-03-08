@@ -52,10 +52,11 @@ public:
 protected slots:
     void updateSpinValue(int val) const;
     void updateSliderValue(int val) const;
-    long getSpeedLimit() const;
     void setupDialog(long max_slider, long val) const;
 
 private:
+    long getSpeedLimit() const;
+
     Ui::bandwidth_dlg *m_ui;
 };
 
