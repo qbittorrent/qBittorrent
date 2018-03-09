@@ -376,3 +376,19 @@ div.mochaToolbarWrapper.bottom {
 .mochaCloseButton.replaced {
 	background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) !important;
 }
+
+/* iOS iframe scrolling */
+.windowFrame .mochaContentWrapper {
+    /* scroll the Window content. !important required. */
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.windowFrame .mochaContent {
+    height: 100%;
+}
+
+.windowFrame iframe {
+    /* fix double scroll bar by reducing frame height. !important required. */
+    height: calc(100% - 5px) !important;
+}
