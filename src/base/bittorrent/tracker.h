@@ -90,6 +90,8 @@ namespace BitTorrent
 
     private:
         void respondToAnnounceRequest();
+        void registerPeer(const TrackerAnnounceRequest &annonceReq);
+        void unregisterPeer(const TrackerAnnounceRequest &annonceReq);
         void replyWithPeerList(const TrackerAnnounceRequest &annonceReq);
 
         Http::Server *m_server;
