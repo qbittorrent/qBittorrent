@@ -123,8 +123,6 @@ namespace
     QString convertIfaceNameToGuid(const QString &name);
 #endif
 
-    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
-
     QStringMap map_cast(const QVariantMap &map)
     {
         QStringMap result;
