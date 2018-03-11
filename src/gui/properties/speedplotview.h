@@ -69,7 +69,7 @@ public:
 
     struct PointData
     {
-        uint x;
+        qint64 x;
         int y[NB_GRAPHS];
     };
 

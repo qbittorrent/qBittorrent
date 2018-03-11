@@ -597,7 +597,7 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
 {
     const QString path = Utils::Fs::fromNativePath(absolutePath);
     // If the item to select doesn't exist, try to open its parent
-    if (!QFileInfo(path).exists()) {
+    if (!QFileInfo::exists(path)) {
         openPath(path.left(path.lastIndexOf("/")));
         return;
     }

@@ -190,7 +190,7 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     layout->addWidget(editor->widget());
     layout->addWidget(d->m_browseBtn);
 
-    connect(d->m_browseAction, &QAction::triggered, [this]() {this->d_func()->browseActionTriggered();});
+    connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
 }
 
 FileSystemPathEdit::~FileSystemPathEdit() = default;

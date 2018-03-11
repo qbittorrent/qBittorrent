@@ -78,7 +78,7 @@ void AuthController::logoutAction()
 
 bool AuthController::isBanned() const
 {
-    const uint now = QDateTime::currentDateTime().toTime_t();
+    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
     const FailedLogin failedLogin = m_clientFailedLogins.value(sessionManager()->clientId());
 
     bool isBanned = (failedLogin.bannedAt > 0);
@@ -103,6 +103,6 @@ void AuthController::increaseFailedAttempts()
     if (failedLogin.failedAttemptsCount == MAX_AUTH_FAILED_ATTEMPTS) {
         // Max number of failed attempts reached
         // Start ban period
-        failedLogin.bannedAt = QDateTime::currentDateTime().toTime_t();
+        failedLogin.bannedAt = QDateTime::currentMSecsSinceEpoch() / 1000;
     }
 }

@@ -91,7 +91,7 @@ bool InfoHash::operator!=(const InfoHash &other) const
     return (m_nativeHash != other.m_nativeHash);
 }
 
-uint qHash(const InfoHash &key, uint seed)
+uint BitTorrent::qHash(const InfoHash &key, uint seed)
 {
     return qHash(static_cast<QString>(key), seed);
 }

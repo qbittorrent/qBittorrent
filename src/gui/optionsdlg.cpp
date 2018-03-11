@@ -392,7 +392,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textSmartEpisodeFilters, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSRefreshInterval, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSMaxArticlesPerFeed, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
-    connect(m_ui->btnEditRules, &QPushButton::clicked, [this]() { AutomatedRssDownloader(this).exec(); });
+    connect(m_ui->btnEditRules, &QPushButton::clicked, this, [this]() { AutomatedRssDownloader(this).exec(); });
 
     // Disable apply Button
     applyButton->setEnabled(false);

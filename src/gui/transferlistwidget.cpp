@@ -132,7 +132,7 @@ namespace
         , m_sizeHint(QCheckBox(m_text).sizeHint())
     {
         m_checkBox->setCheckState(initialState);
-        connect(m_checkBox, &QCheckBox::stateChanged, [this, onToggle](int newState)
+        connect(m_checkBox, &QCheckBox::stateChanged, this, [this, onToggle](int newState)
         {
             m_checkBox->setTristate(false);
             onToggle(static_cast<Qt::CheckState>(newState));
