@@ -660,7 +660,7 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QAction *actCpy = nullptr;
     QAction *actEdit = nullptr;
 
-    if (rows.size()) {
+    if (!rows.isEmpty()) {
         actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
         seedMenu.addSeparator();
         actCpy = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
