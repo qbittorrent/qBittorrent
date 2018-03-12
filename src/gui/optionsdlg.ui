@@ -1788,6 +1788,9 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
                  <property name="minimum">
                   <number>1</number>
                  </property>
@@ -1806,17 +1809,13 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="3">
-                <widget class="QLabel" name="label_10">
-                 <property name="text">
-                  <string>KiB/s</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="2">
                 <widget class="QSpinBox" name="spinDownloadLimit">
                  <property name="enabled">
                   <bool>false</bool>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
                  </property>
                  <property name="minimum">
                   <number>1</number>
@@ -1826,13 +1825,6 @@
                  </property>
                  <property name="value">
                   <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <widget class="QLabel" name="label_13">
-                 <property name="text">
-                  <string>KiB/s</string>
                  </property>
                 </widget>
                </item>
@@ -1846,7 +1838,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="4">
+               <item row="0" column="3">
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1868,7 +1860,10 @@
                <string>Alternative Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
-               <item row="2" column="0" colspan="5">
+               <item row="0" column="0" rowspan="2">
+                <widget class="QLabel" name="labelAltRate"/>
+               </item>
+               <item row="2" column="0" colspan="4">
                 <widget class="QGroupBox" name="check_schedule">
                  <property name="title">
                   <string>Schedule &amp;the use of alternative rate limits</string>
@@ -1979,9 +1974,6 @@
                  </layout>
                 </widget>
                </item>
-               <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="labelAltRate"/>
-               </item>
                <item row="0" column="1">
                 <widget class="QCheckBox" name="checkUploadLimitAlt">
                  <property name="text">
@@ -2001,6 +1993,9 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
                  <property name="minimum">
                   <number>1</number>
                  </property>
@@ -2017,6 +2012,9 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
                  <property name="minimum">
                   <number>1</number>
                  </property>
@@ -2029,20 +2027,6 @@
                 </widget>
                </item>
                <item row="0" column="3">
-                <widget class="QLabel" name="label_14">
-                 <property name="text">
-                  <string>KiB/s</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <widget class="QLabel" name="label_15">
-                 <property name="text">
-                  <string>KiB/s</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="4">
                 <spacer name="horizontalSpacer_5">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2386,8 +2370,8 @@
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_8">
-                  <item row="2" column="3">
+                 <layout class="QGridLayout" name="gridLayout_13">
+                  <item row="2" column="2">
                    <spacer name="horizontalSpacer_21">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -2440,7 +2424,7 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="3">
+                  <item row="0" column="2">
                    <spacer name="horizontalSpacer_9">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -2453,7 +2437,7 @@
                     </property>
                    </spacer>
                   </item>
-                  <item row="1" column="3">
+                  <item row="1" column="2">
                    <spacer name="horizontalSpacer_15">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -2468,6 +2452,9 @@
                   </item>
                   <item row="2" column="1">
                    <widget class="QSpinBox" name="spinSlowTorrentsInactivityTimer">
+                    <property name="suffix">
+                     <string extracomment="seconds"> sec</string>
+                    </property>
                     <property name="minimum">
                      <number>1</number>
                     </property>
@@ -2483,13 +2470,6 @@
                    <widget class="QLabel" name="labelSlowTorrentInactivityTimer">
                     <property name="text">
                      <string>Torrent inactivity timer:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLabel" name="labelSeconds">
-                    <property name="text">
-                     <string>seconds</string>
                     </property>
                    </widget>
                   </item>
@@ -2533,23 +2513,6 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
-                </widget>
-               </item>
-               <item row="4" column="4" colspan="2">
-                <widget class="QComboBox" name="comboRatioLimitAct">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>Pause them</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Remove them</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
                <item row="4" column="6">
@@ -2599,6 +2562,9 @@
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
                  </property>
+                 <property name="suffix">
+                  <string extracomment="minutes"> min</string>
+                 </property>
                  <property name="maximum">
                   <number>9999999</number>
                  </property>
@@ -2629,18 +2595,28 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="5">
-                <widget class="QLabel" name="label_11">
-                 <property name="text">
-                  <string>minutes</string>
-                 </property>
-                </widget>
-               </item>
                <item row="3" column="0" colspan="4">
                 <widget class="QCheckBox" name="checkMaxSeedingMinutes">
                  <property name="text">
                   <string>Seed torrents until their seeding time reaches</string>
                  </property>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QComboBox" name="comboRatioLimitAct">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Pause them</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Remove them</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
               </layout>
