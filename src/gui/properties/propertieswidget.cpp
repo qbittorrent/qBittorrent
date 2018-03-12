@@ -579,6 +579,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
     // Flush data
     m_torrent->flushCache();
 #ifdef Q_OS_MAC
+    Q_UNUSED(containingFolder);
     MacUtils::openFiles(QSet<QString>{absolutePath});
 #else
     if (containingFolder)
