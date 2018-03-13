@@ -43,6 +43,7 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/torrentfilter.h"
@@ -493,7 +494,7 @@ void TorrentsController::addAction()
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
 
     bool partialSuccess = false;
-    for (QString url : urls.split('\n')) {
+    for (QString url : copyAsConst(urls.split('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));

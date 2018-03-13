@@ -107,7 +107,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL
           }
         }
       }
-      if (!url_list_cleaned.size()) {
+      if (url_list_cleaned.isEmpty()) {
         QMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }

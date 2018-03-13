@@ -446,8 +446,6 @@ void TrackerList::editSelectedTracker()
     BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    QString hash = torrent->hash();
-
     QList<QTreeWidgetItem *> selectedTrackerItems = getSelectedTrackerItems();
     if (selectedTrackerItems.isEmpty()) return;
 

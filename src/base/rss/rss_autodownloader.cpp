@@ -275,7 +275,7 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
     if (in.status() != QDataStream::Ok)
         throw ParsingError(tr("Invalid data format"));
 
-    for (const QVariant &val : dict)
+    for (const QVariant &val : qAsConst(dict))
         insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
 }
 

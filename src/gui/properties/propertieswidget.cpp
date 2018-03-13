@@ -579,6 +579,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
     // Flush data
     m_torrent->flushCache();
 #ifdef Q_OS_MAC
+    Q_UNUSED(containingFolder);
     MacUtils::openFiles(QSet<QString>{absolutePath});
 #else
     if (containingFolder)
@@ -660,7 +661,7 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QAction *actCpy = nullptr;
     QAction *actEdit = nullptr;
 
-    if (rows.size()) {
+    if (!rows.isEmpty()) {
         actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
         seedMenu.addSeparator();
         actCpy = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
