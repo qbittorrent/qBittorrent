@@ -27,28 +27,51 @@
  * exception statement from your version.
  */
 
+#include "application.h"
+
+#include <algorithm>
+
+#include <QAtomicInt>
 #include <QDebug>
 #include <QFileInfo>
-#include <QLocale>
 #include <QLibraryInfo>
-#include <QSysInfo>
+#include <QLocale>
 #include <QProcess>
-#include <QAtomicInt>
+#include <QSysInfo>
+
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
+#include "base/iconprovider.h"
+#include "base/logger.h"
+#include "base/net/downloadmanager.h"
+#include "base/net/geoipmanager.h"
+#include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtp.h"
+#include "base/preferences.h"
+#include "base/profile.h"
+#include "base/rss/rss_autodownloader.h"
+#include "base/rss/rss_session.h"
+#include "base/scanfoldersmodel.h"
+#include "base/settingsstorage.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "filelogger.h"
 
 #ifndef DISABLE_GUI
-#include "gui/guiiconprovider.h"
 #ifdef Q_OS_WIN
 #include <windows.h>
-#include <QSharedMemory>
 #include <QSessionManager>
+#include <QSharedMemory>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
 #include <QFont>
 #include <QUrl>
 #endif // Q_OS_MAC
-#include "mainwindow.h"
 #include "addnewtorrentdialog.h"
+#include "gui/guiiconprovider.h"
+#include "mainwindow.h"
 #include "shutdownconfirmdlg.h"
 #else // DISABLE_GUI
 #include <iostream>
@@ -57,25 +80,6 @@
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
 #endif
-
-#include "application.h"
-#include "filelogger.h"
-#include "base/logger.h"
-#include "base/preferences.h"
-#include "base/settingsstorage.h"
-#include "base/profile.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/iconprovider.h"
-#include "base/scanfoldersmodel.h"
-#include "base/net/smtp.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/geoipmanager.h"
-#include "base/net/proxyconfigurationmanager.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "base/rss/rss_autodownloader.h"
-#include "base/rss/rss_session.h"
 
 namespace
 {
@@ -269,11 +273,16 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(BitTorrent::TorrentHandle *const torrent) const
+void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) const
 {
     QString program = Preferences::instance()->getAutoRunProgram();
     program.replace("%N", torrent->name());
     program.replace("%L", torrent->category());
+
+    QStringList tags = torrent->tags().toList();
+    std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    program.replace("%G", tags.join(','));
+
     program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
     program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
     program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));

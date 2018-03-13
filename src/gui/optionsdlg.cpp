@@ -272,17 +272,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRun_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
-    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n%11")
+    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n%12")
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
+            , tr("%G: Tags (seperated by comma)")
             , tr("%F: Content path (same as root path for multifile torrent)")
             , tr("%R: Root path (first torrent subdirectory path)")
             , tr("%D: Save path")
             , tr("%C: Number of files")
-            , tr("%Z: Torrent size (bytes)")
-            , tr("%T: Current tracker"))
-        .arg(tr("%I: Info hash")
+            , tr("%Z: Torrent size (bytes)"))
+        .arg(tr("%T: Current tracker")
+            , tr("%I: Info hash")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->autoRun_param->setText(autoRunStr);
 
