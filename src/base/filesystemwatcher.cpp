@@ -151,7 +151,7 @@ void FileSystemWatcher::processPartialTorrents()
         }
 
         if (value >= MAX_PARTIAL_RETRIES) {
-            QFile::rename(torrentPath, torrentPath + ".invalid");
+            QFile::rename(torrentPath, torrentPath + ".qbt_rejected");
             return true;
         }
 
