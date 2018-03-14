@@ -56,22 +56,23 @@ signals:
     void torrentsAdded(const QStringList &pathList);
 
 protected slots:
-    void scanLocalFolder(QString path);
-    void scanNetworkFolders();
+    void scanLocalFolder(const QString &path);
     void processPartialTorrents();
+#ifndef Q_OS_WIN
+    void scanNetworkFolders();
+#endif
 
 private:
-    void startPartialTorrentTimer();
-    void addTorrentsFromDir(const QDir &dir, QStringList &torrents);
+    void processTorrentsInDir(const QDir &dir);
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    static bool isNetworkFileSystem(QString path);
+    static bool isNetworkFileSystem(const QString &path);
 #endif
+
 
 #ifndef Q_OS_WIN
     QList<QDir> m_watchedFolders;
     QPointer<QTimer> m_watchTimer;
 #endif
-    QStringList m_filters;
     // Partial torrents
     QHash<QString, int> m_partialTorrents;
     QPointer<QTimer> m_partialTorrentTimer;

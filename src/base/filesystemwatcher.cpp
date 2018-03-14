@@ -47,6 +47,7 @@
 #include "algorithm.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/global.h"
 #include "base/preferences.h"
 
 namespace
@@ -62,37 +63,33 @@ namespace
 FileSystemWatcher::FileSystemWatcher(QObject *parent)
     : QFileSystemWatcher(parent)
 {
-    m_filters << "*.torrent" << "*.magnet";
     connect(this, &QFileSystemWatcher::directoryChanged, this, &FileSystemWatcher::scanLocalFolder);
 }
 
 FileSystemWatcher::~FileSystemWatcher()
 {
 #ifndef Q_OS_WIN
-    if (m_watchTimer)
-        delete m_watchTimer;
+    delete m_watchTimer;
 #endif
-    if (m_partialTorrentTimer)
-        delete m_partialTorrentTimer;
+    delete m_partialTorrentTimer;
 }
 
 QStringList FileSystemWatcher::directories() const
 {
-    QStringList dirs;
+    QStringList dirs = QFileSystemWatcher::directories();
 #ifndef Q_OS_WIN
-    if (m_watchTimer) {
-        foreach (const QDir &dir, m_watchedFolders)
-            dirs << dir.canonicalPath();
-    }
+    for (const QDir &dir : qAsConst(m_watchedFolders))
+        dirs << dir.canonicalPath();
 #endif
-    dirs << QFileSystemWatcher::directories();
     return dirs;
 }
 
 void FileSystemWatcher::addPath(const QString &path)
 {
+    if (path.isEmpty()) return;
+
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    QDir dir(path);
+    const QDir dir(path);
     if (!dir.exists()) return;
 
     // Check if the path points to a network file system or not
@@ -105,67 +102,43 @@ void FileSystemWatcher::addPath(const QString &path)
         if (!m_watchTimer) {
             m_watchTimer = new QTimer(this);
             connect(m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
-            m_watchTimer->start(WATCH_INTERVAL); // 5 sec
+            m_watchTimer->start(WATCH_INTERVAL);
         }
-    }
-    else {
-#endif
-        // Normal mode
-        qDebug("FS Watching is watching %s in normal mode", qUtf8Printable(path));
-        QFileSystemWatcher::addPath(path);
-        scanLocalFolder(path);
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+        return;
     }
 #endif
+
+    // Normal mode
+    qDebug("FS Watching is watching %s in normal mode", qUtf8Printable(path));
+    QFileSystemWatcher::addPath(path);
+    scanLocalFolder(path);
 }
 
 void FileSystemWatcher::removePath(const QString &path)
 {
 #ifndef Q_OS_WIN
-    QDir dir(path);
-    for (int i = 0; i < m_watchedFolders.count(); ++i) {
-        if (QDir(m_watchedFolders.at(i)) == dir) {
-            m_watchedFolders.removeAt(i);
-            if (m_watchedFolders.isEmpty())
-                delete m_watchTimer;
-            return;
-        }
+    if (m_watchedFolders.removeOne(path)) {
+        if (m_watchedFolders.isEmpty())
+            delete m_watchTimer;
+        return;
     }
 #endif
     // Normal mode
     QFileSystemWatcher::removePath(path);
 }
 
-void FileSystemWatcher::scanLocalFolder(QString path)
+void FileSystemWatcher::scanLocalFolder(const QString &path)
 {
-    qDebug("scanLocalFolder(%s) called", qUtf8Printable(path));
-    QStringList torrents;
-    // Local folders scan
-    addTorrentsFromDir(QDir(path), torrents);
-    // Report detected torrent files
-    if (!torrents.empty()) {
-        qDebug("The following files are being reported: %s", qUtf8Printable(torrents.join("\n")));
-        emit torrentsAdded(torrents);
-    }
+    processTorrentsInDir(path);
 }
 
+#ifndef Q_OS_WIN
 void FileSystemWatcher::scanNetworkFolders()
 {
-#ifndef Q_OS_WIN
-    qDebug("scanNetworkFolders() called");
-    QStringList torrents;
-    // Network folders scan
-    foreach (const QDir &dir, m_watchedFolders) {
-        //qDebug("FSWatcher: Polling manually folder %s", qUtf8Printable(dir.path()));
-        addTorrentsFromDir(dir, torrents);
-    }
-    // Report detected torrent files
-    if (!torrents.empty()) {
-        qDebug("The following files are being reported: %s", qUtf8Printable(torrents.join("\n")));
-        emit torrentsAdded(torrents);
-    }
-#endif
+    for (const QDir &dir : qAsConst(m_watchedFolders))
+        processTorrentsInDir(dir);
 }
+#endif
 
 void FileSystemWatcher::processPartialTorrents()
 {
@@ -207,41 +180,33 @@ void FileSystemWatcher::processPartialTorrents()
         emit torrentsAdded(noLongerPartial);
 }
 
-void FileSystemWatcher::startPartialTorrentTimer()
+void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
 {
-    Q_ASSERT(!m_partialTorrents.isEmpty());
-    if (!m_partialTorrentTimer) {
-        m_partialTorrentTimer = new QTimer();
+    QStringList torrents;
+    const QStringList files = dir.entryList({"*.torrent", "*.magnet"}, QDir::Files);
+    for (const QString &file : files) {
+        const QString fileAbsPath = dir.absoluteFilePath(file);
+        if (file.endsWith(".magnet"))
+            torrents << fileAbsPath;
+        else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid())
+            torrents << fileAbsPath;
+        else if (!m_partialTorrents.contains(fileAbsPath))
+            m_partialTorrents[fileAbsPath] = 0;
+    }
+
+    if (!torrents.empty())
+        emit torrentsAdded(torrents);
+
+    if (!m_partialTorrents.empty() && !m_partialTorrentTimer) {
+        m_partialTorrentTimer = new QTimer(this);
         connect(m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
         m_partialTorrentTimer->setSingleShot(true);
         m_partialTorrentTimer->start(WATCH_INTERVAL);
     }
 }
 
-void FileSystemWatcher::addTorrentsFromDir(const QDir &dir, QStringList &torrents)
-{
-    const QStringList files = dir.entryList(m_filters, QDir::Files, QDir::Unsorted);
-    foreach (const QString &file, files) {
-        const QString fileAbsPath = dir.absoluteFilePath(file);
-        if (fileAbsPath.endsWith(".magnet")) {
-            torrents << fileAbsPath;
-        }
-        else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid()) {
-            torrents << fileAbsPath;
-        }
-        else if (!m_partialTorrents.contains(fileAbsPath)) {
-            qDebug("Partial torrent detected at: %s", qUtf8Printable(fileAbsPath));
-            qDebug("Delay the file's processing...");
-            m_partialTorrents.insert(fileAbsPath, 0);
-        }
-    }
-
-    if (!m_partialTorrents.empty())
-        startPartialTorrentTimer();
-}
-
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-bool FileSystemWatcher::isNetworkFileSystem(QString path)
+bool FileSystemWatcher::isNetworkFileSystem(const QString &path)
 {
     QString file = path;
     if (!file.endsWith("/"))
