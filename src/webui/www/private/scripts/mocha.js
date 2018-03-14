@@ -65,7 +65,7 @@ MUI.extend({
 	
 	updateOptions:
 		element - The parent window or panel.
-		childElement - The child element of the window or panel recieving the content.
+		childElement - The child element of the window or panel receiving the content.
 		method - ('get', or 'post') The way data is transmitted.
 		data - (hash) Data to be transmitted
 		title - (string) Change this if you want to change the title of the window or panel.
@@ -1891,7 +1891,7 @@ MUI.Window = new Class({
 	setupEvents: function() {
 		var windowEl = this.windowEl;
 		// Set events
-		// Note: if a button does not exist, its due to properties passed to newWindow() stating otherwice
+		// Note: if a button does not exist, its due to properties passed to newWindow() stating otherwise
 		if (this.closeButtonEl){
 			this.closeButtonEl.addEvent('click', function(e) {
 				new Event(e).stop();
@@ -3646,7 +3646,7 @@ MUI.extend({
 	/*
 
 	Internal Function: dynamicResize
-		Use with a timer to resize a window as the window's content size changes, such as with an accordian.
+		Use with a timer to resize a window as the window's content size changes, such as with an accordion.
 
 	*/
 	dynamicResize: function(windowEl){
@@ -3908,7 +3908,7 @@ MUI.files[MUI.path.source + 'Window/Arrange-cascade.js'] = 'loaded';
 MUI.extend({   
 	arrangeCascade: function(){
 
-		var	viewportTopOffset = 30;    // Use a negative number if neccessary to place first window where you want it
+		var	viewportTopOffset = 30;    // Use a negative number if necessary to place first window where you want it
 	var viewportLeftOffset = 20;
 	var windowTopOffset = 50;    // Initial vertical spacing of each window
 	var windowLeftOffset = 40; 
@@ -3993,7 +3993,7 @@ MUI.files[MUI.path.source + 'Window/Arrange-tile.js'] = 'loaded';
 MUI.extend({
 	arrangeTile: function(){
 
-		var	viewportTopOffset = 30;    // Use a negative number if neccessary to place first window where you want it
+		var	viewportTopOffset = 30;    // Use a negative number if necessary to place first window where you want it
 		var viewportLeftOffset = 20;
 
 		var x = 10;

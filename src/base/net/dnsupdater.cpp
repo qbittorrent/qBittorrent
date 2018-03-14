@@ -196,7 +196,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
         return;
     }
 
-    // Everything bellow is an error, stop updating until the user updates something
+    // Everything below is an error, stop updating until the user updates something
     m_ipCheckTimer.stop();
     m_lastIP.clear();
     if (code == "nohost") {

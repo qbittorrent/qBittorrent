@@ -238,7 +238,7 @@ QVariantHash TransactionalSettings::read()
     QString newPath = deserialize(m_name + QLatin1String("_new"), res);
     if (!newPath.isEmpty()) { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
-        // or because the disk was full. In any case the settings weren't transfered
+        // or because the disk was full. In any case the settings weren't transferred
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
         // contains the most recent settings.
         Logger::instance()->addMessage(QObject::tr("Detected unclean program exit. Using fallback file to restore settings."), Log::WARNING);

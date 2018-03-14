@@ -51,7 +51,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: Optimize code for SpeedWidget. (dzmat)
     - BUGFIX: Disable processing events when adding torrents(prevents crashes). Closes #7436. (Chocobo1)
     - BUGFIX: Open links in browser. Closes #7651. (Chocobo1)
-    - BUGFIX: Change default settings for tracker/tier announces to mimick μTorrent behavior. (sledgehammer999)
+    - BUGFIX: Change default settings for tracker/tier announces to mimic μTorrent behavior. (sledgehammer999)
     - BUGFIX: Explicitly set UPnP state on start-up. Closes #7338. (Chocobo1)
     - BUGFIX: Include/print caught signal in stackdump (Chocobo1)
     - COSMETIC: Trackerlist: Set text alignment of columns with numbers to the right (thalieht)
@@ -182,7 +182,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Use Ctrl+F to search torrents. Closes #5797. (Tim Delaney)
     - FEATURE: Transferlist: add hotkeys for double click and recheck selected torrents (thalieht)
     - FEATURE: Add hotkey for execution log tab, Trackerlist, Peerlist etc (thalieht)
-    - FEATURE: Seperate seeds from peers for DHT, PeX and LSD (thalieht)
+    - FEATURE: Separate seeds from peers for DHT, PeX and LSD (thalieht)
     - BUGFIX: Do not remove added files unconditionally. Closes #6248 (Eugene Shalygin)
     - BUGFIX: Ignore mouse wheel events in Advanced Settings. Closes #866. (Chocobo1)
     - BUGFIX: Add queue repair code. It should fix missing torrents after restarting. (Eugene Shalygin, nxd4)
@@ -194,7 +194,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: TransferListWidget: keep columns width even if they are hidden on qBittorrent startup (unless something goes wrong) (thalieht)
     - BUGFIX: fix index overflow for torrents with invalid meta data or empty progress (Falco)
     - BUGFIX: Immediately update torrent_status after manipulating super seeding mode. Partially fixes #6072. (sledgehammer999)
-    - BUGFIX: Use case-insensitive comparsion for torrent content window. Closes #6327. (Chocobo1)
+    - BUGFIX: Use case-insensitive comparison for torrent content window. Closes #6327. (Chocobo1)
     - BUGFIX: Fixed sort order for datetime columns with empty values (closes #2988) (Vladimir Sinenko)
     - BUGFIX: Disable proxy in WebUI HTTP server. Closes #6349. (Eugene Shalygin)
     - COSMETIC: Use a disabled progressbar's palette for unselected files. (sledgehammer999)
@@ -322,12 +322,12 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Add option to automatically remove .torrent files upon adding (Eugene Shalygin)
     - FEATURE: Add option to bind directly to an IP instead of using a network Interface (Sjoerd van der Berg, sledgehammer999)
     - FEATURE: Detailed tooltips on the progress and availability bars in the General button of each torrent. (Eugene Shalygin)
-    - FEATURE: Let user able to specifiy a filter when choosing an IP filter file (Chocobo1)
+    - FEATURE: Let user able to specify a filter when choosing an IP filter file (Chocobo1)
     - FEATURE: Improve usability of "Run External Program". Users can write (platform dependent) shell scripts now. (Chocobo1)
     - PERFORMANCE: Optimize drawing in speed graph (Anton Lashkov, Chocobo1)
     - BUGFIX: Fix memory leak. (sledgehammer999)
     - BUGFIX: Fix resizing bug in "add torrent dialog". Closes #5036. (Chocobo1)
-    - BUGFIX: Fix qBittorrent doesn't exit immediately when "all donwloads are done -> exit" option enabled. (glassez, Chocobo1)
+    - BUGFIX: Fix qBittorrent doesn't exit immediately when "all downloads are done -> exit" option enabled. (glassez, Chocobo1)
     - BUGFIX: Display the filepath when a torrent fails to load. Closes #100 and #805. (sledgehammer999)
     - BUGFIX: Fix Add tracker dialog empty trackers (ngosang)
     - BUGFIX: Fix Add tracker dialog URL download (ngosang)
@@ -380,7 +380,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - OTHER: Enable access to shutdown functions when configured with `--disable-gui` option (Chocobo1)
     - OTHER: Delete Import Torrent Dialog. Just use the "add new torrent" dialog. (glassez)
     - OTHER: Optimize code for natural sorting (Chocobo1)
-    - OTHER: Use new alert dispathing API for libtorrent 1.1.x (glassez)
+    - OTHER: Use new alert dispatching API for libtorrent 1.1.x (glassez)
     - OTHER: Fix gcc 6 compilation with qmake. See #5237. (sledgehammer999)
 
 * Tue Mar 29 2016 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.3.4
@@ -704,7 +704,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - SEARCH: Fix thepiratebay. Closes #3012 (ngosang)
     - SEARCH: Improve torrentz engine to return more results (ngosang)
     - SEARCH: Change width of columns in search tab. Closes #764 (ngosang)
-    - SEARCH: Make strings translatable in seach engine (ngosang)
+    - SEARCH: Make strings translatable in search engine (ngosang)
     - SEARCH: Aborting search engine process during closure. Close #2671 (DoumanAsh)
     - SEARCH: Perform searches in parallel (DoumanAsh)
     - SEARCH: Add Demonoid search engine (ngosang)
@@ -871,7 +871,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - WEBUI: Removed broken 'Documentation'. Improves fix for #1343 (Benjamin Hutchins)
     - WEBUI: Removed essentially useless 'Visit website' iframe and changed it to a regular link. Improves fix for #1343 (Benjamin Hutchins)
     - BUGFIX: Fix RSS feed icon. The tmp file gets deleted in the feed destructor. Closes #1639 (sledgehammer999)
-    - BUGFIX: fix issue #1674: AddNewTorrentDialog is shown again and again even if checkbox "dont ask me again" is set (Ivan Sorokin)
+    - BUGFIX: fix issue #1674: AddNewTorrentDialog is shown again and again even if checkbox "don't ask me again" is set (Ivan Sorokin)
     - BUGFIX: Don't show availability bar for magnet links (Ivan Sorokin)
     - BUGFIX: Fix crash when the selected torrent disappears from the transfer list. Closes #1661 (sledgehammer999)
     - BUGFIX: Fix tracker announcing problem(hit-and-run) when many torrents are being active. Closes #1571 (sledgehammer999)
@@ -1005,7 +1005,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Show external IP in the log. Closes #968. (sledgehammer999)
     - FEATURE: Enable gzip compression in the webui. It should be faster now. (sledgehammer999)
     - FEATURE: Torrents show more states(queued for checking, downloading metadata, allocating, checking resume). (sledgehammer999)
-    - FEATURE: Reenable "force reannounce" to all trackers. (sledgehammer999)
+    - FEATURE: Re-enable "force reannounce" to all trackers. (sledgehammer999)
     - FEATURE: Allow to clear the UI lock password. Closes #973. (sledgehammer999)
     - FEATURE: New translations: English(Australia) and English(United Kingdom)
     - BUGFIX: Expose all available translation in the WebUI. Closes #976. (sledgehammer999)
@@ -1054,8 +1054,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - OTHER: Make peer tab sortable by ip too (Gelmir)
     - OTHER: Translations moved to Transifex(https://www.transifex.com/projects/p/qbittorrent/)
     - OTHER: New Translation - Vietnamese (Anh Phan)
-    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
-    - PERFORMANCE: Impove drawing speed of peers list when there are many peers
+    - PERFORMANCE: Improve drawing speed of tranferlist when there are many torrents(>100)
+    - PERFORMANCE: Improve drawing speed of peers list when there are many peers
 
 * Mon Jul 29 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.11
     - FEATURE: Allow more fine tuning of upload slots. It should improve speed (sledgehammer999)
@@ -1095,8 +1095,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - LIBTORRENT: SOCKS5 fixes (0.16.10)
     - LIBTORRENT: Fix hanging issue on Windows when closing files (0.16.10)
     - LIBTORRENT: Cache can now be returned to the OS (0.16.10)
-    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100) (sledgehammer999)
-    - PERFORMANCE: Impove drawing speed of peers list when there are many peers (sledgehammer999)
+    - PERFORMANCE: Improve drawing speed of tranferlist when there are many torrents(>100) (sledgehammer999)
+    - PERFORMANCE: Improve drawing speed of peers list when there are many peers (sledgehammer999)
     
 * Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
@@ -1120,7 +1120,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: Fix "Couldn't set environment variable..." message on start up (closes #245)
     - BUGFIX: Use right path separator in torrent addition dialog on Windows
     - BUGFIX: Fix "Set as default save path" setting (closes #254)
-    - BUGFIX: Reenable disk cache on Windows since the memory issue seems to be gone
+    - BUGFIX: Re-enable disk cache on Windows since the memory issue seems to be gone
     - BUGFIX: Fixed several search engine plugins and removed the dead ones
     - BUGFIX: Use https links in search plugins when possible
     - BUGFIX: Bump Mootools to v1.4.5 (Web UI)
@@ -1256,7 +1256,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - I18N: Add Georgian translation
 
 * Sat Oct 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.2
-    - BUGFIX: Fix mimimum dimensions for torrent addition dialog
+    - BUGFIX: Fix minimum dimensions for torrent addition dialog
     - BUGFIX: Remove dependency on boost-datetime
     - BUGFIX: Remove dependency on boost-filesystem (libtorrent v0.16.x)
 
@@ -1467,7 +1467,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: Update RSS feed as soon as feed downloader is enabled
     - BUGFIX: RSS Feed downloader ignores articles above maximum number of articles
     - BUGFIX: Fix possible bug when deleting a RSS folder
-    - BUGFIX: Remove persistant data when a RSS feed is deleted
+    - BUGFIX: Remove persistent data when a RSS feed is deleted
     - BUGFIX: RSS filters are now alphabetically sorted
     - BUGFIX: Fix crash when renaming currently displayed RSS filter
     - BUGFIX: Remove overwriting confirmation when exporting RSS filters since Qt takes care of it
@@ -1503,7 +1503,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: Use the save path set in program preferences as a default in torrent addition dialog
 
 * Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
-    - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
+    - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusable for new users)
     - BUGFIX: Fix RSS Feed downloader for some feeds
     - BUGFIX: Do not use home folder as a fallback when the save path is not accessible
     - BUGFIX: Fix Mininova, ThePirateBay search engine plugins
@@ -1593,7 +1593,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
   - BUGFIX: Fix trackers addition to torrents (bug introduced in v1.5.4)
   - BUGFIX: Suppress compilation warning regarding sortNewsList() not being used
   - BUGFIX: Make sure scan folder is different than qBittorrent backup directory to avoid torrents deletion
-  - BUGFIX: Added safety mecanism which adds the torrents back to the list in case qbittorrent-resume.conf gets deleted or corrupted.
+  - BUGFIX: Added safety mechanism which adds the torrents back to the list in case qbittorrent-resume.conf gets deleted or corrupted.
 
 * Sun Oct 25 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
   - BUGFIX: Updated man page
@@ -1660,7 +1660,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Added right click menu in search engine to clear completion history
     - FEATURE: Allow to set a different port for DHT (UDP) than the one used for Bittorrent
     - FEATURE: Updated spoofing code to avoid trackers ban
-    - BUGFIX: Provide more helpful explanation when an I/O error occured
+    - BUGFIX: Provide more helpful explanation when an I/O error occurred
     - BUGFIX: Stop enforcing UTF-8 and use system locale instead
     - COSMETIC: Redesigned program preferences
     - COSMETIC: Updated icons set
@@ -1678,7 +1678,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - BUGFIX: Suppressed QLayout: Attempting to add QLayout "" to properties "properties" warning message when opening a properties dialog
     - BUGFIX: Fixed a little bug in search engine plugins helper file
     - BUGFIX: Fixed compilation problems with Qt 4.3
-    - BUGFIX: Percentages no longer disapear with default cleanlooks style
+    - BUGFIX: Percentages no longer disappear with default cleanlooks style
     - BUGFIX: Cleanly fixed popup menus position in lists (no more workarounds)
     - BUGFIX: Fixed memory leak in search engine
     - BUGFIX: Torrents with an infinite ratio are no longer affected by ratio_limit set in program preferences
@@ -1923,7 +1923,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Number of complete/incomplete sources are now displayed in download list for each torrent
     - FEATURE: Implemented close to systray
     - FEATURE: Added Autocompletion to search engine
-    - FEATURE: Splitted BT & GUI parts (huge code rewriting & optimization)
+    - FEATURE: Split BT & GUI parts (huge code rewriting & optimization)
     - FEATURE: New parameters for configure file to point to custom locations for libtorrent/libcurl
     - FEATURE: Update application style according to the system (WindowsXP, MacOS, X11)
     - BUGFIX: Two torrents can now have the same name although they are different (use their hash)
