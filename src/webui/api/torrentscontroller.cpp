@@ -623,6 +623,21 @@ void TorrentsController::setDownloadLimitAction()
     applyToTorrents(hashes, [limit](BitTorrent::TorrentHandle *torrent) { torrent->setDownloadLimit(limit); });
 }
 
+void TorrentsController::setShareLimitsAction()
+{
+    checkParams({"hashes", "ratioLimit", "seedingTimeLimit"});
+
+    const qreal ratioLimit = params()["ratioLimit"].toDouble();
+    const qlonglong seedingTimeLimit = params()["seedingTimeLimit"].toLongLong();
+    const QStringList hashes = params()["hashes"].split('|');
+
+    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit](BitTorrent::TorrentHandle *torrent)
+    {
+        torrent->setRatioLimit(ratioLimit);
+        torrent->setSeedingTimeLimit(seedingTimeLimit);
+    });
+}
+
 void TorrentsController::toggleSequentialDownloadAction()
 {
     checkParams({"hashes"});

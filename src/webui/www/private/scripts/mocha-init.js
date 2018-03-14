@@ -162,6 +162,45 @@ initializeWindows = function() {
         }
     };
 
+    shareRatioFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            var shareRatio = null;
+            var torrentsHaveSameShareRatio = true;
+
+            // check if all selected torrents have same share ratio
+            for (var i = 0; i < hashes.length; i++) {
+                var hash = hashes[i];
+                var row = torrentsTable.rows[hash].full_data;
+                var origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.max_ratio + "|" + row.max_seeding_time;
+
+                // initialize value
+                if (shareRatio === null)
+                    shareRatio = origValues;
+
+                if (origValues !== shareRatio) {
+                    torrentsHaveSameShareRatio = false;
+                    break;
+                }
+            }
+
+            // if all torrents have same share ratio, display that share ratio. else use the default
+            var orig = torrentsHaveSameShareRatio ? shareRatio : "";
+            new MochaUI.Window({
+                id: 'shareRatioPage',
+                title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDlg]",
+                loadMethod: 'iframe',
+                contentURL: 'shareratio.html?hashes=' + hashes.join("|") + '&orig=' + orig,
+                scrollbars: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 424,
+                height: 175
+            });
+        }
+    };
+
     toggleSequentialDownloadFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
