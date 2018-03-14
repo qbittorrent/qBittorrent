@@ -2381,9 +2381,7 @@ void Session::saveResumeData()
         std::vector<libt::alert *> alerts;
         getPendingAlerts(alerts, 30 * 1000);
         if (alerts.empty()) {
-            std::cerr << " aborting with " << m_numResumeData
-                      << " outstanding torrents to save resume data for"
-                      << std::endl;
+            fprintf(stderr, " aborting with %d outstanding torrents to save resume data for\n", m_numResumeData);
             break;
         }
 

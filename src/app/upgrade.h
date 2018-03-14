@@ -61,10 +61,11 @@
 bool userAcceptsUpgrade()
 {
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Upgrade")) << " ***" << std::endl;
+    printf("\n*** %s ***\n", qUtf8Printable(QObject::tr("Upgrade")));
     char ret = '\0';
     do {
-        std::cout << qPrintable(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]")) << std::endl;
+        printf("%s\n"
+            , qUtf8Printable(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]")));
         ret = getchar(); // Read pressed key
     }
     while ((ret != 'y') && (ret != 'Y') && (ret != 'n') && (ret != 'N'));
