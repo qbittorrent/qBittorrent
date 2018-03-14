@@ -124,7 +124,7 @@ void FileSystemWatcher::removePath(const QString &path)
 
 void FileSystemWatcher::scanLocalFolder(const QString &path)
 {
-    processTorrentsInDir(path);
+    QTimer::singleShot(2000, this, [this, path]() { processTorrentsInDir(path); });
 }
 
 #ifndef Q_OS_WIN
