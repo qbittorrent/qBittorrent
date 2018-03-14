@@ -1,43 +1,69 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#include "filesystemwatcher.h"
+
 #include <QtGlobal>
+
 #ifndef Q_OS_WIN
-#include <QSet>
+#include <cerrno>
 #include <iostream>
-#include <errno.h>
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
-#include <sys/param.h>
-#include <sys/mount.h>
-#include <string.h>
-#elif !defined Q_OS_HAIKU
-#include <sys/vfs.h>
+#include <QSet>
 #endif
+
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#include <cstring>
+#include <sys/mount.h>
+#include <sys/param.h>
+#elif !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#include <sys/vfs.h>
 #endif
 
 #include "algorithm.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/preferences.h"
-#include "filesystemwatcher.h"
 
-#ifndef CIFS_MAGIC_NUMBER
-#define CIFS_MAGIC_NUMBER 0xFF534D42
-#endif
+namespace
+{
+    const unsigned long CIFS_MAGIC_NUMBER = 0xFF534D42;
+    const unsigned long NFS_SUPER_MAGIC = 0x6969;
+    const unsigned long SMB_SUPER_MAGIC = 0x517B;
 
-#ifndef NFS_SUPER_MAGIC
-#define NFS_SUPER_MAGIC 0x6969
-#endif
-
-#ifndef SMB_SUPER_MAGIC
-#define SMB_SUPER_MAGIC 0x517B
-#endif
-
-const int WATCH_INTERVAL = 10000; // 10 sec
-const int MAX_PARTIAL_RETRIES = 5;
+    const int WATCH_INTERVAL = 10000; // 10 sec
+    const int MAX_PARTIAL_RETRIES = 5;
+}
 
 FileSystemWatcher::FileSystemWatcher(QObject *parent)
     : QFileSystemWatcher(parent)
 {
     m_filters << "*.torrent" << "*.magnet";
-    connect(this, SIGNAL(directoryChanged(QString)), SLOT(scanLocalFolder(QString)));
+    connect(this, &QFileSystemWatcher::directoryChanged, this, &FileSystemWatcher::scanLocalFolder);
 }
 
 FileSystemWatcher::~FileSystemWatcher()
@@ -78,7 +104,7 @@ void FileSystemWatcher::addPath(const QString &path)
         // Set up the watch timer
         if (!m_watchTimer) {
             m_watchTimer = new QTimer(this);
-            connect(m_watchTimer, SIGNAL(timeout()), SLOT(scanNetworkFolders()));
+            connect(m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
             m_watchTimer->start(WATCH_INTERVAL); // 5 sec
         }
     }
@@ -186,7 +212,7 @@ void FileSystemWatcher::startPartialTorrentTimer()
     Q_ASSERT(!m_partialTorrents.isEmpty());
     if (!m_partialTorrentTimer) {
         m_partialTorrentTimer = new QTimer();
-        connect(m_partialTorrentTimer, SIGNAL(timeout()), SLOT(processPartialTorrents()));
+        connect(m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
         m_partialTorrentTimer->setSingleShot(true);
         m_partialTorrentTimer->start(WATCH_INTERVAL);
     }
@@ -227,9 +253,9 @@ bool FileSystemWatcher::isNetworkFileSystem(QString path)
         // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
         return ((strcmp(buf.f_fstypename, "nfs") == 0) || (strcmp(buf.f_fstypename, "cifs") == 0) || (strcmp(buf.f_fstypename, "smbfs") == 0));
 #else
-        return ((buf.f_type == static_cast<long>(CIFS_MAGIC_NUMBER))
-            || (buf.f_type == static_cast<long>(NFS_SUPER_MAGIC))
-            || (buf.f_type == static_cast<long>(SMB_SUPER_MAGIC)));
+        return ((buf.f_type == CIFS_MAGIC_NUMBER)
+            || (buf.f_type == NFS_SUPER_MAGIC)
+            || (buf.f_type == SMB_SUPER_MAGIC));
 #endif
     }
     else {
