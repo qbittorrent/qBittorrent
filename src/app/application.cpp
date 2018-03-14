@@ -74,7 +74,7 @@
 #include "mainwindow.h"
 #include "shutdownconfirmdlg.h"
 #else // DISABLE_GUI
-#include <iostream>
+#include <cstdio>
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -491,13 +491,16 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     Preferences* const pref = Preferences::instance();
     // Display some information to the user
-    std::cout << std::endl << "******** " << qPrintable(tr("Information")) << " ********" << std::endl;
-    std::cout << qPrintable(tr("To control qBittorrent, access the Web UI at http://localhost:%1").arg(QString::number(pref->getWebUiPort()))) << std::endl;
-    std::cout << qPrintable(tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername())) << std::endl;
+    const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
+        + tr("To control qBittorrent, access the Web UI at %1")
+            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n'
+        + tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername()) + '\n';
+    printf("%s", qUtf8Printable(mesg));
     qDebug() << "Password:" << pref->getWebUiPassword();
     if (pref->getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
-        std::cout << qPrintable(tr("The Web UI administrator password is still the default one: %1").arg("adminadmin")) << std::endl;
-        std::cout << qPrintable(tr("This is a security risk, please consider changing your password from program preferences.")) << std::endl;
+        const QString warning = tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
+            + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
+        printf("%s", qUtf8Printable(warning));
     }
 #endif // DISABLE_WEBUI
 #else

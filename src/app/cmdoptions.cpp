@@ -32,7 +32,7 @@
 
 #include "cmdoptions.h"
 
-#include <iostream>
+#include <cstdio>
 
 #include <QDebug>
 #include <QFileInfo>
@@ -578,7 +578,7 @@ QString makeUsage(const QString &prgName)
 void displayUsage(const QString &prgName)
 {
 #ifndef Q_OS_WIN
-    std::cout << qPrintable(makeUsage(prgName)) << std::endl;
+    printf("%s\n", qUtf8Printable(makeUsage(prgName)));
 #else
     QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prgName), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
