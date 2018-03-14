@@ -146,7 +146,6 @@ initializeWindows = function() {
     uploadLimitFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            var hash = hashes[0];
             new MochaUI.Window({
                 id: 'uploadLimitPage',
                 title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
@@ -257,7 +256,6 @@ initializeWindows = function() {
     downloadLimitFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            var hash = hashes[0];
             new MochaUI.Window({
                 id: 'downloadLimitPage',
                 title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
@@ -388,12 +386,11 @@ initializeWindows = function() {
             var hash = hashes[0];
             var row = torrentsTable.rows[hash];
             if (row) {
-                var name = row.full_data.name;
                 new MochaUI.Window({
                     id: 'renamePage',
                     title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
                     loadMethod: 'iframe',
-                    contentURL: 'rename.html?hash=' + hashes[0] + '&name=' + name,
+                    contentURL: 'rename.html?hash=' + hashes[0] + '&name=' + row.full_data.name,
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,
