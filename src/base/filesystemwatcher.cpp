@@ -30,12 +30,6 @@
 
 #include <QtGlobal>
 
-#ifndef Q_OS_WIN
-#include <cerrno>
-#include <iostream>
-#include <QSet>
-#endif
-
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <cstring>
 #include <sys/mount.h>
@@ -52,6 +46,7 @@
 
 namespace
 {
+    // usually defined in /usr/include/linux/magic.h
     const unsigned long CIFS_MAGIC_NUMBER = 0xFF534D42;
     const unsigned long NFS_SUPER_MAGIC = 0x6969;
     const unsigned long SMB_SUPER_MAGIC = 0x517B;
@@ -209,62 +204,23 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
 bool FileSystemWatcher::isNetworkFileSystem(const QString &path)
 {
     QString file = path;
-    if (!file.endsWith("/"))
-        file += "/";
-    file += ".";
-    struct statfs buf;
-    if (!statfs(file.toLocal8Bit().constData(), &buf)) {
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
+
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
 #ifdef Q_OS_MAC
         // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
-        return ((strcmp(buf.f_fstypename, "nfs") == 0) || (strcmp(buf.f_fstypename, "cifs") == 0) || (strcmp(buf.f_fstypename, "smbfs") == 0));
+    return ((strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
 #else
-        return ((buf.f_type == CIFS_MAGIC_NUMBER)
-            || (buf.f_type == NFS_SUPER_MAGIC)
-            || (buf.f_type == SMB_SUPER_MAGIC));
+    return ((buf.f_type == CIFS_MAGIC_NUMBER)
+        || (buf.f_type == NFS_SUPER_MAGIC)
+        || (buf.f_type == SMB_SUPER_MAGIC));
 #endif
-    }
-    else {
-        std::cerr << "Error: statfs() call failed for " << qPrintable(file) << ". Supposing it is a local folder..." << std::endl;
-        switch(errno) {
-        case EACCES:
-            std::cerr << "Search permission is denied for a component of the path prefix of the path" << std::endl;
-            break;
-        case EFAULT:
-            std::cerr << "Buf or path points to an invalid address" << std::endl;
-            break;
-        case EINTR:
-            std::cerr << "This call was interrupted by a signal" << std::endl;
-            break;
-        case EIO:
-            std::cerr << "I/O Error" << std::endl;
-            break;
-        case ELOOP:
-            std::cerr << "Too many symlinks" << std::endl;
-            break;
-        case ENAMETOOLONG:
-            std::cerr << "path is too long" << std::endl;
-            break;
-        case ENOENT:
-            std::cerr << "The file referred by path does not exist" << std::endl;
-            break;
-        case ENOMEM:
-            std::cerr << "Insufficient kernel memory" << std::endl;
-            break;
-        case ENOSYS:
-            std::cerr << "The file system does not detect this call" << std::endl;
-            break;
-        case ENOTDIR:
-            std::cerr << "A component of the path is not a directory" << std::endl;
-            break;
-        case EOVERFLOW:
-            std::cerr << "Some values were too large to be represented in the struct" << std::endl;
-            break;
-        default:
-            std::cerr << "Unknown error" << std::endl;
-        }
-
-        std::cerr << "Errno: " << errno << std::endl;
-        return false;
-    }
 }
 #endif
