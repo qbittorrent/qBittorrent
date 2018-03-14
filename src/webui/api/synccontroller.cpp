@@ -351,7 +351,7 @@ namespace
 //  - "amount_left": Amount of data left to download
 //  - "save_path": Torrent save path
 //  - "completed": Amount of data completed
-//  - "ratio_limit": Upload share ratio limit
+//  - "max_ratio": Upload max share ratio
 //  - "seen_complete": Indicates the time when the torrent was last seen complete/whole
 //  - "last_activity": Last time when a chunk was downloaded/uploaded
 //  - "total_size": Size including unwanted data

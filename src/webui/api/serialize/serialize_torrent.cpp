@@ -120,7 +120,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     ret[KEY_TORRENT_AMOUNT_UPLOADED_SESSION] = torrent.totalPayloadUpload();
     ret[KEY_TORRENT_AMOUNT_LEFT] = torrent.incompletedSize();
     ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent.completedSize();
-    ret[KEY_TORRENT_RATIO_LIMIT] = torrent.maxRatio();
+    ret[KEY_TORRENT_MAX_RATIO] = torrent.maxRatio();
     ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent.lastSeenComplete().toTime_t();
     ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent.isAutoTMMEnabled();
     ret[KEY_TORRENT_TIME_ACTIVE] = torrent.activeTime();
