@@ -46,3 +46,19 @@ void qAsConst(const T &&) = delete;
 // returns a const object copy
 template <typename T>
 constexpr typename std::add_const<T>::type copyAsConst(T &&t) noexcept { return std::move(t); }
+
+#ifndef QL1S
+#define QL1S(x) QLatin1String(x)
+#endif
+
+#ifndef QL1C
+#define QL1C(x) QLatin1Char(x)
+#endif
+
+#ifndef QSL
+#define QSL(x) QStringLiteral(x)
+#endif
+
+#ifndef QBAL
+#define QBAL(x) QByteArrayLiteral(x)
+#endif
