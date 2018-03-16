@@ -210,7 +210,7 @@ class MyClass
 ### 8. Header inclusion order. ###
 The headers should be placed in the following order:
  1. Module header (in .cpp)
- 2. System/Qt/Boost etc. headers (splitted in subcategories if you have many).
+ 2. System/Qt/Boost etc. headers (split in subcategories if you have many).
  3. Application headers, starting from *Base* headers.
 
 The headers should be ordered alphabetically within each group (subgroup).<br/>

@@ -239,7 +239,7 @@ class WinUnicodeOutput(WinUnicodeOutputBase):
   """Output adaptor to a file output on Windows.
 
   If the standard FileWrite function is used, it will be encoded in the current
-  code page. WriteConsoleW() permits writting any character.
+  code page. WriteConsoleW() permits writing any character.
   """
   def __init__(self, stream, fileno, encoding):
     super(WinUnicodeOutput, self).__init__(
@@ -356,7 +356,7 @@ def fix_win_console(encoding):
 def fix_encoding():
   """Fixes various encoding problems on all platforms.
 
-  Should be called at the very begining of the process.
+  Should be called at the very beginning of the process.
   """
   ret = True
   if sys.platform == 'win32':

@@ -26,7 +26,7 @@
     Script      : Dynamic Table
     Version     : 0.5
     Authors     : Ishan Arora & Christophe Dumez
-    Desc        : Programable sortable table
+    Desc        : Programmable sortable table
     Licence     : Open Source MIT Licence
 
  **************************************************************/

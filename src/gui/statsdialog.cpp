@@ -63,7 +63,7 @@ void StatsDialog::update()
     const BitTorrent::SessionStatus &ss = BitTorrent::Session::instance()->status();
     const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
 
-    // Alltime DL/UL
+    // All-time DL/UL
     quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
     quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
     m_ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));

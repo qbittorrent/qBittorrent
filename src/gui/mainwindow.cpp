@@ -1516,7 +1516,7 @@ void MainWindow::updateGUI()
 {
     const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
 
-    // update global informations
+    // update global information
 #ifndef Q_OS_MAC
     if (m_systrayIcon) {
 #ifdef Q_OS_UNIX

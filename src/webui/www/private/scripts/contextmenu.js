@@ -62,7 +62,7 @@ var ContextMenu = new Class({
         if (this.menu.hasClass('scrollableMenu'))
             this.menu.setStyle('max-height', scrollableMenuMaxHeight);
 
-        // draw the menu off-screen to know the menu dimentions
+        // draw the menu off-screen to know the menu dimensions
         this.menu.setStyles({
             left: '-999em',
             top: '-999em'

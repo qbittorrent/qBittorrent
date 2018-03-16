@@ -223,7 +223,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
         const QByteArray delimiter = Utils::String::unquote(contentType.midRef(idx + boundaryFieldName.size())).toLatin1();
         if (delimiter.isEmpty()) {
-            qWarning() << Q_FUNC_INFO << "boundary delimiter field emtpy!";
+            qWarning() << Q_FUNC_INFO << "boundary delimiter field empty!";
             return false;
         }
 

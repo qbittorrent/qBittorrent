@@ -291,7 +291,7 @@ const QString straceWin::getBacktrace()
                 demangle(funcName);
 #endif
 
-                // now ihsf.InstructionOffset points to the instruction that follows CALL instuction
+                // now ihsf.InstructionOffset points to the instruction that follows CALL instruction
                 // decrease the query address by one byte to point somewhere in the CALL instruction byte sequence
                 sourceFile = getSourcePathAndLineNumber(hProcess, ihsf.InstructionOffset - 1);
             }

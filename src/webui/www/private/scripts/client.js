@@ -344,7 +344,7 @@ window.addEvent('load', function () {
                         response['torrents_removed'].each(function (hash) {
                             torrentsTable.removeRow(hash);
                             removeTorrentFromCategoryList(hash);
-                            update_categories = true; // Allways to update All category
+                            update_categories = true; // Always to update All category
                         });
                     torrentsTable.updateTable(full_update);
                     torrentsTable.altRow();
