@@ -104,7 +104,7 @@ void FileSystemWatcher::addPath(const QString &path)
 #endif
 
     // Normal mode
-    qDebug("FS Watching is watching %s in normal mode", qUtf8Printable(path));
+    qDebug("FS Watcher is watching %s in normal mode", qUtf8Printable(path));
     QFileSystemWatcher::addPath(path);
     scanLocalFolder(path);
 }
