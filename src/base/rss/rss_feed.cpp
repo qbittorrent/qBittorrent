@@ -197,12 +197,13 @@ void Feed::handleDownloadFailed(const QString &url, const QString &error)
 
 void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 {
-    if (!result.error.isEmpty()) {
-        m_hasError = true;
-        LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url, result.error)
-               , Log::WARNING);
-    }
-    else {
+    m_hasError = !result.error.isEmpty();
+
+    // For some reason, the RSS feed may contain malformed XML data and it may not be
+    // successfully parsed by the XML parser. We are still trying to load as many articles
+    // as possible until we encounter corrupted data. So we can have some articles here
+    // even in case of parsing error.
+    if (!m_hasError || !result.articles.isEmpty()) {
         if (title() != result.title) {
             m_title = result.title;
             emit titleChanged(this);
@@ -211,7 +212,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
         m_lastBuildDate = result.lastBuildDate;
 
         int newArticlesCount = 0;
-        foreach (const QVariantHash &varHash, result.articles) {
+        for (const QVariantHash &varHash : result.articles) {
             try {
                 auto article = new Article(this, varHash);
                 if (addArticle(article))
@@ -223,11 +224,15 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
         }
 
         m_dirty = (newArticlesCount > 0);
-
         store();
-        m_hasError = false;
-        LogMsg(tr("RSS feed at '%1' successfully updated. Added %2 new articles.")
-               .arg(m_url).arg(newArticlesCount));
+
+        LogMsg(tr("RSS feed at '%1' updated. Added %2 new articles.")
+               .arg(m_url, QString::number(newArticlesCount)));
+    }
+
+    if (m_hasError) {
+        LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url, result.error)
+               , Log::WARNING);
     }
 
     m_isLoading = false;
