@@ -53,14 +53,13 @@ FileSystemWatcher::FileSystemWatcher(QObject *parent)
     : QFileSystemWatcher(parent)
 {
     connect(this, &QFileSystemWatcher::directoryChanged, this, &FileSystemWatcher::scanLocalFolder);
-}
 
-FileSystemWatcher::~FileSystemWatcher()
-{
+    m_partialTorrentTimer.setSingleShot(true);
+    connect(&m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
+
 #ifndef Q_OS_WIN
-    delete m_watchTimer;
+    connect(&m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
 #endif
-    delete m_partialTorrentTimer;
 }
 
 QStringList FileSystemWatcher::directories() const
@@ -87,12 +86,8 @@ void FileSystemWatcher::addPath(const QString &path)
         qDebug("Network folder detected: %s", qUtf8Printable(path));
         qDebug("Using file polling mode instead of inotify...");
         m_watchedFolders << dir;
-        // Set up the watch timer
-        if (!m_watchTimer) {
-            m_watchTimer = new QTimer(this);
-            connect(m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
-            m_watchTimer->start(WATCH_INTERVAL);
-        }
+
+        m_watchTimer.start(WATCH_INTERVAL);
         return;
     }
 #endif
@@ -108,7 +103,7 @@ void FileSystemWatcher::removePath(const QString &path)
 #ifndef Q_OS_WIN
     if (m_watchedFolders.removeOne(path)) {
         if (m_watchedFolders.isEmpty())
-            delete m_watchTimer;
+            m_watchTimer.stop();
         return;
     }
 #endif
@@ -155,13 +150,12 @@ void FileSystemWatcher::processPartialTorrents()
 
     // Stop the partial timer if necessary
     if (m_partialTorrents.empty()) {
-        m_partialTorrentTimer->stop();
-        m_partialTorrentTimer->deleteLater();
+        m_partialTorrentTimer.stop();
         qDebug("No longer any partial torrent.");
     }
     else {
         qDebug("Still %d partial torrents after delayed processing.", m_partialTorrents.count());
-        m_partialTorrentTimer->start(WATCH_INTERVAL);
+        m_partialTorrentTimer.start(WATCH_INTERVAL);
     }
 
     // Notify of new torrents
@@ -186,10 +180,6 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
     if (!torrents.empty())
         emit torrentsAdded(torrents);
 
-    if (!m_partialTorrents.empty() && !m_partialTorrentTimer) {
-        m_partialTorrentTimer = new QTimer(this);
-        connect(m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
-        m_partialTorrentTimer->setSingleShot(true);
-        m_partialTorrentTimer->start(WATCH_INTERVAL);
-    }
+    if (!m_partialTorrents.empty() && !m_partialTorrentTimer.isActive())
+        m_partialTorrentTimer.start(WATCH_INTERVAL);
 }

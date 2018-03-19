@@ -32,7 +32,6 @@
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QHash>
-#include <QPointer>
 #include <QStringList>
 #include <QTimer>
 
@@ -46,7 +45,6 @@ class FileSystemWatcher : public QFileSystemWatcher
 
 public:
     explicit FileSystemWatcher(QObject *parent = nullptr);
-    ~FileSystemWatcher();
 
     QStringList directories() const;
     void addPath(const QString &path);
@@ -65,14 +63,14 @@ protected slots:
 private:
     void processTorrentsInDir(const QDir &dir);
 
+    // Partial torrents
+    QHash<QString, int> m_partialTorrents;
+    QTimer m_partialTorrentTimer;
 
 #ifndef Q_OS_WIN
     QList<QDir> m_watchedFolders;
-    QPointer<QTimer> m_watchTimer;
+    QTimer m_watchTimer;
 #endif
-    // Partial torrents
-    QHash<QString, int> m_partialTorrents;
-    QPointer<QTimer> m_partialTorrentTimer;
 };
 
 #endif // FILESYSTEMWATCHER_H
