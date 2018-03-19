@@ -152,20 +152,22 @@ namespace
         syncData.clear();
 
         QVariantList removedItems;
-        foreach (QString key, data.keys()) {
+        for (auto i = data.cbegin(); i != data.cend(); ++i) {
+            const QString &key = i.key();
+            const QVariant &value = i.value();
             removedItems.clear();
 
-            switch (static_cast<QMetaType::Type>(data[key].type())) {
+            switch (static_cast<QMetaType::Type>(value.type())) {
             case QMetaType::QVariantMap: {
                     QVariantMap map;
-                    processMap(prevData[key].toMap(), data[key].toMap(), map);
+                    processMap(prevData[key].toMap(), value.toMap(), map);
                     if (!map.isEmpty())
                         syncData[key] = map;
                 }
                 break;
             case QMetaType::QVariantHash: {
                     QVariantMap map;
-                    processHash(prevData[key].toHash(), data[key].toHash(), map, removedItems);
+                    processHash(prevData[key].toHash(), value.toHash(), map, removedItems);
                     if (!map.isEmpty())
                         syncData[key] = map;
                     if (!removedItems.isEmpty())
@@ -174,7 +176,7 @@ namespace
                 break;
             case QMetaType::QVariantList: {
                     QVariantList list;
-                    processList(prevData[key].toList(), data[key].toList(), list, removedItems);
+                    processList(prevData[key].toList(), value.toList(), list, removedItems);
                     if (!list.isEmpty())
                         syncData[key] = list;
                     if (!removedItems.isEmpty())
@@ -190,13 +192,13 @@ namespace
             case QMetaType::ULongLong:
             case QMetaType::UInt:
             case QMetaType::QDateTime:
-                if (prevData[key] != data[key])
-                    syncData[key] = data[key];
+                if (prevData[key] != value)
+                    syncData[key] = value;
                 break;
             default:
                 Q_ASSERT_X(false, "processMap"
                            , QString("Unexpected type: %1")
-                           .arg(QMetaType::typeName(static_cast<QMetaType::Type>(data[key].type())))
+                           .arg(QMetaType::typeName(static_cast<QMetaType::Type>(value.type())))
                            .toUtf8().constData());
             }
         }
@@ -213,25 +215,25 @@ namespace
 
         if (prevData.isEmpty()) {
             // If list was empty before, then difference is a whole new list.
-            foreach (QString key, data.keys())
-                syncData[key] = data[key];
+            for (auto i = data.cbegin(); i != data.cend(); ++i)
+                syncData[i.key()] = i.value();
         }
         else {
-            foreach (QString key, data.keys()) {
-                switch (data[key].type()) {
+            for (auto i = data.cbegin(); i != data.cend(); ++i) {
+                switch (i.value().type()) {
                 case QVariant::Map:
-                    if (!prevData.contains(key)) {
+                    if (!prevData.contains(i.key())) {
                         // new list item found - append it to syncData
-                        syncData[key] = data[key];
+                        syncData[i.key()] = i.value();
                     }
                     else {
                         QVariantMap map;
-                        processMap(prevData[key].toMap(), data[key].toMap(), map);
+                        processMap(prevData[i.key()].toMap(), i.value().toMap(), map);
                         // existing list item found - remove it from prevData
-                        prevData.remove(key);
+                        prevData.remove(i.key());
                         if (!map.isEmpty())
                             // changed list item found - append its changes to syncData
-                            syncData[key] = map;
+                            syncData[i.key()] = map;
                     }
                     break;
                 default:
@@ -242,8 +244,8 @@ namespace
             if (!prevData.isEmpty()) {
                 // prevData contains only items that are missing now -
                 // put them in removedItems
-                foreach (QString s, prevData.keys())
-                    removedItems << s;
+                for (auto i = prevData.cbegin(); i != prevData.cend(); ++i)
+                    removedItems << i.key();
             }
         }
     }
@@ -395,8 +397,8 @@ void SyncController::maindataAction()
     data["torrents"] = torrents;
 
     QVariantList categories;
-    foreach (const QString &category, session->categories().keys())
-        categories << category;
+    for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i)
+        categories << i.key();
 
     data["categories"] = categories;
 

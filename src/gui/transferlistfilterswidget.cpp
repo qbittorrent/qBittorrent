@@ -333,7 +333,8 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     m_downloadTrackerFavicon = value;
 
     if (m_downloadTrackerFavicon) {
-        foreach (const QString &tracker, m_trackers.keys()) {
+        for (auto i = m_trackers.cbegin(); i != m_trackers.cend(); ++i) {
+            const QString &tracker = i.key();
             if (!tracker.isEmpty())
                 downloadFavicon(QString("http://%1/favicon.ico").arg(tracker));
         }

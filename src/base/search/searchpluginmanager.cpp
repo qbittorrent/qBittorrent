@@ -100,7 +100,7 @@ QStringList SearchPluginManager::allPlugins() const
 QStringList SearchPluginManager::enabledPlugins() const
 {
     QStringList plugins;
-    foreach (const PluginInfo *plugin, m_plugins.values()) {
+    for (const PluginInfo *plugin : qAsConst(m_plugins)) {
         if (plugin->enabled)
             plugins << plugin->name;
     }
@@ -111,7 +111,7 @@ QStringList SearchPluginManager::enabledPlugins() const
 QStringList SearchPluginManager::supportedCategories() const
 {
     QStringList result;
-    foreach (const PluginInfo *plugin, m_plugins.values()) {
+    for (const PluginInfo *plugin : qAsConst(m_plugins)) {
         if (plugin->enabled) {
             foreach (QString cat, plugin->supportedCategories) {
                 if (!result.contains(cat))

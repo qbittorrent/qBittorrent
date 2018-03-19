@@ -55,6 +55,7 @@ utils/net.h
 utils/random.h
 utils/string.h
 utils/version.h
+algorithm.h
 asyncfilestorage.h
 exceptions.h
 filesystemwatcher.h

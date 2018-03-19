@@ -232,8 +232,10 @@ void CategoryFilterWidget::removeCategory()
 void CategoryFilterWidget::removeUnusedCategories()
 {
     auto session = BitTorrent::Session::instance();
-    foreach (const QString &category, session->categories().keys())
+    for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i) {
+        const QString &category = i.key();
         if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)
             session->removeCategory(category);
+    }
     updateGeometry();
 }

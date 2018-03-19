@@ -186,9 +186,10 @@ bool upgrade(bool ask = true)
         }
     }
 
-    foreach (const QString &hash, oldResumeData.keys()) {
-        QVariantHash oldTorrent = oldResumeData[hash].toHash();
+    for (auto i = oldResumeData.cbegin(); i != oldResumeData.cend(); ++i) {
+        const QVariantHash oldTorrent = i.value().toHash();
         if (oldTorrent.value("is_magnet", false).toBool()) {
+            const QString &hash = i.key();
             libtorrent::entry resumeData;
             resumeData["qBt-magnetUri"] = oldTorrent.value("magnet_uri").toString().toStdString();
             resumeData["qBt-paused"] = false;

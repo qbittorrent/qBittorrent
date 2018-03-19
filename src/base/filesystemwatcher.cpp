@@ -12,6 +12,7 @@
 #endif
 #endif
 
+#include "algorithm.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/preferences.h"
@@ -145,22 +146,24 @@ void FileSystemWatcher::processPartialTorrents()
     QStringList noLongerPartial;
 
     // Check which torrents are still partial
-    foreach (const QString &torrentPath, m_partialTorrents.keys()) {
-        if (!QFile::exists(torrentPath)) {
-            m_partialTorrents.remove(torrentPath);
-        }
-        else if (BitTorrent::TorrentInfo::loadFromFile(torrentPath).isValid()) {
+    Dict::removeIf(m_partialTorrents, [&noLongerPartial](const QString &torrentPath, int &value)
+    {
+        if (!QFile::exists(torrentPath))
+            return true;
+
+        if (BitTorrent::TorrentInfo::loadFromFile(torrentPath).isValid()) {
             noLongerPartial << torrentPath;
-            m_partialTorrents.remove(torrentPath);
+            return true;
         }
-        else if (m_partialTorrents[torrentPath] >= MAX_PARTIAL_RETRIES) {
-            m_partialTorrents.remove(torrentPath);
+
+        if (value >= MAX_PARTIAL_RETRIES) {
             QFile::rename(torrentPath, torrentPath + ".invalid");
+            return true;
         }
-        else {
-            ++m_partialTorrents[torrentPath];
-        }
-    }
+
+        ++value;
+        return false;
+    });
 
     // Stop the partial timer if necessary
     if (m_partialTorrents.empty()) {
