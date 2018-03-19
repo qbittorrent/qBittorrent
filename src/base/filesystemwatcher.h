@@ -64,9 +64,6 @@ protected slots:
 
 private:
     void processTorrentsInDir(const QDir &dir);
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-    static bool isNetworkFileSystem(const QString &path);
-#endif
 
 
 #ifndef Q_OS_WIN

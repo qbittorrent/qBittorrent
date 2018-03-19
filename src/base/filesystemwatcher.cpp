@@ -28,29 +28,23 @@
 
 #include "filesystemwatcher.h"
 
-#include <QtGlobal>
-
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>
-#elif !defined Q_OS_WIN && !defined Q_OS_HAIKU
-#include <sys/vfs.h>
 #endif
 
-#include "algorithm.h"
+#include <QtGlobal>
+
+#include "base/algorithm.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 
 namespace
 {
-    // usually defined in /usr/include/linux/magic.h
-    const unsigned long CIFS_MAGIC_NUMBER = 0xFF534D42;
-    const unsigned long NFS_SUPER_MAGIC = 0x6969;
-    const unsigned long SMB_SUPER_MAGIC = 0x517B;
-
     const int WATCH_INTERVAL = 10000; // 10 sec
     const int MAX_PARTIAL_RETRIES = 5;
 }
@@ -88,7 +82,7 @@ void FileSystemWatcher::addPath(const QString &path)
     if (!dir.exists()) return;
 
     // Check if the path points to a network file system or not
-    if (isNetworkFileSystem(path)) {
+    if (Utils::Fs::isNetworkFileSystem(path)) {
         // Network mode
         qDebug("Network folder detected: %s", qUtf8Printable(path));
         qDebug("Using file polling mode instead of inotify...");
@@ -199,28 +193,3 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
         m_partialTorrentTimer->start(WATCH_INTERVAL);
     }
 }
-
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-bool FileSystemWatcher::isNetworkFileSystem(const QString &path)
-{
-    QString file = path;
-    if (!file.endsWith('/'))
-        file += '/';
-    file += '.';
-
-    struct statfs buf {};
-    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
-        return false;
-
-#ifdef Q_OS_MAC
-        // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
-    return ((strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
-    return ((buf.f_type == CIFS_MAGIC_NUMBER)
-        || (buf.f_type == NFS_SUPER_MAGIC)
-        || (buf.f_type == SMB_SUPER_MAGIC));
-#endif
-}
-#endif
