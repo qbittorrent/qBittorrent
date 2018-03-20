@@ -6,3 +6,32 @@ body {
     line-height: 18px;
     color: #555;
 }
+
+.col {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.row {
+    margin-bottom: 5px;
+}
+
+#main {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 5em;
+}
+
+#formplace {
+    text-align: left;
+    padding: 10px;
+}
+
+#error_msg {
+    color: #f00;
+}
+
+#logo img {
+  height: 11em;
+}
