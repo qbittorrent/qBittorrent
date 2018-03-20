@@ -10,7 +10,7 @@
       window.onload = function() {
         $('username').focus();
         $('username').select();
-      }
+      };
 
       window.addEvent('domready', function() {
         $('loginform').addEvent('submit', function(e) {
@@ -28,7 +28,7 @@
             $('password').set('value', '');
           },
           onFailure: function(xhr) {
-            if (xhr.responseText != "") {
+            if (xhr.responseText !== "") {
               $('error_msg').set('html', xhr.responseText);
             } else {
               $('error_msg').set('html', 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]');
