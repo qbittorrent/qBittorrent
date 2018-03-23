@@ -1,5 +1,7 @@
-﻿All new code must follow the following coding guidelines.  
-If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes instead.  
+﻿All new code **must** follow the following coding guidelines.  
+If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes.  
+For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
+
 **Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style.  
 **Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.  
 **Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.  
