@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="${LANG}">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
     <title>QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-    <script type="text/javascript" src="scripts/mootools-1.2-more.js" charset="utf-8"></script>
-    <script type="text/javascript" src="scripts/mocha-yc.js" charset="utf-8"></script>
-    <script type="text/javascript" src="scripts/parametrics.js" charset="utf-8"></script>
+    <script src="scripts/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/mootools-1.2-more.js"></script>
+    <script src="scripts/mocha-yc.js"></script>
+    <script src="scripts/parametrics.js"></script>
 </head>
 <body>
 <div style="width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
@@ -19,7 +19,7 @@
     </div>
     <div class="clear"></div>
 </div>
-<script type="text/javascript">
+<script>
     var hashes = new URI().getData('hashes').split('|');
     setUpLimit = function() {
         var limit = $("uplimitUpdatevalue").value.toInt() * 1024;
@@ -54,7 +54,7 @@
 <input type="button" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setUpLimit()"/>
 </div>
 
-<script type="text/javascript">
+<script>
     MochaUI.addUpLimitSlider(hashes);
 </script>
 
