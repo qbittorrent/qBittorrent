@@ -4,7 +4,8 @@ If you make changes in a file that still uses another coding style, make sure th
 **Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.  
 **Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.  
 
-### 1. Curly braces ###
+### 1. New lines & curly braces ###
+
 #### a. Function blocks, class/struct definitions, namespaces ####
 ```c++
 int myFunction(int a)
@@ -89,18 +90,8 @@ default:
 }
 ```
 
-#### d. Brace enclosed initializers ####
-Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
-But you must insert a space between the variable name and initializer.
-```c++
-Class obj {}; // empty
-Class obj {expr};
-Class obj {expr1, /*...,*/ exprN};
-QVariantMap map {{"key1", 5}, {"key2", 10}};
-```
-
-### 2. If blocks ###
-#### a. Multiple tests ####
+#### d. If-else statements ####
+The `else if`/`else` must be on their own lines:
 ```c++
 if (condition) {
     // code
@@ -112,40 +103,71 @@ else {
     // code
 }
 ```
-The `else if`/`else` must be on their own lines.
 
-#### b. Single statement if blocks ####
-**Most** single statement if blocks should look like this:
+#### e. Single statement if blocks ####
+Most single statement if blocks should look like this:
 ```c++
 if (condition)
     a = a + b;
 ```
 
-One acceptable exception to this **can be** `return`, `break` or `continue` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
+One acceptable exception to this can be `return`, `break` or `continue` statements,
+provided that the test condition isn't very long and its body statement occupies only one line.
+However you can still choose to use the first rule.
 ```c++
-a = myFunction();
-b = a * 1500;
+if (a > 0) return;
 
-if (b > 0) return;
-c = 100 / b;
+while (p) {
+    // ...
+    if (!b) continue;
+}
 ```
 
-#### c. Using curly braces for single statement if blocks ####
+#### f. Acceptable conditions to omit braces ####
+When the conditional statement in `if`/`else` has only one line and its body occupy only one line,
+this also applies to loops statements.  
+Notice that for a series of `if - else` branches, if one branch needs braces then all branches must add braces.
+```c++
+if (a < b)  // conditional statement
+    do(a);  // body
 
-However, there are cases where curly braces for single statement if blocks **should** be used.
-* If some branch needs braces then all others should use them. Unless you have multiple `else if` in a row and the one needing the braces is only for a very small sub-block of code.
-* Another exception would be when we have nested if blocks or generally multiple levels of code that affect code readability.
+if (a < b)
+    do(a);
+else if (a > b)
+    do(b);
+else
+    do(c);
 
-Generally it will depend on the particular piece of code and would be determined on how readable that piece of code is. **If in doubt** always use braces if one of the above exceptions applies.
+if (a < b) {
+    do(a);
+}
+else if (a > b) {  // curly braces required here, then all branches should also add them
+    do(b);
+    do(d);
+}
+else {
+    do(c);
+}
+```
 
-### 3. Indentation ###
+#### g. Brace enclosed initializers ####
+Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
+But you must insert a space between the variable name and initializer.
+```c++
+Class obj {}; // empty
+Class obj {expr};
+Class obj {expr1, /*...,*/ exprN};
+QVariantMap map {{"key1", 5}, {"key2", 10}};
+```
+
+### 2. Indentation ###
 4 spaces.
 
-### 4. File encoding and line endings. ###
+### 3. File encoding and line endings. ###
 
 UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
-### 5. Initialization lists. ###
+### 4. Initialization lists. ###
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
@@ -158,7 +180,7 @@ myClass::myClass(int a, int b, int c, int d)
 }
 ```
 
-### 6. Enums. ###
+### 5. Enums. ###
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
 ```c++
 enum Days
@@ -173,7 +195,7 @@ enum Days
 };
 ```
 
-### 7. Names. ###
+### 6. Names. ###
 All names should be camelCased.
 
 #### a. Type names and namespaces ####
@@ -207,7 +229,7 @@ class MyClass
 }
 ```
 
-### 8. Header inclusion order. ###
+### 7. Header inclusion order. ###
 The headers should be placed in the following order:
  1. Module header (in .cpp)
  2. System/Qt/Boost etc. headers (split in subcategories if you have many).
@@ -240,7 +262,7 @@ Example:
 
 ```
 
-### 9. Include guard. ###
+### 8. Include guard. ###
 `#pragma once` should be used instead of "include guard" in new code:
 ```c++
 // examplewidget.h
@@ -256,7 +278,7 @@ class ExampleWidget : public QWidget
 
 ```
 
-### 10. Misc. ###
+### 9. Misc. ###
 
 * Line breaks for long lines with operation:
 
@@ -343,4 +365,5 @@ i++, j--;  // No
 8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
 
 ### 11. Not covered above ###
-If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
+If something isn't covered above, just follow the same style the file you are editing has.  
+*This guide is not exhaustive and the style for a particular piece of code not specified here will be determined by project members on code review.*
