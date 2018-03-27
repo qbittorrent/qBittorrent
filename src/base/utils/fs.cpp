@@ -31,8 +31,6 @@
 #include "fs.h"
 
 #include <cstring>
-#include <sys/stat.h>
-#include <sys/types.h>
 
 #include <QDebug>
 #include <QDir>
@@ -41,6 +39,9 @@
 #include <QDirIterator>
 #include <QCoreApplication>
 #include <QStorageInfo>
+
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
@@ -301,3 +302,33 @@ bool Utils::Fs::isRegularFile(const QString &path)
 
     return (st.st_mode & S_IFMT) == S_IFREG;
 }
+
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+bool Utils::Fs::isNetworkFileSystem(const QString &path)
+{
+    QString file = path;
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
+
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
+#ifdef Q_OS_MAC
+    // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
+    return ((strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
+#else
+    // usually defined in /usr/include/linux/magic.h
+    const unsigned long CIFS_MAGIC_NUMBER = 0xFF534D42;
+    const unsigned long NFS_SUPER_MAGIC = 0x6969;
+    const unsigned long SMB_SUPER_MAGIC = 0x517B;
+
+    return ((buf.f_type == CIFS_MAGIC_NUMBER)
+        || (buf.f_type == NFS_SUPER_MAGIC)
+        || (buf.f_type == SMB_SUPER_MAGIC));
+#endif
+}
+#endif

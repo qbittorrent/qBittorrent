@@ -63,6 +63,10 @@ namespace Utils
         void removeDirRecursive(const QString &path);
 
         QString tempPath();
+
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+        bool isNetworkFileSystem(const QString &path);
+#endif
     }
 }
 
