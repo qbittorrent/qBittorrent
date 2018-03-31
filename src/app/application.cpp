@@ -31,6 +31,10 @@
 
 #include <algorithm>
 
+#ifdef Q_OS_WIN
+#include <memory>
+#endif
+
 #include <QAtomicInt>
 #include <QDebug>
 #include <QFileInfo>
@@ -76,6 +80,10 @@
 #else // DISABLE_GUI
 #include <cstdio>
 #endif // DISABLE_GUI
+
+#ifdef Q_OS_WIN
+#include <Shellapi.h>
+#endif
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
@@ -275,7 +283,7 @@ void Application::processMessage(const QString &message)
 
 void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) const
 {
-    QString program = Preferences::instance()->getAutoRunProgram();
+    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
     program.replace("%N", torrent->name());
     program.replace("%L", torrent->category());
 
@@ -297,7 +305,22 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
 #if defined(Q_OS_UNIX)
     QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
 #else
-    QProcess::startDetached(program);
+    std::unique_ptr<wchar_t[]> programWchar(new wchar_t[program.length() + 1] {});
+    program.toWCharArray(programWchar.get());
+
+    // Need to split arguments manually because QProcess::startDetached(QString)
+    // will strip off empty parameters.
+    // E.g. `python.exe "1" "" "3"` will become `python.exe "1" "3"`
+    int argCount = 0;
+    LPWSTR *args = ::CommandLineToArgvW(programWchar.get(), &argCount);
+
+    QStringList argList;
+    for (int i = 1; i < argCount; ++i)
+        argList += QString::fromWCharArray(args[i]);
+
+    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
+
+    ::LocalFree(args);
 #endif
 }
 
