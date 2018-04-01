@@ -26,7 +26,6 @@
         <file>www/private/scripts/lib/clipboard.min.js</file>
         <file>www/private/scripts/lib/excanvas-compressed.js</file>
         <file>www/private/scripts/lib/mocha-yc.js</file>
-        <file>www/private/scripts/lib/mocha.js</file>
         <file>www/private/scripts/lib/mootools-1.2-core-yc.js</file>
         <file>www/private/scripts/lib/mootools-1.2-more.js</file>
         <file>www/private/scripts/lib/parametrics.js</file>
