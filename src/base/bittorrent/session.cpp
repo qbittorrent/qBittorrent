@@ -1792,6 +1792,14 @@ void Session::processShareLimits()
                             logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
+                        else if (m_maxRatioAction == Delete) {
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Deleted.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(),true);
+                        }
+                        else if (m_maxRatioAction == Force) {
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Force Delete.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(),true, true);
+                        }
                         else if (!torrent->isPaused()) {
                             torrent->pause();
                             logger->addMessage(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
@@ -1816,6 +1824,14 @@ void Session::processShareLimits()
                         if (m_maxRatioAction == Remove) {
                             logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
+                        }
+                        else if (m_maxRatioAction == Delete) {
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Deleted.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(),true);
+                        }
+                        else if (m_maxRatioAction == Force) {
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Force Delete.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(),true, true);
                         }
                         else if (!torrent->isPaused()) {
                             torrent->pause();
@@ -1890,7 +1906,7 @@ void Session::banIP(const QString &ip)
 
 // Delete a torrent from the session, given its hash
 // deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
-bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
+bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles, bool deleteForce)
 {
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
@@ -1901,15 +1917,25 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
     // Remove it from session
     if (deleteLocalFiles) {
         QString rootPath = torrent->rootPath(true);
-        if (!rootPath.isEmpty())
+        QString forcePath;
+        if (!rootPath.isEmpty()) {
             // torrent with root folder
             m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteLocalFiles};
-        else if (torrent->useTempPath())
+            forcePath = rootPath;
+        }
+        else if (torrent->useTempPath()) {
             // torrent without root folder still has it in its temporary save path
             m_removingTorrents[torrent->hash()] = {torrent->name(), torrent->savePath(true), deleteLocalFiles};
-        else
+            forcePath = torrent->savePath(true);
+        }
+        else {
             m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};
+        }
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_files);
+        if (deleteForce && !forcePath.isEmpty()) {
+            qDebug("Force removing path: %s", qUtf8Printable(forcePath));
+            Utils::Fs::removeDirRecursive(forcePath);
+        }
     }
     else {
         m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};

@@ -121,7 +121,9 @@ class ResumeDataSavingManager;
 enum MaxRatioAction
 {
     Pause,
-    Remove
+    Remove,
+    Delete,
+    Force
 };
 
 enum TorrentExportFolder
@@ -465,7 +467,7 @@ namespace BitTorrent
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
-        bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
+        bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false, bool deleteForce = false);
         bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 
