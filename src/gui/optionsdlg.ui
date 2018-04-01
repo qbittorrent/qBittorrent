@@ -2622,12 +2622,22 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>Pause them</string>
+                   <string>Pause Torrents</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Remove them</string>
+                   <string>Remove Torrents</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Remove Torrents + Files</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Remove Torrents + Files + Force</string>
                   </property>
                  </item>
                 </widget>
