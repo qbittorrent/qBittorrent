@@ -84,6 +84,27 @@ namespace
         QT_TRANSLATE_NOOP3("misc", "PiB", "pebibytes (1024 tebibytes)"),
         QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
     };
+
+    // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
+    // use Binary prefix standards from IEC 60027-2
+    // see http://en.wikipedia.org/wiki/Kilobyte
+    // value must be given in bytes
+    // to send numbers instead of strings with suffixes
+    bool splitToFriendlyUnit(const qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)
+    {
+        if (sizeInBytes < 0) return false;
+
+        int i = 0;
+        qreal rawVal = static_cast<qreal>(sizeInBytes);
+
+        while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
+            rawVal /= 1024.;
+            ++i;
+        }
+        val = rawVal;
+        unit = static_cast<Utils::Misc::SizeUnit>(i);
+        return true;
+    }
 }
 
 void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
@@ -237,52 +258,30 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
 }
 #endif
 
-QString Utils::Misc::unitString(Utils::Misc::SizeUnit unit)
+QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
 {
-    return QCoreApplication::translate("misc",
-                                       units[static_cast<int>(unit)].source, units[static_cast<int>(unit)].comment);
-}
-
-// return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
-// use Binary prefix standards from IEC 60027-2
-// see http://en.wikipedia.org/wiki/Kilobyte
-// value must be given in bytes
-// to send numbers instead of strings with suffixes
-bool Utils::Misc::friendlyUnit(qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)
-{
-    if (sizeInBytes < 0) return false;
-
-    int i = 0;
-    qreal rawVal = static_cast<qreal>(sizeInBytes);
-
-    while ((rawVal >= 1024.) && (i <= static_cast<int>(SizeUnit::ExbiByte))) {
-        rawVal /= 1024.;
-        ++i;
-    }
-    val = rawVal;
-    unit = static_cast<SizeUnit>(i);
-    return true;
+    const auto &unitString = units[static_cast<int>(unit)];
+    QString ret = QCoreApplication::translate("misc", unitString.source, unitString.comment);
+    if (isSpeed)
+        ret += QCoreApplication::translate("misc", "/s", "per second");
+    return ret;
 }
 
 QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
 {
     SizeUnit unit;
     qreal friendlyVal;
-    if (!friendlyUnit(bytesValue, friendlyVal, unit))
+    if (!splitToFriendlyUnit(bytesValue, friendlyVal, unit))
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
-    QString ret;
-    if (unit == SizeUnit::Byte)
-        ret = QString::number(bytesValue) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
-    else
-        ret = Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit)) + QString::fromUtf8(C_NON_BREAKING_SPACE) + unitString(unit);
-    if (isSpeed)
-        ret += QCoreApplication::translate("misc", "/s", "per second");
-    return ret;
+    return Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit))
+           + QString::fromUtf8(C_NON_BREAKING_SPACE)
+           + unitString(unit, isSpeed);
 }
 
 int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
+    if (unit == SizeUnit::Byte) return 0;
     if (unit <= SizeUnit::MebiByte) return 1;
     else if (unit == SizeUnit::GibiByte) return 2;
     else return 3;

@@ -315,6 +315,8 @@ void SearchJobWidget::updateFilter()
 void SearchJobWidget::fillFilterComboBoxes()
 {
     using Utils::Misc::SizeUnit;
+    using Utils::Misc::unitString;
+
     QStringList unitStrings;
     unitStrings.append(unitString(SizeUnit::Byte));
     unitStrings.append(unitString(SizeUnit::KibiByte));
