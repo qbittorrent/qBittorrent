@@ -29,7 +29,6 @@
 
 #include "searchwidget.h"
 
-#include <iostream>
 #ifdef Q_OS_WIN
 #include <cstdlib>
 #endif

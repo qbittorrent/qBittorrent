@@ -29,6 +29,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <cstdlib>
+
 #include <QDebug>
 #include <QScopedPointer>
 #include <QThread>
@@ -67,15 +69,11 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "stacktrace_win_dlg.h"
 #endif //STACKTRACE_WIN
 
-#include <cstdlib>
-#include <iostream>
-
 #include "application.h"
 #include "base/profile.h"
 #include "base/utils/misc.h"
 #include "base/preferences.h"
 #include "cmdoptions.h"
-
 #include "upgrade.h"
 
 // Signal handlers
@@ -169,7 +167,7 @@ int main(int argc, char *argv[])
 
         // Set environment variable
         if (!qputenv("QBITTORRENT", QBT_VERSION))
-            std::cerr << "Couldn't set environment variable...\n";
+            fprintf(stderr, "Couldn't set environment variable...\n");
 
 #ifndef DISABLE_GUI
         if (!userAgreesWithLegalNotice())
@@ -346,7 +344,7 @@ void setupDpi()
 
 void displayVersion()
 {
-    std::cout << qPrintable(qApp->applicationName()) << " " << QBT_VERSION << std::endl;
+    printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
 }
 
 void displayBadArgMessage(const QString& message)
@@ -359,9 +357,10 @@ void displayBadArgMessage(const QString& message)
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    std::cerr << qPrintable(QObject::tr("Bad command line: "));
-    std::cerr << qPrintable(message) << std::endl;
-    std::cerr << qPrintable(help) << std::endl;
+    const QString errMsg = QObject::tr("Bad command line: ") + '\n'
+        + message + '\n'
+        + help + '\n';
+    fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
 }
 
@@ -372,9 +371,12 @@ bool userAgreesWithLegalNotice()
         return true;
 
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Legal Notice")) << " ***" << std::endl;
-    std::cout << qPrintable(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
-    std::cout << qPrintable(QObject::tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
+    const QString eula = QString("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
+        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
+        + QObject::tr("No further notices will be issued.") + "\n\n"
+        + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
+    printf("%s", qUtf8Printable(eula));
+
     char ret = getchar(); // Read pressed key
     if (ret == 'y' || ret == 'Y') {
         // Save the answer
