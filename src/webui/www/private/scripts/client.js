@@ -639,7 +639,7 @@ function setupCopyEventHandler() {
     if (clipboardEvent)
         clipboardEvent.destroy();
 
-    clipboardEvent = new Clipboard('.copyToClipboard', {
+    clipboardEvent = new ClipboardJS('.copyToClipboard', {
         text: function(trigger) {
             var textToCopy;
 
