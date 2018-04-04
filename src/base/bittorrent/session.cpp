@@ -1789,16 +1789,16 @@ void Session::processShareLimits()
                     if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
                         Logger* const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
-                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed torrent.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
                         else if (m_maxRatioAction == Delete) {
-                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Deleted.").arg(torrent->name()));
-                            deleteTorrent(torrent->hash(),true);
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed torrent + folder.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), true);
                         }
-                        else if (m_maxRatioAction == Force) {
-                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Force Delete.").arg(torrent->name()));
-                            deleteTorrent(torrent->hash(),true, true);
+                        else if (m_maxRatioAction == ForceDelete) {
+                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed torrent + folder (force).").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), true, true);
                         }
                         else if (!torrent->isPaused()) {
                             torrent->pause();
@@ -1822,16 +1822,16 @@ void Session::processShareLimits()
                     if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit)) {
                         Logger* const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
-                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed torrent.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
                         else if (m_maxRatioAction == Delete) {
-                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Deleted.").arg(torrent->name()));
-                            deleteTorrent(torrent->hash(),true);
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed torrent + folder.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), true);
                         }
-                        else if (m_maxRatioAction == Force) {
-                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Force Delete.").arg(torrent->name()));
-                            deleteTorrent(torrent->hash(),true, true);
+                        else if (m_maxRatioAction == ForceDelete) {
+                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed torrent + folder (force).").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), true, true);
                         }
                         else if (!torrent->isPaused()) {
                             torrent->pause();

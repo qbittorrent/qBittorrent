@@ -2622,22 +2622,22 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>Pause Torrents</string>
+                   <string>Pause torrents</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Remove Torrents</string>
+                   <string>Remove torrents</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Remove Torrents + Files</string>
+                   <string>Remove torrents + folders</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Remove Torrents + Files + Force</string>
+                   <string>Remove torrents + folders (force)</string>
                   </property>
                  </item>
                 </widget>

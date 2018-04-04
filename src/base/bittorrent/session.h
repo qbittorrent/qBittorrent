@@ -123,7 +123,7 @@ enum MaxRatioAction
     Pause,
     Remove,
     Delete,
-    Force
+    ForceDelete
 };
 
 enum TorrentExportFolder
