@@ -43,7 +43,6 @@ Profile::Profile(Private::Profile *impl, Private::PathConverter *pathConverter)
     ensureDirectoryExists(SpecialFolder::Cache);
     ensureDirectoryExists(SpecialFolder::Config);
     ensureDirectoryExists(SpecialFolder::Data);
-    ensureDirectoryExists(SpecialFolder::Downloads);
 }
 
 // to generate correct call to ProfilePrivate::~ProfileImpl()
