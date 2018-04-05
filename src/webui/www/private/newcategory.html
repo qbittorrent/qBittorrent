@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="${LANG}">
+
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]</title>
@@ -10,7 +11,7 @@
         var newCategoryKeyboardEvents = new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function (event) {
+                'enter': function(event) {
                     $('newCategoryButton').click();
                     event.preventDefault();
                 }
@@ -38,13 +39,12 @@
                         data: {
                             category: categoryName
                         },
-                        onComplete: function () {
+                        onComplete: function() {
                             window.parent.closeWindows();
                         }
                     }).send();
                 }
-                else
-                {
+                else {
                     new Request({
                         url: 'api/v2/torrents/setCategory',
                         method: 'post',
@@ -52,7 +52,7 @@
                             hashes: hashesList,
                             category: categoryName
                         },
-                        onComplete: function () {
+                        onComplete: function() {
                             window.parent.closeWindows();
                         }
                     }).send();
@@ -61,13 +61,15 @@
         });
     </script>
 </head>
+
 <body>
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]:</p>
-        <input type="text" id="newCategory" value="" maxlength="100" style="width: 220px;"/>
+        <input type="text" id="newCategory" value="" maxlength="100" style="width: 220px;" />
         <div style="text-align: center; padding-top: 10px;">
-            <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="newCategoryButton"/>
+            <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="newCategoryButton" />
         </div>
     </div>
 </body>
+
 </html>

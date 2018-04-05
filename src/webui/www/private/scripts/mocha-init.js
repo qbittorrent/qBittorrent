@@ -406,7 +406,7 @@ initializeWindows = function() {
         }
     };
 
-    torrentNewCategoryFN = function () {
+    torrentNewCategoryFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
@@ -425,7 +425,7 @@ initializeWindows = function() {
         }
     };
 
-    torrentSetCategoryFN = function (categoryHash) {
+    torrentSetCategoryFN = function(categoryHash) {
         var categoryName = '';
         if (categoryHash != 0)
             categoryName = category_list[categoryHash].name;
@@ -442,7 +442,7 @@ initializeWindows = function() {
         }
     };
 
-    createCategoryFN = function () {
+    createCategoryFN = function() {
         new MochaUI.Window({
             id: 'newCategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
@@ -459,7 +459,7 @@ initializeWindows = function() {
         updateMainData();
     };
 
-    removeCategoryFN = function (categoryHash) {
+    removeCategoryFN = function(categoryHash) {
         var categoryName = category_list[categoryHash].name;
         new Request({
             url: 'api/v2/torrents/removeCategories',
@@ -471,7 +471,7 @@ initializeWindows = function() {
         setCategoryFilter(CATEGORIES_ALL);
     };
 
-    deleteUnusedCategoriesFN = function () {
+    deleteUnusedCategoriesFN = function() {
         var categories = [];
         for (var hash in category_list) {
             if (torrentsTable.getFilteredTorrentsNumber('all', hash) === 0)
@@ -487,7 +487,7 @@ initializeWindows = function() {
         setCategoryFilter(CATEGORIES_ALL);
     };
 
-    startTorrentsByCategoryFN = function (categoryHash) {
+    startTorrentsByCategoryFN = function(categoryHash) {
         var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
         if (hashes.length) {
             new Request({
@@ -501,7 +501,7 @@ initializeWindows = function() {
         }
     };
 
-    pauseTorrentsByCategoryFN = function (categoryHash) {
+    pauseTorrentsByCategoryFN = function(categoryHash) {
         var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
         if (hashes.length) {
             new Request({
@@ -515,7 +515,7 @@ initializeWindows = function() {
         }
     };
 
-    deleteTorrentsByCategoryFN = function (categoryHash) {
+    deleteTorrentsByCategoryFN = function(categoryHash) {
         var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
         if (hashes.length) {
             new MochaUI.Window({

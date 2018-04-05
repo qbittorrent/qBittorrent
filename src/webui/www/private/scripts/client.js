@@ -25,15 +25,15 @@
 torrentsTable = new TorrentsTable();
 torrentPeersTable = new TorrentPeersTable();
 
-var updatePropertiesPanel = function () {};
+var updatePropertiesPanel = function() {};
 
-var updateTorrentData = function () {};
-var updateTrackersData = function () {};
-var updateTorrentPeersData = function () {};
-var updateWebSeedsData = function () {};
-var updateTorrentFilesData = function () {};
+var updateTorrentData = function() {};
+var updateTrackersData = function() {};
+var updateTorrentPeersData = function() {};
+var updateWebSeedsData = function() {};
+var updateTorrentFilesData = function() {};
 
-var updateMainData = function () {};
+var updateMainData = function() {};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
 var syncMainDataTimerPeriod = 1500;
@@ -46,12 +46,12 @@ var CATEGORIES_UNCATEGORIZED = 2;
 var category_list = {};
 
 var selected_category = CATEGORIES_ALL;
-var setCategoryFilter = function(){};
+var setCategoryFilter = function() {};
 
 var selected_filter = getLocalStorageItem('selected_filter', 'all');
-var setFilter = function(){};
+var setFilter = function() {};
 
-var loadSelectedCategory = function () {
+var loadSelectedCategory = function() {
     selected_category = getLocalStorageItem('selected_category', CATEGORIES_ALL);
 };
 loadSelectedCategory();
@@ -65,9 +65,9 @@ function genHash(string) {
     return hash;
 }
 
-window.addEvent('load', function () {
+window.addEvent('load', function() {
 
-    var saveColumnSizes = function () {
+    var saveColumnSizes = function() {
         var filters_width = $('Filters').getSize().x;
         var properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
         localStorage.setItem('filters_width', filters_width);
@@ -92,17 +92,17 @@ window.addEvent('load', function () {
     else
         filt_w = 120;
     new MochaUI.Column({
-        id : 'filtersColumn',
-        placement : 'left',
-        onResize : saveColumnSizes,
-        width : filt_w,
-        resizeLimit : [100, 300]
+        id: 'filtersColumn',
+        placement: 'left',
+        onResize: saveColumnSizes,
+        width: filt_w,
+        resizeLimit: [100, 300]
     });
     new MochaUI.Column({
-        id : 'mainColumn',
-        placement : 'main',
-        width : null,
-        resizeLimit : [100, 300]
+        id: 'mainColumn',
+        placement: 'main',
+        width: null,
+        resizeLimit: [100, 300]
     });
 
     setCategoryFilter = function(hash) {
@@ -113,7 +113,7 @@ window.addEvent('load', function () {
             updateMainData();
     };
 
-    setFilter = function (f) {
+    setFilter = function(f) {
         // Visually Select the right filter
         $("all_filter").removeClass("selectedFilter");
         $("downloading_filter").removeClass("selectedFilter");
@@ -133,22 +133,22 @@ window.addEvent('load', function () {
     };
 
     new MochaUI.Panel({
-        id : 'Filters',
-        title : 'Panel',
-        header : false,
-        padding : {
-            top : 0,
-            right : 0,
-            bottom : 0,
-            left : 0
+        id: 'Filters',
+        title: 'Panel',
+        header: false,
+        padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
         },
-        loadMethod : 'xhr',
-        contentURL : 'filters.html',
-        onContentLoaded : function () {
+        loadMethod: 'xhr',
+        contentURL: 'filters.html',
+        onContentLoaded: function() {
             setFilter(selected_filter);
         },
-        column : 'filtersColumn',
-        height : 300
+        column: 'filtersColumn',
+        height: 300
     });
     initializeWindows();
 
@@ -203,7 +203,10 @@ window.addEvent('load', function () {
         }
         var categoryHash = genHash(category);
         if (category_list[categoryHash] === null) // This should not happen
-            category_list[categoryHash] = {name: category, torrents: []};
+            category_list[categoryHash] = {
+                name: category,
+                torrents: []
+            };
         if (!Object.contains(category_list[categoryHash].torrents, torrent['hash'])) {
             removeTorrentFromCategoryList(torrent['hash']);
             category_list[categoryHash].torrents = category_list[categoryHash].torrents.combine([torrent['hash']]);
@@ -235,10 +238,13 @@ window.addEvent('load', function () {
         categoryList.empty();
 
         var create_link = function(hash, text, count) {
-            var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">' +
-                '<img src="theme/inode-directory"/>' +
-                escapeHtml(text) + ' (' + count + ')' + '</a>';
-            var el = new Element('li', {id: hash, html: html});
+            var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">'
+                + '<img src="theme/inode-directory"/>'
+                + escapeHtml(text) + ' (' + count + ')' + '</a>';
+            var el = new Element('li', {
+                id: hash,
+                html: html
+            });
             categoriesFilterContextMenu.addTarget(el);
             return el;
         };
@@ -281,21 +287,21 @@ window.addEvent('load', function () {
     };
 
     var syncMainDataTimer;
-    var syncMainData = function () {
+    var syncMainData = function() {
         var url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
         var request = new Request.JSON({
-            url : url,
-            noCache : true,
-            method : 'get',
-            onFailure : function () {
+            url: url,
+            noCache: true,
+            method: 'get',
+            onFailure: function() {
                 var errorDiv = $('error_div');
                 if (errorDiv)
                     errorDiv.set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(syncMainDataTimer);
                 syncMainDataTimer = syncMainData.delay(2000);
             },
-            onSuccess : function (response) {
+            onSuccess: function(response) {
                 $('error_div').set('html', '');
                 if (response) {
                     var torrentsTableSelectedRows;
@@ -312,7 +318,10 @@ window.addEvent('load', function () {
                     if (response['categories']) {
                         response['categories'].each(function(category) {
                             var categoryHash = genHash(category);
-                            category_list[categoryHash] = {name: category, torrents: []};
+                            category_list[categoryHash] = {
+                                name: category,
+                                torrents: []
+                            };
                         });
                         update_categories = true;
                     }
@@ -341,7 +350,7 @@ window.addEvent('load', function () {
                             setupCopyEventHandler();
                     }
                     if (response['torrents_removed'])
-                        response['torrents_removed'].each(function (hash) {
+                        response['torrents_removed'].each(function(hash) {
                             torrentsTable.removeRow(hash);
                             removeTorrentFromCategoryList(hash);
                             update_categories = true; // Always to update All category
@@ -350,7 +359,7 @@ window.addEvent('load', function () {
                     torrentsTable.altRow();
                     if (response['server_state']) {
                         var tmp = response['server_state'];
-                        for(var k in tmp)
+                        for (var k in tmp)
                             serverState[k] = tmp[k];
                         processServerState();
                     }
@@ -376,7 +385,7 @@ window.addEvent('load', function () {
         syncMainDataTimer = syncMainData.delay(100);
     };
 
-    var processServerState = function () {
+    var processServerState = function() {
         var transfer_info = friendlyUnit(serverState.dl_info_speed, true);
         if (serverState.dl_rate_limit > 0)
             transfer_info += " [" + friendlyUnit(serverState.dl_rate_limit, true) + "]";
@@ -390,7 +399,8 @@ window.addEvent('load', function () {
         if (speedInTitle) {
             document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", "${VERSION}");
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
-        }else
+        }
+        else
             document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
@@ -460,16 +470,17 @@ window.addEvent('load', function () {
         // Change icon immediately to give some feedback
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
-        new Request({url: 'api/v2/transfer/toggleSpeedLimitsMode',
-                method: 'post',
-                onComplete: function() {
-                    alternativeSpeedLimits = !alternativeSpeedLimits;
-                    updateMainData();
-                },
-                onFailure: function() {
-                    // Restore icon in case of failure
-                    updateAltSpeedIcon(alternativeSpeedLimits);
-                }
+        new Request({
+            url: 'api/v2/transfer/toggleSpeedLimitsMode',
+            method: 'post',
+            onComplete: function() {
+                alternativeSpeedLimits = !alternativeSpeedLimits;
+                updateMainData();
+            },
+            onFailure: function() {
+                // Restore icon in case of failure
+                updateAltSpeedIcon(alternativeSpeedLimits);
+            }
         }).send();
     });
 
@@ -517,23 +528,23 @@ window.addEvent('load', function () {
     $('StatisticsLink').addEvent('click', StatisticsLinkFN);
 
     new MochaUI.Panel({
-        id : 'transferList',
-        title : 'Panel',
-        header : false,
-        padding : {
-            top : 0,
-            right : 0,
-            bottom : 0,
-            left : 0
+        id: 'transferList',
+        title: 'Panel',
+        header: false,
+        padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
         },
-        loadMethod : 'xhr',
-        contentURL : 'transferlist.html',
-        onContentLoaded : function () {
+        loadMethod: 'xhr',
+        contentURL: 'transferlist.html',
+        onContentLoaded: function() {
             updateMainData();
         },
-        column : 'mainColumn',
-        onResize : saveColumnSizes,
-        height : null
+        column: 'mainColumn',
+        onResize: saveColumnSizes,
+        height: null
     });
     var prop_h = localStorage.getItem('properties_height_rel');
     if ($defined(prop_h))
@@ -541,22 +552,22 @@ window.addEvent('load', function () {
     else
         prop_h = Window.getSize().y / 2.0;
     new MochaUI.Panel({
-        id : 'propertiesPanel',
-        title : 'Panel',
-        header : true,
-        padding : {
-            top : 0,
-            right : 0,
-            bottom : 0,
-            left : 0
+        id: 'propertiesPanel',
+        title: 'Panel',
+        header: true,
+        padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
         },
-        contentURL : 'properties_content.html',
-        require : {
-            css : ['css/Tabs.css', 'css/dynamicTable.css'],
-            js : ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
+        contentURL: 'properties_content.html',
+        require: {
+            css: ['css/Tabs.css', 'css/dynamicTable.css'],
+            js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
-        tabsURL : 'properties.html',
-        tabsOnload : function() {
+        tabsURL: 'properties.html',
+        tabsOnload: function() {
             MochaUI.initializeTabs('propertiesTabs');
 
             updatePropertiesPanel = function() {
@@ -572,7 +583,7 @@ window.addEvent('load', function () {
                     updateTorrentFilesData();
             };
 
-            $('PropGeneralLink').addEvent('click', function(e){
+            $('PropGeneralLink').addEvent('click', function(e) {
                 $('prop_general').removeClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
@@ -582,7 +593,7 @@ window.addEvent('load', function () {
                 localStorage.setItem('selected_tab', this.id);
             });
 
-            $('PropTrackersLink').addEvent('click', function(e){
+            $('PropTrackersLink').addEvent('click', function(e) {
                 $('prop_trackers').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_webseeds').addClass("invisible");
@@ -592,7 +603,7 @@ window.addEvent('load', function () {
                 localStorage.setItem('selected_tab', this.id);
             });
 
-            $('PropPeersLink').addEvent('click', function(e){
+            $('PropPeersLink').addEvent('click', function(e) {
                 $('prop_peers').removeClass("invisible");
                 $('prop_trackers').addClass("invisible");
                 $('prop_general').addClass("invisible");
@@ -602,7 +613,7 @@ window.addEvent('load', function () {
                 localStorage.setItem('selected_tab', this.id);
             });
 
-            $('PropWebSeedsLink').addEvent('click', function(e){
+            $('PropWebSeedsLink').addEvent('click', function(e) {
                 $('prop_webseeds').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
@@ -612,7 +623,7 @@ window.addEvent('load', function () {
                 localStorage.setItem('selected_tab', this.id);
             });
 
-            $('PropFilesLink').addEvent('click', function(e){
+            $('PropFilesLink').addEvent('click', function(e) {
                 $('prop_files').removeClass("invisible");
                 $('prop_general').addClass("invisible");
                 $('prop_trackers').addClass("invisible");
@@ -622,12 +633,12 @@ window.addEvent('load', function () {
                 localStorage.setItem('selected_tab', this.id);
             });
 
-            $('propertiesPanel_collapseToggle').addEvent('click', function(e){
+            $('propertiesPanel_collapseToggle').addEvent('click', function(e) {
                 updatePropertiesPanel();
             });
         },
-        column : 'mainColumn',
-        height : prop_h
+        column: 'mainColumn',
+        height: prop_h
     });
 });
 
@@ -679,9 +690,9 @@ keyboardEvents.activate();
 var loadTorrentPeersTimer;
 var syncTorrentPeersLastResponseId = 0;
 var show_flags = true;
-var loadTorrentPeersData = function(){
-    if ($('prop_peers').hasClass('invisible') ||
-        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+var loadTorrentPeersData = function() {
+    if ($('prop_peers').hasClass('invisible')
+        || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         syncTorrentPeersLastResponseId = 0;
         torrentPeersTable.clear();
         return;
@@ -727,7 +738,7 @@ var loadTorrentPeersData = function(){
                     }
                 }
                 if (response['peers_removed'])
-                    response['peers_removed'].each(function (hash) {
+                    response['peers_removed'].each(function(hash) {
                         torrentPeersTable.removeRow(hash);
                     });
                 torrentPeersTable.updateTable(full_update);
@@ -750,7 +761,7 @@ var loadTorrentPeersData = function(){
     }).send();
 };
 
-updateTorrentPeersData = function(){
+updateTorrentPeersData = function() {
     clearTimeout(loadTorrentPeersTimer);
     loadTorrentPeersData();
 };

@@ -1,11 +1,10 @@
-
-
 /**************************************************************
 
     Dynamic Table
     v 0.4
 
 **************************************************************/
+
 .dynamicTable tbody tr {
     background-color: #fff;
 }
@@ -34,8 +33,8 @@
 }
 
 #transferList img.stateIcon {
-	height: 1.3em;
-	vertical-align: middle;
+    height: 1.3em;
+    vertical-align: middle;
     margin-bottom: -1px;
 }
 
@@ -45,7 +44,7 @@ tr.dynamicTableHeader {
 
 .dynamicTable {
     table-layout: fixed;
-    width :1%;
+    width: 1%;
     padding: 0;
     border-spacing: 0;
 }
@@ -63,7 +62,7 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable td {
-    padding:0px 4px;
+    padding: 0px 4px;
     white-space: nowrap;
 }
 

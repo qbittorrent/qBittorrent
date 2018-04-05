@@ -1,9 +1,16 @@
 /* Reset */
 
 /*ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }*/
-a img,:link img,:visited img { border: none; }
+
+a img, :link img, :visited img {
+    border: none;
+}
+
 /*table { border-collapse: collapse; border-spacing: 0; }*/
-:focus { outline: none; }
+
+:focus {
+    outline: none;
+}
 
 /* Structure */
 
@@ -100,7 +107,7 @@ pre {
     margin: 0 0 10px 0;
     padding: 10px;
     border: 1px solid #d1d7dc;
-    }
+}
 
 /* Dividers */
 
@@ -116,13 +123,13 @@ hr {
 }
 
 #urls {
-    width:90%;
-    height:100%;
+    width: 90%;
+    height: 100%;
 }
 
 #trackersUrls {
-    width:90%;
-    height:100%;
+    width: 90%;
+    height: 100%;
 }
 
 #Filters ul {
@@ -172,45 +179,75 @@ a.propButton img {
 
 /* context menu specific */
 
-.contextMenu { border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none;}
-.contextMenu .separator { border-top:1px solid #999; }
-.contextMenu li { margin:0; padding:0;}
+.contextMenu {
+    border: 1px solid #999;
+    padding: 0;
+    background: #eee;
+    list-style-type: none;
+    display: none;
+}
+
+.contextMenu .separator {
+    border-top: 1px solid #999;
+}
+
+.contextMenu li {
+    margin: 0;
+    padding: 0;
+}
+
 .contextMenu li a {
     display: block;
     padding: 5px 20px 5px 5px;
     font-size: 12px;
     text-decoration: none;
-    font-family: tahoma,arial,sans-serif;
+    font-family: tahoma, arial, sans-serif;
     color: #000;
     white-space: nowrap;
 }
-.contextMenu li a:hover { background-color:#ddd; }
-.contextMenu li a.disabled { color:#ccc; font-style:italic; }
-.contextMenu li a.disabled:hover { background-color:#eee; }
+
+.contextMenu li a:hover {
+    background-color: #ddd;
+}
+
+.contextMenu li a.disabled {
+    color: #ccc;
+    font-style: italic;
+}
+
+.contextMenu li a.disabled:hover {
+    background-color: #eee;
+}
+
 .contextMenu li ul {
     padding: 0;
-    border:1px solid #999; padding:0; background:#eee;
-    list-style-type:none;
+    border: 1px solid #999;
+    padding: 0;
+    background: #eee;
+    list-style-type: none;
     position: absolute;
     left: -999em;
     z-index: 8000;
     margin: -29px 0 0 100%;
     width: 164px;
 }
+
 .contextMenu li ul li a {
     position: relative;
 }
+
 .contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
     background-image: url(../images/skin/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right center;
 }
+
 .contextMenu li:hover ul,
 .contextMenu li.ieHover ul,
 .contextMenu li li.ieHover ul,
 .contextMenu li li li.ieHover ul,
 .contextMenu li li:hover ul,
-.contextMenu li li li:hover ul { /* lists nested under hovered list items */
+.contextMenu li li li:hover ul {  /* lists nested under hovered list items */
     left: auto;
 }
 
@@ -218,7 +255,7 @@ a.propButton img {
     width: 16px;
     height: 16px;
     margin-bottom: -4px;
-    -ms-interpolation-mode : bicubic;
+    -ms-interpolation-mode: bicubic;
 }
 
 /* Sliders */
@@ -280,6 +317,7 @@ a.propButton img {
 }
 
 /* Mocha Customization */
+
 #mochaToolbar {
     margin-top: 5px;
 }
@@ -392,7 +430,8 @@ td.generalLabel {
     line-height: 20px;
 }
 
-#trackersTable, #webseedsTable {
+#trackersTable,
+#webseedsTable {
     line-height: 25px;
 }
 
@@ -425,7 +464,7 @@ td.generalLabel {
 }
 
 .select-watched-folder-editable {
-    position:relative;
+    position: relative;
     background-color: white;
     border: solid grey 1px;
     width: 160px;

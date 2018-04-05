@@ -27,8 +27,8 @@ var clearData = function() {
 
 var loadTorrentDataTimer;
 var loadTorrentData = function() {
-    if ($('prop_general').hasClass('invisible') ||
-        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+    if ($('prop_general').hasClass('invisible')
+        || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
@@ -58,8 +58,8 @@ var loadTorrentData = function() {
                 // Update Torrent data
                 if (data.seeding_time > 0)
                     temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
-                            .replace("%1", friendlyDuration(data.time_elapsed))
-                            .replace("%2", friendlyDuration(data.seeding_time));
+                    .replace("%1", friendlyDuration(data.time_elapsed))
+                    .replace("%2", friendlyDuration(data.seeding_time));
                 else
                     temp = friendlyDuration(data.time_elapsed);
                 $('time_elapsed').set('html', temp);
@@ -67,28 +67,28 @@ var loadTorrentData = function() {
                 $('eta').set('html', friendlyDuration(data.eta));
 
                 temp = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", data.nb_connections)
-                        .replace("%2", data.nb_connections_limit < 0 ? "∞" : data.nb_connections_limit);
+                    .replace("%1", data.nb_connections)
+                    .replace("%2", data.nb_connections_limit < 0 ? "∞" : data.nb_connections_limit);
                 $('nb_connections').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", friendlyUnit(data.total_downloaded))
-                        .replace("%2", friendlyUnit(data.total_downloaded_session));
+                    .replace("%1", friendlyUnit(data.total_downloaded))
+                    .replace("%2", friendlyUnit(data.total_downloaded_session));
                 $('total_downloaded').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", friendlyUnit(data.total_uploaded))
-                        .replace("%2", friendlyUnit(data.total_uploaded_session));
+                    .replace("%1", friendlyUnit(data.total_uploaded))
+                    .replace("%2", friendlyUnit(data.total_uploaded_session));
                 $('total_uploaded').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", friendlyUnit(data.dl_speed, true))
-                        .replace("%2", friendlyUnit(data.dl_speed_avg, true));
+                    .replace("%1", friendlyUnit(data.dl_speed, true))
+                    .replace("%2", friendlyUnit(data.dl_speed_avg, true));
                 $('dl_speed').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", friendlyUnit(data.up_speed, true))
-                        .replace("%2", friendlyUnit(data.up_speed_avg, true));
+                    .replace("%1", friendlyUnit(data.up_speed, true))
+                    .replace("%2", friendlyUnit(data.up_speed_avg, true));
                 $('up_speed').set('html', temp);
 
                 temp = (data.dl_limit == -1 ? "∞" : friendlyUnit(data.dl_limit, true));
@@ -100,13 +100,13 @@ var loadTorrentData = function() {
                 $('total_wasted').set('html', friendlyUnit(data.total_wasted));
 
                 temp = "QBT_TR(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", data.seeds)
-                        .replace("%2", data.seeds_total);
+                    .replace("%1", data.seeds)
+                    .replace("%2", data.seeds_total);
                 $('seeds').set('html', temp);
 
                 temp = "QBT_TR(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", data.peers)
-                        .replace("%2", data.peers_total);
+                    .replace("%1", data.peers)
+                    .replace("%2", data.peers_total);
                 $('peers').set('html', temp);
 
                 $('share_ratio').set('html', data.share_ratio.toFixed(2));
@@ -123,9 +123,9 @@ var loadTorrentData = function() {
 
                 if (data.pieces_num != -1)
                     temp = "QBT_TR(%1 x %2 (have %3))QBT_TR[CONTEXT=PropertiesWidget]"
-                            .replace("%1", data.pieces_num)
-                            .replace("%2", friendlyUnit(data.piece_size))
-                            .replace("%3", data.pieces_have);
+                    .replace("%1", data.pieces_num)
+                    .replace("%2", friendlyUnit(data.piece_size))
+                    .replace("%3", data.pieces_have);
                 else
                     temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
                 $('pieces').set('html', temp);

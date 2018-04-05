@@ -174,10 +174,10 @@ var ContextMenu = new Class({
         }.bind(this));
     },
 
-    updateMenuItems: function () {},
+    updateMenuItems: function() {},
 
     //show menu
-    show: function (trigger) {
+    show: function(trigger) {
         if (lastShownContexMenu && lastShownContexMenu != this)
             lastShownContexMenu.hide();
         this.fx.start(1);
@@ -188,7 +188,7 @@ var ContextMenu = new Class({
     },
 
     //hide the menu
-    hide: function (trigger) {
+    hide: function(trigger) {
         if (this.shown) {
             this.fx.start(0);
             //this.menu.fade('out');
@@ -198,42 +198,42 @@ var ContextMenu = new Class({
         return this;
     },
 
-    setItemChecked: function (item, checked) {
+    setItemChecked: function(item, checked) {
         this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity =
-             checked ? '1' : '0';
+            checked ? '1' : '0';
         return this;
     },
 
-    getItemChecked: function (item) {
+    getItemChecked: function(item) {
         return '0' != this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity;
     },
 
     //hide an item
-    hideItem: function (item) {
+    hideItem: function(item) {
         this.menu.getElement('a[href$=' + item + ']').parentNode.addClass('invisible');
         return this;
     },
 
     //show an item
-    showItem: function (item) {
+    showItem: function(item) {
         this.menu.getElement('a[href$=' + item + ']').parentNode.removeClass('invisible');
         return this;
     },
 
     //disable the entire menu
-    disable: function () {
+    disable: function() {
         this.options.disabled = true;
         return this;
     },
 
     //enable the entire menu
-    enable: function () {
+    enable: function() {
         this.options.disabled = false;
         return this;
     },
 
     //execute an action
-    execute: function (action, element) {
+    execute: function(action, element) {
         if (this.options.actions[action]) {
             this.options.actions[action](element, this, action);
         }
@@ -244,7 +244,7 @@ var ContextMenu = new Class({
 var TorrentsTableContextMenu = new Class({
     Extends: ContextMenu,
 
-    updateMenuItems: function () {
+    updateMenuItems: function() {
         all_are_seq_dl = true;
         there_are_seq_dl = false;
         all_are_f_l_piece_prio = true;
@@ -259,7 +259,7 @@ var TorrentsTableContextMenu = new Class({
         there_are_auto_tmm = false;
 
         var h = torrentsTable.selectedRowsIds();
-        h.each(function(item, index){
+        h.each(function(item, index) {
             var data = torrentsTable.rows.get(item).full_data;
 
             if (data['seq_dl'] !== true)
@@ -310,7 +310,8 @@ var TorrentsTableContextMenu = new Class({
             this.hideItem('FirstLastPiecePrio');
             this.showItem('SuperSeeding');
             this.setItemChecked('SuperSeeding', all_are_super_seeding);
-        } else {
+        }
+        else {
             if (!show_seq_dl && show_f_l_piece_prio)
                 this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.addClass('separator');
             else
@@ -351,22 +352,28 @@ var TorrentsTableContextMenu = new Class({
 
     },
 
-    updateCategoriesSubMenu : function (category_list) {
+    updateCategoriesSubMenu: function(category_list) {
         var categoryList = $('contextCategoryList');
         categoryList.empty();
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentNewCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'}));
-        categoryList.appendChild(new Element('li', {html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'}));
+        categoryList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentNewCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+        }));
+        categoryList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+        }));
 
         var sortedCategories = [];
-        Object.each(category_list, function (category) {
+        Object.each(category_list, function(category) {
             sortedCategories.push(category.name);
         });
         sortedCategories.sort();
 
         var first = true;
-        Object.each(sortedCategories, function (categoryName) {
+        Object.each(sortedCategories, function(categoryName) {
             var categoryHash = genHash(categoryName);
-            var el = new Element('li', {html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + escapeHtml(categoryName) + '</a>'});
+            var el = new Element('li', {
+                html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + escapeHtml(categoryName) + '</a>'
+            });
             if (first) {
                 el.addClass('separator');
                 first = false;
@@ -378,7 +385,7 @@ var TorrentsTableContextMenu = new Class({
 
 var CategoriesFilterContextMenu = new Class({
     Extends: ContextMenu,
-    updateMenuItems: function () {
+    updateMenuItems: function() {
         var id = this.options.element.id;
         if (id != CATEGORIES_ALL && id != CATEGORIES_UNCATEGORIZED)
             this.showItem('DeleteCategory');

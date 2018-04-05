@@ -38,5 +38,5 @@ getSavePath = function() {
 };
 
 $(window).addEventListener("load", function() {
-	getSavePath();
+    getSavePath();
 });

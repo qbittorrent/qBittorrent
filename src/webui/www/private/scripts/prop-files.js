@@ -203,27 +203,27 @@ var filesDynTable = new Class({
         var tds = tr.getElements('td');
         for (var i = 0; i < row.length; i++) {
             switch (i) {
-            case 0:
-                if (row[i] > 0)
-                    tds[i].getChildren('input')[0].set('checked', 'checked');
-                else
-                    tds[i].getChildren('input')[0].removeProperty('checked');
-                break;
-            case 3:
-                $('pbf_' + id).setValue(row[i].toFloat());
-                break;
-            case 4:
-                if (!is_seed && row[i] > 0) {
-                    tds[i].getChildren('select').set('value', row[i]);
-                    $('comboPrio' + id).removeClass("invisible");
-                }
-                else {
-                    if (!$('comboPrio' + id).hasClass("invisible"))
-                        $('comboPrio' + id).addClass("invisible");
-                }
-                break;
-            default:
-                tds[i].set('html', row[i]);
+                case 0:
+                    if (row[i] > 0)
+                        tds[i].getChildren('input')[0].set('checked', 'checked');
+                    else
+                        tds[i].getChildren('input')[0].removeProperty('checked');
+                    break;
+                case 3:
+                    $('pbf_' + id).setValue(row[i].toFloat());
+                    break;
+                case 4:
+                    if (!is_seed && row[i] > 0) {
+                        tds[i].getChildren('select').set('value', row[i]);
+                        $('comboPrio' + id).removeClass("invisible");
+                    }
+                    else {
+                        if (!$('comboPrio' + id).hasClass("invisible"))
+                            $('comboPrio' + id).addClass("invisible");
+                    }
+                    break;
+                default:
+                    tds[i].set('html', row[i]);
             }
         }
         return true;
@@ -241,29 +241,29 @@ var filesDynTable = new Class({
         for (var i = 0; i < row.length; i++) {
             var td = new Element('td');
             switch (i) {
-            case 0:
-                var tree_img = new Element('img', {
-                    src: 'images/L.gif',
-                    style: 'margin-bottom: -2px'
-                });
-                td.adopt(tree_img, createDownloadedCB(id, row[i]));
-                break;
-            case 1:
-                td.set('html', row[i]);
-                td.set('title', row[i]);
-                break;
-            case 3:
-                td.adopt(new ProgressBar(row[i].toFloat(), {
-                    'id': 'pbf_' + id,
-                    'width': 80
-                }));
-                break;
-            case 4:
-                td.adopt(createPriorityCombo(id, row[i]));
-                break;
-            default:
-                td.set('html', row[i]);
-                break;
+                case 0:
+                    var tree_img = new Element('img', {
+                        src: 'images/L.gif',
+                        style: 'margin-bottom: -2px'
+                    });
+                    td.adopt(tree_img, createDownloadedCB(id, row[i]));
+                    break;
+                case 1:
+                    td.set('html', row[i]);
+                    td.set('title', row[i]);
+                    break;
+                case 3:
+                    td.adopt(new ProgressBar(row[i].toFloat(), {
+                        'id': 'pbf_' + id,
+                        'width': 80
+                    }));
+                    break;
+                case 4:
+                    td.adopt(createPriorityCombo(id, row[i]));
+                    break;
+                default:
+                    td.set('html', row[i]);
+                    break;
             }
             td.injectInside(tr);
         }
@@ -273,8 +273,8 @@ var filesDynTable = new Class({
 
 var loadTorrentFilesDataTimer;
 var loadTorrentFilesData = function() {
-    if ($('prop_files').hasClass('invisible') ||
-        $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+    if ($('prop_files').hasClass('invisible')
+        || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="${LANG}">
+
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDlg]</title>
@@ -7,9 +8,9 @@
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
     <script>
-        window.addEvent('domready', function(){
+        window.addEvent('domready', function() {
             $('trackersUrls').focus();
-            $('addTrackersButton').addEvent('click', function(e){
+            $('addTrackersButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 var hash = new URI().getData('hash');
                 new Request({
@@ -23,17 +24,19 @@
                         window.parent.closeWindows();
                     }
                 }).send();
+            });
         });
-    });
     </script>
 </head>
+
 <body>
-<div style="text-align: center;">
-    <br/>
+    <div style="text-align: center;">
+        <br/>
         <h2 class="vcenter">QBT_TR(List of trackers to add (one per line):)QBT_TR[CONTEXT=TrackersAdditionDlg]</h2>
-    <textarea name="list" id="trackersUrls" rows="10" cols="1"></textarea>
-    <br/>
-        <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="addTrackersButton"/>
-</div>
+        <textarea name="list" id="trackersUrls" rows="10" cols="1"></textarea>
+        <br/>
+        <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="addTrackersButton" />
+    </div>
 </body>
+
 </html>
