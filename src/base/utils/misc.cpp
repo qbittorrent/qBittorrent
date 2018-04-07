@@ -35,7 +35,6 @@
 
 #ifdef Q_OS_WIN
 #include <windows.h>
-#include <powrprof.h>
 #include <Shlobj.h>
 #else
 #include <sys/types.h>
@@ -113,12 +112,20 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == ShutdownDialogAction::Suspend)
-        SetSuspendState(false, false, false);
-    else if (action == ShutdownDialogAction::Hibernate)
-        SetSuspendState(true, false, false);
-    else
+    using PSETSUSPENDSTATE = BOOLEAN (WINAPI *)(BOOLEAN, BOOLEAN, BOOLEAN);
+    const auto setSuspendState = Utils::Misc::loadWinAPI<PSETSUSPENDSTATE>("PowrProf.dll", "SetSuspendState");
+
+    if (action == ShutdownDialogAction::Suspend) {
+        if (setSuspendState)
+            setSuspendState(false, false, false);
+    }
+    else if (action == ShutdownDialogAction::Hibernate) {
+        if (setSuspendState)
+            setSuspendState(true, false, false);
+    }
+    else {
         InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+    }
 
     // Disable shutdown privilege.
     tkp.Privileges[0].Attributes = 0;
