@@ -40,7 +40,7 @@
 #include "base/utils/fs.h"
 #include "torrentmodel.h"
 
-static QColor getColorByState(BitTorrent::TorrentState state, qreal ratio);
+static QColor getColorByState(BitTorrent::TorrentState state);
 
 static QIcon getPausedIcon();
 static QIcon getQueuedIcon();
