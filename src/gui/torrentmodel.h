@@ -39,6 +39,7 @@ namespace BitTorrent
 {
     class InfoHash;
     class TorrentHandle;
+    enum class TorrentState;
 }
 
 class TorrentModel : public QAbstractListModel
