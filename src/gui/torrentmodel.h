@@ -94,6 +94,8 @@ public:
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
+    static QIcon getIconByState(BitTorrent::TorrentState state);
+
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);

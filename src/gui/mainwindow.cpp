@@ -48,6 +48,13 @@
 #include <QtGlobal>
 #include <QTimer>
 
+#ifdef Q_OS_WIN
+#include <QtWinExtras/QWinTaskbarButton>
+#include <QtWinExtras/QWinTaskbarProgress>
+#include <QtWinExtras/QWinThumbnailToolBar>
+#include <QtWinExtras/QWinThumbnailToolButton>
+#endif
+
 #ifdef Q_OS_MAC
 #include <QtMac>
 #include <QtMacExtras>
@@ -1111,6 +1118,9 @@ void MainWindow::showEvent(QShowEvent *e)
         move(Utils::Misc::screenCenter(this));
         m_posInitialized = true;
     }
+#ifdef Q_OS_WIN
+     setupTaskbarButton();
+#endif
 }
 
 // Called when we close the program
@@ -2092,4 +2102,110 @@ void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
     QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
 }
 
+void MainWindow::setupTaskbarButton()
+{
+    m_taskbarButton = new QWinTaskbarButton(this);
+    if (m_taskbarButton)
+    {
+        connect(m_transferListWidget, &TransferListWidget::updateTaskbar, this, &MainWindow::updateTaskbar);
+        m_taskbarButton->setWindow(this->windowHandle());
+        m_thumbBar = new QWinThumbnailToolBar(this);
+        m_thumbBar->setWindow(this->windowHandle());
+        m_resume = new QWinThumbnailToolButton(m_thumbBar);
+        m_resume->setToolTip(tr("Resume"));
+        m_resume->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
+        connect(m_resume, SIGNAL(clicked()), this, SLOT(startSelectedTorrents()));
+
+        m_pause = new QWinThumbnailToolButton(m_thumbBar);
+        m_pause->setToolTip(tr("Pause"));
+        m_pause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
+        connect(m_pause, SIGNAL(clicked()), this, SLOT(pauseSelectedTorrents()));
+
+        m_thumbBar->addButton(m_resume);
+        m_thumbBar->addButton(m_pause);
+    }
+}
+
+void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
+{
+    if (!m_taskbarButton)
+        return;
+    std::cout << "updating taskbar" << std::endl;//QMessageBox::information(this, QString("title"), QString("updating taskbar ") /*+ QString::number(torrent->progress() * 100)*/);
+    if (torrent)
+    {
+        std::cout << "updating taskbar " << torrent->progress() * 100 << std::endl;
+
+        m_taskbarButton->setOverlayIcon(TorrentModel::getIconByState(torrent->state()));
+        switch (torrent->state()) {
+        case BitTorrent::TorrentState::Downloading:
+        case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::DownloadingMetadata:
+            m_taskbarButton->progress()->setMaximum(100);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->setValue(torrent->progress() * 100);
+            m_taskbarButton->progress()->resume();
+            break;
+        case BitTorrent::TorrentState::Allocating:
+        case BitTorrent::TorrentState::StalledDownloading:
+            m_taskbarButton->progress()->setMaximum(0);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->resume();
+            break;
+        case BitTorrent::TorrentState::StalledUploading:
+            m_taskbarButton->progress()->setVisible(false);
+            break;
+        case BitTorrent::TorrentState::Uploading:
+        case BitTorrent::TorrentState::UploadingGoodRatio:
+        case BitTorrent::TorrentState::ForcedUploading:
+            m_taskbarButton->progress()->setVisible(false);
+            break;
+        case BitTorrent::TorrentState::PausedDownloading:
+            m_taskbarButton->progress()->setMaximum(100);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->setValue(torrent->progress() * 100);
+            m_taskbarButton->progress()->pause();
+            break;
+        case BitTorrent::TorrentState::PausedUploading:
+            m_taskbarButton->progress()->setVisible(false);
+            break;
+        case BitTorrent::TorrentState::QueuedDownloading:
+            m_taskbarButton->progress()->setMaximum(0);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->resume();
+        case BitTorrent::TorrentState::QueuedUploading:
+            m_taskbarButton->progress()->setVisible(false);
+            break;
+        case BitTorrent::TorrentState::CheckingDownloading:
+        case BitTorrent::TorrentState::CheckingUploading:
+#if LIBTORRENT_VERSION_NUM < 10100
+        case BitTorrent::TorrentState::QueuedForChecking:
+#endif
+        case BitTorrent::TorrentState::CheckingResumeData:
+            m_taskbarButton->progress()->setMaximum(0);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->resume();
+            break;
+        case BitTorrent::TorrentState::Unknown:
+        case BitTorrent::TorrentState::MissingFiles:
+        case BitTorrent::TorrentState::Error:
+            m_taskbarButton->progress()->setMaximum(100);
+            m_taskbarButton->progress()->setVisible(true);
+            m_taskbarButton->progress()->setValue(torrent->progress() * 100);
+            m_taskbarButton->progress()->stop();
+            break;
+        default:
+            Q_ASSERT(false);
+            break;
+        }
+        m_pause->setVisible(true);
+        m_resume->setVisible(true);
+    }
+    else
+    {
+        m_taskbarButton->clearOverlayIcon();
+        m_taskbarButton->progress()->setVisible(false);
+        m_pause->setVisible(false);
+        m_resume->setVisible(false);
+    }
+}
 #endif

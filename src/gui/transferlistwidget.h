@@ -117,9 +117,15 @@ protected slots:
     void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
     void saveSettings();
+#ifdef Q_OS_WIN
+    void taskbarChanged();
+#endif
 
 signals:
     void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
+#ifdef Q_OS_WIN
+    void updateTaskbar(BitTorrent::TorrentHandle *const torrent);
+#endif
 
 private:
     void wheelEvent(QWheelEvent *event) override;

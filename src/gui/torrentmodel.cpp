@@ -40,8 +40,7 @@
 #include "base/utils/fs.h"
 #include "torrentmodel.h"
 
-static QIcon getIconByState(BitTorrent::TorrentState state);
-static QColor getColorByState(BitTorrent::TorrentState state);
+static QColor getColorByState(BitTorrent::TorrentState state, qreal ratio);
 
 static QIcon getPausedIcon();
 static QIcon getQueuedIcon();
@@ -320,7 +319,7 @@ void TorrentModel::handleTorrentsUpdated()
 
 // Static functions
 
-QIcon getIconByState(BitTorrent::TorrentState state)
+QIcon TorrentModel::getIconByState(BitTorrent::TorrentState state)
 {
     switch (state) {
     case BitTorrent::TorrentState::Downloading:
