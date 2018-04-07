@@ -2130,11 +2130,8 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
 {
     if (!m_taskbarButton)
         return;
-    std::cout << "updating taskbar" << std::endl;//QMessageBox::information(this, QString("title"), QString("updating taskbar ") /*+ QString::number(torrent->progress() * 100)*/);
     if (torrent)
     {
-        std::cout << "updating taskbar " << torrent->progress() * 100 << std::endl;
-
         m_taskbarButton->setOverlayIcon(TorrentModel::getIconByState(torrent->state()));
         switch (torrent->state()) {
         case BitTorrent::TorrentState::Downloading:
