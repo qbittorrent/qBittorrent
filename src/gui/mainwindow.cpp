@@ -2154,7 +2154,6 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
             m_taskbarButton->progress()->setVisible(false);
             break;
         case BitTorrent::TorrentState::Uploading:
-        case BitTorrent::TorrentState::UploadingGoodRatio:
         case BitTorrent::TorrentState::ForcedUploading:
             m_taskbarButton->progress()->setVisible(false);
             break;
