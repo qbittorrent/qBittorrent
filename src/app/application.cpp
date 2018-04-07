@@ -64,7 +64,6 @@
 
 #ifndef DISABLE_GUI
 #ifdef Q_OS_WIN
-#include <windows.h>
 #include <QSessionManager>
 #include <QSharedMemory>
 #endif // Q_OS_WIN
@@ -682,7 +681,7 @@ void Application::cleanup()
 
 #ifdef Q_OS_WIN
         typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
-        PSHUTDOWNBRCREATE shutdownBRCreate = (PSHUTDOWNBRCREATE)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonCreate");
+        const auto shutdownBRCreate = Utils::Misc::loadWinAPI<PSHUTDOWNBRCREATE>("User32.dll", "ShutdownBlockReasonCreate");
         // Only available on Vista+
         if (shutdownBRCreate)
             shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
@@ -724,7 +723,7 @@ void Application::cleanup()
     if (m_window) {
 #ifdef Q_OS_WIN
         typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
-        PSHUTDOWNBRDESTROY shutdownBRDestroy = (PSHUTDOWNBRDESTROY)::GetProcAddress(::GetModuleHandleW(L"User32.dll"), "ShutdownBlockReasonDestroy");
+        const auto shutdownBRDestroy = Utils::Misc::loadWinAPI<PSHUTDOWNBRDESTROY>("User32.dll", "ShutdownBlockReasonDestroy");
         // Only available on Vista+
         if (shutdownBRDestroy)
             shutdownBRDestroy((HWND)m_window->effectiveWinId());

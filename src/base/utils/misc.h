@@ -34,6 +34,13 @@
 #include <ctime>
 #include <vector>
 
+#include <QtGlobal>
+
+#ifdef Q_OS_WIN
+#include <memory>
+#include <Windows.h>
+#endif
+
 #include <QDir>
 #include <QFile>
 #include <QPoint>
@@ -109,6 +116,22 @@ namespace Utils
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();
+
+        template <typename T>
+        T loadWinAPI(const QString &source, const char *funcName)
+        {
+            QString path = windowsSystemPath();
+            if (!path.endsWith('\\'))
+                path += '\\';
+
+            path += source;
+
+            std::unique_ptr<wchar_t[]> pathWchar(new wchar_t[path.length() + 1] {});
+            path.toWCharArray(pathWchar.get());
+
+            return reinterpret_cast<T>(
+                ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
+        }
 #endif
     }
 }
