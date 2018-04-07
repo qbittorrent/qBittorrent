@@ -9264,7 +9264,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Taipogi ištrinti failus iš kietojo disko</translation>
+        <translation>Taip pat ištrinti failus iš kietojo disko</translation>
     </message>
 </context>
 <context>
