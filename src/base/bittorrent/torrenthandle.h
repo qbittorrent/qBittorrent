@@ -135,7 +135,6 @@ namespace BitTorrent
         ForcedUploading,
         Uploading,
         StalledUploading,
-        UploadingGoodRatio,
 
 #if LIBTORRENT_VERSION_NUM < 10100
         QueuedForChecking,

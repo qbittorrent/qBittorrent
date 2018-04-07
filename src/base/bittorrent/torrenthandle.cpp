@@ -714,8 +714,7 @@ bool TorrentHandle::isUploading() const
             || m_state == TorrentState::StalledUploading
             || m_state == TorrentState::CheckingUploading
             || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading
-            || m_state == TorrentState::UploadingGoodRatio;
+            || m_state == TorrentState::ForcedUploading;
 }
 
 bool TorrentHandle::isCompleted() const
@@ -725,8 +724,7 @@ bool TorrentHandle::isCompleted() const
             || m_state == TorrentState::CheckingUploading
             || m_state == TorrentState::PausedUploading
             || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading
-            || m_state == TorrentState::UploadingGoodRatio;
+            || m_state == TorrentState::ForcedUploading;
 }
 
 bool TorrentHandle::isActive() const
@@ -831,8 +829,6 @@ void TorrentHandle::updateState()
                     m_state = TorrentState::ForcedUploading;
                 else
                     m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
-                if (realRatio() > 1.0)
-                    m_state = TorrentState::UploadingGoodRatio;
                 break;
             case libt::torrent_status::allocating:
                 m_state = TorrentState::Allocating;
