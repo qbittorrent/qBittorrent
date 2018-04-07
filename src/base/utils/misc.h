@@ -31,15 +31,17 @@
 #ifndef UTILS_MISC_H
 #define UTILS_MISC_H
 
+#include <ctime>
 #include <vector>
+
+#include <QDir>
+#include <QFile>
+#include <QPoint>
+#include <QSize>
 #include <QString>
 #include <QStringList>
-#include <ctime>
-#include <QPoint>
-#include <QFile>
-#include <QDir>
 #include <QUrl>
-#include <QSize>
+
 #include "base/types.h"
 
 /*  Miscellaneous functions that can be useful */
