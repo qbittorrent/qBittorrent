@@ -266,6 +266,16 @@ void Preferences::setWinStartup(bool b)
         settings.remove("qBittorrent");
     }
 }
+
+bool Preferences::WinTaskbar() const
+{
+    return value("Preferences/General/WinTaskbar", true).toBool();
+}
+
+void Preferences::setWinTaskbar(bool b)
+{
+    setValue("Preferences/General/WinTaskbar", b);
+}
 #endif
 
 // Downloads

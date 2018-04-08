@@ -130,7 +130,9 @@ public:
     void setPreventFromSuspend(bool b);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
-    void setWinStartup(bool b);
+    void setWinStartup(bool b); 
+    bool WinTaskbar() const;
+    void setWinTaskbar(bool b);
 #endif
 
     // Downloads

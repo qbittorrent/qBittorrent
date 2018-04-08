@@ -177,6 +177,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 #ifndef Q_OS_WIN
     m_ui->checkStartup->setVisible(false);
+    m_ui->checkWindowsTaskbar->setVisible(false);
 #endif
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
@@ -210,6 +211,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkStartMinimized, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #ifdef Q_OS_WIN
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkWindowsTaskbar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->checkShowSplash, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -537,6 +539,7 @@ void OptionsDialog::saveOptions()
     pref->setPreventFromSuspend(preventFromSuspend());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
+    pref->setWinTaskbar(m_ui->checkWindowsTaskbar->isChecked());
     // Windows: file association settings
     Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
     Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
@@ -771,6 +774,7 @@ void OptionsDialog::loadOptions()
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
+    m_ui->checkWindowsTaskbar->setChecked(pref->WinTaskbar());
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif

@@ -1499,6 +1499,23 @@ void MainWindow::loadPreferences(bool configureSession)
     }
 #endif
 
+#ifdef Q_OS_WIN
+    if (configureSession) { //do not run at startup, taskbar must be setup after showEvent
+        if (!pref->WinTaskbar()) {
+            if (m_taskbarButton)
+            {
+                m_taskbarButton->clearOverlayIcon();
+                m_taskbarButton->progress()->setVisible(false);
+                m_pause->setVisible(false);
+                m_resume->setVisible(false);
+                delete m_taskbarButton;
+            }
+        }
+        else {
+            setupTaskbarButton();
+        }
+    }
+#endif
     qDebug("GUI settings loaded");
 }
 
@@ -2104,7 +2121,7 @@ void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
 
 void MainWindow::setupTaskbarButton()
 {
-    if (m_taskbarButton || QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
+    if (!Preferences::instance()->WinTaskbar() || m_taskbarButton || QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return;
     m_taskbarButton = new QWinTaskbarButton(this);
     if (m_taskbarButton)
