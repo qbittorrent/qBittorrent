@@ -2116,12 +2116,12 @@ void MainWindow::setupTaskbarButton()
         m_resume = new QWinThumbnailToolButton(m_thumbBar);
         m_resume->setToolTip(tr("Resume"));
         m_resume->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
-        connect(m_resume, SIGNAL(clicked()), this, SLOT(startSelectedTorrents()));
+        connect(m_resume, SIGNAL(clicked()), m_transferListWidget, SLOT(startSelectedTorrents()));
 
         m_pause = new QWinThumbnailToolButton(m_thumbBar);
         m_pause->setToolTip(tr("Pause"));
         m_pause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
-        connect(m_pause, SIGNAL(clicked()), this, SLOT(pauseSelectedTorrents()));
+        connect(m_pause, SIGNAL(clicked()), m_transferListWidget, SLOT(pauseSelectedTorrents()));
 
         m_thumbBar->addButton(m_resume);
         m_thumbBar->addButton(m_pause);
@@ -2132,6 +2132,7 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
 {
     if (!m_taskbarButton)
         return;
+    std::cout << "update taskbar" << std::endl;
     if (torrent)
     {
         m_taskbarButton->setOverlayIcon(TorrentModel::getIconByState(torrent->state()));

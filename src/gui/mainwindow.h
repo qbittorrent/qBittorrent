@@ -270,7 +270,7 @@ private:
 #ifdef Q_OS_WIN
     QWinThumbnailToolBar *m_thumbBar;
     QWinThumbnailToolButton *m_resume, *m_pause;
-    QWinTaskbarButton *m_taskbarButton;
+    QPointer<QWinTaskbarButton> m_taskbarButton;
 #endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
