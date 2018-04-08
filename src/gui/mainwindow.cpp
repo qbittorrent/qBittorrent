@@ -2104,7 +2104,7 @@ void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
 
 void MainWindow::setupTaskbarButton()
 {
-    if (m_taskbarButton)
+    if (m_taskbarButton || QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return;
     m_taskbarButton = new QWinTaskbarButton(this);
     if (m_taskbarButton)
