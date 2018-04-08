@@ -268,7 +268,7 @@ private:
     bool m_wasUpdateCheckEnabled;
 #endif
 #ifdef Q_OS_WIN
-    QWinThumbnailToolBar *m_thumbBar;
+    QPointer<QWinThumbnailToolBar> m_thumbBar;
     QWinThumbnailToolButton *m_resume, *m_pause;
     QPointer<QWinTaskbarButton> m_taskbarButton;
 #endif
