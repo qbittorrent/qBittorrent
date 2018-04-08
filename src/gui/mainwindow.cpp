@@ -2132,7 +2132,6 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
 {
     if (!m_taskbarButton)
         return;
-    std::cout << "update taskbar" << std::endl;
     if (torrent)
     {
         m_taskbarButton->setOverlayIcon(TorrentModel::getIconByState(torrent->state()));

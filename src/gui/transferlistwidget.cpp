@@ -412,36 +412,24 @@ void TransferListWidget::pauseAllTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
         torrent->pause();
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::resumeAllTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
         torrent->resume();
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::startSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
         torrent->resume();
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::forceStartSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
         torrent->resume(true);
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::startVisibleTorrents()
@@ -451,18 +439,12 @@ void TransferListWidget::startVisibleTorrents()
         if (torrent)
             torrent->resume();
     }
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::pauseSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
         torrent->pause();
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::pauseVisibleTorrents()
@@ -472,25 +454,16 @@ void TransferListWidget::pauseVisibleTorrents()
         if (torrent)
             torrent->pause();
     }
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::softDeleteSelectedTorrents()
 {
     deleteSelectedTorrents(false);
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::permDeleteSelectedTorrents()
 {
     deleteSelectedTorrents(true);
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
@@ -505,9 +478,6 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
         return;
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::deleteVisibleTorrents()
@@ -525,9 +495,6 @@ void TransferListWidget::deleteVisibleTorrents()
 
     foreach (BitTorrent::TorrentHandle *const torrent, torrents)
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::increasePrioSelectedTorrents()
@@ -719,9 +686,6 @@ void TransferListWidget::recheckSelectedTorrents()
 
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
         torrent->forceRecheck();
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::reannounceSelectedTorrents()
@@ -850,9 +814,6 @@ void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTo
         Q_ASSERT(torrent);
         fn(torrent);
     }
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
 }
 
 void TransferListWidget::renameSelectedTorrent()
@@ -1194,9 +1155,6 @@ void TransferListWidget::currentChanged(const QModelIndex& current, const QModel
         // Scroll Fix
         scrollTo(current);
     }
-#ifdef Q_OS_WIN
-    taskbarChanged();
-#endif
     emit currentTorrentChanged(torrent);
 }
 
