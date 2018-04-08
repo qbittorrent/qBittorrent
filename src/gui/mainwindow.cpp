@@ -1502,8 +1502,7 @@ void MainWindow::loadPreferences(bool configureSession)
 #ifdef Q_OS_WIN
     if (configureSession) { //do not run at startup, taskbar must be setup after showEvent
         if (!pref->WinTaskbar()) {
-            if (m_taskbarButton)
-            {
+            if (m_taskbarButton) {
                 m_taskbarButton->clearOverlayIcon();
                 m_taskbarButton->progress()->setVisible(false);
                 m_pause->setVisible(false);
@@ -2124,8 +2123,7 @@ void MainWindow::setupTaskbarButton()
     if (!Preferences::instance()->WinTaskbar() || m_taskbarButton || QSysInfo::windowsVersion() < QSysInfo::WV_WINDOWS7)
         return;
     m_taskbarButton = new QWinTaskbarButton(this);
-    if (m_taskbarButton)
-    {
+    if (m_taskbarButton) {
         connect(m_transferListWidget, &TransferListWidget::updateTaskbar, this, &MainWindow::updateTaskbar);
         m_taskbarButton->setWindow(this->windowHandle());
         m_thumbBar = new QWinThumbnailToolBar(this);
@@ -2149,8 +2147,7 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
 {
     if (!m_taskbarButton)
         return;
-    if (torrent)
-    {
+    if (torrent) {
         m_taskbarButton->setOverlayIcon(TorrentModel::getIconByState(torrent->state()));
         switch (torrent->state()) {
         case BitTorrent::TorrentState::Downloading:
@@ -2215,8 +2212,7 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
         m_pause->setVisible(true);
         m_resume->setVisible(true);
     }
-    else
-    {
+    else {
         m_taskbarButton->clearOverlayIcon();
         m_taskbarButton->progress()->setVisible(false);
         m_pause->setVisible(false);

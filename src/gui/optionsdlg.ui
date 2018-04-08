@@ -388,7 +388,7 @@
                 </widget>
                </item>
                <item>
-			   <widget class="QCheckBox" name="checkWindowsTaskbar">
+                <widget class="QCheckBox" name="checkWindowsTaskbar">
                  <property name="text">
                   <string>Enable Windows taskbar features</string>
                  </property>
