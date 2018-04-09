@@ -349,6 +349,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::QueuedForChecking:
 #endif
     case BitTorrent::TorrentState::CheckingResumeData:
+    case BitTorrent::TorrentState::Moving:
         return getCheckingIcon();
     case BitTorrent::TorrentState::Unknown:
     case BitTorrent::TorrentState::MissingFiles:
@@ -404,6 +405,7 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::QueuedForChecking:
 #endif
     case BitTorrent::TorrentState::CheckingResumeData:
+    case BitTorrent::TorrentState::Moving:
         if (!dark)
             return QColor(0, 128, 128); // Teal
         else

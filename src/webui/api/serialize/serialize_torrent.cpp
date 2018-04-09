@@ -76,6 +76,8 @@ namespace
 #endif
         case BitTorrent::TorrentState::CheckingResumeData:
             return QLatin1String("checkingResumeData");
+        case BitTorrent::TorrentState::Moving:
+            return QLatin1String("moving");
         default:
             return QLatin1String("unknown");
         }
