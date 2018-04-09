@@ -132,7 +132,7 @@ namespace
 //   - "hash": Torrent hash
 //   - "name": Torrent name
 //   - "size": Torrent size
-//   - "progress: Torrent progress
+//   - "progress": Torrent progress
 //   - "dlspeed": Torrent download speed
 //   - "upspeed": Torrent upload speed
 //   - "priority": Torrent priority (-1 if queuing is disabled)
