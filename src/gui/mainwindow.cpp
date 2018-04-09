@@ -2184,6 +2184,7 @@ void MainWindow::updateTaskbar(BitTorrent::TorrentHandle* torrent)
             m_taskbarButton->progress()->setMaximum(0);
             m_taskbarButton->progress()->setVisible(true);
             m_taskbarButton->progress()->resume();
+            break;
         case BitTorrent::TorrentState::QueuedUploading:
             m_taskbarButton->progress()->setVisible(false);
             break;
