@@ -519,15 +519,19 @@ int TorrentHandle::piecesHave() const
 
 qreal TorrentHandle::progress() const
 {
-    if (!m_nativeStatus.total_wanted)
-        return 0.;
+    if (!isChecking()) {
+        if (!m_nativeStatus.total_wanted)
+            return 0.;
 
-    if (m_nativeStatus.total_wanted_done == m_nativeStatus.total_wanted)
-        return 1.;
+        if (m_nativeStatus.total_wanted_done == m_nativeStatus.total_wanted)
+            return 1.;
 
-    float progress = static_cast<float>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
-    Q_ASSERT((progress >= 0.f) && (progress <= 1.f));
-    return progress;
+        qreal progress = static_cast<qreal>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
+        Q_ASSERT((progress >= 0.f) && (progress <= 1.f));
+        return progress;
+    }
+
+    return m_nativeStatus.progress;
 }
 
 QString TorrentHandle::category() const
