@@ -1277,7 +1277,7 @@ void TorrentHandle::forceRecheck()
 
     if (isPaused()) {
         m_pauseAfterRecheck = true;
-        resume();
+        resume_impl(true, true);
     }
 
     m_nativeHandle.force_recheck();
@@ -1346,11 +1346,16 @@ void TorrentHandle::pause()
 
 void TorrentHandle::resume(bool forced)
 {
+    resume_impl(forced, false);
+}
+
+void TorrentHandle::resume_impl(bool forced, bool uploadMode)
+{
     if (hasError())
         m_nativeHandle.clear_error();
     m_hasMissingFiles = false;
-    m_nativeHandle.set_upload_mode(false);
     m_nativeHandle.auto_managed(!forced);
+    m_nativeHandle.set_upload_mode(uploadMode);
     m_nativeHandle.resume();
 }
 
