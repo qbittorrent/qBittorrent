@@ -51,9 +51,9 @@ if (NOT WEBUI)
     add_definitions(-DDISABLE_WEBUI)
 endif (NOT WEBUI)
 
-if (STACKTRACE_WIN)
-    add_definitions(-DSTACKTRACE_WIN)
-endif(STACKTRACE_WIN)
+if (STACKTRACE)
+    add_definitions(-DSTACKTRACE)
+endif(STACKTRACE)
 # nogui {
 #     TARGET = qbittorrent-nox
 # } else {

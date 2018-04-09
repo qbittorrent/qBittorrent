@@ -25,12 +25,16 @@ SOURCES += \
     $$PWD/filelogger.cpp \
     $$PWD/main.cpp
 
-unix: HEADERS += $$PWD/stacktrace.h
-strace_win {
-    HEADERS += $$PWD/stacktrace_win.h
-    !nogui {
-        HEADERS += $$PWD/stacktrace_win_dlg.h
-        FORMS += $$PWD/stacktrace_win_dlg.ui
+stacktrace {
+    unix {
+        HEADERS += $$PWD/stacktrace.h
+    }
+    else {
+        HEADERS += $$PWD/stacktrace_win.h
+        !nogui {
+            HEADERS += $$PWD/stacktrace_win_dlg.h
+            FORMS += $$PWD/stacktrace_win_dlg.ui
+        }
     }
 }
 

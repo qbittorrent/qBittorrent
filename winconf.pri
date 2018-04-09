@@ -55,7 +55,7 @@ else {
 }
 
 # Stack trace support can be enabled in 'conf.pri'
-strace_win {
+stacktrace {
     win32-g++* {
         contains(QMAKE_HOST.arch, x86) {
             # i686 arch requires frame pointer preservation

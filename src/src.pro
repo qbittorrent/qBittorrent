@@ -33,13 +33,17 @@ nogui {
         LIBS += -lobjc
     }
 }
+
 nowebui {
     DEFINES += DISABLE_WEBUI
 }
-strace_win {
-    DEFINES += STACKTRACE_WIN
-    DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
-    DEFINES += STACKTRACE_WIN_MAKEFILE_PATH=$$OUT_PWD
+
+stacktrace {
+    DEFINES += STACKTRACE
+    win32 {
+        DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
+        DEFINES += STACKTRACE_WIN_MAKEFILE_PATH=$$OUT_PWD
+    }
 }
 
 CONFIG(debug, debug|release): message(Project is built in DEBUG mode.)
