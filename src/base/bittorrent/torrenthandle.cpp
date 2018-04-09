@@ -1445,8 +1445,8 @@ void TorrentHandle::handleStorageMovedAlert(const libtorrent::storage_moved_aler
         return;
     }
 
-    qDebug("Torrent is successfully moved from %s to %s"
-        , qUtf8Printable(m_moveStorageInfo.oldPath), qUtf8Printable(m_moveStorageInfo.newPath));
+    LogMsg(tr("Successfully moved torrent: %1. New path: %2").arg(name(), m_moveStorageInfo.newPath));
+
     const QDir oldDir {m_moveStorageInfo.oldPath};
     if ((oldDir == QDir(m_session->torrentTempPath(info())))
             && (oldDir != QDir(m_session->tempPath()))) {
