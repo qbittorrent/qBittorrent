@@ -409,14 +409,18 @@ void AppController::setPreferencesAction()
     if (m.contains("dont_count_slow_torrents"))
         session->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
     // Share Ratio Limiting
-    if (m.contains("max_ratio_enabled"))
-        session->setGlobalMaxRatio(m["max_ratio"].toReal());
-    else
-        session->setGlobalMaxRatio(-1);
-    if (m.contains("max_seeding_time_enabled"))
-        session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
-    else
-        session->setGlobalMaxSeedingMinutes(-1);
+    if (m.contains("max_ratio_enabled")) {
+        if (m["max_ratio_enabled"].toBool())
+            session->setGlobalMaxRatio(m["max_ratio"].toReal());
+        else
+            session->setGlobalMaxRatio(-1);
+    }
+    if (m.contains("max_seeding_time_enabled")) {
+        if (m["max_seeding_time_enabled"].toBool())
+            session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
+        else
+            session->setGlobalMaxSeedingMinutes(-1);
+    }
     if (m.contains("max_ratio_act"))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
     // Add trackers
