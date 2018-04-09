@@ -272,6 +272,9 @@ QString TransferListDelegate::getStatusString(const BitTorrent::TorrentState sta
     case BitTorrent::TorrentState::PausedUploading:
         str = tr("Completed");
         break;
+    case BitTorrent::TorrentState::Moving:
+        str = tr("Moving", "Torrent local data are being moved/relocated");
+        break;
     case BitTorrent::TorrentState::MissingFiles:
         str = tr("Missing Files");
         break;

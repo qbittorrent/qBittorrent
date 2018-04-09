@@ -734,7 +734,8 @@ bool TorrentHandle::isActive() const
             || m_state == TorrentState::Downloading
             || m_state == TorrentState::ForcedDownloading
             || m_state == TorrentState::Uploading
-            || m_state == TorrentState::ForcedUploading;
+            || m_state == TorrentState::ForcedUploading
+            || m_state == TorrentState::Moving;
 }
 
 bool TorrentHandle::isInactive() const
@@ -807,7 +808,10 @@ TorrentState TorrentHandle::state() const
 
 void TorrentHandle::updateState()
 {
-    if (isPaused()) {
+    if (isMoveInProgress()) {
+        m_state = TorrentState::Moving;
+    }
+    else if (isPaused()) {
         if (hasMissingFiles())
             m_state = TorrentState::MissingFiles;
         else if (hasError())
@@ -1374,6 +1378,7 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
                                     , (overwrite ? libt::always_replace_files : libt::dont_replace));
         m_moveStorageInfo.oldPath = oldPath;
         m_moveStorageInfo.newPath = newPath;
+        updateState();
     }
 }
 
@@ -1450,9 +1455,10 @@ void TorrentHandle::handleStorageMovedAlert(const libtorrent::storage_moved_aler
         qDebug() << "Removing torrent temp folder:" << m_moveStorageInfo.oldPath;
         Utils::Fs::smartRemoveEmptyFolderTree(m_moveStorageInfo.oldPath);
     }
-    updateStatus();
 
     m_moveStorageInfo.newPath.clear();
+    updateStatus();
+
     if (!m_moveStorageInfo.queuedPath.isEmpty()) {
         moveStorage(m_moveStorageInfo.queuedPath, m_moveStorageInfo.queuedOverwrite);
         m_moveStorageInfo.queuedPath.clear();
@@ -1478,6 +1484,8 @@ void TorrentHandle::handleStorageMovedFailedAlert(const libtorrent::storage_move
         .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
 
     m_moveStorageInfo.newPath.clear();
+    updateStatus();
+
     if (!m_moveStorageInfo.queuedPath.isEmpty()) {
         moveStorage(m_moveStorageInfo.queuedPath, m_moveStorageInfo.queuedOverwrite);
         m_moveStorageInfo.queuedPath.clear();
