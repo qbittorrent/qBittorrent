@@ -17,33 +17,33 @@
 
 <script>
     var categoriesFilterContextMenu = new CategoriesFilterContextMenu({
-        targets : '.categoriesFilterContextMenuTarget',
-        menu : 'categoriesFilterMenu',
-        actions : {
-            CreateCategory : function (element, ref) {
+        targets: '.categoriesFilterContextMenuTarget',
+        menu: 'categoriesFilterMenu',
+        actions: {
+            CreateCategory: function(element, ref) {
                 createCategoryFN();
             },
-            DeleteCategory : function (element, ref) {
+            DeleteCategory: function(element, ref) {
                 removeCategoryFN(element.id);
             },
-            DeleteUnusedCategories : function (element, ref) {
+            DeleteUnusedCategories: function(element, ref) {
                 deleteUnusedCategoriesFN();
             },
-            StartTorrentsByCategory : function (element, ref) {
+            StartTorrentsByCategory: function(element, ref) {
                 startTorrentsByCategoryFN(element.id);
             },
-            PauseTorrentsByCategory : function (element, ref) {
+            PauseTorrentsByCategory: function(element, ref) {
                 pauseTorrentsByCategoryFN(element.id);
             },
-            DeleteTorrentsByCategory : function (element, ref) {
+            DeleteTorrentsByCategory: function(element, ref) {
                 deleteTorrentsByCategoryFN(element.id);
             }
         },
-        offsets : {
-            x : -15,
-            y : 2
+        offsets: {
+            x: -15,
+            y: 2
         },
-        onShow: function () {
+        onShow: function() {
             this.options.element.firstChild.click();
         }
     });

@@ -16,74 +16,73 @@
 </div>
 
 <script>
-
     //create a context menu
     var torrentsTableContextMenu = new TorrentsTableContextMenu({
-        targets : '.torrentsTableContextMenuTarget',
-        menu : 'torrentsTableMenu',
-        actions : {
-            Start : function (element, ref) {
+        targets: '.torrentsTableContextMenuTarget',
+        menu: 'torrentsTableMenu',
+        actions: {
+            Start: function(element, ref) {
                 startFN();
             },
-            Pause : function (element, ref) {
+            Pause: function(element, ref) {
                 pauseFN();
             },
-            ForceStart : function (element, ref) {
+            ForceStart: function(element, ref) {
                 setForceStartFN();
             },
 
-            Delete : function (element, ref) {
+            Delete: function(element, ref) {
                 deleteFN();
             },
 
-            SetLocation : function (element, ref) {
+            SetLocation: function(element, ref) {
                 setLocationFN();
             },
 
-            Rename : function(element, ref) {
+            Rename: function(element, ref) {
                 renameFN();
             },
-            prioTop : function (element, ref) {
+            prioTop: function(element, ref) {
                 setPriorityFN('top_prio');
             },
-            prioUp : function (element, ref) {
+            prioUp: function(element, ref) {
                 setPriorityFN('increase_prio');
             },
-            prioDown : function (element, ref) {
+            prioDown: function(element, ref) {
                 setPriorityFN('decrease_prio');
             },
-            prioBottom : function (element, ref) {
+            prioBottom: function(element, ref) {
                 setPriorityFN('bottom_prio');
             },
 
-            DownloadLimit : function (element, ref) {
+            DownloadLimit: function(element, ref) {
                 downloadLimitFN();
             },
-            UploadLimit : function (element, ref) {
+            UploadLimit: function(element, ref) {
                 uploadLimitFN();
             },
 
-            SequentialDownload : function (element, ref) {
+            SequentialDownload: function(element, ref) {
                 toggleSequentialDownloadFN();
             },
-            FirstLastPiecePrio : function (element, ref) {
+            FirstLastPiecePrio: function(element, ref) {
                 toggleFirstLastPiecePrioFN();
             },
 
-            AutoTorrentManagement : function (element, ref) {
+            AutoTorrentManagement: function(element, ref) {
                 autoTorrentManagementFN();
             },
-            ForceRecheck : function (element, ref) {
+            ForceRecheck: function(element, ref) {
                 recheckFN();
             },
 
-            SuperSeeding : function (element, ref) {
+            SuperSeeding: function(element, ref) {
                 setSuperSeedingFN(!ref.getItemChecked('SuperSeeding'));
             }
         },
-        offsets : {
-            x : -15,
-            y : 2
+        offsets: {
+            x: -15,
+            y: 2
         }
     });
 

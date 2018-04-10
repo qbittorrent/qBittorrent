@@ -90,14 +90,14 @@ if (!Date.prototype.toISOString) {
         }
 
         Date.prototype.toISOString = function() {
-            return this.getUTCFullYear() +
-                '-' + pad(this.getUTCMonth() + 1) +
-                '-' + pad(this.getUTCDate()) +
-                'T' + pad(this.getUTCHours()) +
-                ':' + pad(this.getUTCMinutes()) +
-                ':' + pad(this.getUTCSeconds()) +
-                '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
-                'Z';
+            return this.getUTCFullYear()
+                + '-' + pad(this.getUTCMonth() + 1)
+                + '-' + pad(this.getUTCDate())
+                + 'T' + pad(this.getUTCHours())
+                + ':' + pad(this.getUTCMinutes())
+                + ':' + pad(this.getUTCSeconds())
+                + '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5)
+                + 'Z';
         };
 
     }());
@@ -108,7 +108,7 @@ if (!Date.prototype.toISOString) {
  */
 function parseHtmlLinks(text) {
     var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    return text.replace(exp,"<a target='_blank' href='$1'>$1</a>");
+    return text.replace(exp, "<a target='_blank' href='$1'>$1</a>");
 }
 
 function escapeHtml(str) {
