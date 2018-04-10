@@ -232,36 +232,69 @@ class MyClass
 ```
 
 ### 7. Header inclusion order. ###
-The headers should be placed in the following order:
- 1. Module header (in .cpp)
- 2. System/Qt/Boost etc. headers (split in subcategories if you have many).
- 3. Application headers, starting from *Base* headers.
+The headers should be placed in the following group order:
+  1. Module header (in .cpp)
+  2. C++ Standard Library headers
+  3. System headers
+  4. Boost library headers
+  5. Libtorrent headers
+  6. Qt headers
+  7. qBittorrent own headers, starting from *base* headers.
 
-The headers should be ordered alphabetically within each group (subgroup).<br/>
-<br/>
+The headers should be ordered alphabetically within each group.  
+If there are conditionals for the same header group, then put them at the bottom of the respective group.  
+If there are conditionals for the different header groups, then put them above of the "qBittorrent own headers" group.
+
+One exception is the header containing the library version (for example, QtGlobal), this particular header isn't constrained by the aforementioned order.
+
 Example:
 ```c++
-// examplewidget.cpp
+// file: examplewidget.cpp
 
+// Module header
 #include "examplewidget.h"
 
-#include <cmath>
+// exceptions, headers containing version number
+#include <boost/version.hpp>
+#include <libtorrent/version.hpp>
+#include <QtGlobal>
+
+// C++ Standard Library headers
 #include <cstdio>
 
-#include <QDateTime>
-#include <QList>
+#ifdef Q_OS_WIN  // conditional
+#include <cmath>
+#endif
+
+// System headers
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#endif
+
+// Boost library headers
+#include <boost/circular_buffer.hpp>
+
+// Libtorrent headers
+#include <libtorrent/session.hpp>
+
+// Qt headers
 #include <QString>
 #include <QUrl>
 
-#include <libtorrent/version.hpp>
+#ifdef Q_OS_MAC  // conditional
+#include <QFont>
+#endif
 
+// conditional for the different header groups
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <memory>
+#include <QElapsedTimer>
+#endif
+
+// qBittorrent own headers
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
+#include "anothermodule.h"
 #include "ui_examplewidget.h"
-
 ```
 
 ### 8. Include guard. ###
