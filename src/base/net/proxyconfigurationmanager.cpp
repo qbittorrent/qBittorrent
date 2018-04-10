@@ -139,10 +139,10 @@ void ProxyConfigurationManager::configureProxy()
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::HTTP:
-            proxyStrHTTP = QString("http://%1:%2").arg(m_config.ip, m_config.port);
+            proxyStrHTTP = QString("http://%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5:
-            proxyStrSOCK = QString("%1:%2").arg(m_config.ip, m_config.port);
+            proxyStrSOCK = QString("%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5_PW:
             proxyStrSOCK = QString("%1:%2@%3:%4").arg(m_config.username
