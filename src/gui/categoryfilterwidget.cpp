@@ -35,6 +35,7 @@
 #include <QMessageBox>
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "categoryfiltermodel.h"
 #include "categoryfilterproxymodel.h"
 #include "guiiconprovider.h"
@@ -232,8 +233,7 @@ void CategoryFilterWidget::removeCategory()
 void CategoryFilterWidget::removeUnusedCategories()
 {
     auto session = BitTorrent::Session::instance();
-    for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i) {
-        const QString &category = i.key();
+    for (const QString &category : copyAsConst(session->categories().keys())) {
         if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)
             session->removeCategory(category);
     }
