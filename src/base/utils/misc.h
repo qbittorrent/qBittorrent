@@ -31,15 +31,24 @@
 #ifndef UTILS_MISC_H
 #define UTILS_MISC_H
 
+#include <ctime>
 #include <vector>
+
+#include <QtGlobal>
+
+#ifdef Q_OS_WIN
+#include <memory>
+#include <Windows.h>
+#endif
+
+#include <QDir>
+#include <QFile>
+#include <QPoint>
+#include <QSize>
 #include <QString>
 #include <QStringList>
-#include <ctime>
-#include <QPoint>
-#include <QFile>
-#include <QDir>
 #include <QUrl>
-#include <QSize>
+
 #include "base/types.h"
 
 /*  Miscellaneous functions that can be useful */
@@ -107,6 +116,22 @@ namespace Utils
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();
+
+        template <typename T>
+        T loadWinAPI(const QString &source, const char *funcName)
+        {
+            QString path = windowsSystemPath();
+            if (!path.endsWith('\\'))
+                path += '\\';
+
+            path += source;
+
+            std::unique_ptr<wchar_t[]> pathWchar(new wchar_t[path.length() + 1] {});
+            path.toWCharArray(pathWchar.get());
+
+            return reinterpret_cast<T>(
+                ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
+        }
 #endif
     }
 }

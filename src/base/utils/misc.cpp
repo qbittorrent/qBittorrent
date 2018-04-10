@@ -28,34 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QUrl>
-#include <QDir>
-#include <QFileInfo>
-#include <QDateTime>
-#include <QByteArray>
-#include <QDebug>
-#include <QProcess>
-#include <QRegularExpression>
-#include <QSysInfo>
+#include "misc.h"
+
 #include <boost/version.hpp>
 #include <libtorrent/version.hpp>
 
-#ifdef DISABLE_GUI
-#include <QCoreApplication>
-#else
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QStyle>
-#endif
-
 #ifdef Q_OS_WIN
 #include <windows.h>
-#include <powrprof.h>
 #include <Shlobj.h>
-const int UNLEN = 256;
 #else
-#include <unistd.h>
 #include <sys/types.h>
+#include <unistd.h>
 #endif
 
 #ifdef Q_OS_MAC
@@ -63,33 +46,47 @@ const int UNLEN = 256;
 #include <Carbon/Carbon.h>
 #endif
 
-#ifndef DISABLE_GUI
+#include <QByteArray>
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFileInfo>
+#include <QProcess>
+#include <QRegularExpression>
+#include <QSysInfo>
+#include <QUrl>
+
+#ifdef DISABLE_GUI
+#include <QCoreApplication>
+#else
+#include <QApplication>
+#include <QDesktopServices>
+#include <QDesktopWidget>
+#include <QProcess>
+#include <QStyle>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
-#endif // DISABLE_GUI
-
-#ifndef DISABLE_GUI
-#include <QDesktopServices>
-#include <QProcess>
 #endif
 
 #include "base/utils/string.h"
 #include "base/unicodestrings.h"
 #include "base/logger.h"
-#include "misc.h"
 #include "fs.h"
 
-static struct { const char *source; const char *comment; } units[] = {
-    QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
-    QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
-    QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "PiB", "pebibytes (1024 tebibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
-};
+namespace
+{
+    const struct { const char *source; const char *comment; } units[] = {
+        QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
+        QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
+        QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "PiB", "pebibytes (1024 tebibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
+    };
+}
 
 void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 {
@@ -115,12 +112,23 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == ShutdownDialogAction::Suspend)
-        SetSuspendState(false, false, false);
-    else if (action == ShutdownDialogAction::Hibernate)
-        SetSuspendState(true, false, false);
-    else
-        InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+    using PSETSUSPENDSTATE = BOOLEAN (WINAPI *)(BOOLEAN, BOOLEAN, BOOLEAN);
+    const auto setSuspendState = Utils::Misc::loadWinAPI<PSETSUSPENDSTATE>("PowrProf.dll", "SetSuspendState");
+
+    if (action == ShutdownDialogAction::Suspend) {
+        if (setSuspendState)
+            setSuspendState(false, false, false);
+    }
+    else if (action == ShutdownDialogAction::Hibernate) {
+        if (setSuspendState)
+            setSuspendState(true, false, false);
+    }
+    else {
+        const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
+        std::unique_ptr<wchar_t[]> msgWchar(new wchar_t[msg.length() + 1] {});
+        msg.toWCharArray(msgWchar.get());
+        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, true, false);
+    }
 
     // Disable shutdown privilege.
     tkp.Privileges[0].Attributes = 0;
@@ -474,6 +482,7 @@ QString Utils::Misc::getUserIDString()
 {
     QString uid = "0";
 #ifdef Q_OS_WIN
+    const int UNLEN = 256;
     WCHAR buffer[UNLEN + 1] = {0};
     DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
     if (GetUserNameW(buffer, &buffer_len))
