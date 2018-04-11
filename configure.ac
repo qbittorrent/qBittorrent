@@ -24,6 +24,12 @@ AC_ARG_ENABLE(debug,
               [],
               [enable_debug=no])
 
+AC_ARG_ENABLE(stacktrace,
+              [AS_HELP_STRING([--enable-stacktrace],
+                              [Enable stacktrace feature (default=auto)])],
+              [],
+              [enable_stacktrace=auto])
+
 AC_ARG_ENABLE(gui,
               [AS_HELP_STRING([--disable-gui],
                               [Disable the GUI for headless running. Disables QtDBus and the GeoIP Database.])],
@@ -79,6 +85,23 @@ AS_CASE(["x$enable_debug"],
                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG release"],
         [AC_MSG_RESULT([$enable_debug])
         AC_MSG_ERROR([Unknown option "$enable_debug". Use either "yes" or "no".])])
+
+AC_MSG_CHECKING([whether to enable the stacktrace feature])
+AS_CASE(["x$enable_stacktrace"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace"],
+        ["xauto"],
+                [AC_COMPILE_IFELSE([AC_LANG_SOURCE([[#include <execinfo.h>]])],
+                [AC_MSG_RESULT([yes])
+                QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace"],
+                [AC_MSG_RESULT([no])
+                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace"])],
+        [AC_MSG_RESULT([$enable_stacktrace])
+        AC_MSG_ERROR([Unknown option "$enable_stacktrace". Use either "yes" or "no".])])
 
 AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],

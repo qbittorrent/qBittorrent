@@ -53,16 +53,16 @@ if (WIN32)
     list(APPEND QBT_APP_SOURCES ../qbittorrent.exe.manifest)
 endif (WIN32)
 
-if (UNIX)
-    list(APPEND QBT_APP_HEADERS stacktrace.h)
-endif (UNIX)
-
-if (STACKTRACE_WIN)
-    list(APPEND QBT_APP_HEADERS stacktrace_win.h)
-    if (GUI)
-        list(APPEND QBT_APP_HEADERS stacktrace_win_dlg.h)
-    endif (GUI)
-endif (STACKTRACE_WIN)
+if (STACKTRACE)
+    if (UNIX)
+        list(APPEND QBT_APP_HEADERS stacktrace.h)
+    else (UNIX)
+        list(APPEND QBT_APP_HEADERS stacktrace_win.h)
+        if (GUI)
+            list(APPEND QBT_APP_HEADERS stacktrace_win_dlg.h)
+        endif (GUI)
+    endif (UNIX)
+endif (STACKTRACE)
 
 # usesystemqtsingleapplication {
 #     nogui {

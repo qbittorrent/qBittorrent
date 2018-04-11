@@ -57,17 +57,15 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif
 #endif // DISABLE_GUI
 
+#include <signal.h>
+#ifdef STACKTRACE
 #ifdef Q_OS_UNIX
-#include <signal.h>
-#include <execinfo.h>
 #include "stacktrace.h"
-#endif // Q_OS_UNIX
-
-#ifdef STACKTRACE_WIN
-#include <signal.h>
+#else
 #include "stacktrace_win.h"
 #include "stacktrace_win_dlg.h"
-#endif //STACKTRACE_WIN
+#endif // Q_OS_UNIX
+#endif //STACKTRACE
 
 #include "application.h"
 #include "base/profile.h"
@@ -77,9 +75,10 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "upgrade.h"
 
 // Signal handlers
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum);
+#ifdef STACKTRACE
 void sigAbnormalHandler(int signum);
+#endif
 // sys_signame[] is only defined in BSD
 const char *sysSigName[] = {
 #if defined(Q_OS_WIN)
@@ -94,7 +93,6 @@ const char *sysSigName[] = {
     "SIGPWR", "SIGUNUSED"
 #endif
 };
-#endif
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 void reportToUser(const char* str);
@@ -255,9 +253,9 @@ int main(int argc, char *argv[])
             showSplashScreen();
 #endif
 
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
         signal(SIGINT, sigNormalHandler);
         signal(SIGTERM, sigNormalHandler);
+#ifdef STACKTRACE
         signal(SIGABRT, sigAbnormalHandler);
         signal(SIGSEGV, sigAbnormalHandler);
 #endif
@@ -281,7 +279,6 @@ void reportToUser(const char* str)
 }
 #endif
 
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum)
 {
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
@@ -295,6 +292,7 @@ void sigNormalHandler(int signum)
     qApp->exit();  // unsafe, but exit anyway
 }
 
+#ifdef STACKTRACE
 void sigAbnormalHandler(int signum)
 {
     const char *sigName = sysSigName[signum];
@@ -307,16 +305,18 @@ void sigAbnormalHandler(int signum)
     reportToUser(sigName);
     reportToUser("\n");
     print_stacktrace();  // unsafe
-#endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
-#ifdef STACKTRACE_WIN
+#endif
+
+#if defined Q_OS_WIN
     StraceDlg dlg;  // unsafe
     dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
     dlg.exec();
-#endif // STACKTRACE_WIN
+#endif
+
     signal(signum, SIG_DFL);
     raise(signum);
 }
-#endif // defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
+#endif // STACKTRACE
 
 #if !defined(DISABLE_GUI)
 void showSplashScreen()

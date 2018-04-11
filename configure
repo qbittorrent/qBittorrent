@@ -717,6 +717,7 @@ enable_dependency_tracking
 enable_silent_rules
 with_qtsingleapplication
 enable_debug
+enable_stacktrace
 enable_gui
 enable_systemd
 enable_webui
@@ -1382,6 +1383,7 @@ Optional Features:
   --enable-silent-rules   less verbose build output (undo: "make V=1")
   --disable-silent-rules  verbose build output (undo: "make V=0")
   --enable-debug          Enable debug build
+  --enable-stacktrace     Enable stacktrace feature (default=auto)
   --disable-gui           Disable the GUI for headless running. Disables
                           QtDBus and the GeoIP Database.
   --enable-systemd        Install the systemd service file (headless only).
@@ -4189,6 +4191,14 @@ else
 fi
 
 
+# Check whether --enable-stacktrace was given.
+if test "${enable_stacktrace+set}" = set; then :
+  enableval=$enable_stacktrace;
+else
+  enable_stacktrace=auto
+fi
+
+
 # Check whether --enable-gui was given.
 if test "${enable_gui+set}" = set; then :
   enableval=$enable_gui;
@@ -4387,6 +4397,39 @@ $as_echo "yes" >&6; }
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_debug" >&5
 $as_echo "$enable_debug" >&6; }
         as_fn_error $? "Unknown option \"$enable_debug\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
+esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable the stacktrace feature" >&5
+$as_echo_n "checking whether to enable the stacktrace feature... " >&6; }
+
+case "x$enable_stacktrace" in #(
+  "xno") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace" ;; #(
+  "xyes") :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace" ;; #(
+  "xauto") :
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <execinfo.h>
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+                QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace"
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace"
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext ;; #(
+  *) :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_stacktrace" >&5
+$as_echo "$enable_stacktrace" >&6; }
+        as_fn_error $? "Unknown option \"$enable_stacktrace\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable the GUI" >&5
@@ -4632,7 +4675,6 @@ $as_echo "no" >&6; }
 $as_echo "$enable_qt_dbus" >&6; }
         as_fn_error $? "Unknown option \"$enable_qt_dbus\". Use either \"yes\" or \"no\"." "$LINENO" 5 ;;
 esac
-
 
 
 
