@@ -157,12 +157,13 @@ void TorrentCreatorThread::run()
     }
 }
 
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize)
+int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized)
 {
     if (inputPath.isEmpty())
         return 0;
 
     libt::file_storage fs;
     libt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
-    return libt::create_torrent(fs, pieceSize).num_pieces();
+    return libt::create_torrent(fs, pieceSize, -1
+        , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0)).num_pieces();
 }

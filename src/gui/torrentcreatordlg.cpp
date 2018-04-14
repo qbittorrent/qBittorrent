@@ -215,8 +215,9 @@ void TorrentCreatorDlg::updateProgressBar(int progress)
 void TorrentCreatorDlg::updatePiecesCount()
 {
     const QString path = m_ui->textInputPath->text().trimmed();
+    const bool isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked();
 
-    const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(path, getPieceSize());
+    const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(path, getPieceSize(), isAlignmentOptimized);
     m_ui->labelTotalPieces->setText(QString::number(count));
 }
 
