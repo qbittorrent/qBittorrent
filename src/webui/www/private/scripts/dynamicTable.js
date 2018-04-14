@@ -769,7 +769,7 @@ var TorrentsTable = new Class({
         this.newColumn('time_active', '', 'QBT_TR(Time Active)QBT_TR[CONTEXT=TorrentModel]', 100, false);
         this.newColumn('save_path', '', 'QBT_TR(Save path)QBT_TR[CONTEXT=TorrentModel]', 100, false);
         this.newColumn('completed', '', 'QBT_TR(Completed)QBT_TR[CONTEXT=TorrentModel]', 100, false);
-        this.newColumn('ratio_limit', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
+        this.newColumn('max_ratio', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TorrentModel]', 100, false);
         this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TorrentModel]', 100, false);
         this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TorrentModel]', 100, false);
 
@@ -1076,8 +1076,8 @@ var TorrentsTable = new Class({
         this.columns['save_path'].updateTd = this.columns['name'].updateTd;
         this.columns['tracker'].updateTd = this.columns['name'].updateTd;
 
-        // ratio_limit
-        this.columns['ratio_limit'].updateTd = this.columns['ratio'].updateTd;
+        // max_ratio
+        this.columns['max_ratio'].updateTd = this.columns['ratio'].updateTd;
 
         // last_activity
         this.columns['last_activity'].updateTd = function(td, row) {

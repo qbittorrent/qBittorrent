@@ -76,6 +76,10 @@ function friendlyPercentage(value) {
     return percentage.toFixed(1) + "%";
 }
 
+function friendlyFloat(value, precision) {
+    return parseFloat(value).toFixed(precision);
+}
+
 /*
  * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
  */
