@@ -59,7 +59,7 @@ namespace RSS
         QString message() const;
     };
 
-    class AutoDownloader final: public QObject
+    class AutoDownloader final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(AutoDownloader)

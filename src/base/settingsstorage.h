@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2014  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2014  sledgehammer999 <sledgehammer999@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,11 +31,11 @@
 #define SETTINGSSTORAGE_H
 
 #include <QObject>
-#include <QVariantHash>
-#include <QTimer>
 #include <QReadWriteLock>
+#include <QTimer>
+#include <QVariantHash>
 
-class SettingsStorage: public QObject
+class SettingsStorage : public QObject
 {
     Q_OBJECT
     SettingsStorage();
@@ -44,7 +44,7 @@ class SettingsStorage: public QObject
 public:
     static void initInstance();
     static void freeInstance();
-    static SettingsStorage* instance();
+    static SettingsStorage *instance();
 
     QVariant loadValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void storeValue(const QString &key, const QVariant &value);

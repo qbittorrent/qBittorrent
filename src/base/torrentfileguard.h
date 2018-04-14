@@ -51,7 +51,7 @@ private:
 
 /// Reads settings for .torrent files from preferences
 /// and sets the file guard up accordingly
-class TorrentFileGuard: private FileGuard
+class TorrentFileGuard : private FileGuard
 {
     Q_GADGET
 

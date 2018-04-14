@@ -42,8 +42,8 @@
 
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
@@ -256,7 +256,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     return true;
 }
 
-void SearchPluginManager::updateIconPath(PluginInfo * const plugin)
+void SearchPluginManager::updateIconPath(PluginInfo *const plugin)
 {
     if (!plugin) return;
     QString iconPath = QString("%1/%2.png").arg(pluginsLocation(), plugin->name);

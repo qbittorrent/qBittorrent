@@ -25,7 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
  */
 
 #ifndef QBT_PROFILE_P_H
@@ -33,6 +32,7 @@
 
 #include <QDir>
 #include <QStandardPaths>
+
 #include "base/profile.h"
 
 namespace Private
@@ -63,7 +63,7 @@ namespace Private
     };
 
     /// Default implementation. Takes paths from system
-    class DefaultProfile: public Profile
+    class DefaultProfile : public Profile
     {
     public:
         DefaultProfile(const QString &configurationName);
@@ -86,7 +86,7 @@ namespace Private
     };
 
     /// Custom tree: creates directories under the specified root directory
-    class CustomProfile: public Profile
+    class CustomProfile : public Profile
     {
     public:
         CustomProfile(const QString &rootPath, const QString &configurationName);
@@ -114,14 +114,14 @@ namespace Private
         virtual ~PathConverter() = default;
     };
 
-    class NoConvertConverter: public PathConverter
+    class NoConvertConverter : public PathConverter
     {
     public:
         QString toPortablePath(const QString &path) const override;
         QString fromPortablePath(const QString &portablePath) const override;
     };
 
-    class Converter: public PathConverter
+    class Converter : public PathConverter
     {
     public:
         Converter(const QString &basePath);
@@ -132,4 +132,5 @@ namespace Private
         QDir m_baseDir;
     };
 }
+
 #endif // QBT_PROFILE_P_H

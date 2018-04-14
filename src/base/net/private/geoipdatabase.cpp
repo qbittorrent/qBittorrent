@@ -26,12 +26,12 @@
  * exception statement from your version.
  */
 
+#include <QDateTime>
 #include <QDebug>
-#include <QVariant>
+#include <QFile>
 #include <QHash>
 #include <QHostAddress>
-#include <QDateTime>
-#include <QFile>
+#include <QVariant>
 
 #include "base/types.h"
 #include "geoipdatabase.h"
@@ -44,7 +44,7 @@ namespace
     const char DB_TYPE[] = "GeoLite2-Country";
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
     const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";
-    const char DATA_SECTION_SEPARATOR[16] = { 0 };
+    const char DATA_SECTION_SEPARATOR[16] = {0};
 
     enum class DataType
     {

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2014  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2014  sledgehammer999 <sledgehammer999@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -258,7 +258,7 @@ QVariantHash TransactionalSettings::read()
 
 bool TransactionalSettings::write(const QVariantHash &data)
 {
-    // QSettings delete the file before writing it out. This can result in problems
+    // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
     // between deleting the file and recreating it. This is a safety measure.
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds

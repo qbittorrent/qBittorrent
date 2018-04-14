@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "misc.h"
@@ -70,9 +68,9 @@
 #endif
 #endif
 
-#include "base/utils/string.h"
-#include "base/unicodestrings.h"
 #include "base/logger.h"
+#include "base/unicodestrings.h"
+#include "base/utils/string.h"
 #include "fs.h"
 
 namespace
@@ -141,7 +139,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     else
         EventToSend = kAEShutDown;
     AEAddressDesc targetDesc;
-    static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
+    static const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
     AppleEvent eventReply = {typeNull, NULL};
     AppleEvent appleEventToSend = {typeNull, NULL};
 
@@ -525,9 +523,9 @@ bool Utils::Misc::isUrl(const QString &s)
     return reURLScheme.match(QUrl(s).scheme()).hasMatch();
 }
 
-QString Utils::Misc::parseHtmlLinks(const QString &raw_text)
+QString Utils::Misc::parseHtmlLinks(const QString &rawText)
 {
-    QString result = raw_text;
+    QString result = rawText;
     static QRegExp reURL(
         "(\\s|^)"                                             // start with whitespace or beginning of line
         "("

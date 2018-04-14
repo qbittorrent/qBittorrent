@@ -43,9 +43,9 @@
 #include "../tristatebool.h"
 #include "../utils/fs.h"
 #include "../utils/string.h"
-#include "rss_feed.h"
 #include "rss_article.h"
 #include "rss_autodownloader.h"
+#include "rss_feed.h"
 
 namespace
 {
@@ -105,7 +105,7 @@ const QString Str_PreviouslyMatched(QStringLiteral("previouslyMatchedEpisodes"))
 
 namespace RSS
 {
-    struct AutoDownloadRuleData: public QSharedData
+    struct AutoDownloadRuleData : public QSharedData
     {
         QString name;
         bool enabled = true;

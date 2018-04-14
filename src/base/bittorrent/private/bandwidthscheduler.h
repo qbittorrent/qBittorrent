@@ -33,7 +33,7 @@
 #include <QObject>
 #include <QTimer>
 
-class BandwidthScheduler: public QObject
+class BandwidthScheduler : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(BandwidthScheduler)

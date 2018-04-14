@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef ADDNEWTORRENTDIALOG_H
@@ -36,9 +34,9 @@
 #include <QShortcut>
 #include <QUrl>
 
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/addtorrentparams.h"
 
 namespace BitTorrent
 {
@@ -50,12 +48,12 @@ namespace Ui
     class AddNewTorrentDialog;
 }
 
+class PropListDelegate;
 class TorrentContentFilterModel;
 class TorrentFileGuard;
-class PropListDelegate;
 template <typename T> class CachedSettingValue;
 
-class AddNewTorrentDialog: public QDialog
+class AddNewTorrentDialog : public QDialog
 {
     Q_OBJECT
 
@@ -98,7 +96,7 @@ private:
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
-    int indexOfSavePath(const QString &save_path);
+    int indexOfSavePath(const QString &savePath);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
@@ -109,7 +107,7 @@ private:
 
     void showEvent(QShowEvent *event) override;
 
-    Ui::AddNewTorrentDialog *ui;
+    Ui::AddNewTorrentDialog *m_ui;
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;
     bool m_hasMetadata;

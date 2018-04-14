@@ -115,7 +115,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 {
     // column
     setColumnCount(COL_COUNT);
-    QStringList header = { tr("Setting"), tr("Value", "Value set for this setting") };
+    QStringList header = {tr("Setting"), tr("Value", "Value set for this setting")};
     setHorizontalHeaderLabels(header);
     // row
     setRowCount(ROW_COUNT);

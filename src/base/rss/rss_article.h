@@ -39,7 +39,7 @@ namespace RSS
 {
     class Feed;
 
-    class Article: public QObject
+    class Article : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Article)

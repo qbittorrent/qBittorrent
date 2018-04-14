@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -27,6 +27,8 @@
  * exception statement from your version.
  */
 
+#include "tracker.h"
+
 #include <vector>
 
 #include <libtorrent/bencode.hpp>
@@ -37,7 +39,6 @@
 #include "base/preferences.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/string.h"
-#include "tracker.h"
 
 // static limits
 static const int MAX_TORRENTS = 100;
@@ -277,5 +278,3 @@ void Tracker::replyWithPeerList(const TrackerAnnounceRequest &annonceReq)
     // HTTP reply
     print(reply, Http::CONTENT_TYPE_TXT);
 }
-
-

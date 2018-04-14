@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt and libt.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -147,13 +147,13 @@ int FilterParserThread::parseDATFilterFile()
         if (bytesRead < 0)
             break;
         int dataSize = bytesRead + offset;
-        if (bytesRead == 0 && dataSize == 0)
+        if ((bytesRead == 0) && (dataSize == 0))
             break;
 
         for (start = 0; start < dataSize; ++start) {
             endOfLine = -1;
             // The file might have ended without the last line having a newline
-            if (!(bytesRead == 0 && dataSize > 0)) {
+            if (!((bytesRead == 0) && (dataSize > 0))) {
                 for (int i = start; i < dataSize; ++i) {
                     if (buffer[i] == '\n') {
                         endOfLine = i;
@@ -295,13 +295,13 @@ int FilterParserThread::parseP2PFilterFile()
         if (bytesRead < 0)
             break;
         int dataSize = bytesRead + offset;
-        if (bytesRead == 0 && dataSize == 0)
+        if ((bytesRead == 0) && (dataSize == 0))
             break;
 
         for (start = 0; start < dataSize; ++start) {
             endOfLine = -1;
             // The file might have ended without the last line having a newline
-            if (!(bytesRead == 0 && dataSize > 0)) {
+            if (!((bytesRead == 0) && (dataSize > 0))) {
                 for (int i = start; i < dataSize; ++i) {
                     if (buffer[i] == '\n') {
                         endOfLine = i;
@@ -610,7 +610,7 @@ int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, i
     return -1;
 }
 
-int FilterParserThread::trim(char* const data, int start, int end)
+int FilterParserThread::trim(char *const data, int start, int end)
 {
     if (start >= end) return start;
     int newStart = start;

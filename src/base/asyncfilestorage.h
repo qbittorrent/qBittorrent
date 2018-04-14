@@ -34,14 +34,14 @@
 #include <QFile>
 #include <QObject>
 
-class AsyncFileStorageError: public std::runtime_error
+class AsyncFileStorageError : public std::runtime_error
 {
 public:
     explicit AsyncFileStorageError(const QString &message);
     QString message() const;
 };
 
-class AsyncFileStorage: public QObject
+class AsyncFileStorage : public QObject
 {
     Q_OBJECT
 
