@@ -49,7 +49,7 @@ namespace RSS
         struct ParsingResult;
     }
 
-    class Feed final: public Item
+    class Feed final : public Item
     {
         Q_OBJECT
         Q_DISABLE_COPY(Feed)

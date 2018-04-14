@@ -3,12 +3,12 @@
 #include <QDateTime>
 #include "base/utils/string.h"
 
-Logger* Logger::m_instance = nullptr;
+Logger *Logger::m_instance = nullptr;
 
 Logger::Logger()
-    : lock(QReadWriteLock::Recursive)
-    , msgCounter(0)
-    , peerCounter(0)
+    : m_lock(QReadWriteLock::Recursive)
+    , m_msgCounter(0)
+    , m_peerCounter(0)
 {
 }
 
@@ -35,9 +35,9 @@ void Logger::freeInstance()
 
 void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
-    QWriteLocker locker(&lock);
+    QWriteLocker locker(&m_lock);
 
-    Log::Msg temp = { msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped() };
+    Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
     m_messages.push_back(temp);
 
     if (m_messages.size() >= MAX_LOG_MESSAGES)
@@ -48,9 +48,9 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
 
 void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
 {
-    QWriteLocker locker(&lock);
+    QWriteLocker locker(&m_lock);
 
-    Log::Peer temp = { peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped() };
+    Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
     m_peers.push_back(temp);
 
     if (m_peers.size() >= MAX_LOG_MESSAGES)
@@ -61,9 +61,9 @@ void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
 
 QVector<Log::Msg> Logger::getMessages(int lastKnownId) const
 {
-    QReadLocker locker(&lock);
+    QReadLocker locker(&m_lock);
 
-    int diff = msgCounter - lastKnownId - 1;
+    int diff = m_msgCounter - lastKnownId - 1;
     int size = m_messages.size();
 
     if ((lastKnownId == -1) || (diff >= size))
@@ -77,9 +77,9 @@ QVector<Log::Msg> Logger::getMessages(int lastKnownId) const
 
 QVector<Log::Peer> Logger::getPeers(int lastKnownId) const
 {
-    QReadLocker locker(&lock);
+    QReadLocker locker(&m_lock);
 
-    int diff = peerCounter - lastKnownId - 1;
+    int diff = m_peerCounter - lastKnownId - 1;
     int size = m_peers.size();
 
     if ((lastKnownId == -1) || (diff >= size))

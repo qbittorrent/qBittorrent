@@ -383,7 +383,7 @@ void AppController::setPreferencesAction()
     if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
         pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
     if (m.contains("scheduler_days"))
-        pref->setSchedulerDays(scheduler_days(m["scheduler_days"].toInt()));
+        pref->setSchedulerDays(SchedulerDays(m["scheduler_days"].toInt()));
 
     // Bittorrent
     // Privacy

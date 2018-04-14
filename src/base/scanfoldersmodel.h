@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christian Kandeler, Christophe Dumez
+ * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef SCANFOLDERSMODEL_H
@@ -37,7 +35,7 @@
 class QStringList;
 class FileSystemWatcher;
 
-class ScanFoldersModel: public QAbstractListModel
+class ScanFoldersModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(ScanFoldersModel)
@@ -68,7 +66,7 @@ public:
 
     static bool initInstance(QObject *parent = nullptr);
     static void freeInstance();
-    static ScanFoldersModel* instance();
+    static ScanFoldersModel *instance();
 
     static QString pathTypeDisplayName(const PathType type);
 

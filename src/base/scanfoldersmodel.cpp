@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christian Kandeler, Christophe Dumez
+ * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "scanfoldersmodel.h"
@@ -235,7 +233,7 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     return Ok;
 }
 
-ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath)
+ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath)
 {
     QDir watchDir(watchPath);
     const QString &canonicalWatchPath = watchDir.canonicalPath();

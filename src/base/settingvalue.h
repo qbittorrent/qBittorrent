@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <type_traits>
+
 #include <QMetaEnum>
 #include <QString>
 #include <QVariant>

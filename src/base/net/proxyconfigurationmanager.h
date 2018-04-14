@@ -52,7 +52,7 @@ namespace Net
         QString password;
     };
 
-    class ProxyConfigurationManager: public QObject
+    class ProxyConfigurationManager : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(ProxyConfigurationManager)

@@ -48,7 +48,7 @@ namespace RSS
             QList<QVariantHash> articles;
         };
 
-        class Parser: public QObject
+        class Parser : public QObject
         {
             Q_OBJECT
 

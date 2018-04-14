@@ -370,7 +370,7 @@ Session::Session(QObject *parent)
     , m_extraLimit(0)
     , m_useProxy(false)
 {
-    Logger* const logger = Logger::instance();
+    Logger *const logger = Logger::instance();
 
     initResumeFolder();
 
@@ -940,7 +940,7 @@ qreal Session::globalMaxRatio() const
     return m_globalMaxRatio;
 }
 
-// Torrents will a ratio superior to the given value will
+// Torrents with a ratio superior to the given value will
 // be automatically deleted
 void Session::setGlobalMaxRatio(qreal ratio)
 {
@@ -1083,7 +1083,7 @@ void Session::processBannedIPs(libt::ip_filter &filter)
 #if LIBTORRENT_VERSION_NUM >= 10100
 void Session::adjustLimits(libt::settings_pack &settingsPack)
 {
-    //Internally increase the queue limits to ensure that the magnet is started
+    // Internally increase the queue limits to ensure that the magnet is started
     int maxDownloads = maxActiveDownloads();
     int maxActive = maxActiveTorrents();
 
@@ -1180,7 +1180,7 @@ void Session::initMetrics()
 
 void Session::configure(libtorrent::settings_pack &settingsPack)
 {
-    Logger* const logger = Logger::instance();
+    Logger *const logger = Logger::instance();
 
 #ifdef Q_OS_WIN
     QString chosenIP;
@@ -1249,7 +1249,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::allowed_enc_level, libt::settings_pack::pe_rc4);
     settingsPack.set_bool(libt::settings_pack::prefer_rc4, true);
     switch (encryption()) {
-    case 0: //Enabled
+    case 0: // Enabled
         settingsPack.set_int(libt::settings_pack::out_enc_policy, libt::settings_pack::pe_enabled);
         settingsPack.set_int(libt::settings_pack::in_enc_policy, libt::settings_pack::pe_enabled);
         break;
@@ -1302,7 +1302,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
-    const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
+    const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(libt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(libt::settings_pack::cache_expiry, diskCacheTTL());
     qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
@@ -1510,12 +1510,12 @@ void Session::configurePeerClasses()
 
 void Session::adjustLimits(libt::session_settings &sessionSettings)
 {
-    //Internally increase the queue limits to ensure that the magnet is started
+    // Internally increase the queue limits to ensure that the magnet is started
     int maxDownloads = maxActiveDownloads();
     int maxActive = maxActiveTorrents();
 
-    sessionSettings.active_downloads = maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads;
-    sessionSettings.active_limit = maxActive > -1 ? maxActive + m_extraLimit : maxActive;
+    sessionSettings.active_downloads = (maxDownloads > -1) ? (maxDownloads + m_extraLimit) : maxDownloads;
+    sessionSettings.active_limit = (maxActive > -1) ? (maxActive + m_extraLimit) : maxActive;
 }
 
 void Session::applyBandwidthLimits(libt::session_settings &sessionSettings)
@@ -1534,7 +1534,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     encryptionSettings.allowed_enc_level = libt::pe_settings::rc4;
     encryptionSettings.prefer_rc4 = true;
     switch (encryption()) {
-    case 0: //Enabled
+    case 0: // Enabled
         encryptionSettings.out_enc_policy = libt::pe_settings::enabled;
         encryptionSettings.in_enc_policy = libt::pe_settings::enabled;
         break;
@@ -1589,7 +1589,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
 
     sessionSettings.announce_to_all_trackers = announceToAllTrackers();
     sessionSettings.announce_to_all_tiers = announceToAllTiers();
-    const int cacheSize = (diskCacheSize() > -1) ? diskCacheSize() * 64 : -1;
+    const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     sessionSettings.cache_size = cacheSize;
     sessionSettings.cache_expiry = diskCacheTTL();
     qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
@@ -1762,7 +1762,7 @@ void Session::enableBandwidthScheduler()
 void Session::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
-    foreach (QString tracker, additionalTrackers().split("\n")) {
+    foreach (QString tracker, additionalTrackers().split('\n')) {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
             m_additionalTrackerList << tracker;
@@ -1786,7 +1786,7 @@ void Session::processShareLimits()
                     qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
 
                     if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
-                        Logger* const logger = Logger::instance();
+                        Logger *const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
                             logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
@@ -1811,7 +1811,7 @@ void Session::processShareLimits()
                     qDebug("Seeding Time: %d (limit: %d)", seedingTimeInMinutes, seedingTimeLimit);
 
                     if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit)) {
-                        Logger* const logger = Logger::instance();
+                        Logger *const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
                             logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
@@ -2259,7 +2259,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     InfoHash hash = magnetUri.hash();
     QString name = magnetUri.name();
 
-    // We should not add torrent if it already
+    // We should not add torrent if it's already
     // processed or adding to session
     if (m_torrents.contains(hash)) return false;
     if (m_addingTorrents.contains(hash)) return false;
@@ -2404,7 +2404,7 @@ void Session::networkOnlineStateChanged(const bool online)
     Logger::instance()->addMessage(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
 }
 
-void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
+void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
 {
     const QString configuredInterfaceName = networkInterface();
     // Empty means "Any Interface". In this case libtorrent has binded to 0.0.0.0 so any change to any interface will
@@ -2430,7 +2430,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration& cfg)
 
 const QStringList Session::getListeningIPs()
 {
-    Logger* const logger = Logger::instance();
+    Logger *const logger = Logger::instance();
     QStringList IPs;
 
     const QString ifaceName = networkInterface();
@@ -2473,12 +2473,12 @@ const QStringList Session::getListeningIPs()
         ip = entry.ip();
         ipString = ip.toString();
         protocol = ip.protocol();
-        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
+        Q_ASSERT((protocol == QAbstractSocket::IPv4Protocol) || (protocol == QAbstractSocket::IPv6Protocol));
         if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
             || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
             continue;
 
-        //If an iface address has been defined only allow ip's that match it to go through
+        // If an iface address has been defined to only allow ip's that match it to go through
         if (!ifaceAddr.isEmpty()) {
             if (ifaceAddr == ipString) {
                 IPs.append(ipString);
@@ -2509,7 +2509,7 @@ void Session::configureListeningInterface()
     const ushort port = this->port();
     qDebug() << Q_FUNC_INFO << port;
 
-    Logger* const logger = Logger::instance();
+    Logger *const logger = Logger::instance();
 
     std::pair<int, int> ports(port, port);
     libt::error_code ec;
@@ -3512,7 +3512,7 @@ void Session::handleTorrentTagRemoved(TorrentHandle *const torrent, const QStrin
     emit torrentTagRemoved(torrent, tag);
 }
 
-void Session::handleTorrentSavingModeChanged(TorrentHandle * const torrent)
+void Session::handleTorrentSavingModeChanged(TorrentHandle *const torrent)
 {
     emit torrentSavingModeChanged(torrent);
 }
@@ -3798,7 +3798,7 @@ void Session::startUpTorrents()
                                .arg(params.hash), Log::CRITICAL);
 
         // process add torrent messages before message queue overflow
-        if (resumedTorrentsCount % 100 == 0) readAlerts();
+        if ((resumedTorrentsCount % 100) == 0) readAlerts();
 
         ++resumedTorrentsCount;
     };
@@ -3833,12 +3833,12 @@ void Session::startUpTorrents()
             }
             else {
                 int q = queuePosition;
-                for(; queuedResumeData.contains(q); ++q) {
+                for (; queuedResumeData.contains(q); ++q) {
                 }
                 if (q != queuePosition) {
                     ++numOfRemappedFiles;
                 }
-                queuedResumeData[q] = { hash, magnetUri, resumeData, data };
+                queuedResumeData[q] = {hash, magnetUri, resumeData, data};
             }
         }
     }
