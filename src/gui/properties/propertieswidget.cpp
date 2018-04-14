@@ -712,7 +712,10 @@ void PropertiesWidget::renameSelectedFile()
             newName.chop(QB_EXT.size());
         const QString oldFileName = m_torrent->fileName(fileIndex);
         const QString oldFilePath = m_torrent->filePath(fileIndex);
-        const QString newFileName = newName + (BitTorrent::Session::instance()->isAppendExtensionEnabled() ? QB_EXT : QString());
+
+        const bool useFilenameExt = BitTorrent::Session::instance()->isAppendExtensionEnabled()
+            && (m_torrent->filesProgress()[fileIndex] != 1);
+        const QString newFileName = newName + (useFilenameExt ? QB_EXT : QString());
         const QString newFilePath = oldFilePath.leftRef(oldFilePath.size() - oldFileName.size()) + newFileName;
 
         if (oldFileName == newFileName) {
