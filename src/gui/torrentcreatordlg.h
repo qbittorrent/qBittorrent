@@ -80,6 +80,7 @@ private:
     CachedSettingValue<bool> m_storePrivateTorrent;
     CachedSettingValue<bool> m_storeStartSeeding;
     CachedSettingValue<bool> m_storeIgnoreRatio;
+    CachedSettingValue<bool> m_storeOptimizeAlignment;
     CachedSettingValue<QString> m_storeLastAddPath;
     CachedSettingValue<QString> m_storeTrackerList;
     CachedSettingValue<QString> m_storeWebSeedList;

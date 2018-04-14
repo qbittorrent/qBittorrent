@@ -39,6 +39,7 @@ namespace BitTorrent
     struct TorrentCreatorParams
     {
         bool isPrivate;
+        bool isAlignmentOptimized;
         int pieceSize;
         QString inputPath;
         QString savePath;

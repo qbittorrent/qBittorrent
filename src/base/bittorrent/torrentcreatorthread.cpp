@@ -92,7 +92,8 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
-        libt::create_torrent newTorrent(fs, m_params.pieceSize);
+        libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
+            , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0));
 
         // Add url seeds
         foreach (QString seed, m_params.urlSeeds) {

@@ -55,6 +55,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent, const QString &defaultPath
     , m_storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"))
     , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))
     , m_storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"))
+    , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"), true)
     , m_storeLastAddPath(SETTINGS_KEY("LastAddPath"), QDir::homePath())
     , m_storeTrackerList(SETTINGS_KEY("TrackerList"))
     , m_storeWebSeedList(SETTINGS_KEY("WebSeedList"))
@@ -169,7 +170,8 @@ void TorrentCreatorDlg::onCreateButtonClicked()
     const QString source = m_ui->lineEditSource->text();
 
     // run the creator thread
-    m_creatorThread->create({ m_ui->checkPrivate->isChecked(), getPieceSize()
+    m_creatorThread->create({ m_ui->checkPrivate->isChecked()
+        , m_ui->checkOptimizeAlignment->isChecked(), getPieceSize()
         , input, destination, comment, source, trackers, urlSeeds });
 }
 
@@ -241,6 +243,7 @@ void TorrentCreatorDlg::saveSettings()
     m_storePrivateTorrent = m_ui->checkPrivate->isChecked();
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
+    m_storeOptimizeAlignment = m_ui->checkOptimizeAlignment->isChecked();
 
     m_storeTrackerList = m_ui->trackersList->toPlainText();
     m_storeWebSeedList = m_ui->URLSeedsList->toPlainText();
@@ -258,6 +261,7 @@ void TorrentCreatorDlg::loadSettings()
     m_ui->checkPrivate->setChecked(m_storePrivateTorrent);
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
+    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
 
     m_ui->trackersList->setPlainText(m_storeTrackerList);
