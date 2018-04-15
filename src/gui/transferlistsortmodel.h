@@ -41,7 +41,7 @@ class TransferListSortModel: public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    TransferListSortModel(QObject *parent = 0);
+    TransferListSortModel(QObject *parent = nullptr);
 
     void setStatusFilter(TorrentFilter::Type filter);
     void setCategoryFilter(const QString &category);

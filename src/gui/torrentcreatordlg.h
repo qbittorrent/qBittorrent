@@ -49,7 +49,7 @@ class TorrentCreatorDlg: public QDialog
     Q_OBJECT
 
 public:
-    TorrentCreatorDlg(QWidget *parent = 0, const QString &defaultPath = QString());
+    TorrentCreatorDlg(QWidget *parent = nullptr, const QString &defaultPath = QString());
     ~TorrentCreatorDlg();
     void updateInputPath(const QString &path);
 

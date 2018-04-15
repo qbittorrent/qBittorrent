@@ -43,7 +43,7 @@ class LogListWidget: public QListWidget
 
 public:
     // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = 0);
+    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
     void showMsgTypes(const Log::MsgTypes &types);
 
 public slots:

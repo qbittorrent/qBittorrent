@@ -50,7 +50,7 @@ namespace Http
         Q_DISABLE_COPY(Connection)
 
     public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
+        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
         ~Connection();
 
         bool hasExpired(qint64 timeout) const;

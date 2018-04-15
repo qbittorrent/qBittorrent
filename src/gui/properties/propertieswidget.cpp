@@ -163,14 +163,14 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_refreshTimer = new QTimer(this);
     connect(m_refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
     m_refreshTimer->start(3000); // 3sec
-    m_editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, 0, 0, Qt::WidgetShortcut);
+    m_editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
-    m_editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, 0, 0, Qt::WidgetShortcut);
+    m_editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
     connect(m_ui->listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
-    m_deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, 0, 0, Qt::WidgetShortcut);
+    m_deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
-    m_openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, 0, 0, Qt::WidgetShortcut);
+    m_openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
 }
 

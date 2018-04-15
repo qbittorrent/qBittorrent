@@ -148,7 +148,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // Signal / slots
     connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
     connect(ui->doNotDeleteTorrentCheckBox, SIGNAL(clicked(bool)), SLOT(doNotDeleteTorrentClicked(bool)));
-    QShortcut *editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, 0, 0, Qt::WidgetShortcut);
+    QShortcut *editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
     connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
 
@@ -605,7 +605,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 {
     QMenu myFilesLlistMenu;
     const QModelIndexList selectedRows = ui->contentTreeView->selectionModel()->selectedRows(0);
-    QAction *actRename = 0;
+    QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
         actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
         myFilesLlistMenu.addSeparator();

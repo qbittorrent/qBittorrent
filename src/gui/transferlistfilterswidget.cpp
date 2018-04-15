@@ -229,7 +229,7 @@ TrackerFiltersList::~TrackerFiltersList()
 void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 {
     QStringList tmp;
-    QListWidgetItem *trackerItem = 0;
+    QListWidgetItem *trackerItem = nullptr;
     QString host = getHost(tracker);
     bool exists = m_trackers.contains(host);
 
@@ -460,7 +460,7 @@ void TrackerFiltersList::showMenu(QPoint)
     QAction *startAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
     QAction *pauseAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
     QAction *deleteTorrentsAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete torrents"));
-    QAction *act = 0;
+    QAction *act = nullptr;
     act = menu.exec(QCursor::pos());
 
     if (!act)
@@ -559,7 +559,7 @@ QStringList TrackerFiltersList::getHashes(int row)
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : QFrame(parent)
     , m_transferList(transferList)
-    , m_trackerFilters(0)
+    , m_trackerFilters(nullptr)
 {
     Preferences* const pref = Preferences::instance();
 

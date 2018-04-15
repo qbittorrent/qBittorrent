@@ -38,7 +38,7 @@ class MessageBoxRaised : public QMessageBox
   Q_OBJECT
 
 private:
-  MessageBoxRaised(QMessageBox::Icon icon, const QString &title, const QString &text, QMessageBox::StandardButtons buttons = NoButton, QWidget *parent = 0, Qt::WindowFlags f = Qt::Dialog|Qt::MSWindowsFixedSizeDialogHint);
+  MessageBoxRaised(QMessageBox::Icon icon, const QString &title, const QString &text, QMessageBox::StandardButtons buttons = NoButton, QWidget *parent = nullptr, Qt::WindowFlags f = Qt::Dialog|Qt::MSWindowsFixedSizeDialogHint);
   MessageBoxRaised();
   MessageBoxRaised(MessageBoxRaised const&);
   void operator=(MessageBoxRaised const&);

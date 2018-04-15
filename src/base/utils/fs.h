@@ -52,7 +52,7 @@ namespace Utils
                 , const QString &pad = QLatin1String(" "));
         bool isValidFileSystemName(const QString &name, bool allowSeparators = false);
         qint64 freeDiskSpaceOnPath(const QString &path);
-        QString branchPath(const QString &filePath, QString *removed = 0);
+        QString branchPath(const QString &filePath, QString *removed = nullptr);
         bool sameFileNames(const QString &first, const QString &second);
         QString expandPath(const QString &path);
         QString expandPathAbs(const QString &path);

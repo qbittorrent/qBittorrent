@@ -3,7 +3,7 @@
 #include <QDateTime>
 #include "base/utils/string.h"
 
-Logger* Logger::m_instance = 0;
+Logger* Logger::m_instance = nullptr;
 
 Logger::Logger()
     : lock(QReadWriteLock::Recursive)
@@ -29,7 +29,7 @@ void Logger::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
