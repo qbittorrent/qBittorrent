@@ -1639,7 +1639,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(libtorrent::save_resume_data
     // if torrent has no metadata we should save dummy fastresume data
     // containing Magnet URI and qBittorrent own resume data only
     if (p->error.value() == libt::errors::no_metadata)
-        handleSaveResumeDataAlert(0);
+        handleSaveResumeDataAlert(nullptr);
     else
         m_session->handleTorrentResumeDataFailed(this);
 }

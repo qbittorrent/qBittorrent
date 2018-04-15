@@ -112,10 +112,10 @@ TrackerList::TrackerList(PropertiesWidget *properties)
     headerItem()->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
     headerItem()->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     // Set hotkeys
-    m_editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
+    m_editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), nullptr, Qt::WidgetShortcut);
     connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), 0, Qt::WidgetShortcut);
-    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), 0, Qt::WidgetShortcut);
+    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), nullptr, Qt::WidgetShortcut);
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), nullptr, Qt::WidgetShortcut);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777

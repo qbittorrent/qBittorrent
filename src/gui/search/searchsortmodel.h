@@ -50,7 +50,7 @@ public:
         NB_SEARCH_COLUMNS
     };
 
-    explicit SearchSortModel(QObject *parent = 0);
+    explicit SearchSortModel(QObject *parent = nullptr);
 
     void enableNameFilter(bool enabled);
     void setNameFilter(const QString& searchTerm = QString());

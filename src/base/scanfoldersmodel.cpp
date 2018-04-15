@@ -56,7 +56,7 @@ struct ScanFoldersModel::PathData
     QString downloadPath; // valid for CUSTOM_LOCATION
 };
 
-ScanFoldersModel *ScanFoldersModel::m_instance = 0;
+ScanFoldersModel *ScanFoldersModel::m_instance = nullptr;
 
 bool ScanFoldersModel::initInstance(QObject *parent)
 {
@@ -72,7 +72,7 @@ void ScanFoldersModel::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -83,7 +83,7 @@ ScanFoldersModel *ScanFoldersModel::instance()
 
 ScanFoldersModel::ScanFoldersModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_fsWatcher(0)
+    , m_fsWatcher(nullptr)
 {
     configure();
     connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));

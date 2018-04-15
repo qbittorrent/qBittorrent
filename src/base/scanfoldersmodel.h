@@ -66,7 +66,7 @@ public:
         CUSTOM_LOCATION
     };
 
-    static bool initInstance(QObject *parent = 0);
+    static bool initInstance(QObject *parent = nullptr);
     static void freeInstance();
     static ScanFoldersModel* instance();
 
@@ -97,7 +97,7 @@ private slots:
     void addTorrentsToSession(const QStringList &pathList);
 
 private:
-    explicit ScanFoldersModel(QObject *parent = 0);
+    explicit ScanFoldersModel(QObject *parent = nullptr);
     ~ScanFoldersModel();
 
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);

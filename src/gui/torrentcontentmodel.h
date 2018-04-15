@@ -47,7 +47,7 @@ class TorrentContentModel: public QAbstractItemModel
     Q_OBJECT
 
 public:
-    TorrentContentModel(QObject *parent = 0);
+    TorrentContentModel(QObject *parent = nullptr);
     ~TorrentContentModel();
 
     void updateFilesProgress(const QVector<qreal> &fp);

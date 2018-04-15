@@ -50,7 +50,7 @@ class PluginSelectDlg: public QDialog
     Q_OBJECT
 
 public:
-    explicit PluginSelectDlg(SearchPluginManager *pluginManager, QWidget *parent = 0);
+    explicit PluginSelectDlg(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
     ~PluginSelectDlg();
 
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);

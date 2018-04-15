@@ -93,9 +93,9 @@ RSSWidget::RSSWidget(QWidget *parent)
     loadFoldersOpenState();
     m_feedListWidget->setCurrentItem(m_feedListWidget->stickyUnreadItem());
 
-    m_editHotkey = new QShortcut(Qt::Key_F2, m_feedListWidget, 0, 0, Qt::WidgetShortcut);
+    m_editHotkey = new QShortcut(Qt::Key_F2, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_editHotkey, &QShortcut::activated, this, &RSSWidget::renameSelectedRSSItem);
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedListWidget, 0, 0, Qt::WidgetShortcut);
+    m_deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_deleteHotkey, &QShortcut::activated, this, &RSSWidget::deleteSelectedItems);
 
     // Feeds list actions
@@ -388,7 +388,7 @@ void RSSWidget::renameSelectedRSSItem()
 
         QString error;
         if (!RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(parentPath, newName), &error)) {
-            QMessageBox::warning(0, tr("Rename failed"), error);
+            QMessageBox::warning(nullptr, tr("Rename failed"), error);
             ok = false;
         }
     } while (!ok);

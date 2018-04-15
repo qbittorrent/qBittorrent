@@ -64,7 +64,7 @@ namespace Net
     #endif
 
     private:
-        explicit DownloadManager(QObject *parent = 0);
+        explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
 

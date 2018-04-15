@@ -83,7 +83,7 @@ public:
         NB_COLUMNS
     };
 
-    explicit TorrentModel(QObject *parent = 0);
+    explicit TorrentModel(QObject *parent = nullptr);
 
     int rowCount(const QModelIndex& index = QModelIndex()) const;
     int columnCount(const QModelIndex &parent=QModelIndex()) const;

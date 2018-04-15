@@ -46,7 +46,7 @@ public:
     virtual QString getIconPath(const QString &iconId);
 
 protected:
-    explicit IconProvider(QObject *parent = 0);
+    explicit IconProvider(QObject *parent = nullptr);
     ~IconProvider();
 
     static IconProvider *m_instance;
