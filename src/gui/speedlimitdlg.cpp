@@ -40,8 +40,9 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     qDebug("Bandwidth allocation dialog creation");
 
     // Connect to slots
-    connect(m_ui->bandwidthSlider, SIGNAL(valueChanged(int)), this, SLOT(updateSpinValue(int)));
-    connect(m_ui->spinBandwidth, SIGNAL(valueChanged(int)), this, SLOT(updateSliderValue(int)));
+    connect(m_ui->bandwidthSlider, &QSlider::valueChanged, this, &SpeedLimitDialog::updateSpinValue);
+    connect(m_ui->spinBandwidth, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &SpeedLimitDialog::updateSliderValue);
 
     Utils::Gui::resize(this);
 }

@@ -40,7 +40,7 @@ GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)
 {
     configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    connect(Preferences::instance(), &Preferences::changed, this, &GuiIconProvider::configure);
 }
 
 GuiIconProvider::~GuiIconProvider() = default;

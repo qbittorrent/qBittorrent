@@ -9,7 +9,7 @@ namespace BitTorrent
     class Session;
 }
 
-class Statistics : QObject
+class Statistics : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Statistics)

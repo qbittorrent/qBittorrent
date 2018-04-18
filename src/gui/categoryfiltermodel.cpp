@@ -174,17 +174,15 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new CategoryModelItem)
 {
-    auto session = BitTorrent::Session::instance();
+    using namespace BitTorrent;
+    auto session = Session::instance();
 
-    connect(session, SIGNAL(categoryAdded(QString)), SLOT(categoryAdded(QString)));
-    connect(session, SIGNAL(categoryRemoved(QString)), SLOT(categoryRemoved(QString)));
-    connect(session, SIGNAL(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString))
-            , SLOT(torrentCategoryChanged(BitTorrent::TorrentHandle *const, QString)));
-    connect(session, SIGNAL(subcategoriesSupportChanged()), SLOT(subcategoriesSupportChanged()));
-    connect(session, SIGNAL(torrentAdded(BitTorrent::TorrentHandle *const))
-            , SLOT(torrentAdded(BitTorrent::TorrentHandle *const)));
-    connect(session, SIGNAL(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const))
-            , SLOT(torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const)));
+    connect(session, &Session::categoryAdded, this, &CategoryFilterModel::categoryAdded);
+    connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
+    connect(session, &Session::torrentCategoryChanged, this, &CategoryFilterModel::torrentCategoryChanged);
+    connect(session, &Session::subcategoriesSupportChanged, this, &CategoryFilterModel::subcategoriesSupportChanged);
+    connect(session, &Session::torrentAdded, this, &CategoryFilterModel::torrentAdded);
+    connect(session, &Session::torrentAboutToBeRemoved, this, &CategoryFilterModel::torrentAboutToBeRemoved);
 
     populate();
 }

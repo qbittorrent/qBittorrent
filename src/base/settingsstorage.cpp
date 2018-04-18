@@ -163,7 +163,7 @@ SettingsStorage::SettingsStorage()
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
-    connect(&m_timer, SIGNAL(timeout()), SLOT(save()));
+    connect(&m_timer, &QTimer::timeout, this, &SettingsStorage::save);
 }
 
 SettingsStorage::~SettingsStorage()

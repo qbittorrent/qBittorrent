@@ -86,8 +86,7 @@ void PowerManagementInhibitor::RequestIdle()
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pcall, this);
-    connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
-            this, SLOT(OnAsyncReply(QDBusPendingCallWatcher*)));
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::OnAsyncReply);
 }
 
 
@@ -124,8 +123,7 @@ void PowerManagementInhibitor::RequestBusy()
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pcall, this);
-    connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
-            this, SLOT(OnAsyncReply(QDBusPendingCallWatcher*)));
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::OnAsyncReply);
 }
 
 void PowerManagementInhibitor::OnAsyncReply(QDBusPendingCallWatcher *call)

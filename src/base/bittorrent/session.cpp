@@ -517,13 +517,14 @@ Session::Session(QObject *parent)
 
     enableTracker(isTrackerEnabled());
 
-    connect(Net::ProxyConfigurationManager::instance(), SIGNAL(proxyConfigurationChanged()), SLOT(configureDeferred()));
+    connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
+            , this, &Session::configureDeferred);
 
     // Network configuration monitor
-    connect(&m_networkManager, SIGNAL(onlineStateChanged(bool)), SLOT(networkOnlineStateChanged(bool)));
-    connect(&m_networkManager, SIGNAL(configurationAdded(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
-    connect(&m_networkManager, SIGNAL(configurationRemoved(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
-    connect(&m_networkManager, SIGNAL(configurationChanged(const QNetworkConfiguration&)), SLOT(networkConfigurationChange(const QNetworkConfiguration&)));
+    connect(&m_networkManager, &QNetworkConfigurationManager::onlineStateChanged, this, &Session::networkOnlineStateChanged);
+    connect(&m_networkManager, &QNetworkConfigurationManager::configurationAdded, this, &Session::networkConfigurationChange);
+    connect(&m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &Session::networkConfigurationChange);
+    connect(&m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
 
     m_ioThread = new QThread(this);
     m_resumeDataSavingManager = new ResumeDataSavingManager(m_resumeFolderPath);
@@ -2073,9 +2074,10 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         Logger::instance()->addMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
-        connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(handleDownloadFinished(QString, QString)));
-        connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(handleDownloadFailed(QString, QString)));
-        connect(handler, SIGNAL(redirectedToMagnet(QString, QString)), this, SLOT(handleRedirectedToMagnet(QString, QString)));
+        connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
+                , this, &Session::handleDownloadFinished);
+        connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::handleDownloadFailed);
+        connect(handler, &Net::DownloadHandler::redirectedToMagnet, this, &Session::handleRedirectedToMagnet);
         m_downloadedTorrents[handler->url()] = params;
     }
     else {
@@ -3712,8 +3714,8 @@ void Session::enableIPFilter()
     //    set between clearing the old one and setting the new one.
     if (!m_filterParser) {
         m_filterParser = new FilterParserThread(this);
-        connect(m_filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
-        connect(m_filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
+        connect(m_filterParser.data(), &FilterParserThread::IPFilterParsed, this, &Session::handleIPFilterParsed);
+        connect(m_filterParser.data(), &FilterParserThread::IPFilterError, this, &Session::handleIPFilterError);
     }
     m_filterParser->processFilterFile(IPFilterFile());
 }

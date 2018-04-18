@@ -41,7 +41,7 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
 {
     m_flusher.setInterval(0);
     m_flusher.setSingleShot(true);
-    connect(&m_flusher, SIGNAL(timeout()), SLOT(flushLog()));
+    connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
     changePath(path);
     if (deleteOld)
@@ -51,7 +51,7 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
     foreach (const Log::Msg& msg, logger->getMessages())
         addLogMessage(msg);
 
-    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Log::Msg &)));
+    connect(logger, &Logger::newLogMessage, this, &FileLogger::addLogMessage);
 }
 
 FileLogger::~FileLogger()

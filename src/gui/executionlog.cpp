@@ -59,8 +59,8 @@ ExecutionLog::ExecutionLog(QWidget *parent, const Log::MsgTypes &types)
         addLogMessage(msg);
     foreach (const Log::Peer& peer, logger->getPeers())
         addPeerMessage(peer);
-    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Log::Msg &)));
-    connect(logger, SIGNAL(newLogPeer(const Log::Peer &)), SLOT(addPeerMessage(const Log::Peer &)));
+    connect(logger, &Logger::newLogMessage, this, &ExecutionLog::addLogMessage);
+    connect(logger, &Logger::newLogPeer, this, &ExecutionLog::addPeerMessage);
 }
 
 ExecutionLog::~ExecutionLog()

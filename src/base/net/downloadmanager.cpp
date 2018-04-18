@@ -113,7 +113,7 @@ DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
 {
 #ifndef QT_NO_OPENSSL
-    connect(&m_networkManager, SIGNAL(sslErrors(QNetworkReply *, QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply *, QList<QSslError>)));
+    connect(&m_networkManager, &QNetworkAccessManager::sslErrors, this, &Net::DownloadManager::ignoreSslErrors);
 #endif
     m_networkManager.setCookieJar(new NetworkCookieJar(this));
 }
