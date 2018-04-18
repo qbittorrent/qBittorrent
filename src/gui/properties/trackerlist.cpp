@@ -78,10 +78,10 @@ TrackerList::TrackerList(PropertiesWidget *properties)
             resizeColumnToContents(i);
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTrackerListMenu(QPoint)));
+    connect(this, &QWidget::customContextMenuRequested, this, &TrackerList::showTrackerListMenu);
     // Header context menu
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayToggleColumnsMenu(const QPoint&)));
+    connect(header(), &QWidget::customContextMenuRequested, this, &TrackerList::displayToggleColumnsMenu);
     // Set DHT, PeX, LSD items
     m_DHTItem = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
     insertTopLevelItem(0, m_DHTItem);
@@ -112,10 +112,13 @@ TrackerList::TrackerList(PropertiesWidget *properties)
     headerItem()->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
     headerItem()->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     // Set hotkeys
-    m_editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(editSelectedTracker()), nullptr, Qt::WidgetShortcut);
-    connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedTrackers()), nullptr, Qt::WidgetShortcut);
-    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copyTrackerUrl()), nullptr, Qt::WidgetShortcut);
+    m_editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_editHotkey, &QShortcut::activated, this, &TrackerList::editSelectedTracker);
+    connect(this, &QAbstractItemView::doubleClicked, this, &TrackerList::editSelectedTracker);
+    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_deleteHotkey, &QShortcut::activated, this, &TrackerList::deleteSelectedTrackers);
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_copyHotkey, &QShortcut::activated, this, &TrackerList::copyTrackerUrl);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777

@@ -99,7 +99,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
     // SIGNAL/SLOT
-    connect(m_btnGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
+    connect(m_btnGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
+            , this, &PropTabBar::setCurrentIndex);
     // Disable buttons focus
     foreach (QAbstractButton *btn, m_btnGroup->buttons())
         btn->setFocusPolicy(Qt::NoFocus);

@@ -280,19 +280,24 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     // Listen for list events
-    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked()));
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayListMenu(const QPoint &)));
+    connect(this, &QAbstractItemView::doubleClicked, this, &TransferListWidget::torrentDoubleClicked);
+    connect(this, &QWidget::customContextMenuRequested, this, &TransferListWidget::displayListMenu);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayDLHoSMenu(const QPoint &)));
-    connect(header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(saveSettings()));
-    connect(header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(saveSettings()));
-    connect(header(), SIGNAL(sortIndicatorChanged(int, Qt::SortOrder)), this, SLOT(saveSettings()));
+    connect(header(), &QWidget::customContextMenuRequested, this, &TransferListWidget::displayDLHoSMenu);
+    connect(header(), &QHeaderView::sectionMoved, this, &TransferListWidget::saveSettings);
+    connect(header(), &QHeaderView::sectionResized, this, &TransferListWidget::saveSettings);
+    connect(header(), &QHeaderView::sortIndicatorChanged, this, &TransferListWidget::saveSettings);
 
-    m_editHotkey = new QShortcut(Qt::Key_F2, this, SLOT(renameSelectedTorrent()), nullptr, Qt::WidgetShortcut);
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, SLOT(softDeleteSelectedTorrents()), nullptr, Qt::WidgetShortcut);
-    m_permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, SLOT(permDeleteSelectedTorrents()), nullptr, Qt::WidgetShortcut);
-    m_doubleClickHotkey = new QShortcut(Qt::Key_Return, this, SLOT(torrentDoubleClicked()), nullptr, Qt::WidgetShortcut);
-    m_recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, SLOT(recheckSelectedTorrents()), nullptr, Qt::WidgetShortcut);
+    m_editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
+    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
+    m_permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
+    m_doubleClickHotkey = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_doubleClickHotkey, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
+    m_recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -861,58 +866,58 @@ void TransferListWidget::displayListMenu(const QPoint&)
 
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), nullptr);
-    connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
+    connect(&actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
     QAction actionPause(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), nullptr);
-    connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
+    connect(&actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
     QAction actionForceStart(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), nullptr);
-    connect(&actionForceStart, SIGNAL(triggered()), this, SLOT(forceStartSelectedTorrents()));
+    connect(&actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     QAction actionDelete(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), nullptr);
-    connect(&actionDelete, SIGNAL(triggered()), this, SLOT(softDeleteSelectedTorrents()));
+    connect(&actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     QAction actionPreview_file(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), nullptr);
-    connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
+    connect(&actionPreview_file, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
     QAction actionSet_max_ratio(QIcon(QLatin1String(":/icons/skin/ratio.png")), tr("Limit share ratio..."), nullptr);
-    connect(&actionSet_max_ratio, SIGNAL(triggered()), this, SLOT(setMaxRatioSelectedTorrents()));
+    connect(&actionSet_max_ratio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
     QAction actionSet_upload_limit(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), nullptr);
-    connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
+    connect(&actionSet_upload_limit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
     QAction actionSet_download_limit(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), nullptr);
-    connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
+    connect(&actionSet_download_limit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
     QAction actionOpen_destination_folder(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), nullptr);
-    connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
+    connect(&actionOpen_destination_folder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
     QAction actionIncreasePriority(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), nullptr);
-    connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
+    connect(&actionIncreasePriority, &QAction::triggered, this, &TransferListWidget::increasePrioSelectedTorrents);
     QAction actionDecreasePriority(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), nullptr);
-    connect(&actionDecreasePriority, SIGNAL(triggered()), this, SLOT(decreasePrioSelectedTorrents()));
+    connect(&actionDecreasePriority, &QAction::triggered, this, &TransferListWidget::decreasePrioSelectedTorrents);
     QAction actionTopPriority(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), nullptr);
-    connect(&actionTopPriority, SIGNAL(triggered()), this, SLOT(topPrioSelectedTorrents()));
+    connect(&actionTopPriority, &QAction::triggered, this, &TransferListWidget::topPrioSelectedTorrents);
     QAction actionBottomPriority(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), nullptr);
-    connect(&actionBottomPriority, SIGNAL(triggered()), this, SLOT(bottomPrioSelectedTorrents()));
+    connect(&actionBottomPriority, &QAction::triggered, this, &TransferListWidget::bottomPrioSelectedTorrents);
     QAction actionSetTorrentPath(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), nullptr);
-    connect(&actionSetTorrentPath, SIGNAL(triggered()), this, SLOT(setSelectedTorrentsLocation()));
+    connect(&actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
     QAction actionForce_recheck(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), nullptr);
-    connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
+    connect(&actionForce_recheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     QAction actionForce_reannounce(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), nullptr);
-    connect(&actionForce_reannounce, SIGNAL(triggered()), this, SLOT(reannounceSelectedTorrents()));
+    connect(&actionForce_reannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
     QAction actionCopy_magnet_link(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Copy magnet link"), nullptr);
-    connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+    connect(&actionCopy_magnet_link, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
     QAction actionCopy_name(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), nullptr);
-    connect(&actionCopy_name, SIGNAL(triggered()), this, SLOT(copySelectedNames()));
+    connect(&actionCopy_name, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
     QAction actionCopyHash(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), nullptr);
     connect(&actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
     QAction actionSuper_seeding_mode(tr("Super seeding mode"), nullptr);
     actionSuper_seeding_mode.setCheckable(true);
-    connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
+    connect(&actionSuper_seeding_mode, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSuperSeeding);
     QAction actionRename(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), nullptr);
-    connect(&actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedTorrent()));
+    connect(&actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
     QAction actionSequential_download(tr("Download in sequential order"), nullptr);
     actionSequential_download.setCheckable(true);
-    connect(&actionSequential_download, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSequentialDownload()));
+    connect(&actionSequential_download, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSequentialDownload);
     QAction actionFirstLastPiece_prio(tr("Download first and last pieces first"), nullptr);
     actionFirstLastPiece_prio.setCheckable(true);
-    connect(&actionFirstLastPiece_prio, SIGNAL(triggered()), this, SLOT(toggleSelectedFirstLastPiecePrio()));
+    connect(&actionFirstLastPiece_prio, &QAction::triggered, this, &TransferListWidget::toggleSelectedFirstLastPiecePrio);
     QAction actionAutoTMM(tr("Automatic Torrent Management"), nullptr);
     actionAutoTMM.setCheckable(true);
     actionAutoTMM.setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
-    connect(&actionAutoTMM, SIGNAL(triggered(bool)), this, SLOT(setSelectedAutoTMMEnabled(bool)));
+    connect(&actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     // End of actions
 
     // Enable/disable pause/start action given the DL state

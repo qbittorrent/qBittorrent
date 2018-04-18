@@ -67,8 +67,9 @@ void ProgramUpdater::checkForUpdates()
                 // Don't change this User-Agent. In case our updater goes haywire,
                 // the filehost can identify it and contact us.
                 "qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
-    connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(rssDownloadFinished(QString,QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(rssDownloadFailed(QString,QString)));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &ProgramUpdater::rssDownloadFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &ProgramUpdater::rssDownloadFailed);
 }
 
 void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)

@@ -124,7 +124,7 @@ void DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
             emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesTotal), Utils::Misc::friendlyUnit(m_sizeLimit)));
         }
         else {
-            disconnect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(checkDownloadSize(qint64, qint64)));
+            disconnect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
         }
     }
     else if (bytesReceived  > m_sizeLimit) {
@@ -137,8 +137,8 @@ void DownloadHandler::init()
 {
     m_reply->setParent(this);
     if (m_sizeLimit > 0)
-        connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(checkDownloadSize(qint64, qint64)));
-    connect(m_reply, SIGNAL(finished()), this, SLOT(processFinishedDownload()));
+        connect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
+    connect(m_reply, &QNetworkReply::finished, this, &Net::DownloadHandler::processFinishedDownload);
 }
 
 bool DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)

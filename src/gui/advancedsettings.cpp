@@ -125,8 +125,10 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
-    connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
-    connect(&combo_iface, SIGNAL(currentIndexChanged(int)), SLOT(updateInterfaceAddressCombo()));
+    connect(&spin_cache, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &AdvancedSettings::updateCacheSpinSuffix);
+    connect(&combo_iface, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+            , this, &AdvancedSettings::updateInterfaceAddressCombo);
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);

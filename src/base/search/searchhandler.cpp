@@ -76,7 +76,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
 #else
-    connect(m_searchProcess, static_cast<void(QProcess::*)(QProcess::ProcessError)>(&QProcess::error)
+    connect(m_searchProcess, static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error)
             , this, &SearchHandler::processFailed);
 #endif
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);

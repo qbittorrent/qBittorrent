@@ -35,7 +35,7 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new TorrentContentModel(this))
 {
-    connect(m_model, SIGNAL(filteredFilesChanged()), this, SIGNAL(filteredFilesChanged()));
+    connect(m_model, &TorrentContentModel::filteredFilesChanged, this, &TorrentContentFilterModel::filteredFilesChanged);
     setSourceModel(m_model);
     // Filter settings
     setFilterKeyColumn(TorrentContentModelItem::COL_NAME);

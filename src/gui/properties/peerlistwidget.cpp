@@ -118,7 +118,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
             resizeColumnToContents(i);
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showPeerListMenu(QPoint)));
+    connect(this, &QWidget::customContextMenuRequested, this, &PeerListWidget::showPeerListMenu);
     // List delegate
     m_listDelegate = new PeerListDelegate(this);
     setItemDelegate(m_listDelegate);
@@ -128,10 +128,11 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     updatePeerHostNameResolutionState();
     // SIGNAL/SLOT
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayToggleColumnsMenu(const QPoint&)));
-    connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
+    connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayToggleColumnsMenu);
+    connect(header(), &QHeaderView::sectionClicked, this, &PeerListWidget::handleSortColumnChanged);
     handleSortColumnChanged(header()->sortIndicatorSection());
-    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), nullptr, Qt::WidgetShortcut);
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(m_copyHotkey, &QShortcut::activated, this, &PeerListWidget::copySelectedPeers);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -192,7 +193,7 @@ void PeerListWidget::updatePeerHostNameResolutionState()
     if (Preferences::instance()->resolvePeerHostNames()) {
         if (!m_resolver) {
             m_resolver = new Net::ReverseResolution(this);
-            connect(m_resolver, SIGNAL(ipResolved(QString,QString)), SLOT(handleResolved(QString,QString)));
+            connect(m_resolver.data(), &Net::ReverseResolution::ipResolved, this, &PeerListWidget::handleResolved);
             loadPeers(m_properties->getCurrentTorrent(), true);
         }
     }

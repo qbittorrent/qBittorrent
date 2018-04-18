@@ -22,7 +22,7 @@ Statistics::Statistics(Session *session)
     , m_dirty(false)
 {
     load();
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(gather()));
+    connect(&m_timer, &QTimer::timeout, this, &Statistics::gather);
     m_timer.start(60 * 1000);
 }
 
