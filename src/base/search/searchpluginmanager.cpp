@@ -29,6 +29,8 @@
 
 #include "searchpluginmanager.h"
 
+#include <memory>
+
 #include <QDebug>
 #include <QDir>
 #include <QDomDocument>
@@ -458,7 +460,7 @@ void SearchPluginManager::update()
         if (!engineElem.isNull()) {
             QString pluginName = engineElem.tagName();
 
-            PluginInfo *plugin = new PluginInfo;
+            std::unique_ptr<PluginInfo> plugin {new PluginInfo {}};
             plugin->name = pluginName;
             plugin->version = getPluginVersion(pluginPath(pluginName));
             plugin->fullName = engineElem.elementsByTagName("name").at(0).toElement().text();
@@ -473,15 +475,15 @@ void SearchPluginManager::update()
             QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
             plugin->enabled = !disabledEngines.contains(pluginName);
 
-            updateIconPath(plugin);
+            updateIconPath(plugin.get());
 
             if (!m_plugins.contains(pluginName)) {
-                m_plugins[pluginName] = plugin;
+                m_plugins[pluginName] = plugin.release();
                 emit pluginInstalled(pluginName);
             }
             else if (m_plugins[pluginName]->version != plugin->version) {
                 delete m_plugins.take(pluginName);
-                m_plugins[pluginName] = plugin;
+                m_plugins[pluginName] = plugin.release();
                 emit pluginUpdated(pluginName);
             }
         }
