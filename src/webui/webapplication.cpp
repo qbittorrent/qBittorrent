@@ -336,7 +336,11 @@ void WebApplication::doProcessRequest()
         scope = compatInfo.scope;
         action = compatInfo.action;
 
-        if (legacyAction == QLatin1String("command/delete"))
+        if (legacyAction == QLatin1String("command/pauseAll"))
+            m_params["hashes"] = "all";
+        else if (legacyAction == QLatin1String("command/resumeAll"))
+            m_params["hashes"] = "all";
+        else if (legacyAction == QLatin1String("command/delete"))
             m_params["deleteFiles"] = "false";
         else if (legacyAction == QLatin1String("command/deletePerm"))
             m_params["deleteFiles"] = "true";
