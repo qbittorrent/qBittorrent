@@ -196,6 +196,7 @@ bool SettingsStorage::save()
         return true;
     }
 
+    m_timer.start();
     return false;
 }
 
