@@ -241,8 +241,12 @@ QVariantHash TransactionalSettings::read()
                 .arg(Utils::Fs::toNativePath(newPath))
             , Log::WARNING);
 
-        Utils::Fs::forceRemove(newPath);
-        write(res);
+        QString finalPath = newPath;
+        int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+        finalPath.remove(index, 4);
+
+        Utils::Fs::forceRemove(finalPath);
+        QFile::rename(newPath, finalPath);
     }
     else {
         deserialize(m_name, res);
