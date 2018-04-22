@@ -31,13 +31,12 @@
 #define UTILS_RANDOM_H
 
 #include <cstdint>
-#include <cstdlib>
 
 namespace Utils
 {
     namespace Random
     {
-        uint32_t rand(uint32_t min = 0, uint32_t max = UINT32_MAX);
+        uint32_t rand(const uint32_t min = 0, const uint32_t max = UINT32_MAX);
     }
 }
 
