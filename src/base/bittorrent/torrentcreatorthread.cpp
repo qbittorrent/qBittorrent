@@ -38,8 +38,12 @@
 #include <libtorrent/storage.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QDirIterator>
 #include <QFile>
+#include <QFileInfo>
+#include <QHash>
 
+#include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -86,13 +90,51 @@ void TorrentCreatorThread::run()
     emit updateProgress(0);
 
     try {
-        libt::file_storage fs;
+        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + "/";
+
         // Adding files to the torrent
-        libt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
+        libt::file_storage fs;
+        if (QFileInfo(m_params.inputPath).isFile()) {
+            libt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
+        }
+        else {
+            // need to sort the file names by natural sort order
+            QStringList dirs = {m_params.inputPath};
+
+            QDirIterator dirIter(m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
+            while (dirIter.hasNext()) {
+                dirIter.next();
+                dirs += dirIter.filePath();
+            }
+            std::sort(dirs.begin(), dirs.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+
+            QStringList fileNames;
+            QHash<QString, boost::int64_t> fileSizeMap;
+
+            for (const auto &dir : qAsConst(dirs)) {
+                QStringList tmpNames;  // natural sort files within each dir
+
+                QDirIterator fileIter(dir, QDir::Files);
+                while (fileIter.hasNext()) {
+                    fileIter.next();
+
+                    const QString relFilePath = fileIter.filePath().mid(parentPath.length());
+                    tmpNames += relFilePath;
+                    fileSizeMap[relFilePath] = fileIter.fileInfo().size();
+                }
+
+                std::sort(tmpNames.begin(), tmpNames.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+                fileNames += tmpNames;
+            }
+
+            for (const auto &fileName : qAsConst(fileNames))
+                fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
+        }
 
         if (isInterruptionRequested()) return;
 
-        libt::create_torrent newTorrent(fs, m_params.pieceSize);
+        libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
+            , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0));
 
         // Add url seeds
         foreach (QString seed, m_params.urlSeeds) {
@@ -112,7 +154,6 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         // calculate the hash for all pieces
-        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + "/";
         libt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const int n) { sendProgressSignal(n, newTorrent.num_pieces()); });
         // Set qBittorrent as creator and add user comment to
@@ -156,12 +197,13 @@ void TorrentCreatorThread::run()
     }
 }
 
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize)
+int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized)
 {
     if (inputPath.isEmpty())
         return 0;
 
     libt::file_storage fs;
     libt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
-    return libt::create_torrent(fs, pieceSize).num_pieces();
+    return libt::create_torrent(fs, pieceSize, -1
+        , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0)).num_pieces();
 }

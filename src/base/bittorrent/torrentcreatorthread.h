@@ -39,6 +39,7 @@ namespace BitTorrent
     struct TorrentCreatorParams
     {
         bool isPrivate;
+        bool isAlignmentOptimized;
         int pieceSize;
         QString inputPath;
         QString savePath;
@@ -58,7 +59,7 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
-        static int calculateTotalPieces(const QString &inputPath, const int pieceSize);
+        static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized);
 
     protected:
         void run();

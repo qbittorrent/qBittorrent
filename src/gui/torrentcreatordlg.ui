@@ -224,6 +224,16 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="checkOptimizeAlignment">
+        <property name="text">
+         <string>Optimize alignment</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -329,6 +339,7 @@
   <tabstop>checkPrivate</tabstop>
   <tabstop>checkStartSeeding</tabstop>
   <tabstop>checkIgnoreShareLimits</tabstop>
+  <tabstop>checkOptimizeAlignment</tabstop>
   <tabstop>trackersList</tabstop>
   <tabstop>URLSeedsList</tabstop>
   <tabstop>txtComment</tabstop>
