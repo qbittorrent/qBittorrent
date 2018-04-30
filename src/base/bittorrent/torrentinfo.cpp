@@ -106,10 +106,17 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
     // used in `torrent_info()` constructor
     const int depthLimit = 100;
     const int tokenLimit = 10000000;
-    libt::bdecode_node node;
     libt::error_code ec;
+
+#if LIBTORRENT_VERSION_NUM < 10100
+    libt::lazy_entry node;
+    libt::lazy_bdecode(data.constData(), (data.constData() + data.size()), node, ec
+        , nullptr, depthLimit, tokenLimit);
+#else
+    libt::bdecode_node node;
     bdecode(data.constData(), (data.constData() + data.size()), node, ec
         , nullptr, depthLimit, tokenLimit);
+#endif
     if (ec) {
         if (error)
             *error = QString::fromStdString(ec.message());
