@@ -1509,7 +1509,7 @@ void TorrentHandle::handleTrackerWarningAlert(const libtorrent::tracker_warning_
     const QString message = QString::fromStdString(p->msg);
 #else
     const QString trackerUrl = p->tracker_url();
-    const QString message = QString::fromStdString(p->message());
+    const QString message = p->warning_message();
 #endif
 
     // Connection was successful now but there is a warning message
@@ -1525,7 +1525,7 @@ void TorrentHandle::handleTrackerErrorAlert(const libtorrent::tracker_error_aler
     const QString message = QString::fromStdString(p->msg);
 #else
     const QString trackerUrl = p->tracker_url();
-    const QString message = QString::fromStdString(p->message());
+    const QString message = p->error_message();
 #endif
 
     m_trackerInfos[trackerUrl].lastMessage = message;
