@@ -29,11 +29,7 @@
      <property name="acceptRichText">
       <bool>false</bool>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_format">
-     <property name="text">
+     <property name="placeholderText">
       <string>Format: IPv4:port / [IPv6]:port</string>
      </property>
     </widget>
