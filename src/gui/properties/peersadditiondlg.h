@@ -33,7 +33,7 @@
 
 #include "base/bittorrent/peerinfo.h"
 
-template <class T> class QList;
+template <typename T> class QList;
 
 namespace Ui
 {
