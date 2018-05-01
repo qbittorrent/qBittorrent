@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="da">
+<TS version="2.1" language="da">
 <context>
     <name>&quot;TorrentInfo&quot;</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
-        <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Filstørrelse overskrider maks. grænse %1</translation>
     </message>
 </context>
 <context>
@@ -93,41 +87,6 @@
         <location filename="../gui/about.ui" line="293"/>
         <source>License</source>
         <translation>Licens</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractWebApplication</name>
-    <message>
-        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Webgrænseflade: Uoverensstemmelse i origin-header og mål-origin!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Kilde-IP: &apos;%1&apos;. Origin-header: &apos;%2&apos;. Mål-origin: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Webgrænseflade: Uoverensstemmelse i referer-header og mål-origin!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Kilde-IP: &apos;%1&apos;. Referer-header: &apos;%2&apos;. Mål-origin: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="obsolete">Webgrænseflade: Ugyldig værtsheader, uoverensstemmelse for port.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="obsolete">Anmodningens kilde-IP: &apos;%1&apos;. Serverport: &apos;%2&apos;. Modtog værtsheader: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header.</source>
-        <translation type="obsolete">Webgrænseflade: Ugyldig værtsheader.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">Anmodningens kilde-IP: &apos;%1&apos;. Modtog værtsheader: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -771,10 +730,6 @@ Fejl: %2</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">Styr qBittorrent ved at tilgå webgrænsefladen via http://localhost:%1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="519"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Webgrænsefladens administratorens brugernavn er: %1</translation>
@@ -810,30 +765,26 @@ Fejl: %2</translation>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Din IP-adresse er blevet udelukket efter for mange mislykkede godkendelsesforsøg.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation>Kunne ikke gemme RSS-AutoDownloader-data i %1. Fejl: %2</translation>
+        <translation type="vanished">Kunne ikke gemme RSS-AutoDownloader-data i %1. Fejl: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
         <source>Invalid data format</source>
-        <translation>Ugyldigt dataformat</translation>
+        <translation type="vanished">Ugyldigt dataformat</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>Kunne ikke læse RSS-AutoDownloader-regler fra %1. Fejl: %2</translation>
+        <translation type="vanished">Kunne ikke læse RSS-AutoDownloader-regler fra %1. Fejl: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation>Kunne ikke indlæse RSS-AutoDownloader-regler. Årsag: %1</translation>
+        <translation type="vanished">Kunne ikke indlæse RSS-AutoDownloader-regler. Årsag: %1</translation>
     </message>
 </context>
 <context>
@@ -1317,11 +1268,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Konfigureret netværksgrænsefladeadresse %1 er ikke gyldig.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>Understøttelse af kryptering [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>TVUNGET</translation>
@@ -1332,6 +1285,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>%1 er ikke en gyldig IP-adresse og blev afvist under anvendelse af listen over udelukkede adresser.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>Anonym tilstand [%1]</translation>
@@ -1424,11 +1378,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent forsøger at lytte på grænseflade %1 port: %2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>Understøttelse af DHT [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1437,6 +1407,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>TIL</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1445,9 +1420,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>FRA</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>Understøttelse af lokal modpartsopdagelse [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1590,9 +1571,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
         <translation>oprettelse af torrent-fil mislykkedes</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished">Filstørrelse overskrider maks. grænse %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1753,43 +1747,28 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Kunne ikke downloade RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
+        <translation type="vanished">Kunne ikke downloade RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
-        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Kunne ikke behandle RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
+        <translation type="vanished">Kunne ikke behandle RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
     </message>
     <message>
-        <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="obsolete">RSS-feed hos &apos;%1&apos; blev opdateret. Tilføjede %2 nye artikler.</translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>Kunne ikke læse RSS-sessionsdata fra %1. Fejl: %2</translation>
+        <translation type="vanished">Kunne ikke læse RSS-sessionsdata fra %1. Fejl: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>Kunne ikke behandle RSS-sessionsdata. Fejl: %1</translation>
+        <translation type="vanished">Kunne ikke behandle RSS-sessionsdata. Fejl: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>Kunne ikke indlæse RSS-sessionsdata. Ugyldigt dataformat.</translation>
+        <translation type="vanished">Kunne ikke indlæse RSS-sessionsdata. Ugyldigt dataformat.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>Kunne ikke indlæse RSS-artikel &apos;%1#%2&apos;. Ugyldigt dataformat.</translation>
+        <translation type="vanished">Kunne ikke indlæse RSS-artikel &apos;%1#%2&apos;. Ugyldigt dataformat.</translation>
     </message>
 </context>
 <context>
@@ -1809,12 +1788,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">Der opstod en fejl under forsøg på at åbne logfilen. Logning til filen er deaktiveret.</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4543,10 +4526,6 @@ Installer den venligst manuelt.</translation>
         <translation>&amp;Torrent sat i kø</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="obsolete">minutter</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2614"/>
         <source>Seed torrents until their seeding time reaches</source>
         <translation>Seed torrents indtil deres seedingtid nås</translation>
@@ -4959,7 +4938,7 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <source>Enabled protocol:</source>
         <translation>Aktiveret protokol:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation>TCP og μTP</translation>
@@ -5128,17 +5107,13 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <location filename="../gui/optionsdlg.ui" line="2403"/>
         <location filename="../gui/optionsdlg.ui" line="2416"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation> KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1821"/>
         <location filename="../gui/optionsdlg.ui" line="1993"/>
         <source>Upload:</source>
         <translation>Upload:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
@@ -5200,7 +5175,7 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <source>Apply rate limit to transport overhead</source>
         <translation>Anvend grænse for hastighed til transport-overhead</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Anvend grænse for hastighed til µTP-protokol</translation>
@@ -5215,7 +5190,7 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Aktivér DHT (decentraliseret netværk) for at finde flere modparter</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Udveksel modparter med kompatible Bittorrent-klienter (µTorrent, Vuze, ...)</translation>
@@ -5266,10 +5241,6 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <translation>Aktivér anonym tilstand</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mere information&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
         <source>Maximum active downloads:</source>
         <translation>Maksimum aktive downloads:</translation>
@@ -5303,7 +5274,7 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <location filename="../gui/optionsdlg.ui" line="2469"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>sek.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2485"/>
@@ -5378,7 +5349,7 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
     <message>
         <location filename="../gui/optionsdlg.ui" line="3161"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filplacering:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3186"/>
@@ -5842,22 +5813,22 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>Ingen modpart indtastet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>Skriv venligst mindst én modpart.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>Ugyldig modpart</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>Modparten &apos;%1&apos; er ugyldig.</translation>
     </message>
@@ -6569,24 +6540,6 @@ Pluginsne blev deaktiveret.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">Din IP-adresse er blevet udelukket efter for mange mislykkede godkendelsesforsøg.</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">Fejl: &apos;%1&apos; er ikke en gyldig torrent-fil.
-</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">Fejl: Kunne ikke tilføje torrent til session.</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">I/O-fejl: Kunne ikke oprette midlertidig fil.</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -6998,6 +6951,64 @@ Der udstedes ingen yderlige notitser.</translation>
         <source>Invalid data format.</source>
         <translation>Ugyldigt dataformat.</translation>
     </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished">Kunne ikke gemme RSS-AutoDownloader-data i %1. Fejl: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished">Ugyldigt dataformat</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished">Kunne ikke læse RSS-AutoDownloader-regler fra %1. Fejl: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished">Kunne ikke indlæse RSS-AutoDownloader-regler. Årsag: %1</translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Kunne ikke downloade RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Kunne ikke behandle RSS-feed fra &apos;%1&apos;. Årsag: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished">Kunne ikke læse RSS-sessionsdata fra %1. Fejl: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished">Kunne ikke behandle RSS-sessionsdata. Fejl: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished">Kunne ikke indlæse RSS-sessionsdata. Ugyldigt dataformat.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished">Kunne ikke indlæse RSS-artikel &apos;%1#%2&apos;. Ugyldigt dataformat.</translation>
+    </message>
 </context>
 <context>
     <name>RSS::Private::Parser</name>
@@ -7248,30 +7259,6 @@ Der udstedes ingen yderlige notitser.</translation>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">Ukendt filformat for søgemotor-plugin.</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">En nyere version af dette plugin er allerede installeret.</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">Pluginet understøttes ikke.</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">Opdateringsserveren er midlertidig utilgængelig. %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">Kunne ikke download plugin-filen. %1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">En ukorrekt opdateringsinformation blev modtaget.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
         <translation>Alle kategorier</translation>
@@ -7316,49 +7303,45 @@ Der udstedes ingen yderlige notitser.</translation>
         <source>Books</source>
         <translation>Bøger</translation>
     </message>
-    <message>
-        <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="obsolete">Søge-pluginet &apos;%1&apos; indeholder ugyldig versionsstreng (&apos;%2&apos;)</translation>
-    </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">Ukendt filformat for søgemotor-plugin.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">En nyere version af dette plugin er allerede installeret.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">Pluginet understøttes ikke.</translation>
+        <translation>Plugin understøttes ikke.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">Opdateringsserveren er midlertidig utilgængelig. %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">Kunne ikke download plugin-filen. %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">En ukorrekt opdateringsinformation blev modtaget.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished">Søge-pluginet &apos;%1&apos; indeholder ugyldig versionsstreng (&apos;%2&apos;)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7454,10 +7437,6 @@ Der udstedes ingen yderlige notitser.</translation>
         <translation>Søg i:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nogle søgemotorer søger i torrentbeskrivelser og også i torrentnavne. Hvorvidt sådanne resultater vil blive vist i listen herunder styres af denne tilstand.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alle steder&lt;/span&gt; deaktivere filtrering og viser alt som returneres af søgemotorene.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Kun torrentnavne&lt;/span&gt; viser kun torrents hvis navn matcher søgeforespørgsel.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -7488,7 +7467,7 @@ Der udstedes ingen yderlige notitser.</translation>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maksimum antal seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7860,26 +7839,6 @@ Klik på &quot;Søg efter plugins...&quot;-knappen nederst til højre i vinduet,
         <translation>Brugerstatistik</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">Samlet modpartsforbindelser:</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">Globalt forhold:</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">Al download:</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">Al upload:</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">Samlet spild (denne session):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>Mellemlagerstatistik</translation>
@@ -7893,10 +7852,6 @@ Klik på &quot;Søg efter plugins...&quot;-knappen nederst til højre i vinduet,
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue:</source>
         <translation>Gennemsnitlig tid i kø:</translation>
-    </message>
-    <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">Samlet bufferstørrelse:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
@@ -8213,6 +8168,11 @@ Klik på &quot;Søg efter plugins...&quot;-knappen nederst til højre i vinduet,
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
         <translation>Gemmesti:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">Vælg gemmesti</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
@@ -8676,22 +8636,22 @@ Vælg venligst et andet navn og prøv igen.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="313"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Endnu ikke kontaktet</translation>
+        <translation>Ikke kontaktet endnu</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Updating...</source>
-        <translation type="unfinished">Opdaterer...</translation>
+        <translation>Opdaterer...</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
         <source>Working</source>
-        <translation type="unfinished">Arbejder</translation>
+        <translation>Arbejder</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="319"/>
         <source>Not working</source>
-        <translation type="unfinished">Arbejder ikke</translation>
+        <translation>Arbejder ikke</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="509"/>
@@ -8709,18 +8669,18 @@ Vælg venligst et andet navn og prøv igen.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="744"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished">Webgrænseflade sæt placering: flytter &quot;%1&quot;, fra &quot;%2&quot; til &quot;%3&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Incorrect torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukorrekt torrentnavn</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">Ukorrekt kategorinavn</translation>
+        <translation>Ukorrekt kategorinavn</translation>
     </message>
 </context>
 <context>
@@ -8929,7 +8889,7 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <source>List of trackers to add (one per line):</source>
         <translation>Liste over trackere der skal tilføjes (en pr. linje):</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>Liste-URL som er kompatibel med µTorrent:</translation>
@@ -9393,14 +9353,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="obsolete">Webgrænseflade sæt placering: flytter &quot;%1&quot;, fra &quot;%2&quot; til &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">Ukorrekt kategorinavn</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation type="unfinished"></translation>
@@ -9500,7 +9452,7 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Liste over modparter som skal tilføjes (én IP pr. linje):</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>Format: IPv4:port/[IPv6]:port</translation>
     </message>
@@ -9708,22 +9660,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 m</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Arbejder</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Opdaterer...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Arbejder ikke</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Endnu ikke kontaktet</translation>
     </message>
 </context>
 <context>

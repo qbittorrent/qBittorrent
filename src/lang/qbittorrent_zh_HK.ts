@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_HK">
-<context>
-    <name>&quot;TorrentInfo&quot;</name>
-    <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
-        <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
-        <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -736,10 +723,6 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">遙控qBittorrent，從「http://localhost:%1」存取Web UI遠端控制</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="519"/>
         <source>The Web UI administrator user name is: %1</source>
         <translation>Web UI遠端控制管理員名稱是：%1</translation>
@@ -775,29 +758,6 @@ Error: %2</source>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">你的IP位址因多次驗證失敗而被封鎖。</translation>
-    </message>
-</context>
-<context>
-    <name>AutoDownloader</name>
-    <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
-        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
-        <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
-        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
-        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1282,11 +1242,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>設定的網絡介面位址%1無效。</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>加密支援 [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>強制</translation>
@@ -1297,6 +1259,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>匿名模式 [%1]</translation>
@@ -1389,11 +1352,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent正在嘗試監聽介面%1的埠：%2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>支援DHT分散式網絡 [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1402,6 +1381,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>啟用中</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1410,9 +1394,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>停用中</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>支援LPD本地同路人發現 [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1555,8 +1545,21 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1716,44 +1719,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>Feed</name>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
-        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
-        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
-        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
-        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
-        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
-        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
-        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FeedListWidget</name>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="49"/>
@@ -1770,12 +1735,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">嘗試開啟日誌檔時發生錯誤。寫入執行日誌已被停用。</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4908,7 +4877,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Enabled protocol:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation type="unfinished"></translation>
@@ -5086,10 +5055,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>上載：</translation>
     </message>
     <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
         <location filename="../gui/optionsdlg.ui" line="2000"/>
         <source>Download:</source>
@@ -5149,7 +5114,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Apply rate limit to transport overhead</source>
         <translation>將速度限制套用到傳輸消耗</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>將速度限制套用到µTP協定</translation>
@@ -5164,7 +5129,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>啟用DHT分散式網絡來尋找更多同路人</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>與相容的Bittorrent用戶端（µTorrent等）交換同路人資訊</translation>
@@ -5213,10 +5178,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdlg.ui" line="2229"/>
         <source>Enable anonymous mode</source>
         <translation>啟用匿名模式</translation>
-    </message>
-    <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete">（&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;網上說明&lt;/a&gt;）</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
@@ -5791,22 +5752,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>未輸入同路人</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>請輸入最少一個同路人。</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>無效同路人</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>同路人「%1」無效。</translation>
     </message>
@@ -6517,23 +6478,6 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">你的IP位址因多次驗證失敗而被封鎖。</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">錯誤：「&apos;%1」不是有效Torrent檔。</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">錯誤：無法加入種子到工作階段。</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">入出錯誤：無法建立暫存檔。</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -6945,6 +6889,64 @@ No further notices will be issued.</source>
         <source>Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS::Private::Parser</name>
@@ -7195,30 +7197,6 @@ No further notices will be issued.</source>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">未知的搜尋引擎外掛檔案格式。</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">已安裝此搜尋引擎外掛的較新版本。</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">不支援的外掛。</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">更新伺服器暫時不可用。%1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">下載外掛檔案失敗。%1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">收到不正確的更新資訊。</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
         <translation>全部類別</translation>
@@ -7269,34 +7247,34 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">未知的搜尋引擎外掛檔案格式。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">已安裝此搜尋引擎外掛的較新版本。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">不支援的外掛。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">更新伺服器暫時不可用。%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">下載外掛檔案失敗。%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">收到不正確的更新資訊。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
@@ -7397,10 +7375,6 @@ No further notices will be issued.</source>
         <translation>搜尋：</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;部份搜尋引擎同時掃瞄Torrent檔名和Torrent描述。請選擇是否於下方清單中顯示相關結果。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;全部&lt;/span&gt;：不作過濾，顯示全部搜尋結果。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;僅Torrent名：僅顯示與Torrent名相符的項目。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -7431,7 +7405,7 @@ No further notices will be issued.</source>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;種子數量上限&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7802,26 +7776,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>用戶統計</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">總同路人連接：</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">整體比率：</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">歷年下載：</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">歷年上載：</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">總丟棄（本階段）：</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>快存統計</translation>
@@ -7835,10 +7789,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue:</source>
         <translation>佇列平均時間：</translation>
-    </message>
-    <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">總緩衝大小：</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
@@ -8155,6 +8105,11 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
         <translation type="unfinished">儲存路徑：</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">選取儲存路徑</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
@@ -8659,7 +8614,7 @@ Please choose a different name and try again.</source>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">錯誤分類名稱</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8868,7 +8823,7 @@ Please choose a different name and try again.</source>
         <source>List of trackers to add (one per line):</source>
         <translation>加入的追蹤器清單（一行一個）：</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>µTorrent相容清單網址：</translation>
@@ -9332,10 +9287,6 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">錯誤分類名稱</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation type="unfinished"></translation>
@@ -9435,7 +9386,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>格式：IPv4:埠╱[IPv6]:埠</translation>
     </message>
@@ -9643,22 +9594,6 @@ Please choose a different name and try again.</source>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1分鐘</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">有效</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">更新中…</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">無效</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">未嘗連接</translation>
     </message>
 </context>
 <context>

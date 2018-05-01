@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="he">
+<TS version="2.1" language="he">
 <context>
     <name>&quot;TorrentInfo&quot;</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">הקובץ חורג את המגבלה המרבית %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
         <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">שגיאת קריאת קובץ טורנט</translation>
     </message>
 </context>
 <context>
@@ -93,41 +91,6 @@
         <location filename="../gui/about.ui" line="293"/>
         <source>License</source>
         <translation>רשיון</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractWebApplication</name>
-    <message>
-        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">ממשק רשת: כותרת מקור ומקור מטרה בלתי-תואמים!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">IP מקור: &apos;%1&apos;. כותרת מקור: &apos;%2&apos;. מקור מטרה: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">ממשק רשת: כותרת מפנה ומקור מטרה בלתי-תואמים!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">IP מקור: &apos;%1&apos;. כותרת מפנה: &apos;%2&apos;. מקור מטרה: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="obsolete">ממשק רשת: כותרת מארח לא תקפה, פתחה בלתי-תואמת.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="obsolete">IP מקור בקשה: &apos;%1&apos;. פתחת שרת: &apos;%2&apos;. כותרת מארח שהתקבלה: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header.</source>
-        <translation type="obsolete">ממשק רשת: כותרת מארח לא תקפה.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">IP מקור בקשה: &apos;%1&apos;. כותרת מארח שהתקבלה: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -543,7 +506,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="325"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation type="unfinished"></translation>
+        <translation>לכד קריאות וכתיבות</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="329"/>
@@ -768,11 +731,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="517"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">כדי לשלוט על qBittorrent, גש לממשק משתמש הרשת בכתובת http://localhost:%1</translation>
+        <translation>כדי לשלוט ב־qBittorrent, השג גישה לממשק הרשת ב־%1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="519"/>
@@ -810,30 +769,26 @@ Error: %2</source>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">כתובת ה-IP שלך הוחרמה לאחר יותר מדי ניסיונות אימות כושלות.</translation>
+        <translation>כתובת ה־IP שלך הוחרמה לאחר יותר מדי ניסיונות אימות כושלים.</translation>
     </message>
 </context>
 <context>
     <name>AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation>לא היה ניתן לשמור נתוני מורידן אוטומטי RSS ב-%1. שגיאה: %2</translation>
+        <translation type="vanished">לא היה ניתן לשמור נתוני מורידן אוטומטי RSS ב-%1. שגיאה: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
         <source>Invalid data format</source>
-        <translation>תסדיר נתונים לא תקף</translation>
+        <translation type="vanished">תסדיר נתונים לא תקף</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>לא היה ניתן לקרוא את כלליי מורידן אוטומטי RSS מן %1. שגיאה: %2</translation>
+        <translation type="vanished">לא היה ניתן לקרוא את כלליי מורידן אוטומטי RSS מן %1. שגיאה: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation>לא היה ניתן לטעון כלליי מורידן אוטומטי RSS. סיבה: %1</translation>
+        <translation type="vanished">לא היה ניתן לטעון כלליי מורידן אוטומטי RSS. סיבה: %1</translation>
     </message>
 </context>
 <context>
@@ -872,12 +827,13 @@ Error: %2</source>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="112"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"></translation>
+        <translation>מסנן פרקים חכם יבדוק את מספר הפרק כדי למנוע הורדת כפילויות.
+תומך בתסדירים: S01E01, 1x1, 2017.01.01 ו־01.01.2017 (תסדירי תאריך גם נתמכים - בתור מפריד)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="116"/>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>השתמש במסנן פרקים חכם</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="125"/>
@@ -1147,7 +1103,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="487"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>נקה פרקים שירדו...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
@@ -1162,12 +1118,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="537"/>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>נקה פרקים שירדו</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="538"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>האם אתה בטוח שאתה רוצה לנקות את רשימת הפרקים שירדו עבור הכלל הנבחר?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
@@ -1317,11 +1273,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>כתובת ממשק הרשת שהוגדרה %1 בלתי תקינה.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>תמיכה בהצפנה [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>מאולץ</translation>
@@ -1332,6 +1290,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>%1 אינו כתובת IP תקפה ונדחה בעת החלת רשימת הכתובות המוחרמות.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>מצב אלמוני [%1]</translation>
@@ -1424,11 +1383,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent מנסה להאזין על ממשק %1 פתחה: %2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>תמיכה ב-DHT [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1437,6 +1412,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>מופעל</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1445,9 +1425,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>כבוי</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>תמיכה בגילוי עמיתים מקומיים [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1590,9 +1576,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
         <translation>יצירת קובץ חדש של טורנט נכשלה</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished">הקובץ חורג את המגבלה המרבית %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
+        <translation type="unfinished">שגיאת קריאת קובץ טורנט</translation>
     </message>
 </context>
 <context>
@@ -1753,43 +1752,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>נכשל בהורדת הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
+        <translation type="vanished">נכשל בהורדת הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">הזנת RSS ב־&apos;%1&apos; עודכנה. התווספו %2 מאמרים חדשים.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>נכשל בניתוח הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
+        <translation type="vanished">נכשל בניתוח הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
     </message>
     <message>
-        <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="obsolete">הזנת RSS ב-&apos;%1&apos; עודכנה בהצלחה. התווספו %2 מאמרים חדשים.</translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>לא היה ניתן לקרוא נתוני שיח RSS מתוך %1. שגיאה: %2</translation>
+        <translation type="vanished">לא היה ניתן לקרוא נתוני שיח RSS מתוך %1. שגיאה: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>לא היה ניתן לנתח נתוני שיח RSS. שגיאה: %1</translation>
+        <translation type="vanished">לא היה ניתן לנתח נתוני שיח RSS. שגיאה: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>לא היה ניתן לטעון נתוני שיח RSS. תסדיר נתונים לא תקף.</translation>
+        <translation type="vanished">לא היה ניתן לטעון נתוני שיח RSS. תסדיר נתונים לא תקף.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>לא היה ניתן לטעון מאמר RSS בשם &apos;%1#%2&apos;. תסדיר נתונים לא תקף.</translation>
+        <translation type="vanished">לא היה ניתן לטעון מאמר RSS בשם &apos;%1#%2&apos;. תסדיר נתונים לא תקף.</translation>
     </message>
 </context>
 <context>
@@ -1809,12 +1797,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">שגיאה התרחשה בזמן ניסיון לפתוח את קובץ יומן האירועים. רישום בקובץ יומן האירועים מבוטל.</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation>שגיאה התרחשה בעת ניסיון לפתוח את קובץ היומן. כתיבה בקובץ היומן מושבתת.</translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1926,12 +1918,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/http/connection.cpp" line="72"/>
         <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל בקשת HTTP חרגה את המגבלה, סוגר תושבת. הגבלה: %ld, כתובת IP: %s</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="85"/>
         <source>Bad Http request, closing socket. IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>בקשת HTTP גרועה, סוגר תושבת. IP: %s</translation>
     </message>
 </context>
 <context>
@@ -4534,16 +4526,12 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2236"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;עוד מידע&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2264"/>
         <source>&amp;Torrent Queueing</source>
         <translation>תור &amp;טורנטים</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">דקות</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2614"/>
@@ -4957,7 +4945,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Enabled protocol:</source>
         <translation>פרוטוקול מאופשר:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation>TCP ו-μTP</translation>
@@ -5071,7 +5059,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="1598"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;עוד מידע&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1623"/>
@@ -5126,17 +5114,13 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdlg.ui" line="2403"/>
         <location filename="../gui/optionsdlg.ui" line="2416"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>ק&quot;ב/ש</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1821"/>
         <location filename="../gui/optionsdlg.ui" line="1993"/>
         <source>Upload:</source>
         <translation>העלאה:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">ק&quot;ב/ש</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
@@ -5198,7 +5182,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Apply rate limit to transport overhead</source>
         <translation>החל מגבלת קצב על תקורת תעבורה</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>החל מגבלת קצב על פרוטוקול µTP</translation>
@@ -5213,7 +5197,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>אפשר DHT (רשת מבוזרת) כדי למצוא יותר עמיתים</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>החלף עמיתים עם לקוחות ביטורנט תואמים (µTorrent, Vuze, ...)</translation>
@@ -5264,10 +5248,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>אפשר מצב אלמוני</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;עוד מידע&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
         <source>Maximum active downloads:</source>
         <translation>הורדות פעילות מרביות:</translation>
@@ -5290,23 +5270,23 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="2429"/>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>סף קצב העלאה:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2436"/>
         <source>Download rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>סף קצב הורדה:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2469"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>שניות</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2485"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>קוצב־זמן של אי־פעילות טורנט</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2498"/>
@@ -5336,7 +5316,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="2822"/>
         <source>RSS Smart Episode Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>מסנני RSS חכמים של פרקים</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2956"/>
@@ -5371,12 +5351,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.ui" line="3149"/>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>השתמש בממשק רשת חלופי</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3161"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>מיקום קבצים:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3186"/>
@@ -5411,7 +5391,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.cpp" line="187"/>
         <source>Choose Alternative UI files location</source>
-        <translation type="unfinished"></translation>
+        <translation>בחר מיקום של קבצי ממשק חלופי</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="276"/>
@@ -5431,7 +5411,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.cpp" line="279"/>
         <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: תגיות (מופרדות ע&quot;י פסיק)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="280"/>
@@ -5476,7 +5456,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdlg.cpp" line="360"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>טורנט ייחשב איטי אם הקצבים של הורדתו והעלאתו נשארים מתחת לערכים אלו עבור שניות &quot;קוצב־זמן של אי־פעילות טורנט&quot;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1498"/>
@@ -5840,22 +5820,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>לא הוכנס עמית</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>אנא הקלד לפחות עמית אחד.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>עמית לא תקף</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>העמית &apos;%1&apos; אינו תקף.</translation>
     </message>
@@ -6567,24 +6547,6 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">כתובת ה-IP שלך הוחרמה לאחר יותר מדי ניסיונות אימות כושלות.</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">שגיאה: &apos;%1&apos; אינו קובץ טורנט תקין.
-</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">שגיאה: לא ניתן היה להוסיף טורנט לשיח.</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">שגיאת ק/פ: לא ניתן היה ליצור קובץ זמני.</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -6800,12 +6762,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/main.cpp" line="375"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent הוא תוכנית שיתוף קבצים. כאשר אתה מריץ טורנט, נתוניו יהפכו לזמינים לאחרים באמצעות העלאה. כל תוכן שהוא שאתה משתף הוא באחריותך הבלעדית.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="376"/>
         <source>No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>לא יונפקו התראות נוספות.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="388"/>
@@ -6995,6 +6957,64 @@ No further notices will be issued.</source>
         <location filename="../base/rss/rss_autodownloader.cpp" line="87"/>
         <source>Invalid data format.</source>
         <translation>תסדיר נתונים לא תקף.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished">לא היה ניתן לשמור נתוני מורידן אוטומטי RSS ב-%1. שגיאה: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished">תסדיר נתונים לא תקף</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished">לא היה ניתן לקרוא את כלליי מורידן אוטומטי RSS מן %1. שגיאה: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished">לא היה ניתן לטעון כלליי מורידן אוטומטי RSS. סיבה: %1</translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">נכשל בהורדת הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished">הזנת RSS ב־&apos;%1&apos; עודכנה. התווספו %2 מאמרים חדשים.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">נכשל בניתוח הזנת RSS ב-&apos;%1&apos;. סיבה: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished">לא היה ניתן לקרוא נתוני שיח RSS מתוך %1. שגיאה: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished">לא היה ניתן לנתח נתוני שיח RSS. שגיאה: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished">לא היה ניתן לטעון נתוני שיח RSS. תסדיר נתונים לא תקף.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished">לא היה ניתן לטעון מאמר RSS בשם &apos;%1#%2&apos;. תסדיר נתונים לא תקף.</translation>
     </message>
 </context>
 <context>
@@ -7246,30 +7266,6 @@ No further notices will be issued.</source>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">תסדיר בלתי ידוע של קובץ מתקע מנוע חיפוש.</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">גרסה חדשה יותר של מתקע זה כבר מותקנת.</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">המתקע אינו נתמך.</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">שרת העדכון אינו זמין באופן זמני. %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">נכשל בהורדת קובץ המתקע. %1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">מידע שגוי של עדכון התקבל.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
         <translation>כל המדורים</translation>
@@ -7314,49 +7310,45 @@ No further notices will be issued.</source>
         <source>Books</source>
         <translation>ספרים</translation>
     </message>
-    <message>
-        <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="obsolete">מתקע החיפוש &apos;%1&apos; מכיל מחרוזת של גרסה לא תקפה (&apos;%2&apos;)</translation>
-    </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">תסדיר בלתי ידוע של קובץ מתקע מנוע חיפוש.</translation>
+        <translation>תסדיר בלתי ידוע של קובץ מתקע של מנוע חיפוש.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">גרסה חדשה יותר של מתקע זה כבר מותקנת.</translation>
+        <translation>גרסה חדשה יותר של מתקע זה מותקנת כבר.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">המתקע אינו נתמך.</translation>
+        <translation>המתקע אינו נתמך.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">שרת העדכון אינו זמין באופן זמני. %1</translation>
+        <translation>שרת העדכון אינו זמין זמנית. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">נכשל בהורדת קובץ המתקע. %1</translation>
+        <translation>נכשל בהורדת קובץ המתקע. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">מידע שגוי של עדכון התקבל.</translation>
+        <translation>התקבל מידע שגוי של עדכון.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished">מתקע החיפוש &apos;%1&apos; מכיל מחרוזת של גרסה לא תקפה (&apos;%2&apos;)</translation>
+        <translation>מתקע החיפוש &apos;%1&apos; מכיל מחרוזת של גרסה בלתי תקפה (&apos;%2&apos;)</translation>
     </message>
 </context>
 <context>
@@ -7452,13 +7444,9 @@ No further notices will be issued.</source>
         <translation>חפש ב:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;מספר מנועי חיפוש מחפשים בתיאור טורנט וגם בשמות קבצי טורנטים. אם תוצאות אלו יוצגו ברשימה למטה או לא, זה נשלט ע&quot;י מצב זה.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;כל מקום&lt;/span&gt; מבטל סינון ומציג כל דבר שמוחזר ע&quot;י מנועי החיפוש.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;שמות טורנטים בלבד&lt;/span&gt; מציג רק טורנטים אשר שמותיהם תואמים לשאילתת החיפוש.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;מספר מנועי חיפוש מחפשים בתיאור טורנטים ובשמות קובץ טורנט. אם תוצאות כאלו יוצגו ברשימה למטה הן נשלטות ע&quot;י מצב זה.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;בכל מקום&lt;/span&gt;משבית סינון ומראה כל דבר החוזר ע&quot;י מנועי החיפוש.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;שמות טורנט בלבד&lt;/span&gt;מראה רק טורנטים ששמותיהם תואמים לשאילתת החיפוש.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="84"/>
@@ -7486,7 +7474,7 @@ No further notices will be issued.</source>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;מספר מרבי של זרעים&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7858,26 +7846,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>סטטיסטיקת משתמש</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">סה&quot;כ חיבורי עמיתים:</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">יחס עולמי:</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">הורדה בכל הזמנים:</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">העלאה בכל הזמנים:</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">בזבוז כולל (שיח זה):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>סטטיסטיקת מטמון</translation>
@@ -7893,38 +7861,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>זמן ממוצע בתור:</translation>
     </message>
     <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">גודל מאגרים כולל:</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Connected peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>עמיתים מחוברים:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="40"/>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>יחס שיתוף של כל הזמנים:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="54"/>
         <source>All-time download:</source>
-        <translation type="unfinished"></translation>
+        <translation>הורדה של כל הזמנים:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="75"/>
         <source>Session waste:</source>
-        <translation type="unfinished"></translation>
+        <translation>בזבוז שיח:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
         <source>All-time upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>העלאה של כל הזמנים:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffer size:</source>
-        <translation type="unfinished"></translation>
+        <translation>סה&quot;כ גודל מאגר:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -8213,6 +8177,11 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>נתיב שמירה:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">בחירת נתיב שמירה</translation>
+    </message>
+    <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
         <translation>מדור חדש</translation>
@@ -8456,7 +8425,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="230"/>
         <source>Optimize alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>מטב יישור</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="243"/>
@@ -8674,27 +8643,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="313"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">לא מחובר עדיין</translation>
+        <translation>לא נוצר קשר עדין</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Updating...</source>
-        <translation type="unfinished">מעדכן...</translation>
+        <translation>מעדכן...</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
         <source>Working</source>
-        <translation type="unfinished">עובד</translation>
+        <translation>עובד</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="319"/>
         <source>Not working</source>
-        <translation type="unfinished">לא עובד</translation>
+        <translation>לא עובד</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="509"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה: &apos;%1&apos; הוא אינו קובץ תקף של טורנט.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="692"/>
@@ -8702,23 +8671,23 @@ Please choose a different name and try again.</source>
         <location filename="../webui/api/torrentscontroller.cpp" line="714"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="725"/>
         <source>Torrent queueing must be enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>תור טורנטים חייב להיות מאופשר</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="744"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished">מיקום ממשק רשת: מעביר את &quot;%1&quot; מן &quot;%2&quot; אל &quot;%3&quot;</translation>
+        <translation>קביעת מיקום של ממשק רשת: מעביר את &quot;%1&quot; מן &quot;%2&quot; אל &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Incorrect torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>שם לא נכון של טורנט</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">שם מדור לא נכון</translation>
+        <translation>שם לא נכון של מדור</translation>
     </message>
 </context>
 <context>
@@ -8927,7 +8896,7 @@ Please choose a different name and try again.</source>
         <source>List of trackers to add (one per line):</source>
         <translation>רשימת גששים להוספה (אחד לשורה):</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>כתובת לרשימה תואמת ל-µTorrent:</translation>
@@ -9391,47 +9360,39 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="obsolete">מיקום ממשק רשת: מעביר את &quot;%1&quot; מן &quot;%2&quot; אל &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">שם מדור לא נכון</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
-        <translation type="unfinished"></translation>
+        <translation>סוג לא קביל של קובץ, רק קובץ רגיל מותר.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="224"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
-        <translation type="unfinished"></translation>
+        <translation>קישורים סמליים בתוך תיקיית ממשק חלופי הם אסורים.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="466"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
-        <translation type="unfinished"></translation>
+        <translation>חרג את הגודל המותר המרבי של קובץ (%1)!</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="667"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ממשק רשת: כותרת מוצא ומוצא מטרה אינם תואמים! IP מקור: &apos;%1&apos;. כותרת מוצא: &apos;%2&apos;. מוצא מטרה: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="676"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ממשק רשת: כותרת אזכור ומוצא מטרה אינם תואמים! IP מקור: &apos;%1&apos;. כותרת אזכור: &apos;%2&apos;. מוצא מטרה: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="693"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ממשק רשת: כותרת מארח בלתי תקפה, פתחה בלתי תואמת. בקש IP מקור: &apos;%1&apos;. פתחת שרת: &apos;%2&apos;. התקבלה כותרת מארח: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="725"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ממשק רשת: כותרת מארח בלתי תקפה. בקש IP מקור: &apos;%1&apos;. התקבלה כותרת מארח: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -9498,7 +9459,7 @@ Please choose a different name and try again.</source>
         <translation>רשימת עמיתים להוספה (IP אחד לשורה):</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>תסדיר: IPv4:פתחה / [IPv6]:פתחה</translation>
     </message>
@@ -9706,22 +9667,6 @@ Please choose a different name and try again.</source>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 דקות</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">עובד</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">מעדכן...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">לא עובד</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">לא מחובר עדיין</translation>
     </message>
 </context>
 <context>

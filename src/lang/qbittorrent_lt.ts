@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="lt">
+<TS version="2.1" language="lt">
 <context>
     <name>&quot;TorrentInfo&quot;</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Failo dydis viršija didžiausią ribą %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
         <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Torento failo skaitymo klaida</translation>
     </message>
 </context>
 <context>
@@ -93,41 +91,6 @@
         <location filename="../gui/about.ui" line="293"/>
         <source>License</source>
         <translation>Licencija</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractWebApplication</name>
-    <message>
-        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Tinklo sąsaja: Kilmės antraštės ir paskirties kilmės neatitikimas!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Šaltinio IP: &quot;%1&quot;. Kilmės antraštė: &quot;%2&quot;. Paskirties kilmė: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Tinklo sąsaja: Nukreipėjo antraštės ir paskirties kilmės neatitikimas!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Šaltinio IP: &quot;%1&quot;. Nukreipėjo antraštė: &quot;%2&quot;. Paskirties kilmė: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="obsolete">Tinklo sąsaja: Neteisinga serverio antraštė, prievadų neatitikimas.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="obsolete">Užklausos šaltinio IP: &quot;%1&quot;. Serverio prievadas: &quot;%2&quot;. Gauta serverio antraštė: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header.</source>
-        <translation type="obsolete">Tinklo sąsaja: Neteisinga serverio antraštė.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">Užklausos šaltinio IP: &quot;%1&quot;. Gauta serverio antraštė: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -768,11 +731,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="517"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">Norėdami valdyti qBittorrent, prisijunkite prie tinklo naudotojo sąsajos, adresu http://localhost:%1</translation>
+        <translation>Norėdami valdyti qBittorrent, prisijunkite prie tinklo naudotojo sąsajos, adresu %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="519"/>
@@ -810,30 +769,26 @@ Klaida: %2</translation>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Jūsų IP adresas buvo uždraustas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
+        <translation>Jūsų IP adresas buvo užblokuotas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
     </message>
 </context>
 <context>
     <name>AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation>Nepavyko įrašyti RSS automatinio atsiuntimo duomenų į %1. Klaida: %2</translation>
+        <translation type="vanished">Nepavyko įrašyti RSS automatinio atsiuntimo duomenų į %1. Klaida: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
         <source>Invalid data format</source>
-        <translation>Neteisingas duomenų formatas</translation>
+        <translation type="vanished">Neteisingas duomenų formatas</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>Nepavyko perskaityti RSS automatinio atsiuntimo taisyklių iš %1. Klaida: %2</translation>
+        <translation type="vanished">Nepavyko perskaityti RSS automatinio atsiuntimo taisyklių iš %1. Klaida: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation>Nepavyko įkelti RSS automatinio atsiuntimo taisyklių. Priežastis: %1</translation>
+        <translation type="vanished">Nepavyko įkelti RSS automatinio atsiuntimo taisyklių. Priežastis: %1</translation>
     </message>
 </context>
 <context>
@@ -872,12 +827,13 @@ Klaida: %2</translation>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="112"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"></translation>
+        <translation>Išmanusis filtrų epizodas tikrins epizodų numerį, kad neleistų dublikatų atsiuntimo.
+Palaiko formatus: S01E01, 1x1, 2017.01.01 ir 01.01.2017 (Datos formatai taip pat palaikomi - kaip skirtukai)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="116"/>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Naudoti išmanųjį epizodų filtrą</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="125"/>
@@ -963,7 +919,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
         <source>Matches articles based on episode filter.</source>
-        <translation>Atitinka, epizodų filtru pagrįstus, filtrus.</translation>
+        <translation>Atitinka epizodų filtru pagrįstus įrašus.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
@@ -1147,7 +1103,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="487"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalyti atsisiųstus epizodus...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
@@ -1162,12 +1118,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="537"/>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalyti atsisiųstus epizodus</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="538"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar tikrai norite išvalyti pasirinktos taisyklės atsisiųstų epizodų sąrašą?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
@@ -1317,11 +1273,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Sukonfigūruotos tinklo sąsajos adresas %1 nėra teisingas.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>Šifravimo palaikymas [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>PRIVERSTINAI</translation>
@@ -1332,6 +1290,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>%1 nėra taisyklingas IP adresas ir, taikant uždraustų adresų sąrašą, buvo atmestas.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>Anoniminė veiksena [%1]</translation>
@@ -1424,11 +1383,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent bando klausytis ties įrenginio %1 prievadu: %2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>DHT palaikymas [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1437,6 +1412,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>ĮJUNGTA</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1445,9 +1425,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>IŠJUNGTA</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>Vietinių siuntėjų aptikimo palaikymas [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1590,9 +1576,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
         <translation>naujo torento failo sukūrimas patyrė nesėkmę</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished">Failo dydis viršija didžiausią ribą %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
+        <translation type="unfinished">Torento failo skaitymo klaida</translation>
     </message>
 </context>
 <context>
@@ -1753,43 +1752,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Nepavyko atsisiųsti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
+        <translation type="vanished">Nepavyko atsisiųsti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">RSS kanalas ties &quot;%1&quot; atnaujintas. Pridėta %2 naujų įrašų.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Nepavyko išnagrinėti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
+        <translation type="vanished">Nepavyko išnagrinėti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
     </message>
     <message>
-        <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="obsolete">RSS kanalas ties &quot;%1&quot; sėkmingai atnaujintas. Pridėta %2 naujų įrašų.</translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>Nepavyko perskaityti RSS seanso duomenų iš %1. Klaida: %2</translation>
+        <translation type="vanished">Nepavyko perskaityti RSS seanso duomenų iš %1. Klaida: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>Nepavyko išnagrinėti RSS seanso duomenų. Klaida: %1</translation>
+        <translation type="vanished">Nepavyko išnagrinėti RSS seanso duomenų. Klaida: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>Nepavyko įkelti RSS seanso duomenų. Neteisingas duomenų formatas.</translation>
+        <translation type="vanished">Nepavyko įkelti RSS seanso duomenų. Neteisingas duomenų formatas.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>Nepavyko įkelti RSS įrašo &quot;%1#%2&quot;. Neteisingas duomenų formatas.</translation>
+        <translation type="vanished">Nepavyko įkelti RSS įrašo &quot;%1#%2&quot;. Neteisingas duomenų formatas.</translation>
     </message>
 </context>
 <context>
@@ -1809,12 +1797,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">Įvyko klaida, bandant atverti žurnalo failą. Registravimas į failą yra išjungtas.</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation>Įvyko klaida, bandant atverti žurnalo failą. Registravimas į failą yra išjungtas.</translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1926,12 +1918,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/http/connection.cpp" line="72"/>
         <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Http užklausos dydis viršija ribą, lizdas uždaromas. Riba: %ld, IP: %s</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="85"/>
         <source>Bad Http request, closing socket. IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloga Http užklausa, uždaromas lizdas. IP: %s</translation>
     </message>
 </context>
 <context>
@@ -4535,16 +4527,12 @@ Prašome padaryti tai rankiniu būdu.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2236"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2264"/>
         <source>&amp;Torrent Queueing</source>
         <translation>&amp;Siuntimų eilė</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minučių</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2614"/>
@@ -4961,7 +4949,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <source>Enabled protocol:</source>
         <translation>Įjungtas protokolas:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation>TCP ir μTP</translation>
@@ -5075,7 +5063,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1598"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1623"/>
@@ -5130,17 +5118,13 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <location filename="../gui/optionsdlg.ui" line="2403"/>
         <location filename="../gui/optionsdlg.ui" line="2416"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation> KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1821"/>
         <location filename="../gui/optionsdlg.ui" line="1993"/>
         <source>Upload:</source>
         <translation>Išsiuntimo:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
@@ -5202,7 +5186,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <source>Apply rate limit to transport overhead</source>
         <translation>Taikyti santykio apribojimą perdavimo pertekliui</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Taikyti greičio apribojimus µTP protokolui</translation>
@@ -5217,7 +5201,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Įjungti DHT (decentralizuotą tinklą), kad būtų rasta daugiau siuntėjų</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Keistis siuntėjais su suderinamais BitTorrent klientais (µTorrent, Vuze, ...)</translation>
@@ -5268,10 +5252,6 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <translation>Įjungti anoniminę veikseną</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daugiau informacijos&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
         <source>Maximum active downloads:</source>
         <translation>Didžiausias aktyvių atsiuntimų skaičius:</translation>
@@ -5305,12 +5285,12 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <location filename="../gui/optionsdlg.ui" line="2469"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation> sek.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2485"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento neveiklumo laikmatis:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2498"/>
@@ -5340,7 +5320,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2822"/>
         <source>RSS Smart Episode Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS išmanieji epizodų filtrai</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2956"/>
@@ -5380,7 +5360,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3161"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Failų vieta:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3186"/>
@@ -5844,22 +5824,22 @@ pakaitos simbolį &quot;*&quot;.</translation>
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>Neįvestas siuntėjas</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>Įveskite bent vieną siuntėją.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>Netaisyklingas siuntėjas</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>Siuntėjas &quot;%1&quot; yra netaisyklingas.</translation>
     </message>
@@ -6571,24 +6551,6 @@ Tie papildiniai buvo išjungti.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">Jūsų IP adresas buvo uždraustas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">Klaida: &apos;%1&apos; nėra taisyklingas torento failas.
-</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">Klaida: Nepavyko pridėti torento į seansą.</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">I/O Klaida: Nepavyko sukurti laikinojo failo.</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -7000,6 +6962,64 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <source>Invalid data format.</source>
         <translation>Neteisingas duomenų formatas.</translation>
     </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished">Nepavyko įrašyti RSS automatinio atsiuntimo duomenų į %1. Klaida: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished">Neteisingas duomenų formatas</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished">Nepavyko perskaityti RSS automatinio atsiuntimo taisyklių iš %1. Klaida: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished">Nepavyko įkelti RSS automatinio atsiuntimo taisyklių. Priežastis: %1</translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Nepavyko atsisiųsti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished">RSS kanalas ties &quot;%1&quot; atnaujintas. Pridėta %2 naujų įrašų.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Nepavyko išnagrinėti RSS kanalo ties &quot;%1&quot;. Priežastis: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished">Nepavyko perskaityti RSS seanso duomenų iš %1. Klaida: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished">Nepavyko išnagrinėti RSS seanso duomenų. Klaida: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished">Nepavyko įkelti RSS seanso duomenų. Neteisingas duomenų formatas.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished">Nepavyko įkelti RSS įrašo &quot;%1#%2&quot;. Neteisingas duomenų formatas.</translation>
+    </message>
 </context>
 <context>
     <name>RSS::Private::Parser</name>
@@ -7250,30 +7270,6 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">Nežinomas paieškos sistemos papildinio failo formatas.</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">Jau yra įdiegta naujesnė šio papildinio versija.</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">Papildinys nepalaikomas.</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">Atnaujinimų serveris laikinai neprieinamas. %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">Nepavyko atsisiųsti papildinio failo. %1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">Gauta neteisinga atnaujinimų informacija.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
         <translation>Visos kategorijos</translation>
@@ -7318,49 +7314,45 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <source>Books</source>
         <translation>Knygos</translation>
     </message>
-    <message>
-        <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="obsolete">Paieškos papildinyje &quot;%1&quot; yra neteisinga versijos eilutė (&apos;%2&apos;)</translation>
-    </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">Nežinomas paieškos sistemos papildinio failo formatas.</translation>
+        <translation>Nežinomas paieškos sistemos papildinio failo formatas.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">Jau yra įdiegta naujesnė šio papildinio versija.</translation>
+        <translation>Jau yra įdiegta naujesnė šio papildinio versija.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">Papildinys nepalaikomas.</translation>
+        <translation>Papildinys nepalaikomas.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">Atnaujinimų serveris laikinai neprieinamas. %1</translation>
+        <translation>Atnaujinimų serveris laikinai neprieinamas. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">Nepavyko atsisiųsti papildinio failo. %1</translation>
+        <translation>Nepavyko atsisiųsti papildinio failo. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">Gauta neteisinga atnaujinimų informacija.</translation>
+        <translation>Gauta neteisinga atnaujinimų informacija.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished">Paieškos papildinyje &quot;%1&quot; yra neteisinga versijos eilutė (&apos;%2&apos;)</translation>
+        <translation>Paieškos papildinyje &quot;%1&quot; yra neteisinga versijos eilutė (&apos;%2&apos;)</translation>
     </message>
 </context>
 <context>
@@ -7456,10 +7448,6 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <translation>Ieškoti:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kai kurios paieškos sistemos atlieka paiešką torentų aprašuose, o taip pat jų failų pavadinimuose. Ši veiksena valdo tai, ar tokie rezultatai bus rodomi sąraše žemiau.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Visur &lt;/span&gt;išjungia filtravimą ir rodo visus paieškos sistemų pateikiamus rezultatus.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Tik torentų pavadinimuose&lt;/span&gt; rodo tik tuos torentus, kurių pavadinimai atitinka paieškos užklausą.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -7490,7 +7478,7 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Didžiausias skleidėjų skaičius&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7862,26 +7850,6 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
         <translation>Naudotojo statistika</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">Viso susijungimų:</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">Visuotinis santykis:</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">Viso atsisiųsta:</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">Viso išsiųsta:</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">Viso iššvaistyta (šiuo paleidimu):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>Podėlio statistika</translation>
@@ -7895,10 +7863,6 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
         <location filename="../gui/statsdialog.ui" line="184"/>
         <source>Average time in queue:</source>
         <translation>Vidutinė laukimo eilėje trukmė:</translation>
-    </message>
-    <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">Bendras buferių dydis:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
@@ -7928,7 +7892,7 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffer size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bendras buferio dydis:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -8215,6 +8179,11 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
         <translation>Išsaugojimo kelias:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished">Pasirinkite išsaugojimo vietą</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
@@ -8678,12 +8647,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="313"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Dar nesusisiekta</translation>
+        <translation>Kol kas nesusisiekta</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Updating...</source>
-        <translation type="unfinished">Atnaujinama...</translation>
+        <translation>Atnaujinama...</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
@@ -8711,18 +8680,18 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="744"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished">Tinklo sąsaja Nustatyti vietą: perkeliama &quot;%1&quot;, iš &quot;%2&quot; į &quot;%3&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Incorrect torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neteisingas torento pavadinimas</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">Neteisingas kategorijos pavadinimas</translation>
+        <translation>Neteisingas kategorijos pavadinimas</translation>
     </message>
 </context>
 <context>
@@ -8931,7 +8900,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <source>List of trackers to add (one per line):</source>
         <translation>Norimų pridėti seklių sąrašas (po vieną eilutėje):</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>Suderinamo su µTorrent sąrašo URL:</translation>
@@ -9395,17 +9364,9 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="obsolete">Tinklo sąsaja Nustatyti vietą: perkeliama &quot;%1&quot;, iš &quot;%2&quot; į &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">Neteisingas kategorijos pavadinimas</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepriimtinas failo tipas, yra leidžiamas tik įprastas failas.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="224"/>
@@ -9502,7 +9463,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Norimų pridėti siuntėjų sąrašas (po vieną IP eilutėje):</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>Formatas: IPv4:prievadas/ [IPv6]:prievadas</translation>
     </message>
@@ -9710,22 +9671,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min.</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Veikia</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Atnaujinama...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Neveikia</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Dar nesusisiekta</translation>
     </message>
 </context>
 <context>

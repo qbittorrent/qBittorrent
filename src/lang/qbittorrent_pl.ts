@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl">
+<TS version="2.1" language="pl">
 <context>
     <name>&quot;TorrentInfo&quot;</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Rozmiar pliku przekracza maksymalny limit %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
         <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Błąd odczytu pliku torrent</translation>
     </message>
 </context>
 <context>
@@ -93,41 +91,6 @@
         <location filename="../gui/about.ui" line="293"/>
         <source>License</source>
         <translation>Licencja</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractWebApplication</name>
-    <message>
-        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Interfejs WWW: niedopasowanie nagłówka źródłowego i źródła celu!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Źródło IP: &apos;%1&apos;. Nagłówek źródłowy: &apos;%2&apos;. Źródło celu: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Interfejs WWW: niedopasowanie nagłówka odsyłacza i źródła celu!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Źródło IP: &apos;%1&apos;. Nagłówek odsyłacza: &apos;%2&apos;. Źródło celu: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="obsolete">Interfejs WWW: nieprawidłowy nagłówek hosta, niedopasowanie portu.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="obsolete">Źródło IP żądania: &apos;%1&apos;. Port serwera: &apos;%2&apos;. Odebrany nagłówek hosta: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header.</source>
-        <translation type="obsolete">Interfejs WWW: nieprawidłowy nagłówek hosta.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">Źródło IP żądania: &apos;%1&apos;. Odebrany nagłówek hosta: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -543,7 +506,7 @@ Błąd: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="325"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation type="unfinished"></translation>
+        <translation>Połączone odczyty i zapisy</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="329"/>
@@ -768,11 +731,7 @@ Błąd: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="517"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">Aby kontrolować qBittorrent, należy uzyskać dostęp do interfejsu WWW pod adresem http://localhost:%1</translation>
+        <translation>Aby kontrolować qBittorrent, należy uzyskać dostęp do interfejsu WWW pod adresem %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="519"/>
@@ -810,30 +769,26 @@ Błąd: %2</translation>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Twój adres IP został zbanowany po zbyt wielu nieudanych próbach uwierzytelnienia.</translation>
+        <translation>Twój adres IP został zbanowany po zbyt wielu nieudanych próbach uwierzytelnienia.</translation>
     </message>
 </context>
 <context>
     <name>AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation>Nie można zapisać danych automatycznego pobierania RSS w %1. Błąd: %2</translation>
+        <translation type="vanished">Nie można zapisać danych automatycznego pobierania RSS w %1. Błąd: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
         <source>Invalid data format</source>
-        <translation>Nieprawidłowy format danych</translation>
+        <translation type="vanished">Nieprawidłowy format danych</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>Nie można wczytać reguł automatycznego pobierania RSS z %1. Powód: %2</translation>
+        <translation type="vanished">Nie można wczytać reguł automatycznego pobierania RSS z %1. Powód: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation>Nie można wczytać reguł automatycznego pobierania RSS. Powód: %1</translation>
+        <translation type="vanished">Nie można wczytać reguł automatycznego pobierania RSS. Powód: %1</translation>
     </message>
 </context>
 <context>
@@ -872,12 +827,13 @@ Błąd: %2</translation>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="112"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inteligentny filtr odcinków sprawdzi numer odcinka, aby zapobiec pobieraniu duplikatów.
+Obsługuje formaty: S01E01, 1x1, 2017.01.01 oraz 01.01.2017 (Formaty daty również obsługiwane - jako separator)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="116"/>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj inteligentnego filtra odcinków</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="125"/>
@@ -1147,7 +1103,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="487"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść pobrane odcinki...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
@@ -1162,12 +1118,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="537"/>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść pobrane odcinki</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="538"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz wyczyścić listę pobranych odcinków dla wybranej reguły?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
@@ -1317,11 +1273,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Skonfigurowany interfejs sieciowy %1 jest nieprawidłowy.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>Obsługa szyfrowania [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>WYMUSZONE</translation>
@@ -1332,6 +1290,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>%1 nie jest prawidłowym adresem IP i został odrzucony podczas stosowania listy zablokowanych adresów.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>Tryb anonimowy [%1]</translation>
@@ -1424,11 +1383,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent próbuje nasłuchiwać interfejsu %1 port: %2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>Obsługa DHT [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1437,6 +1412,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>WŁ.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1445,9 +1425,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>WYŁ.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>Obsługa wykrywania partnerów w sieci lokalnej [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1590,9 +1576,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
         <translation>utworzenie nowego pliku torrent nie powiodło się</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished">Rozmiar pliku przekracza maksymalny limit %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
+        <translation type="unfinished">Błąd odczytu pliku torrent</translation>
     </message>
 </context>
 <context>
@@ -1753,43 +1752,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Nie udało się pobrać kanału RSS z &apos;%1&apos;. Powód: %2</translation>
+        <translation type="vanished">Nie udało się pobrać kanału RSS z &apos;%1&apos;. Powód: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Kanał RSS z &quot;%1&quot; został zaktualizowany. Dodano %2 nowe artykuły.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>Nie udało się przetworzyć kanału RSS z &apos;%1&apos;. Powód: %2</translation>
+        <translation type="vanished">Nie udało się przetworzyć kanału RSS z &apos;%1&apos;. Powód: %2</translation>
     </message>
     <message>
-        <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="obsolete">Kanał RSS z &quot;%1&quot; został zaktualizowany. Dodano %2 nowe artykuły.</translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>Nie można odczytać danych sesji RSS z %1. Błąd: %2</translation>
+        <translation type="vanished">Nie można odczytać danych sesji RSS z %1. Błąd: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>Nie można przetworzyć danych sesji RSS. Błąd: %1</translation>
+        <translation type="vanished">Nie można przetworzyć danych sesji RSS. Błąd: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>Nie można załadować danych sesji RSS. Nieprawidłowy format danych.</translation>
+        <translation type="vanished">Nie można załadować danych sesji RSS. Nieprawidłowy format danych.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>Nie można załadować artykułu RSS &apos;%1#%2&apos;. Nieprawidłowy format danych.</translation>
+        <translation type="vanished">Nie można załadować artykułu RSS &apos;%1#%2&apos;. Nieprawidłowy format danych.</translation>
     </message>
 </context>
 <context>
@@ -1809,12 +1797,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">Wystąpił błąd dostępu podczas próby otworzenia pliku dziennika. Rejestrowanie do pliku jest wyłączone.</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation>Wystąpił błąd dostępu podczas próby otwarcia pliku dziennika. Rejestrowanie do pliku jest wyłączone.</translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1926,12 +1918,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/http/connection.cpp" line="72"/>
         <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar żądania HTTP przekracza ograniczenie, zamykam gniazdo. Limit: %ld, IP: %s</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="85"/>
         <source>Bad Http request, closing socket. IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Złe żądanie HTTP, zamykam gniazdo. IP: %s</translation>
     </message>
 </context>
 <context>
@@ -2092,7 +2084,7 @@ Nie należy używać żadnych znaków specjalnych w nazwie kategorii.</translati
     <message>
         <location filename="../webui/extra_translations.h" line="66"/>
         <source>Save files to location:</source>
-        <translation>Zapisz pliki w lokalizacji:</translation>
+        <translation>Zapisz pliki w położeniu:</translation>
     </message>
     <message>
         <location filename="../webui/extra_translations.h" line="67"/>
@@ -4535,16 +4527,12 @@ Należy zainstalować go ręcznie.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2236"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Więcej informacji&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2264"/>
         <source>&amp;Torrent Queueing</source>
         <translation>K&amp;olejkowanie torrentów</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minut</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2614"/>
@@ -4959,7 +4947,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <source>Enabled protocol:</source>
         <translation>Włącz protokół:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation>TCP oraz μTP</translation>
@@ -5073,7 +5061,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.ui" line="1598"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;Więcej informacji&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1623"/>
@@ -5128,17 +5116,13 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <location filename="../gui/optionsdlg.ui" line="2403"/>
         <location filename="../gui/optionsdlg.ui" line="2416"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation> KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1821"/>
         <location filename="../gui/optionsdlg.ui" line="1993"/>
         <source>Upload:</source>
         <translation>Wysyłanie:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
@@ -5200,7 +5184,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <source>Apply rate limit to transport overhead</source>
         <translation>Stosuj limity prędkości do transferów z narzutem</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Stosuj limity prędkości do protokołu µTP</translation>
@@ -5215,7 +5199,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Włącz sieć DHT (sieć rozproszona), aby odnależć więcej partnerów</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Wymieniaj partnerów pomiędzy kompatybilnymi klientami sieci Bittorrent (µTorrent, Vuze, ...)</translation>
@@ -5266,10 +5250,6 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <translation>Włącz tryb anonimowy</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Więcej informacji&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
         <source>Maximum active downloads:</source>
         <translation>Maksymalna liczba aktywnych pobierań:</translation>
@@ -5292,23 +5272,23 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.ui" line="2429"/>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Próg prędkości wysyłania:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2436"/>
         <source>Download rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Próg prędkości pobierania:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2469"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2485"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zegar bezczynności torrenta:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2498"/>
@@ -5338,7 +5318,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.ui" line="2822"/>
         <source>RSS Smart Episode Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Inteligentne filtry odcinków RSS</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2956"/>
@@ -5373,12 +5353,12 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.ui" line="3149"/>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj alternatywnego interfejsu WWW</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3161"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Położenie plików:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3186"/>
@@ -5413,7 +5393,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.cpp" line="187"/>
         <source>Choose Alternative UI files location</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz położenie plików alternatywnego interfejsu.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="276"/>
@@ -5433,7 +5413,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.cpp" line="279"/>
         <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: Znaczniki (oddzielone przecinkiem)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="280"/>
@@ -5478,7 +5458,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <location filename="../gui/optionsdlg.cpp" line="360"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent będzie uważany za powolny, jeśli jego szybkość pobierania i wysyłania pozostanie poniżej tych wartości sekund &quot;Zegara bezczynności torrenta&quot;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1498"/>
@@ -5842,22 +5822,22 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>Nie wprowadzono partnera</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>Wprowadź co najmniej jednego partnera.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>Nieprawidłowy partner</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>Partner &apos;%1&apos; jest nieprawidłowy.</translation>
     </message>
@@ -6569,24 +6549,6 @@ Tamte wtyczki zostały wyłączone.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">Twój adres IP został zbanowany po zbyt wielu nieudanych próbach uwierzytelnienia.</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">Błąd: &apos;%1&apos; nie jest prawidłowym plikiem torrent.
-</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">Błąd: Nie można dodać torrenta do sesji.</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">Błąd I/O: Nie można utworzyć pliku tymczasowego.</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -6802,12 +6764,12 @@ Tamte wtyczki zostały wyłączone.</translation>
     <message>
         <location filename="../app/main.cpp" line="375"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="376"/>
         <source>No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>Żadne dodatkowe zawiadomienia nie będą wydawane.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="388"/>
@@ -6997,6 +6959,64 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <location filename="../base/rss/rss_autodownloader.cpp" line="87"/>
         <source>Invalid data format.</source>
         <translation>Nieprawidłowy format danych.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished">Nie można zapisać danych automatycznego pobierania RSS w %1. Błąd: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished">Nieprawidłowy format danych</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished">Nie można wczytać reguł automatycznego pobierania RSS z %1. Powód: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished">Nie można wczytać reguł automatycznego pobierania RSS. Powód: %1</translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Nie udało się pobrać kanału RSS z &apos;%1&apos;. Powód: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished">Kanał RSS z &quot;%1&quot; został zaktualizowany. Dodano %2 nowe artykuły.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">Nie udało się przetworzyć kanału RSS z &apos;%1&apos;. Powód: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished">Nie można odczytać danych sesji RSS z %1. Błąd: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished">Nie można przetworzyć danych sesji RSS. Błąd: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished">Nie można załadować danych sesji RSS. Nieprawidłowy format danych.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished">Nie można załadować artykułu RSS &apos;%1#%2&apos;. Nieprawidłowy format danych.</translation>
     </message>
 </context>
 <context>
@@ -7248,30 +7268,6 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">Nieznany format pliku wtyczki wyszukiwania.</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">Najnowsza wersja tej wtyczki jest już zainstalowana.</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">Wtyczka nie jest obsługiwania.</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">Serwer aktualizacji jest tymczasowo niedostępny. %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">Nie udało się pobrać pliku wtyczki. %1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">Otrzymano nieprawidłowe informacje aktualizacji.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
         <translation>Wszystko</translation>
@@ -7316,49 +7312,45 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>Books</source>
         <translation>Książki</translation>
     </message>
-    <message>
-        <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="obsolete">Wtyczka wyszukiwania &apos;%1&apos; zawiera nieprawidłowy ciąg wersji (&apos;%2&apos;)</translation>
-    </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">Nieznany format pliku wtyczki wyszukiwania.</translation>
+        <translation>Nieznany format pliku wtyczki wyszukiwania.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">Najnowsza wersja tej wtyczki jest już zainstalowana.</translation>
+        <translation>Najnowsza wersja tej wtyczki jest już zainstalowana.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">Wtyczka nie jest obsługiwania.</translation>
+        <translation>Wtyczka nie jest obsługiwania.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">Serwer aktualizacji jest tymczasowo niedostępny. %1</translation>
+        <translation>Serwer aktualizacji jest tymczasowo niedostępny. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">Nie udało się pobrać pliku wtyczki. %1</translation>
+        <translation>Nie udało się pobrać pliku wtyczki. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">Otrzymano nieprawidłowe informacje aktualizacji.</translation>
+        <translation>Otrzymano nieprawidłowe informacje aktualizacji.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished">Wtyczka wyszukiwania &apos;%1&apos; zawiera nieprawidłowy ciąg wersji (&apos;%2&apos;)</translation>
+        <translation>Wtyczka wyszukiwania &apos;%1&apos; zawiera nieprawidłowy ciąg wersji (&apos;%2&apos;)</translation>
     </message>
 </context>
 <context>
@@ -7454,13 +7446,9 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <translation>Wyszukaj w:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Niektóre wyszukiwarki przeszukują także opisy i nazwy plików torrentów. Ten tryb kontroluje, czy takie wyniki zostaną wyświetlone na liście poniżej.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wszędzie &lt;/span&gt;wyłącza filtrowanie i pokazuje wszystko zwrócone przez wyszukiwarki.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Tylko nazwy torrentów&lt;/span&gt; pokazują tylko torrenty, których nazwy pasują do wyszukiwanej frazy.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Niektóre wyszukiwarki przeszukują także opisy i nazwy plików torrentów. Ten tryb kontroluje, czy takie wyniki zostaną wyświetlone na liście poniżej.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wszędzie &lt;/span&gt;wyłącza filtrowanie i pokazuje wszystko zwrócone przez wyszukiwarki.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Tylko nazwy torrentów&lt;/span&gt; pokazują tylko torrenty, których nazwy pasują do wyszukiwanej frazy.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="84"/>
@@ -7488,7 +7476,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maksymalna liczba seedów&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7860,26 +7848,6 @@ Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, 
         <translation>Statystyki użytkownika</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">Całość połączeń partnerów:</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">Globalny współczynnik udziału:</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">Pobrano w sumie:</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">Wysłano w sumie:</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">Stracono (w tej sesji):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>Statystyki cache</translation>
@@ -7895,38 +7863,34 @@ Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, 
         <translation>Średni czas w kolejce:</translation>
     </message>
     <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">Całkowity rozmiar buforów:</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Connected peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Połączeni partnerzy:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="40"/>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Współczynnik udziału absolutny:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="54"/>
         <source>All-time download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie absolutne: </translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="75"/>
         <source>Session waste:</source>
-        <translation type="unfinished"></translation>
+        <translation>Strata sesji:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
         <source>All-time upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysyłanie absolutne: </translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffer size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Całość rozmiaru bufora:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -8215,6 +8179,11 @@ Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, 
         <translation>Ścieżka zapisu:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
         <translation>Nowa kategoria</translation>
@@ -8458,7 +8427,7 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="230"/>
         <source>Optimize alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoptymalizuj wyrównanie</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="243"/>
@@ -8676,27 +8645,27 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="313"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Niesprawdzony</translation>
+        <translation>Niesprawdzony</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Updating...</source>
-        <translation type="unfinished">Aktualizowanie...</translation>
+        <translation>Aktualizowanie...</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
         <source>Working</source>
-        <translation type="unfinished">Działa</translation>
+        <translation>Działa</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="319"/>
         <source>Not working</source>
-        <translation type="unfinished">Nie działa</translation>
+        <translation>Nie działa</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="509"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd: &apos;%1&apos; nie jest prawidłowym plikiem torrent.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="692"/>
@@ -8704,23 +8673,23 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="714"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="725"/>
         <source>Torrent queueing must be enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolejkowanie torrentów musi być włączone</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="744"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished">Interfejs WWW Ustaw położenie: przenoszenie &quot;%1&quot;, z &quot;%2&quot; do &quot;%3&quot;</translation>
+        <translation>Interfejs WWW Ustaw położenie: przenoszenie &quot;%1&quot;, z &quot;%2&quot; do &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Incorrect torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowa nazwa torrenta</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">Nieprawidłowa nazwa kategorii</translation>
+        <translation>Nieprawidłowa nazwa kategorii</translation>
     </message>
 </context>
 <context>
@@ -8929,7 +8898,7 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
         <source>List of trackers to add (one per line):</source>
         <translation>Lista trackerów do dodania (po jednym w wierszu):</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>Adres kompatybilny z µTorrent:</translation>
@@ -9393,47 +9362,39 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="obsolete">Interfejs WWW Ustaw położenie: przenoszenie &quot;%1&quot;, z &quot;%2&quot; do &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">Nieprawidłowa nazwa kategorii</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niedozwolony typ pliku, dozwolone są tylko zwykłe pliki.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="224"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dowiązania symboliczne w alternatywnym folderze interfejsu są zabronione.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="466"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
-        <translation type="unfinished"></translation>
+        <translation>Przekroczono maksymalny dozwolony rozmiar pliku (%1)!</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="667"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs WWW: Niedopasowanie nagłówka źródłowego i źródła celu! Źródło IP: &apos;%1&apos;. Nagłówek źródłowy: &apos;%2&apos;. Źródło celu: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="676"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs WWW: Niedopasowanie nagłówka odsyłacza i źródła celu! Źródło IP: &apos;%1&apos;. Nagłówek odsyłacza: &apos;%2&apos;. Źródło celu: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="693"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs WWW: Nieprawidłowy nagłówek hosta, niedopasowanie portu. Źródło IP żądania: &apos;%1&apos;. Port serwera: &apos;%2&apos;. Odebrany nagłówek hosta: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="725"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs WWW: Nieprawidłowy nagłówek hosta. Źródło IP żądania: &apos;%1&apos;. Nagłówek hosta: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -9500,7 +9461,7 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
         <translation>Lista partnerów do dodania (po jednym IP w wierszu):</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>Format: IPv4:port / [IPv6]:port</translation>
     </message>
@@ -9708,22 +9669,6 @@ Należy wybrać inną nazwę i spróbować ponownie.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Działa</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Aktualizowanie...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Nie działa</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Niesprawdzony</translation>
     </message>
 </context>
 <context>

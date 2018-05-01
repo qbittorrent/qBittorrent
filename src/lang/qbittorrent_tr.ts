@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="tr">
+<TS version="2.1" language="tr">
 <context>
     <name>&quot;TorrentInfo&quot;</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Dosya boyutu en fazla %1 sınırını aşıyor</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
         <source>Torrent file read error</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Torrent dosyasını okuma hatası</translation>
     </message>
 </context>
 <context>
@@ -93,41 +91,6 @@
         <location filename="../gui/about.ui" line="293"/>
         <source>License</source>
         <translation>Lisans</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractWebApplication</name>
-    <message>
-        <source>WebUI: Origin header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Web Arayüzü: Başlangıç üstbilgisi ve Hedef başlangıç uyuşmuyor!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Kaynak IP: &apos;%1&apos;. Başlangıç üstbilgisi: &apos;%2&apos;. Hedef başlangıç: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Referer header &amp; Target origin mismatch!</source>
-        <translation type="obsolete">Web Arayüzü: Gönderen üstbilgisi ve Hedef başlangıç uyuşmuyor!</translation>
-    </message>
-    <message>
-        <source>Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="obsolete">Kaynak IP: &apos;%1&apos;. Gönderen üstbilgisi: &apos;%2&apos;. Hedef başlangıç: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header, port mismatch.</source>
-        <translation type="obsolete">Web Arayüzü: Geçersiz Anamakine üstbilgisi, bağlantı noktası uyuşmuyor.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="obsolete">İstek kaynak IP: &apos;%1&apos;. Sunucu b.noktası: &apos;%2&apos;. Alınan Anamakine üstbilgisi: &apos;%3&apos;</translation>
-    </message>
-    <message>
-        <source>WebUI: Invalid Host header.</source>
-        <translation type="obsolete">Web Arayüzü: Geçersiz Anamakine üstbilgisi.</translation>
-    </message>
-    <message>
-        <source>Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="obsolete">İstek kaynak IP: &apos;%1&apos;. Alınan Anamakine üstbilgisi: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -543,7 +506,7 @@ Hata: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="325"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme okuma ve yazmaları</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="329"/>
@@ -768,11 +731,7 @@ Hata: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="517"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation type="obsolete">qBittorrent&apos;i denetlemek etmek için, http://localhost:%1 adresinden Web Arayüzüne erişin</translation>
+        <translation>qBittorrent&apos;i denetlemek için %1 adresinden Web Arayüzüne erişin</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="519"/>
@@ -810,30 +769,26 @@ Hata: %2</translation>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="50"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">IP adresiniz çok fazla başarısız kimlik doğrulaması denemesinden sonra yasaklandı.</translation>
+        <translation>IP adresiniz çok fazla başarısız kimlik doğrulaması denemesinden sonra yasaklandı.</translation>
     </message>
 </context>
 <context>
     <name>AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation>%1 içine RSS Otoİndirici verileri kaydedilemedi. Hata: %2</translation>
+        <translation type="vanished">%1 içine RSS Otoİndirici verileri kaydedilemedi. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
         <source>Invalid data format</source>
-        <translation>Geçersiz veri biçimi</translation>
+        <translation type="vanished">Geçersiz veri biçimi</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>%1 adresinden RSS Otoİndirici kuralları okunamadı. Hata: %2</translation>
+        <translation type="vanished">%1 adresinden RSS Otoİndirici kuralları okunamadı. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation>RSS Otoİndirici kuralları yüklenemedi. Sebep: %1</translation>
+        <translation type="vanished">RSS Otoİndirici kuralları yüklenemedi. Sebep: %1</translation>
     </message>
 </context>
 <context>
@@ -872,12 +827,13 @@ Hata: %2</translation>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="112"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı Bölüm Süzgeci, kopyalarının indirilmesi önlemek için bölüm numaralarını kontrol edecek.
+Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini ayrıca destekler - bir ayıraç ile)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="116"/>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı Bölüm Süzgeci Kullan</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="125"/>
@@ -1147,7 +1103,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="487"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirilmiş bölümleri temizle...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
@@ -1162,12 +1118,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="537"/>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirilmiş bölümleri temizle</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="538"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçilen kural için indirilmiş bölümlerin listesini temizlemek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
@@ -1317,11 +1273,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Yapılandırılan ağ arayüzü adresi %1 geçersiz.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="478"/>
         <location filename="../base/bittorrent/session.cpp" line="2782"/>
         <source>Encryption support [%1]</source>
         <translation>Şifreleme desteği [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
         <source>FORCED</source>
         <translation>ZORLANDI</translation>
@@ -1332,6 +1290,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>%1 geçerli bir IP adresi değil ve yasaklanan adresler listesi uygulanırken reddedildi.</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
         <location filename="../base/bittorrent/session.cpp" line="3144"/>
         <source>Anonymous mode [%1]</source>
         <translation>İsimsiz kipi [%1]</translation>
@@ -1424,11 +1383,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent, %1 arayüzünde şu bağlantı noktasını dinlemeyi deniyor: %2</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="472"/>
+        <source>Peer ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="473"/>
+        <source>HTTP User-Agent is &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <source>DHT support [%1]</source>
         <translation>DHT desteği [%1]</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1437,6 +1412,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>AÇIK</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="474"/>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <location filename="../base/bittorrent/session.cpp" line="477"/>
+        <location filename="../base/bittorrent/session.cpp" line="479"/>
         <location filename="../base/bittorrent/session.cpp" line="559"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <location filename="../base/bittorrent/session.cpp" line="2783"/>
@@ -1445,9 +1425,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>KAPALI</translation>
     </message>
     <message>
+        <location filename="../base/bittorrent/session.cpp" line="475"/>
         <location filename="../base/bittorrent/session.cpp" line="574"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>Yerel Kişi Keşfi desteği [%1]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="476"/>
+        <source>PeX support [%1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1792"/>
@@ -1590,9 +1576,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="191"/>
         <source>create new torrent file failed</source>
         <translation>yeni torrent dosyası oluşturma başarısız oldu</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::TorrentInfo</name>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="92"/>
+        <source>File size exceeds max limit %1</source>
+        <translation type="unfinished">Dosya boyutu en fazla %1 sınırını aşıyor</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="99"/>
+        <source>Torrent file read error</source>
+        <translation type="unfinished">Torrent dosyasını okuma hatası</translation>
     </message>
 </context>
 <context>
@@ -1753,43 +1752,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="192"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>RSS bildirimini &apos;%1&apos; adresinden indirme başarısız. Sebep: %2</translation>
+        <translation type="vanished">RSS bildirimini &apos;%1&apos; adresinden indirme başarısız. Sebep: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="229"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">&apos;%1&apos; adresinden RSS bildirimi güncellendi. %2 yeni makale eklendi.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="234"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation>RSS bildirimini &apos;%1&apos; adresinden ayrıştırma başarısız. Sebep: %2</translation>
+        <translation type="vanished">RSS bildirimini &apos;%1&apos; adresinden ayrıştırma başarısız. Sebep: %2</translation>
     </message>
     <message>
-        <source>RSS feed at &apos;%1&apos; successfully updated. Added %2 new articles.</source>
-        <translation type="obsolete">&apos;%1&apos; adresinden RSS bildirimi başarılı olarak güncellendi. %2 yeni makale eklendi.</translation>
-    </message>
-    <message>
-        <location filename="../base/rss/rss_feed.cpp" line="256"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>%1 adresinden RSS Oturum verileri okunamadı. Hata: %2</translation>
+        <translation type="vanished">%1 adresinden RSS Oturum verileri okunamadı. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="267"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>RSS Oturum verileri ayrıştırılamadı. Hata: %1</translation>
+        <translation type="vanished">RSS Oturum verileri ayrıştırılamadı. Hata: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="273"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>RSS Oturum verileri yüklenemedi. Geçersiz veri biçimi.</translation>
+        <translation type="vanished">RSS Oturum verileri yüklenemedi. Geçersiz veri biçimi.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="282"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>RSS makalesi &apos;%1#%2&apos; yüklenemedi. Geçersiz veri biçimi.</translation>
+        <translation type="vanished">RSS makalesi &apos;%1#%2&apos; yüklenemedi. Geçersiz veri biçimi.</translation>
     </message>
 </context>
 <context>
@@ -1809,12 +1797,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <source>An error occured while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="obsolete">Yapılandırma dosyasını açmaya çalışırken bir hata meydana geldi. Dosyaya günlükleme etkisizleştirildi.</translation>
-    </message>
-    <message>
         <location filename="../app/filelogger.cpp" line="168"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
+        <translation>Yapılandırma dosyasını açmaya çalışırken bir hata meydana geldi. Dosyaya günlükleme etkisizleştirildi.</translation>
+    </message>
+</context>
+<context>
+    <name>FileSystemPathEdit</name>
+    <message>
+        <location filename="../gui/fspathedit.cpp" line="102"/>
+        <source>Any file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1926,12 +1918,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/http/connection.cpp" line="72"/>
         <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Http istek boyutu sınırlamayı aşıyor, soket kapatılıyor. Sınır: %ld, IP: %s</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="85"/>
         <source>Bad Http request, closing socket. IP: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Kötü Http isteği, soket kapatılıyor. IP: %s</translation>
     </message>
 </context>
 <context>
@@ -4535,16 +4527,12 @@ Lütfen el ile yükleyin.</translation>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2236"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daha fazla bilgi&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2264"/>
         <source>&amp;Torrent Queueing</source>
         <translation>&amp;Torrent Kuyruğu</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">dakika</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2614"/>
@@ -4959,7 +4947,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Enabled protocol:</source>
         <translation>Etkinleştirilmiş protokol:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="1282"/>
         <source>TCP and μTP</source>
         <translation>TCP ve μTP</translation>
@@ -5073,7 +5061,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.ui" line="1598"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;Daha fazla bilgi&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1623"/>
@@ -5128,17 +5116,13 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <location filename="../gui/optionsdlg.ui" line="2403"/>
         <location filename="../gui/optionsdlg.ui" line="2416"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation> KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1821"/>
         <location filename="../gui/optionsdlg.ui" line="1993"/>
         <source>Upload:</source>
         <translation>Gönderme:</translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1850"/>
@@ -5156,14 +5140,14 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <location filename="../gui/optionsdlg.ui" line="1894"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>Bu saatten:</translation>
+        <translation>Buradan:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1128"/>
         <location filename="../gui/optionsdlg.ui" line="1918"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>Bu saate:</translation>
+        <translation>Buraya:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="1945"/>
@@ -5200,7 +5184,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Apply rate limit to transport overhead</source>
         <translation>Oran sınırını aktarım ekyüküne uygula</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2067"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Oran sınırını µTP protokolüne uygula</translation>
@@ -5215,7 +5199,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Daha çok kişi bulmak için DHT&apos;yi (merkezsizleştirilmiş ağ) etkinleştir</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/optionsdlg.ui" line="2155"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Kişileri uyumlu Bittorrent istemcileri ile değiştir (µTorrent, Vuze, ...)</translation>
@@ -5266,10 +5250,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>İsimsiz kipi etkinleştir</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Daha fazla bilgi&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdlg.ui" line="2279"/>
         <source>Maximum active downloads:</source>
         <translation>En fazla aktif indirme:</translation>
@@ -5292,23 +5272,23 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.ui" line="2429"/>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönderme oranı eşiği:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2436"/>
         <source>Download rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme oranı eşiği:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2469"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation> san</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2485"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent boşta durma zamanlayıcısı:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2498"/>
@@ -5338,7 +5318,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.ui" line="2822"/>
         <source>RSS Smart Episode Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS Akıllı Bölüm Süzgeçleri</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="2956"/>
@@ -5373,12 +5353,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.ui" line="3149"/>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatif Web Arayüzü kullan</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3161"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyalar konumu:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.ui" line="3186"/>
@@ -5413,7 +5393,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.cpp" line="187"/>
         <source>Choose Alternative UI files location</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatif Arayüz dosyaları konumunu seçin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="276"/>
@@ -5433,7 +5413,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.cpp" line="279"/>
         <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: Etiketler (virgülle ayrıldı)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="280"/>
@@ -5478,7 +5458,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdlg.cpp" line="360"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir torrent, indirme ve gönderme oranları bu &quot;Torrent boşta durma zamanlayıcısı&quot; saniye değerinin altında kalırsa yavaş sayılacaktır</translation>
     </message>
     <message>
         <location filename="../gui/optionsdlg.cpp" line="1498"/>
@@ -5842,22 +5822,22 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
 <context>
     <name>PeersAdditionDlg</name>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="62"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="59"/>
         <source>No peer entered</source>
         <translation>Girilmiş kişi yok</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="63"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="60"/>
         <source>Please type at least one peer.</source>
         <translation>Lütfen en az bir kişi yazın.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="73"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="70"/>
         <source>Invalid peer</source>
         <translation>Geçersiz kişi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.cpp" line="74"/>
+        <location filename="../gui/properties/peersadditiondlg.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
         <translation>Kişi &apos;%1&apos; geçersiz.</translation>
     </message>
@@ -6569,24 +6549,6 @@ Bu eklentiler etkisizleştirildi.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="obsolete">IP adresiniz çok fazla başarısız kimlik doğrulaması denemesinden sonra yasaklandı.</translation>
-    </message>
-    <message>
-        <source>Error: &apos;%1&apos; is not a valid torrent file.
-</source>
-        <translation type="obsolete">Hata: &apos;%1&apos; geçerli bir torrent dosyası değil.
-</translation>
-    </message>
-    <message>
-        <source>Error: Could not add torrent to session.</source>
-        <translation type="obsolete">Hata: Torrent oturuma eklenemedi.</translation>
-    </message>
-    <message>
-        <source>I/O Error: Could not create temporary file.</source>
-        <translation type="obsolete">G/Ç Hatası: Geçici dosya oluşturamadı.</translation>
-    </message>
-    <message>
         <location filename="../app/main.cpp" line="143"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
@@ -6802,12 +6764,12 @@ Bu eklentiler etkisizleştirildi.</translation>
     <message>
         <location filename="../app/main.cpp" line="375"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bir dosya paylaşım programıdır. Bir torrent çalıştırdığınızda verileri başkaları için kullanılabilir yani başkalarına gönderilebilir olacaktır. Paylaştığınız herhangi bir içerik sizin sorumluluğunuzdadır.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="376"/>
         <source>No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="388"/>
@@ -6997,6 +6959,64 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <location filename="../base/rss/rss_autodownloader.cpp" line="87"/>
         <source>Invalid data format.</source>
         <translation>Geçersiz veri biçimi.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="122"/>
+        <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
+        <translation type="unfinished">%1 içine RSS Otoİndirici verileri kaydedilemedi. Hata: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="276"/>
+        <source>Invalid data format</source>
+        <translation type="unfinished">Geçersiz veri biçimi</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="unfinished">%1 adresinden RSS Otoİndirici kuralları okunamadı. Hata: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
+        <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
+        <translation type="unfinished">RSS Otoİndirici kuralları yüklenemedi. Sebep: %1</translation>
+    </message>
+</context>
+<context>
+    <name>RSS::Feed</name>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="192"/>
+        <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">RSS bildirimini &apos;%1&apos; adresinden indirme başarısız. Sebep: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="229"/>
+        <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
+        <translation type="unfinished">&apos;%1&apos; adresinden RSS bildirimi güncellendi. %2 yeni makale eklendi.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="234"/>
+        <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished">RSS bildirimini &apos;%1&apos; adresinden ayrıştırma başarısız. Sebep: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="256"/>
+        <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
+        <translation type="unfinished">%1 adresinden RSS Oturum verileri okunamadı. Hata: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="267"/>
+        <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
+        <translation type="unfinished">RSS Oturum verileri ayrıştırılamadı. Hata: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="273"/>
+        <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
+        <translation type="unfinished">RSS Oturum verileri yüklenemedi. Geçersiz veri biçimi.</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="282"/>
+        <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
+        <translation type="unfinished">RSS makalesi &apos;%1#%2&apos; yüklenemedi. Geçersiz veri biçimi.</translation>
     </message>
 </context>
 <context>
@@ -7227,7 +7247,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="154"/>
         <source>Override Save Location</source>
-        <translation>Kaydetme Yerini Geçersiz Kıl</translation>
+        <translation>Geçersiz Kılınan Kaydetme Yeri</translation>
     </message>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="395"/>
@@ -7247,30 +7267,6 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
 </context>
 <context>
     <name>SearchEngine</name>
-    <message>
-        <source>Unknown search engine plugin file format.</source>
-        <translation type="obsolete">Bilinmeyen arama motoru eklentisi dosya biçimi.</translation>
-    </message>
-    <message>
-        <source>A more recent version of this plugin is already installed.</source>
-        <translation type="obsolete">Bu eklentinin en son sürümü zaten yüklü.</translation>
-    </message>
-    <message>
-        <source>Plugin is not supported.</source>
-        <translation type="obsolete">Eklenti desteklenmiyor.</translation>
-    </message>
-    <message>
-        <source>Update server is temporarily unavailable. %1</source>
-        <translation type="obsolete">Güncelleme sunucusu geçici olarak kullanılamaz. %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the plugin file. %1</source>
-        <translation type="obsolete">Eklenti dosyasını indirme başarısız. %1</translation>
-    </message>
-    <message>
-        <source>An incorrect update info received.</source>
-        <translation type="obsolete">Yanlış bir güncelleme bilgisi alındı.</translation>
-    </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="66"/>
         <source>All categories</source>
@@ -7316,49 +7312,45 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <source>Books</source>
         <translation>Kitaplar</translation>
     </message>
-    <message>
-        <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="obsolete">Aranan eklenti &apos;%1&apos; geçersiz sürüm dizgisi (&apos;%2&apos;) içeriyor</translation>
-    </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="199"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished">Bilinmeyen arama motoru eklentisi dosya biçimi.</translation>
+        <translation>Bilinmeyen arama motoru eklentisi dosya biçimi.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="213"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished">Bu eklentinin en son sürümü zaten yüklü.</translation>
+        <translation>Bu eklentinin en son sürümü zaten yüklü.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="241"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished">Eklenti desteklenmiyor.</translation>
+        <translation>Eklenti desteklenmiyor.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished">Güncelleme sunucusu geçici olarak kullanılamaz. %1</translation>
+        <translation>Güncelleme sunucusu geçici olarak kullanılamaz. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished">Eklenti dosyasını indirme başarısız. %1</translation>
+        <translation>Eklenti dosyasını indirme başarısız. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
         <source>An incorrect update info received.</source>
-        <translation type="unfinished">Yanlış bir güncelleme bilgisi alındı.</translation>
+        <translation>Yanlış bir güncelleme bilgisi alındı.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="563"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished">Aranan eklenti &apos;%1&apos; geçersiz sürüm dizgisi (&apos;%2&apos;) içeriyor</translation>
+        <translation>Aranan eklenti &apos;%1&apos; geçersiz sürüm dizgisi (&apos;%2&apos;) içeriyor</translation>
     </message>
 </context>
 <context>
@@ -7454,13 +7446,9 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <translation>Aranan:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everyhing returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bazı arama motorları torrent açıklamalarında ve torrent dosya adlarında da arar. Bu tür sonuçlar bu kip tarafından denetlenen aşağıdaki listede gösterilecektir.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Her yerde&lt;/span&gt; seçeneği süzmeyi etkisizleştirir ve arama motorları tarafından döndürülen her şeyi gösterir.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sadece torrent adları&lt;/span&gt; seçeneği sadece adları arama sorgusuyla eşleşen torrent&apos;leri gösterir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/search/searchtab.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bazı arama motorları torrent açıklamalarında ve torrent dosya adlarında da arar. Bu tür sonuçlar bu kip tarafından denetlenen aşağıdaki listede gösterilecektir.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Her yerde&lt;/span&gt; seçeneği süzmeyi etkisizleştirir ve arama motorları tarafından döndürülen her şeyi gösterir.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sadece torrent adları&lt;/span&gt; seçeneği sadece adları arama sorgusuyla eşleşen torrent&apos;leri gösterir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchtab.ui" line="84"/>
@@ -7488,7 +7476,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En büyük gönderim sayısı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/search/searchtab.ui" line="126"/>
         <location filename="../gui/search/searchtab.ui" line="216"/>
         <source>∞</source>
@@ -7860,26 +7848,6 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
         <translation>Kullanıcı istatistikleri</translation>
     </message>
     <message>
-        <source>Total peer connections:</source>
-        <translation type="obsolete">Toplam kişi bağlantısı:</translation>
-    </message>
-    <message>
-        <source>Global ratio:</source>
-        <translation type="obsolete">Genel oran:</translation>
-    </message>
-    <message>
-        <source>Alltime download:</source>
-        <translation type="obsolete">Tüm zaman indirilen:</translation>
-    </message>
-    <message>
-        <source>Alltime upload:</source>
-        <translation type="obsolete">Tüm zaman gönderilen:</translation>
-    </message>
-    <message>
-        <source>Total waste (this session):</source>
-        <translation type="obsolete">Toplam boşa giden (bu oturumda):</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
         <translation>Önbellek istatistikleri</translation>
@@ -7895,38 +7863,34 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
         <translation>Kuyruktaki ortalama süre:</translation>
     </message>
     <message>
-        <source>Total buffers size:</source>
-        <translation type="obsolete">Toplam arabellek boyutu:</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.ui" line="33"/>
         <source>Connected peers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlı kişi:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="40"/>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm zaman paylaşma oranı:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="54"/>
         <source>All-time download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm zaman indirilen:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="75"/>
         <source>Session waste:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oturum israfı:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="82"/>
         <source>All-time upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm zaman gönderilen:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffer size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Toplam arabellek boyutu:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -8215,6 +8179,11 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
         <translation>Kaydetme yolu:</translation>
     </message>
     <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
         <source>New Category</source>
         <translation>Yeni Kategori</translation>
@@ -8458,7 +8427,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="230"/>
         <source>Optimize alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Hizalamayı en iyi duruma getir</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordlg.ui" line="243"/>
@@ -8676,27 +8645,27 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="313"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Henüz bağlanmadı</translation>
+        <translation>Daha bağlanılamadı</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Updating...</source>
-        <translation type="unfinished">Güncelleniyor...</translation>
+        <translation>Güncelleniyor...</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
         <source>Working</source>
-        <translation type="unfinished">Çalışıyor</translation>
+        <translation>Çalışıyor</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="319"/>
         <source>Not working</source>
-        <translation type="unfinished">Çalışmıyor</translation>
+        <translation>Çalışmıyor</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="509"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: &apos;%1&apos; geçerli bir torrent dosyası değil.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="692"/>
@@ -8704,23 +8673,23 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="714"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="725"/>
         <source>Torrent queueing must be enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent kuyruğa alma etkinleştirilmek zorundadır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="744"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished">Web Arayüzü Ayar konumu: taşınan &quot;%1&quot;, &quot;%2&quot; yerinden &quot;%3&quot; yerine</translation>
+        <translation>Web Arayüzü Ayar konumu: taşınan &quot;%1&quot;, &quot;%2&quot; yerinden &quot;%3&quot; yerine</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Incorrect torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Yanlış torrent adı</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="799"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="809"/>
         <source>Incorrect category name</source>
-        <translation type="unfinished">Yanlış kategori adı</translation>
+        <translation>Yanlış kategori adı</translation>
     </message>
 </context>
 <context>
@@ -8929,7 +8898,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <source>List of trackers to add (one per line):</source>
         <translation>Eklemek için izleyicilerin listesi (satır başına bir tane):</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../gui/properties/trackersadditiondlg.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
         <translation>µTorrent uyumlu liste URL&apos;si:</translation>
@@ -9393,47 +9362,39 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="obsolete">Web Arayüzü Ayar konumu: taşınan &quot;%1&quot;, &quot;%2&quot; yerinden &quot;%3&quot; yerine</translation>
-    </message>
-    <message>
-        <source>Incorrect category name</source>
-        <translation type="obsolete">Yanlış kategori adı</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="217"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul edilemez dosya türü, sadece normal dosyaya izin verilir.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="224"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatif Arayüz klasörü içinde simgesel bağlantılar yasaktır.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="466"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fazla izin verilen dosya boyutu (%1) aşıldı!</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="667"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: Başlangıç üstbilgisi ve Hedef başlangıcı uyumsuz! Kaynak IP: &apos;%1&apos;. Başlangıç üstbilgisi: &apos;%2&apos;. Hedef başlangıcı: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="676"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: Gönderen üstbilgisi ve Hedef başlangıcı uyumsuz! Kaynak IP: &apos;%1&apos;. Gönderen üstbilgisi: &apos;%2&apos;. Hedef başlangıcı: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="693"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: Geçersiz Anamakine üstbilgisi, bağlantı noktası uyumsuz. İstek kaynak IP: &apos;%1&apos;. Sunucu b.noktası: &apos;%2&apos;. Alınan Anamakine üstbilgisi: &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="725"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Arayüzü: Geçersiz Anamakine üstbilgisi. İstek kaynak IP: &apos;%1&apos;. Alınan Anamakine üstbilgisi: &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -9500,7 +9461,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <translation>Eklemek için kişilerin listesi (satır başına bir IP):</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondlg.ui" line="37"/>
+        <location filename="../gui/properties/peersadditiondlg.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
         <translation>Biçim: IPv4:b.noktası / [IPv6]:b.noktası</translation>
     </message>
@@ -9708,22 +9669,6 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1d</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Çalışıyor</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Güncelleniyor...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Çalışmıyor</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Henüz bağlanmadı</translation>
     </message>
 </context>
 <context>
