@@ -52,7 +52,7 @@ namespace BitTorrent
 
     class TorrentInfo
     {
-        Q_DECLARE_TR_FUNCTIONS("TorrentInfo")
+        Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
 #if LIBTORRENT_VERSION_NUM < 10100
