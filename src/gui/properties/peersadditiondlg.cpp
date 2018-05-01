@@ -39,9 +39,6 @@ PeersAdditionDlg::PeersAdditionDlg(QWidget *parent)
 {
     m_ui->setupUi(this);
     connect(m_ui->buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
-
-    m_ui->label_format->hide();
-    m_ui->peers_txt->setPlaceholderText("Format: IPv4:port / [IPv6]:port");
 }
 
 PeersAdditionDlg::~PeersAdditionDlg()
