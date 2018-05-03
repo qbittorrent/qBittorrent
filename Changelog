@@ -1,4 +1,4 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
+* Sat May 05 2018 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.0
     - FEATURE: Add "Coalesce reads & writes" checkbox in advanced options (Chocobo1)
     - FEATURE: Smart Filter for RSS (Stephen Dawkins)
     - FEATURE: Possibility to configure at which speed a torrent is considered slow (thalieht)
