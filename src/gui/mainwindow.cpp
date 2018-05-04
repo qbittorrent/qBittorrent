@@ -679,7 +679,9 @@ void MainWindow::displayRSSTab(bool enable)
         if (!m_rssWidget) {
             m_rssWidget = new RSSWidget(m_tabs);
             connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
+            m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
+#else
             const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
             m_tabs->setTabIcon(indexTab, GuiIconProvider::instance()->getIcon("application-rss+xml"));
 #endif
@@ -1879,7 +1881,9 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     if (checked) {
         Q_ASSERT(!m_executionLog);
         m_executionLog = new ExecutionLog(m_tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
+        m_tabs->addTab(m_executionLog, tr("Execution Log"));
+#else
         const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
         m_tabs->setTabIcon(indexTab, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
 #endif
