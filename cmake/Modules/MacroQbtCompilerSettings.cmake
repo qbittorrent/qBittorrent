@@ -11,18 +11,17 @@ macro(qbt_set_compiler_options)
         #-Wshadow -Wconversion ?
         set(_GCC_COMMON_C_AND_CXX_FLAGS "-Wall -Wextra"
             "-Wfloat-equal -Wcast-qual -Wcast-align"
-            "-Wsign-conversion -Winvalid-pch -Werror=return-type -Wno-long-long"
-#			-fstack-protector-all
-            "-Werror -Wno-error=deprecated-declarations"
+            "-Wsign-conversion -Winvalid-pch -Wno-long-long"
+            #"-fstack-protector-all"
+            #"-Werror -Wno-error=deprecated-declarations"
         )
-        set (_GCC_COMMON_CXX_FLAGS  "-fexceptions -frtti"
+        set(_GCC_COMMON_CXX_FLAGS "-fexceptions -frtti"
             "-Woverloaded-virtual -Wold-style-cast"
             "-Wnon-virtual-dtor -Wfloat-equal -Wcast-qual -Wcast-align"
-            "-Werror=overloaded-virtual"
-    # 		"-Weffc++"
-            "-Werror -Wno-error=cpp"
+            #"-Weffc++"
+            #"-Werror -Wno-error=cpp"
             # we should modify code to make these ones obsolete
-            "-Wno-error=sign-conversion -Wno-error=float-equal"
+            #"-Wno-error=sign-conversion -Wno-error=float-equal"
         )
 
         if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.9)
