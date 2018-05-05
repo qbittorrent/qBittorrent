@@ -111,7 +111,6 @@ private:
     static QString pluginPath(const QString &name);
 
     static QPointer<SearchPluginManager> m_instance;
-    static const QHash<QString, QString> m_categoryNames;
 
     const QString m_updateUrl;
 
