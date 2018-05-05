@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 cmake_policy(VERSION 3.5)
 
+message(WARNING "No official support for cmake build system. If it is broken, please submit patches!")
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FunctionReadVersion)
 
