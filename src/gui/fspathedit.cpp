@@ -41,7 +41,6 @@
 
 namespace
 {
-    const char i18nContext[] = "FileSystemPathEdit";
     struct TrStringWithComment
     {
         const char *source;
@@ -49,18 +48,18 @@ namespace
 
         QString tr() const
         {
-            return QCoreApplication::translate(i18nContext, source, comment);
+            return QCoreApplication::translate("FileSystemPathEdit", source, comment);
         }
     };
 
     constexpr TrStringWithComment browseButtonBriefText =
-        QT_TRANSLATE_NOOP3(i18nContext, "...", "Launch file dialog button text (brief)");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "...", "Launch file dialog button text (brief)");
     constexpr TrStringWithComment browseButtonFullText =
-        QT_TRANSLATE_NOOP3(i18nContext, "&Browse...", "Launch file dialog button text (full)");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "&Browse...", "Launch file dialog button text (full)");
     constexpr TrStringWithComment defaultDialogCaptionForFile =
-        QT_TRANSLATE_NOOP3(i18nContext, "Choose a file", "Caption for file open/save dialog");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a file", "Caption for file open/save dialog");
     constexpr TrStringWithComment defaultDialogCaptionForDirectory =
-        QT_TRANSLATE_NOOP3(i18nContext, "Choose a folder", "Caption for directory open dialog");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a folder", "Caption for directory open dialog");
 }
 
 class FileSystemPathEdit::FileSystemPathEditPrivate
