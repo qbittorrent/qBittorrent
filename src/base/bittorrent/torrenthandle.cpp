@@ -156,8 +156,6 @@ const int TorrentHandle::MAX_SEEDING_TIME = 525600;
 // The following can be removed after one or two libtorrent releases on each branch.
 namespace
 {
-    const char i18nContext[] = "TorrentHandle";
-
     // new constructor is available
     template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
     T makeTorrentCreator(const libtorrent::torrent_info & ti)
@@ -1476,8 +1474,8 @@ void TorrentHandle::handleStorageMovedFailedAlert(libtorrent::storage_moved_fail
         return;
     }
 
-    LogMsg(QCoreApplication::translate(i18nContext, "Could not move torrent: '%1'. Reason: %2")
-                                   .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
+    LogMsg(tr("Could not move torrent: '%1'. Reason: %2")
+        .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
 
     m_moveStorageInfo.newPath.clear();
     if (!m_moveStorageInfo.queuedPath.isEmpty()) {
@@ -1649,19 +1647,18 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(libtorrent::save_resume_data
 void TorrentHandle::handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert *p)
 {
     qDebug("/!\\ Fast resume failed for %s, reason: %s", qUtf8Printable(name()), p->message().c_str());
-    Logger *const logger = Logger::instance();
 
     updateStatus();
     if (p->error.value() == libt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
-        logger->addMessage(QCoreApplication::translate(i18nContext, "File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
+        LogMsg(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
         m_hasMissingFiles = true;
         if (!isPaused())
             pause();
     }
     else {
-        logger->addMessage(QCoreApplication::translate(i18nContext, "Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-                           .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
+        LogMsg(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
+            .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
     }
 }
 
