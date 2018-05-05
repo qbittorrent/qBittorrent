@@ -1,5 +1,5 @@
 # ===========================================================================
-#       http://www.gnu.org/software/autoconf-archive/ax_define_dir.html
+#       https://web.archive.org/web/20101224145437/https://www.gnu.org/software/autoconf-archive/ax_define_dir.html
 # ===========================================================================
 #
 # SYNOPSIS

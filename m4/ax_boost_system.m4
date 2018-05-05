@@ -10,7 +10,7 @@
 #
 #   Test for System library from the Boost C++ libraries. The macro requires
 #   a preceding call to AX_BOOST_BASE. Further documentation is available at
-#   <http://randspringer.de/boost/index.html>.
+#   <https://randspringer.de/boost/index.html>.
 #
 #   This macro calls:
 #

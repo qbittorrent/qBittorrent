@@ -37,13 +37,13 @@
  * {
  *     "folder1": {
  *         "subfolder1": {
- *             "Feed name (Alias)": "http://some-feed-url1",
- *             "http://some-feed-url2": ""
+ *             "Feed name (Alias)": "https://some-feed-url1",
+ *             "https://some-feed-url2": ""
  *         },
  *         "subfolder2": {},
- *         "http://some-feed-url3": "",
+ *         "https://some-feed-url3": "",
  *         "Feed name (Alias)": {
- *             "url": "http://some-feed-url4",
+ *             "url": "https://some-feed-url4",
  *         }
  *     },
  *     "folder2": {},

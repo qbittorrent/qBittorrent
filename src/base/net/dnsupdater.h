@@ -38,7 +38,7 @@
 
 namespace Net
 {
-    // Based on http://www.dyndns.com/developers/specs/
+    // Based on https://help.dyn.com/remote-access-api/
     class DNSUpdater : public QObject
     {
         Q_OBJECT

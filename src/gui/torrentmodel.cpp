@@ -361,7 +361,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
 
 QColor getColorByState(BitTorrent::TorrentState state)
 {
-    // Color names taken from http://cloford.com/resources/colours/500col.htm
+    // Color names taken from https://cloford.com/resources/colours/500col.htm
     bool dark = isDarkTheme();
 
     switch (state) {

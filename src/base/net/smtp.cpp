@@ -65,7 +65,7 @@ namespace
         QByteArray innerPadding(blockSize, char(0x36)); // initialize inner padding with char "6"
         QByteArray outerPadding(blockSize, char(0x5c)); // initialize outer padding with char "\"
         // ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have large
-        // Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
+        // Hamming distance (https://en.wikipedia.org/wiki/Hamming_distance)
 
         for (int i = 0; i < key.length(); i++) {
             innerPadding[i] = innerPadding[i] ^ key.at(i); // XOR operation between every byte in key and innerpadding, of key length

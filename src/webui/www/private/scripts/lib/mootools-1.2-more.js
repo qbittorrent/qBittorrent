@@ -1,13 +1,13 @@
 // MooTools: the javascript framework.
-// Load this file's selection again by visiting: http://mootools.net/more/208dad2fc7517c7e60f4afddd3e7c664 
+// Load this file's selection again by visiting: https://mootools.net/more/builder/208dad2fc7517c7e60f4afddd3e7c664
 // Or build this file again with packager using: packager build More/More More/Class.Binds More/Class.Occlude More/String.Extras More/String.QueryString More/URI More/Hash More/Fx.Elements More/Fx.Accordion More/Fx.Move More/Fx.Reveal More/Fx.Scroll More/Fx.Slide More/Fx.SmoothScroll More/Fx.Sort More/Drag More/Drag.Move More/Slider More/Sortables More/Assets More/Color More/Hash.Cookie More/HtmlTable More/Keyboard
 /*
 ---
 copyrights:
-  - [MooTools](http://mootools.net)
+  - [MooTools](https://mootools.net)
 
 licenses:
-  - [MIT License](http://mootools.net/license.txt)
+  - [MIT License](https://github.com/mootools/mootools-core/blob/master/Source/license.txt)
 ...
 */
 MooTools.More={version:"1.4.0.1",build:"a4244edf2aa97ac8a196fc96082dd35af1abab87"};Class.Mutators.Binds=function(a){if(!this.prototype.initialize){this.implement("initialize",function(){});

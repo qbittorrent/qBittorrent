@@ -45,7 +45,7 @@ Images Authors:
 * files: src/icons/*.png
   copyright: Gnome Icon Theme
   license: GPLv2
-  url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
+  url: https://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
 
 * files: src/oxygen/*.png
   copyright: Oxygen Icon Theme (KDE)
@@ -91,7 +91,7 @@ Images Authors:
 * file: src/icons/skin/ratio.png
   copyright: Fatcow Web Hosting
   license: Creative Commons Attribution 3.0 License
-  url: http://www.fatcow.com/free-icons
+  url: https://www.fatcow.com/free-icons
 
 Translations authors:
 * files: src/lang/*.ts
