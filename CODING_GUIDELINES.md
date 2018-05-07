@@ -239,11 +239,11 @@ The headers should be placed in the following group order:
   4. Boost library headers
   5. Libtorrent headers
   6. Qt headers
-  7. qBittorrent own headers, starting from *base* headers.
+  7. qBittorrent's own headers, starting from the *base* headers.
 
 The headers should be ordered alphabetically within each group.  
 If there are conditionals for the same header group, then put them at the bottom of the respective group.  
-If there are conditionals for the different header groups, then put them above of the "qBittorrent own headers" group.
+If there are conditionals that contain headers from several different header groups, then put them above the "qBittorrent's own headers" group.
 
 One exception is the header containing the library version (for example, QtGlobal), this particular header isn't constrained by the aforementioned order.
 
@@ -285,13 +285,13 @@ Example:
 #include <QFont>
 #endif
 
-// conditional for the different header groups
+// conditional that contains headers from several different header groups
 #if LIBTORRENT_VERSION_NUM >= 10100
 #include <memory>
 #include <QElapsedTimer>
 #endif
 
-// qBittorrent own headers
+// qBittorrent's own headers
 #include "base/bittorrent/infohash.h"
 #include "anothermodule.h"
 #include "ui_examplewidget.h"
