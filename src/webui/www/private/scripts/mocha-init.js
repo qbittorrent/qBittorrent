@@ -633,7 +633,7 @@ initializeWindows = function() {
         });
     });
 
-    ['decrease_prio', 'increase_prio', 'top_prio', 'bottom_prio'].each(function(item) {
+    ['decreasePrio', 'increasePrio', 'topPrio', 'bottomPrio'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
             setPriorityFN(item);
