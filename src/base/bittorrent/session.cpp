@@ -2945,7 +2945,7 @@ void Session::setMaxConnectionsPerTorrent(int max)
             try {
                 handle.set_max_connections(max);
             }
-            catch (std::exception) {}
+            catch (const std::exception &) {}
         }
     }
 }
@@ -2967,7 +2967,7 @@ void Session::setMaxUploadsPerTorrent(int max)
             try {
                 handle.set_max_uploads(max);
             }
-            catch (std::exception) {}
+            catch (const std::exception &) {}
         }
     }
 }
