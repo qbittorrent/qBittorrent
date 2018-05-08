@@ -47,7 +47,7 @@ namespace Net
         Q_DISABLE_COPY(ReverseResolution)
 
     public:
-        explicit ReverseResolution(QObject *parent = 0);
+        explicit ReverseResolution(QObject *parent = nullptr);
         ~ReverseResolution();
 
         void resolve(const QString &ip);

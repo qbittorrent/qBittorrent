@@ -114,7 +114,7 @@ namespace
                 QString translation = word;
                 if (isTranslationNeeded) {
                     QString context = regex.cap(4);
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), 0, 1);
+                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), nullptr, 1);
                 }
                 // Remove keyboard shortcuts
                 translation.replace(mnemonic, "");

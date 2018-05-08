@@ -1047,7 +1047,7 @@ void MainWindow::notifyOfUpdate(QString)
                                    , Log::CRITICAL);
     // Delete the executable watcher
     delete m_executableWatcher;
-    m_executableWatcher = 0;
+    m_executableWatcher = nullptr;
 }
 
 #ifndef Q_OS_MAC

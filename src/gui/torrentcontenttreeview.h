@@ -36,7 +36,7 @@ class TorrentContentTreeView: public QTreeView
     Q_OBJECT
 
 public:
-    explicit TorrentContentTreeView(QWidget *parent = 0);
+    explicit TorrentContentTreeView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
 
 private:

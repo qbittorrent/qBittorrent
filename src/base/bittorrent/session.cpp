@@ -1005,7 +1005,7 @@ void Session::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 

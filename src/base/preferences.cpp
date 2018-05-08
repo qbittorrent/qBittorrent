@@ -59,7 +59,7 @@
 #include "utils/fs.h"
 #include "utils/misc.h"
 
-Preferences *Preferences::m_instance = 0;
+Preferences *Preferences::m_instance = nullptr;
 
 Preferences::Preferences() = default;
 
@@ -78,7 +78,7 @@ void Preferences::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 

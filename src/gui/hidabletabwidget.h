@@ -41,7 +41,7 @@
 class HidableTabWidget : public QTabWidget
 {
 public:
-    explicit HidableTabWidget(QWidget *parent = 0)
+    explicit HidableTabWidget(QWidget *parent = nullptr)
         : QTabWidget(parent)
     {
     }

@@ -39,7 +39,7 @@ class ProgramUpdater: public QObject
     Q_OBJECT
 
 public:
-    explicit ProgramUpdater(QObject *parent = 0, bool invokedByUser = false);
+    explicit ProgramUpdater(QObject *parent = nullptr, bool invokedByUser = false);
 
     void checkForUpdates();
     void updateProgram();

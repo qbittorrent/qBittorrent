@@ -51,7 +51,7 @@ namespace
     class NetworkCookieJar: public QNetworkCookieJar
     {
     public:
-        explicit NetworkCookieJar(QObject *parent = 0)
+        explicit NetworkCookieJar(QObject *parent = nullptr)
             : QNetworkCookieJar(parent)
         {
             QDateTime now = QDateTime::currentDateTime();
@@ -107,7 +107,7 @@ namespace
 
 using namespace Net;
 
-DownloadManager *DownloadManager::m_instance = 0;
+DownloadManager *DownloadManager::m_instance = nullptr;
 
 DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
@@ -128,7 +128,7 @@ void DownloadManager::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 

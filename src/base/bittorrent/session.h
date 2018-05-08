@@ -562,7 +562,7 @@ namespace BitTorrent
             bool requestedFileDeletion;
         };
 
-        explicit Session(QObject *parent = 0);
+        explicit Session(QObject *parent = nullptr);
         ~Session();
 
         bool hasPerTorrentRatioLimit() const;

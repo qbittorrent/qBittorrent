@@ -131,7 +131,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayToggleColumnsMenu(const QPoint&)));
     connect(header(), SIGNAL(sectionClicked(int)), SLOT(handleSortColumnChanged(int)));
     handleSortColumnChanged(header()->sortIndicatorSection());
-    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), 0, Qt::WidgetShortcut);
+    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, SLOT(copySelectedPeers()), nullptr, Qt::WidgetShortcut);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
@@ -225,7 +225,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     if (!torrent) return;
 
     // Add Peer Action
-    QAction *addPeerAct = 0;
+    QAction *addPeerAct = nullptr;
     if (!torrent->isQueued() && !torrent->isChecking()) {
         addPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
         emptyMenu = false;

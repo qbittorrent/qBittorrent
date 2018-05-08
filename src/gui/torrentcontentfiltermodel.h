@@ -40,7 +40,7 @@ class TorrentContentFilterModel: public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    TorrentContentFilterModel(QObject *parent = 0);
+    TorrentContentFilterModel(QObject *parent = nullptr);
     virtual ~TorrentContentFilterModel();
 
     TorrentContentModel *model() const;

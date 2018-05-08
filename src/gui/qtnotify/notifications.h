@@ -31,7 +31,7 @@ public:
     { return "org.freedesktop.Notifications"; }
 
 public:
-    OrgFreedesktopNotificationsInterface(const QString &service, const QString &path, const QDBusConnection &connection, QObject *parent = 0);
+    OrgFreedesktopNotificationsInterface(const QString &service, const QString &path, const QDBusConnection &connection, QObject *parent = nullptr);
 
     ~OrgFreedesktopNotificationsInterface();
 

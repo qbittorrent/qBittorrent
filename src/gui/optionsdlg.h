@@ -77,7 +77,7 @@ private:
 
 public:
     // Constructor / Destructor
-    OptionsDialog(QWidget *parent = 0);
+    OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog();
 
 public slots:

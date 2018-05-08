@@ -43,7 +43,7 @@ class PluginSourceDlg: public QDialog
     Q_OBJECT
 
 public:
-    explicit PluginSourceDlg(QWidget *parent = 0);
+    explicit PluginSourceDlg(QWidget *parent = nullptr);
     ~PluginSourceDlg();
 
 signals:
