@@ -79,9 +79,12 @@ TrackerList::TrackerList(PropertiesWidget *properties)
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &TrackerList::showTrackerListMenu);
-    // Header context menu
+    // Header
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &TrackerList::displayToggleColumnsMenu);
+    connect(header(), &QHeaderView::sectionMoved, this, &TrackerList::saveSettings);
+    connect(header(), &QHeaderView::sectionResized, this, &TrackerList::saveSettings);
+    connect(header(), &QHeaderView::sortIndicatorChanged, this, &TrackerList::saveSettings);
     // Set DHT, PeX, LSD items
     m_DHTItem = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
     insertTopLevelItem(0, m_DHTItem);
