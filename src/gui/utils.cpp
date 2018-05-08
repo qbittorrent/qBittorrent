@@ -30,6 +30,7 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QPixmapCache>
 #include <QScreen>
 #include <QStyle>
 #include <QWidget>
@@ -67,6 +68,20 @@ QPixmap Utils::Gui::scaledPixmap(const QString &path, const QWidget *widget, con
     const QPixmap pixmap(path);
     const int scaledHeight = ((height > 0) ? height : pixmap.height()) * Utils::Gui::screenScalingFactor(widget);
     return pixmap.scaledToHeight(scaledHeight, Qt::SmoothTransformation);
+}
+
+QPixmap Utils::Gui::scaledPixmapSvg(const QString &path, const QWidget *widget, const int baseHeight)
+{
+    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
+    const QString normalizedKey = path + "@" + QString::number(scaledHeight);
+
+    QPixmap pm;
+    QPixmapCache cache;
+    if (!cache.find(normalizedKey, &pm)) {
+        pm = QIcon(path).pixmap(scaledHeight);
+        cache.insert(normalizedKey, pm);
+    }
+    return pm;
 }
 
 QSize Utils::Gui::smallIconSize(const QWidget *widget)
