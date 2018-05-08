@@ -762,7 +762,6 @@ void TorrentsController::renameAction()
         throw APIError(APIErrorType::NotFound);
 
     name.replace(QRegularExpression("\r?\n|\r"), " ");
-    qDebug() << "Renaming" << torrent->name() << "to" << name;
     torrent->setName(name);
 }
 
