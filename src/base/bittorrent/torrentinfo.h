@@ -29,11 +29,13 @@
 #ifndef BITTORRENT_TORRENTINFO_H
 #define BITTORRENT_TORRENTINFO_H
 
-#include <QCoreApplication>
-#include <QtGlobal>
-
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
+
+#include <QCoreApplication>
+#include <QList>
+#include <QtGlobal>
+#include <QVector>
 
 #include "base/indexrange.h"
 
@@ -42,8 +44,6 @@ class QUrl;
 class QDateTime;
 class QStringList;
 class QByteArray;
-template<typename T> class QList;
-template<typename T> class QVector;
 
 namespace BitTorrent
 {
