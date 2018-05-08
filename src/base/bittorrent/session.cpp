@@ -49,9 +49,6 @@
 #include <QUuid>
 
 #include <libtorrent/alert_types.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
-#include <libtorrent/bdecode.hpp>
-#endif
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/disk_io_thread.hpp>
 #include <libtorrent/error_code.hpp>
@@ -60,16 +57,17 @@
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/ip_filter.hpp>
-#if LIBTORRENT_VERSION_NUM < 10100
-#include <libtorrent/lazy_entry.hpp>
-#endif
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
-#include <libtorrent/session_stats.hpp>
-#endif
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+
+#if LIBTORRENT_VERSION_NUM < 10100
+#include <libtorrent/lazy_entry.hpp>
+#else
+#include <libtorrent/bdecode.hpp>
+#include <libtorrent/session_stats.hpp>
+#endif
 
 #include "base/algorithm.h"
 #include "base/logger.h"
