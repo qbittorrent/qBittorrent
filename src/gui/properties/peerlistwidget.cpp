@@ -130,6 +130,9 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayToggleColumnsMenu);
     connect(header(), &QHeaderView::sectionClicked, this, &PeerListWidget::handleSortColumnChanged);
+    connect(header(), &QHeaderView::sectionMoved, this, &PeerListWidget::saveSettings);
+    connect(header(), &QHeaderView::sectionResized, this, &PeerListWidget::saveSettings);
+    connect(header(), &QHeaderView::sortIndicatorChanged, this, &PeerListWidget::saveSettings);
     handleSortColumnChanged(header()->sortIndicatorSection());
     m_copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_copyHotkey, &QShortcut::activated, this, &PeerListWidget::copySelectedPeers);

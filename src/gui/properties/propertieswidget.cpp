@@ -140,15 +140,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionDown);
     m_ui->horizontalLayout_trackers->insertWidget(0, m_trackerList);
-    connect(m_trackerList->header(), SIGNAL(sectionMoved(int,int,int)), m_trackerList, SLOT(saveSettings()));
-    connect(m_trackerList->header(), SIGNAL(sectionResized(int,int,int)), m_trackerList, SLOT(saveSettings()));
-    connect(m_trackerList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), m_trackerList, SLOT(saveSettings()));
     // Peers list
     m_peerList = new PeerListWidget(this);
     m_ui->peerpage_layout->addWidget(m_peerList);
-    connect(m_peerList->header(), SIGNAL(sectionMoved(int,int,int)), m_peerList, SLOT(saveSettings()));
-    connect(m_peerList->header(), SIGNAL(sectionResized(int,int,int)), m_peerList, SLOT(saveSettings()));
-    connect(m_peerList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), m_peerList, SLOT(saveSettings()));
     // Speed widget
     m_speedWidget = new SpeedWidget(this);
     m_ui->speedLayout->addWidget(m_speedWidget);
