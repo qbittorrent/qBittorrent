@@ -26,20 +26,20 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QString>
-#include <QList>
-#include <QUrl>
-#include <QDateTime>
+#include "torrentinfo.h"
 
 #include <libtorrent/error_code.hpp>
+
+#include <QDebug>
+#include <QString>
+#include <QUrl>
+#include <QDateTime>
 
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "trackerentry.h"
-#include "torrentinfo.h"
 
 namespace libt = libtorrent;
 using namespace BitTorrent;

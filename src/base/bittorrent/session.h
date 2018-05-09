@@ -30,24 +30,26 @@
 #ifndef BITTORRENT_SESSION_H
 #define BITTORRENT_SESSION_H
 
-#include <vector>
 #include <libtorrent/version.hpp>
 
-#if LIBTORRENT_VERSION_NUM >= 10100
-#include <QElapsedTimer>
-#endif
+#include <vector>
+
 #include <QFile>
 #include <QHash>
+#include <QList>
 #include <QMap>
-#if LIBTORRENT_VERSION_NUM < 10100
-#include <QMutex>
-#endif
 #include <QNetworkConfigurationManager>
 #include <QPointer>
 #include <QSet>
 #include <QStringList>
 #include <QVector>
 #include <QWaitCondition>
+
+#if LIBTORRENT_VERSION_NUM < 10100
+#include <QMutex>
+#else
+#include <QElapsedTimer>
+#endif
 
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
@@ -111,7 +113,6 @@ class QTimer;
 class QStringList;
 class QString;
 class QUrl;
-template<typename T> class QList;
 
 class FilterParserThread;
 class BandwidthScheduler;
