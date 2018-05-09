@@ -30,7 +30,9 @@
 
 #include "optionsdlg.h"
 
+#include <algorithm>
 #include <cstdlib>
+#include <vector>
 
 #include <QApplication>
 #include <QCloseEvent>
@@ -64,6 +66,9 @@
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "rss/automatedrssdownloader.h"
+#include "theme/themeexceptions.h"
+#include "theme/themeinfo.h"
+#include "theme/themeprovider.h"
 #include "banlistoptions.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
@@ -71,6 +76,106 @@
 #include "utils.h"
 
 #include "ui_optionsdlg.h"
+
+namespace
+{
+    /**
+     * @brief Implements list model for themes of the given kind
+     *
+     * The class gets map of the themes from ThemeProvider, converts it into array sorting
+     * by theme localized name.
+     */
+    class ThemeInfoListModel : public QAbstractListModel
+    {
+    public:
+        ThemeInfoListModel(Theme::Kind kind, QObject *parent);
+
+        int rowCount(const QModelIndex &parent) const override;
+        QVariant data(const QModelIndex &index, int role) const override;
+
+        struct Entry
+        {
+            Theme::ThemeInfo info;
+            QString filePath;
+        };
+
+        const Entry &entry(int index) const;
+        int indexForTheme(const Theme::ThemeInfo &info);
+
+    private:
+        std::vector<Entry> m_entries;
+    };
+
+    ThemeInfoListModel::ThemeInfoListModel(Theme::Kind kind, QObject *parent)
+        : QAbstractListModel(parent)
+    {
+        std::map<Theme::ThemeInfo, QString> themes = Theme::ThemeProvider::instance().availableThemes(kind);
+
+        for (const auto &pair: themes)
+            m_entries.push_back({pair.first, pair.second});
+
+        std::sort(m_entries.begin(), m_entries.end(), [](const Entry &left, const Entry &right)
+        {
+            return left.info.localizedName() < right.info.localizedName();
+        });
+    }
+
+    int ThemeInfoListModel::rowCount(const QModelIndex &/*parent*/) const
+    {
+        return static_cast<int>(m_entries.size());
+    }
+
+    QVariant ThemeInfoListModel::data(const QModelIndex &index, int role) const
+    {
+        if ((index.row() >= static_cast<int>(m_entries.size())) || (index.column() > 0)) return {};
+
+        switch (role) {
+        case Qt::DisplayRole:
+            return entry(index.row()).info.localizedName();
+        case Qt::ToolTipRole:
+            return entry(index.row()).info.localizedDescription();
+        }
+
+        return {};
+    }
+
+    const ThemeInfoListModel::Entry &ThemeInfoListModel::entry(int index) const
+    {
+        return m_entries.at(static_cast<std::size_t>(index));
+    }
+
+    int ThemeInfoListModel::indexForTheme(const Theme::ThemeInfo& info)
+    {
+        auto i = std::find_if(m_entries.begin(), m_entries.end(), [&info](const Entry &entry)
+        {
+            return (entry.info == info);
+        });
+        if (i == m_entries.end()) {
+            qDebug() << "Could not find theme info in the model";
+            return 0; // don't want to crash, will lead to theme re-appliance most likely
+        }
+        return std::distance(m_entries.begin(), i);
+    }
+
+    //just a shortcut
+    const ThemeInfoListModel::Entry &themeEntry(QComboBox *comboBox, int index = -1)
+    {
+        if (index < 0) {
+            index = comboBox->currentIndex();
+        }
+        return static_cast<ThemeInfoListModel*>(comboBox->model())->entry(index);
+    }
+
+    QString descriptionString(const ThemeInfoListModel::Entry &entry)
+    {
+        QString res = entry.info.localizedDescription() + QLatin1Char('\n');
+        if (entry.filePath.startsWith(QLatin1String(":/"))) // this theme is located in resources
+            res += QObject::tr("Built-in theme");
+        else
+            res += QObject::tr("Located in: ") + entry.filePath;
+        return res;
+    }
+}
 
 // Constructor
 OptionsDialog::OptionsDialog(QWidget *parent)
@@ -88,7 +193,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
+    m_ui->tabSelection->item(TAB_APPEARANCE)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop-theme"));
+    m_ui->tabSelection->item(TAB_BEHAVIOUR)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
@@ -142,6 +248,24 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         }
     }
 
+#if !((defined(Q_OS_UNIX) && !defined(Q_OS_MAC)))
+    m_ui->checkUseSystemTheme->setHidden(true);
+#endif
+
+    // Hide the Appearance/Desktop section if it doesn't contain any visible children.
+    m_ui->groupBoxAppearanceDesktop->setHidden(m_ui->groupBoxAppearanceDesktop->childrenRect().isEmpty());
+
+    ThemeInfoListModel *colorThemeModel = new ThemeInfoListModel(Theme::Kind::Color, this);
+    m_ui->comboBoxColorTheme->setModel(colorThemeModel);
+    const Theme::ThemeInfo currentColorTheme = Theme::ThemeProvider::instance().currentTheme(Theme::Kind::Color);
+    m_ui->comboBoxColorTheme->setCurrentIndex(colorThemeModel->indexForTheme(currentColorTheme));
+    m_ui->labelColorThemeDescription->setText(descriptionString(themeEntry(m_ui->comboBoxColorTheme, -1)));
+    ThemeInfoListModel *fontThemeModel = new ThemeInfoListModel(Theme::Kind::Font, this);
+    m_ui->comboBoxFontTheme->setModel(fontThemeModel);
+    const Theme::ThemeInfo currentFontTheme = Theme::ThemeProvider::instance().currentTheme(Theme::Kind::Font);
+    m_ui->comboBoxFontTheme->setCurrentIndex(fontThemeModel->indexForTheme(currentFontTheme));
+    m_ui->labelFontThemeDescription->setText(descriptionString(themeEntry(m_ui->comboBoxFontTheme, -1)));
+
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
     m_ui->scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, m_ui->scanFoldersView));
@@ -190,6 +314,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Shortcuts for frequently used signals that have more than one overload. They would require
     // type casts and that is why we declare required member pointer here instead.
     void (QComboBox::*qComboBoxCurrentIndexChanged)(int) = &QComboBox::currentIndexChanged;
+    void (QComboBox::*qComboBoxActivated)(int) = &QComboBox::activated;
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
 
     connect(m_ui->checkForceProxy, &QAbstractButton::toggled, this, &ThisType::enableForceProxy);
@@ -197,9 +322,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
     // Apply button is activated when a value is changed
+
     // General tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    connect(m_ui->checkUseSystemTheme, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
@@ -233,6 +362,13 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinFileLogSize, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinFileLogAge, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboFileLogAgeType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+
+    // Appearance tab
+    connect(m_ui->comboBoxColorTheme, qComboBoxActivated, this, &ThisType::colorThemeActivated);
+    connect(m_ui->comboBoxFontTheme, qComboBoxActivated, this, &ThisType::fontThemeActivated);
+    connect(m_ui->toolButtonExportColorTheme, &QToolButton::clicked, this, &ThisType::exportColorTheme);
+    connect(m_ui->toolButtonExportFontTheme, &QToolButton::clicked, this, &ThisType::exportFontTheme);
+
     // Downloads tab
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -482,7 +618,7 @@ void OptionsDialog::loadSplitterState()
 
     // width has been modified, use height as width reference instead
     const int width = Utils::Gui::scaledSize(this
-        , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+        , (m_ui->tabSelection->item(TAB_APPEARANCE)->sizeHint().height() * 2));
     QList<int> sizes {width, (m_ui->hsplitter->width() - width)};
     if (sizesStr.size() == 2)
         sizes = {sizesStr.first().toInt(), sizesStr.last().toInt()};
@@ -518,10 +654,57 @@ void OptionsDialog::saveOptions()
         qApp->installTranslator(translator);
     }
 
+    // Appearance preferences
+    const auto applyTheme = [this](Theme::Kind kind, const QString &themeName)
+    {
+        const auto themeKindToString = [](Theme::Kind kind)
+        {
+            switch (kind) {
+                case Theme::Kind::Color:
+                    return tr("color", "e.g. 'color theme'");
+                case Theme::Kind::Font:
+                    return tr("font", "e.g. 'font theme'");
+                default:
+                    return tr("unknown", "e.g. 'unknown theme'");
+            }
+        };
+
+        using namespace Theme::Serialization;
+        QString errorMessage;
+        try {
+            Theme::ThemeProvider::instance().setCurrentTheme(kind, themeName);
+            return;
+        }
+        catch (ThemeElementMissing &ex) {
+            errorMessage = tr("theme element '%1' is missing").arg(ex.elementName());
+        }
+        catch (ValueParsingError &ex) {
+            errorMessage = tr("could not parse element value '%1'").arg(ex.valueString());
+        }
+        catch (ParsingError &ex) {
+            errorMessage = tr("Could not parse element '%1'").arg(ex.serializedValue());
+        }
+        catch (UnknownProvider &ex) {
+            errorMessage = tr("theme element contains unknown scheme '%1'").arg(ex.profiderName());
+        }
+        catch (DeserializationError &ex) {
+            errorMessage = tr("theme loading error '%1'").arg(QString::fromUtf8(ex.what()));
+        }
+        QMessageBox::warning(this, tr("Theme applying failed"),
+                             tr("Could not apply %1 theme due to following error:\n%2")
+                             .arg(themeKindToString(kind), errorMessage));
+    };
+
+    applyTheme(Theme::Kind::Color, themeEntry(m_ui->comboBoxColorTheme).info.name());
+    applyTheme(Theme::Kind::Font, themeEntry(m_ui->comboBoxFontTheme).info.name());
+
     // General preferences
     pref->setLocale(locale);
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    pref->setSystemIconTheme(m_ui->checkUseSystemTheme->isChecked());
+#endif
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MAC
@@ -749,6 +932,9 @@ void OptionsDialog::loadOptions()
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    m_ui->checkUseSystemTheme->setChecked(pref->useSystemIconTheme());
+#endif
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
@@ -1460,6 +1646,49 @@ void OptionsDialog::setLocale(const QString &localeStr)
         Q_ASSERT(index >= 0);
     }
     m_ui->comboI18n->setCurrentIndex(index);
+}
+
+void OptionsDialog::colorThemeActivated(int index)
+{
+    m_ui->labelColorThemeDescription->setText(
+        descriptionString(themeEntry(m_ui->comboBoxColorTheme, index)));
+    enableApplyButton();
+}
+
+void OptionsDialog::fontThemeActivated(int index)
+{
+    m_ui->labelFontThemeDescription->setText(
+        descriptionString(themeEntry(m_ui->comboBoxFontTheme, index)));
+    enableApplyButton();
+}
+
+void OptionsDialog::exportColorTheme()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save theme as..."),
+                           QDir::homePath(),
+                           tr("qBittorrent color theme") +
+                           QLatin1String(" (*") + Theme::ThemeProvider::colorThemeFileExtension + QLatin1Char(')'));
+    if (!fileName.isEmpty()) {
+        Theme::ThemeProvider::instance().exportTheme(Theme::Kind::Color,
+            themeEntry(m_ui->comboBoxColorTheme, -1).info.name(), fileName);
+    }
+}
+
+void OptionsDialog::exportFontTheme()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save theme as..."),
+                           QDir::homePath(),
+                           tr("qBittorrent font theme") +
+                           QLatin1String(" (*") + Theme::ThemeProvider::fontThemeFileExtension + QLatin1Char(')'));
+    if (!fileName.isEmpty()) {
+        const bool explicitFontStrings = QMessageBox::question(this, tr("Exporting theme"),
+            tr("Font theme might contain references to default fonts. Do you want to expand them"
+                " to their actual values?")) == QMessageBox::Yes;
+        Theme::ThemeProvider::instance().exportTheme(Theme::Kind::Font,
+            themeEntry(m_ui->comboBoxFontTheme, -1).info.name(), fileName,
+                        explicitFontStrings ? Theme::ThemeProvider::ExportOption::WriteExplicitValues
+                                            : Theme::ThemeProvider::ExportOption::NoOptions);
+    }
 }
 
 QString OptionsDialog::getTorrentExportDir() const
