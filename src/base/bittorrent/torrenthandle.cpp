@@ -786,10 +786,6 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
         if (filePriorities[i] <= 0)
             continue;
 
-        const QString ext = Utils::Fs::fileExtension(filePath(i));
-        if (!Utils::Misc::isPreviewable(ext))
-            continue;
-
         const TorrentInfo::PieceRange extremities = info().filePieces(i);
         const int firstPiecePrio = nativeHandle().piece_priority(extremities.first());
         const int lastPiecePrio = nativeHandle().piece_priority(extremities.last());
@@ -1309,10 +1305,6 @@ void TorrentHandle::setFirstLastPiecePriority(const bool enabled)
     for (int index = 0; index < static_cast<int>(filePriorities.size()); ++index) {
         const int filePrio = filePriorities[index];
         if (filePrio <= 0)
-            continue;
-
-        const QString ext = Utils::Fs::fileExtension(filePath(index));
-        if (!Utils::Misc::isPreviewable(ext))
             continue;
 
         // Determine the priority to set
