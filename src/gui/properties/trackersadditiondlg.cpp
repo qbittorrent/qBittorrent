@@ -71,8 +71,9 @@ void TrackersAdditionDlg::on_uTorrentListButton_clicked()
 {
     m_ui->uTorrentListButton->setEnabled(false);
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_ui->list_url->text(), true);
-    connect(handler, SIGNAL(downloadFinished(QString, QString)), this, SLOT(parseUTorrentList(QString, QString)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), this, SLOT(getTrackerError(QString, QString)));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &TrackersAdditionDlg::parseUTorrentList);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &TrackersAdditionDlg::getTrackerError);
     // Just to show that it takes times
     setCursor(Qt::WaitCursor);
 }

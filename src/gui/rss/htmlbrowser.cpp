@@ -22,7 +22,7 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
     qDebug() << "HtmlBrowser  cache path:" << m_diskCache->cacheDirectory() << " max size:" << m_diskCache->maximumCacheSize() / 1024 / 1024 << "MB";
     m_netManager->setCache(m_diskCache);
 
-    connect(m_netManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(resourceLoaded(QNetworkReply*)));
+    connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
 }
 
 HtmlBrowser::~HtmlBrowser()

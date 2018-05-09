@@ -151,11 +151,11 @@ Application::Application(const QString &id, int &argc, char **argv)
 #endif
 
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
-    connect(this, SIGNAL(commitDataRequest(QSessionManager &)), this, SLOT(shutdownCleanup(QSessionManager &)), Qt::DirectConnection);
+    connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
 
-    connect(this, SIGNAL(messageReceived(const QString &)), SLOT(processMessage(const QString &)));
-    connect(this, SIGNAL(aboutToQuit()), SLOT(cleanup()));
+    connect(this, &Application::messageReceived, this, &Application::processMessage);
+    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
 
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
@@ -489,8 +489,8 @@ int Application::exec(const QStringList &params)
 #endif
 
     BitTorrent::Session::initInstance();
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentFinished(BitTorrent::TorrentHandle *const)), SLOT(torrentFinished(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(allTorrentsFinished()), SLOT(allTorrentsFinished()), Qt::QueuedConnection);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::initInstance();

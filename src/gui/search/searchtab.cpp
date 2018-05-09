@@ -129,23 +129,23 @@ SearchTab::SearchTab(SearchHandler *searchHandler, QWidget *parent)
 
     updateFilter();
 
-    connect(m_ui->filterMode, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchTab::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
-    connect(m_ui->minSeeds, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->minSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
             , this, &SearchTab::updateFilter);
     connect(m_ui->maxSeeds, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
-    connect(m_ui->maxSeeds, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->maxSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
             , this, &SearchTab::updateFilter);
     connect(m_ui->minSize, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
-    connect(m_ui->minSize, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->minSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
             , this, &SearchTab::updateFilter);
     connect(m_ui->maxSize, &QAbstractSpinBox::editingFinished, this, &SearchTab::updateFilter);
-    connect(m_ui->maxSize, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->maxSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
             , this, &SearchTab::updateFilter);
-    connect(m_ui->minSizeUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->minSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchTab::updateFilter);
-    connect(m_ui->maxSizeUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->maxSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchTab::updateFilter);
 
     connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchTab::onItemDoubleClicked);

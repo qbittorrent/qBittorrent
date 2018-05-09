@@ -86,7 +86,7 @@ ScanFoldersModel::ScanFoldersModel(QObject *parent)
     , m_fsWatcher(nullptr)
 {
     configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    connect(Preferences::instance(), &Preferences::changed, this, &ScanFoldersModel::configure);
 }
 
 ScanFoldersModel::~ScanFoldersModel()
@@ -222,7 +222,7 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
 
     if (!m_fsWatcher) {
         m_fsWatcher = new FileSystemWatcher(this);
-        connect(m_fsWatcher, SIGNAL(torrentsAdded(const QStringList &)), this, SLOT(addTorrentsToSession(const QStringList  &)));
+        connect(m_fsWatcher, &FileSystemWatcher::torrentsAdded, this, &ScanFoldersModel::addTorrentsToSession);
     }
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount());

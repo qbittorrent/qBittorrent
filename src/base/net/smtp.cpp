@@ -111,9 +111,10 @@ Smtp::Smtp(QObject *parent)
     m_socket = new QTcpSocket(this);
 #endif
 
-    connect(m_socket, SIGNAL(readyRead()), SLOT(readyRead()));
-    connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
-    connect(m_socket, SIGNAL(error(QAbstractSocket::SocketError)), SLOT(error(QAbstractSocket::SocketError)));
+    connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
+    connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
+    connect(m_socket, static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error)
+            , this, &Smtp::error);
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()

@@ -47,8 +47,8 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     // Context menu
     QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
     QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
-    connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
-    connect(clearAct, SIGNAL(triggered()), SLOT(clear()));
+    connect(copyAct, &QAction::triggered, this, &LogListWidget::copySelection);
+    connect(clearAct, &QAction::triggered, this, &LogListWidget::clear);
     addAction(copyAct);
     addAction(clearAct);
     setContextMenuPolicy(Qt::ActionsContextMenu);

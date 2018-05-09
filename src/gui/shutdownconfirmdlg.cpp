@@ -66,7 +66,7 @@ ShutdownConfirmDlg::ShutdownConfirmDlg(QWidget *parent, const ShutdownDialogActi
     move(Utils::Misc::screenCenter(this));
 
     m_timer.setInterval(1000); // 1sec
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateSeconds()));
+    connect(&m_timer, &QTimer::timeout, this, &ShutdownConfirmDlg::updateSeconds);
 
     Utils::Gui::resize(this);
 }

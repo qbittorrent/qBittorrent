@@ -146,11 +146,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     ui->contentTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     loadState();
     // Signal / slots
-    connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
-    connect(ui->doNotDeleteTorrentCheckBox, SIGNAL(clicked(bool)), SLOT(doNotDeleteTorrentClicked(bool)));
+    connect(ui->adv_button, &QToolButton::clicked, this, &AddNewTorrentDialog::showAdvancedSettings);
+    connect(ui->doNotDeleteTorrentCheckBox, &QCheckBox::clicked, this, &AddNewTorrentDialog::doNotDeleteTorrentClicked);
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, ui->contentTreeView, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
-    connect(ui->contentTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
+    connect(editHotkey, &QShortcut::activated, this, &AddNewTorrentDialog::renameSelectedFile);
+    connect(ui->contentTreeView, &QAbstractItemView::doubleClicked, this, &AddNewTorrentDialog::renameSelectedFile);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
 }
@@ -238,9 +238,10 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
     if (Utils::Misc::isUrl(source)) {
         // Launch downloader
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(source, true, 10485760 /* 10MB */, true);
-        connect(handler, SIGNAL(downloadFinished(QString,QString)), dlg, SLOT(handleDownloadFinished(QString,QString)));
-        connect(handler, SIGNAL(downloadFailed(QString,QString)), dlg, SLOT(handleDownloadFailed(QString,QString)));
-        connect(handler, SIGNAL(redirectedToMagnet(QString,QString)), dlg, SLOT(handleRedirectedToMagnet(QString,QString)));
+        connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
+                , dlg, &AddNewTorrentDialog::handleDownloadFinished);
+        connect(handler, &Net::DownloadHandler::downloadFailed, dlg, &AddNewTorrentDialog::handleDownloadFailed);
+        connect(handler, &Net::DownloadHandler::redirectedToMagnet, dlg, &AddNewTorrentDialog::handleRedirectedToMagnet);
     }
     else {
         bool ok = false;
@@ -349,7 +350,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
-    connect(BitTorrent::Session::instance(), SIGNAL(metadataLoaded(BitTorrent::TorrentInfo)), SLOT(updateMetadata(BitTorrent::TorrentInfo)));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
 
     // Set dialog title
     QString torrent_name = magnetUri.name();
@@ -742,12 +743,13 @@ void AddNewTorrentDialog::setupTreeview()
 
         // Prepare content tree
         m_contentModel = new TorrentContentFilterModel(this);
-        connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
+        connect(m_contentModel->model(), &TorrentContentModel::filteredFilesChanged, this, &AddNewTorrentDialog::updateDiskSpaceLabel);
         ui->contentTreeView->setModel(m_contentModel);
         m_contentDelegate = new PropListDelegate(nullptr);
         ui->contentTreeView->setItemDelegate(m_contentDelegate);
-        connect(ui->contentTreeView, SIGNAL(clicked(const QModelIndex&)), ui->contentTreeView, SLOT(edit(const QModelIndex&)));
-        connect(ui->contentTreeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContentTreeMenu(const QPoint&)));
+        connect(ui->contentTreeView, &QAbstractItemView::clicked, ui->contentTreeView
+                , static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::edit));
+        connect(ui->contentTreeView, &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::displayContentTreeMenu);
 
         // List files in torrent
         m_contentModel->model()->setupModelData(m_torrentInfo);

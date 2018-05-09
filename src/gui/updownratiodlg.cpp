@@ -69,9 +69,10 @@ UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialRatioValue,
     m_ui->timeSpinBox->setMaximum(maxTimeValue);
     m_ui->timeSpinBox->setValue(initialTimeValue);
 
-    connect(m_ui->buttonGroup, SIGNAL(buttonClicked(int)), SLOT(handleRatioTypeChanged()));
-    connect(m_ui->checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableRatioSpin()));
-    connect(m_ui->checkMaxTime, SIGNAL(toggled(bool)), this, SLOT(enableTimeSpin()));
+    connect(m_ui->buttonGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
+            , this, &UpDownRatioDlg::handleRatioTypeChanged);
+    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, this, &UpDownRatioDlg::enableRatioSpin);
+    connect(m_ui->checkMaxTime, &QCheckBox::toggled, this, &UpDownRatioDlg::enableTimeSpin);
 
     handleRatioTypeChanged();
 

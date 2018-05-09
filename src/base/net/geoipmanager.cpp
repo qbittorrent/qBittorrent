@@ -60,7 +60,7 @@ GeoIPManager::GeoIPManager()
     , m_geoIPDatabase(nullptr)
 {
     configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    connect(Preferences::instance(), &Preferences::changed, this, &GeoIPManager::configure);
 }
 
 GeoIPManager::~GeoIPManager()
@@ -119,8 +119,9 @@ void GeoIPManager::manageDatabaseUpdate()
 void GeoIPManager::downloadDatabaseFile()
 {
     DownloadHandler *handler = DownloadManager::instance()->downloadUrl(DATABASE_URL);
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(downloadFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(downloadFailed(QString, QString)));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &GeoIPManager::downloadFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &GeoIPManager::downloadFailed);
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const

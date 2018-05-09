@@ -38,7 +38,7 @@ PeersAdditionDlg::PeersAdditionDlg(QWidget *parent)
     , m_ui(new Ui::addPeersDialog())
 {
     m_ui->setupUi(this);
-    connect(m_ui->buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PeersAdditionDlg::validateInput);
 }
 
 PeersAdditionDlg::~PeersAdditionDlg()

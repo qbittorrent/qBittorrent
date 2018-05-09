@@ -93,25 +93,26 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_contentFilterLine = new LineEdit(this);
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
     m_contentFilterLine->setFixedWidth(Utils::Gui::scaledSize(this, 300));
-    connect(m_contentFilterLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
+    connect(m_contentFilterLine, &LineEdit::textChanged, this, &PropertiesWidget::filterText);
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
     // SIGNAL/SLOTS
-    connect(m_ui->filesList, SIGNAL(clicked(const QModelIndex&)), m_ui->filesList, SLOT(edit(const QModelIndex&)));
-    connect(m_ui->selectAllButton, SIGNAL(clicked()), m_propListModel, SLOT(selectAll()));
-    connect(m_ui->selectNoneButton, SIGNAL(clicked()), m_propListModel, SLOT(selectNone()));
-    connect(m_ui->filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-    connect(m_ui->filesList, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(openDoubleClickedFile(const QModelIndex&)));
-    connect(m_propListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
-    connect(m_ui->listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
-    connect(transferList, SIGNAL(currentTorrentChanged(BitTorrent::TorrentHandle *const)), this, SLOT(loadTorrentInfos(BitTorrent::TorrentHandle *const)));
-    connect(m_propListDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
-    connect(m_ui->stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentSavePathChanged(BitTorrent::TorrentHandle *const)), this, SLOT(updateSavePath(BitTorrent::TorrentHandle *const)));
-    connect(BitTorrent::Session::instance(), SIGNAL(torrentMetadataLoaded(BitTorrent::TorrentHandle *const)), this, SLOT(updateTorrentInfos(BitTorrent::TorrentHandle *const)));
-    connect(m_ui->filesList->header(), SIGNAL(sectionMoved(int,int,int)), this, SLOT(saveSettings()));
-    connect(m_ui->filesList->header(), SIGNAL(sectionResized(int,int,int)), this, SLOT(saveSettings()));
-    connect(m_ui->filesList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this, SLOT(saveSettings()));
+    connect(m_ui->filesList, &QAbstractItemView::clicked
+            , m_ui->filesList, static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::edit));
+    connect(m_ui->selectAllButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectAll);
+    connect(m_ui->selectNoneButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectNone);
+    connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
+    connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openDoubleClickedFile);
+    connect(m_propListModel, &TorrentContentFilterModel::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
+    connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
+    connect(transferList, &TransferListWidget::currentTorrentChanged, this, &PropertiesWidget::loadTorrentInfos);
+    connect(m_propListDelegate, &PropListDelegate::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
+    connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataLoaded, this, &PropertiesWidget::updateTorrentInfos);
+    connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
+    connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
+    connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);
 
     // set bar height relative to screen dpi
     const int barHeight = Utils::Gui::scaledSize(this, 18);
@@ -136,18 +137,12 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
     m_ui->trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
-    connect(m_ui->trackerUpButton, SIGNAL(clicked()), m_trackerList, SLOT(moveSelectionUp()));
-    connect(m_ui->trackerDownButton, SIGNAL(clicked()), m_trackerList, SLOT(moveSelectionDown()));
+    connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionUp);
+    connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionDown);
     m_ui->horizontalLayout_trackers->insertWidget(0, m_trackerList);
-    connect(m_trackerList->header(), SIGNAL(sectionMoved(int,int,int)), m_trackerList, SLOT(saveSettings()));
-    connect(m_trackerList->header(), SIGNAL(sectionResized(int,int,int)), m_trackerList, SLOT(saveSettings()));
-    connect(m_trackerList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), m_trackerList, SLOT(saveSettings()));
     // Peers list
     m_peerList = new PeerListWidget(this);
     m_ui->peerpage_layout->addWidget(m_peerList);
-    connect(m_peerList->header(), SIGNAL(sectionMoved(int,int,int)), m_peerList, SLOT(saveSettings()));
-    connect(m_peerList->header(), SIGNAL(sectionResized(int,int,int)), m_peerList, SLOT(saveSettings()));
-    connect(m_peerList->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), m_peerList, SLOT(saveSettings()));
     // Speed widget
     m_speedWidget = new SpeedWidget(this);
     m_ui->speedLayout->addWidget(m_speedWidget);
@@ -155,23 +150,23 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_tabBar = new PropTabBar();
     m_tabBar->setContentsMargins(0, 5, 0, 0);
     m_ui->verticalLayout->addLayout(m_tabBar);
-    connect(m_tabBar, SIGNAL(tabChanged(int)), m_ui->stackedProperties, SLOT(setCurrentIndex(int)));
-    connect(m_tabBar, SIGNAL(tabChanged(int)), this, SLOT(saveSettings()));
-    connect(m_tabBar, SIGNAL(visibilityToggled(bool)), SLOT(setVisibility(bool)));
-    connect(m_tabBar, SIGNAL(visibilityToggled(bool)), this, SLOT(saveSettings()));
+    connect(m_tabBar, &PropTabBar::tabChanged, m_ui->stackedProperties, &QStackedWidget::setCurrentIndex);
+    connect(m_tabBar, &PropTabBar::tabChanged, this, &PropertiesWidget::saveSettings);
+    connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::setVisibility);
+    connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::saveSettings);
     // Dynamic data refresher
     m_refreshTimer = new QTimer(this);
-    connect(m_refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
+    connect(m_refreshTimer, &QTimer::timeout, this, &PropertiesWidget::loadDynamicData);
     m_refreshTimer->start(3000); // 3sec
     m_editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
+    connect(m_editHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::renameSelectedFile);
     m_editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
-    connect(m_ui->listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
+    connect(m_editHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::editWebSeed);
+    connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
     m_deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
+    connect(m_deleteHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
     m_openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_openHotkeyFile, SIGNAL(activated()), SLOT(openSelectedFile()));
+    connect(m_openHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
 }
 
 PropertiesWidget::~PropertiesWidget()
