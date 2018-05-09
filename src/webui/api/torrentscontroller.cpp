@@ -31,6 +31,7 @@
 #include <functional>
 
 #include <QBitArray>
+#include <QDebug>
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonObject>
