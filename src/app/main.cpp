@@ -329,7 +329,7 @@ void showSplashScreen()
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splash_img);
     splash->show();
-    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
+    QTimer::singleShot(1500, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
 
