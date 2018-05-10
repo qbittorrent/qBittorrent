@@ -660,7 +660,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
     // According to the qt docs we shouldn't call quit() inside a slot.
     // aboutToQuit() is never emitted if the user hits "Cancel" in
     // the above dialog.
-    QTimer::singleShot(0, qApp, SLOT(quit()));
+    QTimer::singleShot(0, qApp, &QCoreApplication::quit);
 }
 #endif
 
