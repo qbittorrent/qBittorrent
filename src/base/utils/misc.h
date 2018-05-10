@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef UTILS_MISC_H
@@ -73,7 +71,7 @@ namespace Utils
             // YobiByte,   // 1024^8
         };
 
-        QString parseHtmlLinks(const QString &raw_text);
+        QString parseHtmlLinks(const QString &rawText);
         bool isUrl(const QString &s);
 
         void shutdownComputer(const ShutdownDialogAction &action);
@@ -88,16 +86,16 @@ namespace Utils
 
         QString unitString(SizeUnit unit);
 
-        // return best user friendly storage unit (B, KiB, MiB, GiB, TiB)
+        // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
         // value must be given in bytes
-        bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
+        bool friendlyUnit(qint64 sizeInBytes, qreal &val, SizeUnit &unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
         int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
 
-        bool isPreviewable(const QString& extension);
+        bool isPreviewable(const QString &extension);
 
-        // Take a number of seconds and return an user-friendly
+        // Take a number of seconds and return a user-friendly
         // time duration like "1d 2h 10m".
         QString userFriendlyDuration(qlonglong seconds);
         QString getUserIDString();
@@ -108,8 +106,8 @@ namespace Utils
         QList<bool> boolListfromStringList(const QStringList &l);
 
 #ifndef DISABLE_GUI
-        void openPath(const QString& absolutePath);
-        void openFolderSelect(const QString& absolutePath);
+        void openPath(const QString &absolutePath);
+        void openFolderSelect(const QString &absolutePath);
 
         QPoint screenCenter(const QWidget *w);
 #endif
@@ -136,4 +134,4 @@ namespace Utils
     }
 }
 
-#endif
+#endif // UTILS_MISC_H

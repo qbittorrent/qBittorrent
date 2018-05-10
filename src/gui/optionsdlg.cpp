@@ -626,7 +626,7 @@ void OptionsDialog::saveOptions()
     session->setAltGlobalUploadSpeedLimit(alt_down_up_limit.second);
     pref->setSchedulerStartTime(m_ui->schedule_from->time());
     pref->setSchedulerEndTime(m_ui->schedule_to->time());
-    pref->setSchedulerDays(static_cast<scheduler_days>(m_ui->schedule_days->currentIndex()));
+    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->schedule_days->currentIndex()));
     session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
 
     auto proxyConfigManager  = Net::ProxyConfigurationManager::instance();

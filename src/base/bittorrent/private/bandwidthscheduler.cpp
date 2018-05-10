@@ -55,7 +55,7 @@ void BandwidthScheduler::start()
 
 bool BandwidthScheduler::isTimeForAlternative() const
 {
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
 
     QTime start = pref->getSchedulerStartTime();
     QTime end = pref->getSchedulerEndTime();

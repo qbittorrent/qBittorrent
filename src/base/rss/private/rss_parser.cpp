@@ -29,8 +29,8 @@
 
 #include "rss_parser.h"
 
-#include <QDebug>
 #include <QDateTime>
+#include <QDebug>
 #include <QGlobalStatic>
 #include <QHash>
 #include <QMetaObject>

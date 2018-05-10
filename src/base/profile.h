@@ -33,9 +33,9 @@
 
 #include <memory>
 
-#include <QString>
 #include <QScopedPointer>
 #include <QSettings>
+#include <QString>
 
 class Application;
 

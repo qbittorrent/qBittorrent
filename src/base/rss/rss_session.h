@@ -69,11 +69,11 @@ class AsyncFileStorage;
 
 namespace RSS
 {
-    class Item;
     class Feed;
     class Folder;
+    class Item;
 
-    class Session: public QObject
+    class Session : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Session)

@@ -30,13 +30,13 @@
 
 #include <libtorrent/error_code.hpp>
 
+#include <QDateTime>
 #include <QDebug>
 #include <QString>
 #include <QUrl>
-#include <QDateTime>
 
-#include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "trackerentry.h"
@@ -315,7 +315,7 @@ QVector<QByteArray> TorrentInfo::pieceHashes() const
     return hashes;
 }
 
-TorrentInfo::PieceRange TorrentInfo::filePieces(const QString& file) const
+TorrentInfo::PieceRange TorrentInfo::filePieces(const QString &file) const
 {
     if (!isValid()) // if we do not check here the debug message will be printed, which would be not correct
         return {};
@@ -353,8 +353,8 @@ void TorrentInfo::renameFile(uint index, const QString &newPath)
 
 int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const
 {
-    // the check whether the object valid is not needed here
-    // because filesCount() returns -1 in that case and the loop exits immediately
+    // the check whether the object is valid is not needed here
+    // because if filesCount() returns -1 the loop exits immediately
     for (int i = 0; i < filesCount(); ++i)
         if (fileName == filePath(i))
             return i;

@@ -1,10 +1,10 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <QObject>
+#include <QReadWriteLock>
 #include <QString>
 #include <QVector>
-#include <QReadWriteLock>
-#include <QObject>
 
 const int MAX_LOG_MESSAGES = 20000;
 
@@ -16,7 +16,7 @@ namespace Log
         NORMAL = 0x1,
         INFO = 0x2,
         WARNING = 0x4,
-        CRITICAL = 0x8 //ERROR is defined by libtorrent and results in compiler error
+        CRITICAL = 0x8 // ERROR is defined by libtorrent and results in compiler error
     };
     Q_DECLARE_FLAGS(MsgTypes, MsgType)
 
@@ -63,12 +63,12 @@ private:
     Logger();
     ~Logger();
 
-    static Logger* m_instance;
+    static Logger *m_instance;
     QVector<Log::Msg> m_messages;
     QVector<Log::Peer> m_peers;
-    mutable QReadWriteLock lock;
-    int msgCounter;
-    int peerCounter;
+    mutable QReadWriteLock m_lock;
+    int m_msgCounter;
+    int m_peerCounter;
 };
 
 // Helper function

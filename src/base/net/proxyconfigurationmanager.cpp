@@ -27,6 +27,7 @@
  */
 
 #include "proxyconfigurationmanager.h"
+
 #include "base/settingsstorage.h"
 
 #define SETTINGS_KEY(name) "Network/Proxy/" name

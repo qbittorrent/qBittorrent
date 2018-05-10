@@ -28,13 +28,13 @@
 
 #include "filesystemwatcher.h"
 
+#include <QtGlobal>
+
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>
 #endif
-
-#include <QtGlobal>
 
 #include "base/algorithm.h"
 #include "base/bittorrent/magneturi.h"

@@ -29,8 +29,8 @@
 #ifndef TORRENTFILTER_H
 #define TORRENTFILTER_H
 
-#include <QString>
 #include <QSet>
+#include <QString>
 
 typedef QSet<QString> QStringSet;
 

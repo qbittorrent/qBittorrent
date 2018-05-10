@@ -47,8 +47,8 @@
 #include "../utils/fs.h"
 #include "rss_article.h"
 #include "rss_feed.h"
-#include "rss_item.h"
 #include "rss_folder.h"
+#include "rss_item.h"
 
 const int MsecsPerMin = 60000;
 const QString ConfFolderName(QStringLiteral("rss"));

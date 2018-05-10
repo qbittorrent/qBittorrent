@@ -39,7 +39,7 @@ namespace RSS
     class Folder;
     class Session;
 
-    class Item: public QObject
+    class Item : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Item)
