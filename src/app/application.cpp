@@ -290,9 +290,21 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
     program.replace("%G", tags.join(','));
 
+#if defined(Q_OS_WIN)
+    const auto chopPathSep = [](const QString &str) -> QString
+    {
+        if (str.endsWith('\\'))
+            return str.mid(0, (str.length() -1));
+        return str;
+    };
+    program.replace("%F", chopPathSep(Utils::Fs::toNativePath(torrent->contentPath())));
+    program.replace("%R", chopPathSep(Utils::Fs::toNativePath(torrent->rootPath())));
+    program.replace("%D", chopPathSep(Utils::Fs::toNativePath(torrent->savePath())));
+#else
     program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
     program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
     program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
+#endif
     program.replace("%C", QString::number(torrent->filesCount()));
     program.replace("%Z", QString::number(torrent->totalSize()));
     program.replace("%T", torrent->currentTracker());
@@ -301,9 +313,7 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     Logger *logger = Logger::instance();
     logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
-#if defined(Q_OS_UNIX)
-    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
-#else
+#if defined(Q_OS_WIN)
     std::unique_ptr<wchar_t[]> programWchar(new wchar_t[program.length() + 1] {});
     program.toWCharArray(programWchar.get());
 
@@ -320,6 +330,8 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
 
     ::LocalFree(args);
+#else
+    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
 #endif
 }
 
