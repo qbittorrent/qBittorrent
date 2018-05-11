@@ -51,7 +51,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();" />
-            <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="mail_notification_checkbox">QBT_TR(Email notification &upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <div class="formRow">
             <label for="dest_email_txt" class="leftLabelLarge">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dest_email_txt" />
         </div>
@@ -74,7 +74,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();" />
-            <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="autorun_checkbox">QBT_TR(Run e&xternal program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <input type="text" id="autorunProg_txt" style="width: 400px;" /><br/>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
             <ul>
@@ -192,7 +192,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();" />
-            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Fi&ltering)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
         <input type="text" id="ipfilter_text" /><br/>
         <input type="checkbox" id="ipfilter_trackers_checkbox" />
@@ -248,7 +248,7 @@
 
         <fieldset class="settings">
             <legend><input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();" />
-                <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+                <label for="limit_sheduling_checkbox">QBT_TR(Schedule &the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
             <input type="text" id="schedule_from_hour" style="width: 1.5em;" />:<input type="text" id="schedule_from_min" style="width: 1.5em;" /> QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]
             <input type="text" id="schedule_to_hour" style="width: 1.5em;" />:<input type="text" id="schedule_to_min" style="width: 1.5em;" />
@@ -299,7 +299,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();" />
-            <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="queueing_checkbox">QBT_TR(&Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <div class="formRow">
             <label for="max_active_dl_value" style="margin-left: 20px;" class="leftLabelLarge">QBT_TR(Maximum active downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="max_active_dl_value" style="width: 4em;" />
@@ -354,7 +354,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();" />
-            <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="add_trackers_checkbox">QBT_TR(A&utomatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
     </fieldset>
 </div>
@@ -426,7 +426,7 @@
         <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
         <fieldset class="settings">
             <legend><input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
-                <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+                <label for="use_https_checkbox">QBT_TR(&Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             <div class="formRow">
                 <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
@@ -453,7 +453,7 @@
         </div>
         <div class="formRow">
             <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="updateBypasssAuthSettings();" />
-            <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in these IP subnets (CIDR notation))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
             <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
@@ -462,7 +462,7 @@
 
     <fieldset class="settings">
         <legend><input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />
-            <label for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <label for="use_dyndns_checkbox">QBT_TR(Upda&te my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <select id="dyndns_select">
             <option value="0">DynDNS</option>
             <option value="1">NO-IP</option>
