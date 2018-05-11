@@ -141,4 +141,5 @@ private:
         QDateTime lastModified;
     };
     QMap<QString, TranslatedFile> m_translatedFiles;
+    QString m_currentLocale;
 };

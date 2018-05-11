@@ -95,15 +95,15 @@ namespace
         return ret;
     }
 
-    void translateDocument(QString &data)
+    void translateDocument(const QString &locale, QString &data)
     {
         const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
         const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
         int i = 0;
         bool found = true;
 
-        const QString locale = Preferences::instance()->getLocale();
-        bool isTranslationNeeded = !locale.startsWith("en") || locale.startsWith("en_AU") || locale.startsWith("en_GB");
+        bool isTranslationNeeded = !locale.startsWith("en")
+            || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
         while (i < data.size() && found) {
             i = regex.indexIn(data, i);
@@ -420,7 +420,7 @@ void WebApplication::configure()
 {
     const auto pref = Preferences::instance();
 
-    m_domainList = Preferences::instance()->getServerDomains().split(';', QString::SkipEmptyParts);
+    m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
     const QString rootFolder = Utils::Fs::expandPathAbs(
@@ -428,6 +428,12 @@ void WebApplication::configure()
     if (rootFolder != m_rootFolder) {
         m_translatedFiles.clear();
         m_rootFolder = rootFolder;
+    }
+
+    const QString newLocale = pref->getLocale();
+    if (m_currentLocale != newLocale) {
+        m_currentLocale = newLocale;
+        m_translatedFiles.clear();
     }
 }
 
@@ -476,7 +482,7 @@ void WebApplication::sendFile(const QString &path)
     // Translate the file
     if (isTranslatable) {
         QString dataStr {data};
-        translateDocument(dataStr);
+        translateDocument(m_currentLocale, dataStr);
         data = dataStr.toUtf8();
 
         m_translatedFiles[path] = {data, lastModified}; // caching translated file
