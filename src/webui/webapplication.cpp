@@ -99,29 +99,28 @@ namespace
     {
         const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
         const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
-        int i = 0;
-        bool found = true;
 
-        bool isTranslationNeeded = !locale.startsWith("en")
+        const bool isTranslationNeeded = !locale.startsWith("en")
             || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
+        int i = 0;
+        bool found = true;
         while (i < data.size() && found) {
             i = regex.indexIn(data, i);
             if (i >= 0) {
-                //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
-                QByteArray word = regex.cap(1).toUtf8();
+                const QString word = regex.cap(1);
+                const QString context = regex.cap(4);
 
-                QString translation = word;
-                if (isTranslationNeeded) {
-                    QString context = regex.cap(4);
-                    translation = qApp->translate(context.toUtf8().constData(), word.constData(), nullptr, 1);
-                }
+                QString translation = isTranslationNeeded
+                    ? qApp->translate(context.toUtf8().constData(), word.toUtf8().constData(), nullptr, 1)
+                    : word;
+
                 // Remove keyboard shortcuts
                 translation.replace(mnemonic, "");
 
                 // Use HTML code for quotes to prevent issues with JS
-                translation.replace("'", "&#39;");
-                translation.replace("\"", "&#34;");
+                translation.replace('\'', "&#39;");
+                translation.replace('\"', "&#34;");
 
                 data.replace(i, regex.matchedLength(), translation);
                 i += translation.length();
