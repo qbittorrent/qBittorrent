@@ -362,7 +362,7 @@ void AdvancedSettings::loadAdvancedSettings()
     outgoing_ports_max.setValue(session->outgoingPortsMax());
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &outgoing_ports_max);
     // uTP-TCP mixed mode
-    comboUtpMixedMode.addItems({"Prefer TCP", "Peer proportional (throttles TCP)"});
+    comboUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
     comboUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
     addRow(UTP_MIX_MODE, tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP), &comboUtpMixedMode);
     // multiple connections per IP
@@ -449,11 +449,11 @@ void AdvancedSettings::loadAdvancedSettings()
     spin_tracker_port.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
     // Choking algorithm
-    comboChokingAlgorithm.addItems({"Fixed slots", "Upload rate based"});
+    comboChokingAlgorithm.addItems({tr("Fixed slots"), tr("Upload rate based")});
     comboChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
     addRow(CHOKING_ALGORITHM, tr("Upload slots behavior"), &comboChokingAlgorithm);
     // Seed choking algorithm
-    comboSeedChokingAlgorithm.addItems({"Round-robin", "Fastest upload", "Anti-leech"});
+    comboSeedChokingAlgorithm.addItems({tr("Round-robin"), tr("Fastest upload"), tr("Anti-leech")});
     comboSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
     addRow(SEED_CHOKING_ALGORITHM, tr("Upload choking algorithm"), &comboSeedChokingAlgorithm);
 
