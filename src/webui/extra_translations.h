@@ -32,7 +32,7 @@
 #include <QObject>
 
 // Additional translations for Web UI
-static const char *__TRANSLATIONS__[] = {
+const char *QBT_WEBUI_TRANSLATIONS[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Logout"),
     QT_TRANSLATE_NOOP("HttpServer", "Exit qBittorrent"),
     QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URLs or Magnet links"),
@@ -81,7 +81,7 @@ static const char *__TRANSLATIONS__[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Rename torrent")
 };
 
-static const struct { const char *source; const char *comment; } __COMMENTED_TRANSLATIONS__[] = {
+const struct { const char *source; const char *comment; } QBT_WEBUI_COMMENTED_TRANSLATIONS[] = {
     QT_TRANSLATE_NOOP3("HttpServer", "Other...", "Save Files to: Watch Folder / Default Folder / Other..."),
     QT_TRANSLATE_NOOP3("HttpServer", "Monday", "Schedule the use of alternative rate limits on ..."),
     QT_TRANSLATE_NOOP3("HttpServer", "Tuesday", "Schedule the use of alternative rate limits on ..."),
