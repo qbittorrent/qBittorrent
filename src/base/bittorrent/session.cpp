@@ -94,6 +94,7 @@
 #include "trackerentry.h"
 
 #ifdef Q_OS_WIN
+#include <wincrypt.h>
 #include <iphlpapi.h>
 #endif
 
