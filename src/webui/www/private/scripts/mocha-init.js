@@ -205,7 +205,7 @@ initializeWindows = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/toggleSequentialDownload',
+                url: 'api/v2/torrents/toggleSequentialDownload',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -219,7 +219,7 @@ initializeWindows = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/toggleFirstLastPiecePrio',
+                url: 'api/v2/torrents/toggleFirstLastPiecePrio',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
