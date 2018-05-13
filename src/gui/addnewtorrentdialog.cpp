@@ -70,6 +70,7 @@ namespace
     const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
     const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
     const char KEY_SAVEPATHHISTORYLENGTH[] = SETTINGS_KEY("SavePathHistoryLength");
+    const QString KEY_REMEMBERLASTSAVEPATH = SETTINGS_KEY("RememberLastSavePath");
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -114,7 +115,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->comboTTM->blockSignals(false);
     populateSavePathComboBox();
     connect(m_ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
-    m_ui->defaultSavePathCheckBox->setVisible(false); // Default path is selected by default
+
+    const bool rememberLastSavePath = settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false).toBool();
+    m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
 
     if (m_torrentParams.createSubfolder == TriStateBool::True)
         m_ui->createSubfolderCheckBox->setChecked(true);
@@ -453,9 +456,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
 void AddNewTorrentDialog::onSavePathChanged(const QString &newPath)
 {
-    // Toggle default save path setting checkbox visibility
-    m_ui->defaultSavePathCheckBox->setChecked(false);
-    m_ui->defaultSavePathCheckBox->setVisible(QDir(newPath) != QDir(BitTorrent::Session::instance()->defaultSavePath()));
+    Q_UNUSED(newPath);
     // Remember index
     m_oldIndex = m_ui->savePath->currentIndex();
     updateDiskSpaceLabel();
@@ -586,18 +587,21 @@ void AddNewTorrentDialog::renameSelectedFile()
 
 void AddNewTorrentDialog::populateSavePathComboBox()
 {
-    QString defSavePath = BitTorrent::Session::instance()->defaultSavePath();
-
     m_ui->savePath->clear();
-    m_ui->savePath->addItem(defSavePath);
-    QDir defaultSaveDir(defSavePath);
+
     // Load save path history
-    foreach (const QString &savePath, settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList())
-        if (QDir(savePath) != defaultSaveDir)
-            m_ui->savePath->addItem(savePath);
+    const QStringList savePathHistory {settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList()};
+    for (const QString &savePath : savePathHistory)
+        m_ui->savePath->addItem(savePath);
+
+    const bool rememberLastSavePath {settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false).toBool()};
+    const QString defSavePath {BitTorrent::Session::instance()->defaultSavePath()};
 
     if (!m_torrentParams.savePath.isEmpty())
         setSavePath(m_torrentParams.savePath);
+    else if (!rememberLastSavePath)
+        setSavePath(defSavePath);
+    // else last used save path will be selected since it is the first in the list
 }
 
 void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
@@ -650,9 +654,10 @@ void AddNewTorrentDialog::accept()
 
     // Category
     m_torrentParams.category = m_ui->categoryComboBox->currentText();
-
     if (m_ui->defaultCategoryCheckbox->isChecked())
         settings()->storeValue(KEY_DEFAULTCATEGORY, m_torrentParams.category);
+
+    settings()->storeValue(KEY_REMEMBERLASTSAVEPATH, m_ui->checkBoxRememberLastSavePath->isChecked());
 
     // Save file priorities
     if (m_contentModel)
@@ -666,8 +671,6 @@ void AddNewTorrentDialog::accept()
         m_torrentParams.useAutoTMM = TriStateBool::False;
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
-        if (m_ui->defaultSavePathCheckBox->isChecked())
-            BitTorrent::Session::instance()->setDefaultSavePath(savePath);
     }
     else {
         m_torrentParams.useAutoTMM = TriStateBool::True;
@@ -807,7 +810,6 @@ void AddNewTorrentDialog::TMMChanged(int index)
         m_ui->savePath->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->addItem(savePath);
-        m_ui->defaultSavePathCheckBox->setVisible(false);
         m_ui->adv_button->setChecked(true);
         m_ui->adv_button->setEnabled(false);
         showAdvancedSettings(true);
