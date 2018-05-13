@@ -814,6 +814,7 @@ var TorrentsTable = new Class({
                 case "checkingUP":
                 case "queuedForChecking":
                 case "checkingResumeData":
+                case "moving":
                     state = "checking";
                     break;
                 case "unknown":
@@ -886,6 +887,9 @@ var TorrentsTable = new Class({
                     break;
                 case "pausedUP":
                     status = "Completed";
+                    break;
+                case "moving":
+                    status = "Moving";
                     break;
                 case "missingFiles":
                     status = "Missing Files";
