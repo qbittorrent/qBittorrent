@@ -145,6 +145,15 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     // in versions < 3.3 we have -1 for seeding torrents, so we convert it to 0
     fastNew["qBt-queuePosition"] = (queuePosition >= 0 ? queuePosition : 0);
 
+    if (v3_3) {
+        QFileInfo oldFile(filepath);
+        QFileInfo newFile(outFilePath);
+        if (newFile.exists()
+            && (oldFile.lastModified() < newFile.lastModified())) {
+            Utils::Fs::forceRemove(filepath);
+            return true;
+        }
+    }
     QFile file2(outFilePath);
     QVector<char> out;
     libtorrent::bencode(std::back_inserter(out), fastNew);
