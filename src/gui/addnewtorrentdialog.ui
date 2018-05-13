@@ -59,12 +59,12 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-         <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
+       <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
       </item>
       <item>
-       <widget class="QCheckBox" name="defaultSavePathCheckBox">
+       <widget class="QCheckBox" name="checkBoxRememberLastSavePath">
         <property name="text">
-         <string>Set as default save path</string>
+         <string>Remember last used save path</string>
         </property>
        </widget>
       </item>
@@ -393,7 +393,7 @@
  </customwidgets>
  <tabstops>
   <tabstop>savePath</tabstop>
-  <tabstop>defaultSavePathCheckBox</tabstop>
+  <tabstop>checkBoxRememberLastSavePath</tabstop> 
   <tabstop>never_show_cb</tabstop>
   <tabstop>adv_button</tabstop>
   <tabstop>startTorrentCheckBox</tabstop>
