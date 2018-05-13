@@ -114,12 +114,27 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     bool v3_3 = false;
     int queuePosition = 0;
     QString outFilePath = filepath;
-    QRegExp rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(\\d+)$"));
+    QRegExp rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(.+)$"));
     if (rx.indexIn(filepath) != -1) {
-        // old v3.3.x format
+        // Old v3.3.x format had a number at the end indicating the queue position.
+        // The naming scheme was '<infohash>.fastresume.<queueposition>'.
+        // However, QSaveFile, which uses QTemporaryFile internally, might leave
+        // non-commited files behind eg after a crash. These files have the
+        // naming scheme '<infohash>.fastresume.XXXXXX' where each X is a random
+        // character. So we detect if the last part is present. Then check if it
+        // is 6 chars long. If all the 6 chars are digits we assume it is an old
+        // v3.3.x format. Otherwise it is considered a non-commited fastresume
+        // and is deleted, because it may be a corrupted/incomplete fastresume.
+        // NOTE: When the upgrade code is removed, we must continue to perform
+        // cleanup of non-commited QSaveFile/QTemporaryFile fastresumes
         queuePosition = rx.cap(2).toInt();
+        if ((rx.cap(2).size() == 6) && (queuePosition <= 99999)) {
+            Utils::Fs::forceRemove(filepath);
+            return true;
+        }
+
         v3_3 = true;
-        outFilePath.replace(QRegExp("\\.\\d+$"), "");
+        outFilePath.replace(QRegExp("\\.fastresume\\..+$"), ".fastresume");
     }
     else {
         queuePosition = fastOld.dict_find_int_value("qBt-queuePosition", 0);
@@ -130,6 +145,15 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     // in versions < 3.3 we have -1 for seeding torrents, so we convert it to 0
     fastNew["qBt-queuePosition"] = (queuePosition >= 0 ? queuePosition : 0);
 
+    if (v3_3) {
+        QFileInfo oldFile(filepath);
+        QFileInfo newFile(outFilePath);
+        if (newFile.exists()
+            && (oldFile.lastModified() < newFile.lastModified())) {
+            Utils::Fs::forceRemove(filepath);
+            return true;
+        }
+    }
     QFile file2(outFilePath);
     QVector<char> out;
     libtorrent::bencode(std::back_inserter(out), fastNew);
