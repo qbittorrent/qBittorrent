@@ -12,7 +12,7 @@ exists($$OUT_PWD/../conf.pri) {
 # COMPILATION SPECIFIC
 !nogui:dbus: QT += dbus
 
-QMAKE_CXXFLAGS += -Wformat -Wformat-security
+QMAKE_CXXFLAGS += -Wall -Wextra -Wpedantic -Wformat-security
 !haiku: QMAKE_LFLAGS_APP += -rdynamic
 
 # Man page
