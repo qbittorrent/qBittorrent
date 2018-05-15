@@ -36,15 +36,29 @@ public:
     static const TriStateBool False;
     static const TriStateBool True;
 
-    TriStateBool() = default;
-    TriStateBool(const TriStateBool &other) = default;
+    constexpr TriStateBool() = default;
+    constexpr TriStateBool(const TriStateBool &other) = default;
+    explicit constexpr TriStateBool(int value)
+        : m_value(value < 0 ? -1 : (value > 0 ? 1 : 0))
+    {
+    }
 
-    explicit TriStateBool(int value);
-    explicit operator int() const;
+    explicit constexpr operator int() const
+    {
+        return m_value;
+    }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;
-    bool operator==(const TriStateBool &other) const;
-    bool operator!=(const TriStateBool &other) const;
+    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++14
+
+    constexpr bool operator==(const TriStateBool &other) const
+    {
+        return (m_value == other.m_value);
+    }
+
+    constexpr bool operator!=(const TriStateBool &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
     signed char m_value = -1; // Undefined by default
