@@ -65,6 +65,7 @@
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
+#include <QRegExp>
 #endif
 #endif
 
@@ -625,8 +626,16 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
     if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
         proc.startDetached("dolphin", QStringList() << "--select" << Utils::Fs::toNativePath(path));
     else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-             || (output == "nautilus-folder-handler.desktop"))
-        proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+             || (output == "nautilus-folder-handler.desktop")) {
+        proc.start("nautilus", {"--version"});
+        proc.waitForFinished();
+        QString nautilusVer = proc.readLine().simplified();
+        bool ok;
+        if (nautilusVer.remove(QRegExp("[^0-9]")).toInt(&ok, 10) >= 3280))
+            proc.startDetached("nautilus", QStringList() << Utils::Fs::toNativePath(path));
+        else
+            proc.startDetached("nautilus", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
+    }
     else if (output == "nemo.desktop")
         proc.startDetached("nemo", QStringList() << "--no-desktop" << Utils::Fs::toNativePath(path));
     else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
