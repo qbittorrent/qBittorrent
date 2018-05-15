@@ -494,10 +494,15 @@ void AppController::setPreferencesAction()
     // Save preferences
     pref->apply();
 
-    RSS::Session::instance()->setRefreshInterval(m["RSSRefreshInterval"].toUInt());
-    RSS::Session::instance()->setMaxArticlesPerFeed(m["RSSMaxArticlesPerFeed"].toInt());
-    RSS::Session::instance()->setProcessingEnabled(m["RSSProcessingEnabled"].toBool());
-    RSS::AutoDownloader::instance()->setProcessingEnabled(m["RSSAutoDownloadingEnabled"].toBool());
+    QVariantMap::ConstIterator it;
+    if ((it = m.find(QLatin1String("RSSRefreshInterval"))) != m.constEnd())
+        RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
+    if ((it = m.find(QLatin1String("RSSMaxArticlesPerFeed"))) != m.constEnd())
+        RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
+    if ((it = m.find(QLatin1String("RSSProcessingEnabled"))) != m.constEnd())
+        RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("RSSAutoDownloadingEnabled"))) != m.constEnd())
+        RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
 }
 
 void AppController::defaultSavePathAction()
