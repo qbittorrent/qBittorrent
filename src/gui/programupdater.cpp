@@ -41,14 +41,14 @@
 
 namespace
 {
-    const QString RSS_URL("https://www.fosshub.com/software/feedqBittorent");
+    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/software/feedqBittorent")};
 
 #ifdef Q_OS_MAC
-    const QString OS_TYPE("Mac OS X");
+    const QString OS_TYPE {QStringLiteral("Mac OS X")};
 #elif defined(Q_OS_WIN) && (defined(__x86_64__) || defined(_M_X64))
-    const QString OS_TYPE("Windows x64");
+    const QString OS_TYPE {QStringLiteral("Windows x64")};
 #else
-    const QString OS_TYPE("Windows");
+    const QString OS_TYPE {QStringLiteral("Windows")};
 #endif
 
     QString getStringValue(QXmlStreamReader &xml);

@@ -61,7 +61,7 @@
 
 namespace
 {
-#define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
+#define SETTINGS_KEY(name) QStringLiteral("AddNewTorrentDialog/" name)
     const QString KEY_ENABLED = SETTINGS_KEY("Enabled");
     const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
     const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
@@ -69,7 +69,7 @@ namespace
     const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
     const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
     const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
-    const char KEY_SAVEPATHHISTORYLENGTH[] = SETTINGS_KEY("SavePathHistoryLength");
+    const QString KEY_SAVEPATHHISTORYLENGTH = SETTINGS_KEY("SavePathHistoryLength");
     const QString KEY_REMEMBERLASTSAVEPATH = SETTINGS_KEY("RememberLastSavePath");
 
     // just a shortcut
@@ -204,7 +204,7 @@ void AddNewTorrentDialog::setSavePathHistoryLength(int value)
 CachedSettingValue<int> &AddNewTorrentDialog::savePathHistoryLengthSetting()
 {
     const int defaultHistoryLength = 8;
-    static CachedSettingValue<int> setting(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength,
+    static CachedSettingValue<int> setting(KEY_SAVEPATHHISTORYLENGTH.toUtf8().constData(), defaultHistoryLength,
         [](int v)
         {
             return std::max(minPathHistoryLength, std::min(maxPathHistoryLength, v));

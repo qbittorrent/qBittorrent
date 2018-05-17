@@ -68,12 +68,12 @@
 
 constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 
-const QString PATH_PREFIX_IMAGES {"/images/"};
-const QString PATH_PREFIX_THEME {"/theme/"};
-const QString WWW_FOLDER {":/www"};
-const QString PUBLIC_FOLDER {"/public"};
-const QString PRIVATE_FOLDER {"/private"};
-const QString MAX_AGE_MONTH {"public, max-age=2592000"};
+const QString PATH_PREFIX_IMAGES {QStringLiteral("/images/")};
+const QString PATH_PREFIX_THEME {QStringLiteral("/theme/")};
+const QString WWW_FOLDER {QStringLiteral(":/www")};
+const QString PUBLIC_FOLDER {QStringLiteral("/public")};
+const QString PRIVATE_FOLDER {QStringLiteral("/private")};
+const QString MAX_AGE_MONTH {QStringLiteral("public, max-age=2592000")};
 
 namespace
 {

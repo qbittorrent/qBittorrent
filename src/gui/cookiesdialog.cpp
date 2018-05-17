@@ -37,7 +37,7 @@
 #include "ui_cookiesdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "CookiesDialog/" name
+#define SETTINGS_KEY(name) QStringLiteral("CookiesDialog/" name)
 const QString KEY_SIZE = SETTINGS_KEY("Size");
 const QString KEY_COOKIESVIEWSTATE = SETTINGS_KEY("CookiesViewState");
 
