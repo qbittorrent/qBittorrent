@@ -93,7 +93,7 @@ namespace
 #define SETTINGS_KEY(name) "Application/" name
 
     // FileLogger properties keys
-#define FILELOGGER_SETTINGS_KEY(name) SETTINGS_KEY("FileLogger/") name
+#define FILELOGGER_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("FileLogger/") name)
     const QString KEY_FILELOGGER_ENABLED = FILELOGGER_SETTINGS_KEY("Enabled");
     const QString KEY_FILELOGGER_PATH = FILELOGGER_SETTINGS_KEY("Path");
     const QString KEY_FILELOGGER_BACKUP = FILELOGGER_SETTINGS_KEY("Backup");
