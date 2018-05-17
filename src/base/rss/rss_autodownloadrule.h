@@ -95,7 +95,11 @@ namespace RSS
         static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);
 
     private:
-        bool matches(const QString &articleTitle, const QString &expression) const;
+        bool matchesMustContainExpression(const QString &articleTitle) const;
+        bool matchesMustNotContainExpression(const QString &articleTitle) const;
+        bool matchesEpisodeFilterExpression(const QString &articleTitle) const;
+        bool matchesSmartEpisodeFilter(const QString &articleTitle) const;
+        bool matchesExpression(const QString &articleTitle, const QString &expression) const;
         QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
 
         QSharedDataPointer<AutoDownloadRuleData> m_dataPtr;
