@@ -36,7 +36,7 @@
 
 using namespace RSS;
 
-const QString Item::PathSeparator("\\");
+const QChar Item::PathSeparator('\\');
 
 Item::Item(const QString &path)
     : m_path(path)
