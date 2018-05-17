@@ -213,10 +213,10 @@ void AppController::preferencesAction()
     data["dyndns_domain"] = pref->getDynDomainName();
 
     // RSS settings
-    data["RSSRefreshInterval"] = RSS::Session::instance()->refreshInterval();
-    data["RSSMaxArticlesPerFeed"] = RSS::Session::instance()->maxArticlesPerFeed();
-    data["RSSProcessingEnabled"] = RSS::Session::instance()->isProcessingEnabled();
-    data["RSSAutoDownloadingEnabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
+    data["rss_refresh_interval"] = RSS::Session::instance()->refreshInterval();
+    data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
+    data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
+    data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
 
     setResult(QJsonObject::fromVariantMap(data));
 }
@@ -494,10 +494,15 @@ void AppController::setPreferencesAction()
     // Save preferences
     pref->apply();
 
-    RSS::Session::instance()->setRefreshInterval(m["RSSRefreshInterval"].toUInt());
-    RSS::Session::instance()->setMaxArticlesPerFeed(m["RSSMaxArticlesPerFeed"].toInt());
-    RSS::Session::instance()->setProcessingEnabled(m["RSSProcessingEnabled"].toBool());
-    RSS::AutoDownloader::instance()->setProcessingEnabled(m["RSSAutoDownloadingEnabled"].toBool());
+    QVariantMap::ConstIterator it;
+    if ((it = m.find(QLatin1String("rss_refresh_interval"))) != m.constEnd())
+        RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
+    if ((it = m.find(QLatin1String("rss_max_articles_per_feed"))) != m.constEnd())
+        RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
+    if ((it = m.find(QLatin1String("rss_processing_enabled"))) != m.constEnd())
+        RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("rss_auto_downloading_enabled"))) != m.constEnd())
+        RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
 }
 
 void AppController::defaultSavePathAction()
