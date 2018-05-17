@@ -291,7 +291,7 @@ bool RequestParser::parseFormData(const QByteArray &data)
     const QLatin1String name("name");
 
     if (headersMap.contains(filename)) {
-        m_request.files.append({filename, headersMap[HEADER_CONTENT_TYPE], payload});
+        m_request.files.append({headersMap[filename], headersMap[HEADER_CONTENT_TYPE], payload});
     }
     else if (headersMap.contains(name)) {
         m_request.posts[headersMap[name]] = payload;
