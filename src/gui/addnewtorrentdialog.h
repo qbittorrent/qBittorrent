@@ -51,15 +51,14 @@ namespace Ui
 class PropListDelegate;
 class TorrentContentFilterModel;
 class TorrentFileGuard;
-template <typename T> class CachedSettingValue;
 
 class AddNewTorrentDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    static constexpr int minPathHistoryLength = 0;
-    static constexpr int maxPathHistoryLength = 99;
+    static const int minPathHistoryLength = 0;
+    static const int maxPathHistoryLength = 99;
 
     ~AddNewTorrentDialog();
 
@@ -103,7 +102,6 @@ private:
     void setupTreeview();
     void setCommentText(const QString &str) const;
     void setSavePath(const QString &newPath);
-    static CachedSettingValue<int> &savePathHistoryLengthSetting();
 
     void showEvent(QShowEvent *event) override;
 
