@@ -35,11 +35,13 @@
 #include <QPushButton>
 #include <QString>
 #include <QUrl>
+#include <QVector>
 
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/global.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -399,23 +401,22 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
 
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
-    QDir selectedSavePath(m_ui->savePath->selectedPath());
     // Get current history
     QStringList history = settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList();
-    if (history.size() > savePathHistoryLength())
-        history = history.mid(0, savePathHistoryLength());
-    QList<QDir> historyDirs;
-    foreach (const QString dir, history)
-        historyDirs << QDir(dir);
-    if (!historyDirs.contains(selectedSavePath)) {
-        // Add save path to history
+    QVector<QDir> historyDirs;
+    for (const QString &path : qAsConst(history))
+        historyDirs << QDir {path};
+
+    const QDir selectedSavePath {m_ui->savePath->selectedPath()};
+    const int selectedSavePathIndex = historyDirs.indexOf(selectedSavePath);
+    if (selectedSavePathIndex > 0)
+        history.removeAt(selectedSavePathIndex);
+    if (selectedSavePathIndex != 0)
+        // Add last used save path to the front of history
         history.push_front(selectedSavePath.absolutePath());
-        // Limit list size
-        if (history.size() > savePathHistoryLength())
-            history.pop_back();
-        // Save history
-        settings()->storeValue(KEY_SAVEPATHHISTORY, history);
-    }
+
+    // Save history
+    settings()->storeValue(KEY_SAVEPATHHISTORY, QStringList {history.mid(0, savePathHistoryLength())});
 }
 
 // savePath is a folder, not an absolute file path
