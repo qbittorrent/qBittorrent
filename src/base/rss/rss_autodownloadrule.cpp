@@ -351,8 +351,15 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) co
     return true;
 }
 
-bool AutoDownloadRule::matches(const QString &articleTitle) const
+bool AutoDownloadRule::matches(const QVariantHash &articleData) const
 {
+    const QDateTime articleDate {articleData[Article::KeyDate].toDateTime()};
+    if (ignoreDays() > 0) {
+        if (lastMatch().isValid() && (articleDate < lastMatch().addDays(ignoreDays())))
+            return false;
+    }
+
+    const QString articleTitle {articleData[Article::KeyTitle].toString()};
     if (!matchesMustContainExpression(articleTitle))
         return false;
     if (!matchesMustNotContainExpression(articleTitle))
@@ -363,6 +370,20 @@ bool AutoDownloadRule::matches(const QString &articleTitle) const
         return false;
 
     return true;
+}
+
+bool AutoDownloadRule::accepts(const QVariantHash &articleData)
+{
+    if (!matches(articleData))
+        return false;
+
+    setLastMatch(articleData[Article::KeyDate].toDateTime());
+
+    if (!m_dataPtr->lastComputedEpisode.isEmpty()) {
+        // TODO: probably need to add a marker for PROPER/REPACK to avoid duplicate downloads
+        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisode);
+        m_dataPtr->lastComputedEpisode.clear();
+    }
 }
 
 AutoDownloadRule &AutoDownloadRule::operator=(const AutoDownloadRule &other)
@@ -619,15 +640,6 @@ QStringList AutoDownloadRule::previouslyMatchedEpisodes() const
 void AutoDownloadRule::setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes)
 {
     m_dataPtr->previouslyMatchedEpisodes = previouslyMatchedEpisodes;
-}
-
-void AutoDownloadRule::appendLastComputedEpisode()
-{
-    if (!m_dataPtr->lastComputedEpisode.isEmpty()) {
-        // TODO: probably need to add a marker for PROPER/REPACK to avoid duplicate downloads
-        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisode);
-        m_dataPtr->lastComputedEpisode.clear();
-    }
 }
 
 QString AutoDownloadRule::episodeFilter() const

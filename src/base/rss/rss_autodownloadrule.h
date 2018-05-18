@@ -71,7 +71,6 @@ namespace RSS
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
 
-        void appendLastComputedEpisode();
         QStringList previouslyMatchedEpisodes() const;
         void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
@@ -82,7 +81,8 @@ namespace RSS
         QString assignedCategory() const;
         void setCategory(const QString &category);
 
-        bool matches(const QString &articleTitle) const;
+        bool matches(const QVariantHash &articleData) const;
+        bool accepts(const QVariantHash &articleData);
 
         AutoDownloadRule &operator=(const AutoDownloadRule &other);
         bool operator==(const AutoDownloadRule &other) const;
