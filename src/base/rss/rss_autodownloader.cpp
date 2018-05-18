@@ -365,19 +365,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
     for (AutoDownloadRule &rule: m_rules) {
         if (!rule.isEnabled()) continue;
         if (!rule.feedURLs().contains(job->feedURL)) continue;
-        if (!rule.matches(job->articleData.value(Article::KeyTitle).toString())) continue;
-
-        auto articleDate = job->articleData.value(Article::KeyDate).toDateTime();
-        // if rule is in ignoring state do nothing with matched torrent
-        if (rule.ignoreDays() > 0) {
-            if (rule.lastMatch().isValid()) {
-                if (articleDate < rule.lastMatch().addDays(rule.ignoreDays()))
-                    return;
-            }
-        }
-
-        rule.setLastMatch(articleDate);
-        rule.appendLastComputedEpisode();
+        if (!rule.accepts(job->articleData)) continue;
 
         m_dirty = true;
         storeDeferred();
