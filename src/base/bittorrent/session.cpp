@@ -2149,12 +2149,26 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
-        if (!addData.resumed && !addData.hasRootFolder)
-            torrentInfo.stripRootFolder();
+        if (!addData.resumed) {
+            if (!addData.hasRootFolder)
+                torrentInfo.stripRootFolder();
 
-        // Metadata
-        if (!addData.resumed && !addData.hasSeedStatus)
-            findIncompleteFiles(torrentInfo, savePath);
+            // Metadata
+            if (!addData.hasSeedStatus)
+                findIncompleteFiles(torrentInfo, savePath);
+
+            // if torrent name wasn't explicitly set we handle the case of
+            // initial renaming of torrent content and rename torrent accordingly
+            if (addData.name.isEmpty()) {
+                QString contentName = torrentInfo.rootFolder();
+                if (contentName.isEmpty() && (torrentInfo.filesCount() == 1))
+                    contentName = torrentInfo.fileName(0);
+
+                if (!contentName.isEmpty() && (contentName != torrentInfo.name()))
+                    addData.name = contentName;
+            }
+        }
+
         p.ti = torrentInfo.nativeInfo();
         hash = torrentInfo.hash();
     }
