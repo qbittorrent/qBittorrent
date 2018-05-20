@@ -370,10 +370,15 @@ Session::Session(QObject *parent)
     , m_numResumeData(0)
     , m_extraLimit(0)
     , m_useProxy(false)
+    , m_recentErroredTorrentsTimer(new QTimer(this))
 {
     Logger *const logger = Logger::instance();
 
     initResumeFolder();
+
+    m_recentErroredTorrentsTimer->setSingleShot(true);
+    m_recentErroredTorrentsTimer->setInterval(1000);
+    connect(m_recentErroredTorrentsTimer, &QTimer::timeout, this, [this]() { m_recentErroredTorrents.clear(); });
 
     m_seedingLimitTimer = new QTimer(this);
     m_seedingLimitTimer->setInterval(10000);
@@ -4184,10 +4189,15 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     // NOTE: Check this function!
     TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
     if (torrent) {
-        QString msg = QString::fromStdString(p->message());
-        Logger::instance()->addMessage(tr("An I/O error occurred, '%1' paused. %2")
-                           .arg(torrent->name(), msg));
-        emit fullDiskError(torrent, msg);
+        const InfoHash hash = torrent->hash();
+        if (!m_recentErroredTorrents.contains(hash)) {
+            m_recentErroredTorrents.insert(hash);
+            const QString msg = QString::fromStdString(p->message());
+            LogMsg(tr("An I/O error occurred, '%1' paused. %2").arg(torrent->name(), msg));
+            emit fullDiskError(torrent, msg);
+        }
+
+        m_recentErroredTorrentsTimer->start();
     }
 }
 
