@@ -3176,6 +3176,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkCSRFProtection">
+                 <property name="text">
+                  <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
                   <string>Upda&amp;te my dynamic domain name</string>

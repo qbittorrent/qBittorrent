@@ -379,6 +379,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, m_ui->IPSubnetWhitelistButton, &QPushButton::setEnabled);
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->domainNameTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -697,6 +698,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
         // Security
         pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
+        pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
         pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
@@ -1101,6 +1103,7 @@ void OptionsDialog::loadOptions()
 
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());
+    m_ui->checkCSRFProtection->setChecked(pref->isWebUiCSRFProtectionEnabled());
 
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
     m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
