@@ -38,6 +38,19 @@
 
 using namespace RSS;
 
+namespace
+{
+    QVariantHash articleDataFromJSON(const QJsonObject &jsonObj)
+    {
+        auto varHash = jsonObj.toVariantHash();
+        // JSON object store DateTime as string so we need to convert it
+        varHash[Article::KeyDate] =
+                QDateTime::fromString(jsonObj.value(Article::KeyDate).toString(), Qt::RFC2822Date);
+
+        return varHash;
+    }
+}
+
 const QString Article::KeyId(QStringLiteral("id"));
 const QString Article::KeyDate(QStringLiteral("date"));
 const QString Article::KeyTitle(QStringLiteral("title"));
@@ -60,6 +73,9 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
     , m_isRead(varHash.value(KeyIsRead, false).toBool())
     , m_data(varHash)
 {
+    if (!m_date.isValid())
+        throw std::runtime_error("Bad RSS Article data");
+
     // If item does not have a guid, fall back to some other identifier
     if (m_guid.isEmpty())
         m_guid = varHash.value(KeyTorrentURL).toString();
@@ -77,11 +93,8 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
 }
 
 Article::Article(Feed *feed, const QJsonObject &jsonObj)
-    : Article(feed, jsonObj.toVariantHash())
+    : Article(feed, articleDataFromJSON(jsonObj))
 {
-    // JSON object store DateTime as string so we need to convert it
-    m_date = QDateTime::fromString(jsonObj.value(KeyDate).toString(), Qt::RFC2822Date);
-    m_data[KeyDate] = m_date;
 }
 
 QString Article::guid() const

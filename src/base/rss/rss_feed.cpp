@@ -212,7 +212,13 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
         m_lastBuildDate = result.lastBuildDate;
 
         int newArticlesCount = 0;
-        for (const QVariantHash &varHash : result.articles) {
+        const QDateTime now {QDateTime::currentDateTime()};
+        for (QVariantHash varHash : result.articles) {
+            // if article has no publication date we use feed update time as a fallback
+            QVariant &articleDate = varHash[Article::KeyDate];
+            if (!articleDate.toDateTime().isValid())
+                articleDate = now;
+
             try {
                 auto article = new Article(this, varHash);
                 if (addArticle(article))
