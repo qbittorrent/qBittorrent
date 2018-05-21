@@ -458,6 +458,11 @@
                 <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
             </div>
         </fieldset>
+
+        <div class="formRow">
+            <input type="checkbox" id="clickjacking_protection_checkbox" />
+            <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1022,6 +1027,9 @@
                     $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
                     updateBypasssAuthSettings();
 
+                    // Security
+                    $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
+
                     // Update my dynamic domain name
                     $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
                     $('dyndns_select').setProperty('value', pref.dyndns_service);
@@ -1312,6 +1320,8 @@
         settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+
+        settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
 
         // Update my dynamic domain name
         settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));

@@ -142,4 +142,7 @@ private:
     };
     QMap<QString, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
+
+    // security related
+    bool m_isClickjackingProtectionEnabled;
 };
