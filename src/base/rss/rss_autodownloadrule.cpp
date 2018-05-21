@@ -384,6 +384,8 @@ bool AutoDownloadRule::accepts(const QVariantHash &articleData)
         m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisode);
         m_dataPtr->lastComputedEpisode.clear();
     }
+
+    return true;
 }
 
 AutoDownloadRule &AutoDownloadRule::operator=(const AutoDownloadRule &other)
