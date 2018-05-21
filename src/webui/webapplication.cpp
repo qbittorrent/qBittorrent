@@ -430,6 +430,7 @@ void WebApplication::configure()
     }
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -514,9 +515,11 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     clear();
 
     try {
-        // block cross-site requests
-        if (isCrossSiteRequest(m_request) || !validateHostHeader(m_domainList))
+        // block suspicious requests
+        if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
+            || !validateHostHeader(m_domainList)) {
             throw UnauthorizedHTTPError();
+        }
 
         sessionInitialize();
         doProcessRequest();

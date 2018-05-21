@@ -197,6 +197,8 @@ public:
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
     void setWebUiClickjackingProtectionEnabled(bool enabled);
+    bool isWebUiCSRFProtectionEnabled() const;
+    void setWebUiCSRFProtectionEnabled(bool enabled);
 
     // HTTPS
     bool isWebUiHttpsEnabled() const;

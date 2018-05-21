@@ -145,4 +145,5 @@ private:
 
     // security related
     bool m_isClickjackingProtectionEnabled;
+    bool m_isCSRFProtectionEnabled;
 };

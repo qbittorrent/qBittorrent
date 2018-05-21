@@ -586,6 +586,16 @@ void Preferences::setWebUiClickjackingProtectionEnabled(bool enabled)
     setValue("Preferences/WebUI/ClickjackingProtection", enabled);
 }
 
+bool Preferences::isWebUiCSRFProtectionEnabled() const
+{
+    return value("Preferences/WebUI/CSRFProtection", true).toBool();
+}
+
+void Preferences::setWebUiCSRFProtectionEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/CSRFProtection", enabled);
+}
+
 bool Preferences::isWebUiHttpsEnabled() const
 {
     return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();
