@@ -166,7 +166,7 @@ bool Session::addFeed(const QString &url, const QString &path, QString *error)
     if (!destFolder)
         return false;
 
-    addItem(new Feed(url, path, this), destFolder);
+    addItem(new Feed(generateUID(), url, path, this), destFolder);
     store();
     if (m_processingEnabled)
         feedByURL(url)->refresh();
@@ -282,36 +282,61 @@ void Session::load()
 
 void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
+    bool updated = false;
     foreach (const QString &key, jsonObj.keys()) {
-        QJsonValue val = jsonObj[key];
+        const QJsonValue val {jsonObj[key]};
         if (val.isString()) {
+            // previous format (reduced form) doesn't contain UID
             QString url = val.toString();
             if (url.isEmpty())
                 url = key;
-            addFeedToFolder(url, key, folder);
+            addFeedToFolder(generateUID(), url, key, folder);
+            updated = true;
         }
-        else if (!val.isObject()) {
-            Logger::instance()->addMessage(
-                        QString("Couldn't load RSS Item '%1'. Invalid data format.")
-                        .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
-        }
-        else {
-            QJsonObject valObj = val.toObject();
+        else if (val.isObject()) {
+            const QJsonObject valObj {val.toObject()};
             if (valObj.contains("url")) {
                 if (!valObj["url"].isString()) {
-                    Logger::instance()->addMessage(
-                                QString("Couldn't load RSS Feed '%1'. URL is required.")
-                                .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                    LogMsg(QString("Couldn't load RSS Feed '%1'. URL is required.")
+                           .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                     continue;
                 }
 
-                addFeedToFolder(valObj["url"].toString(), key, folder);
+                QUuid uid;
+                if (valObj.contains("uid")) {
+                    uid = QUuid {valObj["uid"].toString()};
+                    if (uid.isNull()) {
+                        LogMsg(QString("Couldn't load RSS Feed '%1'. UID is invalid.")
+                               .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                        continue;
+                    }
+
+                    if (m_feedsByUID.contains(uid)) {
+                        LogMsg(QString("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
+                               .arg(uid.toString()), Log::WARNING);
+                        continue;
+                    }
+                }
+                else {
+                    // previous format doesn't contain UID
+                    uid = generateUID();
+                    updated = true;
+                }
+
+                addFeedToFolder(uid, valObj["url"].toString(), key, folder);
             }
             else {
                 loadFolder(valObj, addSubfolder(key, folder));
             }
         }
+        else {
+            LogMsg(QString("Couldn't load RSS Item '%1'. Invalid data format.")
+                   .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+        }
     }
+
+    if (updated)
+        store(); // convert to updated format
 }
 
 void Session::loadLegacy()
@@ -324,7 +349,7 @@ void Session::loadLegacy()
     }
 
     uint i = 0;
-    foreach (QString legacyPath, legacyFeedPaths) {
+    for (QString legacyPath : legacyFeedPaths) {
         if (Item::PathSeparator == QString(legacyPath[0]))
             legacyPath.remove(0, 1);
         const QString parentFolderPath = Item::parentPath(legacyPath);
@@ -380,9 +405,9 @@ Folder *Session::addSubfolder(const QString &name, Folder *parentFolder)
     return folder;
 }
 
-Feed *Session::addFeedToFolder(const QString &url, const QString &name, Folder *parentFolder)
+Feed *Session::addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder)
 {
-    auto feed = new Feed(url, Item::joinPath(parentFolder->path(), name), this);
+    auto feed = new Feed(uid, url, Item::joinPath(parentFolder->path(), name), this);
     addItem(feed, parentFolder);
     return feed;
 }
@@ -393,6 +418,7 @@ void Session::addItem(Item *item, Folder *destFolder)
         connect(feed, &Feed::titleChanged, this, &Session::handleFeedTitleChanged);
         connect(feed, &Feed::iconLoaded, this, &Session::feedIconLoaded);
         connect(feed, &Feed::stateChanged, this, &Session::feedStateChanged);
+        m_feedsByUID[feed->uid()] = feed;
         m_feedsByURL[feed->url()] = feed;
     }
 
@@ -473,8 +499,10 @@ void Session::handleItemAboutToBeDestroyed(Item *item)
 {
     m_itemsByPath.remove(item->path());
     auto feed = qobject_cast<Feed *>(item);
-    if (feed)
+    if (feed) {
+        m_feedsByUID.remove(feed->uid());
         m_feedsByURL.remove(feed->url());
+    }
 }
 
 void Session::handleFeedTitleChanged(Feed *feed)
@@ -483,6 +511,15 @@ void Session::handleFeedTitleChanged(Feed *feed)
         // Now we have something better than a URL.
         // Trying to rename feed...
         moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+}
+
+QUuid Session::generateUID() const
+{
+    QUuid uid = QUuid::createUuid();
+    while (m_feedsByUID.contains(uid))
+        uid = QUuid::createUuid();
+
+    return uid;
 }
 
 int Session::maxArticlesPerFeed() const

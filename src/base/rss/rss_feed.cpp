@@ -41,6 +41,7 @@
 #include <QUrl>
 
 #include "../asyncfilestorage.h"
+#include "../global.h"
 #include "../logger.h"
 #include "../net/downloadhandler.h"
 #include "../net/downloadmanager.h"
@@ -50,21 +51,30 @@
 #include "rss_article.h"
 #include "rss_session.h"
 
-const QString Str_Url(QStringLiteral("url"));
-const QString Str_Title(QStringLiteral("title"));
-const QString Str_LastBuildDate(QStringLiteral("lastBuildDate"));
-const QString Str_IsLoading(QStringLiteral("isLoading"));
-const QString Str_HasError(QStringLiteral("hasError"));
-const QString Str_Articles(QStringLiteral("articles"));
+const QString KEY_UID(QStringLiteral("uid"));
+const QString KEY_URL(QStringLiteral("url"));
+const QString KEY_TITLE(QStringLiteral("title"));
+const QString KEY_LASTBUILDDATE(QStringLiteral("lastBuildDate"));
+const QString KEY_ISLOADING(QStringLiteral("isLoading"));
+const QString KEY_HASERROR(QStringLiteral("hasError"));
+const QString KEY_ARTICLES(QStringLiteral("articles"));
 
 using namespace RSS;
 
-Feed::Feed(const QString &url, const QString &path, Session *session)
+Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *session)
     : Item(path)
     , m_session(session)
+    , m_uid(uid)
     , m_url(url)
 {
-    m_dataFileName = QString("%1.json").arg(Utils::Fs::toValidFileSystemName(m_url, false, QLatin1String("_")));
+    m_dataFileName = QString::fromLatin1(m_uid.toRfc4122().toHex()) + QLatin1String(".json");
+
+    // Move to new file naming scheme (since v4.1.2)
+    const QString legacyFilename {Utils::Fs::toValidFileSystemName(m_url, false, QLatin1String("_"))
+                + QLatin1String(".json")};
+    const QDir storageDir {m_session->dataFileStorage()->storageDir()};
+    if (!QFile::exists(storageDir.absoluteFilePath(m_dataFileName)))
+        QFile::rename(storageDir.absoluteFilePath(legacyFilename), storageDir.absoluteFilePath(m_dataFileName));
 
     m_parser = new Private::Parser(m_lastBuildDate);
     m_parser->moveToThread(m_session->workingThread());
@@ -125,6 +135,11 @@ void Feed::refresh()
 
     m_isLoading = true;
     emit stateChanged(this);
+}
+
+QUuid Feed::uid() const
+{
+    return m_uid;
 }
 
 QString Feed::url() const
@@ -408,25 +423,21 @@ QString Feed::iconPath() const
 
 QJsonValue Feed::toJsonValue(bool withData) const
 {
-    if (!withData) {
-        // if feed alias is empty we create "reduced" JSON
-        // value for it since its name is equal to its URL
-        return (name() == url() ? "" : url());
-        // if we'll need storing some more properties we should check
-        // for its default values and produce JSON object instead of (if it's required)
-    }
-
-    QJsonArray jsonArr;
-    foreach (Article *article, m_articles)
-        jsonArr << article->toJsonObject();
-
     QJsonObject jsonObj;
-    jsonObj.insert(Str_Url, url());
-    jsonObj.insert(Str_Title, title());
-    jsonObj.insert(Str_LastBuildDate, lastBuildDate());
-    jsonObj.insert(Str_IsLoading, isLoading());
-    jsonObj.insert(Str_HasError, hasError());
-    jsonObj.insert(Str_Articles, jsonArr);
+    jsonObj.insert(KEY_UID, uid().toString());
+    jsonObj.insert(KEY_URL, url());
+
+    if (withData) {
+        jsonObj.insert(KEY_TITLE, title());
+        jsonObj.insert(KEY_LASTBUILDDATE, lastBuildDate());
+        jsonObj.insert(KEY_ISLOADING, isLoading());
+        jsonObj.insert(KEY_HASERROR, hasError());
+
+        QJsonArray jsonArr;
+        for (Article *article : qAsConst(m_articles))
+            jsonArr << article->toJsonObject();
+        jsonObj.insert(KEY_ARTICLES, jsonArr);
+    }
 
     return jsonObj;
 }
