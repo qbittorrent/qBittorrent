@@ -33,6 +33,7 @@
 #include <QBasicTimer>
 #include <QHash>
 #include <QList>
+#include <QUuid>
 
 #include "rss_item.h"
 
@@ -56,7 +57,7 @@ namespace RSS
 
         friend class Session;
 
-        Feed(const QString &url, const QString &path, Session *session);
+        Feed(const QUuid &uid, const QString &url, const QString &path, Session *session);
         ~Feed() override;
 
     public:
@@ -65,6 +66,7 @@ namespace RSS
         void markAsRead() override;
         void refresh() override;
 
+        QUuid uid() const;
         QString url() const;
         QString title() const;
         QString lastBuildDate() const;
@@ -105,6 +107,7 @@ namespace RSS
 
         Session *m_session;
         Private::Parser *m_parser;
+        const QUuid m_uid;
         const QString m_url;
         QString m_title;
         QString m_lastBuildDate;
