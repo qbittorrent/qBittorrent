@@ -3,16 +3,16 @@
 MooTools: the javascript framework
 
 web build:
- - http://mootools.net/core/76bf47062d6c1983d66ce47ad66aa0e0
+ - https://mootools.net/core/builder/76bf47062d6c1983d66ce47ad66aa0e0
 
 packager build:
  - packager build Core/Core Core/Array Core/String Core/Number Core/Function Core/Object Core/Event Core/Browser Core/Class Core/Class.Extras Core/Slick.Parser Core/Slick.Finder Core/Element Core/Element.Style Core/Element.Event Core/Element.Delegation Core/Element.Dimensions Core/Fx Core/Fx.CSS Core/Fx.Tween Core/Fx.Morph Core/Fx.Transitions Core/Request Core/Request.HTML Core/Request.JSON Core/Cookie Core/JSON Core/DOMReady Core/Swiff
 
 copyrights:
-  - [MooTools](http://mootools.net)
+  - [MooTools](https://mootools.net)
 
 licenses:
-  - [MIT License](http://mootools.net/license.txt)
+  - [MIT License](https://github.com/mootools/mootools-core/blob/master/Source/license.txt)
 ...
 */
 

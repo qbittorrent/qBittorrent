@@ -75,7 +75,7 @@ def fix_win_sys_argv(encoding):
 
   utf-8 is recommended.
 
-  Works around <http://bugs.python.org/issue2128>.
+  Works around <https://bugs.python.org/issue2128>.
   """
   global _SYS_ARGV_PROCESSED
   if _SYS_ARGV_PROCESSED:
@@ -86,9 +86,9 @@ def fix_win_sys_argv(encoding):
   from ctypes import byref, c_int, POINTER, windll, WINFUNCTYPE
   from ctypes.wintypes import LPCWSTR, LPWSTR
 
-  # <http://msdn.microsoft.com/en-us/library/ms683156.aspx>
+  # <https://msdn.microsoft.com/en-us/library/ms683156.aspx>
   GetCommandLineW = WINFUNCTYPE(LPWSTR)(('GetCommandLineW', windll.kernel32))
-  # <http://msdn.microsoft.com/en-us/library/bb776391.aspx>
+  # <https://msdn.microsoft.com/en-us/library/bb776391.aspx>
   CommandLineToArgvW = WINFUNCTYPE(POINTER(LPWSTR), LPCWSTR, POINTER(c_int))(
       ('CommandLineToArgvW', windll.shell32))
 
@@ -123,8 +123,8 @@ def fix_win_sys_argv(encoding):
 
 
 def fix_win_codec():
-  """Works around <http://bugs.python.org/issue6058>."""
-  # <http://msdn.microsoft.com/en-us/library/dd317756.aspx>
+  """Works around <https://bugs.python.org/issue6058>."""
+  # <https://msdn.microsoft.com/en-us/library/dd317756.aspx>
   try:
     codecs.lookup('cp65001')
     return False
@@ -197,7 +197,7 @@ class WinUnicodeConsoleOutput(WinUnicodeOutputBase):
     self._DWORD = DWORD
     self._byref = byref
 
-    # <http://msdn.microsoft.com/en-us/library/ms687401.aspx>
+    # <https://docs.microsoft.com/en-us/windows/console/writeconsole>
     self._WriteConsoleW = WINFUNCTYPE(
         BOOL, HANDLE, LPWSTR, DWORD, POINTER(DWORD), LPVOID)(
             ('WriteConsoleW', windll.kernel32))
@@ -217,7 +217,7 @@ class WinUnicodeConsoleOutput(WinUnicodeOutputBase):
         n = self._DWORD(0)
         # There is a shorter-than-documented limitation on the length of the
         # string passed to WriteConsoleW. See
-        # <http://tahoe-lafs.org/trac/tahoe-lafs/ticket/1232>.
+        # <https://tahoe-lafs.org/trac/tahoe-lafs/ticket/1232>.
         retval = self._WriteConsoleW(
             self._console_handle, text,
             min(remaining, 10000),
@@ -279,10 +279,10 @@ def win_handle_is_a_console(handle):
   FILE_TYPE_REMOTE = 0x8000
   INVALID_HANDLE_VALUE = DWORD(-1).value
 
-  # <http://msdn.microsoft.com/en-us/library/ms683167.aspx>
+  # <https://docs.microsoft.com/en-us/windows/console/getconsolemode>
   GetConsoleMode = WINFUNCTYPE(BOOL, HANDLE, POINTER(DWORD))(
       ('GetConsoleMode', windll.kernel32))
-  # <http://msdn.microsoft.com/en-us/library/aa364960.aspx>
+  # <https://msdn.microsoft.com/en-us/library/aa364960.aspx>
   GetFileType = WINFUNCTYPE(DWORD, DWORD)(('GetFileType', windll.kernel32))
 
   # GetStdHandle returns INVALID_HANDLE_VALUE, NULL, or a valid handle.
@@ -308,7 +308,7 @@ def win_get_unicode_stream(stream, excepted_fileno, output_handle, encoding):
     from ctypes import windll, WINFUNCTYPE
     from ctypes.wintypes import DWORD, HANDLE
 
-    # <http://msdn.microsoft.com/en-us/library/ms683231.aspx>
+    # <https://docs.microsoft.com/en-us/windows/console/getstdhandle>
     GetStdHandle = WINFUNCTYPE(HANDLE, DWORD)(('GetStdHandle', windll.kernel32))
 
     real_output_handle = GetStdHandle(DWORD(output_handle))
@@ -324,11 +324,11 @@ def win_get_unicode_stream(stream, excepted_fileno, output_handle, encoding):
 def fix_win_console(encoding):
   """Makes Unicode console output work independently of the current code page.
 
-  This also fixes <http://bugs.python.org/issue1602>.
+  This also fixes <https://bugs.python.org/issue1602>.
   Credit to Michael Kaplan
-  <http://blogs.msdn.com/b/michkap/archive/2010/04/07/9989346.aspx> and
+  <https://web.archive.org/web/20130719132227/https://blogs.msdn.com/b/michkap/archive/2010/04/07/9989346.aspx> and
   TZOmegaTZIOY
-  <http://stackoverflow.com/questions/878972/windows-cmd-encoding-change-causes-python-crash/1432462#1432462>.
+  <https://stackoverflow.com/questions/878972/windows-cmd-encoding-change-causes-python-crash/1432462#1432462>.
   """
   if (isinstance(sys.stdout, WinUnicodeOutputBase) or
       isinstance(sys.stderr, WinUnicodeOutputBase)):

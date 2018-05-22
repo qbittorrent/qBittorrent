@@ -105,7 +105,7 @@ def displayCapabilities(supported_engines):
     <capabilities>
       <engine_short_name>
         <name>long name</name>
-        <url>http://example.com</url>
+        <url>https://example.com</url>
         <categories>movies music games</categories>
       </engine_short_name>
     </capabilities>

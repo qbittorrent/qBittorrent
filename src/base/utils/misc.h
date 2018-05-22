@@ -56,7 +56,7 @@ namespace Utils
     namespace Misc
     {
         // use binary prefix standards from IEC 60027-2
-        // see http://en.wikipedia.org/wiki/Kilobyte
+        // see https://en.wikipedia.org/wiki/Kilobyte
         enum class SizeUnit
         {
             Byte,       // 1024^0,

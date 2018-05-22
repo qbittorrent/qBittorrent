@@ -50,7 +50,7 @@ if os.environ.has_key("sock_proxy") and len(os.environ["sock_proxy"].strip()) > 
 
 def htmlentitydecode(s):
     # First convert alpha entities (such as &eacute;)
-    # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
+    # (Inspired from https://mail.python.org/pipermail/python-list/2007-June/443813.html)
     def entity2char(m):
         entity = m.group(1)
         if entity in htmlentitydefs.name2codepoint:

@@ -45,9 +45,9 @@
 namespace
 {
     // (X)HTML entities declared in:
-    //     http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent
-    //     http://www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent
-    //     http://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent
+    //     https://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent
+    //     https://www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent
+    //     https://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent
     using StringHash = QHash<QString, QString>;
     Q_GLOBAL_STATIC_WITH_ARGS(StringHash, HTML_ENTITIES, ({
         {"nbsp",   "&#160;"}, // no-break space = non-breaking space, U+00A0 ISOnum

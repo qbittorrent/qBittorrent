@@ -3850,8 +3850,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 
 # For better backward compatibility.  To be removed once Automake 1.9.x
 # dies out for good.  For more background, see:
-# <http://lists.gnu.org/archive/html/automake/2012-07/msg00001.html>
-# <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
+# <https://lists.gnu.org/archive/html/automake/2012-07/msg00001.html>
+# <https://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
 # We need awk for the "check" target (and possibly the TAP driver).  The
@@ -4158,7 +4158,7 @@ END
 Aborting the configuration process, to ensure you take notice of the issue.
 
 You can download and install GNU coreutils to get an 'rm' implementation
-that behaves properly: <http://www.gnu.org/software/coreutils/>.
+that behaves properly: <https://www.gnu.org/software/coreutils/coreutils.html>.
 
 If you want to complete the configuration process using your problematic
 'rm' anyway, export the environment variable ACCEPT_INFERIOR_RM_PROGRAM
@@ -4626,7 +4626,7 @@ Alternatively, you may set the environment variables Qt5Svg_CFLAGS
 and Qt5Svg_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://www.freedesktop.org/wiki/Software/pkg-config/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	Qt5Svg_CFLAGS=$pkg_cv_Qt5Svg_CFLAGS
@@ -4984,8 +4984,8 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
     if test "x$succeeded" != "xyes" ; then
         if test "x$_version" = "x0" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
-$as_echo "$as_me: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
+            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See https://www.randspringer.de/boost for more documentation." >&5
+$as_echo "$as_me: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See https://www.randspringer.de/boost for more documentation." >&6;}
         else
             { $as_echo "$as_me:${as_lineno-$LINENO}: Your boost libraries seems to old (version $_version)." >&5
 $as_echo "$as_me: Your boost libraries seems to old (version $_version)." >&6;}
@@ -5359,7 +5359,7 @@ Alternatively, you may set the environment variables libtorrent_CFLAGS
 and libtorrent_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://www.freedesktop.org/wiki/Software/pkg-config/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
@@ -5452,7 +5452,7 @@ Alternatively, you may set the environment variables zlib_CFLAGS
 and zlib_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://www.freedesktop.org/wiki/Software/pkg-config/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	zlib_CFLAGS=$pkg_cv_zlib_CFLAGS

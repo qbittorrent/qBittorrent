@@ -536,9 +536,9 @@ int FilterParserThread::parseP2BFilterFile()
 
 // Process ip filter file
 // Supported formats:
-//  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
-//  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
-//  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
+//  * eMule IP list (DAT): https://web.archive.org/web/20100330173658/https://wiki.phoenixlabs.org/wiki/DAT_Format
+//  * PeerGuardian Text (P2P): https://web.archive.org/web/20110122120728/https://wiki.phoenixlabs.org/wiki/P2P_Format
+//  * PeerGuardian Binary (P2B): https://web.archive.org/web/20100823234551/https://wiki.phoenixlabs.org/wiki/P2B_Format
 void FilterParserThread::processFilterFile(const QString &filePath)
 {
     if (isRunning()) {

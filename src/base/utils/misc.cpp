@@ -269,7 +269,7 @@ QString Utils::Misc::pythonExecutable()
 #if defined(Q_OS_UNIX)
         /*
          * On Unix-Like Systems python2 and python3 should always exist
-         * http://legacy.python.org/dev/peps/pep-0394/
+         * https://legacy.python.org/dev/peps/pep-0394/
          */
         pythonProc.start("python3", {"--version"}, QIODevice::ReadOnly);
         if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
@@ -345,7 +345,7 @@ QString Utils::Misc::unitString(Utils::Misc::SizeUnit unit)
 
 // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
 // use Binary prefix standards from IEC 60027-2
-// see http://en.wikipedia.org/wiki/Kilobyte
+// see https://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
 // to send numbers instead of strings with suffixes
 bool Utils::Misc::friendlyUnit(qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)

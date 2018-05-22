@@ -138,7 +138,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
     static bool initialized = false;
 
     // ISO 3166-1 alpha-2 codes
-    // http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt-temp.htm
+    // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
     if (!initialized) {
         // Officially assigned
         countries["AD"] = tr("Andorra");

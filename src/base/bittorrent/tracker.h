@@ -75,7 +75,7 @@ namespace BitTorrent
     typedef QHash<QByteArray, PeerList> TorrentList;
 
     /* Basic Bittorrent tracker implementation in Qt */
-    /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
+    /* Following https://wiki.theory.org/index.php/BitTorrent_Tracker_Protocol */
     class Tracker : public QObject, public Http::IRequestHandler, private Http::ResponseBuilder
     {
         Q_OBJECT
