@@ -121,12 +121,12 @@ namespace
 #define SETTINGS_KEY(name) "GUI/" name
 
     // ExecutionLog properties keys
-#define EXECUTIONLOG_SETTINGS_KEY(name) SETTINGS_KEY("Log/") name
+#define EXECUTIONLOG_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Log/") name)
     const QString KEY_EXECUTIONLOG_ENABLED = EXECUTIONLOG_SETTINGS_KEY("Enabled");
     const QString KEY_EXECUTIONLOG_TYPES = EXECUTIONLOG_SETTINGS_KEY("Types");
 
     // Notifications properties keys
-#define NOTIFICATIONS_SETTINGS_KEY(name) SETTINGS_KEY("Notifications/") name
+#define NOTIFICATIONS_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Notifications/") name)
     const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
 

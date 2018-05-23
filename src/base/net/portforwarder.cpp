@@ -36,7 +36,7 @@
 #include "base/logger.h"
 #include "base/settingsstorage.h"
 
-static const QString KEY_ENABLED = QLatin1String("Network/PortForwardingEnabled");
+static const QString KEY_ENABLED = QStringLiteral("Network/PortForwardingEnabled");
 
 namespace libt = libtorrent;
 using namespace Net;

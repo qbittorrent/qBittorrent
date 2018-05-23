@@ -58,7 +58,7 @@ namespace RSS
 
         virtual QJsonValue toJsonValue(bool withData = false) const = 0;
 
-        static const QString PathSeparator;
+        static const QChar PathSeparator;
 
         static bool isValidPath(const QString &path);
         static QString joinPath(const QString &path1, const QString &path2);

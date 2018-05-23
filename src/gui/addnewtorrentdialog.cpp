@@ -46,7 +46,6 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
-#include "base/settingvalue.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -63,7 +62,7 @@
 
 namespace
 {
-#define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
+#define SETTINGS_KEY(name) QStringLiteral("AddNewTorrentDialog/" name)
     const QString KEY_ENABLED = SETTINGS_KEY("Enabled");
     const QString KEY_DEFAULTCATEGORY = SETTINGS_KEY("DefaultCategory");
     const QString KEY_TREEHEADERSTATE = SETTINGS_KEY("TreeHeaderState");
@@ -71,7 +70,7 @@ namespace
     const QString KEY_EXPANDED = SETTINGS_KEY("Expanded");
     const QString KEY_TOPLEVEL = SETTINGS_KEY("TopLevel");
     const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY("SavePathHistory");
-    const char KEY_SAVEPATHHISTORYLENGTH[] = SETTINGS_KEY("SavePathHistoryLength");
+    const QString KEY_SAVEPATHHISTORYLENGTH = SETTINGS_KEY("SavePathHistoryLength");
     const QString KEY_REMEMBERLASTSAVEPATH = SETTINGS_KEY("RememberLastSavePath");
 
     // just a shortcut
@@ -81,8 +80,8 @@ namespace
     }
 }
 
-constexpr int AddNewTorrentDialog::minPathHistoryLength;
-constexpr int AddNewTorrentDialog::maxPathHistoryLength;
+const int AddNewTorrentDialog::minPathHistoryLength;
+const int AddNewTorrentDialog::maxPathHistoryLength;
 
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
@@ -188,30 +187,21 @@ void AddNewTorrentDialog::setTopLevel(bool value)
 
 int AddNewTorrentDialog::savePathHistoryLength()
 {
-    return savePathHistoryLengthSetting();
+    const int defaultHistoryLength = 8;
+    const int value = settings()->loadValue(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength).toInt();
+    return qBound(minPathHistoryLength, value, maxPathHistoryLength);
 }
 
 void AddNewTorrentDialog::setSavePathHistoryLength(int value)
 {
-    Q_ASSERT(value >= minPathHistoryLength);
-    Q_ASSERT(value <= maxPathHistoryLength);
+    const int clampedValue = qBound(minPathHistoryLength, value, maxPathHistoryLength);
     const int oldValue = savePathHistoryLength();
-    if (oldValue != value) {
-        savePathHistoryLengthSetting() = value;
-        settings()->storeValue(KEY_SAVEPATHHISTORY,
-                               QStringList(settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList().mid(0, value)));
-    }
-}
+    if (clampedValue == oldValue)
+        return;
 
-CachedSettingValue<int> &AddNewTorrentDialog::savePathHistoryLengthSetting()
-{
-    const int defaultHistoryLength = 8;
-    static CachedSettingValue<int> setting(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength,
-        [](int v)
-        {
-            return std::max(minPathHistoryLength, std::min(maxPathHistoryLength, v));
-        });
-    return setting;
+    settings()->storeValue(KEY_SAVEPATHHISTORYLENGTH, clampedValue);
+    settings()->storeValue(KEY_SAVEPATHHISTORY
+        , QStringList(settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList().mid(0, clampedValue)));
 }
 
 void AddNewTorrentDialog::loadState()
