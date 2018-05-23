@@ -45,7 +45,7 @@ class QSplitter;
 class QTabWidget;
 class QTimer;
 
-class downloadFromURL;
+class DownloadFromURLDialog;
 class SearchWidget;
 class RSSWidget;
 class about;
@@ -230,7 +230,7 @@ private:
     QPointer<about> m_aboutDlg;
     QPointer<StatsDialog> m_statsDlg;
     QPointer<TorrentCreatorDlg> m_createTorrentDlg;
-    QPointer<downloadFromURL> m_downloadFromURLDialog;
+    QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
 #ifndef Q_OS_MAC
     QPointer<QSystemTrayIcon> m_systrayIcon;
     QPointer<QTimer> m_systrayCreator;
