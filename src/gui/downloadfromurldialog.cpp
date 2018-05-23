@@ -32,6 +32,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QRegExp>
+#include <QSet>
 #include <QString>
 #include <QStringList>
 
@@ -55,25 +56,22 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     // Paste clipboard if there is an URL in it
     const QStringList clipboardList = qApp->clipboard()->text().split('\n');
 
-    QStringList clipboardListCleaned;
+    QSet<QString> uniqueURLs;
     for (QString str : clipboardList) {
         str = str.trimmed();
         if (str.isEmpty()) continue;
 
-        if (!clipboardListCleaned.contains(str, Qt::CaseInsensitive)) {
-            if (str.startsWith("http://", Qt::CaseInsensitive)
-                    || str.startsWith("https://", Qt::CaseInsensitive)
-                    || str.startsWith("ftp://", Qt::CaseInsensitive)
-                    || str.startsWith("magnet:", Qt::CaseInsensitive)
-                    || str.startsWith("bc://bt/", Qt::CaseInsensitive)
-                    || (str.size() == 40 && !str.contains(QRegExp("[^0-9A-Fa-f]")))
-                    || (str.size() == 32 && !str.contains(QRegExp("[^2-7A-Za-z]")))) {
-                clipboardListCleaned << str;
-            }
+        if (str.startsWith("http://", Qt::CaseInsensitive)
+            || str.startsWith("https://", Qt::CaseInsensitive)
+            || str.startsWith("ftp://", Qt::CaseInsensitive)
+            || str.startsWith("magnet:", Qt::CaseInsensitive)
+            || str.startsWith("bc://bt/", Qt::CaseInsensitive)
+            || ((str.size() == 40) && !str.contains(QRegExp("[^0-9A-Fa-f]")))
+            || ((str.size() == 32) && !str.contains(QRegExp("[^2-7A-Za-z]")))) {
+            uniqueURLs << str;
         }
     }
-    if (!clipboardListCleaned.isEmpty())
-        m_ui->textUrls->setText(clipboardListCleaned.join('\n'));
+    m_ui->textUrls->setText(uniqueURLs.toList().join('\n'));
 
     Utils::Gui::resize(this);
     show();
@@ -88,13 +86,12 @@ void DownloadFromURLDialog::downloadButtonClicked()
 {
     const QStringList urls = m_ui->textUrls->toPlainText().split('\n');
 
-    QStringList uniqueURLs;
+    QSet<QString> uniqueURLs;
     for (QString url : urls) {
         url = url.trimmed();
         if (url.isEmpty()) continue;
 
-        if (!uniqueURLs.contains(url, Qt::CaseInsensitive))
-            uniqueURLs << url;
+        uniqueURLs << url;
     }
 
     if (uniqueURLs.isEmpty()) {
@@ -102,6 +99,6 @@ void DownloadFromURLDialog::downloadButtonClicked()
         return;
     }
 
-    emit urlsReadyToBeDownloaded(uniqueURLs);
+    emit urlsReadyToBeDownloaded(uniqueURLs.toList());
     accept();
 }
