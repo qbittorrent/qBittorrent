@@ -74,7 +74,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "cookiesdialog.h"
-#include "downloadfromurldlg.h"
+#include "downloadfromurldialog.h"
 #include "executionlog.h"
 #include "guiiconprovider.h"
 #include "hidabletabwidget.h"
@@ -1823,8 +1823,8 @@ void MainWindow::on_actionSearchWidget_triggered()
 void MainWindow::on_actionDownloadFromURL_triggered()
 {
     if (!m_downloadFromURLDialog) {
-        m_downloadFromURLDialog = new downloadFromURL(this);
-        connect(m_downloadFromURLDialog.data(), &downloadFromURL::urlsReadyToBeDownloaded, this, &MainWindow::downloadFromURLList);
+        m_downloadFromURLDialog = new DownloadFromURLDialog(this);
+        connect(m_downloadFromURLDialog.data(), &DownloadFromURLDialog::urlsReadyToBeDownloaded, this, &MainWindow::downloadFromURLList);
     }
 }
 

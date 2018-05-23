@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>downloadFromURL</class>
- <widget class="QDialog" name="downloadFromURL">
+ <class>DownloadFromURLDialog</class>
+ <widget class="QDialog" name="DownloadFromURLDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

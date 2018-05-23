@@ -17,7 +17,7 @@ HEADERS += \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
     $$PWD/deletionconfirmationdlg.h \
-    $$PWD/downloadfromurldlg.h \
+    $$PWD/downloadfromurldialog.h \
     $$PWD/executionlog.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
@@ -76,6 +76,7 @@ SOURCES += \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
+    $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlog.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
@@ -140,7 +141,7 @@ FORMS += \
     $$PWD/banlistoptions.ui \
     $$PWD/confirmdeletiondlg.ui \
     $$PWD/cookiesdialog.ui \
-    $$PWD/downloadfromurldlg.ui \
+    $$PWD/downloadfromurldialog.ui \
     $$PWD/executionlog.ui \
     $$PWD/ipsubnetwhitelistoptionsdialog.ui \
     $$PWD/login.ui \
