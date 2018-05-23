@@ -781,28 +781,18 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
     if (!hasMetadata())
         return m_needsToSetFirstLastPiecePriority;
 
-    // Get int first media file
-    std::vector<int> fp;
-    fp = m_nativeHandle.file_priorities();
+    const std::vector<int> filePriorities = nativeHandle().file_priorities();
+    for (int i = 0; i < static_cast<int>(filePriorities.size()); ++i) {
+        if (filePriorities[i] <= 0)
+            continue;
 
-    TorrentInfo::PieceRange extremities;
-    bool found = false;
-    int count = static_cast<int>(fp.size());
-    for (int i = 0; i < count; ++i) {
-        const QString ext = Utils::Fs::fileExtension(filePath(i));
-        if (Utils::Misc::isPreviewable(ext) && (fp[i] > 0)) {
-            extremities = info().filePieces(i);
-            found = true;
-            break;
-        }
+        const TorrentInfo::PieceRange extremities = info().filePieces(i);
+        const int firstPiecePrio = nativeHandle().piece_priority(extremities.first());
+        const int lastPiecePrio = nativeHandle().piece_priority(extremities.last());
+        return ((firstPiecePrio == 7) && (lastPiecePrio == 7));
     }
 
-    if (!found) return false; // No media file
-
-    int first = m_nativeHandle.piece_priority(extremities.first());
-    int last = m_nativeHandle.piece_priority(extremities.last());
-
-    return ((first == 7) && (last == 7));
+    return false;
 }
 
 TorrentState TorrentHandle::state() const
@@ -1302,39 +1292,37 @@ void TorrentHandle::toggleSequentialDownload()
     setSequentialDownload(!isSequentialDownload());
 }
 
-void TorrentHandle::setFirstLastPiecePriority(bool b)
+void TorrentHandle::setFirstLastPiecePriority(const bool enabled)
 {
     if (!hasMetadata()) {
-        m_needsToSetFirstLastPiecePriority = b;
+        m_needsToSetFirstLastPiecePriority = enabled;
         return;
     }
 
-    std::vector<int> fp = m_nativeHandle.file_priorities();
-    std::vector<int> pp = m_nativeHandle.piece_priorities();
+    // Download first and last pieces first for every file in the torrent
+    const std::vector<int> filePriorities = nativeHandle().file_priorities();
+    std::vector<int> piecePriorities = nativeHandle().piece_priorities();
+    for (int index = 0; index < static_cast<int>(filePriorities.size()); ++index) {
+        const int filePrio = filePriorities[index];
+        if (filePrio <= 0)
+            continue;
 
-    // Download first and last pieces first for all media files in the torrent
-    int nbfiles = static_cast<int>(fp.size());
-    for (int index = 0; index < nbfiles; ++index) {
-        const QString path = filePath(index);
-        const QString ext = Utils::Fs::fileExtension(path);
-        if (Utils::Misc::isPreviewable(ext) && (fp[index] > 0)) {
-            qDebug() << "File" << path << "is previewable, toggle downloading of first/last pieces first";
+        // Determine the priority to set
+        const int newPrio = enabled ? 7 : filePrio;
+        const TorrentInfo::PieceRange extremities = info().filePieces(index);
 
-            // Determine the priority to set
-            int prio = b ? 7 : fp[index];
-
-            TorrentInfo::PieceRange extremities = info().filePieces(index);
-
-            // worst case: AVI index = 1% of total file size (at the end of the file)
-            int nNumPieces = ceil(fileSize(index) * 0.01 / pieceLength());
-            for (int i = 0; i < nNumPieces; ++i) {
-                pp[extremities.first() + i] = prio;
-                pp[extremities.last() - i] = prio;
-            }
+        // worst case: AVI index = 1% of total file size (at the end of the file)
+        const int nNumPieces = std::ceil(fileSize(index) * 0.01 / pieceLength());
+        for (int i = 0; i < nNumPieces; ++i) {
+            piecePriorities[extremities.first() + i] = newPrio;
+            piecePriorities[extremities.last() - i] = newPrio;
         }
     }
 
-    m_nativeHandle.prioritize_pieces(pp);
+    m_nativeHandle.prioritize_pieces(piecePriorities);
+
+    LogMsg(tr("Download first and last piece first: %1, torrent: '%2'")
+        .arg((enabled ? tr("On") : tr("Off")), name()));
 }
 
 void TorrentHandle::toggleFirstLastPiecePriority()
