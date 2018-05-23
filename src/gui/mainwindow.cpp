@@ -40,6 +40,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
+#include <QPushButton>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
