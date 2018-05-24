@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#include "dnsupdater.h"
+
 #include <QDebug>
 #include <QRegExp>
 #include <QStringList>
@@ -34,7 +36,6 @@
 #include "base/logger.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
-#include "dnsupdater.h"
 
 using namespace Net;
 
