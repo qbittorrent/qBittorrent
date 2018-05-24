@@ -761,6 +761,10 @@ namespace BitTorrent
         QStringMap m_categories;
         QSet<QString> m_tags;
 
+        // I/O errored torrents
+        QSet<InfoHash> m_recentErroredTorrents;
+        QTimer *m_recentErroredTorrentsTimer;
+
 #if LIBTORRENT_VERSION_NUM < 10100
         QMutex m_alertsMutex;
         QWaitCondition m_alertsWaitCondition;
