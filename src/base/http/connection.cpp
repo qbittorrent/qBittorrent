@@ -30,7 +30,6 @@
 
 #include "connection.h"
 
-#include <QRegExp>
 #include <QTcpSocket>
 
 #include "base/logger.h"

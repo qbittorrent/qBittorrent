@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,20 +24,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QXmlStreamReader>
-#include <QDesktopServices>
+#include "programupdater.h"
+
 #include <QDebug>
+#include <QDesktopServices>
 #include <QRegExp>
 #include <QStringList>
+#include <QXmlStreamReader>
 
-#include "base/utils/fs.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
-#include "programupdater.h"
+#include "base/net/downloadmanager.h"
+#include "base/utils/fs.h"
 
 namespace
 {

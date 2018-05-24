@@ -29,34 +29,34 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
 
-#include <libtorrent/version.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
-#include <libtorrent/bdecode.hpp>
-#endif
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
-#if LIBTORRENT_VERSION_NUM < 10100
+#include <libtorrent/version.hpp>
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/bdecode.hpp>
+#else
 #include <libtorrent/lazy_entry.hpp>
 #endif
 
-
 #include <QDir>
 #include <QFile>
+#include <QRegExp>
+#include <QString>
+
 #ifndef DISABLE_GUI
 #include <QMessageBox>
 #endif
-#include <QRegExp>
-#include <QString>
 #ifdef Q_OS_MAC
 #include <QSettings>
 #endif
 
 #include "base/logger.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "base/preferences.h"
 
 bool userAcceptsUpgrade()
 {

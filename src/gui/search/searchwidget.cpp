@@ -29,6 +29,8 @@
 
 #include "searchwidget.h"
 
+#include <QtGlobal>
+
 #ifdef Q_OS_WIN
 #include <cstdlib>
 #endif
@@ -41,6 +43,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
+#include <QRegExp>
 #include <QSignalMapper>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
