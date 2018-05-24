@@ -36,6 +36,7 @@
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QMessageBox>
+#include <QRegularExpression>
 #include <QStandardItemModel>
 #include <QString>
 
@@ -461,10 +462,10 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
     }
     else {
         QString description = article->description();
-        QRegExp rx;
+        QRegularExpression rx;
         // If description is plain text, replace BBCode tags with HTML and wrap everything in <pre></pre> so it looks nice
-        rx.setMinimal(true);
-        rx.setCaseSensitivity(Qt::CaseInsensitive);
+        rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption
+            | QRegularExpression::CaseInsensitiveOption);
 
         rx.setPattern("\\[img\\](.+)\\[/img\\]");
         description = description.replace(rx, "<img src=\"\\1\">");

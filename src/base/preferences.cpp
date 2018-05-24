@@ -45,6 +45,7 @@
 #ifdef Q_OS_WIN
 #include <shlobj.h>
 #include <winreg.h>
+#include <QRegularExpression>
 #endif
 
 #ifdef Q_OS_MAC
@@ -1021,13 +1022,14 @@ bool Preferences::isMagnetLinkAssocSet()
     QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // Check magnet link assoc
-    QRegExp exe_reg("\"([^\"]+)\".*");
-    QString shell_command = Utils::Fs::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
-    if (exe_reg.indexIn(shell_command) < 0)
+    const QString shellCommand = Utils::Fs::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
+
+    const QRegularExpressionMatch exeRegMatch = QRegularExpression("\"([^\"]+)\".*").match(shellCommand);
+    if (!exeRegMatch.hasMatch())
         return false;
-    QString assoc_exe = exe_reg.cap(1);
-    qDebug("exe: %s", qUtf8Printable(assoc_exe));
-    if (assoc_exe.compare(Utils::Fs::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
+
+    const QString assocExe = exeRegMatch.captured(1);
+    if (assocExe.compare(Utils::Fs::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
         return false;
 
     return true;

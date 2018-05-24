@@ -37,6 +37,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QStorageInfo>
+#include <QRegularExpression>
 
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -218,7 +219,7 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
 
 QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
 {
-    QRegExp regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
+    const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
     QString validName = name.trimmed();
     validName.replace(regex, pad);
@@ -231,7 +232,7 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
 {
     if (name.isEmpty()) return false;
 
-    QRegExp regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
+    const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
     return !name.contains(regex);
 }
 

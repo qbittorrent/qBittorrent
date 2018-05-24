@@ -41,6 +41,7 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
@@ -1599,8 +1600,8 @@ void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     foreach (QString url, urlList) {
-        if (((url.size() == 40) && !url.contains(QRegExp("[^0-9A-Fa-f]")))
-            || ((url.size() == 32) && !url.contains(QRegExp("[^2-7A-Za-z]"))))
+        if (((url.size() == 40) && !url.contains(QRegularExpression("[^0-9A-Fa-f]")))
+            || ((url.size() == 32) && !url.contains(QRegularExpression("[^2-7A-Za-z]"))))
             url = "magnet:?xt=urn:btih:" + url;
 
         if (useTorrentAdditionDialog)

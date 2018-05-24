@@ -30,7 +30,7 @@
 
 #include <QDebug>
 #include <QDesktopServices>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QXmlStreamReader>
 
@@ -136,9 +136,9 @@ void ProgramUpdater::updateProgram()
 
 bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
-    QRegExp regVer("([0-9.]+)");
-    if (regVer.indexIn(QBT_VERSION) >= 0) {
-        QString localVersion = regVer.cap(1);
+    const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
+    if (regVerMatch.hasMatch()) {
+        QString localVersion = regVerMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
         QStringList remoteParts = remoteVersion.split('.');
         QStringList localParts = localVersion.split('.');
@@ -152,8 +152,8 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
         if (remoteParts.size() > localParts.size())
             return true;
         // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
-        QRegExp regDevel("(alpha|beta|rc)");
-        if (regDevel.indexIn(QBT_VERSION) >= 0)
+        const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
+        if (regDevelMatch.hasMatch())
             return true;
     }
     return false;

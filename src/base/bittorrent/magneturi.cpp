@@ -33,7 +33,7 @@
 #include <libtorrent/magnet_uri.hpp>
 
 #include <QByteArray>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 
 #include "base/utils/string.h"
@@ -70,8 +70,8 @@ MagnetUri::MagnetUri(const QString &source)
         qDebug("Creating magnet link from bc link");
         m_url = bcLinkToMagnet(source);
     }
-    else if (((source.size() == 40) && !source.contains(QRegExp("[^0-9A-Fa-f]")))
-             || ((source.size() == 32) && !source.contains(QRegExp("[^2-7A-Za-z]")))) {
+    else if (((source.size() == 40) && !source.contains(QRegularExpression("[^0-9A-Fa-f]")))
+             || ((source.size() == 32) && !source.contains(QRegularExpression("[^2-7A-Za-z]")))) {
         m_url = "magnet:?xt=urn:btih:" + source;
     }
 

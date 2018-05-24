@@ -34,6 +34,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegExp>
+#include <QRegularExpression>
 #include <QShortcut>
 #include <QStylePainter>
 #include <QTableView>
@@ -830,7 +831,7 @@ void TransferListWidget::renameSelectedTorrent()
     bool ok;
     QString name = AutoExpandableDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, torrent->name(), &ok);
     if (ok && !name.isEmpty()) {
-        name.replace(QRegExp("\r?\n|\r"), " ");
+        name.replace(QRegularExpression("\r?\n|\r"), " ");
         // Rename the torrent
         m_listModel->setData(mi, name, Qt::DisplayRole);
     }
