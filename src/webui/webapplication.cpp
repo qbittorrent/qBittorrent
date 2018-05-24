@@ -97,8 +97,8 @@ namespace
 
     void translateDocument(const QString &locale, QString &data)
     {
-        const QRegExp regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
-        const QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
+        const QRegularExpression regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
+        const QRegularExpression mnemonic("\\(?&([a-zA-Z]?\\))?");
 
         const bool isTranslationNeeded = !locale.startsWith("en")
             || locale.startsWith("en_AU") || locale.startsWith("en_GB");
@@ -106,23 +106,24 @@ namespace
         int i = 0;
         bool found = true;
         while (i < data.size() && found) {
-            i = regex.indexIn(data, i);
+            QRegularExpressionMatch regexMatch;
+            i = data.indexOf(regex, i, &regexMatch);
             if (i >= 0) {
-                const QString word = regex.cap(1);
-                const QString context = regex.cap(4);
+                const QString word = regexMatch.captured(1);
+                const QString context = regexMatch.captured(4);
 
                 QString translation = isTranslationNeeded
                     ? qApp->translate(context.toUtf8().constData(), word.toUtf8().constData(), nullptr, 1)
                     : word;
 
                 // Remove keyboard shortcuts
-                translation.replace(mnemonic, "");
+                translation.remove(mnemonic);
 
                 // Use HTML code for quotes to prevent issues with JS
                 translation.replace('\'', "&#39;");
                 translation.replace('\"', "&#34;");
 
-                data.replace(i, regex.matchedLength(), translation);
+                data.replace(i, regexMatch.capturedLength(), translation);
                 i += translation.length();
             }
             else {

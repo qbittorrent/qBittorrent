@@ -43,7 +43,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QSignalMapper>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -323,7 +323,7 @@ void SearchWidget::on_searchButton_clicked()
     m_allTabs.append(newTab);
 
     QString tabName = pattern;
-    tabName.replace(QRegExp("&{1}"), "&&");
+    tabName.replace(QRegularExpression("&{1}"), "&&");
     m_ui->tabWidget->addTab(newTab, tabName);
     m_ui->tabWidget->setCurrentWidget(newTab);
 

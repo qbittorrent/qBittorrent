@@ -41,7 +41,7 @@
 
 #include <QDir>
 #include <QFile>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 
 #ifndef DISABLE_GUI
@@ -114,8 +114,9 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     bool v3_3 = false;
     int queuePosition = 0;
     QString outFilePath = filepath;
-    QRegExp rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(.+)$"));
-    if (rx.indexIn(filepath) != -1) {
+    static const QRegularExpression rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(.+)$"));
+    const QRegularExpressionMatch rxMatch = rx.match(filepath);
+    if (rxMatch.hasMatch()) {
         // Old v3.3.x format had a number at the end indicating the queue position.
         // The naming scheme was '<infohash>.fastresume.<queueposition>'.
         // However, QSaveFile, which uses QTemporaryFile internally, might leave
@@ -127,14 +128,14 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
         // and is deleted, because it may be a corrupted/incomplete fastresume.
         // NOTE: When the upgrade code is removed, we must continue to perform
         // cleanup of non-commited QSaveFile/QTemporaryFile fastresumes
-        queuePosition = rx.cap(2).toInt();
-        if ((rx.cap(2).size() == 6) && (queuePosition <= 99999)) {
+        queuePosition = rxMatch.captured(2).toInt();
+        if ((rxMatch.captured(2).size() == 6) && (queuePosition <= 99999)) {
             Utils::Fs::forceRemove(filepath);
             return true;
         }
 
         v3_3 = true;
-        outFilePath.replace(QRegExp("\\.fastresume\\..+$"), ".fastresume");
+        outFilePath.replace(QRegularExpression("\\.fastresume\\..+$"), ".fastresume");
     }
     else {
         queuePosition = fastOld.dict_find_int_value("qBt-queuePosition", 0);
@@ -198,13 +199,15 @@ bool upgrade(bool ask = true)
 
     QStringList backupFiles = backupFolderDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-    QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
+    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (QString backupFile, backupFiles) {
-        if (rx.indexIn(backupFile) != -1) {
-            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[rx.cap(1)].toHash()))
-                oldResumeData.remove(rx.cap(1));
+        const QRegularExpressionMatch rxMatch = rx.match(backupFile);
+        if (rxMatch.hasMatch()) {
+            const QString hashStr = rxMatch.captured(1);
+            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[hashStr].toHash()))
+                oldResumeData.remove(hashStr);
             else
-                Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(rx.cap(1)), Log::WARNING);
+                Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(hashStr), Log::WARNING);
         }
         else {
             Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent. Invalid fastresume file name: %1").arg(backupFile), Log::WARNING);

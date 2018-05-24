@@ -29,7 +29,7 @@
 #include "dnsupdater.h"
 
 #include <QDebug>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QUrlQuery>
 
@@ -90,9 +90,9 @@ void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
     Q_UNUSED(url);
 
     // Parse response
-    QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
-    if (ipregex.indexIn(data) >= 0) {
-        QString ipStr = ipregex.cap(1);
+    const QRegularExpressionMatch ipRegexMatch = QRegularExpression("Current IP Address:\\s+([^<]+)</body>").match(data);
+    if (ipRegexMatch.hasMatch()) {
+        QString ipStr = ipRegexMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ipStr;
         QHostAddress newIp(ipStr);
         if (!newIp.isNull()) {
@@ -247,8 +247,8 @@ void DNSUpdater::updateCredentials()
     }
     if (m_domain != pref->getDynDomainName()) {
         m_domain = pref->getDynDomainName();
-        QRegExp domain_regex("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$");
-        if (domain_regex.indexIn(m_domain) < 0) {
+        const QRegularExpressionMatch domainRegexMatch = QRegularExpression("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$").match(m_domain);
+        if (!domainRegexMatch.hasMatch()) {
             logger->addMessage(tr("Dynamic DNS error: supplied domain name is invalid."), Log::CRITICAL);
             m_lastIP.clear();
             m_ipCheckTimer.stop();

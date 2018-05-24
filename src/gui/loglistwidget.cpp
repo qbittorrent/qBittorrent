@@ -34,7 +34,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QListWidgetItem>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "guiiconprovider.h"
 
@@ -95,10 +95,10 @@ void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 
 void LogListWidget::copySelection()
 {
-    static QRegExp htmlTag("<[^>]+>");
+    static const QRegularExpression htmlTag("<[^>]+>");
     QStringList strings;
     foreach (QListWidgetItem* it, selectedItems())
-        strings << static_cast<QLabel*>(itemWidget(it))->text().replace(htmlTag, "");
+        strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
 
     QApplication::clipboard()->setText(strings.join("\n"));
 }

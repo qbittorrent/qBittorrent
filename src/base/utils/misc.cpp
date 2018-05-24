@@ -50,7 +50,6 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QSysInfo>
 #include <QUrl>
@@ -529,7 +528,7 @@ bool Utils::Misc::isUrl(const QString &s)
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
 {
     QString result = rawText;
-    static QRegExp reURL(
+    static const QRegularExpression reURL(
         "(\\s|^)"                                             // start with whitespace or beginning of line
         "("
         "("                                              // case 1 -- URL with scheme
@@ -576,12 +575,11 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
         ")"
         );
 
-
     // Capture links
     result.replace(reURL, "\\1<a href=\"\\2\">\\2</a>");
 
     // Capture links without scheme
-    static QRegExp reNoScheme("<a\\s+href=\"(?!http(s?))([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
+    static const QRegularExpression reNoScheme("<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
     result.replace(reNoScheme, "<a href=\"http://\\1\">");
 
     // to preserve plain text formatting
@@ -632,7 +630,7 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
                  || (output == "nautilus-folder-handler.desktop")) {
         proc.start("nautilus", {"--version"});
         proc.waitForFinished();
-        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegExp("[^0-9.]"));
+        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
         using NautilusVersion = Utils::Version<int, 3>;
         if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
             proc.startDetached("nautilus", {Utils::Fs::toNativePath(path)});

@@ -42,7 +42,7 @@
 #include <QNetworkAddressEntry>
 #include <QNetworkInterface>
 #include <QProcess>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QThread>
 #include <QTimer>
@@ -692,8 +692,8 @@ QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
 
 bool Session::isValidCategoryName(const QString &name)
 {
-    QRegExp re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
-    if (!name.isEmpty() && (re.indexIn(name) != 0)) {
+    static const QRegularExpression re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
+    if (!name.isEmpty() && (name.indexOf(re) != 0)) {
         qDebug() << "Incorrect category name:" << name;
         return false;
     }
@@ -3829,11 +3829,12 @@ void Session::startUpTorrents()
     QMap<int, TorrentResumeData> queuedResumeData;
     int nextQueuePosition = 1;
     int numOfRemappedFiles = 0;
-    QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
+    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (const QString &fastresumeName, fastresumes) {
-        if (rx.indexIn(fastresumeName) == -1) continue;
+        const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
+        if (!rxMatch.hasMatch()) continue;
 
-        QString hash = rx.cap(1);
+        QString hash = rxMatch.captured(1);
         QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
         QByteArray data;
         AddTorrentData resumeData;
