@@ -58,4 +58,4 @@ DEFINES += BOOST_USE_WINAPI_VERSION=0x0501
 #DEFINES += TORRENT_LINKING_SHARED
 
 # Enable stack trace support
-CONFIG += strace_win
+CONFIG += stacktrace
