@@ -50,6 +50,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+#include <QRegExp>
 #include <QRegularExpression>
 #include <QSysInfo>
 #include <QUrl>
@@ -60,12 +61,12 @@
 #include <QApplication>
 #include <QDesktopServices>
 #include <QDesktopWidget>
-#include <QProcess>
 #include <QStyle>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
-#include <QRegExp>
+#endif
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
 #include "base/utils/version.h"
 #endif
 #endif
