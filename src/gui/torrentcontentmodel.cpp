@@ -132,7 +132,7 @@ namespace
         QPixmap pixmapForExtension(const QString &ext) const override
         {
             const QString extWithDot = QLatin1Char('.') + ext;
-            SHFILEINFO sfi = { 0 };
+            SHFILEINFO sfi {};
             HRESULT hr = ::SHGetFileInfoW(extWithDot.toStdWString().c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
