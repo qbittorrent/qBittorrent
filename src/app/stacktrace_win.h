@@ -138,7 +138,7 @@ bool straceWin::makeRelativePath(const QString& dir, QString& file)
 
 QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
 {
-    IMAGEHLP_LINE64 line = {0};
+    IMAGEHLP_LINE64 line {};
     line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
     DWORD dwDisplacement = 0;
 
