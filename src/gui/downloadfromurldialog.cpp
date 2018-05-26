@@ -31,13 +31,27 @@
 #include <QClipboard>
 #include <QMessageBox>
 #include <QPushButton>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QSet>
 #include <QString>
 #include <QStringList>
 
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
+
+namespace
+{
+    bool isDownloadable(const QString &str)
+    {
+        return (str.startsWith("http://", Qt::CaseInsensitive)
+            || str.startsWith("https://", Qt::CaseInsensitive)
+            || str.startsWith("ftp://", Qt::CaseInsensitive)
+            || str.startsWith("magnet:", Qt::CaseInsensitive)
+            || str.startsWith("bc://bt/", Qt::CaseInsensitive)
+            || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]")))
+            || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]"))));
+    }
+}
 
 DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     : QDialog(parent)
@@ -61,15 +75,8 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
         str = str.trimmed();
         if (str.isEmpty()) continue;
 
-        if (str.startsWith("http://", Qt::CaseInsensitive)
-            || str.startsWith("https://", Qt::CaseInsensitive)
-            || str.startsWith("ftp://", Qt::CaseInsensitive)
-            || str.startsWith("magnet:", Qt::CaseInsensitive)
-            || str.startsWith("bc://bt/", Qt::CaseInsensitive)
-            || ((str.size() == 40) && !str.contains(QRegExp("[^0-9A-Fa-f]")))
-            || ((str.size() == 32) && !str.contains(QRegExp("[^2-7A-Za-z]")))) {
+        if (isDownloadable(str))
             uniqueURLs << str;
-        }
     }
     m_ui->textUrls->setText(uniqueURLs.toList().join('\n'));
 
