@@ -55,7 +55,7 @@ public:
         lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
 #endif
 
-        logo->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/qbittorrent32.png", this));
+        logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
 
         // About
         QString aboutText = QString(
