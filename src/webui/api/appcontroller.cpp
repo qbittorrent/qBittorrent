@@ -205,6 +205,9 @@ void AppController::preferencesAction()
     for (const Utils::Net::Subnet &subnet : copyAsConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
+    // Security
+    data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
+    data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
     data["dyndns_service"] = pref->getDynDNSService();
@@ -479,6 +482,11 @@ void AppController::setPreferencesAction()
         // recognize new lines and commas as delimiters
         pref->setWebUiAuthSubnetWhitelist(m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
+    // Security
+    if (m.contains("web_ui_clickjacking_protection_enabled"))
+        pref->setWebUiClickjackingProtectionEnabled(m["web_ui_clickjacking_protection_enabled"].toBool());
+    if (m.contains("web_ui_csrf_protection_enabled"))
+        pref->setWebUiCSRFProtectionEnabled(m["web_ui_csrf_protection_enabled"].toBool());
     // Update my dynamic domain name
     if (m.contains("dyndns_enabled"))
         pref->setDynDNSEnabled(m["dyndns_enabled"].toBool());

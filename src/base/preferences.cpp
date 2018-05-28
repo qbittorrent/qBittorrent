@@ -576,6 +576,26 @@ void Preferences::setWebUiPassword(const QString &new_password)
     setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
 }
 
+bool Preferences::isWebUiClickjackingProtectionEnabled() const
+{
+    return value("Preferences/WebUI/ClickjackingProtection", true).toBool();
+}
+
+void Preferences::setWebUiClickjackingProtectionEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/ClickjackingProtection", enabled);
+}
+
+bool Preferences::isWebUiCSRFProtectionEnabled() const
+{
+    return value("Preferences/WebUI/CSRFProtection", true).toBool();
+}
+
+void Preferences::setWebUiCSRFProtectionEnabled(bool enabled)
+{
+    setValue("Preferences/WebUI/CSRFProtection", enabled);
+}
+
 bool Preferences::isWebUiHttpsEnabled() const
 {
     return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();

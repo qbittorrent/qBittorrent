@@ -194,6 +194,12 @@ public:
     QString getWebUiPassword() const;
     void setWebUiPassword(const QString &new_password);
 
+    // WebUI security
+    bool isWebUiClickjackingProtectionEnabled() const;
+    void setWebUiClickjackingProtectionEnabled(bool enabled);
+    bool isWebUiCSRFProtectionEnabled() const;
+    void setWebUiCSRFProtectionEnabled(bool enabled);
+
     // HTTPS
     bool isWebUiHttpsEnabled() const;
     void setWebUiHttpsEnabled(bool enabled);

@@ -437,26 +437,35 @@
             </div>
             <div style="padding-left: 10px;"><a target="_blank" href="https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts">QBT_TR(Information about certificates)QBT_TR[CONTEXT=HttpServer]</a></div>
         </fieldset>
-    </fieldset>
 
-    <fieldset class="settings">
-        <legend>QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <fieldset class="settings">
+            <legend>QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <label for="webui_username_text" class="leftLabelSmall">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_username_text" />
+            </div>
+            <div class="formRow">
+                <label for="webui_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="webui_password_text" />
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="bypass_local_auth_checkbox" />
+                <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="updateBypasssAuthSettings();" />
+                <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
+                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
+            </div>
+        </fieldset>
+
         <div class="formRow">
-            <label for="webui_username_text" class="leftLabelSmall">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_username_text" />
+            <input type="checkbox" id="clickjacking_protection_checkbox" />
+            <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
-            <label for="webui_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="webui_password_text" />
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="bypass_local_auth_checkbox" />
-            <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="updateBypasssAuthSettings();" />
-            <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
-            <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
+            <input type="checkbox" id="csrf_protection_checkbox" />
+            <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -1022,6 +1031,10 @@
                     $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
                     updateBypasssAuthSettings();
 
+                    // Security
+                    $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
+                    $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+
                     // Update my dynamic domain name
                     $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
                     $('dyndns_select').setProperty('value', pref.dyndns_service);
@@ -1312,6 +1325,9 @@
         settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+
+        settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
+        settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
 
         // Update my dynamic domain name
         settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
