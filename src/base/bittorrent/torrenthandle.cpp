@@ -1664,20 +1664,18 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
 
 void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p)
 {
-    qDebug("/!\\ Fast resume failed for %s, reason: %s", qUtf8Printable(name()), p->message().c_str());
-
-    updateStatus();
     if (p->error.value() == libt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
-        LogMsg(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
+        pause();
         m_hasMissingFiles = true;
-        if (!isPaused())
-            pause();
+        LogMsg(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
     }
     else {
         LogMsg(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
             .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
     }
+
+    updateStatus();
 }
 
 void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert *p)
