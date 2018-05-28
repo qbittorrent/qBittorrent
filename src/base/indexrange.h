@@ -38,30 +38,30 @@ class IndexInterval
 public:
     using IndexType = Index;
 
-    IndexInterval(IndexType first, IndexType last)
+    IndexInterval(IndexType first, IndexType last)  // add constexpr when using C++14
         : m_first {first}
         , m_last {last}
     {
         Q_ASSERT(first <= last);
     }
 
-    IndexType first() const
+    constexpr IndexType first() const
     {
         return m_first;
     }
 
-    IndexType last() const
+    constexpr IndexType last() const
     {
         return m_last;
     }
 
 private:
-    IndexType m_first;
-    IndexType m_last;
+    const IndexType m_first;
+    const IndexType m_last;
 };
 
 template <typename T>
-inline IndexInterval<T> makeInterval(T first, T last)
+constexpr IndexInterval<T> makeInterval(T first, T last)
 {
     return {first, last};
 }
@@ -99,7 +99,7 @@ public:
 
     constexpr IndexType end() const
     {
-        return m_first + m_size;
+        return (m_first + m_size);
     }
 
     constexpr IndexDiffType size() const
@@ -114,12 +114,12 @@ public:
 
     constexpr IndexType last() const
     {
-        return m_first + m_size - 1;
+        return (m_first + m_size - 1);
     }
 
     constexpr bool isEmpty() const
     {
-        return m_size == 0;
+        return (m_size == 0);
     }
 
 private:

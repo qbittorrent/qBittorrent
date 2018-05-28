@@ -84,31 +84,31 @@ namespace Utils
         {
         }
 
-        ComponentType majorNumber() const
+        constexpr ComponentType majorNumber() const
         {
             static_assert(N >= 1, "The number of version components is too small");
-            return (*this)[0];
+            return m_components[0];
         }
 
-        ComponentType minorNumber() const
+        constexpr ComponentType minorNumber() const
         {
             static_assert(N >= 2, "The number of version components is too small");
-            return (*this)[1];
+            return m_components[1];
         }
 
-        ComponentType revisionNumber() const
+        constexpr ComponentType revisionNumber() const
         {
             static_assert(N >= 3, "The number of version components is too small");
-            return (*this)[2];
+            return m_components[2];
         }
 
-        ComponentType patchNumber() const
+        constexpr ComponentType patchNumber() const
         {
             static_assert(N >= 4, "The number of version components is too small");
-            return (*this)[3];
+            return m_components[3];
         }
 
-        ComponentType operator[](std::size_t i) const
+        constexpr ComponentType operator[](const std::size_t i) const
         {
             return m_components.at(i);
         }
@@ -129,19 +129,19 @@ namespace Utils
             return res;
         }
 
-        bool operator==(const ThisType &other) const
+        constexpr bool operator==(const ThisType &other) const
         {
-            return m_components == other.m_components;
+            return (m_components == other.m_components);
         }
 
-        bool operator<(const ThisType &other) const
+        constexpr bool operator<(const ThisType &other) const
         {
-            return m_components < other.m_components;
+            return (m_components < other.m_components);
         }
 
-        bool operator>(const ThisType &other) const
+        constexpr bool operator>(const ThisType &other) const
         {
-            return m_components > other.m_components;
+            return (m_components > other.m_components);
         }
 
         template <typename StringClassWithSplitMethod>
@@ -150,7 +150,7 @@ namespace Utils
             try {
                 return Version(s);
             }
-            catch (std::runtime_error &er) {
+            catch (const std::runtime_error &er) {
                 qDebug() << "Error parsing version:" << er.what();
                 return defaultVersion;
             }
@@ -186,9 +186,21 @@ namespace Utils
     };
 
     template <typename T, std::size_t N, std::size_t Mandatory>
-    inline bool operator!=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    constexpr bool operator!=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
     {
         return !(left == right);
+    }
+
+    template <typename T, std::size_t N, std::size_t Mandatory>
+    constexpr bool operator<=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    {
+        return !(left > right);
+    }
+
+    template <typename T, std::size_t N, std::size_t Mandatory>
+    constexpr bool operator>=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    {
+        return !(left < right);
     }
 }
 
