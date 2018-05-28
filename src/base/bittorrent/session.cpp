@@ -1354,11 +1354,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::active_tracker_limit, -1);
     settingsPack.set_int(libt::settings_pack::active_dht_limit, -1);
     settingsPack.set_int(libt::settings_pack::active_lsd_limit, -1);
-    // 1 active torrent force 2 connections. If you have more active torrents * 2 than connection limit,
-    // connection limit will get extended. Multiply max connections or active torrents by 10 for queue.
-    // Ignore -1 values because we don't want to set a max int message queue
-    settingsPack.set_int(libt::settings_pack::alert_queue_size, std::max(1000,
-        10 * std::max(maxActiveTorrents() * 2, maxConnections())));
+    settingsPack.set_int(libt::settings_pack::alert_queue_size, std::numeric_limits<int>::max() / 2);
 
     // Outgoing ports
     settingsPack.set_int(libt::settings_pack::outgoing_port, outgoingPortsMin());
@@ -1633,11 +1629,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
     sessionSettings.active_tracker_limit = -1;
     sessionSettings.active_dht_limit = -1;
     sessionSettings.active_lsd_limit = -1;
-    // 1 active torrent force 2 connections. If you have more active torrents * 2 than connection limit,
-    // connection limit will get extended. Multiply max connections or active torrents by 10 for queue.
-    // Ignore -1 values because we don't want to set a max int message queue
-    sessionSettings.alert_queue_size = std::max(1000,
-        10 * std::max(maxActiveTorrents() * 2, maxConnections()));
+    sessionSettings.alert_queue_size = std::numeric_limits<int>::max() / 2;
 
     // Outgoing ports
     sessionSettings.outgoing_ports = std::make_pair(outgoingPortsMin(), outgoingPortsMax());
