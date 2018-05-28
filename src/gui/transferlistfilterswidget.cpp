@@ -91,10 +91,17 @@ BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transfer
     connect(this, &BaseFilterWidget::customContextMenuRequested, this, &BaseFilterWidget::showMenu);
     connect(this, &BaseFilterWidget::currentRowChanged, this, &BaseFilterWidget::applyFilter);
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded
-            , this, &BaseFilterWidget::handleNewTorrent);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
-            , this, &BaseFilterWidget::torrentAboutToBeDeleted);
+    using namespace BitTorrent;
+    auto session = Session::instance();
+
+    connect(session, &Session::startupFinished, this, [this, session]()
+    {
+        for (auto it = session->torrents().cbegin(); it != session->torrents().cend(); ++it) {
+            handleNewTorrent(it.value());
+        }
+    });
+    connect(session, &Session::torrentAdded, this, &BaseFilterWidget::handleNewTorrent);
+    connect(session, &Session::torrentAboutToBeRemoved, this, &BaseFilterWidget::torrentAboutToBeDeleted);
 }
 
 QSize BaseFilterWidget::sizeHint() const

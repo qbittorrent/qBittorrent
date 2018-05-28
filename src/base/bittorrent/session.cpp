@@ -371,6 +371,8 @@ Session::Session(QObject *parent)
     , m_extraLimit(0)
     , m_useProxy(false)
     , m_recentErroredTorrentsTimer(new QTimer(this))
+    , m_startedCount(0)
+    , m_started(false)
 {
     Logger *const logger = Logger::instance();
 
@@ -385,15 +387,7 @@ Session::Session(QObject *parent)
     connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
     // Set severity level of libtorrent session
-    const int alertMask = libt::alert::error_notification
-                    | libt::alert::peer_notification
-                    | libt::alert::port_mapping_notification
-                    | libt::alert::storage_notification
-                    | libt::alert::tracker_notification
-                    | libt::alert::status_notification
-                    | libt::alert::ip_block_notification
-                    | libt::alert::progress_notification
-                    | libt::alert::stats_notification;
+    const int alertMask = libt::alert::status_notification;
 
 #if LIBTORRENT_VERSION_NUM < 10100
     libt::fingerprint fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
@@ -466,6 +460,7 @@ Session::Session(QObject *parent)
     configurePeerClasses();
 #endif
 
+    m_nativeSession->pause();
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
     m_nativeSession->add_extension(&libt::create_ut_metadata_plugin);
@@ -482,9 +477,6 @@ Session::Session(QObject *parent)
     logger->addMessage(tr("Encryption support [%1]")
                        .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
                        , Log::INFO);
-
-    if (isBandwidthSchedulerEnabled())
-        enableBandwidthScheduler();
 
     if (isIPFilteringEnabled()) {
         // Manually banned IPs are handled in that function too(in the slots)
@@ -509,13 +501,9 @@ Session::Session(QObject *parent)
     m_refreshTimer = new QTimer(this);
     m_refreshTimer->setInterval(refreshInterval());
     connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
-    m_refreshTimer->start();
 
     m_statistics = new Statistics(this);
-
-    updateSeedingLimitTimer();
     populateAdditionalTrackers();
-
     enableTracker(isTrackerEnabled());
 
     connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
@@ -539,7 +527,6 @@ Session::Session(QObject *parent)
     const uint saveInterval = saveResumeDataInterval();
     if (saveInterval > 0) {
         m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
-        m_resumeDataTimer->start();
     }
 
     // initialize PortForwarder instance
@@ -547,7 +534,6 @@ Session::Session(QObject *parent)
 
 #if LIBTORRENT_VERSION_NUM >= 10100
     initMetrics();
-    m_statsUpdateTimer.start();
 #endif
 
     qDebug("* BitTorrent Session constructed");
@@ -3827,7 +3813,6 @@ void Session::startUpTorrents()
     const QDir resumeDataDir(m_resumeFolderPath);
     QStringList fastresumes = resumeDataDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-
     Logger *const logger = Logger::instance();
 
     typedef struct
@@ -3843,6 +3828,7 @@ void Session::startUpTorrents()
     {
         QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
+        ++m_startedCount;
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
             logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                                .arg(params.hash), Log::CRITICAL);
@@ -4041,6 +4027,9 @@ void Session::handleAlert(libt::alert *a)
         case libt::add_torrent_alert::alert_type:
             handleAddTorrentAlert(static_cast<libt::add_torrent_alert*>(a));
             break;
+        case libt::torrent_added_alert::alert_type:
+            handleTorrentAddedAlert();
+            break;
         case libt::torrent_removed_alert::alert_type:
             handleTorrentRemovedAlert(static_cast<libt::torrent_removed_alert*>(a));
             break;
@@ -4136,17 +4125,16 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         && !m_seedingLimitTimer->isActive())
         m_seedingLimitTimer->start();
 
-    // Send torrent addition signal
-    emit torrentAdded(torrent);
-    // Send new torrent signal
-    if (!params.restored)
-        emit torrentNew(torrent);
+    // Send torrent addition signal only if we're not starting up
+    if (m_started)
+        emit torrentAdded(torrent);
 }
 
 void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
 {
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
+        if (!m_started) --m_startedCount;
         QString msg = QString::fromStdString(p->message());
         Logger::instance()->addMessage(tr("Couldn't add torrent. Reason: %1").arg(msg), Log::WARNING);
         emit addTorrentFailed(msg);
@@ -4154,6 +4142,14 @@ void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
     else {
         createTorrentHandle(p->handle);
     }
+}
+
+void Session::handleTorrentAddedAlert()
+{
+    if (m_started) return;
+    --m_startedCount;
+    if (m_startedCount == 0)
+        handleStartUpFinished();
 }
 
 void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
@@ -4334,6 +4330,39 @@ void Session::handleExternalIPAlert(libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
     Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+}
+
+void Session::handleStartUpFinished()
+{
+    m_started = true;
+
+    if (isBandwidthSchedulerEnabled())
+        enableBandwidthScheduler();
+    m_refreshTimer->start();
+    m_resumeDataTimer->start();
+#if LIBTORRENT_VERSION_NUM >= 10100
+    m_statsUpdateTimer.start();
+#endif
+    updateSeedingLimitTimer();
+    const int alertMask = libt::alert::error_notification
+                          | libt::alert::peer_notification
+                          | libt::alert::port_mapping_notification
+                          | libt::alert::storage_notification
+                          | libt::alert::tracker_notification
+                          | libt::alert::status_notification
+                          | libt::alert::ip_block_notification
+                          | libt::alert::progress_notification
+                          | libt::alert::stats_notification;
+
+#if LIBTORRENT_VERSION_NUM < 10100
+    m_nativeSession->set_alert_mask(alertMask);
+#else
+    libt::settings_pack pack = m_nativeSession->get_settings();
+    pack.set_int(libt::settings_pack::alert_mask, alertMask);
+    m_nativeSession->apply_settings(pack);
+#endif
+    m_nativeSession->resume();
+    emit startupFinished();
 }
 
 #if LIBTORRENT_VERSION_NUM >= 10100

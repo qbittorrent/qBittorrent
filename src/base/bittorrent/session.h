@@ -508,7 +508,6 @@ namespace BitTorrent
         void torrentsUpdated();
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
-        void torrentNew(BitTorrent::TorrentHandle *const torrent);
         void torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
         void torrentPaused(BitTorrent::TorrentHandle *const torrent);
         void torrentResumed(BitTorrent::TorrentHandle *const torrent);
@@ -541,6 +540,7 @@ namespace BitTorrent
         void subcategoriesSupportChanged();
         void tagAdded(const QString &tag);
         void tagRemoved(const QString &tag);
+        void startupFinished();
 
     private slots:
         void configureDeferred();
@@ -610,6 +610,7 @@ namespace BitTorrent
         void handleAlert(libtorrent::alert *a);
         void dispatchTorrentAlert(libtorrent::alert *a);
         void handleAddTorrentAlert(libtorrent::add_torrent_alert *p);
+        void handleTorrentAddedAlert();
         void handleStateUpdateAlert(libtorrent::state_update_alert *p);
         void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
         void handleFileErrorAlert(libtorrent::file_error_alert *p);
@@ -624,6 +625,7 @@ namespace BitTorrent
         void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
         void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
         void handleExternalIPAlert(libtorrent::external_ip_alert *p);
+        void handleStartUpFinished();
 #if LIBTORRENT_VERSION_NUM >= 10100
         void handleSessionStatsAlert(libtorrent::session_stats_alert *p);
 #endif
@@ -768,6 +770,10 @@ namespace BitTorrent
         // I/O errored torrents
         QSet<InfoHash> m_recentErroredTorrents;
         QTimer *m_recentErroredTorrentsTimer;
+
+        // Used in starting up
+        int m_startedCount;
+        bool m_started;
 
 #if LIBTORRENT_VERSION_NUM < 10100
         QMutex m_alertsMutex;

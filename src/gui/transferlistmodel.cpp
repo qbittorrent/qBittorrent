@@ -59,21 +59,25 @@ static bool isDarkTheme();
 TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    // Load the torrents
-    using namespace BitTorrent;
-    foreach (TorrentHandle *const torrent, Session::instance()->torrents())
-        addTorrent(torrent);
-
     // Listen for torrent changes
-    connect(Session::instance(), &Session::torrentAdded, this, &TransferListModel::addTorrent);
-    connect(Session::instance(), &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
-    connect(Session::instance(), &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
+    using namespace BitTorrent;
+    auto session = Session::instance();
 
-    connect(Session::instance(), &Session::torrentFinished, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentMetadataLoaded, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentResumed, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentPaused, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(session, &Session::startupFinished, this, [this, session]()
+    {
+        for (auto it = session->torrents().cbegin(); it != session->torrents().cend(); ++it) {
+            addTorrent(it.value());
+        }
+    });
+    connect(session, &Session::torrentAdded, this, &TransferListModel::addTorrent);
+    connect(session, &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
+    connect(session, &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
+
+    connect(session, &Session::torrentFinished, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(session, &Session::torrentMetadataLoaded, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(session, &Session::torrentResumed, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(session, &Session::torrentPaused, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(session, &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
 int TransferListModel::rowCount(const QModelIndex &index) const
