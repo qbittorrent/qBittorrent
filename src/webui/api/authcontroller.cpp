@@ -69,6 +69,8 @@ void AuthController::loginAction()
     const bool equalPass = Utils::String::slowEquals(passwordFromWebHashed.toUtf8(), password.toUtf8());
 
     if (equalUser && equalPass) {
+        m_clientFailedLogins.remove(clientAddr);
+
         sessionManager()->sessionStart();
         setResult(QLatin1String("Ok."));
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
