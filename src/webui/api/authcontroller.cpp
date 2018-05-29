@@ -30,6 +30,7 @@
 
 #include <QCryptographicHash>
 
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/string.h"
 #include "apierror.h"
@@ -45,29 +46,39 @@ void AuthController::loginAction()
         return;
     }
 
-    if (isBanned())
+    const QString clientAddr {sessionManager()->clientId()};
+    const QString usernameFromWeb {params()["username"]};
+    const QString passwordFromWeb {params()["password"]};
+
+    if (isBanned()) {
+        LogMsg(tr("WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2")
+                .arg(clientAddr, usernameFromWeb)
+            , Log::WARNING);
         throw APIError(APIErrorType::AccessDenied
                        , tr("Your IP address has been banned after too many failed authentication attempts."));
-
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(params()["password"].toLocal8Bit());
-    QString pass = md5.result().toHex();
+    }
 
     const QString username {Preferences::instance()->getWebUiUsername()};
     const QString password {Preferences::instance()->getWebUiPassword()};
 
-    const bool equalUser = Utils::String::slowEquals(params()["username"].toUtf8(), username.toUtf8());
-    const bool equalPass = Utils::String::slowEquals(pass.toUtf8(), password.toUtf8());
+    QCryptographicHash md5(QCryptographicHash::Md5);
+    md5.addData(passwordFromWeb.toLocal8Bit());
+    const QString passwordFromWebHashed = md5.result().toHex();
+
+    const bool equalUser = Utils::String::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
+    const bool equalPass = Utils::String::slowEquals(passwordFromWebHashed.toUtf8(), password.toUtf8());
 
     if (equalUser && equalPass) {
         sessionManager()->sessionStart();
         setResult(QLatin1String("Ok."));
+        LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
     else {
-        QString addr = sessionManager()->clientId();
         increaseFailedAttempts();
-        qDebug("client IP: %s (%d failed attempts)", qUtf8Printable(addr), failedAttemptsCount());
         setResult(QLatin1String("Fails."));
+        LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
+                .arg(QString::number(failedAttemptsCount()), clientAddr, usernameFromWeb)
+            , Log::WARNING);
     }
 }
 
