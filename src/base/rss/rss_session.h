@@ -37,13 +37,19 @@
  * {
  *     "folder1": {
  *         "subfolder1": {
- *             "Feed name (Alias)": "http://some-feed-url1",
- *             "http://some-feed-url2": ""
+ *             "Feed name 1 (Alias)": {
+ *                 "uid": "feed unique identifier",
+ *                 "url": "http://some-feed-url1"
+ *             }
+ *             "Feed name 2 (Alias)": {
+ *                 "uid": "feed unique identifier",
+ *                 "url": "http://some-feed-url2"
+ *             }
  *         },
  *         "subfolder2": {},
- *         "http://some-feed-url3": "",
- *         "Feed name (Alias)": {
- *             "url": "http://some-feed-url4",
+ *         "Feed name 3 (Alias)": {
+ *             "uid": "feed unique identifier",
+ *             "url": "http://some-feed-url3"
  *         }
  *     },
  *     "folder2": {},
@@ -53,8 +59,7 @@
  *
  * 1.   Document is JSON object (the same as Folder)
  * 2.   Folder is JSON object (keys are Item names, values are Items)
- * 3.1. Feed is JSON object (keys are property names, values are property values; 'url' is required)
- * 3.2. (Reduced format) Feed is JSON string (string is URL unless it's empty, otherwise we take Feed URL from name)
+ * 3.   Feed is JSON object (keys are property names, values are property values; 'uid' and 'url' are required)
  */
 
 #include <QHash>
@@ -130,13 +135,14 @@ namespace RSS
         void handleFeedTitleChanged(Feed *feed);
 
     private:
+        QUuid generateUID() const;
         void load();
         void loadFolder(const QJsonObject &jsonObj, Folder *folder);
         void loadLegacy();
         void store();
         Folder *prepareItemDest(const QString &path, QString *error);
         Folder *addSubfolder(const QString &name, Folder *parentFolder);
-        Feed *addFeedToFolder(const QString &url, const QString &name, Folder *parentFolder);
+        Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder);
         void addItem(Item *item, Folder *destFolder);
 
         static QPointer<Session> m_instance;
@@ -149,6 +155,7 @@ namespace RSS
         uint m_refreshInterval;
         int m_maxArticlesPerFeed;
         QHash<QString, Item *> m_itemsByPath;
+        QHash<QUuid, Feed *> m_feedsByUID;
         QHash<QString, Feed *> m_feedsByURL;
     };
 }
