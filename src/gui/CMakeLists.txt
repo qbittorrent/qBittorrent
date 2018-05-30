@@ -38,7 +38,7 @@ categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
 deletionconfirmationdlg.h
-downloadfromurldlg.h
+downloadfromurldialog.h
 executionlog.h
 fspathedit.h
 fspathedit_p.h
@@ -87,6 +87,7 @@ categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
+downloadfromurldialog.cpp
 executionlog.cpp
 fspathedit.cpp
 fspathedit_p.cpp
@@ -141,7 +142,7 @@ cookiesdialog.ui
 ipsubnetwhitelistoptionsdialog.ui
 previewselectdialog.ui
 login.ui
-downloadfromurldlg.ui
+downloadfromurldialog.ui
 bandwidth_limit.ui
 updownratiodlg.ui
 confirmdeletiondlg.ui
