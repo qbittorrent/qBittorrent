@@ -867,7 +867,7 @@ namespace
         LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
 
         if (res == ERROR_SUCCESS) {
-            cMaxSubKeyLen++; // For null character
+            ++cMaxSubKeyLen; // For null character
             LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
             DWORD cName;
 
