@@ -75,7 +75,7 @@ var DynamicTable = new Class({
             var n = 2;
 
             while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
-                n--;
+                --n;
                 h -= 0.5;
                 $(this.dynamicTableDivId).style.height = h + 'px';
             }
@@ -214,7 +214,7 @@ var DynamicTable = new Class({
                 var val = localStorage.getItem('columns_order_' + this.dynamicTableDivId).split(',');
                 val.erase(el.columnName);
                 var pos = val.indexOf(this.lastHoverTh.columnName);
-                if (this.dropSide === 'right') pos++;
+                if (this.dropSide === 'right') ++pos;
                 val.splice(pos, 0, el.columnName);
                 localStorage.setItem('columns_order_' + this.dynamicTableDivId, val.join(','));
                 this.loadColumnsOrder();
@@ -239,7 +239,7 @@ var DynamicTable = new Class({
 
         var ths = this.fixedTableHeader.getElements('th');
 
-        for (var i = 0; i < ths.length; i++) {
+        for (var i = 0; i < ths.length; ++i) {
             var th = ths[i];
             th.addEvent('mousemove', mouseMoveFn);
             th.addEvent('mouseout', mouseOutFn);
@@ -262,7 +262,7 @@ var DynamicTable = new Class({
             DynamicTableHeaderContextMenuClass = new Class({
                 Extends: ContextMenu,
                 updateMenuItems: function() {
-                    for (var i = 0; i < this.dynamicTable.columns.length; i++) {
+                    for (var i = 0; i < this.dynamicTable.columns.length; ++i) {
                         if (this.dynamicTable.columns[i].caption === '')
                             continue;
                         if (this.dynamicTable.columns[i].visible !== '0')
@@ -304,7 +304,7 @@ var DynamicTable = new Class({
             this.showColumn(action, this.columns[action].visible === '0');
         }.bind(this);
 
-        for (var i = 0; i < this.columns.length; i++) {
+        for (var i = 0; i < this.columns.length; ++i) {
             var text = this.columns[i].caption;
             if (text === '')
                 continue;
@@ -370,17 +370,17 @@ var DynamicTable = new Class({
                 columnsOrder.push(v);
         }.bind(this));
 
-        for (i = 0; i < this.columns.length; i++)
+        for (i = 0; i < this.columns.length; ++i)
             if (!columnsOrder.contains(this.columns[i].name))
                 columnsOrder.push(this.columns[i].name);
 
-        for (i = 0; i < this.columns.length; i++)
+        for (i = 0; i < this.columns.length; ++i)
             this.columns[i] = this.columns[columnsOrder[i]];
     },
 
     saveColumnsOrder: function() {
         val = '';
-        for (i = 0; i < this.columns.length; i++) {
+        for (i = 0; i < this.columns.length; ++i) {
             if (i > 0)
                 val += ',';
             val += this.columns[i].name;
@@ -396,7 +396,7 @@ var DynamicTable = new Class({
     updateHeader: function(header) {
         var ths = header.getElements('th');
 
-        for (var i = 0; i < ths.length; i++) {
+        for (var i = 0; i < ths.length; ++i) {
             th = ths[i];
             th._this = this;
             th.setAttribute('title', this.columns[i].caption);
@@ -411,7 +411,7 @@ var DynamicTable = new Class({
     },
 
     getColumnPos: function(columnName) {
-        for (var i = 0; i < this.columns.length; i++)
+        for (var i = 0; i < this.columns.length; ++i)
             if (this.columns[i].name == columnName)
                 return i;
         return -1;
@@ -431,13 +431,13 @@ var DynamicTable = new Class({
         if (visible) {
             ths[pos].removeClass('invisible');
             fths[pos].removeClass('invisible');
-            for (var i = 0; i < trs.length; i++)
+            for (var i = 0; i < trs.length; ++i)
                 trs[i].getElements('td')[pos].removeClass('invisible');
         }
         else {
             ths[pos].addClass('invisible');
             fths[pos].addClass('invisible');
-            for (var j = 0; j < trs.length; j++)
+            for (var j = 0; j < trs.length; ++j)
                 trs[j].getElements('td')[pos].addClass('invisible');
         }
         if (this.columns[pos].onResize !== null) {
@@ -484,7 +484,7 @@ var DynamicTable = new Class({
         this.selectedRows.empty();
 
         var trs = this.tableBody.getElements('tr');
-        for (var i = 0; i < trs.length; i++) {
+        for (var i = 0; i < trs.length; ++i) {
             var tr = trs[i];
             this.selectedRows.push(tr.rowId);
             if (!tr.hasClass('selected'))
@@ -543,7 +543,7 @@ var DynamicTable = new Class({
 
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; i++) {
+        for (i = 0; i < rows.length; ++i) {
             filteredRows.push(rows[i]);
             filteredRows[rows[i].rowId] = rows[i];
         }
@@ -561,7 +561,7 @@ var DynamicTable = new Class({
 
     getTrByRowId: function(rowId) {
         trs = this.tableBody.getElements('tr');
-        for (var i = 0; i < trs.length; i++)
+        for (var i = 0; i < trs.length; ++i)
             if (trs[i].rowId == rowId)
                 return trs[i];
         return null;
@@ -573,18 +573,18 @@ var DynamicTable = new Class({
 
         var rows = this.getFilteredAndSortedRows();
 
-        for (var i = 0; i < this.selectedRows.length; i++)
+        for (var i = 0; i < this.selectedRows.length; ++i)
             if (!(this.selectedRows[i] in rows)) {
                 this.selectedRows.splice(i, 1);
-                i--;
+                --i;
             }
 
         var trs = this.tableBody.getElements('tr');
 
-        for (var rowPos = 0; rowPos < rows.length; rowPos++) {
+        for (var rowPos = 0; rowPos < rows.length; ++rowPos) {
             var rowId = rows[rowPos]['rowId'];
             tr_found = false;
-            for (var j = rowPos; j < trs.length; j++)
+            for (var j = rowPos; j < trs.length; ++j)
                 if (trs[j]['rowId'] == rowId) {
                     tr_found = true;
                     if (rowPos == j)
@@ -632,7 +632,7 @@ var DynamicTable = new Class({
                             this._this.selectedRows.empty();
                             var trs = this._this.tableBody.getElements('tr');
                             var select = false;
-                            for (var i = 0; i < trs.length; i++) {
+                            for (var i = 0; i < trs.length; ++i) {
                                 var tr = trs[i];
 
                                 if ((tr.rowId == first_row_id) || (tr.rowId == last_row_id)) {
@@ -660,7 +660,7 @@ var DynamicTable = new Class({
 
                 this.setupTr(tr);
 
-                for (var k = 0; k < this.columns.length; k++) {
+                for (var k = 0; k < this.columns.length; ++k) {
                     var td = new Element('td');
                     if ((this.columns[k].visible == '0') || this.columns[k].force_hide)
                         td.addClass('invisible');
@@ -700,7 +700,7 @@ var DynamicTable = new Class({
         data = row[fullUpdate ? 'full_data' : 'data'];
 
         tds = tr.getElements('td');
-        for (var i = 0; i < this.columns.length; i++) {
+        for (var i = 0; i < this.columns.length; ++i) {
             if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
                 this.columns[i].updateTd(tds[i], row);
         }
@@ -966,7 +966,7 @@ var TorrentsTable = new Class({
             var pos = this.getColumnPos(columnName);
             var trs = this.tableBody.getElements('tr');
             ProgressColumnWidth = -1;
-            for (var i = 0; i < trs.length; i++) {
+            for (var i = 0; i < trs.length; ++i) {
                 var td = trs[i].getElements('td')[pos];
                 if (ProgressColumnWidth < 0)
                     ProgressColumnWidth = td.offsetWidth;
@@ -1158,8 +1158,8 @@ var TorrentsTable = new Class({
         var cnt = 0;
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; i++)
-            if (this.applyFilter(rows[i], filterName, categoryHash)) cnt++;
+        for (i = 0; i < rows.length; ++i)
+            if (this.applyFilter(rows[i], filterName, categoryHash)) ++cnt;
         return cnt;
     },
 
@@ -1167,7 +1167,7 @@ var TorrentsTable = new Class({
         var rowsHashes = [];
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; i++)
+        for (i = 0; i < rows.length; ++i)
             if (this.applyFilter(rows[i], filterName, categoryHash))
                 rowsHashes.push(rows[i]['rowId']);
 
@@ -1179,7 +1179,7 @@ var TorrentsTable = new Class({
 
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; i++)
+        for (i = 0; i < rows.length; ++i)
             if (this.applyFilter(rows[i], selected_filter, selected_category)) {
                 filteredRows.push(rows[i]);
                 filteredRows[rows[i].rowId] = rows[i];
@@ -1284,7 +1284,7 @@ var TorrentPeersTable = new Class({
             var a = ip1.split(".");
             var b = ip2.split(".");
 
-            for (var i = 0; i < 4; i++) {
+            for (var i = 0; i < 4; ++i) {
                 if (a[i] != b[i])
                     return a[i] - b[i];
             }

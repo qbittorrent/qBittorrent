@@ -58,7 +58,7 @@ loadSelectedCategory();
 
 function genHash(string) {
     var hash = 0;
-    for (var i = 0; i < string.length; i++) {
+    for (var i = 0; i < string.length; ++i) {
         var c = string.charCodeAt(i);
         hash = (c + hash * 31) | 0;
     }

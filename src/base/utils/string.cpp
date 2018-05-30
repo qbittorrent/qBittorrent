@@ -172,7 +172,7 @@ bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
     int lengthB = b.length();
 
     int diff = lengthA ^ lengthB;
-    for (int i = 0; (i < lengthA) && (i < lengthB); i++)
+    for (int i = 0; (i < lengthA) && (i < lengthB); ++i)
         diff |= a[i] ^ b[i];
 
     return (diff == 0);
