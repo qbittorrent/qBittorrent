@@ -151,6 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_wasUpdateCheckEnabled(false)
 #endif
     , m_hasPython(false)
+    , m_sessionStarted(false)
 {
     m_ui->setupUi(this);
 
@@ -371,7 +372,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionWarningMessages->setChecked(flags & Log::WARNING);
     m_ui->actionCriticalMessages->setChecked(flags & Log::CRITICAL);
 
-    displayRSSTab(m_ui->actionRSSReader->isChecked());
     on_actionExecutionLogs_triggered(m_ui->actionExecutionLogs->isChecked());
     on_actionNormalMessages_triggered(m_ui->actionNormalMessages->isChecked());
     on_actionInformationMessages_triggered(m_ui->actionInformationMessages->isChecked());
@@ -467,6 +467,8 @@ MainWindow::MainWindow(QWidget *parent)
     setupDockClickHandler();
     qt_mac_set_dock_menu(trayIconMenu());
 #endif
+
+    setEnabledWidgets(false);
 }
 
 MainWindow::~MainWindow()
@@ -1302,8 +1304,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 // Decode if we accept drag 'n drop or not
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    foreach (const QString &mime, event->mimeData()->formats())
-        qDebug("mimeData: %s", mime.toLocal8Bit().data());
+    if (!m_sessionStarted) {
+        event->ignore();
+        return;
+    }
+
     if (event->mimeData()->hasFormat("text/plain") || event->mimeData()->hasFormat("text/uri-list"))
         event->acceptProposedAction();
 }
@@ -1393,6 +1398,34 @@ void MainWindow::showStatusBar(bool show)
         connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
         setStatusBar(m_statusBar);
     }
+}
+
+void MainWindow::setEnabledWidgets(bool enabled)
+{
+    if (m_sessionStarted) return;
+
+    m_ui->actionOpen->setEnabled(enabled);
+    m_ui->actionDownloadFromURL->setEnabled(enabled);
+    m_ui->menuEdit->setEnabled(enabled);
+    m_ui->menuView->setEnabled(enabled);
+    m_ui->menuOptions->setEnabled(enabled);
+    m_ui->menuHelp->setEnabled(enabled);
+
+    // These are reflected in the tray menu too
+    m_ui->actionUseAlternativeSpeedLimits->setEnabled(enabled);
+    m_ui->actionSetGlobalDownloadLimit->setEnabled(enabled);
+    m_ui->actionSetGlobalUploadLimit->setEnabled(enabled);
+    m_ui->actionStartAll->setEnabled(enabled);
+    m_ui->actionPauseAll->setEnabled(enabled);
+
+    m_ui->toolBar->setEnabled(enabled);
+    m_ui->centralWidget->setEnabled(enabled);
+    m_statusBar->setEnabled(enabled);
+
+    if (enabled)
+        displayRSSTab(m_ui->actionRSSReader->isChecked());
+
+    m_sessionStarted = enabled;
 }
 
 void MainWindow::loadPreferences(bool configureSession)

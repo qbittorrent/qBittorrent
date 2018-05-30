@@ -147,6 +147,7 @@ private:
     void runExternalProgram(const BitTorrent::TorrentHandle *torrent) const;
     void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
     void validateCommandLineParameters();
+    void handleStartUpFinished();
 };
 
 #endif // APPLICATION_H

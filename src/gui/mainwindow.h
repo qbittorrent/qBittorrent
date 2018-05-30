@@ -100,6 +100,8 @@ public:
     void cleanup();
 
     void showNotificationBaloon(QString title, QString msg) const;
+    // After Application has handled BitTorrent::Session::startupFinished
+    void setEnabledWidgets(bool enabled);
 
 private slots:
     void balloonClicked();
@@ -258,6 +260,7 @@ private:
 #endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
+    bool m_sessionStarted;
 };
 
 #endif // MAINWINDOW_H
