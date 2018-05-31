@@ -259,6 +259,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
         tr("Transfers"));
 
+    m_tabs->hide();
+
     connect(m_searchFilter, &LineEdit::textChanged, m_transferListWidget, &TransferListWidget::applyNameFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);
@@ -277,7 +279,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->centralWidgetLayout->addSpacing(8);
 #endif
 
-    m_ui->centralWidgetLayout->addWidget(m_tabs);
+    QLabel *startUpLabel = new QLabel(tr("Torrents are being loaded from disk. Please wait..."));
+    startUpLabel->setAlignment(Qt::AlignCenter);
+    m_ui->centralWidgetLayout->addWidget(startUpLabel);
 
     m_prioSeparator = m_ui->toolBar->insertSeparator(m_ui->actionTopPriority);
     m_prioSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopPriority);
@@ -1422,8 +1426,15 @@ void MainWindow::setEnabledWidgets(bool enabled)
     m_ui->centralWidget->setEnabled(enabled);
     m_statusBar->setEnabled(enabled);
 
-    if (enabled)
+    if (enabled) {
         displayRSSTab(m_ui->actionRSSReader->isChecked());
+
+        QLayoutItem *item = m_ui->centralWidgetLayout->takeAt(0);
+        delete item->widget();
+        delete item;
+        m_ui->centralWidgetLayout->addWidget(m_tabs);
+        m_tabs->show();
+    }
 
     m_sessionStarted = enabled;
 }
