@@ -50,6 +50,8 @@ DEFINES += BOOST_USE_WINAPI_VERSION=0x0501
 #DEFINES += BOOST_ASIO_SEPARATE_COMPILATION
 # Enable if building against libtorrent 1.0.x (RC_1_0) (dynamic linking)
 #DEFINES += BOOST_ASIO_DYN_LINK
+# Enable if encountered build error with boost version <= 1.59
+#DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 
 # Enable if building against libtorrent 1.1.x (RC_1_1)
 # built with this flag defined
