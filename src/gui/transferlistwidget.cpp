@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "transferlistwidget.h"
@@ -35,14 +33,14 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
-#include <QStylePainter>
 #include <QRegExp>
+#include <QRegularExpression>
 #include <QShortcut>
+#include <QStylePainter>
 #include <QTableView>
 #include <QWheelEvent>
 #include <QWidgetAction>
 
-#include "autoexpandabledialog.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/logger.h"
@@ -50,6 +48,7 @@
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
+#include "autoexpandabledialog.h"
 #include "deletionconfirmationdlg.h"
 #include "guiiconprovider.h"
 #include "mainwindow.h"
@@ -832,7 +831,7 @@ void TransferListWidget::renameSelectedTorrent()
     bool ok;
     QString name = AutoExpandableDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, torrent->name(), &ok);
     if (ok && !name.isEmpty()) {
-        name.replace(QRegExp("\r?\n|\r"), " ");
+        name.replace(QRegularExpression("\r?\n|\r"), " ");
         // Rename the torrent
         m_listModel->setData(mi, name, Qt::DisplayRole);
     }

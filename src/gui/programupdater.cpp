@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,20 +24,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QXmlStreamReader>
-#include <QDesktopServices>
-#include <QDebug>
-#include <QRegExp>
-#include <QStringList>
-
-#include "base/utils/fs.h"
-#include "base/net/downloadmanager.h"
-#include "base/net/downloadhandler.h"
 #include "programupdater.h"
+
+#include <QDebug>
+#include <QDesktopServices>
+#include <QRegularExpression>
+#include <QStringList>
+#include <QXmlStreamReader>
+
+#include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
+#include "base/utils/fs.h"
 
 namespace
 {
@@ -137,9 +136,9 @@ void ProgramUpdater::updateProgram()
 
 bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
-    QRegExp regVer("([0-9.]+)");
-    if (regVer.indexIn(QBT_VERSION) >= 0) {
-        QString localVersion = regVer.cap(1);
+    const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
+    if (regVerMatch.hasMatch()) {
+        QString localVersion = regVerMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
         QStringList remoteParts = remoteVersion.split('.');
         QStringList localParts = localVersion.split('.');
@@ -153,8 +152,8 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
         if (remoteParts.size() > localParts.size())
             return true;
         // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
-        QRegExp regDevel("(alpha|beta|rc)");
-        if (regDevel.indexIn(QBT_VERSION) >= 0)
+        const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
+        if (regDevelMatch.hasMatch())
             return true;
     }
     return false;
