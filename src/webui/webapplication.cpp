@@ -535,7 +535,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
     header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
 
-    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
+    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';");
     if (m_isClickjackingProtectionEnabled) {
         header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
         csp += QLatin1String(" frame-ancestors 'self';");
