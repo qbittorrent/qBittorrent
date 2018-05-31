@@ -34,9 +34,9 @@
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
 
+class QHeaderView;
 class QLabel;
 class QModelIndex;
-class QHeaderView;
 class QStandardItem;
 class QStandardItemModel;
 class QVBoxLayout;
@@ -44,8 +44,8 @@ class QVBoxLayout;
 template <typename T> class CachedSettingValue;
 
 class SearchHandler;
-class SearchSortModel;
 class SearchListDelegate;
+class SearchSortModel;
 struct SearchResult;
 
 namespace Ui
@@ -110,7 +110,7 @@ private:
     void setRowColor(int row, const QColor &color);
 
     static QString statusText(Status st);
-    static CachedSettingValue<NameFilteringMode>& nameFilteringModeSetting();
+    static CachedSettingValue<NameFilteringMode> &nameFilteringModeSetting();
 
     Ui::SearchTab *m_ui;
     SearchHandler *m_searchHandler;

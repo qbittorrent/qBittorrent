@@ -308,7 +308,7 @@ void RSSWidget::loadFoldersOpenState()
     const QStringList openedFolders = Preferences::instance()->getRssOpenFolders();
     foreach (const QString &varPath, openedFolders) {
         QTreeWidgetItem *parent = nullptr;
-        foreach (const QString &name, varPath.split("\\")) {
+        foreach (const QString &name, varPath.split('\\')) {
             int nbChildren = (parent ? parent->childCount() : m_feedListWidget->topLevelItemCount());
             for (int i = 0; i < nbChildren; ++i) {
                 QTreeWidgetItem *child = (parent ? parent->child(i) : m_feedListWidget->topLevelItem(i));
@@ -414,7 +414,7 @@ void RSSWidget::copySelectedFeedsURL()
         if (auto feed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item)))
             URLs << feed->url();
     }
-    qApp->clipboard()->setText(URLs.join("\n"));
+    qApp->clipboard()->setText(URLs.join('\n'));
 }
 
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)

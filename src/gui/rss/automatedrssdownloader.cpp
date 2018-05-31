@@ -50,8 +50,8 @@
 #include "base/rss/rss_session.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "guiiconprovider.h"
 #include "autoexpandabledialog.h"
+#include "guiiconprovider.h"
 #include "ui_automatedrssdownloader.h"
 #include "utils.h"
 
@@ -579,7 +579,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
         foreach (const QString &feedURL, rule.feedURLs()) {
             auto feed = RSS::Session::instance()->feedByURL(feedURL);
-            if (!feed) continue; // feed doesn't exists
+            if (!feed) continue; // feed doesn't exist
 
             QStringList matchingArticles;
             foreach (auto article, feed->articles())

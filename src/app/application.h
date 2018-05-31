@@ -40,15 +40,13 @@ typedef QtSingleApplication BaseApplication;
 class MainWindow;
 
 #ifdef Q_OS_WIN
-QT_BEGIN_NAMESPACE
 class QSessionManager;
-QT_END_NAMESPACE
 #endif // Q_OS_WIN
 
 #else
 #include "qtsinglecoreapplication.h"
 typedef QtSingleCoreApplication BaseApplication;
-#endif
+#endif // DISABLE_GUI
 
 #include "base/utils/misc.h"
 #include "cmdoptions.h"
@@ -112,7 +110,7 @@ protected:
 #ifdef Q_OS_MAC
     bool event(QEvent *) override;
 #endif
-    bool notify(QObject* receiver, QEvent* event) override;
+    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:

@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "pluginselectdlg.h"
@@ -41,11 +39,11 @@
 #include <QMimeData>
 #include <QTableView>
 
-#include "autoexpandabledialog.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "pluginsourcedlg.h"
 #include "searchwidget.h"
@@ -252,7 +250,7 @@ QList<QTreeWidgetItem*> PluginSelectDlg::findItemsWithUrl(QString url)
     return res;
 }
 
-QTreeWidgetItem* PluginSelectDlg::findItemWithID(QString id)
+QTreeWidgetItem *PluginSelectDlg::findItemWithID(QString id)
 {
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(i);

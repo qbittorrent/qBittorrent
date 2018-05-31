@@ -41,7 +41,7 @@ namespace RSS
     class Item;
 }
 
-class FeedListWidget: public QTreeWidget
+class FeedListWidget : public QTreeWidget
 {
     Q_OBJECT
 
