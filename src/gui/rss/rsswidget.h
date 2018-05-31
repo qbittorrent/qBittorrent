@@ -44,7 +44,7 @@ namespace Ui
     class RSSWidget;
 }
 
-class RSSWidget: public QWidget
+class RSSWidget : public QWidget
 {
     Q_OBJECT
 

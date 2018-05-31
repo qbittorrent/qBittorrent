@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef POWERMANAGEMENT_H

@@ -296,6 +296,6 @@ void migrateRSS()
         qBTRSSLegacy->remove("old_items");
     }
 }
-#endif
+#endif // DISABLE_GUI
 
 #endif // UPGRADE_H

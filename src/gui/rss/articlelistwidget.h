@@ -38,7 +38,7 @@ namespace RSS
     class Item;
 }
 
-class ArticleListWidget: public QListWidget
+class ArticleListWidget : public QListWidget
 {
     Q_OBJECT
 
