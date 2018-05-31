@@ -754,7 +754,7 @@ namespace BitTorrent
         QPointer<BandwidthScheduler> m_bwScheduler;
         // Tracker
         QPointer<Tracker> m_tracker;
-        // fastresume data writing thread
+        // fastresume data writing/loading thread
         QThread *m_ioThread;
         ResumeDataSavingManager *m_resumeDataSavingManager;
 
@@ -773,6 +773,7 @@ namespace BitTorrent
 
         // Used in starting up
         int m_startedCount;
+        int m_loadedCount;
         bool m_started;
 
 #if LIBTORRENT_VERSION_NUM < 10100

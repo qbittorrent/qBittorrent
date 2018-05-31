@@ -83,7 +83,7 @@ namespace
     }
 }
 
-// AddTorrentData
+// CreateTorrentParams
 
 CreateTorrentParams::CreateTorrentParams()
     : restored(false)

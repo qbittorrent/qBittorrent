@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,47 @@
  * exception statement from your version.
  */
 
-#ifndef RESUMEDATASAVINGMANAGER_H
-#define RESUMEDATASAVINGMANAGER_H
+#pragma once
 
-#include <QByteArray>
 #include <QDir>
+#include <QMap>
+#include <QMutex>
 #include <QObject>
+#include <QVector>
 
-class ResumeDataSavingManager : public QObject
+#include "base/bittorrent/magneturi.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrenthandle.h"
+
+class ResumeDataLoadingManager : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ResumeDataSavingManager)
+    Q_DISABLE_COPY(ResumeDataLoadingManager)
 
 public:
-    explicit ResumeDataSavingManager(const QString &resumeFolderPath);
+    struct TorrentResumeData
+    {
+        QString hash;
+        BitTorrent::MagnetUri magnetUri;
+        BitTorrent::CreateTorrentParams torrentParams;
+        BitTorrent::TorrentInfo info;
+        QByteArray data;
+    };
+
+    explicit ResumeDataLoadingManager(const QString &resumeFolderPath);
+    void getResumeData(QVector<TorrentResumeData> &out);
 
 public slots:
-    void saveResumeData(QString infoHash, QByteArray data) const;
+    void loadTorrents();
+
+signals:
+    void resumeDataReady();
+    void loadingFinished(int loadedCount);
 
 private:
+    bool m_resumeDataReady;
+    mutable QMutex m_lock;
     QDir m_resumeDataDir;
+    QVector<TorrentResumeData> m_readyResumeData;
+    QMap<int, TorrentResumeData> m_queuedResumeData;
 };
-
-#endif // RESUMEDATASAVINGMANAGER_H

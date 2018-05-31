@@ -9,6 +9,7 @@ bittorrent/magneturi.h
 bittorrent/peerinfo.h
 bittorrent/private/bandwidthscheduler.h
 bittorrent/private/filterparserthread.h
+bittorrent/private/resumedataloadingmanager.h
 bittorrent/private/resumedatasavingmanager.h
 bittorrent/private/speedmonitor.h
 bittorrent/private/statistics.h
@@ -81,6 +82,7 @@ bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
 bittorrent/private/bandwidthscheduler.cpp
 bittorrent/private/filterparserthread.cpp
+bittorrent/private/resumedataloadingmanager.cpp
 bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp

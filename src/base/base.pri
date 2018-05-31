@@ -8,6 +8,7 @@ HEADERS += \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
+    $$PWD/bittorrent/private/resumedataloadingmanager.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/bittorrent/private/speedmonitor.h \
     $$PWD/bittorrent/private/statistics.h \
@@ -80,6 +81,7 @@ SOURCES += \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
+    $$PWD/bittorrent/private/resumedataloadingmanager.cpp \
     $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
     $$PWD/bittorrent/private/speedmonitor.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
