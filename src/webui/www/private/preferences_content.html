@@ -733,9 +733,9 @@
 
     // Web UI tab
     updateHttpsSettings = function() {
-        var isAddTrackersEnabled = $('use_https_checkbox').getProperty('checked');
-        $('ssl_key_textarea').setProperty('disabled', !isAddTrackersEnabled);
-        $('ssl_cert_textarea').setProperty('disabled', !isAddTrackersEnabled);
+        var isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
+        $('ssl_key_textarea').setProperty('disabled', !isUseHttpsEnabled);
+        $('ssl_cert_textarea').setProperty('disabled', !isUseHttpsEnabled);
     };
 
     updateBypasssAuthSettings = function() {
