@@ -432,6 +432,7 @@ void WebApplication::configure()
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
+    m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -534,10 +535,13 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
     header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
 
-    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none';");
+    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';");
     if (m_isClickjackingProtectionEnabled) {
         header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
         csp += QLatin1String(" frame-ancestors 'self';");
+    }
+    if (m_isHttpsEnabled) {
+        csp += QLatin1String(" upgrade-insecure-requests;");
     }
 
     header(Http::HEADER_CONTENT_SECURITY_POLICY, csp);
