@@ -55,6 +55,7 @@ utils/misc.h
 utils/net.h
 utils/random.h
 utils/string.h
+utils/os.h
 utils/version.h
 algorithm.h
 asyncfilestorage.h
@@ -123,6 +124,7 @@ utils/misc.cpp
 utils/net.cpp
 utils/random.cpp
 utils/string.cpp
+utils/os.cpp
 asyncfilestorage.cpp
 exceptions.cpp
 filesystemwatcher.cpp

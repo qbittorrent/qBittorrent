@@ -68,6 +68,7 @@
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/os.h"
 #include "aboutdialog.h"
 #include "addnewtorrentdialog.h"
 #include "application.h"
@@ -450,18 +451,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
-    if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
-        if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
-                                  QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-            Preferences::setTorrentFileAssoc(true);
-            Preferences::setMagnetLinkAssoc(true);
-        }
-        else {
-            pref->setNeverCheckFileAssoc();
-        }
-    }
-#endif
+    checkAssociations();
+#endif // Q_OS_WIN
 #ifdef Q_OS_MAC
     setupDockClickHandler();
     qt_mac_set_dock_menu(trayIconMenu());
@@ -2024,7 +2015,7 @@ bool MainWindow::addPythonPathToEnv()
 {
     if (m_hasPython) return true;
 
-    QString pythonPath = Preferences::getPythonPath();
+    QString pythonPath = Utils::OS::getPythonPath();
     if (!pythonPath.isEmpty()) {
         Logger::instance()->addMessage(tr("Python found in '%1'").arg(Utils::Fs::toNativePath(pythonPath)), Log::INFO);
         // Add it to PATH envvar
@@ -2098,4 +2089,36 @@ void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
     QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
 }
 
+void MainWindow::checkAssociations()
+{
+#ifndef WIN_HAS_DEFAULT_PROGRAMS_API
+    if (QSysInfo::WindowsVersion >= QSysInfo::WV_VISTA)
+#else
+    if (QSysInfo::WindowsVersion >= QSysInfo::WV_WINDOWS8)
+#endif
+        return;
+
+    Preferences *const pref = Preferences::instance();
+
+    if (!pref->neverCheckFileAssoc() && !Utils::OS::areAssociationsSet()) {
+        const QString dlgText {(QSysInfo::WindowsVersion < QSysInfo::WV_VISTA)
+                    ? tr("qBittorrent is not the default application to open torrent files or magnet links.\n"
+                         "Do you want to associate qBittorrent with torrent files and magnet links?")
+                    : tr("Do you want to set qBittorrent as the default program for torrent files and magnet links?\n"
+                         "You can do it later using the Default Programs dialog from the Control Panel.")};
+        QMessageBox::StandardButton dialogResult = QMessageBox::question(
+            this, qApp->applicationName(), dlgText, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if (dialogResult == QMessageBox::Yes) {
+            try {
+                Utils::OS::setAssociations();
+            }
+            catch (const std::runtime_error &err) {
+                QMessageBox::critical(this, qApp->applicationName(), err.what());
+            }
+        }
+        else {
+            pref->setNeverCheckFileAssoc();
+        }
+    }
+}
 #endif // Q_OS_WIN

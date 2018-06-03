@@ -123,7 +123,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
 
-    setApplicationName("qBittorrent");
+    setApplicationName(QBT_APP_NAME);
     validateCommandLineParameters();
 
     QString profileDir = m_commandLineArgs.portableMode

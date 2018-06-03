@@ -18,6 +18,8 @@ endif()
 
 set(PROJECT_VERSION "${PROJECT_VERSION}${VER_STATUS}")
 
+add_definitions(-DQBT_APP_NAME="${CMAKE_PROJECT_NAME}")
+
 add_definitions(-DQBT_VERSION_MAJOR=${VER_MAJOR})
 add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
 add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})

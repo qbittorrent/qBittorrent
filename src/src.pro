@@ -2,6 +2,8 @@
 TEMPLATE = app
 CONFIG += qt thread silent
 
+DEFINES += QBT_APP_NAME=\\\"qBittorrent\\\"
+
 # C++11 support
 CONFIG += c++11
 

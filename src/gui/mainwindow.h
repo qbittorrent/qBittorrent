@@ -203,6 +203,7 @@ private:
 #ifdef Q_OS_WIN
     bool addPythonPathToEnv();
     void installPython();
+    void checkAssociations();
 #endif
 
     void dropEvent(QDropEvent *event) override;

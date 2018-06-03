@@ -34,7 +34,8 @@ win32-g++* {
 
     RC_FILE = qbittorrent_mingw.rc
 
-    LIBS += libadvapi32 libshell32 libuser32 libole32 libwsock32 libws2_32
+    LIBS += libadvapi32 libole32 libshell32 libuser32 \
+            libuuid libws2_32 libwsock32 libz
 }
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe
@@ -43,7 +44,7 @@ else:win32-msvc* {
 
     RC_FILE = qbittorrent.rc
 
-    LIBS += advapi32.lib shell32.lib crypt32.lib User32.lib ole32.lib
+    LIBS += advapi32.lib crypt32.lib ole32.lib shell32.lib user32.lib
 }
 
 # See an example build configuration in "conf.pri.windows"

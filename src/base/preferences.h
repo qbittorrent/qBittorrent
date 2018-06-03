@@ -257,19 +257,8 @@ public:
     bool recursiveDownloadDisabled() const;
     void disableRecursiveDownload(bool disable = true);
 #ifdef Q_OS_WIN
-    static QString getPythonPath();
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
-    static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
-    static void setTorrentFileAssoc(bool set);
-    static void setMagnetLinkAssoc(bool set);
-#endif
-#ifdef Q_OS_MAC
-    static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
-    static void setTorrentFileAssoc();
-    static void setMagnetLinkAssoc();
 #endif
     int getTrackerPort() const;
     void setTrackerPort(int port);

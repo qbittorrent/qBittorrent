@@ -115,14 +115,6 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "EstimatedSize" "$0"
-
-  ; qBittorrent ProgID
-  WriteRegStr HKLM "Software\Classes\qBittorrent" "" "qBittorrent Torrent File"
-  WriteRegStr HKLM "Software\Classes\qBittorrent" "FriendlyTypeName" "qBittorrent Torrent File"
-  WriteRegStr HKLM "Software\Classes\qBittorrent\shell" "" "open"
-  WriteRegStr HKLM "Software\Classes\qBittorrent\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
-  WriteRegStr HKLM "Software\Classes\qBittorrent\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
-
 SectionEnd
 
 ; Optional section (can be disabled by the user)
