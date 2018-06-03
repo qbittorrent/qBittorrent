@@ -70,6 +70,7 @@ HEADERS += \
     $$PWD/utils/net.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
+    $$PWD/utils/sys.h \
     $$PWD/utils/version.h
 
 SOURCES += \
@@ -132,4 +133,5 @@ SOURCES += \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/net.cpp \
     $$PWD/utils/random.cpp \
-    $$PWD/utils/string.cpp
+    $$PWD/utils/string.cpp \
+    $$PWD/utils/sys.cpp

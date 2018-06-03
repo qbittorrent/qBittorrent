@@ -40,6 +40,7 @@
 #include <QDialogButtonBox>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSysInfo>
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
@@ -61,6 +62,7 @@
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/random.h"
+#include "base/utils/sys.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "rss/automatedrssdownloader.h"
@@ -219,9 +221,24 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
     m_ui->checkPreventFromSuspend->setDisabled(true);
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#ifdef Q_OS_MAC
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
+#ifdef Q_OS_WIN
+    if (QSysInfo::WindowsVersion >= QSysInfo::WV_6_0) {
+        m_ui->assocPanel->hide();
+#ifndef APP_ASSOC_REG
+        m_ui->btnDefProgs->hide();
+#else
+        connect(m_ui->btnDefProgs, &QPushButton::clicked, this, []() { Utils::Sys::showAppAssocRegUI(); });
+#endif
+    }
+    else {
+        m_ui->newAssocPanel->hide();
+        connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+        connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    }
 #endif
     connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -540,8 +557,10 @@ void OptionsDialog::saveOptions()
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
     // Windows: file association settings
-    Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
-    Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
+    if (QSysInfo::WindowsVersion < QSysInfo::WV_6_0) {
+        Utils::Sys::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
+        Utils::Sys::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
+    }
 #endif
 #ifdef Q_OS_MAC
     if (m_ui->checkAssociateTorrents->isChecked()) {
@@ -776,8 +795,10 @@ void OptionsDialog::loadOptions()
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
-    m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-    m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+    if (QSysInfo::WindowsVersion < QSysInfo::WV_6_0) {
+        m_ui->checkAssociateTorrents->setChecked(Utils::Sys::isTorrentFileAssocSet());
+        m_ui->checkAssociateMagnetLinks->setChecked(Utils::Sys::isMagnetLinkAssocSet());
+    }
 #endif
 #ifdef Q_OS_MAC
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());

@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>470</width>
+             <height>832</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -453,17 +453,73 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_28">
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateTorrents">
-                    <property name="text">
-                     <string>Use qBittorrent for .torrent files</string>
-                    </property>
+                   <widget class="QWidget" name="assocPanel" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_31">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateTorrents">
+                       <property name="text">
+                        <string>Use qBittorrent for .torrent files</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateMagnetLinks">
+                       <property name="text">
+                        <string>Use qBittorrent for magnet links</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateMagnetLinks">
-                    <property name="text">
-                     <string>Use qBittorrent for magnet links</string>
-                    </property>
+                   <widget class="QWidget" name="newAssocPanel" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_30">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="labelSetAssoc">
+                       <property name="text">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btnDefProgs">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Default Programs ...</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>
@@ -671,8 +727,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>448</width>
+             <height>1011</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1255,8 +1311,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>382</width>
+             <height>652</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1785,8 +1841,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>282</width>
+             <height>375</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2128,8 +2184,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>383</width>
+             <height>647</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2709,8 +2765,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>313</width>
+             <height>323</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2871,8 +2927,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>356</width>
+             <height>649</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3453,9 +3509,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>DNSUsernameTxt</tabstop>
   <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>checkUploadLimit</sender>

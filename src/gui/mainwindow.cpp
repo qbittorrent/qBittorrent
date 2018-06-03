@@ -74,6 +74,7 @@
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/sys.h"
 #include "cookiesdialog.h"
 #include "downloadfromurldialog.h"
 #include "executionlog.h"
@@ -452,17 +453,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     qDebug("GUI Built");
 #ifdef Q_OS_WIN
-    if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
-        if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
-                                  QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-            Preferences::setTorrentFileAssoc(true);
-            Preferences::setMagnetLinkAssoc(true);
-        }
-        else {
-            pref->setNeverCheckFileAssoc();
-        }
-    }
+    Utils::Sys::showInitialAssocUI();
 #endif
 #ifdef Q_OS_MAC
     setupDockClickHandler();
