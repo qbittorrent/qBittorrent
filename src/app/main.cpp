@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include <cstdlib>
@@ -67,10 +65,10 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
-#include "application.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/misc.h"
-#include "base/preferences.h"
+#include "application.h"
 #include "cmdoptions.h"
 #include "upgrade.h"
 
@@ -95,7 +93,7 @@ const char *sysSigName[] = {
 };
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-void reportToUser(const char* str);
+void reportToUser(const char *str);
 #endif
 
 void displayVersion();
@@ -269,7 +267,7 @@ int main(int argc, char *argv[])
 }
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-void reportToUser(const char* str)
+void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
     if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
@@ -347,7 +345,7 @@ void displayVersion()
     printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
 }
 
-void displayBadArgMessage(const QString& message)
+void displayBadArgMessage(const QString &message)
 {
     QString help = QObject::tr("Run application with -h option to read about command line parameters.");
 #ifdef Q_OS_WIN
@@ -366,7 +364,7 @@ void displayBadArgMessage(const QString& message)
 
 bool userAgreesWithLegalNotice()
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     if (pref->getAcceptedLegal()) // Already accepted once
         return true;
 
@@ -397,7 +395,7 @@ bool userAgreesWithLegalNotice()
         pref->setAcceptedLegal(true);
         return true;
     }
-#endif
+#endif // DISABLE_GUI
 
     return false;
 }

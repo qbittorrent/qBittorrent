@@ -51,7 +51,7 @@ namespace RSS
     class Feed;
 }
 
-class AutomatedRssDownloader: public QDialog
+class AutomatedRssDownloader : public QDialog
 {
     Q_OBJECT
 

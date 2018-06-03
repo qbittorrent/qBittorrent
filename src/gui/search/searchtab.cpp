@@ -102,7 +102,7 @@ SearchTab::SearchTab(SearchHandler *searchHandler, QWidget *parent)
     m_ui->resultsBrowser->setAllColumnsShowFocus(true);
     m_ui->resultsBrowser->setSortingEnabled(true);
 
-    //Ensure that at least one column is visible at all times
+    // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
     for (unsigned int i = 0; i < SearchSortModel::DL_LINK; i++) {
         if (!m_ui->resultsBrowser->isColumnHidden(i)) {
@@ -112,9 +112,9 @@ SearchTab::SearchTab(SearchHandler *searchHandler, QWidget *parent)
     }
     if (!atLeastOne)
         m_ui->resultsBrowser->setColumnHidden(SearchSortModel::NAME, false);
-    //To also mitigate the above issue, we have to resize each column when
-    //its size is 0, because explicitly 'showing' the column isn't enough
-    //in the above scenario.
+    // To also mitigate the above issue, we have to resize each column when
+    // its size is 0, because explicitly 'showing' the column isn't enough
+    // in the above scenario.
     for (unsigned int i = 0; i < SearchSortModel::DL_LINK; i++)
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
@@ -229,7 +229,7 @@ void SearchTab::copyTorrentURLs()
 
     if (!urls.empty()) {
         QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setText(urls.join("\n"));
+        clipboard->setText(urls.join('\n'));
     }
 }
 
@@ -327,7 +327,7 @@ void SearchTab::fillFilterComboBoxes()
 
     QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().value());
     int index = m_ui->filterMode->findData(selectedMode);
-    m_ui->filterMode->setCurrentIndex(index == -1 ? 0 : index);
+    m_ui->filterMode->setCurrentIndex((index == -1) ? 0 : index);
 }
 
 QString SearchTab::statusText(SearchTab::Status st)

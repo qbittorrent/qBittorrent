@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PLUGINSELECTDLG_H
@@ -45,7 +43,7 @@ namespace Ui
     class PluginSelectDlg;
 }
 
-class PluginSelectDlg: public QDialog
+class PluginSelectDlg : public QDialog
 {
     Q_OBJECT
 
@@ -54,7 +52,7 @@ public:
     ~PluginSelectDlg();
 
     QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
-    QTreeWidgetItem* findItemWithID(QString id);
+    QTreeWidgetItem *findItemWithID(QString id);
 
 protected:
     void dropEvent(QDropEvent *event);
@@ -67,7 +65,7 @@ private slots:
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
     void setRowColor(int row, QString color);
-    void displayContextMenu(const QPoint& pos);
+    void displayContextMenu(const QPoint &pos);
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();

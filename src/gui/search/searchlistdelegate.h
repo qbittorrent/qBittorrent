@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef SEARCHLISTDELEGATE_H
@@ -33,7 +31,7 @@
 
 #include <QItemDelegate>
 
-class SearchListDelegate: public QItemDelegate
+class SearchListDelegate : public QItemDelegate
 {
 public:
     explicit SearchListDelegate(QObject *parent);
@@ -42,4 +40,4 @@ public:
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
 };
 
-#endif
+#endif // SEARCHLISTDELEGATE_H

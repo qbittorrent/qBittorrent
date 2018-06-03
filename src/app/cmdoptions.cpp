@@ -2,7 +2,7 @@
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2016  Eugene Shalygin <eugene.shalygin@gmail.com>
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "cmdoptions.h"
@@ -100,7 +98,7 @@ namespace
     };
 
     // Boolean option.
-    class BoolOption: protected Option
+    class BoolOption : protected Option
     {
     public:
         constexpr BoolOption(const char *name, char shortcut = 0)
@@ -118,7 +116,7 @@ namespace
         {
             QString val = env.value(envVarName());
             // we accept "1" and "true" (upper or lower cased) as boolean 'true' values
-            return (val == QLatin1String("1") || val.toUpper() == QLatin1String("TRUE"));
+            return ((val == QLatin1String("1")) || (val.toUpper() == QLatin1String("TRUE")));
         }
 
         QString usage() const
@@ -137,7 +135,7 @@ namespace
     }
 
     // Option with string value. May not have a shortcut
-    struct StringOption: protected Option
+    struct StringOption : protected Option
     {
     public:
         constexpr StringOption(const char *name)
@@ -184,7 +182,7 @@ namespace
     }
 
     // Option with integer value. May not have a shortcut
-    class IntOption: protected StringOption
+    class IntOption : protected StringOption
     {
     public:
         constexpr IntOption(const char *name)
@@ -230,7 +228,7 @@ namespace
 
     // Option that is explicitly set to true or false, and whose value is undefined when unspecified.
     // May not have a shortcut.
-    class TriStateBoolOption: protected Option
+    class TriStateBoolOption : protected Option
     {
     public:
         constexpr TriStateBoolOption(const char *name, bool defaultValue)
@@ -260,10 +258,10 @@ namespace
             else if (parts.size() == 2) {
                 QString val = parts[1];
 
-                if (val.toUpper() == QLatin1String("TRUE") || val == QLatin1String("1")) {
+                if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                     return TriStateBool::True;
                 }
-                else if (val.toUpper() == QLatin1String("FALSE") || val == QLatin1String("0")) {
+                else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                     return TriStateBool::False;
                 }
             }
@@ -285,10 +283,10 @@ namespace
             else if (val == QLatin1String("-1")) {
                 return TriStateBool::Undefined;
             }
-            else if (val.toUpper() == QLatin1String("TRUE") || val == QLatin1String("1")) {
+            else if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                 return TriStateBool::True;
             }
-            else if (val.toUpper() == QLatin1String("FALSE") || val == QLatin1String("0")) {
+            else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                 return TriStateBool::False;
             }
             else {
@@ -360,7 +358,7 @@ QStringList QBtCommandLineParameters::paramList() const
     // the user has specified. Here we place special strings that are
     // almost certainly not going to collide with a file path or URL
     // specified by the user, and placing them at the beginning of the
-    // string listr so that they will be processed before the list of
+    // string list so that they will be processed before the list of
     // torrent paths or URLs.
 
     if (!savePath.isEmpty())
@@ -406,7 +404,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
         if ((arg.startsWith("--") && !arg.endsWith(".torrent"))
             || (arg.startsWith("-") && (arg.size() == 2))) {
             // Parse known parameters
-            if ((arg == SHOW_HELP_OPTION)) {
+            if (arg == SHOW_HELP_OPTION) {
                 result.showHelp = true;
             }
 #ifndef Q_OS_WIN
@@ -509,7 +507,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
         }
     }
 
-    return lines.join("\n");
+    return lines.join('\n');
 }
 
 QString makeUsage(const QString &prgName)
