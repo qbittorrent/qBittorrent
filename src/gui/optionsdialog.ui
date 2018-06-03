@@ -569,17 +569,60 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_28">
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateTorrents">
-                    <property name="text">
-                     <string>Use qBittorrent for .torrent files</string>
-                    </property>
+                   <widget class="QWidget" name="assocPanel" native="true">
+                    <layout class="QVBoxLayout" name="assocPanelLayout">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateTorrents">
+                       <property name="text">
+                        <string>Use qBittorrent for .torrent files</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateMagnetLinks">
+                       <property name="text">
+                        <string>Use qBittorrent for magnet links</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateMagnetLinks">
-                    <property name="text">
-                     <string>Use qBittorrent for magnet links</string>
-                    </property>
+                   <widget class="QWidget" name="defaultProgramPanel" native="true">
+                    <layout class="QVBoxLayout" name="defaultProgramPanelLayout">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="labelSetAssoc">
+                       <property name="text">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>

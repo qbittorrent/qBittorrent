@@ -1293,21 +1293,6 @@ void Preferences::setRecursiveDownloadEnabled(const bool enable)
     setValue(u"Preferences/Advanced/DisableRecursiveDownload"_s, !enable);
 }
 
-#ifdef Q_OS_WIN
-bool Preferences::neverCheckFileAssoc() const
-{
-    return value(u"Preferences/Win32/NeverCheckFileAssocation"_s, false);
-}
-
-void Preferences::setNeverCheckFileAssoc(const bool check)
-{
-    if (check == neverCheckFileAssoc())
-        return;
-
-    setValue(u"Preferences/Win32/NeverCheckFileAssocation"_s, check);
-}
-#endif // Q_OS_WIN
-
 int Preferences::getTrackerPort() const
 {
     return value<int>(u"Preferences/Advanced/trackerPort"_s, 9000);

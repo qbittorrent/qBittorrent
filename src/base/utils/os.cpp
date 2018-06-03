@@ -34,17 +34,7 @@
 #include <CoreServices/CoreServices.h>
 #endif // Q_OS_MACOS
 
-#ifdef Q_OS_WIN
-#include <shlobj.h>
-#endif // Q_OS_WIN
-
 #include <QString>
-
-#ifdef Q_OS_WIN
-#include <QCoreApplication>
-#include <QRegularExpression>
-#include <QSettings>
-#endif // Q_OS_WIN
 
 #include "base/global.h"
 #include "base/path.h"
@@ -114,81 +104,3 @@ void Utils::OS::setMagnetLinkAssoc()
         ::LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
 #endif // Q_OS_MACOS
-
-#ifdef Q_OS_WIN
-bool Utils::OS::isTorrentFileAssocSet()
-{
-    const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-    return settings.value(u".torrent/Default"_s).toString() == u"qBittorrent";
-}
-
-void Utils::OS::setTorrentFileAssoc(const bool set)
-{
-    if (set == isTorrentFileAssocSet())
-        return;
-
-    QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-
-    if (set)
-    {
-        const QString oldProgId = settings.value(u".torrent/Default"_s).toString();
-        if (!oldProgId.isEmpty() && (oldProgId != u"qBittorrent"))
-            settings.setValue((u".torrent/OpenWithProgids/" + oldProgId), QString());
-
-        settings.setValue(u".torrent/Default"_s, u"qBittorrent"_s);
-        settings.setValue(u".torrent/Content Type"_s, u"application/x-bittorrent"_s);
-    }
-    else
-    {
-        settings.setValue(u".torrent/Default"_s, QString());
-    }
-
-    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
-}
-
-bool Utils::OS::isMagnetLinkAssocSet()
-{
-    const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-    const QString shellCommand = settings.value(u"magnet/shell/open/command/Default"_s).toString();
-
-    const QRegularExpressionMatch exeRegMatch = QRegularExpression(u"\"([^\"]+)\".*"_s).match(shellCommand);
-    if (!exeRegMatch.hasMatch())
-        return false;
-
-    const Path assocExe {exeRegMatch.captured(1)};
-    if (assocExe != Path(qApp->applicationFilePath()))
-        return false;
-
-    return true;
-}
-
-void Utils::OS::setMagnetLinkAssoc(const bool set)
-{
-    if (set == isMagnetLinkAssocSet())
-        return;
-
-    QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-
-    if (set)
-    {
-        const QString applicationFilePath = Path(qApp->applicationFilePath()).toString();
-        const QString commandStr = u'"' + applicationFilePath + u"\" \"%1\"";
-        const QString iconStr = u'"' + applicationFilePath + u"\",1";
-
-        settings.setValue(u"magnet/Default"_s, u"URL:Magnet link"_s);
-        settings.setValue(u"magnet/Content Type"_s, u"application/x-magnet"_s);
-        settings.setValue(u"magnet/DefaultIcon/Default"_s, iconStr);
-        settings.setValue(u"magnet/shell/Default"_s, u"open"_s);
-        settings.setValue(u"magnet/shell/open/command/Default"_s, commandStr);
-        settings.setValue(u"magnet/URL Protocol"_s, QString());
-    }
-    else
-    {
-        // only wipe values that are specific to qbt
-        settings.setValue(u"magnet/DefaultIcon/Default"_s, QString());
-        settings.setValue(u"magnet/shell/open/command/Default"_s, QString());
-    }
-
-    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
-}
-#endif // Q_OS_WIN

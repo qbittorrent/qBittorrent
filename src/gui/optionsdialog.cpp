@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -55,6 +56,7 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
+#include "base/utils/os.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
@@ -287,8 +289,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
-    m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
-    m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
 #endif
 
 #ifdef Q_OS_MACOS
@@ -369,10 +369,21 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+#if defined(Q_OS_MACOS)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
+
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
+
+#ifdef Q_OS_WIN
+    m_ui->assocPanel->hide();
+#endif
+
+#ifdef Q_OS_MAC
+    m_ui->defaultProgramPanel->hide();
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QBT_USES_DBUS)
@@ -435,9 +446,6 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
-
-    Utils::OS::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
-    Utils::OS::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
 #ifndef Q_OS_MACOS
