@@ -172,22 +172,20 @@ private:
     bool isWebUiEnabled() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
-
-private:
+    // WebUI SSL Cert / key
     bool setSslKey(const QByteArray &key);
     bool setSslCertificate(const QByteArray &cert);
     bool schedTimesOk();
     bool webUIAuthenticationOk();
 
-private:
+    QByteArray m_sslCert, m_sslKey;
+
     Ui::OptionsDialog *m_ui;
     QButtonGroup choiceLanguage;
     QAbstractButton *applyButton;
     AdvancedSettings *advancedSettings;
     QList<QString> addedScanDirs;
     QList<QString> removedScanDirs;
-    // SSL Cert / key
-    QByteArray m_sslCert, m_sslKey;
 };
 
 #endif
