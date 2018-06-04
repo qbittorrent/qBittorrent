@@ -73,7 +73,6 @@ const QString PATH_PREFIX_THEME {QStringLiteral("/theme/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
 const QString PUBLIC_FOLDER {QStringLiteral("/public")};
 const QString PRIVATE_FOLDER {QStringLiteral("/private")};
-const QString MAX_AGE_MONTH {QStringLiteral("public, max-age=2592000")};
 
 namespace
 {
@@ -141,6 +140,22 @@ namespace
             return QUrl(QLatin1String("http://") + hostHeader);
         return hostHeader;
     }
+
+    QString getCachingInterval(QString contentType)
+    {
+        contentType = contentType.toLower();
+
+        if (contentType.startsWith(QLatin1String("image/")))
+            return QLatin1String("private, max-age=604800");  // 1 week
+
+        if ((contentType == Http::CONTENT_TYPE_CSS)
+            || (contentType == Http::CONTENT_TYPE_JS)) {
+            // short interval in case of program update
+            return QLatin1String("private, max-age=43200");  // 12 hrs
+        }
+
+        return QLatin1String("no-store");
+    }
 }
 
 WebApplication::WebApplication(QObject *parent)
@@ -176,14 +191,12 @@ void WebApplication::sendWebUIFile()
         if (request().path.startsWith(PATH_PREFIX_IMAGES)) {
             const QString imageFilename {request().path.mid(PATH_PREFIX_IMAGES.size())};
             sendFile(QLatin1String(":/icons/") + imageFilename);
-            header(Http::HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
             return;
         }
 
         if (request().path.startsWith(PATH_PREFIX_THEME)) {
             const QString iconId {request().path.mid(PATH_PREFIX_THEME.size())};
             sendFile(IconProvider::instance()->getIconPath(iconId));
-            header(Http::HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
             return;
         }
     }
@@ -455,7 +468,9 @@ void WebApplication::sendFile(const QString &path)
     // find translated file in cache
     auto it = m_translatedFiles.constFind(path);
     if ((it != m_translatedFiles.constEnd()) && (lastModified <= (*it).lastModified)) {
-        print((*it).data, QMimeDatabase().mimeTypeForFileNameAndData(path, (*it).data).name());
+        const QString mimeName {QMimeDatabase().mimeTypeForFileNameAndData(path, (*it).data).name()};
+        print((*it).data, mimeName);
+        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeName));
         return;
     }
 
@@ -474,8 +489,8 @@ void WebApplication::sendFile(const QString &path)
     QByteArray data {file.readAll()};
     file.close();
 
-    const QMimeType type {QMimeDatabase().mimeTypeForFileNameAndData(path, data)};
-    const bool isTranslatable {type.inherits(QLatin1String("text/plain"))};
+    const QMimeType mimeType {QMimeDatabase().mimeTypeForFileNameAndData(path, data)};
+    const bool isTranslatable {mimeType.inherits(QLatin1String("text/plain"))};
 
     // Translate the file
     if (isTranslatable) {
@@ -486,7 +501,8 @@ void WebApplication::sendFile(const QString &path)
         m_translatedFiles[path] = {data, lastModified}; // caching translated file
     }
 
-    print(data, type.name());
+    print(data, mimeType.name());
+    header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
 }
 
 Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)

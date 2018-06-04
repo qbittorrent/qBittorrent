@@ -42,7 +42,7 @@
         <file>www/private/transferlist.html</file>
         <file>www/private/upload.html</file>
         <file>www/private/uploadlimit.html</file>
-        <file>www/public/css/style.css</file>
+        <file>www/public/css/login.css</file>
         <file>www/public/login.html</file>
         <file>www/public/scripts/lib/mootools-1.2-core-yc.js</file>
     </qresource>

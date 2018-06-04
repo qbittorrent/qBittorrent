@@ -63,10 +63,12 @@ namespace Http
     const char HEADER_REQUEST_METHOD_POST[] = "POST";
 
     const char CONTENT_TYPE_HTML[] = "text/html";
+    const char CONTENT_TYPE_CSS[] = "text/css";
+    const char CONTENT_TYPE_TXT[] = "text/plain";
+    const char CONTENT_TYPE_JS[] = "application/javascript";
     const char CONTENT_TYPE_JSON[] = "application/json";
     const char CONTENT_TYPE_GIF[] = "image/gif";
     const char CONTENT_TYPE_PNG[] = "image/png";
-    const char CONTENT_TYPE_TXT[] = "text/plain";
     const char CONTENT_TYPE_FORM_ENCODED[] = "application/x-www-form-urlencoded";
     const char CONTENT_TYPE_FORM_DATA[] = "multipart/form-data";
 
