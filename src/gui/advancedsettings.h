@@ -31,27 +31,10 @@
 
 #include <QCheckBox>
 #include <QComboBox>
-#include <QEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QTableWidget>
-
-class WheelEventEater: public QObject
-{
-    Q_OBJECT
-
-private:
-    bool eventFilter(QObject *obj, QEvent *event)
-    {
-        switch (event->type()) {
-        case QEvent::Wheel:
-            return true;
-        default:
-            return QObject::eventFilter(obj, event);
-        }
-    }
-};
 
 class AdvancedSettings: public QTableWidget
 {
