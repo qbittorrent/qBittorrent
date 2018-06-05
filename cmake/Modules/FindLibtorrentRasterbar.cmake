@@ -99,6 +99,7 @@ list(FIND LibtorrentRasterbar_DEFINITIONS -DTORRENT_USE_OPENSSL LibtorrentRaster
 if(LibtorrentRasterbar_ENCRYPTION_INDEX GREATER -1)
     find_package(OpenSSL REQUIRED)
     set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
+    list(APPEND LibtorrentRasterbar_INCLUDE_DIRS "${OPENSSL_INCLUDE_DIR}")
     set(LibtorrentRasterbar_OPENSSL_ENABLED ON)
 endif()
 
@@ -113,10 +114,10 @@ mark_as_advanced(LibtorrentRasterbar_INCLUDE_DIR LibtorrentRasterbar_LIBRARY
     LibtorrentRasterbar_ORIG_CMAKE_FIND_LIBRARY_SUFFIXES
     LibtorrentRasterbar_ENCRYPTION_INDEX)
 
-if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::LibTorrent)
-    add_library(LibtorrentRasterbar::LibTorrent UNKNOWN IMPORTED)
+if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::torrent-rasterbar)
+    add_library(LibtorrentRasterbar::torrent-rasterbar UNKNOWN IMPORTED)
 
-    set_target_properties(LibtorrentRasterbar::LibTorrent PROPERTIES
+    set_target_properties(LibtorrentRasterbar::torrent-rasterbar PROPERTIES
         IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
         IMPORTED_LOCATION "${LibtorrentRasterbar_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"
