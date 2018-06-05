@@ -1,17 +1,25 @@
-project(qbt_executable)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
-set(QBT_APP_HEADERS
+add_executable(qBittorrent
 application.h
 cmdoptions.h
 filelogger.h
-)
-
-set(QBT_APP_SOURCES
+upgrade.h
 application.cpp
 cmdoptions.cpp
 filelogger.cpp
 main.cpp
+)
+
+target_include_directories(qBittorrent PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(qBittorrent
+    PRIVATE
+        qbt_base
+)
+
+set_target_properties(qBittorrent
+    PROPERTIES
+        AUTOUIC True
+        AUTORCC True
+        MACOSX_BUNDLE True
 )
 
 # translations
@@ -46,51 +54,41 @@ qt5_add_resources(QBT_APP_RESOURCE_SOURCE ${QBT_APP_RESOURCES})
 
 if (WIN32)
     if (MINGW)
-        list (APPEND QBT_APP_SOURCES ../qbittorrent_mingw.rc)
+        target_sources(qBittorrent PRIVATE ../qbittorrent_mingw.rc)
     else (MINGW)
-        list (APPEND QBT_APP_SOURCES ../qbittorrent.rc)
+        target_sources(qBittorrent PRIVATE ../qbittorrent.rc)
     endif (MINGW)
-    list(APPEND QBT_APP_SOURCES ../qbittorrent.exe.manifest)
+    target_sources(qBittorrent PRIVATE ../qbittorrent.exe.manifest)
 endif (WIN32)
 
 if (STACKTRACE)
     if (UNIX)
-        list(APPEND QBT_APP_HEADERS stacktrace.h)
+        target_sources(qBittorrent PRIVATE stacktrace.h)
     else (UNIX)
-        list(APPEND QBT_APP_HEADERS stacktrace_win.h)
-        if (GUI)
-            list(APPEND QBT_APP_HEADERS stacktrace_win_dlg.h)
-        endif (GUI)
+        target_sources(qBittorrent PRIVATE stacktrace_win.h)
+        if (Qt5Widgets_FOUND)
+            target_sources(qBittorrent PRIVATE stacktrace_win_dlg.h)
+        endif (Qt5Widgets_FOUND)
     endif (UNIX)
 endif (STACKTRACE)
 
-# usesystemqtsingleapplication {
-#     nogui {
-#         CONFIG += qtsinglecoreapplication
-#     } else {
-#         CONFIG += qtsingleapplication
-#     }
-# } else {
-#     nogui {
-#         include(qtsingleapplication/qtsinglecoreapplication.pri)
-#     } else {
-#         include(qtsingleapplication/qtsingleapplication.pri)
-#     }
-# }
 
-# upgrade code
-list(APPEND QBT_APP_HEADERS upgrade.h)
-list(APPEND QBT_TARGET_LIBRARIES qbt_base)
-
-if (GUI)
-    list(APPEND QBT_TARGET_LIBRARIES qbt_searchengine qbt_gui)
-    include_directories(../gui
-        ${CMAKE_CURRENT_BINARY_DIR}/../gui
+if (Qt5Widgets_FOUND)
+    target_link_libraries(qBittorrent PRIVATE qbt_searchengine qbt_gui)
+    set_target_properties(qBittorrent
+        PROPERTIES
+            OUTPUT_NAME qbittorrent
+            WIN32_EXECUTABLE True
     )
-endif (GUI)
+else(Qt5Widgets_FOUND)
+    set_target_properties(qBittorrent
+        PROPERTIES
+            OUTPUT_NAME qbittorrent-nox
+    )
+endif (Qt5Widgets_FOUND)
 
 if (WEBUI)
-    list(APPEND QBT_TARGET_LIBRARIES qbt_webui)
+    target_link_libraries(qBittorrent PRIVATE qbt_webui)
 endif (WEBUI)
 
 # we have to include resources into the bundle
@@ -142,30 +140,11 @@ if (APPLE)
         PROPERTIES MACOSX_PACKAGE_LOCATION translations)
 endif (APPLE)
 
-add_executable(qBittorrent ${QBT_APP_HEADERS} ${QBT_APP_SOURCES} ${QBT_QM_FILES} ${QBT_APP_RESOURCE_SOURCE})
-if (GUI)
-    set_target_properties(qBittorrent
-        PROPERTIES
-            OUTPUT_NAME qbittorrent
-            WIN32_EXECUTABLE True
-    )
-else (GUI)
-    set_target_properties(qBittorrent
-        PROPERTIES
-            OUTPUT_NAME qbittorrent-nox
-    )
-endif (GUI)
-
-set_target_properties(qBittorrent
-    PROPERTIES
-        AUTOUIC True
-        AUTORCC True
-        MACOSX_BUNDLE True
-)
+target_sources(qBittorrent PRIVATE ${QBT_QM_FILES} ${QBT_APP_RESOURCE_SOURCE})
 
 get_target_property(QBT_EXECUTABLE_NAME qBittorrent OUTPUT_NAME)
 
-target_link_libraries(qBittorrent ${QBT_TARGET_LIBRARIES} QtSingleApplication::QtSingleApplication)
+target_link_libraries(qBittorrent PRIVATE ${QBT_TARGET_LIBRARIES} QtSingleApplication::QtSingleApplication)
 
 if (APPLE)
     set(qbt_BUNDLE_NAME ${QBT_EXECUTABLE_NAME})
@@ -186,6 +165,7 @@ install(TARGETS qBittorrent
     BUNDLE  DESTINATION .
     COMPONENT runtime)
 
-if (GUI AND APPLE)
+if (Qt5Widgets_FOUND AND APPLE)
+    find_package(Qt5Svg REQUIRED)
     include(bundle)
-endif (GUI AND APPLE)
+endif (Qt5Widgets_FOUND AND APPLE)

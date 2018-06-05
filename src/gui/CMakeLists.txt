@@ -1,7 +1,8 @@
 set(CMAKE_AUTORCC True)
 set(CMAKE_AUTOUIC True)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(qbt_gui_headers INTERFACE)
+target_include_directories(qbt_gui_headers INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(lineedit)
 add_subdirectory(properties)
@@ -9,24 +10,8 @@ add_subdirectory(powermanagement)
 add_subdirectory(rss)
 add_subdirectory(search)
 
-if (UNIX AND NOT APPLE AND DBUS)
-   add_subdirectory(qtnotify)
-   include_directories(qtnotify)
-   list(APPEND QBT_GUI_OPTIONAL_LINK_LIBRARIES qbt_qtnotify)
-endif (UNIX AND NOT APPLE AND DBUS)
-
-include_directories(
-${CMAKE_CURRENT_BINARY_DIR}/properties
-${CMAKE_CURRENT_BINARY_DIR}/rss
-${CMAKE_CURRENT_BINARY_DIR}/search
-lineedit/src
-powermanagement
-properties
-rss
-../app
-)
-
-set(QBT_GUI_HEADERS
+add_library(qbt_gui STATIC
+# headers
 about_imp.h
 addnewtorrentdialog.h
 advancedsettings.h
@@ -75,9 +60,7 @@ transferlistsortmodel.h
 transferlistwidget.h
 updownratiodlg.h
 utils.h
-)
-
-set(QBT_GUI_SOURCES
+# sources
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
@@ -122,19 +105,7 @@ transferlistsortmodel.cpp
 transferlistwidget.cpp
 updownratiodlg.cpp
 utils.cpp
-)
-
-if (APPLE)
-    list(APPEND QBT_GUI_HEADERS macutilities.h)
-    list(APPEND QBT_GUI_SOURCES macutilities.mm)
-endif (APPLE)
-
-if (WIN32 OR APPLE)
-    list(APPEND QBT_GUI_HEADERS programupdater.h)
-    list(APPEND QBT_GUI_SOURCES programupdater.cpp)
-endif (WIN32 OR APPLE)
-
-set(QBT_GUI_FORMS
+# forms
 mainwindow.ui
 about.ui
 banlistoptions.ui
@@ -156,17 +127,36 @@ torrentcreatordlg.ui
 shutdownconfirmdlg.ui
 )
 
-qbt_target_sources(about.qrc)
-
-add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_FORMS})
-target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
-    ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
-    QtSingleApplication::QtSingleApplication
+target_link_libraries(qbt_gui
+    PRIVATE
+        qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
+        qbt_base
+        QtSingleApplication::QtSingleApplication
 )
-if(WIN32)
-    target_link_libraries(qbt_gui Qt5::WinExtras)
-endif(WIN32)
+
+target_include_directories(qbt_gui
+    PRIVATE ../app
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+if (UNIX AND Qt5DBus_FOUND)
+   add_subdirectory(qtnotify)
+   target_link_libraries(qbt_gui PRIVATE qbt_qtnotify)
+endif (UNIX AND Qt5DBus_FOUND)
 
 if (APPLE)
-    target_link_libraries(qbt_gui Qt5::MacExtras)
-endif()
+    target_sources(qbt_gui PRIVATE macutilities.h macutilities.mm)
+    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS MacExtras)
+    target_link_libraries(qbt_gui PRIVATE Qt5::MacExtras objc)
+endif (APPLE)
+
+if (WIN32 OR APPLE)
+    target_sources(qbt_gui PRIVATE programupdater.h programupdater.cpp)
+endif (WIN32 OR APPLE)
+
+qbt_target_sources(qBittorrent PRIVATE about.qrc)
+
+if(WIN32)
+    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS WinExtras)
+    target_link_libraries(qbt_gui PRIVATE Qt5::WinExtras)
+endif(WIN32)

@@ -1,6 +1,6 @@
 find_package(ZLIB 1.2.5.2 REQUIRED)
 
-set(QBT_BASE_HEADERS
+add_library(qbt_base STATIC
 bittorrent/addtorrentparams.h
 bittorrent/cachestatus.h
 bittorrent/infohash.h
@@ -72,9 +72,6 @@ torrentfilter.h
 tristatebool.h
 types.h
 unicodestrings.h
-)
-
-set(QBT_BASE_SOURCES
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
@@ -137,16 +134,20 @@ torrentfilter.cpp
 tristatebool.cpp
 )
 
-add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
-target_link_libraries(qbt_base PRIVATE ZLIB::ZLIB PUBLIC LibtorrentRasterbar::LibTorrent)
-target_link_qt_components(qbt_base PUBLIC Core Network Xml)
+target_link_libraries(qbt_base
+    PRIVATE
+        ZLIB::ZLIB
+    PUBLIC
+        LibtorrentRasterbar::torrent-rasterbar
+        Qt5::Core Qt5::Network Qt5::Xml
+)
 
-if (GUI)
+if (Qt5Widgets_FOUND)
     target_link_libraries(qbt_base PUBLIC Qt5::Gui Qt5::Widgets)
-endif (GUI)
+endif (Qt5Widgets_FOUND)
 
-if (DBUS)
-    target_link_qt_components(qbt_base PRIVATE DBus)
+if (Qt5DBus_FOUND)
+    target_link_libraries(qbt_base PRIVATE Qt5::DBus)
 endif ()
 
 if (APPLE)

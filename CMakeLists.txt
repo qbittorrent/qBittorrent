@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
-cmake_policy(VERSION 3.5)
+cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 message(WARNING "No official support for cmake build system. If it is broken, please submit patches!")
 
@@ -27,32 +26,29 @@ add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
 add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
 add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
 
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-endif (UNIX AND NOT APPLE)
+include(GNUInstallDirs)
+include(FeatureSummary)
+
+# version requirements
+set(requiredBoostVersion 1.35)
+set(requiredQtVersion 5.5.1)
 
 if(WIN32)
     include(winconf)
 endif(WIN32)
 
-# we need options here, because they are used not only in "src" subdir, but in the "dist" dir too
-include(CMakeDependentOption)
 
-option(SYSTEM_QTSINGLEAPPLICATION
-    "Use the system qtsingleapplication library or shipped one otherwise")
+# we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too
+include(CompileFeature)
 
-option(GUI "Allows to disable GUI for headless running. Disables QtDBus and the GeoIP Database" ON)
-
-option(WEBUI "Allows to disable the WebUI." ON)
-
-option(STACKTRACE "Enable stacktrace feature" ON)
-
-if (UNIX)
-    cmake_dependent_option(SYSTEMD "Install the systemd service file (headless only)" OFF
-        "NOT GUI" OFF)
-    cmake_dependent_option(DBUS "Enable use of QtDBus (GUI only)" ON "GUI" OFF)
-endif(UNIX)
-
+optional_compile_definitions(COUNTRIES_RESOLUTION FEATURE DESCRIPTION "Enable resolving peers IP addresses to countries"
+    DEFAULT ON DISABLED DISABLE_COUNTRIES_RESOLUTION)
+optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
+    DEFAULT ON ENABLED STACKTRACE)
+optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
+    DEFAULT ON DISABLED DISABLE_WEBUI)
 
 add_subdirectory(src)
 add_subdirectory(dist)
+
+feature_summary(DESCRIPTION "\nConfiguration results:" WHAT ALL)
