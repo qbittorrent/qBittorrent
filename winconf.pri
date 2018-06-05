@@ -34,7 +34,8 @@ win32-g++* {
 
     RC_FILE = qbittorrent_mingw.rc
 
-    LIBS += libadvapi32 libshell32 libuser32 libole32 libwsock32 libws2_32
+    LIBS += libadvapi32 libshell32 libuser32 libwsock32 libws2_32
+    LIBS += libz libole32 libuuid
 }
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe

@@ -64,49 +64,14 @@ Section "un.$(remove_shortcuts)" ;"un.Remove shortcuts"
   Delete "$DESKTOP\qBittorrent.lnk"
 SectionEnd
 
-Section "un.$(remove_associations)" ;"un.Remove file associations"
-  SectionIn RO
-  ReadRegStr $0 HKLM "Software\Classes\.torrent" ""
-  StrCmp $0 "qBittorrent" 0 torrent_end
-  DetailPrint "$(uninst_tor_warn) $0"
-  DeleteRegValue HKLM "Software\Classes\.torrent" ""
-  DeleteRegKey /ifempty HKLM "Software\Classes\.torrent"
-
-  torrent_end:
-  ReadRegStr $0 HKLM "Software\Classes\magnet\shell\open\command" ""
-  StrCmp $0 '"$INSTDIR\qbittorrent.exe" "%1"' 0 magnet_end
-  DetailPrint "$(uninst_mag_warn) $0"
-  DeleteRegKey HKLM "Software\Classes\magnet"
-
-  magnet_end:
-  !insertmacro UAC_AsUser_Call Function un.remove_associations_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
-
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
-SectionEnd
-
-Function un.remove_associations_user
-  ReadRegStr $0 HKCU "Software\Classes\.torrent" ""
-  StrCmp $0 "qBittorrent" 0 torrent_end
-  DetailPrint "$(uninst_tor_warn) $0"
-  DeleteRegValue HKCU "Software\Classes\.torrent" ""
-  DeleteRegKey /ifempty HKCU "Software\Classes\.torrent"
-
-  torrent_end:
-  ReadRegStr $0 HKCU "Software\Classes\magnet\shell\open\command" ""
-  StrCmp $0 '"$INSTDIR\qbittorrent.exe" "%1"' 0 magnet_end
-  DetailPrint "$(uninst_mag_warn) $0"
-  DeleteRegKey HKCU "Software\Classes\magnet"
-
-  magnet_end:
-FunctionEnd
-
 Section "un.$(remove_registry)" ;"un.Remove registry keys"
   SectionIn RO
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent"
   DeleteRegKey HKLM "Software\qBittorrent"
-  DeleteRegKey HKLM "Software\Classes\qBittorrent"
-
+  ; Remove ProgIDs
+  DeleteRegKey HKLM "Software\Classes\qBittorrent.File.Torrent"
+  DeleteRegKey HKLM "Software\Classes\qBittorrent.Url.Magnet"
   System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
 SectionEnd
 
