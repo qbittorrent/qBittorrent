@@ -648,8 +648,8 @@ var DynamicTable = new Class({
                 });
                 tr.addEvent('click', function(e) {
                     e.stop();
-                    if (e.control) {
-                        // CTRL key was pressed
+                    if (e.control || e.meta) {
+                        // CTRL/CMD ⌘ key was pressed
                         if (this._this.isRowSelected(this.rowId))
                             this._this.deselectRow(this.rowId);
                         else
