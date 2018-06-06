@@ -54,17 +54,17 @@ SpeedLimitDialog::~SpeedLimitDialog()
 }
 
 // -2: if cancel
-long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, QString title, long default_value, long max_value)
+long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, QString title, long defaultVal, long maxVal)
 {
     SpeedLimitDialog dlg(parent);
     dlg.setWindowTitle(title);
-    dlg.setupDialog(max_value / 1024., default_value / 1024.);
+    dlg.setupDialog(maxVal / 1024., defaultVal / 1024.);
     if (dlg.exec() == QDialog::Accepted) {
         *ok = true;
         int val = dlg.getSpeedLimit();
         if (val <= 0)
             return 0;
-        return val * 1024;
+        return (val * 1024);
     }
     else {
         *ok = false;
@@ -82,7 +82,7 @@ void SpeedLimitDialog::updateSpinValue(int val) const
     }
     else {
         m_ui->spinBandwidth->setValue(val);
-        m_ui->spinBandwidth->setSuffix(" " + tr("KiB/s"));
+        m_ui->spinBandwidth->setSuffix(' ' + tr("KiB/s"));
     }
 }
 
@@ -106,17 +106,17 @@ long SpeedLimitDialog::getSpeedLimit() const
     return -1;
 }
 
-void SpeedLimitDialog::setupDialog(long max_slider, long val) const
+void SpeedLimitDialog::setupDialog(long maxSlider, long val) const
 {
     if (val < 0)
         val = 0;
-    if (max_slider <= 0)
-        max_slider = 10000;
+    if (maxSlider <= 0)
+        maxSlider = 10000;
     // This can happen for example if global rate limit is lower
     // than torrent rate limit.
-    if (val > max_slider)
-        max_slider = val;
-    m_ui->bandwidthSlider->setMaximum(max_slider);
+    if (val > maxSlider)
+        maxSlider = val;
+    m_ui->bandwidthSlider->setMaximum(maxSlider);
     m_ui->bandwidthSlider->setValue(val);
     updateSpinValue(val);
 }

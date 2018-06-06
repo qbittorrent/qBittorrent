@@ -536,15 +536,15 @@ void AddNewTorrentDialog::renameSelectedFile()
             pathItems.prepend(parent.data().toString());
             parent = m_contentModel->parent(parent);
         }
-        const QString oldPath = pathItems.join("/");
+        const QString oldPath = pathItems.join('/');
         pathItems.removeLast();
         pathItems << newName;
-        QString newPath = pathItems.join("/");
+        QString newPath = pathItems.join('/');
         if (Utils::Fs::sameFileNames(oldPath, newPath)) {
             qDebug("Name did not change");
             return;
         }
-        if (!newPath.endsWith("/")) newPath += "/";
+        if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
             const QString &currentName = m_torrentInfo.filePath(i);
@@ -813,7 +813,7 @@ void AddNewTorrentDialog::setCommentText(const QString &str) const
 
     // workaround for the additional space introduced by QScrollArea
     int lineHeight = m_ui->commentLabel->fontMetrics().lineSpacing();
-    int lines = 1 + str.count("\n");
+    int lines = 1 + str.count('\n');
     int height = lineHeight * lines;
     m_ui->scrollArea->setMaximumHeight(height);
 }

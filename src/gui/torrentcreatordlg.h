@@ -44,7 +44,7 @@ namespace BitTorrent
     class TorrentCreatorThread;
 }
 
-class TorrentCreatorDlg: public QDialog
+class TorrentCreatorDlg : public QDialog
 {
     Q_OBJECT
 
@@ -89,4 +89,4 @@ private:
     CachedSettingValue<QString> m_storeSource;
 };
 
-#endif
+#endif // TORRENTCREATORDLG_H

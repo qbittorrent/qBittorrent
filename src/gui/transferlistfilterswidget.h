@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,16 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TRANSFERLISTFILTERSWIDGET_H
 #define TRANSFERLISTFILTERSWIDGET_H
 
-#include <QListWidget>
 #include <QFrame>
+#include <QListWidget>
 
-QT_BEGIN_NAMESPACE
-class QResizeEvent;
 class QCheckBox;
-QT_END_NAMESPACE
-
+class QResizeEvent;
 class TransferListWidget;
 
 namespace BitTorrent
@@ -47,15 +42,15 @@ namespace BitTorrent
     class TrackerEntry;
 }
 
-class FiltersBase: public QListWidget
+class FiltersBase : public QListWidget
 {
     Q_OBJECT
 
 public:
     FiltersBase(QWidget *parent, TransferListWidget *transferList);
 
-    virtual QSize sizeHint() const;
-    virtual QSize minimumSizeHint() const;
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
 
 public slots:
     void toggleFilter(bool checked);
@@ -70,7 +65,7 @@ private slots:
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) = 0;
 };
 
-class StatusFiltersWidget: public FiltersBase
+class StatusFiltersWidget : public FiltersBase
 {
     Q_OBJECT
 
@@ -84,13 +79,13 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    virtual void showMenu(QPoint);
-    virtual void applyFilter(int row);
-    virtual void handleNewTorrent(BitTorrent::TorrentHandle *const);
-    virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const);
+    void showMenu(QPoint) override;
+    void applyFilter(int row) override;
+    void handleNewTorrent(BitTorrent::TorrentHandle *const) override;
+    void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override;
 };
 
-class TrackerFiltersList: public FiltersBase
+class TrackerFiltersList : public FiltersBase
 {
     Q_OBJECT
 
@@ -116,10 +111,10 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    virtual void showMenu(QPoint);
-    virtual void applyFilter(int row);
-    virtual void handleNewTorrent(BitTorrent::TorrentHandle *const torrent);
-    virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent);
+    void showMenu(QPoint) override;
+    void applyFilter(int row) override;
+    void handleNewTorrent(BitTorrent::TorrentHandle *const torrent) override;
+    void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent) override;
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
     QString getHost(const QString &tracker) const;
@@ -138,7 +133,7 @@ private:
 class CategoryFilterWidget;
 class TagFilterWidget;
 
-class TransferListFiltersWidget: public QFrame
+class TransferListFiltersWidget : public QFrame
 {
     Q_OBJECT
 

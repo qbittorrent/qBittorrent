@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,17 +24,17 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
+
+#include "transferlistsortmodel.h"
 
 #include <QStringList>
 
+#include "base/bittorrent/torrenthandle.h"
 #include "base/types.h"
 #include "base/utils/string.h"
-#include "base/bittorrent/torrenthandle.h"
 #include "torrentmodel.h"
-#include "transferlistsortmodel.h"
+
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -89,125 +89,125 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
     case TorrentModel::TR_CATEGORY:
     case TorrentModel::TR_TAGS:
     case TorrentModel::TR_NAME: {
-        const QVariant vL = left.data();
-        const QVariant vR = right.data();
-        if (!vL.isValid() || !vR.isValid() || (vL == vR))
-            return lowerPositionThan(left, right);
+            const QVariant vL = left.data();
+            const QVariant vR = right.data();
+            if (!vL.isValid() || !vR.isValid() || (vL == vR))
+                return lowerPositionThan(left, right);
 
-        const int result = Utils::String::naturalCompare(vL.toString(), vR.toString(), Qt::CaseInsensitive);
-        return (result < 0);
-    }
+            const int result = Utils::String::naturalCompare(vL.toString(), vR.toString(), Qt::CaseInsensitive);
+            return (result < 0);
+        }
 
     case TorrentModel::TR_STATUS: {
-        // QSortFilterProxyModel::lessThan() uses the < operator only for specific QVariant types
-        // so our custom type is outside that list.
-        // In this case QSortFilterProxyModel::lessThan() converts other types to QString and
-        // sorts them.
-        // Thus we can't use the code in the default label.
-        const BitTorrent::TorrentState leftValue = left.data().value<BitTorrent::TorrentState>();
-        const BitTorrent::TorrentState rightValue = right.data().value<BitTorrent::TorrentState>();
-        if (leftValue != rightValue)
-            return leftValue < rightValue;
+            // QSortFilterProxyModel::lessThan() uses the < operator only for specific QVariant types
+            // so our custom type is outside that list.
+            // In this case QSortFilterProxyModel::lessThan() converts other types to QString and
+            // sorts them.
+            // Thus we can't use the code in the default label.
+            const BitTorrent::TorrentState leftValue = left.data().value<BitTorrent::TorrentState>();
+            const BitTorrent::TorrentState rightValue = right.data().value<BitTorrent::TorrentState>();
+            if (leftValue != rightValue)
+                return leftValue < rightValue;
 
-        return lowerPositionThan(left, right);
-    }
+            return lowerPositionThan(left, right);
+        }
 
     case TorrentModel::TR_ADD_DATE:
     case TorrentModel::TR_SEED_DATE:
     case TorrentModel::TR_SEEN_COMPLETE_DATE: {
         return dateLessThan(sortColumn(), left, right, true);
-    }
+        }
 
     case TorrentModel::TR_PRIORITY: {
         return lowerPositionThan(left, right);
-    }
+        }
 
     case TorrentModel::TR_SEEDS:
     case TorrentModel::TR_PEERS: {
-        const int leftActive = left.data().toInt();
-        const int leftTotal = left.data(Qt::UserRole).toInt();
-        const int rightActive = right.data().toInt();
-        const int rightTotal = right.data(Qt::UserRole).toInt();
+            const int leftActive = left.data().toInt();
+            const int leftTotal = left.data(Qt::UserRole).toInt();
+            const int rightActive = right.data().toInt();
+            const int rightTotal = right.data(Qt::UserRole).toInt();
 
-        // Active peers/seeds take precedence over total peers/seeds.
-        if (leftActive != rightActive)
-            return (leftActive < rightActive);
+            // Active peers/seeds take precedence over total peers/seeds.
+            if (leftActive != rightActive)
+                return (leftActive < rightActive);
 
-        if (leftTotal != rightTotal)
-            return (leftTotal < rightTotal);
+            if (leftTotal != rightTotal)
+                return (leftTotal < rightTotal);
 
-        return lowerPositionThan(left, right);
-    }
+            return lowerPositionThan(left, right);
+        }
 
     case TorrentModel::TR_ETA: {
-        const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
+            const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
 
-        // Sorting rules prioritized.
-        // 1. Active torrents at the top
-        // 2. Seeding torrents at the bottom
-        // 3. Torrents with invalid ETAs at the bottom
+            // Sorting rules prioritized.
+            // 1. Active torrents at the top
+            // 2. Seeding torrents at the bottom
+            // 3. Torrents with invalid ETAs at the bottom
 
-        const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(left.row())));
-        const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
-        if (isActiveL != isActiveR)
-            return isActiveL;
+            const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(left.row())));
+            const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
+            if (isActiveL != isActiveR)
+                return isActiveL;
 
-        const int prioL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();
-        const int prioR = model->data(model->index(right.row(), TorrentModel::TR_PRIORITY)).toInt();
-        const bool isSeedingL = (prioL < 0);
-        const bool isSeedingR = (prioR < 0);
-        if (isSeedingL != isSeedingR) {
-            const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
-            if (isSeedingL)
-                return !isAscendingOrder;
-            else
-                return isAscendingOrder;
-        }
+            const int prioL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();
+            const int prioR = model->data(model->index(right.row(), TorrentModel::TR_PRIORITY)).toInt();
+            const bool isSeedingL = (prioL < 0);
+            const bool isSeedingR = (prioR < 0);
+            if (isSeedingL != isSeedingR) {
+                const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
+                if (isSeedingL)
+                    return !isAscendingOrder;
+                else
+                    return isAscendingOrder;
+            }
 
-        const qlonglong etaL = left.data().toLongLong();
-        const qlonglong etaR = right.data().toLongLong();
-        const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
-        const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
-        if (isInvalidL && isInvalidR) {
-            if (isSeedingL)  // Both seeding
-                return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, true);
-            else
-                return (prioL < prioR);
+            const qlonglong etaL = left.data().toLongLong();
+            const qlonglong etaR = right.data().toLongLong();
+            const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
+            const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
+            if (isInvalidL && isInvalidR) {
+                if (isSeedingL)  // Both seeding
+                    return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, true);
+                else
+                    return (prioL < prioR);
+            }
+            else if (!isInvalidL && !isInvalidR) {
+                return (etaL < etaR);
+            }
+            else {
+                return !isInvalidL;
+            }
         }
-        else if (!isInvalidL && !isInvalidR) {
-            return (etaL < etaR);
-        }
-        else {
-            return !isInvalidL;
-        }
-    }
 
     case TorrentModel::TR_LAST_ACTIVITY: {
-        const qlonglong vL = left.data().toLongLong();
-        const qlonglong vR = right.data().toLongLong();
+            const qlonglong vL = left.data().toLongLong();
+            const qlonglong vR = right.data().toLongLong();
 
-        if (vL == -1) return false;
-        if (vR == -1) return true;
+            if (vL == -1) return false;
+            if (vR == -1) return true;
 
-        return vL < vR;
-    }
+            return vL < vR;
+        }
 
     case TorrentModel::TR_RATIO_LIMIT: {
-        const qreal vL = left.data().toDouble();
-        const qreal vR = right.data().toDouble();
+            const qreal vL = left.data().toDouble();
+            const qreal vR = right.data().toDouble();
 
-        if (vL == -1) return false;
-        if (vR == -1) return true;
+            if (vL == -1) return false;
+            if (vR == -1) return true;
 
-        return vL < vR;
-    }
+            return vL < vR;
+        }
 
     default: {
         if (left.data() != right.data())
             return QSortFilterProxyModel::lessThan(left, right);
 
         return lowerPositionThan(left, right);
-    }
+        }
     }
 }
 

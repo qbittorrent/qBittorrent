@@ -47,7 +47,7 @@ class ComboBoxMenuButton : public QComboBox
 
 public:
     ComboBoxMenuButton(QWidget *parent, QMenu *menu);
-    virtual void showPopup();
+    void showPopup() override;
 
 private:
     QMenu *m_menu;

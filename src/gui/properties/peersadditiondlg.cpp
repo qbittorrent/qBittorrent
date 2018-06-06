@@ -61,7 +61,7 @@ void PeersAdditionDlg::validateInput()
                     QMessageBox::Ok);
         return;
     }
-    foreach (const QString &peer, m_ui->peers_txt->toPlainText().trimmed().split("\n")) {
+    foreach (const QString &peer, m_ui->peers_txt->toPlainText().trimmed().split('\n')) {
         BitTorrent::PeerAddress addr = parsePeer(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);
@@ -82,10 +82,10 @@ BitTorrent::PeerAddress PeersAdditionDlg::parsePeer(QString peer)
     BitTorrent::PeerAddress addr;
     QStringList ipPort;
 
-    if (peer[0] == '[' && peer.indexOf("]:") != -1) // IPv6
+    if ((peer[0] == '[') && (peer.indexOf("]:") != -1)) // IPv6
         ipPort = peer.remove(QChar('[')).split("]:");
-    else if (peer.indexOf(":") != -1) // IPv4
-        ipPort = peer.split(":");
+    else if (peer.indexOf(':') != -1) // IPv4
+        ipPort = peer.split(':');
     else
         return addr;
 
@@ -95,7 +95,7 @@ BitTorrent::PeerAddress PeersAdditionDlg::parsePeer(QString peer)
 
     bool ok;
     int port = ipPort[1].toInt(&ok);
-    if (!ok || port < 1 || port > 65535)
+    if (!ok || (port < 1) || (port > 65535))
         return addr;
 
     addr.ip = ip;

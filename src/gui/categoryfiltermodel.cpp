@@ -31,8 +31,8 @@
 #include <QHash>
 #include <QIcon>
 
-#include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "guiiconprovider.h"
 
 class CategoryModelItem

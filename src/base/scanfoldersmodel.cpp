@@ -388,7 +388,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 
 QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
 {
-    switch(type) {
+    switch (type) {
     case DOWNLOAD_IN_WATCH_FOLDER:
         return tr("Monitored folder");
     case DEFAULT_LOCATION:

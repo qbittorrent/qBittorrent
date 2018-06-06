@@ -33,11 +33,12 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QPainter>
+#include <QStyleOptionProgressBar>
+#include <QStyleOptionViewItem>
+
 #ifdef Q_OS_WIN
 #include <QProxyStyle>
 #endif
-#include <QStyleOptionProgressBar>
-#include <QStyleOptionViewItem>
 
 #include "base/utils/misc.h"
 #include "base/utils/string.h"

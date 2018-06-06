@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "optionsdlg.h"
@@ -49,7 +47,6 @@
 #include <QSslKey>
 #endif
 
-#include "app/application.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
@@ -65,10 +62,11 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
-#include "rss/automatedrssdownloader.h"
+#include "app/application.h"
 #include "banlistoptions.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
+#include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "utils.h"
 
@@ -401,7 +399,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-#endif
+#endif // DISABLE_WEBUI
 
     // RSS tab
     connect(m_ui->checkRSSEnable, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
@@ -514,7 +512,7 @@ void OptionsDialog::loadSplitterState()
 
 void OptionsDialog::saveWindowState() const
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
 
     // window size
     pref->setPrefSize(size());
@@ -529,7 +527,7 @@ void OptionsDialog::saveWindowState() const
 void OptionsDialog::saveOptions()
 {
     applyButton->setEnabled(false);
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale) {
@@ -576,7 +574,7 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
-    Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    Application *const app = static_cast<Application*>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
@@ -652,7 +650,7 @@ void OptionsDialog::saveOptions()
     pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->schedule_days->currentIndex()));
     session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
 
-    auto proxyConfigManager  = Net::ProxyConfigurationManager::instance();
+    auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
     proxyConf.type = getProxyType();
     proxyConf.ip = getProxyIp();
@@ -769,7 +767,7 @@ void OptionsDialog::loadOptions()
     QString strValue;
     bool fileLogBackup = true;
     bool fileLogDelete = true;
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
 
     // General preferences
     setLocale(pref->getLocale());
@@ -807,7 +805,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
-    const Application * const app = static_cast<Application*>(QCoreApplication::instance());
+    const Application *const app = static_cast<Application*>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
     m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
     fileLogBackup = app->isFileLoggerBackup();
@@ -1237,7 +1235,7 @@ bool OptionsDialog::closeToTray() const
     if (!m_ui->checkShowSystray->isChecked()) return false;
     return m_ui->checkCloseToSystray->isChecked();
 }
-#endif
+#endif // Q_OS_MAC
 
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const
@@ -1307,7 +1305,7 @@ void OptionsDialog::on_buttonBox_accepted()
     accept();
 }
 
-void OptionsDialog::applySettings(QAbstractButton* button)
+void OptionsDialog::applySettings(QAbstractButton *button)
 {
     if (button == applyButton) {
         if (!schedTimesOk()) {
@@ -1524,7 +1522,7 @@ int OptionsDialog::getActionOnDblClOnTorrentFn() const
 
 void OptionsDialog::on_addScanFolderButton_clicked()
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
                                                           Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
     if (!dir.isEmpty()) {
@@ -1572,7 +1570,7 @@ void OptionsDialog::handleScanFolderViewSelectionChanged()
     m_ui->removeScanFolderButton->setEnabled(!m_ui->scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
-QString OptionsDialog::askForExportDir(const QString& currentExportPath)
+QString OptionsDialog::askForExportDir(const QString &currentExportPath)
 {
     QDir currentExportDir(Utils::Fs::expandPathAbs(currentExportPath));
     QString dir;
@@ -1733,15 +1731,14 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
             return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
         default:
             return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
-
         }
     }
     case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
     default: {
         // Fallback to English
-        const QString eng_lang = QLocale::languageToString(locale.language());
-        qWarning() << "Unrecognized language name: " << eng_lang;
-        return eng_lang;
+        const QString engLang = QLocale::languageToString(locale.language());
+        qWarning() << "Unrecognized language name: " << engLang;
+        return engLang;
     }
     }
 }

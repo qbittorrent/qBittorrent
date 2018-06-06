@@ -34,16 +34,16 @@
 
 namespace Private
 {
+    class FileComboEdit;
     class FileEditorWithCompletion;
     class FileLineEdit;
-    class FileComboEdit;
 }
 
 /*!
  * \brief
  * Widget for editing strings which are paths in filesystem
  */
-class FileSystemPathEdit: public QWidget
+class FileSystemPathEdit : public QWidget
 {
     Q_OBJECT
     Q_ENUMS(Mode)
@@ -109,7 +109,7 @@ private:
 };
 
 /// Widget which uses QLineEdit for path editing
-class FileSystemPathLineEdit: public FileSystemPathEdit
+class FileSystemPathLineEdit : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileLineEdit;
@@ -125,7 +125,7 @@ private:
 };
 
 /// Widget which uses QComboBox for path editing
-class FileSystemPathComboEdit: public FileSystemPathEdit
+class FileSystemPathComboEdit : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileComboEdit;

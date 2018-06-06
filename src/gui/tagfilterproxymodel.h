@@ -32,7 +32,7 @@
 #include <QSortFilterProxyModel>
 #include <QString>
 
-class TagFilterProxyModel: public QSortFilterProxyModel
+class TagFilterProxyModel : public QSortFilterProxyModel
 {
 public:
     explicit TagFilterProxyModel(QObject *parent = nullptr);

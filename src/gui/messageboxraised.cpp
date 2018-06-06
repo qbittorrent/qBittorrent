@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2014  sledgehammer999
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  sledgehammer999 <sledgehammer999@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,40 +24,46 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : hammered999@gmail.com
  */
 
 #include "messageboxraised.h"
 
 MessageBoxRaised::MessageBoxRaised(QMessageBox::Icon icon, const QString &title, const QString &text,
                                    QMessageBox::StandardButtons buttons, QWidget *parent, Qt::WindowFlags f)
-  : QMessageBox(icon, title, text, buttons, parent, f) {}
-
-QMessageBox::StandardButton MessageBoxRaised::impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
-  MessageBoxRaised dlg(icon, title, text, buttons, parent);
-  dlg.setDefaultButton(defaultButton);
-  return static_cast<QMessageBox::StandardButton>(dlg.exec());
+  : QMessageBox(icon, title, text, buttons, parent, f)
+{
 }
 
-QMessageBox::StandardButton MessageBoxRaised::critical(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
-  return impl(Critical, parent, title, text, buttons, defaultButton);
+QMessageBox::StandardButton MessageBoxRaised::impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
+{
+    MessageBoxRaised dlg(icon, title, text, buttons, parent);
+    dlg.setDefaultButton(defaultButton);
+    return static_cast<QMessageBox::StandardButton>(dlg.exec());
 }
 
-QMessageBox::StandardButton MessageBoxRaised::information(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
-  return impl(Information, parent, title, text, buttons, defaultButton);
+QMessageBox::StandardButton MessageBoxRaised::critical(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
+{
+    return impl(Critical, parent, title, text, buttons, defaultButton);
 }
 
-QMessageBox::StandardButton MessageBoxRaised::question(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
-  return impl(Question, parent, title, text, buttons, defaultButton);
+QMessageBox::StandardButton MessageBoxRaised::information(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
+{
+    return impl(Information, parent, title, text, buttons, defaultButton);
 }
 
-QMessageBox::StandardButton MessageBoxRaised::warning(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton) {
-  return impl(Warning, parent, title, text, buttons, defaultButton);
+QMessageBox::StandardButton MessageBoxRaised::question(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
+{
+    return impl(Question, parent, title, text, buttons, defaultButton);
 }
 
-void MessageBoxRaised::showEvent(QShowEvent *event) {
-  QMessageBox::showEvent(event);
-  activateWindow();
-  raise();
+QMessageBox::StandardButton MessageBoxRaised::warning(QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
+{
+    return impl(Warning, parent, title, text, buttons, defaultButton);
+}
+
+void MessageBoxRaised::showEvent(QShowEvent *event)
+{
+    QMessageBox::showEvent(event);
+    activateWindow();
+    raise();
 }

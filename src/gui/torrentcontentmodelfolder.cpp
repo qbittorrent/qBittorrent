@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "torrentcontentmodelfolder.h"
@@ -165,7 +163,7 @@ void TorrentContentModelFolder::recalculateAvailability()
     qreal tAvailability = 0;
     qulonglong tSize = 0;
     bool foundAnyData = false;
-    foreach (TorrentContentModelItem* child, m_childItems) {
+    foreach (TorrentContentModelItem *child, m_childItems) {
         if (child->priority() == prio::IGNORED)
             continue;
 

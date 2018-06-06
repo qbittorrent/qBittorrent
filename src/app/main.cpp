@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
 #ifdef DISABLE_GUI
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
-            if ((daemon(1, 0) == 0)) {
+            if (daemon(1, 0) == 0) {
                 app.reset(new Application(appId, argc, argv));
                 if (app->isRunning()) {
                     // Another instance had time to start.
@@ -319,13 +319,13 @@ void sigAbnormalHandler(int signum)
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splash_img(":/icons/skin/splash.png");
-    QPainter painter(&splash_img);
+    QPixmap splashImg(":/icons/skin/splash.png");
+    QPainter painter(&splashImg);
     QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-    QSplashScreen *splash = new QSplashScreen(splash_img);
+    QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
     QTimer::singleShot(1500, splash, &QObject::deleteLater);
     qApp->processEvents();
@@ -376,7 +376,7 @@ bool userAgreesWithLegalNotice()
     printf("%s", qUtf8Printable(eula));
 
     char ret = getchar(); // Read pressed key
-    if (ret == 'y' || ret == 'Y') {
+    if ((ret == 'y') || (ret == 'Y')) {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;
@@ -386,11 +386,11 @@ bool userAgreesWithLegalNotice()
     msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(QObject::tr("Legal notice"));
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
+    QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
-    if (msgBox.clickedButton() == agree_button) {
+    if (msgBox.clickedButton() == agreeButton) {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef EXECUTIONLOG_H
@@ -34,14 +32,14 @@
 #include <QWidget>
 #include "base/logger.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
+
+namespace Ui
+{
     class ExecutionLog;
 }
-QT_END_NAMESPACE
 class LogListWidget;
 
-class ExecutionLog: public QWidget
+class ExecutionLog : public QWidget
 {
     Q_OBJECT
 
@@ -55,7 +53,7 @@ private slots:
     void addPeerMessage(const Log::Peer &peer);
 
 private:
-    Ui::ExecutionLog *ui;
+    Ui::ExecutionLog *m_ui;
 
     LogListWidget *m_msgList;
     LogListWidget *m_peerList;

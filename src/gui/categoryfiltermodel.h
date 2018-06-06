@@ -40,7 +40,7 @@ namespace BitTorrent
 
 class CategoryModelItem;
 
-class CategoryFilterModel: public QAbstractItemModel
+class CategoryFilterModel : public QAbstractItemModel
 {
     Q_OBJECT
 
