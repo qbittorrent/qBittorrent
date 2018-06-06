@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TRANSFERLISTWIDGET_H
@@ -39,25 +37,23 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+class QShortcut;
+class QSortFilterProxyModel;
+class QStandardItemModel;
+
 class MainWindow;
 class TransferListDelegate;
 class TransferListSortModel;
 class TorrentModel;
 
-QT_BEGIN_NAMESPACE
-class QShortcut;
-class QSortFilterProxyModel;
-class QStandardItemModel;
-QT_END_NAMESPACE
-
-class TransferListWidget: public QTreeView
+class TransferListWidget : public QTreeView
 {
     Q_OBJECT
 
 public:
     TransferListWidget(QWidget *parent, MainWindow *mainWindow);
     ~TransferListWidget();
-    TorrentModel* getSourceModel() const;
+    TorrentModel *getSourceModel() const;
 
 public slots:
     void setSelectionCategory(QString category);
@@ -92,7 +88,7 @@ public slots:
     void previewSelectedTorrents();
     void hidePriorityColumn(bool hide);
     void displayDLHoSMenu(const QPoint&);
-    void applyNameFilter(const QString& name);
+    void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(QString category);
     void applyTagFilter(const QString &tag);

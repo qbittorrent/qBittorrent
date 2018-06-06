@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "transferlistfilterswidget.h"
@@ -37,15 +35,15 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QScrollArea>
-#include <QVBoxLayout>
 #include <QUrl>
+#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
+#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
@@ -161,7 +159,7 @@ StatusFiltersWidget::StatusFiltersWidget(QWidget *parent, TransferListWidget *tr
     errored->setData(Qt::DisplayRole, QVariant(tr("Errored (0)")));
     errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.png"));
 
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
     toggleFilter(pref->getStatusFilterState());
 }
@@ -443,7 +441,7 @@ void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString&
     }
 }
 
-void TrackerFiltersList::handleFavicoFailure(const QString& url, const QString& error)
+void TrackerFiltersList::handleFavicoFailure(const QString &url, const QString &error)
 {
     Q_UNUSED(error)
     if (url.endsWith(".ico", Qt::CaseInsensitive)) {
@@ -514,10 +512,10 @@ QString TrackerFiltersList::trackerFromRow(int row) const
 {
     Q_ASSERT(row > 1);
     const QString &tracker = item(row)->text();
-    QStringList parts = tracker.split(" ");
+    QStringList parts = tracker.split(' ');
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
-    return parts.join(" ");
+    return parts.join(' ');
 }
 
 int TrackerFiltersList::rowFromTracker(const QString &tracker) const
@@ -561,7 +559,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     , m_transferList(transferList)
     , m_trackerFilters(nullptr)
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
 
     // Construct lists
     QVBoxLayout *vLayout = new QVBoxLayout(this);
@@ -587,7 +585,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->addWidget(scroll);
     setLayout(vLayout);
 
-    QCheckBox * statusLabel = new QCheckBox(tr("Status"), this);
+    QCheckBox *statusLabel = new QCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
     frameLayout->addWidget(statusLabel);

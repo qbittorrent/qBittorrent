@@ -131,12 +131,12 @@ void ShutdownConfirmDlg::initText()
         break;
     }
 
-    m_msg += "\n";
+    m_msg += '\n';
     updateText();
 }
 
 void ShutdownConfirmDlg::updateText()
 {
-    QString t = tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + "\n";
+    QString t = tr("You can cancel the action within %1 seconds.").arg(QString::number(m_timeout)) + '\n';
     m_ui->shutdownText->setText(m_msg + t);
 }

@@ -357,7 +357,7 @@ void PropertiesWidget::readSettings()
 {
     const Preferences *const pref = Preferences::instance();
     // Restore splitter sizes
-    QStringList sizesStr = pref->getPropSplitterSizes().split(",");
+    QStringList sizesStr = pref->getPropSplitterSizes().split(',');
     if (sizesStr.size() == 2) {
         m_slideSizes << sizesStr.first().toInt();
         m_slideSizes << sizesStr.last().toInt();
@@ -561,7 +561,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
         if (pathItems.isEmpty())
             return;
         const QDir saveDir(m_torrent->savePath(true));
-        const QString relativePath = pathItems.join("/");
+        const QString relativePath = pathItems.join('/');
         absolutePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(relativePath));
     }
     else {
@@ -743,15 +743,15 @@ void PropertiesWidget::renameSelectedFile()
             pathItems.prepend(parent.data().toString());
             parent = m_propListModel->parent(parent);
         }
-        const QString oldPath = pathItems.join("/");
+        const QString oldPath = pathItems.join('/');
         pathItems.removeLast();
         pathItems << newName;
-        QString newPath = pathItems.join("/");
+        QString newPath = pathItems.join('/');
         if (Utils::Fs::sameFileNames(oldPath, newPath)) {
             qDebug("Name did not change");
             return;
         }
-        if (!newPath.endsWith("/")) newPath += "/";
+        if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrent->filesCount(); ++i) {
             const QString &currentName = m_torrent->filePath(i);
@@ -785,9 +785,9 @@ void PropertiesWidget::renameSelectedFile()
         // Rename folder in torrent files model too
         m_propListModel->setData(modelIndex, newName);
         // Remove old folder
-        const QDir oldFolder(m_torrent->savePath(true) + "/" + oldPath);
+        const QDir oldFolder(m_torrent->savePath(true) + '/' + oldPath);
         int timeout = 10;
-        while (!QDir().rmpath(oldFolder.absolutePath()) && timeout > 0) {
+        while (!QDir().rmpath(oldFolder.absolutePath()) && (timeout > 0)) {
             // FIXME: We should not sleep here (freezes the UI for 1 second)
             QThread::msleep(100);
             --timeout;
@@ -847,7 +847,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const
     foreach (QListWidgetItem *item, selectedItems)
         urlsToCopy << item->text();
 
-    QApplication::clipboard()->setText(urlsToCopy.join("\n"));
+    QApplication::clipboard()->setText(urlsToCopy.join('\n'));
 }
 
 void PropertiesWidget::editWebSeed()

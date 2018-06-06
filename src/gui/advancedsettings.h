@@ -36,7 +36,7 @@
 #include <QSpinBox>
 #include <QTableWidget>
 
-class AdvancedSettings: public QTableWidget
+class AdvancedSettings : public QTableWidget
 {
     Q_OBJECT
 

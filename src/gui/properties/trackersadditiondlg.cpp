@@ -59,7 +59,7 @@ TrackersAdditionDlg::~TrackersAdditionDlg()
 QStringList TrackersAdditionDlg::newTrackers() const
 {
     QStringList cleanTrackers;
-    foreach (QString url, m_ui->trackers_list->toPlainText().split("\n")) {
+    foreach (QString url, m_ui->trackers_list->toPlainText().split('\n')) {
         url = url.trimmed();
         if (!url.isEmpty())
             cleanTrackers << url;
@@ -92,7 +92,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
     // Load from torrent handle
     QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     // Load from current user list
-    QStringList tmp = m_ui->trackers_list->toPlainText().split("\n");
+    QStringList tmp = m_ui->trackers_list->toPlainText().split('\n');
     foreach (const QString &userURL, tmp) {
         BitTorrent::TrackerEntry userTracker(userURL);
         if (!existingTrackers.contains(userTracker))
@@ -100,7 +100,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
     }
 
     // Add new trackers to the list
-    if (!m_ui->trackers_list->toPlainText().isEmpty() && !m_ui->trackers_list->toPlainText().endsWith("\n"))
+    if (!m_ui->trackers_list->toPlainText().isEmpty() && !m_ui->trackers_list->toPlainText().endsWith('\n'))
         m_ui->trackers_list->insertPlainText("\n");
     int nb = 0;
     while (!listFile.atEnd()) {
@@ -108,7 +108,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
         if (line.isEmpty()) continue;
         BitTorrent::TrackerEntry newTracker(line);
         if (!existingTrackers.contains(newTracker)) {
-            m_ui->trackers_list->insertPlainText(line + "\n");
+            m_ui->trackers_list->insertPlainText(line + '\n');
             ++nb;
         }
     }
@@ -125,7 +125,7 @@ void TrackersAdditionDlg::parseUTorrentList(const QString &, const QString &path
 
 void TrackersAdditionDlg::getTrackerError(const QString &, const QString &error)
 {
-    //To restore the cursor ...
+    // To restore the cursor ...
     setCursor(Qt::ArrowCursor);
     m_ui->uTorrentListButton->setEnabled(true);
     QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);

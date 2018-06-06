@@ -55,4 +55,4 @@ private:
     Ui::DownloadFromURLDialog *m_ui;
 };
 
-#endif
+#endif // DOWNLOADFROMURL_H
