@@ -1,4 +1,4 @@
-if (STACKTRACE_WIN)
+if (STACKTRACE)
     if ("${WINXXBITS}" STREQUAL "Win64")
         add_compile_options(-Zi)
     else ("${WINXXBITS}" STREQUAL "Win64")
@@ -6,7 +6,7 @@ if (STACKTRACE_WIN)
         add_compile_options(-Oy-)
     endif ("${WINXXBITS}" STREQUAL "Win64")
     link_libraries(dbghelp.lib)
-endif (STACKTRACE_WIN)
+endif (STACKTRACE)
 
 # Enable Wide characters
 add_definitions(-DTORRENT_USE_WPATH)
