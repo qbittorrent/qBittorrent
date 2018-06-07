@@ -34,6 +34,7 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
+#include <QTranslator>
 
 #include "api/isessionmanager.h"
 #include "base/http/irequesthandler.h"
@@ -109,6 +110,8 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
+    void translateDocument(QString &data);
+
     // Session management
     QString generateSid() const;
     void sessionInitialize();
@@ -142,6 +145,7 @@ private:
     };
     QMap<QString, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
+    QTranslator m_translator;
 
     bool m_isLocalAuthEnabled;
     bool m_isAuthSubnetWhitelistEnabled;
