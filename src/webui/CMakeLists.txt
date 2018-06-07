@@ -11,7 +11,6 @@ api/synccontroller.h
 api/torrentscontroller.h
 api/transfercontroller.h
 api/serialize/serialize_torrent.h
-extra_translations.h
 webapplication.h
 webui.h
 
