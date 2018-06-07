@@ -1,9 +1,9 @@
-if (STACKTRACE_WIN)
+if (STACKTRACE)
     if ("${WINXXBITS}" NOT STREQUAL "Win64")
         add_compile_options(-fno-omit-frame-pointer)
     endif ("${WINXXBITS}" NOT STREQUAL "Win64")
     link_libraries(libdbghelp  -Wl,--export-all-symbols)
-endif (STACKTRACE_WIN)
+endif (STACKTRACE)
 
 if (("${CMAKE_BUILD_TYPE}" STREQUAL "Debug") OR ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo"))
     link_libraries(-Wl,--dynamicbase)

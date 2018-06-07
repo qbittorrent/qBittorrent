@@ -1,3 +1,5 @@
+find_package(Qt5Widgets ${requiredQtVersion}) # to conditionally install desktop-related files
+
 if (APPLE)
     add_subdirectory(mac)
 else (APPLE)

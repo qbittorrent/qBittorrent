@@ -166,7 +166,10 @@ script:
     if [ "$build_system" = "cmake" ]; then
       mkdir build
       cd build
-      cmake -DGUI=${gui} -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
+      if [ "$gui" = "false" ]; then
+        DISABLE_GUI_OPTION="-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Widgets=ON"
+      fi
+      cmake $DISABLE_GUI_OPTION -DCMAKE_INSTALL_PREFIX="$qbt_path" "$MY_CMAKE_OPENSSL_HINT" \
         -G "Ninja" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE ..
       BUILD_TOOL="ninja"
     fi
