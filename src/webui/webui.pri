@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/api/isessionmanager.h \
     $$PWD/api/logcontroller.h \
     $$PWD/api/rsscontroller.h \
+    $$PWD/api/searchcontroller.h \
     $$PWD/api/synccontroller.h \
     $$PWD/api/torrentscontroller.h \
     $$PWD/api/transfercontroller.h \
@@ -21,6 +22,7 @@ SOURCES += \
     $$PWD/api/authcontroller.cpp \
     $$PWD/api/logcontroller.cpp \
     $$PWD/api/rsscontroller.cpp \
+    $$PWD/api/searchcontroller.cpp \
     $$PWD/api/synccontroller.cpp \
     $$PWD/api/torrentscontroller.cpp \
     $$PWD/api/transfercontroller.cpp \

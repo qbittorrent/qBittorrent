@@ -61,6 +61,7 @@
 #include "api/authcontroller.h"
 #include "api/logcontroller.h"
 #include "api/rsscontroller.h"
+#include "api/searchcontroller.h"
 #include "api/synccontroller.h"
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
@@ -164,6 +165,7 @@ WebApplication::WebApplication(QObject *parent)
     registerAPIController(QLatin1String("auth"), new AuthController(this, this));
     registerAPIController(QLatin1String("log"), new LogController(this, this));
     registerAPIController(QLatin1String("rss"), new RSSController(this, this));
+    registerAPIController(QLatin1String("search"), new SearchController(this, this));
     registerAPIController(QLatin1String("sync"), new SyncController(this, this));
     registerAPIController(QLatin1String("torrents"), new TorrentsController(this, this));
     registerAPIController(QLatin1String("transfer"), new TransferController(this, this));
