@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,27 +28,47 @@
 
 #pragma once
 
+#include <QHash>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QList>
 #include <QString>
-#include <QVariant>
 
-struct ISession
+#include "base/search/searchpluginmanager.h"
+#include "apicontroller.h"
+#include "isessionmanager.h"
+
+struct SearchResult;
+
+class SearchController : public APIController
 {
-    virtual ~ISession() = default;
-    virtual QString id() const = 0;
-    virtual QVariant getData(const QString &id) const = 0;
-    virtual void setData(const QString &id, const QVariant &data) = 0;
+    Q_OBJECT
+    Q_DISABLE_COPY(SearchController)
 
-    template <class T>
-    T getData(const QString &id) const {
-        return this->getData(id).value<T>();
-    }
-};
+public:
+    using APIController::APIController;
 
-struct ISessionManager
-{
-    virtual ~ISessionManager() = default;
-    virtual QString clientId() const = 0;
-    virtual ISession *session() = 0;
-    virtual void sessionStart() = 0;
-    virtual void sessionEnd() = 0;
+private slots:
+    void startAction();
+    void stopAction();
+    void statusAction();
+    void resultsAction();
+    void deleteAction();
+    void categoriesAction();
+    void pluginsAction();
+    void installPluginAction();
+    void uninstallPluginAction();
+    void enablePluginAction();
+    void updatePluginsAction();
+
+private:
+    const int MAX_CONCURRENT_SEARCHES = 5;
+
+    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFailed(const QString &reason);
+    void searchFinished(ISession *session, const int id);
+    void searchFailed(ISession *session, const int id);
+    int generateSearchId() const;
+    QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
+    QJsonArray getPluginsInfo(const QStringList &plugins) const;
 };
