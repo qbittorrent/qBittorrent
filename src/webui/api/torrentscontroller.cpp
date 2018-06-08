@@ -737,9 +737,16 @@ void TorrentsController::setLocationAction()
     const QStringList hashes {params()["hashes"].split("|")};
     const QString newLocation {params()["location"].trimmed()};
 
-    // check if the location exists
-    if (newLocation.isEmpty() || !QDir(newLocation).exists())
-        return;
+    if (newLocation.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Save path is empty"));
+        
+    // try to create the location if it does not exist
+    if (!QDir(newLocation).mkpath("."))
+        throw APIError(APIErrorType::Conflict, tr("Cannot make save path"));
+    
+    // check permissions
+    if (!QFileInfo(newLocation).isWritable())
+        throw APIError(APIErrorType::AccessDenied, tr("Cannot write to directory"));
 
     applyToTorrents(hashes, [newLocation](BitTorrent::TorrentHandle *torrent)
     {
