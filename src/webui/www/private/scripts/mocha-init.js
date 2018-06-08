@@ -417,7 +417,7 @@ initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 400,
-                height: 100
+                height: 130
             });
         }
     };
