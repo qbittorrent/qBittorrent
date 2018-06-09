@@ -201,7 +201,7 @@ var filesDynTable = new Class({
 
     updateRow: function(tr, row, id) {
         var tds = tr.getElements('td');
-        for (var i = 0; i < row.length; i++) {
+        for (var i = 0; i < row.length; ++i) {
             switch (i) {
                 case 0:
                     if (row[i] > 0)
@@ -238,7 +238,7 @@ var filesDynTable = new Class({
         //this.removeRow(id);
         var tr = new Element('tr');
         this.rows.set(id, tr);
-        for (var i = 0; i < row.length; i++) {
+        for (var i = 0; i < row.length; ++i) {
             var td = new Element('td');
             switch (i) {
                 case 0:
@@ -321,7 +321,7 @@ var loadTorrentFilesData = function() {
                     row[6] = friendlyPercentage(file.availability);
 
                     fTable.insertRow(i, row);
-                    i++;
+                    ++i;
                 }.bind(this));
                 // Set global CB state
                 if (allCBChecked()) {

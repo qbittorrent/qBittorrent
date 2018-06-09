@@ -88,7 +88,7 @@ var ContextMenu = new Class({
 
         // position the sub-menu
         var uls = this.menu.getElementsByTagName('ul');
-        for (var i = 0; i < uls.length; i++) {
+        for (var i = 0; i < uls.length; ++i) {
             var ul = uls[i];
             if (ul.hasClass('scrollableMenu'))
                 ul.setStyle('max-height', scrollableMenuMaxHeight);

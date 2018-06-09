@@ -169,7 +169,7 @@ initializeWindows = function() {
             var torrentsHaveSameShareRatio = true;
 
             // check if all selected torrents have same share ratio
-            for (var i = 0; i < hashes.length; i++) {
+            for (var i = 0; i < hashes.length; ++i) {
                 var hash = hashes[i];
                 var row = torrentsTable.rows[hash].full_data;
                 var origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.max_ratio + "|" + row.max_seeding_time;
@@ -575,7 +575,7 @@ initializeWindows = function() {
         var names = [];
         if (selectedRows.length) {
             var rows = torrentsTable.getFilteredAndSortedRows();
-            for (var i = 0; i < selectedRows.length; i++) {
+            for (var i = 0; i < selectedRows.length; ++i) {
                 var hash = selectedRows[i];
                 names.push(rows[hash].full_data.name);
             }
@@ -588,7 +588,7 @@ initializeWindows = function() {
         var magnets = [];
         if (selectedRows.length) {
             var rows = torrentsTable.getFilteredAndSortedRows();
-            for (var i = 0; i < selectedRows.length; i++) {
+            for (var i = 0; i < selectedRows.length; ++i) {
                 var hash = selectedRows[i];
                 magnets.push(rows[hash].full_data.magnet_uri);
             }

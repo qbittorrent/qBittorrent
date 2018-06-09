@@ -559,7 +559,7 @@
     getWatchedFolders = function() {
         var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
         var folders = new Hash();
-        for (var i = 0; i < nb_folders; i++) {
+        for (var i = 0; i < nb_folders; ++i) {
             var fpath = $('text_watch_' + i).getProperty('value').trim();
             if (fpath.length > 0) {
                 var other;
