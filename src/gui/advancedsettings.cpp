@@ -485,10 +485,6 @@ void AdvancedSettings::loadAdvancedSettings()
 template <typename T>
 void AdvancedSettings::addRow(int row, const QString &rowText, T* widget)
 {
-    // ignore mouse wheel event
-    static WheelEventEater filter;
-    widget->installEventFilter(&filter);
-
     setItem(row, PROPERTY, new QTableWidgetItem(rowText));
     setCellWidget(row, VALUE, widget);
 
