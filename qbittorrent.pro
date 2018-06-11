@@ -3,7 +3,6 @@ TEMPLATE = subdirs
 SUBDIRS += src
 
 include(version.pri)
-include(qm_gen.pri)
 
 # Make target to create release tarball. Use 'make tarball'
 tarball.commands += rm -fR ../$${PROJECT_NAME}-$${PROJECT_VERSION}/ &&

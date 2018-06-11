@@ -77,6 +77,6 @@ RESOURCES += \
     searchengine/searchengine.qrc
 
 # Translations
-TRANSLATIONS += $$files(lang/qbittorrent_*.ts)
+include(lang/lang.pri)
 
 DESTDIR = .
