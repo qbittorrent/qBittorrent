@@ -72,9 +72,9 @@ include(base/base.pri)
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
-    icons.qrc \
-    lang.qrc \
-    searchengine.qrc
+    icons/icons.qrc \
+    lang/lang.qrc \
+    searchengine/searchengine.qrc
 
 # Translations
 TRANSLATIONS += $$files(lang/qbittorrent_*.ts)

@@ -30,6 +30,6 @@ webapplication.cpp
 webui.cpp
 )
 
-qbt_target_sources(qBittorrent PRIVATE webui.qrc)
+qbt_target_sources(qBittorrent PRIVATE www/webui.qrc)
 
 target_link_libraries(qbt_webui PUBLIC qbt_base)

@@ -28,4 +28,4 @@ SOURCES += \
     $$PWD/webapplication.cpp \
     $$PWD/webui.cpp
 
-RESOURCES += $$PWD/webui.qrc
+RESOURCES += $$PWD/www/webui.qrc
