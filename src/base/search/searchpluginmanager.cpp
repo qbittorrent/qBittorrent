@@ -554,19 +554,17 @@ PluginVersion SearchPluginManager::getPluginVersion(QString filePath)
 
     PluginVersion version;
     while (!plugin.atEnd()) {
-        QByteArray line = plugin.readLine();
-        if (line.startsWith("#VERSION: ")) {
-            line = line.split(' ').last().trimmed();
-            version = PluginVersion::tryParse(line, invalidVersion);
-            if (version == invalidVersion) {
-                LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
-                    .arg(Utils::Fs::fileName(filePath), QString::fromUtf8(line)), Log::MsgType::WARNING);
-            }
-            else {
-                qDebug() << "plugin" << filePath << "version: " << version;
-            }
-            break;
+        const QString line = QString(plugin.readLine()).remove(' ');
+        if (!line.startsWith("#VERSION:", Qt::CaseInsensitive)) continue;
+
+        const QString versionStr = line.mid(9);
+        version = PluginVersion::tryParse(versionStr, invalidVersion);
+        if (version == invalidVersion) {
+            LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
+                .arg(Utils::Fs::fileName(filePath), line), Log::MsgType::WARNING);
         }
+
+        break;
     }
     return version;
 }
