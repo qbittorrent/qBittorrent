@@ -254,6 +254,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textTempPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreallocateAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAdditionDialog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAdditionDialogFront, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -602,6 +603,7 @@ void OptionsDialog::saveOptions()
     session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->selectedPath()));
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setPreallocationEnabled(preAllocateAllFiles());
+    pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
@@ -849,6 +851,7 @@ void OptionsDialog::loadOptions()
     m_ui->textTempPath->setSelectedPath(Utils::Fs::toNativePath(session->tempPath()));
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
+    m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());
 
     strValue = session->torrentExportDirectory();
     if (strValue.isEmpty()) {
