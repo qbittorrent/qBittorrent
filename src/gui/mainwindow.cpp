@@ -927,18 +927,26 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
 {
     Preferences *const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
-    // Get Torrent name
-    QString torrentName = torrent->name();
-    QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrentName), QMessageBox::NoButton, this);
-    QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
-    /*QPushButton *no = */ confirmBox.addButton(tr("No"), QMessageBox::NoRole);
-    QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
-    confirmBox.exec();
 
-    if (confirmBox.clickedButton() == yes)
-        BitTorrent::Session::instance()->recursiveTorrentDownload(torrent->hash());
-    else if (confirmBox.clickedButton() == never)
-        pref->disableRecursiveDownload();
+    const auto torrentHash = torrent->hash();
+
+    QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
+        , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
+        , QMessageBox::NoButton, this);
+    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
+    confirmBox->setModal(true);
+
+    const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
+    /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
+    const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
+    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentHash, yes, never](const QAbstractButton *button)
+    {
+        if (button == yes)
+            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentHash);
+        if (button == never)
+            Preferences::instance()->disableRecursiveDownload();
+    });
+    confirmBox->show();
 }
 
 void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
