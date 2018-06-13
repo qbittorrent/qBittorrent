@@ -33,10 +33,10 @@
 #include <QHostAddress>
 #include <QNetworkInterface>
 
-#include "app/application.h"
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
+#include "app/application.h"
 #include "gui/addnewtorrentdialog.h"
 #include "gui/mainwindow.h"
 
@@ -137,7 +137,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 
 void AdvancedSettings::saveAdvancedSettings()
 {
-    Preferences* const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // Disk write cache
@@ -201,7 +201,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
 
     // Program notification
-    MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(cb_program_notifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(cb_torrent_added_notifications.isChecked());
     // Misc GUI properties
@@ -247,16 +247,16 @@ void AdvancedSettings::updateInterfaceAddressCombo()
     const QString ifaceName = combo_iface.itemData(combo_iface.currentIndex()).toString(); // Empty string for the first element
     const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
 
-    //Clear all items and reinsert them, default to all
+    // Clear all items and reinsert them, default to all
     combo_iface_address.clear();
     combo_iface_address.addItem(tr("All addresses"));
     combo_iface_address.setCurrentIndex(0);
 
     auto populateCombo = [this, &currentAddress](const QString &ip, const QAbstractSocket::NetworkLayerProtocol &protocol)
     {
-        Q_ASSERT(protocol == QAbstractSocket::IPv4Protocol || protocol == QAbstractSocket::IPv6Protocol);
-        //Only take ipv4 for now?
-        if (protocol != QAbstractSocket::IPv4Protocol && protocol != QAbstractSocket::IPv6Protocol)
+        Q_ASSERT((protocol == QAbstractSocket::IPv4Protocol) || (protocol == QAbstractSocket::IPv6Protocol));
+        // Only take ipv4 for now?
+        if ((protocol != QAbstractSocket::IPv4Protocol) && (protocol != QAbstractSocket::IPv6Protocol))
             return;
         combo_iface_address.addItem(ip);
         //Try to select the last added one
@@ -280,7 +280,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 
 void AdvancedSettings::loadAdvancedSettings()
 {
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
     const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // add section headers
@@ -483,7 +483,7 @@ void AdvancedSettings::loadAdvancedSettings()
 }
 
 template <typename T>
-void AdvancedSettings::addRow(int row, const QString &rowText, T* widget)
+void AdvancedSettings::addRow(int row, const QString &rowText, T *widget)
 {
     setItem(row, PROPERTY, new QTableWidgetItem(rowText));
     setCellWidget(row, VALUE, widget);

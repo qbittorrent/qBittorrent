@@ -47,7 +47,7 @@ class QStringList;
 
 namespace Private
 {
-    class FileSystemPathValidator: public QValidator
+    class FileSystemPathValidator : public QValidator
     {
         Q_OBJECT
 
@@ -113,7 +113,7 @@ namespace Private
         virtual QWidget *widget() = 0;
     };
 
-    class FileLineEdit: public QLineEdit, public FileEditorWithCompletion
+    class FileLineEdit : public QLineEdit, public FileEditorWithCompletion
     {
         Q_OBJECT
         Q_DISABLE_COPY(FileLineEdit)
@@ -143,7 +143,7 @@ namespace Private
         QAction *m_warningAction;
     };
 
-    class FileComboEdit: public QComboBox, public FileEditorWithCompletion
+    class FileComboEdit : public QComboBox, public FileEditorWithCompletion
     {
         Q_OBJECT
 

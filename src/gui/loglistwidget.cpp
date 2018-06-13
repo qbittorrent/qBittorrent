@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -100,5 +100,5 @@ void LogListWidget::copySelection()
     foreach (QListWidgetItem* it, selectedItems())
         strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
 
-    QApplication::clipboard()->setText(strings.join("\n"));
+    QApplication::clipboard()->setText(strings.join('\n'));
 }

@@ -51,7 +51,7 @@ public:
     int seedingTime() const;
 
 public slots:
-    void accept();
+    void accept() override;
 
 private slots:
     void handleRatioTypeChanged();

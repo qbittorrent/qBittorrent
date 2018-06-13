@@ -26,12 +26,13 @@
  * exception statement from your version.
  */
 
+#include "resumedatasavingmanager.h"
+
 #include <QDebug>
 #include <QSaveFile>
 
 #include "base/logger.h"
 #include "base/utils/fs.h"
-#include "resumedatasavingmanager.h"
 
 ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath)
     : m_resumeDataDir(resumeFolderPath)

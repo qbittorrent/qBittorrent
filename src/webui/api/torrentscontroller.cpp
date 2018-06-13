@@ -49,8 +49,8 @@
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "serialize/serialize_torrent.h"
 #include "apierror.h"
+#include "serialize/serialize_torrent.h"
 
 // Tracker keys
 const char KEY_TRACKER_URL[] = "url";

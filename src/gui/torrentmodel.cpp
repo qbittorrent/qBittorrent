@@ -25,20 +25,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QDebug>
+#include "torrentmodel.h"
+
 #include <QApplication>
-#include <QPalette>
+#include <QDebug>
 #include <QIcon>
+#include <QPalette>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
-#include "torrentmodel.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
 static QColor getColorByState(BitTorrent::TorrentState state);

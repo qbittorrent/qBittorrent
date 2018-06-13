@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -24,40 +24,40 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QListWidgetItem>
-#include <QLabel>
-#include <QDateTime>
-#include <QColor>
-#include <QPalette>
 #include "executionlog.h"
-#include "ui_executionlog.h"
+
+#include <QColor>
+#include <QDateTime>
+#include <QLabel>
+#include <QListWidgetItem>
+#include <QPalette>
+
 #include "guiiconprovider.h"
 #include "loglistwidget.h"
+#include "ui_executionlog.h"
 
 ExecutionLog::ExecutionLog(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
-    , ui(new Ui::ExecutionLog)
+    , m_ui(new Ui::ExecutionLog)
     , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     m_msgList = new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types));
 
 #ifndef Q_OS_MAC
-    ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
-    ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
+    m_ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
+    m_ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
 #endif
-    ui->tabGeneral->layout()->addWidget(m_msgList);
-    ui->tabBan->layout()->addWidget(m_peerList);
+    m_ui->tabGeneral->layout()->addWidget(m_msgList);
+    m_ui->tabBan->layout()->addWidget(m_peerList);
 
-    const Logger* const logger = Logger::instance();
-    foreach (const Log::Msg& msg, logger->getMessages())
+    const Logger *const logger = Logger::instance();
+    foreach (const Log::Msg &msg, logger->getMessages())
         addLogMessage(msg);
-    foreach (const Log::Peer& peer, logger->getPeers())
+    foreach (const Log::Peer &peer, logger->getPeers())
         addPeerMessage(peer);
     connect(logger, &Logger::newLogMessage, this, &ExecutionLog::addLogMessage);
     connect(logger, &Logger::newLogPeer, this, &ExecutionLog::addPeerMessage);
@@ -67,7 +67,7 @@ ExecutionLog::~ExecutionLog()
 {
     delete m_msgList;
     delete m_peerList;
-    delete ui;
+    delete m_ui;
 }
 
 void ExecutionLog::showMsgTypes(const Log::MsgTypes &types)
@@ -99,7 +99,7 @@ void ExecutionLog::addLogMessage(const Log::Msg &msg)
     m_msgList->appendLine(text, msg.type);
 }
 
-void ExecutionLog::addPeerMessage(const Log::Peer& peer)
+void ExecutionLog::addPeerMessage(const Log::Peer &peer)
 {
     QString text;
     QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);

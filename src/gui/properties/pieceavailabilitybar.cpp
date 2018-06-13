@@ -109,7 +109,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         // normalization <0, 1>
         value /= ratio * maxElement;
 
-        // float precision sometimes gives > 1, because in not possible to store irrational numbers
+        // float precision sometimes gives > 1, because it's not possible to store irrational numbers
         value = qMin(value, 1.0f);
 
         result[x] = value;

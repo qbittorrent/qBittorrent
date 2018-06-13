@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTMODEL_H
@@ -85,12 +83,12 @@ public:
 
     explicit TorrentModel(QObject *parent = nullptr);
 
-    int rowCount(const QModelIndex& index = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent=QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole);
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    int rowCount(const QModelIndex& index = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent=QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::DisplayRole) override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 

@@ -39,7 +39,7 @@ namespace BitTorrent
     struct SessionStatus;
 }
 
-class StatusBar: public QStatusBar
+class StatusBar : public QStatusBar
 {
     Q_OBJECT
     Q_DISABLE_COPY(StatusBar)

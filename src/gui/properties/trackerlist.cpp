@@ -411,7 +411,7 @@ void TrackerList::copyTrackerUrl()
         qDebug() << QString("Copy: ") + trackerURL;
         urlsToCopy << trackerURL;
     }
-    QApplication::clipboard()->setText(urlsToCopy.join("\n"));
+    QApplication::clipboard()->setText(urlsToCopy.join('\n'));
 }
 
 
