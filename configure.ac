@@ -168,6 +168,17 @@ AX_BOOST_BASE([1.35],
 CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
+# add workaround for problematic boost version
+AC_LANG_PUSH(C++)
+# taken from ax_boost_base.m4
+m4_define([DETECT_BOOST_VERSION_PROGRAM],
+    [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
+                     [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
+
+AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
+    [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
+AC_LANG_POP([C++])
+
 AX_BOOST_SYSTEM()
 AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
