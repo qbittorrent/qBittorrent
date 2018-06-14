@@ -49,9 +49,9 @@ public:
 
         // Title
 #if defined(__x86_64__) || defined(_M_X64)
-        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
+        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
 #else
-        lb_name->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
+        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
 #endif
 
         logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
@@ -72,35 +72,35 @@ public:
                 , tr("Home Page:")
                 , tr("Forum:")
                 , tr("Bug Tracker:"));
-        lb_about->setText(aboutText);
+        labelAbout->setText(aboutText);
 
         labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
 
         // Thanks
         QFile thanksfile(":/thanks.html");
         if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            te_thanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
+            textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
             thanksfile.close();
         }
 
         // Translation
         QFile translatorsfile(":/translators.html");
         if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            te_translation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
+            textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
             translatorsfile.close();
         }
 
         // License
         QFile licensefile(":/gpl.html");
         if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            te_license->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
+            textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
             licensefile.close();
         }
 
         // Libraries
-        label_11->setText(QT_VERSION_STR);
-        label_12->setText(Utils::Misc::libtorrentVersionString());
-        label_13->setText(Utils::Misc::boostVersionString());
+        labelQtVer->setText(QT_VERSION_STR);
+        labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
+        labelBoostVer->setText(Utils::Misc::boostVersionString());
 
         Utils::Gui::resize(this);
         show();

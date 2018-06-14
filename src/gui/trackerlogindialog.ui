@@ -17,7 +17,7 @@
    <item>
     <layout class="QHBoxLayout">
      <item>
-      <widget class="QLabel" name="login_logo">
+      <widget class="QLabel" name="labelLoginLogo">
        <property name="maximumSize">
         <size>
          <width>39</width>
@@ -66,7 +66,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="tracker_url">
+      <widget class="QLabel" name="labelTrackerURL">
        <property name="minimumSize">
         <size>
          <width>220</width>

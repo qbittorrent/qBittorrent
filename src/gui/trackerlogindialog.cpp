@@ -44,9 +44,9 @@ TrackerLoginDialog::TrackerLoginDialog(QWidget *parent, BitTorrent::TorrentHandl
 
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Log in"));
 
-  login_logo->setPixmap(QPixmap(QLatin1String(":/icons/qbt-theme/encrypted.png")));
+  labelLoginLogo->setPixmap(QPixmap(QLatin1String(":/icons/qbt-theme/encrypted.png")));
 
-  tracker_url->setText(torrent->currentTracker());
+  labelTrackerURL->setText(torrent->currentTracker());
 
   connect(buttonBox, &QDialogButtonBox::accepted, this, &TrackerLoginDialog::loginButtonClicked);
   connect(buttonBox, &QDialogButtonBox::rejected, this, &TrackerLoginDialog::cancelButtonClicked);

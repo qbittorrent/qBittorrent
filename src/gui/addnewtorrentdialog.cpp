@@ -148,7 +148,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->contentTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     loadState();
     // Signal / slots
-    connect(m_ui->adv_button, &QToolButton::clicked, this, &AddNewTorrentDialog::showAdvancedSettings);
+    connect(m_ui->toolButtonAdvanced, &QToolButton::clicked, this, &AddNewTorrentDialog::showAdvancedSettings);
     connect(m_ui->doNotDeleteTorrentCheckBox, &QCheckBox::clicked, this, &AddNewTorrentDialog::doNotDeleteTorrentClicked);
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, m_ui->contentTreeView, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &AddNewTorrentDialog::renameSelectedFile);
@@ -213,7 +213,7 @@ void AddNewTorrentDialog::loadState()
     const int height = newSize.height();
     resize(width, height);
 
-    m_ui->adv_button->setChecked(settings()->loadValue(KEY_EXPANDED).toBool());
+    m_ui->toolButtonAdvanced->setChecked(settings()->loadValue(KEY_EXPANDED).toBool());
 }
 
 void AddNewTorrentDialog::saveState()
@@ -221,7 +221,7 @@ void AddNewTorrentDialog::saveState()
     if (m_contentModel)
         settings()->storeValue(KEY_TREEHEADERSTATE, m_ui->contentTreeView->header()->saveState());
     settings()->storeValue(KEY_WIDTH, width());
-    settings()->storeValue(KEY_EXPANDED, m_ui->adv_button->isChecked());
+    settings()->storeValue(KEY_EXPANDED, m_ui->toolButtonAdvanced->isChecked());
 }
 
 void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
@@ -375,17 +375,17 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
     const int minimumW = minimumWidth();
     setMinimumWidth(width()); // to remain the same width
     if (show) {
-        m_ui->adv_button->setText(QString::fromUtf8(C_UP));
-        m_ui->settings_group->setVisible(true);
+        m_ui->toolButtonAdvanced->setText(QString::fromUtf8(C_UP));
+        m_ui->groupBoxSettings->setVisible(true);
         m_ui->infoGroup->setVisible(true);
         m_ui->contentTreeView->setVisible(m_hasMetadata);
-        static_cast<QVBoxLayout *>(layout())->insertWidget(layout()->indexOf(m_ui->never_show_cb) + 1, m_ui->adv_button);
+        static_cast<QVBoxLayout *>(layout())->insertWidget(layout()->indexOf(m_ui->checkBoxNeverShow) + 1, m_ui->toolButtonAdvanced);
     }
     else {
-        m_ui->adv_button->setText(QString::fromUtf8(C_DOWN));
-        m_ui->settings_group->setVisible(false);
+        m_ui->toolButtonAdvanced->setText(QString::fromUtf8(C_DOWN));
+        m_ui->groupBoxSettings->setVisible(false);
         m_ui->infoGroup->setVisible(false);
-        m_ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(m_ui->never_show_cb) + 1)->widget());
+        m_ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(m_ui->checkBoxNeverShow) + 1)->widget());
     }
     adjustSize();
     setMinimumWidth(minimumW);
@@ -444,7 +444,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     sizeString += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    m_ui->savePath->selectedPath())));
     sizeString += ")";
-    m_ui->size_lbl->setText(sizeString);
+    m_ui->labelSize->setText(sizeString);
 }
 
 void AddNewTorrentDialog::onSavePathChanged(const QString &newPath)
@@ -608,7 +608,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     }
     QMenu subMenu;
     subMenu.setTitle(tr("Priority"));
-    subMenu.addAction(m_ui->actionNot_downloaded);
+    subMenu.addAction(m_ui->actionNotDownloaded);
     subMenu.addAction(m_ui->actionNormal);
     subMenu.addAction(m_ui->actionHigh);
     subMenu.addAction(m_ui->actionMaximum);
@@ -625,7 +625,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
                 prio = prio::HIGH;
             else if (act == m_ui->actionMaximum)
                 prio = prio::MAXIMUM;
-            else if (act == m_ui->actionNot_downloaded)
+            else if (act == m_ui->actionNotDownloaded)
                 prio = prio::IGNORED;
 
             qDebug("Setting files priority");
@@ -669,7 +669,7 @@ void AddNewTorrentDialog::accept()
         m_torrentParams.useAutoTMM = TriStateBool::True;
     }
 
-    setEnabled(!m_ui->never_show_cb->isChecked());
+    setEnabled(!m_ui->checkBoxNeverShow->isChecked());
 
     // Add torrent
     if (!m_hasMetadata)
@@ -725,7 +725,7 @@ void AddNewTorrentDialog::setupTreeview()
 {
     if (!m_hasMetadata) {
         setCommentText(tr("Not Available", "This comment is unavailable"));
-        m_ui->date_lbl->setText(tr("Not Available", "This date is unavailable"));
+        m_ui->labelDate->setText(tr("Not Available", "This date is unavailable"));
     }
     else {
         // Set dialog title
@@ -733,7 +733,7 @@ void AddNewTorrentDialog::setupTreeview()
 
         // Set torrent information
         setCommentText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment()));
-        m_ui->date_lbl->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
+        m_ui->labelDate->setText(!m_torrentInfo.creationDate().isNull() ? m_torrentInfo.creationDate().toString(Qt::DefaultLocaleShortDate) : tr("Not available"));
 
         // Prepare content tree
         m_contentModel = new TorrentContentFilterModel(this);
@@ -795,7 +795,7 @@ void AddNewTorrentDialog::TMMChanged(int index)
         m_ui->groupBoxSavePath->setEnabled(true);
         m_ui->savePath->blockSignals(false);
         m_ui->savePath->setCurrentIndex(m_oldIndex < m_ui->savePath->count() ? m_oldIndex : m_ui->savePath->count() - 1);
-        m_ui->adv_button->setEnabled(true);
+        m_ui->toolButtonAdvanced->setEnabled(true);
     }
     else {
         m_ui->groupBoxSavePath->setEnabled(false);
@@ -803,8 +803,8 @@ void AddNewTorrentDialog::TMMChanged(int index)
         m_ui->savePath->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->addItem(savePath);
-        m_ui->adv_button->setChecked(true);
-        m_ui->adv_button->setEnabled(false);
+        m_ui->toolButtonAdvanced->setChecked(true);
+        m_ui->toolButtonAdvanced->setEnabled(false);
         showAdvancedSettings(true);
     }
 }

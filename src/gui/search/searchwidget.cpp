@@ -116,7 +116,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
                  "Search phrase example, illustrates quotes usage, double quoted"
                  "pair of space delimited words, the whole pair is highlighted")
            << "</p></body></html>" << flush;
-    m_ui->m_searchPattern->setToolTip(searchPatternHint);
+    m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
 #ifndef Q_OS_MAC
     // Icons
@@ -153,8 +153,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     // Fill in category combobox
     onPluginChanged();
 
-    connect(m_ui->m_searchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
-    connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
+    connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
+    connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::selectMultipleBox);
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
@@ -215,14 +215,14 @@ void SearchWidget::selectActivePage()
 {
     if (SearchPluginManager::instance()->allPlugins().isEmpty()) {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
-        m_ui->m_searchPattern->setEnabled(false);
+        m_ui->lineEditSearchPattern->setEnabled(false);
         m_ui->comboCategory->setEnabled(false);
         m_ui->selectPlugin->setEnabled(false);
         m_ui->searchButton->setEnabled(false);
     }
     else {
         m_ui->stackedPages->setCurrentWidget(m_ui->searchPage);
-        m_ui->m_searchPattern->setEnabled(true);
+        m_ui->lineEditSearchPattern->setEnabled(true);
         m_ui->comboCategory->setEnabled(true);
         m_ui->selectPlugin->setEnabled(true);
         m_ui->searchButton->setEnabled(true);
@@ -279,7 +279,7 @@ void SearchWidget::searchTextEdited(QString)
 
 void SearchWidget::giveFocusToSearchInput()
 {
-    m_ui->m_searchPattern->setFocus();
+    m_ui->lineEditSearchPattern->setFocus();
 }
 
 // Function called when we click on search button
@@ -300,7 +300,7 @@ void SearchWidget::on_searchButton_clicked()
 
     m_isNewQueryString = false;
 
-    const QString pattern = m_ui->m_searchPattern->text().trimmed();
+    const QString pattern = m_ui->lineEditSearchPattern->text().trimmed();
     // No search pattern entered
     if (pattern.isEmpty()) {
         QMessageBox::critical(this, tr("Empty search pattern"), tr("Please type a search pattern first"));
