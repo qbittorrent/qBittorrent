@@ -116,7 +116,7 @@ $('addTrackersPlus').addEvent('click', function addTrackerDlg() {
     if (current_hash.length === 0) return;
     new MochaUI.Window({
         id: 'trackersPage',
-        title: "QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDlg]",
+        title: "QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDialog]",
         loadMethod: 'iframe',
         contentURL: 'addtrackers.html?hash=' + current_hash,
         scrollbars: true,

@@ -40,7 +40,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/utils/misc.h"
 #include "guiiconprovider.h"
-#include "speedlimitdlg.h"
+#include "speedlimitdialog.h"
 #include "utils.h"
 
 StatusBar::StatusBar(QWidget *parent)

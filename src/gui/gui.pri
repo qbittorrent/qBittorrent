@@ -6,19 +6,19 @@ include(properties/properties.pri)
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
 
 HEADERS += \
-    $$PWD/about_imp.h \
+    $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
     $$PWD/advancedsettings.h \
     $$PWD/autoexpandabledialog.h \
-    $$PWD/banlistoptions.h \
+    $$PWD/banlistoptionsdialog.h \
     $$PWD/categoryfiltermodel.h \
     $$PWD/categoryfilterproxymodel.h \
     $$PWD/categoryfilterwidget.h \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
-    $$PWD/deletionconfirmationdlg.h \
+    $$PWD/deletionconfirmationdialog.h \
     $$PWD/downloadfromurldialog.h \
-    $$PWD/executionlog.h \
+    $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/guiiconprovider.h \
@@ -26,24 +26,24 @@ HEADERS += \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/loglistwidget.h \
     $$PWD/mainwindow.h \
-    $$PWD/messageboxraised.h \
-    $$PWD/optionsdlg.h \
+    $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/rss/rsswidget.h \
     $$PWD/scanfoldersdelegate.h \
-    $$PWD/search/pluginselectdlg.h \
-    $$PWD/search/pluginsourcedlg.h \
+    $$PWD/search/pluginselectdialog.h \
+    $$PWD/search/pluginsourcedialog.h \
+    $$PWD/search/searchjobwidget.h \
     $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
-    $$PWD/search/searchtab.h \
     $$PWD/search/searchwidget.h \
-    $$PWD/shutdownconfirmdlg.h \
-    $$PWD/speedlimitdlg.h \
+    $$PWD/shutdownconfirmdialog.h \
+    $$PWD/speedlimitdialog.h \
     $$PWD/statsdialog.h \
     $$PWD/statusbar.h \
     $$PWD/tagfiltermodel.h \
@@ -56,51 +56,51 @@ HEADERS += \
     $$PWD/torrentcontentmodelfolder.h \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontenttreeview.h \
-    $$PWD/torrentcreatordlg.h \
-    $$PWD/torrentmodel.h \
-    $$PWD/trackerlogin.h \
+    $$PWD/torrentcreatordialog.h \
+    $$PWD/trackerlogindialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
+    $$PWD/transferlistmodel.h \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
-    $$PWD/updownratiodlg.h \
+    $$PWD/updownratiodialog.h \
     $$PWD/utils.h
 
 SOURCES += \
     $$PWD/addnewtorrentdialog.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/autoexpandabledialog.cpp \
-    $$PWD/banlistoptions.cpp \
+    $$PWD/banlistoptionsdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
     $$PWD/categoryfilterproxymodel.cpp \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
     $$PWD/downloadfromurldialog.cpp \
-    $$PWD/executionlog.cpp \
+    $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
     $$PWD/guiiconprovider.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/loglistwidget.cpp \
     $$PWD/mainwindow.cpp \
-    $$PWD/messageboxraised.cpp \
-    $$PWD/optionsdlg.cpp \
+    $$PWD/optionsdialog.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/rss/rsswidget.cpp \
     $$PWD/scanfoldersdelegate.cpp \
-    $$PWD/search/pluginselectdlg.cpp \
-    $$PWD/search/pluginsourcedlg.cpp \
+    $$PWD/search/pluginselectdialog.cpp \
+    $$PWD/search/pluginsourcedialog.cpp \
+    $$PWD/search/searchjobwidget.cpp \
     $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
-    $$PWD/search/searchtab.cpp \
     $$PWD/search/searchwidget.cpp \
-    $$PWD/shutdownconfirmdlg.cpp \
-    $$PWD/speedlimitdlg.cpp \
+    $$PWD/shutdownconfirmdialog.cpp \
+    $$PWD/speedlimitdialog.cpp \
     $$PWD/statsdialog.cpp \
     $$PWD/statusbar.cpp \
     $$PWD/tagfiltermodel.cpp \
@@ -113,14 +113,14 @@ SOURCES += \
     $$PWD/torrentcontentmodelfolder.cpp \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontenttreeview.cpp \
-    $$PWD/torrentcreatordlg.cpp \
-    $$PWD/torrentmodel.cpp \
-    $$PWD/trackerlogin.cpp \
+    $$PWD/torrentcreatordialog.cpp \
+    $$PWD/trackerlogindialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
+    $$PWD/transferlistmodel.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
-    $$PWD/updownratiodlg.cpp \
+    $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
 
 win32|macx {
@@ -134,30 +134,30 @@ macx {
 }
 
 FORMS += \
-    $$PWD/about.ui \
+    $$PWD/aboutdialog.ui \
     $$PWD/addnewtorrentdialog.ui \
     $$PWD/autoexpandabledialog.ui \
-    $$PWD/bandwidth_limit.ui \
-    $$PWD/banlistoptions.ui \
-    $$PWD/confirmdeletiondlg.ui \
+    $$PWD/banlistoptionsdialog.ui \
     $$PWD/cookiesdialog.ui \
+    $$PWD/deletionconfirmationdialog.ui \
     $$PWD/downloadfromurldialog.ui \
-    $$PWD/executionlog.ui \
+    $$PWD/executionlogwidget.ui \
     $$PWD/ipsubnetwhitelistoptionsdialog.ui \
-    $$PWD/login.ui \
     $$PWD/mainwindow.ui \
-    $$PWD/optionsdlg.ui \
+    $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
-    $$PWD/search/pluginselectdlg.ui \
-    $$PWD/search/pluginsourcedlg.ui \
-    $$PWD/search/searchtab.ui \
+    $$PWD/search/pluginselectdialog.ui \
+    $$PWD/search/pluginsourcedialog.ui \
+    $$PWD/search/searchjobwidget.ui \
     $$PWD/search/searchwidget.ui \
-    $$PWD/shutdownconfirmdlg.ui \
+    $$PWD/shutdownconfirmdialog.ui \
+    $$PWD/speedlimitdialog.ui \
     $$PWD/statsdialog.ui \
     $$PWD/torrentcategorydialog.ui \
-    $$PWD/torrentcreatordlg.ui \
-    $$PWD/updownratiodlg.ui
+    $$PWD/torrentcreatordialog.ui \
+    $$PWD/trackerlogindialog.ui \
+    $$PWD/updownratiodialog.ui
 
 RESOURCES += $$PWD/about.qrc

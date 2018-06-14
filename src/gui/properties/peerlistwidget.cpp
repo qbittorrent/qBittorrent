@@ -49,9 +49,9 @@
 #include "guiiconprovider.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
-#include "peersadditiondlg.h"
+#include "peersadditiondialog.h"
 #include "propertieswidget.h"
-#include "speedlimitdlg.h"
+#include "speedlimitdialog.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
@@ -247,7 +247,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     if (!act) return;
 
     if (act == addPeerAct) {
-        QList<BitTorrent::PeerAddress> peersList = PeersAdditionDlg::askForPeers(this);
+        QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
         int peerCount = 0;
         foreach (const BitTorrent::PeerAddress &addr, peersList) {
             if (torrent->connectPeer(addr)) {

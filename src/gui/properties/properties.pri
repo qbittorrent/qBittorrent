@@ -1,16 +1,16 @@
 INCLUDEPATH += $$PWD
 
 FORMS += \
-    $$PWD/peersadditiondlg.ui \
+    $$PWD/peersadditiondialog.ui \
     $$PWD/propertieswidget.ui \
-    $$PWD/trackersadditiondlg.ui
+    $$PWD/trackersadditiondialog.ui
 
 HEADERS += \
     $$PWD/downloadedpiecesbar.h \
     $$PWD/peerlistdelegate.h \
     $$PWD/peerlistsortmodel.h \
     $$PWD/peerlistwidget.h \
-    $$PWD/peersadditiondlg.h \
+    $$PWD/peersadditiondialog.h \
     $$PWD/pieceavailabilitybar.h \
     $$PWD/piecesbar.h \
     $$PWD/propertieswidget.h \
@@ -18,13 +18,13 @@ HEADERS += \
     $$PWD/proptabbar.h \
     $$PWD/speedplotview.h \
     $$PWD/speedwidget.h \
-    $$PWD/trackerlist.h \
-    $$PWD/trackersadditiondlg.h
+    $$PWD/trackerlistwidget.h \
+    $$PWD/trackersadditiondialog.h
 
 SOURCES += \
     $$PWD/downloadedpiecesbar.cpp \
     $$PWD/peerlistwidget.cpp \
-    $$PWD/peersadditiondlg.cpp \
+    $$PWD/peersadditiondialog.cpp \
     $$PWD/pieceavailabilitybar.cpp \
     $$PWD/piecesbar.cpp \
     $$PWD/propertieswidget.cpp \
@@ -32,5 +32,5 @@ SOURCES += \
     $$PWD/proptabbar.cpp \
     $$PWD/speedplotview.cpp \
     $$PWD/speedwidget.cpp \
-    $$PWD/trackerlist.cpp \
-    $$PWD/trackersadditiondlg.cpp
+    $$PWD/trackerlistwidget.cpp \
+    $$PWD/trackersadditiondialog.cpp

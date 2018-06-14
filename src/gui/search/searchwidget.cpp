@@ -61,10 +61,10 @@
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
 #include "mainwindow.h"
-#include "pluginselectdlg.h"
+#include "pluginselectdialog.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
-#include "searchtab.h"
+#include "searchjobwidget.h"
 #include "ui_searchwidget.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
@@ -72,18 +72,18 @@
 
 namespace
 {
-    QString statusIconName(SearchTab::Status st)
+    QString statusIconName(SearchJobWidget::Status st)
     {
         switch (st) {
-        case SearchTab::Status::Ongoing:
+        case SearchJobWidget::Status::Ongoing:
             return QLatin1String("task-ongoing");
-        case SearchTab::Status::Finished:
+        case SearchJobWidget::Status::Finished:
             return QLatin1String("task-complete");
-        case SearchTab::Status::Aborted:
+        case SearchJobWidget::Status::Aborted:
             return QLatin1String("task-reject");
-        case SearchTab::Status::Error:
+        case SearchJobWidget::Status::Error:
             return QLatin1String("task-attention");
-        case SearchTab::Status::NoResults:
+        case SearchJobWidget::Status::NoResults:
             return QLatin1String("task-attention");
         default:
             return QString();
@@ -267,7 +267,7 @@ void SearchWidget::selectMultipleBox(int index)
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    new PluginSelectDlg(SearchPluginManager::instance(), this);
+    new PluginSelectDialog(SearchPluginManager::instance(), this);
 }
 
 void SearchWidget::searchTextEdited(QString)
@@ -323,7 +323,7 @@ void SearchWidget::on_searchButton_clicked()
     auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
 
     // Tab Addition
-    auto *newTab = new SearchTab(searchHandler, this);
+    auto *newTab = new SearchJobWidget(searchHandler, this);
     m_allTabs.append(newTab);
 
     QString tabName = pattern;
@@ -331,8 +331,8 @@ void SearchWidget::on_searchButton_clicked()
     m_ui->tabWidget->addTab(newTab, tabName);
     m_ui->tabWidget->setCurrentWidget(newTab);
 
-    connect(newTab, &SearchTab::resultsCountUpdated, this, &SearchWidget::resultsCountUpdated);
-    connect(newTab, &SearchTab::statusChanged
+    connect(newTab, &SearchJobWidget::resultsCountUpdated, this, &SearchWidget::resultsCountUpdated);
+    connect(newTab, &SearchJobWidget::statusChanged
             , m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     m_tabStatusChangedMapper->setMapping(newTab, newTab);
 
@@ -351,13 +351,13 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     const int tabIndex = m_ui->tabWidget->indexOf(tab);
     m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
     m_ui->tabWidget->setTabIcon(tabIndex, GuiIconProvider::instance()->getIcon(
-                                 statusIconName(static_cast<SearchTab *>(tab)->status())));
+                                 statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
-    if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchTab::Status::Ongoing)) {
-        Q_ASSERT(m_activeSearchTab->status() != SearchTab::Status::Ongoing);
+    if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing)) {
+        Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
         if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this)) {
-            if (m_activeSearchTab->status() == SearchTab::Status::Error)
+            if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
                 m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
             else
                 m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
@@ -370,7 +370,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
 
 void SearchWidget::closeTab(int index)
 {
-    SearchTab *tab = m_allTabs.takeAt(index);
+    SearchJobWidget *tab = m_allTabs.takeAt(index);
     if (tab == m_activeSearchTab)
         m_ui->searchButton->setText(tr("Search"));
 

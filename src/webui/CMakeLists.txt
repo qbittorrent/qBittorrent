@@ -1,4 +1,5 @@
 add_library(qbt_webui STATIC
+# headers
 api/apicontroller.h
 api/apierror.h
 api/appcontroller.h
@@ -13,6 +14,8 @@ api/serialize/serialize_torrent.h
 extra_translations.h
 webapplication.h
 webui.h
+
+# sources
 api/apicontroller.cpp
 api/apierror.cpp
 api/appcontroller.cpp
