@@ -54,8 +54,8 @@ public:
             label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
         // Icons
         const QSize iconSize = Utils::Gui::largeIconSize();
-        lbl_warn->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(iconSize));
-        lbl_warn->setFixedWidth(iconSize.width());
+        labelWarning->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(iconSize));
+        labelWarning->setFixedWidth(iconSize.width());
         rememberBtn->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
         rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 

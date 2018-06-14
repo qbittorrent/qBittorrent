@@ -55,13 +55,13 @@ QList<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *parent)
 
 void PeersAdditionDialog::validateInput()
 {
-    if (m_ui->peers_txt->toPlainText().trimmed().isEmpty()) {
+    if (m_ui->textEditPeers->toPlainText().trimmed().isEmpty()) {
         QMessageBox::warning(this, tr("No peer entered"),
                     tr("Please type at least one peer."),
                     QMessageBox::Ok);
         return;
     }
-    foreach (const QString &peer, m_ui->peers_txt->toPlainText().trimmed().split('\n')) {
+    foreach (const QString &peer, m_ui->textEditPeers->toPlainText().trimmed().split('\n')) {
         BitTorrent::PeerAddress addr = parsePeer(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);

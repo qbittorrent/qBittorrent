@@ -21,7 +21,7 @@
       <widget class="QLabel" name="logo"/>
      </item>
      <item>
-      <widget class="QLabel" name="lb_name">
+      <widget class="QLabel" name="labelName">
        <property name="text">
         <string notr="true">qBittorrent</string>
        </property>
@@ -56,7 +56,7 @@
         <widget class="QLabel" name="labelMascot"/>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="lb_about">
+        <widget class="QLabel" name="labelAbout">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -254,7 +254,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_thanks">
+        <widget class="QTextBrowser" name="textBrowserThanks">
          <property name="openExternalLinks">
           <bool>true</bool>
          </property>
@@ -280,7 +280,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_translation">
+        <widget class="QTextBrowser" name="textBrowserTranslation">
          <property name="lineWrapMode">
           <enum>QTextEdit::NoWrap</enum>
          </property>
@@ -306,7 +306,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="te_license">
+        <widget class="QTextBrowser" name="textBrowserLicense">
          <property name="openExternalLinks">
           <bool>true</bool>
          </property>
@@ -336,7 +336,7 @@
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <item row="2" column="2">
-          <widget class="QLabel" name="label_13">
+          <widget class="QLabel" name="labelBoostVer">
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -395,14 +395,14 @@
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="labelQtVer">
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="labelLibtVer">
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>

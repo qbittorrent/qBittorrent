@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="trackers_list">
+    <widget class="QTextEdit" name="textEditTrackersList">
      <property name="lineWrapMode">
       <enum>QTextEdit::NoWrap</enum>
      </property>
@@ -41,7 +41,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="list_url"/>
+      <widget class="QLineEdit" name="lineEditListURL"/>
      </item>
      <item>
       <widget class="QPushButton" name="uTorrentListButton"/>
