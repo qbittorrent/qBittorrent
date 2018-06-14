@@ -55,8 +55,8 @@ public:
     QTreeWidgetItem *findItemWithID(QString id);
 
 protected:
-    void dropEvent(QDropEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
 
 private slots:
     void on_actionUninstall_triggered();

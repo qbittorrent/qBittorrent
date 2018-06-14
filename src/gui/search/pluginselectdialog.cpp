@@ -172,8 +172,8 @@ void PluginSelectDialog::displayContextMenu(const QPoint&)
     QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
     if (items.isEmpty()) return;
 
-    QString first_id = items.first()->text(PLUGIN_ID);
-    m_ui->actionEnable->setChecked(m_pluginManager->pluginInfo(first_id)->enabled);
+    QString firstID = items.first()->text(PLUGIN_ID);
+    m_ui->actionEnable->setChecked(m_pluginManager->pluginInfo(firstID)->enabled);
     myContextMenu.addAction(m_ui->actionEnable);
     myContextMenu.addSeparator();
     myContextMenu.addAction(m_ui->actionUninstall);
@@ -318,7 +318,7 @@ void PluginSelectDialog::finishAsyncOp()
 void PluginSelectDialog::finishPluginUpdate()
 {
     --m_pendingUpdates;
-    if (m_pendingUpdates == 0 && !m_updatedPlugins.isEmpty()) {
+    if ((m_pendingUpdates == 0) && !m_updatedPlugins.isEmpty()) {
         m_updatedPlugins.sort(Qt::CaseInsensitive);
         QMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(", ")));
         m_updatedPlugins.clear();

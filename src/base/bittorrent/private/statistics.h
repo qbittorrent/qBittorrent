@@ -28,7 +28,6 @@ private:
     void save() const;
     void load();
 
-private:
     BitTorrent::Session *m_session;
     // Will overflow at 15.9 EiB
     quint64 m_alltimeUL;

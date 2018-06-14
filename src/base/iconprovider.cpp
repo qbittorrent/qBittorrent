@@ -27,8 +27,9 @@
  * exception statement from your version.
  */
 
-#include <QString>
 #include "iconprovider.h"
+
+#include <QString>
 
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)

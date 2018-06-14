@@ -26,8 +26,9 @@
  * exception statement from your version.
  */
 
-#include <QHash>
 #include "infohash.h"
+
+#include <QHash>
 
 using namespace BitTorrent;
 

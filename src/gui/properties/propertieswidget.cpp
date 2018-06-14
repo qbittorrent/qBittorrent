@@ -364,10 +364,10 @@ void PropertiesWidget::readSettings()
         QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->setSizes(m_slideSizes);
     }
-    const int current_tab = pref->getPropCurTab();
+    const int currentTab = pref->getPropCurTab();
     const bool visible = pref->getPropVisible();
     m_ui->filesList->header()->restoreState(pref->getPropFileListState());
-    m_tabBar->setCurrentIndex(current_tab);
+    m_tabBar->setCurrentIndex(currentTab);
     if (!visible)
         setVisibility(false);
 }
@@ -807,19 +807,19 @@ void PropertiesWidget::askWebSeed()
 {
     bool ok;
     // Ask user for a new url seed
-    const QString url_seed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
+    const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
                                                            QLatin1String("http://www."), &ok);
     if (!ok) return;
-    qDebug("Adding %s web seed", qUtf8Printable(url_seed));
-    if (!m_ui->listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
+    qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
+    if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty()) {
         QMessageBox::warning(this, "qBittorrent",
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;
     }
     if (m_torrent)
-        m_torrent->addUrlSeeds(QList<QUrl>() << url_seed);
+        m_torrent->addUrlSeeds(QList<QUrl>() << urlSeed);
     // Refresh the seeds list
     loadUrlSeeds();
 }

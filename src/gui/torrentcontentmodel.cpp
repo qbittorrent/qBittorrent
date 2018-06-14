@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#include "torrentcontentmodel.h"
+
 #include <QDir>
 #include <QFileIconProvider>
 #include <QFileInfo>
@@ -49,7 +51,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "guiiconprovider.h"
-#include "torrentcontentmodel.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"

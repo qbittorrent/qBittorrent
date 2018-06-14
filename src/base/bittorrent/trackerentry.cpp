@@ -26,11 +26,12 @@
  * exception statement from your version.
  */
 
+#include "trackerentry.h"
+
 #include <QString>
 
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "trackerentry.h"
 
 using namespace BitTorrent;
 

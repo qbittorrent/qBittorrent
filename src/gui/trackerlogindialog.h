@@ -40,21 +40,21 @@ namespace BitTorrent
 
 class TrackerLoginDialog : public QDialog, private Ui::TrackerLoginDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  private:
-    BitTorrent::TorrentHandle *const m_torrent;
-
-  public:
+public:
     TrackerLoginDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
     ~TrackerLoginDialog();
 
-  signals:
+signals:
     void trackerLoginCancelled(QPair<BitTorrent::TorrentHandle*, QString> tracker);
 
-  private slots:
+private slots:
     void loginButtonClicked();
     void cancelButtonClicked();
+
+private:
+    BitTorrent::TorrentHandle *const m_torrent;
 };
 
 #endif // TRACKERLOGINDIALOG_H

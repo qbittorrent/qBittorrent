@@ -527,20 +527,20 @@ void TransferListWidget::bottomPrioSelectedTorrents()
 
 void TransferListWidget::copySelectedMagnetURIs() const
 {
-    QStringList magnet_uris;
+    QStringList magnetUris;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
-        magnet_uris << torrent->toMagnetUri();
+        magnetUris << torrent->toMagnetUri();
 
-    qApp->clipboard()->setText(magnet_uris.join('\n'));
+    qApp->clipboard()->setText(magnetUris.join('\n'));
 }
 
 void TransferListWidget::copySelectedNames() const
 {
-    QStringList torrent_names;
+    QStringList torrentNames;
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents())
-        torrent_names << torrent->name();
+        torrentNames << torrent->name();
 
-    qApp->clipboard()->setText(torrent_names.join('\n'));
+    qApp->clipboard()->setText(torrentNames.join('\n'));
 }
 
 void TransferListWidget::copySelectedHashes() const
