@@ -393,8 +393,8 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(SUPER_SEEDING, tr("Strict super seeding"), &checkBoxSuperSeeding);
     // Network interface
     comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"));
-    const QString current_iface = session->networkInterface();
-    bool interface_exists = current_iface.isEmpty();
+    const QString currentInterface = session->networkInterface();
+    bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
         // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
@@ -404,15 +404,15 @@ void AdvancedSettings::loadAdvancedSettings()
         if (iface.addressEntries().isEmpty()) continue;
 
         comboBoxInterface.addItem(iface.humanReadableName(), iface.name());
-        if (!current_iface.isEmpty() && (iface.name() == current_iface)) {
+        if (!currentInterface.isEmpty() && (iface.name() == currentInterface)) {
             comboBoxInterface.setCurrentIndex(i);
-            interface_exists = true;
+            interfaceExists = true;
         }
         ++i;
     }
     // Saved interface does not exist, show it anyway
-    if (!interface_exists) {
-        comboBoxInterface.addItem(session->networkInterfaceName(), current_iface);
+    if (!interfaceExists) {
+        comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
         comboBoxInterface.setCurrentIndex(i);
     }
     addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &comboBoxInterface);
@@ -427,7 +427,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &lineEditAnnounceIP);
 
     // Program notifications
-    const MainWindow * const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    const MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     checkBoxProgramNotifications.setChecked(mainWindow->isNotificationsEnabled());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &checkBoxProgramNotifications);
     // Torrent added notifications

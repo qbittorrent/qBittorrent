@@ -55,7 +55,7 @@ private slots:
 
 private:
     void loadAdvancedSettings();
-    template <typename T> void addRow(int row, const QString &rowText, T* widget);
+    template <typename T> void addRow(int row, const QString &rowText, T *widget);
 
     QLabel labelQbtLink, labelLibtorrentLink;
     QSpinBox spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh, spinBoxMaxHalfOpen,

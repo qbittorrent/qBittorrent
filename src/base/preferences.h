@@ -192,7 +192,7 @@ public:
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
     QString getWebUiPassword() const;
-    void setWebUiPassword(const QString &new_password);
+    void setWebUiPassword(const QString &newPassword);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

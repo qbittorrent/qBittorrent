@@ -121,7 +121,6 @@ private:
     QStringList getHashes(int row);
     void downloadFavicon(const QString &url);
 
-private:
     QHash<QString, QStringList> m_trackers;
     QHash<QString, QStringList> m_errors;
     QHash<QString, QStringList> m_warnings;

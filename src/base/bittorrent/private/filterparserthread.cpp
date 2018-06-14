@@ -407,24 +407,24 @@ int FilterParserThread::parseP2PFilterFile()
 int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, char delim)
 {
     char c;
-    int total_read = 0;
+    int totalRead = 0;
     int read;
     do {
         read = stream.readRawData(&c, 1);
-        total_read += read;
+        totalRead += read;
         if (read > 0) {
             if (c != delim) {
                 name += c;
             }
             else {
                 // Delim found
-                return total_read;
+                return totalRead;
             }
         }
     }
-    while(read > 0);
+    while (read > 0);
 
-    return total_read;
+    return totalRead;
 }
 
 // Parser for PeerGuardian ip filter in p2p format
@@ -455,7 +455,7 @@ int FilterParserThread::parseP2BFilterFile()
         unsigned int start, end;
 
         std::string name;
-        while(getlineInStream(stream, name, '\0') && !m_abort) {
+        while (getlineInStream(stream, name, '\0') && !m_abort) {
             if (!stream.readRawData(reinterpret_cast<char*>(&start), sizeof(start))
                 || !stream.readRawData(reinterpret_cast<char*>(&end), sizeof(end))) {
                 LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);

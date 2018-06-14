@@ -518,10 +518,11 @@ void OptionsDialog::saveWindowState() const
     pref->setPrefSize(size());
 
     // Splitter size
-    QStringList sizes_str;
-    sizes_str << QString::number(m_ui->hsplitter->sizes().first());
-    sizes_str << QString::number(m_ui->hsplitter->sizes().last());
-    pref->setPrefHSplitterSizes(sizes_str);
+    const QStringList sizesStr = {
+        QString::number(m_ui->hsplitter->sizes().first()),
+        QString::number(m_ui->hsplitter->sizes().last())
+    };
+    pref->setPrefHSplitterSizes(sizesStr);
 }
 
 void OptionsDialog::saveOptions()
@@ -637,15 +638,15 @@ void OptionsDialog::saveOptions()
     session->setPort(getPort());
     session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
-    const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
-    session->setGlobalDownloadSpeedLimit(down_up_limit.first);
-    session->setGlobalUploadSpeedLimit(down_up_limit.second);
+    const QPair<int, int> downUpLimit = getGlobalBandwidthLimits();
+    session->setGlobalDownloadSpeedLimit(downUpLimit.first);
+    session->setGlobalUploadSpeedLimit(downUpLimit.second);
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
-    const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
-    session->setAltGlobalDownloadSpeedLimit(alt_down_up_limit.first);
-    session->setAltGlobalUploadSpeedLimit(alt_down_up_limit.second);
+    const QPair<int, int> altDownUpLimit = getAltGlobalBandwidthLimits();
+    session->setAltGlobalDownloadSpeedLimit(altDownUpLimit.first);
+    session->setAltGlobalUploadSpeedLimit(altDownUpLimit.second);
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
     pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));

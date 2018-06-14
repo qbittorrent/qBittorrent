@@ -299,55 +299,50 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)
 
 bool Utils::Misc::isPreviewable(const QString &extension)
 {
-    static QSet<QString> multimedia_extensions;
-    if (multimedia_extensions.empty()) {
-        multimedia_extensions.insert("3GP");
-        multimedia_extensions.insert("AAC");
-        multimedia_extensions.insert("AC3");
-        multimedia_extensions.insert("AIF");
-        multimedia_extensions.insert("AIFC");
-        multimedia_extensions.insert("AIFF");
-        multimedia_extensions.insert("ASF");
-        multimedia_extensions.insert("AU");
-        multimedia_extensions.insert("AVI");
-        multimedia_extensions.insert("FLAC");
-        multimedia_extensions.insert("FLV");
-        multimedia_extensions.insert("M3U");
-        multimedia_extensions.insert("M4A");
-        multimedia_extensions.insert("M4P");
-        multimedia_extensions.insert("M4V");
-        multimedia_extensions.insert("MID");
-        multimedia_extensions.insert("MKV");
-        multimedia_extensions.insert("MOV");
-        multimedia_extensions.insert("MP2");
-        multimedia_extensions.insert("MP3");
-        multimedia_extensions.insert("MP4");
-        multimedia_extensions.insert("MPC");
-        multimedia_extensions.insert("MPE");
-        multimedia_extensions.insert("MPEG");
-        multimedia_extensions.insert("MPG");
-        multimedia_extensions.insert("MPP");
-        multimedia_extensions.insert("OGG");
-        multimedia_extensions.insert("OGM");
-        multimedia_extensions.insert("OGV");
-        multimedia_extensions.insert("QT");
-        multimedia_extensions.insert("RA");
-        multimedia_extensions.insert("RAM");
-        multimedia_extensions.insert("RM");
-        multimedia_extensions.insert("RMV");
-        multimedia_extensions.insert("RMVB");
-        multimedia_extensions.insert("SWA");
-        multimedia_extensions.insert("SWF");
-        multimedia_extensions.insert("VOB");
-        multimedia_extensions.insert("WAV");
-        multimedia_extensions.insert("WMA");
-        multimedia_extensions.insert("WMV");
-    }
-
-    if (extension.isEmpty())
-        return false;
-
-    return multimedia_extensions.contains(extension.toUpper());
+    static const QSet<QString> multimediaExtensions = {
+        "3GP",
+        "AAC",
+        "AC3",
+        "AIF",
+        "AIFC",
+        "AIFF",
+        "ASF",
+        "AU",
+        "AVI",
+        "FLAC",
+        "FLV",
+        "M3U",
+        "M4A",
+        "M4P",
+        "M4V",
+        "MID",
+        "MKV",
+        "MOV",
+        "MP2",
+        "MP3",
+        "MP4",
+        "MPC",
+        "MPE",
+        "MPEG",
+        "MPG",
+        "MPP",
+        "OGG",
+        "OGM",
+        "OGV",
+        "QT",
+        "RA",
+        "RAM",
+        "RM",
+        "RMV",
+        "RMVB",
+        "SWA",
+        "SWF",
+        "VOB",
+        "WAV",
+        "WMA",
+        "WMV"
+    };
+    return multimediaExtensions.contains(extension.toUpper());
 }
 
 // Take a number of seconds and return an user-friendly

@@ -28,13 +28,14 @@
  */
 
 #include "guiiconprovider.h"
-#include "base/preferences.h"
 
 #include <QIcon>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>
 #include <QFile>
 #endif
+
+#include "base/preferences.h"
 
 GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)

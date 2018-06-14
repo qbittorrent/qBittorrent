@@ -107,6 +107,10 @@ protected slots:
     void renameSelectedFile();
     void openSelectedFile();
 
+private slots:
+    void filterText(const QString &filter);
+    void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+
 private:
     void openFile(const QModelIndex &index);
     void openFolder(const QModelIndex &index, bool containingFolder);
@@ -131,10 +135,6 @@ private:
     QShortcut *m_editHotkeyWeb;
     QShortcut *m_deleteHotkeyWeb;
     QShortcut *m_openHotkeyFile;
-
-private slots:
-    void filterText(const QString &filter);
-    void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 };
 
 #endif // PROPERTIESWIDGET_H
