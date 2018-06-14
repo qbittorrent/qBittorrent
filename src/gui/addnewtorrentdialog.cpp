@@ -53,8 +53,8 @@
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
-#include "messageboxraised.h"
 #include "proplistdelegate.h"
+#include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 #include "ui_addnewtorrentdialog.h"
@@ -268,13 +268,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         m_filePath = torrentPath;
 
     if (!QFile::exists(m_filePath)) {
-        MessageBoxRaised::critical(this, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
+        RaisedMessageBox::critical(this, tr("I/O Error"), tr("The torrent file '%1' does not exist.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
     QFileInfo fileinfo(m_filePath);
     if (!fileinfo.isReadable()) {
-        MessageBoxRaised::critical(this, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
+        RaisedMessageBox::critical(this, tr("I/O Error"), tr("The torrent file '%1' cannot be read from the disk. Probably you don't have enough permissions.").arg(Utils::Fs::toNativePath(m_filePath)));
         return false;
     }
 
@@ -282,7 +282,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(m_filePath, &error);
     if (!m_torrentInfo.isValid()) {
-        MessageBoxRaised::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
+        RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
             .arg(Utils::Fs::toNativePath(m_filePath), error));
         return false;
     }
@@ -295,16 +295,16 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
-                MessageBoxRaised::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                MessageBoxRaised::information(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::information(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {
-            MessageBoxRaised::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding state."), QMessageBox::Ok);
+            RaisedMessageBox::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding state."), QMessageBox::Ok);
         }
         return false;
     }
@@ -318,7 +318,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
 bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 {
     if (!magnetUri.isValid()) {
-        MessageBoxRaised::critical(this, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
+        RaisedMessageBox::critical(this, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
         return false;
     }
 
@@ -329,16 +329,16 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate()) {
-                MessageBoxRaised::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(magnetUri.trackers());
                 torrent->addUrlSeeds(magnetUri.urlSeeds());
-                MessageBoxRaised::information(this, tr("Already in the download list"), tr("Magnet link '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::information(this, tr("Already in the download list"), tr("Magnet link '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {
-            MessageBoxRaised::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding."), QMessageBox::Ok);
+            RaisedMessageBox::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding."), QMessageBox::Ok);
         }
         return false;
     }
@@ -490,7 +490,7 @@ void AddNewTorrentDialog::renameSelectedFile()
     if (!ok) return;
 
     if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
-        MessageBoxRaised::warning(this, tr("Rename error"),
+        RaisedMessageBox::warning(this, tr("Rename error"),
                                   tr("The name is empty or contains forbidden characters, please choose a different one."),
                                   QMessageBox::Ok);
         return;
@@ -515,7 +515,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
             if (i == fileIndex) continue;
             if (Utils::Fs::sameFileNames(m_torrentInfo.filePath(i), newFilePath)) {
-                MessageBoxRaised::warning(this, tr("Rename error"),
+                RaisedMessageBox::warning(this, tr("Rename error"),
                                           tr("This name is already in use in this folder. Please use a different name."),
                                           QMessageBox::Ok);
                 return;
@@ -553,7 +553,7 @@ void AddNewTorrentDialog::renameSelectedFile()
 #else
             if (currentName.startsWith(newPath, Qt::CaseInsensitive)) {
 #endif
-                MessageBoxRaised::warning(this, tr("The folder could not be renamed"),
+                RaisedMessageBox::warning(this, tr("The folder could not be renamed"),
                                           tr("This name is already in use in this folder. Please use a different name."),
                                           QMessageBox::Ok);
                 return;
@@ -696,7 +696,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
 
     disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
     if (!info.isValid()) {
-        MessageBoxRaised::critical(this, tr("I/O Error"), ("Invalid metadata."));
+        RaisedMessageBox::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));
         return;
     }
@@ -763,7 +763,7 @@ void AddNewTorrentDialog::setupTreeview()
 
 void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
 {
-    MessageBoxRaised::critical(this, tr("Download Error"),
+    RaisedMessageBox::critical(this, tr("Download Error"),
         QString("Cannot download '%1': %2").arg(url, reason));
     this->deleteLater();
 }

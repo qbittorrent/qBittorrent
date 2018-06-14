@@ -68,28 +68,28 @@
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "about_imp.h"
+#include "aboutdialog.h"
 #include "addnewtorrentdialog.h"
 #include "application.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
 #include "downloadfromurldialog.h"
-#include "executionlog.h"
+#include "executionlogwidget.h"
 #include "guiiconprovider.h"
 #include "hidabletabwidget.h"
 #include "lineedit.h"
-#include "optionsdlg.h"
+#include "optionsdialog.h"
 #include "peerlistwidget.h"
 #include "powermanagement.h"
 #include "propertieswidget.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
-#include "speedlimitdlg.h"
+#include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
-#include "torrentcreatordlg.h"
-#include "torrentmodel.h"
-#include "trackerlist.h"
+#include "torrentcreatordialog.h"
+#include "transferlistmodel.h"
+#include "trackerlistwidget.h"
 #include "transferlistfilterswidget.h"
 #include "transferlistwidget.h"
 #include "ui_mainwindow.h"
@@ -106,7 +106,7 @@
 #include "programupdater.h"
 #endif
 #if LIBTORRENT_VERSION_NUM < 10100
-#include "trackerlogin.h"
+#include "trackerlogindialog.h"
 #endif
 
 #ifdef Q_OS_MAC
@@ -1187,7 +1187,7 @@ void MainWindow::createTorrentTriggered(const QString &path)
         m_createTorrentDlg->activateWindow();
     }
     else
-        m_createTorrentDlg = new TorrentCreatorDlg(this, path);
+        m_createTorrentDlg = new TorrentCreatorDialog(this, path);
 }
 
 bool MainWindow::event(QEvent *e)
@@ -1507,7 +1507,7 @@ void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const 
 #if LIBTORRENT_VERSION_NUM < 10100
     if (m_unauthenticatedTrackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
         // Tracker login
-        new trackerLogin(this, torrent);
+        new TrackerLoginDialog(this, torrent);
 #else
     Q_UNUSED(torrent);
 #endif
@@ -1882,7 +1882,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLog(m_tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
+        m_executionLog = new ExecutionLogWidget(m_tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
 #ifdef Q_OS_MAC
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else

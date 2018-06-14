@@ -52,9 +52,9 @@ class TransferListWidget;
 class TransferListFiltersWidget;
 class PropertiesWidget;
 class StatusBar;
-class TorrentCreatorDlg;
+class TorrentCreatorDialog;
 class LineEdit;
-class ExecutionLog;
+class ExecutionLogWidget;
 class PowerManagement;
 class StatsDialog;
 
@@ -227,7 +227,7 @@ private:
     QPointer<OptionsDialog> m_options;
     QPointer<AboutDialog> m_aboutDlg;
     QPointer<StatsDialog> m_statsDlg;
-    QPointer<TorrentCreatorDlg> m_createTorrentDlg;
+    QPointer<TorrentCreatorDialog> m_createTorrentDlg;
     QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
 #ifndef Q_OS_MAC
     QPointer<QSystemTrayIcon> m_systrayIcon;
@@ -249,7 +249,7 @@ private:
     QSplitter *m_splitter;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;
-    QPointer<ExecutionLog> m_executionLog;
+    QPointer<ExecutionLogWidget> m_executionLog;
     // Power Management
     PowerManagement *m_pwr;
     QTimer *m_preventTimer;

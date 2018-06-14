@@ -42,12 +42,12 @@ namespace BitTorrent
     class TrackerEntry;
 }
 
-class FiltersBase : public QListWidget
+class BaseFilterWidget : public QListWidget
 {
     Q_OBJECT
 
 public:
-    FiltersBase(QWidget *parent, TransferListWidget *transferList);
+    BaseFilterWidget(QWidget *parent, TransferListWidget *transferList);
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
@@ -65,13 +65,13 @@ private slots:
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) = 0;
 };
 
-class StatusFiltersWidget : public FiltersBase
+class StatusFilterWidget : public BaseFilterWidget
 {
     Q_OBJECT
 
 public:
-    StatusFiltersWidget(QWidget *parent, TransferListWidget *transferList);
-    ~StatusFiltersWidget();
+    StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
+    ~StatusFilterWidget();
 
 private slots:
     void updateTorrentNumbers();
@@ -85,7 +85,7 @@ private:
     void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override;
 };
 
-class TrackerFiltersList : public FiltersBase
+class TrackerFiltersList : public BaseFilterWidget
 {
     Q_OBJECT
 

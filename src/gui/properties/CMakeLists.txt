@@ -1,33 +1,38 @@
 add_library(qbt_properties STATIC
-propertieswidget.ui
-trackersadditiondlg.ui
-peersadditiondlg.ui
-propertieswidget.h
-peerlistwidget.h
-proplistdelegate.h
-trackerlist.h
+# headers
 downloadedpiecesbar.h
-piecesbar.h
 peerlistdelegate.h
 peerlistsortmodel.h
-peersadditiondlg.h
-trackersadditiondlg.h
+peerlistwidget.h
+peersadditiondialog.h
 pieceavailabilitybar.h
+piecesbar.h
+propertieswidget.h
+proplistdelegate.h
 proptabbar.h
-speedwidget.h
 speedplotview.h
+speedwidget.h
+trackerlistwidget.h
+trackersadditiondialog.h
+
+# sources
+downloadedpiecesbar.cpp
+peerlistwidget.cpp
+peersadditiondialog.cpp
+pieceavailabilitybar.cpp
+piecesbar.cpp
 propertieswidget.cpp
 proplistdelegate.cpp
-peerlistwidget.cpp
-trackerlist.cpp
-peersadditiondlg.cpp
-downloadedpiecesbar.cpp
-piecesbar.cpp
-trackersadditiondlg.cpp
-pieceavailabilitybar.cpp
 proptabbar.cpp
-speedwidget.cpp
 speedplotview.cpp
+speedwidget.cpp
+trackerlistwidget.cpp
+trackersadditiondialog.cpp
+
+# forms
+peersadditiondialog.ui
+propertieswidget.ui
+trackersadditiondialog.ui
 )
 
 target_link_libraries(qbt_properties
