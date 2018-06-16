@@ -49,7 +49,7 @@ class PropTabBar;
 class SpeedWidget;
 class torrent_file;
 class TorrentContentFilterModel;
-class TrackerList;
+class TrackerListWidget;
 class TransferListWidget;
 
 namespace Ui
@@ -72,7 +72,7 @@ public:
     PropertiesWidget(QWidget *parent, MainWindow *mainWindow, TransferListWidget *transferList);
     ~PropertiesWidget();
     BitTorrent::TorrentHandle *getCurrentTorrent() const;
-    TrackerList *getTrackerList() const;
+    TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
     SpeedWidget *getSpeedWidget() const;
@@ -120,7 +120,7 @@ private:
     TorrentContentFilterModel *m_propListModel;
     PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
-    TrackerList *m_trackerList;
+    TrackerListWidget *m_trackerList;
     SpeedWidget *m_speedWidget;
     QList<int> m_slideSizes;
     DownloadedPiecesBar *m_downloadedPieces;

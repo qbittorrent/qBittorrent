@@ -52,15 +52,15 @@
 #include "guiiconprovider.h"
 #include "lineedit.h"
 #include "mainwindow.h"
-#include "messageboxraised.h"
 #include "peerlistwidget.h"
 #include "pieceavailabilitybar.h"
 #include "proplistdelegate.h"
 #include "proptabbar.h"
+#include "raisedmessagebox.h"
 #include "speedwidget.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
-#include "trackerlist.h"
+#include "trackerlistwidget.h"
 #include "transferlistwidget.h"
 #include "utils.h"
 
@@ -132,13 +132,13 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_piecesAvailability->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     // Tracker list
-    m_trackerList = new TrackerList(this);
+    m_trackerList = new TrackerListWidget(this);
     m_ui->trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
     m_ui->trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
-    connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionUp);
-    connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerList::moveSelectionDown);
+    connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
+    connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
     m_ui->horizontalLayout_trackers->insertWidget(0, m_trackerList);
     // Peers list
     m_peerList = new PeerListWidget(this);
@@ -276,7 +276,7 @@ BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
     return m_torrent;
 }
 
-TrackerList *PropertiesWidget::getTrackerList() const
+TrackerListWidget *PropertiesWidget::getTrackerList() const
 {
     return m_trackerList;
 }
@@ -693,7 +693,7 @@ void PropertiesWidget::renameSelectedFile()
     if (!ok) return;
 
     if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
-        MessageBoxRaised::warning(this, tr("Rename error"),
+        RaisedMessageBox::warning(this, tr("Rename error"),
                                   tr("The name is empty or contains forbidden characters, please choose a different one."),
                                   QMessageBox::Ok);
         return;
@@ -722,7 +722,7 @@ void PropertiesWidget::renameSelectedFile()
         for (int i = 0; i < m_torrent->filesCount(); ++i) {
             if (i == fileIndex) continue;
             if (Utils::Fs::sameFileNames(m_torrent->filePath(i), newFilePath)) {
-                MessageBoxRaised::warning(this, tr("Rename error"),
+                RaisedMessageBox::warning(this, tr("Rename error"),
                                           tr("This name is already in use in this folder. Please use a different name."),
                                           QMessageBox::Ok);
                 return;

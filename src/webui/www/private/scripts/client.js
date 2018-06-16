@@ -220,15 +220,15 @@ window.addEvent('load', function() {
     };
 
     var updateFiltersList = function() {
-        updateFilter('all', 'QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
-        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFiltersWidget]');
+        updateFilter('all', 'QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
     };
 
     var updateCategoryList = function() {

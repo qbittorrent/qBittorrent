@@ -188,7 +188,7 @@ initializeWindows = function() {
             var orig = torrentsHaveSameShareRatio ? shareRatio : "";
             new MochaUI.Window({
                 id: 'shareRatioPage',
-                title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDlg]",
+                title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
                 loadMethod: 'iframe',
                 contentURL: 'shareratio.html?hashes=' + hashes.join("|") + '&orig=' + orig,
                 scrollbars: false,

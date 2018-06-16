@@ -61,7 +61,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "stacktrace.h"
 #else
 #include "stacktrace_win.h"
-#include "stacktrace_win_dlg.h"
+#include "stacktracedialog.h"
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
@@ -306,7 +306,7 @@ void sigAbnormalHandler(int signum)
 #endif
 
 #if defined Q_OS_WIN
-    StraceDlg dlg;  // unsafe
+    StacktraceDialog dlg;  // unsafe
     dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
     dlg.exec();
 #endif

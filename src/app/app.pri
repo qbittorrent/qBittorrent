@@ -32,8 +32,8 @@ stacktrace {
     else {
         HEADERS += $$PWD/stacktrace_win.h
         !nogui {
-            HEADERS += $$PWD/stacktrace_win_dlg.h
-            FORMS += $$PWD/stacktrace_win_dlg.ui
+            HEADERS += $$PWD/stacktracedialog.h
+            FORMS += $$PWD/stacktracedialog.ui
         }
     }
 }

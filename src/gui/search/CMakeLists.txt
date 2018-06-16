@@ -1,19 +1,24 @@
 add_library(qbt_searchengine STATIC
-pluginselectdlg.ui
-pluginsourcedlg.ui
-searchwidget.ui
-pluginselectdlg.h
-pluginsourcedlg.h
+# headers
+pluginselectdialog.h
+pluginsourcedialog.h
+searchjobwidget.h
 searchlistdelegate.h
 searchsortmodel.h
-searchtab.h
 searchwidget.h
-pluginselectdlg.cpp
-pluginsourcedlg.cpp
+
+# sources
+pluginselectdialog.cpp
+pluginsourcedialog.cpp
+searchjobwidget.cpp
 searchlistdelegate.cpp
 searchsortmodel.cpp
-searchtab.cpp
 searchwidget.cpp
+
+# forms
+pluginselectdialog.ui
+pluginsourcedialog.ui
+searchwidget.ui
 )
 
 set(QBT_SEARCHENGINE_RESOURCES

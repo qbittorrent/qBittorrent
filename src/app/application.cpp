@@ -57,7 +57,7 @@
 #include "addnewtorrentdialog.h"
 #include "gui/guiiconprovider.h"
 #include "mainwindow.h"
-#include "shutdownconfirmdlg.h"
+#include "shutdownconfirmdialog.h"
 #else // DISABLE_GUI
 #include <cstdio>
 #endif // DISABLE_GUI
@@ -391,7 +391,7 @@ void Application::allTorrentsFinished()
         // do nothing & skip confirm
     }
     else {
-        if (!ShutdownConfirmDlg::askForConfirmation(m_window, action)) return;
+        if (!ShutdownConfirmDialog::askForConfirmation(m_window, action)) return;
     }
 #endif // DISABLE_GUI
 
