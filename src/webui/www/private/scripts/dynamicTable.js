@@ -465,6 +465,10 @@ var DynamicTable = new Class({
         return '';
     },
 
+    isRowSelected: function(rowId) {
+        return this.selectedRows.contains(rowId);
+    },
+
     altRow: function() {
         if (!MUI.ieLegacySupport)
             return;
@@ -481,7 +485,7 @@ var DynamicTable = new Class({
     },
 
     selectAll: function() {
-        this.selectedRows.empty();
+        this.deselectAll();
 
         var trs = this.tableBody.getElements('tr');
         for (var i = 0; i < trs.length; ++i) {
@@ -497,14 +501,36 @@ var DynamicTable = new Class({
     },
 
     selectRow: function(rowId) {
-        this.deselectAll();
         this.selectedRows.push(rowId);
+        this.setRowClass();
+        this.onSelectedRowChanged();
+    },
+
+    deselectRow: function(rowId) {
+        this.selectedRows.erase(rowId);
+        this.setRowClass();
+        this.onSelectedRowChanged();
+    },
+
+    selectRows: function(rowId1, rowId2) {
+        this.deselectAll();
+        if (rowId1 === rowId2) {
+            this.selectRow(rowId1);
+            return;
+        }
+
+        var select = false;
+        var that = this;
         this.tableBody.getElements('tr').each(function(tr) {
-            if (tr.rowId == rowId)
-                tr.addClass('selected');
-            else
-                tr.removeClass('selected');
+            if ((tr.rowId == rowId1) || (tr.rowId == rowId2)) {
+                select = !select;
+                that.selectedRows.push(tr.rowId);
+            }
+            else if (select) {
+                that.selectedRows.push(tr.rowId);
+            }
         });
+        this.setRowClass();
         this.onSelectedRowChanged();
     },
 
@@ -514,6 +540,16 @@ var DynamicTable = new Class({
         this.tableBody.getElements('tr').each(function(tr) {
             if (rowIds.indexOf(tr.rowId) > -1)
                 tr.addClass('selected');
+        });
+    },
+
+    setRowClass: function() {
+        var that = this;
+        this.tableBody.getElements('tr').each(function(tr) {
+            if (that.isRowSelected(tr.rowId))
+                tr.addClass('selected');
+            else
+                tr.removeClass('selected');
         });
     },
 
@@ -604,56 +640,29 @@ var DynamicTable = new Class({
 
                 tr._this = this;
                 tr.addEvent('contextmenu', function(e) {
-                    if (!this._this.selectedRows.contains(this.rowId))
+                    if (!this._this.isRowSelected(this.rowId)) {
+                        this._this.deselectAll();
                         this._this.selectRow(this.rowId);
+                    }
                     return true;
                 });
                 tr.addEvent('click', function(e) {
                     e.stop();
-                    if (e.control) {
-                        // CTRL key was pressed
-                        if (this._this.selectedRows.contains(this.rowId)) {
-                            // remove it
-                            this._this.selectedRows.erase(this.rowId);
-                            // Remove selected style
-                            this.removeClass('selected');
-                        }
-                        else {
-                            this._this.selectedRows.push(this.rowId);
-                            // Add selected style
-                            this.addClass('selected');
-                        }
+                    if (e.control || e.meta) {
+                        // CTRL/CMD ⌘ key was pressed
+                        if (this._this.isRowSelected(this.rowId))
+                            this._this.deselectRow(this.rowId);
+                        else
+                            this._this.selectRow(this.rowId);
+                    }
+                    else if (e.shift && (this._this.selectedRows.length == 1)) {
+                        // Shift key was pressed
+                        this._this.selectRows(this._this.getSelectedRowId(), this.rowId);
                     }
                     else {
-                        if (e.shift && this._this.selectedRows.length == 1) {
-                            // Shift key was pressed
-                            var first_row_id = this._this.selectedRows[0];
-                            var last_row_id = this.rowId;
-                            this._this.selectedRows.empty();
-                            var trs = this._this.tableBody.getElements('tr');
-                            var select = false;
-                            for (var i = 0; i < trs.length; ++i) {
-                                var tr = trs[i];
-
-                                if ((tr.rowId == first_row_id) || (tr.rowId == last_row_id)) {
-                                    this._this.selectedRows.push(tr.rowId);
-                                    tr.addClass('selected');
-                                    select = !select;
-                                }
-                                else {
-                                    if (select) {
-                                        this._this.selectedRows.push(tr.rowId);
-                                        tr.addClass('selected');
-                                    }
-                                    else
-                                        tr.removeClass('selected');
-                                }
-                            }
-                        }
-                        else {
-                            // Simple selection
-                            this._this.selectRow(this.rowId);
-                        }
+                        // Simple selection
+                        this._this.deselectAll();
+                        this._this.selectRow(this.rowId);
                     }
                     return false;
                 });
@@ -719,7 +728,7 @@ var DynamicTable = new Class({
     },
 
     clear: function() {
-        this.selectedRows.empty();
+        this.deselectAll();
         this.rows.empty();
         var trs = this.tableBody.getElements('tr');
         while (trs.length > 0) {
@@ -1199,6 +1208,7 @@ var TorrentsTable = new Class({
     setupTr: function(tr) {
         tr.addEvent('dblclick', function(e) {
             e.stop();
+            this._this.deselectAll();
             this._this.selectRow(this.rowId);
             var row = this._this.rows.get(this.rowId);
             var state = row['full_data'].state;
