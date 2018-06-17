@@ -30,9 +30,9 @@ set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${QBT_QM
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES})
 
-get_filename_component(_lang_qrc_src "${CMAKE_CURRENT_SOURCE_DIR}/../lang.qrc" ABSOLUTE)
-get_filename_component(_lang_qrc_dst "${CMAKE_CURRENT_BINARY_DIR}/../lang.qrc" ABSOLUTE)
-get_filename_component(_lang_qrc_dst_dir "${CMAKE_CURRENT_BINARY_DIR}/../" ABSOLUTE)
+get_filename_component(_lang_qrc_src "${CMAKE_CURRENT_SOURCE_DIR}/../lang/lang.qrc" ABSOLUTE)
+get_filename_component(_lang_qrc_dst "${CMAKE_CURRENT_BINARY_DIR}/../lang/lang.qrc" ABSOLUTE)
+get_filename_component(_lang_qrc_dst_dir "${CMAKE_CURRENT_BINARY_DIR}/../lang" ABSOLUTE)
 
 message(STATUS "copying ${_lang_qrc_src} -> ${_lang_qrc_dst}")
 file(COPY ${_lang_qrc_src} DESTINATION ${_lang_qrc_dst_dir})
@@ -43,8 +43,8 @@ foreach(qm_file ${QBT_QM_FILES})
 endforeach()
 
 set(QBT_APP_RESOURCES
-../icons.qrc
-../searchengine.qrc
+../icons/icons.qrc
+../searchengine/searchengine.qrc
 "${_lang_qrc_dst}"
 )
 

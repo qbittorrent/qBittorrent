@@ -12,7 +12,7 @@ mode = developer
 
 
 [qbittorrent.qbittorrentdesktop_master]
-source_file = src/icons/qBittorrent.desktop
+source_file = dist/unix/qbittorrent.desktop
 source_lang = en
 type = DESKTOP
 minimum_perc = 23
