@@ -34,7 +34,6 @@
 
 #include <QDebug>
 #include <QString>
-#include <QStringList>
 
 namespace Utils
 {

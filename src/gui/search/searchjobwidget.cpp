@@ -32,16 +32,13 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QDesktopServices>
-#include <QDir>
 #include <QHeaderView>
-#include <QLabel>
 #include <QMenu>
 #include <QPalette>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
 #include <QTreeView>
-#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"

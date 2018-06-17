@@ -34,7 +34,6 @@
 
 class QHostAddress;
 class QString;
-class QStringList;
 
 namespace Utils
 {

@@ -31,7 +31,6 @@
 #include <QBuffer>
 #include <QMessageBox>
 #include <QStringList>
-#include <QUrl>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"

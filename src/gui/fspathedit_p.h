@@ -33,7 +33,6 @@
 #include <QComboBox>
 #include <QCompleter>
 #include <QContextMenuEvent>
-#include <QDir>
 #include <QFileIconProvider>
 #include <QFileSystemModel>
 #include <QKeyEvent>

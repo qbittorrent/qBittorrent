@@ -30,7 +30,6 @@
 
 #include <QHostAddress>
 #include <QString>
-#include <QStringList>
 
 namespace Utils
 {

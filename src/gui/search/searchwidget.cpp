@@ -36,10 +36,7 @@
 #endif
 
 #include <QDebug>
-#include <QDir>
-#include <QFileDialog>
 #include <QHeaderView>
-#include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
@@ -47,9 +44,7 @@
 #include <QSignalMapper>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
-#include <QSystemTrayIcon>
 #include <QTextStream>
-#include <QTimer>
 #include <QTreeView>
 
 #include "base/bittorrent/session.h"

@@ -45,9 +45,7 @@
 #endif
 
 #include <QByteArray>
-#include <QDateTime>
 #include <QDebug>
-#include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>

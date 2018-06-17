@@ -30,7 +30,6 @@
 #define SPEEDLIMITDIALOG_H
 
 #include <QDialog>
-#include <QList>
 
 #include "base/bittorrent/session.h"
 #include "base/utils/misc.h"

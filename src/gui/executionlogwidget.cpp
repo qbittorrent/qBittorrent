@@ -30,8 +30,6 @@
 
 #include <QColor>
 #include <QDateTime>
-#include <QLabel>
-#include <QListWidgetItem>
 #include <QPalette>
 
 #include "guiiconprovider.h"

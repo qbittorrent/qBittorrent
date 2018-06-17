@@ -29,9 +29,7 @@
 #include "propertieswidget.h"
 
 #include <QAction>
-#include <QBitArray>
 #include <QDebug>
-#include <QFileDialog>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -39,7 +37,6 @@
 #include <QStackedWidget>
 #include <QThread>
 #include <QTimer>
-#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"

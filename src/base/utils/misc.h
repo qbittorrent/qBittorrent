@@ -40,7 +40,6 @@
 #endif
 
 #include <QDir>
-#include <QFile>
 #include <QPoint>
 #include <QSize>
 #include <QString>

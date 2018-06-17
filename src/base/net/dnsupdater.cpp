@@ -30,7 +30,6 @@
 
 #include <QDebug>
 #include <QRegularExpression>
-#include <QStringList>
 #include <QUrlQuery>
 
 #include "base/logger.h"

@@ -30,9 +30,7 @@
 
 #include <QAction>
 #include <QHeaderView>
-#include <QLayout>
 #include <QMenu>
-#include <QMessageBox>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"

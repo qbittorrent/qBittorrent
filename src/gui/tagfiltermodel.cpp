@@ -29,7 +29,6 @@
 #include "tagfiltermodel.h"
 
 #include <QDebug>
-#include <QHash>
 #include <QIcon>
 
 #include "base/bittorrent/session.h"

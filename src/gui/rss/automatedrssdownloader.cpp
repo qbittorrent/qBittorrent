@@ -36,7 +36,6 @@
 #include <QMessageBox>
 #include <QPair>
 #include <QRegularExpression>
-#include <QSet>
 #include <QShortcut>
 #include <QSignalBlocker>
 #include <QString>
