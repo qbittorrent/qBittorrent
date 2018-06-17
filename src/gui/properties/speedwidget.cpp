@@ -33,7 +33,6 @@
 #include <QLabel>
 #include <QMenu>
 #include <QSignalMapper>
-#include <QThread>
 #include <QTimer>
 
 #include <libtorrent/session_status.hpp>

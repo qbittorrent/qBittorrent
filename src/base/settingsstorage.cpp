@@ -32,7 +32,6 @@
 #include <memory>
 #include <QFile>
 #include <QHash>
-#include <QStringList>
 
 #include "logger.h"
 #include "profile.h"

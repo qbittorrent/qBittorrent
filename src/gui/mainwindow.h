@@ -38,7 +38,6 @@
 
 class QCloseEvent;
 class QFileSystemWatcher;
-class QShortcut;
 class QSplitter;
 class QTabWidget;
 class QTimer;

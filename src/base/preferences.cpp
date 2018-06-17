@@ -33,7 +33,6 @@
 #include <QDir>
 #include <QLocale>
 #include <QMutableListIterator>
-#include <QPair>
 #include <QSettings>
 
 #ifndef DISABLE_GUI

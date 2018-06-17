@@ -29,7 +29,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFile>
-#include <QHash>
 #include <QHostAddress>
 #include <QVariant>
 

@@ -30,7 +30,6 @@
 
 #include <QDebug>
 #include <QFile>
-#include <QFileDialog>
 #include <QMenu>
 #include <QPushButton>
 #include <QString>

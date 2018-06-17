@@ -30,7 +30,6 @@
 #define CATEGORYFILTERMODEL_H
 
 #include <QAbstractItemModel>
-#include <QHash>
 #include <QModelIndex>
 
 namespace BitTorrent

@@ -30,7 +30,6 @@
 #define PEERLISTSORTMODEL_H
 
 #include <QSortFilterProxyModel>
-#include <QStringList>
 
 #include "peerlistdelegate.h"
 

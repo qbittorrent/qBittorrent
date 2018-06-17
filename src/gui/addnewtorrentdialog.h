@@ -32,7 +32,6 @@
 #include <QDialog>
 #include <QScopedPointer>
 #include <QShortcut>
-#include <QUrl>
 
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"

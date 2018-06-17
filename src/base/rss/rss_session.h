@@ -65,7 +65,6 @@
 #include <QHash>
 #include <QObject>
 #include <QPointer>
-#include <QStringList>
 #include <QTimer>
 
 class QThread;

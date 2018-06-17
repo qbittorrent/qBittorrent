@@ -31,8 +31,6 @@
 #include <QComboBox>
 #include <QDebug>
 #include <QFileDialog>
-#include <QItemSelectionModel>
-#include <QPainter>
 #include <QTreeView>
 
 #include "base/bittorrent/session.h"

@@ -28,9 +28,7 @@
 
 #include "ipsubnetwhitelistoptionsdialog.h"
 
-#include <QHostAddress>
 #include <QMessageBox>
-#include <QPair>
 #include <QSortFilterProxyModel>
 #include <QStringListModel>
 

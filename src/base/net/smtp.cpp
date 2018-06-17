@@ -34,12 +34,9 @@
 
 #include <QCryptographicHash>
 #include <QDebug>
-#include <QHostAddress>
 #include <QHostInfo>
-#include <QNetworkInterface>
 #include <QStringList>
 #include <QTextCodec>
-#include <QTextStream>
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
