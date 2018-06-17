@@ -65,4 +65,5 @@ CONFIG += stacktrace
 win32-msvc* {
     QMAKE_CXXFLAGS += "/guard:cf"
     QMAKE_LFLAGS += "/guard:cf"
+    QMAKE_LFLAGS_RELEASE += "/OPT:REF /OPT:ICF"
 }
