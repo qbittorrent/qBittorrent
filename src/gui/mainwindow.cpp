@@ -377,7 +377,7 @@ MainWindow::MainWindow(QWidget *parent)
     on_actionWarningMessages_triggered(m_ui->actionWarningMessages->isChecked());
     on_actionCriticalMessages_triggered(m_ui->actionCriticalMessages->isChecked());
     if (m_ui->actionSearchWidget->isChecked())
-        QTimer::singleShot(0, this, &MainWindow::on_actionSearchWidget_triggered);
+        QTimer::singleShot(1000, this, &MainWindow::on_actionSearchWidget_triggered);  // delay after most GUI components are initialized
 
     // Auto shutdown actions
     QActionGroup *autoShutdownGroup = new QActionGroup(this);
