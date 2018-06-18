@@ -274,6 +274,7 @@ Session::Session(QObject *parent)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
+    , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
@@ -1309,6 +1310,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 
     settingsPack.set_bool(libt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAllTiers());
+
+    settingsPack.set_int(libt::settings_pack::aio_threads, asyncIOThreads());
 
     const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(libt::settings_pack::cache_size, cacheSize);
@@ -3026,6 +3029,20 @@ void Session::setAnnounceToAllTiers(bool val)
         m_announceToAllTiers = val;
         configureDeferred();
     }
+}
+
+int Session::asyncIOThreads() const
+{
+    return qBound(1, m_asyncIOThreads.value(), 1024);
+}
+
+void Session::setAsyncIOThreads(const int num)
+{
+    if (num == m_asyncIOThreads)
+        return;
+
+    m_asyncIOThreads = num;
+    configureDeferred();
 }
 
 int Session::diskCacheSize() const
