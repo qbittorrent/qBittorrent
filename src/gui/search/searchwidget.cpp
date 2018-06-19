@@ -56,8 +56,8 @@
 #include "base/preferences.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/search/searchhandler.h"
+#include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
 #include "mainwindow.h"
@@ -285,7 +285,7 @@ void SearchWidget::giveFocusToSearchInput()
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
-    if (Utils::Misc::pythonVersion() < 0) {
+    if (Utils::ForeignApps::Python::pythonVersion() < 0) {
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }

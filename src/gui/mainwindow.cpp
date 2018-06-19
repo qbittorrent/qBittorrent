@@ -66,6 +66,7 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "base/settingsstorage.h"
+#include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "aboutdialog.h"
@@ -1742,7 +1743,7 @@ void MainWindow::on_actionRSSReader_triggered()
 void MainWindow::on_actionSearchWidget_triggered()
 {
     if (!m_hasPython && m_ui->actionSearchWidget->isChecked()) {
-        int pythonVersion = Utils::Misc::pythonVersion();
+        int pythonVersion = Utils::ForeignApps::Python::pythonVersion();
 
         // Check if python is already in PATH
         if (pythonVersion > 0)
@@ -1751,14 +1752,14 @@ void MainWindow::on_actionSearchWidget_triggered()
                 .arg("PATH", qgetenv("PATH").constData()), Log::INFO);
 #ifdef Q_OS_WIN
         else if (addPythonPathToEnv())
-            pythonVersion = Utils::Misc::pythonVersion();
+            pythonVersion = Utils::ForeignApps::Python::pythonVersion();
 #endif
 
         bool res = false;
 
         if ((pythonVersion == 2) || (pythonVersion == 3)) {
             // Check Python minimum requirement: 2.7.9 / 3.3.0
-            QString version = Utils::Misc::pythonVersionComplete();
+            QString version = Utils::ForeignApps::Python::pythonVersionComplete();
             QStringList splitted = version.split('.');
             if (splitted.size() > 2) {
                 int middleVer = splitted.at(1).toInt();
@@ -2085,7 +2086,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     m_hasPython = addPythonPathToEnv();
     if (m_hasPython) {
         // Make it print the version to Log
-        Utils::Misc::pythonVersion();
+        Utils::ForeignApps::Python::pythonVersion();
         m_ui->actionSearchWidget->setChecked(true);
         displaySearchTab(true);
     }

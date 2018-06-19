@@ -49,6 +49,7 @@ search/searchdownloadhandler.h
 search/searchhandler.h
 search/searchpluginmanager.h
 utils/bytearray.h
+utils/foreignapps.h
 utils/fs.h
 utils/gzip.h
 utils/misc.h
@@ -117,6 +118,7 @@ search/searchdownloadhandler.cpp
 search/searchhandler.cpp
 search/searchpluginmanager.cpp
 utils/bytearray.cpp
+utils/foreignapps.cpp
 utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
