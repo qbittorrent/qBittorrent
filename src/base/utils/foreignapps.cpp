@@ -35,99 +35,66 @@
 
 #include "base/logger.h"
 
-/**
- * Detects the python version.
- */
-int Utils::ForeignApps::Python::pythonVersion()
-{
-    static int version = -1;
-    if (version < 0) {
-        QString versionComplete = pythonVersionComplete().trimmed();
-        QStringList splitted = versionComplete.split('.');
-        if (splitted.size() > 1) {
-            int highVer = splitted.at(0).toInt();
-            if ((highVer == 2) || (highVer == 3))
-                version = highVer;
-        }
-    }
-    return version;
-}
+using namespace Utils::ForeignApps;
 
-/**
- * Detects the python executable by calling "python --version".
- */
-QString Utils::ForeignApps::Python::pythonExecutable()
+namespace
 {
-    static QString executable;
-    if (executable.isEmpty()) {
-        QProcess pythonProc;
-#if defined(Q_OS_UNIX)
-        /*
-         * On Unix-Like Systems python2 and python3 should always exist
-         * http://legacy.python.org/dev/peps/pep-0394/
-         */
-        pythonProc.start("python3", {"--version"}, QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
-            executable = "python3";
-            return executable;
-        }
-        pythonProc.start("python2", {"--version"}, QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
-            executable = "python2";
-            return executable;
-        }
-#endif
-        // Look for "python" in Windows and in UNIX if "python2" and "python3" are
-        // not detected.
-        pythonProc.start("python", {"--version"}, QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0))
-            executable = "python";
-        else
-            Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python not detected"), Log::INFO);
-    }
-    return executable;
-}
-
-/**
- * Returns the complete python version
- * eg 2.7.9
- * Make sure to have setup python first
- */
-QString Utils::ForeignApps::Python::pythonVersionComplete()
-{
-    static QString version;
-    if (version.isEmpty()) {
-        if (pythonExecutable().isEmpty())
-            return version;
-        QProcess pythonProc;
-        pythonProc.start(pythonExecutable(), {"--version"}, QIODevice::ReadOnly);
-        if (pythonProc.waitForFinished() && (pythonProc.exitCode() == 0)) {
-            QByteArray output = pythonProc.readAllStandardOutput();
-            if (output.isEmpty())
-                output = pythonProc.readAllStandardError();
+    bool testPythonInstallation(const QString &exeName, PythonInfo &info)
+    {
+        QProcess proc;
+        proc.start(exeName, {"--version"}, QIODevice::ReadOnly);
+        if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit)) {
+            QByteArray procOutput = proc.readAllStandardOutput();
+            if (procOutput.isEmpty())
+                procOutput = proc.readAllStandardError();
+            procOutput = procOutput.simplified();
 
             // Software 'Anaconda' installs its own python interpreter
             // and `python --version` returns a string like this:
-            // `Python 3.4.3 :: Anaconda 2.3.0 (64-bit)`
-            const QList<QByteArray> outSplit = output.split(' ');
-            if (outSplit.size() > 1) {
-                version = outSplit.at(1).trimmed();
-                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Python version: %1").arg(version), Log::INFO);
+            // "Python 3.4.3 :: Anaconda 2.3.0 (64-bit)"
+            const QList<QByteArray> outputSplit = procOutput.split(' ');
+            if (outputSplit.size() <= 1)
+                return false;
+
+            try {
+                info = {exeName, outputSplit[1]};
+            }
+            catch (const std::runtime_error &err) {
+                return false;
             }
 
-            // If python doesn't report a 3-piece version e.g. 3.6.1
-            // then fill the missing pieces with zero
-            const QStringList verSplit = version.split('.', QString::SkipEmptyParts);
-            if (verSplit.size() < 3) {
-                for (int i = verSplit.size(); i < 3; ++i) {
-                    if (version.endsWith('.'))
-                        version.append('0');
-                    else
-                        version.append(".0");
-                }
-                Logger::instance()->addMessage(QCoreApplication::translate("misc", "Normalized Python version: %1").arg(version), Log::INFO);
-            }
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, version: %1").arg(info.version), Log::INFO);
+            return true;
         }
+
+        return false;
     }
-    return version;
+}
+
+bool Utils::ForeignApps::PythonInfo::isValid() const
+{
+    return (!executableName.isEmpty() && version.isValid());
+}
+
+PythonInfo Utils::ForeignApps::pythonInfo()
+{
+    static PythonInfo pyInfo;
+    if (!pyInfo.isValid()) {
+#if defined(Q_OS_UNIX)
+        // On Unix-Like Systems python2 and python3 should always exist
+        // https://legacy.python.org/dev/peps/pep-0394/
+        if (testPythonInstallation("python3", pyInfo))
+            return pyInfo;
+        if (testPythonInstallation("python2", pyInfo))
+            return pyInfo;
+#endif
+        // Look for "python" in Windows and in UNIX if "python2" and "python3" are
+        // not detected.
+        if (testPythonInstallation("python", pyInfo))
+            return pyInfo;
+
+        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python not detected"), Log::INFO);
+    }
+
+    return pyInfo;
 }

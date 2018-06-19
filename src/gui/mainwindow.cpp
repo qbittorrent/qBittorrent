@@ -1743,45 +1743,42 @@ void MainWindow::on_actionRSSReader_triggered()
 void MainWindow::on_actionSearchWidget_triggered()
 {
     if (!m_hasPython && m_ui->actionSearchWidget->isChecked()) {
-        int pythonVersion = Utils::ForeignApps::Python::pythonVersion();
+        int majorVersion = Utils::ForeignApps::pythonInfo().version.majorNumber();
 
         // Check if python is already in PATH
-        if (pythonVersion > 0)
+        if (majorVersion > 0) {
             // Prevent translators from messing with PATH
             Logger::instance()->addMessage(tr("Python found in %1: %2", "Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin")
                 .arg("PATH", qgetenv("PATH").constData()), Log::INFO);
+        }
 #ifdef Q_OS_WIN
-        else if (addPythonPathToEnv())
-            pythonVersion = Utils::ForeignApps::Python::pythonVersion();
+        else if (addPythonPathToEnv()) {
+            majorVersion = Utils::ForeignApps::pythonInfo().version.majorNumber();
+        }
 #endif
+        else {
+            QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't determine your Python version. Search engine disabled."));
+            m_ui->actionSearchWidget->setChecked(false);
+            Preferences::instance()->setSearchEnabled(false);
+            return;
+        }
 
         bool res = false;
 
-        if ((pythonVersion == 2) || (pythonVersion == 3)) {
+        if ((majorVersion == 2) || (majorVersion == 3)) {
             // Check Python minimum requirement: 2.7.9 / 3.3.0
-            QString version = Utils::ForeignApps::Python::pythonVersionComplete();
-            QStringList splitted = version.split('.');
-            if (splitted.size() > 2) {
-                int middleVer = splitted.at(1).toInt();
-                int lowerVer = splitted.at(2).toInt();
-                if (((pythonVersion == 2) && (middleVer < 7))
-                    || ((pythonVersion == 2) && (middleVer == 7) && (lowerVer < 9))
-                    || ((pythonVersion == 3) && (middleVer < 3))) {
-                    QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.").arg(version));
-                    m_ui->actionSearchWidget->setChecked(false);
-                    Preferences::instance()->setSearchEnabled(false);
-                    return;
-                }
-                else {
-                    res = true;
-                }
-            }
-            else {
-                QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't determine your Python version (%1). Search engine disabled.").arg(version));
+            using Version = Utils::ForeignApps::PythonInfo::Version;
+            const Version pyVersion = Utils::ForeignApps::pythonInfo().version;
+
+            if (((majorVersion == 2) && (pyVersion < Version {2, 7, 9}))
+                || ((majorVersion == 3) && (pyVersion < Version {3, 3, 0}))) {
+                QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.").arg(pyVersion));
                 m_ui->actionSearchWidget->setChecked(false);
                 Preferences::instance()->setSearchEnabled(false);
                 return;
             }
+
+            res = true;
         }
 
         if (res) {
@@ -2086,7 +2083,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     m_hasPython = addPythonPathToEnv();
     if (m_hasPython) {
         // Make it print the version to Log
-        Utils::ForeignApps::Python::pythonVersion();
+        Utils::ForeignApps::pythonInfo();
         m_ui->actionSearchWidget->setChecked(true);
         displaySearchTab(true);
     }

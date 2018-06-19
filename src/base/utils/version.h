@@ -58,7 +58,7 @@ namespace Utils
 
         template <typename ... Other>
         constexpr Version(Other ... components)
-            : m_components {{components ...}}
+            : m_components {{static_cast<T>(components) ...}}
         {
         }
 
@@ -127,6 +127,11 @@ namespace Utils
             for (std::size_t i = 1; i <= lastSignificantIndex; ++i)
                 res += QLatin1Char('.') + QString::number((*this)[i]);
             return res;
+        }
+
+        constexpr bool isValid() const
+        {
+            return (*this != ThisType {});
         }
 
         constexpr bool operator==(const ThisType &other) const
