@@ -39,7 +39,6 @@ win32-g++* {
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe
     QMAKE_LFLAGS += "/MANIFEST:EMBED /MANIFESTINPUT:$$quote($${PWD}/src/qbittorrent.exe.manifest) /STACK:0x800000"
-    QMAKE_LFLAGS_RELEASE += "/OPT:REF /OPT:ICF"
 
     RC_FILE = qbittorrent.rc
 

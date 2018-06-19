@@ -61,3 +61,9 @@ DEFINES += BOOST_USE_WINAPI_VERSION=0x0501
 
 # Enable stack trace support
 CONFIG += stacktrace
+
+win32-msvc* {
+    QMAKE_CXXFLAGS += "/guard:cf"
+    QMAKE_LFLAGS += "/guard:cf"
+    QMAKE_LFLAGS_RELEASE += "/OPT:REF /OPT:ICF"
+}
