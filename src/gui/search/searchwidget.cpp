@@ -285,7 +285,7 @@ void SearchWidget::giveFocusToSearchInput()
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
-    if (Utils::ForeignApps::Python::pythonVersion() < 0) {
+    if (Utils::ForeignApps::pythonInfo().version.majorNumber() <= 0) {
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }

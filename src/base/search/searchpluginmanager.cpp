@@ -64,7 +64,7 @@ namespace
 QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
 
 SearchPluginManager::SearchPluginManager()
-    : m_updateUrl(QString("http://searchplugins.qbittorrent.org/%1/engines/").arg(Utils::ForeignApps::Python::pythonVersion() >= 3 ? "nova3" : "nova"))
+    : m_updateUrl(QString("http://searchplugins.qbittorrent.org/%1/engines/").arg(Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3 ? "nova3" : "nova"))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -323,7 +323,7 @@ QString SearchPluginManager::pluginsLocation()
 QString SearchPluginManager::engineLocation()
 {
     QString folder = "nova";
-    if (Utils::ForeignApps::Python::pythonVersion() >= 3)
+    if (Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3)
         folder = "nova3";
     const QString location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + folder);
     QDir locationDir(location);
@@ -371,7 +371,7 @@ void SearchPluginManager::updateNova()
 
     // create nova directory if necessary
     QDir searchDir(engineLocation());
-    QString novaFolder = Utils::ForeignApps::Python::pythonVersion() >= 3 ? "searchengine/nova3" : "searchengine/nova";
+    QString novaFolder = Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3 ? "searchengine/nova3" : "searchengine/nova";
     QFile packageFile(searchDir.absoluteFilePath("__init__.py"));
     packageFile.open(QIODevice::WriteOnly | QIODevice::Text);
     packageFile.close();
@@ -437,7 +437,7 @@ void SearchPluginManager::update()
     QStringList params;
     params << Utils::Fs::toNativePath(engineLocation() + "/nova2.py");
     params << "--capabilities";
-    nova.start(Utils::ForeignApps::Python::pythonExecutable(), params, QIODevice::ReadOnly);
+    nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForStarted();
     nova.waitForFinished();
 

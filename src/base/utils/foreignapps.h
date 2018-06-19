@@ -31,15 +31,22 @@
 
 #include <QString>
 
+#include "base/utils/version.h"
+
 namespace Utils
 {
     namespace ForeignApps
     {
-        namespace Python
+        struct PythonInfo
         {
-            int pythonVersion();
-            QString pythonExecutable();
-            QString pythonVersionComplete();
-        }
+            using Version = Utils::Version<quint8, 3, 1>;
+
+            bool isValid() const;
+
+            QString executableName;
+            Version version;
+        };
+
+        PythonInfo pythonInfo();
     }
 }
