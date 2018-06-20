@@ -47,14 +47,11 @@ static QString errorCodeToString(QNetworkReply::NetworkError status);
 
 using namespace Net;
 
-DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile, qint64 limit, bool handleRedirectToMagnet)
+DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, const DownloadRequest &downloadRequest)
     : QObject(manager)
     , m_reply(reply)
     , m_manager(manager)
-    , m_saveToFile(saveToFile)
-    , m_sizeLimit(limit)
-    , m_handleRedirectToMagnet(handleRedirectToMagnet)
-    , m_url(reply->url().toString())
+    , m_downloadRequest(downloadRequest)
 {
     init();
 }
@@ -68,7 +65,7 @@ DownloadHandler::~DownloadHandler()
 // Returns original url
 QString DownloadHandler::url() const
 {
-    return m_url;
+    return m_downloadRequest.url();
 }
 
 void DownloadHandler::processFinishedDownload()
@@ -79,7 +76,7 @@ void DownloadHandler::processFinishedDownload()
     if (m_reply->error() != QNetworkReply::NoError) {
         // Failure
         qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
-        emit downloadFailed(m_url, errorCodeToString(m_reply->error()));
+        emit downloadFailed(m_downloadRequest.url(), errorCodeToString(m_reply->error()));
         this->deleteLater();
     }
     else {
@@ -97,15 +94,15 @@ void DownloadHandler::processFinishedDownload()
                 replyData = Utils::Gzip::decompress(replyData);
             }
 
-            if (m_saveToFile) {
+            if (m_downloadRequest.saveToFile()) {
                 QString filePath;
                 if (saveToFile(replyData, filePath))
-                    emit downloadFinished(m_url, filePath);
+                    emit downloadFinished(m_downloadRequest.url(), filePath);
                 else
-                    emit downloadFailed(m_url, tr("I/O Error"));
-                }
+                    emit downloadFailed(m_downloadRequest.url(), tr("I/O Error"));
+            }
             else {
-                emit downloadFinished(m_url, replyData);
+                emit downloadFinished(m_downloadRequest.url(), replyData);
             }
 
             this->deleteLater();
@@ -119,24 +116,24 @@ void DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
 
     if (bytesTotal > 0) {
         // Total number of bytes is available
-        if (bytesTotal > m_sizeLimit) {
+        if (bytesTotal > m_downloadRequest.limit()) {
             m_reply->abort();
-            emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesTotal), Utils::Misc::friendlyUnit(m_sizeLimit)));
+            emit downloadFailed(m_downloadRequest.url(), msg.arg(Utils::Misc::friendlyUnit(bytesTotal), Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
         }
         else {
             disconnect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
         }
     }
-    else if (bytesReceived  > m_sizeLimit) {
+    else if (bytesReceived > m_downloadRequest.limit()) {
         m_reply->abort();
-        emit downloadFailed(m_url, msg.arg(Utils::Misc::friendlyUnit(bytesReceived), Utils::Misc::friendlyUnit(m_sizeLimit)));
+        emit downloadFailed(m_downloadRequest.url(), msg.arg(Utils::Misc::friendlyUnit(bytesReceived), Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
     }
 }
 
 void DownloadHandler::init()
 {
     m_reply->setParent(this);
-    if (m_sizeLimit > 0)
+    if (m_downloadRequest.limit() > 0)
         connect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
     connect(m_reply, &QNetworkReply::finished, this, &Net::DownloadHandler::processFinishedDownload);
 }
@@ -181,15 +178,15 @@ void DownloadHandler::handleRedirection(QUrl newUrl)
     if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
         qDebug("Magnet redirect detected.");
         m_reply->abort();
-        if (m_handleRedirectToMagnet)
-            emit redirectedToMagnet(m_url, newUrlString);
+        if (m_downloadRequest.handleRedirectToMagnet())
+            emit redirectedToMagnet(m_downloadRequest.url(), newUrlString);
         else
-            emit downloadFailed(m_url, tr("Unexpected redirect to magnet URI."));
+            emit downloadFailed(m_downloadRequest.url(), tr("Unexpected redirect to magnet URI."));
 
         this->deleteLater();
     }
     else {
-        DownloadHandler *tmp = m_manager->downloadUrl(newUrlString, m_saveToFile, m_sizeLimit, m_handleRedirectToMagnet);
+        DownloadHandler *tmp = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
         m_reply->deleteLater();
         m_reply = tmp->m_reply;
         init();

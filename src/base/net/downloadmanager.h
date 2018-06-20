@@ -42,9 +42,39 @@ namespace Net
 {
     class DownloadHandler;
 
+    class DownloadRequest
+    {
+    public:
+        DownloadRequest(const QString &url);
+        DownloadRequest(const DownloadRequest &other) = default;
+
+        QString url() const;
+        DownloadRequest &url(const QString &value);
+
+        QString userAgent() const;
+        DownloadRequest &userAgent(const QString &value);
+
+        qint64 limit() const;
+        DownloadRequest &limit(qint64 value);
+
+        bool saveToFile() const;
+        DownloadRequest &saveToFile(bool value);
+
+        bool handleRedirectToMagnet() const;
+        DownloadRequest &handleRedirectToMagnet(bool value);
+
+    private:
+        QString m_url;
+        QString m_userAgent;
+        qint64 m_limit = 0;
+        bool m_saveToFile = false;
+        bool m_handleRedirectToMagnet = false;
+    };
+
     class DownloadManager : public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY(DownloadManager)
 
     public:
         static void initInstance();
@@ -52,6 +82,7 @@ namespace Net
         static DownloadManager *instance();
 
         DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false, const QString &userAgent = "");
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
         QList<QNetworkCookie> allCookies() const;

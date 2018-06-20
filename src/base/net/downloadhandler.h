@@ -31,6 +31,7 @@
 #define NET_DOWNLOADHANDLER_H
 
 #include <QObject>
+#include "downloadmanager.h"
 
 class QNetworkAccessManager;
 class QNetworkReply;
@@ -45,7 +46,7 @@ namespace Net
         Q_OBJECT
 
     public:
-        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
+        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, const DownloadRequest &downloadRequest);
         ~DownloadHandler();
 
         QString url() const;
@@ -67,10 +68,7 @@ namespace Net
 
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
-        bool m_saveToFile;
-        qint64 m_sizeLimit;
-        bool m_handleRedirectToMagnet;
-        QString m_url;
+        const DownloadRequest m_downloadRequest;
     };
 }
 

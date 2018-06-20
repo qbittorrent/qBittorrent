@@ -139,27 +139,29 @@ DownloadManager *DownloadManager::instance()
 
 DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet, const QString &userAgent)
 {
+    return download(DownloadRequest(url).saveToFile(saveToFile).limit(limit).handleRedirectToMagnet(handleRedirectToMagnet).userAgent(userAgent));
+}
+
+DownloadHandler *DownloadManager::download(const DownloadRequest &downloadRequest)
+{
     // Update proxy settings
     applyProxySettings();
 
     // Process download request
-    qDebug("url is %s", qUtf8Printable(url));
-    const QUrl qurl = QUrl(url);
-    QNetworkRequest request(qurl);
+    QNetworkRequest request(downloadRequest.url());
 
-    if (userAgent.isEmpty())
+    if (downloadRequest.userAgent().isEmpty())
         request.setRawHeader("User-Agent", DEFAULT_USER_AGENT);
     else
-        request.setRawHeader("User-Agent", userAgent.toUtf8());
+        request.setRawHeader("User-Agent", downloadRequest.userAgent().toUtf8());
 
     // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
     request.setRawHeader("Referer", request.url().toEncoded().data());
 
     qDebug("Downloading %s...", request.url().toEncoded().data());
-    qDebug() << "Cookies:" << m_networkManager.cookieJar()->cookiesForUrl(request.url());
     // accept gzip
     request.setRawHeader("Accept-Encoding", "gzip");
-    return new DownloadHandler(m_networkManager.get(request), this, saveToFile, limit, handleRedirectToMagnet);
+    return new DownloadHandler(m_networkManager.get(request), this, downloadRequest);
 }
 
 QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QUrl &url) const
@@ -228,3 +230,63 @@ void DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslErro
     reply->ignoreSslErrors();
 }
 #endif
+
+Net::DownloadRequest::DownloadRequest(const QString &url)
+    : m_url {url}
+{
+}
+
+QString Net::DownloadRequest::url() const
+{
+    return m_url;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::url(const QString &value)
+{
+    m_url = value;
+    return *this;
+}
+
+QString Net::DownloadRequest::userAgent() const
+{
+    return m_userAgent;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::userAgent(const QString &value)
+{
+    m_userAgent = value;
+    return *this;
+}
+
+qint64 Net::DownloadRequest::limit() const
+{
+    return m_limit;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::limit(qint64 value)
+{
+    m_limit = value;
+    return *this;
+}
+
+bool Net::DownloadRequest::saveToFile() const
+{
+    return m_saveToFile;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::saveToFile(bool value)
+{
+    m_saveToFile = value;
+    return *this;
+}
+
+bool Net::DownloadRequest::handleRedirectToMagnet() const
+{
+    return m_handleRedirectToMagnet;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::handleRedirectToMagnet(bool value)
+{
+    m_handleRedirectToMagnet = value;
+    return *this;
+}
