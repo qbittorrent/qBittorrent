@@ -88,6 +88,8 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     else
         connect(m_session, &Session::processingStateChanged, this, &Feed::handleSessionProcessingEnabledChanged);
 
+    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url));
+
     load();
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,8 +30,12 @@
 #ifndef NET_DOWNLOADMANAGER_H
 #define NET_DOWNLOADMANAGER_H
 
-#include <QObject>
+#include <QHash>
 #include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QObject>
+#include <QQueue>
+#include <QSet>
 
 class QNetworkReply;
 class QNetworkCookie;
@@ -71,6 +75,14 @@ namespace Net
         bool m_handleRedirectToMagnet = false;
     };
 
+    struct ServiceID
+    {
+        QString hostName;
+        int port;
+
+        static ServiceID fromURL(const QUrl &url);
+    };
+
     class DownloadManager : public QObject
     {
         Q_OBJECT
@@ -83,6 +95,9 @@ namespace Net
 
         DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false, const QString &userAgent = "");
         DownloadHandler *download(const DownloadRequest &downloadRequest);
+
+        void registerSequentialService(const ServiceID &serviceID);
+
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
         QList<QNetworkCookie> allCookies() const;
@@ -91,17 +106,25 @@ namespace Net
 
     private slots:
     #ifndef QT_NO_OPENSSL
-        void ignoreSslErrors(QNetworkReply *,const QList<QSslError> &);
+        void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);
     #endif
 
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
+        void handleReplyFinished(QNetworkReply *reply);
 
         static DownloadManager *m_instance;
         QNetworkAccessManager m_networkManager;
+
+        QSet<ServiceID> m_sequentialServices;
+        QSet<ServiceID> m_busyServices;
+        QHash<ServiceID, QQueue<DownloadHandler *>> m_waitingJobs;
     };
+
+    uint qHash(const ServiceID &serviceID, uint seed);
+    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
 }
 
 #endif // NET_DOWNLOADMANAGER_H
