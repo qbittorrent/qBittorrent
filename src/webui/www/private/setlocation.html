@@ -31,8 +31,10 @@
                 new Event(e).stop();
                 // check field
                 var location = $('setLocation').value.trim();
-                if (location === null || location === "")
+                if (location === null || location === "") {
+                    $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
                     return false;
+                }
 
                 var hashesList = new URI().getData('hashes');
                 new Request({
@@ -42,8 +44,11 @@
                         hashes: hashesList,
                         location: location
                     },
-                    onComplete: function() {
+                    onSuccess: function() {
                         window.parent.closeWindows();
+                    },
+                    onFailure: function(xhr) {
+                        $('error_div').set('text', xhr.response);
                     }
                 }).send();
             });
@@ -55,6 +60,7 @@
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(Location)QBT_TR[CONTEXT=TransferListWidget]:</p>
         <input type="text" id="setLocation" value="" maxlength="100" style="width: 370px;" />
+        <div style="float: none; width: 370px;" id="error_div">&nbsp;</div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="setLocationButton" />
         </div>
