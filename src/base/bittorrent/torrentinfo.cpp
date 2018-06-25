@@ -62,13 +62,32 @@ TorrentInfo &TorrentInfo::operator=(const TorrentInfo &other)
 
 TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
 {
+    // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
+    // used in `torrent_info()` constructor
+    const int depthLimit = 100;
+    const int tokenLimit = 10000000;
     libt::error_code ec;
-    TorrentInfo info(NativePtr(new libt::torrent_info(data.constData(), data.size(), ec)));
-    if (error) {
-        if (ec)
+
+#if LIBTORRENT_VERSION_NUM < 10100
+    libt::lazy_entry node;
+    libt::lazy_bdecode(data.constData(), (data.constData() + data.size()), node, ec
+        , nullptr, depthLimit, tokenLimit);
+#else
+    libt::bdecode_node node;
+    bdecode(data.constData(), (data.constData() + data.size()), node, ec
+        , nullptr, depthLimit, tokenLimit);
+#endif
+    if (ec) {
+        if (error)
             *error = QString::fromStdString(ec.message());
-        else
-            error->clear();
+        return TorrentInfo();
+    }
+
+    TorrentInfo info {NativePtr(new libt::torrent_info(node, ec))};
+    if (ec) {
+        if (error)
+            *error = QString::fromStdString(ec.message());
+        return TorrentInfo();
     }
 
     return info;
@@ -102,35 +121,7 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
 
     file.close();
 
-    // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
-    // used in `torrent_info()` constructor
-    const int depthLimit = 100;
-    const int tokenLimit = 10000000;
-    libt::error_code ec;
-
-#if LIBTORRENT_VERSION_NUM < 10100
-    libt::lazy_entry node;
-    libt::lazy_bdecode(data.constData(), (data.constData() + data.size()), node, ec
-        , nullptr, depthLimit, tokenLimit);
-#else
-    libt::bdecode_node node;
-    bdecode(data.constData(), (data.constData() + data.size()), node, ec
-        , nullptr, depthLimit, tokenLimit);
-#endif
-    if (ec) {
-        if (error)
-            *error = QString::fromStdString(ec.message());
-        return TorrentInfo();
-    }
-
-    TorrentInfo info {NativePtr(new libt::torrent_info(node, ec))};
-    if (ec) {
-        if (error)
-            *error = QString::fromStdString(ec.message());
-        return TorrentInfo();
-    }
-
-    return info;
+    return load(data, error);
 }
 
 bool TorrentInfo::isValid() const
