@@ -25,9 +25,10 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
+
 #include "trackersadditiondialog.h"
 
-#include <QFile>
+#include <QBuffer>
 #include <QMessageBox>
 #include <QStringList>
 #include <QUrl>
@@ -70,25 +71,16 @@ QStringList TrackersAdditionDialog::newTrackers() const
 void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 {
     m_ui->uTorrentListButton->setEnabled(false);
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_ui->list_url->text(), true);
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({m_ui->list_url->text()});
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &TrackersAdditionDialog::parseUTorrentList);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &TrackersAdditionDialog::getTrackerError);
     // Just to show that it takes times
     setCursor(Qt::WaitCursor);
 }
 
-void TrackersAdditionDialog::parseUTorrentList(const QString &, const QString &path)
+void TrackersAdditionDialog::parseUTorrentList(const QString &, const QByteArray &data)
 {
-    QFile listFile(path);
-    if (!listFile.open(QFile::ReadOnly)) {
-        QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
-        setCursor(Qt::ArrowCursor);
-        m_ui->uTorrentListButton->setEnabled(true);
-        Utils::Fs::forceRemove(path);
-        return;
-    }
-
     // Load from torrent handle
     QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     // Load from current user list
@@ -103,19 +95,21 @@ void TrackersAdditionDialog::parseUTorrentList(const QString &, const QString &p
     if (!m_ui->trackers_list->toPlainText().isEmpty() && !m_ui->trackers_list->toPlainText().endsWith('\n'))
         m_ui->trackers_list->insertPlainText("\n");
     int nb = 0;
-    while (!listFile.atEnd()) {
-        const QString line = listFile.readLine().trimmed();
+    QBuffer buffer;
+    buffer.setData(data);
+    buffer.open(QBuffer::ReadOnly);
+    while (!buffer.atEnd()) {
+        const QString line = buffer.readLine().trimmed();
         if (line.isEmpty()) continue;
+
         BitTorrent::TrackerEntry newTracker(line);
         if (!existingTrackers.contains(newTracker)) {
             m_ui->trackers_list->insertPlainText(line + '\n');
             ++nb;
         }
     }
-    // Clean up
-    listFile.close();
-    Utils::Fs::forceRemove(path);
-    //To restore the cursor ...
+
+    // To restore the cursor ...
     setCursor(Qt::ArrowCursor);
     m_ui->uTorrentListButton->setEnabled(true);
     // Display information message if necessary

@@ -118,7 +118,7 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(DATABASE_URL);
+    DownloadHandler *handler = DownloadManager::instance()->download({DATABASE_URL});
     connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &GeoIPManager::downloadFinished);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &GeoIPManager::downloadFailed);

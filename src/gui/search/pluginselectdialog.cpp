@@ -292,7 +292,8 @@ void PluginSelectDialog::addNewPlugin(QString pluginName)
     else {
         // Icon is missing, we must download it
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->downloadUrl(plugin->url + "/favicon.ico", true);
+        DownloadHandler *handler = DownloadManager::instance()->download(
+                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true));
         connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
                 , this, &PluginSelectDialog::iconDownloaded);
         connect(handler, &DownloadHandler::downloadFailed, this, &PluginSelectDialog::iconDownloadFailed);
