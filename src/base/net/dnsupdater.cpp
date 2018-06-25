@@ -75,9 +75,8 @@ void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
 
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                "http://checkip.dyndns.org", false, 0, false,
-                "qBittorrent/" QBT_VERSION_2);
+    DownloadHandler *handler = DownloadManager::instance()->download(
+                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2));
     connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &DNSUpdater::ipRequestFinished);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipRequestFailed);
@@ -123,9 +122,8 @@ void DNSUpdater::updateDNSService()
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                getUpdateUrl(), false, 0, false,
-                "qBittorrent/" QBT_VERSION_2);
+    DownloadHandler *handler = DownloadManager::instance()->download(
+                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2));
     connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &DNSUpdater::ipUpdateFinished);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipUpdateFailed);

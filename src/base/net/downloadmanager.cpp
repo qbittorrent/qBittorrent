@@ -155,11 +155,6 @@ Net::DownloadManager *Net::DownloadManager::instance()
     return m_instance;
 }
 
-Net::DownloadHandler *Net::DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet, const QString &userAgent)
-{
-    return download(DownloadRequest(url).saveToFile(saveToFile).limit(limit).handleRedirectToMagnet(handleRedirectToMagnet).userAgent(userAgent));
-}
-
 Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &downloadRequest)
 {
     // Process download request

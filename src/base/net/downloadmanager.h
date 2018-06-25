@@ -93,7 +93,6 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *downloadUrl(const QString &url, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false, const QString &userAgent = "");
         DownloadHandler *download(const DownloadRequest &downloadRequest);
 
         void registerSequentialService(const ServiceID &serviceID);

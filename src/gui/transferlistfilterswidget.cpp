@@ -404,7 +404,8 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 void TrackerFiltersList::downloadFavicon(const QString& url)
 {
     if (!m_downloadTrackerFavicon) return;
-    Net::DownloadHandler *h = Net::DownloadManager::instance()->downloadUrl(url, true);
+    Net::DownloadHandler *h = Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(url).saveToFile(true));
     using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
     connect(h, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this
             , &TrackerFiltersList::handleFavicoDownload);

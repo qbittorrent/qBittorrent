@@ -57,7 +57,7 @@ public:
 
 public slots:
     void on_uTorrentListButton_clicked();
-    void parseUTorrentList(const QString &, const QString &path);
+    void parseUTorrentList(const QString &, const QByteArray &data);
     void getTrackerError(const QString &, const QString &error);
 
 private:
