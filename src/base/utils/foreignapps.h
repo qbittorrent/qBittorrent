@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,41 +27,26 @@
  * exception statement from your version.
  */
 
-#include "searchdownloadhandler.h"
+#pragma once
 
-#include <QProcess>
+#include <QString>
 
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
-#include "searchpluginmanager.h"
+#include "base/utils/version.h"
 
-SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager)
-    : QObject {manager}
-    , m_manager {manager}
-    , m_downloadProcess {new QProcess {this}}
+namespace Utils
 {
-    m_downloadProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(m_downloadProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished)
-            , this, &SearchDownloadHandler::downloadProcessFinished);
-    const QStringList params {
-        Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2dl.py"),
-        siteUrl,
-        url
-    };
-    // Launch search
-    m_downloadProcess->start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
-}
+    namespace ForeignApps
+    {
+        struct PythonInfo
+        {
+            using Version = Utils::Version<quint8, 3, 1>;
 
-void SearchDownloadHandler::downloadProcessFinished(int exitcode)
-{
-    QString path;
+            bool isValid() const;
 
-    if ((exitcode == 0) && (m_downloadProcess->exitStatus() == QProcess::NormalExit)) {
-        const QString line = QString::fromUtf8(m_downloadProcess->readAllStandardOutput()).trimmed();
-        const QVector<QStringRef> parts = line.splitRef(' ');
-        if (parts.size() == 2)
-            path = parts[0].toString();
+            QString executableName;
+            Version version;
+        };
+
+        PythonInfo pythonInfo();
     }
-
-    emit downloadFinished(path);
 }

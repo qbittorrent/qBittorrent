@@ -64,6 +64,7 @@ HEADERS += \
     $$PWD/types.h \
     $$PWD/unicodestrings.h \
     $$PWD/utils/bytearray.h \
+    $$PWD/utils/foreignapps.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
@@ -127,6 +128,7 @@ SOURCES += \
     $$PWD/torrentfilter.cpp \
     $$PWD/tristatebool.cpp \
     $$PWD/utils/bytearray.cpp \
+    $$PWD/utils/foreignapps.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
