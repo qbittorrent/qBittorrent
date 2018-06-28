@@ -322,13 +322,16 @@ QString SearchPluginManager::pluginsLocation()
 
 QString SearchPluginManager::engineLocation()
 {
-    QString folder = "nova";
-    if (Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3)
-        folder = "nova3";
-    const QString location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + folder);
-    QDir locationDir(location);
-    if (!locationDir.exists())
+    static QString location;
+    if (location.isEmpty()) {
+        const QString folder = (Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3)
+            ? "nova3" : "nova";
+        location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + folder);
+
+        const QDir locationDir(location);
         locationDir.mkpath(locationDir.absolutePath());
+    }
+
     return location;
 }
 
