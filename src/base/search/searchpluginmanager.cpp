@@ -433,15 +433,13 @@ void SearchPluginManager::updateNova()
 void SearchPluginManager::update()
 {
     QProcess nova;
-    nova.setEnvironment(QProcess::systemEnvironment());
-    QStringList params;
-    params << Utils::Fs::toNativePath(engineLocation() + "/nova2.py");
-    params << "--capabilities";
+    nova.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
+
+    const QStringList params {Utils::Fs::toNativePath(engineLocation() + "/nova2.py"), "--capabilities"};
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
-    nova.waitForStarted();
     nova.waitForFinished();
 
-    QString capabilities = QString(nova.readAll());
+    QString capabilities = nova.readAll();
     QDomDocument xmlDoc;
     if (!xmlDoc.setContent(capabilities)) {
         qWarning() << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
@@ -466,7 +464,8 @@ void SearchPluginManager::update()
             plugin->fullName = engineElem.elementsByTagName("name").at(0).toElement().text();
             plugin->url = engineElem.elementsByTagName("url").at(0).toElement().text();
 
-            foreach (QString cat, engineElem.elementsByTagName("categories").at(0).toElement().text().split(" ")) {
+            const auto categories = engineElem.elementsByTagName("categories").at(0).toElement().text().split(' ');
+            for (QString cat : categories) {
                 cat = cat.trimmed();
                 if (!cat.isEmpty())
                     plugin->supportedCategories << cat;
