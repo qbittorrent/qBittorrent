@@ -33,6 +33,7 @@
 
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QDomNode>
@@ -54,10 +55,29 @@
 
 namespace
 {
-    void removePythonScript(const QString &path)
+    void clearPythonCache(const QString &path)
     {
-        Utils::Fs::forceRemove(path);
-        Utils::Fs::forceRemove(path + 'c');  // python2 pyc files
+        // remove python cache artifacts in `path` and subdirs
+
+        QStringList dirs = {path};
+        QDirIterator iter {path, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+        while (iter.hasNext())
+            dirs += iter.next();
+
+        for (const QString &dir : qAsConst(dirs)) {
+            // python 3: remove "__pycache__" folders
+            if (dir.endsWith("/__pycache__")) {
+                Utils::Fs::removeDirRecursive(dir);
+                continue;
+            }
+
+            // python 2: remove "*.pyc" files
+            const QStringList files = QDir(dir).entryList(QDir::Files);
+            for (const QString file : files) {
+                if (file.endsWith(".pyc"))
+                    Utils::Fs::forceRemove(file);
+            }
+        }
     }
 }
 
@@ -169,6 +189,8 @@ void SearchPluginManager::installPlugin(const QString &source)
 {
     qDebug("Asked to install plugin at %s", qUtf8Printable(source));
 
+    clearPythonCache(engineLocation());
+
     if (Utils::Misc::isUrl(source)) {
         using namespace Net;
         DownloadHandler *handler = DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true));
@@ -209,7 +231,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
     if (QFile::exists(destPath)) {
         // Backup in case install fails
         QFile::copy(destPath, destPath + ".bak");
-        removePythonScript(destPath);
+        Utils::Fs::forceRemove(destPath);
         updated = true;
     }
     // Copy the plugin
@@ -241,6 +263,8 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
 
 bool SearchPluginManager::uninstallPlugin(const QString &name)
 {
+    clearPythonCache(engineLocation());
+
     // remove it from hard drive
     QDir pluginsFolder(pluginsLocation());
     QStringList filters;
