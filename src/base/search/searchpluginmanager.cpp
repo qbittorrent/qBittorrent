@@ -540,32 +540,25 @@ QString SearchPluginManager::pluginPath(const QString &name)
     return QString("%1/%2.py").arg(pluginsLocation(), name);
 }
 
-PluginVersion SearchPluginManager::getPluginVersion(QString filePath)
+PluginVersion SearchPluginManager::getPluginVersion(const QString &filePath)
 {
-    QFile plugin(filePath);
-    if (!plugin.exists()) {
-        qDebug("%s plugin does not exist, returning 0.0", qUtf8Printable(filePath));
-        return {};
-    }
-
-    if (!plugin.open(QIODevice::ReadOnly | QIODevice::Text))
+    QFile pluginFile(filePath);
+    if (!pluginFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return {};
 
-    const PluginVersion invalidVersion;
-
-    PluginVersion version;
-    while (!plugin.atEnd()) {
-        const QString line = QString(plugin.readLine()).remove(' ');
+    while (!pluginFile.atEnd()) {
+        const QString line = QString(pluginFile.readLine()).remove(' ');
         if (!line.startsWith("#VERSION:", Qt::CaseInsensitive)) continue;
 
         const QString versionStr = line.mid(9);
-        version = PluginVersion::tryParse(versionStr, invalidVersion);
-        if (version == invalidVersion) {
-            LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
-                .arg(Utils::Fs::fileName(filePath), line), Log::MsgType::WARNING);
-        }
+        const PluginVersion version = PluginVersion::tryParse(versionStr, {});
+        if (version.isValid())
+            return version;
 
+        LogMsg(tr("Search plugin '%1' contains invalid version string ('%2')")
+            .arg(Utils::Fs::fileName(filePath), versionStr), Log::MsgType::WARNING);
         break;
     }
-    return version;
+
+    return {};
 }

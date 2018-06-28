@@ -79,7 +79,7 @@ public:
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
     SearchDownloadHandler *downloadTorrent(const QString &siteUrl, const QString &url);
 
-    static PluginVersion getPluginVersion(QString filePath);
+    static PluginVersion getPluginVersion(const QString &filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName);
     static QString pluginsLocation();
