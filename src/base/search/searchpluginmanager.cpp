@@ -369,67 +369,44 @@ void SearchPluginManager::pluginDownloadFailed(const QString &url, const QString
 // Update nova.py search plugin if necessary
 void SearchPluginManager::updateNova()
 {
-    qDebug("Updating nova");
-
     // create nova directory if necessary
-    QDir searchDir(engineLocation());
-    QString novaFolder = Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3 ? "searchengine/nova3" : "searchengine/nova";
+    const QDir searchDir(engineLocation());
+    const QString novaFolder = Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3
+        ? "searchengine/nova3" : "searchengine/nova";
+
     QFile packageFile(searchDir.absoluteFilePath("__init__.py"));
-    packageFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    packageFile.open(QIODevice::WriteOnly);
     packageFile.close();
-    if (!searchDir.exists("engines"))
-        searchDir.mkdir("engines");
-    Utils::Fs::removeDirRecursive(searchDir.absoluteFilePath("__pycache__"));
+
+    searchDir.mkdir("engines");
 
     QFile packageFile2(searchDir.absolutePath() + "/engines/__init__.py");
-    packageFile2.open(QIODevice::WriteOnly | QIODevice::Text);
+    packageFile2.open(QIODevice::WriteOnly);
     packageFile2.close();
 
     // Copy search plugin files (if necessary)
-    QString filePath = searchDir.absoluteFilePath("nova2.py");
-    if (getPluginVersion(":/" + novaFolder + "/nova2.py") > getPluginVersion(filePath)) {
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/nova2.py", filePath);
-    }
+    const auto updateFile = [&novaFolder](const QString &filename, const bool compareVersion)
+    {
+        const QString filePathBundled = ":/" + novaFolder + '/' + filename;
+        const QString filePathDisk = QDir(engineLocation()).absoluteFilePath(filename);
 
-    filePath = searchDir.absoluteFilePath("nova2dl.py");
-    if (getPluginVersion(":/" + novaFolder + "/nova2dl.py") > getPluginVersion(filePath)) {
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/nova2dl.py", filePath);
-    }
+        if (compareVersion && (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk)))
+            return;
 
-    filePath = searchDir.absoluteFilePath("fix_encoding.py");
-    QFile::copy(":/" + novaFolder + "/fix_encoding.py", filePath);
+        Utils::Fs::forceRemove(filePathDisk);
+        QFile::copy(filePathBundled, filePathDisk);
+    };
 
-    filePath = searchDir.absoluteFilePath("novaprinter.py");
-    if (getPluginVersion(":/" + novaFolder + "/novaprinter.py") > getPluginVersion(filePath)) {
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/novaprinter.py", filePath);
-    }
+    updateFile("helpers.py", true);
+    updateFile("nova2.py", true);
+    updateFile("nova2dl.py", true);
+    updateFile("novaprinter.py", true);
+    updateFile("socks.py", false);
 
-    filePath = searchDir.absoluteFilePath("helpers.py");
-    if (getPluginVersion(":/" + novaFolder + "/helpers.py") > getPluginVersion(filePath)) {
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/helpers.py", filePath);
-    }
-
-    filePath = searchDir.absoluteFilePath("socks.py");
-    removePythonScript(filePath);
-    QFile::copy(":/" + novaFolder + "/socks.py", filePath);
-
-    if (novaFolder.endsWith("nova")) {
-        filePath = searchDir.absoluteFilePath("fix_encoding.py");
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/fix_encoding.py", filePath);
-    }
-    else if (novaFolder.endsWith("nova3")) {
-        filePath = searchDir.absoluteFilePath("sgmllib3.py");
-        removePythonScript(filePath);
-        QFile::copy(":/" + novaFolder + "/sgmllib3.py", filePath);
-    }
-
-    QDir destDir(pluginsLocation());
-    Utils::Fs::removeDirRecursive(destDir.absoluteFilePath("__pycache__"));
+    if (Utils::ForeignApps::pythonInfo().version.majorNumber() >= 3)
+        updateFile("sgmllib3.py", false);
+    else
+        updateFile("fix_encoding.py", false);
 }
 
 void SearchPluginManager::update()
