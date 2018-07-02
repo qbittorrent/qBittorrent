@@ -780,6 +780,27 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkPreallocateAll">
+              <property name="text">
+               <string>Pre-allocate disk space for all files</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkAppendqB">
+              <property name="text">
+               <string>Append .!qB extension to incomplete files</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkRecursiveDownload">
+              <property name="text">
+               <string>Enable recursive download dialog</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupSavingManagement">
               <property name="title">
                <string>Saving Management</string>
@@ -1003,20 +1024,6 @@
                   <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkPreallocateAll">
-                 <property name="text">
-                  <string>Pre-allocate disk space for all files</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkAppendqB">
-                 <property name="text">
-                  <string>Append .!qB extension to incomplete files</string>
-                 </property>
-                </widget>
                </item>
               </layout>
              </widget>
