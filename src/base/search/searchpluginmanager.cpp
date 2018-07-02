@@ -171,7 +171,7 @@ void SearchPluginManager::installPlugin(const QString &source)
 
     if (Utils::Misc::isUrl(source)) {
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->downloadUrl(source, true);
+        DownloadHandler *handler = DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true));
         connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
                 , this, &SearchPluginManager::pluginDownloaded);
         connect(handler, &DownloadHandler::downloadFailed, this, &SearchPluginManager::pluginDownloadFailed);
@@ -275,7 +275,7 @@ void SearchPluginManager::checkForUpdates()
 {
     // Download version file from update server
     using namespace Net;
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(m_updateUrl + "versions.txt");
+    DownloadHandler *handler = DownloadManager::instance()->download({m_updateUrl + "versions.txt"});
     connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
             , this, &SearchPluginManager::versionInfoDownloaded);
     connect(handler, &DownloadHandler::downloadFailed, this, &SearchPluginManager::versionInfoDownloadFailed);

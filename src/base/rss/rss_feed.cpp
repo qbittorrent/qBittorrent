@@ -88,6 +88,8 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     else
         connect(m_session, &Session::processingStateChanged, this, &Feed::handleSessionProcessingEnabledChanged);
 
+    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url));
+
     load();
 }
 
@@ -127,7 +129,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(m_url);
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({m_url});
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &Feed::handleDownloadFinished);
@@ -416,7 +418,8 @@ void Feed::downloadIcon()
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
     auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->downloadUrl(iconUrl, true);
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
+            Net::DownloadRequest(iconUrl).saveToFile(true));
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
             , this, &Feed::handleIconDownloadFinished);
