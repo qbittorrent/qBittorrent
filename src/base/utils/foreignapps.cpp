@@ -31,6 +31,7 @@
 
 #include <QCoreApplication>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QStringList>
 
 #include "base/logger.h"
@@ -56,8 +57,13 @@ namespace
             if (outputSplit.size() <= 1)
                 return false;
 
+            // User reports: `python --version` -> "Python 3.6.6+"
+            // So trim off unrelated characters
+            const QString versionStr = outputSplit[1];
+            const int idx = versionStr.indexOf(QRegularExpression("[^\\.\\d]"));
+
             try {
-                info = {exeName, outputSplit[1]};
+                info = {exeName, versionStr.left(idx)};
             }
             catch (const std::runtime_error &err) {
                 return false;
