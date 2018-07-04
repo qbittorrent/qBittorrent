@@ -27,6 +27,7 @@
  */
 
 #include "bytearray.h"
+
 #include <QList>
 
 QList<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const QString::SplitBehavior behavior)

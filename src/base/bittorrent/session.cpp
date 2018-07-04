@@ -35,7 +35,6 @@
 #include <string>
 
 #include <QCoreApplication>
-#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QHostAddress>

@@ -104,7 +104,6 @@ private:
     QString downloadPathTorrentFolder(const QString &filePath) const;
     int findPathData(const QString &path) const;
 
-private:
     static ScanFoldersModel *m_instance;
     struct PathData;
 

@@ -17,7 +17,7 @@
    <item>
     <layout class="QHBoxLayout" name="searchBarLayout">
      <item>
-      <widget class="LineEdit" name="m_searchPattern"/>
+      <widget class="LineEdit" name="lineEditSearchPattern"/>
      </item>
      <item>
       <widget class="QComboBox" name="comboCategory">

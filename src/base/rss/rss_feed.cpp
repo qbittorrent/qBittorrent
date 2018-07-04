@@ -30,7 +30,6 @@
 
 #include "rss_feed.h"
 
-#include <QCryptographicHash>
 #include <QDebug>
 #include <QDir>
 #include <QJsonArray>

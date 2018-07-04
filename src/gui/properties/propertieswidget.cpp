@@ -29,9 +29,7 @@
 #include "propertieswidget.h"
 
 #include <QAction>
-#include <QBitArray>
 #include <QDebug>
-#include <QFileDialog>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -39,7 +37,6 @@
 #include <QStackedWidget>
 #include <QThread>
 #include <QTimer>
-#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
@@ -139,10 +136,10 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
-    m_ui->horizontalLayout_trackers->insertWidget(0, m_trackerList);
+    m_ui->hBoxLayoutTrackers->insertWidget(0, m_trackerList);
     // Peers list
     m_peerList = new PeerListWidget(this);
-    m_ui->peerpage_layout->addWidget(m_peerList);
+    m_ui->vBoxLayoutPeerPage->addWidget(m_peerList);
     // Speed widget
     m_speedWidget = new SpeedWidget(this);
     m_ui->speedLayout->addWidget(m_speedWidget);
@@ -364,10 +361,10 @@ void PropertiesWidget::readSettings()
         QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->setSizes(m_slideSizes);
     }
-    const int current_tab = pref->getPropCurTab();
+    const int currentTab = pref->getPropCurTab();
     const bool visible = pref->getPropVisible();
     m_ui->filesList->header()->restoreState(pref->getPropFileListState());
-    m_tabBar->setCurrentIndex(current_tab);
+    m_tabBar->setCurrentIndex(currentTab);
     if (!visible)
         setVisibility(false);
 }
@@ -604,7 +601,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     QMenu subMenu;
     if (!m_torrent->isSeed()) {
         subMenu.setTitle(tr("Priority"));
-        subMenu.addAction(m_ui->actionNot_downloaded);
+        subMenu.addAction(m_ui->actionNotDownloaded);
         subMenu.addAction(m_ui->actionNormal);
         subMenu.addAction(m_ui->actionHigh);
         subMenu.addAction(m_ui->actionMaximum);
@@ -632,7 +629,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
             prio = prio::HIGH;
         else if (act == m_ui->actionMaximum)
             prio = prio::MAXIMUM;
-        else if (act == m_ui->actionNot_downloaded)
+        else if (act == m_ui->actionNotDownloaded)
             prio = prio::IGNORED;
 
         qDebug("Setting files priority");
@@ -807,19 +804,19 @@ void PropertiesWidget::askWebSeed()
 {
     bool ok;
     // Ask user for a new url seed
-    const QString url_seed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
+    const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
                                                            QLatin1String("http://www."), &ok);
     if (!ok) return;
-    qDebug("Adding %s web seed", qUtf8Printable(url_seed));
-    if (!m_ui->listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
+    qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
+    if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty()) {
         QMessageBox::warning(this, "qBittorrent",
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;
     }
     if (m_torrent)
-        m_torrent->addUrlSeeds(QList<QUrl>() << url_seed);
+        m_torrent->addUrlSeeds(QList<QUrl>() << urlSeed);
     // Refresh the seeds list
     loadUrlSeeds();
 }

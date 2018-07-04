@@ -33,7 +33,6 @@
 #include <QDir>
 #include <QLocale>
 #include <QMutableListIterator>
-#include <QPair>
 #include <QSettings>
 
 #ifndef DISABLE_GUI
@@ -257,8 +256,8 @@ void Preferences::setWinStartup(bool b)
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (b) {
-        const QString bin_path = "\"" + Utils::Fs::toNativePath(qApp->applicationFilePath()) + "\"";
-        settings.setValue("qBittorrent", bin_path);
+        const QString binPath = "\"" + Utils::Fs::toNativePath(qApp->applicationFilePath()) + "\"";
+        settings.setValue("qBittorrent", binPath);
     }
     else {
         settings.remove("qBittorrent");
@@ -555,24 +554,24 @@ void Preferences::setWebUiUsername(const QString &username)
 
 QString Preferences::getWebUiPassword() const
 {
-    QString pass_ha1 = value("Preferences/WebUI/Password_ha1").toString();
-    if (pass_ha1.isEmpty()) {
+    QString passHa1 = value("Preferences/WebUI/Password_ha1").toString();
+    if (passHa1.isEmpty()) {
         QCryptographicHash md5(QCryptographicHash::Md5);
         md5.addData("adminadmin");
-        pass_ha1 = md5.result().toHex();
+        passHa1 = md5.result().toHex();
     }
-    return pass_ha1;
+    return passHa1;
 }
 
-void Preferences::setWebUiPassword(const QString &new_password)
+void Preferences::setWebUiPassword(const QString &newPassword)
 {
     // Do not overwrite current password with its hash
-    if (new_password == getWebUiPassword())
+    if (newPassword == getWebUiPassword())
         return;
 
     // Encode to md5 and save
     QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(new_password.toLocal8Bit());
+    md5.addData(newPassword.toLocal8Bit());
 
     setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
 }
@@ -1041,9 +1040,9 @@ void Preferences::setTorrentFileAssoc(bool set)
 
     // .Torrent association
     if (set) {
-        QString old_progid = settings.value(".torrent/Default").toString();
-        if (!old_progid.isEmpty() && (old_progid != "qBittorrent"))
-            settings.setValue(".torrent/OpenWithProgids/" + old_progid, "");
+        QString oldProgId = settings.value(".torrent/Default").toString();
+        if (!oldProgId.isEmpty() && (oldProgId != "qBittorrent"))
+            settings.setValue(".torrent/OpenWithProgids/" + oldProgId, "");
         settings.setValue(".torrent/Default", "qBittorrent");
     }
     else if (isTorrentFileAssocSet()) {
@@ -1059,15 +1058,15 @@ void Preferences::setMagnetLinkAssoc(bool set)
 
     // Magnet association
     if (set) {
-        const QString command_str = "\"" + qApp->applicationFilePath() + "\" \"%1\"";
-        const QString icon_str = "\"" + qApp->applicationFilePath() + "\",1";
+        const QString commandStr = "\"" + qApp->applicationFilePath() + "\" \"%1\"";
+        const QString iconStr = "\"" + qApp->applicationFilePath() + "\",1";
 
         settings.setValue("magnet/Default", "URL:Magnet link");
         settings.setValue("magnet/Content Type", "application/x-magnet");
         settings.setValue("magnet/URL Protocol", "");
-        settings.setValue("magnet/DefaultIcon/Default", Utils::Fs::toNativePath(icon_str));
+        settings.setValue("magnet/DefaultIcon/Default", Utils::Fs::toNativePath(iconStr));
         settings.setValue("magnet/shell/Default", "open");
-        settings.setValue("magnet/shell/open/command/Default", Utils::Fs::toNativePath(command_str));
+        settings.setValue("magnet/shell/open/command/Default", Utils::Fs::toNativePath(commandStr));
     }
     else if (isMagnetLinkAssocSet()) {
         settings.remove("magnet");

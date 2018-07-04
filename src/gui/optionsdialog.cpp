@@ -165,7 +165,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Load week days (scheduler)
     for (uint i = 1; i <= 7; ++i)
-        m_ui->schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
+        m_ui->comboBoxScheduleDays->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
 
     // Load options
     loadOptions();
@@ -176,7 +176,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
         m_ui->checkShowSystray->setChecked(false);
         m_ui->checkShowSystray->setEnabled(false);
-        m_ui->label_trayIconStyle->setVisible(false);
+        m_ui->labelTrayIconStyle->setVisible(false);
         m_ui->comboTrayIcon->setVisible(false);
     }
 #endif
@@ -275,14 +275,14 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->removeScanFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->dest_email_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->smtp_server_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditDestEmail, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditSmtpServer, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkSmtpSSL, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotifAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->autoRun_txt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n%12")
         .arg(tr("Supported parameters (case sensitive):")
@@ -297,7 +297,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         .arg(tr("%T: Current tracker")
             , tr("%I: Info hash")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
-    m_ui->autoRun_param->setText(autoRunStr);
+    m_ui->labelAutoRunParam->setText(autoRunStr);
 
     // Connection tab
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -312,10 +312,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->check_schedule, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->schedule_from, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->schedule_to, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->schedule_days, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupBoxSchedule, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->timeEditScheduleFrom, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->timeEditScheduleTo, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboBoxScheduleDays, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -518,10 +518,11 @@ void OptionsDialog::saveWindowState() const
     pref->setPrefSize(size());
 
     // Splitter size
-    QStringList sizes_str;
-    sizes_str << QString::number(m_ui->hsplitter->sizes().first());
-    sizes_str << QString::number(m_ui->hsplitter->sizes().last());
-    pref->setPrefHSplitterSizes(sizes_str);
+    const QStringList sizesStr = {
+        QString::number(m_ui->hsplitter->sizes().first()),
+        QString::number(m_ui->hsplitter->sizes().last())
+    };
+    pref->setPrefHSplitterSizes(sizesStr);
 }
 
 void OptionsDialog::saveOptions()
@@ -617,14 +618,14 @@ void OptionsDialog::saveOptions()
     session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
-    pref->setMailNotificationEmail(m_ui->dest_email_txt->text());
-    pref->setMailNotificationSMTP(m_ui->smtp_server_txt->text());
+    pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
+    pref->setMailNotificationSMTP(m_ui->lineEditSmtpServer->text());
     pref->setMailNotificationSMTPSSL(m_ui->checkSmtpSSL->isChecked());
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
-    pref->setAutoRunProgram(m_ui->autoRun_txt->text().trimmed());
+    pref->setAutoRunProgram(m_ui->lineEditAutoRun->text().trimmed());
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
@@ -637,19 +638,19 @@ void OptionsDialog::saveOptions()
     session->setPort(getPort());
     session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
-    const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
-    session->setGlobalDownloadSpeedLimit(down_up_limit.first);
-    session->setGlobalUploadSpeedLimit(down_up_limit.second);
+    const QPair<int, int> downUpLimit = getGlobalBandwidthLimits();
+    session->setGlobalDownloadSpeedLimit(downUpLimit.first);
+    session->setGlobalUploadSpeedLimit(downUpLimit.second);
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
-    const QPair<int, int> alt_down_up_limit = getAltGlobalBandwidthLimits();
-    session->setAltGlobalDownloadSpeedLimit(alt_down_up_limit.first);
-    session->setAltGlobalUploadSpeedLimit(alt_down_up_limit.second);
-    pref->setSchedulerStartTime(m_ui->schedule_from->time());
-    pref->setSchedulerEndTime(m_ui->schedule_to->time());
-    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->schedule_days->currentIndex()));
-    session->setBandwidthSchedulerEnabled(m_ui->check_schedule->isChecked());
+    const QPair<int, int> altDownUpLimit = getAltGlobalBandwidthLimits();
+    session->setAltGlobalDownloadSpeedLimit(altDownUpLimit.first);
+    session->setAltGlobalUploadSpeedLimit(altDownUpLimit.second);
+    pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
+    pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
+    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
+    session->setBandwidthSchedulerEnabled(m_ui->groupBoxSchedule->isChecked());
 
     auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
@@ -881,15 +882,15 @@ void OptionsDialog::loadOptions()
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
-    m_ui->dest_email_txt->setText(pref->getMailNotificationEmail());
-    m_ui->smtp_server_txt->setText(pref->getMailNotificationSMTP());
+    m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
+    m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
     m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
-    m_ui->autoRun_txt->setText(pref->getAutoRunProgram());
+    m_ui->lineEditAutoRun->setText(pref->getAutoRunProgram());
     intValue = pref->getActionOnDblClOnTorrentDl();
     if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
         intValue = 0;
@@ -1056,10 +1057,10 @@ void OptionsDialog::loadOptions()
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
-    m_ui->check_schedule->setChecked(session->isBandwidthSchedulerEnabled());
-    m_ui->schedule_from->setTime(pref->getSchedulerStartTime());
-    m_ui->schedule_to->setTime(pref->getSchedulerEndTime());
-    m_ui->schedule_days->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
+    m_ui->groupBoxSchedule->setChecked(session->isBandwidthSchedulerEnabled());
+    m_ui->timeEditScheduleFrom->setTime(pref->getSchedulerStartTime());
+    m_ui->timeEditScheduleTo->setTime(pref->getSchedulerEndTime());
+    m_ui->comboBoxScheduleDays->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
     // End Speed preferences
 
     // Bittorrent preferences
@@ -1786,7 +1787,7 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 
 bool OptionsDialog::schedTimesOk()
 {
-    if (m_ui->schedule_from->time() == m_ui->schedule_to->time()) {
+    if (m_ui->timeEditScheduleFrom->time() == m_ui->timeEditScheduleTo->time()) {
         QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
         return false;
     }

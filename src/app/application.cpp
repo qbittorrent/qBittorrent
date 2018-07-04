@@ -33,7 +33,6 @@
 
 #include <QAtomicInt>
 #include <QDebug>
-#include <QFileInfo>
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QProcess>
@@ -51,8 +50,6 @@
 #endif // Q_OS_WIN
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
-#include <QFont>
-#include <QUrl>
 #endif // Q_OS_MAC
 #include "addnewtorrentdialog.h"
 #include "gui/guiiconprovider.h"

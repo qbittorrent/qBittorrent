@@ -33,7 +33,6 @@
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
-#include <QMessageBox>
 #include <QScrollArea>
 #include <QUrl>
 #include <QVBoxLayout>

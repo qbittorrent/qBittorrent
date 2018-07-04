@@ -38,25 +38,24 @@
 
 class QCloseEvent;
 class QFileSystemWatcher;
-class QShortcut;
 class QSplitter;
 class QTabWidget;
 class QTimer;
 
-class DownloadFromURLDialog;
-class SearchWidget;
-class RSSWidget;
 class AboutDialog;
+class DownloadFromURLDialog;
+class ExecutionLogWidget;
+class LineEdit;
 class OptionsDialog;
-class TransferListWidget;
-class TransferListFiltersWidget;
+class PowerManagement;
 class PropertiesWidget;
+class RSSWidget;
+class SearchWidget;
+class StatsDialog;
 class StatusBar;
 class TorrentCreatorDialog;
-class LineEdit;
-class ExecutionLogWidget;
-class PowerManagement;
-class StatsDialog;
+class TransferListFiltersWidget;
+class TransferListWidget;
 
 namespace BitTorrent
 {

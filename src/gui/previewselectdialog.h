@@ -30,7 +30,6 @@
 #define PREVIEWSELECTDIALOG_H
 
 #include <QDialog>
-#include <QList>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/settingvalue.h"

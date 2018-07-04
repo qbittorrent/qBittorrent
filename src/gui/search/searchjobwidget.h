@@ -35,11 +35,9 @@
 #define URL_COLUMN 5
 
 class QHeaderView;
-class QLabel;
 class QModelIndex;
 class QStandardItem;
 class QStandardItemModel;
-class QVBoxLayout;
 
 template <typename T> class CachedSettingValue;
 

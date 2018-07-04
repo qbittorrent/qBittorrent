@@ -140,7 +140,7 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLabel" name="lbl_mustnot_stat">
+             <widget class="QLabel" name="labelMustNotStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -153,7 +153,7 @@
              <widget class="QLineEdit" name="lineContains"/>
             </item>
             <item row="0" column="2">
-             <widget class="QLabel" name="lbl_must_stat">
+             <widget class="QLabel" name="labelMustStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -163,7 +163,7 @@
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="QLabel" name="lbl_epfilter_stat">
+             <widget class="QLabel" name="labelEpFilterStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -223,7 +223,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
            </layout>
           </item>
           <item>
-           <widget class="QCheckBox" name="saveDiffDir_check">
+           <widget class="QCheckBox" name="checkBoxSaveDiffDir">
             <property name="text">
              <string>Save to a Different Directory</string>
             </property>
@@ -438,7 +438,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
   <tabstop>lineNotContains</tabstop>
   <tabstop>lineEFilter</tabstop>
   <tabstop>comboCategory</tabstop>
-  <tabstop>saveDiffDir_check</tabstop>
+  <tabstop>checkBoxSaveDiffDir</tabstop>
   <tabstop>lineSavePath</tabstop>
   <tabstop>browseSP</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
@@ -483,7 +483,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
    </hints>
   </connection>
   <connection>
-   <sender>saveDiffDir_check</sender>
+   <sender>checkBoxSaveDiffDir</sender>
    <signal>toggled(bool)</signal>
    <receiver>label_6</receiver>
    <slot>setEnabled(bool)</slot>
@@ -499,7 +499,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
    </hints>
   </connection>
   <connection>
-   <sender>saveDiffDir_check</sender>
+   <sender>checkBoxSaveDiffDir</sender>
    <signal>toggled(bool)</signal>
    <receiver>lineSavePath</receiver>
    <slot>setEnabled(bool)</slot>
@@ -515,7 +515,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
    </hints>
   </connection>
   <connection>
-   <sender>saveDiffDir_check</sender>
+   <sender>checkBoxSaveDiffDir</sender>
    <signal>toggled(bool)</signal>
    <receiver>browseSP</receiver>
    <slot>setEnabled(bool)</slot>

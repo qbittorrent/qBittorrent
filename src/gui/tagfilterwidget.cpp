@@ -31,7 +31,6 @@
 #include <QAction>
 #include <QDebug>
 #include <QHeaderView>
-#include <QLayout>
 #include <QMenu>
 #include <QMessageBox>
 

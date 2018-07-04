@@ -210,7 +210,7 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     if (!f2.open(QIODevice::ReadOnly)) return false;
 
     const int readSize = 1024 * 1024;  // 1 MiB
-    while(!f1.atEnd() && !f2.atEnd()) {
+    while (!f1.atEnd() && !f2.atEnd()) {
         if (f1.read(readSize) != f2.read(readSize))
             return false;
     }

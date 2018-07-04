@@ -82,14 +82,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="never_show_cb">
+    <widget class="QCheckBox" name="checkBoxNeverShow">
      <property name="text">
       <string>Never show again</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QToolButton" name="adv_button">
+    <widget class="QToolButton" name="toolButtonAdvanced">
      <property name="text">
       <string notr="true">▼</string>
      </property>
@@ -99,7 +99,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="settings_group">
+    <widget class="QGroupBox" name="groupBoxSettings">
      <property name="title">
       <string>Torrent settings</string>
      </property>
@@ -224,7 +224,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="date_lbl">
+       <widget class="QLabel" name="labelDate">
         <property name="text">
          <string/>
         </property>
@@ -245,7 +245,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="size_lbl">
+       <widget class="QLabel" name="labelSize">
         <property name="text">
          <string/>
         </property>
@@ -372,7 +372,7 @@
     <string>Maximum</string>
    </property>
   </action>
-  <action name="actionNot_downloaded">
+  <action name="actionNotDownloaded">
    <property name="text">
     <string>Do not download</string>
    </property>
@@ -393,9 +393,9 @@
  </customwidgets>
  <tabstops>
   <tabstop>savePath</tabstop>
-  <tabstop>checkBoxRememberLastSavePath</tabstop> 
-  <tabstop>never_show_cb</tabstop>
-  <tabstop>adv_button</tabstop>
+  <tabstop>checkBoxRememberLastSavePath</tabstop>
+  <tabstop>checkBoxNeverShow</tabstop>
+  <tabstop>toolButtonAdvanced</tabstop>
   <tabstop>startTorrentCheckBox</tabstop>
   <tabstop>skipCheckingCheckBox</tabstop>
   <tabstop>categoryComboBox</tabstop>

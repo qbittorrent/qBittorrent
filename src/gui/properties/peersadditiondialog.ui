@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="peers_txt">
+    <widget class="QTextEdit" name="textEditPeers">
      <property name="lineWrapMode">
       <enum>QTextEdit::NoWrap</enum>
      </property>

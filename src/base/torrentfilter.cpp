@@ -26,8 +26,9 @@
  * exception statement from your version.
  */
 
-#include "bittorrent/torrenthandle.h"
 #include "torrentfilter.h"
+
+#include "bittorrent/torrenthandle.h"
 
 const QString TorrentFilter::AnyCategory;
 const QStringSet TorrentFilter::AnyHash = (QStringSet() << QString());
