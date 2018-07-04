@@ -3460,9 +3460,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>DNSUsernameTxt</tabstop>
   <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>checkUploadLimit</sender>
