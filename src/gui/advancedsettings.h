@@ -51,6 +51,7 @@ signals:
 
 private slots:
     void updateCacheSpinSuffix(int value);
+    void updateSaveResumeDataIntervalSuffix(int value);
     void updateInterfaceAddressCombo();
 
 private:
