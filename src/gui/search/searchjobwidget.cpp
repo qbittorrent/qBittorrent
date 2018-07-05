@@ -198,6 +198,11 @@ int SearchJobWidget::visibleResultsCount() const
     return m_proxyModel->rowCount();
 }
 
+LineEdit *SearchJobWidget::lineEditSearchResultsFilter() const
+{
+    return m_lineEditSearchResultsFilter;
+}
+
 void SearchJobWidget::cancelSearch()
 {
     m_searchHandler->cancelSearch();
