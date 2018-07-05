@@ -41,6 +41,7 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QShortcut>
 #include <QSignalMapper>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -154,6 +155,9 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
             , this, &SearchWidget::selectMultipleBox);
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::fillCatCombobox);
+
+    m_focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
+    connect(m_focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 }
 
 void SearchWidget::fillCatCombobox()
@@ -258,6 +262,18 @@ void SearchWidget::selectMultipleBox(int index)
     Q_UNUSED(index);
     if (selectedPlugin() == "multi")
         on_pluginsButton_clicked();
+}
+
+void SearchWidget::toggleFocusBetweenLineEdits()
+{
+    if (m_ui->lineEditSearchPattern->hasFocus() && m_currentSearchTab) {
+        m_currentSearchTab->lineEditSearchResultsFilter()->setFocus();
+        m_currentSearchTab->lineEditSearchResultsFilter()->selectAll();
+    }
+    else {
+        m_ui->lineEditSearchPattern->setFocus();
+        m_ui->lineEditSearchPattern->selectAll();
+    }
 }
 
 void SearchWidget::on_pluginsButton_clicked()
