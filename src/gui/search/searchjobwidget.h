@@ -79,6 +79,7 @@ public:
 
     Status status() const;
     int visibleResultsCount() const;
+    LineEdit *lineEditSearchResultsFilter() const;
 
     void cancelSearch();
 
