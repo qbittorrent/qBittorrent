@@ -28,6 +28,8 @@
 
 #include "advancedsettings.h"
 
+#include <limits>
+
 #include <QFont>
 #include <QHeaderView>
 #include <QHostAddress>
@@ -129,6 +131,8 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
             , this, &AdvancedSettings::updateCacheSpinSuffix);
     connect(&comboBoxInterface, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &AdvancedSettings::updateInterfaceAddressCombo);
+    connect(&spinBoxSaveResumeDataInterval, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+            , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -241,6 +245,14 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
         spinBoxCache.setSuffix(tr(" MiB"));
 }
 
+void AdvancedSettings::updateSaveResumeDataIntervalSuffix(const int value)
+{
+    if (value > 0)
+        spinBoxSaveResumeDataInterval.setSuffix(tr(" min", " minutes"));
+    else
+        spinBoxSaveResumeDataInterval.setSuffix(tr(" (disabled)"));
+}
+
 void AdvancedSettings::updateInterfaceAddressCombo()
 {
     // Try to get the currently selected interface name
@@ -346,10 +358,10 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, tr("Send buffer watermark factor"), &spinBoxSendBufferWatermarkFactor);
     // Save resume data interval
-    spinBoxSaveResumeDataInterval.setMinimum(1);
-    spinBoxSaveResumeDataInterval.setMaximum(1440);
+    spinBoxSaveResumeDataInterval.setMinimum(0);
+    spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());
     spinBoxSaveResumeDataInterval.setValue(session->saveResumeDataInterval());
-    spinBoxSaveResumeDataInterval.setSuffix(tr(" m", " minutes"));
+    updateSaveResumeDataIntervalSuffix(spinBoxSaveResumeDataInterval.value());
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &spinBoxSaveResumeDataInterval);
     // Outgoing port Min
     spinBoxOutgoingPortsMin.setMinimum(0);

@@ -330,7 +330,7 @@ Session::Session(QObject *parent)
     , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalUPSpeedLimit"), 10, lowerLimited(0))
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
-    , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 3)
+    , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
@@ -510,11 +510,6 @@ Session::Session(QObject *parent)
     connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
     m_refreshTimer->start();
 
-    // Regular saving of fastresume data
-    m_resumeDataTimer = new QTimer(this);
-    m_resumeDataTimer->setInterval(saveResumeDataInterval() * 60 * 1000);
-    connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
-
     m_statistics = new Statistics(this);
 
     updateSeedingLimitTimer();
@@ -536,7 +531,15 @@ Session::Session(QObject *parent)
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
     m_ioThread->start();
-    m_resumeDataTimer->start();
+
+    // Regular saving of fastresume data
+    m_resumeDataTimer = new QTimer(this);
+    connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
+    const uint saveInterval = saveResumeDataInterval();
+    if (saveInterval > 0) {
+        m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
+        m_resumeDataTimer->start();
+    }
 
     // initialize PortForwarder instance
     Net::PortForwarder::initInstance(m_nativeSession);
@@ -2704,11 +2707,19 @@ uint Session::saveResumeDataInterval() const
     return m_saveResumeDataInterval;
 }
 
-void Session::setSaveResumeDataInterval(uint value)
+void Session::setSaveResumeDataInterval(const uint value)
 {
-    if (value != saveResumeDataInterval()) {
-        m_saveResumeDataInterval = value;
+    if (value == m_saveResumeDataInterval)
+        return;
+
+    m_saveResumeDataInterval = value;
+
+    if (value > 0) {
         m_resumeDataTimer->setInterval(value * 60 * 1000);
+        m_resumeDataTimer->start();
+    }
+    else {
+        m_resumeDataTimer->stop();
     }
 }
 
