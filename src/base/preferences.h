@@ -193,6 +193,8 @@ public:
     void setWebUiUsername(const QString &username);
     QString getWebUiPassword() const;
     void setWebUiPassword(const QString &newPassword);
+    QString getReverseProxyAddress() const;
+    void setReverseProxyAddress(const QString &addr);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

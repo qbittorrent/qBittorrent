@@ -55,6 +55,7 @@ namespace Http
     const char HEADER_SET_COOKIE[] = "set-cookie";
     const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
     const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
+    const char HEADER_X_FORWARDED_FOR[] = "x-forwarded-for";
     const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
     const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
 

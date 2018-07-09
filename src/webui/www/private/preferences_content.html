@@ -457,6 +457,9 @@
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
                 <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
             </div>
+            <div class="formRow">
+                <label for="reverse_proxy_address_text" class="leftLabelSmall">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="reverse_proxy_address_text" />
+            </div>
         </fieldset>
 
         <div class="formRow">
@@ -1029,6 +1032,7 @@
                     $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
                     $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
                     $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
+                    $('reverse_proxy_address_text').setProperty('value', pref.reverse_proxy_address);
                     updateBypasssAuthSettings();
 
                     // Security
@@ -1325,6 +1329,7 @@
         settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+        settings.set('reverse_proxy_address', $('reverse_proxy_address_text').getProperty('value'));
 
         settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
         settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
