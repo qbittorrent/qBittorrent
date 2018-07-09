@@ -79,6 +79,9 @@ enum AdvSettingsRows
 
     // libtorrent section
     LIBTORRENT_HEADER,
+#if LIBTORRENT_VERSION_NUM >= 10100
+    ASYNC_IO_THREADS,
+#endif
     // cache
     DISK_CACHE,
     DISK_CACHE_TTL,
@@ -144,6 +147,10 @@ void AdvancedSettings::saveAdvancedSettings()
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
+#if LIBTORRENT_VERSION_NUM >= 10100
+    // Async IO threads
+    session->setAsyncIOThreads(spinBoxAsyncIOThreads.value());
+#endif
     // Disk write cache
     session->setDiskCacheSize(spinBoxCache.value());
     session->setDiskCacheTTL(spinBoxCacheTTL.value());
@@ -308,6 +315,14 @@ void AdvancedSettings::loadAdvancedSettings()
     item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
     labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+    // Async IO threads
+    spinBoxAsyncIOThreads.setMinimum(1);
+    spinBoxAsyncIOThreads.setMaximum(1024);
+    spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
+    addRow(ASYNC_IO_THREADS, tr("Asynchronous I/O threads"), &spinBoxAsyncIOThreads);
+#endif
     // Disk write cache
     spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
