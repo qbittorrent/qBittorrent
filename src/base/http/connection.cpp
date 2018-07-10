@@ -92,22 +92,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::OK: {
-                QString forwarded_for = result.request.headers.value(Http::HEADER_X_FORWARDED_FOR);
-
-                QHostAddress peerAddress = m_socket->peerAddress();
-
-                if(!forwarded_for.isEmpty()) {
-                    Preferences *const pref = Preferences::instance();
-
-                    QString reverseProxyAddressFilter = pref->getReverseProxyAddress();
-
-                    // Only reverse proxy can overwrite peer address
-                    if(!reverseProxyAddressFilter.isEmpty() && peerAddress.isEqual(QHostAddress(reverseProxyAddressFilter))) {
-                        peerAddress.setAddress(forwarded_for.split(",").at(0));
-                    }
-                }
-
-                const Environment env {m_socket->localAddress(), m_socket->localPort(), peerAddress, m_socket->peerPort()};
+                const Environment env {m_socket->localAddress(), m_socket->localPort(), resolvPeerAddress(result.request), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
@@ -184,3 +169,23 @@ bool Connection::acceptsGzipEncoding(QString codings)
 
     return false;
 }
+
+QHostAddress Connection::resolvPeerAddress(const Http::Request &request)
+{
+    QHostAddress peerAddress = m_socket->peerAddress();
+    QString forwarded_for = request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+
+    if(!forwarded_for.isEmpty()) {
+        Preferences *const pref = Preferences::instance();
+
+        QString reverseProxyAddress = pref->getReverseProxyAddress();
+
+        // Only reverse proxy can overwrite peer address
+        if(!reverseProxyAddress.isEmpty() && peerAddress.isEqual(QHostAddress(reverseProxyAddress))) {
+            peerAddress.setAddress(forwarded_for.split(",").at(0));
+        }
+    }
+
+    return peerAddress;
+}
+
