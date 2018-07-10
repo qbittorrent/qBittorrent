@@ -2362,7 +2362,6 @@ void Session::generateResumeData(bool final)
         if (!final && !torrent->needSaveResumeData()) continue;
 
         saveTorrentResumeData(torrent, final);
-        qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
     }
 }
 
@@ -3529,45 +3528,58 @@ void Session::updateSeedingLimitTimer()
 
 void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
 {
-    Q_UNUSED(torrent);
+    saveTorrentResumeData(torrent);
     updateSeedingLimitTimer();
 }
 
 void Session::saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave)
 {
+    qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
     torrent->saveResumeData(finalSave);
     ++m_numResumeData;
 }
 
+void Session::handleTorrentNameChanged(TorrentHandle *const torrent)
+{
+    saveTorrentResumeData(torrent);
+}
+
 void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
 {
+    saveTorrentResumeData(torrent);
     emit torrentSavePathChanged(torrent);
 }
 
 void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory)
 {
+    saveTorrentResumeData(torrent);
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
 void Session::handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag)
 {
+    saveTorrentResumeData(torrent);
     emit torrentTagAdded(torrent, tag);
 }
 
 void Session::handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag)
 {
+    saveTorrentResumeData(torrent);
     emit torrentTagRemoved(torrent, tag);
 }
 
 void Session::handleTorrentSavingModeChanged(TorrentHandle *const torrent)
 {
+    saveTorrentResumeData(torrent);
     emit torrentSavingModeChanged(torrent);
 }
 
 void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers)
 {
-    foreach (const TrackerEntry &newTracker, newTrackers)
-        Logger::instance()->addMessage(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url(), torrent->name()));
+    saveTorrentResumeData(torrent);
+
+    for (const TrackerEntry &newTracker : newTrackers)
+        LogMsg(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url(), torrent->name()));
     emit trackersAdded(torrent, newTrackers);
     if (torrent->trackers().size() == newTrackers.size())
         emit trackerlessStateChanged(torrent, false);
@@ -3576,8 +3588,10 @@ void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QLi
 
 void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QList<TrackerEntry> &deletedTrackers)
 {
-    foreach (const TrackerEntry &deletedTracker, deletedTrackers)
-        Logger::instance()->addMessage(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
+    saveTorrentResumeData(torrent);
+
+    for (const TrackerEntry &deletedTracker : deletedTrackers)
+        LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
     emit trackersRemoved(torrent, deletedTrackers);
     if (torrent->trackers().size() == 0)
         emit trackerlessStateChanged(torrent, true);
@@ -3586,19 +3600,22 @@ void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const Q
 
 void Session::handleTorrentTrackersChanged(TorrentHandle *const torrent)
 {
+    saveTorrentResumeData(torrent);
     emit trackersChanged(torrent);
 }
 
 void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds)
 {
-    foreach (const QUrl &newUrlSeed, newUrlSeeds)
-        Logger::instance()->addMessage(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
+    saveTorrentResumeData(torrent);
+    for (const QUrl &newUrlSeed : newUrlSeeds)
+        LogMsg(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds)
 {
-    foreach (const QUrl &urlSeed, urlSeeds)
-        Logger::instance()->addMessage(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString(), torrent->name()));
+    saveTorrentResumeData(torrent);
+    for (const QUrl &urlSeed : urlSeeds)
+        LogMsg(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
@@ -3626,6 +3643,7 @@ void Session::handleTorrentPaused(TorrentHandle *const torrent)
 
 void Session::handleTorrentResumed(TorrentHandle *const torrent)
 {
+    saveTorrentResumeData(torrent);
     emit torrentResumed(torrent);
 }
 
@@ -4012,6 +4030,7 @@ void Session::handleAlert(libt::alert *a)
         case libt::storage_moved_alert::alert_type:
         case libt::storage_moved_failed_alert::alert_type:
         case libt::torrent_paused_alert::alert_type:
+        case libt::torrent_resumed_alert::alert_type:
         case libt::tracker_error_alert::alert_type:
         case libt::tracker_reply_alert::alert_type:
         case libt::tracker_warning_alert::alert_type:

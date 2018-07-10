@@ -191,7 +191,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasRootFolder(data.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
     , m_pauseAfterRecheck(false)
-    , m_needSaveResumeData(false)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -488,8 +487,6 @@ bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
 
 bool TorrentHandle::needSaveResumeData() const
 {
-    if (m_needSaveResumeData) return true;
-
     return m_nativeHandle.need_save_resume_data();
 }
 
@@ -499,7 +496,6 @@ void TorrentHandle::saveResumeData(bool updateStatus)
         this->updateStatus();
 
     m_nativeHandle.save_resume_data();
-    m_needSaveResumeData = false;
 }
 
 int TorrentHandle::filesCount() const
@@ -573,7 +569,6 @@ bool TorrentHandle::addTag(const QString &tag)
                 return false;
         m_tags.insert(tag);
         m_session->handleTorrentTagAdded(this, tag);
-        m_needSaveResumeData = true;
         return true;
     }
     return false;
@@ -583,7 +578,6 @@ bool TorrentHandle::removeTag(const QString &tag)
 {
     if (m_tags.remove(tag)) {
         m_session->handleTorrentTagRemoved(this, tag);
-        m_needSaveResumeData = true;
         return true;
     }
     return false;
@@ -1198,7 +1192,7 @@ void TorrentHandle::setName(const QString &name)
 {
     if (m_name != name) {
         m_name = name;
-        m_needSaveResumeData = true;
+        m_session->handleTorrentNameChanged(this);
     }
 }
 
@@ -1214,7 +1208,6 @@ bool TorrentHandle::setCategory(const QString &category)
 
         QString oldCategory = m_category;
         m_category = category;
-        m_needSaveResumeData = true;
         m_session->handleTorrentCategoryChanged(this, oldCategory);
 
         if (m_useAutoTMM) {
@@ -1252,7 +1245,6 @@ void TorrentHandle::move_impl(QString path, bool overwrite)
     }
     else {
         m_savePath = path;
-        m_needSaveResumeData = true;
         m_session->handleTorrentSavePathChanged(this);
     }
 }
@@ -1806,6 +1798,9 @@ void TorrentHandle::handleAlert(libtorrent::alert *a)
     case libt::torrent_paused_alert::alert_type:
         handleTorrentPausedAlert(static_cast<libt::torrent_paused_alert*>(a));
         break;
+    case libt::torrent_resumed_alert::alert_type:
+        handleTorrentResumedAlert(static_cast<libt::torrent_resumed_alert*>(a));
+        break;
     case libt::tracker_error_alert::alert_type:
         handleTrackerErrorAlert(static_cast<libt::tracker_error_alert*>(a));
         break;
@@ -1928,7 +1923,6 @@ void TorrentHandle::setRatioLimit(qreal limit)
 
     if (m_ratioLimit != limit) {
         m_ratioLimit = limit;
-        m_needSaveResumeData = true;
         m_session->handleTorrentShareLimitChanged(this);
     }
 }
@@ -1942,7 +1936,6 @@ void TorrentHandle::setSeedingTimeLimit(int limit)
 
     if (m_seedingTimeLimit != limit) {
         m_seedingTimeLimit = limit;
-        m_needSaveResumeData = true;
         m_session->handleTorrentShareLimitChanged(this);
     }
 }

@@ -461,7 +461,6 @@ namespace BitTorrent
         bool m_needsToSetFirstLastPiecePriority;
 
         bool m_pauseAfterRecheck;
-        bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;
     };
 }
