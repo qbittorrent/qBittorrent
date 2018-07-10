@@ -3155,7 +3155,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </widget>
                   </item>
                   <item row="7" column="1">
-                   <widget class="QLineEdit" name="textReverseProxyAddress"/>
+                   <widget class="QLineEdit" name="textReverseProxyAddress">
+                    <property name="toolTip">
+                     <string>Specify reverse proxy IP in order to use forwarded client address (X-Forwarded-For attribute)</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
