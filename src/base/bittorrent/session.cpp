@@ -111,7 +111,7 @@ using namespace BitTorrent;
 namespace
 {
     bool readFile(const QString &path, QByteArray &buf);
-    bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &torrentData, int &prio, MagnetUri &magnetUri);
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri);
 
     void torrentQueuePositionUp(const libt::torrent_handle &handle);
     void torrentQueuePositionDown(const libt::torrent_handle &handle);
@@ -2110,15 +2110,15 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 }
 
 // Add a torrent to the BitTorrent session
-bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri,
+bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magnetUri,
                               TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
-    addData.savePath = normalizeSavePath(addData.savePath, "");
+    params.savePath = normalizeSavePath(params.savePath, "");
 
-    if (!addData.category.isEmpty()) {
-        if (!m_categories.contains(addData.category) && !addCategory(addData.category)) {
-            qWarning() << "Couldn't create category" << addData.category;
-            addData.category = "";
+    if (!params.category.isEmpty()) {
+        if (!m_categories.contains(params.category) && !addCategory(params.category)) {
+            qWarning() << "Couldn't create category" << params.category;
+            params.category = "";
         }
     }
 
@@ -2127,10 +2127,10 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     std::vector<boost::uint8_t> filePriorities;
 
     QString savePath;
-    if (addData.savePath.isEmpty()) // using Automatic mode
-        savePath = categorySavePath(addData.category);
+    if (params.savePath.isEmpty()) // using Automatic mode
+        savePath = categorySavePath(params.category);
     else  // using Manual mode
-        savePath = addData.savePath;
+        savePath = params.savePath;
 
     bool fromMagnetUri = magnetUri.isValid();
     if (fromMagnetUri) {
@@ -2151,7 +2151,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
             adjustLimits();
 
             // use common 2nd step of torrent addition
-            m_addingTorrents.insert(hash, addData);
+            m_addingTorrents.insert(hash, params);
             createTorrentHandle(handle);
             return true;
         }
@@ -2159,23 +2159,23 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         p = magnetUri.addTorrentParams();
     }
     else if (torrentInfo.isValid()) {
-        if (!addData.resumed) {
-            if (!addData.hasRootFolder)
+        if (!params.restored) {
+            if (!params.hasRootFolder)
                 torrentInfo.stripRootFolder();
 
             // Metadata
-            if (!addData.hasSeedStatus)
+            if (!params.hasSeedStatus)
                 findIncompleteFiles(torrentInfo, savePath);
 
             // if torrent name wasn't explicitly set we handle the case of
             // initial renaming of torrent content and rename torrent accordingly
-            if (addData.name.isEmpty()) {
+            if (params.name.isEmpty()) {
                 QString contentName = torrentInfo.rootFolder();
                 if (contentName.isEmpty() && (torrentInfo.filesCount() == 1))
                     contentName = torrentInfo.fileName(0);
 
                 if (!contentName.isEmpty() && (contentName != torrentInfo.name()))
-                    addData.name = contentName;
+                    params.name = contentName;
             }
         }
 
@@ -2189,13 +2189,13 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
         return false;
     }
 
-    if (addData.resumed && !fromMagnetUri) {
+    if (params.restored && !fromMagnetUri) {
         // Set torrent fast resume data
         p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
         p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
     }
     else {
-        foreach (int prio, addData.filePriorities)
+        foreach (int prio, params.filePriorities)
             filePriorities.push_back(prio);
         p.file_priorities = filePriorities;
     }
@@ -2228,7 +2228,7 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
 
     // Seeding mode
     // Skip checking and directly start seeding (new in libtorrent v0.15)
-    if (addData.skipChecking)
+    if (params.skipChecking)
         p.flags |= libt::add_torrent_params::flag_seed_mode;
     else
         p.flags &= ~libt::add_torrent_params::flag_seed_mode;
@@ -2237,10 +2237,10 @@ bool Session::addTorrent_impl(AddTorrentData addData, const MagnetUri &magnetUri
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-    p.upload_limit = addData.uploadLimit;
-    p.download_limit = addData.downloadLimit;
+    p.upload_limit = params.uploadLimit;
+    p.download_limit = params.downloadLimit;
 
-    m_addingTorrents.insert(hash, addData);
+    m_addingTorrents.insert(hash, params);
     // Adding torrent to BitTorrent session
     m_nativeSession->async_add_torrent(p);
     return true;
@@ -3849,7 +3849,7 @@ void Session::startUpTorrents()
     {
         QString hash;
         MagnetUri magnetUri;
-        AddTorrentData addTorrentData;
+        CreateTorrentParams addTorrentData;
         QByteArray data;
     } TorrentResumeData;
 
@@ -3882,12 +3882,12 @@ void Session::startUpTorrents()
         QString hash = rxMatch.captured(1);
         QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
         QByteArray data;
-        AddTorrentData resumeData;
+        CreateTorrentParams torrentParams;
         MagnetUri magnetUri;
         int queuePosition;
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, resumeData, queuePosition, magnetUri)) {
+        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
             if (queuePosition <= nextQueuePosition) {
-                startupTorrent({ hash, magnetUri, resumeData, data });
+                startupTorrent({ hash, magnetUri, torrentParams, data });
 
                 if (queuePosition == nextQueuePosition) {
                     ++nextQueuePosition;
@@ -3904,7 +3904,7 @@ void Session::startUpTorrents()
                 if (q != queuePosition) {
                     ++numOfRemappedFiles;
                 }
-                queuedResumeData[q] = {hash, magnetUri, resumeData, data};
+                queuedResumeData[q] = {hash, magnetUri, torrentParams, data};
             }
         }
     }
@@ -4108,25 +4108,19 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
     // Magnet added for preload its metadata
     if (!m_addingTorrents.contains(nativeHandle.info_hash())) return;
 
-    AddTorrentData data = m_addingTorrents.take(nativeHandle.info_hash());
+    CreateTorrentParams params = m_addingTorrents.take(nativeHandle.info_hash());
 
-    TorrentHandle *const torrent = new TorrentHandle(this, nativeHandle, data);
+    TorrentHandle *const torrent = new TorrentHandle(this, nativeHandle, params);
     m_torrents.insert(torrent->hash(), torrent);
 
     Logger *const logger = Logger::instance();
 
     bool fromMagnetUri = !torrent->hasMetadata();
 
-    if (data.resumed) {
-        if (fromMagnetUri && !data.addPaused)
-            torrent->resume(data.addForced);
-
-        logger->addMessage(tr("'%1' resumed. (fast resume)", "'torrent name' was resumed. (fast resume)")
-                           .arg(torrent->name()));
+    if (params.restored) {
+        logger->addMessage(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
     }
     else {
-        qDebug("This is a NEW torrent (first time)...");
-
         // The following is useless for newly added magnet
         if (!fromMagnetUri) {
             // Backup torrent file
@@ -4145,9 +4139,6 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         if (isAddTrackersEnabled() && !torrent->isPrivate())
             torrent->addTrackers(m_additionalTrackerList);
 
-        // Start torrent because it was added in paused state
-        if (!data.addPaused)
-            torrent->resume();
         logger->addMessage(tr("'%1' added to download list.", "'torrent name' was added to download list.")
                            .arg(torrent->name()));
 
@@ -4163,7 +4154,7 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
     // Send torrent addition signal
     emit torrentAdded(torrent);
     // Send new torrent signal
-    if (!data.resumed)
+    if (!params.restored)
         emit torrentNew(torrent);
 }
 
@@ -4513,11 +4504,11 @@ namespace
         return true;
     }
 
-    bool loadTorrentResumeData(const QByteArray &data, AddTorrentData &torrentData, int &prio,  MagnetUri &magnetUri)
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio,  MagnetUri &magnetUri)
     {
-        torrentData = AddTorrentData();
-        torrentData.resumed = true;
-        torrentData.skipChecking = false;
+        torrentParams = CreateTorrentParams();
+        torrentParams.restored = true;
+        torrentParams.skipChecking = false;
 
         libt::error_code ec;
 #if LIBTORRENT_VERSION_NUM < 10100
@@ -4530,36 +4521,36 @@ namespace
         if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
 #endif
 
-        torrentData.savePath = Profile::instance().fromPortablePath(
+        torrentParams.savePath = Profile::instance().fromPortablePath(
             Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
 
         std::string ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
         if (ratioLimitString.empty())
-            torrentData.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
+            torrentParams.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
         else
-            torrentData.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
-        torrentData.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
+            torrentParams.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
+        torrentParams.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
-        if (torrentData.category.isEmpty())
+        torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
+        if (torrentParams.category.isEmpty())
         // **************************************************************************************
-            torrentData.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
+            torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
         // auto because the return type depends on the #if above.
         const auto tagsEntry = fast.dict_find_list("qBt-tags");
         if (isList(tagsEntry))
-            torrentData.tags = entryListToSet(tagsEntry);
-        torrentData.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
-        torrentData.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
-        torrentData.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
-        torrentData.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
+            torrentParams.tags = entryListToSet(tagsEntry);
+        torrentParams.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
+        torrentParams.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
+        torrentParams.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
+        torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-        torrentData.addPaused = fast.dict_find_int_value("qBt-paused");
-        torrentData.addForced = fast.dict_find_int_value("qBt-forced");
-        torrentData.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
-        torrentData.sequential = fast.dict_find_int_value("qBt-sequential");
+        torrentParams.paused = fast.dict_find_int_value("qBt-paused");
+        torrentParams.forced = fast.dict_find_int_value("qBt-forced");
+        torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
+        torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
 
         prio = fast.dict_find_int_value("qBt-queuePosition");
 

@@ -85,16 +85,16 @@ namespace
 
 // AddTorrentData
 
-AddTorrentData::AddTorrentData()
-    : resumed(false)
+CreateTorrentParams::CreateTorrentParams()
+    : restored(false)
     , disableTempPath(false)
     , sequential(false)
     , firstLastPiecePriority(false)
     , hasSeedStatus(false)
     , skipChecking(false)
     , hasRootFolder(true)
-    , addForced(false)
-    , addPaused(false)
+    , forced(false)
+    , paused(false)
     , uploadLimit(-1)
     , downloadLimit(-1)
     , ratioLimit(TorrentHandle::USE_GLOBAL_RATIO)
@@ -102,8 +102,8 @@ AddTorrentData::AddTorrentData()
 {
 }
 
-AddTorrentData::AddTorrentData(const AddTorrentParams &params)
-    : resumed(false)
+CreateTorrentParams::CreateTorrentParams(const AddTorrentParams &params)
+    : restored(false)
     , name(params.name)
     , category(params.category)
     , tags(params.tags)
@@ -116,8 +116,8 @@ AddTorrentData::AddTorrentData(const AddTorrentParams &params)
     , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
                     ? Session::instance()->isCreateTorrentSubfolder()
                     : params.createSubfolder == TriStateBool::True)
-    , addForced(params.addForced == TriStateBool::True)
-    , addPaused(params.addPaused == TriStateBool::Undefined
+    , forced(params.addForced == TriStateBool::True)
+    , paused(params.addPaused == TriStateBool::Undefined
                 ? Session::instance()->isAddTorrentPaused()
                 : params.addPaused == TriStateBool::True)
     , uploadLimit(params.uploadLimit)
@@ -172,23 +172,23 @@ namespace
 }
 
 TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
-                                     const AddTorrentData &data)
+                                     const CreateTorrentParams &params)
     : QObject(session)
     , m_session(session)
     , m_nativeHandle(nativeHandle)
     , m_state(TorrentState::Unknown)
     , m_renameCount(0)
-    , m_useAutoTMM(data.savePath.isEmpty())
-    , m_name(data.name)
-    , m_savePath(Utils::Fs::toNativePath(data.savePath))
-    , m_category(data.category)
-    , m_tags(data.tags)
-    , m_hasSeedStatus(data.hasSeedStatus)
-    , m_ratioLimit(data.ratioLimit)
-    , m_seedingTimeLimit(data.seedingTimeLimit)
-    , m_tempPathDisabled(data.disableTempPath)
+    , m_useAutoTMM(params.savePath.isEmpty())
+    , m_name(params.name)
+    , m_savePath(Utils::Fs::toNativePath(params.savePath))
+    , m_category(params.category)
+    , m_tags(params.tags)
+    , m_hasSeedStatus(params.hasSeedStatus)
+    , m_ratioLimit(params.ratioLimit)
+    , m_seedingTimeLimit(params.seedingTimeLimit)
+    , m_tempPathDisabled(params.disableTempPath)
     , m_hasMissingFiles(false)
-    , m_hasRootFolder(data.hasRootFolder)
+    , m_hasRootFolder(params.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
     , m_pauseAfterRecheck(false)
 {
@@ -206,14 +206,28 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     // download sequentially or have first/last piece priority enabled when
     // its resume data was saved. These two settings are restored later. But
     // if we set them to false now, both will erroneously not be restored.
-    if (!data.resumed || data.sequential)
-        setSequentialDownload(data.sequential);
-    if (!data.resumed || data.firstLastPiecePriority)
-        setFirstLastPiecePriority(data.firstLastPiecePriority);
+    if (!params.restored || params.sequential)
+        setSequentialDownload(params.sequential);
+    if (!params.restored || params.firstLastPiecePriority)
+        setFirstLastPiecePriority(params.firstLastPiecePriority);
 
-    if (!data.resumed && hasMetadata()) {
+    if (!params.restored && hasMetadata()) {
         if (filesCount() == 1)
             m_hasRootFolder = false;
+    }
+
+    // "started" means "all initialization has completed and torrent has started regular processing".
+    // When torrent added/restored in "paused" state it become "started" immediately after construction.
+    // When it is added/restored in "resumed" state, it become "started" after it is really resumed
+    // (i.e. after receiving "torrent resumed" alert).
+    m_started = (params.restored && hasMetadata() ? isPaused() : params.paused);
+
+    if (!m_started) {
+        if (!params.restored || !hasMetadata()) {
+            // Resume torrent because it was added in "resumed" state
+            // but it's actually paused during initialization
+            resume(params.forced);
+        }
     }
 }
 
@@ -1589,7 +1603,11 @@ void TorrentHandle::handleTorrentPausedAlert(const libtorrent::torrent_paused_al
 void TorrentHandle::handleTorrentResumedAlert(const libtorrent::torrent_resumed_alert *p)
 {
     Q_UNUSED(p);
-    m_session->handleTorrentResumed(this);
+
+    if (m_started)
+        m_session->handleTorrentResumed(this);
+    else
+        m_started = true;
 }
 
 void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data_alert *p)
