@@ -191,6 +191,13 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Reverse Proxy Server)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <label for="reverse_proxy_address_text" class="leftLabelLarge">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="reverse_proxy_address_text" />
+        </div>
+    </fieldset>
+
+     <fieldset class="settings">
         <legend><input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();" />
             <label for="ipfilter_enabled_checkbox">QBT_TR(IP Fi&ltering)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -456,9 +463,6 @@
             </div>
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
                 <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
-            </div>
-            <div class="formRow">
-                <label for="reverse_proxy_address_text" class="leftLabelSmall">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="reverse_proxy_address_text" />
             </div>
         </fieldset>
 
