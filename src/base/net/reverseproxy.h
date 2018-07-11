@@ -43,7 +43,7 @@ namespace Net
         Q_DISABLE_COPY(ReverseProxy)
 
     public:
-        static QHostAddress resolvPeerAddress(const QTcpSocket *m_socket, const Http::Request &request);
+        static QHostAddress resolvePeerAddress(const QTcpSocket *m_socket, const Http::Request &request);
     };
 }
 

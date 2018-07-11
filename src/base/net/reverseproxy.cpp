@@ -34,22 +34,20 @@
 
 using namespace Net;
 
-QHostAddress ReverseProxy::resolvPeerAddress(const QTcpSocket *m_socket, const Http::Request &request)
+QHostAddress ReverseProxy::resolvePeerAddress(const QTcpSocket *m_socket, const Http::Request &request)
 {
     QHostAddress peerAddress = m_socket->peerAddress();
-    QString forwarded_for = request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+    QString forwardedFor = request.headers.value(Http::HEADER_X_FORWARDED_FOR);
 
-    if(!forwarded_for.isEmpty()) {
+    if (!forwardedFor.isEmpty()) {
         Preferences *const pref = Preferences::instance();
 
         QString reverseProxyAddress = pref->getReverseProxyAddress();
 
         // Only reverse proxy can overwrite peer address
-        if(!reverseProxyAddress.isEmpty() && peerAddress.isEqual(QHostAddress(reverseProxyAddress))) {
-            peerAddress.setAddress(forwarded_for.split(",").at(0));
-        }
+        if (!reverseProxyAddress.isEmpty() && peerAddress.isEqual(QHostAddress(reverseProxyAddress)))
+            peerAddress.setAddress(forwardedFor.split(",").at(0));
     }
 
     return peerAddress;
 }
-

@@ -94,7 +94,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::OK: {
-                const Environment env {m_socket->localAddress(), m_socket->localPort(), ReverseProxy::resolvPeerAddress(m_socket, result.request), m_socket->peerPort()};
+                const Environment env {m_socket->localAddress(), m_socket->localPort(), ReverseProxy::resolvePeerAddress(m_socket, result.request), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
