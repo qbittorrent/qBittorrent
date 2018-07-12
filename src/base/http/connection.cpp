@@ -182,14 +182,14 @@ QHostAddress Connection::resolvePeerAddress(const Http::Request &request)
 
         if (!forwardedFor.isEmpty()) {
             // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-            QStringList remoteIpList= forwardedFor.split(",");
+            QStringList remoteIpList = forwardedFor.split(",");
             bool hasGlobalIp = false;
 
             foreach (const QString &remoteIp, remoteIpList) {
-               if (peerAddress.setAddress(remoteIp) && isGlobal(peerAddress)) {
-                   hasGlobalIp = true;
-                   break;
-               }
+                if (peerAddress.setAddress(remoteIp) && isGlobal(peerAddress)) {
+                    hasGlobalIp = true;
+                    break;
+                }
             }
 
             if (!hasGlobalIp)
