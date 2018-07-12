@@ -180,9 +180,96 @@ QHostAddress Connection::resolvePeerAddress(const Http::Request &request)
     if (reverseProxyAddress.setAddress(reverseProxyAddressString) && peerAddress.isEqual(reverseProxyAddress)) {
         QString forwardedFor = request.headers.value(Http::HEADER_X_FORWARDED_FOR);
 
-        if (!forwardedFor.isEmpty())
-            peerAddress.setAddress(forwardedFor.split(",").at(0));
+        if (!forwardedFor.isEmpty()) {
+            // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
+            QStringList remoteIpList= forwardedFor.split(",");
+            bool hasGlobalIp = false;
+
+            foreach (const QString &remoteIp, remoteIpList) {
+               if (peerAddress.setAddress(remoteIp) && isGlobal(peerAddress)) {
+                   hasGlobalIp = true;
+                   break;
+               }
+            }
+
+            if (!hasGlobalIp)
+                peerAddress.setAddress(remoteIpList.at(0));
+        }
     }
 
     return peerAddress;
+}
+
+bool Connection::isGlobal(const QHostAddress ip)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+    // check IP against IPv4 special addresses
+    if (ip.isInSubnet(QHostAddress("10.0.0.0"), 8))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("100.64.0.0"), 10))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("127.0.0.0"), 8))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("169.254.0.0"), 16))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("172.16.0.0"), 12))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("192.0.0.0"), 24))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("192.0.2.0"), 24))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("192.88.99.0"), 24))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("192.168.0.0"), 16))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("198.18.0.0"), 15))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("198.51.100.0"), 24))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("203.0.113.0"), 24))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("224.0.0.0"), 4))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("240.0.0.0"), 4))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("255.255.255.255"), 32))
+        return false;
+
+    // check IP against IPv6 special addresses
+    if (ip.isInSubnet(QHostAddress("::1"), 128))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("100::"), 64))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("2001:db8::"), 32))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("fc00::"), 7))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("fe80::"), 10))
+        return false;
+
+    if (ip.isInSubnet(QHostAddress("ff00::"), 8))
+        return false;
+
+    return true;
+#else
+    return ip.isGlobal();
+#endif
 }

@@ -62,6 +62,10 @@ namespace Http
         void sendResponse(const Response &response) const;
         QHostAddress resolvePeerAddress(const Http::Request &request);
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+        bool isGlobal(const QHostAddress ip);
+#endif
+
         QTcpSocket *m_socket;
         IRequestHandler *m_requestHandler;
         QByteArray m_receivedData;
