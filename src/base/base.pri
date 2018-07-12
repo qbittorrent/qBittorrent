@@ -39,7 +39,6 @@ HEADERS += \
     $$PWD/net/portforwarder.h \
     $$PWD/net/private/geoipdatabase.h \
     $$PWD/net/proxyconfigurationmanager.h \
-    $$PWD/net/reverseproxy.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/preferences.h \
@@ -107,7 +106,6 @@ SOURCES += \
     $$PWD/net/portforwarder.cpp \
     $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/net/proxyconfigurationmanager.cpp \
-    $$PWD/net/reverseproxy.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
     $$PWD/preferences.cpp \
