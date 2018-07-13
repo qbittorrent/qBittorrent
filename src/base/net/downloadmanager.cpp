@@ -134,6 +134,7 @@ Net::DownloadManager::DownloadManager(QObject *parent)
     connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
             , this, &DownloadManager::applyProxySettings);
     m_networkManager.setCookieJar(new NetworkCookieJar(this));
+    applyProxySettings();
 }
 
 void Net::DownloadManager::initInstance()
