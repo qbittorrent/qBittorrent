@@ -246,7 +246,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        downloadFavicon(QString("%1://%2/favicon.ico").arg(getScheme(tracker), host));
+        const QString scheme = getScheme(tracker);
+        downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
     }
     if (!trackerItem) return;
 
@@ -332,8 +333,11 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     if (m_downloadTrackerFavicon) {
         for (auto i = m_trackers.cbegin(); i != m_trackers.cend(); ++i) {
             const QString &tracker = i.key();
-            if (!tracker.isEmpty())
-                downloadFavicon(QString("http://%1/favicon.ico").arg(tracker));
+            if (!tracker.isEmpty()) {
+                const QString scheme = getScheme(tracker);
+                downloadFavicon(QString("%1://%2/favicon.ico")
+                                .arg((scheme.startsWith("http") ? scheme : "http"), getHost(tracker)));
+             }
         }
     }
 }
