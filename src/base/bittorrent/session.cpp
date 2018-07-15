@@ -2204,8 +2204,8 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     // processed or adding to session
     if (m_addingTorrents.contains(hash) || m_loadedMetadata.contains(hash)) return false;
 
-    if (m_torrents.contains(hash)) {
-        TorrentHandle *const torrent = m_torrents.value(hash);
+    TorrentHandle *const torrent = m_torrents.value(hash);
+    if (torrent) {
         if (torrent->isPrivate() || (!fromMagnetUri && torrentInfo.isPrivate()))
             return false;
         torrent->addTrackers(fromMagnetUri ? magnetUri.trackers() : torrentInfo.trackers());
