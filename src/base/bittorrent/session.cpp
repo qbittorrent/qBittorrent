@@ -3506,7 +3506,7 @@ void Session::setMaxRatioAction(MaxRatioAction act)
 }
 
 // If this functions returns true, we cannot add torrent to session,
-// but it is still possible to merge trackers in some case
+// but it is still possible to merge trackers in some cases
 bool Session::isKnownTorrent(const InfoHash &hash) const
 {
     return (m_torrents.contains(hash)
