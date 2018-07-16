@@ -113,22 +113,22 @@ CreateTorrentParams::CreateTorrentParams(const AddTorrentParams &params)
     , firstLastPiecePriority(params.firstLastPiecePriority)
     , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
     , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
+    , hasRootFolder(params.createSubfolder == Trool::Undefined
                     ? Session::instance()->isCreateTorrentSubfolder()
-                    : params.createSubfolder == TriStateBool::True)
-    , forced(params.addForced == TriStateBool::True)
-    , paused(params.addPaused == TriStateBool::Undefined
+                    : params.createSubfolder == Trool::True)
+    , forced(params.addForced == Trool::True)
+    , paused(params.addPaused == Trool::Undefined
                 ? Session::instance()->isAddTorrentPaused()
-                : params.addPaused == TriStateBool::True)
+                : params.addPaused == Trool::True)
     , uploadLimit(params.uploadLimit)
     , downloadLimit(params.downloadLimit)
     , filePriorities(params.filePriorities)
     , ratioLimit(params.ignoreShareLimits ? TorrentHandle::NO_RATIO_LIMIT : TorrentHandle::USE_GLOBAL_RATIO)
     , seedingTimeLimit(params.ignoreShareLimits ? TorrentHandle::NO_SEEDING_TIME_LIMIT : TorrentHandle::USE_GLOBAL_SEEDING_TIME)
 {
-    bool useAutoTMM = (params.useAutoTMM == TriStateBool::Undefined
+    bool useAutoTMM = (params.useAutoTMM == Trool::Undefined
                        ? !Session::instance()->isAutoTMMDisabledByDefault()
-                       : params.useAutoTMM == TriStateBool::True);
+                       : params.useAutoTMM == Trool::True);
     if (useAutoTMM)
         savePath = "";
     else if (savePath.trimmed().isEmpty())
