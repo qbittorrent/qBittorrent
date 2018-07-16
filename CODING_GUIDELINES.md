@@ -17,16 +17,16 @@ For programming languages other than C++ (e.g. JavaScript) used in this reposito
   * [f. Acceptable conditions to omit braces](#f-acceptable-conditions-to-omit-braces)
   * [g. Brace enclosed initializers](#g-brace-enclosed-initializers)
 * [2. Indentation](#2-indentation)
-* [3. File encoding and line endings.](#3-file-encoding-and-line-endings)
-* [4. Initialization lists.](#4-initialization-lists)
-* [5. Enums.](#5-enums)
-* [6. Names.](#6-names)
+* [3. File encoding and line endings](#3-file-encoding-and-line-endings)
+* [4. Initialization lists](#4-initialization-lists)
+* [5. Enums](#5-enums)
+* [6. Names](#6-names)
   * [a. Type names and namespaces](#a-type-names-and-namespaces)
   * [b. Variable names](#b-variable-names)
   * [c. Private member variable names](#c-private-member-variable-names)
-* [7. Header inclusion order.](#7-header-inclusion-order)
-* [8. Include guard.](#8-include-guard)
-* [9. Misc.](#9-misc)
+* [7. Header inclusion order](#7-header-inclusion-order)
+* [8. Include guard](#8-include-guard)
+* [9. Misc](#9-misc)
 * [10. Git commit message](#10-git-commit-message)
 * [11. Not covered above](#11-not-covered-above)
 ---
@@ -190,11 +190,11 @@ QVariantMap map {{"key1", 5}, {"key2", 10}};
 ### 2. Indentation ###
 4 spaces.
 
-### 3. File encoding and line endings. ###
+### 3. File encoding and line endings ###
 
 UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
-### 4. Initialization lists. ###
+### 4. Initialization lists ###
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
@@ -207,7 +207,7 @@ myClass::myClass(int a, int b, int c, int d)
 }
 ```
 
-### 5. Enums. ###
+### 5. Enums ###
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
 ```c++
 enum Days
@@ -222,7 +222,7 @@ enum Days
 };
 ```
 
-### 6. Names. ###
+### 6. Names ###
 All names should be camelCased.
 
 #### a. Type names and namespaces ####
@@ -256,7 +256,7 @@ class MyClass
 }
 ```
 
-### 7. Header inclusion order. ###
+### 7. Header inclusion order ###
 The headers should be placed in the following group order:
   1. Module header (in .cpp)
   2. C++ Standard Library headers
@@ -322,7 +322,7 @@ Example:
 #include "ui_examplewidget.h"
 ```
 
-### 8. Include guard. ###
+### 8. Include guard ###
 `#pragma once` should be used instead of "include guard" in new code:
 ```c++
 // examplewidget.h
@@ -338,7 +338,7 @@ class ExampleWidget : public QWidget
 
 ```
 
-### 9. Misc. ###
+### 9. Misc ###
 
 * Line breaks for long lines with operation:
 
