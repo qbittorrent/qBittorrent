@@ -14,6 +14,7 @@ namespace Scheduler
         int downloadRate() const;
         int uploadRate() const;
 
+        bool isValid() const;
         QJsonObject toJsonObject() const;
 
     private:

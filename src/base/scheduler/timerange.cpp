@@ -34,6 +34,11 @@ int TimeRange::uploadRate() const
     return m_uploadRate;
 }
 
+bool TimeRange::isValid() const
+{
+    return (m_startTime.isValid() && m_endTime.isValid());
+}
+
 QJsonObject TimeRange::toJsonObject() const
 {
     return {
