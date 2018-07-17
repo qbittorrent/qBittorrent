@@ -29,16 +29,16 @@
 #ifndef TRISTATEBOOL_H
 #define TRISTATEBOOL_H
 
-class TriStateBool
+class Trool
 {
 public:
-    static const TriStateBool Undefined;
-    static const TriStateBool False;
-    static const TriStateBool True;
+    static const Trool Undefined;
+    static const Trool False;
+    static const Trool True;
 
-    constexpr TriStateBool() = default;
-    constexpr TriStateBool(const TriStateBool &other) = default;
-    explicit constexpr TriStateBool(int value)
+    constexpr Trool() = default;
+    constexpr Trool(const Trool &other) = default;
+    explicit constexpr Trool(int value)
         : m_value(value < 0 ? -1 : (value > 0 ? 1 : 0))
     {
     }
@@ -48,14 +48,14 @@ public:
         return m_value;
     }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++14
+    Trool &operator=(const Trool &other) = default;  // add constexpr when using C++14
 
-    constexpr bool operator==(const TriStateBool &other) const
+    constexpr bool operator==(const Trool &other) const
     {
         return (m_value == other.m_value);
     }
 
-    constexpr bool operator!=(const TriStateBool &other) const
+    constexpr bool operator!=(const Trool &other) const
     {
         return !operator==(other);
     }

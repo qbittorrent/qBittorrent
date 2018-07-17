@@ -194,11 +194,11 @@ bool Utils::String::parseBool(const QString &string, const bool defaultValue)
     return (string.compare("true", Qt::CaseInsensitive) == 0) ? true : false;
 }
 
-TriStateBool Utils::String::parseTriStateBool(const QString &string)
+Trool Utils::String::parseTriStateBool(const QString &string)
 {
     if (string.compare("true", Qt::CaseInsensitive) == 0)
-        return TriStateBool::True;
+        return Trool::True;
     if (string.compare("false", Qt::CaseInsensitive) == 0)
-        return TriStateBool::False;
-    return TriStateBool::Undefined;
+        return Trool::False;
+    return Trool::Undefined;
 }

@@ -50,18 +50,18 @@
 
 namespace
 {
-    TriStateBool jsonValueToTriStateBool(const QJsonValue &jsonVal)
+    Trool jsonValueToTriStateBool(const QJsonValue &jsonVal)
     {
         if (jsonVal.isBool())
-            return TriStateBool(jsonVal.toBool());
+            return Trool(jsonVal.toBool());
 
         if (!jsonVal.isNull())
             qDebug() << Q_FUNC_INFO << "Incorrect value" << jsonVal.toVariant();
 
-        return TriStateBool::Undefined;
+        return Trool::Undefined;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
+    QJsonValue triStateBoolToJsonValue(const Trool &triStateBool)
     {
         switch (static_cast<int>(triStateBool)) {
         case 0:  return false;
@@ -70,16 +70,16 @@ namespace
         }
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(int val)
+    Trool addPausedLegacyToTriStateBool(int val)
     {
         switch (val) {
-        case 1:  return TriStateBool::True; // always
-        case 2:  return TriStateBool::False; // never
-        default: return TriStateBool::Undefined; // default
+        case 1:  return Trool::True; // always
+        case 2:  return Trool::False; // never
+        default: return Trool::Undefined; // default
         }
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    int triStateBoolToAddPausedLegacy(const Trool &triStateBool)
     {
         switch (static_cast<int>(triStateBool)) {
         case 0:  return 2; // never
@@ -121,7 +121,7 @@ namespace RSS
 
         QString savePath;
         QString category;
-        TriStateBool addPaused = TriStateBool::Undefined;
+        Trool addPaused = Trool::Undefined;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -553,12 +553,12 @@ void AutoDownloadRule::setSavePath(const QString &savePath)
     m_dataPtr->savePath = Utils::Fs::fromNativePath(savePath);
 }
 
-TriStateBool AutoDownloadRule::addPaused() const
+Trool AutoDownloadRule::addPaused() const
 {
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
+void AutoDownloadRule::setAddPaused(const Trool &addPaused)
 {
     m_dataPtr->addPaused = addPaused;
 }

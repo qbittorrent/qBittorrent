@@ -35,7 +35,7 @@
 
 class QJsonObject;
 class QRegularExpression;
-class TriStateBool;
+class Trool;
 
 namespace RSS
 {
@@ -76,8 +76,8 @@ namespace RSS
 
         QString savePath() const;
         void setSavePath(const QString &savePath);
-        TriStateBool addPaused() const;
-        void setAddPaused(const TriStateBool &addPaused);
+        Trool addPaused() const;
+        void setAddPaused(const Trool &addPaused);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 
