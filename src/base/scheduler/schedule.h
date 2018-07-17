@@ -5,7 +5,7 @@ namespace Scheduler
 {
     class Day;
 
-    class Schedule : public QObject
+    class Schedule
     {
     public:
         QList<Day *> days() const;

@@ -5,7 +5,7 @@ namespace Scheduler
 {
     class TimeRange;
 
-    class Day : public QObject
+    class Day
     {
     public:
         bool addTimeRange(const TimeRange &timeRange);

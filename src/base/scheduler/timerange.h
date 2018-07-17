@@ -4,7 +4,7 @@
 
 namespace Scheduler
 {
-    class TimeRange : public QObject
+    class TimeRange
     {
         TimeRange(const QTime &startTime, const QTime &endTime, int downloadRate, int uploadRate);
 
