@@ -126,6 +126,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     else
         m_ui->createSubfolderCheckBox->setChecked(session->isCreateTorrentSubfolder());
 
+    m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
+    m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
+
     m_ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     m_ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
@@ -657,6 +660,9 @@ void AddNewTorrentDialog::accept()
 
     m_torrentParams.addPaused = TriStateBool(!m_ui->startTorrentCheckBox->isChecked());
     m_torrentParams.createSubfolder = TriStateBool(m_ui->createSubfolderCheckBox->isChecked());
+
+    m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
+    m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
 
     QString savePath = m_ui->savePath->selectedPath();
     if (m_ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
