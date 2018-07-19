@@ -1,17 +1,15 @@
 #include "timerange.h"
 
 #include <QJsonObject>
-#include <QObject>
-#include <QTime>
 
 using namespace Scheduler;
 
-TimeRange::TimeRange(const QTime &startTime, const QTime &endTime, int downloadRate, int uploadRate)
-    : m_startTime(startTime)
-    , m_endTime(endTime)
-    , m_downloadRate(downloadRate)
+TimeRange::TimeRange(int startHours, int startMinutes, int endHours, int endMinutes, int downloadRate, int uploadRate)
+    : m_downloadRate(downloadRate)
     , m_uploadRate(uploadRate)
 {
+    m_startTime.setHMS(startHours, startMinutes, 0);
+    m_endTime.setHMS(endHours, endMinutes, 0);
 }
 
 QTime TimeRange::startTime() const
@@ -36,15 +34,18 @@ int TimeRange::uploadRate() const
 
 bool TimeRange::isValid() const
 {
-    return (m_startTime.isValid() && m_endTime.isValid());
+    bool isEndMidnight = (m_endTime.hour() == 0 && m_endTime.minute() == 0);
+    return (m_startTime.isValid() && m_endTime.isValid())
+        && (isEndMidnight || m_startTime < m_endTime);
 }
 
 QJsonObject TimeRange::toJsonObject() const
 {
+    int endVal = m_endTime.hour() * 100 + m_endTime.minute();
     return {
         {"start", m_startTime.hour() * 100 + m_startTime.minute()},
-        {"end", m_endTime.hour() * 100 + m_endTime.minute() },
-        {"dl", m_downloadRate },
-        {"ul", m_uploadRate }
+        {"end", (endVal == 0) ? 2400 : endVal},
+        {"dl", m_downloadRate},
+        {"ul", m_uploadRate}
     };
 }
