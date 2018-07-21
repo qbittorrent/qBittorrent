@@ -1,6 +1,5 @@
+#include <QJsonObject>
 #include <QTime>
-
-class QJsonObject;
 
 namespace Scheduler
 {
@@ -22,6 +21,7 @@ namespace Scheduler
         int uploadRate() const;
         void setUploadRate(int uploadRate);
 
+        bool overlaps(const TimeRange &other) const;
         bool isValid() const;
         QJsonObject toJsonObject() const;
 

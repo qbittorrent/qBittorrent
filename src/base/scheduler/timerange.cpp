@@ -1,7 +1,5 @@
 #include "timerange.h"
 
-#include <QJsonObject>
-
 using namespace Scheduler;
 
 TimeRange::TimeRange(int startHours, int startMinutes, int endHours, int endMinutes, int downloadRate, int uploadRate)
@@ -29,7 +27,7 @@ QTime TimeRange::endTime() const
 
 bool TimeRange::setEndTime(int hours, int minutes)
 {
-    if(hours == 0 && minutes < 1)
+    if (hours == 0 && minutes < 1)
         return false;
 
     if (hours == 24) {
@@ -59,6 +57,13 @@ int TimeRange::uploadRate() const
 void TimeRange::setUploadRate(int uploadRate)
 {
     m_uploadRate = uploadRate < 0 ? -1 : uploadRate;
+}
+
+bool TimeRange::overlaps(const TimeRange &other) const
+{
+    bool startsInBetween = (other.startTime() > m_startTime) && (other.startTime() < m_endTime);
+    bool endsInBetween = (other.endTime() > m_startTime) && (other.endTime() < m_endTime);
+    return (startsInBetween || endsInBetween);
 }
 
 bool TimeRange::isValid() const
