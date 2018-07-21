@@ -99,10 +99,10 @@ namespace
     // just a shortcut
     inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
 
-    const QString LOG_FOLDER("logs");
-    const char PARAMS_SEPARATOR[] = "|";
+    const QString LOG_FOLDER = QStringLiteral("logs");
+    const QChar PARAMS_SEPARATOR = '|';
 
-    const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QLatin1String("profile");
+    const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QStringLiteral("profile");
 
     const int MIN_FILELOG_SIZE = 1024; // 1KiB
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
@@ -265,7 +265,7 @@ void Application::setFileLoggerAgeType(const int value)
 
 void Application::processMessage(const QString &message)
 {
-    QStringList params = message.split(QLatin1String(PARAMS_SEPARATOR), QString::SkipEmptyParts);
+    QStringList params = message.split(PARAMS_SEPARATOR, QString::SkipEmptyParts);
     // If Application is not running (i.e., other
     // components are not ready) store params
     if (m_running)
@@ -409,7 +409,7 @@ void Application::allTorrentsFinished()
 
 bool Application::sendParams(const QStringList &params)
 {
-    return sendMessage(params.join(QLatin1String(PARAMS_SEPARATOR)));
+    return sendMessage(params.join(PARAMS_SEPARATOR));
 }
 
 // As program parameters, we can get paths or urls.

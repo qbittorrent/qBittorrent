@@ -445,7 +445,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     sizeString += " (";
     sizeString += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    m_ui->savePath->selectedPath())));
-    sizeString += ")";
+    sizeString += ')';
     m_ui->labelSize->setText(sizeString);
 }
 

@@ -2037,7 +2037,7 @@ bool MainWindow::addPythonPathToEnv()
         QString pathEnvar = QString::fromLocal8Bit(qgetenv("PATH").constData());
         if (pathEnvar.isNull())
             pathEnvar = "";
-        pathEnvar = pythonPath + ";" + pathEnvar;
+        pathEnvar = pythonPath + ';' + pathEnvar;
         qDebug("New PATH envvar is: %s", qUtf8Printable(pathEnvar));
         qputenv("PATH", Utils::Fs::toNativePath(pathEnvar).toLocal8Bit());
         return true;
@@ -2069,7 +2069,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
 
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
         QFile::rename(filePath, filePath + ".exe");
-        installer.start("\"" + Utils::Fs::toNativePath(filePath) + ".exe\" /passive");
+        installer.start('"' + Utils::Fs::toNativePath(filePath) + ".exe\" /passive");
     }
     else {
         QFile::rename(filePath, filePath + ".msi");

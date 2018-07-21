@@ -209,14 +209,14 @@ void StatusBar::updateSpeedLabels()
     QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
     int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
     if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ")";
+        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + ']';
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
     m_dlSpeedLbl->setText(speedLbl);
     speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
     speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
     if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ")";
+        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + ']';
+    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
     m_upSpeedLbl->setText(speedLbl);
 }
 

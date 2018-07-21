@@ -474,7 +474,7 @@ void PropertiesWidget::loadDynamicData()
 
                 // Progress
                 qreal progress = m_torrent->progress() * 100.;
-                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + "%");
+                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + '%');
                 m_downloadedPieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
             }
             else {

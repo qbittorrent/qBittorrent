@@ -402,7 +402,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
         const QString &arg = args[i];
 
         if ((arg.startsWith("--") && !arg.endsWith(".torrent"))
-            || (arg.startsWith("-") && (arg.size() == 2))) {
+            || (arg.startsWith('-') && (arg.size() == 2))) {
             // Parse known parameters
             if (arg == SHOW_HELP_OPTION) {
                 result.showHelp = true;
@@ -499,7 +499,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
 
     foreach (const QString &word, words.mid(1)) {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength) {
-            lines.last().append(" " + word);
+            lines.last().append(' ' + word);
         }
         else {
             lines.append(QString(initialIndentation, ' ') + word);

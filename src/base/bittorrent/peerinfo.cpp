@@ -377,7 +377,7 @@ void PeerInfo::determineFlags()
 
     // L = Peer is local
     if (fromLSD()) {
-        m_flags += "L";
+        m_flags += 'L';
         flagsDescriptionList += "L = "
                 + tr("peer from LSD");
     }
