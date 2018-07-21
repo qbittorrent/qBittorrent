@@ -561,7 +561,6 @@ QStringList TrackerFiltersList::getHashes(int row)
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : QFrame(parent)
     , m_transferList(transferList)
-    , m_trackerFilters(nullptr)
 {
     Preferences *const pref = Preferences::instance();
 
