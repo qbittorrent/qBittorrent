@@ -89,7 +89,7 @@ void TorrentCreatorThread::run()
     emit updateProgress(0);
 
     try {
-        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + "/";
+        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
 
         // Adding files to the torrent
         libt::file_storage fs;

@@ -304,9 +304,9 @@ void PeerListWidget::copySelectedPeers()
         QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
         QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
         if (ip.indexOf('.') == -1) // IPv6
-            selectedPeers << "[" + ip + "]:" + myport;
+            selectedPeers << '[' + ip + "]:" + myport;
         else // IPv4
-            selectedPeers << ip + ":" + myport;
+            selectedPeers << ip + ':' + myport;
     }
     QApplication::clipboard()->setText(selectedPeers.join('\n'));
 }
@@ -404,8 +404,8 @@ QStandardItem *PeerListWidget::addPeer(const QString &ip, BitTorrent::TorrentHan
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
     QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String(";")));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String("\n")), Qt::ToolTipRole);
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1Char(';')));
+    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1Char('\n')), Qt::ToolTipRole);
 
     return m_listModel->item(row, PeerListDelegate::IP);
 }

@@ -60,7 +60,7 @@ bool Peer::operator==(const Peer &other) const
 
 QString Peer::uid() const
 {
-    return ip + ":" + QString::number(port);
+    return ip + ':' + QString::number(port);
 }
 
 libtorrent::entry Peer::toEntry(bool noPeerId) const

@@ -371,9 +371,9 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_PEERS, QString::number(entry.nativeEntry().scrape_incomplete > 0 ? entry.nativeEntry().scrape_incomplete : 0));
         item->setText(COL_DOWNLOADED, QString::number(entry.nativeEntry().scrape_downloaded > 0 ? entry.nativeEntry().scrape_downloaded : 0));
 #else
-        item->setText(COL_SEEDS, "0");
-        item->setText(COL_PEERS, "0");
-        item->setText(COL_DOWNLOADED, "0");
+        item->setText(COL_SEEDS, '0');
+        item->setText(COL_PEERS, '0');
+        item->setText(COL_DOWNLOADED, '0');
 #endif
 
         item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));

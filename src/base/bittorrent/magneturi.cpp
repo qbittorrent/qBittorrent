@@ -46,7 +46,7 @@ namespace
         rawBc = rawBc.mid(8); // skip bc://bt/
         rawBc = QByteArray::fromBase64(rawBc); // Decode base64
         // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
-        QStringList parts = QString(rawBc).split("/");
+        QStringList parts = QString(rawBc).split('/');
         if (parts.size() != 5) return QString();
 
         QString filename = parts.at(1);
