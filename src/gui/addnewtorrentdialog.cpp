@@ -551,7 +551,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-            const QString &currentName = m_torrentInfo.filePath(i);
+            const QString currentName = m_torrentInfo.filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
             if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
 #else
@@ -565,7 +565,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         }
         // Replace path in all files
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-            const QString &currentName = m_torrentInfo.filePath(i);
+            const QString currentName = m_torrentInfo.filePath(i);
             if (currentName.startsWith(oldPath)) {
                 QString newName = currentName;
                 newName.replace(0, oldPath.length(), newPath);
