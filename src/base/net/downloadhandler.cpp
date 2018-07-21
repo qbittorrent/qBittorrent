@@ -48,6 +48,20 @@ namespace
 {
     QString tr(const char *message);
     QString errorCodeToString(QNetworkReply::NetworkError status);
+
+    bool saveToFile(const QByteArray &replyData, QString &filePath)
+    {
+        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
+        tmpfile.setAutoRemove(false);
+
+        if (!tmpfile.open())
+            return false;
+
+        filePath = tmpfile.fileName();
+
+        tmpfile.write(replyData);
+        return true;
+    }
 }
 
 Net::DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, const DownloadRequest &downloadRequest)
@@ -143,33 +157,6 @@ void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesT
         m_reply->abort();
         emit downloadFailed(m_downloadRequest.url(), msg.arg(Utils::Misc::friendlyUnit(bytesReceived), Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
     }
-}
-
-bool Net::DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)
-{
-    QTemporaryFile *tmpfile = new QTemporaryFile(Utils::Fs::tempPath() + "XXXXXX");
-    if (!tmpfile->open()) {
-        delete tmpfile;
-        return false;
-    }
-
-    tmpfile->setAutoRemove(false);
-    filePath = tmpfile->fileName();
-    qDebug("Temporary filename is: %s", qUtf8Printable(filePath));
-    if (m_reply->isOpen() || m_reply->open(QIODevice::ReadOnly)) {
-        tmpfile->write(replyData);
-        tmpfile->close();
-        // XXX: tmpfile needs to be deleted on Windows before using the file
-        // or it will complain that the file is used by another process.
-        delete tmpfile;
-        return true;
-    }
-    else {
-        delete tmpfile;
-        Utils::Fs::forceRemove(filePath);
-    }
-
-    return false;
 }
 
 void Net::DownloadHandler::handleRedirection(QUrl newUrl)
