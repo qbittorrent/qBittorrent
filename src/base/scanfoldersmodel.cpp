@@ -212,11 +212,11 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     if (!watchDir.exists()) return DoesNotExist;
     if (!watchDir.isReadable()) return CannotRead;
 
-    const QString &canonicalWatchPath = watchDir.canonicalPath();
+    const QString canonicalWatchPath = watchDir.canonicalPath();
     if (findPathData(canonicalWatchPath) != -1) return AlreadyInList;
 
     QDir downloadDir(downloadPath);
-    const QString &canonicalDownloadPath = downloadDir.canonicalPath();
+    const QString canonicalDownloadPath = downloadDir.canonicalPath();
 
     if (!m_fsWatcher) {
         m_fsWatcher = new FileSystemWatcher(this);
@@ -236,12 +236,12 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
 ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath)
 {
     QDir watchDir(watchPath);
-    const QString &canonicalWatchPath = watchDir.canonicalPath();
+    const QString canonicalWatchPath = watchDir.canonicalPath();
     int row = findPathData(canonicalWatchPath);
     if (row == -1) return DoesNotExist;
 
     QDir downloadDir(downloadPath);
-    const QString &canonicalDownloadPath = downloadDir.canonicalPath();
+    const QString canonicalDownloadPath = downloadDir.canonicalPath();
 
     m_pathList.at(row)->downloadType = downloadType;
     m_pathList.at(row)->downloadPath = Utils::Fs::toNativePath(canonicalDownloadPath);
@@ -256,7 +256,7 @@ void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
 
     foreach (const QString &path, watchPaths) {
         QDir watchDir(path);
-        const QString &canonicalWatchPath = watchDir.canonicalPath();
+        const QString canonicalWatchPath = watchDir.canonicalPath();
         m_fsWatcher->addPath(canonicalWatchPath);
     }
 }
