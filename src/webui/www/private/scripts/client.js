@@ -317,9 +317,10 @@ window.addEvent('load', function() {
                     }
                     if (response['categories']) {
                         response['categories'].each(function(category) {
-                            var categoryHash = genHash(category);
+                            var categoryHash = genHash(category.name);
                             category_list[categoryHash] = {
-                                name: category,
+                                name: category.name,
+                                savePath: category.savePath,
                                 torrents: []
                             };
                         });
@@ -327,7 +328,7 @@ window.addEvent('load', function() {
                     }
                     if (response['categories_removed']) {
                         response['categories_removed'].each(function(category) {
-                            var categoryHash = genHash(category);
+                            var categoryHash = genHash(category.name);
                             delete category_list[categoryHash];
                         });
                         update_categories = true;
