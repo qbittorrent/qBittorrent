@@ -52,7 +52,7 @@ class QtLocalPeer : public QObject
     Q_OBJECT
 
 public:
-    QtLocalPeer(QObject *parent = 0, const QString &appId = QString());
+    QtLocalPeer(QObject *parent = nullptr, const QString &appId = QString());
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
     QString applicationId() const
