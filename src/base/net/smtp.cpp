@@ -299,7 +299,7 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTex
             if (firstWord)
                 line += word;
             else
-                line += " " + word;
+                line += ' ' + word;
             firstWord = false;
         }
     }
@@ -423,7 +423,7 @@ void Smtp::authenticate()
         // Skip authentication
         logError("The SMTP server does not seem to support any of the authentications modes "
                  "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
-                 "knowing it is likely to fail... Server Auth Modes: " + auth.join("|"));
+                 "knowing it is likely to fail... Server Auth Modes: " + auth.join('|'));
         m_state = Authenticated;
         // At this point the server will not send any response
         // So fill the buffer with a fake one to pass the tests
@@ -503,7 +503,7 @@ void Smtp::authLogin()
 void Smtp::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
-    Logger::instance()->addMessage(tr("Email Notification Error:") + " " + msg, Log::CRITICAL);
+    Logger::instance()->addMessage(tr("Email Notification Error:") + ' ' + msg, Log::CRITICAL);
 }
 
 QString Smtp::getCurrentDateTime() const
@@ -529,7 +529,7 @@ QString Smtp::getCurrentDateTime() const
     std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
     QString timeOffsetStr = buf;
 
-    QString ret = weekDayStr + ", " + dayStr + " " + monthStr + " " + yearStr + " " + timeStr + " " + timeOffsetStr;
+    QString ret = weekDayStr + ", " + dayStr + ' ' + monthStr + ' ' + yearStr + ' ' + timeStr + ' ' + timeOffsetStr;
     return ret;
 }
 

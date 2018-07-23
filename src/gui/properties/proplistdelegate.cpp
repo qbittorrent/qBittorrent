@@ -87,7 +87,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             QStyleOptionProgressBar newopt;
             qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
             newopt.progress = int(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;

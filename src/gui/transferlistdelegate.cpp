@@ -91,7 +91,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             qlonglong total = index.data(Qt::UserRole).toLongLong();
             if (hideValues && (!value && !total))
                 break;
-            QString display = QString::number(value) + " (" + QString::number(total) + ")";
+            QString display = QString::number(value) + " (" + QString::number(total) + ')';
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         }
@@ -160,7 +160,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionProgressBar newopt;
             qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
             newopt.progress = static_cast<int>(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;

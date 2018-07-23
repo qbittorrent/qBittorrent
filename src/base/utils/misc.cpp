@@ -501,7 +501,7 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
     const QString path = Utils::Fs::fromNativePath(absolutePath);
     // If the item to select doesn't exist, try to open its parent
     if (!QFileInfo::exists(path)) {
-        openPath(path.left(path.lastIndexOf("/")));
+        openPath(path.left(path.lastIndexOf('/')));
         return;
     }
 #ifdef Q_OS_WIN
@@ -540,10 +540,10 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
     }
     else {
         // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.left(path.lastIndexOf("/")));
+        openPath(path.left(path.lastIndexOf('/')));
     }
 #else
-    openPath(path.left(path.lastIndexOf("/")));
+    openPath(path.left(path.lastIndexOf('/')));
 #endif
 }
 

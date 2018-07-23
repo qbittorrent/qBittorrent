@@ -204,7 +204,7 @@ void SearchPluginManager::installPlugin(const QString &source)
             path = QUrl(path).toLocalFile();
 
         QString pluginName = Utils::Fs::fileName(path);
-        pluginName.chop(pluginName.size() - pluginName.lastIndexOf("."));
+        pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.'));
 
         if (!path.endsWith(".py", Qt::CaseInsensitive))
             emit pluginInstallationFailed(pluginName, tr("Unknown search engine plugin file format."));
@@ -375,7 +375,7 @@ void SearchPluginManager::pluginDownloaded(const QString &url, QString filePath)
     filePath = Utils::Fs::fromNativePath(filePath);
 
     QString pluginName = Utils::Fs::fileName(url);
-    pluginName.chop(pluginName.size() - pluginName.lastIndexOf(".")); // Remove extension
+    pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.')); // Remove extension
     installPlugin_impl(pluginName, filePath);
     Utils::Fs::forceRemove(filePath);
 }
@@ -502,13 +502,13 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     foreach (QByteArray line, lines) {
         line = line.trimmed();
         if (line.isEmpty()) continue;
-        if (line.startsWith("#")) continue;
+        if (line.startsWith('#')) continue;
 
         QList<QByteArray> list = line.split(' ');
         if (list.size() != 2) continue;
 
         QString pluginName = QString(list.first());
-        if (!pluginName.endsWith(":")) continue;
+        if (!pluginName.endsWith(':')) continue;
 
         pluginName.chop(1); // remove trailing ':'
         PluginVersion version = PluginVersion::tryParse(list.last(), {});

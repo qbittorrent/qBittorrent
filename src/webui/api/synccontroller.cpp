@@ -465,7 +465,7 @@ void SyncController::torrentPeersAction()
         peer[KEY_PEER_RELEVANCE] = pi.relevance();
         peer[KEY_PEER_FILES] = torrent->info().filesForPiece(pi.downloadingPieceIndex()).join(QLatin1String("\n"));
 
-        peers[pi.address().ip.toString() + ":" + QString::number(pi.address().port)] = peer;
+        peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
     }
 
     data["peers"] = peers;

@@ -65,13 +65,13 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     const QStringList params {
         Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2.py"),
-        m_usedPlugins.join(","),
+        m_usedPlugins.join(','),
         m_category
     };
 
     // Launch search
     m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
-    m_searchProcess->setArguments(params + m_pattern.split(" "));
+    m_searchProcess->setArguments(params + m_pattern.split(' '));
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
@@ -161,7 +161,7 @@ void SearchHandler::processFailed()
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 bool SearchHandler::parseSearchResult(const QString &line, SearchResult &searchResult)
 {
-    const QStringList parts = line.split("|");
+    const QStringList parts = line.split('|');
     const int nbFields = parts.size();
     if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
 

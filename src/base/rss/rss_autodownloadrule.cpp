@@ -502,7 +502,7 @@ void AutoDownloadRule::setMustContain(const QString &tokens)
     if (m_dataPtr->useRegex)
         m_dataPtr->mustContain = QStringList() << tokens;
     else
-        m_dataPtr->mustContain = tokens.split("|");
+        m_dataPtr->mustContain = tokens.split('|');
 
     // Check for single empty string - if so, no condition
     if ((m_dataPtr->mustContain.size() == 1) && m_dataPtr->mustContain[0].isEmpty())
@@ -516,7 +516,7 @@ void AutoDownloadRule::setMustNotContain(const QString &tokens)
     if (m_dataPtr->useRegex)
         m_dataPtr->mustNotContain = QStringList() << tokens;
     else
-        m_dataPtr->mustNotContain = tokens.split("|");
+        m_dataPtr->mustNotContain = tokens.split('|');
 
     // Check for single empty string - if so, no condition
     if ((m_dataPtr->mustNotContain.size() == 1) && m_dataPtr->mustNotContain[0].isEmpty())
@@ -605,12 +605,12 @@ int AutoDownloadRule::ignoreDays() const
 
 QString AutoDownloadRule::mustContain() const
 {
-    return m_dataPtr->mustContain.join("|");
+    return m_dataPtr->mustContain.join('|');
 }
 
 QString AutoDownloadRule::mustNotContain() const
 {
-    return m_dataPtr->mustNotContain.join("|");
+    return m_dataPtr->mustNotContain.join('|');
 }
 
 bool AutoDownloadRule::useSmartFilter() const
