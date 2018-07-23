@@ -399,16 +399,17 @@ void SyncController::maindataAction()
 
     data["torrents"] = torrents;
 
-    QVariantList categoriesList;
-    const auto categories = session->categories();
-    for (auto key : categories.keys()) {
-        categoriesList << QVariantMap {
+    QVariantHash categories;
+    const auto categoriesList = session->categories();
+    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+        const auto key = it.key();
+        categories[key] = QVariantMap {
             {"name", key},
-            {"savePath", categories.value(key)},
+            {"savePath", it.value()}
         };
     }
 
-    data["categories"] = categoriesList;
+    data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfo();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();

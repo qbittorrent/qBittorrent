@@ -1210,10 +1210,8 @@ void TorrentHandle::setName(const QString &name)
 bool TorrentHandle::setCategory(const QString &category)
 {
     if (m_category != category) {
-        if (!category.isEmpty()) {
-            if (!Session::isValidCategoryName(category) || !m_session->categories().contains(category))
-                return false;
-        }
+        if (!category.isEmpty() && !m_session->categories().contains(category))
+            return false;
 
         QString oldCategory = m_category;
         m_category = category;

@@ -120,3 +120,14 @@ function escapeHtml(str) {
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
 }
+
+function safeTrim(value) {
+    try {
+        return value.trim();
+    }
+    catch (e) {
+        if (e instanceof TypeError)
+            return "";
+        throw e;
+    }
+}

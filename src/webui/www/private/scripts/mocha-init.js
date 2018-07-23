@@ -458,20 +458,21 @@ initializeWindows = function() {
     };
 
     torrentNewCategoryFN = function() {
+        var action = "set";
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'newCategoryPage',
                 title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: 'iframe',
-                contentURL: 'newcategory.html?hashes=' + hashes.join('|'),
+                contentURL: 'newcategory.html?action=' + action + '&hashes=' + hashes.join('|'),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 250,
-                height: 100
+                height: 150
             });
         }
     };
@@ -494,18 +495,39 @@ initializeWindows = function() {
     };
 
     createCategoryFN = function() {
+        var action = "create";
         new MochaUI.Window({
             id: 'newCategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: 'iframe',
-            contentURL: 'newcategory.html',
+            contentURL: 'newcategory.html?action=' + action,
             scrollbars: false,
             resizable: false,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 250,
-            height: 100
+            height: 150
+        });
+        updateMainData();
+    };
+
+    editCategoryFN = function(categoryHash) {
+        var action = "edit";
+        var categoryName = category_list[categoryHash].name;
+        var savePath = category_list[categoryHash].savePath;
+        new MochaUI.Window({
+            id: 'editCategoryPage',
+            title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: 'iframe',
+            contentURL: 'newcategory.html?action=' + action + '&categoryName=' + categoryName + '&savePath=' + savePath,
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 150
         });
         updateMainData();
     };
