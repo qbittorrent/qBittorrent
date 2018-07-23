@@ -874,7 +874,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     QAction actionPreviewFile(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), nullptr);
     connect(&actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    QAction actionSetMaxRatio(QIcon(QLatin1String(":/icons/skin/ratio.png")), tr("Limit share ratio..."), nullptr);
+    QAction actionSetMaxRatio(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), nullptr);
     connect(&actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
     QAction actionSetUploadLimit(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), nullptr);
     connect(&actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);

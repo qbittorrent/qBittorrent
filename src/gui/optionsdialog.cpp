@@ -1751,11 +1751,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1770,11 +1770,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
         m_sslCert.clear();
     }
     return isCertValid;

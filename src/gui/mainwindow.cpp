@@ -1568,10 +1568,10 @@ void MainWindow::updateGUI()
         html += "qBittorrent";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.png' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
+        html += "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.png' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
+        html += "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
         html += "</div>";
 #else
         // OSes such as Windows do not support html here
