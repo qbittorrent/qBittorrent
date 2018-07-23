@@ -811,6 +811,10 @@ void TorrentsController::setCategoryAction()
     const QString category {params()["category"].trimmed()};
     applyToTorrents(hashes, [category](BitTorrent::TorrentHandle *torrent)
     {
+        auto *session = BitTorrent::Session::instance();
+        const QStringList categories = session->categories().keys();
+        if (!categories.contains(category) && !session->addCategory(category))
+            throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
         if (!torrent->setCategory(category))
             throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
     });
