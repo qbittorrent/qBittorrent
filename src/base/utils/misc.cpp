@@ -139,7 +139,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     else
         EventToSend = kAEShutDown;
     AEAddressDesc targetDesc;
-    static const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
+    const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
     AppleEvent eventReply = {typeNull, NULL};
     AppleEvent appleEventToSend = {typeNull, NULL};
 

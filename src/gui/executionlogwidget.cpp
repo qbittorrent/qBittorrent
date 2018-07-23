@@ -39,11 +39,10 @@
 ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
     , m_ui(new Ui::ExecutionLogWidget)
+    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types)))
     , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
 {
     m_ui->setupUi(this);
-
-    m_msgList = new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types));
 
 #ifndef Q_OS_MAC
     m_ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));

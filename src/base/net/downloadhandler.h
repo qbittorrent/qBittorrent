@@ -66,7 +66,6 @@ namespace Net
 
     private:
         void assignNetworkReply(QNetworkReply *reply);
-        bool saveToFile(const QByteArray &replyData, QString &filePath);
         void handleRedirection(QUrl newUrl);
 
         QNetworkReply *m_reply;

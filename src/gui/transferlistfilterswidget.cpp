@@ -515,7 +515,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
 QString TrackerFiltersList::trackerFromRow(int row) const
 {
     Q_ASSERT(row > 1);
-    const QString &tracker = item(row)->text();
+    const QString tracker = item(row)->text();
     QStringList parts = tracker.split(' ');
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
@@ -561,7 +561,6 @@ QStringList TrackerFiltersList::getHashes(int row)
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : QFrame(parent)
     , m_transferList(transferList)
-    , m_trackerFilters(nullptr)
 {
     Preferences *const pref = Preferences::instance();
 

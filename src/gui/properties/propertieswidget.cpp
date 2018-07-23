@@ -751,7 +751,7 @@ void PropertiesWidget::renameSelectedFile()
         if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrent->filesCount(); ++i) {
-            const QString &currentName = m_torrent->filePath(i);
+            const QString currentName = m_torrent->filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
             if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
 #else
