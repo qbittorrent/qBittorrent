@@ -110,7 +110,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     if (path.isEmpty() || !QDir(path).exists())
         return true;
 
-    static const QStringList deleteFilesList = {
+    const QStringList deleteFilesList = {
         // Windows
         "Thumbs.db",
         "desktop.ini",
