@@ -33,6 +33,7 @@
 #include <QPushButton>
 
 #include "base/bittorrent/torrenthandle.h"
+#include "guiiconprovider.h"
 #include "utils.h"
 
 TrackerLoginDialog::TrackerLoginDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
@@ -44,7 +45,7 @@ TrackerLoginDialog::TrackerLoginDialog(QWidget *parent, BitTorrent::TorrentHandl
 
     buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Log in"));
 
-    labelLoginLogo->setPixmap(QPixmap(QLatin1String(":/icons/qbt-theme/encrypted.png")));
+    labelLoginLogo->setPixmap(Utils::Gui::scaledPixmap(GuiIconProvider::instance()->getIcon("document-encrypt"), this, 32));
 
     labelTrackerURL->setText(torrent->currentTracker());
 
