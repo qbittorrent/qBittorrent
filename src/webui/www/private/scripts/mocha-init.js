@@ -400,6 +400,20 @@ initializeWindows = function() {
         }
     };
 
+    reannounceFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/reannounce',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
     setLocationFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
