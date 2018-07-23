@@ -29,6 +29,7 @@
 
 #include "guiiconprovider.h"
 
+#include <QHash>
 #include <QIcon>
 #include <QVector>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -76,7 +77,15 @@ QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback) c
 #else
     Q_UNUSED(fallback)
 #endif
-    return QIcon(IconProvider::getIconPath(iconId));
+    // cache to avoid rescaling svg icons
+    static QHash<QString, QIcon> iconCache;
+    const auto iter = iconCache.find(iconId);
+    if (iter != iconCache.end())
+        return *iter;
+
+    const QIcon icon {IconProvider::getIconPath(iconId)};
+    iconCache[iconId] = icon;
+    return icon;
 }
 
 QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode) const
