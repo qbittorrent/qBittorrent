@@ -1884,114 +1884,139 @@
                 <widget class="QLabel" name="labelAltRate"/>
                </item>
                <item row="2" column="0" colspan="4">
-                <widget class="QGroupBox" name="groupBoxSchedule">
-                 <property name="title">
+                <widget class="QCheckBox" name="checkScheduleEnable">
+                 <property name="text">
                   <string>Schedule &amp;the use of alternative rate limits</string>
                  </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checked">
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="4">
+                <widget class="QTabWidget" name="tabSchedule">
+                 <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_7">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_6">
-                    <property name="text">
-                     <string extracomment="from (time1 to time2)">From:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QTimeEdit" name="timeEditScheduleTo">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>20</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_17">
-                    <property name="text">
-                     <string extracomment="time1 to time2">To:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QTimeEdit" name="timeEditScheduleFrom">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>8</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_18">
-                    <property name="text">
-                     <string>When:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1" colspan="3">
-                   <widget class="QComboBox" name="comboBoxScheduleDays">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <item>
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
+                 <widget class="QWidget" name="tabScheduleDay0">
+                  <attribute name="title">
+                   <string>Sunday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay0">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay0"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay0">
                      <property name="text">
-                      <string>Every day</string>
+                      <string>Add</string>
                      </property>
-                    </item>
-                    <item>
+                 </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay1">
+                  <attribute name="title">
+                   <string>Monday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay1">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay1"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay1">
                      <property name="text">
-                      <string>Weekdays</string>
+                      <string>Add</string>
                      </property>
-                    </item>
-                    <item>
+                 </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay2">
+                  <attribute name="title">
+                   <string>Tuesday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay2">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay2"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay2">
                      <property name="text">
-                      <string>Weekends</string>
+                      <string>Add</string>
                      </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <spacer name="horizontalSpacer_8">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
+                 </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay3">
+                  <attribute name="title">
+                   <string>Wednesday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay3">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay3"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay3">
+                     <property name="text">
+                      <string>Add</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay4">
+                  <attribute name="title">
+                   <string>Thursday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay4">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay4"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay4">
+                     <property name="text">
+                      <string>Add</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay5">
+                  <attribute name="title">
+                   <string>Friday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay5">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay5"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay5">
+                     <property name="text">
+                      <string>Add</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tabScheduleDay6">
+                  <attribute name="title">
+                   <string>Saturday</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayoutScheduleDay6">
+                   <item>
+                    <widget class="QListView" name="listScheduleDay6"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="buttonAddDay6">
+                     <property name="text">
+                      <string>Add</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
                 </widget>
                </item>
                <item row="0" column="1">
@@ -3421,14 +3446,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkUploadLimit</tabstop>
   <tabstop>spinDownloadLimit</tabstop>
   <tabstop>checkDownloadLimit</tabstop>
-  <tabstop>groupBoxSchedule</tabstop>
-  <tabstop>timeEditScheduleTo</tabstop>
-  <tabstop>timeEditScheduleFrom</tabstop>
-  <tabstop>comboBoxScheduleDays</tabstop>
   <tabstop>checkUploadLimitAlt</tabstop>
   <tabstop>checkDownloadLimitAlt</tabstop>
   <tabstop>spinUploadLimitAlt</tabstop>
   <tabstop>spinDownloadLimitAlt</tabstop>
+  <tabstop>checkScheduleEnable</tabstop>
+  <tabstop>tabSchedule</tabstop>
   <tabstop>checkLimitLocalPeerRate</tabstop>
   <tabstop>checkLimitTransportOverhead</tabstop>
   <tabstop>scrollArea_4</tabstop>
@@ -3651,6 +3674,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
     <hint type="destinationlabel">
      <x>629</x>
      <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkScheduleEnable</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tabSchedule</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>327</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>132</y>
     </hint>
    </hints>
   </connection>
