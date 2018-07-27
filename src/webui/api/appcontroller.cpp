@@ -154,13 +154,6 @@ void AppController::preferencesAction()
     data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
-    const QTime start_time = pref->getSchedulerStartTime();
-    data["schedule_from_hour"] = start_time.hour();
-    data["schedule_from_min"] = start_time.minute();
-    const QTime end_time = pref->getSchedulerEndTime();
-    data["schedule_to_hour"] = end_time.hour();
-    data["schedule_to_min"] = end_time.minute();
-    data["scheduler_days"] = pref->getSchedulerDays();
 
     // Bittorrent
     // Privacy
@@ -381,12 +374,6 @@ void AppController::setPreferencesAction()
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
-    if (m.contains("schedule_from_hour") && m.contains("schedule_from_min"))
-        pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(), m["schedule_from_min"].toInt()));
-    if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
-        pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
-    if (m.contains("scheduler_days"))
-        pref->setSchedulerDays(SchedulerDays(m["scheduler_days"].toInt()));
 
     // Bittorrent
     // Privacy

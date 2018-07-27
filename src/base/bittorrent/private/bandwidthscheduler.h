@@ -46,11 +46,9 @@ signals:
     void bandwidthLimitRequested(bool alternative);
 
 private:
-    bool isTimeForAlternative() const;
     void onTimeout();
 
     QTimer m_timer;
-    bool m_lastAlternative;
 };
 
 #endif // BANDWIDTHSCHEDULER_H

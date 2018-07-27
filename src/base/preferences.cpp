@@ -397,36 +397,6 @@ void Preferences::setActionOnDblClOnTorrentFn(int act)
     setValue("Preferences/Downloads/DblClOnTorFn", act);
 }
 
-QTime Preferences::getSchedulerStartTime() const
-{
-    return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();
-}
-
-void Preferences::setSchedulerStartTime(const QTime &time)
-{
-    setValue("Preferences/Scheduler/start_time", time);
-}
-
-QTime Preferences::getSchedulerEndTime() const
-{
-    return value("Preferences/Scheduler/end_time", QTime(20,0)).toTime();
-}
-
-void Preferences::setSchedulerEndTime(const QTime &time)
-{
-    setValue("Preferences/Scheduler/end_time", time);
-}
-
-SchedulerDays Preferences::getSchedulerDays() const
-{
-    return static_cast<SchedulerDays>(value("Preferences/Scheduler/days", EVERY_DAY).toInt());
-}
-
-void Preferences::setSchedulerDays(SchedulerDays days)
-{
-    setValue("Preferences/Scheduler/days", static_cast<int>(days));
-}
-
 // Search
 bool Preferences::isSearchEnabled() const
 {

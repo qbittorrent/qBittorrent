@@ -158,14 +158,6 @@ public:
     int getActionOnDblClOnTorrentFn() const;
     void setActionOnDblClOnTorrentFn(int act);
 
-    // Connection options
-    QTime getSchedulerStartTime() const;
-    void setSchedulerStartTime(const QTime &time);
-    QTime getSchedulerEndTime() const;
-    void setSchedulerEndTime(const QTime &time);
-    SchedulerDays getSchedulerDays() const;
-    void setSchedulerDays(SchedulerDays days);
-
     // Search
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);

@@ -163,10 +163,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Languages supported
     initializeLanguageCombo();
 
-    // Load week days (scheduler)
-    for (uint i = 1; i <= 7; ++i)
-        m_ui->comboBoxScheduleDays->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
-
     // Load options
     loadOptions();
 #ifdef Q_OS_MAC
@@ -304,6 +300,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    // Speed Tab
     connect(m_ui->checkUploadLimit, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkDownloadLimit, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUploadLimitAlt, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -312,10 +309,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->groupBoxSchedule, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->timeEditScheduleFrom, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->timeEditScheduleTo, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboBoxScheduleDays, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkScheduleEnable, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -647,10 +641,7 @@ void OptionsDialog::saveOptions()
     const QPair<int, int> altDownUpLimit = getAltGlobalBandwidthLimits();
     session->setAltGlobalDownloadSpeedLimit(altDownUpLimit.first);
     session->setAltGlobalUploadSpeedLimit(altDownUpLimit.second);
-    pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
-    pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
-    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
-    session->setBandwidthSchedulerEnabled(m_ui->groupBoxSchedule->isChecked());
+    session->setBandwidthSchedulerEnabled(m_ui->checkScheduleEnable->isChecked());
 
     auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
@@ -1057,10 +1048,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
-    m_ui->groupBoxSchedule->setChecked(session->isBandwidthSchedulerEnabled());
-    m_ui->timeEditScheduleFrom->setTime(pref->getSchedulerStartTime());
-    m_ui->timeEditScheduleTo->setTime(pref->getSchedulerEndTime());
-    m_ui->comboBoxScheduleDays->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
+    m_ui->checkScheduleEnable->setChecked(session->isBandwidthSchedulerEnabled());
     // End Speed preferences
 
     // Bittorrent preferences
@@ -1787,10 +1775,6 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 
 bool OptionsDialog::schedTimesOk()
 {
-    if (m_ui->timeEditScheduleFrom->time() == m_ui->timeEditScheduleTo->time()) {
-        QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
-        return false;
-    }
     return true;
 }
 
