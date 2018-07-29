@@ -232,9 +232,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Name filter
     m_searchFilter = new LineEdit(this);
-    m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     m_searchFilter->setPlaceholderText(tr("Filter torrent list..."));
     m_searchFilter->setFixedWidth(Utils::Gui::scaledSize(this, 200));
+    m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
+    m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -693,6 +695,23 @@ void MainWindow::displayRSSTab(bool enable)
     else if (m_rssWidget) {
         delete m_rssWidget;
     }
+}
+
+void MainWindow::showFilterContextMenu(const QPoint &)
+{
+    const Preferences *pref = Preferences::instance();
+
+    QMenu *menu = m_searchFilter->createStandardContextMenu();
+    menu->addSeparator();
+    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    useRegexAct->setCheckable(true);
+    useRegexAct->setChecked(pref->getRegexAsFilteringPattern());
+    menu->addAction(useRegexAct);
+
+    connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPattern);
+    connect(useRegexAct, &QAction::toggled, this, [this]() { m_transferListWidget->applyNameFilter(m_searchFilter->text()); });
+
+    menu->exec(QCursor::pos());
 }
 
 void MainWindow::displaySearchTab(bool enable)

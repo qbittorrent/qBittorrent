@@ -102,6 +102,7 @@ public:
     void showNotificationBaloon(QString title, QString msg) const;
 
 private slots:
+    void showFilterContextMenu(const QPoint &);
     void balloonClicked();
     void writeSettings();
     void readSettings();

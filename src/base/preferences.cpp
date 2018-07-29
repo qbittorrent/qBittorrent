@@ -1489,6 +1489,16 @@ void Preferences::setTransHeaderState(const QByteArray &state)
     setValue("TransferList/qt5/HeaderState", state);
 }
 
+bool Preferences::getRegexAsFilteringPattern() const
+{
+    return value("TransferList/UseRegexAsFilteringPattern", false).toBool();
+}
+
+void Preferences::setRegexAsFilteringPattern(const bool checked)
+{
+    setValue("TransferList/UseRegexAsFilteringPattern", checked);
+}
+
 // From old RssSettings class
 bool Preferences::isRSSWidgetEnabled() const
 {
