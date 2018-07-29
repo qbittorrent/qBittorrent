@@ -1991,7 +1991,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     if (priorities.size() != filesCount()) return;
 
     // Save first/last piece first option state
-    bool firstLastPieceFirst = hasFirstLastPiecePriority();
+    const bool firstLastPieceFirst = hasFirstLastPiecePriority();
 
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
