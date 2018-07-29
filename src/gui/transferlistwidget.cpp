@@ -1188,7 +1188,9 @@ void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, QRegExp::WildcardUnix));
+    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPattern()
+                ? QRegExp::RegExp : QRegExp::WildcardUnix;
+    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
 }
 
 void TransferListWidget::applyStatusFilter(int f)
