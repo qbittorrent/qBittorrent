@@ -58,7 +58,7 @@ public:
     // These mean any permutation, including no category / tag.
     static const QString AnyCategory;
     static const QStringSet AnyHash;
-    static const QString AnyTag; 
+    static const QString AnyTag;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -81,13 +81,13 @@ public:
     bool setCategory(const QString &category);
     bool setTag(const QString &tag);
 
-    bool match(BitTorrent::TorrentHandle *const torrent) const;
+    bool match(const BitTorrent::TorrentHandle *torrent) const;
 
 private:
-    bool matchState(BitTorrent::TorrentHandle *const torrent) const;
-    bool matchHash(BitTorrent::TorrentHandle *const torrent) const;
-    bool matchCategory(BitTorrent::TorrentHandle *const torrent) const;
-    bool matchTag(BitTorrent::TorrentHandle *const torrent) const;
+    bool matchState(const BitTorrent::TorrentHandle *torrent) const;
+    bool matchHash(const BitTorrent::TorrentHandle *torrent) const;
+    bool matchCategory(const BitTorrent::TorrentHandle *torrent) const;
+    bool matchTag(const BitTorrent::TorrentHandle *torrent) const;
 
     Type m_type;
     QString m_category;
