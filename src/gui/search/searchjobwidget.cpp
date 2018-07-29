@@ -151,6 +151,9 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     connect(searchHandler, &SearchHandler::searchFinished, this, &SearchJobWidget::searchFinished);
     connect(searchHandler, &SearchHandler::searchFailed, this, &SearchJobWidget::searchFailed);
     connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
+
+    QShortcut *enterHotkey = new QShortcut(Qt::Key_Return, m_ui->resultsBrowser, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(enterHotkey, &QShortcut::activated, this, &SearchJobWidget::downloadTorrents);
 }
 
 SearchJobWidget::~SearchJobWidget()
