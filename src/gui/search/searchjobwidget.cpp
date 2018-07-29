@@ -164,7 +164,6 @@ SearchJobWidget::~SearchJobWidget()
 
 void SearchJobWidget::onItemDoubleClicked(const QModelIndex &index)
 {
-    setRowColor(index.row(), QApplication::palette().color(QPalette::LinkVisited));
     downloadTorrent(index);
 }
 
@@ -257,6 +256,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchJobWidget::addTorrentToSession);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
     }
+    setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
 }
 
 void SearchJobWidget::addTorrentToSession(const QString &source)
