@@ -795,6 +795,14 @@ void TorrentsController::recheckAction()
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *torrent) { torrent->forceRecheck(); });
 }
 
+void TorrentsController::reannounceAction()
+{
+    checkParams({"hashes"});
+
+    const QStringList hashes {params()["hashes"].split('|')};
+    applyToTorrents(hashes, [](BitTorrent::TorrentHandle *torrent) { torrent->forceReannounce(); });
+}
+
 void TorrentsController::setCategoryAction()
 {
     checkParams({"hashes", "category"});
