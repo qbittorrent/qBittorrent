@@ -37,6 +37,7 @@
 #endif
 
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 
 GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)
@@ -124,7 +125,7 @@ QString GuiIconProvider::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QString path = QDir::temp().absoluteFilePath(iconId + ".png");
+        QString path = Utils::Fs::tempPath() + iconId + ".png";
         if (!QFile::exists(path)) {
             const QIcon icon = QIcon::fromTheme(iconId);
             if (!icon.isNull())
