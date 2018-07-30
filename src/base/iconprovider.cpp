@@ -29,8 +29,6 @@
 
 #include "iconprovider.h"
 
-#include <QString>
-
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)
 {
@@ -57,7 +55,7 @@ IconProvider *IconProvider::instance()
     return m_instance;
 }
 
-QString IconProvider::getIconPath(const QString &iconId)
+QString IconProvider::getIconPath(const QString &iconId) const
 {
     return ":/icons/qbt-theme/" + iconId + ".png";
 }
