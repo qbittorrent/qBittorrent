@@ -57,12 +57,12 @@ GuiIconProvider *GuiIconProvider::instance()
     return static_cast<GuiIconProvider *>(m_instance);
 }
 
-QIcon GuiIconProvider::getIcon(const QString &iconId)
+QIcon GuiIconProvider::getIcon(const QString &iconId) const
 {
     return getIcon(iconId, iconId);
 }
 
-QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
+QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
@@ -78,7 +78,7 @@ QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
     return QIcon(IconProvider::getIconPath(iconId));
 }
 
-QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
+QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return QIcon();
     return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
@@ -89,7 +89,7 @@ QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
 // Otherwise, the UI looks broken if the icon is not available
 // in the correct size.
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
+QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon) const
 {
     // if icon is loaded from SVG format, it already contains all the required sizes and we shall not resize it
     // In that case it will be available in the following sizes:
@@ -120,7 +120,7 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
 }
 #endif
 
-QString GuiIconProvider::getIconPath(const QString &iconId)
+QString GuiIconProvider::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
