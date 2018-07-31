@@ -30,6 +30,7 @@
 #include "guiiconprovider.h"
 
 #include <QIcon>
+#include <QVector>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>
 #include <QFile>
@@ -99,16 +100,15 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon) const
         return icon;
 
     QIcon newIcon;
-    QList<QSize> requiredSizes;
-    requiredSizes << QSize(16, 16) << QSize(24, 24) << QSize(32, 32);
-    QList<QIcon::Mode> modes;
-    modes << QIcon::Normal << QIcon::Active << QIcon::Selected << QIcon::Disabled;
-    foreach (const QSize &size, requiredSizes) {
-        foreach (QIcon::Mode mode, modes) {
+    const QVector<QSize> requiredSizes {{16, 16}, {24, 24}, {32, 32}};
+    const QVector<QIcon::Mode> modes {QIcon::Normal, QIcon::Active, QIcon::Selected, QIcon::Disabled};
+    for (const QSize &size : requiredSizes) {
+        for (const QIcon::Mode mode : modes) {
             QPixmap pixoff = icon.pixmap(size, mode, QIcon::Off);
             if (pixoff.height() > size.height())
                 pixoff = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
             newIcon.addPixmap(pixoff, mode, QIcon::Off);
+
             QPixmap pixon = icon.pixmap(size, mode, QIcon::On);
             if (pixon.height() > size.height())
                 pixon = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
