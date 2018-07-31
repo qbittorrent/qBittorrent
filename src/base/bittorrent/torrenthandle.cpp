@@ -1300,13 +1300,21 @@ void TorrentHandle::toggleSequentialDownload()
 
 void TorrentHandle::setFirstLastPiecePriority(const bool enabled)
 {
+    setFirstLastPiecePriorityImpl(enabled);
+}
+
+void TorrentHandle::setFirstLastPiecePriorityImpl(const bool enabled, const QVector<int> &updatedFilePrio)
+{
+    // Download first and last pieces first for every file in the torrent
+
     if (!hasMetadata()) {
         m_needsToSetFirstLastPiecePriority = enabled;
         return;
     }
 
-    // Download first and last pieces first for every file in the torrent
-    const std::vector<int> filePriorities = nativeHandle().file_priorities();
+    // Updating file priorities is an async operation in libtorrent, when we just updated it and immediately query it
+    // we might get the old/wrong values, so we rely on `updatedFilePrio` in this case.
+    const std::vector<int> filePriorities = !updatedFilePrio.isEmpty() ? updatedFilePrio.toStdVector() : nativeHandle().file_priorities();
     std::vector<int> piecePriorities = nativeHandle().piece_priorities();
     for (int index = 0; index < static_cast<int>(filePriorities.size()); ++index) {
         const int filePrio = filePriorities[index];
@@ -1991,7 +1999,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     if (priorities.size() != filesCount()) return;
 
     // Save first/last piece first option state
-    bool firstLastPieceFirst = hasFirstLastPiecePriority();
+    const bool firstLastPieceFirst = hasFirstLastPiecePriority();
 
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
@@ -2064,7 +2072,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 
     // Restore first/last piece first option if necessary
     if (firstLastPieceFirst)
-        setFirstLastPiecePriority(true);
+        setFirstLastPiecePriorityImpl(true, priorities);
 
     updateStatus();
 }

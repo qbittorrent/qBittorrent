@@ -2122,17 +2122,12 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         }
     }
 
+    // If empty then Automatic mode, otherwise Manual mode
+    QString savePath = params.savePath.isEmpty() ? categorySavePath(params.category) : params.savePath;
     libt::add_torrent_params p;
     InfoHash hash;
-    std::vector<boost::uint8_t> filePriorities;
+    const bool fromMagnetUri = magnetUri.isValid();
 
-    QString savePath;
-    if (params.savePath.isEmpty()) // using Automatic mode
-        savePath = categorySavePath(params.category);
-    else  // using Manual mode
-        savePath = params.savePath;
-
-    bool fromMagnetUri = magnetUri.isValid();
     if (fromMagnetUri) {
         hash = magnetUri.hash();
 
@@ -2195,9 +2190,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
     }
     else {
-        foreach (int prio, params.filePriorities)
-            filePriorities.push_back(prio);
-        p.file_priorities = filePriorities;
+        p.file_priorities = {params.filePriorities.begin(), params.filePriorities.end()};
     }
 
     // We should not add torrent if it already

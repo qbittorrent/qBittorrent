@@ -420,6 +420,7 @@ namespace BitTorrent
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
+        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<int> &updatedFilePrio = {});
 
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;
