@@ -76,7 +76,4 @@ RESOURCES += \
     lang/lang.qrc \
     searchengine/searchengine.qrc
 
-# Translations
-include(lang/lang.pri)
-
 DESTDIR = .
