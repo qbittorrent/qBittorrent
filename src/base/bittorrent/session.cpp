@@ -2350,9 +2350,9 @@ void Session::generateResumeData(bool final)
 {
     foreach (TorrentHandle *const torrent, m_torrents) {
         if (!torrent->isValid()) continue;
-        if (torrent->hasMissingFiles()) continue;
-        if (torrent->isChecking() || torrent->hasError()) continue;
+        if (torrent->isChecking()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
+        if (torrent->hasMissingFiles() || torrent->hasError()) continue;
 
         saveTorrentResumeData(torrent, final);
     }
