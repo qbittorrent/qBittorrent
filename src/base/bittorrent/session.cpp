@@ -1863,20 +1863,26 @@ TorrentHandle *Session::findTorrent(const InfoHash &hash) const
 
 bool Session::hasActiveTorrents() const
 {
-    foreach (TorrentHandle *const torrent, m_torrents)
-        if (TorrentFilter::ActiveTorrent.match(torrent))
-            return true;
-
-    return false;
+    return std::any_of(m_torrents.begin(), m_torrents.end(), [](TorrentHandle *torrent)
+    {
+        return TorrentFilter::ActiveTorrent.match(torrent);
+    });
 }
 
 bool Session::hasUnfinishedTorrents() const
 {
-    foreach (TorrentHandle *const torrent, m_torrents)
-        if (!torrent->isSeed() && !torrent->isPaused())
-            return true;
+    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentHandle *torrent)
+    {
+        return (!torrent->isSeed() && !torrent->isPaused());
+    });
+}
 
-    return false;
+bool Session::hasRunningSeed() const
+{
+    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->isSeed() && !torrent->isPaused());
+    });
 }
 
 void Session::banIP(const QString &ip)

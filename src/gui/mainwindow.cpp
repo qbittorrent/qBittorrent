@@ -342,7 +342,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
-    connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::checkForActiveTorrents);
+    connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
 
     // Configure BT session according to options
     loadPreferences(false);
@@ -1445,7 +1445,7 @@ void MainWindow::loadPreferences(bool configureSession)
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    if (pref->preventFromSuspend() && !m_preventTimer->isActive()) {
+    if ((pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) && !m_preventTimer->isActive()) {
         m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
     }
     else {
@@ -1971,9 +1971,11 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::checkForActiveTorrents()
+void MainWindow::updatePowerManagementState()
 {
-    m_pwr->setActivityState(BitTorrent::Session::instance()->hasActiveTorrents());
+    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && BitTorrent::Session::instance()->hasUnfinishedTorrents())
+                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && BitTorrent::Session::instance()->hasRunningSeed());
+    m_pwr->setActivityState(inhibitSuspend);
 }
 
 #ifndef Q_OS_MAC
