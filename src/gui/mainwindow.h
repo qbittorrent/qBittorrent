@@ -174,8 +174,8 @@ private slots:
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();
     void on_actionLock_triggered();
-    // Check for active torrents and set preventing from suspend state
-    void checkForActiveTorrents();
+    // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
+    void updatePowerManagementState();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
