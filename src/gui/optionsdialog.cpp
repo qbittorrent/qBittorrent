@@ -225,10 +225,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkShowSplash, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramAutoExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkPreventFromSuspend, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
-    m_ui->checkPreventFromSuspend->setDisabled(true);
+    m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
+    m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -556,7 +558,8 @@ void OptionsDialog::saveOptions()
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
-    pref->setPreventFromSuspend(preventFromSuspend());
+    pref->setPreventFromSuspendWhenDownloading(m_ui->checkPreventFromSuspendWhenDownloading->isChecked());
+    pref->setPreventFromSuspendWhenSeeding(m_ui->checkPreventFromSuspendWhenSeeding->isChecked());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
     // Windows: file association settings
@@ -793,7 +796,8 @@ void OptionsDialog::loadOptions()
     }
 #endif
 
-    m_ui->checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
+    m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
+    m_ui->checkPreventFromSuspendWhenSeeding->setChecked(pref->preventFromSuspendWhenSeeding());
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
@@ -1406,11 +1410,6 @@ bool OptionsDialog::WinStartup() const
     return m_ui->checkStartup->isChecked();
 }
 #endif
-
-bool OptionsDialog::preventFromSuspend() const
-{
-    return m_ui->checkPreventFromSuspend->isChecked();
-}
 
 bool OptionsDialog::preAllocateAllFiles() const
 {
