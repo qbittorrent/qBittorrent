@@ -30,12 +30,14 @@
 #include "guiiconprovider.h"
 
 #include <QIcon>
+#include <QVector>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 #include <QDir>
 #include <QFile>
 #endif
 
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 
 GuiIconProvider::GuiIconProvider(QObject *parent)
     : IconProvider(parent)
@@ -57,12 +59,12 @@ GuiIconProvider *GuiIconProvider::instance()
     return static_cast<GuiIconProvider *>(m_instance);
 }
 
-QIcon GuiIconProvider::getIcon(const QString &iconId)
+QIcon GuiIconProvider::getIcon(const QString &iconId) const
 {
     return getIcon(iconId, iconId);
 }
 
-QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
+QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
@@ -78,7 +80,7 @@ QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback)
     return QIcon(IconProvider::getIconPath(iconId));
 }
 
-QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
+QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return QIcon();
     return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
@@ -89,7 +91,7 @@ QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode)
 // Otherwise, the UI looks broken if the icon is not available
 // in the correct size.
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
+QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon) const
 {
     // if icon is loaded from SVG format, it already contains all the required sizes and we shall not resize it
     // In that case it will be available in the following sizes:
@@ -99,16 +101,15 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
         return icon;
 
     QIcon newIcon;
-    QList<QSize> requiredSizes;
-    requiredSizes << QSize(16, 16) << QSize(24, 24) << QSize(32, 32);
-    QList<QIcon::Mode> modes;
-    modes << QIcon::Normal << QIcon::Active << QIcon::Selected << QIcon::Disabled;
-    foreach (const QSize &size, requiredSizes) {
-        foreach (QIcon::Mode mode, modes) {
+    const QVector<QSize> requiredSizes {{16, 16}, {24, 24}, {32, 32}};
+    const QVector<QIcon::Mode> modes {QIcon::Normal, QIcon::Active, QIcon::Selected, QIcon::Disabled};
+    for (const QSize &size : requiredSizes) {
+        for (const QIcon::Mode mode : modes) {
             QPixmap pixoff = icon.pixmap(size, mode, QIcon::Off);
             if (pixoff.height() > size.height())
                 pixoff = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
             newIcon.addPixmap(pixoff, mode, QIcon::Off);
+
             QPixmap pixon = icon.pixmap(size, mode, QIcon::On);
             if (pixon.height() > size.height())
                 pixon = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
@@ -120,11 +121,11 @@ QIcon GuiIconProvider::generateDifferentSizes(const QIcon &icon)
 }
 #endif
 
-QString GuiIconProvider::getIconPath(const QString &iconId)
+QString GuiIconProvider::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QString path = QDir::temp().absoluteFilePath(iconId + ".png");
+        QString path = Utils::Fs::tempPath() + iconId + ".png";
         if (!QFile::exists(path)) {
             const QIcon icon = QIcon::fromTheme(iconId);
             if (!icon.isNull())
