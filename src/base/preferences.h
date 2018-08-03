@@ -286,10 +286,14 @@ public:
 #ifndef Q_OS_MAC
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
+    bool minimizeToTrayNotified() const;
+    void setMinimizeToTrayNotified(bool b);
     bool minimizeToTray() const;
     void setMinimizeToTray(bool b);
     bool closeToTray() const;
     void setCloseToTray(bool b);
+    bool closeToTrayNotified() const;
+    void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
 #endif
