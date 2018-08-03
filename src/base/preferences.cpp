@@ -185,7 +185,7 @@ void Preferences::setMinimizeToTray(bool b)
 
 bool Preferences::closeToTray() const
 {
-    return value("Preferences/General/CloseToTray", false).toBool();
+    return value("Preferences/General/CloseToTray", true).toBool();
 }
 
 void Preferences::setCloseToTray(bool b)
