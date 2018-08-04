@@ -112,10 +112,18 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
         return TorrentInfo();
     }
 
-    const QByteArray data = file.read(fileSizeLimit);
+    QByteArray data;
+    try {
+        data = file.readAll();
+    }
+    catch (const std::bad_alloc &e) {
+        if (error)
+            *error = tr("Torrent file read error: %1").arg(e.what());
+        return TorrentInfo();
+    }
     if (data.size() != file.size()) {
         if (error)
-            *error = tr("Torrent file read error");
+            *error = tr("Torrent file read error: size mismatch");
         return TorrentInfo();
     }
 
