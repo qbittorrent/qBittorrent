@@ -54,9 +54,8 @@ private slots:
 private:
     explicit GuiIconProvider(QObject *parent = nullptr);
     ~GuiIconProvider();
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QIcon generateDifferentSizes(const QIcon &icon) const;
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;
 #endif
 };
