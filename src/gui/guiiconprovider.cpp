@@ -60,34 +60,6 @@ GuiIconProvider *GuiIconProvider::instance()
     return static_cast<GuiIconProvider *>(m_instance);
 }
 
-QIcon GuiIconProvider::getIcon(const QString &iconId) const
-{
-    return getIcon(iconId, iconId);
-}
-
-QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback) const
-{
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(iconId);
-        if (icon.name() != iconId)
-            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::getIconPath(iconId)));
-        return icon;
-    }
-#else
-    Q_UNUSED(fallback)
-#endif
-    // cache to avoid rescaling svg icons
-    static QHash<QString, QIcon> iconCache;
-    const auto iter = iconCache.find(iconId);
-    if (iter != iconCache.end())
-        return *iter;
-
-    const QIcon icon {IconProvider::getIconPath(iconId)};
-    iconCache[iconId] = icon;
-    return icon;
-}
-
 QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return QIcon();
@@ -117,5 +89,8 @@ void GuiIconProvider::configure()
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     m_useSystemTheme = Preferences::instance()->useSystemIconTheme();
+    if (!m_useSystemTheme)
 #endif
+        QIcon::setThemeName("qbt-theme");
+
 }

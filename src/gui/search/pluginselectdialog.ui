@@ -135,6 +135,9 @@
    </property>
   </action>
   <action name="actionUninstall">
+   <property name="icon">
+    <iconset theme="list-remove"/>
+   </property>
    <property name="text">
     <string>Uninstall</string>
    </property>

@@ -45,7 +45,7 @@ TrackerLoginDialog::TrackerLoginDialog(QWidget *parent, BitTorrent::TorrentHandl
 
     buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Log in"));
 
-    labelLoginLogo->setPixmap(Utils::Gui::scaledPixmap(GuiIconProvider::instance()->getIcon("document-encrypt"), this, 32));
+    labelLoginLogo->setPixmap(Utils::Gui::scaledPixmap(QIcon::fromTheme(QLatin1String("document-encrypt")), this, 32));
 
     labelTrackerURL->setText(torrent->currentTracker());
 

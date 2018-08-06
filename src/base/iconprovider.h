@@ -30,6 +30,7 @@
 #ifndef ICONPROVIDER_H
 #define ICONPROVIDER_H
 
+#include <QHash>
 #include <QObject>
 #include <QString>
 
@@ -47,6 +48,7 @@ public:
 protected:
     explicit IconProvider(QObject *parent = nullptr);
     ~IconProvider();
+    mutable QHash<QString, QString> m_iconFileNames;
 
     static IconProvider *m_instance;
 };

@@ -35,7 +35,6 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "guiiconprovider.h"
 #include "ui_deletionconfirmationdialog.h"
 #include "utils.h"
 
@@ -54,9 +53,9 @@ public:
             label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
         // Icons
         const QSize iconSize = Utils::Gui::largeIconSize();
-        labelWarning->setPixmap(GuiIconProvider::instance()->getIcon("dialog-warning").pixmap(iconSize));
+        labelWarning->setPixmap(QIcon::fromTheme(QLatin1String("dialog-warning")).pixmap(iconSize));
         labelWarning->setFixedWidth(iconSize.width());
-        rememberBtn->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
+        rememberBtn->setIcon(QIcon::fromTheme(QLatin1String("object-locked")));
         rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
         checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());

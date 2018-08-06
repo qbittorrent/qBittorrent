@@ -50,7 +50,6 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "ui_automatedrssdownloader.h"
 #include "utils.h"
 
@@ -65,9 +64,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_currentRuleItem(nullptr)
 {
     m_ui->setupUi(this);
-    // Icons
-    m_ui->removeRuleBtn->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
-    m_ui->addRuleBtn->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
 
     // Ui Settings
     m_ui->listRules->setSortingEnabled(true);
@@ -469,7 +465,7 @@ void AutomatedRssDownloader::on_importBtn_clicked()
 void AutomatedRssDownloader::displayRulesListMenu()
 {
     QMenu menu;
-    QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
+    QAction *addAct = menu.addAction(QIcon::fromTheme(QLatin1String("list-add")), tr("Add new rule..."));
     QAction *delAct = nullptr;
     QAction *renameAct = nullptr;
     QAction *clearAct = nullptr;
@@ -477,15 +473,15 @@ void AutomatedRssDownloader::displayRulesListMenu()
 
     if (!selection.isEmpty()) {
         if (selection.count() == 1) {
-            delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
+            delAct = menu.addAction(QIcon::fromTheme(QLatin1String("list-remove")), tr("Delete rule"));
             menu.addSeparator();
-            renameAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
+            renameAct = menu.addAction(QIcon::fromTheme(QLatin1String("edit-rename")), tr("Rename rule..."));
         }
         else {
-            delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
+            delAct = menu.addAction(QIcon::fromTheme(QLatin1String("list-remove")), tr("Delete selected rules"));
         }
         menu.addSeparator();
-        clearAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes..."));
+        clearAct = menu.addAction(QIcon::fromTheme(QLatin1String("edit-clear")), tr("Clear downloaded episodes..."));
     }
 
     QAction *act = menu.exec(QCursor::pos());
@@ -614,7 +610,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
         QFont f = treeFeedItem->font(0);
         f.setBold(true);
         treeFeedItem->setFont(0, f);
-        treeFeedItem->setData(0, Qt::DecorationRole, GuiIconProvider::instance()->getIcon("inode-directory"));
+        treeFeedItem->setData(0, Qt::DecorationRole, QIcon::fromTheme(QLatin1String("inode-directory")));
         treeFeedItem->setData(0, Qt::UserRole, feed->url());
         m_ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
     }
@@ -696,7 +692,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     }
     else {
         m_ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustStat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelMustStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
 }
@@ -734,7 +730,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     }
     else {
         m_ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustNotStat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelMustNotStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
 }
@@ -750,7 +746,7 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
     }
     else {
         m_ui->lineEFilter->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelEpFilterStat->setPixmap(GuiIconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelEpFilterStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
     }
 }
 

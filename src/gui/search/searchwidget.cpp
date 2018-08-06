@@ -55,7 +55,6 @@
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "addnewtorrentdialog.h"
-#include "guiiconprovider.h"
 #include "mainwindow.h"
 #include "pluginselectdialog.h"
 #include "searchlistdelegate.h"
@@ -114,13 +113,13 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
            << "</p></body></html>" << flush;
     m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
     // Icons
-    m_ui->searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
-    m_ui->downloadButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    m_ui->goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
-    m_ui->pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
-    m_ui->copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
+    m_ui->searchButton->setIcon({});
+    m_ui->downloadButton->setIcon({});
+    m_ui->goToDescBtn->setIcon({});
+    m_ui->pluginsButton->setIcon({});
+    m_ui->copyURLBtn->setIcon({});
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -361,8 +360,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
 {
     const int tabIndex = m_ui->tabWidget->indexOf(tab);
     m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
-    m_ui->tabWidget->setTabIcon(tabIndex, GuiIconProvider::instance()->getIcon(
-                                 statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
+    m_ui->tabWidget->setTabIcon(tabIndex, QIcon::fromTheme(statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
     if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing)) {
         Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);

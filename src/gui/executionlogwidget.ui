@@ -35,12 +35,18 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tabGeneral">
+      <attribute name="icon">
+       <iconset theme="view-calendar-journal"/>
+      </attribute>
       <attribute name="title">
        <string>General</string>
       </attribute>
       <layout class="QVBoxLayout" name="tabGeneralLayout"/>
      </widget>
      <widget class="QWidget" name="tabBan">
+      <attribute name="icon">
+       <iconset theme="view-filter"/>
+      </attribute>
       <attribute name="title">
        <string>Blocked IPs</string>
       </attribute>

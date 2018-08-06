@@ -43,8 +43,6 @@ public:
     static void initInstance();
     static GuiIconProvider *instance();
 
-    QIcon getIcon(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId, const QString &fallback) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
     QString getIconPath(const QString &iconId) const override;
 
@@ -54,7 +52,6 @@ private slots:
 private:
     explicit GuiIconProvider(QObject *parent = nullptr);
     ~GuiIconProvider();
-
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;
 #endif

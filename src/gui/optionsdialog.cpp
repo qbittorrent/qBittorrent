@@ -65,7 +65,6 @@
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
-#include "guiiconprovider.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "ui_optionsdialog.h"
@@ -99,18 +98,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("speedometer", "chronometer"));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(GuiIconProvider::instance()->getIcon("rss-config", "application-rss+xml"));
-#ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
-#else
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(
+        QIcon::fromTheme(QLatin1String("speedometer"), QIcon::fromTheme(QLatin1String("chronometer"))));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(QIcon::fromTheme(QLatin1String("application-rss+xml")));
+#ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -121,7 +114,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
-    m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->IpFilterRefreshBtn->setIcon(QIcon::fromTheme(QLatin1String("view-refresh")));
 
     m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.png", this, 16));
     m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.png", this, 16));
@@ -1751,11 +1744,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(QIcon::fromTheme(QLatin1String("security-high")), this, 24));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(QIcon::fromTheme(QLatin1String("security-low")), this, 24));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1770,11 +1763,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(QIcon::fromTheme(QLatin1String("security-high")), this, 24));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(QIcon::fromTheme(QLatin1String("security-low")), this, 24));
         m_sslCert.clear();
     }
     return isCertValid;

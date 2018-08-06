@@ -38,7 +38,6 @@
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "guiiconprovider.h"
 #include "ui_trackersadditiondialog.h"
 
 TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
@@ -47,8 +46,6 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
     , m_torrent(torrent)
 {
     m_ui->setupUi(this);
-    // Icons
-    m_ui->uTorrentListButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
 }
 
 TrackersAdditionDialog::~TrackersAdditionDialog()

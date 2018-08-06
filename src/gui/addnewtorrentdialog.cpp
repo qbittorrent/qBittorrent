@@ -51,7 +51,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "proplistdelegate.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
@@ -605,7 +604,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
     QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
-        actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        actRename = myFilesLlistMenu.addAction(QIcon::fromTheme(QLatin1String("edit-rename")), tr("Rename..."));
         myFilesLlistMenu.addSeparator();
     }
     QMenu subMenu;

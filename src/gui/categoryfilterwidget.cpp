@@ -36,7 +36,6 @@
 #include "base/global.h"
 #include "categoryfiltermodel.h"
 #include "categoryfilterproxymodel.h"
-#include "guiiconprovider.h"
 #include "torrentcategorydialog.h"
 #include "utils.h"
 
@@ -110,7 +109,7 @@ void CategoryFilterWidget::showMenu(QPoint)
     QMenu menu(this);
 
     QAction *addAct = menu.addAction(
-                          GuiIconProvider::instance()->getIcon("list-add")
+                          QIcon::fromTheme(QLatin1String("list-add"))
                           , tr("Add category..."));
     connect(addAct, &QAction::triggered, this, &CategoryFilterWidget::addCategory);
 
@@ -118,41 +117,41 @@ void CategoryFilterWidget::showMenu(QPoint)
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
             QAction *addSubAct = menu.addAction(
-                        GuiIconProvider::instance()->getIcon("list-add")
+                        QIcon::fromTheme(QLatin1String("list-add"))
                         , tr("Add subcategory..."));
             connect(addSubAct, &QAction::triggered, this, &CategoryFilterWidget::addSubcategory);
         }
 
         QAction *editAct = menu.addAction(
-                    GuiIconProvider::instance()->getIcon("document-edit")
+                    QIcon::fromTheme(QLatin1String("document-edit"))
                     , tr("Edit category..."));
         connect(editAct, &QAction::triggered, this, &CategoryFilterWidget::editCategory);
 
         QAction *removeAct = menu.addAction(
-                        GuiIconProvider::instance()->getIcon("list-remove")
+                        QIcon::fromTheme(QLatin1String("list-remove"))
                         , tr("Remove category"));
         connect(removeAct, &QAction::triggered, this, &CategoryFilterWidget::removeCategory);
     }
 
     QAction *removeUnusedAct = menu.addAction(
-                                   GuiIconProvider::instance()->getIcon("list-remove")
+                                   QIcon::fromTheme(QLatin1String("list-remove"))
                                    , tr("Remove unused categories"));
     connect(removeUnusedAct, &QAction::triggered, this, &CategoryFilterWidget::removeUnusedCategories);
 
     menu.addSeparator();
 
     QAction *startAct = menu.addAction(
-                            GuiIconProvider::instance()->getIcon("media-playback-start")
+                            QIcon::fromTheme(QLatin1String("media-playback-start"))
                             , tr("Resume torrents"));
     connect(startAct, &QAction::triggered, this, &CategoryFilterWidget::actionResumeTorrentsTriggered);
 
     QAction *pauseAct = menu.addAction(
-                            GuiIconProvider::instance()->getIcon("media-playback-pause")
+                            QIcon::fromTheme(QLatin1String("media-playback-pause"))
                             , tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, this, &CategoryFilterWidget::actionPauseTorrentsTriggered);
 
     QAction *deleteTorrentsAct = menu.addAction(
-                                     GuiIconProvider::instance()->getIcon("edit-delete")
+                                     QIcon::fromTheme(QLatin1String("edit-delete"))
                                      , tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, this, &CategoryFilterWidget::actionDeleteTorrentsTriggered);
 

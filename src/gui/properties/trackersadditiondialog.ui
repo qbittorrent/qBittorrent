@@ -44,7 +44,11 @@
       <widget class="QLineEdit" name="lineEditListURL"/>
      </item>
      <item>
-      <widget class="QPushButton" name="uTorrentListButton"/>
+      <widget class="QPushButton" name="uTorrentListButton">
+       <property name="icon">
+        <iconset theme="download"/>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

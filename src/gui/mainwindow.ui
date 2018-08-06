@@ -71,6 +71,9 @@
      <property name="title">
       <string>On Downloads &amp;Done</string>
      </property>
+     <property name="icon">
+      <iconset theme="application-exit"/>
+     </property>
      <addaction name="actionAutoShutdownDisabled"/>
      <addaction name="actionAutoExit"/>
      <addaction name="actionAutoSuspend"/>
@@ -163,6 +166,9 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
    <property name="text">
     <string>&amp;Add Torrent File...</string>
    </property>
@@ -171,6 +177,9 @@
    </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
    <property name="text">
     <string>E&amp;xit</string>
    </property>
@@ -181,36 +190,57 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
    <property name="text">
     <string>&amp;About</string>
    </property>
   </action>
   <action name="actionStart">
+   <property name="icon">
+    <iconset theme="media-playback-start"/>
+   </property>
    <property name="text">
     <string>&amp;Resume</string>
    </property>
   </action>
   <action name="actionPause">
+   <property name="icon">
+    <iconset theme="media-playback-pause"/>
+   </property>
    <property name="text">
     <string>&amp;Pause</string>
    </property>
   </action>
   <action name="actionStartAll">
+   <property name="icon">
+    <iconset theme="media-playback-start"/>
+   </property>
    <property name="text">
     <string>R&amp;esume All</string>
    </property>
   </action>
   <action name="actionPauseAll">
+   <property name="icon">
+    <iconset theme="media-playback-pause"/>
+   </property>
    <property name="text">
     <string>P&amp;ause All</string>
    </property>
   </action>
   <action name="actionDelete">
+   <property name="icon">
+    <iconset theme="list-remove"/>
+   </property>
    <property name="text">
     <string>&amp;Delete</string>
    </property>
   </action>
   <action name="actionDownloadFromURL">
+   <property name="icon">
+    <iconset theme="insert-link"/>
+   </property>
    <property name="text">
     <string>Add Torrent &amp;Link...</string>
    </property>
@@ -219,26 +249,41 @@
    </property>
   </action>
   <action name="actionCreateTorrent">
+   <property name="icon">
+    <iconset theme="document-edit"/>
+   </property>
    <property name="text">
     <string>Torrent &amp;Creator</string>
    </property>
   </action>
   <action name="actionSetUploadLimit">
+   <property name="icon">
+    <iconset theme="kt-set-max-upload-speed"/>
+   </property>
    <property name="text">
     <string>Set Upload Limit...</string>
    </property>
   </action>
   <action name="actionSetDownloadLimit">
+   <property name="icon">
+    <iconset theme="kt-set-max-download-speed"/>
+   </property>
    <property name="text">
     <string>Set Download Limit...</string>
    </property>
   </action>
   <action name="actionDocumentation">
+   <property name="icon">
+    <iconset theme="help-contents"/>
+   </property>
    <property name="text">
     <string>&amp;Documentation</string>
    </property>
   </action>
   <action name="actionSetGlobalDownloadLimit">
+   <property name="icon">
+    <iconset theme="kt-set-max-download-speed"/>
+   </property>
    <property name="text">
     <string>Set Global Download Limit...</string>
    </property>
@@ -249,6 +294,9 @@
    </property>
   </action>
   <action name="actionBottomPriority">
+   <property name="icon">
+    <iconset theme="go-bottom"/>
+   </property>
    <property name="text">
     <string>Minimum Priority</string>
    </property>
@@ -257,6 +305,9 @@
    </property>
   </action>
   <action name="actionTopPriority">
+   <property name="icon">
+    <iconset theme="go-top"/>
+   </property>
    <property name="text">
     <string>Top Priority</string>
    </property>
@@ -265,6 +316,9 @@
    </property>
   </action>
   <action name="actionDecreasePriority">
+   <property name="icon">
+    <iconset theme="go-down"/>
+   </property>
    <property name="text">
     <string>Decrease Priority</string>
    </property>
@@ -273,6 +327,9 @@
    </property>
   </action>
   <action name="actionIncreasePriority">
+   <property name="icon">
+    <iconset theme="go-up"/>
+   </property>
    <property name="text">
     <string>Increase Priority</string>
    </property>
@@ -338,6 +395,9 @@
    </property>
   </action>
   <action name="actionLock">
+   <property name="icon">
+    <iconset theme="object-locked"/>
+   </property>
    <property name="text">
     <string>L&amp;ock qBittorrent</string>
    </property>
@@ -349,6 +409,9 @@
    </property>
   </action>
   <action name="actionDonateMoney">
+   <property name="icon">
+    <iconset theme="wallet-open"/>
+   </property>
    <property name="text">
     <string>Do&amp;nate!</string>
    </property>
@@ -407,6 +470,9 @@
    </property>
   </action>
   <action name="actionStatistics">
+   <property name="icon">
+    <iconset theme="view-statistics"/>
+   </property>
    <property name="text">
     <string>&amp;Statistics</string>
    </property>
@@ -420,6 +486,9 @@
    </property>
   </action>
   <action name="actionManageCookies">
+   <property name="icon">
+    <iconset theme="preferences-web-browser-cookies"/>
+   </property>
    <property name="text">
     <string>Manage Cookies...</string>
    </property>

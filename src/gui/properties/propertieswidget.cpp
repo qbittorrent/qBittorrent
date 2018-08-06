@@ -46,7 +46,6 @@
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "downloadedpiecesbar.h"
-#include "guiiconprovider.h"
 #include "lineedit.h"
 #include "mainwindow.h"
 #include "peerlistwidget.h"
@@ -130,9 +129,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
@@ -593,9 +590,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     QAction *actOpenContainingFolder = nullptr;
     QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
-        actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
-        actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        actOpen = myFilesLlistMenu.addAction(QIcon::fromTheme(QLatin1String("folder-documents")), tr("Open"));
+        actOpenContainingFolder = myFilesLlistMenu.addAction(QIcon::fromTheme(QLatin1String("inode-directory")), tr("Open Containing Folder"));
+        actRename = myFilesLlistMenu.addAction(QIcon::fromTheme(QLatin1String("edit-rename")), tr("Rename..."));
         myFilesLlistMenu.addSeparator();
     }
     QMenu subMenu;
@@ -648,16 +645,16 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
 
     QMenu seedMenu;
     QModelIndexList rows = m_ui->listWebSeeds->selectionModel()->selectedRows();
-    QAction *actAdd = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
+    QAction *actAdd = seedMenu.addAction(QIcon::fromTheme(QLatin1String("list-add")), tr("New Web seed"));
     QAction *actDel = nullptr;
     QAction *actCpy = nullptr;
     QAction *actEdit = nullptr;
 
     if (!rows.isEmpty()) {
-        actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+        actDel = seedMenu.addAction(QIcon::fromTheme(QLatin1String("list-remove")), tr("Remove Web seed"));
         seedMenu.addSeparator();
-        actCpy = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
-        actEdit = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+        actCpy = seedMenu.addAction(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy Web seed URL"));
+        actEdit = seedMenu.addAction(QIcon::fromTheme(QLatin1String("edit-rename")), tr("Edit Web seed URL"));
     }
 
     const QAction *act = seedMenu.exec(QCursor::pos());

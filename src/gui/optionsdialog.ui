@@ -44,6 +44,9 @@
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
       </property>
+      <property name="uniformItemSizes">
+       <bool>false</bool>
+      </property>
       <property name="currentRow">
        <number>-1</number>
       </property>
@@ -51,25 +54,45 @@
        <property name="text">
         <string>Behavior</string>
        </property>
+       <property name="icon">
+        <iconset theme="preferences-desktop">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
         <string>Downloads</string>
+       </property>
+       <property name="icon">
+        <iconset theme="folder-download">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
        <property name="text">
         <string>Connection</string>
        </property>
+       <property name="icon">
+        <iconset theme="network-wired">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
         <string>Speed</string>
        </property>
+       <property name="icon">
+        <iconset theme="speedometer">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
         <string>BitTorrent</string>
+       </property>
+       <property name="icon">
+        <iconset theme="preferences-system-network">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
@@ -81,10 +104,18 @@
        <property name="text">
         <string>Web UI</string>
        </property>
+       <property name="icon">
+        <iconset theme="network-server">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
         <string>Advanced</string>
+       </property>
+       <property name="icon">
+        <iconset theme="preferences-other">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
      </widget>
@@ -1728,6 +1759,9 @@
                    </property>
                    <property name="toolTip">
                     <string>Reload the filter</string>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="view-refresh"/>
                    </property>
                   </widget>
                  </item>

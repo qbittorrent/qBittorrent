@@ -50,7 +50,6 @@
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "deletionconfirmationdialog.h"
-#include "guiiconprovider.h"
 #include "mainwindow.h"
 #include "optionsdialog.h"
 #include "previewselectdialog.h"
@@ -864,48 +863,48 @@ void TransferListWidget::displayListMenu(const QPoint&)
     if (selectedIndexes.size() == 0) return;
 
     // Create actions
-    QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), nullptr);
+    QAction actionStart(QIcon::fromTheme(QLatin1String("media-playback-start")), tr("Resume", "Resume/start the torrent"), nullptr);
     connect(&actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
-    QAction actionPause(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), nullptr);
+    QAction actionPause(QIcon::fromTheme(QLatin1String("media-playback-pause")), tr("Pause", "Pause the torrent"), nullptr);
     connect(&actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
-    QAction actionForceStart(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), nullptr);
+    QAction actionForceStart(QIcon::fromTheme(QLatin1String("media-seek-forward")), tr("Force Resume", "Force Resume/start the torrent"), nullptr);
     connect(&actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
-    QAction actionDelete(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), nullptr);
+    QAction actionDelete(QIcon::fromTheme(QLatin1String("edit-delete")), tr("Delete", "Delete the torrent"), nullptr);
     connect(&actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
-    QAction actionPreviewFile(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), nullptr);
+    QAction actionPreviewFile(QIcon::fromTheme(QLatin1String("view-preview")), tr("Preview file..."), nullptr);
     connect(&actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
     QAction actionSetMaxRatio(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), nullptr);
     connect(&actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
-    QAction actionSetUploadLimit(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), nullptr);
+    QAction actionSetUploadLimit(QIcon::fromTheme(QLatin1String("kt-set-max-upload-speed")), tr("Limit upload rate..."), nullptr);
     connect(&actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
-    QAction actionSetDownloadLimit(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), nullptr);
+    QAction actionSetDownloadLimit(QIcon::fromTheme(QLatin1String("kt-set-max-download-speed")), tr("Limit download rate..."), nullptr);
     connect(&actionSetDownloadLimit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
-    QAction actionOpenDestinationFolder(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), nullptr);
+    QAction actionOpenDestinationFolder(QIcon::fromTheme(QLatin1String("inode-directory")), tr("Open destination folder"), nullptr);
     connect(&actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
-    QAction actionIncreasePriority(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), nullptr);
+    QAction actionIncreasePriority(QIcon::fromTheme(QLatin1String("go-up")), tr("Move up", "i.e. move up in the queue"), nullptr);
     connect(&actionIncreasePriority, &QAction::triggered, this, &TransferListWidget::increasePrioSelectedTorrents);
-    QAction actionDecreasePriority(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), nullptr);
+    QAction actionDecreasePriority(QIcon::fromTheme(QLatin1String("go-down")), tr("Move down", "i.e. Move down in the queue"), nullptr);
     connect(&actionDecreasePriority, &QAction::triggered, this, &TransferListWidget::decreasePrioSelectedTorrents);
-    QAction actionTopPriority(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), nullptr);
+    QAction actionTopPriority(QIcon::fromTheme(QLatin1String("go-top")), tr("Move to top", "i.e. Move to top of the queue"), nullptr);
     connect(&actionTopPriority, &QAction::triggered, this, &TransferListWidget::topPrioSelectedTorrents);
-    QAction actionBottomPriority(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), nullptr);
+    QAction actionBottomPriority(QIcon::fromTheme(QLatin1String("go-bottom")), tr("Move to bottom", "i.e. Move to bottom of the queue"), nullptr);
     connect(&actionBottomPriority, &QAction::triggered, this, &TransferListWidget::bottomPrioSelectedTorrents);
-    QAction actionSetTorrentPath(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), nullptr);
+    QAction actionSetTorrentPath(QIcon::fromTheme(QLatin1String("inode-directory")), tr("Set location..."), nullptr);
     connect(&actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
-    QAction actionForceRecheck(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), nullptr);
+    QAction actionForceRecheck(QIcon::fromTheme(QLatin1String("document-edit-verify")), tr("Force recheck"), nullptr);
     connect(&actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
-    QAction actionForceReannounce(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), nullptr);
+    QAction actionForceReannounce(QIcon::fromTheme(QLatin1String("document-edit-verify")), tr("Force reannounce"), nullptr);
     connect(&actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
-    QAction actionCopyMagnetLink(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Copy magnet link"), nullptr);
+    QAction actionCopyMagnetLink(QIcon::fromTheme(QLatin1String("kt-magnet")), tr("Copy magnet link"), nullptr);
     connect(&actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
-    QAction actionCopyName(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), nullptr);
+    QAction actionCopyName(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy name"), nullptr);
     connect(&actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    QAction actionCopyHash(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), nullptr);
+    QAction actionCopyHash(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy hash"), nullptr);
     connect(&actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
     QAction actionSuperSeedingMode(tr("Super seeding mode"), nullptr);
     actionSuperSeedingMode.setCheckable(true);
     connect(&actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSuperSeeding);
-    QAction actionRename(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), nullptr);
+    QAction actionRename(QIcon::fromTheme(QLatin1String("edit-rename")), tr("Rename..."), nullptr);
     connect(&actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
     QAction actionSequentialDownload(tr("Download in sequential order"), nullptr);
     actionSequentialDownload.setCheckable(true);
@@ -1022,13 +1021,13 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
     QList<QAction*> categoryActions;
-    QMenu *categoryMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Category"));
-    categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New...", "New category..."));
-    categoryActions << categoryMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Reset", "Reset category"));
+    QMenu *categoryMenu = listMenu.addMenu(QIcon::fromTheme(QLatin1String("view-categories")), tr("Category"));
+    categoryActions << categoryMenu->addAction(QIcon::fromTheme(QLatin1String("list-add")), tr("New...", "New category..."));
+    categoryActions << categoryMenu->addAction(QIcon::fromTheme(QLatin1String("edit-clear")), tr("Reset", "Reset category"));
     categoryMenu->addSeparator();
     foreach (QString category, categories) {
         category.replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *cat = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), category, categoryMenu);
+        QAction *cat = new QAction(QIcon::fromTheme(QLatin1String("inode-directory")), category, categoryMenu);
         if (allSameCategory && (category == firstCategory)) {
             cat->setCheckable(true);
             cat->setChecked(true);
@@ -1041,9 +1040,9 @@ void TransferListWidget::displayListMenu(const QPoint&)
     QStringList tags(BitTorrent::Session::instance()->tags().toList());
     std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
     QList<QAction *> tagsActions;
-    QMenu *tagsMenu = listMenu.addMenu(GuiIconProvider::instance()->getIcon("view-categories"), tr("Tags"));
-    tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags..."));
-    tagsActions << tagsMenu->addAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Remove All", "Remove all tags"));
+    QMenu *tagsMenu = listMenu.addMenu(QIcon::fromTheme(QLatin1String("view-categories")), tr("Tags"));
+    tagsActions << tagsMenu->addAction(QIcon::fromTheme(QLatin1String("list-add")), tr("Add...", "Add / assign multiple tags..."));
+    tagsActions << tagsMenu->addAction(QIcon::fromTheme(QLatin1String("edit-clear")), tr("Remove All", "Remove all tags"));
     tagsMenu->addSeparator();
     foreach (QString tag, tags) {
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked

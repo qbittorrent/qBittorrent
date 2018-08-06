@@ -48,7 +48,6 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "propertieswidget.h"
 #include "trackersadditiondialog.h"
 
@@ -528,21 +527,21 @@ void TrackerListWidget::showTrackerListMenu(QPoint)
     //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
     QMenu menu;
     // Add actions
-    QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
+    QAction *addAct = menu.addAction(QIcon::fromTheme(QLatin1String("list-add")), tr("Add a new tracker..."));
     QAction *copyAct = nullptr;
     QAction *delAct = nullptr;
     QAction *editAct = nullptr;
     if (!getSelectedTrackerItems().isEmpty()) {
-        delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
-        copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
-        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
+        delAct = menu.addAction(QIcon::fromTheme(QLatin1String("list-remove")), tr("Remove tracker"));
+        copyAct = menu.addAction(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy tracker URL"));
+        editAct = menu.addAction(QIcon::fromTheme(QLatin1String("edit-rename")),tr("Edit selected tracker URL"));
     }
     QAction *reannounceSelAct = nullptr;
     QAction *reannounceAllAct = nullptr;
     if (!torrent->isPaused()) {
-        reannounceSelAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
+        reannounceSelAct = menu.addAction(QIcon::fromTheme(QLatin1String("view-refresh")), tr("Force reannounce to selected trackers"));
         menu.addSeparator();
-        reannounceAllAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+        reannounceAllAct = menu.addAction(QIcon::fromTheme(QLatin1String("view-refresh")), tr("Force reannounce to all trackers"));
     }
     QAction *act = menu.exec(QCursor::pos());
     if (act == nullptr) return;

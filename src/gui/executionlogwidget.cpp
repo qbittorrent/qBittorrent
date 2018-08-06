@@ -32,7 +32,6 @@
 #include <QDateTime>
 #include <QPalette>
 
-#include "guiiconprovider.h"
 #include "loglistwidget.h"
 #include "ui_executionlogwidget.h"
 
@@ -44,9 +43,9 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
 {
     m_ui->setupUi(this);
 
-#ifndef Q_OS_MAC
-    m_ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
-    m_ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
+#ifdef Q_OS_MAC
+    m_ui->tabConsole->setTabIcon(0, {});
+    m_ui->tabConsole->setTabIcon(1, {});
 #endif
     m_ui->tabGeneral->layout()->addWidget(m_msgList);
     m_ui->tabBan->layout()->addWidget(m_peerList);

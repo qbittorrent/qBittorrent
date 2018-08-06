@@ -934,10 +934,18 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerUpButton"/>
+          <widget class="QPushButton" name="trackerUpButton">
+           <property name="icon">
+            <iconset theme="go-up"/>
+           </property>
+          </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerDownButton"/>
+          <widget class="QPushButton" name="trackerDownButton">
+           <property name="icon">
+            <iconset theme="go-down"/>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="verticalSpacer_3">

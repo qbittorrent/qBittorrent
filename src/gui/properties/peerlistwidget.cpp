@@ -231,15 +231,15 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     // Add Peer Action
     QAction *addPeerAct = nullptr;
     if (!torrent->isQueued() && !torrent->isChecking()) {
-        addPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
+        addPeerAct = menu.addAction(QIcon::fromTheme(QLatin1String("user-group-new")), tr("Add a new peer..."));
         emptyMenu = false;
     }
     QAction *banAct = nullptr;
     QAction *copyPeerAct = nullptr;
     if (!selectionModel()->selectedRows().isEmpty()) {
-        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
+        copyPeerAct = menu.addAction(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy IP:port"));
         menu.addSeparator();
-        banAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
+        banAct = menu.addAction(QIcon::fromTheme(QLatin1String("user-group-delete")), tr("Ban peer permanently"));
         emptyMenu = false;
     }
     if (emptyMenu) return;

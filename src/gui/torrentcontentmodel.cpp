@@ -50,7 +50,6 @@
 
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
-#include "guiiconprovider.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"
@@ -63,7 +62,7 @@ namespace
 {
     QIcon getDirectoryIcon()
     {
-        static QIcon cached = GuiIconProvider::instance()->getIcon("inode-directory");
+        static QIcon cached = QIcon::fromTheme(QLatin1String("inode-directory"));
         return cached;
     }
 
@@ -75,7 +74,7 @@ namespace
         QIcon icon(const QFileInfo &info) const override
         {
             Q_UNUSED(info);
-            static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
+            static QIcon cached = QIcon::fromTheme(QLatin1String("text-plain"));
             return cached;
         }
     };

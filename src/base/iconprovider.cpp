@@ -29,7 +29,20 @@
 
 #include "iconprovider.h"
 
+#include <array>
+
 #include <QFileInfo>
+
+namespace
+{
+    const std::array<QLatin1String, 5> THEME_DIRS = {
+        QLatin1String("actions/"),
+        QLatin1String("mimetypes/"),
+        QLatin1String("places/"),
+        QLatin1String("preferences/"),
+        QLatin1String("status/")
+    };
+}
 
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)
@@ -59,13 +72,18 @@ IconProvider *IconProvider::instance()
 
 QString IconProvider::getIconPath(const QString &iconId) const
 {
-    // there are a few icons not available in svg
-    const QString pathSvg = ":/icons/qbt-theme/" + iconId + ".svg";
-    if (QFileInfo::exists(pathSvg))
-        return pathSvg;
+    const auto it = m_iconFileNames.find(iconId);
+    if (it != m_iconFileNames.end())
+        return it.value();
 
-    const QString pathPng = ":/icons/qbt-theme/" + iconId + ".png";
-    return pathPng;
+    const QString iconThemeDir = QLatin1String(":/icons/qbt-theme/");
+    const QString fileSuffix = iconId + QLatin1String(".svg");
+    for (const auto dir : THEME_DIRS) {
+        const QString probe = iconThemeDir + dir + fileSuffix;
+        if (QFileInfo::exists(probe))
+            return m_iconFileNames[iconId] = probe;
+    }
+    throw std::runtime_error("could not find icon " + iconId.toStdString());
 }
 
 IconProvider *IconProvider::m_instance = nullptr;

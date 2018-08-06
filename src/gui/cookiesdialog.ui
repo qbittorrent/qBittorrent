@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Manage Cookies</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="preferences-web-browser-cookies"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -49,6 +52,10 @@
          <property name="text">
           <string notr="true"/>
          </property>
+         <property name="icon">
+          <iconset theme="list-add">
+           <normaloff>.</normaloff>.</iconset>
+         </property>
         </widget>
        </item>
        <item>
@@ -71,6 +78,10 @@
         <widget class="QToolButton" name="buttonDelete">
          <property name="text">
           <string notr="true"/>
+         </property>
+         <property name="icon">
+          <iconset theme="list-remove">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </widget>
        </item>

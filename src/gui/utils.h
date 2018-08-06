@@ -51,6 +51,7 @@ namespace Utils
 
         QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, const int height);
         QPixmap scaledPixmap(const QString &path, const QWidget *widget, const int height = 0);
+        QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, const int height);
         QPixmap scaledPixmapSvg(const QString &path, const QWidget *widget, const int baseHeight);
         QSize smallIconSize(const QWidget *widget = nullptr);
         QSize mediumIconSize(const QWidget *widget = nullptr);

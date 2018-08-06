@@ -36,8 +36,6 @@
 #include <QListWidgetItem>
 #include <QRegularExpression>
 
-#include "guiiconprovider.h"
-
 LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *parent)
     : QListWidget(parent)
     , m_maxLines(maxLines)
@@ -46,8 +44,8 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     // Allow multiple selections
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     // Context menu
-    QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
-    QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
+    QAction *copyAct = new QAction(QIcon::fromTheme(QLatin1String("edit-copy")), tr("Copy"), this);
+    QAction *clearAct = new QAction(QIcon::fromTheme(QLatin1String("edit-clear")), tr("Clear"), this);
     connect(copyAct, &QAction::triggered, this, &LogListWidget::copySelection);
     connect(clearAct, &QAction::triggered, this, &LogListWidget::clear);
     addAction(copyAct);

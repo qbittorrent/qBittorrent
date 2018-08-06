@@ -211,7 +211,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
     auto item = static_cast<CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
-        return GuiIconProvider::instance()->getIcon("inode-directory");
+        return QIcon::fromTheme(QLatin1String("inode-directory"));
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole)) {

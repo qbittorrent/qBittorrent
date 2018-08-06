@@ -50,6 +50,9 @@
        <property name="text">
         <string>Search</string>
        </property>
+       <property name="icon">
+        <iconset theme="edit-find"/>
+       </property>
       </widget>
      </item>
     </layout>
@@ -121,6 +124,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        <property name="text">
         <string>Download</string>
        </property>
+       <property name="icon">
+        <iconset theme="download"/>
+       </property>
       </widget>
      </item>
      <item>
@@ -131,6 +137,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        <property name="text">
         <string>Go to description page</string>
        </property>
+       <property name="icon">
+        <iconset theme="application-x-mswinurl"/>
+       </property>
       </widget>
      </item>
      <item>
@@ -140,6 +149,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        </property>
        <property name="text">
         <string>Copy description page URL</string>
+       </property>
+       <property name="icon">
+        <iconset theme="edit-copy"/>
        </property>
       </widget>
      </item>
@@ -160,6 +172,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
       <widget class="QPushButton" name="pluginsButton">
        <property name="text">
         <string>Search plugins...</string>
+       </property>
+       <property name="icon">
+        <iconset theme="preferences-system-network"/>
        </property>
       </widget>
      </item>

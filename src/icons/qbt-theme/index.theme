@@ -1,0 +1,66 @@
+[Icon Theme]
+Name=qBt
+Name[en_GB]=qBt
+Comment=Default qBittorrent theme
+DisplayDepth=32
+Inherits=hicolor
+Example=folder
+FollowsColorScheme=false
+
+########## Directories
+# actions
+# mimetypes
+# places
+# preferences
+# status
+
+########## ordered by category and alphabetically
+
+Directories=actions,mimetypes,places,preferences,status
+
+########## Actions
+
+[actions]
+Size=256
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Actions
+
+########## Mimetypes
+
+[mimetypes]
+Size=256
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=MimeTypes
+
+########## Places
+
+[places]
+Size=256
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Places
+
+########## Preferences
+
+[preferences]
+Size=256
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Preferences
+
+########## Status
+
+[status]
+Size=256
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Status
+
+########## EOF

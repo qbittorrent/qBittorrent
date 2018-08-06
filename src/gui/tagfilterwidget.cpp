@@ -36,7 +36,6 @@
 
 #include "base/bittorrent/session.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "tagfiltermodel.h"
 #include "tagfilterproxymodel.h"
 #include "utils.h"
@@ -108,39 +107,39 @@ void TagFilterWidget::showMenu(QPoint)
     QMenu menu(this);
 
     QAction *addAct = menu.addAction(
-        GuiIconProvider::instance()->getIcon("list-add")
+        QIcon::fromTheme(QLatin1String("list-add"))
         , tr("Add tag..."));
     connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
 
     auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
         QAction *removeAct = menu.addAction(
-            GuiIconProvider::instance()->getIcon("list-remove")
+            QIcon::fromTheme(QLatin1String("list-remove"))
             , tr("Remove tag"));
         connect(removeAct, &QAction::triggered, this, &TagFilterWidget::removeTag);
     }
 
     QAction *removeUnusedAct = menu.addAction(
-        GuiIconProvider::instance()->getIcon("list-remove")
+        QIcon::fromTheme(QLatin1String("list-remove"))
         , tr("Remove unused tags"));
     connect(removeUnusedAct, &QAction::triggered, this, &TagFilterWidget::removeUnusedTags);
 
     menu.addSeparator();
 
     QAction *startAct = menu.addAction(
-        GuiIconProvider::instance()->getIcon("media-playback-start")
+        QIcon::fromTheme(QLatin1String("media-playback-start"))
         , tr("Resume torrents"));
     connect(startAct, &QAction::triggered
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
 
     QAction *pauseAct = menu.addAction(
-        GuiIconProvider::instance()->getIcon("media-playback-pause")
+        QIcon::fromTheme(QLatin1String("media-playback-pause"))
         , tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, this
         , &TagFilterWidget::actionPauseTorrentsTriggered);
 
     QAction *deleteTorrentsAct = menu.addAction(
-        GuiIconProvider::instance()->getIcon("edit-delete")
+        QIcon::fromTheme(QLatin1String("edit-delete"))
         , tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, this
         , &TagFilterWidget::actionDeleteTorrentsTriggered);

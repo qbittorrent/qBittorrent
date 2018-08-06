@@ -62,6 +62,9 @@
          </item>
          <item>
           <widget class="QToolButton" name="removeRuleBtn">
+           <property name="icon">
+            <iconset theme="list-remove"/>
+           </property>
            <property name="iconSize">
             <size>
              <width>24</width>
@@ -72,6 +75,9 @@
          </item>
          <item>
           <widget class="QToolButton" name="addRuleBtn">
+           <property name="icon">
+            <iconset theme="list-add"/>
+           </property>
            <property name="iconSize">
             <size>
              <width>24</width>
@@ -183,7 +189,7 @@
           <item>
            <widget class="QCheckBox" name="checkSmart">
             <property name="toolTip">
-            <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+             <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
             </property>
             <property name="text">
