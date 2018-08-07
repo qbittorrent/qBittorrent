@@ -39,6 +39,7 @@
 #include <QShortcut>
 #include <QSignalBlocker>
 #include <QString>
+#include <QStyle>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
@@ -692,7 +693,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     }
     else {
         m_ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
+        m_ui->labelMustStat->setPixmap(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
 }
@@ -730,7 +731,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     }
     else {
         m_ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustNotStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
+        m_ui->labelMustNotStat->setPixmap(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
 }
@@ -746,7 +747,7 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
     }
     else {
         m_ui->lineEFilter->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelEpFilterStat->setPixmap(QIcon::fromTheme(QLatin1String("task-attention")).pixmap(16, 16));
+        m_ui->labelEpFilterStat->setPixmap(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(16, 16));
     }
 }
 

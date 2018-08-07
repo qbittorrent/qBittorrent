@@ -35,6 +35,7 @@
 #include <QSet>
 #include <QString>
 #include <QStringList>
+#include <QStyle>
 
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"

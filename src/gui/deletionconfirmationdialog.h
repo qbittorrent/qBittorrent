@@ -31,6 +31,7 @@
 
 #include <QDialog>
 #include <QPushButton>
+#include <QStyle>
 
 #include "base/preferences.h"
 #include "base/utils/misc.h"
@@ -53,7 +54,7 @@ public:
             label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
         // Icons
         const QSize iconSize = Utils::Gui::largeIconSize();
-        labelWarning->setPixmap(QIcon::fromTheme(QLatin1String("dialog-warning")).pixmap(iconSize));
+        labelWarning->setPixmap(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(iconSize));
         labelWarning->setFixedWidth(iconSize.width());
         rememberBtn->setIcon(QIcon::fromTheme(QLatin1String("object-locked")));
         rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
