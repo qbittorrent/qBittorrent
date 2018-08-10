@@ -2300,7 +2300,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
-    QString savePath = QString("%1/%2").arg(Utils::Fs::tempPath(), hash);
+    const QString savePath = Utils::Fs::tempPath() + static_cast<QString>(hash);
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
     // Forced start
