@@ -314,12 +314,16 @@
         <file>qbt-theme/services.svg</file>
         <file>qbt-theme/speedometer.svg</file>
         <file>qbt-theme/system-log-out.svg</file>
+        <file>qbt-theme/state-download.svg</file>
+        <file>qbt-theme/state-error.svg</file>
+        <file>qbt-theme/state-information.svg</file>
+        <file>qbt-theme/state-offline.svg</file>
+        <file>qbt-theme/state-ok.svg</file>
+        <file>qbt-theme/state-pause.svg</file>
+        <file>qbt-theme/state-sync.svg</file>
+        <file>qbt-theme/state-warning.svg</file>
         <file>qbt-theme/tab-close.svg</file>
         <file>qbt-theme/task-attention.svg</file>
-        <file>qbt-theme/task-complete.png</file>
-        <file>qbt-theme/task-ongoing.png</file>
-        <file>qbt-theme/task-reject.png</file>
-        <file>qbt-theme/text-plain.svg</file>
         <file>qbt-theme/tools-report-bug.svg</file>
         <file>qbt-theme/unavailable.svg</file>
         <file>qbt-theme/user-group-delete.svg</file>
