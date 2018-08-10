@@ -183,14 +183,34 @@ void Preferences::setMinimizeToTray(bool b)
     setValue("Preferences/General/MinimizeToTray", b);
 }
 
+bool Preferences::minimizeToTrayNotified() const
+{
+    return value("Preferences/General/MinimizeToTrayNotified", false).toBool();
+}
+
+void Preferences::setMinimizeToTrayNotified(bool b)
+{
+    setValue("Preferences/General/MinimizeToTrayNotified", b);
+}
+
 bool Preferences::closeToTray() const
 {
-    return value("Preferences/General/CloseToTray", false).toBool();
+    return value("Preferences/General/CloseToTray", true).toBool();
 }
 
 void Preferences::setCloseToTray(bool b)
 {
     setValue("Preferences/General/CloseToTray", b);
+}
+
+bool Preferences::closeToTrayNotified() const
+{
+    return value("Preferences/General/CloseToTrayNotified", false).toBool();
+}
+
+void Preferences::setCloseToTrayNotified(bool b)
+{
+    setValue("Preferences/General/CloseToTrayNotified", b);
 }
 #endif
 
