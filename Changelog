@@ -1,4 +1,6 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.2
+* Sun Aug 12 2018 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.2
+    - FEATURE: New options for "inhibit sleep" (Lukas Greib)
+    - FEATURE: Add option for regexps in the transferlist search filter's context menu (thalieht)
     - FEATURE: Add async io threads option to AdvancedSettings (tjjh89017)
     - FEATURE: Allow save resume interval to be disabled (Chocobo1)
     - FEATURE: Add checkbox for recursive download dialog (Chocobo1)
@@ -35,6 +37,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.2
     - WEBUI: Add option to control WebUI clickjacking protection (Chocobo1)
     - RSS: Implement "Sequential downloading" feature. Closes #6835 (glassez)
     - RSS: Don't use RSS feed URLs as base for file names. Closes #8399 (glassez)
+    - SEARCH: Add a name filter for search results (thalieht)
     - SEARCH: Fix python version detection (Chocobo1)
     - SEARCH: Clear python cache conditionally (Chocobo1)
     - SEARCH: Properly normalize version string before parsing it (hannsen)
