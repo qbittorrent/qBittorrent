@@ -33,6 +33,7 @@
 #include <QPointer>
 #include <QWidget>
 
+class QShortcut;
 class QSignalMapper;
 class QTabWidget;
 
@@ -68,6 +69,7 @@ private:
     void resultsCountUpdated();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
+    void toggleFocusBetweenLineEdits();
 
     void fillCatCombobox();
     void fillPluginComboBox();
@@ -85,4 +87,5 @@ private:
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
+    QShortcut *m_focusSearchHotkey;
 };
