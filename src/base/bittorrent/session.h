@@ -454,6 +454,7 @@ namespace BitTorrent
         TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
+        bool hasRunningSeed() const;
         const SessionStatus &status() const;
         const CacheStatus &cacheStatus() const;
         quint64 getAlltimeDL() const;

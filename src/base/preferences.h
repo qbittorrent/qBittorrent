@@ -123,8 +123,10 @@ public:
     void setStartMinimized(bool b);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
-    bool preventFromSuspend() const;
-    void setPreventFromSuspend(bool b);
+    bool preventFromSuspendWhenDownloading() const;
+    void setPreventFromSuspendWhenDownloading(bool b);
+    bool preventFromSuspendWhenSeeding() const;
+    void setPreventFromSuspendWhenSeeding(bool b);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);

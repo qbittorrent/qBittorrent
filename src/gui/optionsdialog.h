@@ -122,7 +122,6 @@ private:
 #endif
     bool startMinimized() const;
     bool isSplashScreenDisabled() const;
-    bool preventFromSuspend() const;
 #ifdef Q_OS_WIN
     bool WinStartup() const;
 #endif

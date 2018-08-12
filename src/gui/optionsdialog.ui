@@ -479,9 +479,16 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
                <item>
-                <widget class="QCheckBox" name="checkPreventFromSuspend">
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenDownloading">
                  <property name="text">
-                  <string>Inhibit system sleep when torrents are active</string>
+                  <string>Inhibit system sleep when torrents are downloading</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenSeeding">
+                 <property name="text">
+                  <string>Inhibit system sleep when torrents are seeding</string>
                  </property>
                 </widget>
                </item>
@@ -3369,7 +3376,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboTrayIcon</tabstop>
   <tabstop>checkAssociateTorrents</tabstop>
   <tabstop>checkAssociateMagnetLinks</tabstop>
-  <tabstop>checkPreventFromSuspend</tabstop>
+  <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
+  <tabstop>checkPreventFromSuspendWhenSeeding</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
