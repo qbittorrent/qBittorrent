@@ -710,10 +710,10 @@ void MainWindow::showFilterContextMenu(const QPoint &)
     menu->addSeparator();
     QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
     useRegexAct->setCheckable(true);
-    useRegexAct->setChecked(pref->getRegexAsFilteringPattern());
+    useRegexAct->setChecked(pref->getRegexAsFilteringPatternForTransferList());
     menu->addAction(useRegexAct);
 
-    connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPattern);
+    connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForTransferList);
     connect(useRegexAct, &QAction::toggled, this, [this]() { m_transferListWidget->applyNameFilter(m_searchFilter->text()); });
 
     menu->exec(QCursor::pos());
