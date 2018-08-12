@@ -30,10 +30,11 @@
 #ifndef NET_DOWNLOADHANDLER_H
 #define NET_DOWNLOADHANDLER_H
 
+#include <QNetworkReply>
 #include <QObject>
+
 #include "downloadmanager.h"
 
-class QNetworkReply;
 class QUrl;
 
 namespace Net
@@ -67,6 +68,8 @@ namespace Net
     private:
         void assignNetworkReply(QNetworkReply *reply);
         void handleRedirection(QUrl newUrl);
+
+        static QString errorCodeToString(QNetworkReply::NetworkError status);
 
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
