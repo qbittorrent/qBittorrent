@@ -358,8 +358,8 @@ public:
     void setTransSelFilter(const int &index);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
-    bool getRegexAsFilteringPattern() const;
-    void setRegexAsFilteringPattern(bool checked);
+    bool getRegexAsFilteringPatternForTransferList() const;
+    void setRegexAsFilteringPatternForTransferList(bool checked);
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
 

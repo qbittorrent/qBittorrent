@@ -1529,12 +1529,12 @@ void Preferences::setTransHeaderState(const QByteArray &state)
     setValue("TransferList/qt5/HeaderState", state);
 }
 
-bool Preferences::getRegexAsFilteringPattern() const
+bool Preferences::getRegexAsFilteringPatternForTransferList() const
 {
     return value("TransferList/UseRegexAsFilteringPattern", false).toBool();
 }
 
-void Preferences::setRegexAsFilteringPattern(const bool checked)
+void Preferences::setRegexAsFilteringPatternForTransferList(const bool checked)
 {
     setValue("TransferList/UseRegexAsFilteringPattern", checked);
 }
