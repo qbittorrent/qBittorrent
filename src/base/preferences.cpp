@@ -1429,6 +1429,16 @@ void Preferences::setSearchTabHeaderState(const QByteArray &state)
     setValue("SearchTab/qt5/HeaderState", state);
 }
 
+bool Preferences::getRegexAsFilteringPatternForSearchJob() const
+{
+    return value("SearchTab/UseRegexAsFilteringPattern", false).toBool();
+}
+
+void Preferences::setRegexAsFilteringPatternForSearchJob(const bool checked)
+{
+    setValue("SearchTab/UseRegexAsFilteringPattern", checked);
+}
+
 QStringList Preferences::getSearchEngDisabled() const
 {
     return value("SearchEngines/disabledEngines").toStringList();
