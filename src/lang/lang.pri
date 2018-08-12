@@ -1,5 +1,10 @@
-TRANSLATIONS += $$files(qbittorrent_*.ts)
-TS_IN_NOEXT = $$replace(TRANSLATIONS,".ts","")
+TS_FILES += $$files(qbittorrent_*.ts)
+
+# need to use full path, otherwise running
+# `lupdate` will generate *.ts files in project root directory
+for(file, TS_FILES) {
+    TRANSLATIONS += "$${PWD}/$${file}"
+}
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
@@ -14,8 +19,9 @@ isEmpty(QMAKE_LRELEASE) {
 }
 
 message("Building translations")
-for(L,TS_IN_NOEXT) {
-    message("Processing $${L}")
-    system("$$QMAKE_LRELEASE -silent $${L}.ts -qm $${L}.qm")
-    !exists("$${L}.qm"):error("Building translations failed, cannot continue")
+TS_FILES_NOEXT = $$replace(TS_FILES, ".ts", "")
+for(file, TS_FILES_NOEXT) {
+    message("Processing $${file}")
+    system("$$QMAKE_LRELEASE -silent $${file}.ts -qm $${file}.qm")
+    !exists("$${file}.qm"):error("Building translations failed, cannot continue")
 }
