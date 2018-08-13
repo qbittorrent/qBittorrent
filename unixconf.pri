@@ -36,7 +36,7 @@ nogui:systemd {
 
 # Menu Icon
 !nogui {
-    menuicon.files = dist/unix/qbittorrent.desktop
+    menuicon.files = $$DIST_PATH/qbittorrent.desktop
     menuicon.path = $$DATADIR/applications/
     INSTALLS += menuicon
 
