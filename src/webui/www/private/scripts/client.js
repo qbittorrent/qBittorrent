@@ -239,7 +239,7 @@ window.addEvent('load', function() {
 
         var create_link = function(hash, text, count) {
             var html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">'
-                + '<img src="theme/inode-directory"/>'
+                + '<img src="images/qbt-theme/inode-directory.svg"/>'
                 + escapeHtml(text) + ' (' + count + ')' + '</a>';
             var el = new Element('li', {
                 id: hash,
@@ -421,11 +421,11 @@ window.addEvent('load', function() {
         }
 
         if (serverState.connection_status == "connected")
-            $('connectionStatus').src = 'images/skin/connected.png';
+            $('connectionStatus').src = 'images/skin/connected.svg';
         else if (serverState.connection_status == "firewalled")
-            $('connectionStatus').src = 'images/skin/firewalled.png';
+            $('connectionStatus').src = 'images/skin/firewalled.svg';
         else
-            $('connectionStatus').src = 'images/skin/disconnected.png';
+            $('connectionStatus').src = 'images/skin/disconnected.svg';
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
