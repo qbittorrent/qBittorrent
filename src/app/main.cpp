@@ -51,7 +51,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 // NoGUI-only includes
 #include <cstdio>
 #ifdef Q_OS_UNIX
-#include "unistd.h"
+#include <unistd.h>
 #endif
 #endif // DISABLE_GUI
 

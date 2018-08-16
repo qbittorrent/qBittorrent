@@ -32,9 +32,11 @@
 
 #include <cstdio>
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcessEnvironment>
+#include <QRegularExpression>
 #include <QTextStream>
 
 #ifdef Q_OS_WIN
@@ -46,6 +48,23 @@
 
 namespace
 {
+    QStringList readParamsFile()
+    {
+        const QString paramsFile = QCoreApplication::applicationFilePath() + QLatin1String(".params");
+        if (QFileInfo::exists(paramsFile)) {
+            QFile fn {paramsFile};
+            if (fn.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                // to split by spaces preserving quoted strings
+                const QRegularExpression splitRegex {QLatin1String(R"([ \t](?=([^"]*"[^"]*")*[^"]*$))")};
+                return QString::fromLocal8Bit(fn.readAll().trimmed()).split(splitRegex);
+            }
+            else {
+                qDebug() << "Could not open params file " << paramsFile;
+            }
+        }
+        return {};
+    }
+
     const int USAGE_INDENTATION = 4;
     const int USAGE_TEXT_COLUMN = 31;
     const int WRAP_AT_COLUMN = 80;
@@ -397,9 +416,11 @@ QStringList QBtCommandLineParameters::paramList() const
 QBtCommandLineParameters parseCommandLine(const QStringList &args)
 {
     QBtCommandLineParameters result {QProcessEnvironment::systemEnvironment()};
+    Q_ASSERT(args.size() > 0); // there has to be at least executable name
+    const QStringList allArgs = QStringList(args[0]) + readParamsFile() + args.mid(1);
 
-    for (int i = 1; i < args.count(); ++i) {
-        const QString &arg = args[i];
+    for (int i = 1; i < allArgs.count(); ++i) {
+        const QString &arg = allArgs[i];
 
         if ((arg.startsWith("--") && !arg.endsWith(".torrent"))
             || (arg.startsWith('-') && (arg.size() == 2))) {
