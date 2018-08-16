@@ -238,9 +238,9 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     QIcon icon;
     if (auto feed = qobject_cast<RSS::Feed *>(rssItem)) {
         if (feed->isLoading())
-            icon = QIcon(QStringLiteral(":/icons/loading.png"));
+            icon = QIcon::fromTheme(QStringLiteral("state-download"));
         else if (feed->hasError())
-            icon = QIcon::fromTheme(QStringLiteral("unavailable"));
+            icon = QIcon::fromTheme(QStringLiteral("state-error"));
         else if (!feed->iconPath().isEmpty())
             icon = QIcon(feed->iconPath());
         else

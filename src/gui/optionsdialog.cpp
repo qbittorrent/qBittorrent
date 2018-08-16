@@ -100,7 +100,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Icons
     m_ui->tabSelection->item(TAB_SPEED)->setIcon(
         QIcon::fromTheme(QLatin1String("speedometer"), QIcon::fromTheme(QLatin1String("chronometer"))));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(QIcon::fromTheme(QLatin1String("application-rss+xml")));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif

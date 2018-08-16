@@ -99,6 +99,9 @@
        <property name="text">
         <string>RSS</string>
        </property>
+       <property name="icon">
+        <iconset theme="application-rss+xml"/>
+       </property>
       </item>
       <item>
        <property name="text">

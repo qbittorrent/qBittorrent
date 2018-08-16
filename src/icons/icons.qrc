@@ -373,14 +373,11 @@
         <file>qbt-theme/status/state-sync.svg</file>
         <file>qbt-theme/status/state-warning.svg</file>
         <file>qbt-theme/status/task-attention.svg</file>
-        <file>qbt-theme/status/checked.svg</file>
-        <file>qbt-theme/status/unavailable.svg</file>
         <file>qbt-theme/places/folder-download.svg</file>
         <file>qbt-theme/places/folder-documents.svg</file>
         <file>qbt-theme/places/folder-remote.svg</file>
         <file>qbt-theme/places/mail-folder-inbox.svg</file>
         <file>qbt-theme/places/network-server.svg</file>
-        <file>qbt-theme/places/webui.svg</file>
         <file>qbt-theme/preferences/preferences-desktop.svg</file>
         <file>qbt-theme/preferences/preferences-other.svg</file>
         <file>qbt-theme/preferences/preferences-system-network.svg</file>
