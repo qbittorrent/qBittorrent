@@ -183,23 +183,23 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         }
 
     case TransferListModel::TR_LAST_ACTIVITY: {
-            const qlonglong vL = left.data().toLongLong();
-            const qlonglong vR = right.data().toLongLong();
+            const int vL = left.data().toInt();
+            const int vR = right.data().toInt();
 
-            if (vL == -1) return false;
-            if (vR == -1) return true;
+            if (vL < 0) return false;
+            if (vR < 0) return true;
 
-            return vL < vR;
+            return (vL < vR);
         }
 
     case TransferListModel::TR_RATIO_LIMIT: {
-            const qreal vL = left.data().toDouble();
-            const qreal vR = right.data().toDouble();
+            const qreal vL = left.data().toReal();
+            const qreal vR = right.data().toReal();
 
-            if (vL == -1) return false;
-            if (vR == -1) return true;
+            if (vL < 0) return false;
+            if (vR < 0) return true;
 
-            return vL < vR;
+            return (vL < vR);
         }
 
     default: {
