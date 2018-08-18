@@ -377,17 +377,17 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
     const int minimumW = minimumWidth();
     setMinimumWidth(width()); // to remain the same width
     if (show) {
-        m_ui->toolButtonAdvanced->setText(QString::fromUtf8(C_UP));
+        m_ui->toolButtonAdvanced->setText((QString::fromUtf8(C_UP))+" Advanced ... ");
         m_ui->groupBoxSettings->setVisible(true);
         m_ui->infoGroup->setVisible(true);
         m_ui->contentTreeView->setVisible(m_hasMetadata);
-        static_cast<QVBoxLayout *>(layout())->insertWidget(layout()->indexOf(m_ui->checkBoxNeverShow) + 1, m_ui->toolButtonAdvanced);
+        //static_cast<QVBoxLayout *>(layout())->insertWidget(layout()->indexOf(m_ui->checkBoxNeverShow) + 1, m_ui->toolButtonAdvanced);
     }
     else {
-        m_ui->toolButtonAdvanced->setText(QString::fromUtf8(C_DOWN));
+        m_ui->toolButtonAdvanced->setText((QString::fromUtf8(C_DOWN))+" Advanced ... ");
         m_ui->groupBoxSettings->setVisible(false);
         m_ui->infoGroup->setVisible(false);
-        m_ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(m_ui->checkBoxNeverShow) + 1)->widget());
+        //m_ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(m_ui->checkBoxNeverShow) + 1)->widget());
     }
     adjustSize();
     setMinimumWidth(minimumW);
