@@ -40,6 +40,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
@@ -128,6 +129,72 @@ namespace
                     func(torrent);
             }
         }
+    }
+
+    QVariantList getStickyTrackers(const BitTorrent::TorrentHandle *const torrent)
+    {
+        uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
+        for (const BitTorrent::PeerInfo &peer : torrent->peers()) {
+            if (peer.isConnecting()) continue;
+
+            if (peer.isSeed()) {
+                if (peer.fromDHT())
+                    ++seedsDHT;
+                if (peer.fromPeX())
+                    ++seedsPeX;
+                if (peer.fromLSD())
+                    ++seedsLSD;
+            }
+            else {
+                if (peer.fromDHT())
+                    ++leechesDHT;
+                if (peer.fromPeX())
+                    ++leechesPeX;
+                if (peer.fromLSD())
+                    ++leechesLSD;
+            }
+        }
+
+        const int working = static_cast<int>(BitTorrent::TrackerEntry::Working);
+        const int disabled = 0;
+
+        const QString privateMsg {QCoreApplication::translate("TrackerListWidget", "This torrent is private")};
+        const bool isTorrentPrivate = torrent->isPrivate();
+
+        const QVariantMap dht {
+            {KEY_TRACKER_URL, "** [DHT] **"},
+            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
+            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isDHTEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_PEERS_COUNT, 0},
+            {KEY_TRACKER_DOWNLOADED_COUNT, 0},
+            {KEY_TRACKER_SEEDS_COUNT, seedsDHT},
+            {KEY_TRACKER_LEECHES_COUNT, leechesDHT}
+        };
+
+        const QVariantMap pex {
+            {KEY_TRACKER_URL, "** [PeX] **"},
+            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
+            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isPeXEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_PEERS_COUNT, 0},
+            {KEY_TRACKER_DOWNLOADED_COUNT, 0},
+            {KEY_TRACKER_SEEDS_COUNT, seedsPeX},
+            {KEY_TRACKER_LEECHES_COUNT, leechesPeX}
+        };
+
+        const QVariantMap lsd {
+            {KEY_TRACKER_URL, "** [LSD] **"},
+            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
+            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isLSDEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_PEERS_COUNT, 0},
+            {KEY_TRACKER_DOWNLOADED_COUNT, 0},
+            {KEY_TRACKER_SEEDS_COUNT, seedsLSD},
+            {KEY_TRACKER_LEECHES_COUNT, leechesLSD}
+        };
+
+        return QVariantList {dht, pex, lsd};
     }
 }
 
@@ -310,10 +377,11 @@ void TorrentsController::trackersAction()
     checkParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QVariantList trackerList;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
+
+    QVariantList trackerList = getStickyTrackers(torrent);
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
