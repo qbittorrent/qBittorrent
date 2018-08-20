@@ -6978,7 +6978,7 @@ Ezek a kiegészítők letiltásra kerültek.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="404"/>
         <source>Reannounce In:</source>
-        <translation>Újra kapcsolódás:</translation>
+        <translation>Újrahirdetés:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="362"/>
@@ -9901,19 +9901,19 @@ Válasszon egy másik nevet, és próbálja újra. </translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation type="vanished">Tracker URL másolása</translation>
+        <translation type="vanished">Tracker-URL másolása</translation>
     </message>
     <message>
         <source>Edit selected tracker URL</source>
-        <translation type="vanished">Kiválasztott tracker URL szerkesztése</translation>
+        <translation type="vanished">Kiválasztott tracker-URL szerkesztése</translation>
     </message>
     <message>
         <source>Force reannounce to selected trackers</source>
-        <translation type="vanished">Erőltetett újrajelentés a kiválasztott trackerek felé</translation>
+        <translation type="vanished">Erőltetett újrahirdetés a kiválasztott trackerekhez</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="vanished">Erőltetett újrakapcsolódás minden trackerhez</translation>
+        <translation type="vanished">Erőltetett újrahirdetés minden trackerhez</translation>
     </message>
     <message>
         <source>Column visibility</source>
@@ -9996,22 +9996,22 @@ Válasszon egy másik nevet, és próbálja újra. </translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="537"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished">Tracker URL másolása</translation>
+        <translation type="unfinished">Tracker-URL másolása</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="538"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished">Kiválasztott tracker URL szerkesztése</translation>
+        <translation type="unfinished">Kiválasztott tracker-URL szerkesztése</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="543"/>
         <source>Force reannounce to selected trackers</source>
-        <translation type="unfinished">Erőltetett újrajelentés a kiválasztott trackerek felé</translation>
+        <translation type="unfinished">Erőltetett újrahirdetés a kiválasztott trackerekhez</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="545"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished">Erőltetett újrakapcsolódás minden trackerhez</translation>
+        <translation type="unfinished">Erőltetett újrahirdetés minden trackerhez</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="592"/>
@@ -10060,7 +10060,7 @@ Válasszon egy másik nevet, és próbálja újra. </translation>
         <location filename="../gui/trackerlogindialog.ui" line="14"/>
         <location filename="../gui/trackerlogindialog.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation type="unfinished">Tracker hitelesítés</translation>
+        <translation type="unfinished">Trackerhitelesítés</translation>
     </message>
     <message>
         <location filename="../gui/trackerlogindialog.ui" line="64"/>
@@ -10628,7 +10628,7 @@ Válasszon egy másik nevet, és próbálja újra. </translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="897"/>
         <source>Force reannounce</source>
-        <translation>Kényszerített újraellenőrzés</translation>
+        <translation>Kényszerített újrahirdetés</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="901"/>
