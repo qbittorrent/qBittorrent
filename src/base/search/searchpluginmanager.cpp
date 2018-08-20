@@ -73,7 +73,7 @@ namespace
 
             // python 2: remove "*.pyc" files
             const QStringList files = QDir(dir).entryList(QDir::Files);
-            for (const QString file : files) {
+            for (const QString &file : files) {
                 if (file.endsWith(".pyc"))
                     Utils::Fs::forceRemove(file);
             }
