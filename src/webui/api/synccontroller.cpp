@@ -76,20 +76,6 @@ const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
 
-// Statistics keys
-const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
-const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
-const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
-const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
-const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
-const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
-const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
-const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
-const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
-const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
-const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
-const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
-
 const char KEY_FULL_UPDATE[] = "full_update";
 const char KEY_RESPONSE_ID[] = "rid";
 const char KEY_SUFFIX_REMOVED[] = "_removed";
@@ -103,41 +89,19 @@ namespace
 
     QVariantMap getTranserInfo()
     {
+        const auto session = BitTorrent::Session::instance();
+
         QVariantMap map;
-        const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
-        const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+        const BitTorrent::SessionStatus &sessionStatus = session->status();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
         map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
         map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
         map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
-        map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-        map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
-
-        quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-        quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
-        map[KEY_TRANSFER_ALLTIME_DL] = atd;
-        map[KEY_TRANSFER_ALLTIME_UL] = atu;
-        map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
-        map[KEY_TRANSFER_GLOBAL_RATIO] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
-        map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
-
-        qreal readRatio = cacheStatus.readRatio;
-        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "0";
-        map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
-
-        // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-        quint32 peers = 0;
-        foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
-            peers += torrent->peersCount();
-        map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
-        map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
-
-        map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
-        map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
-        map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
+        map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
+        map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
-        if (!BitTorrent::Session::instance()->isListening())
+        if (!session->isListening())
             map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
         else
             map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
