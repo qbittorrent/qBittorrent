@@ -56,8 +56,12 @@
 // Tracker keys
 const char KEY_TRACKER_URL[] = "url";
 const char KEY_TRACKER_STATUS[] = "status";
+const char KEY_TRACKER_TIER[] = "tier";
 const char KEY_TRACKER_MSG[] = "msg";
-const char KEY_TRACKER_PEERS[] = "num_peers";
+const char KEY_TRACKER_PEERS_COUNT[] = "num_peers";
+const char KEY_TRACKER_SEEDS_COUNT[] = "num_seeds";
+const char KEY_TRACKER_LEECHES_COUNT[] = "num_leeches";
+const char KEY_TRACKER_DOWNLOADED_COUNT[] = "num_downloaded";
 
 // Web seed keys
 const char KEY_WEBSEED_URL[] = "url";
@@ -295,7 +299,11 @@ void TorrentsController::propertiesAction()
 // The dictionary keys are:
 //   - "url": Tracker URL
 //   - "status": Tracker status
-//   - "num_peers": Tracker peer count
+//   - "tier": Tracker tier
+//   - "num_peers": Number of peers this torrent is currently connected to
+//   - "num_seeds": Number of peers that have the whole file
+//   - "num_leeches": Number of peers that are still downloading
+//   - "num_downloaded": Tracker downloaded count
 //   - "msg": Tracker message (last)
 void TorrentsController::trackersAction()
 {
@@ -323,9 +331,14 @@ void TorrentsController::trackersAction()
         case BitTorrent::TrackerEntry::NotWorking:
             status = tr("Not working"); break;
         }
+        trackerDict[KEY_TRACKER_TIER] = tracker.tier();
         trackerDict[KEY_TRACKER_STATUS] = status;
-        trackerDict[KEY_TRACKER_PEERS] = data.numPeers;
+        trackerDict[KEY_TRACKER_PEERS_COUNT] = data.numPeers;
         trackerDict[KEY_TRACKER_MSG] = data.lastMessage.trimmed();
+
+        trackerDict[KEY_TRACKER_SEEDS_COUNT] =  tracker.nativeEntry().scrape_complete;
+        trackerDict[KEY_TRACKER_LEECHES_COUNT] =  tracker.nativeEntry().scrape_incomplete;
+        trackerDict[KEY_TRACKER_DOWNLOADED_COUNT] =  tracker.nativeEntry().scrape_downloaded;
 
         trackerList.append(trackerDict);
     }

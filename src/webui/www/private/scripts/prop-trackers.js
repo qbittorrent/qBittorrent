@@ -32,7 +32,7 @@ var trackersDynTable = new Class({
     },
 
     insertRow: function(row) {
-        var url = row[0];
+        var url = row[1];
         if (this.rows.has(url)) {
             var tableRow = this.rows.get(url);
             this.updateRow(tableRow, row);
@@ -85,12 +85,17 @@ var loadTrackersData = function() {
             if (trackers) {
                 // Update Trackers data
                 trackers.each(function(tracker) {
-                    var row = [];
-                    row.length = 4;
-                    row[0] = escapeHtml(tracker.url);
-                    row[1] = tracker.status;
-                    row[2] = tracker.num_peers;
-                    row[3] = escapeHtml(tracker.msg);
+                    var row = [
+                        tracker.tier,
+                        escapeHtml(tracker.url),
+                        tracker.status,
+                        tracker.num_peers,
+                        (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        escapeHtml(tracker.msg)
+                    ];
+
                     tTable.insertRow(row);
                 });
             }
