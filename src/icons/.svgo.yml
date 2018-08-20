@@ -1,0 +1,8 @@
+# config file for [SVGO](https://github.com/svg/svgo)
+# SVGO: Node.js tool for optimizing SVG files
+#   svgo --config=<this file> <svg file>
+
+multipass: true
+js2svg:
+  pretty: true
+  indent: '  '
