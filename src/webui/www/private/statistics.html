@@ -1,59 +1,113 @@
-<h3>QBT_TR(User statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
-<table style="width:100%">
-    <tr>
-        <td>QBT_TR(All-time upload:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="AlltimeUL" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(All-time download:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="AlltimeDL" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(All-time share ratio:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="GlobalRatio" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Session waste:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="TotalWastedSession" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Connected peers:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="TotalPeerConnections" class="statisticsValue"></td>
-    </tr>
-</table>
+<!DOCTYPE html>
+<html lang="${LANG}">
 
-<h3>QBT_TR(Cache statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
-<table style="width:100%">
-    <tr>
-        <td>QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="ReadCacheHits" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Total buffer size:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="TotalBuffersSize" class="statisticsValue"></td>
-    </tr>
-</table>
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js"></script>
+    <script>
+        var loadStatisticsTimer;
 
-<h3>QBT_TR(Performance statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
-<table style="width:100%">
-    <tr>
-        <td>QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="WriteCacheOverload" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="ReadCacheOverload" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="QueuedIOJobs" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="AverageTimeInQueue" class="statisticsValue"></td>
-    </tr>
-    <tr>
-        <td>QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]</td>
-        <td id="TotalQueuedSize" class="statisticsValue"></td>
-    </tr>
-</table>
+        window.addEvent('domready', function() {
+            getStats();
+        });
+
+        function getStats() {
+            new Request.JSON({
+                url: 'api/v2/transfer/stats',
+                noCache: true,
+                method: 'get',
+                onFailure: function() {
+                    $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+
+                    clearTimeout(loadStatisticsTimer);
+                    loadStatisticsTimer = getStats.delay(5000);
+                },
+                onSuccess: function(response) {
+                    $('AlltimeDL').set('html', friendlyUnit(response.alltime_dl, false));
+                    $('AlltimeUL').set('html', friendlyUnit(response.alltime_ul, false));
+                    $('TotalWastedSession').set('html', friendlyUnit(response.total_wasted_session, false));
+                    $('GlobalRatio').set('html', response.global_ratio);
+                    $('TotalPeerConnections').set('html', response.total_peer_connections);
+                    $('ReadCacheHits').set('html', response.read_cache_hits + "%");
+                    $('TotalBuffersSize').set('html', friendlyUnit(response.total_buffers_size, false));
+                    $('WriteCacheOverload').set('html', response.write_cache_overload + "%");
+                    $('ReadCacheOverload').set('html', response.read_cache_overload + "%");
+                    $('QueuedIOJobs').set('html', response.queued_io_jobs);
+                    $('AverageTimeInQueue').set('html', response.average_time_queue + " ms");
+                    $('TotalQueuedSize').set('html', friendlyUnit(response.total_queued_size, false));
+
+                    clearTimeout(loadStatisticsTimer);
+                    loadStatisticsTimer = getStats.delay(5000);
+                }
+            }).send();
+        }
+    </script>
+</head>
+
+<body style="padding: 10px 12px;">
+    <h3>QBT_TR(User statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
+    <table style="width:100%">
+        <tr>
+            <td>QBT_TR(All-time upload:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="AlltimeUL" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(All-time download:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="AlltimeDL" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(All-time share ratio:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="GlobalRatio" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Session waste:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="TotalWastedSession" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Connected peers:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="TotalPeerConnections" class="statisticsValue"></td>
+        </tr>
+    </table>
+
+    <h3>QBT_TR(Cache statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
+    <table style="width:100%">
+        <tr>
+            <td>QBT_TR(Read cache hits:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="ReadCacheHits" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Total buffer size:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="TotalBuffersSize" class="statisticsValue"></td>
+        </tr>
+    </table>
+
+    <h3>QBT_TR(Performance statistics)QBT_TR[CONTEXT=StatsDialog]</h3>
+    <table style="width:100%">
+        <tr>
+            <td>QBT_TR(Write cache overload:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="WriteCacheOverload" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Read cache overload:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="ReadCacheOverload" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Queued I/O jobs:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="QueuedIOJobs" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Average time in queue:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="AverageTimeInQueue" class="statisticsValue"></td>
+        </tr>
+        <tr>
+            <td>QBT_TR(Total queued size:)QBT_TR[CONTEXT=StatsDialog]</td>
+            <td id="TotalQueuedSize" class="statisticsValue"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

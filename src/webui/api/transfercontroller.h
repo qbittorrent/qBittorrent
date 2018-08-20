@@ -40,6 +40,7 @@ public:
 
 private slots:
     void infoAction();
+    void statsAction();
     void speedLimitsModeAction();
     void toggleSpeedLimitsModeAction();
     void uploadLimitAction();

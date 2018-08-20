@@ -404,22 +404,6 @@ window.addEvent('load', function() {
             document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
-        // Statistics dialog
-        if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
-            $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
-            $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
-            $('GlobalRatio').set('html', serverState.global_ratio);
-            $('TotalPeerConnections').set('html', serverState.total_peer_connections);
-            $('ReadCacheHits').set('html', serverState.read_cache_hits + "%");
-            $('TotalBuffersSize').set('html', friendlyUnit(serverState.total_buffers_size, false));
-            $('WriteCacheOverload').set('html', serverState.write_cache_overload + "%");
-            $('ReadCacheOverload').set('html', serverState.read_cache_overload + "%");
-            $('QueuedIOJobs').set('html', serverState.queued_io_jobs);
-            $('AverageTimeInQueue').set('html', serverState.average_time_queue + " ms");
-            $('TotalQueuedSize').set('html', friendlyUnit(serverState.total_queued_size, false));
-        }
-
         if (serverState.connection_status == "connected")
             $('connectionStatus').src = 'images/skin/connected.svg';
         else if (serverState.connection_status == "firewalled")

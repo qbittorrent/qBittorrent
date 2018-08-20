@@ -459,6 +459,7 @@ namespace BitTorrent
         const CacheStatus &cacheStatus() const;
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
+        QVariantMap getStats() const;
         bool isListening() const;
 
         MaxRatioAction maxRatioAction() const;

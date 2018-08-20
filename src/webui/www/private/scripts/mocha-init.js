@@ -280,7 +280,7 @@ initializeWindows = function() {
         new MochaUI.Window({
             id: id,
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
-            loadMethod: 'xhr',
+            loadMethod: 'iframe',
             contentURL: 'statistics.html',
             maximizable: false,
             padding: 10,

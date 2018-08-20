@@ -3929,6 +3929,37 @@ quint64 Session::getAlltimeUL() const
     return m_statistics->getAlltimeUL();
 }
 
+QVariantMap Session::getStats() const
+{
+    const quint64 atd = getAlltimeDL();
+    const quint64 atu = getAlltimeUL();
+
+    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
+    quint32 peers = 0;
+    foreach (BitTorrent::TorrentHandle *const torrent, torrents())
+        peers += torrent->peersCount();
+
+    QVariantMap map;
+
+    map["alltime_dl"] = atd;
+    map["alltime_ul"] = atu;
+    map["total_wasted_session"] = m_status.totalWasted;
+    map["global_ratio"] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
+    map["total_peer_connections"] = m_status.peersCount;
+
+    map["read_cache_hits"] = (m_cacheStatus.readRatio > 0) ? Utils::String::fromDouble(100 * m_cacheStatus.readRatio, 2) : "0";
+    map["total_buffers_size"] = m_cacheStatus.totalUsedBuffers * 16 * 1024;
+
+    map["write_cache_overload"] = ((m_status.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * m_status.diskWriteQueue) / peers, 2) : "0";
+    map["read_cache_overload"] = ((m_status.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * m_status.diskReadQueue) / peers, 2) : "0";
+
+    map["queued_io_jobs"] = m_cacheStatus.jobQueueLength;
+    map["average_time_queue"] = m_cacheStatus.averageJobTime;
+    map["total_queued_size"] = m_cacheStatus.queuedBytes;
+
+    return map;
+}
+
 void Session::refresh()
 {
     m_nativeSession->post_torrent_updates();

@@ -73,6 +73,11 @@ void TransferController::infoAction()
     setResult(dict);
 }
 
+void TransferController::statsAction()
+{
+    setResult(QJsonObject::fromVariantMap(BitTorrent::Session::instance()->getStats()));
+}
+
 void TransferController::uploadLimitAction()
 {
     setResult(QString::number(BitTorrent::Session::instance()->uploadSpeedLimit()));
