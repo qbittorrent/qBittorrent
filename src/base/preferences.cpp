@@ -530,7 +530,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 
 QString Preferences::getServerDomains() const
 {
-    return value("Preferences/WebUI/ServerDomains", '*').toString();
+    return value("Preferences/WebUI/ServerDomains", QChar('*')).toString();
 }
 
 void Preferences::setServerDomains(const QString &str)
@@ -540,7 +540,7 @@ void Preferences::setServerDomains(const QString &str)
 
 QString Preferences::getWebUiAddress() const
 {
-    return value("Preferences/WebUI/Address", '*').toString().trimmed();
+    return value("Preferences/WebUI/Address", QChar('*')).toString().trimmed();
 }
 
 void Preferences::setWebUiAddress(const QString &addr)
