@@ -342,6 +342,8 @@ public:
     void setRssMainSplitterState(const QByteArray &state);
     QByteArray getSearchTabHeaderState() const;
     void setSearchTabHeaderState(const QByteArray &state);
+    bool getRegexAsFilteringPatternForSearchJob() const;
+    void setRegexAsFilteringPatternForSearchJob(bool checked);
     QStringList getSearchEngDisabled() const;
     void setSearchEngDisabled(const QStringList &engines);
     QString getTorImportLastContentDir() const;
@@ -356,8 +358,8 @@ public:
     void setTransSelFilter(const int &index);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
-    bool getRegexAsFilteringPattern() const;
-    void setRegexAsFilteringPattern(bool checked);
+    bool getRegexAsFilteringPatternForTransferList() const;
+    void setRegexAsFilteringPatternForTransferList(bool checked);
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(const int position);
 

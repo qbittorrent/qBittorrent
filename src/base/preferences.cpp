@@ -1429,6 +1429,16 @@ void Preferences::setSearchTabHeaderState(const QByteArray &state)
     setValue("SearchTab/qt5/HeaderState", state);
 }
 
+bool Preferences::getRegexAsFilteringPatternForSearchJob() const
+{
+    return value("SearchTab/UseRegexAsFilteringPattern", false).toBool();
+}
+
+void Preferences::setRegexAsFilteringPatternForSearchJob(const bool checked)
+{
+    setValue("SearchTab/UseRegexAsFilteringPattern", checked);
+}
+
 QStringList Preferences::getSearchEngDisabled() const
 {
     return value("SearchEngines/disabledEngines").toStringList();
@@ -1519,12 +1529,12 @@ void Preferences::setTransHeaderState(const QByteArray &state)
     setValue("TransferList/qt5/HeaderState", state);
 }
 
-bool Preferences::getRegexAsFilteringPattern() const
+bool Preferences::getRegexAsFilteringPatternForTransferList() const
 {
     return value("TransferList/UseRegexAsFilteringPattern", false).toBool();
 }
 
-void Preferences::setRegexAsFilteringPattern(const bool checked)
+void Preferences::setRegexAsFilteringPatternForTransferList(const bool checked)
 {
     setValue("TransferList/UseRegexAsFilteringPattern", checked);
 }
