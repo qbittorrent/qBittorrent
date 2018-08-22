@@ -383,6 +383,14 @@ fieldset.settings .leftLabelSmall {
     display: block;
 }
 
+fieldset.settings .leftLabelMedium {
+    width: 9em;
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    display: block;
+}
+
 fieldset.settings .leftLabelLarge {
     width: 14em;
     float: left;
