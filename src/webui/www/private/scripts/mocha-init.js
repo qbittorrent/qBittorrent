@@ -98,7 +98,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 700),
-            height: loadWindowHeight(id, 300),
+            height: loadWindowHeight(id, 500),
             onResize: function() {
                 saveWindowSize(id);
             }
