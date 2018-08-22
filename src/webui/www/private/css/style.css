@@ -408,6 +408,19 @@ div.formRow {
     font-weight: bold;
     text-transform: uppercase;
     padding-left: 5px;
+    padding-top: 5px;
+    display: block;
+}
+
+.filterTitle img {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -3px;
+    padding: 0 5px;
+}
+
+.filterTitle img.rotate {
+    transform: rotate(270deg);
 }
 
 ul.filterList {
