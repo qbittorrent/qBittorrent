@@ -2360,7 +2360,7 @@ void Session::generateResumeData(bool final)
         if (!final && !torrent->needSaveResumeData()) continue;
         if (torrent->hasMissingFiles() || torrent->hasError()) continue;
 
-        saveTorrentResumeData(torrent, final);
+        saveTorrentResumeData(torrent);
     }
 }
 
@@ -3531,10 +3531,10 @@ void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
     updateSeedingLimitTimer();
 }
 
-void Session::saveTorrentResumeData(TorrentHandle *const torrent, bool finalSave)
+void Session::saveTorrentResumeData(TorrentHandle *const torrent)
 {
     qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
-    torrent->saveResumeData(finalSave);
+    torrent->saveResumeData();
     ++m_numResumeData;
 }
 

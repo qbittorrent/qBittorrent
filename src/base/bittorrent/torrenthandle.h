@@ -372,7 +372,7 @@ namespace BitTorrent
         void handleTempPathChanged();
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
-        void saveResumeData(bool updateStatus = false);
+        void saveResumeData();
 
         /**
          * @brief fraction of file pieces that are available at least from one peer
