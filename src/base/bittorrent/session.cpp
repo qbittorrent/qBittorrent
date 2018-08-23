@@ -1998,6 +1998,8 @@ void Session::increaseTorrentsPriority(const QStringList &hashes)
         torrentQueuePositionUp(torrent->nativeHandle());
         torrentQueue.pop();
     }
+
+    handleTorrentsPrioritiesChanged();
 }
 
 void Session::decreaseTorrentsPriority(const QStringList &hashes)
@@ -2022,6 +2024,8 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
 
     for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
+
+    handleTorrentsPrioritiesChanged();
 }
 
 void Session::topTorrentsPriority(const QStringList &hashes)
@@ -2043,6 +2047,8 @@ void Session::topTorrentsPriority(const QStringList &hashes)
         torrentQueuePositionTop(torrent->nativeHandle());
         torrentQueue.pop();
     }
+
+    handleTorrentsPrioritiesChanged();
 }
 
 void Session::bottomTorrentsPriority(const QStringList &hashes)
@@ -2067,6 +2073,8 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
 
     for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
+
+    handleTorrentsPrioritiesChanged();
 }
 
 QHash<InfoHash, TorrentHandle *> Session::torrents() const
@@ -3529,6 +3537,18 @@ void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
 {
     saveTorrentResumeData(torrent);
     updateSeedingLimitTimer();
+}
+
+void Session::handleTorrentsPrioritiesChanged()
+{
+    // Save fastresume for the torrents that changed queue position
+    for (TorrentHandle *const torrent : torrents()) {
+        if (!torrent->isSeed()) {
+            // cached vs actual queue position, qBt starts queue at 1
+            if (torrent->queuePosition() != (torrent->nativeHandle().queue_position() + 1))
+                saveTorrentResumeData(torrent);
+        }
+    }
 }
 
 void Session::saveTorrentResumeData(TorrentHandle *const torrent)
