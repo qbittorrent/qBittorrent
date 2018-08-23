@@ -481,6 +481,7 @@ namespace BitTorrent
 
         // TorrentHandle interface
         void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
+        void handleTorrentsPrioritiesChanged();
         void handleTorrentNameChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
         void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
