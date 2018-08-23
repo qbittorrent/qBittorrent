@@ -155,6 +155,12 @@ namespace BitTorrent
         Error
     };
 
+    enum class DataRelevance
+    {
+        Actual,
+        Cached
+    };
+
     class TorrentHandle : public QObject
     {
         Q_DISABLE_COPY(TorrentHandle)
@@ -286,7 +292,7 @@ namespace BitTorrent
         bool hasMissingFiles() const;
         bool hasError() const;
         bool hasFilteredPieces() const;
-        int queuePosition() const;
+        int queuePosition(DataRelevance relevance = DataRelevance::Cached) const;
         QList<TrackerEntry> trackers() const;
         QHash<QString, TrackerInfo> trackerInfos() const;
         QList<QUrl> urlSeeds() const;
@@ -372,7 +378,7 @@ namespace BitTorrent
         void handleTempPathChanged();
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
-        void saveResumeData(bool updateStatus = false);
+        void saveResumeData();
 
         /**
          * @brief fraction of file pieces that are available at least from one peer

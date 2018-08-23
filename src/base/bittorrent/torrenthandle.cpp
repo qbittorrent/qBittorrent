@@ -504,11 +504,8 @@ bool TorrentHandle::needSaveResumeData() const
     return m_nativeHandle.need_save_resume_data();
 }
 
-void TorrentHandle::saveResumeData(bool updateStatus)
+void TorrentHandle::saveResumeData()
 {
-    if (updateStatus) // to update queue_position, see discussion in PR #6154
-        this->updateStatus();
-
     m_nativeHandle.save_resume_data();
 }
 
@@ -894,11 +891,12 @@ bool TorrentHandle::hasFilteredPieces() const
     return false;
 }
 
-int TorrentHandle::queuePosition() const
+int TorrentHandle::queuePosition(const DataRelevance relevance) const
 {
-    if (m_nativeStatus.queue_position < 0) return 0;
-
-    return m_nativeStatus.queue_position + 1;
+    const int queuePos = ((relevance == DataRelevance::Cached)
+                         ? m_nativeStatus.queue_position
+                         : m_nativeHandle.queue_position());
+    return ((queuePos < 0) ? 0 : (queuePos + 1));
 }
 
 QString TorrentHandle::error() const
@@ -1646,7 +1644,7 @@ void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
-    resumeData["qBt-queuePosition"] = queuePosition();
+    resumeData["qBt-queuePosition"] = queuePosition(DataRelevance::Actual);
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
