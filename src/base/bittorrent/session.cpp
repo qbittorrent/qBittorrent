@@ -3673,8 +3673,11 @@ void Session::handleTorrentChecked(TorrentHandle *const torrent)
 
 void Session::handleTorrentFinished(TorrentHandle *const torrent)
 {
-    if (!torrent->hasError() && !torrent->hasMissingFiles())
+    if (!torrent->hasError() && !torrent->hasMissingFiles()) {
         saveTorrentResumeData(torrent);
+        if (isQueueingSystemEnabled())
+            handleTorrentsPrioritiesChanged();
+    }
     emit torrentFinished(torrent);
 
     qDebug("Checking if the torrent contains torrent files to download");
