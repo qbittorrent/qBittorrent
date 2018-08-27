@@ -504,11 +504,8 @@ bool TorrentHandle::needSaveResumeData() const
     return m_nativeHandle.need_save_resume_data();
 }
 
-void TorrentHandle::saveResumeData(bool updateStatus)
+void TorrentHandle::saveResumeData()
 {
-    if (updateStatus) // to update queue_position, see discussion in PR #6154
-        this->updateStatus();
-
     m_nativeHandle.save_resume_data();
 }
 
@@ -1646,7 +1643,7 @@ void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
-    resumeData["qBt-queuePosition"] = queuePosition();
+    resumeData["qBt-queuePosition"] = (nativeHandle().queue_position() + 1); // qBt starts queue at 1
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
