@@ -83,6 +83,7 @@ enum AdvSettingsRows
 #if LIBTORRENT_VERSION_NUM >= 10100
     ASYNC_IO_THREADS,
 #endif
+    CHECKING_MEM_USAGE,
     // cache
     DISK_CACHE,
     DISK_CACHE_TTL,
@@ -152,6 +153,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Async IO threads
     session->setAsyncIOThreads(spinBoxAsyncIOThreads.value());
 #endif
+    // Checking Memory Usage
+    session->setCheckingMemUsage(spinBoxCheckingMemUsage.value());
     // Disk write cache
     session->setDiskCacheSize(spinBoxCache.value());
     session->setDiskCacheTTL(spinBoxCacheTTL.value());
@@ -325,6 +328,13 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, tr("Asynchronous I/O threads"), &spinBoxAsyncIOThreads);
 #endif
+
+    // Checking Memory Usage
+    spinBoxCheckingMemUsage.setMinimum(1);
+    spinBoxCheckingMemUsage.setValue(session->checkingMemUsage());
+    spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
+    addRow(CHECKING_MEM_USAGE, tr("Outstanding memory when checking torrents"), &spinBoxCheckingMemUsage);
+
     // Disk write cache
     spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.

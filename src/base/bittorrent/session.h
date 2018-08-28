@@ -377,6 +377,8 @@ namespace BitTorrent
         void setAnnounceToAllTiers(bool val);
         int asyncIOThreads() const;
         void setAsyncIOThreads(int num);
+        int checkingMemUsage() const;
+        void setCheckingMemUsage(int size);
         int diskCacheSize() const;
         void setDiskCacheSize(int size);
         int diskCacheTTL() const;
@@ -658,6 +660,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<bool> m_announceToAllTiers;
         CachedSettingValue<int> m_asyncIOThreads;
+        CachedSettingValue<int> m_checkingMemUsage;
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
