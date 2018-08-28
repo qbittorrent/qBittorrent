@@ -44,7 +44,7 @@
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -313,7 +313,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
 
-#ifdef Q_OS_MAC
+#if defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
     // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
     return ((strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
