@@ -2987,11 +2987,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="lblSslCertStatus">
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
+                   <widget class="QLabel" name="lblSslCertStatus"/>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLabel" name="lblWebUiCrt">
@@ -3028,11 +3024,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </layout>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="lblSslKeyStatus">
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
+                   <widget class="QLabel" name="lblSslKeyStatus"/>
                   </item>
                   <item row="1" column="1">
                    <widget class="QLabel" name="lblWebUiKey">
