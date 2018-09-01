@@ -2229,6 +2229,8 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     else
         p.storage_mode = libt::storage_mode_sparse;
 
+	if (params.paused)
+		p.flags |= libt::add_torrent_params::flag_override_resume_data;
     p.flags |= libt::add_torrent_params::flag_paused; // Start in pause
     p.flags &= ~libt::add_torrent_params::flag_auto_managed; // Because it is added in paused state
     p.flags &= ~libt::add_torrent_params::flag_duplicate_is_error; // Already checked
