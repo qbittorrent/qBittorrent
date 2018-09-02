@@ -534,9 +534,9 @@ void TrackerListWidget::showTrackerListMenu(QPoint)
     QAction *delAct = nullptr;
     QAction *editAct = nullptr;
     if (!getSelectedTrackerItems().isEmpty()) {
+        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
         delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
         copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
-        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
     }
     QAction *reannounceSelAct = nullptr;
     QAction *reannounceAllAct = nullptr;
