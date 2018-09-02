@@ -829,7 +829,7 @@ void TransferListWidget::renameSelectedTorrent()
 
     // Ask for a new Name
     bool ok;
-    QString name = AutoExpandableDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, torrent->name(), &ok);
+    QString name = AutoExpandableDialog::getFileName(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, torrent->name(), &ok);
     if (ok && !name.isEmpty()) {
         name.replace(QRegularExpression("\r?\n|\r"), " ");
         // Rename the torrent

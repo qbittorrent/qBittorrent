@@ -50,6 +50,11 @@ public:
                             QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = QString(),
                             bool *ok = nullptr, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
 
+    static QString getFileName(QWidget *parent, const QString &title, const QString &label,
+                                QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &initial = QString(),
+                                bool *ok = 0, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+
+
 protected:
     void showEvent(QShowEvent *e) override;
 

@@ -66,6 +66,34 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     return d.m_ui->textEdit->text();
 }
 
+QString AutoExpandableDialog::getFileName(QWidget *parent, const QString &title, const QString &label,
+                                         QLineEdit::EchoMode mode, const QString &initial,
+                                         bool *ok, Qt::InputMethodHints inputMethodHints)
+{
+    AutoExpandableDialog d(parent);
+    d.setWindowTitle(title);
+    d.m_ui->textLabel->setText(label);
+    d.m_ui->textEdit->setText(initial);
+    d.m_ui->textEdit->setEchoMode(mode);
+    d.m_ui->textEdit->setInputMethodHints(inputMethodHints);
+
+    int lastDotIndex = initial.lastIndexOf(".", -1);
+    // select file name without extension, except 'extension'-only files like .gitignore
+    if (lastDotIndex > 0) {
+        d.m_ui->textEdit->setSelection(0, lastDotIndex);
+    } else {
+        d.m_ui->textEdit->selectAll();
+    }
+
+    bool res = d.exec();
+    if (ok)
+        *ok = res;
+
+    if (!res) return QString();
+
+    return d.m_ui->textEdit->text();
+}
+
 void AutoExpandableDialog::showEvent(QShowEvent *e)
 {
     // Overriding showEvent is required for consistent UI with fixed size under custom DPI
