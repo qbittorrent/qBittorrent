@@ -1358,7 +1358,6 @@ void OptionsDialog::toggleComboRatioLimitAct()
 void OptionsDialog::enableForceProxy(bool enable)
 {
     m_ui->checkUPnP->setEnabled(!enable);
-    m_ui->checkDHT->setEnabled(!enable);
     m_ui->checkLSD->setEnabled(!enable);
 }
 
