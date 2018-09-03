@@ -4571,7 +4571,7 @@ namespace
         torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-        torrentParams.paused = fast.dict_find_int_value("qBt-paused");
+        torrentParams.paused = fast.dict_find_int_value("paused");
         torrentParams.forced = fast.dict_find_int_value("qBt-forced");
         torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
