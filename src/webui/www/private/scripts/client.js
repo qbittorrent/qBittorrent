@@ -38,7 +38,8 @@ var updateTorrentFilesData = function() {};
 var updateMainData = function() {};
 var alternativeSpeedLimits = false;
 var queueing_enabled = true;
-var syncMainDataTimerPeriod = 1500;
+var serverSyncMainDataInterval = 1500;
+var customSyncMainDataInterval = null;
 
 var clipboardEvent;
 
@@ -66,6 +67,10 @@ function genHash(string) {
         hash = (c + hash * 31) | 0;
     }
     return hash;
+}
+
+function getSyncMainDataInterval() {
+    return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
 }
 
 window.addEvent('load', function() {
@@ -421,7 +426,7 @@ window.addEvent('load', function() {
                         torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
                 clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(syncMainDataTimerPeriod);
+                syncMainDataTimer = syncMainData.delay(getSyncMainDataInterval());
             }
         }).send();
     };
@@ -502,9 +507,7 @@ window.addEvent('load', function() {
             updateAltSpeedIcon(alternativeSpeedLimits);
         }
 
-        syncMainDataTimerPeriod = serverState.refresh_interval;
-        if (syncMainDataTimerPeriod < 500)
-            syncMainDataTimerPeriod = 500;
+        serverSyncMainDataInterval = Math.max(serverState.refresh_interval, 500);
     };
 
     var updateAltSpeedIcon = function(enabled) {
@@ -601,6 +604,11 @@ window.addEvent('load', function() {
         $("filtersColumn").removeClass("invisible");
         $("filtersColumn_handle").removeClass("invisible");
         $("mainColumn").removeClass("invisible");
+
+        customSyncMainDataInterval = null;
+        clearTimeout(syncMainDataTimer);
+        syncMainDataTimer = syncMainData.delay(100);
+
         hideSearchTab();
     };
 
@@ -613,6 +621,7 @@ window.addEvent('load', function() {
 
     var showSearchTab = function() {
         $("searchTabColumn").removeClass("invisible");
+        customSyncMainDataInterval = 30000;
         hideTransfersTab();
     };
 
@@ -828,7 +837,7 @@ var loadTorrentPeersData = function() {
         syncTorrentPeersLastResponseId = 0;
         torrentPeersTable.clear();
         clearTimeout(loadTorrentPeersTimer);
-        loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+        loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
         return;
     }
     var url = new URI('api/v2/sync/torrentPeers');
@@ -882,7 +891,7 @@ var loadTorrentPeersData = function() {
                 torrentPeersTable.clear();
             }
             clearTimeout(loadTorrentPeersTimer);
-            loadTorrentPeersTimer = loadTorrentPeersData.delay(syncMainDataTimerPeriod);
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
         }
     }).send();
 };
