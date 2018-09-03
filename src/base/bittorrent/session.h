@@ -245,6 +245,22 @@ namespace BitTorrent
         Q_DISABLE_COPY(Session)
 
     public:
+        struct OrganizedStats
+        {
+            quint64 allTimeDownload;
+            quint64 allTimeUpload;
+            quint64 totalWasted;
+            QString globalRatio;
+            quint64 peersCount;
+            QString readCacheHits;
+            quint64 totalUsedBuffers;
+            QString writeCacheOverload;
+            QString readCacheOverload;
+            quint64 jobQueueLength;
+            quint64 averageJobTime;
+            quint64 queuedBytes;
+        };
+
         static void initInstance();
         static void freeInstance();
         static Session *instance();
@@ -459,7 +475,7 @@ namespace BitTorrent
         const CacheStatus &cacheStatus() const;
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
-        QVariantMap getStats() const;
+        Session::OrganizedStats getOrganizedStats() const;
         bool isListening() const;
 
         MaxRatioAction maxRatioAction() const;

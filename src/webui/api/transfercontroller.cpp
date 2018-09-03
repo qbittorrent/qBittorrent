@@ -75,7 +75,23 @@ void TransferController::infoAction()
 
 void TransferController::statsAction()
 {
-    setResult(QJsonObject::fromVariantMap(BitTorrent::Session::instance()->getStats()));
+    const auto organizedStats = BitTorrent::Session::instance()->getOrganizedStats();
+    QJsonObject stats {
+        {"alltime_dl", QString::number(organizedStats.allTimeDownload)},
+        {"alltime_ul", QString::number(organizedStats.allTimeUpload)},
+        {"total_wasted_session", QString::number(organizedStats.totalWasted)},
+        {"global_ratio", organizedStats.globalRatio},
+        {"total_peer_connections", QString::number(organizedStats.peersCount)},
+        {"read_cache_hits", organizedStats.readCacheHits},
+        {"total_buffers_size", QString::number(organizedStats.totalUsedBuffers)},
+        {"write_cache_overload", organizedStats.writeCacheOverload},
+        {"read_cache_overload", organizedStats.readCacheOverload},
+        {"queued_io_jobs", QString::number(organizedStats.jobQueueLength)},
+        {"average_time_queue", QString::number(organizedStats.averageJobTime)},
+        {"total_queued_size", QString::number(organizedStats.queuedBytes)}
+    };
+
+    setResult(stats);
 }
 
 void TransferController::uploadLimitAction()
