@@ -479,9 +479,16 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
                <item>
-                <widget class="QCheckBox" name="checkPreventFromSuspend">
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenDownloading">
                  <property name="text">
-                  <string>Inhibit system sleep when torrents are active</string>
+                  <string>Inhibit system sleep when torrents are downloading</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenSeeding">
+                 <property name="text">
+                  <string>Inhibit system sleep when torrents are seeding</string>
                  </property>
                 </widget>
                </item>
@@ -3010,11 +3017,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="lblSslCertStatus">
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
+                   <widget class="QLabel" name="lblSslCertStatus"/>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLabel" name="lblWebUiCrt">
@@ -3051,11 +3054,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </layout>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="lblSslKeyStatus">
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
+                   <widget class="QLabel" name="lblSslKeyStatus"/>
                   </item>
                   <item row="1" column="1">
                    <widget class="QLabel" name="lblWebUiKey">
@@ -3399,7 +3398,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboTrayIcon</tabstop>
   <tabstop>checkAssociateTorrents</tabstop>
   <tabstop>checkAssociateMagnetLinks</tabstop>
-  <tabstop>checkPreventFromSuspend</tabstop>
+  <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
+  <tabstop>checkPreventFromSuspendWhenSeeding</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
   <tabstop>checkPreallocateAll</tabstop>

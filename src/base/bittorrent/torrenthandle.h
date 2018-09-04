@@ -88,10 +88,10 @@ namespace BitTorrent
     class TrackerEntry;
     struct AddTorrentParams;
 
-    struct AddTorrentData
+    struct CreateTorrentParams
     {
-        bool resumed;
-        // for both new and resumed torrents
+        bool restored; // is existing torrent job?
+        // for both new and restored torrents
         QString name;
         QString category;
         QSet<QString> tags;
@@ -102,18 +102,18 @@ namespace BitTorrent
         bool hasSeedStatus;
         bool skipChecking;
         bool hasRootFolder;
-        bool addForced;
-        bool addPaused;
+        bool forced;
+        bool paused;
         int uploadLimit;
         int downloadLimit;
         // for new torrents
         QVector<int> filePriorities;
-        // for resumed torrents
+        // for restored torrents
         qreal ratioLimit;
         int seedingTimeLimit;
 
-        AddTorrentData();
-        AddTorrentData(const AddTorrentParams &params);
+        CreateTorrentParams();
+        CreateTorrentParams(const AddTorrentParams &params);
     };
 
     struct TrackerInfo
@@ -170,7 +170,7 @@ namespace BitTorrent
         static const int MAX_SEEDING_TIME;
 
         TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
-                          const AddTorrentData &data);
+                          const CreateTorrentParams &params);
         ~TorrentHandle();
 
         bool isValid() const;
@@ -372,7 +372,7 @@ namespace BitTorrent
         void handleTempPathChanged();
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
-        void saveResumeData(bool updateStatus = false);
+        void saveResumeData();
 
         /**
          * @brief fraction of file pieces that are available at least from one peer
@@ -420,6 +420,7 @@ namespace BitTorrent
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
+        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<int> &updatedFilePrio = {});
 
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;
@@ -461,8 +462,9 @@ namespace BitTorrent
         bool m_needsToSetFirstLastPiecePriority;
 
         bool m_pauseAfterRecheck;
-        bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;
+
+        bool m_started = false;
     };
 }
 

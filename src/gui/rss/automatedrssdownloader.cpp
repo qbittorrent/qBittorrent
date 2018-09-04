@@ -675,7 +675,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
         if (isRegex)
             tokens << text;
         else
-            foreach (const QString &token, text.split("|"))
+            foreach (const QString &token, text.split('|'))
                 tokens << Utils::String::wildcardToRegex(token);
 
         foreach (const QString &token, tokens) {
@@ -713,7 +713,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
         if (isRegex)
             tokens << text;
         else
-            foreach (const QString &token, text.split("|"))
+            foreach (const QString &token, text.split('|'))
                 tokens << Utils::String::wildcardToRegex(token);
 
         foreach (const QString &token, tokens) {

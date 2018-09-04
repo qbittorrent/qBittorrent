@@ -292,7 +292,7 @@ var DynamicTable = new Class({
         });
 
         var createLi = function(columnName, text) {
-            var html = '<a href="#' + columnName + '" ><img src="theme/checked"/>' + escapeHtml(text) + '</a>';
+            var html = '<a href="#' + columnName + '" ><img src="images/qbt-theme/checked.svg"/>' + escapeHtml(text) + '</a>';
             return new Element('li', {
                 html: html
             });
@@ -834,7 +834,7 @@ var TorrentsTable = new Class({
                     break; // do nothing
             }
 
-            var img_path = 'images/skin/' + state + '.png';
+            var img_path = 'images/skin/' + state + '.svg';
 
             if (td.getChildren('img').length) {
                 var img = td.getChildren('img')[0];

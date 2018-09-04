@@ -138,14 +138,14 @@ bool TorrentFilter::setTag(const QString &tag)
     return false;
 }
 
-bool TorrentFilter::match(TorrentHandle *const torrent) const
+bool TorrentFilter::match(const TorrentHandle *const torrent) const
 {
     if (!torrent) return false;
 
     return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
 }
 
-bool TorrentFilter::matchState(BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) const
 {
     switch (m_type) {
     case All:
@@ -171,19 +171,19 @@ bool TorrentFilter::matchState(BitTorrent::TorrentHandle *const torrent) const
     }
 }
 
-bool TorrentFilter::matchHash(BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchHash(const BitTorrent::TorrentHandle *const torrent) const
 {
     if (m_hashSet == AnyHash) return true;
     else return m_hashSet.contains(torrent->hash());
 }
 
-bool TorrentFilter::matchCategory(BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchCategory(const BitTorrent::TorrentHandle *const torrent) const
 {
     if (m_category.isNull()) return true;
     else return (torrent->belongsToCategory(m_category));
 }
 
-bool TorrentFilter::matchTag(BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchTag(const BitTorrent::TorrentHandle *const torrent) const
 {
     // Empty tag is a special value to indicate we're filtering for untagged torrents.
     if (m_tag.isNull()) return true;

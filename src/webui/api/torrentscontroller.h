@@ -49,6 +49,7 @@ private slots:
     void resumeAction();
     void pauseAction();
     void recheckAction();
+    void reannounceAction();
     void renameAction();
     void setCategoryAction();
     void createCategoryAction();

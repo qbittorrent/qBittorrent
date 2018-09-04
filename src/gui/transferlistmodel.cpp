@@ -93,7 +93,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
             switch (section) {
-            case TR_PRIORITY: return "#";
+            case TR_PRIORITY: return QChar('#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Done", "% Done");
@@ -419,55 +419,55 @@ QColor getColorByState(BitTorrent::TorrentState state)
 
 QIcon getPausedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/paused.png");
+    static QIcon cached = QIcon(":/icons/skin/paused.svg");
     return cached;
 }
 
 QIcon getQueuedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/queued.png");
+    static QIcon cached = QIcon(":/icons/skin/queued.svg");
     return cached;
 }
 
 QIcon getDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/downloading.png");
+    static QIcon cached = QIcon(":/icons/skin/downloading.svg");
     return cached;
 }
 
 QIcon getStalledDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.png");
+    static QIcon cached = QIcon(":/icons/skin/stalledDL.svg");
     return cached;
 }
 
 QIcon getUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/uploading.png");
+    static QIcon cached = QIcon(":/icons/skin/uploading.svg");
     return cached;
 }
 
 QIcon getStalledUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.png");
+    static QIcon cached = QIcon(":/icons/skin/stalledUP.svg");
     return cached;
 }
 
 QIcon getCompletedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/completed.png");
+    static QIcon cached = QIcon(":/icons/skin/completed.svg");
     return cached;
 }
 
 QIcon getCheckingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/checking.png");
+    static QIcon cached = QIcon(":/icons/skin/checking.svg");
     return cached;
 }
 
 QIcon getErrorIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/error.png");
+    static QIcon cached = QIcon(":/icons/skin/error.svg");
     return cached;
 }
 

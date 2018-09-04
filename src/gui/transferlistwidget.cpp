@@ -874,7 +874,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(&actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     QAction actionPreviewFile(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), nullptr);
     connect(&actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    QAction actionSetMaxRatio(QIcon(QLatin1String(":/icons/skin/ratio.png")), tr("Limit share ratio..."), nullptr);
+    QAction actionSetMaxRatio(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), nullptr);
     connect(&actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
     QAction actionSetUploadLimit(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), nullptr);
     connect(&actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
@@ -963,27 +963,23 @@ void TransferListWidget::displayListMenu(const QPoint&)
             oneHasMetadata = true;
         if (!torrent->isSeed()) {
             oneNotSeed = true;
-            if (torrent->hasMetadata()) {
-                if (first) {
-                    sequentialDownloadMode = torrent->isSequentialDownload();
-                    prioritizeFirstLast = torrent->hasFirstLastPiecePriority();
-                }
-                else {
-                    if (sequentialDownloadMode != torrent->isSequentialDownload())
-                        allSameSequentialDownloadMode = false;
-                    if (prioritizeFirstLast != torrent->hasFirstLastPiecePriority())
-                        allSamePrioFirstlast = false;
-                }
+            if (first) {
+                sequentialDownloadMode = torrent->isSequentialDownload();
+                prioritizeFirstLast = torrent->hasFirstLastPiecePriority();
+            }
+            else {
+                if (sequentialDownloadMode != torrent->isSequentialDownload())
+                    allSameSequentialDownloadMode = false;
+                if (prioritizeFirstLast != torrent->hasFirstLastPiecePriority())
+                    allSamePrioFirstlast = false;
             }
         }
         else {
             if (!oneNotSeed && allSameSuperSeeding && torrent->hasMetadata()) {
-                if (first) {
+                if (first)
                     superSeedingMode = torrent->superSeeding();
-                }
                 else if (superSeedingMode != torrent->superSeeding())
                     allSameSuperSeeding = false;
-
             }
         }
         if (!torrent->isForced())
@@ -1082,7 +1078,7 @@ void TransferListWidget::displayListMenu(const QPoint&)
         listMenu.addAction(&actionPreviewFile);
         addedPreviewAction = true;
     }
-    if (oneNotSeed && oneHasMetadata) {
+    if (oneNotSeed) {
         if (allSameSequentialDownloadMode) {
             actionSequentialDownload.setChecked(sequentialDownloadMode);
             listMenu.addAction(&actionSequentialDownload);
@@ -1188,7 +1184,9 @@ void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, QRegExp::WildcardUnix));
+    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPatternForTransferList()
+                ? QRegExp::RegExp : QRegExp::WildcardUnix;
+    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
 }
 
 void TransferListWidget::applyStatusFilter(int f)

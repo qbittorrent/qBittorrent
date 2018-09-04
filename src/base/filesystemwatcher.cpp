@@ -30,7 +30,7 @@
 
 #include <QtGlobal>
 
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>

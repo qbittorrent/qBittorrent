@@ -32,6 +32,7 @@
 #include <QDesktopServices>
 #include <QRegularExpression>
 #include <QStringList>
+#include <QSysInfo>
 #include <QXmlStreamReader>
 
 #include "base/net/downloadhandler.h"
@@ -41,14 +42,6 @@
 namespace
 {
     const QString RSS_URL {QStringLiteral("https://www.fosshub.com/software/feedqBittorent")};
-
-#ifdef Q_OS_MAC
-    const QString OS_TYPE {QStringLiteral("Mac OS X")};
-#elif defined(Q_OS_WIN) && (defined(__x86_64__) || defined(_M_X64))
-    const QString OS_TYPE {QStringLiteral("Windows x64")};
-#else
-    const QString OS_TYPE {QStringLiteral("Windows")};
-#endif
 
     QString getStringValue(QXmlStreamReader &xml);
 }
@@ -73,10 +66,17 @@ void ProgramUpdater::checkForUpdates()
 void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
 {
     Q_UNUSED(url);
-
     qDebug("Finished downloading the new qBittorrent updates RSS");
-    QString version;
 
+#ifdef Q_OS_MAC
+    const QString OS_TYPE {"Mac OS X"};
+#elif defined(Q_OS_WIN)
+    const QString OS_TYPE {((QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7)
+            && QSysInfo::currentCpuArchitecture().endsWith("64"))
+        ? "Windows x64" : "Windows"};
+#endif
+
+    QString version;
     QXmlStreamReader xml(data);
     bool inItem = false;
     QString updateLink;

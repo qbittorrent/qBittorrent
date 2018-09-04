@@ -181,7 +181,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
 {
     Logger *const logger = Logger::instance();
     qDebug() << Q_FUNC_INFO << reply;
-    QString code = reply.split(" ").first();
+    QString code = reply.split(' ').first();
     qDebug() << Q_FUNC_INFO << "Code:" << code;
 
     if ((code == "good") || (code == "nochg")) {

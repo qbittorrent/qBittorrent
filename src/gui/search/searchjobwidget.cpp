@@ -49,9 +49,11 @@
 #include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
+#include "lineedit.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+#include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
@@ -126,6 +128,14 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     updateFilter();
 
+    m_lineEditSearchResultsFilter = new LineEdit(this);
+    m_lineEditSearchResultsFilter->setFixedWidth(Utils::Gui::scaledSize(this, 170));
+    m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
+    m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
+    m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
+
+    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
     connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
@@ -188,6 +198,11 @@ SearchJobWidget::Status SearchJobWidget::status() const
 int SearchJobWidget::visibleResultsCount() const
 {
     return m_proxyModel->rowCount();
+}
+
+LineEdit *SearchJobWidget::lineEditSearchResultsFilter() const
+{
+    return m_lineEditSearchResultsFilter;
 }
 
 void SearchJobWidget::cancelSearch()
@@ -325,6 +340,31 @@ void SearchJobWidget::fillFilterComboBoxes()
     QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().value());
     int index = m_ui->filterMode->findData(selectedMode);
     m_ui->filterMode->setCurrentIndex((index == -1) ? 0 : index);
+}
+
+void SearchJobWidget::filterSearchResults(const QString &name)
+{
+    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPatternForSearchJob()
+                    ? QRegExp::RegExp : QRegExp::WildcardUnix;
+    m_proxyModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
+    updateResultsCount();
+}
+
+void SearchJobWidget::showFilterContextMenu(const QPoint &)
+{
+    const Preferences *pref = Preferences::instance();
+
+    QMenu *menu = m_lineEditSearchResultsFilter->createStandardContextMenu();
+    menu->addSeparator();
+    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    useRegexAct->setCheckable(true);
+    useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
+    menu->addAction(useRegexAct);
+
+    connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
+    connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
+
+    menu->exec(QCursor::pos());
 }
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)

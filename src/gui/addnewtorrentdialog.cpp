@@ -126,6 +126,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     else
         m_ui->createSubfolderCheckBox->setChecked(session->isCreateTorrentSubfolder());
 
+    m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
+    m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
+
     m_ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     m_ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
@@ -296,16 +299,16 @@ bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
-                RaisedMessageBox::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                RaisedMessageBox::information(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {
-            RaisedMessageBox::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding state."), QMessageBox::Ok);
+            RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent is already queued for processing."), QMessageBox::Ok);
         }
         return false;
     }
@@ -330,16 +333,16 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(m_hash);
         if (torrent) {
             if (torrent->isPrivate()) {
-                RaisedMessageBox::critical(this, tr("Already in the download list"), tr("Torrent '%1' is already in the download list. Trackers weren't merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
                 torrent->addTrackers(magnetUri.trackers());
                 torrent->addUrlSeeds(magnetUri.urlSeeds());
-                RaisedMessageBox::information(this, tr("Already in the download list"), tr("Magnet link '%1' is already in the download list. Trackers were merged.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
         else {
-            RaisedMessageBox::critical(this, tr("Cannot add torrent"), tr("Cannot add this torrent. Perhaps it is already in adding."), QMessageBox::Ok);
+            RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link is already queued for processing."), QMessageBox::Ok);
         }
         return false;
     }
@@ -442,7 +445,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     sizeString += " (";
     sizeString += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
                                                                    m_ui->savePath->selectedPath())));
-    sizeString += ")";
+    sizeString += ')';
     m_ui->labelSize->setText(sizeString);
 }
 
@@ -548,7 +551,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-            const QString &currentName = m_torrentInfo.filePath(i);
+            const QString currentName = m_torrentInfo.filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
             if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
 #else
@@ -562,7 +565,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         }
         // Replace path in all files
         for (int i = 0; i < m_torrentInfo.filesCount(); ++i) {
-            const QString &currentName = m_torrentInfo.filePath(i);
+            const QString currentName = m_torrentInfo.filePath(i);
             if (currentName.startsWith(oldPath)) {
                 QString newName = currentName;
                 newName.replace(0, oldPath.length(), newPath);
@@ -657,6 +660,9 @@ void AddNewTorrentDialog::accept()
 
     m_torrentParams.addPaused = TriStateBool(!m_ui->startTorrentCheckBox->isChecked());
     m_torrentParams.createSubfolder = TriStateBool(m_ui->createSubfolderCheckBox->isChecked());
+
+    m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
+    m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
 
     QString savePath = m_ui->savePath->selectedPath();
     if (m_ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.

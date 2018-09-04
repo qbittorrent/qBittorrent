@@ -53,7 +53,6 @@
 #include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "api/apierror.h"
@@ -68,7 +67,6 @@
 constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 
 const QString PATH_PREFIX_IMAGES {QStringLiteral("/images/")};
-const QString PATH_PREFIX_THEME {QStringLiteral("/theme/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
 const QString PUBLIC_FOLDER {QStringLiteral("/public")};
 const QString PRIVATE_FOLDER {QStringLiteral("/private")};
@@ -190,12 +188,6 @@ void WebApplication::sendWebUIFile()
         if (request().path.startsWith(PATH_PREFIX_IMAGES)) {
             const QString imageFilename {request().path.mid(PATH_PREFIX_IMAGES.size())};
             sendFile(QLatin1String(":/icons/") + imageFilename);
-            return;
-        }
-
-        if (request().path.startsWith(PATH_PREFIX_THEME)) {
-            const QString iconId {request().path.mid(PATH_PREFIX_THEME.size())};
-            sendFile(IconProvider::instance()->getIconPath(iconId));
             return;
         }
     }
@@ -426,9 +418,6 @@ void WebApplication::configure()
 {
     const auto pref = Preferences::instance();
 
-    m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
-    std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
-
     const QString rootFolder = Utils::Fs::expandPathAbs(
                 !pref->isAltWebUiEnabled() ? WWW_FOLDER : pref->getWebUiRootFolder());
     if (rootFolder != m_rootFolder) {
@@ -441,6 +430,13 @@ void WebApplication::configure()
         m_currentLocale = newLocale;
         m_translatedFiles.clear();
     }
+
+    m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
+    m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
+    m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+
+    m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
+    std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
@@ -619,11 +615,9 @@ QString WebApplication::generateSid() const
 
 bool WebApplication::isAuthNeeded()
 {
-    qDebug("Checking auth rules against client address %s", qPrintable(m_env.clientAddress.toString()));
-    const Preferences *pref = Preferences::instance();
-    if (!pref->isWebUiLocalAuthEnabled() && Utils::Net::isLoopbackAddress(m_env.clientAddress))
+    if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_env.clientAddress))
         return false;
-    if (pref->isWebUiAuthSubnetWhitelistEnabled() && Utils::Net::isIPInRange(m_env.clientAddress, pref->getWebUiAuthSubnetWhitelist()))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }

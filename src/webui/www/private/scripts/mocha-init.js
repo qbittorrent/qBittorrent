@@ -387,15 +387,27 @@ initializeWindows = function() {
     recheckFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            hashes.each(function(hash, index) {
-                new Request({
-                    url: 'api/v2/torrents/recheck',
-                    method: 'post',
-                    data: {
-                        hashes: hash
-                    }
-                }).send();
-            });
+            new Request({
+                url: 'api/v2/torrents/recheck',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    reannounceFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/reannounce',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
             updateMainData();
         }
     };

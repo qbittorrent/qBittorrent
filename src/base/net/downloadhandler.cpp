@@ -34,7 +34,6 @@
 #include <QNetworkAccessManager>
 #include <QNetworkCookie>
 #include <QNetworkProxy>
-#include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QTemporaryFile>
 #include <QUrl>
@@ -46,8 +45,19 @@
 
 namespace
 {
-    QString tr(const char *message);
-    QString errorCodeToString(QNetworkReply::NetworkError status);
+    bool saveToFile(const QByteArray &replyData, QString &filePath)
+    {
+        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
+        tmpfile.setAutoRemove(false);
+
+        if (!tmpfile.open())
+            return false;
+
+        filePath = tmpfile.fileName();
+
+        tmpfile.write(replyData);
+        return true;
+    }
 }
 
 Net::DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *manager, const DownloadRequest &downloadRequest)
@@ -145,33 +155,6 @@ void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesT
     }
 }
 
-bool Net::DownloadHandler::saveToFile(const QByteArray &replyData, QString &filePath)
-{
-    QTemporaryFile *tmpfile = new QTemporaryFile(Utils::Fs::tempPath() + "XXXXXX");
-    if (!tmpfile->open()) {
-        delete tmpfile;
-        return false;
-    }
-
-    tmpfile->setAutoRemove(false);
-    filePath = tmpfile->fileName();
-    qDebug("Temporary filename is: %s", qUtf8Printable(filePath));
-    if (m_reply->isOpen() || m_reply->open(QIODevice::ReadOnly)) {
-        tmpfile->write(replyData);
-        tmpfile->close();
-        // XXX: tmpfile needs to be deleted on Windows before using the file
-        // or it will complain that the file is used by another process.
-        delete tmpfile;
-        return true;
-    }
-    else {
-        delete tmpfile;
-        Utils::Fs::forceRemove(filePath);
-    }
-
-    return false;
-}
-
 void Net::DownloadHandler::handleRedirection(QUrl newUrl)
 {
     // Resolve relative urls
@@ -216,60 +199,52 @@ void Net::DownloadHandler::handleRedirection(QUrl newUrl)
     }
 }
 
-namespace
+QString Net::DownloadHandler::errorCodeToString(const QNetworkReply::NetworkError status)
 {
-    QString tr(const char *message)
-    {
-        return QCoreApplication::translate("DownloadHandler", message);
-    }
-
-    QString errorCodeToString(QNetworkReply::NetworkError status)
-    {
-        switch (status) {
-        case QNetworkReply::HostNotFoundError:
-            return tr("The remote host name was not found (invalid hostname)");
-        case QNetworkReply::OperationCanceledError:
-            return tr("The operation was canceled");
-        case QNetworkReply::RemoteHostClosedError:
-            return tr("The remote server closed the connection prematurely, before the entire reply was received and processed");
-        case QNetworkReply::TimeoutError:
-            return tr("The connection to the remote server timed out");
-        case QNetworkReply::SslHandshakeFailedError:
-            return tr("SSL/TLS handshake failed");
-        case QNetworkReply::ConnectionRefusedError:
-            return tr("The remote server refused the connection");
-        case QNetworkReply::ProxyConnectionRefusedError:
-            return tr("The connection to the proxy server was refused");
-        case QNetworkReply::ProxyConnectionClosedError:
-            return tr("The proxy server closed the connection prematurely");
-        case QNetworkReply::ProxyNotFoundError:
-            return tr("The proxy host name was not found");
-        case QNetworkReply::ProxyTimeoutError:
-            return tr("The connection to the proxy timed out or the proxy did not reply in time to the request sent");
-        case QNetworkReply::ProxyAuthenticationRequiredError:
-            return tr("The proxy requires authentication in order to honor the request but did not accept any credentials offered");
-        case QNetworkReply::ContentAccessDenied:
-            return tr("The access to the remote content was denied (401)");
-        case QNetworkReply::ContentOperationNotPermittedError:
-            return tr("The operation requested on the remote content is not permitted");
-        case QNetworkReply::ContentNotFoundError:
-            return tr("The remote content was not found at the server (404)");
-        case QNetworkReply::AuthenticationRequiredError:
-            return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted");
-        case QNetworkReply::ProtocolUnknownError:
-            return tr("The Network Access API cannot honor the request because the protocol is not known");
-        case QNetworkReply::ProtocolInvalidOperationError:
-            return tr("The requested operation is invalid for this protocol");
-        case QNetworkReply::UnknownNetworkError:
-            return tr("An unknown network-related error was detected");
-        case QNetworkReply::UnknownProxyError:
-            return tr("An unknown proxy-related error was detected");
-        case QNetworkReply::UnknownContentError:
-            return tr("An unknown error related to the remote content was detected");
-        case QNetworkReply::ProtocolFailure:
-            return tr("A breakdown in protocol was detected");
-        default:
-            return tr("Unknown error");
-        }
+    switch (status) {
+    case QNetworkReply::HostNotFoundError:
+        return tr("The remote host name was not found (invalid hostname)");
+    case QNetworkReply::OperationCanceledError:
+        return tr("The operation was canceled");
+    case QNetworkReply::RemoteHostClosedError:
+        return tr("The remote server closed the connection prematurely, before the entire reply was received and processed");
+    case QNetworkReply::TimeoutError:
+        return tr("The connection to the remote server timed out");
+    case QNetworkReply::SslHandshakeFailedError:
+        return tr("SSL/TLS handshake failed");
+    case QNetworkReply::ConnectionRefusedError:
+        return tr("The remote server refused the connection");
+    case QNetworkReply::ProxyConnectionRefusedError:
+        return tr("The connection to the proxy server was refused");
+    case QNetworkReply::ProxyConnectionClosedError:
+        return tr("The proxy server closed the connection prematurely");
+    case QNetworkReply::ProxyNotFoundError:
+        return tr("The proxy host name was not found");
+    case QNetworkReply::ProxyTimeoutError:
+        return tr("The connection to the proxy timed out or the proxy did not reply in time to the request sent");
+    case QNetworkReply::ProxyAuthenticationRequiredError:
+        return tr("The proxy requires authentication in order to honor the request but did not accept any credentials offered");
+    case QNetworkReply::ContentAccessDenied:
+        return tr("The access to the remote content was denied (401)");
+    case QNetworkReply::ContentOperationNotPermittedError:
+        return tr("The operation requested on the remote content is not permitted");
+    case QNetworkReply::ContentNotFoundError:
+        return tr("The remote content was not found at the server (404)");
+    case QNetworkReply::AuthenticationRequiredError:
+        return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted");
+    case QNetworkReply::ProtocolUnknownError:
+        return tr("The Network Access API cannot honor the request because the protocol is not known");
+    case QNetworkReply::ProtocolInvalidOperationError:
+        return tr("The requested operation is invalid for this protocol");
+    case QNetworkReply::UnknownNetworkError:
+        return tr("An unknown network-related error was detected");
+    case QNetworkReply::UnknownProxyError:
+        return tr("An unknown proxy-related error was detected");
+    case QNetworkReply::UnknownContentError:
+        return tr("An unknown error related to the remote content was detected");
+    case QNetworkReply::ProtocolFailure:
+        return tr("A breakdown in protocol was detected");
+    default:
+        return tr("Unknown error");
     }
 }

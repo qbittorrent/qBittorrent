@@ -75,7 +75,7 @@ void ReverseResolution::resolve(const QString &ip)
 
 void ReverseResolution::hostResolved(const QHostInfo &host)
 {
-    const QString &ip = m_lookups.take(host.lookupId());
+    const QString ip = m_lookups.take(host.lookupId());
     Q_ASSERT(!ip.isNull());
 
     if (host.error() != QHostInfo::NoError) {
@@ -83,7 +83,7 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
         return;
     }
 
-    const QString &hostname = host.hostName();
+    const QString hostname = host.hostName();
 
     qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
     m_cache.insert(ip, new QString(hostname));

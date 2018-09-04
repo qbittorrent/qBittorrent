@@ -132,31 +132,31 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     // Add status filters
     QListWidgetItem *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the status filter")));
-    all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.png"));
+    all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.svg"));
     QListWidgetItem *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading (0)")));
-    downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.png"));
+    downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.svg"));
     QListWidgetItem *seeding = new QListWidgetItem(this);
     seeding->setData(Qt::DisplayRole, QVariant(tr("Seeding (0)")));
-    seeding->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.png"));
+    seeding->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.svg"));
     QListWidgetItem *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, QVariant(tr("Completed (0)")));
-    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/completed.png"));
+    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/completed.svg"));
     QListWidgetItem *resumed = new QListWidgetItem(this);
     resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed (0)")));
-    resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.png"));
+    resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.svg"));
     QListWidgetItem *paused = new QListWidgetItem(this);
     paused->setData(Qt::DisplayRole, QVariant(tr("Paused (0)")));
-    paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.png"));
+    paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.svg"));
     QListWidgetItem *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, QVariant(tr("Active (0)")));
-    active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.png"));
+    active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.svg"));
     QListWidgetItem *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive (0)")));
-    inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.png"));
+    inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.svg"));
     QListWidgetItem *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, QVariant(tr("Errored (0)")));
-    errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.png"));
+    errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.svg"));
 
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -246,7 +246,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
 
-        downloadFavicon(QString("%1://%2/favicon.ico").arg(getScheme(tracker), host));
+        const QString scheme = getScheme(tracker);
+        downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
     }
     if (!trackerItem) return;
 
@@ -332,8 +333,11 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     if (m_downloadTrackerFavicon) {
         for (auto i = m_trackers.cbegin(); i != m_trackers.cend(); ++i) {
             const QString &tracker = i.key();
-            if (!tracker.isEmpty())
-                downloadFavicon(QString("http://%1/favicon.ico").arg(tracker));
+            if (!tracker.isEmpty()) {
+                const QString scheme = getScheme(tracker);
+                downloadFavicon(QString("%1://%2/favicon.ico")
+                                .arg((scheme.startsWith("http") ? scheme : "http"), getHost(tracker)));
+             }
         }
     }
 }
@@ -511,7 +515,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
 QString TrackerFiltersList::trackerFromRow(int row) const
 {
     Q_ASSERT(row > 1);
-    const QString &tracker = item(row)->text();
+    const QString tracker = item(row)->text();
     QStringList parts = tracker.split(' ');
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
@@ -557,7 +561,6 @@ QStringList TrackerFiltersList::getHashes(int row)
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
     : QFrame(parent)
     , m_transferList(transferList)
-    , m_trackerFilters(nullptr)
 {
     Preferences *const pref = Preferences::instance();
 

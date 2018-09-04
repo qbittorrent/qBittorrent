@@ -12,45 +12,30 @@
 
 SET(QtSingleApplication_FOUND FALSE)
 
-IF(QT4_FOUND)
-    message(STATUS "Looking for Qt4 single application library")
-    FIND_PATH(QtSingleApplication_INCLUDE_DIR QtSingleApplication
-                # standard locations
-                /usr/include
-                /usr/include/QtSolutions
-                # qt4 location except mac's frameworks
-                "${QT_INCLUDE_DIR}/QtSolutions"
-                # mac's frameworks
-                ${FRAMEWORK_INCLUDE_DIR}/QtSolutions
-    )
+if (Qt5Widgets_FOUND)
+    set(_includeFileName qtsingleapplication.h)
+else()
+    set(_includeFileName qtsinglecoreapplication.h)
+endif()
 
-    SET(QtSingleApplication_NAMES ${QtSingleApplication_NAMES}
-        QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
-    FIND_LIBRARY(QtSingleApplication_LIBRARY
-        NAMES ${QtSingleApplication_NAMES}
-        PATHS ${QT_LIBRARY_DIR}
-    )
-ELSEIF(Qt5Core_FOUND)
-    message(STATUS "Looking for Qt5 single application library")
-    FOREACH(TOP_INCLUDE_PATH in ${Qt5Core_INCLUDE_DIRS} ${FRAMEWORK_INCLUDE_DIR})
-        FIND_PATH(QtSingleApplication_INCLUDE_DIR QtSingleApplication ${TOP_INCLUDE_PATH}/QtSolutions)
+FOREACH(TOP_INCLUDE_PATH in ${Qt5Core_INCLUDE_DIRS} ${FRAMEWORK_INCLUDE_DIR})
+    FIND_PATH(QtSingleApplication_INCLUDE_DIR ${_includeFileName} ${TOP_INCLUDE_PATH}/QtSolutions)
 
-        IF(QtSingleApplication_INCLUDE_DIR)
-            BREAK()
-        ENDIF()
-    ENDFOREACH()
+    IF(QtSingleApplication_INCLUDE_DIR)
+        BREAK()
+    ENDIF()
+ENDFOREACH()
 
-    SET(QtSingleApplication_NAMES ${QtSingleApplication_NAMES}
-        Qt5Solutions_SingleApplication-2.6 libQt5Solutions_SingleApplication-2.6
-        QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
-    GET_TARGET_PROPERTY(_QT5_CORELIBRARY Qt5::Core LOCATION)
-    GET_FILENAME_COMPONENT(_QT5_CORELIBRARYPATH ${_QT5_CORELIBRARY} PATH)
+SET(QtSingleApplication_NAMES ${QtSingleApplication_NAMES}
+    Qt5Solutions_SingleApplication-2.6 libQt5Solutions_SingleApplication-2.6
+    QtSolutions_SingleApplication-2.6 libQtSolutions_SingleApplication-2.6)
+GET_TARGET_PROPERTY(_QT5_CORELIBRARY Qt5::Core LOCATION)
+GET_FILENAME_COMPONENT(_QT5_CORELIBRARYPATH ${_QT5_CORELIBRARY} PATH)
 
-    FIND_LIBRARY(QtSingleApplication_LIBRARY
-        NAMES ${QtSingleApplication_NAMES}
-        PATHS ${_QT5_CORELIBRARYPATH}
-    )
-ENDIF()
+FIND_LIBRARY(QtSingleApplication_LIBRARY
+    NAMES ${QtSingleApplication_NAMES}
+    PATHS ${_QT5_CORELIBRARYPATH}
+)
 
 IF (QtSingleApplication_LIBRARY AND QtSingleApplication_INCLUDE_DIR)
 

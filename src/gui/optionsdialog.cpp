@@ -225,10 +225,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkShowSplash, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramAutoExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkPreventFromSuspend, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
-    m_ui->checkPreventFromSuspend->setDisabled(true);
+    m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
+    m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -557,7 +559,8 @@ void OptionsDialog::saveOptions()
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
-    pref->setPreventFromSuspend(preventFromSuspend());
+    pref->setPreventFromSuspendWhenDownloading(m_ui->checkPreventFromSuspendWhenDownloading->isChecked());
+    pref->setPreventFromSuspendWhenSeeding(m_ui->checkPreventFromSuspendWhenSeeding->isChecked());
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
     // Windows: file association settings
@@ -795,7 +798,8 @@ void OptionsDialog::loadOptions()
     }
 #endif
 
-    m_ui->checkPreventFromSuspend->setChecked(pref->preventFromSuspend());
+    m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
+    m_ui->checkPreventFromSuspendWhenSeeding->setChecked(pref->preventFromSuspendWhenSeeding());
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
@@ -1410,11 +1414,6 @@ bool OptionsDialog::WinStartup() const
 }
 #endif
 
-bool OptionsDialog::preventFromSuspend() const
-{
-    return m_ui->checkPreventFromSuspend->isChecked();
-}
-
 bool OptionsDialog::preAllocateAllFiles() const
 {
     return m_ui->checkPreallocateAll->isChecked();
@@ -1755,11 +1754,11 @@ bool OptionsDialog::setSslKey(const QByteArray &key)
     // try different formats
     const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
     if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
         m_sslKey = key;
     }
     else {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
+        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
         m_sslKey.clear();
     }
     return isKeyValid;
@@ -1774,11 +1773,11 @@ bool OptionsDialog::setSslCertificate(const QByteArray &cert)
 #ifndef QT_NO_OPENSSL
     const bool isCertValid = !QSslCertificate(cert).isNull();
     if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-high.png", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
         m_sslCert = cert;
     }
     else {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmap(":/icons/qbt-theme/security-low.png", this, 24));
+        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
         m_sslCert.clear();
     }
     return isCertValid;
