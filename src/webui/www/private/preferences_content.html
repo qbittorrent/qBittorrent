@@ -660,7 +660,6 @@
     updateForceProxySettings = function() {
         var isForceProxyEnabled = (!$('force_proxy_checkbox').getProperty('disabled')) && ($('force_proxy_checkbox').getProperty('checked'));
         $('upnp_checkbox').setProperty('disabled', isForceProxyEnabled);
-        $('dht_checkbox').setProperty('disabled', isForceProxyEnabled);
         $('lsd_checkbox').setProperty('disabled', isForceProxyEnabled);
     };
 
