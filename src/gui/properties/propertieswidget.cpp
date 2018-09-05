@@ -685,8 +685,9 @@ void PropertiesWidget::renameSelectedFile()
 
     // Ask for new name
     bool ok = false;
-    QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal, modelIndex.data().toString(), &ok)
-                      .trimmed();
+    const bool isFile = (m_propListModel->itemType(modelIndex) == TorrentContentModelItem::FileType);
+    QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
+            , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
 
     if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
@@ -696,8 +697,7 @@ void PropertiesWidget::renameSelectedFile()
         return;
     }
 
-    if (m_propListModel->itemType(modelIndex) == TorrentContentModelItem::FileType) {
-        // renaming a file
+    if (isFile) {
         const int fileIndex = m_propListModel->getFileIndex(modelIndex);
 
         if (newName.endsWith(QB_EXT))
