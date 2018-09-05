@@ -132,7 +132,7 @@ namespace
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
 
     // Misc
-    const QString KEY_DOWNLOAD_TRACKER_FAVICON = NOTIFICATIONS_SETTINGS_KEY("DownloadTrackerFavicon");
+    const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
 
     // just a shortcut
     inline SettingsStorage *settings()
