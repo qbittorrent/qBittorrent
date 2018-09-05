@@ -2194,15 +2194,6 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         return false;
     }
 
-    if (params.restored && !fromMagnetUri) {
-        // Set torrent fast resume data
-        p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
-        p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
-    }
-    else {
-        p.file_priorities = {params.filePriorities.begin(), params.filePriorities.end()};
-    }
-
     // We should not add torrent if it already
     // processed or adding to session
     if (m_addingTorrents.contains(hash) || m_loadedMetadata.contains(hash)) return false;
@@ -2235,6 +2226,23 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         p.flags |= libt::add_torrent_params::flag_seed_mode;
     else
         p.flags &= ~libt::add_torrent_params::flag_seed_mode;
+
+    if (!fromMagnetUri) {
+        if (params.restored) {
+            // Set torrent fast resume data
+            p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
+            p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
+        }
+        else {
+            p.file_priorities = {params.filePriorities.begin(), params.filePriorities.end()};
+        }
+    }
+
+    if (params.restored && !params.paused) {
+        // Make sure the torrent will restored in "paused" state
+        // Then we will start it if needed
+        p.flags |= libt::add_torrent_params::flag_stop_when_ready;
+    }
 
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
@@ -4565,8 +4573,10 @@ namespace
         torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
         magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-        torrentParams.paused = fast.dict_find_int_value("qBt-paused");
-        torrentParams.forced = fast.dict_find_int_value("qBt-forced");
+        const bool isAutoManaged = fast.dict_find_int_value("auto_managed");
+        const bool isPaused = fast.dict_find_int_value("paused");
+        torrentParams.paused = fast.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
+        torrentParams.forced = fast.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
         torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
 
