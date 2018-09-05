@@ -1591,7 +1591,7 @@ void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finishe
         m_moveFinishedTriggers.append(boost::bind(&Session::handleTorrentFinished, m_session, this));
     }
     else {
-        if (recheckTorrentsOnCompletion)
+        if (recheckTorrentsOnCompletion && !isUploading())
             forceRecheck();
         m_session->handleTorrentFinished(this);
     }
