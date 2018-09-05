@@ -102,10 +102,6 @@ void displayBadArgMessage(const QString &message);
 
 #if !defined(DISABLE_GUI)
 void showSplashScreen();
-
-#if defined(Q_OS_UNIX)
-void setupDpi();
-#endif  // Q_OS_UNIX
 #endif  // DISABLE_GUI
 
 // Main
@@ -118,10 +114,6 @@ int main(int argc, char *argv[])
     // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
     // Due to this, we have to move from native plist to IniFormat
     macMigratePlists();
-#endif
-
-#if !defined(DISABLE_GUI) && defined(Q_OS_UNIX)
-    setupDpi();
 #endif
 
     try {
@@ -330,14 +322,6 @@ void showSplashScreen()
     QTimer::singleShot(1500, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
-
-#if defined(Q_OS_UNIX)
-void setupDpi()
-{
-    if (qEnvironmentVariableIsEmpty("QT_AUTO_SCREEN_SCALE_FACTOR"))
-        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-}
-#endif  // Q_OS_UNIX
 #endif  // DISABLE_GUI
 
 void displayVersion()
