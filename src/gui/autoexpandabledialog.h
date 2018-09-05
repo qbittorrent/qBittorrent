@@ -48,7 +48,7 @@ public:
 
     static QString getText(QWidget *parent, const QString &title, const QString &label,
                             QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = QString(),
-                            bool *ok = nullptr, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+                            bool *ok = nullptr, bool excludeExtension = false, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
 
 protected:
     void showEvent(QShowEvent *e) override;

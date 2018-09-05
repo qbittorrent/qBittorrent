@@ -48,7 +48,7 @@ AutoExpandableDialog::~AutoExpandableDialog()
 
 QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, const QString &label,
                                       QLineEdit::EchoMode mode, const QString &text,
-                                      bool *ok, Qt::InputMethodHints inputMethodHints)
+                                      bool *ok, const bool excludeExtension, Qt::InputMethodHints inputMethodHints)
 {
     AutoExpandableDialog d(parent);
     d.setWindowTitle(title);
@@ -56,6 +56,16 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     d.m_ui->textEdit->setText(text);
     d.m_ui->textEdit->setEchoMode(mode);
     d.m_ui->textEdit->setInputMethodHints(inputMethodHints);
+
+    d.m_ui->textEdit->selectAll();
+    if (excludeExtension) {
+        int lastDotIndex = text.lastIndexOf('.');
+        if ((lastDotIndex > 3) && (text.mid(lastDotIndex - 4, 4).toLower() == ".tar"))
+            lastDotIndex -= 4;
+        // Select file name without extension, except dot files like .gitignore
+        if (lastDotIndex > 0)
+            d.m_ui->textEdit->setSelection(0, lastDotIndex);
+    }
 
     bool res = d.exec();
     if (ok)
