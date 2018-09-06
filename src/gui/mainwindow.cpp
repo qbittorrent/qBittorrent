@@ -2049,7 +2049,7 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
     const QString installerURL = ((QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-                                  ? "https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe"
+                                  ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
                                   : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
                                         Net::DownloadRequest(installerURL).saveToFile(true));

@@ -251,7 +251,7 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     if (!pyInfo.isValid()) {
 #if defined(Q_OS_UNIX)
         // On Unix-Like Systems python2 and python3 should always exist
-        // https://legacy.python.org/dev/peps/pep-0394/
+        // https://www.python.org/dev/peps/pep-0394/
         if (testPythonInstallation("python3", pyInfo))
             return pyInfo;
         if (testPythonInstallation("python2", pyInfo))
