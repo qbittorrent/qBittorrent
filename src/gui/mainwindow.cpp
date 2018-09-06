@@ -1784,67 +1784,50 @@ void MainWindow::on_actionRSSReader_triggered()
 void MainWindow::on_actionSearchWidget_triggered()
 {
     if (!m_hasPython && m_ui->actionSearchWidget->isChecked()) {
-        int majorVersion = Utils::ForeignApps::pythonInfo().version.majorNumber();
+        const Utils::ForeignApps::PythonInfo pyInfo = Utils::ForeignApps::pythonInfo();
 
-        // Check if python is already in PATH
-        if (majorVersion > 0) {
-            // Prevent translators from messing with PATH
-            Logger::instance()->addMessage(tr("Python found in %1: %2", "Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin")
-                .arg("PATH", qgetenv("PATH").constData()), Log::INFO);
-        }
+        // Not installed
+        if (!pyInfo.isValid()) {
+            m_ui->actionSearchWidget->setChecked(false);
+            Preferences::instance()->setSearchEnabled(false);
+
 #ifdef Q_OS_WIN
-        else if (addPythonPathToEnv()) {
-            majorVersion = Utils::ForeignApps::pythonInfo().version.majorNumber();
-        }
+            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Missing Python Runtime")
+                , tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?")
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+            if (buttonPressed == QMessageBox::Yes)
+                installPython();
+#else
+            QMessageBox::information(this, tr("Missing Python Runtime")
+                , tr("Python is required to use the search engine but it does not seem to be installed."));
 #endif
-        else {
-            QMessageBox::information(this, tr("Undetermined Python version"), tr("Couldn't determine your Python version. Search engine disabled."));
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
             return;
         }
 
-        bool res = false;
+        // Check version requirement
+        if (!pyInfo.isSupportedVersion()) {
+            m_ui->actionSearchWidget->setChecked(false);
+            Preferences::instance()->setSearchEnabled(false);
 
-        if ((majorVersion == 2) || (majorVersion == 3)) {
-            // Check Python minimum requirement: 2.7.9 / 3.3.0
-            using Version = Utils::ForeignApps::PythonInfo::Version;
-            const Version pyVersion = Utils::ForeignApps::pythonInfo().version;
-
-            if (((majorVersion == 2) && (pyVersion < Version {2, 7, 9}))
-                || ((majorVersion == 3) && (pyVersion < Version {3, 3, 0}))) {
-                QMessageBox::information(this, tr("Old Python Interpreter"), tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.").arg(pyVersion));
-                m_ui->actionSearchWidget->setChecked(false);
-                Preferences::instance()->setSearchEnabled(false);
-                return;
-            }
-
-            res = true;
-        }
-
-        if (res) {
-            m_hasPython = true;
-        }
 #ifdef Q_OS_WIN
-        else if (QMessageBox::question(this, tr("Missing Python Interpreter"),
-                                       tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
-                                       QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-            // Download and Install Python
-            installPython();
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
+            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
+                , tr("Your Python version (%1) is outdated. Minimum requirement: 2.7.9 / 3.3.0.\nDo you want to install a newer version now?")
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+            if (buttonPressed == QMessageBox::Yes)
+                installPython();
+#else
+            QMessageBox::information(this, tr("Old Python Runtime")
+                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.")
+                .arg(pyInfo.version));
+#endif
             return;
         }
-#endif
-        else {
-#ifndef Q_OS_WIN
-            QMessageBox::information(this, tr("Missing Python Interpreter"), tr("Python is required to use the search engine but it does not seem to be installed."));
-#endif
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
-            return;
-        }
+
+        m_hasPython = true;
+        m_ui->actionSearchWidget->setChecked(true);
+        Preferences::instance()->setSearchEnabled(true);
     }
+
     displaySearchTab(m_ui->actionSearchWidget->isChecked());
 }
 
@@ -2061,25 +2044,6 @@ void MainWindow::checkProgramUpdate()
 #endif
 
 #ifdef Q_OS_WIN
-bool MainWindow::addPythonPathToEnv()
-{
-    if (m_hasPython) return true;
-
-    QString pythonPath = Preferences::getPythonPath();
-    if (!pythonPath.isEmpty()) {
-        Logger::instance()->addMessage(tr("Python found in '%1'").arg(Utils::Fs::toNativePath(pythonPath)), Log::INFO);
-        // Add it to PATH envvar
-        QString pathEnvar = QString::fromLocal8Bit(qgetenv("PATH").constData());
-        if (pathEnvar.isNull())
-            pathEnvar = "";
-        pathEnvar = pythonPath + ';' + pathEnvar;
-        qDebug("New PATH envvar is: %s", qUtf8Printable(pathEnvar));
-        qputenv("PATH", Utils::Fs::toNativePath(pathEnvar).toLocal8Bit());
-        return true;
-    }
-    return false;
-}
-
 void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
@@ -2123,10 +2087,7 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     else
         Utils::Fs::forceRemove(filePath + ".msi");
     // Reload search engine
-    m_hasPython = addPythonPathToEnv();
-    if (m_hasPython) {
-        // Make it print the version to Log
-        Utils::ForeignApps::pythonInfo();
+    if (Utils::ForeignApps::pythonInfo().isSupportedVersion()) {
         m_ui->actionSearchWidget->setChecked(true);
         displaySearchTab(true);
     }

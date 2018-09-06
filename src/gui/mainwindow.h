@@ -201,7 +201,6 @@ private:
     QIcon getSystrayIcon() const;
 #endif
 #ifdef Q_OS_WIN
-    bool addPythonPathToEnv();
     void installPython();
 #endif
 
