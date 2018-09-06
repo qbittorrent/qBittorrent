@@ -42,6 +42,7 @@ namespace Utils
             using Version = Utils::Version<quint8, 3, 1>;
 
             bool isValid() const;
+            bool isSupportedVersion() const;
 
             QString executableName;
             Version version;

@@ -77,7 +77,8 @@ namespace
                 return false;
             }
 
-            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, version: %1").arg(info.version), Log::INFO);
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, executable name: '%1', version: %2")
+                .arg(info.executableName, info.version), Log::INFO);
             return true;
         }
 
@@ -234,6 +235,14 @@ namespace
 bool Utils::ForeignApps::PythonInfo::isValid() const
 {
     return (!executableName.isEmpty() && version.isValid());
+}
+
+bool Utils::ForeignApps::PythonInfo::isSupportedVersion() const
+{
+    const int majorVer = version.majorNumber();
+    return ((majorVer > 3)
+        || ((majorVer == 3) && (version >= Version {3, 3, 0}))
+        || ((majorVer == 2) && (version >= Version {2, 7, 9})));
 }
 
 PythonInfo Utils::ForeignApps::pythonInfo()
