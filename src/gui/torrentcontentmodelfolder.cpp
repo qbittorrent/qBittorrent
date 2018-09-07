@@ -80,7 +80,7 @@ void TorrentContentModelFolder::appendChild(TorrentContentModelItem *item)
 
 TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
 {
-    return m_childItems.value(row, 0);
+    return m_childItems.value(row, nullptr);
 }
 
 TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const QString &name) const
@@ -88,7 +88,7 @@ TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const 
     foreach (TorrentContentModelItem *child, m_childItems)
         if ((child->itemType() == FolderType) && (child->name() == name))
             return static_cast<TorrentContentModelFolder *>(child);
-    return 0;
+    return nullptr;
 }
 
 int TorrentContentModelFolder::childCount() const

@@ -441,7 +441,7 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
 {
-    QStandardItem *item = m_peerItems.value(ip, 0);
+    QStandardItem *item = m_peerItems.value(ip, nullptr);
     if (item) {
         qDebug("Resolved %s -> %s", qUtf8Printable(ip), qUtf8Printable(hostname));
         item->setData(hostname, Qt::DisplayRole);

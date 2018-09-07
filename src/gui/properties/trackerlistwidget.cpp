@@ -73,7 +73,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     // To also mitigate the above issue, we have to resize each column when
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
-    for (unsigned int i = 0; i < COL_COUNT; ++i)
+    for (int i = 0; i < COL_COUNT; ++i)
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
     // Context menu
@@ -150,9 +150,9 @@ QList<QTreeWidgetItem*> TrackerListWidget::getSelectedTrackerItems() const
 
 void TrackerListWidget::setRowColor(int row, QColor color)
 {
-    unsigned int nbColumns = columnCount();
+    const int nbColumns = columnCount();
     QTreeWidgetItem *item = topLevelItem(row);
-    for (unsigned int i = 0; i < nbColumns; ++i)
+    for (int i = 0; i < nbColumns; ++i)
         item->setData(i, Qt::ForegroundRole, color);
 }
 
@@ -333,7 +333,7 @@ void TrackerListWidget::loadTrackers()
     QStringList oldTrackerURLs = m_trackerItems.keys();
     foreach (const BitTorrent::TrackerEntry &entry, torrent->trackers()) {
         QString trackerURL = entry.url();
-        QTreeWidgetItem *item = m_trackerItems.value(trackerURL, 0);
+        QTreeWidgetItem *item = m_trackerItems.value(trackerURL, nullptr);
         if (!item) {
             item = new QTreeWidgetItem();
             item->setText(COL_URL, trackerURL);
@@ -604,7 +604,7 @@ QStringList TrackerListWidget::headerLabels()
 int TrackerListWidget::visibleColumnsCount() const
 {
     int visibleCols = 0;
-    for (unsigned int i = 0; i < COL_COUNT; ++i) {
+    for (int i = 0; i < COL_COUNT; ++i) {
         if (!isColumnHidden(i))
             ++visibleCols;
     }

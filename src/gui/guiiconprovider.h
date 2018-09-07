@@ -53,7 +53,7 @@ private slots:
 
 private:
     explicit GuiIconProvider(QObject *parent = nullptr);
-    ~GuiIconProvider();
+    ~GuiIconProvider() override;
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;

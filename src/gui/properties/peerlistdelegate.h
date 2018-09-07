@@ -63,7 +63,7 @@ public:
 
     PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
-    ~PeerListDelegate() {}
+    ~PeerListDelegate() override {}
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {

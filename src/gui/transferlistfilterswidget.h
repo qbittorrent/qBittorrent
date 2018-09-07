@@ -71,7 +71,7 @@ class StatusFilterWidget : public BaseFilterWidget
 
 public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
-    ~StatusFilterWidget();
+    ~StatusFilterWidget() override;
 
 private slots:
     void updateTorrentNumbers();
@@ -91,7 +91,7 @@ class TrackerFiltersList : public BaseFilterWidget
 
 public:
     TrackerFiltersList(QWidget *parent, TransferListWidget *transferList);
-    ~TrackerFiltersList();
+    ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
     void addItem(const QString &tracker, const QString &hash);

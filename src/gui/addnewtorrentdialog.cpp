@@ -426,7 +426,7 @@ int AddNewTorrentDialog::indexOfSavePath(const QString &savePath)
 void AddNewTorrentDialog::updateDiskSpaceLabel()
 {
     // Determine torrent size
-    qulonglong torrentSize = 0;
+    qlonglong torrentSize = 0;
 
     if (m_hasMetadata) {
         if (m_contentModel) {

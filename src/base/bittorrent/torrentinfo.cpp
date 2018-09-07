@@ -344,7 +344,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(int fileIndex) const
                         static_cast<int>((firstOffset + fileSize - 1) / pieceLength()));
 }
 
-void TorrentInfo::renameFile(uint index, const QString &newPath)
+void TorrentInfo::renameFile(const int index, const QString &newPath)
 {
     if (!isValid()) return;
     nativeInfo()->rename_file(index, Utils::Fs::toNativePath(newPath).toStdString());
