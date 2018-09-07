@@ -1036,7 +1036,7 @@ void MainWindow::on_actionCloseWindow_triggered()
 QWidget *MainWindow::currentTabWidget() const
 {
     if (isMinimized() || !isVisible())
-        return 0;
+        return nullptr;
     if (m_tabs->currentIndex() == 0)
         return m_transferListWidget;
     return m_tabs->currentWidget();
@@ -1437,7 +1437,7 @@ void MainWindow::loadPreferences(bool configureSession)
 #else
     const bool newSystrayIntegration = pref->systrayIntegration();
     m_ui->actionLock->setVisible(newSystrayIntegration);
-    if (newSystrayIntegration != (m_systrayIcon != 0)) {
+    if (newSystrayIntegration != (m_systrayIcon != nullptr)) {
         if (newSystrayIntegration) {
             // create the trayicon
             if (!QSystemTrayIcon::isSystemTrayAvailable()) {

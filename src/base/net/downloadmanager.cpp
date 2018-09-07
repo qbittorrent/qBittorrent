@@ -64,7 +64,7 @@ namespace
             setAllCookies(cookies);
         }
 
-        ~NetworkCookieJar()
+        ~NetworkCookieJar() override
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();

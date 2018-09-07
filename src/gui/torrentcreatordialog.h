@@ -50,7 +50,7 @@ class TorrentCreatorDialog : public QDialog
 
 public:
     TorrentCreatorDialog(QWidget *parent = nullptr, const QString &defaultPath = QString());
-    ~TorrentCreatorDialog();
+    ~TorrentCreatorDialog() override;
     void updateInputPath(const QString &path);
 
 private slots:

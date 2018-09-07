@@ -103,7 +103,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
         if (!m_ui->resultsBrowser->isColumnHidden(i)) {
             atLeastOne = true;
             break;
@@ -114,7 +114,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     // To also mitigate the above issue, we have to resize each column when
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
 
@@ -412,7 +412,7 @@ void SearchJobWidget::displayToggleColumnsMenu(const QPoint&)
         actions.append(myAct);
     }
     int visibleCols = 0;
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
         if (!m_ui->resultsBrowser->isColumnHidden(i))
             ++visibleCols;
 

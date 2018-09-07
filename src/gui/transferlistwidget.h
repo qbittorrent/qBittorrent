@@ -52,7 +52,7 @@ class TransferListWidget : public QTreeView
 
 public:
     TransferListWidget(QWidget *parent, MainWindow *mainWindow);
-    ~TransferListWidget();
+    ~TransferListWidget() override;
     TransferListModel *getSourceModel() const;
 
 public slots:

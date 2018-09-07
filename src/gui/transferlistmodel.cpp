@@ -240,8 +240,6 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         return torrent->timeSinceActivity();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
-    default:
-        return QVariant();
     }
 
     return QVariant();
@@ -283,7 +281,7 @@ void TransferListModel::addTorrent(BitTorrent::TorrentHandle *const torrent)
 
 Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return Qt::NoItemFlags;
 
     // Explicitly mark as editable
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
@@ -291,7 +289,7 @@ Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 
 BitTorrent::TorrentHandle *TransferListModel::torrentHandle(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return nullptr;
 
     return m_torrents.value(index.row());
 }
