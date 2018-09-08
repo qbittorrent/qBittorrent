@@ -53,10 +53,10 @@
         <legend><input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();" />
             <label for="mail_notification_checkbox">QBT_TR(Email notification &upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
         <div class="formRow">
-            <label for="dest_email_txt" class="leftLabelLarge">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dest_email_txt" />
+            <label for="dest_email_txt" class="leftLabelMedium">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dest_email_txt" />
         </div>
         <div class="formRow">
-            <label for="smtp_server_txt" class="leftLabelLarge">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="smtp_server_txt" />
+            <label for="smtp_server_txt" class="leftLabelMedium">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="smtp_server_txt" />
         </div>
         <div class="formRow">
             <input type="checkbox" id="mail_ssl_checkbox" /><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -64,10 +64,10 @@
         <fieldset class="settings">
             <legend><input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();" /><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             <div class="formRow">
-                <label for="mail_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="mail_username_text" />
+                <label for="mail_username_text" class="leftLabelMedium">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="mail_username_text" />
             </div>
             <div class="formRow">
-                <label for="mail_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="mail_password_text" />
+                <label for="mail_password_text" class="leftLabelMedium">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="mail_password_text" />
             </div>
         </fieldset>
     </fieldset>
@@ -180,11 +180,11 @@
             <legend><input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />
                 <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             <div class="formRow">
-                <label for="peer_proxy_username_text" class="leftLabelLarge">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="peer_proxy_username_text" class="leftLabelMedium">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="text" id="peer_proxy_username_text" />
             </div>
             <div class="formRow">
-                <label for="peer_proxy_password_text" class="leftLabelLarge">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="peer_proxy_password_text" class="leftLabelMedium">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="password" id="peer_proxy_password_text" />
             </div>
         </fieldset>
@@ -419,20 +419,20 @@
 
     <fieldset class="settings">
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_address_value" />
-        <label for="webui_port_value">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;" /><br/>
-        <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
+        <label class="leftLabelMedium" for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_address_value" />
+        <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;" /><br/>
+        <label class="leftLabelMedium" for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
         <input type="checkbox" id="webui_upnp_checkbox" />
         <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
         <fieldset class="settings">
             <legend><input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
                 <label for="use_https_checkbox">QBT_TR(&Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             <div class="formRow">
-                <label for="ssl_key_textarea" style="margin-left: 20px;">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label class="leftLabelSmall" for="ssl_key_textarea">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
             </div>
             <div class="formRow">
-                <label for="ssl_cert_textarea" style="margin-left: 20px;">QBT_TR(Certificate:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label class="leftLabelSmall" for="ssl_cert_textarea">QBT_TR(Certificate:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
             </div>
             <div style="padding-left: 10px;"><a target="_blank" href="https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts">QBT_TR(Information about certificates)QBT_TR[CONTEXT=HttpServer]</a></div>
@@ -478,13 +478,13 @@
         </select>
         <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="registerDynDns();" /><br/><br/>
         <div class="formRow">
-            <label for="dyndns_domain_text" class="leftLabelSmall">QBT_TR(Domain name:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dyndns_domain_text" />
+            <label for="dyndns_domain_text" class="leftLabelMedium">QBT_TR(Domain name:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dyndns_domain_text" />
         </div>
         <div class="formRow">
-            <label for="dyndns_username_text" class="leftLabelSmall">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dyndns_username_text" />
+            <label for="dyndns_username_text" class="leftLabelMedium">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="dyndns_username_text" />
         </div>
         <div class="formRow">
-            <label for="dyndns_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="dyndns_password_text" />
+            <label for="dyndns_password_text" class="leftLabelMedium">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="dyndns_password_text" />
         </div>
     </fieldset>
 </div>

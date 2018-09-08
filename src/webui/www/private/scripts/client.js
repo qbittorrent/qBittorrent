@@ -50,6 +50,7 @@ var setCategoryFilter = function() {};
 
 var selected_filter = getLocalStorageItem('selected_filter', 'all');
 var setFilter = function() {};
+var toggleFilterDisplay = function() {};
 
 var loadSelectedCategory = function() {
     selected_category = getLocalStorageItem('selected_category', CATEGORIES_ALL);
@@ -130,6 +131,16 @@ window.addEvent('load', function() {
         // Reload torrents
         if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
+    };
+
+    toggleFilterDisplay = function(filter) {
+        var element = filter + "FilterList";
+        localStorage.setItem('filter_' + filter + "_collapsed", !$(element).hasClass("invisible"));
+        $(element).toggleClass("invisible")
+        var parent = $(element).getParent(".filterWrapper");
+        var toggleIcon = $(parent).getChildren(".filterTitle img");
+        if (toggleIcon)
+            toggleIcon[0].toggleClass("rotate");
     };
 
     new MochaUI.Panel({
@@ -232,7 +243,7 @@ window.addEvent('load', function() {
     };
 
     var updateCategoryList = function() {
-        var categoryList = $('filterCategoryList');
+        var categoryList = $('categoryFilterList');
         if (!categoryList)
             return;
         categoryList.empty();
@@ -274,7 +285,7 @@ window.addEvent('load', function() {
     };
 
     var highlightSelectedCategory = function() {
-        var categoryList = $('filterCategoryList');
+        var categoryList = $('categoryFilterList');
         if (!categoryList)
             return;
         var childrens = categoryList.childNodes;
