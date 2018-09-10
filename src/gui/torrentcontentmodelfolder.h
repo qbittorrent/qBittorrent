@@ -40,7 +40,7 @@ public:
     // Invisible root item constructor
     TorrentContentModelFolder(const QList<QVariant> &data);
 
-    ~TorrentContentModelFolder();
+    ~TorrentContentModelFolder() override;
 
     ItemType itemType() const override;
 

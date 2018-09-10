@@ -258,7 +258,7 @@ QTreeWidgetItem *PluginSelectDialog::findItemWithID(QString id)
             return item;
     }
 
-    return 0;
+    return nullptr;
 }
 
 void PluginSelectDialog::loadSupportedSearchPlugins()
@@ -361,7 +361,7 @@ void PluginSelectDialog::askForPluginUrl()
 void PluginSelectDialog::askForLocalPlugin()
 {
     QStringList pathsList = QFileDialog::getOpenFileNames(
-                0, tr("Select search plugins"), QDir::homePath(),
+                nullptr, tr("Select search plugins"), QDir::homePath(),
                 tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
                 );
     foreach (QString path, pathsList) {

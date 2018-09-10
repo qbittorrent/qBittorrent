@@ -377,7 +377,7 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
 Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return 0;
+        return Qt::NoItemFlags;
 
     if (itemType(index) == TorrentContentModelItem::FolderType)
         return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;

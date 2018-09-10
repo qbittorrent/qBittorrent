@@ -47,7 +47,7 @@ class TagFilterModel : public QAbstractListModel
 
 public:
     explicit TagFilterModel(QObject *parent = nullptr);
-    ~TagFilterModel();
+    ~TagFilterModel() override;
 
     static bool isSpecialItem(const QModelIndex &index);
 

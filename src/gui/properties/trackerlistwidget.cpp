@@ -73,7 +73,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     // To also mitigate the above issue, we have to resize each column when
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
-    for (unsigned int i = 0; i < COL_COUNT; ++i)
+    for (int i = 0; i < COL_COUNT; ++i)
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
     // Context menu
@@ -150,9 +150,9 @@ QList<QTreeWidgetItem*> TrackerListWidget::getSelectedTrackerItems() const
 
 void TrackerListWidget::setRowColor(int row, QColor color)
 {
-    unsigned int nbColumns = columnCount();
+    const int nbColumns = columnCount();
     QTreeWidgetItem *item = topLevelItem(row);
-    for (unsigned int i = 0; i < nbColumns; ++i)
+    for (int i = 0; i < nbColumns; ++i)
         item->setData(i, Qt::ForegroundRole, color);
 }
 
@@ -333,7 +333,7 @@ void TrackerListWidget::loadTrackers()
     QStringList oldTrackerURLs = m_trackerItems.keys();
     foreach (const BitTorrent::TrackerEntry &entry, torrent->trackers()) {
         QString trackerURL = entry.url();
-        QTreeWidgetItem *item = m_trackerItems.value(trackerURL, 0);
+        QTreeWidgetItem *item = m_trackerItems.value(trackerURL, nullptr);
         if (!item) {
             item = new QTreeWidgetItem();
             item->setText(COL_URL, trackerURL);
@@ -367,13 +367,13 @@ void TrackerListWidget::loadTrackers()
 
         item->setText(COL_RECEIVED, QString::number(data.numPeers));
 #if LIBTORRENT_VERSION_NUM >= 10000
-        item->setText(COL_SEEDS, QString::number(entry.nativeEntry().scrape_complete > 0 ? entry.nativeEntry().scrape_complete : 0));
-        item->setText(COL_PEERS, QString::number(entry.nativeEntry().scrape_incomplete > 0 ? entry.nativeEntry().scrape_incomplete : 0));
-        item->setText(COL_DOWNLOADED, QString::number(entry.nativeEntry().scrape_downloaded > 0 ? entry.nativeEntry().scrape_downloaded : 0));
+        item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete > -1) ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
+        item->setText(COL_PEERS, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
+        item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded > -1) ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
 #else
-        item->setText(COL_SEEDS, '0');
-        item->setText(COL_PEERS, '0');
-        item->setText(COL_DOWNLOADED, '0');
+        item->setText(COL_SEEDS, tr("N/A"));
+        item->setText(COL_PEERS, tr("N/A"));
+        item->setText(COL_DOWNLOADED, tr("N/A"));
 #endif
 
         item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
@@ -604,7 +604,7 @@ QStringList TrackerListWidget::headerLabels()
 int TrackerListWidget::visibleColumnsCount() const
 {
     int visibleCols = 0;
-    for (unsigned int i = 0; i < COL_COUNT; ++i) {
+    for (int i = 0; i < COL_COUNT; ++i) {
         if (!isColumnHidden(i))
             ++visibleCols;
     }

@@ -172,7 +172,7 @@ bool CookiesModel::removeRows(int row, int count, const QModelIndex &parent)
 
 Qt::ItemFlags CookiesModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return Qt::NoItemFlags;
 
     return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
 }

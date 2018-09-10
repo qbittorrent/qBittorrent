@@ -61,7 +61,7 @@ class PeerListWidget : public QTreeView
 
 public:
     explicit PeerListWidget(PropertiesWidget *parent);
-    ~PeerListWidget();
+    ~PeerListWidget() override;
 
     void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
     QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);

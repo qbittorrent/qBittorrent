@@ -92,12 +92,12 @@ GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
     QFile file(filename);
     if (file.size() > MAX_FILE_SIZE) {
         error = tr("Unsupported database file size.");
-        return 0;
+        return nullptr;
     }
 
     if (!file.open(QFile::ReadOnly)) {
         error = file.errorString();
-        return 0;
+        return nullptr;
     }
 
     db = new GeoIPDatabase(file.size());
@@ -105,13 +105,13 @@ GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
     if (file.read(reinterpret_cast<char *>(db->m_data), db->m_size) != db->m_size) {
         error = file.errorString();
         delete db;
-        return 0;
+        return nullptr;
     }
 
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error)) {
         delete db;
-        return 0;
+        return nullptr;
     }
 
     return db;
@@ -122,7 +122,7 @@ GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
     GeoIPDatabase *db = nullptr;
     if (data.size() > MAX_FILE_SIZE) {
         error = tr("Unsupported database file size.");
-        return 0;
+        return nullptr;
     }
 
     db = new GeoIPDatabase(data.size());
@@ -131,7 +131,7 @@ GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error)) {
         delete db;
-        return 0;
+        return nullptr;
     }
 
     return db;

@@ -104,7 +104,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_UPSPEED:
     case TransferListModel::TR_DLSPEED: {
-            const qulonglong speed = index.data().toULongLong();
+            const int speed = index.data().toInt();
             if (hideValues && !speed)
                 break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
