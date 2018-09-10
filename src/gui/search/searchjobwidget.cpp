@@ -161,6 +161,9 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     connect(searchHandler, &SearchHandler::searchFinished, this, &SearchJobWidget::searchFinished);
     connect(searchHandler, &SearchHandler::searchFailed, this, &SearchJobWidget::searchFailed);
     connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
+
+    QShortcut *enterHotkey = new QShortcut(Qt::Key_Return, m_ui->resultsBrowser, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(enterHotkey, &QShortcut::activated, this, &SearchJobWidget::downloadTorrents);
 }
 
 SearchJobWidget::~SearchJobWidget()
@@ -171,7 +174,6 @@ SearchJobWidget::~SearchJobWidget()
 
 void SearchJobWidget::onItemDoubleClicked(const QModelIndex &index)
 {
-    setRowColor(index.row(), QApplication::palette().color(QPalette::LinkVisited));
     downloadTorrent(index);
 }
 
@@ -269,6 +271,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchJobWidget::addTorrentToSession);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
     }
+    setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
 }
 
 void SearchJobWidget::addTorrentToSession(const QString &source)
