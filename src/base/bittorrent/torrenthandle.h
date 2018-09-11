@@ -466,6 +466,7 @@ namespace BitTorrent
         QHash<QString, TrackerInfo> m_trackerInfos;
 
         bool m_started = false;
+        bool m_unchecked = false;
     };
 }
 
