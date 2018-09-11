@@ -1582,19 +1582,6 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProxyPeerConnecs">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Otherwise, the proxy server is only used for tracker connections</string>
-                 </property>
-                 <property name="text">
-                  <string>Use proxy for peer connections</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <layout class="QHBoxLayout" name="forceProxyHorizontalLayout">
                  <item>
                   <widget class="QCheckBox" name="checkForceProxy">
@@ -1632,12 +1619,25 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="isProxyOnlyForTorrents">
+                <widget class="QCheckBox" name="checkProxyPeerConnecs">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="toolTip">
-                  <string>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</string>
+                  <string>Web seeds as well as regular bittorrent peer connections are considered as peer connections, tracker connections and DHT traffic are not.</string>
                  </property>
                  <property name="text">
-                  <string>Use proxy only for torrents</string>
+                  <string>Use proxy for peer connections</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="isProxyOnlyForTorrents">
+                 <property name="toolTip">
+                  <string>Such as: RSS feeds, search engine, software updates, etc.</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for non-BitTorrent connections</string>
                  </property>
                  <property name="checked">
                   <bool>false</bool>
