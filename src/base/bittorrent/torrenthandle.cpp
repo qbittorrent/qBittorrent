@@ -1347,6 +1347,12 @@ void TorrentHandle::pause()
 
     m_nativeHandle.auto_managed(false);
     m_nativeHandle.pause();
+
+    // Libtorrent doesn't emit a torrent_paused_alert when the
+    // torrent is queued (no I/O)
+    // We test on the cached m_nativeStatus
+    if (isQueued())
+        m_session->handleTorrentPaused(this);
 }
 
 void TorrentHandle::resume(bool forced)
