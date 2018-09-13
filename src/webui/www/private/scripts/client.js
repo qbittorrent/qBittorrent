@@ -327,13 +327,21 @@ window.addEvent('load', function() {
                         syncMainDataLastResponseId = response['rid'];
                     }
                     if (response['categories']) {
-                        response['categories'].each(function(category) {
-                            var categoryHash = genHash(category);
-                            category_list[categoryHash] = {
-                                name: category,
-                                torrents: []
-                            };
-                        });
+                        for (var key in response['categories']) {
+                            var category = response['categories'][key];
+                            var categoryHash = genHash(key);
+                            if (category_list[categoryHash] !== undefined) {
+                                // only the save path can change for existing categories
+                                category_list[categoryHash].savePath = category.savePath;
+                            }
+                            else {
+                                category_list[categoryHash] = {
+                                    name: category.name,
+                                    savePath: category.savePath,
+                                    torrents: []
+                                };
+                            }
+                        }
                         update_categories = true;
                     }
                     if (response['categories_removed']) {

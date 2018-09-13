@@ -78,7 +78,8 @@ const char *QBT_WEBUI_TRANSLATIONS[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Set location"),
     QT_TRANSLATE_NOOP("HttpServer", "Limit upload rate"),
     QT_TRANSLATE_NOOP("HttpServer", "Limit download rate"),
-    QT_TRANSLATE_NOOP("HttpServer", "Rename torrent")
+    QT_TRANSLATE_NOOP("HttpServer", "Rename torrent"),
+    QT_TRANSLATE_NOOP("HttpServer", "Unable to create category")
 };
 
 const struct { const char *source; const char *comment; } QBT_WEBUI_COMMENTED_TRANSLATIONS[] = {

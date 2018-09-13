@@ -320,7 +320,7 @@ namespace
 //  - "full_update": full data update flag
 //  - "torrents": dictionary contains information about torrents.
 //  - "torrents_removed": a list of hashes of removed torrents
-//  - "categories": list of categories
+//  - "categories": map of categories info
 //  - "categories_removed": list of removed categories
 //  - "server_state": map contains information about the state of the server
 // The keys of the 'torrents' dictionary are hashes of torrents.
@@ -399,9 +399,15 @@ void SyncController::maindataAction()
 
     data["torrents"] = torrents;
 
-    QVariantList categories;
-    for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i)
-        categories << i.key();
+    QVariantHash categories;
+    const auto categoriesList = session->categories();
+    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+        const auto key = it.key();
+        categories[key] = QVariantMap {
+            {"name", key},
+            {"savePath", it.value()}
+        };
+    }
 
     data["categories"] = categories;
 

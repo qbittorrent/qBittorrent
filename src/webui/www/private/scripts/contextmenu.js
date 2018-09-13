@@ -387,9 +387,13 @@ var CategoriesFilterContextMenu = new Class({
     Extends: ContextMenu,
     updateMenuItems: function() {
         var id = this.options.element.id;
-        if (id != CATEGORIES_ALL && id != CATEGORIES_UNCATEGORIZED)
+        if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
+            this.showItem('EditCategory');
             this.showItem('DeleteCategory');
-        else
+        }
+        else {
+            this.hideItem('EditCategory');
             this.hideItem('DeleteCategory');
+        }
     }
 });

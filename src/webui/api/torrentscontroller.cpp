@@ -738,7 +738,7 @@ void TorrentsController::setLocationAction()
     const QString newLocation {params()["location"].trimmed()};
 
     if (newLocation.isEmpty())
-        throw APIError(APIErrorType::BadParams, tr("Save path is empty"));
+        throw APIError(APIErrorType::BadParams, tr("Save path cannot be empty"));
 
     // try to create the location if it does not exist
     if (!QDir(newLocation).mkpath("."))
@@ -809,6 +809,7 @@ void TorrentsController::setCategoryAction()
 
     const QStringList hashes {params()["hashes"].split('|')};
     const QString category {params()["category"].trimmed()};
+
     applyToTorrents(hashes, [category](BitTorrent::TorrentHandle *torrent)
     {
         if (!torrent->setCategory(category))
@@ -821,10 +822,30 @@ void TorrentsController::createCategoryAction()
     checkParams({"category"});
 
     const QString category {params()["category"].trimmed()};
-    if (!BitTorrent::Session::isValidCategoryName(category) && !category.isEmpty())
+    const QString savePath {params()["savePath"]};
+
+    if (category.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
+
+    if (!BitTorrent::Session::isValidCategoryName(category))
         throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
 
-    BitTorrent::Session::instance()->addCategory(category);
+    if (!BitTorrent::Session::instance()->addCategory(category, savePath))
+        throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
+}
+
+void TorrentsController::editCategoryAction()
+{
+    checkParams({"category", "savePath"});
+
+    const QString category {params()["category"].trimmed()};
+    const QString savePath {params()["savePath"]};
+
+    if (category.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
+
+    if (!BitTorrent::Session::instance()->editCategory(category, savePath))
+        throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
 }
 
 void TorrentsController::removeCategoriesAction()
