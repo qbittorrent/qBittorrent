@@ -26,25 +26,22 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QVariant>
-#include <QHash>
-#include <QHostAddress>
 #include <QDateTime>
+#include <QDebug>
 #include <QFile>
+#include <QHostAddress>
+#include <QVariant>
 
 #include "base/types.h"
 #include "geoipdatabase.h"
 
 namespace
 {
-    const quint32 __ENDIAN_TEST__ = 0x00000001;
-    const bool __IS_LITTLE_ENDIAN__ = (reinterpret_cast<const uchar *>(&__ENDIAN_TEST__)[0] == 0x01);
     const qint32 MAX_FILE_SIZE = 67108864; // 64MB
     const char DB_TYPE[] = "GeoLite2-Country";
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
     const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";
-    const char DATA_SECTION_SEPARATOR[16] = { 0 };
+    const char DATA_SECTION_SEPARATOR[16] = {0};
 
     enum class DataType
     {
@@ -65,10 +62,6 @@ namespace
         Boolean = 14,
         Float = 15
     };
-
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR createMappedAddress(quint32 ip4);
-#endif
 }
 
 struct DataFieldDescriptor
@@ -95,30 +88,30 @@ GeoIPDatabase::GeoIPDatabase(quint32 size)
 
 GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
 {
-    GeoIPDatabase *db = 0;
+    GeoIPDatabase *db = nullptr;
     QFile file(filename);
     if (file.size() > MAX_FILE_SIZE) {
         error = tr("Unsupported database file size.");
-        return 0;
+        return nullptr;
     }
 
     if (!file.open(QFile::ReadOnly)) {
         error = file.errorString();
-        return 0;
+        return nullptr;
     }
 
     db = new GeoIPDatabase(file.size());
 
-    if (file.read((char *)db->m_data, db->m_size) != db->m_size) {
+    if (file.read(reinterpret_cast<char *>(db->m_data), db->m_size) != db->m_size) {
         error = file.errorString();
         delete db;
-        return 0;
+        return nullptr;
     }
 
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error)) {
         delete db;
-        return 0;
+        return nullptr;
     }
 
     return db;
@@ -126,19 +119,19 @@ GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
 
 GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
 {
-    GeoIPDatabase *db = 0;
+    GeoIPDatabase *db = nullptr;
     if (data.size() > MAX_FILE_SIZE) {
         error = tr("Unsupported database file size.");
-        return 0;
+        return nullptr;
     }
 
     db = new GeoIPDatabase(data.size());
 
-    memcpy((char *)db->m_data, data.constData(), db->m_size);
+    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), db->m_size);
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error)) {
         delete db;
-        return 0;
+        return nullptr;
     }
 
     return db;
@@ -166,13 +159,7 @@ QDateTime GeoIPDatabase::buildEpoch() const
 
 QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
 {
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR addr = hostAddr.protocol() == QAbstractSocket::IPv4Protocol
-            ? createMappedAddress(hostAddr.toIPv4Address())
-            : hostAddr.toIPv6Address();
-#else
     Q_IPV6ADDR addr = hostAddr.toIPv6Address();
-#endif
 
     const uchar *ptr = m_data;
 
@@ -458,8 +445,12 @@ bool GeoIPDatabase::readDataFieldDescriptor(quint32 &offset, DataFieldDescriptor
 
 void GeoIPDatabase::fromBigEndian(uchar *buf, quint32 len) const
 {
-    if (__IS_LITTLE_ENDIAN__)
-        std::reverse(buf, buf + len);
+#if (Q_BYTE_ORDER == Q_LITTLE_ENDIAN)
+    std::reverse(buf, buf + len);
+#else
+    Q_UNUSED(buf);
+    Q_UNUSED(len);
+#endif
 }
 
 QVariant GeoIPDatabase::readMapValue(quint32 &offset, quint32 count) const
@@ -495,26 +486,4 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, quint32 count) const
     }
 
     return array;
-}
-
-namespace
-{
-#ifndef QBT_USES_QT5
-    Q_IPV6ADDR createMappedAddress(quint32 ip4)
-    {
-        Q_IPV6ADDR ip6;
-        memset(&ip6, 0, sizeof(ip6));
-
-        int i;
-        for (i = 15; ip4 != 0; i--) {
-            ip6[i] = ip4 & 0xFF;
-            ip4 >>= 8;
-        }
-
-        ip6[11] = 0xFF;
-        ip6[10] = 0xFF;
-
-        return ip6;
-    }
-#endif
 }

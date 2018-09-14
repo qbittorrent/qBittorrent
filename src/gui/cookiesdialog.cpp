@@ -28,14 +28,17 @@
 
 #include "cookiesdialog.h"
 
-#include "base/settingsstorage.h"
-#include "base/net/downloadmanager.h"
-#include "guiiconprovider.h"
-#include "cookiesmodel.h"
-#include "ui_cookiesdialog.h"
+#include <algorithm>
 
-#define SETTINGS_KEY(name) "CookiesDialog/" name
-const QString KEY_GEOMETRY = SETTINGS_KEY("Geometry");
+#include "base/net/downloadmanager.h"
+#include "base/settingsstorage.h"
+#include "cookiesmodel.h"
+#include "guiiconprovider.h"
+#include "ui_cookiesdialog.h"
+#include "utils.h"
+
+#define SETTINGS_KEY(name) QStringLiteral("CookiesDialog/" name)
+const QString KEY_SIZE = SETTINGS_KEY("Size");
 const QString KEY_COOKIESVIEWSTATE = SETTINGS_KEY("CookiesViewState");
 
 CookiesDialog::CookiesDialog(QWidget *parent)
@@ -48,6 +51,8 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     setWindowIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
     m_ui->buttonAdd->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
     m_ui->buttonDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
+    m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
 
     m_ui->treeView->setModel(m_cookiesModel);
     if (m_cookiesModel->rowCount() > 0)
@@ -55,14 +60,14 @@ CookiesDialog::CookiesDialog(QWidget *parent)
                     m_cookiesModel->index(0, 0),
                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
-    restoreGeometry(SettingsStorage::instance()->loadValue(KEY_GEOMETRY).toByteArray());
+    Utils::Gui::resize(this, SettingsStorage::instance()->loadValue(KEY_SIZE).toSize());
     m_ui->treeView->header()->restoreState(
                 SettingsStorage::instance()->loadValue(KEY_COOKIESVIEWSTATE).toByteArray());
 }
 
 CookiesDialog::~CookiesDialog()
 {
-    SettingsStorage::instance()->storeValue(KEY_GEOMETRY, saveGeometry());
+    SettingsStorage::instance()->storeValue(KEY_SIZE, size());
     SettingsStorage::instance()->storeValue(
                 KEY_COOKIESVIEWSTATE, m_ui->treeView->header()->saveState());
     delete m_ui;
@@ -85,5 +90,16 @@ void CookiesDialog::onButtonAddClicked()
 
 void CookiesDialog::onButtonDeleteClicked()
 {
-    m_cookiesModel->removeRow(m_ui->treeView->selectionModel()->currentIndex().row());
+    QModelIndexList idxs = m_ui->treeView->selectionModel()->selectedRows();
+
+    // sort in descending order
+    std::sort(idxs.begin(), idxs.end(),
+        [](const QModelIndex &l, const QModelIndex &r)
+        {
+            return (l.row() > r.row());
+        }
+    );
+
+    for (const QModelIndex &idx : idxs)
+        m_cookiesModel->removeRow(idx.row());
 }

@@ -26,92 +26,117 @@
  * exception statement from your version.
  */
 
-#include "base/preferences.h"
-#include "base/logger.h"
-#include "base/http/server.h"
-#include "base/net/dnsupdater.h"
-#include "base/net/portforwarder.h"
-#include "webapplication.h"
 #include "webui.h"
 
-WebUI::WebUI(QObject *parent)
-    : QObject(parent)
+#include "base/http/server.h"
+#include "base/logger.h"
+#include "base/net/dnsupdater.h"
+#include "base/net/portforwarder.h"
+#include "base/preferences.h"
+#include "webapplication.h"
+
+WebUI::WebUI()
+    : m_isErrored(false)
     , m_port(0)
 {
-    init();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(init()));
+    configure();
+    connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
 }
 
-void WebUI::init()
+void WebUI::configure()
 {
-    Preferences* const pref = Preferences::instance();
-    Logger* const logger = Logger::instance();
+    m_isErrored = false; // clear previous error state
+
+    Logger *const logger = Logger::instance();
+    Preferences *const pref = Preferences::instance();
+
+    const quint16 oldPort = m_port;
+    m_port = pref->getWebUiPort();
 
     if (pref->isWebUiEnabled()) {
-        const quint16 port = pref->getWebUiPort();
-        if (m_port != port) {
-            Net::PortForwarder::instance()->deletePort(port);
-            m_port = port;
-        }
-
-        if (httpServer_) {
-            if (httpServer_->serverPort() != m_port)
-                httpServer_->close();
+        // UPnP/NAT-PMP
+        if (pref->useUPnPForWebUIPort()) {
+            if (m_port != oldPort) {
+                Net::PortForwarder::instance()->deletePort(oldPort);
+                Net::PortForwarder::instance()->addPort(m_port);
+            }
         }
         else {
-            webapp_ = new WebApplication(this);
-            httpServer_ = new Http::Server(webapp_, this);
+            Net::PortForwarder::instance()->deletePort(oldPort);
+        }
+
+        // http server
+        const QString serverAddressString = pref->getWebUiAddress();
+        if (!m_httpServer) {
+            m_webapp = new WebApplication(this);
+            m_httpServer = new Http::Server(m_webapp, this);
+        }
+        else {
+            if ((m_httpServer->serverAddress().toString() != serverAddressString)
+                    || (m_httpServer->serverPort() != m_port))
+                m_httpServer->close();
         }
 
 #ifndef QT_NO_OPENSSL
         if (pref->isWebUiHttpsEnabled()) {
-            QList<QSslCertificate> certs = QSslCertificate::fromData(pref->getWebUiHttpsCertificate());
-            QSslKey key;
-            key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
-            bool certsIsNull = std::any_of(certs.begin(), certs.end(), [](QSslCertificate c) { return c.isNull(); });
-            if (!certsIsNull && !certs.empty() && !key.isNull())
-                httpServer_->enableHttps(certs, key);
+            const QByteArray certs = pref->getWebUiHttpsCertificate();
+            const QByteArray key = pref->getWebUiHttpsKey();
+            bool success = m_httpServer->setupHttps(certs, key);
+            if (success)
+                logger->addMessage(tr("Web UI: HTTPS setup successful"));
             else
-                httpServer_->disableHttps();
+                logger->addMessage(tr("Web UI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
         }
         else {
-            httpServer_->disableHttps();
+            m_httpServer->disableHttps();
         }
 #endif
 
-        if (!httpServer_->isListening()) {
-            bool success = httpServer_->listen(QHostAddress::Any, m_port);
-            if (success)
-                logger->addMessage(tr("The Web UI is listening on port %1").arg(m_port));
-            else
-                logger->addMessage(tr("Web UI Error - Unable to bind Web UI to port %1").arg(m_port), Log::CRITICAL);
+        if (!m_httpServer->isListening()) {
+            const auto address = (serverAddressString == "*" || serverAddressString.isEmpty())
+                ? QHostAddress::Any : QHostAddress(serverAddressString);
+            bool success = m_httpServer->listen(address, m_port);
+            if (success) {
+                logger->addMessage(tr("Web UI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(m_port));
+            }
+            else {
+                const QString errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
+                    .arg(serverAddressString).arg(m_port).arg(m_httpServer->errorString());
+                logger->addMessage(errorMsg, Log::CRITICAL);
+                qCritical() << errorMsg;
+
+                m_isErrored = true;
+                emit fatalError();
+            }
         }
 
         // DynDNS
         if (pref->isDynDNSEnabled()) {
-            if (!dynDNSUpdater_)
-                dynDNSUpdater_ = new Net::DNSUpdater(this);
+            if (!m_dnsUpdater)
+                m_dnsUpdater = new Net::DNSUpdater(this);
             else
-                dynDNSUpdater_->updateCredentials();
+                m_dnsUpdater->updateCredentials();
         }
         else {
-            if (dynDNSUpdater_)
-                delete dynDNSUpdater_;
+            if (m_dnsUpdater)
+                delete m_dnsUpdater;
         }
-
-        // Use UPnP/NAT-PMP for Web UI
-        if (pref->useUPnPForWebUIPort())
-            Net::PortForwarder::instance()->addPort(m_port);
-        else
-            Net::PortForwarder::instance()->deletePort(m_port);
     }
     else {
-        if (httpServer_)
-            delete httpServer_;
-        if (webapp_)
-            delete webapp_;
-        if (dynDNSUpdater_)
-            delete dynDNSUpdater_;
-        Net::PortForwarder::instance()->deletePort(m_port);
+        Net::PortForwarder::instance()->deletePort(oldPort);
+
+        if (m_httpServer)
+            delete m_httpServer;
+
+        if (m_webapp)
+            delete m_webapp;
+
+        if (m_dnsUpdater)
+            delete m_dnsUpdater;
     }
+}
+
+bool WebUI::isErrored() const
+{
+    return m_isErrored;
 }

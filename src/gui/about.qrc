@@ -1,7 +1,7 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-  <file>gpl.html</file>
-  <file>thanks.html</file>
-  <file>translators.html</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>gpl.html</file>
+        <file>thanks.html</file>
+        <file>translators.html</file>
+    </qresource>
 </RCC>

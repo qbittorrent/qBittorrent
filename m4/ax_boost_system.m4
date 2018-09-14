@@ -1,5 +1,5 @@
 # ===========================================================================
-#      http://www.gnu.org/software/autoconf-archive/ax_boost_system.html
+#     https://www.gnu.org/software/autoconf-archive/ax_boost_system.html
 # ===========================================================================
 #
 # SYNOPSIS
@@ -31,7 +31,7 @@
 #   and this notice are preserved. This file is offered as-is, without any
 #   warranty.
 
-#serial 18
+#serial 19
 
 AC_DEFUN([AX_BOOST_SYSTEM],
 [

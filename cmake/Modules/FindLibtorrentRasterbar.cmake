@@ -14,6 +14,11 @@
 find_package(Threads REQUIRED)
 find_package(PkgConfig QUIET)
 
+macro(_detect_boost_components _outComponets librariesList)
+    string(REGEX MATCHALL "boost_[a-z_]+[-a-z]*" _boost_libraries "${librariesList}")
+    string(REGEX REPLACE "boost_([a-z_]+)[-a-z]*" "\\1" ${_outComponets} "${_boost_libraries}")
+endmacro()
+
 if(PKG_CONFIG_FOUND)
     pkg_check_modules(PC_LIBTORRENT_RASTERBAR QUIET libtorrent-rasterbar)
 endif()
@@ -62,19 +67,39 @@ endif()
 set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIR})
 
-if(NOT Boost_SYSTEM_FOUND OR NOT Boost_CHRONO_FOUND OR NOT Boost_RANDOM_FOUND)
-    find_package(Boost REQUIRED COMPONENTS date_time system chrono random thread)
-    set(LibtorrentRasterbar_LIBRARIES
-        ${LibtorrentRasterbar_LIBRARIES} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-    set(LibtorrentRasterbar_INCLUDE_DIRS
-        ${LibtorrentRasterbar_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
-endif()
+# Without pkg-config, we can't possibly figure out the correct boost dependencies
+if (LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
+    set(_boost_components "${LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES}")
+else(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
+    if(PC_LIBTORRENT_RASTERBAR_FOUND)
+        _detect_boost_components(_boost_components "${PC_LIBTORRENT_RASTERBAR_LIBRARIES}")
+    else()
+        # all possible boost dependencies
+        set(_boost_components
+            date_time
+            system
+            chrono
+            random
+            thread
+        )
+    endif()
+endif(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES)
+
+list(SORT _boost_components)
+message(STATUS "Libtorrent Boost dependencies: ${_boost_components}")
+find_package(Boost REQUIRED COMPONENTS ${_boost_components})
+set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+foreach(_boost_cmpnt IN LISTS _boost_components)
+    list(APPEND LibtorrentRasterbar_LIBRARIES "Boost::${_boost_cmpnt}")
+endforeach(_boost_cmpnt)
+
+set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIRS})
 
 list(FIND LibtorrentRasterbar_DEFINITIONS -DTORRENT_USE_OPENSSL LibtorrentRasterbar_ENCRYPTION_INDEX)
 if(LibtorrentRasterbar_ENCRYPTION_INDEX GREATER -1)
     find_package(OpenSSL REQUIRED)
-    set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} ${OPENSSL_LIBRARIES})
-    set(LibtorrentRasterbar_INCLUDE_DIRS ${LibtorrentRasterbar_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIRS})
+    set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
+    list(APPEND LibtorrentRasterbar_INCLUDE_DIRS "${OPENSSL_INCLUDE_DIR}")
     set(LibtorrentRasterbar_OPENSSL_ENABLED ON)
 endif()
 
@@ -83,19 +108,16 @@ include(FindPackageHandleStandardArgs)
 # if all listed variables are TRUE
 find_package_handle_standard_args(LibtorrentRasterbar DEFAULT_MSG
                                   LibtorrentRasterbar_LIBRARY
-                                  LibtorrentRasterbar_INCLUDE_DIR
-                                  Boost_SYSTEM_FOUND
-                                  Boost_CHRONO_FOUND
-                                  Boost_RANDOM_FOUND)
+                                  LibtorrentRasterbar_INCLUDE_DIR)
 
 mark_as_advanced(LibtorrentRasterbar_INCLUDE_DIR LibtorrentRasterbar_LIBRARY
     LibtorrentRasterbar_ORIG_CMAKE_FIND_LIBRARY_SUFFIXES
     LibtorrentRasterbar_ENCRYPTION_INDEX)
 
-if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::LibTorrent)
-    add_library(LibtorrentRasterbar::LibTorrent UNKNOWN IMPORTED)
+if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::torrent-rasterbar)
+    add_library(LibtorrentRasterbar::torrent-rasterbar UNKNOWN IMPORTED)
 
-    set_target_properties(LibtorrentRasterbar::LibTorrent PROPERTIES
+    set_target_properties(LibtorrentRasterbar::torrent-rasterbar PROPERTIES
         IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
         IMPORTED_LOCATION "${LibtorrentRasterbar_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"

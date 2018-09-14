@@ -1,20 +1,13 @@
-set(QBT_LINEEDIT_SOURCES
+add_library(qbt_lineedit STATIC
 src/lineedit.cpp
-)
-
-set(QBT_LINEEDIT_HEADERS
 src/lineedit.h
 )
 
-set(QBT_LINEEDIT_RESOURCES
-resources/lineeditimages.qrc
+target_link_libraries(qbt_lineedit
+    PRIVATE
+        qbt_gui_headers
+    PUBLIC
+        Qt5::Widgets
 )
 
-add_library(qbt_lineedit STATIC ${QBT_LINEEDIT_SOURCES} ${QBT_LINEEDIT_HEADERS})
-if (QT4_FOUND)
-    target_link_libraries(qbt_lineedit Qt4::QtGui)
-else (QT4_FOUND)
-    target_link_libraries(qbt_lineedit Qt5::Widgets)
-endif (QT4_FOUND)
-
-qbt_target_sources(${QBT_LINEEDIT_RESOURCES})
+target_include_directories(qbt_lineedit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)

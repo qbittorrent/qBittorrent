@@ -33,7 +33,7 @@
 #include <QStringList>
 #include "base/utils/string.h"
 
-class SearchSortModel: public QSortFilterProxyModel
+class SearchSortModel : public QSortFilterProxyModel
 {
     using base = QSortFilterProxyModel;
 
@@ -50,10 +50,10 @@ public:
         NB_SEARCH_COLUMNS
     };
 
-    explicit SearchSortModel(QObject *parent = 0);
+    explicit SearchSortModel(QObject *parent = nullptr);
 
     void enableNameFilter(bool enabled);
-    void setNameFilter(const QString& searchTerm = QString());
+    void setNameFilter(const QString &searchTerm = QString());
 
     //! \brief Sets parameters for filtering by size
     //! \param minSize minimal size in bytes

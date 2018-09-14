@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 /*
@@ -35,22 +33,19 @@
 #ifndef SMTP_H
 #define SMTP_H
 
-#include <QString>
-#include <QObject>
+#include <QAbstractSocket>
 #include <QByteArray>
 #include <QHash>
-#include <QAbstractSocket>
 #include <QMetaType>
+#include <QObject>
+#include <QString>
 
-QT_BEGIN_NAMESPACE
-class QTextStream;
 #ifndef QT_NO_OPENSSL
 class QSslSocket;
 #else
 class QTcpSocket;
 #endif
 class QTextCodec;
-QT_END_NAMESPACE
 
 namespace Net
 {
@@ -59,10 +54,10 @@ namespace Net
         Q_OBJECT
 
     public:
-        Smtp(QObject *parent = 0);
+        Smtp(QObject *parent = nullptr);
         ~Smtp();
 
-        void sendMail(const QString &m_from, const QString &to, const QString &subject, const QString &body);
+        void sendMail(const QString &from, const QString &to, const QString &subject, const QString &body);
 
     private slots:
         void readyRead();
@@ -126,8 +121,4 @@ namespace Net
     };
 }
 
-#ifndef QBT_USES_QT5
-Q_DECLARE_METATYPE(QAbstractSocket::SocketError)
-#endif
-
-#endif
+#endif // SMTP_H

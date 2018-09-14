@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2014  Ivan Sorokin
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : vanyacpp@gmail.com
  */
 
 #ifndef TORRENTCONTENTTREEVIEW_H
@@ -33,15 +31,16 @@
 
 #include <QTreeView>
 
-class TorrentContentTreeView : public QTreeView {
-  Q_OBJECT
+class TorrentContentTreeView : public QTreeView
+{
+    Q_OBJECT
 
 public:
-  explicit TorrentContentTreeView(QWidget *parent = 0);
-  void keyPressEvent(QKeyEvent *event);
+    explicit TorrentContentTreeView(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
-  QModelIndex currentNameCell();
+    QModelIndex currentNameCell();
 };
 
-#endif
+#endif // TORRENTCONTENTTREEVIEW_H

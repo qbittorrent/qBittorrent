@@ -29,9 +29,8 @@
 #ifndef SPEEDWIDGET_H
 #define SPEEDWIDGET_H
 
-#include <QWidget>
 #include <QComboBox>
-#include <QtConcurrentRun>
+#include <QWidget>
 
 #include "speedplotview.h"
 
@@ -45,9 +44,10 @@ class PropertiesWidget;
 class ComboBoxMenuButton : public QComboBox
 {
     Q_OBJECT
+
 public:
     ComboBoxMenuButton(QWidget *parent, QMenu *menu);
-    virtual void showPopup();
+    void showPopup() override;
 
 private:
     QMenu *m_menu;
@@ -57,6 +57,7 @@ private:
 class SpeedWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     SpeedWidget(PropertiesWidget *parent);
     ~SpeedWidget();
@@ -64,12 +65,11 @@ public:
 private slots:
     void onPeriodChange(int period);
     void onGraphChange(int id);
+    void update();
 
 private:
-    void update();
     void loadSettings();
     void saveSettings() const;
-    Q_INVOKABLE void graphUpdate();
 
     QVBoxLayout *m_layout;
     QHBoxLayout *m_hlayout;
@@ -81,9 +81,6 @@ private:
     QMenu *m_graphsMenu;
     QList<QAction *> m_graphsMenuActions;
     QSignalMapper *m_graphsSignalMapper;
-
-    QFuture<void> m_updateFuture;
-    bool m_isUpdating;
 };
 
 #endif // SPEEDWIDGET_H

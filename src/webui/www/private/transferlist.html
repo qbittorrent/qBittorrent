@@ -1,0 +1,96 @@
+<div id="torrentsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+    <table class="dynamicTable unselectable" style="position:relative;">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+    </table>
+</div>
+
+<div id="torrentsTableDiv" class="dynamicTableDiv">
+    <table class="dynamicTable unselectable">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    //create a context menu
+    var torrentsTableContextMenu = new TorrentsTableContextMenu({
+        targets: '.torrentsTableContextMenuTarget',
+        menu: 'torrentsTableMenu',
+        actions: {
+            Start: function(element, ref) {
+                startFN();
+            },
+            Pause: function(element, ref) {
+                pauseFN();
+            },
+            ForceStart: function(element, ref) {
+                setForceStartFN();
+            },
+
+            Delete: function(element, ref) {
+                deleteFN();
+            },
+
+            SetLocation: function(element, ref) {
+                setLocationFN();
+            },
+
+            Rename: function(element, ref) {
+                renameFN();
+            },
+            prioTop: function(element, ref) {
+                setPriorityFN('topPrio');
+            },
+            prioUp: function(element, ref) {
+                setPriorityFN('increasePrio');
+            },
+            prioDown: function(element, ref) {
+                setPriorityFN('decreasePrio');
+            },
+            prioBottom: function(element, ref) {
+                setPriorityFN('bottomPrio');
+            },
+
+            DownloadLimit: function(element, ref) {
+                downloadLimitFN();
+            },
+            UploadLimit: function(element, ref) {
+                uploadLimitFN();
+            },
+            ShareRatio : function (element, ref) {
+                shareRatioFN();
+            },
+
+            SequentialDownload: function(element, ref) {
+                toggleSequentialDownloadFN();
+            },
+            FirstLastPiecePrio: function(element, ref) {
+                toggleFirstLastPiecePrioFN();
+            },
+
+            AutoTorrentManagement: function(element, ref) {
+                autoTorrentManagementFN();
+            },
+            ForceRecheck: function(element, ref) {
+                recheckFN();
+            },
+            ForceReannounce: function(element, ref) {
+                reannounceFN();
+            },
+
+            SuperSeeding: function(element, ref) {
+                setSuperSeedingFN(!ref.getItemChecked('SuperSeeding'));
+            }
+        },
+        offsets: {
+            x: -15,
+            y: 2
+        }
+    });
+
+    torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', torrentsTableContextMenu);
+</script>

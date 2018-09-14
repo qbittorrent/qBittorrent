@@ -1,33 +1,36 @@
 INCLUDEPATH += $$PWD
 
-FORMS += $$PWD/propertieswidget.ui \
-         $$PWD/trackersadditiondlg.ui \
-         $$PWD/peersadditiondlg.ui
+FORMS += \
+    $$PWD/peersadditiondialog.ui \
+    $$PWD/propertieswidget.ui \
+    $$PWD/trackersadditiondialog.ui
 
-HEADERS += $$PWD/propertieswidget.h \
-           $$PWD/peerlistwidget.h \
-           $$PWD/proplistdelegate.h \
-           $$PWD/trackerlist.h \
-           $$PWD/downloadedpiecesbar.h \
-           $$PWD/peerlistdelegate.h \
-           $$PWD/peerlistsortmodel.h \
-           $$PWD/peersadditiondlg.h \
-           $$PWD/trackersadditiondlg.h \
-           $$PWD/pieceavailabilitybar.h \
-           $$PWD/proptabbar.h \
-           $$PWD/speedwidget.h \
-           $$PWD/speedplotview.h \
-           $$PWD/piecesbar.h
+HEADERS += \
+    $$PWD/downloadedpiecesbar.h \
+    $$PWD/peerlistdelegate.h \
+    $$PWD/peerlistsortmodel.h \
+    $$PWD/peerlistwidget.h \
+    $$PWD/peersadditiondialog.h \
+    $$PWD/pieceavailabilitybar.h \
+    $$PWD/piecesbar.h \
+    $$PWD/propertieswidget.h \
+    $$PWD/proplistdelegate.h \
+    $$PWD/proptabbar.h \
+    $$PWD/speedplotview.h \
+    $$PWD/speedwidget.h \
+    $$PWD/trackerlistwidget.h \
+    $$PWD/trackersadditiondialog.h
 
-SOURCES += $$PWD/propertieswidget.cpp \
-           $$PWD/proplistdelegate.cpp \
-           $$PWD/peerlistwidget.cpp \
-           $$PWD/trackerlist.cpp \
-           $$PWD/peersadditiondlg.cpp \
-           $$PWD/downloadedpiecesbar.cpp \
-           $$PWD/trackersadditiondlg.cpp \
-           $$PWD/pieceavailabilitybar.cpp \
-           $$PWD/proptabbar.cpp \
-           $$PWD/speedwidget.cpp \
-           $$PWD/speedplotview.cpp \
-           $$PWD/piecesbar.cpp
+SOURCES += \
+    $$PWD/downloadedpiecesbar.cpp \
+    $$PWD/peerlistwidget.cpp \
+    $$PWD/peersadditiondialog.cpp \
+    $$PWD/pieceavailabilitybar.cpp \
+    $$PWD/piecesbar.cpp \
+    $$PWD/propertieswidget.cpp \
+    $$PWD/proplistdelegate.cpp \
+    $$PWD/proptabbar.cpp \
+    $$PWD/speedplotview.cpp \
+    $$PWD/speedwidget.cpp \
+    $$PWD/trackerlistwidget.cpp \
+    $$PWD/trackersadditiondialog.cpp

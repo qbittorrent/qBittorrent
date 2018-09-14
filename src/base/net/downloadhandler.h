@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,13 +30,12 @@
 #ifndef NET_DOWNLOADHANDLER_H
 #define NET_DOWNLOADHANDLER_H
 
+#include <QNetworkReply>
 #include <QObject>
 
-QT_BEGIN_NAMESPACE
-class QNetworkAccessManager;
-class QNetworkReply;
+#include "downloadmanager.h"
+
 class QUrl;
-QT_END_NAMESPACE
 
 namespace Net
 {
@@ -45,10 +44,14 @@ namespace Net
     class DownloadHandler : public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY(DownloadHandler)
+
+        friend class DownloadManager;
+
+        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, const DownloadRequest &downloadRequest);
 
     public:
-        DownloadHandler(QNetworkReply *reply, DownloadManager *manager, bool saveToFile = false, qint64 limit = 0, bool handleRedirectToMagnet = false);
-        ~DownloadHandler();
+        ~DownloadHandler() override;
 
         QString url() const;
 
@@ -63,16 +66,14 @@ namespace Net
         void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
 
     private:
-        void init();
-        bool saveToFile(const QByteArray &replyData, QString &filePath);
+        void assignNetworkReply(QNetworkReply *reply);
         void handleRedirection(QUrl newUrl);
+
+        static QString errorCodeToString(QNetworkReply::NetworkError status);
 
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
-        bool m_saveToFile;
-        qint64 m_sizeLimit;
-        bool m_handleRedirectToMagnet;
-        QString m_url;
+        const DownloadRequest m_downloadRequest;
     };
 }
 

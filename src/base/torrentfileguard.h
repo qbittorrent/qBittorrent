@@ -26,10 +26,14 @@
  * exception statement from your version.
  */
 
-#include <QString>
-#include <QMetaType>
+#ifndef TOFFENTFILEGURAD_H
+#define TOFFENTFILEGURAD_H
 
-class QMetaEnum;
+#include <QObject>
+#include <QString>
+
+template <typename T> class CachedSettingValue;
+
 /// Utility class to defer file deletion
 class FileGuard
 {
@@ -47,7 +51,7 @@ private:
 
 /// Reads settings for .torrent files from preferences
 /// and sets the file guard up accordingly
-class TorrentFileGuard
+class TorrentFileGuard : private FileGuard
 {
     Q_GADGET
 
@@ -57,9 +61,9 @@ public:
 
     /// marks the torrent file as loaded (added) into the BitTorrent::Session
     void markAsAddedToSession();
-    void setAutoRemove(bool remove);
+    using FileGuard::setAutoRemove;
 
-    enum AutoDeleteMode     // do not change these names: they are stored in config file
+    enum AutoDeleteMode: int     // do not change these names: they are stored in config file
     {
         Never,
         IfAdded,
@@ -71,25 +75,12 @@ public:
     static void setAutoDeleteMode(AutoDeleteMode mode);
 
 private:
-    static QMetaEnum modeMetaEnum();
-#if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
-    Q_ENUMS(AutoDeleteMode)
-#else
+    TorrentFileGuard(const QString &path, AutoDeleteMode mode);
+    static CachedSettingValue<AutoDeleteMode> &autoDeleteModeSetting();
+
     Q_ENUM(AutoDeleteMode)
-#endif
     AutoDeleteMode m_mode;
     bool m_wasAdded;
-    // Qt 4 moc has troubles with Q_GADGET: if Q_GADGET is present in a class, moc unconditionally
-    // references in the generated code the statiMetaObject from the class ancestor.
-    // Moreover, if the ancestor class has Q_GADGET but does not have other
-    // Q_ declarations, moc does not generate staticMetaObject for it. These results
-    // in referencing the non existent staticMetaObject and such code fails to compile.
-    // This problem is NOT present in Qt 5.7.0 and maybe in some older Qt 5 versions too
-    // Qt 4.8.7 has it.
-    // Therefore, we can't inherit FileGuard :(
-    FileGuard m_guard;
 };
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
-Q_DECLARE_METATYPE(TorrentFileGuard::AutoDeleteMode)
-#endif
+#endif // TOFFENTFILEGURAD_H

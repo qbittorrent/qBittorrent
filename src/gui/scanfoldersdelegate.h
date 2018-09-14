@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  sledgehammer999
+ * Copyright (C) 2015  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : hammered999@gmail.com
  */
 
 #ifndef SCANFOLDERSDELEGATE_H
@@ -33,12 +31,12 @@
 
 #include <QItemDelegate>
 
-class QPainter;
-class QModelIndex;
-class QStyleOptionViewItem;
 class QAbstractItemModel;
-class PropertiesWidget;
+class QModelIndex;
+class QPainter;
+class QStyleOptionViewItem;
 class QTreeView;
+class PropertiesWidget;
 
 class ScanFoldersDelegate : public QItemDelegate
 {
@@ -51,13 +49,12 @@ private slots:
     void comboboxIndexChanged(int index);
 
 private:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const;
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const override;
 
     QTreeView *m_folderView;
 };
 
 #endif // SCANFOLDERSDELEGATE_H
-

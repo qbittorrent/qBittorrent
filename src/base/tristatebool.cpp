@@ -28,33 +28,6 @@
 
 #include "tristatebool.h"
 
-TriStateBool::TriStateBool()
-    : m_value(Undefined)
-{
-}
-
-TriStateBool::TriStateBool(bool b)
-{
-    m_value = (b ? True : False);
-}
-
-TriStateBool::TriStateBool(TriStateBool::ValueType value)
-    : m_value(Undefined)
-{
-    switch (value) {
-    case Undefined:
-    case True:
-    case False:
-        m_value = value;
-    }
-}
-
-TriStateBool::operator bool() const
-{
-    return (m_value == True);
-}
-
-TriStateBool::operator ValueType() const
-{
-    return m_value;
-}
+const TriStateBool TriStateBool::Undefined(-1);
+const TriStateBool TriStateBool::False(0);
+const TriStateBool TriStateBool::True(1);

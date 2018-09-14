@@ -42,22 +42,29 @@ namespace Net
     class DNSUpdater;
 }
 
-class AbstractWebApplication;
+class WebApplication;
 
 class WebUI : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(WebUI)
 
 public:
-    explicit WebUI(QObject *parent = 0);
+    WebUI();
+
+    bool isErrored() const;
+
+signals:
+    void fatalError();
 
 private slots:
-    void init();
+    void configure();
 
 private:
-    QPointer<Http::Server> httpServer_;
-    QPointer<Net::DNSUpdater> dynDNSUpdater_;
-    QPointer<AbstractWebApplication> webapp_;
+    bool m_isErrored;
+    QPointer<Http::Server> m_httpServer;
+    QPointer<Net::DNSUpdater> m_dnsUpdater;
+    QPointer<WebApplication> m_webapp;
     quint16 m_port;
 };
 

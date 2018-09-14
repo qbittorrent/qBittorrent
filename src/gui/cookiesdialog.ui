@@ -17,7 +17,17 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTreeView" name="treeView"/>
+      <widget class="QTreeView" name="treeView">
+       <property name="editTriggers">
+        <set>QAbstractItemView::AllEditTriggers</set>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -35,17 +45,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QToolButton" name="buttonAdd">
-         <property name="text">
-          <string notr="true"/>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </widget>
+        <widget class="QToolButton" name="buttonAdd"/>
        </item>
        <item>
         <spacer name="verticalSpacer">
@@ -64,17 +64,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QToolButton" name="buttonDelete">
-         <property name="text">
-          <string notr="true"/>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </widget>
+        <widget class="QToolButton" name="buttonDelete"/>
        </item>
        <item>
         <spacer name="verticalSpacer_3">

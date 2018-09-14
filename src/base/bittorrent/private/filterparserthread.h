@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef FILTERPARSERTHREAD_H
@@ -33,41 +31,38 @@
 
 #include <QThread>
 
-class QDataStream;
-class QStringList;
+#include <libtorrent/ip_filter.hpp>
 
-namespace libtorrent
-{
-    class session;
-    struct ip_filter;
-}
+class QDataStream;
 
 class FilterParserThread : public QThread
 {
     Q_OBJECT
 
 public:
-    FilterParserThread(libtorrent::session *s, QObject *parent = 0);
+    FilterParserThread(QObject *parent = nullptr);
     ~FilterParserThread();
-
-    int parseDATFilterFile(QString filePath, libtorrent::ip_filter &filter);
-    int parseP2PFilterFile(QString filePath, libtorrent::ip_filter &filter);
-    int getlineInStream(QDataStream &stream, std::string &name, char delim);
-    int parseP2BFilterFile(QString filePath, libtorrent::ip_filter &filter);
-    void processFilterFile(QString filePath);
+    void processFilterFile(const QString &filePath);
+    libtorrent::ip_filter IPfilter();
 
 signals:
     void IPFilterParsed(int ruleCount);
     void IPFilterError();
 
 protected:
-    QString cleanupIPAddress(QString _ip);
     void run();
 
 private:
-    libtorrent::session *m_session;
+    int findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse = false);
+    int trim(char *const data, int start, int end);
+    int parseDATFilterFile();
+    int parseP2PFilterFile();
+    int getlineInStream(QDataStream &stream, std::string &name, char delim);
+    int parseP2BFilterFile();
+
     bool m_abort;
     QString m_filePath;
+    libtorrent::ip_filter m_filter;
 };
 
 #endif // BITTORRENT_FILTERPARSERTHREAD_H

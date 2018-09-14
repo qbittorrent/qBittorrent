@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christian Kandeler, Christophe Dumez
+ * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "scanfoldersmodel.h"
@@ -56,7 +54,7 @@ struct ScanFoldersModel::PathData
     QString downloadPath; // valid for CUSTOM_LOCATION
 };
 
-ScanFoldersModel *ScanFoldersModel::m_instance = 0;
+ScanFoldersModel *ScanFoldersModel::m_instance = nullptr;
 
 bool ScanFoldersModel::initInstance(QObject *parent)
 {
@@ -72,7 +70,7 @@ void ScanFoldersModel::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -83,10 +81,10 @@ ScanFoldersModel *ScanFoldersModel::instance()
 
 ScanFoldersModel::ScanFoldersModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_fsWatcher(0)
+    , m_fsWatcher(nullptr)
 {
     configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    connect(Preferences::instance(), &Preferences::changed, this, &ScanFoldersModel::configure);
 }
 
 ScanFoldersModel::~ScanFoldersModel()
@@ -214,15 +212,15 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     if (!watchDir.exists()) return DoesNotExist;
     if (!watchDir.isReadable()) return CannotRead;
 
-    const QString &canonicalWatchPath = watchDir.canonicalPath();
+    const QString canonicalWatchPath = watchDir.canonicalPath();
     if (findPathData(canonicalWatchPath) != -1) return AlreadyInList;
 
     QDir downloadDir(downloadPath);
-    const QString &canonicalDownloadPath = downloadDir.canonicalPath();
+    const QString canonicalDownloadPath = downloadDir.canonicalPath();
 
     if (!m_fsWatcher) {
         m_fsWatcher = new FileSystemWatcher(this);
-        connect(m_fsWatcher, SIGNAL(torrentsAdded(const QStringList &)), this, SLOT(addTorrentsToSession(const QStringList  &)));
+        connect(m_fsWatcher, &FileSystemWatcher::torrentsAdded, this, &ScanFoldersModel::addTorrentsToSession);
     }
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -235,15 +233,15 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     return Ok;
 }
 
-ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType& downloadType, const QString &downloadPath)
+ScanFoldersModel::PathStatus ScanFoldersModel::updatePath(const QString &watchPath, const PathType &downloadType, const QString &downloadPath)
 {
     QDir watchDir(watchPath);
-    const QString &canonicalWatchPath = watchDir.canonicalPath();
+    const QString canonicalWatchPath = watchDir.canonicalPath();
     int row = findPathData(canonicalWatchPath);
     if (row == -1) return DoesNotExist;
 
     QDir downloadDir(downloadPath);
-    const QString &canonicalDownloadPath = downloadDir.canonicalPath();
+    const QString canonicalDownloadPath = downloadDir.canonicalPath();
 
     m_pathList.at(row)->downloadType = downloadType;
     m_pathList.at(row)->downloadPath = Utils::Fs::toNativePath(canonicalDownloadPath);
@@ -258,7 +256,7 @@ void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
 
     foreach (const QString &path, watchPaths) {
         QDir watchDir(path);
-        const QString &canonicalWatchPath = watchDir.canonicalPath();
+        const QString canonicalWatchPath = watchDir.canonicalPath();
         m_fsWatcher->addPath(canonicalWatchPath);
     }
 }
@@ -340,7 +338,7 @@ void ScanFoldersModel::makePersistent()
 
 void ScanFoldersModel::configure()
 {
-    QVariantHash dirs = Preferences::instance()->getScanDirs();
+    const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
     for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
         if (i.value().type() == QVariant::Int)
@@ -353,7 +351,7 @@ void ScanFoldersModel::configure()
 void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 {
     foreach (const QString &file, pathList) {
-        qDebug("File %s added", qPrintable(file));
+        qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;
         if (downloadInWatchFolder(file))
@@ -372,7 +370,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
                 Utils::Fs::forceRemove(file);
             }
             else {
-                qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
+                qDebug("Failed to open magnet file: %s", qUtf8Printable(f.errorString()));
             }
         }
         else {
@@ -382,7 +380,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
                 Utils::Fs::forceRemove(file);
             }
             else {
-                qDebug("Ignoring incomplete torrent file: %s", qPrintable(file));
+                qDebug("Ignoring incomplete torrent file: %s", qUtf8Printable(file));
             }
         }
     }
@@ -390,7 +388,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 
 QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
 {
-    switch(type) {
+    switch (type) {
     case DOWNLOAD_IN_WATCH_FOLDER:
         return tr("Monitored folder");
     case DEFAULT_LOCATION:

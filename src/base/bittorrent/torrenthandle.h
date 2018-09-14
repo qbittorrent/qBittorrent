@@ -30,12 +30,13 @@
 #ifndef BITTORRENT_TORRENTHANDLE_H
 #define BITTORRENT_TORRENTHANDLE_H
 
-#include <QObject>
-#include <QString>
 #include <QDateTime>
-#include <QQueue>
-#include <QVector>
 #include <QHash>
+#include <QObject>
+#include <QQueue>
+#include <QSet>
+#include <QString>
+#include <QVector>
 
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/version.hpp>
@@ -87,26 +88,32 @@ namespace BitTorrent
     class TrackerEntry;
     struct AddTorrentParams;
 
-    struct AddTorrentData
+    struct CreateTorrentParams
     {
-        bool resumed;
-        // for both new and resumed torrents
+        bool restored; // is existing torrent job?
+        // for both new and restored torrents
         QString name;
         QString category;
+        QSet<QString> tags;
         QString savePath;
         bool disableTempPath;
         bool sequential;
+        bool firstLastPiecePriority;
         bool hasSeedStatus;
         bool skipChecking;
-        TriStateBool addForced;
-        TriStateBool addPaused;
+        bool hasRootFolder;
+        bool forced;
+        bool paused;
+        int uploadLimit;
+        int downloadLimit;
         // for new torrents
         QVector<int> filePriorities;
-        // for resumed torrents
+        // for restored torrents
         qreal ratioLimit;
+        int seedingTimeLimit;
 
-        AddTorrentData();
-        AddTorrentData(const AddTorrentParams &params);
+        CreateTorrentParams();
+        CreateTorrentParams(const AddTorrentParams &params);
     };
 
     struct TrackerInfo
@@ -115,46 +122,37 @@ namespace BitTorrent
         quint32 numPeers = 0;
     };
 
-    class TorrentState
+    enum class TorrentState
     {
-    public:
-        enum
-        {
-            Unknown = -1,
+        Unknown = -1,
 
-            ForcedDownloading,
-            Downloading,
-            DownloadingMetadata,
-            Allocating,
-            StalledDownloading,
+        ForcedDownloading,
+        Downloading,
+        DownloadingMetadata,
+        Allocating,
+        StalledDownloading,
 
-            ForcedUploading,
-            Uploading,
-            StalledUploading,
+        ForcedUploading,
+        Uploading,
+        StalledUploading,
 
-            QueuedDownloading,
-            QueuedUploading,
+#if LIBTORRENT_VERSION_NUM < 10100
+        QueuedForChecking,
+#endif
+        CheckingResumeData,
+        QueuedDownloading,
+        QueuedUploading,
 
-            CheckingUploading,
-            CheckingDownloading,
+        CheckingUploading,
+        CheckingDownloading,
 
-            QueuedForChecking,
-            CheckingResumeData,
+        PausedDownloading,
+        PausedUploading,
 
-            PausedDownloading,
-            PausedUploading,
+        Moving,
 
-            MissingFiles,
-            Error
-        };
-
-        TorrentState(int value);
-
-        operator int() const;
-        QString toString() const;
-
-    private:
-        int m_value;
+        MissingFiles,
+        Error
     };
 
     class TorrentHandle : public QObject
@@ -165,10 +163,14 @@ namespace BitTorrent
         static const qreal USE_GLOBAL_RATIO;
         static const qreal NO_RATIO_LIMIT;
 
+        static const int USE_GLOBAL_SEEDING_TIME;
+        static const int NO_SEEDING_TIME_LIMIT;
+
         static const qreal MAX_RATIO;
+        static const int MAX_SEEDING_TIME;
 
         TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
-                          const AddTorrentData &data);
+                          const CreateTorrentParams &params);
         ~TorrentHandle();
 
         bool isValid() const;
@@ -206,6 +208,9 @@ namespace BitTorrent
         //    file4
         //
         //
+        // Torrent A* (Torrent A in "strip root folder" mode)
+        //
+        //
         // Torrent B (singlefile)
         //
         // torrentB/
@@ -222,6 +227,7 @@ namespace BitTorrent
         // |   |           rootPath           |                contentPath                 |
         // |---|------------------------------|--------------------------------------------|
         // | A | /home/user/torrents/torrentA | /home/user/torrents/torrentA               |
+        // | A*|           <empty>            | /home/user/torrents                        |
         // | B | /home/user/torrents/torrentB | /home/user/torrents/torrentB/subdir1/file1 |
         // | C | /home/user/torrents/file1    | /home/user/torrents/file1                  |
 
@@ -229,11 +235,21 @@ namespace BitTorrent
         QString rootPath(bool actual = false) const;
         QString contentPath(bool actual = false) const;
 
+        bool useTempPath() const;
+
         bool isAutoTMMEnabled() const;
         void setAutoTMMEnabled(bool enabled);
         QString category() const;
         bool belongsToCategory(const QString &category) const;
         bool setCategory(const QString &category);
+
+        QSet<QString> tags() const;
+        bool hasTag(const QString &tag) const;
+        bool addTag(const QString &tag);
+        bool removeTag(const QString &tag);
+        void removeAllTags();
+
+        bool hasRootFolder() const;
 
         int filesCount() const;
         int piecesCount() const;
@@ -241,6 +257,7 @@ namespace BitTorrent
         qreal progress() const;
         QDateTime addedTime() const;
         qreal ratioLimit() const;
+        int seedingTimeLimit() const;
 
         QString filePath(int index) const;
         QString fileName(int index) const;
@@ -302,7 +319,8 @@ namespace BitTorrent
         QBitArray downloadingPieces() const;
         QVector<int> pieceAvailability() const;
         qreal distributedCopies() const;
-        qreal maxRatio(bool *usesGlobalRatio = 0) const;
+        qreal maxRatio() const;
+        int maxSeedingTime() const;
         qreal realRatio() const;
         int uploadPayloadRate() const;
         int downloadPayloadRate() const;
@@ -315,7 +333,7 @@ namespace BitTorrent
         void setName(const QString &name);
         void setSequentialDownload(bool b);
         void toggleSequentialDownload();
-        void setFirstLastPiecePriority(bool b);
+        void setFirstLastPiecePriority(bool enabled);
         void toggleFirstLastPiecePriority();
         void pause();
         void resume(bool forced = false);
@@ -323,12 +341,15 @@ namespace BitTorrent
         void forceReannounce(int index = -1);
         void forceDHTAnnounce();
         void forceRecheck();
+#if LIBTORRENT_VERSION_NUM < 10100
         void setTrackerLogin(const QString &username, const QString &password);
+#endif
         void renameFile(int index, const QString &name);
         bool saveTorrentFile(const QString &path);
         void prioritizeFiles(const QVector<int> &priorities);
         void setFilePriority(int index, int priority);
         void setRatioLimit(qreal limit);
+        void setSeedingTimeLimit(int limit);
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
@@ -353,6 +374,14 @@ namespace BitTorrent
         void handleAppendExtensionToggled();
         void saveResumeData();
 
+        /**
+         * @brief fraction of file pieces that are available at least from one peer
+         *
+         * This is not the same as torrrent availability, it is just a fraction of pieces
+         * that can be downloaded right now. It varies between 0 to 1.
+         */
+        QVector<qreal> availableFileFractions() const;
+
     private:
         typedef boost::function<void ()> EventTrigger;
 
@@ -361,51 +390,57 @@ namespace BitTorrent
         void updateState();
         void updateTorrentInfo();
 
-        void handleStorageMovedAlert(libtorrent::storage_moved_alert *p);
-        void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert *p);
-        void handleTrackerReplyAlert(libtorrent::tracker_reply_alert *p);
-        void handleTrackerWarningAlert(libtorrent::tracker_warning_alert *p);
-        void handleTrackerErrorAlert(libtorrent::tracker_error_alert *p);
-        void handleTorrentCheckedAlert(libtorrent::torrent_checked_alert *p);
-        void handleTorrentFinishedAlert(libtorrent::torrent_finished_alert *p);
-        void handleTorrentPausedAlert(libtorrent::torrent_paused_alert *p);
-        void handleTorrentResumedAlert(libtorrent::torrent_resumed_alert *p);
-        void handleSaveResumeDataAlert(libtorrent::save_resume_data_alert *p);
-        void handleSaveResumeDataFailedAlert(libtorrent::save_resume_data_failed_alert *p);
-        void handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert *p);
-        void handleFileRenamedAlert(libtorrent::file_renamed_alert *p);
-        void handleFileRenameFailedAlert(libtorrent::file_rename_failed_alert *p);
-        void handleFileCompletedAlert(libtorrent::file_completed_alert *p);
-        void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
-        void handleStatsAlert(libtorrent::stats_alert *p);
+        void handleStorageMovedAlert(const libtorrent::storage_moved_alert *p);
+        void handleStorageMovedFailedAlert(const libtorrent::storage_moved_failed_alert *p);
+        void handleTrackerReplyAlert(const libtorrent::tracker_reply_alert *p);
+        void handleTrackerWarningAlert(const libtorrent::tracker_warning_alert *p);
+        void handleTrackerErrorAlert(const libtorrent::tracker_error_alert *p);
+        void handleTorrentCheckedAlert(const libtorrent::torrent_checked_alert *p);
+        void handleTorrentFinishedAlert(const libtorrent::torrent_finished_alert *p);
+        void handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p);
+        void handleTorrentResumedAlert(const libtorrent::torrent_resumed_alert *p);
+        void handleSaveResumeDataAlert(const libtorrent::save_resume_data_alert *p);
+        void handleSaveResumeDataFailedAlert(const libtorrent::save_resume_data_failed_alert *p);
+        void handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p);
+        void handleFileRenamedAlert(const libtorrent::file_renamed_alert *p);
+        void handleFileRenameFailedAlert(const libtorrent::file_rename_failed_alert *p);
+        void handleFileCompletedAlert(const libtorrent::file_completed_alert *p);
+        void handleMetadataReceivedAlert(const libtorrent::metadata_received_alert *p);
+        void handleStatsAlert(const libtorrent::stats_alert *p);
 
+        void resume_impl(bool forced, bool uploadMode);
         bool isMoveInProgress() const;
-        bool useTempPath() const;
         QString nativeActualSavePath() const;
 
         void adjustActualSavePath();
         void adjustActualSavePath_impl();
-        void move_impl(QString path);
-        void moveStorage(const QString &newPath);
+        void move_impl(QString path, bool overwrite);
+        void moveStorage(const QString &newPath, bool overwrite);
         void manageIncompleteFiles();
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
+        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<int> &updatedFilePrio = {});
 
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;
         libtorrent::torrent_status m_nativeStatus;
-        TorrentState  m_state;
+        TorrentState m_state;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_hash;
 
-        QString m_oldPath;
-        QString m_newPath;
-        // m_queuedPath is where files should be moved to,
-        // when current moving is completed
-        QString m_queuedPath;
+        struct
+        {
+            QString oldPath;
+            QString newPath;
+            // queuedPath is where files should be moved to,
+            // when current moving is completed
+            QString queuedPath;
+            bool queuedOverwrite = true;
+        } m_moveStorageInfo;
+
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
@@ -417,15 +452,22 @@ namespace BitTorrent
         QString m_name;
         QString m_savePath;
         QString m_category;
+        QSet<QString> m_tags;
         bool m_hasSeedStatus;
         qreal m_ratioLimit;
+        int m_seedingTimeLimit;
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
+        bool m_hasRootFolder;
+        bool m_needsToSetFirstLastPiecePriority;
 
         bool m_pauseAfterRecheck;
-        bool m_needSaveResumeData;
         QHash<QString, TrackerInfo> m_trackerInfos;
+
+        bool m_started = false;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::TorrentState)
 
 #endif // BITTORRENT_TORRENTHANDLE_H

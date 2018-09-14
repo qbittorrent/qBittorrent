@@ -1,0 +1,66 @@
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('status');">
+        <img src="images/qbt-theme/go-down.svg">QBT_TR(Status)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="statusFilterList">
+        <li id="all_filter"><a href="#" onclick="setFilter('all');return false;"><img src="images/skin/filterall.svg" alt="All" />QBT_TR(All (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="downloading_filter"><a href="#" onclick="setFilter('downloading');return false;"><img src="images/skin/downloading.svg" alt="Downloading" />QBT_TR(Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="seeding_filter"><a href="#" onclick="setFilter('seeding');return false;"><img src="images/skin/uploading.svg" alt="Seeding" />QBT_TR(Seeding (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="completed_filter"><a href="#" onclick="setFilter('completed');return false;"><img src="images/skin/completed.svg" alt="Completed" />QBT_TR(Completed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="resumed_filter"><a href="#" onclick="setFilter('resumed');return false;"><img src="images/skin/resumed.svg" alt="Resumed" />QBT_TR(Resumed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="paused_filter"><a href="#" onclick="setFilter('paused');return false;"><img src="images/skin/paused.svg" alt="Paused" />QBT_TR(Paused (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="active_filter"><a href="#" onclick="setFilter('active');return false;"><img src="images/skin/filteractive.svg" alt="Active" />QBT_TR(Active (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="inactive_filter"><a href="#" onclick="setFilter('inactive');return false;"><img src="images/skin/filterinactive.svg" alt="Inactive" />QBT_TR(Inactive (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="errored_filter"><a href="#" onclick="setFilter('errored');return false;"><img src="images/skin/error.svg" alt="Errored" />QBT_TR(Errored (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+    </ul>
+</div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('category');">
+        <img src="images/qbt-theme/go-down.svg">QBT_TR(Categories)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="categoryFilterList">
+    </ul>
+</div>
+
+<script>
+    var categoriesFilterContextMenu = new CategoriesFilterContextMenu({
+        targets: '.categoriesFilterContextMenuTarget',
+        menu: 'categoriesFilterMenu',
+        actions: {
+            CreateCategory: function(element, ref) {
+                createCategoryFN();
+            },
+            EditCategory: function(element, ref) {
+                editCategoryFN(element.id);
+            },
+            DeleteCategory: function(element, ref) {
+                removeCategoryFN(element.id);
+            },
+            DeleteUnusedCategories: function(element, ref) {
+                deleteUnusedCategoriesFN();
+            },
+            StartTorrentsByCategory: function(element, ref) {
+                startTorrentsByCategoryFN(element.id);
+            },
+            PauseTorrentsByCategory: function(element, ref) {
+                pauseTorrentsByCategoryFN(element.id);
+            },
+            DeleteTorrentsByCategory: function(element, ref) {
+                deleteTorrentsByCategoryFN(element.id);
+            }
+        },
+        offsets: {
+            x: -15,
+            y: 2
+        },
+        onShow: function() {
+            this.options.element.firstChild.click();
+        }
+    });
+
+    if (localStorage.getItem('filter_status_collapsed') === "true")
+        toggleFilterDisplay('status');
+
+    if (localStorage.getItem('filter_category_collapsed') === "true")
+        toggleFilterDisplay('category');
+</script>

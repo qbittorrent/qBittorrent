@@ -28,14 +28,8 @@
 
 #include "torrentfileguard.h"
 
-#include <QMetaEnum>
-#include "settingsstorage.h"
+#include "settingvalue.h"
 #include "utils/fs.h"
-
-namespace
-{
-    const QLatin1String KEY_AUTO_DELETE_ENABLED ("Core/AutoDeleteAddedTorrentFile");
-}
 
 FileGuard::FileGuard(const QString &path)
     : m_path {path}
@@ -54,17 +48,22 @@ FileGuard::~FileGuard()
         Utils::Fs::forceRemove(m_path); // forceRemove() checks for file existence
 }
 
-TorrentFileGuard::TorrentFileGuard(const QString &path)
-    : m_mode {autoDeleteMode()}
+TorrentFileGuard::TorrentFileGuard(const QString &path, TorrentFileGuard::AutoDeleteMode mode)
+    : FileGuard {mode != Never ? path : QString()}
+    , m_mode {mode}
     , m_wasAdded {false}
-    , m_guard {m_mode != Never ? path : QString()}
+{
+}
+
+TorrentFileGuard::TorrentFileGuard(const QString &path)
+    : TorrentFileGuard {path, autoDeleteMode()}
 {
 }
 
 TorrentFileGuard::~TorrentFileGuard()
 {
     if (!m_wasAdded && (m_mode != Always))
-        m_guard.setAutoRemove(false);
+        setAutoRemove(false);
 }
 
 void TorrentFileGuard::markAsAddedToSession()
@@ -72,29 +71,19 @@ void TorrentFileGuard::markAsAddedToSession()
     m_wasAdded = true;
 }
 
-void TorrentFileGuard::setAutoRemove(bool remove)
-{
-    m_guard.setAutoRemove(remove);
-}
-
 TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
 {
-    QMetaEnum meta {modeMetaEnum()};
-    return static_cast<AutoDeleteMode>(meta.keyToValue(SettingsStorage::instance()->loadValue(
-                                                           KEY_AUTO_DELETE_ENABLED, meta.valueToKey(Never)).toByteArray()));
+    return autoDeleteModeSetting();
 }
 
 void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 {
-    QMetaEnum meta {modeMetaEnum()};
-    SettingsStorage::instance()->storeValue(KEY_AUTO_DELETE_ENABLED, meta.valueToKey(mode));
+    autoDeleteModeSetting() = mode;
 }
 
-QMetaEnum TorrentFileGuard::modeMetaEnum()
+CachedSettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    return QMetaEnum::fromType<AutoDeleteMode>();
-#else
-    return staticMetaObject.enumerator(staticMetaObject.indexOfEnumerator("AutoDeleteMode"));
-#endif
+    static CachedSettingValue<AutoDeleteMode> setting("Core/AutoDeleteAddedTorrentFile", AutoDeleteMode::Never);
+    return setting;
 }
+

@@ -26,829 +26,760 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QCoreApplication>
-#include <QTimer>
-#include <QCryptographicHash>
-#include <queue>
-#include <vector>
-
-#include "base/iconprovider.h"
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
-#include "base/utils/string.h"
-#include "base/preferences.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/trackerentry.h"
-#include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "base/net/downloadmanager.h"
-#include "btjson.h"
-#include "prefjson.h"
-#include "jsonutils.h"
-#include "websessiondata.h"
 #include "webapplication.h"
 
-static const int API_VERSION = 11;
-static const int API_VERSION_MIN = 11;
+#include <algorithm>
+#include <functional>
+#include <queue>
+#include <stdexcept>
+#include <vector>
 
-const QString WWW_FOLDER = ":/www/public/";
-const QString PRIVATE_FOLDER = ":/www/private/";
-const QString DEFAULT_SCOPE = "public";
-const QString SCOPE_IMAGES = "images";
-const QString SCOPE_THEME = "theme";
-const QString DEFAULT_ACTION = "index";
-const QString WEBUI_ACTION = "webui";
-const QString VERSION_INFO = "version";
-const QString MAX_AGE_MONTH = "public, max-age=2592000";
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QDebug>
+#include <QFile>
+#include <QFileInfo>
+#include <QJsonDocument>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QRegExp>
+#include <QUrl>
 
-#define ADD_ACTION(scope, action) actions[#scope][#action] = &WebApplication::action_##scope##_##action
+#include "base/global.h"
+#include "base/http/httperror.h"
+#include "base/iconprovider.h"
+#include "base/logger.h"
+#include "base/preferences.h"
+#include "base/utils/bytearray.h"
+#include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/random.h"
+#include "base/utils/string.h"
+#include "api/apierror.h"
+#include "api/appcontroller.h"
+#include "api/authcontroller.h"
+#include "api/logcontroller.h"
+#include "api/rsscontroller.h"
+#include "api/synccontroller.h"
+#include "api/torrentscontroller.h"
+#include "api/transfercontroller.h"
 
-QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::initializeActions()
+constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+
+const QString PATH_PREFIX_IMAGES {QStringLiteral("/images/")};
+const QString WWW_FOLDER {QStringLiteral(":/www")};
+const QString PUBLIC_FOLDER {QStringLiteral("/public")};
+const QString PRIVATE_FOLDER {QStringLiteral("/private")};
+
+namespace
 {
-    QMap<QString,QMap<QString, WebApplication::Action> > actions;
+    QStringMap parseCookie(const QString &cookieStr)
+    {
+        // [rfc6265] 4.2.1. Syntax
+        QStringMap ret;
+        const QVector<QStringRef> cookies = cookieStr.splitRef(';', QString::SkipEmptyParts);
 
-    ADD_ACTION(public, webui);
-    ADD_ACTION(public, index);
-    ADD_ACTION(public, login);
-    ADD_ACTION(public, logout);
-    ADD_ACTION(public, theme);
-    ADD_ACTION(public, images);
-    ADD_ACTION(query, torrents);
-    ADD_ACTION(query, preferences);
-    ADD_ACTION(query, transferInfo);
-    ADD_ACTION(query, propertiesGeneral);
-    ADD_ACTION(query, propertiesTrackers);
-    ADD_ACTION(query, propertiesWebSeeds);
-    ADD_ACTION(query, propertiesFiles);
-    ADD_ACTION(query, getLog);
-    ADD_ACTION(query, getPeerLog);
-    ADD_ACTION(sync, maindata);
-    ADD_ACTION(sync, torrent_peers);
-    ADD_ACTION(command, shutdown);
-    ADD_ACTION(command, download);
-    ADD_ACTION(command, upload);
-    ADD_ACTION(command, addTrackers);
-    ADD_ACTION(command, resumeAll);
-    ADD_ACTION(command, pauseAll);
-    ADD_ACTION(command, resume);
-    ADD_ACTION(command, pause);
-    ADD_ACTION(command, setPreferences);
-    ADD_ACTION(command, setFilePrio);
-    ADD_ACTION(command, getGlobalUpLimit);
-    ADD_ACTION(command, getGlobalDlLimit);
-    ADD_ACTION(command, setGlobalUpLimit);
-    ADD_ACTION(command, setGlobalDlLimit);
-    ADD_ACTION(command, getTorrentsUpLimit);
-    ADD_ACTION(command, getTorrentsDlLimit);
-    ADD_ACTION(command, setTorrentsUpLimit);
-    ADD_ACTION(command, setTorrentsDlLimit);
-    ADD_ACTION(command, alternativeSpeedLimitsEnabled);
-    ADD_ACTION(command, toggleAlternativeSpeedLimits);
-    ADD_ACTION(command, toggleSequentialDownload);
-    ADD_ACTION(command, toggleFirstLastPiecePrio);
-    ADD_ACTION(command, setSuperSeeding);
-    ADD_ACTION(command, setForceStart);
-    ADD_ACTION(command, delete);
-    ADD_ACTION(command, deletePerm);
-    ADD_ACTION(command, increasePrio);
-    ADD_ACTION(command, decreasePrio);
-    ADD_ACTION(command, topPrio);
-    ADD_ACTION(command, bottomPrio);
-    ADD_ACTION(command, recheck);
-    ADD_ACTION(command, setCategory);
-    ADD_ACTION(command, addCategory);
-    ADD_ACTION(command, removeCategories);
-    ADD_ACTION(command, getSavePath);
-    ADD_ACTION(version, api);
-    ADD_ACTION(version, api_min);
-    ADD_ACTION(version, qbittorrent);
+        for (const auto &cookie : cookies) {
+            const int idx = cookie.indexOf('=');
+            if (idx < 0)
+                continue;
 
-    return actions;
-}
-
-#define CHECK_URI(ARGS_NUM) \
-    if (args_.size() != ARGS_NUM) { \
-        status(404, "Not Found"); \
-        return; \
-    }
-#define CHECK_PARAMETERS(PARAMETERS) \
-    QStringList parameters; \
-    parameters << PARAMETERS; \
-    if (parameters.size() != request().posts.size()) { \
-        status(400, "Bad Request"); \
-        return; \
-    } \
-    foreach (QString key, request().posts.keys()) { \
-        if (!parameters.contains(key, Qt::CaseInsensitive)) { \
-            status(400, "Bad Request"); \
-            return; \
-        } \
-    }
-
-void WebApplication::action_public_index()
-{
-    QString path;
-
-    if (!args_.isEmpty()) {
-        if (args_.back() == "favicon.ico")
-            path = ":/icons/skin/qbittorrent16.png";
-        else
-            path = WWW_FOLDER + args_.join("/");
-    }
-
-    printFile(path);
-}
-
-void WebApplication::action_public_webui()
-{
-    if (!sessionActive())
-        printFile(PRIVATE_FOLDER + "login.html");
-    else
-        printFile(PRIVATE_FOLDER + "index.html");
-}
-
-void WebApplication::action_public_login()
-{
-    const Preferences* const pref = Preferences::instance();
-    QCryptographicHash md5(QCryptographicHash::Md5);
-
-    md5.addData(request().posts["password"].toLocal8Bit());
-    QString pass = md5.result().toHex();
-
-    bool equalUser = Utils::String::slowEquals(request().posts["username"].toUtf8(), pref->getWebUiUsername().toUtf8());
-    bool equalPass = Utils::String::slowEquals(pass.toUtf8(), pref->getWebUiPassword().toUtf8());
-
-    if (equalUser && equalPass) {
-        sessionStart();
-        print(QByteArray("Ok."), Http::CONTENT_TYPE_TXT);
-    }
-    else {
-        QString addr = env().clientAddress.toString();
-        increaseFailedAttempts();
-        qDebug("client IP: %s (%d failed attempts)", qPrintable(addr), failedAttempts());
-        print(QByteArray("Fails."), Http::CONTENT_TYPE_TXT);
-    }
-}
-
-void WebApplication::action_public_logout()
-{
-    CHECK_URI(0);
-    sessionEnd();
-}
-
-void WebApplication::action_public_theme()
-{
-    if (args_.size() != 1) {
-        status(404, "Not Found");
-        return;
-    }
-
-    QString url = IconProvider::instance()->getIconPath(args_.front());
-    qDebug() << Q_FUNC_INFO << "There icon:" << url;
-
-    printFile(url);
-    header(Http::HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
-}
-
-void WebApplication::action_public_images()
-{
-    const QString path = ":/icons/" + args_.join("/");
-    printFile(path);
-    header(Http::HEADER_CACHE_CONTROL, MAX_AGE_MONTH);
-}
-
-// GET params:
-//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
-//   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
-//   - sort (string): name of column for sorting by its value
-//   - reverse (bool): enable reverse sorting
-//   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
-//   - offset (int): set offset (if less than 0 - offset from end)
-void WebApplication::action_query_torrents()
-{
-    CHECK_URI(0);
-    const QStringMap& gets = request().gets;
-
-    print(btjson::getTorrents(
-        gets["filter"], gets["category"], gets["sort"], gets["reverse"] == "true",
-        gets["limit"].toInt(), gets["offset"].toInt()
-        ), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_preferences()
-{
-    CHECK_URI(0);
-    print(prefjson::getPreferences(), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_transferInfo()
-{
-    CHECK_URI(0);
-    print(btjson::getTransferInfo(), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_propertiesGeneral()
-{
-    CHECK_URI(1);
-    print(btjson::getPropertiesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_propertiesTrackers()
-{
-    CHECK_URI(1);
-    print(btjson::getTrackersForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_propertiesWebSeeds()
-{
-    CHECK_URI(1);
-    print(btjson::getWebSeedsForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_query_propertiesFiles()
-{
-    CHECK_URI(1);
-    print(btjson::getFilesForTorrent(args_.front()), Http::CONTENT_TYPE_JSON);
-}
-
-// GET params:
-//   - normal (bool): include normal messages (default true)
-//   - info (bool): include info messages (default true)
-//   - warning (bool): include warning messages (default true)
-//   - critical (bool): include critical messages (default true)
-//   - last_known_id (int): exclude messages with id <= 'last_known_id' (default -1)
-void WebApplication::action_query_getLog()
-{
-    CHECK_URI(0);
-    bool normal = request().gets["normal"] != "false";
-    bool info = request().gets["info"] != "false";
-    bool warning = request().gets["warning"] != "false";
-    bool critical = request().gets["critical"] != "false";
-    int lastKnownId;
-    bool ok;
-
-    lastKnownId = request().gets["last_known_id"].toInt(&ok);
-    if (!ok)
-        lastKnownId = -1;
-
-    print(btjson::getLog(normal, info, warning, critical, lastKnownId), Http::CONTENT_TYPE_JSON);
-}
-
-// GET params:
-//   - last_known_id (int): exclude messages with id <= 'last_known_id' (default -1)
-void WebApplication::action_query_getPeerLog()
-{
-    CHECK_URI(0);
-    int lastKnownId;
-    bool ok;
-
-    lastKnownId = request().gets["last_known_id"].toInt(&ok);
-    if (!ok)
-        lastKnownId = -1;
-
-    print(btjson::getPeerLog(lastKnownId), Http::CONTENT_TYPE_JSON);
-}
-
-// GET param:
-//   - rid (int): last response id
-void WebApplication::action_sync_maindata()
-{
-    CHECK_URI(0);
-    print(btjson::getSyncMainData(request().gets["rid"].toInt(),
-        session()->syncMainDataLastResponse,
-        session()->syncMainDataLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
-}
-
-// GET param:
-//   - hash (string): torrent hash
-//   - rid (int): last response id
-void WebApplication::action_sync_torrent_peers()
-{
-    CHECK_URI(0);
-    print(btjson::getSyncTorrentPeersData(request().gets["rid"].toInt(),
-        request().gets["hash"],
-        session()->syncTorrentPeersLastResponse,
-        session()->syncTorrentPeersLastAcceptedResponse), Http::CONTENT_TYPE_JSON);
-}
-
-
-void WebApplication::action_version_api()
-{
-    CHECK_URI(0);
-    print(QString::number(API_VERSION), Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_version_api_min()
-{
-    CHECK_URI(0);
-    print(QString::number(API_VERSION_MIN), Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_version_qbittorrent()
-{
-    CHECK_URI(0);
-    print(QString(VERSION), Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_command_shutdown()
-{
-    qDebug() << "Shutdown request from Web UI";
-    CHECK_URI(0);
-
-    // Special case handling for shutdown, we
-    // need to reply to the Web UI before
-    // actually shutting down.
-    QTimer::singleShot(100, qApp, SLOT(quit()));
-}
-
-void WebApplication::action_command_download()
-{
-    CHECK_URI(0);
-    QString urls = request().posts["urls"];
-    QStringList list = urls.split('\n');
-    QString savepath = request().posts["savepath"];
-    QString category = request().posts["category"];
-    QString cookie = request().posts["cookie"];
-    QList<QNetworkCookie> cookies;
-    if (!cookie.isEmpty()) {
-
-        QStringList cookiesStr = cookie.split("; ");
-        foreach (QString cookieStr, cookiesStr) {
-            cookieStr = cookieStr.trimmed();
-            int index = cookieStr.indexOf('=');
-            if (index > 1) {
-                QByteArray name = cookieStr.left(index).toLatin1();
-                QByteArray value = cookieStr.right(cookieStr.length() - index - 1).toLatin1();
-                QNetworkCookie c(name, value);
-                cookies << c;
-            }
+            const QString name = cookie.left(idx).trimmed().toString();
+            const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed()).toString();
+            ret.insert(name, value);
         }
+        return ret;
     }
 
-    savepath = savepath.trimmed();
-    category = category.trimmed();
+    void translateDocument(const QString &locale, QString &data)
+    {
+        const QRegularExpression regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR(\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\])");
+        const QRegularExpression mnemonic("\\(?&([a-zA-Z]?\\))?");
 
-    BitTorrent::AddTorrentParams params;
-    params.savePath = savepath;
-    params.category = category;
+        const bool isTranslationNeeded = !locale.startsWith("en")
+            || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
-    foreach (QString url, list) {
-        url = url.trimmed();
-        if (!url.isEmpty()) {
-            Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            BitTorrent::Session::instance()->addTorrent(url, params);
-        }
-    }
-}
+        int i = 0;
+        bool found = true;
+        while (i < data.size() && found) {
+            QRegularExpressionMatch regexMatch;
+            i = data.indexOf(regex, i, &regexMatch);
+            if (i >= 0) {
+                const QString word = regexMatch.captured(1);
+                const QString context = regexMatch.captured(4);
 
-void WebApplication::action_command_upload()
-{
-    qDebug() << Q_FUNC_INFO;
-    CHECK_URI(0);
-    QString savepath = request().posts["savepath"];
-    QString category = request().posts["category"];
+                QString translation = isTranslationNeeded
+                    ? qApp->translate(context.toUtf8().constData(), word.toUtf8().constData(), nullptr, 1)
+                    : word;
 
-    savepath = savepath.trimmed();
-    category = category.trimmed();
+                // Remove keyboard shortcuts
+                translation.remove(mnemonic);
 
-    foreach(const Http::UploadedFile& torrent, request().files) {
-        QString filePath = saveTmpFile(torrent.data);
+                // Use HTML code for quotes to prevent issues with JS
+                translation.replace('\'', "&#39;");
+                translation.replace('\"', "&#34;");
 
-        if (!filePath.isEmpty()) {
-            BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
-            if (!torrentInfo.isValid()) {
-                status(415, "Unsupported Media Type");
-                print(QObject::tr("Error: '%1' is not a valid torrent file.\n").arg(torrent.filename), Http::CONTENT_TYPE_TXT);
+                data.replace(i, regexMatch.capturedLength(), translation);
+                i += translation.length();
             }
             else {
-                BitTorrent::AddTorrentParams params;
-                params.savePath = savepath;
-                params.category = category;
-                if (!BitTorrent::Session::instance()->addTorrent(torrentInfo, params)) {
-                    status(500, "Internal Server Error");
-                    print(QObject::tr("Error: Could not add torrent to session."), Http::CONTENT_TYPE_TXT);
-                }
+                found = false; // no more translatable strings
             }
-            // Clean up
-            Utils::Fs::forceRemove(filePath);
-        }
-        else {
-            qWarning() << "I/O Error: Could not create temporary file";
-            status(500, "Internal Server Error");
-            print(QObject::tr("I/O Error: Could not create temporary file."), Http::CONTENT_TYPE_TXT);
+
+            data.replace(QLatin1String("${LANG}"), locale.left(2));
+            data.replace(QLatin1String("${VERSION}"), QBT_VERSION);
         }
     }
-}
 
-void WebApplication::action_command_addTrackers()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hash" << "urls");
-    QString hash = request().posts["hash"];
+    inline QUrl urlFromHostHeader(const QString &hostHeader)
+    {
+        if (!hostHeader.contains(QLatin1String("://")))
+            return QUrl(QLatin1String("http://") + hostHeader);
+        return hostHeader;
+    }
 
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-    if (torrent) {
-        QList<BitTorrent::TrackerEntry> trackers;
-        foreach (QString url, request().posts["urls"].split('\n')) {
-            url = url.trimmed();
-            if (!url.isEmpty())
-                trackers << url;
+    QString getCachingInterval(QString contentType)
+    {
+        contentType = contentType.toLower();
+
+        if (contentType.startsWith(QLatin1String("image/")))
+            return QLatin1String("private, max-age=604800");  // 1 week
+
+        if ((contentType == Http::CONTENT_TYPE_CSS)
+            || (contentType == Http::CONTENT_TYPE_JS)) {
+            // short interval in case of program update
+            return QLatin1String("private, max-age=43200");  // 12 hrs
         }
-        torrent->addTrackers(trackers);
+
+        return QLatin1String("no-store");
     }
-}
-
-void WebApplication::action_command_resumeAll()
-{
-    CHECK_URI(0);
-
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
-        torrent->resume();
-}
-
-void WebApplication::action_command_pauseAll()
-{
-    CHECK_URI(0);
-
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
-        torrent->pause();
-}
-
-void WebApplication::action_command_resume()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hash");
-
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(request().posts["hash"]);
-    if (torrent)
-        torrent->resume();
-}
-
-void WebApplication::action_command_pause()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hash");
-
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(request().posts["hash"]);
-    if (torrent)
-        torrent->pause();
-}
-
-void WebApplication::action_command_setPreferences()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("json");
-    prefjson::setPreferences(request().posts["json"]);
-}
-
-void WebApplication::action_command_setFilePrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hash" << "id" << "priority");
-    QString hash = request().posts["hash"];
-    int file_id = request().posts["id"].toInt();
-    int priority = request().posts["priority"].toInt();
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-
-    if (torrent && torrent->hasMetadata())
-        torrent->setFilePriority(file_id, priority);
-}
-
-void WebApplication::action_command_getGlobalUpLimit()
-{
-    CHECK_URI(0);
-    print(QByteArray::number(BitTorrent::Session::instance()->uploadSpeedLimit()), Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_command_getGlobalDlLimit()
-{
-    CHECK_URI(0);
-    print(QByteArray::number(BitTorrent::Session::instance()->downloadSpeedLimit()), Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_command_setGlobalUpLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("limit");
-    qlonglong limit = request().posts["limit"].toLongLong();
-    if (limit == 0) limit = -1;
-
-    BitTorrent::Session::instance()->setUploadSpeedLimit(limit);
-}
-
-void WebApplication::action_command_setGlobalDlLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("limit");
-    qlonglong limit = request().posts["limit"].toLongLong();
-    if (limit == 0) limit = -1;
-
-    BitTorrent::Session::instance()->setDownloadSpeedLimit(limit);
-}
-
-void WebApplication::action_command_getTorrentsUpLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    print(btjson::getTorrentsRatesLimits(hashes, false), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_command_getTorrentsDlLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    print(btjson::getTorrentsRatesLimits(hashes, true), Http::CONTENT_TYPE_JSON);
-}
-
-void WebApplication::action_command_setTorrentsUpLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "limit");
-
-    qlonglong limit = request().posts["limit"].toLongLong();
-    if (limit == 0)
-        limit = -1;
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->setUploadLimit(limit);
-    }
-}
-
-void WebApplication::action_command_setTorrentsDlLimit()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "limit");
-
-    qlonglong limit = request().posts["limit"].toLongLong();
-    if (limit == 0)
-        limit = -1;
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->setDownloadLimit(limit);
-    }
-}
-
-void WebApplication::action_command_toggleAlternativeSpeedLimits()
-{
-    CHECK_URI(0);
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-    session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
-}
-
-void WebApplication::action_command_alternativeSpeedLimitsEnabled()
-{
-    CHECK_URI(0);
-    print(QByteArray::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled())
-          , Http::CONTENT_TYPE_TXT);
-}
-
-void WebApplication::action_command_toggleSequentialDownload()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->toggleSequentialDownload();
-    }
-}
-
-void WebApplication::action_command_toggleFirstLastPiecePrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->toggleFirstLastPiecePriority();
-    }
-}
-
-void WebApplication::action_command_setSuperSeeding()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "value");
-    bool value = request().posts["value"] == "true";
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->setSuperSeeding(value);
-    }
-}
-
-void WebApplication::action_command_setForceStart()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "value");
-    bool value = request().posts["value"] == "true";
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            torrent->resume(value);
-    }
-}
-
-void WebApplication::action_command_delete()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes)
-        BitTorrent::Session::instance()->deleteTorrent(hash, false);
-}
-
-void WebApplication::action_command_deletePerm()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-    QStringList hashes = request().posts["hashes"].split("|");
-    foreach (const QString &hash, hashes)
-        BitTorrent::Session::instance()->deleteTorrent(hash, true);
-}
-
-void WebApplication::action_command_increasePrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-
-    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
-        status(403, "Torrent queueing must be enabled");
-        return;
-    }
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    BitTorrent::Session::instance()->increaseTorrentsPriority(hashes);
-}
-
-void WebApplication::action_command_decreasePrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-
-    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
-        status(403, "Torrent queueing must be enabled");
-        return;
-    }
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    BitTorrent::Session::instance()->decreaseTorrentsPriority(hashes);
-}
-
-void WebApplication::action_command_topPrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-
-    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
-        status(403, "Torrent queueing must be enabled");
-        return;
-    }
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    BitTorrent::Session::instance()->topTorrentsPriority(hashes);
-}
-
-void WebApplication::action_command_bottomPrio()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes");
-
-    if (!BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
-        status(403, "Torrent queueing must be enabled");
-        return;
-    }
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    BitTorrent::Session::instance()->bottomTorrentsPriority(hashes);
-}
-
-void WebApplication::action_command_recheck()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hash");
-
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(request().posts["hash"]);
-    if (torrent)
-        torrent->forceRecheck();
-}
-
-void WebApplication::action_command_setCategory()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("hashes" << "category");
-
-    QStringList hashes = request().posts["hashes"].split("|");
-    QString category = request().posts["category"].trimmed();
-
-    foreach (const QString &hash, hashes) {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent) {
-            if (!torrent->setCategory(category)) {
-                status(400, "Incorrect category name");
-                return;
-            }
-        }
-    }
-}
-
-void WebApplication::action_command_addCategory()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("category");
-
-    QString category = request().posts["category"].trimmed();
-
-    if (!BitTorrent::Session::isValidCategoryName(category) && !category.isEmpty()) {
-        status(400, tr("Incorrect category name"));
-        return;
-    }
-
-    BitTorrent::Session::instance()->addCategory(category);
-}
-
-void WebApplication::action_command_removeCategories()
-{
-    CHECK_URI(0);
-    CHECK_PARAMETERS("categories");
-
-    QStringList categories = request().posts["categories"].split('\n');
-    foreach (const QString &category, categories)
-        BitTorrent::Session::instance()->removeCategory(category);
-}
-
-void WebApplication::action_command_getSavePath()
-{
-    CHECK_URI(0);
-    print(BitTorrent::Session::instance()->defaultSavePath());
-}
-
-bool WebApplication::isPublicScope()
-{
-    return (scope_ == DEFAULT_SCOPE || scope_ == VERSION_INFO);
-}
-
-void WebApplication::processRequest()
-{
-    scope_ = DEFAULT_SCOPE;
-    action_ = DEFAULT_ACTION;
-
-    parsePath();
-
-    if (args_.contains(".") || args_.contains("..")) {
-        qDebug() << Q_FUNC_INFO << "Invalid path:" << request().path;
-        status(404, "Not Found");
-        return;
-    }
-
-    if (!isPublicScope() && !sessionActive()) {
-        status(403, "Forbidden");
-        return;
-    }
-
-    if (actions_.value(scope_).value(action_) != 0) {
-        (this->*(actions_[scope_][action_]))();
-    }
-    else {
-        status(404, "Not Found");
-        qDebug() << Q_FUNC_INFO << "Resource not found:" << request().path;
-    }
-}
-
-void WebApplication::parsePath()
-{
-    if(request().path == "/") action_ = WEBUI_ACTION;
-
-    // check action for requested path
-    QStringList pathItems = request().path.split('/', QString::SkipEmptyParts);
-    if (!pathItems.empty() && actions_.contains(pathItems.front())) {
-        scope_ = pathItems.front();
-        pathItems.pop_front();
-    }
-
-    if (!pathItems.empty() && actions_[scope_].contains(pathItems.front())) {
-        action_ = pathItems.front();
-        pathItems.pop_front();
-    }
-
-    args_ = pathItems;
 }
 
 WebApplication::WebApplication(QObject *parent)
-    : AbstractWebApplication(parent)
+    : QObject(parent)
 {
+    registerAPIController(QLatin1String("app"), new AppController(this, this));
+    registerAPIController(QLatin1String("auth"), new AuthController(this, this));
+    registerAPIController(QLatin1String("log"), new LogController(this, this));
+    registerAPIController(QLatin1String("rss"), new RSSController(this, this));
+    registerAPIController(QLatin1String("sync"), new SyncController(this, this));
+    registerAPIController(QLatin1String("torrents"), new TorrentsController(this, this));
+    registerAPIController(QLatin1String("transfer"), new TransferController(this, this));
+
+    declarePublicAPI(QLatin1String("auth/login"));
+
+    configure();
+    connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
 }
 
-QMap<QString, QMap<QString, WebApplication::Action> > WebApplication::actions_ = WebApplication::initializeActions();
+WebApplication::~WebApplication()
+{
+    // cleanup sessions data
+    qDeleteAll(m_sessions);
+}
+
+void WebApplication::sendWebUIFile()
+{
+    const QStringList pathItems {request().path.split('/', QString::SkipEmptyParts)};
+    if (pathItems.contains(".") || pathItems.contains(".."))
+        throw InternalServerErrorHTTPError();
+
+    if (!m_isAltUIUsed) {
+        if (request().path.startsWith(PATH_PREFIX_IMAGES)) {
+            const QString imageFilename {request().path.mid(PATH_PREFIX_IMAGES.size())};
+            sendFile(QLatin1String(":/icons/") + imageFilename);
+            return;
+        }
+    }
+
+    const QString path {
+        (request().path != QLatin1String("/")
+                ? request().path
+                : (session()
+                   ? QLatin1String("/index.html")
+                   : QLatin1String("/login.html")))
+    };
+
+    QString localPath {
+        m_rootFolder
+                + (session() ? PRIVATE_FOLDER : PUBLIC_FOLDER)
+                + path
+    };
+
+    QFileInfo fileInfo {localPath};
+
+    if (!fileInfo.exists() && session()) {
+        // try to send public file if there is no private one
+        localPath = m_rootFolder + PUBLIC_FOLDER + path;
+        fileInfo.setFile(localPath);
+    }
+
+    if (m_isAltUIUsed) {
+#ifdef Q_OS_UNIX
+        if (!Utils::Fs::isRegularFile(localPath)) {
+            status(500, "Internal Server Error");
+            print(tr("Unacceptable file type, only regular file is allowed."), Http::CONTENT_TYPE_TXT);
+            return;
+        }
+#endif
+
+        while (fileInfo.filePath() != m_rootFolder) {
+            if (fileInfo.isSymLink())
+                throw InternalServerErrorHTTPError(tr("Symlinks inside alternative UI folder are forbidden."));
+
+            fileInfo.setFile(fileInfo.path());
+        }
+    }
+
+    sendFile(localPath);
+}
+
+WebSession *WebApplication::session()
+{
+    return m_currentSession;
+}
+
+const Http::Request &WebApplication::request() const
+{
+    return m_request;
+}
+
+const Http::Environment &WebApplication::env() const
+{
+    return m_env;
+}
+
+void WebApplication::doProcessRequest()
+{
+    QString scope, action;
+
+    const auto findAPICall = [&]() -> bool
+    {
+        QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
+        if (!match.hasMatch()) return false;
+
+        action = match.captured(QLatin1String("action"));
+        scope = match.captured(QLatin1String("scope"));
+        return true;
+    };
+
+    const auto findLegacyAPICall = [&]() -> bool
+    {
+        QRegularExpressionMatch match = m_apiLegacyPathPattern.match(request().path);
+        if (!match.hasMatch()) return false;
+
+        struct APICompatInfo
+        {
+            QString scope;
+            QString action;
+            std::function<void ()> convertFunc;
+        };
+        const QMap<QString, APICompatInfo> APICompatMapping {
+            {"sync/maindata", {"sync", "maindata", nullptr}},
+            {"sync/torrent_peers", {"sync", "torrentPeers", nullptr}},
+
+            {"login", {"auth", "login", nullptr}},
+            {"logout", {"auth", "logout", nullptr}},
+
+            {"command/shutdown", {"app", "shutdown", nullptr}},
+            {"query/preferences", {"app", "preferences", nullptr}},
+            {"command/setPreferences", {"app", "setPreferences", nullptr}},
+            {"command/getSavePath", {"app", "defaultSavePath", nullptr}},
+
+            {"query/getLog", {"log", "main", nullptr}},
+            {"query/getPeerLog", {"log", "peers", nullptr}},
+
+            {"query/torrents", {"torrents", "info", nullptr}},
+            {"query/propertiesGeneral", {"torrents", "properties", nullptr}},
+            {"query/propertiesTrackers", {"torrents", "trackers", nullptr}},
+            {"query/propertiesWebSeeds", {"torrents", "webseeds", nullptr}},
+            {"query/propertiesFiles", {"torrents", "files", nullptr}},
+            {"query/getPieceHashes", {"torrents", "pieceHashes", nullptr}},
+            {"query/getPieceStates", {"torrents", "pieceStates", nullptr}},
+            {"command/resume", {"torrents", "resume", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
+            {"command/pause", {"torrents", "pause", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
+            {"command/recheck", {"torrents", "recheck", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
+            {"command/resumeAll", {"torrents", "resume", [this]() { m_params["hashes"] = "all"; }}},
+            {"command/pauseAll", {"torrents", "pause", [this]() { m_params["hashes"] = "all"; }}},
+            {"command/rename", {"torrents", "rename", nullptr}},
+            {"command/download", {"torrents", "add", nullptr}},
+            {"command/upload", {"torrents", "add", nullptr}},
+            {"command/delete", {"torrents", "delete", [this]() { m_params["deleteFiles"] = "false"; }}},
+            {"command/deletePerm", {"torrents", "delete", [this]() { m_params["deleteFiles"] = "true"; }}},
+            {"command/addTrackers", {"torrents", "addTrackers", nullptr}},
+            {"command/setFilePrio", {"torrents", "filePrio", nullptr}},
+            {"command/setCategory", {"torrents", "setCategory", nullptr}},
+            {"command/addCategory", {"torrents", "createCategory", nullptr}},
+            {"command/removeCategories", {"torrents", "removeCategories", nullptr}},
+            {"command/getTorrentsUpLimit", {"torrents", "uploadLimit", nullptr}},
+            {"command/getTorrentsDlLimit", {"torrents", "downloadLimit", nullptr}},
+            {"command/setTorrentsUpLimit", {"torrents", "setUploadLimit", nullptr}},
+            {"command/setTorrentsDlLimit", {"torrents", "setDownloadLimit", nullptr}},
+            {"command/increasePrio", {"torrents", "increasePrio", nullptr}},
+            {"command/decreasePrio", {"torrents", "decreasePrio", nullptr}},
+            {"command/topPrio", {"torrents", "topPrio", nullptr}},
+            {"command/bottomPrio", {"torrents", "bottomPrio", nullptr}},
+            {"command/setLocation", {"torrents", "setLocation", nullptr}},
+            {"command/setAutoTMM", {"torrents", "setAutoManagement", nullptr}},
+            {"command/setSuperSeeding", {"torrents", "setSuperSeeding", nullptr}},
+            {"command/setForceStart", {"torrents", "setForceStart", nullptr}},
+            {"command/toggleSequentialDownload", {"torrents", "toggleSequentialDownload", nullptr}},
+            {"command/toggleFirstLastPiecePrio", {"torrents", "toggleFirstLastPiecePrio", nullptr}},
+
+            {"query/transferInfo", {"transfer", "info", nullptr}},
+            {"command/alternativeSpeedLimitsEnabled", {"transfer", "speedLimitsMode", nullptr}},
+            {"command/toggleAlternativeSpeedLimits", {"transfer", "toggleSpeedLimitsMode", nullptr}},
+            {"command/getGlobalUpLimit", {"transfer", "uploadLimit", nullptr}},
+            {"command/getGlobalDlLimit", {"transfer", "downloadLimit", nullptr}},
+            {"command/setGlobalUpLimit", {"transfer", "setUploadLimit", nullptr}},
+            {"command/setGlobalDlLimit", {"transfer", "setDownloadLimit", nullptr}}
+        };
+
+        const QString legacyAction {match.captured(QLatin1String("action"))};
+        const APICompatInfo compatInfo = APICompatMapping.value(legacyAction);
+
+        scope = compatInfo.scope;
+        action = compatInfo.action;
+        if (compatInfo.convertFunc)
+            compatInfo.convertFunc();
+
+        const QString hash {match.captured(QLatin1String("hash"))};
+        if (!hash.isEmpty())
+            m_params[QLatin1String("hash")] = hash;
+
+        return true;
+    };
+
+    if (!findAPICall())
+        findLegacyAPICall();
+
+    APIController *controller = m_apiControllers.value(scope);
+    if (!controller) {
+        if (request().path == QLatin1String("/version/api")) {
+            print(QString::number(COMPAT_API_VERSION), Http::CONTENT_TYPE_TXT);
+            return;
+        }
+
+        if (request().path == QLatin1String("/version/api_min")) {
+            print(QString::number(COMPAT_API_VERSION_MIN), Http::CONTENT_TYPE_TXT);
+            return;
+        }
+
+        if (request().path == QLatin1String("/version/qbittorrent")) {
+            print(QString(QBT_VERSION), Http::CONTENT_TYPE_TXT);
+            return;
+        }
+
+        sendWebUIFile();
+    }
+    else {
+        if (!session() && !isPublicAPI(scope, action))
+            throw ForbiddenHTTPError();
+
+        DataMap data;
+        for (const Http::UploadedFile &torrent : request().files)
+            data[torrent.filename] = torrent.data;
+
+        try {
+            const QVariant result = controller->run(action, m_params, data);
+            switch (result.userType()) {
+            case QMetaType::QString:
+                print(result.toString(), Http::CONTENT_TYPE_TXT);
+                break;
+            case QMetaType::QJsonDocument:
+                print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+                break;
+            default:
+                print(result.toString(), Http::CONTENT_TYPE_TXT);
+                break;
+            }
+        }
+        catch (const APIError &error) {
+            // re-throw as HTTPError
+            switch (error.type()) {
+            case APIErrorType::AccessDenied:
+                throw ForbiddenHTTPError(error.message());
+            case APIErrorType::BadData:
+                throw UnsupportedMediaTypeHTTPError(error.message());
+            case APIErrorType::BadParams:
+                throw BadRequestHTTPError(error.message());
+            case APIErrorType::Conflict:
+                throw ConflictHTTPError(error.message());
+            case APIErrorType::NotFound:
+                throw NotFoundHTTPError(error.message());
+            default:
+                Q_ASSERT(false);
+            }
+        }
+    }
+}
+
+void WebApplication::configure()
+{
+    const auto pref = Preferences::instance();
+
+    const QString rootFolder = Utils::Fs::expandPathAbs(
+                !pref->isAltWebUiEnabled() ? WWW_FOLDER : pref->getWebUiRootFolder());
+    if (rootFolder != m_rootFolder) {
+        m_translatedFiles.clear();
+        m_rootFolder = rootFolder;
+    }
+
+    const QString newLocale = pref->getLocale();
+    if (m_currentLocale != newLocale) {
+        m_currentLocale = newLocale;
+        m_translatedFiles.clear();
+    }
+
+    m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
+    m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
+    m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+
+    m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
+    std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
+
+    m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
+    m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
+}
+
+void WebApplication::registerAPIController(const QString &scope, APIController *controller)
+{
+    Q_ASSERT(controller);
+    Q_ASSERT(!m_apiControllers.value(scope));
+
+    m_apiControllers[scope] = controller;
+}
+
+void WebApplication::declarePublicAPI(const QString &apiPath)
+{
+    m_publicAPIs << apiPath;
+}
+
+void WebApplication::sendFile(const QString &path)
+{
+    const QDateTime lastModified {QFileInfo(path).lastModified()};
+
+    // find translated file in cache
+    auto it = m_translatedFiles.constFind(path);
+    if ((it != m_translatedFiles.constEnd()) && (lastModified <= (*it).lastModified)) {
+        const QString mimeName {QMimeDatabase().mimeTypeForFileNameAndData(path, (*it).data).name()};
+        print((*it).data, mimeName);
+        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeName));
+        return;
+    }
+
+    QFile file {path};
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug("File %s was not found!", qUtf8Printable(path));
+        throw NotFoundHTTPError();
+    }
+
+    if (file.size() > MAX_ALLOWED_FILESIZE) {
+        qWarning("%s: exceeded the maximum allowed file size!", qUtf8Printable(path));
+        throw InternalServerErrorHTTPError(tr("Exceeded the maximum allowed file size (%1)!")
+                                           .arg(Utils::Misc::friendlyUnit(MAX_ALLOWED_FILESIZE)));
+    }
+
+    QByteArray data {file.readAll()};
+    file.close();
+
+    const QMimeType mimeType {QMimeDatabase().mimeTypeForFileNameAndData(path, data)};
+    const bool isTranslatable {mimeType.inherits(QLatin1String("text/plain"))};
+
+    // Translate the file
+    if (isTranslatable) {
+        QString dataStr {data};
+        translateDocument(m_currentLocale, dataStr);
+        data = dataStr.toUtf8();
+
+        m_translatedFiles[path] = {data, lastModified}; // caching translated file
+    }
+
+    print(data, mimeType.name());
+    header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
+}
+
+Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
+{
+    m_currentSession = nullptr;
+    m_request = request;
+    m_env = env;
+    m_params.clear();
+    if (m_request.method == Http::METHOD_GET) {
+        // Parse GET parameters
+        using namespace Utils::ByteArray;
+        for (const QByteArray &param : copyAsConst(splitToViews(m_request.query, "&"))) {
+            const int sepPos = param.indexOf('=');
+            if (sepPos <= 0) continue; // ignores params without name
+
+            const QString paramName {QString::fromUtf8(param.constData(), sepPos)};
+            const int valuePos = sepPos + 1;
+            const QString paramValue {
+                QString::fromUtf8(param.constData() + valuePos, param.size() - valuePos)};
+            m_params[paramName] = paramValue;
+        }
+    }
+    else {
+        m_params = m_request.posts;
+    }
+
+    // clear response
+    clear();
+
+    try {
+        // block suspicious requests
+        if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
+            || !validateHostHeader(m_domainList)) {
+            throw UnauthorizedHTTPError();
+        }
+
+        sessionInitialize();
+        doProcessRequest();
+    }
+    catch (const HTTPError &error) {
+        status(error.statusCode(), error.statusText());
+        if (!error.message().isEmpty())
+            print(error.message(), Http::CONTENT_TYPE_TXT);
+    }
+
+    header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
+    header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
+
+    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';");
+    if (m_isClickjackingProtectionEnabled) {
+        header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
+        csp += QLatin1String(" frame-ancestors 'self';");
+    }
+    if (m_isHttpsEnabled) {
+        csp += QLatin1String(" upgrade-insecure-requests;");
+    }
+
+    header(Http::HEADER_CONTENT_SECURITY_POLICY, csp);
+
+    return response();
+}
+
+QString WebApplication::clientId() const
+{
+    return env().clientAddress.toString();
+}
+
+void WebApplication::sessionInitialize()
+{
+    Q_ASSERT(!m_currentSession);
+
+    const QString sessionId {parseCookie(m_request.headers.value(QLatin1String("cookie"))).value(C_SID)};
+
+    // TODO: Additional session check
+
+    if (!sessionId.isEmpty()) {
+        m_currentSession = m_sessions.value(sessionId);
+        if (m_currentSession) {
+            const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
+            if ((now - m_currentSession->m_timestamp) > INACTIVE_TIME) {
+                // session is outdated - removing it
+                delete m_sessions.take(sessionId);
+                m_currentSession = nullptr;
+            }
+            else {
+                m_currentSession->updateTimestamp();
+            }
+        }
+        else {
+            qDebug() << Q_FUNC_INFO << "session does not exist!";
+        }
+    }
+
+    if (!m_currentSession && !isAuthNeeded())
+        sessionStart();
+}
+
+QString WebApplication::generateSid() const
+{
+    QString sid;
+
+    do {
+        const size_t size = 6;
+        quint32 tmp[size];
+
+        for (size_t i = 0; i < size; ++i)
+            tmp[i] = Utils::Random::rand();
+
+        sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(quint32) * size).toBase64();
+    }
+    while (m_sessions.contains(sid));
+
+    return sid;
+}
+
+bool WebApplication::isAuthNeeded()
+{
+    if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_env.clientAddress))
+        return false;
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetWhitelist))
+        return false;
+    return true;
+}
+
+bool WebApplication::isPublicAPI(const QString &scope, const QString &action) const
+{
+    return m_publicAPIs.contains(QString::fromLatin1("%1/%2").arg(scope, action));
+}
+
+void WebApplication::sessionStart()
+{
+    Q_ASSERT(!m_currentSession);
+
+    // remove outdated sessions
+    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
+    foreach (const auto session, m_sessions) {
+        if ((now - session->timestamp()) > INACTIVE_TIME)
+            delete m_sessions.take(session->id());
+    }
+
+    m_currentSession = new WebSession(generateSid());
+    m_sessions[m_currentSession->id()] = m_currentSession;
+
+    QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
+    cookie.setHttpOnly(true);
+    cookie.setPath(QLatin1String("/"));
+    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+}
+
+void WebApplication::sessionEnd()
+{
+    Q_ASSERT(m_currentSession);
+
+    QNetworkCookie cookie(C_SID);
+    cookie.setPath(QLatin1String("/"));
+    cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
+
+    delete m_sessions.take(m_currentSession->id());
+    m_currentSession = nullptr;
+
+    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+}
+
+bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
+{
+    // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
+
+    const auto isSameOrigin = [](const QUrl &left, const QUrl &right) -> bool
+    {
+        // [rfc6454] 5. Comparing Origins
+        return ((left.port() == right.port())
+                // && (left.scheme() == right.scheme())  // not present in this context
+                && (left.host() == right.host()));
+    };
+
+    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST));
+    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
+    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
+
+    if (originValue.isEmpty() && refererValue.isEmpty()) {
+        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+        // so lets be permissive here
+        return false;
+    }
+
+    // sent with CORS requests, as well as with POST requests
+    if (!originValue.isEmpty()) {
+        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
+        if (isInvalid)
+            LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
+                   .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
+                   , Log::WARNING);
+        return isInvalid;
+    }
+
+    if (!refererValue.isEmpty()) {
+        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
+        if (isInvalid)
+            LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
+                   .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
+                   , Log::WARNING);
+        return isInvalid;
+    }
+
+    return true;
+}
+
+bool WebApplication::validateHostHeader(const QStringList &domains) const
+{
+    const QUrl hostHeader = urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
+    const QString requestHost = hostHeader.host();
+
+    // (if present) try matching host header's port with local port
+    const int requestPort = hostHeader.port();
+    if ((requestPort != -1) && (m_env.localPort != requestPort)) {
+        LogMsg(tr("WebUI: Invalid Host header, port mismatch. Request source IP: '%1'. Server port: '%2'. Received Host header: '%3'")
+               .arg(m_env.clientAddress.toString()).arg(m_env.localPort)
+               .arg(m_request.headers[Http::HEADER_HOST])
+                , Log::WARNING);
+        return false;
+    }
+
+    // try matching host header with local address
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
+    const bool sameAddr = m_env.localAddress.isEqual(QHostAddress(requestHost));
+#else
+    const auto equal = [](const Q_IPV6ADDR &l, const Q_IPV6ADDR &r) -> bool
+    {
+        for (int i = 0; i < 16; ++i) {
+            if (l[i] != r[i])
+                return false;
+        }
+        return true;
+    };
+    const bool sameAddr = equal(m_env.localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
+#endif
+
+    if (sameAddr)
+        return true;
+
+    // try matching host header with domain list
+    for (const auto &domain : domains) {
+        QRegExp domainRegex(domain, Qt::CaseInsensitive, QRegExp::Wildcard);
+        if (requestHost.contains(domainRegex))
+            return true;
+    }
+
+    LogMsg(tr("WebUI: Invalid Host header. Request source IP: '%1'. Received Host header: '%2'")
+           .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
+            , Log::WARNING);
+    return false;
+}
+
+// WebSession
+
+WebSession::WebSession(const QString &sid)
+    : m_sid {sid}
+{
+    updateTimestamp();
+}
+
+QString WebSession::id() const
+{
+    return m_sid;
+}
+
+qint64 WebSession::timestamp() const
+{
+    return m_timestamp;
+}
+
+QVariant WebSession::getData(const QString &id) const
+{
+    return m_data.value(id);
+}
+
+void WebSession::setData(const QString &id, const QVariant &data)
+{
+    m_data[id] = data;
+}
+
+void WebSession::updateTimestamp()
+{
+    m_timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
+}

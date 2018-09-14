@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
 #ifndef TRANSFERLISTSORTMODEL_H
@@ -36,23 +34,26 @@
 
 class QStringList;
 
-class TransferListSortModel: public QSortFilterProxyModel
+class TransferListSortModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    TransferListSortModel(QObject *parent = 0);
+    TransferListSortModel(QObject *parent = nullptr);
 
     void setStatusFilter(TorrentFilter::Type filter);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
+    void setTagFilter(const QString &tag);
+    void disableTagFilter();
     void setTrackerFilter(const QStringList &hashes);
     void disableTrackerFilter();
 
 private:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
     bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+    bool dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:

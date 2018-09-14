@@ -30,11 +30,6 @@
 
 using namespace Http;
 
-ResponseBuilder::ResponseBuilder(QObject *parent)
-    : QObject(parent)
-{
-}
-
 void ResponseBuilder::status(uint code, const QString &text)
 {
     m_response.status = ResponseStatus(code, text);

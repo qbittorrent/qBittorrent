@@ -54,8 +54,8 @@ namespace BitTorrent
         libtorrent::sha1_hash m_nativeHash;
         QString m_hashString;
     };
-}
 
-uint qHash(const BitTorrent::InfoHash &key, uint seed);
+    uint qHash(const InfoHash &key, uint seed);
+}
 
 #endif // BITTORRENT_INFOHASH_H

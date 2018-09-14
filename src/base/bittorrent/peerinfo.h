@@ -29,11 +29,11 @@
 #ifndef BITTORRENT_PEERINFO_H
 #define BITTORRENT_PEERINFO_H
 
-#include <libtorrent/peer_info.hpp>
-
-#include <QHostAddress>
 #include <QBitArray>
 #include <QCoreApplication>
+#include <QHostAddress>
+
+#include <libtorrent/peer_info.hpp>
 
 namespace BitTorrent
 {
@@ -68,7 +68,6 @@ namespace BitTorrent
 
         bool isHandshake() const;
         bool isConnecting() const;
-        bool isQueued() const;
         bool isOnParole() const;
         bool isSeed() const;
 

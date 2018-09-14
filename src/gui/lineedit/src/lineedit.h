@@ -22,18 +22,10 @@ public:
     LineEdit(QWidget *parent);
 
 protected:
-    void resizeEvent(QResizeEvent *e);
-
-#ifndef QBT_USES_QT5
-private slots:
-    void updateCloseButton(const QString &text);
-#endif
+    void resizeEvent(QResizeEvent *e) override;
 
 private:
-    QToolButton *searchButton;
-#ifndef QBT_USES_QT5
-    QToolButton *clearButton;
-#endif
+    QToolButton *m_searchButton;
 };
 
 #endif // LIENEDIT_H

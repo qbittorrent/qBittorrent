@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>661</height>
+    <height>630</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
@@ -59,33 +59,12 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QComboBox" name="savePathComboBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="browseButton">
-          <property name="text">
-           <string>Browse...</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
       </item>
       <item>
-       <widget class="QCheckBox" name="defaultSavePathCheckBox">
+       <widget class="QCheckBox" name="checkBoxRememberLastSavePath">
         <property name="text">
-         <string>Set as default save path</string>
+         <string>Remember last used save path</string>
         </property>
        </widget>
       </item>
@@ -103,14 +82,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="never_show_cb">
+    <widget class="QCheckBox" name="checkBoxNeverShow">
      <property name="text">
       <string>Never show again</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QToolButton" name="adv_button">
+    <widget class="QToolButton" name="toolButtonAdvanced">
      <property name="text">
       <string notr="true">▼</string>
      </property>
@@ -120,7 +99,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="settings_group">
+    <widget class="QGroupBox" name="groupBoxSettings">
      <property name="title">
       <string>Torrent settings</string>
      </property>
@@ -170,7 +149,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="skip_check_cb">
+       <widget class="QCheckBox" name="skipCheckingCheckBox">
         <property name="text">
          <string>Skip hash check</string>
         </property>
@@ -191,6 +170,30 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="createSubfolderCheckBox">
+        <property name="text">
+         <string>Create subfolder</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="sequentialCheckBox">
+        <property name="text">
+         <string>Download in sequential order</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="firstLastCheckBox">
+        <property name="text">
+         <string>Download first and last pieces first</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -235,7 +238,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="date_lbl">
+       <widget class="QLabel" name="labelDate">
         <property name="text">
          <string/>
         </property>
@@ -256,7 +259,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="size_lbl">
+       <widget class="QLabel" name="labelSize">
         <property name="text">
          <string/>
         </property>
@@ -285,8 +288,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>308</width>
-           <height>74</height>
+           <width>321</width>
+           <height>69</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -383,7 +386,7 @@
     <string>Maximum</string>
    </property>
   </action>
-  <action name="actionNot_downloaded">
+  <action name="actionNotDownloaded">
    <property name="text">
     <string>Do not download</string>
    </property>
@@ -395,15 +398,20 @@
    <extends>QTreeView</extends>
    <header>torrentcontenttreeview.h</header>
   </customwidget>
+  <customwidget>
+   <class>FileSystemPathComboEdit</class>
+   <extends>QWidget</extends>
+   <header>fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>savePathComboBox</tabstop>
-  <tabstop>browseButton</tabstop>
-  <tabstop>defaultSavePathCheckBox</tabstop>
-  <tabstop>never_show_cb</tabstop>
-  <tabstop>adv_button</tabstop>
+  <tabstop>savePath</tabstop>
+  <tabstop>checkBoxRememberLastSavePath</tabstop>
+  <tabstop>checkBoxNeverShow</tabstop>
+  <tabstop>toolButtonAdvanced</tabstop>
   <tabstop>startTorrentCheckBox</tabstop>
-  <tabstop>skip_check_cb</tabstop>
+  <tabstop>skipCheckingCheckBox</tabstop>
   <tabstop>categoryComboBox</tabstop>
   <tabstop>defaultCategoryCheckbox</tabstop>
   <tabstop>scrollArea</tabstop>

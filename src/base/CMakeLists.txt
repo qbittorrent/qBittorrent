@@ -1,6 +1,8 @@
-find_package(ZLIB REQUIRED)
+find_package(ZLIB 1.2.5.2 REQUIRED)
 
-set(QBT_BASE_HEADERS
+add_library(qbt_base STATIC
+# headers
+bittorrent/addtorrentparams.h
 bittorrent/cachestatus.h
 bittorrent/infohash.h
 bittorrent/magneturi.h
@@ -18,6 +20,7 @@ bittorrent/torrentinfo.h
 bittorrent/tracker.h
 bittorrent/trackerentry.h
 http/connection.h
+http/httperror.h
 http/irequesthandler.h
 http/requestparser.h
 http/responsebuilder.h
@@ -33,36 +36,46 @@ net/private/geoipdatabase.h
 net/proxyconfigurationmanager.h
 net/reverseresolution.h
 net/smtp.h
-rss/private/rssparser.h
-rss/rssarticle.h
-rss/rssdownloadrule.h
-rss/rssdownloadrulelist.h
-rss/rssfeed.h
-rss/rssfile.h
-rss/rssfolder.h
-rss/rssmanager.h
+private/profile_p.h
+rss/private/rss_parser.h
+rss/rss_article.h
+rss/rss_autodownloader.h
+rss/rss_autodownloadrule.h
+rss/rss_feed.h
+rss/rss_folder.h
+rss/rss_item.h
+rss/rss_session.h
+search/searchdownloadhandler.h
+search/searchhandler.h
+search/searchpluginmanager.h
+utils/bytearray.h
+utils/foreignapps.h
 utils/fs.h
 utils/gzip.h
 utils/misc.h
+utils/net.h
+utils/random.h
 utils/string.h
+utils/version.h
+algorithm.h
+asyncfilestorage.h
+exceptions.h
 filesystemwatcher.h
+global.h
 iconprovider.h
 indexrange.h
 logger.h
 preferences.h
-qinisettings.h
+profile.h
 scanfoldersmodel.h
-searchengine.h
 settingsstorage.h
 torrentfileguard.h
 torrentfilter.h
 tristatebool.h
 types.h
 unicodestrings.h
-)
 
-set(QBT_BASE_SOURCES
-bittorrent/cachestatus.cpp
+# sources
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
@@ -72,13 +85,13 @@ bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp
 bittorrent/session.cpp
-bittorrent/sessionstatus.cpp
 bittorrent/torrentcreatorthread.cpp
 bittorrent/torrenthandle.cpp
 bittorrent/torrentinfo.cpp
 bittorrent/tracker.cpp
 bittorrent/trackerentry.cpp
 http/connection.cpp
+http/httperror.cpp
 http/requestparser.cpp
 http/responsebuilder.cpp
 http/responsegenerator.cpp
@@ -92,49 +105,59 @@ net/private/geoipdatabase.cpp
 net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp
 net/smtp.cpp
-rss/private/rssparser.cpp
-rss/rssarticle.cpp
-rss/rssdownloadrule.cpp
-rss/rssdownloadrulelist.cpp
-rss/rssfeed.cpp
-rss/rssfile.cpp
-rss/rssfolder.cpp
-rss/rssmanager.cpp
+private/profile_p.cpp
+rss/private/rss_parser.cpp
+rss/rss_article.cpp
+rss/rss_autodownloader.cpp
+rss/rss_autodownloadrule.cpp
+rss/rss_feed.cpp
+rss/rss_folder.cpp
+rss/rss_item.cpp
+rss/rss_session.cpp
+search/searchdownloadhandler.cpp
+search/searchhandler.cpp
+search/searchpluginmanager.cpp
+utils/bytearray.cpp
+utils/foreignapps.cpp
 utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
+utils/net.cpp
+utils/random.cpp
 utils/string.cpp
+asyncfilestorage.cpp
+exceptions.cpp
 filesystemwatcher.cpp
 iconprovider.cpp
 logger.cpp
 preferences.cpp
+profile.cpp
 scanfoldersmodel.cpp
-searchengine.cpp
 settingsstorage.cpp
 torrentfileguard.cpp
 torrentfilter.cpp
 tristatebool.cpp
 )
 
-add_library(qbt_base STATIC ${QBT_BASE_HEADERS} ${QBT_BASE_SOURCES})
-target_link_libraries(qbt_base ZLIB::ZLIB LibtorrentRasterbar::LibTorrent)
-target_link_qt_components(qbt_base Core Network Xml)
-if (QT4_FOUND)
-    if (GUI)
-        target_link_libraries(qbt_base Qt4::QtGui)
-    endif (GUI)
-else (QT4_FOUND)
-    if (GUI)
-        target_link_libraries(qbt_base Qt5::Gui Qt5::Widgets)
-    endif (GUI)
-endif (QT4_FOUND)
+target_link_libraries(qbt_base
+    PRIVATE
+        ZLIB::ZLIB
+    PUBLIC
+        LibtorrentRasterbar::torrent-rasterbar
+        Qt5::Core Qt5::Network Qt5::Xml
+)
 
-if (DBUS)
-    target_link_qt_components(qbt_base DBus)
+if (Qt5Widgets_FOUND)
+    target_link_libraries(qbt_base PUBLIC Qt5::Gui Qt5::Widgets)
+endif (Qt5Widgets_FOUND)
+
+if (Qt5DBus_FOUND)
+    target_link_libraries(qbt_base PRIVATE Qt5::DBus)
 endif ()
 
 if (APPLE)
     find_library(IOKit_LIBRARY IOKit)
     find_library(Carbon_LIBRARY Carbon)
-    target_link_libraries(qbt_base ${Carbon_LIBRARY} ${IOKit_LIBRARY})
+    find_library(AppKit_LIBRARY AppKit)
+    target_link_libraries(qbt_base PRIVATE ${Carbon_LIBRARY} ${IOKit_LIBRARY} ${AppKit_LIBRARY})
 endif (APPLE)

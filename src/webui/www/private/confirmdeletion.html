@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Deletion confirmation - qBittorrent)QBT_TR[CONTEXT=confirmDeletionDlg]</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script>
+        var hashes = new URI().getData('hashes').split('|');
+        window.addEvent('domready', function() {
+            $('cancelBtn').focus();
+            $('cancelBtn').addEvent('click', function(e) {
+                new Event(e).stop();
+                window.parent.closeWindows();
+            });
+            $('confirmBtn').addEvent('click', function(e) {
+                parent.torrentsTable.deselectAll();
+                new Event(e).stop();
+                var cmd = 'api/v2/torrents/delete';
+                var deleteFiles = $('deleteFromDiskCB').get('checked');
+                new Request({
+                    url: cmd,
+                    method: 'post',
+                    data: {
+                        'hashes': hashes.join('|'),
+                        'deleteFiles': deleteFiles
+                    },
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <br/>
+
+    <p>&nbsp;&nbsp;QBT_TR(Are you sure you want to delete the selected torrents from the transfer list?)QBT_TR[CONTEXT=HttpServer]</p>
+    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="deleteFromDiskCB" /> <label for="deleteFromDiskCB"><i>QBT_TR(Also delete the files on the hard disk)QBT_TR[CONTEXT=confirmDeletionDlg]</i></label><br/><br/>
+    <div style="text-align: right;">
+        <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" />&nbsp;&nbsp;<input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" />&nbsp;&nbsp;
+    </div>
+</body>
+
+</html>

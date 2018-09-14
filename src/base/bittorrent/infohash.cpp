@@ -26,8 +26,9 @@
  * exception statement from your version.
  */
 
-#include <QHash>
 #include "infohash.h"
+
+#include <QHash>
 
 using namespace BitTorrent;
 
@@ -41,7 +42,7 @@ InfoHash::InfoHash(const libtorrent::sha1_hash &nativeHash)
     , m_nativeHash(nativeHash)
 {
     char out[(libtorrent::sha1_hash::size * 2) + 1];
-    libtorrent::to_hex((char const*)&m_nativeHash[0], libtorrent::sha1_hash::size, out);
+    libtorrent::to_hex(reinterpret_cast<const char*>(&m_nativeHash[0]), libtorrent::sha1_hash::size, out);
     m_hashString = QString(out);
 }
 
@@ -51,7 +52,7 @@ InfoHash::InfoHash(const QString &hashString)
 {
     QByteArray raw = m_hashString.toLatin1();
     if (raw.size() == 40)
-        m_valid = libtorrent::from_hex(raw.constData(), 40, (char*)&m_nativeHash[0]);
+        m_valid = libtorrent::from_hex(raw.constData(), 40, reinterpret_cast<char*>(&m_nativeHash[0]));
 }
 
 
@@ -91,7 +92,7 @@ bool InfoHash::operator!=(const InfoHash &other) const
     return (m_nativeHash != other.m_nativeHash);
 }
 
-uint qHash(const InfoHash &key, uint seed)
+uint BitTorrent::qHash(const InfoHash &key, uint seed)
 {
     return qHash(static_cast<QString>(key), seed);
 }

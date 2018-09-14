@@ -27,8 +27,9 @@
  * exception statement from your version.
  */
 
-#include <QString>
 #include "iconprovider.h"
+
+#include <QFileInfo>
 
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)
@@ -47,7 +48,7 @@ void IconProvider::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -56,9 +57,15 @@ IconProvider *IconProvider::instance()
     return m_instance;
 }
 
-QString IconProvider::getIconPath(const QString &iconId)
+QString IconProvider::getIconPath(const QString &iconId) const
 {
-    return ":/icons/oxygen/" + iconId + ".png";
+    // there are a few icons not available in svg
+    const QString pathSvg = ":/icons/qbt-theme/" + iconId + ".svg";
+    if (QFileInfo::exists(pathSvg))
+        return pathSvg;
+
+    const QString pathPng = ":/icons/qbt-theme/" + iconId + ".png";
+    return pathPng;
 }
 
-IconProvider *IconProvider::m_instance = 0;
+IconProvider *IconProvider::m_instance = nullptr;

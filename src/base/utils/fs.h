@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2012  Christophe Dumez
+ * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef UTILS_FS_H
@@ -41,32 +39,32 @@ namespace Utils
 {
     namespace Fs
     {
-        QString toNativePath(const QString& path);
-        QString fromNativePath(const QString& path);
-        QString fileExtension(const QString& filename);
-        QString fileName(const QString& file_path);
-        QString folderName(const QString& file_path);
-        qint64 computePathSize(const QString& path);
-        bool sameFiles(const QString& path1, const QString& path2);
-        QString toValidFileSystemName(const QString &name, bool allowSeparators = false);
-        bool isValidFileSystemName(const QString& name, bool allowSeparators = false);
-        qulonglong freeDiskSpaceOnPath(const QString &path);
-        QString branchPath(const QString& file_path, QString* removed = 0);
-        bool sameFileNames(const QString& first, const QString& second);
-        QString expandPath(const QString& path);
-        QString expandPathAbs(const QString& path);
+        QString toNativePath(const QString &path);
+        QString fromNativePath(const QString &path);
+        QString fileExtension(const QString &filename);
+        QString fileName(const QString &filePath);
+        QString folderName(const QString &filePath);
+        qint64 computePathSize(const QString &path);
+        bool sameFiles(const QString &path1, const QString &path2);
+        QString toValidFileSystemName(const QString &name, bool allowSeparators = false
+                , const QString &pad = QLatin1String(" "));
+        bool isValidFileSystemName(const QString &name, bool allowSeparators = false);
+        qint64 freeDiskSpaceOnPath(const QString &path);
+        QString branchPath(const QString &filePath, QString *removed = nullptr);
+        bool sameFileNames(const QString &first, const QString &second);
+        QString expandPath(const QString &path);
+        QString expandPathAbs(const QString &path);
+        bool isRegularFile(const QString &path);
 
-        bool smartRemoveEmptyFolderTree(const QString& path);
-        bool forceRemove(const QString& file_path);
-        void removeDirRecursive(const QString& dirName);
+        bool smartRemoveEmptyFolderTree(const QString &path);
+        bool forceRemove(const QString &filePath);
+        void removeDirRecursive(const QString &path);
 
-        /* Ported from Qt4 to drop dependency on QtGui */
-        QString QDesktopServicesDataLocation();
-        QString QDesktopServicesCacheLocation();
-        QString QDesktopServicesDownloadLocation();
-        /* End of Qt4 code */
+        QString tempPath();
 
-        QString cacheLocation();
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+        bool isNetworkFileSystem(const QString &path);
+#endif
     }
 }
 

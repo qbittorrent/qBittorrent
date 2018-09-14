@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,32 +24,43 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef HIDABLETABWIDGET_H
 #define HIDABLETABWIDGET_H
 
-#include <QTabWidget>
 #include <QTabBar>
+#include <QTabWidget>
+
+#ifdef Q_OS_MAC
+#include <QStyle>
+#endif
 
 class HidableTabWidget : public QTabWidget
 {
 public:
-    explicit HidableTabWidget(QWidget *parent = 0)
+    explicit HidableTabWidget(QWidget *parent = nullptr)
         : QTabWidget(parent)
     {
     }
 
 protected:
-    void tabInserted(int index)
+#ifdef Q_OS_MAC
+    void paintEvent(QPaintEvent *event) override
+    {
+        // Hide the pane for macintosh style
+        if (!style()->inherits("QMacStyle"))
+            QTabWidget::paintEvent(event);
+    }
+#endif
+
+    void tabInserted(int index) override
     {
         QTabWidget::tabInserted(index);
         tabBar()->setVisible(count() != 1);
     }
 
-    void tabRemoved(int index)
+    void tabRemoved(int index) override
     {
         //QTabWidget::tabInserted(index);
         QTabWidget::tabRemoved(index);

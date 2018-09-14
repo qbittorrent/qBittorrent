@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RSSWidget</class>
+ <widget class="QWidget" name="RSSWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>811</width>
+    <height>447</height>
+   </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Search</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QLabel" name="labelWarn">
+     <property name="font">
+      <font>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: red;</string>
+     </property>
+     <property name="text">
+      <string>Fetching of RSS feeds is disabled now! You can enable it in application settings.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="newFeedButton">
+       <property name="text">
+        <string>New subscription</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="markReadButton">
+       <property name="text">
+        <string>Mark items read</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="updateAllButton">
+       <property name="toolTip">
+        <string>Refresh RSS streams</string>
+       </property>
+       <property name="text">
+        <string>Update all</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacer1">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="rssDownloaderBtn">
+       <property name="text">
+        <string>RSS Downloader...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QSplitter" name="splitterSide">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="news_lbl">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Torrents: (double-click to download)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSplitter" name="splitterMain">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="HtmlBrowser" name="textBrowser">
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="text">
+    <string>Rename...</string>
+   </property>
+   <property name="toolTip">
+    <string>Rename</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Update</string>
+   </property>
+   <property name="toolTip">
+    <string>Update</string>
+   </property>
+  </action>
+  <action name="actionNewSubscription">
+   <property name="text">
+    <string>New subscription...</string>
+   </property>
+  </action>
+  <action name="actionUpdateAllFeeds">
+   <property name="text">
+    <string>Update all feeds</string>
+   </property>
+   <property name="toolTip">
+    <string>Update all feeds</string>
+   </property>
+  </action>
+  <action name="actionMarkItemsRead">
+   <property name="text">
+    <string>Mark items read</string>
+   </property>
+   <property name="toolTip">
+    <string>Mark items read</string>
+   </property>
+  </action>
+  <action name="actionDownloadTorrent">
+   <property name="text">
+    <string>Download torrent</string>
+   </property>
+  </action>
+  <action name="actionOpenNewsURL">
+   <property name="text">
+    <string>Open news URL</string>
+   </property>
+  </action>
+  <action name="actionCopyFeedURL">
+   <property name="text">
+    <string>Copy feed URL</string>
+   </property>
+  </action>
+  <action name="actionNewFolder">
+   <property name="text">
+    <string>New folder...</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HtmlBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>gui/rss/htmlbrowser.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

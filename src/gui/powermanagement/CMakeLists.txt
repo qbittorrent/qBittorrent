@@ -1,25 +1,20 @@
-set(QBT_POWERMANAGEMENT_HEADERS
+add_library(qbt_powermanagement STATIC
 powermanagement.h
-)
-
-set(QBT_POWERMANAGEMENT_SOURCES
 powermanagement.cpp
 )
 
-if (UNIX AND DBUS)
+target_link_libraries(qbt_powermanagement PUBLIC Qt5::Core)
+set_target_properties(qbt_powermanagement PROPERTIES AUTOUIC False AUTORCC False)
+target_include_directories(qbt_powermanagement PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+if (UNIX AND Qt5DBus_FOUND)
     find_package(X11)
     if (X11_FOUND)
-        list(APPEND QBT_POWERMANAGEMENT_HEADERS powermanagement_x11.h)
-        list(APPEND QBT_POWERMANAGEMENT_SOURCES powermanagement_x11.cpp)
+        target_sources(qbt_powermanagement PRIVATE powermanagement_x11.h powermanagement_x11.cpp)
+        target_link_libraries(qbt_powermanagement PRIVATE Qt5::DBus)
     endif (X11_FOUND)
-endif (UNIX AND DBUS)
+endif (UNIX AND Qt5DBus_FOUND)
 
-add_library(qbt_powermanagement STATIC ${QBT_POWERMANAGEMENT_SOURCES} ${QBT_POWERMANAGEMENT_HEADERS})
-set_target_properties(qbt_powermanagement PROPERTIES AUTOUIC False AUTORCC False)
-target_link_qt_components(qbt_powermanagement Core)
-if (X11_FOUND)
-    target_link_qt_components(qbt_powermanagement DBus)
-endif (X11_FOUND)
 if (WIN32)
-    target_link_libraries(qbt_powermanagement PowrProf)
+    target_link_libraries(qbt_powermanagement PRIVATE PowrProf)
 endif (WIN32)

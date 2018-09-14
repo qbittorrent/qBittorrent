@@ -40,17 +40,16 @@ typedef QtSingleApplication BaseApplication;
 class MainWindow;
 
 #ifdef Q_OS_WIN
-QT_BEGIN_NAMESPACE
 class QSessionManager;
-QT_END_NAMESPACE
 #endif // Q_OS_WIN
 
 #else
 #include "qtsinglecoreapplication.h"
 typedef QtSingleCoreApplication BaseApplication;
-#endif
+#endif // DISABLE_GUI
 
 #include "base/utils/misc.h"
+#include "cmdoptions.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;
@@ -63,12 +62,20 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace RSS
+{
+    class Session;
+    class AutoDownloader;
+}
+
 class Application : public BaseApplication
 {
     Q_OBJECT
+    Q_DISABLE_COPY(Application)
 
 public:
     Application(const QString &id, int &argc, char **argv);
+    ~Application() override;
 
  #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
@@ -80,6 +87,8 @@ public:
     QPointer<MainWindow> mainWindow();
 #endif
 
+    const QBtCommandLineParameters &commandLineArgs() const;
+
     // FileLogger properties
     bool isFileLoggerEnabled() const;
     void setFileLoggerEnabled(bool value);
@@ -90,7 +99,7 @@ public:
     bool isFileLoggerDeleteOld() const;
     void setFileLoggerDeleteOld(bool value);
     int fileLoggerMaxSize() const;
-    void setFileLoggerMaxSize(const int value);
+    void setFileLoggerMaxSize(const int bytes);
     int fileLoggerAge() const;
     void setFileLoggerAge(const int value);
     int fileLoggerAgeType() const;
@@ -99,9 +108,9 @@ public:
 protected:
 #ifndef DISABLE_GUI
 #ifdef Q_OS_MAC
-    bool event(QEvent *);
+    bool event(QEvent *) override;
 #endif
-    bool notify(QObject* receiver, QEvent* event);
+    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:
@@ -116,13 +125,14 @@ private slots:
 private:
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
+    QBtCommandLineParameters m_commandLineArgs;
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
 #endif
 
 #ifndef DISABLE_WEBUI
-    QPointer<WebUI> m_webui;
+    WebUI *m_webui;
 #endif
 
     // FileLog
@@ -134,8 +144,9 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(BitTorrent::TorrentHandle *const torrent) const;
-    void sendNotificationEmail(BitTorrent::TorrentHandle *const torrent);
+    void runExternalProgram(const BitTorrent::TorrentHandle *torrent) const;
+    void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
+    void validateCommandLineParameters();
 };
 
 #endif // APPLICATION_H

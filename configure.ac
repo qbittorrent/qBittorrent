@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v3.2.0alpha], [bugs.qbittorrent.org], [], [http://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.2.0alpha], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CC
@@ -12,29 +12,23 @@ AM_INIT_AUTOMAKE
 
 # Define --wth-* and --enable-* arguments
 
-AC_ARG_WITH(qt4,
-            [AS_HELP_STRING([--with-qt4],
-                            [Compile using Qt4 (default=no)])],
-            [],
-            [with_qt4=no])
-
 AC_ARG_WITH(qtsingleapplication,
             [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
                             [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
             [],
             [with_qtsingleapplication=shipped])
 
-AC_ARG_WITH(qjson,
-            [AS_HELP_STRING([--with-qjson=@<:@system|shipped@:>@],
-                            [Use the shipped qjson library or the system one (default=shipped) (Qt4 only)])],
-            [],
-            [with_qjson=shipped])
-
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
                               [Enable debug build])],
               [],
               [enable_debug=no])
+
+AC_ARG_ENABLE(stacktrace,
+              [AS_HELP_STRING([--enable-stacktrace],
+                              [Enable stacktrace feature (default=auto)])],
+              [],
+              [enable_stacktrace=auto])
 
 AC_ARG_ENABLE(gui,
               [AS_HELP_STRING([--disable-gui],
@@ -92,6 +86,23 @@ AS_CASE(["x$enable_debug"],
         [AC_MSG_RESULT([$enable_debug])
         AC_MSG_ERROR([Unknown option "$enable_debug". Use either "yes" or "no".])])
 
+AC_MSG_CHECKING([whether to enable the stacktrace feature])
+AS_CASE(["x$enable_stacktrace"],
+        ["xno"],
+              [AC_MSG_RESULT([no])
+              QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace"],
+        ["xyes"],
+               [AC_MSG_RESULT([yes])
+               QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace"],
+        ["xauto"],
+                [AC_COMPILE_IFELSE([AC_LANG_SOURCE([[#include <execinfo.h>]])],
+                [AC_MSG_RESULT([yes])
+                QBT_ADD_CONFIG="$QBT_ADD_CONFIG stacktrace"],
+                [AC_MSG_RESULT([no])
+                QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG stacktrace"])],
+        [AC_MSG_RESULT([$enable_stacktrace])
+        AC_MSG_ERROR([Unknown option "$enable_stacktrace". Use either "yes" or "no".])])
+
 AC_MSG_CHECKING([whether to enable the GUI])
 AS_CASE(["x$enable_gui"],
         ["xyes"],
@@ -127,20 +138,13 @@ AS_CASE(["x$enable_webui"],
         [AC_MSG_RESULT([$enable_webui])
         AC_MSG_ERROR([Unknown option "$enable_webui". Use either "yes" or "no".])])
 
-AC_MSG_CHECKING([whether Qt4 should be enabled])
-AS_CASE(["x$with_qt4"],
-        ["xno"],
-              [AC_MSG_RESULT([no])
-              FIND_QT5()],
-        ["xyes"],
-               [AC_MSG_RESULT([yes])
-               FIND_QT4()],
-        [AC_MSG_RESULT([$with_qt4])
-        AC_MSG_ERROR([Unknown option "$with_qt4". Use either "yes" or "no".])])
+FIND_QT5()
 AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
-
+AS_IF([test "x$enable_gui" = "xyes"],
+      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.5.1])
+      ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
         ["xyes"],
@@ -157,22 +161,27 @@ AS_CASE(["x$enable_qt_dbus"],
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
 
 
-AX_BOOST_BASE([1.35])
-# HAVE_BOOST is set to an empty value when Boost is found. I don't know
-# how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_CPPFLAGS" = "x"],
-      [AC_MSG_ERROR([Could not find Boost])],
-      [AC_MSG_NOTICE([Boost CPPFLGAS: $BOOST_CPPFLAGS])
-      CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
-      LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"])
+AX_BOOST_BASE([1.35],
+              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"
+                Boost LDFLAGS: "$BOOST_LDFLAGS"])],
+              [AC_MSG_ERROR([Could not find Boost])])
+CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
+
+# add workaround for problematic boost version
+AC_LANG_PUSH(C++)
+# taken from ax_boost_base.m4
+m4_define([DETECT_BOOST_VERSION_PROGRAM],
+    [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
+                     [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
+
+AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
+    [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
+AC_LANG_POP([C++])
 
 AX_BOOST_SYSTEM()
-# HAVE_BOOST_SYSTEM is set to an empty value when Boost.System is found.
-# I don't know how to test for a set vs unset variable.
-AS_IF([test "x$BOOST_SYSTEM_LIB" = "x"],
-      [AC_MSG_ERROR([Could not find Boost.System])],
-      [AC_MSG_NOTICE([Boost.System LIB: $BOOST_SYSTEM_LIB])
-      LIBS="$BOOST_SYSTEM_LIB $LIBS"])
+AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
+LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 AC_MSG_CHECKING([which qtsingleapplication to use])
 AS_CASE(["x$with_qtsingleapplication"],
@@ -185,30 +194,13 @@ AS_CASE(["x$with_qtsingleapplication"],
         [AC_MSG_RESULT([$with_qtsingleapplication])
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
-AS_IF([test "x$with_qt4" = "xyes"],
-      [AC_MSG_CHECKING([which qjson to use])
-      AS_CASE(["x$with_qjson"],
-              ["xshipped"],
-                         [AC_MSG_RESULT([shipped])
-                         QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqjson"],
-              ["xsystem"],
-                         [AC_MSG_RESULT([system])
-                         PKG_CHECK_MODULES(qjson,
-                                          [QJson >= 0.8.1],
-                                          [CPPFLAGS="$qjson_CFLAGS $CPPFLAGS"
-                                          LIBS="$qjson_LIBS $LIBS"])
-                         QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqjson"],
-              [AC_MSG_RESULT([$with_qjson])
-              AC_MSG_ERROR([Unknown option "$with_qjson". Use either "system" or "shipped".])])
-     ])
-
 PKG_CHECK_MODULES(libtorrent,
                   [libtorrent-rasterbar >= 1.0.6],
                   [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
-                 [zlib],
+                 [zlib >= 1.2.5.2],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
@@ -232,7 +224,7 @@ extract() {
   new_line='
 '
   # Convert " -" to "\n" if not between quotes and remove possible leading white spaces
-  string=$(echo " $*" | $SED -e "s: -:\\${new_line}:g" -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[[:space:]]*//')
+  string=$(echo " $*" | $SED -e "s: -:\\${new_line}:g" -e 's:"\(.*\)\n\(.*\)":\"\1 -\2":g' -e "s:'\(.*\)\n\(.*\)':\'\1 -\2':g" -e 's/^[[[:space:]]]*//')
   SAVEIFS=$IFS
   IFS=$(printf "\n\b")
   for i in $string; do
@@ -246,9 +238,8 @@ extract() {
   IFS=$SAVEIFS
 }
 
-extract $CPPFLAGS
+extract "$CFLAGS $CPPFLAGS $CXXFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
-QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS $CXXFLAGS"
 
 # Substitute the values of these vars in conf.pri.in
 AC_SUBST(QBT_CONF_INCLUDES)
@@ -260,7 +251,7 @@ AC_SUBST(QBT_REMOVE_DEFINES)
 
 AC_OUTPUT(conf.pri)
 AS_IF([test "x$enable_systemd" = "xyes"],
-      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox.service)])
+      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
 
 
 
@@ -276,4 +267,3 @@ AS_IF([test "x$ret" = "x0"],
       [AC_MSG_NOTICE([Good, your configure finished.])],
       [AC_MSG_ERROR([Failed running $QT_QMAKE to generate the makefile])])
 AS_ECHO()
-

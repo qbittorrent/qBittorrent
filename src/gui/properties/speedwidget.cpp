@@ -33,19 +33,20 @@
 #include <QLabel>
 #include <QMenu>
 #include <QSignalMapper>
+#include <QTimer>
 
 #include <libtorrent/session_status.hpp>
 
-#include "propertieswidget.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
-#include "base/utils/misc.h"
+#include "propertieswidget.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
     , m_menu(menu)
-{}
+{
+}
 
 void ComboBoxMenuButton::showPopup()
 {
@@ -59,6 +60,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 {
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
+    m_layout->setSpacing(3);
 
     m_hlayout = new QHBoxLayout();
     m_hlayout->setContentsMargins(0, 0, 0, 0);
@@ -71,7 +73,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("30 Minutes"));
     m_periodCombobox->addItem(tr("6 Hours"));
 
-    connect(m_periodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(onPeriodChange(int)));
+    connect(m_periodCombobox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+        , this, &SpeedWidget::onPeriodChange);
 
     m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
@@ -86,16 +89,18 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_graphsMenu->addAction(tr("Tracker Download"));
 
     m_graphsMenuActions = m_graphsMenu->actions();
-    m_graphsSignalMapper = new QSignalMapper();
+    m_graphsSignalMapper = new QSignalMapper(this);
 
     for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
         QAction *action = m_graphsMenuActions.at(id);
         action->setCheckable(true);
         action->setChecked(true);
-        connect(action, SIGNAL(changed()), m_graphsSignalMapper, SLOT(map()));
+        connect(action, &QAction::changed, m_graphsSignalMapper
+            , static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
         m_graphsSignalMapper->setMapping(action, id);
     }
-    connect(m_graphsSignalMapper, SIGNAL(mapped(int)), this, SLOT(onGraphChange(int)));
+    connect(m_graphsSignalMapper, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped)
+        , this, &SpeedWidget::onGraphChange);
 
     m_graphsButton = new ComboBoxMenuButton(this, m_graphsMenu);
     m_graphsButton->addItem(tr("Select Graphs"));
@@ -112,8 +117,9 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     loadSettings();
 
-    m_isUpdating = true;
-    m_updateFuture = QtConcurrent::run(this, &SpeedWidget::update);
+    QTimer *localUpdateTimer = new QTimer(this);
+    connect(localUpdateTimer, &QTimer::timeout, this, &SpeedWidget::update);
+    localUpdateTimer->start(1000);
 
     m_plot->show();
 }
@@ -121,43 +127,28 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 SpeedWidget::~SpeedWidget()
 {
     qDebug("SpeedWidget::~SpeedWidget() ENTER");
-
-    m_isUpdating = false;
-    m_updateFuture.waitForFinished();
-
     saveSettings();
-
     qDebug("SpeedWidget::~SpeedWidget() EXIT");
 }
 
 void SpeedWidget::update()
 {
-    while (m_isUpdating) {
+    const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
 
-        BitTorrent::SessionStatus btStatus = BitTorrent::Session::instance()->status();
+    SpeedPlotView::PointData point;
+    point.x = QDateTime::currentMSecsSinceEpoch() / 1000;
+    point.y[SpeedPlotView::UP] = btStatus.uploadRate;
+    point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
+    point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
+    point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
+    point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
+    point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
+    point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
+    point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
+    point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
+    point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
 
-        SpeedPlotView::PointData point;
-        point.x = QDateTime::currentDateTime().toTime_t();
-        point.y[SpeedPlotView::UP] = btStatus.uploadRate();
-        point.y[SpeedPlotView::DOWN] = btStatus.downloadRate();
-        point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate();
-        point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate();
-        point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate();
-        point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate();
-        point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate();
-        point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate();
-        point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate();
-        point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate();
-
-        m_plot->pushPoint(point);
-
-        QMetaObject::invokeMethod(this, "graphUpdate", Qt::QueuedConnection);
-        Utils::Misc::msleep(1000);
-    }
-}
-
-void SpeedWidget::graphUpdate()
-{
+    m_plot->pushPoint(point);
     m_plot->replot();
 }
 

@@ -35,9 +35,10 @@
 
 #include <QGraphicsView>
 #include <QMap>
+
 class QPen;
 
-class SpeedPlotView: public QGraphicsView
+class SpeedPlotView : public QGraphicsView
 {
     Q_OBJECT
 
@@ -54,6 +55,7 @@ public:
         DHT_DOWN,
         TRACKER_UP,
         TRACKER_DOWN,
+
         NB_GRAPHS
     };
 
@@ -67,11 +69,11 @@ public:
 
     struct PointData
     {
-        uint x;
+        qint64 x;
         int y[NB_GRAPHS];
     };
 
-    explicit SpeedPlotView(QWidget *parent = 0);
+    explicit SpeedPlotView(QWidget *parent = nullptr);
 
     void setGraphEnable(GraphID id, bool enable);
     void setViewableLastPoints(TimePeriod period);
@@ -81,7 +83,7 @@ public:
     void replot();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
 private:
     enum PeriodInSeconds
@@ -109,6 +111,9 @@ private:
         bool enable;
     };
 
+    int maxYValue();
+    boost::circular_buffer<PointData> &getCurrentData();
+
     boost::circular_buffer<PointData> m_data5Min;
     boost::circular_buffer<PointData> m_data30Min;
     boost::circular_buffer<PointData> m_data6Hour;
@@ -119,10 +124,6 @@ private:
 
     int m_counter30Min;
     int m_counter6Hour;
-
-    int maxYValue();
-
-    boost::circular_buffer<PointData> &getCurrentData();
 };
 
 #endif // SPEEDPLOTVIEW_H

@@ -26,16 +26,13 @@
  * exception statement from your version.
  */
 
+#include "resumedatasavingmanager.h"
+
 #include <QDebug>
-#ifdef QBT_USES_QT5
 #include <QSaveFile>
-#else
-#include <QFile>
-#endif
 
 #include "base/logger.h"
 #include "base/utils/fs.h"
-#include "resumedatasavingmanager.h"
 
 ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath)
     : m_resumeDataDir(resumeFolderPath)
@@ -48,18 +45,12 @@ void ResumeDataSavingManager::saveResumeData(QString infoHash, QByteArray data) 
     QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     qDebug() << "Saving resume data in" << filepath;
-#ifdef QBT_USES_QT5
     QSaveFile resumeFile(filepath);
-#else
-    QFile resumeFile(filepath);
-#endif
     if (resumeFile.open(QIODevice::WriteOnly)) {
         resumeFile.write(data);
-#ifdef QBT_USES_QT5
         if (!resumeFile.commit()) {
             Logger::instance()->addMessage(QString("Couldn't save resume data in %1. Error: %2")
-                                           .arg(filepath).arg(resumeFile.errorString()), Log::WARNING);
+                                           .arg(filepath, resumeFile.errorString()), Log::WARNING);
         }
-#endif
     }
 }

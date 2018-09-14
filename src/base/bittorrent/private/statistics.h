@@ -4,9 +4,12 @@
 #include <QObject>
 #include <QTimer>
 
-namespace BitTorrent { class Session; }
+namespace BitTorrent
+{
+    class Session;
+}
 
-class Statistics : QObject
+class Statistics : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Statistics)
@@ -25,13 +28,12 @@ private:
     void save() const;
     void load();
 
-private:
     BitTorrent::Session *m_session;
     // Will overflow at 15.9 EiB
     quint64 m_alltimeUL;
     quint64 m_alltimeDL;
-    qint64 m_sessionUL;
-    qint64 m_sessionDL;
+    quint64 m_sessionUL;
+    quint64 m_sessionDL;
     mutable qint64 m_lastWrite;
     mutable bool m_dirty;
 

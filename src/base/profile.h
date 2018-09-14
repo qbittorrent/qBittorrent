@@ -1,0 +1,91 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2016  Eugene Shalygin <eugene.shalygin@gmail.com>
+ * Copyright (C) 2012  Christophe Dumez
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#ifndef QBT_PROFILE_H
+#define QBT_PROFILE_H
+
+#include <memory>
+
+#include <QScopedPointer>
+#include <QSettings>
+#include <QString>
+
+class Application;
+
+namespace Private
+{
+    class Profile;
+    class PathConverter;
+}
+
+using SettingsPtr = std::unique_ptr<QSettings>;
+
+enum class SpecialFolder
+{
+    Cache,
+    Config,
+    Data,
+    Downloads
+};
+
+class Profile
+{
+public:
+    QString location(SpecialFolder folder) const;
+    SettingsPtr applicationSettings(const QString &name) const;
+
+    /// Returns either default name for configuration file (QCoreApplication::applicationName())
+    /// or the value, supplied via parameters
+    QString profileName() const;
+
+    QString toPortablePath(const QString &absolutePath) const;
+    QString fromPortablePath(const QString &portablePath) const;
+
+    static const Profile &instance();
+
+private:
+    Profile(Private::Profile *impl, Private::PathConverter *pathConverter);
+    ~Profile();
+
+    friend class ::Application;
+    static void initialize(const QString &rootProfilePath, const QString &configurationName,
+                                             bool convertPathsToProfileRelative);
+    void ensureDirectoryExists(SpecialFolder folder);
+
+    QScopedPointer<Private::Profile> m_profileImpl;
+    QScopedPointer<Private::PathConverter> m_pathConverterImpl;
+    static Profile *m_instance;
+};
+
+inline QString specialFolderLocation(SpecialFolder folder)
+{
+    return Profile::instance().location(folder);
+}
+
+#endif // QBT_PROFILE_H

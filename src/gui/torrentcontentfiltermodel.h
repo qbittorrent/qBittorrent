@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,44 +24,44 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTCONTENTFILTERMODEL_H
 #define TORRENTCONTENTFILTERMODEL_H
 
 #include <QSortFilterProxyModel>
+
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModel;
 
-class TorrentContentFilterModel: public QSortFilterProxyModel {
-  Q_OBJECT
+class TorrentContentFilterModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
 
 public:
-  TorrentContentFilterModel(QObject *parent = 0);
-  virtual ~TorrentContentFilterModel();
+    TorrentContentFilterModel(QObject *parent = nullptr);
+    ~TorrentContentFilterModel() override;
 
-  TorrentContentModel* model() const;
-  TorrentContentModelItem::ItemType itemType(const QModelIndex& index) const;
-  int getFileIndex(const QModelIndex& index) const;
-  virtual QModelIndex parent(const QModelIndex& child) const;
-
-signals:
-  void filteredFilesChanged();
-
-protected:
-  virtual bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const;
-  virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+    TorrentContentModel *model() const;
+    TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
+    int getFileIndex(const QModelIndex &index) const;
+    QModelIndex parent(const QModelIndex &child) const override;
 
 public slots:
-  void selectAll();
-  void selectNone();
+    void selectAll();
+    void selectNone();
+
+signals:
+    void filteredFilesChanged();
+
+protected:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-  TorrentContentModel* m_model;
-  bool hasFiltered(const QModelIndex& folder) const;
+    TorrentContentModel *m_model;
+    bool hasFiltered(const QModelIndex &folder) const;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,17 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
+#include "dnsupdater.h"
+
 #include <QDebug>
-#include <QRegExp>
-#include <QStringList>
-#ifdef QBT_USES_QT5
+#include <QRegularExpression>
 #include <QUrlQuery>
-#endif
 
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
-#include "dnsupdater.h"
+#include "base/net/downloadmanager.h"
 
 using namespace Net;
 
@@ -56,7 +52,7 @@ DNSUpdater::DNSUpdater(QObject *parent)
 
     // Start IP checking timer
     m_ipCheckTimer.setInterval(IP_CHECK_INTERVAL_MS);
-    connect(&m_ipCheckTimer, SIGNAL(timeout()), SLOT(checkPublicIP()));
+    connect(&m_ipCheckTimer, &QTimer::timeout, this, &DNSUpdater::checkPublicIP);
     m_ipCheckTimer.start();
 
     // Check lastUpdate to avoid flooding
@@ -78,11 +74,11 @@ void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
 
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                "http://checkip.dyndns.org", false, 0, false,
-                QString("qBittorrent/%1").arg(VERSION));
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipRequestFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipRequestFailed(QString, QString)));
+    DownloadHandler *handler = DownloadManager::instance()->download(
+                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &DNSUpdater::ipRequestFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipRequestFailed);
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
@@ -92,9 +88,9 @@ void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
     Q_UNUSED(url);
 
     // Parse response
-    QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
-    if (ipregex.indexIn(data) >= 0) {
-        QString ipStr = ipregex.cap(1);
+    const QRegularExpressionMatch ipRegexMatch = QRegularExpression("Current IP Address:\\s+([^<]+)</body>").match(data);
+    if (ipRegexMatch.hasMatch()) {
+        QString ipStr = ipRegexMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ipStr;
         QHostAddress newIp(ipStr);
         if (!newIp.isNull()) {
@@ -125,11 +121,11 @@ void DNSUpdater::updateDNSService()
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(
-                getUpdateUrl(), false, 0, false,
-                QString("qBittorrent/%1").arg(VERSION));
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(ipUpdateFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(ipUpdateFailed(QString, QString)));
+    DownloadHandler *handler = DownloadManager::instance()->download(
+                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &DNSUpdater::ipUpdateFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipUpdateFailed);
 }
 
 QString DNSUpdater::getUpdateUrl() const
@@ -145,7 +141,7 @@ QString DNSUpdater::getUpdateUrl() const
 
     Q_ASSERT(!m_lastIP.isNull());
     // Service specific
-    switch(m_service) {
+    switch (m_service) {
     case DNS::DYNDNS:
         url.setHost("members.dyndns.org");
         break;
@@ -158,15 +154,10 @@ QString DNSUpdater::getUpdateUrl() const
     }
     url.setPath("/nic/update");
 
-#ifndef QBT_USES_QT5
-    url.addQueryItem("hostname", m_domain);
-    url.addQueryItem("myip", m_lastIP.toString());
-#else
     QUrlQuery urlQuery(url);
     urlQuery.addQueryItem("hostname", m_domain);
     urlQuery.addQueryItem("myip", m_lastIP.toString());
     url.setQuery(urlQuery);
-#endif
     Q_ASSERT(url.isValid());
 
     qDebug() << Q_FUNC_INFO << url.toString();
@@ -190,7 +181,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
 {
     Logger *const logger = Logger::instance();
     qDebug() << Q_FUNC_INFO << reply;
-    QString code = reply.split(" ").first();
+    QString code = reply.split(' ').first();
     qDebug() << Q_FUNC_INFO << "Code:" << code;
 
     if ((code == "good") || (code == "nochg")) {
@@ -205,7 +196,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
         return;
     }
 
-    // Everything bellow is an error, stop updating until the user updates something
+    // Everything below is an error, stop updating until the user updates something
     m_ipCheckTimer.stop();
     m_lastIP.clear();
     if (code == "nohost") {
@@ -237,7 +228,6 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
     if (code == "abuse") {
         logger->addMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."), Log::CRITICAL);
         m_state = FATAL;
-        return;
     }
 }
 
@@ -254,8 +244,8 @@ void DNSUpdater::updateCredentials()
     }
     if (m_domain != pref->getDynDomainName()) {
         m_domain = pref->getDynDomainName();
-        QRegExp domain_regex("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$");
-        if (domain_regex.indexIn(m_domain) < 0) {
+        const QRegularExpressionMatch domainRegexMatch = QRegularExpression("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$").match(m_domain);
+        if (!domainRegexMatch.hasMatch()) {
             logger->addMessage(tr("Dynamic DNS error: supplied domain name is invalid."), Log::CRITICAL);
             m_lastIP.clear();
             m_ipCheckTimer.stop();
@@ -296,7 +286,7 @@ void DNSUpdater::updateCredentials()
 
 QUrl DNSUpdater::getRegistrationUrl(int service)
 {
-    switch(service) {
+    switch (service) {
     case DNS::DYNDNS:
         return QUrl("https://www.dyndns.com/account/services/hosts/add.html");
     case DNS::NOIP:

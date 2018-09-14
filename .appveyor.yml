@@ -3,7 +3,11 @@ version: '{branch}-{build}'
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-os: Visual Studio 2015
+image: Visual Studio 2017
+
+branches:
+  except:  # blacklist
+    - coverity_scan
 
 environment:
   REPO_DIR: &REPO_DIR c:\qbittorrent
@@ -19,6 +23,8 @@ clone_folder: *REPO_DIR
 # see: https://www.appveyor.com/docs/build-cache#save-update-cache-before-build-finishes
 cache:
   - *CACHE_DIR
+
+clone_depth: 50
 
 install:
   # check if library needs update
@@ -36,11 +42,10 @@ install:
 
 before_build:
   # setup env
-  - CALL "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
   # setup project
-  - COPY /Y "%CACHE_DIR%\winconf.pri" "%REPO_DIR%"
-  - COPY /Y "%CACHE_DIR%\winconf-msvc.pri" "%REPO_DIR%"
+  - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
   # workarounds
   - MKLINK /J "c:\qbt\base" "%CACHE_DIR%\base"
 

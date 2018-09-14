@@ -29,20 +29,21 @@
 #ifndef BITTORRENT_TORRENTINFO_H
 #define BITTORRENT_TORRENTINFO_H
 
-#include <QtGlobal>
-
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
+#include <QCoreApplication>
+#include <QList>
+#include <QtGlobal>
+#include <QVector>
+
 #include "base/indexrange.h"
 
-class QString;
-class QUrl;
-class QDateTime;
-class QStringList;
 class QByteArray;
-template<typename T> class QList;
-template<typename T> class QVector;
+class QDateTime;
+class QString;
+class QStringList;
+class QUrl;
 
 namespace BitTorrent
 {
@@ -51,6 +52,8 @@ namespace BitTorrent
 
     class TorrentInfo
     {
+        Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
+
     public:
 #if LIBTORRENT_VERSION_NUM < 10100
         typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
@@ -63,8 +66,8 @@ namespace BitTorrent
         explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());
         TorrentInfo(const TorrentInfo &other);
 
-        static TorrentInfo loadFromFile(const QString &path, QString &error);
-        static TorrentInfo loadFromFile(const QString &path);
+        static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
+        static TorrentInfo loadFromFile(const QString &path, QString *error = nullptr) noexcept;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 
@@ -91,6 +94,7 @@ namespace BitTorrent
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;
         QVector<int> fileIndicesForPiece(int pieceIndex) const;
+        QVector<QByteArray> pieceHashes() const;
 
         using PieceRange = IndexRange<int>;
         // returns pair of the first and the last pieces into which
@@ -98,7 +102,11 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        void renameFile(uint index, const QString &newPath);
+        void renameFile(int index, const QString &newPath);
+
+        QString rootFolder() const;
+        bool hasRootFolder() const;
+        void stripRootFolder();
 
         NativePtr nativeInfo() const;
 

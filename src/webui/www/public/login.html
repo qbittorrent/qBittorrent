@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
+    <link rel="icon" type="image/png" href="images/skin/qbittorrent32.png" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script>
+        window.onload = function() {
+            $('username').focus();
+            $('username').select();
+        };
+
+        window.addEvent('domready', function() {
+            $('loginform').addEvent('submit', function(e) {
+                new Event(e).stop();
+                submitLoginForm();
+            });
+        });
+
+        function submitLoginForm() {
+            new Request({
+                url: 'api/v2/auth/login',
+                method: 'post',
+                data: $('loginform').toQueryString(),
+                onComplete: function() {
+                    $('password').set('value', '');
+                },
+                onFailure: function(xhr) {
+                    if (xhr.responseText !== "") {
+                        $('error_msg').set('html', xhr.responseText);
+                    }
+                    else {
+                        $('error_msg').set('html', 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]');
+                    }
+                },
+                onSuccess: function(text) {
+                    if (text == "Ok.") {
+                        // Session started. Simply reload page.
+                        window.location.reload();
+                    }
+                    else {
+                        $('error_msg').set('html', 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]');
+                    }
+                }
+            }).send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <h1>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</h1>
+        <div id="logo" class="col">
+            <img src="images/skin/qbittorrent-tray.svg" alt="qBittorrent logo" />
+        </div>
+        <div id="formplace" class="col">
+            <form id="loginform">
+                <div class="row">
+                    <label for="username">QBT_TR(Username)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <input type="text" id="username" name="username" /></div>
+                <div class="row">
+                    <label for="password">QBT_TR(Password)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <input type="password" id="password" name="password" /></div>
+                <div class="row">
+                    <input type="submit" id="login" value="QBT_TR(Login)QBT_TR[CONTEXT=HttpServer]" />
+                </div>
+            </form>
+        </div>
+        <div id="error_msg"></div>
+    </div>
+</body>
+
+</html>

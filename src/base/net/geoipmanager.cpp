@@ -27,20 +27,22 @@
  * exception statement from your version.
  */
 
-#include <QDebug>
-#include <QFile>
-#include <QDir>
-#include <QHostAddress>
+#include "geoipmanager.h"
+
 #include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QHostAddress>
 
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
-#include "downloadmanager.h"
 #include "downloadhandler.h"
+#include "downloadmanager.h"
 #include "private/geoipdatabase.h"
-#include "geoipmanager.h"
 
 static const char DATABASE_URL[] = "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz";
 static const char GEOIP_FOLDER[] = "GeoIP";
@@ -51,14 +53,14 @@ using namespace Net;
 
 // GeoIPManager
 
-GeoIPManager *GeoIPManager::m_instance = 0;
+GeoIPManager *GeoIPManager::m_instance = nullptr;
 
 GeoIPManager::GeoIPManager()
     : m_enabled(false)
-    , m_geoIPDatabase(0)
+    , m_geoIPDatabase(nullptr)
 {
     configure();
-    connect(Preferences::instance(), SIGNAL(changed()), SLOT(configure()));
+    connect(Preferences::instance(), &Preferences::changed, this, &GeoIPManager::configure);
 }
 
 GeoIPManager::~GeoIPManager()
@@ -77,7 +79,7 @@ void GeoIPManager::freeInstance()
 {
     if (m_instance) {
         delete m_instance;
-        m_instance = 0;
+        m_instance = nullptr;
     }
 }
 
@@ -90,19 +92,18 @@ void GeoIPManager::loadDatabase()
 {
     if (m_geoIPDatabase) {
         delete m_geoIPDatabase;
-        m_geoIPDatabase = 0;
+        m_geoIPDatabase = nullptr;
     }
 
     QString filepath = Utils::Fs::expandPathAbs(
-                QString("%1%2/%3").arg(Utils::Fs::QDesktopServicesDataLocation())
-                .arg(GEOIP_FOLDER).arg(GEOIP_FILENAME));
+        QString("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEOIP_FOLDER, GEOIP_FILENAME));
 
     QString error;
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
     if (m_geoIPDatabase)
         Logger::instance()->addMessage(tr("GeoIP database loaded. Type: %1. Build time: %2.")
-                                       .arg(m_geoIPDatabase->type()).arg(m_geoIPDatabase->buildEpoch().toString()),
-                                       Log::INFO);
+            .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
+            Log::INFO);
     else
         Logger::instance()->addMessage(tr("Couldn't load GeoIP database. Reason: %1").arg(error), Log::WARNING);
 
@@ -117,9 +118,10 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    DownloadHandler *handler = DownloadManager::instance()->downloadUrl(DATABASE_URL);
-    connect(handler, SIGNAL(downloadFinished(QString, QByteArray)), SLOT(downloadFinished(QString, QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString, QString)), SLOT(downloadFailed(QString, QString)));
+    DownloadHandler *handler = DownloadManager::instance()->download({DATABASE_URL});
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
+            , this, &GeoIPManager::downloadFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &GeoIPManager::downloadFailed);
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
@@ -406,7 +408,7 @@ void GeoIPManager::configure()
         }
         else if (!m_enabled && m_geoIPDatabase) {
             delete m_geoIPDatabase;
-            m_geoIPDatabase = 0;
+            m_geoIPDatabase = nullptr;
         }
     }
 }
@@ -415,8 +417,10 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
 {
     Q_UNUSED(url);
 
-    if (!Utils::Gzip::uncompress(data, data)) {
-        Logger::instance()->addMessage(tr("Could not uncompress GeoIP database file."), Log::WARNING);
+    bool ok = false;
+    data = Utils::Gzip::decompress(data, &ok);
+    if (!ok) {
+        Logger::instance()->addMessage(tr("Could not decompress GeoIP database file."), Log::WARNING);
         return;
     }
 
@@ -428,13 +432,13 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
                 delete m_geoIPDatabase;
             m_geoIPDatabase = geoIPDatabase;
             Logger::instance()->addMessage(tr("GeoIP database loaded. Type: %1. Build time: %2.")
-                                           .arg(m_geoIPDatabase->type()).arg(m_geoIPDatabase->buildEpoch().toString()),
-                                           Log::INFO);
+                .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
+                Log::INFO);
             QString targetPath = Utils::Fs::expandPathAbs(
-                        Utils::Fs::QDesktopServicesDataLocation() + GEOIP_FOLDER);
+                        specialFolderLocation(SpecialFolder::Data) + GEOIP_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
-            QFile targetFile(QString("%1/%2").arg(targetPath).arg(GEOIP_FILENAME));
+            QFile targetFile(QString("%1/%2").arg(targetPath, GEOIP_FILENAME));
             if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) == -1)) {
                 Logger::instance()->addMessage(
                             tr("Couldn't save downloaded GeoIP database file."), Log::WARNING);

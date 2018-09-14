@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PEERLISTDELEGATE_H
@@ -33,56 +31,90 @@
 
 #include <QItemDelegate>
 #include <QPainter>
+
+#include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
-class PeerListDelegate: public QItemDelegate {
-  Q_OBJECT
+class PeerListDelegate : public QItemDelegate
+{
+    Q_OBJECT
 
 public:
-  enum PeerListColumns {COUNTRY, IP, PORT, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
-                        TOT_DOWN, TOT_UP, RELEVANCE, DOWNLOADING_PIECE, IP_HIDDEN, COL_COUNT};
+    enum PeerListColumns
+    {
+        COUNTRY,
+        IP,
+        PORT,
+        CONNECTION,
+        FLAGS,
+        CLIENT,
+        PROGRESS,
+        DOWN_SPEED,
+        UP_SPEED,
+        TOT_DOWN,
+        TOT_UP,
+        RELEVANCE,
+        DOWNLOADING_PIECE,
+        IP_HIDDEN,
 
-public:
-  PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
+        COL_COUNT
+    };
 
-  ~PeerListDelegate() {}
+    PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
-  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
-    painter->save();
-    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
-    switch(index.column()) {
-    case TOT_DOWN:
-    case TOT_UP:
-      QItemDelegate::drawBackground(painter, opt, index);
-      QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
-      break;
-    case DOWN_SPEED:
-    case UP_SPEED:{
-      QItemDelegate::drawBackground(painter, opt, index);
-      qreal speed = index.data().toDouble();
-      if (speed > 0.0)
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
-      break;
+    ~PeerListDelegate() override {}
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        painter->save();
+
+        const bool hideValues = Preferences::instance()->getHideZeroValues();
+        QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
+        QItemDelegate::drawBackground(painter, opt, index);
+
+        switch (index.column()) {
+        case PORT:
+            opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+            QItemDelegate::drawDisplay(painter, opt, option.rect, index.data().toString());
+            break;
+        case TOT_DOWN:
+        case TOT_UP: {
+                qlonglong size = index.data().toLongLong();
+                if (hideValues && (size <= 0))
+                    break;
+                opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+                QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(size));
+            }
+            break;
+        case DOWN_SPEED:
+        case UP_SPEED: {
+                qreal speed = index.data().toDouble();
+                if (speed <= 0.0)
+                    break;
+                opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+                QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
+            }
+            break;
+        case PROGRESS:
+        case RELEVANCE: {
+                qreal progress = index.data().toDouble();
+                opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+                QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + '%');
+            }
+            break;
+        default:
+            QItemDelegate::paint(painter, option, index);
+        }
+
+        painter->restore();
     }
-    case PROGRESS:
-    case RELEVANCE:{
-      QItemDelegate::drawBackground(painter, opt, index);
-      qreal progress = index.data().toDouble();
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress*100.0, 1)+"%");
-      break;
-    }
-    default:
-      QItemDelegate::paint(painter, option, index);
-    }
-    painter->restore();
-  }
 
-  QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
-    // No editor here
-    return 0;
-  }
-
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override
+    {
+        // No editor here
+        return nullptr;
+    }
 };
 
 #endif // PEERLISTDELEGATE_H

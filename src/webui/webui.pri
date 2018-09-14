@@ -1,24 +1,31 @@
 HEADERS += \
-    $$PWD/webui.h \
-    $$PWD/btjson.h \
-    $$PWD/prefjson.h \
-    $$PWD/jsonutils.h \
+    $$PWD/api/apicontroller.h \
+    $$PWD/api/apierror.h \
+    $$PWD/api/appcontroller.h \
+    $$PWD/api/authcontroller.h \
+    $$PWD/api/isessionmanager.h \
+    $$PWD/api/logcontroller.h \
+    $$PWD/api/rsscontroller.h \
+    $$PWD/api/synccontroller.h \
+    $$PWD/api/torrentscontroller.h \
+    $$PWD/api/transfercontroller.h \
+    $$PWD/api/serialize/serialize_torrent.h \
     $$PWD/extra_translations.h \
     $$PWD/webapplication.h \
-    $$PWD/websessiondata.h \
-    $$PWD/abstractwebapplication.h
+    $$PWD/webui.h
 
 SOURCES += \
-    $$PWD/webui.cpp \
-    $$PWD/btjson.cpp \
-    $$PWD/prefjson.cpp \
+    $$PWD/api/apicontroller.cpp \
+    $$PWD/api/apierror.cpp \
+    $$PWD/api/appcontroller.cpp \
+    $$PWD/api/authcontroller.cpp \
+    $$PWD/api/logcontroller.cpp \
+    $$PWD/api/rsscontroller.cpp \
+    $$PWD/api/synccontroller.cpp \
+    $$PWD/api/torrentscontroller.cpp \
+    $$PWD/api/transfercontroller.cpp \
+    $$PWD/api/serialize/serialize_torrent.cpp \
     $$PWD/webapplication.cpp \
-    $$PWD/abstractwebapplication.cpp
+    $$PWD/webui.cpp
 
-# QJson JSON parser/serializer for using with Qt4
-lessThan(QT_MAJOR_VERSION, 5) {
-    !usesystemqjson: include(qjson/qjson.pri)
-    else: DEFINES += USE_SYSTEM_QJSON
-}
-
-RESOURCES += $$PWD/webui.qrc
+RESOURCES += $$PWD/www/webui.qrc

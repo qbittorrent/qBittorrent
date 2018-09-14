@@ -17,6 +17,7 @@ Makefile*
 
 # Generated MOC, resource and UI files
 moc_*.cpp
+moc_*.h
 qrc_*.cpp
 ui_*.h
 *.moc
@@ -30,6 +31,6 @@ src/qbittorrent.app
 aclocal.m4
 autom4te.cache/*
 config.status
-src/icons/oxygen/build-icons/node_modules/
+src/icons/qbt-theme/build-icons/node_modules/
 src/icons/skin/build-icons/node_modules/
 src/icons/skin/build-icons/icons/*.png

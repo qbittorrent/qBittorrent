@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "pieceavailabilitybar.h"
@@ -44,7 +42,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     QVector<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
 
-    const float ratio = vecin.size() / (float)reqSize;
+    const float ratio = static_cast<float>(vecin.size()) / reqSize;
 
     const int maxElement = *std::max_element(vecin.begin(), vecin.end());
 
@@ -111,8 +109,8 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         // normalization <0, 1>
         value /= ratio * maxElement;
 
-        // float precision sometimes gives > 1, because in not possible to store irrational numbers
-        value = qMin(value, (float)1.0);
+        // float precision sometimes gives > 1, because it's not possible to store irrational numbers
+        value = qMin(value, 1.0f);
 
         result[x] = value;
     }
@@ -134,12 +132,12 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
         return true;
     }
 
-    QVector<float> scaled_pieces = intToFloatVector(m_pieces, image2.width());
+    QVector<float> scaledPieces = intToFloatVector(m_pieces, image2.width());
 
     // filling image
-    for (int x = 0; x < scaled_pieces.size(); ++x) {
-        float pieces2_val = scaled_pieces.at(x);
-        image2.setPixel(x, 0, pieceColors()[pieces2_val * 255]);
+    for (int x = 0; x < scaledPieces.size(); ++x) {
+        float piecesToValue = scaledPieces.at(x);
+        image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
     }
     image = image2;
     return true;

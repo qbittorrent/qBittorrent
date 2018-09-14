@@ -29,8 +29,8 @@
 #ifndef NET_PORTFORWARDER_H
 #define NET_PORTFORWARDER_H
 
-#include <QObject>
 #include <QHash>
+#include <QObject>
 
 namespace libtorrent
 {
@@ -56,7 +56,7 @@ namespace Net
         void deletePort(quint16 port);
 
     private:
-        explicit PortForwarder(libtorrent::session *const provider, QObject *parent = 0);
+        explicit PortForwarder(libtorrent::session *const provider, QObject *parent = nullptr);
         ~PortForwarder();
 
         void start();

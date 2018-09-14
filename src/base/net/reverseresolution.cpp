@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,18 +24,16 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
+
+#include "reverseresolution.h"
+
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/version.hpp>
 
 #include <QDebug>
 #include <QHostInfo>
 #include <QString>
-
-#include <boost/version.hpp>
-#include <boost/asio/ip/tcp.hpp>
-
-#include "reverseresolution.h"
 
 const int CACHE_SIZE = 500;
 
@@ -43,7 +41,7 @@ using namespace Net;
 
 static inline bool isUsefulHostName(const QString &hostname, const QString &ip)
 {
-    return (!hostname.isEmpty() && hostname != ip);
+    return (!hostname.isEmpty() && (hostname != ip));
 }
 
 ReverseResolution::ReverseResolution(QObject *parent)
@@ -67,13 +65,17 @@ void ReverseResolution::resolve(const QString &ip)
     }
     else {
         // Actually resolve the ip
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
+        m_lookups.insert(QHostInfo::lookupHost(ip, this, &ReverseResolution::hostResolved), ip);
+#else
         m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
+#endif
     }
 }
 
 void ReverseResolution::hostResolved(const QHostInfo &host)
 {
-    const QString &ip = m_lookups.take(host.lookupId());
+    const QString ip = m_lookups.take(host.lookupId());
     Q_ASSERT(!ip.isNull());
 
     if (host.error() != QHostInfo::NoError) {
@@ -81,7 +83,7 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
         return;
     }
 
-    const QString &hostname = host.hostName();
+    const QString hostname = host.hostName();
 
     qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
     m_cache.insert(ip, new QString(hostname));

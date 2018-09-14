@@ -26,11 +26,13 @@
  * exception statement from your version.
  */
 
+#include "filelogger.h"
+
 #include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
-#include "filelogger.h"
+
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
@@ -41,17 +43,17 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
 {
     m_flusher.setInterval(0);
     m_flusher.setSingleShot(true);
-    connect(&m_flusher, SIGNAL(timeout()), SLOT(flushLog()));
+    connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
     changePath(path);
     if (deleteOld)
         this->deleteOld(age, ageType);
 
-    const Logger* const logger = Logger::instance();
-    foreach (const Log::Msg& msg, logger->getMessages())
+    const Logger *const logger = Logger::instance();
+    foreach (const Log::Msg &msg, logger->getMessages())
         addLogMessage(msg);
 
-    connect(logger, SIGNAL(newLogMessage(const Log::Msg &)), SLOT(addLogMessage(const Log::Msg &)));
+    connect(logger, &Logger::newLogMessage, this, &FileLogger::addLogMessage);
 }
 
 FileLogger::~FileLogger()
@@ -61,7 +63,7 @@ FileLogger::~FileLogger()
     delete m_logFile;
 }
 
-void FileLogger::changePath(const QString& newPath)
+void FileLogger::changePath(const QString &newPath)
 {
     QString tmpPath = Utils::Fs::fromNativePath(newPath);
     QDir dir(tmpPath);
@@ -83,21 +85,21 @@ void FileLogger::changePath(const QString& newPath)
 void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
     QDateTime date = QDateTime::currentDateTime();
-    QDir dir(m_path);
-
-    switch (ageType) {
-    case DAYS:
-        date = date.addDays(age);
-        break;
-    case MONTHS:
-        date = date.addMonths(age);
-        break;
-    default:
-        date = date.addYears(age);
-    }
+    QDir dir(Utils::Fs::branchPath(m_path));
 
     foreach (const QFileInfo file, dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed)) {
-        if (file.lastModified() < date)
+        QDateTime modificationDate = file.lastModified();
+        switch (ageType) {
+        case DAYS:
+            modificationDate = modificationDate.addDays(age);
+            break;
+        case MONTHS:
+            modificationDate = modificationDate.addMonths(age);
+            break;
+        default:
+            modificationDate = modificationDate.addYears(age);
+        }
+        if (modificationDate > date)
             break;
         Utils::Fs::forceRemove(file.absoluteFilePath());
     }
@@ -135,7 +137,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     str << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
 
-    if (m_backup && (m_logFile->size() >= (m_maxSize * 1024 * 1024))) {
+    if (m_backup && (m_logFile->size() >= m_maxSize)) {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";
@@ -165,7 +167,7 @@ void FileLogger::openLogFile()
         || !m_logFile->setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
         delete m_logFile;
         m_logFile = nullptr;
-        Logger::instance()->addMessage(tr("An error occured while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+        Logger::instance()->addMessage(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }
 }
 

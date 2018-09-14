@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTCONTENTMODELITEM_H
@@ -34,48 +32,74 @@
 #include <QList>
 #include <QVariant>
 
-namespace prio {
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=6, MAXIMUM=7, MIXED=-1};
+namespace prio
+{
+    enum FilePriority
+    {
+        IGNORED=0,
+        NORMAL=1,
+        HIGH=6,
+        MAXIMUM=7,
+        MIXED=-1
+    };
 }
 
 class TorrentContentModelFolder;
 
-class TorrentContentModelItem {
+class TorrentContentModelItem
+{
 public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, COL_REMAINING, NB_COL};
-  enum ItemType { FileType, FolderType };
+    enum TreeItemColumns
+    {
+        COL_NAME,
+        COL_SIZE,
+        COL_PROGRESS,
+        COL_PRIO,
+        COL_REMAINING,
+        COL_AVAILABILITY,
+        NB_COL
+    };
 
-  TorrentContentModelItem(TorrentContentModelFolder* parent);
-  virtual ~TorrentContentModelItem();
+    enum ItemType
+    {
+        FileType,
+        FolderType
+    };
 
-  inline bool isRootItem() const { return !m_parentItem; }
-  TorrentContentModelFolder* parent() const;
-  virtual ItemType itemType() const = 0;
+    TorrentContentModelItem(TorrentContentModelFolder *parent);
+    virtual ~TorrentContentModelItem();
 
-  QString name() const;
-  void setName(const QString& name);
+    bool isRootItem() const;
+    TorrentContentModelFolder *parent() const;
+    virtual ItemType itemType() const = 0;
 
-  qulonglong size() const;
-  qreal progress() const;
-  qulonglong remaining() const;
+    QString name() const;
+    void setName(const QString &name);
 
-  int priority() const;
-  virtual void setPriority(int new_prio, bool update_parent = true) = 0;
+    qulonglong size() const;
+    qreal progress() const;
+    qulonglong remaining() const;
 
-  int columnCount() const;
-  QVariant data(int column) const;
-  int row() const;
+    qreal availability() const;
+
+    int priority() const;
+    virtual void setPriority(int newPriority, bool updateParent = true) = 0;
+
+    int columnCount() const;
+    QVariant data(int column) const;
+    int row() const;
 
 protected:
-  TorrentContentModelFolder* m_parentItem;
-  // Root item members
-  QList<QVariant> m_itemData;
-  // Non-root item members
-  QString m_name;
-  qulonglong m_size;
-  qulonglong m_remaining;
-  int m_priority;
-  qreal m_progress;
+    TorrentContentModelFolder *m_parentItem;
+    // Root item members
+    QList<QVariant> m_itemData;
+    // Non-root item members
+    QString m_name;
+    qulonglong m_size;
+    qulonglong m_remaining;
+    int m_priority;
+    qreal m_progress;
+    qreal m_availability;
 };
 
 #endif // TORRENTCONTENTMODELITEM_H

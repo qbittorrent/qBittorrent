@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef POWERMANAGEMENTINHIBITOR_H
@@ -33,39 +31,37 @@
 
 #include <QObject>
 
-QT_BEGIN_NAMESPACE
 class QDBusPendingCallWatcher;
-QT_END_NAMESPACE
 
 class PowerManagementInhibitor : public QObject
 {
     Q_OBJECT
 
 public:
-    PowerManagementInhibitor(QObject *parent = 0);
+    PowerManagementInhibitor(QObject *parent = nullptr);
     virtual ~PowerManagementInhibitor();
 
-    void RequestIdle();
-    void RequestBusy();
+    void requestIdle();
+    void requestBusy();
 
 private slots:
-    void OnAsyncReply(QDBusPendingCallWatcher *call);
+    void onAsyncReply(QDBusPendingCallWatcher *call);
 
 private:
-    enum _state
+    enum State
     {
-        error,
-        idle,
-        request_busy,
-        busy,
-        request_idle
+        Error,
+        Idle,
+        RequestBusy,
+        Busy,
+        RequestIdle
     };
 
-    enum _state m_state;
-    enum _state m_intended_state;
+    enum State m_state;
+    enum State m_intendedState;
     unsigned int m_cookie;
 
-    bool m_use_gsm;
+    bool m_useGSM;
 };
 
 #endif // POWERMANAGEMENTINHIBITOR_H

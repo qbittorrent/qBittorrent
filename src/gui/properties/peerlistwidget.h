@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,18 +24,16 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PEERLISTWIDGET_H
 #define PEERLISTWIDGET_H
 
-#include <QTreeView>
 #include <QHash>
 #include <QPointer>
 #include <QSet>
 #include <QShortcut>
+#include <QTreeView>
 
 namespace Net
 {
@@ -46,11 +44,9 @@ class PeerListDelegate;
 class PeerListSortModel;
 class PropertiesWidget;
 
-QT_BEGIN_NAMESPACE
 class QSortFilterProxyModel;
 class QStandardItem;
 class QStandardItemModel;
-QT_END_NAMESPACE
 
 namespace BitTorrent
 {
@@ -59,13 +55,13 @@ namespace BitTorrent
     struct PeerAddress;
 }
 
-class PeerListWidget: public QTreeView
+class PeerListWidget : public QTreeView
 {
     Q_OBJECT
 
 public:
     explicit PeerListWidget(PropertiesWidget *parent);
-    ~PeerListWidget();
+    ~PeerListWidget() override;
 
     void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
     QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
@@ -77,8 +73,8 @@ public:
 private slots:
     void loadSettings();
     void saveSettings() const;
-    void displayToggleColumnsMenu(const QPoint&);
-    void showPeerListMenu(const QPoint&);
+    void displayToggleColumnsMenu(const QPoint &);
+    void showPeerListMenu(const QPoint &);
     void banSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);
@@ -90,7 +86,7 @@ private:
     QStandardItemModel *m_listModel;
     PeerListDelegate *m_listDelegate;
     PeerListSortModel *m_proxyModel;
-    QHash<QString, QStandardItem*> m_peerItems;
+    QHash<QString, QStandardItem *> m_peerItems;
     QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
     QSet<QString> m_missingFlags;
     QPointer<Net::ReverseResolution> m_resolver;

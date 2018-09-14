@@ -31,8 +31,7 @@
 #define ICONPROVIDER_H
 
 #include <QObject>
-
-class QString;
+#include <QString>
 
 class IconProvider : public QObject
 {
@@ -43,10 +42,10 @@ public:
     static void freeInstance();
     static IconProvider *instance();
 
-    virtual QString getIconPath(const QString &iconId);
+    virtual QString getIconPath(const QString &iconId) const;
 
 protected:
-    explicit IconProvider(QObject *parent = 0);
+    explicit IconProvider(QObject *parent = nullptr);
     ~IconProvider();
 
     static IconProvider *m_instance;

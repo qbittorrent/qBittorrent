@@ -29,39 +29,43 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
 
-#include <libtorrent/version.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
-#include <libtorrent/bdecode.hpp>
-#endif
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
-#if LIBTORRENT_VERSION_NUM < 10100
+#include <libtorrent/version.hpp>
+
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <libtorrent/bdecode.hpp>
+#else
 #include <libtorrent/lazy_entry.hpp>
 #endif
 
-
 #include <QDir>
 #include <QFile>
+#include <QRegularExpression>
+#include <QString>
+
 #ifndef DISABLE_GUI
 #include <QMessageBox>
 #endif
-#include <QRegExp>
-#include <QString>
+#ifdef Q_OS_MAC
+#include <QSettings>
+#endif
 
 #include "base/logger.h"
+#include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "base/preferences.h"
-#include "base/qinisettings.h"
 
 bool userAcceptsUpgrade()
 {
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Upgrade")) << " ***" << std::endl;
+    printf("\n*** %s ***\n", qUtf8Printable(QObject::tr("Upgrade")));
     char ret = '\0';
     do {
-        std::cout << qPrintable(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]")) << std::endl;
+        printf("%s\n"
+            , qUtf8Printable(QObject::tr("You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]")));
         ret = getchar(); // Read pressed key
     }
     while ((ret != 'y') && (ret != 'Y') && (ret != 'n') && (ret != 'N'));
@@ -110,22 +114,47 @@ bool upgradeResumeFile(const QString &filepath, const QVariantHash &oldTorrent =
     bool v3_3 = false;
     int queuePosition = 0;
     QString outFilePath = filepath;
-    QRegExp rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(\\d+)$"));
-    if (rx.indexIn(filepath) != -1) {
-        // old v3.3.x format
-        queuePosition = rx.cap(2).toInt();
+    static const QRegularExpression rx(QLatin1String("([A-Fa-f0-9]{40})\\.fastresume\\.(.+)$"));
+    const QRegularExpressionMatch rxMatch = rx.match(filepath);
+    if (rxMatch.hasMatch()) {
+        // Old v3.3.x format had a number at the end indicating the queue position.
+        // The naming scheme was '<infohash>.fastresume.<queueposition>'.
+        // However, QSaveFile, which uses QTemporaryFile internally, might leave
+        // non-commited files behind eg after a crash. These files have the
+        // naming scheme '<infohash>.fastresume.XXXXXX' where each X is a random
+        // character. So we detect if the last part is present. Then check if it
+        // is 6 chars long. If all the 6 chars are digits we assume it is an old
+        // v3.3.x format. Otherwise it is considered a non-commited fastresume
+        // and is deleted, because it may be a corrupted/incomplete fastresume.
+        // NOTE: When the upgrade code is removed, we must continue to perform
+        // cleanup of non-commited QSaveFile/QTemporaryFile fastresumes
+        queuePosition = rxMatch.captured(2).toInt();
+        if ((rxMatch.captured(2).size() == 6) && (queuePosition <= 99999)) {
+            Utils::Fs::forceRemove(filepath);
+            return true;
+        }
+
         v3_3 = true;
-        outFilePath.replace(QRegExp("\\.\\d+$"), "");
+        outFilePath.replace(QRegularExpression("\\.fastresume\\..+$"), ".fastresume");
     }
     else {
         queuePosition = fastOld.dict_find_int_value("qBt-queuePosition", 0);
-        fastNew["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
+        fastNew["qBt-name"] = oldTorrent.value("name").toString().toStdString();
         fastNew["qBt-tempPathDisabled"] = false;
     }
 
     // in versions < 3.3 we have -1 for seeding torrents, so we convert it to 0
     fastNew["qBt-queuePosition"] = (queuePosition >= 0 ? queuePosition : 0);
 
+    if (v3_3) {
+        QFileInfo oldFile(filepath);
+        QFileInfo newFile(outFilePath);
+        if (newFile.exists()
+            && (oldFile.lastModified() < newFile.lastModified())) {
+            Utils::Fs::forceRemove(filepath);
+            return true;
+        }
+    }
     QFile file2(outFilePath);
     QVector<char> out;
     libtorrent::bencode(std::back_inserter(out), fastNew);
@@ -145,7 +174,7 @@ bool upgrade(bool ask = true)
     // Upgrade preferences
     Preferences::instance()->upgrade();
 
-    QString backupFolderPath = Utils::Fs::expandPathAbs(Utils::Fs::QDesktopServicesDataLocation() + "BT_backup");
+    QString backupFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "BT_backup");
     QDir backupFolderDir(backupFolderPath);
 
     // ****************************************************************************************
@@ -156,15 +185,10 @@ bool upgrade(bool ask = true)
         upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
     // ****************************************************************************************
 
-#ifdef Q_OS_MAC
-    // native .plist
-    QSettings *oldResumeSettings = new QSettings("qBittorrent", "qBittorrent-resume");
-#else
-    QIniSettings *oldResumeSettings = new QIniSettings("qBittorrent", "qBittorrent-resume");
-#endif
+    SettingsPtr oldResumeSettings = Profile::instance().applicationSettings(QLatin1String("qBittorrent-resume"));
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
-    delete oldResumeSettings;
+    oldResumeSettings.reset();
 
     if (oldResumeData.isEmpty()) {
         Utils::Fs::forceRemove(oldResumeFilename);
@@ -175,31 +199,34 @@ bool upgrade(bool ask = true)
 
     QStringList backupFiles = backupFolderDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-    QRegExp rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
+    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
     foreach (QString backupFile, backupFiles) {
-        if (rx.indexIn(backupFile) != -1) {
-            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[rx.cap(1)].toHash()))
-                oldResumeData.remove(rx.cap(1));
+        const QRegularExpressionMatch rxMatch = rx.match(backupFile);
+        if (rxMatch.hasMatch()) {
+            const QString hashStr = rxMatch.captured(1);
+            if (upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile), oldResumeData[hashStr].toHash()))
+                oldResumeData.remove(hashStr);
             else
-                Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(rx.cap(1)), Log::WARNING);
+                Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent with hash: %1").arg(hashStr), Log::WARNING);
         }
         else {
             Logger::instance()->addMessage(QObject::tr("Couldn't migrate torrent. Invalid fastresume file name: %1").arg(backupFile), Log::WARNING);
         }
     }
 
-    foreach (const QString &hash, oldResumeData.keys()) {
-        QVariantHash oldTorrent = oldResumeData[hash].toHash();
+    for (auto i = oldResumeData.cbegin(); i != oldResumeData.cend(); ++i) {
+        const QVariantHash oldTorrent = i.value().toHash();
         if (oldTorrent.value("is_magnet", false).toBool()) {
+            const QString &hash = i.key();
             libtorrent::entry resumeData;
-            resumeData["qBt-magnetUri"] = Utils::String::toStdString(oldTorrent.value("magnet_uri").toString());
+            resumeData["qBt-magnetUri"] = oldTorrent.value("magnet_uri").toString().toStdString();
             resumeData["qBt-paused"] = false;
             resumeData["qBt-forced"] = false;
 
-            resumeData["qBt-savePath"] = Utils::String::toStdString(oldTorrent.value("save_path").toString());
-            resumeData["qBt-ratioLimit"] = Utils::String::toStdString(QString::number(oldTorrent.value("max_ratio", -2).toReal()));
-            resumeData["qBt-label"] = Utils::String::toStdString(oldTorrent.value("label").toString());
-            resumeData["qBt-name"] = Utils::String::toStdString(oldTorrent.value("name").toString());
+            resumeData["qBt-savePath"] = oldTorrent.value("save_path").toString().toStdString();
+            resumeData["qBt-ratioLimit"] = static_cast<int>(oldTorrent.value("max_ratio", -2).toReal() * 1000);
+            resumeData["qBt-label"] = oldTorrent.value("label").toString().toStdString();
+            resumeData["qBt-name"] = oldTorrent.value("name").toString().toStdString();
             resumeData["qBt-seedStatus"] = oldTorrent.value("seed").toBool();
             resumeData["qBt-tempPathDisabled"] = false;
 
@@ -228,11 +255,10 @@ bool upgrade(bool ask = true)
     return true;
 }
 
-
 #ifdef Q_OS_MAC
 void migratePlistToIni(const QString &application)
 {
-    QIniSettings iniFile("qBittorrent", application);
+    QSettings iniFile(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", application);
     if (!iniFile.allKeys().isEmpty()) return; // We copy the contents of plist, only if inifile does not exist(is empty).
 
     QSettings *plistFile = new QSettings("qBittorrent", application);
@@ -257,5 +283,22 @@ void macMigratePlists()
 }
 #endif  // Q_OS_MAC
 
+#ifndef DISABLE_GUI
+void migrateRSS()
+{
+    // Copy old feed items to new file if needed
+    SettingsPtr qBTRSS = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss-feeds"));
+    if (!qBTRSS->allKeys().isEmpty()) return; // We move the contents of RSS old_items only if inifile does not exist (is empty).
+
+    SettingsPtr qBTRSSLegacy = Profile::instance().applicationSettings(QLatin1String("qBittorrent-rss"));
+    QHash<QString, QVariant> allOldItems = qBTRSSLegacy->value("old_items", QHash<QString, QVariant>()).toHash();
+
+    if (!allOldItems.empty()) {
+        qDebug("Moving %d old items for feeds to qBittorrent-rss-feeds", allOldItems.size());
+        qBTRSS->setValue("old_items", allOldItems);
+        qBTRSSLegacy->remove("old_items");
+    }
+}
+#endif // DISABLE_GUI
 
 #endif // UPGRADE_H

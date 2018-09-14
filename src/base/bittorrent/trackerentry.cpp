@@ -26,16 +26,17 @@
  * exception statement from your version.
  */
 
+#include "trackerentry.h"
+
 #include <QString>
 
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "trackerentry.h"
 
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(libtorrent::announce_entry(Utils::String::toStdString(url)))
+    : m_nativeEntry(libtorrent::announce_entry(url.toStdString()))
 {
 }
 
@@ -51,7 +52,7 @@ TrackerEntry::TrackerEntry(const TrackerEntry &other)
 
 QString TrackerEntry::url() const
 {
-    return Utils::String::fromStdString(m_nativeEntry.url);
+    return QString::fromStdString(m_nativeEntry.url);
 }
 
 int TrackerEntry::tier() const
@@ -84,7 +85,7 @@ TrackerEntry &TrackerEntry::operator=(const TrackerEntry &other)
     return *this;
 }
 
-bool TrackerEntry::operator==(const TrackerEntry &other)
+bool TrackerEntry::operator==(const TrackerEntry &other) const
 {
     return (QUrl(url()) == QUrl(other.url()));
 }

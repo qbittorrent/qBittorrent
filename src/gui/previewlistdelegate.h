@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,81 +24,79 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PREVIEWLISTDELEGATE_H
 #define PREVIEWLISTDELEGATE_H
 
+#include <QApplication>
 #include <QItemDelegate>
-#include <QStyleOptionProgressBar>
-#include <QStyleOptionViewItem>
 #include <QModelIndex>
 #include <QPainter>
-#include <QApplication>
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
-#include "previewselect.h"
+#include <QStyleOptionProgressBar>
+#include <QStyleOptionViewItem>
 
 #ifdef Q_OS_WIN
-#ifndef QBT_USES_QT5
-#include <QPlastiqueStyle>
-#else
 #include <QProxyStyle>
 #endif
-#endif
 
-class PreviewListDelegate: public QItemDelegate {
-  Q_OBJECT
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "previewselectdialog.h"
 
-  public:
-    PreviewListDelegate(QObject *parent=0) : QItemDelegate(parent) {}
+class PreviewListDelegate : public QItemDelegate
+{
+    Q_OBJECT
+
+public:
+    PreviewListDelegate(QObject *parent = nullptr)
+        : QItemDelegate(parent)
+    {
+    }
 
     ~PreviewListDelegate() {}
 
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
-      painter->save();
-      QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+    {
+        painter->save();
+        QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
 
-      switch(index.column()) {
-        case PreviewSelect::SIZE:
-          QItemDelegate::drawBackground(painter, opt, index);
-          QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
-          break;
-        case PreviewSelect::PROGRESS:{
-          QStyleOptionProgressBar newopt;
-          qreal progress = index.data().toDouble()*100.;
-          newopt.rect = opt.rect;
-          newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
-          newopt.progress = (int)progress;
-          newopt.maximum = 100;
-          newopt.minimum = 0;
-          newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = true;
+        switch (index.column()) {
+        case PreviewSelectDialog::SIZE:
+            QItemDelegate::drawBackground(painter, opt, index);
+            QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
+            break;
+        case PreviewSelectDialog::PROGRESS: {
+                QStyleOptionProgressBar newopt;
+                qreal progress = index.data().toDouble() * 100.;
+                newopt.rect = opt.rect;
+                newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
+                newopt.progress = static_cast<int>(progress);
+                newopt.maximum = 100;
+                newopt.minimum = 0;
+                newopt.state |= QStyle::State_Enabled;
+                newopt.textVisible = true;
 #ifndef Q_OS_WIN
-          QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+                QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-          // XXX: To avoid having the progress text on the right of the bar
-#ifndef QBT_USES_QT5
-          QPlastiqueStyle st;
-#else
-          QProxyStyle st("fusion");
+                // XXX: To avoid having the progress text on the right of the bar
+                QProxyStyle st("fusion");
+                st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
-          st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
-#endif
-          break;
-        }
+            }
+            break;
         default:
-          QItemDelegate::paint(painter, option, index);
-      }
-      painter->restore();
+            QItemDelegate::paint(painter, option, index);
+        }
+
+        painter->restore();
     }
 
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const {
-      // No editor here
-      return 0;
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
+    {
+        // No editor here
+        return nullptr;
     }
 };
 
-#endif
+#endif // PREVIEWLISTDELEGATE_H

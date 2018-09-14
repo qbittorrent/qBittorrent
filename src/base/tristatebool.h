@@ -32,22 +32,36 @@
 class TriStateBool
 {
 public:
-    enum ValueType
+    static const TriStateBool Undefined;
+    static const TriStateBool False;
+    static const TriStateBool True;
+
+    constexpr TriStateBool() = default;
+    constexpr TriStateBool(const TriStateBool &other) = default;
+    explicit constexpr TriStateBool(int value)
+        : m_value(value < 0 ? -1 : (value > 0 ? 1 : 0))
     {
-        Undefined = -1,
-        False = 0,
-        True = 1
-    };
+    }
 
-    TriStateBool();
-    TriStateBool(bool b);
-    TriStateBool(ValueType value);
+    explicit constexpr operator int() const
+    {
+        return m_value;
+    }
 
-    operator ValueType() const;
-    operator bool() const;
+    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++14
+
+    constexpr bool operator==(const TriStateBool &other) const
+    {
+        return (m_value == other.m_value);
+    }
+
+    constexpr bool operator!=(const TriStateBool &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
-    ValueType m_value;
+    signed char m_value = -1; // Undefined by default
 };
 
 #endif // TRISTATEBOOL_H

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef ADDNEWTORRENTDIALOG_H
@@ -34,8 +32,8 @@
 #include <QDialog>
 #include <QScopedPointer>
 #include <QShortcut>
-#include <QUrl>
 
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrentinfo.h"
 
@@ -49,33 +47,37 @@ namespace Ui
     class AddNewTorrentDialog;
 }
 
+class PropListDelegate;
 class TorrentContentFilterModel;
 class TorrentFileGuard;
-class PropListDelegate;
 
-class AddNewTorrentDialog: public QDialog
+class AddNewTorrentDialog : public QDialog
 {
     Q_OBJECT
 
 public:
+    static const int minPathHistoryLength = 0;
+    static const int maxPathHistoryLength = 99;
+
     ~AddNewTorrentDialog();
 
     static bool isEnabled();
     static void setEnabled(bool value);
     static bool isTopLevel();
     static void setTopLevel(bool value);
+    static int savePathHistoryLength();
+    static void setSavePathHistoryLength(int value);
 
-    static void show(QString source, QWidget *parent = 0);
+    static void show(QString source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
+    static void show(QString source, QWidget *parent);
 
 private slots:
     void showAdvancedSettings(bool show);
-    void displayContentTreeMenu(const QPoint&);
+    void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
-    void onSavePathChanged(int);
+    void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
-    void setdialogPosition();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
-    void browseButton_clicked();
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
     void handleDownloadFinished(const QString &url, const QString &filePath);
@@ -87,31 +89,32 @@ private slots:
     void reject() override;
 
 private:
-    explicit AddNewTorrentDialog(QWidget *parent = 0);
+    explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
     bool loadTorrent(const QString &torrentPath);
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
-    int indexOfSavePath(const QString& save_path);
+    int indexOfSavePath(const QString &savePath);
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
     void setupTreeview();
     void setCommentText(const QString &str) const;
+    void setSavePath(const QString &newPath);
 
     void showEvent(QShowEvent *event) override;
 
-    Ui::AddNewTorrentDialog *ui;
+    Ui::AddNewTorrentDialog *m_ui;
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;
     bool m_hasMetadata;
     QString m_filePath;
     BitTorrent::InfoHash m_hash;
     BitTorrent::TorrentInfo m_torrentInfo;
-    QShortcut *editHotkey;
     QByteArray m_headerState;
     int m_oldIndex;
     QScopedPointer<TorrentFileGuard> m_torrentGuard;
+    BitTorrent::AddTorrentParams m_torrentParams;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

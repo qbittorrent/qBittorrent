@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTCONTENTMODELFILE_H
@@ -36,16 +34,17 @@
 class TorrentContentModelFile : public TorrentContentModelItem
 {
 public:
-  TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                          TorrentContentModelFolder* parent, int file_index);
+    TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
+                            TorrentContentModelFolder *parent, int fileIndex);
 
-  int fileIndex() const;
-  void setPriority(int new_prio, bool update_parent = true);
-  void setProgress(qreal progress);
-  ItemType itemType() const { return FileType; }
+    int fileIndex() const;
+    void setPriority(int newPriority, bool updateParent = true) override;
+    void setProgress(qreal progress);
+    void setAvailability(qreal availability);
+    ItemType itemType() const override;
 
 private:
-  int m_fileIndex;
+    int m_fileIndex;
 };
 
 #endif // TORRENTCONTENTMODELFILE_H

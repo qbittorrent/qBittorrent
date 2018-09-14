@@ -43,19 +43,19 @@ public:
     static void initInstance();
     static GuiIconProvider *instance();
 
-    QIcon getIcon(const QString &iconId);
-    QIcon getFlagIcon(const QString &countryIsoCode);
-    QString getIconPath(const QString &iconId);
+    QIcon getIcon(const QString &iconId) const;
+    QIcon getIcon(const QString &iconId, const QString &fallback) const;
+    QIcon getFlagIcon(const QString &countryIsoCode) const;
+    QString getIconPath(const QString &iconId) const override;
 
 private slots:
     void configure();
 
 private:
-    explicit GuiIconProvider(QObject *parent = 0);
-    ~GuiIconProvider();
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QIcon generateDifferentSizes(const QIcon &icon);
+    explicit GuiIconProvider(QObject *parent = nullptr);
+    ~GuiIconProvider() override;
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;
 #endif
 };

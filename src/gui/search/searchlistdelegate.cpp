@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,18 +24,23 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QStyleOptionViewItem>
+#include "searchlistdelegate.h"
+
+#include <QCoreApplication>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
+#include <QStyleOptionViewItem>
 
 #include "base/utils/misc.h"
 #include "searchsortmodel.h"
-#include "searchlistdelegate.h"
+
+namespace
+{
+    const char i18nContext[] = "SearchListDelegate";
+}
 
 SearchListDelegate::SearchListDelegate(QObject *parent)
     : QItemDelegate(parent)
@@ -47,18 +52,18 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     painter->save();
 
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
-    switch(index.column()) {
+    QItemDelegate::drawBackground(painter, opt, index);
+
+    switch (index.column()) {
     case SearchSortModel::SIZE:
-        QItemDelegate::drawBackground(painter, opt, index);
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
     case SearchSortModel::SEEDS:
-        QItemDelegate::drawBackground(painter, opt, index);
-        QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
-        break;
     case SearchSortModel::LEECHES:
-        QItemDelegate::drawBackground(painter, opt, index);
-        QItemDelegate::drawDisplay(painter, opt, option.rect, (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
+        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+        QItemDelegate::drawDisplay(painter, opt, option.rect
+            , (index.data().toLongLong() >= 0) ? index.data().toString() : QCoreApplication::translate(i18nContext, "Unknown"));
         break;
     default:
         QItemDelegate::paint(painter, option, index);
@@ -70,5 +75,5 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 QWidget *SearchListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
 {
     // No editor here
-    return 0;
+    return nullptr;
 }

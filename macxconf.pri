@@ -9,10 +9,7 @@ exists($$OUT_PWD/../conf.pri) {
     include(conf.pri)
 }
 
-LIBS += -framework Carbon -framework IOKit
-
-# C++11 support
-lessThan(QT_MAJOR_VERSION, 5): QMAKE_CXXFLAGS += -std=c++11
+LIBS += -framework Carbon -framework IOKit -framework AppKit
 
 QT_LANG_PATH = ../dist/qt-translations
 DIST_PATH = ../dist/mac

@@ -37,7 +37,7 @@
 		</dict>
 	</array>
 	<key>CFBundleName</key>
-	<string>qBittorrent</string>
+	<string>@EXECUTABLE@</string>
 	<key>CFBundleIconFile</key>
 	<string>qbittorrent_mac.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -45,11 +45,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.4.0</string>
+	<string>4.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>qBit</string>
 	<key>CFBundleExecutable</key>
-	<string>qbittorrent</string>
+	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent</string>
 	<key>NSPrincipalClass</key>
@@ -59,7 +59,7 @@
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2006-2016 The qBittorrent project</string>
+	<string>Copyright © 2006-2018 The qBittorrent project</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

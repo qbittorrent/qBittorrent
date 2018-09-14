@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTCONTENTMODELFOLDER_H
@@ -36,31 +34,32 @@
 class TorrentContentModelFolder : public TorrentContentModelItem
 {
 public:
-  // Folder constructor
-  TorrentContentModelFolder(const QString& name, TorrentContentModelFolder* parent);
+    // Folder constructor
+    TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
-  // Invisible root item constructor
-  TorrentContentModelFolder(const QList<QVariant>& data);
+    // Invisible root item constructor
+    TorrentContentModelFolder(const QList<QVariant> &data);
 
-  ~TorrentContentModelFolder();
+    ~TorrentContentModelFolder() override;
 
-  ItemType itemType() const { return FolderType; }
+    ItemType itemType() const override;
 
-  void increaseSize(qulonglong delta);
-  void recalculateProgress();
-  void updatePriority();
+    void increaseSize(qulonglong delta);
+    void recalculateProgress();
+    void recalculateAvailability();
+    void updatePriority();
 
-  void setPriority(int new_prio, bool update_parent = true);
+    void setPriority(int newPriority, bool updateParent = true) override;
 
-  void deleteAllChildren();
-  const QList<TorrentContentModelItem*>& children() const;
-  void appendChild(TorrentContentModelItem* item);
-  TorrentContentModelItem* child(int row) const;
-  TorrentContentModelFolder* childFolderWithName(const QString& name) const;
-  int childCount() const;
+    void deleteAllChildren();
+    const QList<TorrentContentModelItem*> &children() const;
+    void appendChild(TorrentContentModelItem *item);
+    TorrentContentModelItem *child(int row) const;
+    TorrentContentModelFolder *childFolderWithName(const QString &name) const;
+    int childCount() const;
 
 private:
-  QList<TorrentContentModelItem*> m_childItems;
+    QList<TorrentContentModelItem*> m_childItems;
 };
 
 #endif // TORRENTCONTENTMODELFOLDER_H

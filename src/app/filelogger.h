@@ -76,4 +76,3 @@ private:
 };
 
 #endif // FILELOGGER_H
-

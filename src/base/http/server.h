@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 
@@ -34,8 +32,10 @@
 #define HTTP_SERVER_H
 
 #include <QTcpServer>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
+#include <QSslCipher>
 #include <QSslKey>
 #endif
 
@@ -50,28 +50,30 @@ namespace Http
         Q_DISABLE_COPY(Server)
 
     public:
-        Server(IRequestHandler *requestHandler, QObject *parent = 0);
+        Server(IRequestHandler *requestHandler, QObject *parent = nullptr);
         ~Server();
 
-    #ifndef QT_NO_OPENSSL
-        void enableHttps(const QList<QSslCertificate> &certificates, const QSslKey &key);
+#ifndef QT_NO_OPENSSL
+        bool setupHttps(const QByteArray &certificates, const QByteArray &key);
         void disableHttps();
-    #endif
+#endif
+
+    private slots:
+        void dropTimedOutConnection();
 
     private:
-    #ifdef QBT_USES_QT5
         void incomingConnection(qintptr socketDescriptor);
-    #else
-        void incomingConnection(int socketDescriptor);
-    #endif
 
-    private:
         IRequestHandler *m_requestHandler;
-    #ifndef QT_NO_OPENSSL
+        QList<Connection *> m_connections;  // for tracking persistent connections
+
+#ifndef QT_NO_OPENSSL
+        QList<QSslCipher> safeCipherList() const;
+
         bool m_https;
         QList<QSslCertificate> m_certificates;
         QSslKey m_key;
-    #endif
+#endif
     };
 }
 

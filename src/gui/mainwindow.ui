@@ -90,6 +90,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionDownloadFromURL"/>
+    <addaction name="actionCloseWindow"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -110,6 +111,7 @@
     </widget>
     <addaction name="separator"/>
     <addaction name="actionTopToolBar"/>
+    <addaction name="actionShowStatusbar"/>
     <addaction name="actionSpeedInTitleBar"/>
     <addaction name="separator"/>
     <addaction name="actionSearchWidget"/>
@@ -300,6 +302,14 @@
     <string>Display Top Toolbar</string>
    </property>
   </action>
+  <action name="actionShowStatusbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Status &amp;Bar</string>
+   </property>
+  </action>
   <action name="actionSpeedInTitleBar">
    <property name="checkable">
     <bool>true</bool>
@@ -455,6 +465,11 @@
    </property>
    <property name="text">
     <string>Critical Messages</string>
+   </property>
+  </action>
+  <action name="actionCloseWindow">
+   <property name="text">
+    <string>Close Window</string>
    </property>
   </action>
  </widget>

@@ -1,26 +1,31 @@
 # Settings for compiling qBittorrent on Windows
 
+list(APPEND CMAKE_LIBRARY_PATH "$ENV{LIB}")
+
 # We want to link with static version of
 # libtorrent
 set(LibtorrentRasterbar_USE_STATIC_LIBS True)
-set(LibtorrentRasterbar_CUSTOM_DEFINITIONS 
+set(LibtorrentRasterbar_CUSTOM_DEFINITIONS
     -DBOOST_ALL_NO_LIB -DBOOST_ASIO_HASH_MAP_BUCKETS=1021
     -DBOOST_ASIO_SEPARATE_COMPILATION
     -DBOOST_EXCEPTION_DISABLE
     -DBOOST_SYSTEM_STATIC_LINK=1
     -DTORRENT_USE_OPENSSL
-    -DUNICODE
+    -D__USE_W32_SOCKETS
+    -D_FILE_OFFSET_BITS=64)
+
+add_definitions(-DUNICODE
     -D_UNICODE
     -DWIN32
     -D_WIN32
     -DWIN32_LEAN_AND_MEAN
+    -DNTDDI_VERSION=0x05010000
     -D_WIN32_WINNT=0x0501
-    -D_WIN32_IE=0x0500
+    -D_WIN32_IE=0x0501
     -D_CRT_SECURE_NO_DEPRECATE
     -D_SCL_SECURE_NO_DEPRECATE
-    -D__USE_W32_SOCKETS
-    -D_FILE_OFFSET_BITS=64)
-
+    -DNOMINMAX
+)
 # and boost
 set(Boost_USE_STATIC_LIBS  True)
 # set(Boost_USE_STATIC_RUNTIME True)

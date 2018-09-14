@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,17 +25,17 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef BITTORRENT_TRACKER_H
 #define BITTORRENT_TRACKER_H
 
 #include <QHash>
-#include "base/http/types.h"
-#include "base/http/responsebuilder.h"
+#include <QObject>
+
 #include "base/http/irequesthandler.h"
+#include "base/http/responsebuilder.h"
+#include "base/http/types.h"
 
 namespace libtorrent
 {
@@ -52,7 +52,7 @@ namespace BitTorrent
     struct Peer
     {
         QString ip;
-        QString peerId;
+        QByteArray peerId;
         int port;
 
         bool operator!=(const Peer &other) const;
@@ -63,7 +63,7 @@ namespace BitTorrent
 
     struct TrackerAnnounceRequest
     {
-        QString infoHash;
+        QByteArray infoHash;
         QString event;
         int numwant;
         Peer peer;
@@ -72,17 +72,17 @@ namespace BitTorrent
     };
 
     typedef QHash<QString, Peer> PeerList;
-    typedef QHash<QString, PeerList> TorrentList;
+    typedef QHash<QByteArray, PeerList> TorrentList;
 
     /* Basic Bittorrent tracker implementation in Qt */
     /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
-    class Tracker : public Http::ResponseBuilder, public Http::IRequestHandler
+    class Tracker : public QObject, public Http::IRequestHandler, private Http::ResponseBuilder
     {
         Q_OBJECT
         Q_DISABLE_COPY(Tracker)
 
     public:
-        explicit Tracker(QObject *parent = 0);
+        explicit Tracker(QObject *parent = nullptr);
         ~Tracker();
 
         bool start();
@@ -90,6 +90,8 @@ namespace BitTorrent
 
     private:
         void respondToAnnounceRequest();
+        void registerPeer(const TrackerAnnounceRequest &annonceReq);
+        void unregisterPeer(const TrackerAnnounceRequest &annonceReq);
         void replyWithPeerList(const TrackerAnnounceRequest &annonceReq);
 
         Http::Server *m_server;

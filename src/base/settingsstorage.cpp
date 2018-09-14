@@ -32,10 +32,9 @@
 #include <memory>
 #include <QFile>
 #include <QHash>
-#include <QStringList>
-#include <QSettings>
 
 #include "logger.h"
+#include "profile.h"
 #include "utils/fs.h"
 
 namespace
@@ -62,38 +61,12 @@ namespace
         QString deserialize(const QString &name, QVariantHash &data);
         QString serialize(const QString &name, const QVariantHash &data);
 
-        using SettingsPtr = std::unique_ptr<QSettings>;
-        SettingsPtr createSettings(const QString &name)
-        {
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-            return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, "qBittorrent", name));
-#else
-            return SettingsPtr(new QSettings("qBittorrent", name));
-#endif
-        }
-
-        QString m_name;
+        const QString m_name;
     };
-
-#ifdef QBT_USES_QT5
-    typedef QHash<QString, QString> MappingTable;
-#else
-    class MappingTable: public QHash<QString, QString>
-    {
-    public:
-        MappingTable(std::initializer_list<std::pair<QString, QString>> list)
-        {
-            reserve(static_cast<int>(list.size()));
-            for (const auto &i : list)
-                insert(i.first, i.second);
-        }
-    };
-#endif
 
     QString mapKey(const QString &key)
     {
-        static const MappingTable keyMapping = {
-
+        static const QHash<QString, QString> keyMapping = {
             {"BitTorrent/Session/MaxRatioAction", "Preferences/Bittorrent/MaxRatioAction"},
             {"BitTorrent/Session/DefaultSavePath", "Preferences/Downloads/SavePath"},
             {"BitTorrent/Session/TempPath", "Preferences/Downloads/TempPath"},
@@ -127,7 +100,6 @@ namespace
             {"BitTorrent/Session/DHTEnabled", "Preferences/Bittorrent/DHT"},
             {"BitTorrent/Session/LSDEnabled", "Preferences/Bittorrent/LSD"},
             {"BitTorrent/Session/PeXEnabled", "Preferences/Bittorrent/PeX"},
-            {"BitTorrent/Session/TrackerExchangeEnabled", "Preferences/Advanced/LtTrackerExchange"},
             {"BitTorrent/Session/AddTrackersEnabled", "Preferences/Bittorrent/AddTrackers"},
             {"BitTorrent/Session/AdditionalTrackers", "Preferences/Bittorrent/TrackersList"},
             {"BitTorrent/Session/IPFilteringEnabled", "Preferences/IPFilter/Enabled"},
@@ -162,11 +134,7 @@ namespace
             {"Network/Proxy/IP", "Preferences/Connection/Proxy/IP"},
             {"Network/Proxy/Port", "Preferences/Connection/Proxy/Port"},
             {"Network/PortForwardingEnabled", "Preferences/Connection/UPnP"},
-#ifdef QBT_USES_QT5
             {"AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/qt5/treeHeaderState"},
-#else
-            {"AddNewTorrentDialog/TreeHeaderState", "AddNewTorrentDialog/treeHeaderState"},
-#endif
             {"AddNewTorrentDialog/Width", "AddNewTorrentDialog/width"},
             {"AddNewTorrentDialog/Position", "AddNewTorrentDialog/y"},
             {"AddNewTorrentDialog/Expanded", "AddNewTorrentDialog/expanded"},
@@ -175,7 +143,6 @@ namespace
             {"AddNewTorrentDialog/TopLevel", "Preferences/Downloads/NewAdditionDialogFront"},
 
             {"State/BannedIPs", "Preferences/IPFilter/BannedIPs"}
-
         };
 
         return keyMapping.value(key, key);
@@ -191,7 +158,7 @@ SettingsStorage::SettingsStorage()
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
-    connect(&m_timer, SIGNAL(timeout()), SLOT(save()));
+    connect(&m_timer, &QTimer::timeout, this, &SettingsStorage::save);
 }
 
 SettingsStorage::~SettingsStorage()
@@ -228,6 +195,7 @@ bool SettingsStorage::save()
         return true;
     }
 
+    m_timer.start();
     return false;
 }
 
@@ -239,7 +207,7 @@ QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultV
 
 void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 {
-    QString realKey = mapKey(key);
+    const QString realKey = mapKey(key);
     QWriteLocker locker(&m_lock);
     if (m_data.value(realKey) != value) {
         m_dirty = true;
@@ -250,7 +218,7 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 
 void SettingsStorage::removeValue(const QString &key)
 {
-    QString realKey = mapKey(key);
+    const QString realKey = mapKey(key);
     QWriteLocker locker(&m_lock);
     if (m_data.contains(realKey)) {
         m_dirty = true;
@@ -262,36 +230,39 @@ void SettingsStorage::removeValue(const QString &key)
 QVariantHash TransactionalSettings::read()
 {
     QVariantHash res;
-    bool writeBackNeeded = false;
-    QString newPath = deserialize(m_name + QLatin1String("_new"), res);
+
+    const QString newPath = deserialize(m_name + QLatin1String("_new"), res);
     if (!newPath.isEmpty()) { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
-        // or because the disk was full. In any case the settings weren't transfered
+        // or because the disk was full. In any case the settings weren't transferred
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
         // contains the most recent settings.
-        Logger::instance()->addMessage(QObject::tr("Detected unclean program exit. Using fallback file to restore settings."), Log::WARNING);
-        writeBackNeeded = true;
+        Logger::instance()->addMessage(QObject::tr("Detected unclean program exit. Using fallback file to restore settings: %1")
+                .arg(Utils::Fs::toNativePath(newPath))
+            , Log::WARNING);
+
+        QString finalPath = newPath;
+        int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+        finalPath.remove(index, 4);
+
+        Utils::Fs::forceRemove(finalPath);
+        QFile::rename(newPath, finalPath);
     }
     else {
         deserialize(m_name, res);
     }
-
-    Utils::Fs::forceRemove(newPath);
-
-    if (writeBackNeeded)
-        write(res);
 
     return res;
 }
 
 bool TransactionalSettings::write(const QVariantHash &data)
 {
-    // QSettings delete the file before writing it out. This can result in problems
+    // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
     // between deleting the file and recreating it. This is a safety measure.
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
-    QString newPath = serialize(m_name + QLatin1String("_new"), data);
+    const QString newPath = serialize(m_name + QLatin1String("_new"), data);
     if (newPath.isEmpty()) {
         Utils::Fs::forceRemove(newPath);
         return false;
@@ -300,15 +271,14 @@ bool TransactionalSettings::write(const QVariantHash &data)
     QString finalPath = newPath;
     int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
     finalPath.remove(index, 4);
-    Utils::Fs::forceRemove(finalPath);
-    QFile::rename(newPath, finalPath);
 
-    return true;
+    Utils::Fs::forceRemove(finalPath);
+    return QFile::rename(newPath, finalPath);
 }
 
 QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data)
 {
-    SettingsPtr settings = createSettings(name);
+    SettingsPtr settings = Profile::instance().applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
         return QString();
@@ -324,18 +294,24 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
 
 QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data)
 {
-    SettingsPtr settings = createSettings(name);
+    SettingsPtr settings = Profile::instance().applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 
     settings->sync(); // Important to get error status
-    QSettings::Status status = settings->status();
-    if (status != QSettings::NoError) {
-        if (status == QSettings::AccessError)
-            Logger::instance()->addMessage(QObject::tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
-        else
-            Logger::instance()->addMessage(QObject::tr("A format error occurred while trying to write the configuration file."), Log::CRITICAL);
-        return QString();
+
+    switch (settings->status()) {
+    case QSettings::NoError:
+        return settings->fileName();
+    case QSettings::AccessError:
+        Logger::instance()->addMessage(QObject::tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
+        break;
+    case QSettings::FormatError:
+        Logger::instance()->addMessage(QObject::tr("A format error occurred while trying to write the configuration file."), Log::CRITICAL);
+        break;
+    default:
+        Logger::instance()->addMessage(QObject::tr("An unknown error occurred while trying to write the configuration file."), Log::CRITICAL);
+        break;
     }
-    return settings->fileName();
+    return QString();
 }

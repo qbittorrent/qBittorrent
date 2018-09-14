@@ -1,11 +1,12 @@
+#include "statistics.h"
+
 #include <QDateTime>
 
 #include <libtorrent/session.hpp>
 
-#include "base/qinisettings.h"
-#include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/session.h"
-#include "statistics.h"
+#include "base/bittorrent/sessionstatus.h"
+#include "base/profile.h"
 
 static const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
 
@@ -21,7 +22,7 @@ Statistics::Statistics(Session *session)
     , m_dirty(false)
 {
     load();
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(gather()));
+    connect(&m_timer, &QTimer::timeout, this, &Statistics::gather);
     m_timer.start(60 * 1000);
 }
 
@@ -44,13 +45,13 @@ quint64 Statistics::getAlltimeUL() const
 
 void Statistics::gather()
 {
-    SessionStatus ss = m_session->status();
-    if (ss.totalDownload() > m_sessionDL) {
-        m_sessionDL = ss.totalDownload();
+    const SessionStatus &ss = m_session->status();
+    if (ss.totalDownload > m_sessionDL) {
+        m_sessionDL = ss.totalDownload;
         m_dirty = true;
     }
-    if (ss.totalUpload() > m_sessionUL) {
-        m_sessionUL = ss.totalUpload();
+    if (ss.totalUpload > m_sessionUL) {
+        m_sessionUL = ss.totalUpload;
         m_dirty = true;
     }
 
@@ -64,19 +65,19 @@ void Statistics::save() const
     if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
         return;
 
-    QIniSettings s("qBittorrent", "qBittorrent-data");
+    SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
     QVariantHash v;
     v.insert("AlltimeDL", m_alltimeDL + m_sessionDL);
     v.insert("AlltimeUL", m_alltimeUL + m_sessionUL);
-    s.setValue("Stats/AllStats", v);
+    s->setValue("Stats/AllStats", v);
     m_dirty = false;
     m_lastWrite = now;
 }
 
 void Statistics::load()
 {
-    QIniSettings s("qBittorrent", "qBittorrent-data");
-    QVariantHash v = s.value("Stats/AllStats").toHash();
+    SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
+    QVariantHash v = s->value("Stats/AllStats").toHash();
 
     m_alltimeDL = v["AlltimeDL"].toULongLong();
     m_alltimeUL = v["AlltimeUL"].toULongLong();

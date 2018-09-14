@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -24,16 +24,15 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
+
+#include "powermanagement.h"
 
 #include <QtGlobal>
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include "powermanagement_x11.h"
 #endif
-#include "powermanagement.h"
 
 #ifdef Q_OS_MAC
 #include <IOKit/pwr_mgt/IOPMLib.h>
@@ -43,7 +42,9 @@
 #include <windows.h>
 #endif
 
-PowerManagement::PowerManagement(QObject *parent) : QObject(parent), m_busy(false)
+PowerManagement::PowerManagement(QObject *parent)
+    : QObject(parent)
+    , m_busy(false)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
     m_inhibitor = new PowerManagementInhibitor(this);
@@ -56,8 +57,10 @@ PowerManagement::~PowerManagement()
 
 void PowerManagement::setActivityState(bool busy)
 {
-    if (busy) setBusy();
-    else setIdle();
+    if (busy)
+        setBusy();
+    else
+        setIdle();
 }
 
 void PowerManagement::setBusy()
@@ -68,10 +71,12 @@ void PowerManagement::setBusy()
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
 #elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
-    m_inhibitor->RequestBusy();
+    m_inhibitor->requestBusy();
 #elif defined(Q_OS_MAC)
-    IOReturn success = IOPMAssertionCreate(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn, &m_assertionID);
-    if (success != kIOReturnSuccess) m_busy = false;
+    IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
+        , tr("qBittorrent is active").toCFString(), &m_assertionID);
+    if (success != kIOReturnSuccess)
+        m_busy = false;
 #endif
 }
 
@@ -83,7 +88,7 @@ void PowerManagement::setIdle()
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS);
 #elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
-    m_inhibitor->RequestIdle();
+    m_inhibitor->requestIdle();
 #elif defined(Q_OS_MAC)
     IOPMAssertionRelease(m_assertionID);
 #endif
