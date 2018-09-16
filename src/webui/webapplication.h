@@ -43,9 +43,9 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 1, 1};
-constexpr int COMPAT_API_VERSION = 22;
-constexpr int COMPAT_API_VERSION_MIN = 21;
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 0};
+constexpr int COMPAT_API_VERSION = 23;
+constexpr int COMPAT_API_VERSION_MIN = 23;
 
 class APIController;
 class WebApplication;
