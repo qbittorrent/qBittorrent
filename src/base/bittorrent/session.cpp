@@ -981,8 +981,11 @@ void Session::setGlobalMaxSeedingMinutes(int minutes)
 // Main destructor
 Session::~Session()
 {
+    LogMsg(tr("BitTorrent Session shutdown is started."));
+
     // Do some BT related saving
     saveResumeData();
+    LogMsg(tr("Resume data is saved."));
 
     // We must delete FilterParserThread
     // before we delete libtorrent::session
@@ -995,12 +998,15 @@ Session::~Session()
 
     qDebug("Deleting the session");
     delete m_nativeSession;
+    LogMsg(tr("BitTorrent Session is closed."));
 
     m_ioThread->quit();
     m_ioThread->wait();
+    LogMsg(tr("I/O thread is exited."));
 
     m_resumeFolderLock.close();
     m_resumeFolderLock.remove();
+    LogMsg(tr("Lock file is removed."));
 }
 
 void Session::initInstance()
@@ -2367,18 +2373,20 @@ void Session::generateResumeData(bool final)
 // Called on exit
 void Session::saveResumeData()
 {
-    qDebug("Saving fast resume data...");
+    qDebug("Saving resume data...");
 
     // Pause session
     m_nativeSession->pause();
 
     generateResumeData(true);
+    LogMsg(tr("Resume data generation started for %1 torrents.").arg(m_numResumeData));
 
     while (m_numResumeData > 0) {
         std::vector<libt::alert *> alerts;
         getPendingAlerts(alerts, 30 * 1000);
         if (alerts.empty()) {
-            fprintf(stderr, " aborting with %d outstanding torrents to save resume data for\n", m_numResumeData);
+            LogMsg(tr("Aborted with %1 outstanding torrents to save resume data for.").arg(m_numResumeData)
+                   , Log::CRITICAL);
             break;
         }
 
