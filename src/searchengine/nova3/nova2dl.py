@@ -1,4 +1,4 @@
-#VERSION: 1.20
+#VERSION: 1.21
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -34,14 +34,16 @@ from helpers import download_file
 
 supported_engines = dict()
 
-engines = glob.glob(os.path.join(os.path.dirname(__file__), 'engines','*.py'))
+engines = glob.glob(os.path.join(os.path.dirname(__file__), 'engines', '*.py'))
 for engine in engines:
     e = engine.split(os.sep)[-1][:-3]
-    if len(e.strip()) == 0: continue
-    if e.startswith('_'): continue
+    if len(e.strip()) == 0:
+        continue
+    if e.startswith('_'):
+        continue
     try:
-        exec("from engines.%s import %s"%(e,e))
-        exec("engine_url = %s.url"%e)
+        exec("from engines.%s import %s" % (e, e))
+        exec("engine_url = %s.url" % e)
         supported_engines[engine_url] = e
     except:
         pass
@@ -53,7 +55,7 @@ if __name__ == '__main__':
     download_param = sys.argv[2].strip()
     if engine_url not in list(supported_engines.keys()):
         raise SystemExit('./nova2dl.py: this engine_url was not recognized')
-    exec("engine = %s()"%supported_engines[engine_url])
+    exec("engine = %s()" % supported_engines[engine_url])
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)
     else:
