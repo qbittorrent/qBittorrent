@@ -725,7 +725,7 @@ initializeWindows = function() {
             new Request({
                 url: 'api/v2/app/shutdown',
                 onSuccess: function() {
-                    document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</h1></body></html>");
+                    document.write("<!DOCTYPE html><html lang=\"${LANG}\"><head><meta charset=\"UTF-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=10\"/><title>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</title></head><body style=\"text-align:center;\"><h1>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</h1></html>");
                     stop();
                 }
             }).send();
