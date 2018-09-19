@@ -35,6 +35,7 @@
 const char *QBT_WEBUI_TRANSLATIONS[] = {
     QT_TRANSLATE_NOOP("HttpServer", "Logout"),
     QT_TRANSLATE_NOOP("HttpServer", "Exit qBittorrent"),
+    QT_TRANSLATE_NOOP("HttpServer", "Restart qBittorrent"),
     QT_TRANSLATE_NOOP("HttpServer", "Download Torrents from their URLs or Magnet links"),
     QT_TRANSLATE_NOOP("HttpServer", "Only one link per line"),
     QT_TRANSLATE_NOOP("HttpServer", "Upload local torrent"),

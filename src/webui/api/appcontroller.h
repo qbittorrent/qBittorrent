@@ -44,6 +44,7 @@ private slots:
     void webapiVersionAction();
     void versionAction();
     void shutdownAction();
+    void restartAction();
     void preferencesAction();
     void setPreferencesAction();
     void defaultSavePathAction();

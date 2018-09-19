@@ -732,6 +732,19 @@ initializeWindows = function() {
         }
     });
 
+    addClickEvent('restart', function(e) {
+        new Event(e).stop();
+        if (confirm('QBT_TR(Are you sure you want to restart qBittorrent?)QBT_TR[CONTEXT=MainWindow]')) {
+            new Request({
+                url: 'api/v2/app/restart',
+                onSuccess: function() {
+                    document.write("<!DOCTYPE html><html lang=\"${LANG}\"><head><meta charset=\"UTF-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=10\"/><title>QBT_TR(qBittorrent is restarting...)QBT_TR[CONTEXT=HttpServer]</title><script>function check_available(){document.getElementById(\"check_pic\").src=window.location.href+\"/images/qbt-theme/view-refresh.svg\"+\"?now=\"+Math.random();}function check_success(){window.location.href=window.location.href;}setInterval(check_available,1000);</script></head><body style=\"text-align:center;\"><h1>QBT_TR(qBittorrent is restarting...)QBT_TR[CONTEXT=HttpServer]</h1><img style=\"visibility:hidden\" id='check_pic' src=\"/images/qbt-theme/view-refresh.svg\" onload=\"check_success()\"/></body></html>");
+                    stop();
+                }
+            }).send();
+        }
+    });
+
     // Deactivate menu header links
     $$('a.returnFalse').each(function(el) {
         el.addEvent('click', function(e) {

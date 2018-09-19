@@ -76,6 +76,16 @@ void AppController::shutdownAction()
     QTimer::singleShot(100, qApp, &QCoreApplication::quit);
 }
 
+void AppController::restartAction()
+{
+    qDebug() << "Restart request from Web UI";
+
+    // Special case handling for shutdown, we
+    // need to reply to the Web UI before
+    // actually shutting down.
+    QTimer::singleShot(100, qApp, []() { QCoreApplication::exit(1000); });
+}
+
 void AppController::preferencesAction()
 {
     const Preferences *const pref = Preferences::instance();
