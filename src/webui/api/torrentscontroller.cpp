@@ -385,8 +385,6 @@ void TorrentsController::trackersAction()
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
-        QVariantMap trackerDict;
-        trackerDict[KEY_TRACKER_URL] = tracker.url();
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
         QString status;
         switch (tracker.status()) {
@@ -399,16 +397,17 @@ void TorrentsController::trackersAction()
         case BitTorrent::TrackerEntry::NotWorking:
             status = tr("Not working"); break;
         }
-        trackerDict[KEY_TRACKER_TIER] = tracker.tier();
-        trackerDict[KEY_TRACKER_STATUS] = status;
-        trackerDict[KEY_TRACKER_PEERS_COUNT] = data.numPeers;
-        trackerDict[KEY_TRACKER_MSG] = data.lastMessage.trimmed();
 
-        trackerDict[KEY_TRACKER_SEEDS_COUNT] =  tracker.nativeEntry().scrape_complete;
-        trackerDict[KEY_TRACKER_LEECHES_COUNT] =  tracker.nativeEntry().scrape_incomplete;
-        trackerDict[KEY_TRACKER_DOWNLOADED_COUNT] =  tracker.nativeEntry().scrape_downloaded;
-
-        trackerList.append(trackerDict);
+        trackerList << QVariantMap {
+            {KEY_TRACKER_URL, tracker.url()},
+            {KEY_TRACKER_TIER, tracker.tier()},
+            {KEY_TRACKER_STATUS, status},
+            {KEY_TRACKER_PEERS_COUNT, data.numPeers},
+            {KEY_TRACKER_MSG, data.lastMessage.trimmed()},
+            {KEY_TRACKER_SEEDS_COUNT, tracker.nativeEntry().scrape_complete},
+            {KEY_TRACKER_LEECHES_COUNT, tracker.nativeEntry().scrape_incomplete},
+            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.nativeEntry().scrape_downloaded}
+        };
     }
 
     setResult(QJsonArray::fromVariantList(trackerList));
