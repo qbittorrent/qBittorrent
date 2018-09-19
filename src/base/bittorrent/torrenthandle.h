@@ -158,6 +158,7 @@ namespace BitTorrent
     class TorrentHandle : public QObject
     {
         Q_DISABLE_COPY(TorrentHandle)
+        Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentHandle)
 
     public:
         static const qreal USE_GLOBAL_RATIO;
