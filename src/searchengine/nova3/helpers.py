@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.41
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -27,24 +27,31 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import re, html.entities
-import tempfile
+import gzip
+import html.entities
+import io
 import os
-import io, gzip, urllib.request, urllib.error, urllib.parse
+import re
 import socket
 import socks
-import re
+import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
 
 # Some sites blocks default python User-agent
 user_agent = 'Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0'
-headers    = {'User-Agent': user_agent}
+headers = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
     proxy_str = os.environ["sock_proxy"].strip()
-    m=re.match(r"^(?:(?P<username>[^:]+):(?P<password>[^@]+)@)?(?P<host>[^:]+):(?P<port>\w+)$", proxy_str)
+    m = re.match(r"^(?:(?P<username>[^:]+):(?P<password>[^@]+)@)?(?P<host>[^:]+):(?P<port>\w+)$",
+                 proxy_str)
     if m is not None:
-        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'), int(m.group('port')), True, m.group('username'), m.group('password'))
+        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'),
+                              int(m.group('port')), True, m.group('username'), m.group('password'))
         socket.socket = socks.socksocket
+
 
 def htmlentitydecode(s):
     # First convert alpha entities (such as &eacute;)
@@ -57,14 +64,15 @@ def htmlentitydecode(s):
     t = re.sub('&(%s);' % '|'.join(html.entities.name2codepoint), entity2char, s)
 
     # Then convert numerical entities (such as &#233;)
-    t = re.sub('&#(\d+);', lambda x: chr(int(x.group(1))), t)
+    t = re.sub(r'&#(\d+);', lambda x: chr(int(x.group(1))), t)
 
     # Then convert hexa entities (such as &#x00E9;)
-    return re.sub('&#x(\w+);', lambda x: chr(int(x.group(1),16)), t)
+    return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
+
 
 def retrieve_url(url):
     """ Return the content of the url page as a string """
-    req = urllib.request.Request(url, headers = headers)
+    req = urllib.request.Request(url, headers=headers)
     try:
         response = urllib.request.urlopen(req)
     except urllib.error.URLError as errno:
@@ -86,15 +94,16 @@ def retrieve_url(url):
         pass
     dat = dat.decode(charset, 'replace')
     dat = htmlentitydecode(dat)
-    #return dat.encode('utf-8', 'replace')
+    # return dat.encode('utf-8', 'replace')
     return dat
+
 
 def download_file(url, referer=None):
     """ Download file at url and write it to a file, return the path to the file and the url """
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "wb")
     # Download url
-    req = urllib.request.Request(url, headers = headers)
+    req = urllib.request.Request(url, headers=headers)
     if referer is not None:
         req.add_header('referer', referer)
     response = urllib.request.urlopen(req)
@@ -111,4 +120,4 @@ def download_file(url, referer=None):
     file.write(dat)
     file.close()
     # return file path
-    return path+" "+url
+    return (path + " " + url)
