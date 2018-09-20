@@ -381,6 +381,5 @@
         <file>slow_off.svg</file>
         <file>sphere.png</file>
         <file>sphere2.png</file>
-        <file>url.svg</file>
     </qresource>
 </RCC>
