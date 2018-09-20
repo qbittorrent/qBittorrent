@@ -290,9 +290,9 @@
         <file>qbt-theme/help-contents.svg</file>
         <file>qbt-theme/inode-directory.svg</file>
         <file>qbt-theme/insert-link.svg</file>
-        <file>qbt-theme/kt-magnet.png</file>
-        <file>qbt-theme/kt-set-max-download-speed.png</file>
-        <file>qbt-theme/kt-set-max-upload-speed.png</file>
+        <file>qbt-theme/kt-magnet.svg</file>
+        <file>qbt-theme/kt-set-max-download-speed.svg</file>
+        <file>qbt-theme/kt-set-max-upload-speed.svg</file>
         <file>qbt-theme/list-add.svg</file>
         <file>qbt-theme/list-remove.svg</file>
         <file>qbt-theme/mail-folder-inbox.svg</file>
@@ -308,7 +308,7 @@
         <file>qbt-theme/preferences-other.svg</file>
         <file>qbt-theme/preferences-system-network.svg</file>
         <file>qbt-theme/preferences-web-browser-cookies.svg</file>
-        <file>qbt-theme/rss-config.png</file>
+        <file>qbt-theme/rss-config.svg</file>
         <file>qbt-theme/security-high.svg</file>
         <file>qbt-theme/security-low.svg</file>
         <file>qbt-theme/services.svg</file>
@@ -316,9 +316,9 @@
         <file>qbt-theme/system-log-out.svg</file>
         <file>qbt-theme/tab-close.svg</file>
         <file>qbt-theme/task-attention.svg</file>
-        <file>qbt-theme/task-complete.png</file>
-        <file>qbt-theme/task-ongoing.png</file>
-        <file>qbt-theme/task-reject.png</file>
+        <file>qbt-theme/task-complete.svg</file>
+        <file>qbt-theme/task-ongoing.svg</file>
+        <file>qbt-theme/task-reject.svg</file>
         <file>qbt-theme/text-plain.svg</file>
         <file>qbt-theme/tools-report-bug.svg</file>
         <file>qbt-theme/unavailable.svg</file>
@@ -338,7 +338,7 @@
         <file>skin/bg-header.gif</file>
         <file>skin/bg-panel-header.gif</file>
         <file>skin/checking.svg</file>
-        <file>skin/collapse-expand.gif</file>
+        <file>skin/collapse-expand.svg</file>
         <file>skin/completed.svg</file>
         <file>skin/connected.svg</file>
         <file>skin/disconnected.svg</file>
@@ -377,10 +377,10 @@
         <file>skin/toolbox-divider.gif</file>
         <file>skin/toolbox-divider2.gif</file>
         <file>skin/uploading.svg</file>
-        <file>slow.png</file>
-        <file>slow_off.png</file>
+        <file>slow.svg</file>
+        <file>slow_off.svg</file>
         <file>sphere.png</file>
         <file>sphere2.png</file>
-        <file>url.png</file>
+        <file>url.svg</file>
     </qresource>
 </RCC>
