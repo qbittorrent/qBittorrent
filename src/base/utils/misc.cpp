@@ -581,7 +581,7 @@ QString Utils::Misc::libtorrentVersionString()
 QString Utils::Misc::windowsSystemPath()
 {
     static const QString path = []() -> QString {
-        WCHAR systemPath[64] = {0};
+        WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
         return QString::fromWCharArray(systemPath);
     }();
