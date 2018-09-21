@@ -65,7 +65,7 @@ namespace
             try {
                 info = {exeName, versionStr.left(idx)};
             }
-            catch (const std::runtime_error &err) {
+            catch (std::runtime_error) {
                 return false;
             }
 
