@@ -12,7 +12,7 @@ function friendlyUnit(value, isSpeed) {
         "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
     ];
 
-    if (value < 0)
+    if ((value === undefined) || (value === null) || (value < 0))
         return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
     var i = 0;
