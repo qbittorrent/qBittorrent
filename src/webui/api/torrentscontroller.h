@@ -55,6 +55,7 @@ private slots:
     void createCategoryAction();
     void editCategoryAction();
     void removeCategoriesAction();
+    void categoriesAction();
     void addAction();
     void deleteAction();
     void addTrackersAction();

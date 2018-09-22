@@ -856,3 +856,18 @@ void TorrentsController::removeCategoriesAction()
     for (const QString &category : categories)
         BitTorrent::Session::instance()->removeCategory(category);
 }
+
+void TorrentsController::categoriesAction()
+{
+    QJsonObject categories;
+    const auto categoriesList = BitTorrent::Session::instance()->categories();
+    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+        const auto &key = it.key();
+        categories[key] = QJsonObject {
+            {"name", key},
+            {"savePath", it.value()}
+        };
+    }
+
+    setResult(categories);
+}
