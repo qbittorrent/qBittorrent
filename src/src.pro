@@ -12,12 +12,17 @@ unix:!macx: include(../unixconf.pri)
 
 QT += network xml
 
+portable:DEFINES += QBT_PORTABLE
+
 nogui {
+    portable:TARGET = qbittorrent-nox-portable
+    else:TARGET = qbittorrent-nox
     TARGET = qbittorrent-nox
     QT -= gui
     DEFINES += DISABLE_GUI
 } else {
-    TARGET = qbittorrent
+    portable:TARGET = qbittorrent-portable
+    else:TARGET = qbittorrent
     QT += xml svg widgets
 
     CONFIG(static) {

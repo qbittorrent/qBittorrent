@@ -314,7 +314,11 @@ namespace
     constexpr const IntOption WEBUI_PORT_OPTION = {"webui-port"};
     constexpr const StringOption PROFILE_OPTION = {"profile"};
     constexpr const StringOption CONFIGURATION_OPTION = {"configuration"};
-    constexpr const BoolOption PORTABLE_OPTION = {"portable"};
+#ifdef QBT_PORTABLE
+    constexpr const TriStateBoolOption PORTABLE_OPTION = {"portable", true};
+#else
+    constexpr const TriStateBoolOption PORTABLE_OPTION = {"portable", false};
+#endif
     constexpr const BoolOption RELATIVE_FASTRESUME = {"relative-fastresume"};
     constexpr const StringOption SAVE_PATH_OPTION = {"save-path"};
     constexpr const TriStateBoolOption PAUSED_OPTION = {"add-paused", true};
@@ -328,7 +332,12 @@ namespace
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
     : showHelp(false)
     , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
-    , portableMode(PORTABLE_OPTION.value(env))
+    , portableMode((PORTABLE_OPTION.value(env) == TriStateBool::True)
+#ifdef QBT_PORTABLE
+                   || (PORTABLE_OPTION.value(env) == TriStateBool::Undefined))
+#else
+                   || !(PORTABLE_OPTION.value(env) == TriStateBool::Undefined))
+#endif
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
