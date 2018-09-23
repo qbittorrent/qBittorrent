@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/api/apierror.h \
     $$PWD/api/appcontroller.h \
     $$PWD/api/authcontroller.h \
+    $$PWD/api/freediskspacechecker.h \
     $$PWD/api/isessionmanager.h \
     $$PWD/api/logcontroller.h \
     $$PWD/api/rsscontroller.h \
@@ -18,6 +19,7 @@ SOURCES += \
     $$PWD/api/apierror.cpp \
     $$PWD/api/appcontroller.cpp \
     $$PWD/api/authcontroller.cpp \
+    $$PWD/api/freediskspacechecker.cpp \
     $$PWD/api/logcontroller.cpp \
     $$PWD/api/rsscontroller.cpp \
     $$PWD/api/synccontroller.cpp \
