@@ -263,6 +263,7 @@ Session::Session(QObject *parent)
     : QObject(parent)
     , m_deferredConfigureScheduled(false)
     , m_IPFilteringChanged(false)
+    , m_torrentsQueueChanged(false)
 #if LIBTORRENT_VERSION_NUM >= 10100
     , m_listenInterfaceChanged(true)
 #endif
@@ -1948,6 +1949,17 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     delete torrent;
     qDebug("Torrent deleted.");
+    if (isQueueingSystemEnabled() && !m_torrentsQueueChanged) {
+        m_torrentsQueueChanged = true;
+        QTimer::singleShot(0, this, [this]()
+        {
+            for (BitTorrent::TorrentHandle *const torrent : torrents()) {
+                if (!torrent->isSeed())
+                    saveTorrentResumeData(torrent);
+            }
+            m_torrentsQueueChanged = false;
+        });
+    }
     return true;
 }
 

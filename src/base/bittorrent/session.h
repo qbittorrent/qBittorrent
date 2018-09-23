@@ -645,6 +645,7 @@ namespace BitTorrent
 
         bool m_deferredConfigureScheduled;
         bool m_IPFilteringChanged;
+        bool m_torrentsQueueChanged;
 #if LIBTORRENT_VERSION_NUM >= 10100
         bool m_listenInterfaceChanged; // optimization
 #endif
