@@ -344,7 +344,7 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) co
     // See if this episode has been downloaded before
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
     const bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive) || articleTitle.contains("PROPER", Qt::CaseInsensitive);
-    if (previouslyMatched && !isRepack)
+    if (previouslyMatched && (!isRepack || !AutoDownloader::instance()->downloadRepacks()))
         return false;
 
     m_dataPtr->lastComputedEpisode = episodeStr;

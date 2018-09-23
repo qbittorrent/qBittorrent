@@ -66,6 +66,7 @@ const QString RulesFileName(QStringLiteral("download_rules.json"));
 
 const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/AutoDownloader/EnableProcessing"));
 const QString SettingsKey_SmartEpisodeFilter(QStringLiteral("RSS/AutoDownloader/SmartEpisodeFilter"));
+const QString SettingsKey_DownloadRepacks(QStringLiteral("RSS/AutoDownloader/DownloadRepacks"));
 
 namespace
 {
@@ -308,6 +309,16 @@ void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
 
     const QString regex = computeSmartFilterRegex(filters);
     m_smartEpisodeRegex.setPattern(regex);
+}
+
+bool AutoDownloader::downloadRepacks() const
+{
+    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true).toBool();
+}
+
+void AutoDownloader::setDownloadRepacks(const bool downloadRepacks)
+{
+    SettingsStorage::instance()->storeValue(SettingsKey_DownloadRepacks, downloadRepacks);
 }
 
 void AutoDownloader::process()
