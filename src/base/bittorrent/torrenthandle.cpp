@@ -191,7 +191,6 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasRootFolder(params.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
     , m_needsToStartForced(params.forced)
-    , m_pauseAfterRecheck(false)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -1275,11 +1274,9 @@ void TorrentHandle::forceRecheck()
     m_unchecked = false;
 
     if (isPaused()) {
-        m_pauseAfterRecheck = true;
+        m_nativeHandle.stop_when_ready(true);
         resume_impl(true, true);
     }
-
-    m_nativeHandle.force_recheck();
 }
 
 void TorrentHandle::setSequentialDownload(bool b)
@@ -1587,11 +1584,6 @@ void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_
 
         adjustActualSavePath();
         manageIncompleteFiles();
-
-        if (m_pauseAfterRecheck) {
-            m_pauseAfterRecheck = false;
-            pause();
-        }
     }
 
     m_session->handleTorrentChecked(this);
