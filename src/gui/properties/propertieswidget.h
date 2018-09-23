@@ -75,7 +75,6 @@ public:
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
-    SpeedWidget *getSpeedWidget() const;
 
 public slots:
     void setVisibility(bool visible);
@@ -108,6 +107,7 @@ protected slots:
     void openSelectedFile();
 
 private slots:
+    void configure();
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 
@@ -125,7 +125,7 @@ private:
     PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
     TrackerListWidget *m_trackerList;
-    SpeedWidget *m_speedWidget;
+    QWidget *m_speedWidget = nullptr;
     QList<int> m_slideSizes;
     DownloadedPiecesBar *m_downloadedPieces;
     PieceAvailabilityBar *m_piecesAvailability;
