@@ -463,7 +463,6 @@ namespace BitTorrent
         bool m_needsToSetFirstLastPiecePriority;
         bool m_needsToStartForced;
 
-        bool m_pauseAfterRecheck;
         QHash<QString, TrackerInfo> m_trackerInfos;
 
         enum StartupState
