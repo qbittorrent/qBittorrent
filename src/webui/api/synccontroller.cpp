@@ -29,6 +29,8 @@
 #include "synccontroller.h"
 
 #include <QJsonObject>
+#include <QThread>
+#include <QTimer>
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -38,6 +40,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "apierror.h"
+#include "freediskspacechecker.h"
 #include "isessionmanager.h"
 #include "serialize/serialize_torrent.h"
 
@@ -75,6 +78,7 @@ const char KEY_TRANSFER_UPDATA[] = "up_info_data";
 const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
 const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
 const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
 
 // Statistics keys
 const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
@@ -93,6 +97,8 @@ const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
 const char KEY_FULL_UPDATE[] = "full_update";
 const char KEY_RESPONSE_ID[] = "rid";
 const char KEY_SUFFIX_REMOVED[] = "_removed";
+
+const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
 
 namespace
 {
@@ -312,6 +318,25 @@ namespace
     }
 }
 
+SyncController::SyncController(ISessionManager *sessionManager, QObject *parent)
+    : APIController(sessionManager, parent)
+{
+    m_freeDiskSpaceThread = new QThread(this);
+    m_freeDiskSpaceChecker = new FreeDiskSpaceChecker();
+    m_freeDiskSpaceChecker->moveToThread(m_freeDiskSpaceThread);
+
+    connect(m_freeDiskSpaceThread, &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
+    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, &SyncController::freeDiskSpaceSizeUpdated);
+
+    m_freeDiskSpaceThread->start();
+}
+
+SyncController::~SyncController()
+{
+    m_freeDiskSpaceThread->quit();
+    m_freeDiskSpaceThread->wait();
+}
+
 // The function returns the changed data from the server to synchronize with the web client.
 // Return value is map in JSON format.
 // Map contain the key:
@@ -369,6 +394,7 @@ namespace
 //  - "up_rate_limit: upload speed limit
 //  - "queueing": priority system usage flag
 //  - "refresh_interval": torrents table refresh interval
+//  - "free_space_on_disk": Free space on the default save path
 // GET param:
 //   - rid (int): last response id
 void SyncController::maindataAction()
@@ -412,6 +438,7 @@ void SyncController::maindataAction()
     data["categories"] = categories;
 
     QVariantMap serverState = getTranserInfo();
+    serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
@@ -481,4 +508,19 @@ void SyncController::torrentPeersAction()
 
     sessionManager()->session()->setData(QLatin1String("syncTorrentPeersLastResponse"), lastResponse);
     sessionManager()->session()->setData(QLatin1String("syncTorrentPeersLastAcceptedResponse"), lastAcceptedResponse);
+}
+
+qint64 SyncController::getFreeDiskSpace()
+{
+    const qint64 now = QDateTime::currentMSecsSinceEpoch();
+    if ((now - m_freeDiskSpaceLastUpdate) >= FREEDISKSPACE_CHECK_TIMEOUT) {
+        QTimer::singleShot(0, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+        m_freeDiskSpaceLastUpdate = now;
+    }
+    return m_freeDiskSpace;
+}
+
+void SyncController::freeDiskSpaceSizeUpdated(qint64 freeSpaceSize)
+{
+    m_freeDiskSpace = freeSpaceSize;
 }
