@@ -338,7 +338,7 @@
         <file>skin/bg-header.gif</file>
         <file>skin/bg-panel-header.gif</file>
         <file>skin/checking.svg</file>
-        <file>skin/collapse-expand.svg</file>
+        <file>skin/collapse.svg</file>
         <file>skin/completed.svg</file>
         <file>skin/connected.svg</file>
         <file>skin/disconnected.svg</file>

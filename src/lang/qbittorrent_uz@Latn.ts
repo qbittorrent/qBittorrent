@@ -6,22 +6,22 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="15"/>
         <source>About qBittorrent</source>
-        <translation type="unfinished">qBittorrent haqida</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="52"/>
         <source>About</source>
-        <translation type="unfinished">Dastur haqida</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="81"/>
         <source>Author</source>
-        <translation type="unfinished">Muallif:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="87"/>
         <source>Current maintainer</source>
-        <translation type="unfinished">Joriy tarjimon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="93"/>
@@ -38,18 +38,18 @@
         <location filename="../gui/aboutdialog.ui" line="120"/>
         <location filename="../gui/aboutdialog.ui" line="197"/>
         <source>E-mail:</source>
-        <translation type="unfinished">E-pochta:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="127"/>
         <location filename="../gui/aboutdialog.ui" line="190"/>
         <source>Name:</source>
-        <translation type="unfinished">Ism:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="157"/>
         <source>Original author</source>
-        <translation type="unfinished">Original muallifi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="163"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="293"/>
         <source>License</source>
-        <translation type="unfinished">Litsenziya</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="319"/>
         <source>Libraries</source>
-        <translation type="unfinished">Kutubxonalar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="325"/>
@@ -105,53 +105,6 @@
         <location filename="../gui/aboutdialog.h" line="74"/>
         <source>Bug Tracker:</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AboutDlg</name>
-    <message>
-        <source>About qBittorrent</source>
-        <translation type="vanished">qBittorrent haqida</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="vanished">Dastur haqida</translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <translation type="vanished">Muallif:</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">Ism:</translation>
-    </message>
-    <message>
-        <source>E-mail:</source>
-        <translation type="vanished">E-pochta:</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="vanished">Gretsiya</translation>
-    </message>
-    <message>
-        <source>Current maintainer</source>
-        <translation type="vanished">Joriy tarjimon</translation>
-    </message>
-    <message>
-        <source>Original author</source>
-        <translation type="vanished">Original muallifi</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">Kutubxonalar</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="vanished">Fransiya</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Litsenziya</translation>
     </message>
 </context>
 <context>
@@ -299,18 +252,18 @@
         <translation>Torrent fayli yaroqsiz</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="493"/>
         <source>Renaming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="497"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="498"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
         <source>Rename error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="498"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="499"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -355,21 +308,9 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cannot add torrent</source>
-        <translation type="vanished">Torrentni qo‘shib bo‘lmaydi</translation>
-    </message>
-    <message>
-        <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation type="vanished">Bu torrentni qo‘shib bo‘lmaydi. U allaqachon qo‘shilayotgan bo‘lishi mumkin.</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
         <source>This magnet link was not recognized</source>
         <translation>Bu magnet havolasi noma’lum formatda</translation>
-    </message>
-    <message>
-        <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation type="vanished">Bu torrentni qo‘shib bo‘lmaydi. U allaqachon qo‘shilayotgan bo‘lishi mumkin.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="354"/>
@@ -434,7 +375,7 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="493"/>
         <source>New name:</source>
         <translation>Yangi nomi:</translation>
     </message>
@@ -623,11 +564,6 @@ Error: %2</source>
         <location filename="../gui/advancedsettings.cpp" line="374"/>
         <source>Send buffer watermark factor</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> m</source>
-        <comment> minutes</comment>
-        <translation type="vanished">m</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="392"/>
@@ -1349,17 +1285,17 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1752"/>
+        <location filename="../base/bittorrent/session.cpp" line="1744"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Ichki o‘rnatilgan treker [YONIQ]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1754"/>
+        <location filename="../base/bittorrent/session.cpp" line="1746"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Ichki o‘rnatilgan trekerni boshlab bo‘lmadi!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1757"/>
+        <location filename="../base/bittorrent/session.cpp" line="1749"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Ichki o‘rnatilgan treker (O‘CHIQ)</translation>
     </message>
@@ -1415,63 +1351,63 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3676"/>
+        <location filename="../base/bittorrent/session.cpp" line="3691"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>“%1” torrent faylini dekodlab bo‘lmaydi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3813"/>
+        <location filename="../base/bittorrent/session.cpp" line="3828"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>“%2” torrentidagi “%1” faylini yuklab olish</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3913"/>
+        <location filename="../base/bittorrent/session.cpp" line="3928"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4134"/>
+        <location filename="../base/bittorrent/session.cpp" line="4149"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>“%1.torrent” faylini saqlab bo‘lmadi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4181"/>
+        <location filename="../base/bittorrent/session.cpp" line="4196"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4194"/>
+        <location filename="../base/bittorrent/session.cpp" line="4209"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4206"/>
+        <location filename="../base/bittorrent/session.cpp" line="4221"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4271"/>
+        <location filename="../base/bittorrent/session.cpp" line="4286"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>chunki %1 o‘chirib qo‘yilgan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4274"/>
+        <location filename="../base/bittorrent/session.cpp" line="4289"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>chunki %1 o‘chirib qo‘yilgan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4292"/>
+        <location filename="../base/bittorrent/session.cpp" line="4307"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>Ushbu URL’ning sidini izlash amalga oshmadi: “%1”, xabar: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4340"/>
+        <location filename="../base/bittorrent/session.cpp" line="4355"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation type="unfinished"></translation>
@@ -1555,22 +1491,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1802"/>
+        <location filename="../base/bittorrent/session.cpp" line="1794"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1807"/>
+        <location filename="../base/bittorrent/session.cpp" line="1799"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1827"/>
+        <location filename="../base/bittorrent/session.cpp" line="1819"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1832"/>
+        <location filename="../base/bittorrent/session.cpp" line="1824"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1587,111 +1523,106 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent hech qaysi interfeysda %1 portini tinglay olmadi. Sababi: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3581"/>
+        <location filename="../base/bittorrent/session.cpp" line="3593"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>“%2” torrentiga “%1” trekeri qo‘shildi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3593"/>
+        <location filename="../base/bittorrent/session.cpp" line="3605"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>“%1” trekeri “%2” torrentidan o‘chirib tashlandi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3610"/>
+        <location filename="../base/bittorrent/session.cpp" line="3622"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>“%2” torrentiga “%1” URL sidi qo‘shildi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3617"/>
+        <location filename="../base/bittorrent/session.cpp" line="3629"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>“%1” URL sidi “%2” torrentidan o‘chirib tashlandi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3861"/>
+        <location filename="../base/bittorrent/session.cpp" line="3876"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>“%1” torrentini davomlab bo‘lmaydi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3947"/>
+        <location filename="../base/bittorrent/session.cpp" line="3962"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Berilgan IP filtri tahlil qilindi: %1 ta qoida qo‘llandi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3957"/>
+        <location filename="../base/bittorrent/session.cpp" line="3972"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Xato: berilgan IP filtrini tahlil qilib bo‘lmadi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4120"/>
+        <location filename="../base/bittorrent/session.cpp" line="4135"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4165"/>
+        <location filename="../base/bittorrent/session.cpp" line="4180"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Torrent qo‘shib bo‘lmadi. Sababi: %1</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
-        <translation type="vanished">“%1” davomlandi. (tez davomlash)</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4141"/>
+        <location filename="../base/bittorrent/session.cpp" line="4156"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>“%1” yuklanishlar ro‘yxatiga qo‘shildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4233"/>
+        <location filename="../base/bittorrent/session.cpp" line="4248"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>I/O xatoligi yuz berdi, “%1” pauza qilindi. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4243"/>
+        <location filename="../base/bittorrent/session.cpp" line="4258"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: portni belgilash amalga oshmadi, xabar: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4249"/>
+        <location filename="../base/bittorrent/session.cpp" line="4264"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: portni belgilash amalga oshdi, xabar: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4259"/>
+        <location filename="../base/bittorrent/session.cpp" line="4274"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>IP filtri.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4262"/>
+        <location filename="../base/bittorrent/session.cpp" line="4277"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>port filtri.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4265"/>
+        <location filename="../base/bittorrent/session.cpp" line="4280"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>i2p aralash rejim cheklovlari.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4268"/>
+        <location filename="../base/bittorrent/session.cpp" line="4283"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>porti quyi darajada.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4313"/>
+        <location filename="../base/bittorrent/session.cpp" line="4328"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent %1 interfeysida ushbu portni tinglamoqda: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4350"/>
+        <location filename="../base/bittorrent/session.cpp" line="4365"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Tashqi IP: %1</translation>
@@ -1708,37 +1639,37 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1338"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1331"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1339"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1332"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1339"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1332"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1454"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1453"/>
         <source>Successfully moved torrent: %1. New path: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1489"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1672"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1670"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1678"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1673"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1853,7 +1784,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.ui" line="94"/>
+        <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also delete the files on the hard disk</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1861,26 +1792,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <location filename="../gui/deletionconfirmationdialog.h" line="52"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished">Haqiqatan ham “%1”ni oldi-berdi ro‘yxatidan o‘chirib tashlaysizmi?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.h" line="54"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished">Haqiqatan ham %1 ta torrentni oldi-berdi ro‘yxatidan o‘chirib tashlaysizmi?</translation>
-    </message>
-</context>
-<context>
-    <name>DeletionConfirmationDlg</name>
-    <message>
-        <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="vanished">Haqiqatan ham “%1”ni oldi-berdi ro‘yxatidan o‘chirib tashlaysizmi?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
-        <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="vanished">Haqiqatan ham %1 ta torrentni oldi-berdi ro‘yxatidan o‘chirib tashlaysizmi?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1935,27 +1853,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>ExecutionLog</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Umumiy</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Bloklangan IP manzillari</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; %2 bloklandi</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; ban qilindi</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLogWidget</name>
     <message>
         <location filename="../gui/executionlogwidget.ui" line="39"/>
@@ -1965,19 +1862,19 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/executionlogwidget.ui" line="45"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Bloklangan IP manzillari</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="106"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; %2 bloklandi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="108"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; ban qilindi</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2299,7 +2196,7 @@ Please do not use any special characters in the category name.</source>
         <translation>Qo‘shish</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="93"/>
+        <location filename="../webui/extra_translations.h" line="94"/>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
         <translation type="unfinished"></translation>
@@ -2355,49 +2252,54 @@ Please do not use any special characters in the category name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Unable to create category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
         <translation>Boshqa...</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="86"/>
+        <location filename="../webui/extra_translations.h" line="87"/>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Dushanba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="87"/>
+        <location filename="../webui/extra_translations.h" line="88"/>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Seshanba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="88"/>
+        <location filename="../webui/extra_translations.h" line="89"/>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Chorshanba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="89"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Payshanba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="90"/>
+        <location filename="../webui/extra_translations.h" line="91"/>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Juma</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="91"/>
+        <location filename="../webui/extra_translations.h" line="92"/>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Shanba</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="92"/>
+        <location filename="../webui/extra_translations.h" line="93"/>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Yakshanba</translation>
@@ -3039,12 +2941,6 @@ Minimum requirement: 2.7.9 / 3.3.0.</source>
         <translation>qBittorrent uchun yangilanish mavjud</translation>
     </message>
     <message>
-        <source>A new version is available.
-Do you want to download %1?</source>
-        <translation type="vanished">Yangi versiyasi mavjud.
-%1’ni yuklab olasizmi?</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.cpp" line="1885"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Sizdagi qBittorrent versiyasi eng yangisi</translation>
@@ -3084,10 +2980,6 @@ Do you want to download %1?</source>
         <source>Python found in %1: %2</source>
         <comment>Python found in PATH: /usr/local/bin:/usr/bin:/etc/bin</comment>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t determine your Python version (%1). Search engine disabled.</source>
-        <translation type="vanished">Sizdagi Python versiyasini (%1) aniqlab bo‘lmadi. Qidiruv vositasi o‘chirib qo‘yildi.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1829"/>
@@ -4998,22 +4890,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3119"/>
+        <location filename="../gui/optionsdialog.ui" line="3111"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3126"/>
+        <location filename="../gui/optionsdialog.ui" line="3118"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3139"/>
+        <location filename="../gui/optionsdialog.ui" line="3131"/>
         <source>IP subnet whitelist...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3202"/>
+        <location filename="../gui/optionsdialog.ui" line="3194"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5301,23 +5193,23 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1178"/>
-        <location filename="../gui/optionsdialog.ui" line="3087"/>
+        <location filename="../gui/optionsdialog.ui" line="3079"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1190"/>
         <location filename="../gui/optionsdialog.ui" line="1667"/>
-        <location filename="../gui/optionsdialog.ui" line="3146"/>
-        <location filename="../gui/optionsdialog.ui" line="3260"/>
+        <location filename="../gui/optionsdialog.ui" line="3138"/>
+        <location filename="../gui/optionsdialog.ui" line="3252"/>
         <source>Username:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1200"/>
         <location filename="../gui/optionsdialog.ui" line="1677"/>
-        <location filename="../gui/optionsdialog.ui" line="3153"/>
-        <location filename="../gui/optionsdialog.ui" line="3274"/>
+        <location filename="../gui/optionsdialog.ui" line="3145"/>
+        <location filename="../gui/optionsdialog.ui" line="3266"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5705,62 +5597,62 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2999"/>
+        <location filename="../gui/optionsdialog.ui" line="2995"/>
         <source>Certificate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3011"/>
+        <location filename="../gui/optionsdialog.ui" line="3007"/>
         <source>Import SSL Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3040"/>
+        <location filename="../gui/optionsdialog.ui" line="3032"/>
         <source>Key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3052"/>
+        <location filename="../gui/optionsdialog.ui" line="3044"/>
         <source>Import SSL Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3074"/>
+        <location filename="../gui/optionsdialog.ui" line="3066"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3163"/>
+        <location filename="../gui/optionsdialog.ui" line="3155"/>
         <source>Use alternative Web UI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3175"/>
+        <location filename="../gui/optionsdialog.ui" line="3167"/>
         <source>Files location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3188"/>
+        <location filename="../gui/optionsdialog.ui" line="3180"/>
         <source>Enable clickjacking protection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3195"/>
+        <location filename="../gui/optionsdialog.ui" line="3187"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3214"/>
+        <location filename="../gui/optionsdialog.ui" line="3206"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3237"/>
+        <location filename="../gui/optionsdialog.ui" line="3229"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3246"/>
+        <location filename="../gui/optionsdialog.ui" line="3238"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5850,35 +5742,35 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1528"/>
+        <location filename="../gui/optionsdialog.cpp" line="1527"/>
         <source>Select folder to monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1535"/>
+        <location filename="../gui/optionsdialog.cpp" line="1534"/>
         <source>Folder is already being monitored:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1538"/>
+        <location filename="../gui/optionsdialog.cpp" line="1537"/>
         <source>Folder does not exist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1541"/>
+        <location filename="../gui/optionsdialog.cpp" line="1540"/>
         <source>Folder is not readable:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1552"/>
+        <location filename="../gui/optionsdialog.cpp" line="1551"/>
         <source>Adding entry failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="426"/>
         <location filename="../gui/optionsdialog.cpp" line="429"/>
-        <location filename="../gui/optionsdialog.cpp" line="1580"/>
-        <location filename="../gui/optionsdialog.cpp" line="1582"/>
+        <location filename="../gui/optionsdialog.cpp" line="1579"/>
+        <location filename="../gui/optionsdialog.cpp" line="1581"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5900,43 +5792,43 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1616"/>
+        <location filename="../gui/optionsdialog.cpp" line="1615"/>
         <source>SSL Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1666"/>
+        <location filename="../gui/optionsdialog.cpp" line="1665"/>
         <source>Parsing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1666"/>
+        <location filename="../gui/optionsdialog.cpp" line="1665"/>
         <source>Failed to parse the provided IP filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1668"/>
+        <location filename="../gui/optionsdialog.cpp" line="1667"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1668"/>
+        <location filename="../gui/optionsdialog.cpp" line="1667"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished">Berilgan IP filtri tahlil qilindi: %1 ta qoida qo‘llandi.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1641"/>
+        <location filename="../gui/optionsdialog.cpp" line="1640"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1641"/>
+        <location filename="../gui/optionsdialog.cpp" line="1640"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1626"/>
+        <location filename="../gui/optionsdialog.cpp" line="1625"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5946,48 +5838,48 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1616"/>
+        <location filename="../gui/optionsdialog.cpp" line="1615"/>
         <source>Import SSL certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1626"/>
+        <location filename="../gui/optionsdialog.cpp" line="1625"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1631"/>
+        <location filename="../gui/optionsdialog.cpp" line="1630"/>
         <source>Import SSL key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1631"/>
+        <location filename="../gui/optionsdialog.cpp" line="1630"/>
         <source>SSL key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>Time Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1799"/>
-        <location filename="../gui/optionsdialog.cpp" line="1803"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
+        <location filename="../gui/optionsdialog.cpp" line="1802"/>
         <source>Length Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1799"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1803"/>
+        <location filename="../gui/optionsdialog.cpp" line="1802"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6458,17 +6350,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDlg</name>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Ha</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Yo‘q</translation>
-    </message>
-</context>
-<context>
     <name>PluginSourceDialog</name>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="14"/>
@@ -6899,7 +6780,7 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
         <source>New name:</source>
         <translation>Yangi nomi:</translation>
     </message>
@@ -6925,18 +6806,18 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
         <source>Renaming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="693"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="694"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="722"/>
         <source>Rename error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="694"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="695"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6971,19 +6852,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="141"/>
+        <location filename="../app/main.cpp" line="133"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="151"/>
-        <location filename="../app/main.cpp" line="160"/>
+        <location filename="../app/main.cpp" line="143"/>
+        <location filename="../app/main.cpp" line="152"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="183"/>
+        <location filename="../app/main.cpp" line="175"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7164,59 +7045,59 @@ Those plugins were disabled.</source>
         <translation>Yordam</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="350"/>
+        <location filename="../app/main.cpp" line="334"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="336"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="342"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Legal Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="357"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="374"/>
+        <location filename="../app/main.cpp" line="358"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="386"/>
+        <location filename="../app/main.cpp" line="370"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="375"/>
+        <location filename="../app/main.cpp" line="359"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="387"/>
+        <location filename="../app/main.cpp" line="371"/>
         <source>Legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="388"/>
+        <location filename="../app/main.cpp" line="372"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="389"/>
+        <location filename="../app/main.cpp" line="373"/>
         <source>I Agree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7689,48 +7570,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="286"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="291"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="335"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="340"/>
         <source>Torrent names only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="336"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="341"/>
         <source>Everywhere</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="353"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="362"/>
+        <source>Use regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="377"/>
         <source>Searching...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="355"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="379"/>
         <source>Search has finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="357"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="381"/>
         <source>Search aborted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="359"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="383"/>
         <source>An error occurred during search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="361"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="385"/>
         <source>Search returned no results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="385"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="409"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8321,7 +8207,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/transferlistfilterswidget.cpp" line="134"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished">Hammasi (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="137"/>
@@ -8407,18 +8293,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
         <source>Errored (%1)</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>StatusFiltersWidget</name>
-    <message>
-        <source>All (0)</source>
-        <comment>this is for the status filter</comment>
-        <translation type="vanished">Hammasi (0)</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Hammasi (%1)</translation>
     </message>
 </context>
 <context>
@@ -8512,7 +8386,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">Ism:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
@@ -8823,19 +8697,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TorrentModel</name>
-    <message>
-        <source>Downloaded</source>
-        <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="vanished">Yuklab olingan</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="vanished">Tugallangan</translation>
-    </message>
-</context>
-<context>
     <name>TorrentsController</name>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
@@ -8872,7 +8733,23 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="741"/>
-        <source>Save path is empty</source>
+        <source>Save path cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="828"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="845"/>
+        <source>Category cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="834"/>
+        <source>Unable to create category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="848"/>
+        <source>Unable to edit category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8896,8 +8773,8 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="815"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="825"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="816"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="831"/>
         <source>Incorrect category name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8908,7 +8785,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="203"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished">Hammasi (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="206"/>
@@ -8998,6 +8875,16 @@ Please choose a different name and try again.</source>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="363"/>
         <source>Not contacted yet</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="370"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="371"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="372"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="374"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="375"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="376"/>
+        <source>N/A</source>
+        <translation type="unfinished">Noaniq</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
@@ -9125,7 +9012,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.cpp" line="45"/>
+        <location filename="../gui/trackerlogindialog.cpp" line="46"/>
         <source>Log in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9166,17 +9053,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="124"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TrackersAdditionDlg</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="vanished">I/O xatosi</translation>
-    </message>
-    <message>
-        <source>Download error</source>
-        <translation type="vanished">Yuklab olish xatoligi</translation>
     </message>
 </context>
 <context>
@@ -9670,41 +9546,41 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1025"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1021"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1026"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1022"/>
         <source>New...</source>
         <comment>New category...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1027"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1023"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1044"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1040"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1045"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1041"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1046"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1042"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1108"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1104"/>
         <source>Priority</source>
         <translation>Dolzarblik</translation>
     </message>
@@ -9800,37 +9676,37 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="228"/>
+        <location filename="../webui/webapplication.cpp" line="221"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="235"/>
+        <location filename="../webui/webapplication.cpp" line="228"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="487"/>
+        <location filename="../webui/webapplication.cpp" line="480"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="697"/>
+        <location filename="../webui/webapplication.cpp" line="690"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="706"/>
+        <location filename="../webui/webapplication.cpp" line="699"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="723"/>
+        <location filename="../webui/webapplication.cpp" line="716"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="755"/>
+        <location filename="../webui/webapplication.cpp" line="748"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9856,20 +9732,6 @@ Please choose a different name and try again.</source>
         <location filename="../webui/webui.cpp" line="103"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>authentication</name>
-    <message>
-        <source>Login</source>
-        <translation type="vanished">Kirish</translation>
-    </message>
-</context>
-<context>
-    <name>downloadFromURL</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Yuklab olish</translation>
     </message>
 </context>
 <context>

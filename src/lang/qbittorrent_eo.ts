@@ -6,22 +6,22 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="15"/>
         <source>About qBittorrent</source>
-        <translation type="unfinished">Pri qBittorrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="52"/>
         <source>About</source>
-        <translation type="unfinished">Pri</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="81"/>
         <source>Author</source>
-        <translation type="unfinished">Aŭtoro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="87"/>
         <source>Current maintainer</source>
-        <translation type="unfinished">Aktuala prizorganto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="93"/>
@@ -38,18 +38,18 @@
         <location filename="../gui/aboutdialog.ui" line="120"/>
         <location filename="../gui/aboutdialog.ui" line="197"/>
         <source>E-mail:</source>
-        <translation type="unfinished">Retpoŝtadreso:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="127"/>
         <location filename="../gui/aboutdialog.ui" line="190"/>
         <source>Name:</source>
-        <translation type="unfinished">Nomo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="157"/>
         <source>Original author</source>
-        <translation type="unfinished">Originala aŭtoro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="163"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="293"/>
         <source>License</source>
-        <translation type="unfinished">Permesilo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="319"/>
         <source>Libraries</source>
-        <translation type="unfinished">Bibliotekoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="325"/>
@@ -105,53 +105,6 @@
         <location filename="../gui/aboutdialog.h" line="74"/>
         <source>Bug Tracker:</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AboutDlg</name>
-    <message>
-        <source>About qBittorrent</source>
-        <translation type="vanished">Pri qBittorrent</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="vanished">Pri</translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <translation type="vanished">Aŭtoro</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">Nomo:</translation>
-    </message>
-    <message>
-        <source>E-mail:</source>
-        <translation type="vanished">Retpoŝtadreso:</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="vanished">Grekujo</translation>
-    </message>
-    <message>
-        <source>Current maintainer</source>
-        <translation type="vanished">Aktuala prizorganto</translation>
-    </message>
-    <message>
-        <source>Original author</source>
-        <translation type="vanished">Originala aŭtoro</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">Bibliotekoj</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="vanished">Francujo</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Permesilo</translation>
     </message>
 </context>
 <context>
@@ -299,18 +252,18 @@
         <translation>Malvalida torento</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="493"/>
         <source>Renaming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="497"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="498"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
         <source>Rename error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="498"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="499"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -355,21 +308,9 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cannot add torrent</source>
-        <translation type="vanished">Ne eblas aldoni la torenton</translation>
-    </message>
-    <message>
-        <source>Cannot add this torrent. Perhaps it is already in adding state.</source>
-        <translation type="vanished">Ne eblas aldoni ĉi tiun torenton. Ĝi eble jam estas en la aldonata stato.</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
         <source>This magnet link was not recognized</source>
         <translation>Ĉi tiu magnet-ligilo ne estis rekonata</translation>
-    </message>
-    <message>
-        <source>Cannot add this torrent. Perhaps it is already in adding.</source>
-        <translation type="vanished">Ne eblas aldoni ĉi tiun torenton. Ĝi eble jam estas aldonata.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="354"/>
@@ -434,7 +375,7 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="493"/>
         <source>New name:</source>
         <translation>Nova nomo:</translation>
     </message>
@@ -623,11 +564,6 @@ Error: %2</source>
         <location filename="../gui/advancedsettings.cpp" line="374"/>
         <source>Send buffer watermark factor</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> m</source>
-        <comment> minutes</comment>
-        <translation type="vanished">m</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="392"/>
@@ -988,7 +924,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="278"/>
         <source>Disabled</source>
-        <translation type="unfinished">Malebligita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="281"/>
@@ -1172,7 +1108,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="431"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="448"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eneliga eraro</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
@@ -1349,17 +1285,17 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1752"/>
+        <location filename="../base/bittorrent/session.cpp" line="1744"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Enigita spurilo [ŜALTITA]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1754"/>
+        <location filename="../base/bittorrent/session.cpp" line="1746"/>
         <source>Failed to start the embedded tracker!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1757"/>
+        <location filename="../base/bittorrent/session.cpp" line="1749"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Enigita spurilo [MALŜALTITA]</translation>
     </message>
@@ -1415,63 +1351,63 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3676"/>
+        <location filename="../base/bittorrent/session.cpp" line="3691"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Ne eblas malkodi la torentdosieron &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3813"/>
+        <location filename="../base/bittorrent/session.cpp" line="3828"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3913"/>
+        <location filename="../base/bittorrent/session.cpp" line="3928"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4134"/>
+        <location filename="../base/bittorrent/session.cpp" line="4149"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Ne eblis konservi dosieron &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4181"/>
+        <location filename="../base/bittorrent/session.cpp" line="4196"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4194"/>
+        <location filename="../base/bittorrent/session.cpp" line="4209"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4206"/>
+        <location filename="../base/bittorrent/session.cpp" line="4221"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4271"/>
+        <location filename="../base/bittorrent/session.cpp" line="4286"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>ĉar %1 estas malebligita.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4274"/>
+        <location filename="../base/bittorrent/session.cpp" line="4289"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>ĉar %1 estas malebligita.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4292"/>
+        <location filename="../base/bittorrent/session.cpp" line="4307"/>
         <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
         <translation>URL-fonta elserĉo malsukcesis kun la URL-adreso: &apos;%1&apos;, mesaĝo: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4340"/>
+        <location filename="../base/bittorrent/session.cpp" line="4355"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
         <translation type="unfinished"></translation>
@@ -1555,22 +1491,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1802"/>
+        <location filename="../base/bittorrent/session.cpp" line="1794"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1807"/>
+        <location filename="../base/bittorrent/session.cpp" line="1799"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1827"/>
+        <location filename="../base/bittorrent/session.cpp" line="1819"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1832"/>
+        <location filename="../base/bittorrent/session.cpp" line="1824"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1587,111 +1523,106 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>qBittorrent ne eblis aŭskulti per iu ajn interfaco pordo: %1. Kialo: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3581"/>
+        <location filename="../base/bittorrent/session.cpp" line="3593"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Spurilo &apos;%1&apos; aldoniĝis al la torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3593"/>
+        <location filename="../base/bittorrent/session.cpp" line="3605"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Spurilo &apos;%1&apos; foriĝis de la torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3610"/>
+        <location filename="../base/bittorrent/session.cpp" line="3622"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL-fonto &apos;%1&apos; aldoniĝis al la torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3617"/>
+        <location filename="../base/bittorrent/session.cpp" line="3629"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL-fonto &apos;%1&apos; foriĝis de torento &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3861"/>
+        <location filename="../base/bittorrent/session.cpp" line="3876"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Ne eblas reaktivigi la torenton &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3947"/>
+        <location filename="../base/bittorrent/session.cpp" line="3962"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3957"/>
+        <location filename="../base/bittorrent/session.cpp" line="3972"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4120"/>
+        <location filename="../base/bittorrent/session.cpp" line="4135"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4165"/>
+        <location filename="../base/bittorrent/session.cpp" line="4180"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Ne eblis aldoni la torenton. Kial: %1</translation>
     </message>
     <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;torrent name&apos; was resumed. (fast resume)</comment>
-        <translation type="vanished">&apos;%1&apos; reaktiviĝis. (rapida reaktiviĝo)</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4141"/>
+        <location filename="../base/bittorrent/session.cpp" line="4156"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; aldoniĝis al la elŝutlisto.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4233"/>
+        <location filename="../base/bittorrent/session.cpp" line="4248"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
         <translation>Eneliga eraro okazis, &apos;%1&apos; paŭzis. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4243"/>
+        <location filename="../base/bittorrent/session.cpp" line="4258"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4249"/>
+        <location filename="../base/bittorrent/session.cpp" line="4264"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4259"/>
+        <location filename="../base/bittorrent/session.cpp" line="4274"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>pro IP-filtrilo.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4262"/>
+        <location filename="../base/bittorrent/session.cpp" line="4277"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>pro porda filtrilo.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4265"/>
+        <location filename="../base/bittorrent/session.cpp" line="4280"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4268"/>
+        <location filename="../base/bittorrent/session.cpp" line="4283"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>ĉar ĝi havas malaltan pordon.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4313"/>
+        <location filename="../base/bittorrent/session.cpp" line="4328"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent sukcese aŭskultantas per interfaco %1 pordo: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4350"/>
+        <location filename="../base/bittorrent/session.cpp" line="4365"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Ekstera IP-adreso: %1</translation>
@@ -1708,37 +1639,37 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1338"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1331"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1339"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1332"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1339"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1332"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1454"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1453"/>
         <source>Successfully moved torrent: %1. New path: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1489"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1672"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1670"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1678"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1673"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1850,37 +1781,24 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="67"/>
         <source>Remember choice</source>
-        <translation type="unfinished">Memori elekton</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.ui" line="94"/>
+        <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished">Forigi ankaŭ la dosierojn el la diskilo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.h" line="52"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished">Ĉu vi certas, ke vi volas &apos;%1&apos; foriĝi de la transmetlisto?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.h" line="54"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished">Ĉu vi certas, ke vi volas forigi tiujn %1 torentojn de la transmetlisto?</translation>
-    </message>
-</context>
-<context>
-    <name>DeletionConfirmationDlg</name>
-    <message>
-        <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="vanished">Ĉu vi certas, ke vi volas &apos;%1&apos; foriĝi de la transmetlisto?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
-        <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="vanished">Ĉu vi certas, ke vi volas forigi tiujn %1 torentojn de la transmetlisto?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1893,7 +1811,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="26"/>
         <source>Add torrent links</source>
-        <translation type="unfinished">Aldoni torentligilojn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="48"/>
@@ -1908,12 +1826,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="105"/>
         <source>No URL entered</source>
-        <translation type="unfinished">Neniu URL-adreso eniĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="105"/>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">Bonvolu tajpi almenaŭ unu URL-adreson.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1935,27 +1853,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>ExecutionLog</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Ĝenerala</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Blokitaj IP-adresoj</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; blokiĝis %2</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; forbariĝis</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLogWidget</name>
     <message>
         <location filename="../gui/executionlogwidget.ui" line="39"/>
@@ -1965,19 +1862,19 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/executionlogwidget.ui" line="45"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Blokitaj IP-adresoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="106"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; blokiĝis %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="108"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; forbariĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2299,7 +2196,7 @@ Please do not use any special characters in the category name.</source>
         <translation>Aldoni</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="93"/>
+        <location filename="../webui/extra_translations.h" line="94"/>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
         <translation type="unfinished"></translation>
@@ -2355,49 +2252,54 @@ Please do not use any special characters in the category name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="85"/>
+        <location filename="../webui/extra_translations.h" line="82"/>
+        <source>Unable to create category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/extra_translations.h" line="86"/>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
         <translation>Alia...</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="86"/>
+        <location filename="../webui/extra_translations.h" line="87"/>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Lundo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="87"/>
+        <location filename="../webui/extra_translations.h" line="88"/>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Mardo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="88"/>
+        <location filename="../webui/extra_translations.h" line="89"/>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Merkredo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="89"/>
+        <location filename="../webui/extra_translations.h" line="90"/>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Ĵaŭdo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="90"/>
+        <location filename="../webui/extra_translations.h" line="91"/>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Vendredo</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="91"/>
+        <location filename="../webui/extra_translations.h" line="92"/>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Sabato</translation>
     </message>
     <message>
-        <location filename="../webui/extra_translations.h" line="92"/>
+        <location filename="../webui/extra_translations.h" line="93"/>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
         <translation>Dimanĉo</translation>
@@ -3291,12 +3193,12 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="206"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">La nomo de la malloka gastigo ne troviĝis (malvalida gastiga nomo)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="208"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">La operacio malfariĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="210"/>
@@ -3306,32 +3208,32 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="212"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">La konekto al la malloka servilo eltempiĝis.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="214"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL-/TSL-kvitanco malsukcesis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="216"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">La malloka servilo rifuzis la konekton</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="218"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">La konekto al la prokurilo rifuziĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="220"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">La prokurilo fermis la konekton antaŭtempe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="222"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">La nomo de la prokurila gastigo ne troviĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="224"/>
@@ -3396,7 +3298,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="248"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Nekonata eraro</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4986,22 +4888,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3119"/>
+        <location filename="../gui/optionsdialog.ui" line="3111"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3126"/>
+        <location filename="../gui/optionsdialog.ui" line="3118"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3139"/>
+        <location filename="../gui/optionsdialog.ui" line="3131"/>
         <source>IP subnet whitelist...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3202"/>
+        <location filename="../gui/optionsdialog.ui" line="3194"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5289,25 +5191,25 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1178"/>
-        <location filename="../gui/optionsdialog.ui" line="3087"/>
+        <location filename="../gui/optionsdialog.ui" line="3079"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1190"/>
         <location filename="../gui/optionsdialog.ui" line="1667"/>
-        <location filename="../gui/optionsdialog.ui" line="3146"/>
-        <location filename="../gui/optionsdialog.ui" line="3260"/>
+        <location filename="../gui/optionsdialog.ui" line="3138"/>
+        <location filename="../gui/optionsdialog.ui" line="3252"/>
         <source>Username:</source>
-        <translation type="unfinished">Uzantnomo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1200"/>
         <location filename="../gui/optionsdialog.ui" line="1677"/>
-        <location filename="../gui/optionsdialog.ui" line="3153"/>
-        <location filename="../gui/optionsdialog.ui" line="3274"/>
+        <location filename="../gui/optionsdialog.ui" line="3145"/>
+        <location filename="../gui/optionsdialog.ui" line="3266"/>
         <source>Password:</source>
-        <translation type="unfinished">Pasvorto:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1288"/>
@@ -5693,62 +5595,62 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2999"/>
+        <location filename="../gui/optionsdialog.ui" line="2995"/>
         <source>Certificate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3011"/>
+        <location filename="../gui/optionsdialog.ui" line="3007"/>
         <source>Import SSL Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3040"/>
+        <location filename="../gui/optionsdialog.ui" line="3032"/>
         <source>Key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3052"/>
+        <location filename="../gui/optionsdialog.ui" line="3044"/>
         <source>Import SSL Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3074"/>
+        <location filename="../gui/optionsdialog.ui" line="3066"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3163"/>
+        <location filename="../gui/optionsdialog.ui" line="3155"/>
         <source>Use alternative Web UI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3175"/>
+        <location filename="../gui/optionsdialog.ui" line="3167"/>
         <source>Files location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3188"/>
+        <location filename="../gui/optionsdialog.ui" line="3180"/>
         <source>Enable clickjacking protection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3195"/>
+        <location filename="../gui/optionsdialog.ui" line="3187"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3214"/>
+        <location filename="../gui/optionsdialog.ui" line="3206"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3237"/>
+        <location filename="../gui/optionsdialog.ui" line="3229"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3246"/>
+        <location filename="../gui/optionsdialog.ui" line="3238"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5838,35 +5740,35 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1528"/>
+        <location filename="../gui/optionsdialog.cpp" line="1527"/>
         <source>Select folder to monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1535"/>
+        <location filename="../gui/optionsdialog.cpp" line="1534"/>
         <source>Folder is already being monitored:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1538"/>
+        <location filename="../gui/optionsdialog.cpp" line="1537"/>
         <source>Folder does not exist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1541"/>
+        <location filename="../gui/optionsdialog.cpp" line="1540"/>
         <source>Folder is not readable:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1552"/>
+        <location filename="../gui/optionsdialog.cpp" line="1551"/>
         <source>Adding entry failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="426"/>
         <location filename="../gui/optionsdialog.cpp" line="429"/>
-        <location filename="../gui/optionsdialog.cpp" line="1580"/>
-        <location filename="../gui/optionsdialog.cpp" line="1582"/>
+        <location filename="../gui/optionsdialog.cpp" line="1579"/>
+        <location filename="../gui/optionsdialog.cpp" line="1581"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5888,43 +5790,43 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1616"/>
+        <location filename="../gui/optionsdialog.cpp" line="1615"/>
         <source>SSL Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1666"/>
+        <location filename="../gui/optionsdialog.cpp" line="1665"/>
         <source>Parsing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1666"/>
+        <location filename="../gui/optionsdialog.cpp" line="1665"/>
         <source>Failed to parse the provided IP filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1668"/>
+        <location filename="../gui/optionsdialog.cpp" line="1667"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1668"/>
+        <location filename="../gui/optionsdialog.cpp" line="1667"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1641"/>
+        <location filename="../gui/optionsdialog.cpp" line="1640"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1641"/>
+        <location filename="../gui/optionsdialog.cpp" line="1640"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1626"/>
+        <location filename="../gui/optionsdialog.cpp" line="1625"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5934,48 +5836,48 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1616"/>
+        <location filename="../gui/optionsdialog.cpp" line="1615"/>
         <source>Import SSL certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1626"/>
+        <location filename="../gui/optionsdialog.cpp" line="1625"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1631"/>
+        <location filename="../gui/optionsdialog.cpp" line="1630"/>
         <source>Import SSL key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1631"/>
+        <location filename="../gui/optionsdialog.cpp" line="1630"/>
         <source>SSL key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>Time Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1799"/>
-        <location filename="../gui/optionsdialog.cpp" line="1803"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
+        <location filename="../gui/optionsdialog.cpp" line="1802"/>
         <source>Length Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1799"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1803"/>
+        <location filename="../gui/optionsdialog.cpp" line="1802"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6201,7 +6103,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="14"/>
         <source>Add Peers</source>
-        <translation type="unfinished">Aldonu Samtavolanojn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="20"/>
@@ -6211,46 +6113,27 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished">Aranĝo: IPv4:pordo / [IPv6]:pordo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="59"/>
         <source>No peer entered</source>
-        <translation type="unfinished">Neniu samtavolano eniĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="60"/>
         <source>Please type at least one peer.</source>
-        <translation type="unfinished">Bonvolu tajpi almenaŭ unu samtavolanon.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="70"/>
         <source>Invalid peer</source>
-        <translation type="unfinished">Malvalida samtavolano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="71"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished">La samtavolano &apos;%1&apos; malvalidas.</translation>
-    </message>
-</context>
-<context>
-    <name>PeersAdditionDlg</name>
-    <message>
-        <source>No peer entered</source>
-        <translation type="vanished">Neniu samtavolano eniĝis</translation>
-    </message>
-    <message>
-        <source>Please type at least one peer.</source>
-        <translation type="vanished">Bonvolu tajpi almenaŭ unu samtavolanon.</translation>
-    </message>
-    <message>
-        <source>Invalid peer</source>
-        <translation type="vanished">Malvalida samtavolano</translation>
-    </message>
-    <message>
-        <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation type="vanished">La samtavolano &apos;%1&apos; malvalidas.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6299,12 +6182,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Serĉilaj kromprogramoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="30"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Instalitaj serĉilaj kromprogramoj:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="53"/>
@@ -6314,18 +6197,18 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="58"/>
         <source>Version</source>
-        <translation type="unfinished">Versio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="63"/>
         <source>Url</source>
-        <translation type="unfinished">URL-adreso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="68"/>
         <location filename="../gui/search/pluginselectdialog.ui" line="134"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ebligita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="81"/>
@@ -6335,27 +6218,27 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished">Vi povas akiri novajn serĉilajn kromprogramojn ĉi tie: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Instali novan</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="115"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Kontroli ĝisdatigadon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="122"/>
         <source>Close</source>
-        <translation type="unfinished">Fermi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="139"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Malinstali</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="159"/>
@@ -6375,7 +6258,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="208"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Averto de malinstalado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="208"/>
@@ -6386,7 +6269,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="210"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Malinstalo sukcesis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="210"/>
@@ -6399,7 +6282,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="436"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="468"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Serĉila kromprograma ĝisdatigado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="323"/>
@@ -6416,12 +6299,12 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="344"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="351"/>
         <source>URL:</source>
-        <translation type="unfinished">URL-adreso:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Malvalida ligilo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
@@ -6431,17 +6314,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="364"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Elektu serĉilajn kromprogramojn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="365"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">serĉila kromprogramo de qBittorrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="422"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Ĉiuj viaj kromprogramoj jam estas ĝisdataj.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="436"/>
@@ -6451,7 +6334,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="450"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Serĉila kromprograma instalado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="451"/>
@@ -6462,97 +6345,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="469"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PluginSelectDlg</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Serĉilaj kromprogramoj</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Instalitaj serĉilaj kromprogramoj:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Versio</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">URL-adreso</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Ebligita</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="vanished">Vi povas akiri novajn serĉilajn kromprogramojn ĉi tie: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Instali novan</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Kontroli ĝisdatigadon</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Fermi</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Malinstali</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Jes</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Ne</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Averto de malinstalado</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Malinstalo sukcesis</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL-adreso:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Malvalida ligilo</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Elektu serĉilajn kromprogramojn</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">serĉila kromprogramo de qBittorrent</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Serĉila kromprograma ĝisdatigado</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Ĉiuj viaj kromprogramoj jam estas ĝisdataj.</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Serĉila kromprograma instalado</translation>
     </message>
 </context>
 <context>
@@ -6570,23 +6362,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="36"/>
         <source>Local file</source>
-        <translation type="unfinished">Loka dosiero</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="43"/>
         <source>Web link</source>
-        <translation type="unfinished">TTT-ligilo</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDlg</name>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Loka dosiero</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">TTT-ligilo</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6997,7 +6778,7 @@ Those plugins were disabled.</source>
         <translation>Redakti URL-adreson de TTT-fonto</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
         <source>New name:</source>
         <translation>Nova nomo:</translation>
     </message>
@@ -7023,18 +6804,18 @@ Those plugins were disabled.</source>
         <translation>Filtri dosierojn...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="689"/>
         <source>Renaming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="693"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="694"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="722"/>
         <source>Rename error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="694"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="695"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7069,19 +6850,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="141"/>
+        <location filename="../app/main.cpp" line="133"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 estas nekonata komandlinia parametro.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="151"/>
-        <location filename="../app/main.cpp" line="160"/>
+        <location filename="../app/main.cpp" line="143"/>
+        <location filename="../app/main.cpp" line="152"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 nepras esti la sola komandlinia parametro.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="183"/>
+        <location filename="../app/main.cpp" line="175"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>%1 ne povas uziĝi de vi: qBittorrent jam funkciantas por ĉi tiu uzanto.</translation>
     </message>
@@ -7262,97 +7043,61 @@ Those plugins were disabled.</source>
         <translation>Helpo</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="350"/>
+        <location filename="../app/main.cpp" line="334"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Lanĉu la aplikaĵon kun la opcion -h por legi pri komandliniaj parametroj.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="336"/>
         <source>Bad command line</source>
         <translation>Malvalida komandlinio</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="342"/>
         <source>Bad command line: </source>
         <translation>Malvalida komandlinio:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Legal Notice</source>
         <translation>Leĝa Noto</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="357"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="374"/>
+        <location filename="../app/main.cpp" line="358"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="386"/>
+        <location filename="../app/main.cpp" line="370"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="375"/>
+        <location filename="../app/main.cpp" line="359"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Premu la %1-klavon por akcepti kaj daŭrigi...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="387"/>
+        <location filename="../app/main.cpp" line="371"/>
         <source>Legal notice</source>
         <translation>Leĝa noto</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="388"/>
+        <location filename="../app/main.cpp" line="372"/>
         <source>Cancel</source>
         <translation>Nuligi</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="389"/>
+        <location filename="../app/main.cpp" line="373"/>
         <source>I Agree</source>
         <translation>Mi Konsentas</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="vanished">La nomo de la malloka gastigo ne troviĝis (malvalida gastiga nomo)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="vanished">La operacio malfariĝis</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="vanished">La konekto al la malloka servilo eltempiĝis.</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="vanished">SSL-/TSL-kvitanco malsukcesis</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="vanished">La malloka servilo rifuzis la konekton</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="vanished">La konekto al la prokurilo rifuziĝis</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="vanished">La prokurilo fermis la konekton antaŭtempe</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="vanished">La nomo de la prokurila gastigo ne troviĝis</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="vanished">Nekonata eraro</translation>
     </message>
     <message>
         <location filename="../app/upgrade.h" line="64"/>
@@ -7804,18 +7549,18 @@ No further notices will be issued.</source>
         <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">Fontoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="81"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">Ricevantoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="82"/>
         <source>Search engine</source>
-        <translation type="unfinished">Serĉilo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="133"/>
@@ -7823,48 +7568,53 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="286"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="291"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="335"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="340"/>
         <source>Torrent names only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="336"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="341"/>
         <source>Everywhere</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="353"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="362"/>
+        <source>Use regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="377"/>
         <source>Searching...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="355"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="379"/>
         <source>Search has finished</source>
         <translation type="unfinished">Serĉo finiĝis</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="357"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="381"/>
         <source>Search aborted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="359"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="383"/>
         <source>An error occurred during search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="361"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="385"/>
         <source>Search returned no results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="385"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="409"/>
         <source>Column visibility</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7952,33 +7702,6 @@ No further notices will be issued.</source>
         <location filename="../base/search/searchpluginmanager.cpp" line="560"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SearchTab</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="vanished">Grando</translation>
-    </message>
-    <message>
-        <source>Seeders</source>
-        <comment>i.e: Number of full sources</comment>
-        <translation type="vanished">Fontoj</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: Number of partial sources</comment>
-        <translation type="vanished">Ricevantoj</translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="vanished">Serĉilo</translation>
     </message>
 </context>
 <context>
@@ -8120,7 +7843,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="115"/>
         <source>Exit confirmation</source>
-        <translation type="unfinished">Ĉesa konfirmado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="118"/>
@@ -8135,7 +7858,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="120"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished">Malŝalta konfirmado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="123"/>
@@ -8171,17 +7894,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
         <source>You can cancel the action within %1 seconds.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ShutdownConfirmDlg</name>
-    <message>
-        <source>Exit confirmation</source>
-        <translation type="vanished">Ĉesa konfirmado</translation>
-    </message>
-    <message>
-        <source>Shutdown confirmation</source>
-        <translation type="vanished">Malŝalta konfirmado</translation>
     </message>
 </context>
 <context>
@@ -8493,47 +8205,47 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/transferlistfilterswidget.cpp" line="134"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished">Ĉio (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="137"/>
         <source>Downloading (0)</source>
-        <translation type="unfinished">Elŝutante (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="140"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished">Fontsendanta (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="143"/>
         <source>Completed (0)</source>
-        <translation type="unfinished">Finite (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="146"/>
         <source>Resumed (0)</source>
-        <translation type="unfinished">Reaktiviĝita (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="149"/>
         <source>Paused (0)</source>
-        <translation type="unfinished">Paŭzinta (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="152"/>
         <source>Active (0)</source>
-        <translation type="unfinished">Aktiva (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="155"/>
         <source>Inactive (0)</source>
-        <translation type="unfinished">Malaktiva (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
         <source>Errored (0)</source>
-        <translation type="unfinished">Erarinta (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="175"/>
@@ -8543,118 +8255,42 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="176"/>
         <source>Downloading (%1)</source>
-        <translation type="unfinished">Elŝutante (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="177"/>
         <source>Seeding (%1)</source>
-        <translation type="unfinished">Fontsendanta (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="178"/>
         <source>Completed (%1)</source>
-        <translation type="unfinished">Finite (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="179"/>
         <source>Paused (%1)</source>
-        <translation type="unfinished">Paŭzinta (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="180"/>
         <source>Resumed (%1)</source>
-        <translation type="unfinished">Reaktiviĝita (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="181"/>
         <source>Active (%1)</source>
-        <translation type="unfinished">Aktiva (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="182"/>
         <source>Inactive (%1)</source>
-        <translation type="unfinished">Malaktiva (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished">Erarinta (%1)</translation>
-    </message>
-</context>
-<context>
-    <name>StatusFiltersWidget</name>
-    <message>
-        <source>All (0)</source>
-        <comment>this is for the status filter</comment>
-        <translation type="vanished">Ĉio (0)</translation>
-    </message>
-    <message>
-        <source>Downloading (0)</source>
-        <translation type="vanished">Elŝutante (0)</translation>
-    </message>
-    <message>
-        <source>Seeding (0)</source>
-        <translation type="vanished">Fontsendanta (0)</translation>
-    </message>
-    <message>
-        <source>Completed (0)</source>
-        <translation type="vanished">Finite (0)</translation>
-    </message>
-    <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Reaktiviĝita (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Paŭzinta (0)</translation>
-    </message>
-    <message>
-        <source>Active (0)</source>
-        <translation type="vanished">Aktiva (0)</translation>
-    </message>
-    <message>
-        <source>Inactive (0)</source>
-        <translation type="vanished">Malaktiva (0)</translation>
-    </message>
-    <message>
-        <source>Errored (0)</source>
-        <translation type="vanished">Erarinta (0)</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Ĉio (%1)</translation>
-    </message>
-    <message>
-        <source>Downloading (%1)</source>
-        <translation type="vanished">Elŝutante (%1)</translation>
-    </message>
-    <message>
-        <source>Seeding (%1)</source>
-        <translation type="vanished">Fontsendanta (%1)</translation>
-    </message>
-    <message>
-        <source>Completed (%1)</source>
-        <translation type="vanished">Finite (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Paŭzinta (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Reaktiviĝita (%1)</translation>
-    </message>
-    <message>
-        <source>Active (%1)</source>
-        <translation type="vanished">Aktiva (%1)</translation>
-    </message>
-    <message>
-        <source>Inactive (%1)</source>
-        <translation type="vanished">Malaktiva (%1)</translation>
-    </message>
-    <message>
-        <source>Errored (%1)</source>
-        <translation type="vanished">Erarinta (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8748,7 +8384,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">Nomo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
@@ -8814,7 +8450,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="205"/>
         <source>Remaining</source>
-        <translation type="unfinished">Restanta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="205"/>
@@ -9017,7 +8653,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="155"/>
         <source>Torrent Files (*.torrent)</source>
-        <translation type="unfinished">Torentdosieroj (*.torrent)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="182"/>
@@ -9041,13 +8677,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TorrentCreatorDlg</name>
-    <message>
-        <source>Torrent Files (*.torrent)</source>
-        <translation type="vanished">Torentdosieroj (*.torrent)</translation>
-    </message>
-</context>
-<context>
     <name>TorrentInfo</name>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="111"/>
@@ -9066,163 +8695,26 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TorrentModel</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="vanished">Grando</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Finita</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="vanished">Stato</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="vanished">Fontoj</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="vanished">Samtavolanoj</translation>
-    </message>
-    <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="vanished">Elŝutrapido</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="vanished">Alŝutrapido</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="vanished">Proporcio</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="vanished">ETA</translation>
-    </message>
-    <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="vanished">Aldonita je</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="vanished">Finita je</translation>
-    </message>
-    <message>
-        <source>Tracker</source>
-        <translation type="vanished">Spurilo</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="vanished">Elŝutlimo</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="vanished">Alŝutlimo</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="vanished">Elŝutita</translation>
-    </message>
-    <message>
-        <source>Uploaded</source>
-        <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="vanished">Alŝutita</translation>
-    </message>
-    <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Elŝutita ĉi-seance</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Alŝutita ĉi-seance</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="vanished">Restanta</translation>
-    </message>
-    <message>
-        <source>Time Active</source>
-        <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="vanished">Aktiva tempo</translation>
-    </message>
-    <message>
-        <source>Save path</source>
-        <comment>Torrent save path</comment>
-        <translation type="vanished">Konserva dosierindiko</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="vanished">Finita</translation>
-    </message>
-    <message>
-        <source>Ratio Limit</source>
-        <comment>Upload share ratio limit</comment>
-        <translation type="vanished">Proporci-limo</translation>
-    </message>
-    <message>
-        <source>Last Seen Complete</source>
-        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="vanished">Laste trovita plene</translation>
-    </message>
-    <message>
-        <source>Last Activity</source>
-        <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="vanished">Lasta ago</translation>
-    </message>
-    <message>
-        <source>Total Size</source>
-        <comment>i.e. Size including unwanted data</comment>
-        <translation type="vanished">Tuta grando</translation>
-    </message>
-</context>
-<context>
     <name>TorrentsController</name>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="315"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Ne jam kontaktiĝis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="317"/>
         <source>Updating...</source>
-        <translation type="unfinished">Ĝisdatiĝante...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="319"/>
         <source>Working</source>
-        <translation type="unfinished">Funkciante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="321"/>
         <source>Not working</source>
-        <translation type="unfinished">Nefunkciante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="511"/>
@@ -9239,7 +8731,23 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="741"/>
-        <source>Save path is empty</source>
+        <source>Save path cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="828"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="845"/>
+        <source>Category cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="834"/>
+        <source>Unable to create category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="848"/>
+        <source>Unable to edit category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9263,8 +8771,8 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="815"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="825"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="816"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="831"/>
         <source>Incorrect category name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9275,7 +8783,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="203"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished">Ĉio (0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="206"/>
@@ -9334,162 +8842,93 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TrackerList</name>
-    <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Stato</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="vanished">Samtavolanoj</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Mesaĝo</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="vanished">Funkciante</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="vanished">Malebligita</translation>
-    </message>
-    <message>
-        <source>This torrent is private</source>
-        <translation type="vanished">Ĉi tiu torento estas privata</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="vanished">Ĝisdatiĝante...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="vanished">Nefunkciante</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="vanished">Ne jam kontaktiĝis</translation>
-    </message>
-    <message>
-        <source>Tracker URL:</source>
-        <translation type="vanished">Spurila URL-adreso:</translation>
-    </message>
-    <message>
-        <source>Tracker editing</source>
-        <translation type="vanished">Spuril-redaktado</translation>
-    </message>
-    <message>
-        <source>Tracker editing failed</source>
-        <translation type="vanished">Spuril-redaktado malsukcesis</translation>
-    </message>
-    <message>
-        <source>The tracker URL entered is invalid.</source>
-        <translation type="vanished">Malvalidas la spurila URL-adreso, kiun vi enigis.</translation>
-    </message>
-    <message>
-        <source>The tracker URL already exists.</source>
-        <translation type="vanished">Tiu spurila URL-adreso jam ekzistas.</translation>
-    </message>
-    <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Aldoni novan spurilon...</translation>
-    </message>
-    <message>
-        <source>Copy tracker URL</source>
-        <translation type="vanished">Kopii la spurilan URL-adreson:</translation>
-    </message>
-    <message>
-        <source>Edit selected tracker URL</source>
-        <translation type="vanished">Redakti la elektitan spurilan URL-adreson</translation>
-    </message>
-    <message>
-        <source>Remove tracker</source>
-        <translation type="vanished">Forigi la spurilon</translation>
-    </message>
-</context>
-<context>
     <name>TrackerListWidget</name>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="261"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="351"/>
         <source>Working</source>
-        <translation type="unfinished">Funkciante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="262"/>
         <source>Disabled</source>
-        <translation type="unfinished">Malebligita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="283"/>
         <source>This torrent is private</source>
-        <translation type="unfinished">Ĉi tiu torento estas privata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="355"/>
         <source>Updating...</source>
-        <translation type="unfinished">Ĝisdatiĝante...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="359"/>
         <source>Not working</source>
-        <translation type="unfinished">Nefunkciante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="363"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Ne jam kontaktiĝis</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="370"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="371"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="372"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="374"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="375"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="376"/>
+        <source>N/A</source>
+        <translation type="unfinished">N/A</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
         <source>Tracker editing</source>
-        <translation type="unfinished">Spuril-redaktado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished">Spurila URL-adreso:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="467"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="477"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished">Spuril-redaktado malsukcesis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="467"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished">Malvalidas la spurila URL-adreso, kiun vi enigis.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="477"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished">Tiu spurila URL-adreso jam ekzistas.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="531"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished">Aldoni novan spurilon...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="536"/>
         <source>Remove tracker</source>
-        <translation type="unfinished">Forigi la spurilon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="537"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished">Kopii la spurilan URL-adreson:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="538"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished">Redakti la elektitan spurilan URL-adreson</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="543"/>
@@ -9504,7 +8943,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="592"/>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="593"/>
@@ -9519,7 +8958,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="595"/>
         <source>Seeds</source>
-        <translation type="unfinished">Fontoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="596"/>
@@ -9529,12 +8968,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="597"/>
         <source>Downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elŝutis</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="598"/>
         <source>Message</source>
-        <translation type="unfinished">Mesaĝo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="618"/>
@@ -9548,12 +8987,12 @@ Please choose a different name and try again.</source>
         <location filename="../gui/trackerlogindialog.ui" line="14"/>
         <location filename="../gui/trackerlogindialog.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation type="unfinished">Spuril-aŭtentigado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/trackerlogindialog.ui" line="64"/>
         <source>Tracker:</source>
-        <translation type="unfinished">Spurilo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/trackerlogindialog.ui" line="86"/>
@@ -9563,15 +9002,15 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/trackerlogindialog.ui" line="94"/>
         <source>Username:</source>
-        <translation type="unfinished">Uzantnomo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/trackerlogindialog.ui" line="117"/>
         <source>Password:</source>
-        <translation type="unfinished">Pasvorto:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.cpp" line="45"/>
+        <location filename="../gui/trackerlogindialog.cpp" line="46"/>
         <source>Log in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9586,17 +9025,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished">Listo da spuriloj por aldoni (po unu por linio):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished">URL-adreso de listo, kiu kongruas kun µTorrent:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="116"/>
         <source>No change</source>
-        <translation type="unfinished">Neniu ŝanĝo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="116"/>
@@ -9612,29 +9051,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="124"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TrackersAdditionDlg</name>
-    <message>
-        <source>List of trackers to add (one per line):</source>
-        <translation type="vanished">Listo da spuriloj por aldoni (po unu por linio):</translation>
-    </message>
-    <message>
-        <source>µTorrent compatible list URL:</source>
-        <translation type="vanished">URL-adreso de listo, kiu kongruas kun µTorrent:</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <translation type="vanished">Eneliga Eraro</translation>
-    </message>
-    <message>
-        <source>No change</source>
-        <translation type="vanished">Neniu ŝanĝo</translation>
-    </message>
-    <message>
-        <source>Download error</source>
-        <translation type="vanished">Elŝuta eraro</translation>
     </message>
 </context>
 <context>
@@ -9785,7 +9201,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="99"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">Finita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="100"/>
@@ -9797,7 +9213,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="101"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Fontoj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="102"/>
@@ -9821,13 +9237,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="105"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Proporcio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="106"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="107"/>
@@ -9843,72 +9259,72 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="109"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Aldonita je</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Finita je</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="111"/>
         <source>Tracker</source>
-        <translation type="unfinished">Spurilo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="112"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">Elŝutlimo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="113"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">Alŝutlimo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="114"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elŝutis</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="115"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alŝutis</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="116"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished">Elŝutita ĉi-seance</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="117"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished">Alŝutita ĉi-seance</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="118"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished">Restanta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="119"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished">Aktiva tempo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="120"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished">Konserva dosierindiko</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="121"/>
@@ -9920,25 +9336,25 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="122"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished">Proporci-limo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="123"/>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished">Laste trovita plene</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="124"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished">Lasta ago</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished">Tuta grando</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10128,41 +9544,41 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1025"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1021"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1026"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1022"/>
         <source>New...</source>
         <comment>New category...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1027"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1023"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1044"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1040"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1045"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1041"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1046"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1042"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1108"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1104"/>
         <source>Priority</source>
         <translation>Prioritato</translation>
     </message>
@@ -10197,7 +9613,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished">Limitado de torenta alŝut-elŝut-proporcio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="20"/>
@@ -10209,7 +9625,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/updownratiodialog.ui" line="33"/>
         <location filename="../gui/updownratiodialog.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished">butongrupo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="30"/>
@@ -10243,17 +9659,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>UpDownRatioDlg</name>
-    <message>
-        <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="vanished">Limitado de torenta alŝut-elŝut-proporcio</translation>
-    </message>
-    <message>
-        <source>buttonGroup</source>
-        <translation type="vanished">butongrupo</translation>
-    </message>
-</context>
-<context>
     <name>Utils::ForeignApps</name>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="72"/>
@@ -10263,43 +9668,43 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="102"/>
         <source>Python not detected</source>
-        <translation type="unfinished">Pitono netrovita</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="228"/>
+        <location filename="../webui/webapplication.cpp" line="221"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="235"/>
+        <location filename="../webui/webapplication.cpp" line="228"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="487"/>
+        <location filename="../webui/webapplication.cpp" line="480"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="697"/>
+        <location filename="../webui/webapplication.cpp" line="690"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="706"/>
+        <location filename="../webui/webapplication.cpp" line="699"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="723"/>
+        <location filename="../webui/webapplication.cpp" line="716"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="755"/>
+        <location filename="../webui/webapplication.cpp" line="748"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10325,70 +9730,6 @@ Please choose a different name and try again.</source>
         <location filename="../webui/webui.cpp" line="103"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>addPeersDialog</name>
-    <message>
-        <source>Add Peers</source>
-        <translation type="vanished">Aldonu Samtavolanojn</translation>
-    </message>
-    <message>
-        <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="vanished">Aranĝo: IPv4:pordo / [IPv6]:pordo</translation>
-    </message>
-</context>
-<context>
-    <name>authentication</name>
-    <message>
-        <source>Tracker authentication</source>
-        <translation type="vanished">Spuril-aŭtentigado</translation>
-    </message>
-    <message>
-        <source>Tracker:</source>
-        <translation type="vanished">Spurilo:</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="vanished">Ensaluti</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="vanished">Uzantnomo:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">Pasvorto:</translation>
-    </message>
-</context>
-<context>
-    <name>confirmDeletionDlg</name>
-    <message>
-        <source>Remember choice</source>
-        <translation type="vanished">Memori elekton</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Forigi ankaŭ la dosierojn el la diskilo</translation>
-    </message>
-</context>
-<context>
-    <name>downloadFromURL</name>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Aldoni torentligilojn</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Elŝuti</translation>
-    </message>
-    <message>
-        <source>No URL entered</source>
-        <translation type="vanished">Neniu URL-adreso eniĝis</translation>
-    </message>
-    <message>
-        <source>Please type at least one URL.</source>
-        <translation type="vanished">Bonvolu tajpi almenaŭ unu URL-adreson.</translation>
     </message>
 </context>
 <context>
@@ -10442,14 +9783,6 @@ Please choose a different name and try again.</source>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Python not detected</source>
-        <translation type="vanished">Pitono netrovita</translation>
-    </message>
-    <message>
-        <source>Python version: %1</source>
-        <translation type="vanished">Pitona versio: %1</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="279"/>
