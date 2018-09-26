@@ -29,10 +29,18 @@
 
 #include "foreignapps.h"
 
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#endif
+
 #include <QCoreApplication>
 #include <QProcess>
 #include <QRegularExpression>
 #include <QStringList>
+
+#if defined(Q_OS_WIN)
+#include <QDir>
+#endif
 
 #include "base/logger.h"
 
@@ -69,17 +77,172 @@ namespace
                 return false;
             }
 
-            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, version: %1").arg(info.version), Log::INFO);
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, executable name: '%1', version: %2")
+                .arg(info.executableName, info.version), Log::INFO);
             return true;
         }
 
         return false;
     }
+
+#if defined(Q_OS_WIN)
+    enum REG_SEARCH_TYPE
+    {
+        USER,
+        SYSTEM_32BIT,
+        SYSTEM_64BIT
+    };
+
+    QStringList getRegSubkeys(const HKEY handle)
+    {
+        QStringList keys;
+
+        DWORD cSubKeys = 0;
+        DWORD cMaxSubKeyLen = 0;
+        LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
+
+        if (res == ERROR_SUCCESS) {
+            ++cMaxSubKeyLen; // For null character
+            LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
+            DWORD cName;
+
+            for (DWORD i = 0; i < cSubKeys; ++i) {
+                cName = cMaxSubKeyLen;
+                res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
+                if (res == ERROR_SUCCESS)
+                    keys.push_back(QString::fromWCharArray(lpName));
+            }
+
+            delete[] lpName;
+        }
+
+        return keys;
+    }
+
+    QString getRegValue(const HKEY handle, const QString &name = QString())
+    {
+        QString result;
+
+        DWORD type = 0;
+        DWORD cbData = 0;
+        LPWSTR lpValueName = NULL;
+        if (!name.isEmpty()) {
+            lpValueName = new WCHAR[name.size() + 1];
+            name.toWCharArray(lpValueName);
+            lpValueName[name.size()] = 0;
+        }
+
+        // Discover the size of the value
+        ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
+        DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
+        LPWSTR lpData = new WCHAR[cBuffer];
+        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
+        if (lpValueName)
+            delete[] lpValueName;
+
+        if (res == ERROR_SUCCESS) {
+            lpData[cBuffer - 1] = 0;
+            result = QString::fromWCharArray(lpData);
+        }
+        delete[] lpData;
+
+        return result;
+    }
+
+    QString pythonSearchReg(const REG_SEARCH_TYPE type)
+    {
+        HKEY hkRoot;
+        if (type == USER)
+            hkRoot = HKEY_CURRENT_USER;
+        else
+            hkRoot = HKEY_LOCAL_MACHINE;
+
+        REGSAM samDesired = KEY_READ;
+        if (type == SYSTEM_32BIT)
+            samDesired |= KEY_WOW64_32KEY;
+        else if (type == SYSTEM_64BIT)
+            samDesired |= KEY_WOW64_64KEY;
+
+        QString path;
+        LONG res = 0;
+        HKEY hkPythonCore;
+        res = ::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore);
+
+        if (res == ERROR_SUCCESS) {
+            QStringList versions = getRegSubkeys(hkPythonCore);
+            qDebug("Python versions nb: %d", versions.size());
+            versions.sort();
+
+            bool found = false;
+            while (!found && !versions.empty()) {
+                const QString version = versions.takeLast() + "\\InstallPath";
+                LPWSTR lpSubkey = new WCHAR[version.size() + 1];
+                version.toWCharArray(lpSubkey);
+                lpSubkey[version.size()] = 0;
+
+                HKEY hkInstallPath;
+                res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
+                delete[] lpSubkey;
+
+                if (res == ERROR_SUCCESS) {
+                    qDebug("Detected possible Python v%s location", qUtf8Printable(version));
+                    path = getRegValue(hkInstallPath);
+                    ::RegCloseKey(hkInstallPath);
+
+                    if (!path.isEmpty() && QDir(path).exists("python.exe")) {
+                        found = true;
+                        path = QDir(path).filePath("python.exe");
+                    }
+                }
+            }
+
+            if (!found)
+                path = QString();
+
+            ::RegCloseKey(hkPythonCore);
+        }
+
+        return path;
+    }
+
+    QString findPythonPath()
+    {
+        QString path = pythonSearchReg(USER);
+        if (!path.isEmpty())
+            return path;
+
+        path = pythonSearchReg(SYSTEM_32BIT);
+        if (!path.isEmpty())
+            return path;
+
+        path = pythonSearchReg(SYSTEM_64BIT);
+        if (!path.isEmpty())
+            return path;
+
+        // Fallback: Detect python from default locations
+        const QFileInfoList dirs = QDir("C:/").entryInfoList({"Python*"}, QDir::Dirs, (QDir::Name | QDir::Reversed));
+        for (const QFileInfo &info : dirs) {
+            const QString path {info.absolutePath() + "/python.exe"};
+            if (QFile::exists(path))
+                return path;
+        }
+
+        return QString();
+    }
+#endif
 }
 
 bool Utils::ForeignApps::PythonInfo::isValid() const
 {
     return (!executableName.isEmpty() && version.isValid());
+}
+
+bool Utils::ForeignApps::PythonInfo::isSupportedVersion() const
+{
+    const int majorVer = version.majorNumber();
+    return ((majorVer > 3)
+        || ((majorVer == 3) && (version >= Version {3, 3, 0}))
+        || ((majorVer == 2) && (version >= Version {2, 7, 9})));
 }
 
 PythonInfo Utils::ForeignApps::pythonInfo()
@@ -88,7 +251,7 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     if (!pyInfo.isValid()) {
 #if defined(Q_OS_UNIX)
         // On Unix-Like Systems python2 and python3 should always exist
-        // https://legacy.python.org/dev/peps/pep-0394/
+        // https://www.python.org/dev/peps/pep-0394/
         if (testPythonInstallation("python3", pyInfo))
             return pyInfo;
         if (testPythonInstallation("python2", pyInfo))
@@ -98,6 +261,11 @@ PythonInfo Utils::ForeignApps::pythonInfo()
         // not detected.
         if (testPythonInstallation("python", pyInfo))
             return pyInfo;
+
+#if defined(Q_OS_WIN)
+        if (testPythonInstallation(findPythonPath(), pyInfo))
+            return pyInfo;
+#endif
 
         LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python not detected"), Log::INFO);
     }
