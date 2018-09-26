@@ -145,8 +145,8 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
         plugins << pluginName.trimmed();
 
     QSet<QString> categories;
-    for (const QString &pluginName : qAsConst(plugins)) {
-        const PluginInfo *plugin = pluginInfo(pluginName);
+    for (const QString &name : qAsConst(plugins)) {
+        const PluginInfo *plugin = pluginInfo(name);
         if (!plugin) continue; // plugin wasn't found
         for (const QString &category : plugin->supportedCategories)
             categories << category;
