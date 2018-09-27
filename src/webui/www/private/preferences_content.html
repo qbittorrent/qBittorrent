@@ -760,7 +760,7 @@
     };
 
     time_padding = function(val) {
-        ret = val.toString();
+        var ret = val.toString();
         if (ret.length == 1)
             ret = '0' + ret;
         return ret;
@@ -768,7 +768,7 @@
 
     loadPreferences = function() {
         var url = 'api/v2/app/preferences';
-        var request = new Request.JSON({
+        new Request.JSON({
             url: url,
             method: 'get',
             noCache: true,
@@ -1044,7 +1044,7 @@
                 }
             }
         }).send();
-    }
+    };
 
     applyPreferences = function() {
         var settings = new Hash();

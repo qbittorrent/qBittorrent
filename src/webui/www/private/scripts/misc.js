@@ -2,7 +2,7 @@
  * JS counterpart of the function in src/misc.cpp
  */
 function friendlyUnit(value, isSpeed) {
-    units = [
+    var units = [
         "QBT_TR(B)QBT_TR[CONTEXT=misc]",
         "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
         "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",

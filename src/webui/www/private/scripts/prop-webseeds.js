@@ -71,7 +71,7 @@ var loadWebSeedsData = function() {
         current_hash = new_hash;
     }
     var url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
-    var request = new Request.JSON({
+    new Request.JSON({
         url: url,
         noCache: true,
         method: 'get',
