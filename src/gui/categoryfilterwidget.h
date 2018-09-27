@@ -26,7 +26,9 @@
  * exception statement from your version.
  */
 
- #include <QTreeView>
+#pragma once
+
+#include <QTreeView>
 
 class CategoryFilterWidget : public QTreeView
 {
