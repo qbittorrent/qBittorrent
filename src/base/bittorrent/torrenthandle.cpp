@@ -1719,7 +1719,9 @@ void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert 
         }
     }
 
-    updateStatus();
+    // We don't really need to call updateStatus() in this place.
+    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
@@ -1737,7 +1739,9 @@ void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_fa
 
 void TorrentHandle::handleFileCompletedAlert(const libtorrent::file_completed_alert *p)
 {
-    updateStatus();
+    // We don't really need to call updateStatus() in this place.
+    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
 
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled()) {
@@ -2000,8 +2004,6 @@ void TorrentHandle::setDownloadLimit(int limit)
 void TorrentHandle::setSuperSeeding(bool enable)
 {
     m_nativeHandle.super_seeding(enable);
-    if (superSeeding() != enable)
-        updateStatus();
 }
 
 void TorrentHandle::flushCache()
@@ -2094,8 +2096,6 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     // Restore first/last piece first option if necessary
     if (firstLastPieceFirst)
         setFirstLastPiecePriorityImpl(true, priorities);
-
-    updateStatus();
 }
 
 QVector<qreal> TorrentHandle::availableFileFractions() const
