@@ -856,58 +856,58 @@ var TorrentsTable = new Class({
             var status;
             switch (state) {
                 case "downloading":
-                    status = "Downloading";
+                    status = "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "stalledDL":
-                    status = "Stalled";
+                    status = "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "metaDL":
-                    status = "Downloading metadata";
+                    status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "forcedDL":
-                    status = "[F] Downloading";
+                    status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "allocating":
-                    status = "Allocating";
+                    status = "QBT_TR(Allocating)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "uploading":
                 case "stalledUP":
-                    status = "Seeding";
+                    status = "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "forcedUP":
-                    status = "[F] Seeding";
+                    status = "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "queuedDL":
                 case "queuedUP":
-                    status = "Queued";
+                    status = "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "checkingDL":
                 case "checkingUP":
-                    status = "Checking";
+                    status = "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "queuedForChecking":
-                    status = "Queued for checking";
+                    status = "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "checkingResumeData":
-                    status = "Checking resume data";
+                    status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "pausedDL":
-                    status = "Paused";
+                    status = "QBT_TR(Paused)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "pausedUP":
-                    status = "Completed";
+                    status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "moving":
-                    status = "Moving";
+                    status = "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "missingFiles":
-                    status = "Missing Files";
+                    status = "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 case "error":
-                    status = "Errored";
+                    status = "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]";
                     break;
                 default:
-                    status = "Unknown";
+                    status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
             }
 
             td.set('html', status);
