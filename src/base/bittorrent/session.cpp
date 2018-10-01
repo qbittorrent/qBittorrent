@@ -392,7 +392,7 @@ Session::Session(QObject *parent)
                     | libt::alert::tracker_notification
                     | libt::alert::status_notification
                     | libt::alert::ip_block_notification
-                    | libt::alert::progress_notification
+                    | libt::alert::file_progress_notification
                     | libt::alert::stats_notification;
 
 #if LIBTORRENT_VERSION_NUM < 10100
