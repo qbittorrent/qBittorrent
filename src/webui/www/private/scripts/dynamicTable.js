@@ -370,7 +370,7 @@ var DynamicTable = new Class({
                 columnsOrder.push(v);
         }.bind(this));
 
-        for (i = 0; i < this.columns.length; ++i)
+        for (var i = 0; i < this.columns.length; ++i)
             if (!columnsOrder.contains(this.columns[i].name))
                 columnsOrder.push(this.columns[i].name);
 
@@ -379,8 +379,8 @@ var DynamicTable = new Class({
     },
 
     saveColumnsOrder: function() {
-        val = '';
-        for (i = 0; i < this.columns.length; ++i) {
+        var val = '';
+        for (var i = 0; i < this.columns.length; ++i) {
             if (i > 0)
                 val += ',';
             val += this.columns[i].name;
@@ -397,7 +397,7 @@ var DynamicTable = new Class({
         var ths = header.getElements('th');
 
         for (var i = 0; i < ths.length; ++i) {
-            th = ths[i];
+            var th = ths[i];
             th._this = this;
             th.setAttribute('title', this.columns[i].caption);
             th.innerHTML = this.columns[i].caption;
@@ -579,14 +579,14 @@ var DynamicTable = new Class({
 
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; ++i) {
+        for (var i = 0; i < rows.length; ++i) {
             filteredRows.push(rows[i]);
             filteredRows[rows[i].rowId] = rows[i];
         }
 
         filteredRows.sort(function(row1, row2) {
             var column = this.columns[this.sortedColumn];
-            res = column.compareRows(row1, row2);
+            var res = column.compareRows(row1, row2);
             if (this.reverseSort == '0')
                 return res;
             else
@@ -596,7 +596,7 @@ var DynamicTable = new Class({
     },
 
     getTrByRowId: function(rowId) {
-        trs = this.tableBody.getElements('tr');
+        var trs = this.tableBody.getElements('tr');
         for (var i = 0; i < trs.length; ++i)
             if (trs[i].rowId == rowId)
                 return trs[i];
@@ -619,7 +619,7 @@ var DynamicTable = new Class({
 
         for (var rowPos = 0; rowPos < rows.length; ++rowPos) {
             var rowId = rows[rowPos]['rowId'];
-            tr_found = false;
+            var tr_found = false;
             for (var j = rowPos; j < trs.length; ++j)
                 if (trs[j]['rowId'] == rowId) {
                     tr_found = true;
@@ -706,9 +706,9 @@ var DynamicTable = new Class({
 
     updateRow: function(tr, fullUpdate) {
         var row = this.rows.get(tr.rowId);
-        data = row[fullUpdate ? 'full_data' : 'data'];
+        var data = row[fullUpdate ? 'full_data' : 'data'];
 
-        tds = tr.getElements('td');
+        var tds = tr.getElements('td');
         for (var i = 0; i < this.columns.length; ++i) {
             if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
                 this.columns[i].updateTd(tds[i], row);
@@ -1027,7 +1027,7 @@ var TorrentsTable = new Class({
         // eta
         this.columns['eta'].updateTd = function(td, row) {
             var eta = this.getRowValue(row);
-            td.set('html', friendlyDuration(eta, true));
+            td.set('html', friendlyDuration(eta));
         };
 
         // ratio
@@ -1098,7 +1098,7 @@ var TorrentsTable = new Class({
             if (val < 1)
                 td.set('html', '∞');
             else
-                td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val, true)));
+                td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val)));
         };
 
         // time active
@@ -1167,7 +1167,7 @@ var TorrentsTable = new Class({
         var cnt = 0;
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; ++i)
+        for (var i = 0; i < rows.length; ++i)
             if (this.applyFilter(rows[i], filterName, categoryHash)) ++cnt;
         return cnt;
     },
@@ -1176,7 +1176,7 @@ var TorrentsTable = new Class({
         var rowsHashes = [];
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; ++i)
+        for (var i = 0; i < rows.length; ++i)
             if (this.applyFilter(rows[i], filterName, categoryHash))
                 rowsHashes.push(rows[i]['rowId']);
 
@@ -1188,7 +1188,7 @@ var TorrentsTable = new Class({
 
         var rows = this.rows.getValues();
 
-        for (i = 0; i < rows.length; ++i)
+        for (var i = 0; i < rows.length; ++i)
             if (this.applyFilter(rows[i], selected_filter, selected_category)) {
                 filteredRows.push(rows[i]);
                 filteredRows[rows[i].rowId] = rows[i];
@@ -1196,7 +1196,7 @@ var TorrentsTable = new Class({
 
         filteredRows.sort(function(row1, row2) {
             var column = this.columns[this.sortedColumn];
-            res = column.compareRows(row1, row2);
+            var res = column.compareRows(row1, row2);
             if (this.reverseSort == '0')
                 return res;
             else

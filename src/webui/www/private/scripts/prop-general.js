@@ -42,7 +42,7 @@ var loadTorrentData = function() {
     // Display hash
     $('torrent_hash').set('html', current_hash);
     var url = new URI('api/v2/torrents/properties?hash=' + current_hash);
-    var request = new Request.JSON({
+    new Request.JSON({
         url: url,
         noCache: true,
         method: 'get',

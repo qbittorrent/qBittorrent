@@ -23,7 +23,7 @@ if (typeof localStorage == 'undefined') {
 }
 
 function getLocalStorageItem(name, defaultVal) {
-    val = localStorage.getItem(name);
+    var val = localStorage.getItem(name);
     if (val === null || val === undefined)
         val = defaultVal;
     return val;

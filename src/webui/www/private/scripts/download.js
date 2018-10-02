@@ -22,7 +22,7 @@
  */
 
 getSavePath = function() {
-    var req = new Request({
+    new Request({
         url: 'api/v2/app/defaultSavePath',
         method: 'get',
         noCache: true,

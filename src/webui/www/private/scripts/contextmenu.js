@@ -245,18 +245,18 @@ var TorrentsTableContextMenu = new Class({
     Extends: ContextMenu,
 
     updateMenuItems: function() {
-        all_are_seq_dl = true;
-        there_are_seq_dl = false;
-        all_are_f_l_piece_prio = true;
-        there_are_f_l_piece_prio = false;
-        all_are_downloaded = true;
-        all_are_paused = true;
-        there_are_paused = false;
-        all_are_force_start = true;
-        there_are_force_start = false;
-        all_are_super_seeding = true;
-        all_are_auto_tmm = true;
-        there_are_auto_tmm = false;
+        var all_are_seq_dl = true;
+        var there_are_seq_dl = false;
+        var all_are_f_l_piece_prio = true;
+        var there_are_f_l_piece_prio = false;
+        var all_are_downloaded = true;
+        var all_are_paused = true;
+        var there_are_paused = false;
+        var all_are_force_start = true;
+        var there_are_force_start = false;
+        var all_are_super_seeding = true;
+        var all_are_auto_tmm = true;
+        var there_are_auto_tmm = false;
 
         var h = torrentsTable.selectedRowsIds();
         h.each(function(item, index) {
@@ -293,12 +293,12 @@ var TorrentsTableContextMenu = new Class({
                 all_are_auto_tmm = false;
         });
 
-        show_seq_dl = true;
+        var show_seq_dl = true;
 
         if (!all_are_seq_dl && there_are_seq_dl)
             show_seq_dl = false;
 
-        show_f_l_piece_prio = true;
+        var show_f_l_piece_prio = true;
 
         if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
             show_f_l_piece_prio = false;

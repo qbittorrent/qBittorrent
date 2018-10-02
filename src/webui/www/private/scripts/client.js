@@ -301,7 +301,7 @@ window.addEvent('load', function() {
     var syncMainData = function() {
         var url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
-        var request = new Request.JSON({
+        new Request.JSON({
             url: url,
             noCache: true,
             method: 'get',
@@ -727,7 +727,7 @@ var loadTorrentPeersData = function() {
     var url = new URI('api/v2/sync/torrentPeers');
     url.setData('rid', syncTorrentPeersLastResponseId);
     url.setData('hash', current_hash);
-    var request = new Request.JSON({
+    new Request.JSON({
         url: url,
         noCache: true,
         method: 'get',
