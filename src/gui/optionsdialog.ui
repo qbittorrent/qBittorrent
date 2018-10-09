@@ -2833,9 +2833,23 @@
             <item>
              <widget class="QGroupBox" name="groupRSSSmartEpisodeFilter">
               <property name="title">
-               <string>RSS Smart Episode Filters</string>
+               <string>RSS Smart Episode Filter</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
+               <item>
+                <widget class="QCheckBox" name="checkSmartFilterDownloadRepacks">
+                 <property name="text">
+                  <string>Download REPACK/PROPER episodes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Filters:</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QPlainTextEdit" name="textSmartEpisodeFilters"/>
                </item>

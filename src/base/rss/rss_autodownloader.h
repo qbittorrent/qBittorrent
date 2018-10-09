@@ -85,6 +85,9 @@ namespace RSS
         void setSmartEpisodeFilters(const QStringList &filters);
         QRegularExpression smartEpisodeRegex() const;
 
+        bool downloadRepacks() const;
+        void setDownloadRepacks(bool downloadRepacks);
+
         bool hasRule(const QString &ruleName) const;
         AutoDownloadRule ruleByName(const QString &ruleName) const;
         QList<AutoDownloadRule> rules() const;
