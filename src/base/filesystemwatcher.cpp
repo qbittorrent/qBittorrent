@@ -40,6 +40,7 @@
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 
@@ -83,8 +84,7 @@ void FileSystemWatcher::addPath(const QString &path)
     // Check if the path points to a network file system or not
     if (Utils::Fs::isNetworkFileSystem(path)) {
         // Network mode
-        qDebug("Network folder detected: %s", qUtf8Printable(path));
-        qDebug("Using file polling mode instead of inotify...");
+        LogMsg(tr("Watching remote folder: \"%1\"").arg(Utils::Fs::toNativePath(path)));
         m_watchedFolders << dir;
 
         m_watchTimer.start(WATCH_INTERVAL);
@@ -93,7 +93,7 @@ void FileSystemWatcher::addPath(const QString &path)
 #endif
 
     // Normal mode
-    qDebug("FS Watcher is watching %s in normal mode", qUtf8Printable(path));
+    LogMsg(tr("Watching local folder: \"%1\"").arg(Utils::Fs::toNativePath(path)));
     QFileSystemWatcher::addPath(path);
     scanLocalFolder(path);
 }
