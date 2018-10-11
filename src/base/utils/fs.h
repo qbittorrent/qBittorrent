@@ -62,7 +62,7 @@ namespace Utils
 
         QString tempPath();
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !defined Q_OS_HAIKU
         bool isNetworkFileSystem(const QString &path);
 #endif
     }

@@ -30,6 +30,10 @@
 
 #include <cstring>
 
+#if defined(Q_OS_WIN)
+#include <memory>
+#endif
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
@@ -301,9 +305,17 @@ bool Utils::Fs::isRegularFile(const QString &path)
     return (st.st_mode & S_IFMT) == S_IFREG;
 }
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !defined Q_OS_HAIKU
 bool Utils::Fs::isNetworkFileSystem(const QString &path)
 {
+#if defined(Q_OS_WIN)
+    const std::wstring pathW {path.toStdWString()};
+    std::unique_ptr<wchar_t[]> volumePath {new wchar_t[path.length() + 1] {}};
+    if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
+        return false;
+
+    return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
+#else
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -312,7 +324,6 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
-
 #if defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
     // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
@@ -331,6 +342,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     default:
         return false;
     }
+#endif
 #endif
 }
 #endif
