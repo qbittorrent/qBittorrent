@@ -315,6 +315,20 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         return false;
 
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
+#elif defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
+    QString file = path;
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
+
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
+    // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
+    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
 #else
     QString file = path;
     if (!file.endsWith('/'))
@@ -324,12 +338,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
-#if defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
-    // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
-    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
+
     // Magic number references:
     // 1. /usr/include/linux/magic.h
     // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
@@ -342,7 +351,6 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     default:
         return false;
     }
-#endif
 #endif
 }
 #endif
