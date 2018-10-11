@@ -40,3 +40,11 @@ void LineEdit::resizeEvent(QResizeEvent *e)
     const int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
     m_searchButton->move(frameWidth, (e->size().height() - m_searchButton->sizeHint().height()) / 2);
 }
+
+void LineEdit::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->modifiers() == Qt::NoModifier) && (event->key() == Qt::Key_Escape)) {
+        clear();
+    }
+    QLineEdit::keyPressEvent(event);
+}
