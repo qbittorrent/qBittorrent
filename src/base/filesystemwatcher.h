@@ -56,9 +56,7 @@ signals:
 protected slots:
     void scanLocalFolder(const QString &path);
     void processPartialTorrents();
-#ifndef Q_OS_WIN
     void scanNetworkFolders();
-#endif
 
 private:
     void processTorrentsInDir(const QDir &dir);
@@ -67,10 +65,8 @@ private:
     QHash<QString, int> m_partialTorrents;
     QTimer m_partialTorrentTimer;
 
-#ifndef Q_OS_WIN
     QList<QDir> m_watchedFolders;
     QTimer m_watchTimer;
-#endif
 };
 
 #endif // FILESYSTEMWATCHER_H
