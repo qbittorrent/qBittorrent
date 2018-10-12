@@ -73,6 +73,7 @@ enum AdvSettingsRows
     CONFIRM_REMOVE_ALL_TAGS,
     DOWNLOAD_TRACKER_FAVICON,
     SAVE_PATH_HISTORY_LENGTH,
+    ENABLE_SPEED_WIDGET,
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     USE_ICON_THEME,
 #endif
@@ -218,6 +219,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(spinBoxSavePathHistoryLength.value());
+    pref->setSpeedWidgetEnabled(checkBoxSpeedWidgetEnabled.isChecked());
 
     // Tracker
     session->setTrackerEnabled(checkBoxTrackerStatus.isChecked());
@@ -467,6 +469,9 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxSavePathHistoryLength.setRange(AddNewTorrentDialog::minPathHistoryLength, AddNewTorrentDialog::maxPathHistoryLength);
     spinBoxSavePathHistoryLength.setValue(AddNewTorrentDialog::savePathHistoryLength());
     addRow(SAVE_PATH_HISTORY_LENGTH, tr("Save path history length"), &spinBoxSavePathHistoryLength);
+    // Enable speed graphs
+    checkBoxSpeedWidgetEnabled.setChecked(pref->isSpeedWidgetEnabled());
+    addRow(ENABLE_SPEED_WIDGET, tr("Enable speed graphs"), &checkBoxSpeedWidgetEnabled);
     // Tracker State
     checkBoxTrackerStatus.setChecked(session->isTrackerEnabled());
     addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &checkBoxTrackerStatus);

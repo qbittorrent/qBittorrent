@@ -1431,6 +1431,16 @@ void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
     setValue("Network/Cookies", rawCookies);
 }
 
+bool Preferences::isSpeedWidgetEnabled() const
+{
+    return value("SpeedWidget/Enabled", true).toBool();
+}
+
+void Preferences::setSpeedWidgetEnabled(bool enabled)
+{
+    setValue("SpeedWidget/Enabled", enabled);
+}
+
 int Preferences::getSpeedWidgetPeriod() const
 {
     return value("SpeedWidget/period", 1).toInt();
