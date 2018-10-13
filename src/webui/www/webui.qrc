@@ -45,55 +45,5 @@
         <file>public/css/login.css</file>
         <file>public/login.html</file>
         <file>public/scripts/lib/mootools-1.2-core-yc.js</file>
-        <file>translations/webui_ar.qm</file>
-        <file>translations/webui_be.qm</file>
-        <file>translations/webui_bg.qm</file>
-        <file>translations/webui_ca.qm</file>
-        <file>translations/webui_cs.qm</file>
-        <file>translations/webui_da.qm</file>
-        <file>translations/webui_de.qm</file>
-        <file>translations/webui_el.qm</file>
-        <file>translations/webui_en.qm</file>
-        <file>translations/webui_en_AU.qm</file>
-        <file>translations/webui_en_GB.qm</file>
-        <file>translations/webui_eo.qm</file>
-        <file>translations/webui_es.qm</file>
-        <file>translations/webui_eu.qm</file>
-        <file>translations/webui_fi.qm</file>
-        <file>translations/webui_fr.qm</file>
-        <file>translations/webui_gl.qm</file>
-        <file>translations/webui_he.qm</file>
-        <file>translations/webui_hi_IN.qm</file>
-        <file>translations/webui_hr.qm</file>
-        <file>translations/webui_hu.qm</file>
-        <file>translations/webui_hy.qm</file>
-        <file>translations/webui_id.qm</file>
-        <file>translations/webui_is.qm</file>
-        <file>translations/webui_it.qm</file>
-        <file>translations/webui_ja.qm</file>
-        <file>translations/webui_ka.qm</file>
-        <file>translations/webui_ko.qm</file>
-        <file>translations/webui_lt.qm</file>
-        <file>translations/webui_lv_LV.qm</file>
-        <file>translations/webui_ms_MY.qm</file>
-        <file>translations/webui_nb.qm</file>
-        <file>translations/webui_nl.qm</file>
-        <file>translations/webui_oc.qm</file>
-        <file>translations/webui_pl.qm</file>
-        <file>translations/webui_pt_BR.qm</file>
-        <file>translations/webui_pt_PT.qm</file>
-        <file>translations/webui_ro.qm</file>
-        <file>translations/webui_ru.qm</file>
-        <file>translations/webui_sk.qm</file>
-        <file>translations/webui_sl.qm</file>
-        <file>translations/webui_sr.qm</file>
-        <file>translations/webui_sv.qm</file>
-        <file>translations/webui_tr.qm</file>
-        <file>translations/webui_uk.qm</file>
-        <file>translations/webui_uz@Latn.qm</file>
-        <file>translations/webui_vi.qm</file>
-        <file>translations/webui_zh.qm</file>
-        <file>translations/webui_zh_HK.qm</file>
-        <file>translations/webui_zh_TW.qm</file>
     </qresource>
 </RCC>

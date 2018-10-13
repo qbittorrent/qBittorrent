@@ -13,7 +13,7 @@ if (Boost_VERSION VERSION_LESS 106000)
     add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 endif()
 
-find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml)
+find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
 find_package(Qt5Widgets ${requiredQtVersion})
 if (Qt5Widgets_FOUND)
     find_package(Qt5DBus ${requiredQtVersion})
