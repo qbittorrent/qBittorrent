@@ -428,7 +428,7 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@addPaused="))) {
-            torrentParams.addPaused = param.mid(11).toInt() != 0;
+            torrentParams.addPaused = (param.mid(11).toInt() != 0);
             continue;
         }
 

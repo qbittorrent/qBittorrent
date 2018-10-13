@@ -66,7 +66,7 @@ namespace
         return *opt;
     }
 
-    boost::optional<bool> addPausedLegacyToOptional(int val)
+    boost::optional<bool> addPausedLegacyToOptionalBool(int val)
     {
         switch (val) {
         case 1:  return true; // always
@@ -79,7 +79,7 @@ namespace
     {
         if (opt == true)
             return 1; // always
-        else if (opt == false)
+        if (opt == false)
             return 2; // never
         return 0; // use default
     }
@@ -421,7 +421,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEnabled(dict.value("enabled", false).toBool());
     rule.setSavePath(dict.value("save_path").toString());
     rule.setCategory(dict.value("category_assigned").toString());
-    rule.setAddPaused(addPausedLegacyToOptional(dict.value("add_paused").toInt()));
+    rule.setAddPaused(addPausedLegacyToOptionalBool(dict.value("add_paused").toInt()));
     rule.setLastMatch(dict.value("last_match").toDateTime());
     rule.setIgnoreDays(dict.value("ignore_days").toInt());
 
