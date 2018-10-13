@@ -453,7 +453,7 @@ void Application::processParams(const QStringList &params)
         }
 
         if (param.startsWith(QLatin1String("@skipDialog="))) {
-            showTorrentDialog = param.mid(12).toInt() == 0;
+            showTorrentDialog = (param.mid(12).toInt() == 0);
             continue;
         }
 
