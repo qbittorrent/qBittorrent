@@ -807,7 +807,10 @@ TorrentState TorrentHandle::state() const
 
 void TorrentHandle::updateState()
 {
-    if (isMoveInProgress()) {
+    if (m_nativeStatus.state == libt::torrent_status::checking_resume_data) {
+        m_state = TorrentState::CheckingResumeData;
+    }
+    else if (isMoveInProgress()) {
         m_state = TorrentState::Moving;
     }
     else if (isPaused()) {
@@ -839,9 +842,6 @@ void TorrentHandle::updateState()
                 m_state = TorrentState::QueuedForChecking;
                 break;
 #endif
-            case libt::torrent_status::checking_resume_data:
-                m_state = TorrentState::CheckingResumeData;
-                break;
             case libt::torrent_status::checking_files:
                 m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
                 break;
@@ -1270,6 +1270,9 @@ void TorrentHandle::forceRecheck()
 {
     if (!hasMetadata()) return;
 
+    m_nativeHandle.force_recheck();
+    m_unchecked = false;
+
     if (isPaused()) {
         m_pauseAfterRecheck = true;
         resume_impl(true, true);
@@ -1587,13 +1590,13 @@ void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finishe
     manageIncompleteFiles();
 
     const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
-    if (isMoveInProgress() || m_renameCount > 0) {
+    if (isMoveInProgress() || (m_renameCount > 0)) {
         if (recheckTorrentsOnCompletion)
             m_moveFinishedTriggers.append(boost::bind(&TorrentHandle::forceRecheck, this));
         m_moveFinishedTriggers.append(boost::bind(&Session::handleTorrentFinished, m_session, this));
     }
     else {
-        if (recheckTorrentsOnCompletion)
+        if (recheckTorrentsOnCompletion && m_unchecked)
             forceRecheck();
         m_session->handleTorrentFinished(this);
     }
@@ -1933,6 +1936,13 @@ void TorrentHandle::updateStatus(const libtorrent::torrent_status &nativeStatus)
 
     updateState();
     updateTorrentInfo();
+
+    // NOTE: Don't change the order of these conditionals!
+    // Otherwise it will not work properly since torrent can be CheckingDownloading.
+    if (isChecking())
+        m_unchecked = false;
+    else if (isDownloading())
+        m_unchecked = true;
 }
 
 void TorrentHandle::setRatioLimit(qreal limit)
