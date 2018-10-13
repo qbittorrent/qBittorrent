@@ -336,7 +336,6 @@ void RSSWidget::refreshAllFeeds()
 
 void RSSWidget::downloadSelectedTorrents()
 {
-    const BitTorrent::AddTorrentParams params = BitTorrent::AddTorrentParamsBuilder::defaults();
     foreach (QListWidgetItem *item, m_articleListWidget->selectedItems()) {
         auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
         Q_ASSERT(article);
@@ -348,7 +347,7 @@ void RSSWidget::downloadSelectedTorrents()
             if (AddNewTorrentDialog::isEnabled())
                 AddNewTorrentDialog::show(article->torrentUrl(), window());
             else
-                BitTorrent::Session::instance()->fetchAndAddTorrent(article->torrentUrl(), params);
+                BitTorrent::Session::instance()->addTorrent(article->torrentUrl());
         }
     }
 }

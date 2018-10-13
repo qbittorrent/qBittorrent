@@ -454,8 +454,8 @@ namespace BitTorrent
         void banIP(const QString &ip);
 
         bool isKnownTorrent(const InfoHash &hash) const;
-        bool fetchAndAddTorrent(QString source, const AddTorrentParams &params);
-        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params);
+        bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
+        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
         bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
         bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);

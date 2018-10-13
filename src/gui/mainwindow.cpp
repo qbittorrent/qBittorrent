@@ -66,7 +66,6 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/downloadhandler.h"
 #endif
-#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -1253,12 +1252,11 @@ void MainWindow::dropEvent(QDropEvent *event)
 
     // Download torrents
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    const BitTorrent::AddTorrentParams params = BitTorrent::AddTorrentParamsBuilder::defaults();
     foreach (const QString &file, torrentFiles) {
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(file, this);
         else
-            BitTorrent::Session::instance()->fetchAndAddTorrent(file, params);
+            BitTorrent::Session::instance()->addTorrent(file);
     }
     if (!torrentFiles.isEmpty()) return;
 
@@ -1323,14 +1321,13 @@ void MainWindow::on_actionOpen_triggered()
                                       tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
 
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    const BitTorrent::AddTorrentParams params = BitTorrent::AddTorrentParamsBuilder::defaults();
     if (!pathsList.isEmpty()) {
         foreach (QString file, pathsList) {
             qDebug("Dropped file %s on download list", qUtf8Printable(file));
             if (useTorrentAdditionDialog)
                 AddNewTorrentDialog::show(file, this);
             else
-                BitTorrent::Session::instance()->fetchAndAddTorrent(file, params);
+                BitTorrent::Session::instance()->addTorrent(file);
         }
 
         // Save last dir to remember it
@@ -1576,7 +1573,6 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    const BitTorrent::AddTorrentParams params = BitTorrent::AddTorrentParamsBuilder::defaults();
     foreach (QString url, urlList) {
         if (((url.size() == 40) && !url.contains(QRegExp("[^0-9A-Fa-f]")))
             || ((url.size() == 32) && !url.contains(QRegExp("[^2-7A-Za-z]"))))
@@ -1585,7 +1581,7 @@ void MainWindow::downloadFromURLList(const QStringList &urlList)
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(url, this);
         else
-            BitTorrent::Session::instance()->fetchAndAddTorrent(url, params);
+            BitTorrent::Session::instance()->addTorrent(url);
     }
 }
 

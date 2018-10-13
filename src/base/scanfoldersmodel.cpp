@@ -366,7 +366,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
             if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
                 QTextStream str(&f);
                 while (!str.atEnd())
-                    BitTorrent::Session::instance()->fetchAndAddTorrent(str.readLine(), params);
+                    BitTorrent::Session::instance()->addTorrent(str.readLine(), params);
 
                 f.close();
                 Utils::Fs::forceRemove(file);
@@ -376,7 +376,6 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
             }
         }
         else {
-            // TODO populate
             BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(file);
             if (torrentInfo.isValid()) {
                 BitTorrent::Session::instance()->addTorrent(torrentInfo, params);

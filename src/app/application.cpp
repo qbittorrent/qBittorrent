@@ -414,7 +414,7 @@ void Application::processParams(const QStringList &params)
         return;
     }
 #endif
-    BitTorrent::AddTorrentParams torrentParams = BitTorrent::AddTorrentParamsBuilder::defaults();
+    BitTorrent::AddTorrentParams torrentParams;
     boost::optional<bool> showTorrentDialog;
 
     foreach (QString param, params) {
@@ -464,7 +464,7 @@ void Application::processParams(const QStringList &params)
             AddNewTorrentDialog::show(param, torrentParams, m_window);
         else
 #endif
-            BitTorrent::Session::instance()->fetchAndAddTorrent(param, torrentParams);
+            BitTorrent::Session::instance()->addTorrent(param, torrentParams);
     }
 }
 

@@ -250,8 +250,7 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
 
 void AddNewTorrentDialog::show(QString source, QWidget *parent)
 {
-    // TODO From TorrentInfo?
-    show(source, BitTorrent::AddTorrentParamsBuilder::defaults(), parent);
+    show(source, BitTorrent::AddTorrentParams(), parent);
 }
 
 bool AddNewTorrentDialog::loadTorrent(const QString &torrentPath)
@@ -665,7 +664,7 @@ void AddNewTorrentDialog::accept()
 
     // Add torrent
     if (!m_hasMetadata)
-        BitTorrent::Session::instance()->fetchAndAddTorrent(QString(m_hash), m_torrentParams);
+        BitTorrent::Session::instance()->addTorrent(m_hash, m_torrentParams);
     else
         BitTorrent::Session::instance()->addTorrent(m_torrentInfo, m_torrentParams);
 
