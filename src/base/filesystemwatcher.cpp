@@ -58,18 +58,14 @@ FileSystemWatcher::FileSystemWatcher(QObject *parent)
     m_partialTorrentTimer.setSingleShot(true);
     connect(&m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
 
-#ifndef Q_OS_WIN
     connect(&m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
-#endif
 }
 
 QStringList FileSystemWatcher::directories() const
 {
     QStringList dirs = QFileSystemWatcher::directories();
-#ifndef Q_OS_WIN
     for (const QDir &dir : qAsConst(m_watchedFolders))
         dirs << dir.canonicalPath();
-#endif
     return dirs;
 }
 
@@ -77,7 +73,7 @@ void FileSystemWatcher::addPath(const QString &path)
 {
     if (path.isEmpty()) return;
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !defined Q_OS_HAIKU
     const QDir dir(path);
     if (!dir.exists()) return;
 
@@ -100,13 +96,12 @@ void FileSystemWatcher::addPath(const QString &path)
 
 void FileSystemWatcher::removePath(const QString &path)
 {
-#ifndef Q_OS_WIN
     if (m_watchedFolders.removeOne(path)) {
         if (m_watchedFolders.isEmpty())
             m_watchTimer.stop();
         return;
     }
-#endif
+
     // Normal mode
     QFileSystemWatcher::removePath(path);
 }
@@ -116,13 +111,11 @@ void FileSystemWatcher::scanLocalFolder(const QString &path)
     QTimer::singleShot(2000, this, [this, path]() { processTorrentsInDir(path); });
 }
 
-#ifndef Q_OS_WIN
 void FileSystemWatcher::scanNetworkFolders()
 {
     for (const QDir &dir : qAsConst(m_watchedFolders))
         processTorrentsInDir(dir);
 }
-#endif
 
 void FileSystemWatcher::processPartialTorrents()
 {
