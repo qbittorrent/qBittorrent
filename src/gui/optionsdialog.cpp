@@ -1044,28 +1044,24 @@ void OptionsDialog::loadOptions()
         // Enabled
         m_ui->checkDownloadLimitAlt->setChecked(true);
         m_ui->spinDownloadLimitAlt->setEnabled(true);
-        m_ui->checkBoxAltPauseDownloads->setEnabled(true);
         m_ui->spinDownloadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
-        m_ui->checkBoxAltPauseDownloads->setEnabled(false);
     }
     intValue = session->altGlobalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimitAlt->setChecked(true);
         m_ui->spinUploadLimitAlt->setEnabled(true);
-        m_ui->checkBoxAltPauseUploads->setEnabled(true);
         m_ui->spinUploadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
         m_ui->checkUploadLimitAlt->setChecked(false);
         m_ui->spinUploadLimitAlt->setEnabled(false);
-        m_ui->checkBoxAltPauseUploads->setEnabled(false);
     }
 
     m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
@@ -1833,9 +1829,42 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
 void OptionsDialog::on_checkBoxAltPauseUploads_toggled(bool checked)
 {
     // set global variable
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (m_ui->checkUploadLimitAlt->isChecked())
+        session->setAltPauseUploads(checked);
 }
 
 void OptionsDialog::on_checkBoxAltPauseDownloads_toggled(bool checked)
 {
     // set global variable
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (m_ui->checkDownloadLimitAlt->isChecked())
+        session->setAltPauseDownloads(checked);
+}
+
+void OptionsDialog::on_checkUploadLimitAlt_toggled(bool checked)
+{
+    // enable Pause options, otherwise disable, uncheck box and reset Pause variable
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (checked) {
+        m_ui->checkBoxAltPauseUploads->setEnabled(checked);
+        m_ui->checkBoxAltPauseUploads->setChecked(session->altPauseUploads());
+    }
+    else {
+        m_ui->checkBoxAltPauseUploads->setChecked(checked);
+        session->setAltPauseUploads(checked);
+    }
+}
+
+void OptionsDialog::on_checkDownloadLimitAlt_toggled(bool checked)
+{
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (checked) {
+        m_ui->checkBoxAltPauseDownloads->setEnabled(checked);
+        m_ui->checkBoxAltPauseDownloads->setChecked(session->altPauseDownloads());
+    }
+    else {
+        m_ui->checkBoxAltPauseDownloads->setChecked(checked);
+        session->setAltPauseDownloads(checked);
+    }
 }

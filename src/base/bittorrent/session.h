@@ -595,7 +595,8 @@ namespace BitTorrent
 #endif
         void adjustLimits();
         void applyBandwidthLimits();
-        void applyAltPauseTorrents();
+        void applyAltPauseDownloads(bool enabled);
+        void applyAltPauseUploads(bool enabled);
         void processBannedIPs(libtorrent::ip_filter &filter);
         const QStringList getListeningIPs();
         void configureListeningInterface();

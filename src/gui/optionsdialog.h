@@ -111,6 +111,10 @@ private slots:
 
     void on_checkBoxAltPauseDownloads_toggled(bool checked);
 
+    void on_checkUploadLimitAlt_toggled(bool checked);
+
+    void on_checkDownloadLimitAlt_toggled(bool checked);
+
 private:
     // Methods
     void saveOptions();

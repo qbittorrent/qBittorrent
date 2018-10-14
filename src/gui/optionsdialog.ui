@@ -1921,10 +1921,17 @@
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_7">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_6">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_18">
                     <property name="text">
-                     <string extracomment="from (time1 to time2)">From:</string>
+                     <string>When:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_17">
+                    <property name="text">
+                     <string extracomment="time1 to time2">To:</string>
                     </property>
                    </widget>
                   </item>
@@ -1942,13 +1949,6 @@
                       <minute>0</minute>
                       <second>0</second>
                      </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_17">
-                    <property name="text">
-                     <string extracomment="time1 to time2">To:</string>
                     </property>
                    </widget>
                   </item>
@@ -1972,10 +1972,23 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_18">
+                  <item row="0" column="4">
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_6">
                     <property name="text">
-                     <string>When:</string>
+                     <string extracomment="from (time1 to time2)">From:</string>
                     </property>
                    </widget>
                   </item>
@@ -2003,19 +2016,6 @@
                      </property>
                     </item>
                    </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <spacer name="horizontalSpacer_8">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -2066,16 +2066,6 @@
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="3">
-                <widget class="QCheckBox" name="checkBoxAltPauseUploads">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="text">
-                  <string>Pause Uploads</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="3">
                 <widget class="QCheckBox" name="checkBoxAltPauseDownloads">
                  <property name="enabled">
@@ -2083,6 +2073,16 @@
                  </property>
                  <property name="text">
                   <string>Pause Downloads</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QCheckBox" name="checkBoxAltPauseUploads">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Pause Uploads</string>
                  </property>
                 </widget>
                </item>
@@ -3685,6 +3685,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
     <hint type="destinationlabel">
      <x>629</x>
      <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkDownloadLimitAlt</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxAltPauseDownloads</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>564</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkUploadLimitAlt</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxAltPauseUploads</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>564</x>
+     <y>175</y>
     </hint>
    </hints>
   </connection>

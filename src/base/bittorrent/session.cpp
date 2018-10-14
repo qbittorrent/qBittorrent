@@ -1114,8 +1114,23 @@ void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
     settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
 
-    // TODO: add code to pause torrents
-    applyAltPauseTorrents();
+    // apply pause/resume downloads
+    const bool isAltPauseDownloads = altSpeedLimitEnabled && m_isAltPauseDownloadsEnabled ? true : false;
+    if (isAltPauseDownloads) {
+        applyAltPauseDownloads(true);
+    }
+    else {
+        applyAltPauseDownloads(false);
+    }
+
+    // apply pause/resume uploads
+    const bool isAltPauseUploads = altSpeedLimitEnabled && m_isAltPauseUploadsEnabled ? true : false;
+    if (isAltPauseUploads) {
+        applyAltPauseUploads(true);
+    }
+    else {
+        applyAltPauseUploads(false);
+    }
 }
 
 void Session::initMetrics()
@@ -2670,9 +2685,9 @@ void Session::setAltPauseUploads(bool enabled)
     m_isAltPauseUploadsEnabled = enabled;
 }
 
-void Session::applyAltPauseTorrents()
+void Session::applyAltPauseDownloads(bool enabled)
 {
-    if (m_isAltPauseDownloadsEnabled == true) {
+    if (enabled) {
         foreach (TorrentHandle *const torrent, m_torrents) {
             if (torrent->isDownloading()) {
                 torrent->pause();
@@ -2686,7 +2701,10 @@ void Session::applyAltPauseTorrents()
                 torrent->resume();
         }
     }
-    if (m_isAltPauseUploadsEnabled == true) {
+ }
+void Session::applyAltPauseUploads(bool enabled)
+{
+    if (enabled) {
         foreach (TorrentHandle *const torrent, m_torrents) {
             if (torrent->isUploading()) {
                 torrent->pause();
@@ -2745,6 +2763,10 @@ void Session::setAltGlobalSpeedLimitEnabled(bool enabled)
     // Save new state to remember it on startup
     m_isAltGlobalSpeedLimitEnabled = enabled;
     applyBandwidthLimits();
+
+    applyAltPauseDownloads(m_isAltPauseDownloadsEnabled);
+    applyAltPauseUploads(m_isAltPauseUploadsEnabled);
+
     // Notify
     emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
 }
