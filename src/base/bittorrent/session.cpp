@@ -2755,9 +2755,6 @@ void Session::setAltGlobalSpeedLimitEnabled(bool enabled)
     m_isAltGlobalSpeedLimitEnabled = enabled;
     applyBandwidthLimits();
 
-    applyAltPauseDownloads(m_isAltPauseDownloadsEnabled);
-    applyAltPauseUploads(m_isAltPauseUploadsEnabled);
-
     // Notify
     emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
 }
