@@ -1115,22 +1115,13 @@ void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
     settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
 
     // apply pause/resume downloads
-    const bool isAltPauseDownloads = altSpeedLimitEnabled && m_isAltPauseDownloadsEnabled ? true : false;
-    if (isAltPauseDownloads) {
-        applyAltPauseDownloads(true);
-    }
-    else {
-        applyAltPauseDownloads(false);
-    }
+    const bool isAltPauseDownloadsEnabled = altSpeedLimitEnabled && m_isAltPauseDownloadsEnabled ? true : false;
+    applyAltPauseDownloads(isAltPauseDownloadsEnabled);
 
     // apply pause/resume uploads
-    const bool isAltPauseUploads = altSpeedLimitEnabled && m_isAltPauseUploadsEnabled ? true : false;
-    if (isAltPauseUploads) {
-        applyAltPauseUploads(true);
-    }
-    else {
-        applyAltPauseUploads(false);
-    }
+    const bool isAltPauseUploadsEnabled = altSpeedLimitEnabled && m_isAltPauseUploadsEnabled ? true : false;
+    applyAltPauseUploads(isAltPauseUploadsEnabled);
+
 }
 
 void Session::initMetrics()

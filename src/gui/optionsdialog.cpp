@@ -1858,6 +1858,7 @@ void OptionsDialog::on_checkUploadLimitAlt_toggled(bool checked)
 
 void OptionsDialog::on_checkDownloadLimitAlt_toggled(bool checked)
 {
+    // enable Pause options, otherwise disable, uncheck box and reset Pause variable
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     if (checked) {
         m_ui->checkBoxAltPauseDownloads->setEnabled(checked);
