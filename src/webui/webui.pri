@@ -27,7 +27,7 @@ SOURCES += \
     $$PWD/webapplication.cpp \
     $$PWD/webui.cpp
 
-RESOURCES += $$PWD/www/webui.qrc
+RESOURCES += $$PWD/www/webui.qrc $$PWD/www/translations/webui_translations.qrc
 
 # WebUI Translation
 isEmpty(QMAKE_LRELEASE) {
