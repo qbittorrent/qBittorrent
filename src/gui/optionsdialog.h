@@ -107,6 +107,10 @@ private slots:
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
 
+    void on_checkBoxAltPauseUploads_toggled(bool checked);
+
+    void on_checkBoxAltPauseDownloads_toggled(bool checked);
+
 private:
     // Methods
     void saveOptions();

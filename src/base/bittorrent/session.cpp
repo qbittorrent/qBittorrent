@@ -331,6 +331,8 @@ Session::Session(QObject *parent)
     , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalUPSpeedLimit"), 10, lowerLimited(0))
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
+    , m_isAltPauseDownloadsEnabled(BITTORRENT_SESSION_KEY("AlternativePauseDownloadsEnabled"), false)
+    , m_isAltPauseUploadsEnabled(BITTORRENT_SESSION_KEY("AlternativePauseUploadsEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
@@ -1111,6 +1113,9 @@ void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
     settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+
+    // TODO: add code to pause torrents
+    applyAltPauseTorrents();
 }
 
 void Session::initMetrics()
@@ -2644,6 +2649,59 @@ void Session::setAltGlobalUploadSpeedLimit(int limit)
     if (isAltGlobalSpeedLimitEnabled())
         configureDeferred();
 }
+
+int Session::altPauseDownloads() const
+{
+    return m_isAltPauseDownloadsEnabled;
+}
+
+void Session::setAltPauseDownloads(bool enabled)
+{
+    m_isAltPauseDownloadsEnabled = enabled;
+}
+
+int Session::altPauseUploads() const
+{
+    return m_isAltPauseUploadsEnabled;
+}
+
+void Session::setAltPauseUploads(bool enabled)
+{
+    m_isAltPauseUploadsEnabled = enabled;
+}
+
+void Session::applyAltPauseTorrents()
+{
+    if (m_isAltPauseDownloadsEnabled == true) {
+        foreach (TorrentHandle *const torrent, m_torrents) {
+            if (torrent->isDownloading()) {
+                torrent->pause();
+            }
+        }
+    }
+    else {
+        foreach (TorrentHandle *const torrent, m_torrents) {
+            //torrent is paused but not completed, resume download
+            if (torrent->isPaused() && !torrent->isCompleted())
+                torrent->resume();
+        }
+    }
+    if (m_isAltPauseUploadsEnabled == true) {
+        foreach (TorrentHandle *const torrent, m_torrents) {
+            if (torrent->isUploading()) {
+                torrent->pause();
+            }
+        }
+    }
+    else {
+        foreach (TorrentHandle *const torrent, m_torrents) {
+            //torrent is paused and completed, resume upload
+            if (torrent->isPaused() && torrent->isCompleted())
+                torrent->resume();
+        }
+    }
+}
+
 
 int Session::downloadSpeedLimit() const
 {

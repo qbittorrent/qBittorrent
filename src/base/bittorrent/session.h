@@ -330,6 +330,10 @@ namespace BitTorrent
         void setAltGlobalDownloadSpeedLimit(int limit);
         int altGlobalUploadSpeedLimit() const;
         void setAltGlobalUploadSpeedLimit(int limit);
+        int altPauseDownloads() const;
+        void setAltPauseDownloads(bool enabled);
+        int altPauseUploads() const;
+        void setAltPauseUploads(bool enabled);
         int downloadSpeedLimit() const;
         void setDownloadSpeedLimit(int limit);
         int uploadSpeedLimit() const;
@@ -591,6 +595,7 @@ namespace BitTorrent
 #endif
         void adjustLimits();
         void applyBandwidthLimits();
+        void applyAltPauseTorrents();
         void processBannedIPs(libtorrent::ip_filter &filter);
         const QStringList getListeningIPs();
         void configureListeningInterface();
@@ -707,6 +712,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_altGlobalUploadSpeedLimit;
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
+        CachedSettingValue<bool> m_isAltPauseDownloadsEnabled;
+        CachedSettingValue<bool> m_isAltPauseUploadsEnabled;
         CachedSettingValue<uint> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;

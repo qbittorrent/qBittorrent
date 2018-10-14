@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>408</width>
+             <height>1030</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -678,8 +678,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>552</width>
+             <height>1289</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1269,8 +1269,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>476</width>
+             <height>816</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1799,8 +1799,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>527</width>
+             <height>539</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1887,13 +1887,32 @@
                <string>Alternative Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="spinDownloadLimitAlt">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>1000000</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="0" rowspan="2">
                 <widget class="QLabel" name="labelAltRate"/>
                </item>
-               <item row="2" column="0" colspan="4">
+               <item row="2" column="0" colspan="5">
                 <widget class="QGroupBox" name="groupBoxSchedule">
                  <property name="title">
-                  <string>Schedule &amp;the use of alternative rate limits</string>
+                  <string>Schedule the &amp;use of alternative rate limits</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -2034,26 +2053,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="2">
-                <widget class="QSpinBox" name="spinDownloadLimitAlt">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="suffix">
-                  <string> KiB/s</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>1000000</number>
-                 </property>
-                 <property name="value">
-                  <number>10</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="3">
+               <item row="0" column="4">
                 <spacer name="horizontalSpacer_5">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2065,6 +2065,26 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item row="0" column="3">
+                <widget class="QCheckBox" name="checkBoxAltPauseUploads">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Pause Uploads</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QCheckBox" name="checkBoxAltPauseDownloads">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Pause Downloads</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2142,8 +2162,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>471</width>
+             <height>793</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2723,8 +2743,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>394</width>
+             <height>443</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2899,8 +2919,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>442</width>
+             <height>806</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3166,7 +3186,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                <item>
                 <widget class="QGroupBox" name="groupAltWebUI">
                  <property name="title">
-                  <string>Use alternative Web UI</string>
+                  <string>Use alternati&amp;ve Web UI</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>

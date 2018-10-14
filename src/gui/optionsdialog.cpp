@@ -314,6 +314,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxAltPauseDownloads, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxAltPauseUploads, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupBoxSchedule, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->timeEditScheduleFrom, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->timeEditScheduleTo, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
@@ -652,6 +654,8 @@ void OptionsDialog::saveOptions()
     const QPair<int, int> altDownUpLimit = getAltGlobalBandwidthLimits();
     session->setAltGlobalDownloadSpeedLimit(altDownUpLimit.first);
     session->setAltGlobalUploadSpeedLimit(altDownUpLimit.second);
+    session->setAltPauseDownloads(m_ui->checkBoxAltPauseDownloads->isChecked());
+    session->setAltPauseUploads(m_ui->checkBoxAltPauseUploads->isChecked());
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
     pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
@@ -1040,24 +1044,28 @@ void OptionsDialog::loadOptions()
         // Enabled
         m_ui->checkDownloadLimitAlt->setChecked(true);
         m_ui->spinDownloadLimitAlt->setEnabled(true);
+        m_ui->checkBoxAltPauseDownloads->setEnabled(true);
         m_ui->spinDownloadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
+        m_ui->checkBoxAltPauseDownloads->setEnabled(false);
     }
     intValue = session->altGlobalUploadSpeedLimit() / 1024;
     if (intValue > 0) {
         // Enabled
         m_ui->checkUploadLimitAlt->setChecked(true);
         m_ui->spinUploadLimitAlt->setEnabled(true);
+        m_ui->checkBoxAltPauseUploads->setEnabled(true);
         m_ui->spinUploadLimitAlt->setValue(intValue);
     }
     else {
         // Disabled
         m_ui->checkUploadLimitAlt->setChecked(false);
         m_ui->spinUploadLimitAlt->setEnabled(false);
+        m_ui->checkBoxAltPauseUploads->setEnabled(false);
     }
 
     m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
@@ -1820,4 +1828,14 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     // call dialog window
     if (IPSubnetWhitelistOptionsDialog(this).exec() == QDialog::Accepted)
         enableApplyButton();
+}
+
+void OptionsDialog::on_checkBoxAltPauseUploads_toggled(bool checked)
+{
+    // set global variable
+}
+
+void OptionsDialog::on_checkBoxAltPauseDownloads_toggled(bool checked)
+{
+    // set global variable
 }
