@@ -31,13 +31,16 @@
 
 #include <QMessageBox>
 
+#include <boost/math/special_functions/relative_difference.hpp>
+
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "ui_updownratiodialog.h"
 #include "utils.h"
 
 UpDownRatioDialog::UpDownRatioDialog(bool useDefault, qreal initialRatioValue,
-                               qreal maxRatioValue, int initialTimeValue,
-                               int maxTimeValue, QWidget *parent)
+                               qreal maxRatioValue, std::chrono::minutes initialTimeValue,
+                               std::chrono::minutes maxTimeValue, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::UpDownRatioDialog)
 {
@@ -46,10 +49,11 @@ UpDownRatioDialog::UpDownRatioDialog(bool useDefault, qreal initialRatioValue,
     if (useDefault) {
         m_ui->useDefaultButton->setChecked(true);
     }
-    else if ((initialRatioValue == -1.) && (initialTimeValue == -1)) {
+    else if ((boost::math::epsilon_difference(initialRatioValue, BitTorrent::TorrentHandle::NO_RATIO_LIMIT) < 1) &&
+        (initialTimeValue == BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT)) {
         m_ui->noLimitButton->setChecked(true);
         initialRatioValue = BitTorrent::Session::instance()->globalMaxRatio();
-        initialTimeValue = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
+        initialTimeValue = BitTorrent::Session::instance()->globalMaxSeedingTime();
     }
     else {
         m_ui->torrentLimitButton->setChecked(true);
@@ -57,7 +61,7 @@ UpDownRatioDialog::UpDownRatioDialog(bool useDefault, qreal initialRatioValue,
         if (initialRatioValue >= 0)
             m_ui->checkMaxRatio->setChecked(true);
 
-        if (initialTimeValue >= 0)
+        if (initialTimeValue.count() >= 0)
             m_ui->checkMaxTime->setChecked(true);
     }
 
@@ -66,8 +70,8 @@ UpDownRatioDialog::UpDownRatioDialog(bool useDefault, qreal initialRatioValue,
     m_ui->ratioSpinBox->setValue(initialRatioValue);
 
     m_ui->timeSpinBox->setMinimum(0);
-    m_ui->timeSpinBox->setMaximum(maxTimeValue);
-    m_ui->timeSpinBox->setValue(initialTimeValue);
+    m_ui->timeSpinBox->setMaximum(maxTimeValue.count());
+    m_ui->timeSpinBox->setValue(initialTimeValue.count());
 
     connect(m_ui->buttonGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
             , this, &UpDownRatioDialog::handleRatioTypeChanged);
@@ -98,9 +102,10 @@ qreal UpDownRatioDialog::ratio() const
     return (m_ui->noLimitButton->isChecked() || !m_ui->checkMaxRatio->isChecked()) ? -1. : m_ui->ratioSpinBox->value();
 }
 
-int UpDownRatioDialog::seedingTime() const
+std::chrono::minutes UpDownRatioDialog::seedingTime() const
 {
-    return (m_ui->noLimitButton->isChecked() || !m_ui->checkMaxTime->isChecked()) ? -1 : m_ui->timeSpinBox->value();
+    return (m_ui->noLimitButton->isChecked() || !m_ui->checkMaxTime->isChecked()) ?
+        BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT : std::chrono::minutes(m_ui->timeSpinBox->value());
 }
 
 void UpDownRatioDialog::handleRatioTypeChanged()

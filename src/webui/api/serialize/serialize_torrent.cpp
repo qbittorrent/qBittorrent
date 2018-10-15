@@ -102,7 +102,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     const qreal ratio = torrent.realRatio();
     ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
     ret[KEY_TORRENT_STATE] = torrentStateToString(torrent.state());
-    ret[KEY_TORRENT_ETA] = torrent.eta();
+    ret[KEY_TORRENT_ETA] = static_cast<qlonglong>(torrent.eta().count());
     ret[KEY_TORRENT_SEQUENTIAL_DOWNLOAD] = torrent.isSequentialDownload();
     if (torrent.hasMetadata())
         ret[KEY_TORRENT_FIRST_LAST_PIECE_PRIO] = torrent.hasFirstLastPiecePriority();
@@ -123,19 +123,19 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     ret[KEY_TORRENT_AMOUNT_LEFT] = torrent.incompletedSize();
     ret[KEY_TORRENT_AMOUNT_COMPLETED] = torrent.completedSize();
     ret[KEY_TORRENT_MAX_RATIO] = torrent.maxRatio();
-    ret[KEY_TORRENT_MAX_SEEDING_TIME] = torrent.maxSeedingTime();
+    ret[KEY_TORRENT_MAX_SEEDING_TIME] = static_cast<qlonglong>(torrent.maxSeedingTime().count());
     ret[KEY_TORRENT_RATIO_LIMIT] = torrent.ratioLimit();
-    ret[KEY_TORRENT_SEEDING_TIME_LIMIT] = torrent.seedingTimeLimit();
+    ret[KEY_TORRENT_SEEDING_TIME_LIMIT] = static_cast<qlonglong>(torrent.seedingTimeLimit().count());
     ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent.lastSeenComplete().toTime_t();
     ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent.isAutoTMMEnabled();
-    ret[KEY_TORRENT_TIME_ACTIVE] = torrent.activeTime();
+    ret[KEY_TORRENT_TIME_ACTIVE] = static_cast<qlonglong>(torrent.activeTime().count());
 
     if (torrent.isPaused() || torrent.isChecking()) {
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
     }
     else {
         QDateTime dt = QDateTime::currentDateTime();
-        dt = dt.addSecs(-torrent.timeSinceActivity());
+        dt = dt.addSecs(-torrent.timeSinceActivity().count());
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
     }
 

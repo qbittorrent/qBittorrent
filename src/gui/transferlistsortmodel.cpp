@@ -166,8 +166,8 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
             const qlonglong etaL = left.data().toLongLong();
             const qlonglong etaR = right.data().toLongLong();
-            const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
-            const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
+            const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA.count()));
+            const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA.count()));
             if (isInvalidL && isInvalidR) {
                 if (isSeedingL)  // Both seeding
                     return dateLessThan(TransferListModel::TR_SEED_DATE, left, right, true);

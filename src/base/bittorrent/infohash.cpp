@@ -30,6 +30,12 @@
 
 #include <QHash>
 
+#include <libtorrent/version.hpp>
+#if LIBTORRENT_VERSION_NUM >= 10200
+#include <boost/lexical_cast.hpp>
+#include "base/utils/string.h"
+#endif
+
 using namespace BitTorrent;
 
 InfoHash::InfoHash()
@@ -41,9 +47,13 @@ InfoHash::InfoHash(const libtorrent::sha1_hash &nativeHash)
     : m_valid(true)
     , m_nativeHash(nativeHash)
 {
+#if LIBTORRENT_VERSION_NUM < 10200
     char out[(libtorrent::sha1_hash::size * 2) + 1];
     libtorrent::to_hex(reinterpret_cast<const char*>(&m_nativeHash[0]), libtorrent::sha1_hash::size, out);
     m_hashString = QString(out);
+#else
+    m_hashString = QString::fromStdString(boost::lexical_cast<std::string>(m_nativeHash));
+#endif
 }
 
 InfoHash::InfoHash(const QString &hashString)
@@ -52,7 +62,11 @@ InfoHash::InfoHash(const QString &hashString)
 {
     QByteArray raw = m_hashString.toLatin1();
     if (raw.size() == 40)
+#if LIBTORRENT_VERSION_NUM < 10200
         m_valid = libtorrent::from_hex(raw.constData(), 40, reinterpret_cast<char*>(&m_nativeHash[0]));
+#else
+        m_valid = boost::conversion::try_lexical_convert(raw.constData(), m_nativeHash);
+#endif
 }
 
 

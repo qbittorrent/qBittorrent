@@ -47,6 +47,7 @@
 #include <boost/function.hpp>
 
 #include "base/tristatebool.h"
+#include "base/types.h"
 #include "private/speedmonitor.h"
 #include "infohash.h"
 #include "torrentinfo.h"
@@ -57,6 +58,9 @@ template<typename T, typename U> struct QPair;
 
 extern const QString QB_EXT;
 
+#if LIBTORRENT_VERSION_NUM >= 10108 // #if __has_include(<libtorrent/fwd.hpp>)
+#include <libtorrent/fwd.hpp>
+#else
 namespace libtorrent
 {
     class alert;
@@ -79,6 +83,7 @@ namespace libtorrent
     struct fastresume_rejected_alert;
     struct torrent_status;
 }
+#endif
 
 namespace BitTorrent
 {
@@ -110,7 +115,7 @@ namespace BitTorrent
         QVector<int> filePriorities;
         // for restored torrents
         qreal ratioLimit;
-        int seedingTimeLimit;
+        std::chrono::minutes seedingTimeLimit;
 
         CreateTorrentParams();
         CreateTorrentParams(const AddTorrentParams &params);
@@ -164,11 +169,11 @@ namespace BitTorrent
         static const qreal USE_GLOBAL_RATIO;
         static const qreal NO_RATIO_LIMIT;
 
-        static const int USE_GLOBAL_SEEDING_TIME;
-        static const int NO_SEEDING_TIME_LIMIT;
+        static const std::chrono::minutes USE_GLOBAL_SEEDING_TIME;
+        static const std::chrono::minutes NO_SEEDING_TIME_LIMIT;
 
         static const qreal MAX_RATIO;
-        static const int MAX_SEEDING_TIME;
+        static const std::chrono::minutes MAX_SEEDING_TIME;
 
         TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
                           const CreateTorrentParams &params);
@@ -258,7 +263,7 @@ namespace BitTorrent
         qreal progress() const;
         QDateTime addedTime() const;
         qreal ratioLimit() const;
-        int seedingTimeLimit() const;
+        std::chrono::minutes seedingTimeLimit() const;
 
         QString filePath(int index) const;
         QString fileName(int index) const;
@@ -294,10 +299,10 @@ namespace BitTorrent
         QString error() const;
         qlonglong totalDownload() const;
         qlonglong totalUpload() const;
-        int activeTime() const;
-        int finishedTime() const;
-        int seedingTime() const;
-        qulonglong eta() const;
+        std::chrono::seconds activeTime() const;
+        std::chrono::seconds finishedTime() const;
+        std::chrono::seconds seedingTime() const;
+        std::chrono::seconds eta() const;
         QVector<qreal> filesProgress() const;
         int seedsCount() const;
         int peersCount() const;
@@ -309,9 +314,9 @@ namespace BitTorrent
         int incompleteCount() const;
         QDateTime lastSeenComplete() const;
         QDateTime completedTime() const;
-        int timeSinceUpload() const;
-        int timeSinceDownload() const;
-        int timeSinceActivity() const;
+        std::chrono::seconds timeSinceUpload() const;
+        std::chrono::seconds timeSinceDownload() const;
+        std::chrono::seconds timeSinceActivity() const;
         int downloadLimit() const;
         int uploadLimit() const;
         bool superSeeding() const;
@@ -321,7 +326,7 @@ namespace BitTorrent
         QVector<int> pieceAvailability() const;
         qreal distributedCopies() const;
         qreal maxRatio() const;
-        int maxSeedingTime() const;
+        std::chrono::minutes maxSeedingTime() const;
         qreal realRatio() const;
         int uploadPayloadRate() const;
         int downloadPayloadRate() const;
@@ -329,7 +334,7 @@ namespace BitTorrent
         qlonglong totalPayloadDownload() const;
         int connectionsCount() const;
         int connectionsLimit() const;
-        qlonglong nextAnnounce() const;
+        std::chrono::seconds nextAnnounce() const;
 
         void setName(const QString &name);
         void setSequentialDownload(bool b);
@@ -350,7 +355,7 @@ namespace BitTorrent
         void prioritizeFiles(const QVector<int> &priorities);
         void setFilePriority(int index, int priority);
         void setRatioLimit(qreal limit);
-        void setSeedingTimeLimit(int limit);
+        void setSeedingTimeLimit(std::chrono::minutes limit);
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
@@ -456,7 +461,7 @@ namespace BitTorrent
         QSet<QString> m_tags;
         bool m_hasSeedStatus;
         qreal m_ratioLimit;
-        int m_seedingTimeLimit;
+        std::chrono::minutes m_seedingTimeLimit;
         bool m_tempPathDisabled;
         bool m_hasMissingFiles;
         bool m_hasRootFolder;

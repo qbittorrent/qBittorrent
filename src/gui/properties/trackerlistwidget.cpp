@@ -52,6 +52,8 @@
 #include "propertieswidget.h"
 #include "trackersadditiondialog.h"
 
+#include <numeric>
+
 TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     : QTreeWidget()
     , m_properties(properties)
@@ -366,10 +368,49 @@ void TrackerListWidget::loadTrackers()
         }
 
         item->setText(COL_RECEIVED, QString::number(data.numPeers));
-#if LIBTORRENT_VERSION_NUM >= 10000
-        item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete > -1) ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
-        item->setText(COL_PEERS, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
-        item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded > -1) ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
+#if LIBTORRENT_VERSION_NUM >= 10200
+        struct ScrapeAccumulator {
+            ScrapeAccumulator(int libtorrent::announce_endpoint::* memb)
+                : m_empty {true}
+                , m_memb {memb}
+            {
+            }
+
+            int operator() (int a, const libtorrent::announce_endpoint& b)
+            {
+                if (b.*m_memb > 0) {
+                    m_empty = false;
+                    return a + b.*m_memb;
+                }
+                else {
+                    return a;
+                }
+            }
+
+            bool empty() const {
+                return m_empty;
+            }
+        private:
+            bool m_empty;
+            int libtorrent::announce_endpoint::* m_memb;
+        };
+
+        const auto endpoints = entry.nativeEntry().endpoints;
+        ScrapeAccumulator aCompleted {&libtorrent::announce_endpoint::scrape_complete};
+        const auto completed = std::accumulate(endpoints.begin(), endpoints.end(), 0, aCompleted);
+        item->setText(COL_SEEDS, aCompleted.empty() ? tr("N/A") : QString::number(completed));
+
+        ScrapeAccumulator aIncomplete {&libtorrent::announce_endpoint::scrape_incomplete};
+        const auto incomplete = std::accumulate(endpoints.begin(), endpoints.end(), 0, aIncomplete);
+        item->setText(COL_PEERS, aIncomplete.empty() ? tr("N/A") : QString::number(incomplete));
+
+        ScrapeAccumulator aDownloaded {&libtorrent::announce_endpoint::scrape_downloaded};
+        const auto downloaded = std::accumulate(endpoints.begin(), endpoints.end(), 0, aDownloaded);
+        item->setText(COL_DOWNLOADED, aDownloaded.empty() ? tr("N/A") : QString::number(downloaded));
+#elif LIBTORRENT_VERSION_NUM >= 10000
+        item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete) > 0 ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
+        item->setText(COL_PEERS, (entry.nativeEntry().scrape_incomplete) > 0 ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
+        item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded) > 0 ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
 #else
         item->setText(COL_SEEDS, tr("N/A"));
         item->setText(COL_PEERS, tr("N/A"));

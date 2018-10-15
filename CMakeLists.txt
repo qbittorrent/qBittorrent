@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 
 message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
 
@@ -30,7 +30,7 @@ include(GNUInstallDirs)
 include(FeatureSummary)
 
 # version requirements
-set(requiredBoostVersion 1.35)
+set(requiredBoostVersion 1.55)
 set(requiredQtVersion 5.5.1)
 
 if(WIN32)

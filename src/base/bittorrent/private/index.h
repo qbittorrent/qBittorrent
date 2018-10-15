@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Eugene Shalygin <eugene.shalygin@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,61 +26,59 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PORTFORWARDER_H
-#define NET_PORTFORWARDER_H
+#pragma once
 
 #include <libtorrent/version.hpp>
 #if LIBTORRENT_VERSION_NUM >= 10200
-#include <libtorrent/portmap.hpp>
+#include <libtorrent/units.hpp>
 #endif
 
-#include <QHash>
-#include <QObject>
-
-#include <libtorrent/version.hpp>
+namespace BitTorrent
+{
 #if LIBTORRENT_VERSION_NUM >= 10200
-#include <libtorrent/portmap.hpp>
-#endif
 
-namespace libtorrent
-{
-    class session;
-}
+    // these typedefs are needed until we drop C++11
+    using libt_file_index_t = libtorrent::file_index_t;
+    using libt_piece_index_t = libtorrent::piece_index_t;
 
-namespace Net
-{
-    class PortForwarder : public QObject
+    inline constexpr libtorrent::file_index_t makeFileIndex(libtorrent::file_index_t::underlying_type index)
     {
-        Q_OBJECT
-        Q_DISABLE_COPY(PortForwarder)
+        return libtorrent::file_index_t {index};
+    }
 
-    public:
-        static void initInstance(libtorrent::session *const provider);
-        static void freeInstance();
-        static PortForwarder *instance();
+    inline constexpr libtorrent::piece_index_t makePieceIndex(libtorrent::piece_index_t::underlying_type index)
+    {
+        return libtorrent::piece_index_t {index};
+    }
 
-        bool isEnabled() const;
-        void setEnabled(bool enabled);
+    inline constexpr libtorrent::file_index_t::underlying_type indexValue(libtorrent::file_index_t index)
+    {
+        return static_cast<libtorrent::file_index_t::underlying_type>(index);
+    }
 
-        void addPort(quint16 port);
-        void deletePort(quint16 port);
-
-    private:
-        explicit PortForwarder(libtorrent::session *const provider, QObject *parent = nullptr);
-        ~PortForwarder();
-
-        void start();
-        void stop();
-
-        bool m_active;
-        libtorrent::session *m_provider;
-#if LIBTORRENT_VERSION_NUM < 10200
-        QHash<quint16, int> m_mappedPorts;
+    inline constexpr libtorrent::piece_index_t::underlying_type indexValue(libtorrent::piece_index_t index)
+    {
+        return static_cast<libtorrent::piece_index_t::underlying_type>(index);
+    }
 #else
-        QHash<quint16, std::vector<libtorrent::port_mapping_t>> m_mappedPorts;
+
+    using libt_file_index_t = int;
+    using libt_piece_index_t = int;
+
+    inline constexpr int makeFileIndex(int index)
+    {
+        return index;
+    }
+
+    inline constexpr int makePieceIndex(int index)
+    {
+        return index;
+    }
+
+    inline constexpr int indexValue(int index)
+    {
+        return index;
+    }
 #endif
-        static PortForwarder *m_instance;
-    };
 }
 
-#endif // NET_PORTFORWARDER_H

@@ -42,6 +42,7 @@
 #include <QFileInfo>
 #include <QHash>
 
+#include "base/bittorrent/private/index.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -135,9 +136,12 @@ void TorrentCreatorThread::run()
 #if LIBTORRENT_VERSION_NUM < 10100
         libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
             , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize : 0));
-#else
+#elif LIBTORRENT_VERSION_NUM < 10200
         libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
             , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0));
+#else
+        libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
+            , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : libt::create_flags_t()));
 #endif
 
         // Add url seeds
@@ -159,7 +163,7 @@ void TorrentCreatorThread::run()
 
         // calculate the hash for all pieces
         libt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
-            , [this, &newTorrent](const int n) { sendProgressSignal(n, newTorrent.num_pieces()); });
+            , [this, &newTorrent](const BitTorrent::libt_piece_index_t n) { this->sendProgressSignal(indexValue(n), newTorrent.num_pieces()); });
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
         newTorrent.set_creator(creatorStr.toUtf8().constData());
@@ -212,8 +216,11 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
 #if LIBTORRENT_VERSION_NUM < 10100
     return libt::create_torrent(fs, pieceSize, -1
         , (isAlignmentOptimized ? libt::create_torrent::optimize : 0)).num_pieces();
-#else
+#elif LIBTORRENT_VERSION_NUM < 10200
     return libt::create_torrent(fs, pieceSize, -1
         , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0)).num_pieces();
+#else
+    return libt::create_torrent(fs, pieceSize, -1
+        , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : libt::create_flags_t())).num_pieces();
 #endif
 }

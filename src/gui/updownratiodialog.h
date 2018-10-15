@@ -31,6 +31,8 @@
 
 #include <QDialog>
 
+#include <chrono>
+
 namespace Ui
 {
     class UpDownRatioDialog;
@@ -42,13 +44,13 @@ class UpDownRatioDialog : public QDialog
 
 public:
     UpDownRatioDialog(bool useDefault, qreal initialValue, qreal maxValue,
-            int initialTimeValue, int maxTimeValue,
+            std::chrono::minutes initialTimeValue, std::chrono::minutes maxTimeValue,
             QWidget *parent = nullptr);
     ~UpDownRatioDialog();
 
     bool useDefault() const;
     qreal ratio() const;
-    int seedingTime() const;
+    std::chrono::minutes seedingTime() const;
 
 public slots:
     void accept() override;

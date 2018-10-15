@@ -178,8 +178,8 @@ void AppController::preferencesAction()
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
     data["max_ratio"] = session->globalMaxRatio();
-    data["max_seeding_time_enabled"] = (session->globalMaxSeedingMinutes() >= 0.);
-    data["max_seeding_time"] = session->globalMaxSeedingMinutes();
+    data["max_seeding_time_enabled"] = (session->globalMaxSeedingTime().count() >= 0);
+    data["max_seeding_time"] = static_cast<int>(session->globalMaxSeedingTime().count());
     data["max_ratio_act"] = session->maxRatioAction();
     // Add trackers
     data["add_trackers_enabled"] = session->isAddTrackersEnabled();
@@ -420,9 +420,9 @@ void AppController::setPreferencesAction()
     }
     if (m.contains("max_seeding_time_enabled")) {
         if (m["max_seeding_time_enabled"].toBool())
-            session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
+            session->setGlobalMaxSeedingTime(std::chrono::minutes(m["max_seeding_time"].toInt()));
         else
-            session->setGlobalMaxSeedingMinutes(-1);
+            session->setGlobalMaxSeedingTime(std::chrono::minutes(-1));
     }
     if (m.contains("max_ratio_act"))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));

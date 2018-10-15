@@ -55,7 +55,10 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
-#if LIBTORRENT_VERSION_NUM < 10100
+#if LIBTORRENT_VERSION_NUM >= 10200
+        typedef std::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
+        typedef std::shared_ptr<libtorrent::torrent_info> NativePtr;
+#elif LIBTORRENT_VERSION_NUM < 10100
         typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
         typedef boost::intrusive_ptr<libtorrent::torrent_info> NativePtr;
 #else

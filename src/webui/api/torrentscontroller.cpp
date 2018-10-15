@@ -234,6 +234,7 @@ void TorrentsController::infoAction()
 //   - "comment": Torrent comment
 void TorrentsController::propertiesAction()
 {
+    using std::chrono::duration_cast;
     checkParams({"hash"});
 
     const QString hash {params()["hash"]};
@@ -242,9 +243,9 @@ void TorrentsController::propertiesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
-    dataDict[KEY_PROP_SEEDING_TIME] = torrent->seedingTime();
-    dataDict[KEY_PROP_ETA] = torrent->eta();
+    dataDict[KEY_PROP_TIME_ELAPSED] = static_cast<qlonglong>(torrent->activeTime().count());
+    dataDict[KEY_PROP_SEEDING_TIME] = static_cast<qlonglong>(torrent->seedingTime().count());
+    dataDict[KEY_PROP_ETA] = static_cast<qlonglong>(torrent->eta().count());
     dataDict[KEY_PROP_CONNECT_COUNT] = torrent->connectionsCount();
     dataDict[KEY_PROP_CONNECT_COUNT_LIMIT] = torrent->connectionsLimit();
     dataDict[KEY_PROP_DOWNLOADED] = torrent->totalDownload();
@@ -252,9 +253,11 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_UPLOADED] = torrent->totalUpload();
     dataDict[KEY_PROP_UPLOADED_SESSION] = torrent->totalPayloadUpload();
     dataDict[KEY_PROP_DL_SPEED] = torrent->downloadPayloadRate();
-    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() / (1 + torrent->activeTime() - torrent->finishedTime());
+    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() /
+        (1 + duration_cast<std::chrono::seconds>(torrent->activeTime() - torrent->finishedTime()).count());
     dataDict[KEY_PROP_UP_SPEED] = torrent->uploadPayloadRate();
-    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() / (1 + torrent->activeTime());
+    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() /
+        (1 + duration_cast<std::chrono::seconds>(torrent->activeTime()).count());
     dataDict[KEY_PROP_DL_LIMIT] = torrent->downloadLimit() <= 0 ? -1 : torrent->downloadLimit();
     dataDict[KEY_PROP_UP_LIMIT] = torrent->uploadLimit() <= 0 ? -1 : torrent->uploadLimit();
     dataDict[KEY_PROP_WASTED] = torrent->wastedSize();
@@ -264,7 +267,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalLeechersCount();
     const qreal ratio = torrent->realRatio();
     dataDict[KEY_PROP_RATIO] = ratio > BitTorrent::TorrentHandle::MAX_RATIO ? -1 : ratio;
-    dataDict[KEY_PROP_REANNOUNCE] = torrent->nextAnnounce();
+    dataDict[KEY_PROP_REANNOUNCE] = static_cast<qlonglong>(torrent->nextAnnounce().count());
     dataDict[KEY_PROP_TOTAL_SIZE] = torrent->totalSize();
     dataDict[KEY_PROP_PIECES_NUM] = torrent->piecesCount();
     dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
@@ -636,7 +639,7 @@ void TorrentsController::setShareLimitsAction()
     applyToTorrents(hashes, [ratioLimit, seedingTimeLimit](BitTorrent::TorrentHandle *torrent)
     {
         torrent->setRatioLimit(ratioLimit);
-        torrent->setSeedingTimeLimit(seedingTimeLimit);
+        torrent->setSeedingTimeLimit(std::chrono::minutes(seedingTimeLimit));
     });
 }
 

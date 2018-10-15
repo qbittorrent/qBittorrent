@@ -1,5 +1,11 @@
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_STANDARD "11")
+if (cxx_std_14 IN_LIST CMAKE_CXX_COMPILE_FEATURES)
+    set(CMAKE_CXX_STANDARD 14)
+    message(STATUS "Building in C++14 mode")
+else()
+    set(CMAKE_CXX_STANDARD 11)
+    message(STATUS "Building in C++11 mode")
+endif()
 
 include(MacroQbtCompilerSettings)
 qbt_set_compiler_options()

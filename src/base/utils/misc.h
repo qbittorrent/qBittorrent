@@ -29,7 +29,9 @@
 #ifndef UTILS_MISC_H
 #define UTILS_MISC_H
 
+#include <chrono>
 #include <ctime>
+#include <type_traits>
 #include <vector>
 
 #include <QtGlobal>
@@ -54,6 +56,12 @@ namespace Utils
 {
     namespace Misc
     {
+        namespace impl
+        {
+            template <typename T> struct is_duration : std::false_type {};
+            template <typename Rep, typename Period> struct is_duration<
+                std::chrono::duration<Rep, Period>> : std::true_type {};
+        }
         // use binary prefix standards from IEC 60027-2
         // see http://en.wikipedia.org/wiki/Kilobyte
         enum class SizeUnit
@@ -90,9 +98,18 @@ namespace Utils
 
         bool isPreviewable(const QString &extension);
 
-        // Take a number of seconds and return a user-friendly
+        // Takes a number of seconds and return a user-friendly
         // time duration like "1d 2h 10m".
-        QString userFriendlyDuration(qlonglong seconds);
+        QString userFriendlyDuration(std::chrono::seconds seconds);
+
+        template <typename Duration, typename = typename std::enable_if<impl::is_duration<Duration>::value>::type>
+        inline QString friendlySpeed(qint64 bytesValue, Duration interval)
+        {
+            Q_ASSERT(interval.count() >= 0);
+            return friendlyUnit(bytesValue /
+                (interval.count() > 0 ? std::chrono::duration_cast<std::chrono::seconds>(interval).count() : 1));
+        }
+
         QString getUserIDString();
 
         // Convert functions

@@ -32,6 +32,7 @@
 
 #include <libtorrent/version.hpp>
 
+#include <chrono>
 #include <vector>
 
 #include <QFile>
@@ -59,6 +60,9 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
+#if LIBTORRENT_VERSION_NUM >= 10108 // #if __has_include(<libtorrent/fwd.hpp>)
+#include <libtorrent/fwd.hpp>
+#else
 namespace libtorrent
 {
     class session;
@@ -107,6 +111,8 @@ namespace libtorrent
     struct session_stats_alert;
 #endif
 }
+
+#endif
 
 class QThread;
 class QTimer;
@@ -198,43 +204,43 @@ namespace BitTorrent
     {
         struct
         {
-            int hasIncomingConnections = 0;
-            int sentPayloadBytes = 0;
-            int recvPayloadBytes = 0;
-            int sentBytes = 0;
-            int recvBytes = 0;
-            int sentIPOverheadBytes = 0;
-            int recvIPOverheadBytes = 0;
-            int sentTrackerBytes = 0;
-            int recvTrackerBytes = 0;
-            int recvRedundantBytes = 0;
-            int recvFailedBytes = 0;
+            std::size_t hasIncomingConnections = 0;
+            std::size_t sentPayloadBytes = 0;
+            std::size_t recvPayloadBytes = 0;
+            std::size_t sentBytes = 0;
+            std::size_t recvBytes = 0;
+            std::size_t sentIPOverheadBytes = 0;
+            std::size_t recvIPOverheadBytes = 0;
+            std::size_t sentTrackerBytes = 0;
+            std::size_t recvTrackerBytes = 0;
+            std::size_t recvRedundantBytes = 0;
+            std::size_t recvFailedBytes = 0;
         } net;
 
         struct
         {
-            int numPeersConnected = 0;
-            int numPeersUpDisk = 0;
-            int numPeersDownDisk = 0;
+            std::size_t numPeersConnected = 0;
+            std::size_t numPeersUpDisk = 0;
+            std::size_t numPeersDownDisk = 0;
         } peer;
 
         struct
         {
-            int dhtBytesIn = 0;
-            int dhtBytesOut = 0;
-            int dhtNodes = 0;
+            std::size_t dhtBytesIn = 0;
+            std::size_t dhtBytesOut = 0;
+            std::size_t dhtNodes = 0;
         } dht;
 
         struct
         {
-            int diskBlocksInUse = 0;
-            int numBlocksRead = 0;
-            int numBlocksCacheHits = 0;
-            int writeJobs = 0;
-            int readJobs = 0;
-            int hashJobs = 0;
-            int queuedDiskJobs = 0;
-            int diskJobTime = 0;
+            std::size_t diskBlocksInUse = 0;
+            std::size_t numBlocksRead = 0;
+            std::size_t numBlocksCacheHits = 0;
+            std::size_t writeJobs = 0;
+            std::size_t readJobs = 0;
+            std::size_t hashJobs = 0;
+            std::size_t queuedDiskJobs = 0;
+            std::size_t diskJobTime = 0;
         } disk;
     };
 #endif
@@ -297,8 +303,8 @@ namespace BitTorrent
 
         qreal globalMaxRatio() const;
         void setGlobalMaxRatio(qreal ratio);
-        int globalMaxSeedingMinutes() const;
-        void setGlobalMaxSeedingMinutes(int minutes);
+        std::chrono::minutes globalMaxSeedingTime() const;
+        void setGlobalMaxSeedingTime(std::chrono::minutes minutes);
         bool isDHTEnabled() const;
         void setDHTEnabled(bool enabled);
         bool isLSDEnabled() const;
@@ -383,7 +389,9 @@ namespace BitTorrent
         void setDiskCacheTTL(int ttl);
         bool useOSCache() const;
         void setUseOSCache(bool use);
+#if LIBTORRENT_VERSION_NUM < 10200
         bool isGuidedReadCacheEnabled() const;
+#endif
         void setGuidedReadCacheEnabled(bool enabled);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);

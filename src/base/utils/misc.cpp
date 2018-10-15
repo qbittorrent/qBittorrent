@@ -345,30 +345,37 @@ bool Utils::Misc::isPreviewable(const QString &extension)
 
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(std::chrono::seconds seconds)
 {
-    if ((seconds < 0) || (seconds >= MAX_ETA))
+    Q_ASSERT(seconds > seconds.zero());
+
+    // TODO C++14 min, hour literals
+    // TODO C++20 days duration
+    using std::chrono::duration_cast;
+
+    if (seconds >= MAX_ETA)
         return QString::fromUtf8(C_INFINITY);
 
-    if (seconds == 0)
+    if (seconds.count() == 0)
         return "0";
 
-    if (seconds < 60)
+    if (seconds < std::chrono::minutes{1})
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
 
-    qlonglong minutes = seconds / 60;
-    if (minutes < 60)
-        return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
+    auto minutes = duration_cast<std::chrono::minutes>(seconds);
+    if (minutes < std::chrono::hours{1})
+        return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes.count()));
 
-    qlonglong hours = minutes / 60;
-    minutes -= hours * 60;
-    if (hours < 24)
-        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
+    auto hours = duration_cast<std::chrono::hours>(minutes);
+    minutes -= hours;
+    if (hours.count() < 24)
+        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes")
+            .arg(QString::number(hours.count()), QString::number(minutes.count()));
 
-    qlonglong days = hours / 24;
-    hours -= days * 24;
+    auto days = hours.count() / 24;
+    hours -= std::chrono::hours(days * 24);
     if (days < 100)
-        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours.count()));
 
     return QString::fromUtf8(C_INFINITY);
 }

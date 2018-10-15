@@ -12,3 +12,4 @@
 #endif
 
 #cmakedefine STACKTRACE_WIN
+

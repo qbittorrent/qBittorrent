@@ -684,7 +684,7 @@ void OptionsDialog::saveOptions()
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
-    session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
+    session->setGlobalMaxSeedingTime(getMaxSeedingTime());
     session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
@@ -1100,18 +1100,19 @@ void OptionsDialog::loadOptions()
         m_ui->checkMaxRatio->setChecked(false);
         m_ui->spinMaxRatio->setEnabled(false);
     }
-    if (session->globalMaxSeedingMinutes() >= 0) {
+    if (session->globalMaxSeedingTime().count() >= 0) {
         // Enable
         m_ui->checkMaxSeedingMinutes->setChecked(true);
         m_ui->spinMaxSeedingMinutes->setEnabled(true);
-        m_ui->spinMaxSeedingMinutes->setValue(session->globalMaxSeedingMinutes());
+        m_ui->spinMaxSeedingMinutes->setValue(
+            std::chrono::duration_cast<std::chrono::minutes>(session->globalMaxSeedingTime()).count());
     }
     else {
         // Disable
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
+    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingTime().count() >= 0) || (session->globalMaxRatio() >= 0.));
     m_ui->comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
     // End Bittorrent preferences
 
@@ -1256,11 +1257,11 @@ qreal OptionsDialog::getMaxRatio() const
 }
 
 // Return Seeding Minutes
-int OptionsDialog::getMaxSeedingMinutes() const
+std::chrono::minutes OptionsDialog::getMaxSeedingTime() const
 {
     if (m_ui->checkMaxSeedingMinutes->isChecked())
-        return m_ui->spinMaxSeedingMinutes->value();
-    return -1;
+        return std::chrono::minutes {m_ui->spinMaxSeedingMinutes->value()};
+    return std::chrono::minutes {-1};
 }
 
 // Return max connections number

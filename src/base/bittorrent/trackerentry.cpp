@@ -33,6 +33,45 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
+#include <algorithm>
+
+namespace
+{
+    bool isEntryWorking(const libtorrent::announce_entry& entry)
+    {
+#if LIBTORRENT_VERSION_NUM < 10200
+    // libtorrent::announce_entry::is_working() returns
+    // true when the tracker hasn't been tried yet.
+    return entry.verified && entry.is_working();
+#else
+    return entry.verified && std::any_of(entry.endpoints.begin(), entry.endpoints.end(),
+                                    [](libtorrent::announce_endpoint const& aep) { return aep.is_working(); });
+#endif
+    }
+
+    bool isEntryFailing(const libtorrent::announce_entry& entry)
+    {
+#if LIBTORRENT_VERSION_NUM < 10200
+        return entry.fails > 0;
+#else
+        return std::any_of(entry.endpoints.begin(), entry.endpoints.end(),
+            [](const libtorrent::announce_endpoint& aep) { return aep.fails > 0; }
+        );
+#endif
+    }
+
+    bool isEntryUpdating(const libtorrent::announce_entry& entry)
+    {
+#if LIBTORRENT_VERSION_NUM < 10200
+        return entry.updating;
+#else
+        return std::any_of(entry.endpoints.begin(), entry.endpoints.end(),
+            [](const libtorrent::announce_endpoint& aep) { return aep.updating; }
+        );
+#endif
+    }
+}
+
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
@@ -62,16 +101,11 @@ int TrackerEntry::tier() const
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-    // libtorrent::announce_entry::is_working() returns
-    // true when the tracker hasn't been tried yet.
-    if (m_nativeEntry.verified && m_nativeEntry.is_working())
+    if (isEntryWorking(m_nativeEntry))
         return Working;
-    else if ((m_nativeEntry.fails == 0) && m_nativeEntry.updating)
-        return Updating;
-    else if (m_nativeEntry.fails == 0)
-        return NotContacted;
-    else
-        return NotWorking;
+    if (!isEntryFailing(m_nativeEntry))
+        return isEntryUpdating(m_nativeEntry) ? Updating : NotContacted;
+    return NotWorking;
 }
 
 void TrackerEntry::setTier(int value)

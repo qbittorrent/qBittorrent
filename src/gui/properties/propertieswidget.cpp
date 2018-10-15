@@ -442,11 +442,11 @@ void PropertiesWidget::loadDynamicData()
 
             m_ui->labelDlSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
                 .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true)
-                    , Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
+                    , Utils::Misc::friendlySpeed(m_torrent->totalDownload(), m_torrent->activeTime() - m_torrent->finishedTime())));
 
             m_ui->labelUpSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
                 .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true)
-                    , Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
+                    , Utils::Misc::friendlySpeed(m_torrent->totalUpload(), m_torrent->activeTime())));
 
             m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
 

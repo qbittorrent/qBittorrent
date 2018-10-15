@@ -60,24 +60,18 @@
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QDoubleSpinBox" name="timeSpinBox">
+      <widget class="QSpinBox" name="timeSpinBox">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="decimals">
-        <number>0</number>
-       </property>
        <property name="maximum">
-        <double>525600.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>1.000000000000000</double>
+        <number>525600</number>
        </property>
        <property name="value">
-        <double>1440.000000000000000</double>
+        <number>1440</number>
        </property>
       </widget>
      </item>

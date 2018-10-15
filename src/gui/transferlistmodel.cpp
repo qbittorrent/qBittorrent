@@ -194,7 +194,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
     case TR_UPSPEED:
         return torrent->uploadPayloadRate();
     case TR_ETA:
-        return torrent->eta();
+        return QVariant::fromValue(torrent->eta());
     case TR_RATIO:
         return torrent->realRatio();
     case TR_CATEGORY:
@@ -225,7 +225,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
     case TR_AMOUNT_LEFT:
         return torrent->incompletedSize();
     case TR_TIME_ELAPSED:
-        return (role == Qt::DisplayRole) ? torrent->activeTime() : torrent->seedingTime();
+        return QVariant::fromValue(role == Qt::DisplayRole ? torrent->activeTime() : torrent->seedingTime());
     case TR_SAVE_PATH:
         return Utils::Fs::toNativePath(torrent->savePath());
     case TR_COMPLETED:
@@ -237,7 +237,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
     case TR_LAST_ACTIVITY:
         if (torrent->isPaused() || torrent->isChecking())
             return -1;
-        return torrent->timeSinceActivity();
+        return QVariant::fromValue(torrent->timeSinceActivity());
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
     }

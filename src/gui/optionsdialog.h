@@ -29,6 +29,8 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
+#include <chrono>
+
 #include <QButtonGroup>
 #include <QDialog>
 
@@ -148,7 +150,7 @@ private:
     bool isLSDEnabled() const;
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
-    int getMaxSeedingMinutes() const;
+    std::chrono::minutes getMaxSeedingTime() const;
     // Proxy options
     bool isProxyEnabled() const;
     bool isProxyAuthEnabled() const;

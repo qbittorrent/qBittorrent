@@ -82,7 +82,8 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_ETA: {
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
+        QItemDelegate::drawDisplay(painter, opt, option.rect,
+            Utils::Misc::userFriendlyDuration(index.data().value<std::chrono::seconds>()));
         break;
     }
     case TransferListModel::TR_SEEDS:
@@ -121,9 +122,9 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_TIME_ELAPSED: {
-            const int elapsedTime = index.data().toInt();
-            const int seedingTime = index.data(Qt::UserRole).toInt();
-            const QString txt = (seedingTime > 0)
+            const auto elapsedTime = index.data().value<std::chrono::seconds>();
+            const auto seedingTime = index.data(Qt::UserRole).value<std::chrono::seconds>();
+            const QString txt = (seedingTime > seedingTime.zero())
                 ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                     .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
                         , Utils::Misc::userFriendlyDuration(seedingTime))
@@ -176,15 +177,15 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_LAST_ACTIVITY: {
-            qlonglong elapsed = index.data().toLongLong();
-            if (hideValues && ((elapsed < 0) || (elapsed >= MAX_ETA)))
+            auto elapsed = index.data().value<std::chrono::seconds>();
+            if (hideValues && ((elapsed < elapsed.zero()) || (elapsed >= MAX_ETA)))
                 break;
 
             // Show '< 1m ago' when elapsed time is 0
-            if (elapsed == 0)
-                elapsed = 1;
+            if (elapsed == elapsed.zero())
+                elapsed = std::chrono::seconds(1);
 
-            QString elapsedString = (elapsed >= 0)
+            QString elapsedString = (elapsed >= elapsed.zero())
                 ? tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsed))
                 : Utils::Misc::userFriendlyDuration(elapsed);
 
