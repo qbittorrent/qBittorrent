@@ -2071,8 +2071,11 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, qBittorrent will pause all Downloads during alternative schedule. After exiting it, all paused and incomplete torrents will be resumed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <property name="text">
-                  <string>Pause Downloads</string>
+                  <string>Pause all Downloads</string>
                  </property>
                 </widget>
                </item>
@@ -2081,8 +2084,11 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, qBittorrent will pause all Uploads during alternative schedule. After exiting it, all paused and completed torrents will be resumed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <property name="text">
-                  <string>Pause Uploads</string>
+                  <string>Pause all Uploads</string>
                  </property>
                 </widget>
                </item>
