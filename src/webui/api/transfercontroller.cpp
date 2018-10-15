@@ -111,3 +111,17 @@ void TransferController::speedLimitsModeAction()
 {
     setResult(QString::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled()));
 }
+
+void TransferController::setPauseDownloadsAction()
+{
+    checkParams({"enabled"});
+    bool en = params()["enabled"].toInt() > 0 ? true : false;
+    BitTorrent::Session::instance()->setAltPauseDownloads(en);
+}
+
+void TransferController::setPauseUploadsAction()
+{
+    checkParams({"enabled"});
+    bool en = params()["enabled"].toInt() > 0 ? true : false;
+    BitTorrent::Session::instance()->setAltPauseUploads(en);
+}

@@ -236,6 +236,10 @@
                     <label for="alt_up_limit_checkbox">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="alt_up_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td>
+                    <input type="checkbox" id="alt_pause_up_checkbox" onclick="updateAltPauseUpEnabled;" />
+                    <label for="alt_pause_up_value">QBT_TR(Pause all Uploads)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -243,6 +247,10 @@
                     <label for="alt_dl_limit_checkbox">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="alt_dl_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td>
+                    <input type="checkbox" id="alt_pause_dl_checkbox" onclick="updateAltPauseDlEnabled;" />
+                    <label for="alt_pause_dl_value">QBT_TR(Pause all Downloads)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
             </tr>
         </table>
 
@@ -690,11 +698,23 @@
     updateAltUpLimitEnabled = function() {
         var isAltUpLimitEnabled = $('alt_up_limit_checkbox').getProperty('checked');
         $('alt_up_limit_value').setProperty('disabled', !isAltUpLimitEnabled);
+        $('alt_pause_up_checkbox').setProperty('disabled', !isAltUpLimitEnabled);
+        $('alt_pause_up_checkbox').setProperty('checked', isAltUpLimitEnabled && isAltPauseUpEnabled);
     };
 
     updateAltDlLimitEnabled = function() {
         var isAltDlLimitEnabled = $('alt_dl_limit_checkbox').getProperty('checked');
         $('alt_dl_limit_value').setProperty('disabled', !isAltDlLimitEnabled);
+        $('alt_pause_dl_checkbox').setProperty('disabled', !isAltDlLimitEnabled);
+        $('alt_pause_dl_checkbox').setProperty('checked', isAltDlLimitEnabled && isAltPauseDlEnabled);
+    };
+
+    updateAltPauseUpEnabled = function() {
+        var isAltPauseUpEnabled = $('alt_pause_up_checkbox').getProperty('checked');
+    };
+
+    updateAltPauseDlEnabled = function() {
+        var isAltPauseDlEnabled = $('alt_pause_dl_checkbox').getProperty('checked');
     };
 
     updateSchedulingEnabled = function() {
@@ -960,6 +980,26 @@
                     }
                     updateAltDlLimitEnabled();
 
+                    // Alternative Pause setup
+                    var alt_pause_up = pref.alt_pause_up;
+                    if (alt_pause_up <= 0) {
+                        $('alt_pause_up_checkbox').setProperty('checked', false);
+                    }
+                    else {
+                        $('alt_pause_up_checkbox').setProperty('checked', true);
+                        $('alt_pause_up_value').setProperty('value', alt_pause_up);
+                    }
+                    updateAltPauseUpEnabled();
+                    var alt_pause_dl = pref.alt_pause_dl;
+                    if (alt_pause_dl <= 0) {
+                        $('alt_pause_dl_checkbox').setProperty('checked', false);
+                    }
+                    else {
+                        $('alt_pause_dl_checkbox').setProperty('checked', true);
+                        $('alt_pause_dl_value').setProperty('value', alt_pause_dl);
+                    }
+                    updateAltPauseDlEnabled();
+
                     // Scheduling
                     $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
                     $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
@@ -1216,6 +1256,10 @@
             }
         }
         settings.set('alt_dl_limit', alt_dl_limit);
+
+        // Alternative Pause settings
+        settings.set('alt_pause_dl', $('alt_pause_dl_checkbox').getProperty('checked'));
+        settings.set('alt_pause_up', $('alt_pause_up_checkbox').getProperty('checked'));
 
         // Scheduler
         var scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');

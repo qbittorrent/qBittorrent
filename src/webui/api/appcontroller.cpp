@@ -152,6 +152,8 @@ void AppController::preferencesAction()
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
     data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
     data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
+    data["alt_pause_dl"] = session->altPauseDownloads();
+    data["alt_pause_up"] = session->altPauseUploads();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
