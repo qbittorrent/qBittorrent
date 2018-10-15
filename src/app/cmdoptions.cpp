@@ -37,7 +37,7 @@
 #include <QProcessEnvironment>
 #include <QTextStream>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
 #include <QMessageBox>
 #endif
 
@@ -306,7 +306,7 @@ namespace
 
     constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
     constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};
-#ifdef DISABLE_GUI
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
     constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
 #else
     constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
@@ -332,12 +332,12 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     , showVersion(false)
 #endif
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
-#else
+#elif !defined(Q_OS_WIN)
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
@@ -407,7 +407,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             if (arg == SHOW_HELP_OPTION) {
                 result.showHelp = true;
             }
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
             else if (arg == SHOW_VERSION_OPTION) {
                 result.showVersion = true;
             }
@@ -422,7 +422,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             else if (arg == NO_SPLASH_OPTION) {
                 result.noSplash = true;
             }
-#else
+#elif !defined(Q_OS_WIN)
             else if (arg == DAEMON_OPTION) {
                 result.shouldDaemonize = true;
             }
@@ -520,7 +520,7 @@ QString makeUsage(const QString &prgName)
     stream << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n';
 
     stream << QObject::tr("Options:") << '\n';
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Display program version and exit")) << '\n';
 #endif
     stream << SHOW_HELP_OPTION.usage() << wrapText(QObject::tr("Display this help message and exit")) << '\n';
@@ -529,7 +529,7 @@ QString makeUsage(const QString &prgName)
            << '\n';
 #ifndef DISABLE_GUI
     stream << NO_SPLASH_OPTION.usage() << wrapText(QObject::tr("Disable splash screen")) << '\n';
-#else
+#elif !defined(Q_OS_WIN)
     stream << DAEMON_OPTION.usage() << wrapText(QObject::tr("Run in daemon-mode (background)")) << '\n';
 #endif
     //: Use appropriate short form or abbreviation of "directory"
@@ -575,12 +575,12 @@ QString makeUsage(const QString &prgName)
 
 void displayUsage(const QString &prgName)
 {
-#ifndef Q_OS_WIN
-    printf("%s\n", qUtf8Printable(makeUsage(prgName)));
-#else
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prgName), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();
+#else
+    printf("%s\n", qUtf8Printable(makeUsage(prgName)));
 #endif
 }

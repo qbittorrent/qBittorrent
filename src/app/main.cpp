@@ -34,6 +34,8 @@
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #include <unistd.h>
+#elif defined Q_OS_WIN && defined DISABLE_GUI
+#include <io.h>
 #endif
 
 #include <QDebug>
@@ -65,7 +67,9 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "stacktrace.h"
 #else
 #include "stacktrace_win.h"
+#ifndef DISABLE_GUI
 #include "stacktracedialog.h"
+#endif // DISABLE_GUI
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
@@ -96,7 +100,7 @@ const char *const sysSigName[] = {
 #endif
 };
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
 void reportToUser(const char *str);
 #endif
 
@@ -126,7 +130,7 @@ int main(int argc, char *argv[])
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
         }
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
         if (params.showVersion) {
             if (isOneArg) {
                 displayVersion();
@@ -152,6 +156,12 @@ int main(int argc, char *argv[])
 #ifndef DISABLE_GUI
         if (!userAgreesWithLegalNotice())
             return EXIT_SUCCESS;
+
+#elif defined(Q_OS_WIN)
+        if (_isatty(_fileno(stdin))
+            && _isatty(_fileno(stdout))
+            && !userAgreesWithLegalNotice())
+            return EXIT_SUCCESS;
 #else
         if (!params.shouldDaemonize
             && isatty(fileno(stdin))
@@ -162,7 +172,7 @@ int main(int argc, char *argv[])
 
         // Check if qBittorrent is already running for this user
         if (app->isRunning()) {
-#ifdef DISABLE_GUI
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
             if (params.shouldDaemonize) {
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
                                      .arg(QLatin1String("-d (or --daemon)")));
@@ -190,7 +200,7 @@ int main(int argc, char *argv[])
         // 3. https://bugreports.qt.io/browse/QTBUG-46015
 
         qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && !defined(DISABLE_GUI)
         // this is the default in Qt6
         app->setAttribute(Qt::AA_DisableWindowContextHelpButton);
 #endif
@@ -210,12 +220,15 @@ int main(int argc, char *argv[])
 
 #ifndef DISABLE_GUI
         if (!upgrade()) return EXIT_FAILURE;
+#elif defined(Q_OS_WIN)
+        if (!upgrade(_isatty(_fileno(stdin))
+                     && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
 #else
         if (!upgrade(!params.shouldDaemonize
                      && isatty(fileno(stdin))
                      && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
-#ifdef DISABLE_GUI
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
             if (daemon(1, 0) == 0) {
@@ -230,7 +243,7 @@ int main(int argc, char *argv[])
                 return EXIT_FAILURE;
             }
         }
-#else
+#elif !defined(DISABLE_GUI)
         if (!(params.noSplash || Preferences::instance()->isSplashScreenDisabled()))
             showSplashScreen();
 #endif
@@ -250,12 +263,17 @@ int main(int argc, char *argv[])
     }
 }
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
 void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
+#ifndef Q_OS_WIN
     if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
         const auto dummy = write(STDOUT_FILENO, str, strLen);
+#else
+    if (_write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+        const auto dummy = _write(STDOUT_FILENO, str, strLen);
+#endif
         Q_UNUSED(dummy);
     }
 }
@@ -263,7 +281,7 @@ void reportToUser(const char *str)
 
 void sigNormalHandler(int signum)
 {
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
     const char msg1[] = "Catching signal: ";
     const char msg2[] = "\nExiting cleanly\n";
     reportToUser(msg1);
@@ -278,7 +296,7 @@ void sigNormalHandler(int signum)
 void sigAbnormalHandler(int signum)
 {
     const char *sigName = sysSigName[signum];
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
     const char msg[] = "\n\n*************************************************************\n"
         "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
         "qBittorrent version: " QBT_VERSION "\n\n"
@@ -289,7 +307,7 @@ void sigAbnormalHandler(int signum)
     print_stacktrace();  // unsafe
 #endif
 
-#if defined Q_OS_WIN
+#if defined Q_OS_WIN && !defined DISABLE_GUI
     StacktraceDialog dlg;  // unsafe
     dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
     dlg.exec();
@@ -324,7 +342,7 @@ void displayVersion()
 void displayBadArgMessage(const QString &message)
 {
     const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
                        message + QLatin1Char('\n') + help, QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
