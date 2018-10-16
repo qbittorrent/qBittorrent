@@ -345,10 +345,13 @@ var TorrentsTableContextMenu = new Class({
         else if (!there_are_paused && !there_are_force_start)
             this.hideItem('Start');
 
-        if (!all_are_auto_tmm && there_are_auto_tmm)
+        if (!all_are_auto_tmm && there_are_auto_tmm) {
             this.hideItem('AutoTorrentManagement');
-        else
+        }
+        else {
+            this.showItem('AutoTorrentManagement');
             this.setItemChecked('AutoTorrentManagement', all_are_auto_tmm);
+        }
 
     },
 
