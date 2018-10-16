@@ -83,12 +83,15 @@ void AppController::preferencesAction()
     QVariantMap data;
 
     // Downloads
-    // Hard Disk
+    data["preallocate_all"] = session->isPreallocationEnabled();
+    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    // Saving Management
     data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
     data["temp_path_enabled"] = session->isTempPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
-    data["preallocate_all"] = session->isPreallocationEnabled();
-    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
+    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
+    // Automatically add torrents from
     const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
     for (QVariantHash::const_iterator i = dirs.cbegin(), e = dirs.cend(); i != e; ++i) {
@@ -98,8 +101,6 @@ void AppController::preferencesAction()
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
     }
     data["scan_dirs"] = nativeDirs;
-    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
-    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
@@ -232,19 +233,26 @@ void AppController::setPreferencesAction()
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
     const QVariantMap m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toMap();
+    QVariantMap::ConstIterator it;
 
     // Downloads
-    // Hard Disk
+    if ((it = m.find(QLatin1String("preallocate_all"))) != m.constEnd())
+        session->setPreallocationEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("incomplete_files_ext"))) != m.constEnd())
+        session->setAppendExtensionEnabled(it.value().toBool());
+
+    // Saving Management
     if (m.contains("save_path"))
         session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
         session->setTempPathEnabled(m["temp_path_enabled"].toBool());
     if (m.contains("temp_path"))
         session->setTempPath(m["temp_path"].toString());
-    if (m.contains("preallocate_all"))
-        session->setPreallocationEnabled(m["preallocate_all"].toBool());
-    if (m.contains("incomplete_files_ext"))
-        session->setAppendExtensionEnabled(m["incomplete_files_ext"].toBool());
+    if ((it = m.find(QLatin1String("export_dir"))) != m.constEnd())
+        session->setTorrentExportDirectory(it.value().toString());
+    if ((it = m.find(QLatin1String("export_dir_fin"))) != m.constEnd())
+        session->setFinishedTorrentExportDirectory(it.value().toString());
+    // Automatically add torrents from
     if (m.contains("scan_dirs")) {
         const QVariantMap nativeDirs = m["scan_dirs"].toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
@@ -288,10 +296,6 @@ void AppController::setPreferencesAction()
         }
         pref->setScanDirs(scanDirs);
     }
-    if (m.contains("export_dir"))
-        session->setTorrentExportDirectory(m["export_dir"].toString());
-    if (m.contains("export_dir_fin"))
-        session->setFinishedTorrentExportDirectory(m["export_dir_fin"].toString());
     // Email notification upon download completion
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
@@ -505,7 +509,6 @@ void AppController::setPreferencesAction()
     // Save preferences
     pref->apply();
 
-    QVariantMap::ConstIterator it;
     if ((it = m.find(QLatin1String("rss_refresh_interval"))) != m.constEnd())
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
     if ((it = m.find(QLatin1String("rss_max_articles_per_feed"))) != m.constEnd())

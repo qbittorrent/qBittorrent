@@ -1,21 +1,58 @@
 <div id="DownloadsTab" class="PrefTab">
-    <fieldset class="settings">
-        <legend>QBT_TR(Hard Disk)QBT_TR[CONTEXT=HttpServer]</legend>
-        <div class="formRow">
-            <label for="savepath_text">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
-            <input type="text" id="savepath_text" />
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();" />
-            <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="temppath_text" />
-        </div>
+    <div class="formRow">
         <input type="checkbox" id="preallocateall_checkbox" />
-        <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+        <label for="preallocateall_checkbox">QBT_TR(Pre-allocate disk space for all files)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+    <div class="formRow">
         <span id="appendexttr">
             <input type="checkbox" id="appendext_checkbox"/>
             <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </span><br/><br/> QBT_TR(Automatically add torrents from:)QBT_TR[CONTEXT=OptionsDialog]<br/>
+        </span>
+    </div>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="savepath_text">QBT_TR(Default Save Path:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="savepath_text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();" />
+                    <label for="temppath_checkbox" >QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="temppath_text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();" />
+                    <label for="exportdir_checkbox" >QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="exportdir_text" /><br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="exportdirfin_checkbox" onclick="updateExportDirFinEnabled();" />
+                    <label for="exportdirfin_checkbox" >QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="exportdirfin_text" /><br/>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(Automatically add torrents from:)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table id="watched_folders_tab" style="border: 1px solid black;">
             <thead>
                 <tr>
@@ -40,13 +77,7 @@
                     </td>
                 </tr>
             </tfoot>
-        </table><br/>
-        <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();" />
-        <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>&nbsp;&nbsp;
-        <input type="text" id="exportdir_text" /><br/>
-        <input type="checkbox" id="exportdirfin_checkbox" onclick="updateExportDirFinEnabled();" />
-        <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>&nbsp;&nbsp;
-        <input type="text" id="exportdirfin_text" /><br/>
+        </table>
     </fieldset>
 
     <fieldset class="settings">
@@ -766,26 +797,14 @@
             onSuccess: function(pref) {
                 if (pref) {
                     // Downloads tab
-                    // Hard Disk
+                    $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
+                    $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
+
+                    // Saving Managmenet
                     $('savepath_text').setProperty('value', pref.save_path);
                     $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
                     $('temppath_text').setProperty('value', pref.temp_path);
                     updateTempDirEnabled();
-                    $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
-                    $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
-                    var i = 0;
-                    for (var folder in pref.scan_dirs) {
-                        var sel;
-                        var other = "";
-                        if (typeof pref.scan_dirs[folder] == "string") {
-                            other = pref.scan_dirs[folder];
-                            sel = "other";
-                        }
-                        else {
-                            sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
-                        }
-                        pushWatchFolder(i++, folder, sel, other);
-                    }
                     if (pref.export_dir != '') {
                         $('exportdir_checkbox').setProperty('checked', true);
                         $('exportdir_text').setProperty('value', pref.export_dir);
@@ -804,6 +823,21 @@
                         $('exportdirfin_text').setProperty('value', '');
                     }
                     updateExportDirFinEnabled();
+
+                    // Automatically add torrents from
+                    var i = 0;
+                    for (var folder in pref.scan_dirs) {
+                        var sel;
+                        var other = "";
+                        if (typeof pref.scan_dirs[folder] == "string") {
+                            other = pref.scan_dirs[folder];
+                            sel = "other";
+                        }
+                        else {
+                            sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
+                        }
+                        pushWatchFolder(i++, folder, sel, other);
+                    }
 
                     // Email notification upon download completion
                     $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
@@ -1008,13 +1042,13 @@
         var settings = new Hash();
         // Validate form data
         // Downloads tab
-        // Hard Disk
+        settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
+        settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
+
+        // Saving Management
         settings.set('save_path', $('savepath_text').getProperty('value'));
         settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
         settings.set('temp_path', $('temppath_text').getProperty('value'));
-        settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
-        settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
-        settings.set('scan_dirs', getWatchedFolders());
         if ($('exportdir_checkbox').getProperty('checked'))
             settings.set('export_dir', $('exportdir_text').getProperty('value'));
         else
@@ -1023,6 +1057,9 @@
             settings.set('export_dir_fin', $('exportdirfin_text').getProperty('value'));
         else
             settings.set('export_dir_fin', '');
+
+        // Automatically add torrents from
+        settings.set('scan_dirs', getWatchedFolders());
 
         // Email notification upon download completion
         settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
