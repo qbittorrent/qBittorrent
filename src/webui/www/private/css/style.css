@@ -375,6 +375,10 @@ fieldset.settings label {
     padding: 2px;
 }
 
+fieldset.settings + div.formRow {
+    margin-top: 10px;
+}
+
 div.formRow {
     clear: left;
     display: block;

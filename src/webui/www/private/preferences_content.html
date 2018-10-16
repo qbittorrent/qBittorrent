@@ -36,7 +36,7 @@
                     <label for="exportdir_checkbox" >QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="exportdir_text" /><br/>
+                    <input type="text" id="exportdir_text" />
                 </td>
             </tr>
             <tr>
@@ -45,7 +45,7 @@
                     <label for="exportdirfin_checkbox" >QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="exportdirfin_text" /><br/>
+                    <input type="text" id="exportdirfin_text" />
                 </td>
             </tr>
         </table>
@@ -81,8 +81,10 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();" />
-            <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+        <legend>
+            <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();" />
+            <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
         <table>
             <tr>
                 <td>
@@ -105,7 +107,10 @@
             <input type="checkbox" id="mail_ssl_checkbox" /><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <fieldset class="settings">
-            <legend><input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();" /><label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <legend>
+                <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();" />
+                <label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <table>
                 <tr>
                     <td>
@@ -128,9 +133,13 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();" />
-            <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
-        <input type="text" id="autorunProg_txt" style="width: 400px;" /><br/>
+        <legend>
+            <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();" />
+            <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <input type="text" id="autorunProg_txt" style="width: 400px;" />
+        </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
             <ul>
                 <li>QBT_TR(%N: Torrent name)QBT_TR[CONTEXT=OptionsDialog]</li>
@@ -150,22 +159,29 @@
 </div>
 
 <div id="ConnectionTab" class="PrefTab invisible">
-    <label>QBT_TR(Enabled protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
-    <select id="enable_protocol_combobox">
-        <option value="0" selected>QBT_TR(TCP and μTP)QBT_TR[CONTEXT=OptionsDialog]</option>
-        <option value="1">TCP</option>
-        <option value="2">μTP</option>
-    </select><br/>
+    <div class="formRow">
+        <label>QBT_TR(Enabled protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <select id="enable_protocol_combobox">
+            <option value="0" selected>QBT_TR(TCP and μTP)QBT_TR[CONTEXT=OptionsDialog]</option>
+            <option value="1">TCP</option>
+            <option value="2">μTP</option>
+        </select>
+    </div>
     <fieldset class="settings">
         <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <input type="text" id="port_value" style="width: 4em;" />
-        <button style="margin-left: 1em;" onclick="generateRandomPort();">Random</button>
-        <br/>
-        <input type="checkbox" id="upnp_checkbox" />
-        <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-        <input type="checkbox" id="random_port_checkbox" />
-        <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <div class="formRow">
+            <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="port_value" style="width: 4em;" />
+            <button style="margin-left: 1em;" onclick="generateRandomPort();">Random</button>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="upnp_checkbox" />
+            <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="random_port_checkbox" />
+            <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -244,8 +260,10 @@
             <label for="proxy_only_for_torrents_checkbox">QBT_TR(Use proxy only for torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <fieldset class="settings">
-            <legend><input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />
-                <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <legend>
+                <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />
+                <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <table>
                 <tr>
                     <td>
@@ -271,12 +289,18 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();" />
-            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
-        <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <input type="text" id="ipfilter_text" /><br/>
-        <input type="checkbox" id="ipfilter_trackers_checkbox" />
-        <label for="ipfilter_trackers_checkbox">QBT_TR(Apply to trackers)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <legend>
+            <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();" />
+            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="ipfilter_text" />
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="ipfilter_trackers_checkbox" />
+            <label for="ipfilter_trackers_checkbox">QBT_TR(Apply to trackers)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <div class="formRow">
             <fieldset class="settings">
                 <legend>QBT_TR(Manually banned IP addresses...)QBT_TR[CONTEXT=OptionsDialog]</legend>
@@ -323,59 +347,80 @@
         <i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i>
 
         <fieldset class="settings">
-            <legend><input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();" />
-                <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
-            QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
-            <input type="text" id="schedule_from_hour" style="width: 1.5em;" />:<input type="text" id="schedule_from_min" style="width: 1.5em;" /> QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]
-            <input type="text" id="schedule_to_hour" style="width: 1.5em;" />:<input type="text" id="schedule_to_min" style="width: 1.5em;" />
-            <br/> QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]
-            <select id="schedule_freq_select">
-                <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
-                <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
-                <option value="2">QBT_TR(Weekends)QBT_TR[CONTEXT=OptionsDialog]</option>
-                <option value="3">QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="4">QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="5">QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="6">QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
-                <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
-            </select>
-            <br/>
+            <legend>
+                <input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();" />
+                <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <div class="formRow">
+                QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
+                <input type="text" id="schedule_from_hour" style="width: 1.5em;" />:<input type="text" id="schedule_from_min" style="width: 1.5em;" /> QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]
+                <input type="text" id="schedule_to_hour" style="width: 1.5em;" />:<input type="text" id="schedule_to_min" style="width: 1.5em;" />
+            </div>
+            <div class="formRow">
+                QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]
+                <select id="schedule_freq_select">
+                    <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    <option value="2">QBT_TR(Weekends)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    <option value="3">QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="4">QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="5">QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="6">QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
+                    <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
+                </select>
+            </div>
         </fieldset>
     </fieldset>
 
     <fieldset class="settings">
         <legend>QBT_TR(Rate Limits Settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <input type="checkbox" id="limit_utp_rate_checkbox" />
-        <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-        <input type="checkbox" id="limit_tcp_overhead_checkbox" />
-        <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+        <div class="formRow">
+            <input type="checkbox" id="limit_utp_rate_checkbox" />
+            <label for="limit_utp_rate_checkbox">QBT_TR(Apply rate limit to µTP protocol)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="limit_tcp_overhead_checkbox" />
+            <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 </div>
 
 <div id="BittorrentTab" class="PrefTab invisible">
     <fieldset class="settings">
         <legend>QBT_TR(Privacy)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <input type="checkbox" id="dht_checkbox" />
-        <label for="dht_checkbox">QBT_TR(Enable DHT (decentralized network) to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-        <input type="checkbox" id="pex_checkbox" />
-        <label for="pex_checkbox">QBT_TR(Enable Peer Exchange (PeX) to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-        <input type="checkbox" id="lsd_checkbox" />
-        <label for="lsd_checkbox">QBT_TR(Enable Local Peer Discovery to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
-        <label for="encryption_select">QBT_TR(Encryption mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="encryption_select">
-            <option value="0">QBT_TR(Prefer encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="1">QBT_TR(Require encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="2">QBT_TR(Disable encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
-        </select><br/>
-        <input type="checkbox" id="anonymous_mode_checkbox" />
-        <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR[CONTEXT=OptionsDialog] (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">QBT_TR(More information)QBT_TR[CONTEXT=HttpServer]</a>)</label><br/>
+        <div class="formRow">
+            <input type="checkbox" id="dht_checkbox" />
+            <label for="dht_checkbox">QBT_TR(Enable DHT (decentralized network) to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="pex_checkbox" />
+            <label for="pex_checkbox">QBT_TR(Enable Peer Exchange (PeX) to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="lsd_checkbox" />
+            <label for="lsd_checkbox">QBT_TR(Enable Local Peer Discovery to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <label for="encryption_select">QBT_TR(Encryption mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="encryption_select">
+                <option value="0">QBT_TR(Prefer encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="1">QBT_TR(Require encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="2">QBT_TR(Disable encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="anonymous_mode_checkbox" />
+            <label for="anonymous_mode_checkbox">QBT_TR(Enable anonymous mode)QBT_TR[CONTEXT=OptionsDialog] (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode">QBT_TR(More information)QBT_TR[CONTEXT=HttpServer]</a>)</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();" />
-            <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+        <legend>
+            <input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();" />
+            <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
         <table>
             <tr>
                 <td>
@@ -443,8 +488,10 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();" />
-            <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+        <legend>
+            <input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();" />
+            <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
     </fieldset>
 </div>
@@ -517,15 +564,19 @@
                 <td>
                     <input type="text" id="webui_address_value" />
                     <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    <input type="text" id="webui_port_value" style="width: 4em;" /><br/>
+                    <input type="text" id="webui_port_value" style="width: 4em;" />
                 </td>
             </tr>
         </table>
-        <input type="checkbox" id="webui_upnp_checkbox" />
-        <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
+        <div class="formRow">
+            <input type="checkbox" id="webui_upnp_checkbox" />
+            <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <fieldset class="settings">
-            <legend><input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
-                <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+            <legend>
+                <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
+                <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <table>
                 <tr>
                     <td>
@@ -611,14 +662,16 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend><input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />
-            <label for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+        <legend>
+            <input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />
+            <label for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
         <select id="dyndns_select">
             <option value="0">DynDNS</option>
             <option value="1">NO-IP</option>
         </select>
-        <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="registerDynDns();" /><br/><br/>
-        <table>
+        <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="registerDynDns();" />
+        <table style="margin-top: 10px;">
             <tr>
                 <td>
                     <label for="dyndns_domain_text">QBT_TR(Domain name:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -647,8 +700,7 @@
     </fieldset>
 </div>
 
-<br/>
-<div style="text-align: center;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();" /></div>
+<div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();" /></div>
 
 <script>
     // Downloads tab
