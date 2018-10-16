@@ -159,7 +159,9 @@
     <fieldset class="settings">
         <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <input type="text" id="port_value" style="width: 4em;" /><br/>
+        <input type="text" id="port_value" style="width: 4em;" />
+        <button style="margin-left: 1em;" onclick="generateRandomPort();">Random</button>
+        <br/>
         <input type="checkbox" id="upnp_checkbox" />
         <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
         <input type="checkbox" id="random_port_checkbox" />
@@ -262,6 +264,9 @@
                     </td>
                 </tr>
             </table>
+            <div class="formRow">
+                <span>Info: The password is saved unencrypted</span>
+            </div>
         </fieldset>
     </fieldset>
 
@@ -889,6 +894,13 @@
         else {
             window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
         }
+    };
+
+    generateRandomPort = function() {
+        var min = 1024;
+        var max = 65535;
+        var port = Math.floor(Math.random() * (max - min + 1) + min);
+        $('port_value').setProperty('value', port);
     };
 
     time_padding = function(val) {
