@@ -133,7 +133,7 @@
                                 <option value="default_folder">QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>
                                 <option value="other">QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>
                             </select>
-                            <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]" onchange="changeWatchFolderText(this)" />
+                            <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]" hidden />
                             <img src="images/qbt-theme/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="addWatchFolder();" />
                         </div>
                     </td>
@@ -795,33 +795,31 @@
 
     changeWatchFolderSelect = function(item) {
         if (item.value == "other") {
+            item.nextElementSibling.hidden = false;
             item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=HttpServer]';
             item.nextElementSibling.select();
         }
         else {
+            item.nextElementSibling.hidden = true;
             var text = item.options[item.selectedIndex].innerHTML;
             item.nextElementSibling.value = text;
         }
     };
 
-    changeWatchFolderText = function(item) {
-        item.previousElementSibling.value = 'other';
-    };
-
     pushWatchFolder = function(pos, folder, sel, other) {
         var myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
+        var disableInput = (sel != "other");
         var mycb = "<div class='select-watched-folder-editable'>"
             + "<select id ='cb_watch_" + pos + "' onchange='changeWatchFolderSelect(this)'>"
             + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
             + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
             + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>"
             + "</select>"
-            + "<input id='cb_watch_txt_" + pos + "' type='text' "
-            + "onchange='changeWatchFolderText(this)' /></div>";
+            + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/></div>";
 
         WatchedFoldersTable.push([myinput, mycb]);
         $('cb_watch_' + pos).setProperty('value', sel);
-        if (sel != "other") {
+        if (disableInput) {
             var elt = $('cb_watch_' + pos);
             other = elt.options[elt.selectedIndex].innerHTML;
         }
