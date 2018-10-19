@@ -697,6 +697,7 @@
 
     updateAltUpLimitEnabled = function() {
         var isAltUpLimitEnabled = $('alt_up_limit_checkbox').getProperty('checked');
+        var isAltPauseUpEnabled = $('alt_pause_up_checkbox').getProperty('checked');
         $('alt_up_limit_value').setProperty('disabled', !isAltUpLimitEnabled);
         $('alt_pause_up_checkbox').setProperty('disabled', !isAltUpLimitEnabled);
         $('alt_pause_up_checkbox').setProperty('checked', isAltUpLimitEnabled && isAltPauseUpEnabled);
@@ -704,18 +705,12 @@
 
     updateAltDlLimitEnabled = function() {
         var isAltDlLimitEnabled = $('alt_dl_limit_checkbox').getProperty('checked');
+        var isAltPauseDlEnabled = $('alt_pause_dl_checkbox').getProperty('checked');
         $('alt_dl_limit_value').setProperty('disabled', !isAltDlLimitEnabled);
         $('alt_pause_dl_checkbox').setProperty('disabled', !isAltDlLimitEnabled);
         $('alt_pause_dl_checkbox').setProperty('checked', isAltDlLimitEnabled && isAltPauseDlEnabled);
     };
 
-    updateAltPauseUpEnabled = function() {
-        var isAltPauseUpEnabled = $('alt_pause_up_checkbox').getProperty('checked');
-    };
-
-    updateAltPauseDlEnabled = function() {
-        var isAltPauseDlEnabled = $('alt_pause_dl_checkbox').getProperty('checked');
-    };
 
     updateSchedulingEnabled = function() {
         var isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
@@ -970,6 +965,7 @@
                         $('alt_up_limit_value').setProperty('value', alt_up_limit);
                     }
                     updateAltUpLimitEnabled();
+
                     var alt_dl_limit = pref.alt_dl_limit.toInt() / 1024;
                     if (alt_dl_limit <= 0) {
                         $('alt_dl_limit_checkbox').setProperty('checked', false);
@@ -981,24 +977,9 @@
                     updateAltDlLimitEnabled();
 
                     // Alternative Pause setup
-                    var alt_pause_up = pref.alt_pause_up;
-                    if (alt_pause_up <= 0) {
-                        $('alt_pause_up_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('alt_pause_up_checkbox').setProperty('checked', true);
-                        $('alt_pause_up_value').setProperty('value', alt_pause_up);
-                    }
-                    updateAltPauseUpEnabled();
-                    var alt_pause_dl = pref.alt_pause_dl;
-                    if (alt_pause_dl <= 0) {
-                        $('alt_pause_dl_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('alt_pause_dl_checkbox').setProperty('checked', true);
-                        $('alt_pause_dl_value').setProperty('value', alt_pause_dl);
-                    }
-                    updateAltPauseDlEnabled();
+                    $('alt_pause_up_checkbox').setProperty('checked', pref.alt_pause_up);
+                    $('alt_pause_dl_checkbox').setProperty('checked', pref.alt_pause_dl);
+
 
                     // Scheduling
                     $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);

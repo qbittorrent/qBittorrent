@@ -2685,12 +2685,13 @@ void Session::applyAltPauseDownloads(bool enabled)
     }
     else {
         foreach (TorrentHandle *const torrent, m_torrents) {
-            //torrent is paused but not completed, resume download
+            //torrent is paused and not completed, resume download
             if (torrent->isPaused() && !torrent->isCompleted())
                 torrent->resume();
         }
     }
- }
+}
+
 void Session::applyAltPauseUploads(bool enabled)
 {
     if (enabled) {
@@ -2708,7 +2709,6 @@ void Session::applyAltPauseUploads(bool enabled)
         }
     }
 }
-
 
 int Session::downloadSpeedLimit() const
 {
