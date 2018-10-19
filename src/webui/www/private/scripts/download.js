@@ -21,6 +21,28 @@
  * THE SOFTWARE.
  */
 
+var categories = {};
+var defaultSavePath = "";
+
+getCategories = function() {
+    new Request.JSON({
+        url: 'api/v2/torrents/categories',
+        noCache: true,
+        method: 'get',
+        onSuccess: function(data) {
+            if (data) {
+                categories = data;
+                for (var i in data) {
+                    var category = data[i];
+                    var option = new Element("option");
+                    option.set('value', category.name);
+                    option.set('html', category.name);
+                    $('categorySelect').appendChild(option);
+                }
+            }
+        }
+    }).send();
+};
 
 getPreferences = function() {
     new Request.JSON({
@@ -32,7 +54,8 @@ getPreferences = function() {
         },
         onSuccess: function(pref) {
             if (pref) {
-                $('savepath').setProperty('value', pref.save_path);
+                defaultSavePath = pref.save_path;
+                $('savepath').setProperty('value', defaultSavePath);
                 if (pref.auto_tmm_enabled == 1) {
                     $('autoTMM').selectedIndex = 1;
                     $('savepath').disabled = true;
@@ -45,15 +68,47 @@ getPreferences = function() {
     }).send();
 };
 
+changeCategorySelect = function(item) {
+    if (item.value == "\\other") {
+        item.nextElementSibling.hidden = false;
+        item.nextElementSibling.value = "";
+        item.nextElementSibling.select();
+
+        if ($('autotmm').selectedIndex == 1)
+            $('savepath').value = defaultSavePath;
+    }
+    else {
+        item.nextElementSibling.hidden = true;
+        var text = item.options[item.selectedIndex].innerHTML;
+        item.nextElementSibling.value = text;
+
+        if ($('autotmm').selectedIndex == 1) {
+            var categoryName = item.value;
+            var category = categories[categoryName];
+            var savePath = defaultSavePath;
+            if (category !== undefined)
+                savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
+            $('savepath').value = savePath;
+        }
+    }
+};
+
 changeTMM = function(item) {
     if (item.selectedIndex == 1) {
         $('savepath').disabled = true;
+
+        var categorySelect = $('categorySelect');
+        var categoryName = categorySelect.options[categorySelect.selectedIndex].value;
+        var category = categories[categoryName];
+        $('savepath').value = (category === undefined) ? "" : category['savePath'];
     }
     else {
         $('savepath').disabled = false;
+        $('savepath').value = defaultSavePath;
     }
 };
 
 $(window).addEventListener("load", function() {
     getPreferences();
+    getCategories();
 });

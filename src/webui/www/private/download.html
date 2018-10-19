@@ -60,7 +60,12 @@
                             <label for="category">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="category" name="category" style="width: 16em;" />
+                            <div class="select-watched-folder-editable">
+                                <select id="categorySelect" onchange="changeCategorySelect(this)">
+                                    <option selected value="\other"></option>
+                                </select>
+                                <input name="category" type="text" value="" />
+                            </div>
                         </td>
                     </tr>
                     <tr>
