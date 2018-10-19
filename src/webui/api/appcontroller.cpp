@@ -380,6 +380,10 @@ void AppController::setPreferencesAction()
         session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
     if (m.contains("alt_up_limit"))
        session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
+    if (m.contains("alt_pause_up"))
+        session->setAltPauseUploads(m["alt_pause_up"].toBool());
+    if (m.contains("alt_pause_dl"))
+        session->setAltPauseDownloads(m["alt_pause_dl"].toBool());
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
