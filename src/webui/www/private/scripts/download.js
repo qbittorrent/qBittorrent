@@ -56,6 +56,9 @@ getPreferences = function() {
             if (pref) {
                 defaultSavePath = pref.save_path;
                 $('savepath').setProperty('value', defaultSavePath);
+                $('root_folder').checked = pref.create_subfolder_enabled;
+                $('start_torrent').checked = !pref.start_paused_enabled;
+
                 if (pref.auto_tmm_enabled == 1) {
                     $('autoTMM').selectedIndex = 1;
                     $('savepath').disabled = true;
