@@ -330,9 +330,9 @@ namespace BitTorrent
         void setAltGlobalDownloadSpeedLimit(int limit);
         int altGlobalUploadSpeedLimit() const;
         void setAltGlobalUploadSpeedLimit(int limit);
-        int altPauseDownloads() const;
+        bool altPauseDownloads() const;
         void setAltPauseDownloads(bool enabled);
-        int altPauseUploads() const;
+        bool altPauseUploads() const;
         void setAltPauseUploads(bool enabled);
         int downloadSpeedLimit() const;
         void setDownloadSpeedLimit(int limit);

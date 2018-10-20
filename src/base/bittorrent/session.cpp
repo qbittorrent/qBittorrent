@@ -2654,7 +2654,7 @@ void Session::setAltGlobalUploadSpeedLimit(int limit)
         configureDeferred();
 }
 
-int Session::altPauseDownloads() const
+bool Session::altPauseDownloads() const
 {
     return m_isAltPauseDownloadsEnabled;
 }
@@ -2664,7 +2664,7 @@ void Session::setAltPauseDownloads(bool enabled)
     m_isAltPauseDownloadsEnabled = enabled;
 }
 
-int Session::altPauseUploads() const
+bool Session::altPauseUploads() const
 {
     return m_isAltPauseUploadsEnabled;
 }
@@ -2677,16 +2677,16 @@ void Session::setAltPauseUploads(bool enabled)
 void Session::applyAltPauseDownloads(bool enabled)
 {
     if (enabled) {
-        foreach (TorrentHandle *const torrent, m_torrents) {
+        for (TorrentHandle *const torrent : m_torrents) {
             if (torrent->isDownloading()) {
                 torrent->pause();
             }
         }
     }
     else {
-        foreach (TorrentHandle *const torrent, m_torrents) {
-            //torrent is paused and not completed, resume download
-            if (torrent->isPaused() && !torrent->isCompleted())
+        for (TorrentHandle *const torrent : m_torrents) {
+            //torrent is paused, not completed and has no errors, resume download
+            if (torrent->isPaused() && !torrent->isCompleted() && !torrent->isErrored())
                 torrent->resume();
         }
     }
@@ -2695,14 +2695,14 @@ void Session::applyAltPauseDownloads(bool enabled)
 void Session::applyAltPauseUploads(bool enabled)
 {
     if (enabled) {
-        foreach (TorrentHandle *const torrent, m_torrents) {
+        for (TorrentHandle *const torrent : m_torrents) {
             if (torrent->isUploading()) {
                 torrent->pause();
             }
         }
     }
     else {
-        foreach (TorrentHandle *const torrent, m_torrents) {
+        for (TorrentHandle *const torrent : m_torrents) {
             //torrent is paused and completed, resume upload
             if (torrent->isPaused() && torrent->isCompleted())
                 torrent->resume();
