@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>408</width>
-             <height>1030</height>
+             <width>501</width>
+             <height>893</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -678,8 +678,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>552</width>
-             <height>1289</height>
+             <width>591</width>
+             <height>1138</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1269,8 +1269,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>476</width>
-             <height>816</height>
+             <width>501</width>
+             <height>745</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1799,8 +1799,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>527</width>
-             <height>539</height>
+             <width>516</width>
+             <height>525</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
