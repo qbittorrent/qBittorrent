@@ -32,11 +32,11 @@
 #include <memory>
 
 #include <QDialog>
-#include <QShortcut>
 
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/settingvalue.h"
 
 namespace BitTorrent
 {
@@ -79,7 +79,6 @@ public:
     static void show(const QString &source, QWidget *parent);
 
 private slots:
-    void showAdvancedSettings(bool show);
     void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
     void onSavePathChanged(const QString &newPath);
@@ -105,7 +104,6 @@ private:
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
-    void setCommentText(const QString &str) const;
     void setSavePath(const QString &newPath);
 
     void showEvent(QShowEvent *event) override;
@@ -120,6 +118,9 @@ private:
     int m_oldIndex;
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
+
+    CachedSettingValue<QSize> m_storeDialogSize;
+    CachedSettingValue<QByteArray> m_storeSplitterState;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H
