@@ -211,40 +211,30 @@
         <legend>QBT_TR(Global Rate Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
-                <td>
-                    <input type="checkbox" id="up_limit_checkbox" onclick="updateUpLimitEnabled();" />
-                    <label for="up_limit_checkbox">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td><input type="text" id="up_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td><input type="number" id="up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
             <tr>
-                <td>
-                    <input type="checkbox" id="dl_limit_checkbox" onclick="updateDlLimitEnabled();" />
-                    <label for="dl_limit_checkbox">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td><input type="text" id="dl_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><label for="dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td><input type="number" id="dl_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
         </table>
+        <i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i>
     </fieldset>
 
     <fieldset class="settings">
         <legend>QBT_TR(Alternative Rate Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
-                <td>
-                    <input type="checkbox" id="alt_up_limit_checkbox" onclick="updateAltUpLimitEnabled();" />
-                    <label for="alt_up_limit_checkbox">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td><input type="text" id="alt_up_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td><input type="number" id="alt_up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
             <tr>
-                <td>
-                    <input type="checkbox" id="alt_dl_limit_checkbox" onclick="updateAltDlLimitEnabled();" />
-                    <label for="alt_dl_limit_checkbox">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td><input type="text" id="alt_dl_limit_value" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><label for="alt_dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td><input type="number" id="alt_dl_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
         </table>
+        <i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i>
 
         <fieldset class="settings">
             <legend><input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();" />
@@ -677,26 +667,6 @@
     };
 
     // Speed tab
-    updateUpLimitEnabled = function() {
-        var isUpLimitEnabled = $('up_limit_checkbox').getProperty('checked');
-        $('up_limit_value').setProperty('disabled', !isUpLimitEnabled);
-    };
-
-    updateDlLimitEnabled = function() {
-        var isDlLimitEnabled = $('dl_limit_checkbox').getProperty('checked');
-        $('dl_limit_value').setProperty('disabled', !isDlLimitEnabled);
-    };
-
-    updateAltUpLimitEnabled = function() {
-        var isAltUpLimitEnabled = $('alt_up_limit_checkbox').getProperty('checked');
-        $('alt_up_limit_value').setProperty('disabled', !isAltUpLimitEnabled);
-    };
-
-    updateAltDlLimitEnabled = function() {
-        var isAltDlLimitEnabled = $('alt_dl_limit_checkbox').getProperty('checked');
-        $('alt_dl_limit_value').setProperty('disabled', !isAltDlLimitEnabled);
-    };
-
     updateSchedulingEnabled = function() {
         var isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
         $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
@@ -918,47 +888,15 @@
 
                     // Speed tab
                     // Global Rate Limits
-                    var up_limit = pref.up_limit.toInt() / 1024;
-                    if (up_limit <= 0) {
-                        $('up_limit_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('up_limit_checkbox').setProperty('checked', true);
-                        $('up_limit_value').setProperty('value', up_limit);
-                    }
-                    updateUpLimitEnabled();
-                    var dl_limit = pref.dl_limit.toInt() / 1024;
-                    if (dl_limit <= 0) {
-                        $('dl_limit_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('dl_limit_checkbox').setProperty('checked', true);
-                        $('dl_limit_value').setProperty('value', dl_limit);
-                    }
-                    updateDlLimitEnabled();
+                    $('up_limit_value').setProperty('value', (pref.up_limit.toInt() / 1024));
+                    $('dl_limit_value').setProperty('value', (pref.dl_limit.toInt() / 1024));
+                    // Alternative Global Rate Limits
+                    $('alt_up_limit_value').setProperty('value', (pref.alt_up_limit.toInt() / 1024));
+                    $('alt_dl_limit_value').setProperty('value', (pref.alt_dl_limit.toInt() / 1024));
+
                     $('enable_protocol_combobox').setProperty('value', pref.bittorrent_protocol);
                     $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
                     $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
-
-                    // Alternative Global Rate Limits
-                    var alt_up_limit = pref.alt_up_limit.toInt() / 1024;
-                    if (alt_up_limit <= 0) {
-                        $('alt_up_limit_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('alt_up_limit_checkbox').setProperty('checked', true);
-                        $('alt_up_limit_value').setProperty('value', alt_up_limit);
-                    }
-                    updateAltUpLimitEnabled();
-                    var alt_dl_limit = pref.alt_dl_limit.toInt() / 1024;
-                    if (alt_dl_limit <= 0) {
-                        $('alt_dl_limit_checkbox').setProperty('checked', false);
-                    }
-                    else {
-                        $('alt_dl_limit_checkbox').setProperty('checked', true);
-                        $('alt_dl_limit_value').setProperty('value', alt_dl_limit);
-                    }
-                    updateAltDlLimitEnabled();
 
                     // Scheduling
                     $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
@@ -1175,47 +1113,38 @@
 
         // Speed tab
         // Global Rate Limits
-        var up_limit = -1;
-        if ($('up_limit_checkbox').getProperty('checked')) {
-            up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(up_limit) || up_limit <= 0) {
-                alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
+        var up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
+        if (isNaN(up_limit) || up_limit < 0) {
+            alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+            return;
         }
         settings.set('up_limit', up_limit);
-        var dl_limit = -1;
-        if ($('dl_limit_checkbox').getProperty('checked')) {
-            dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(dl_limit) || dl_limit <= 0) {
-                alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
+
+        var dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
+        if (isNaN(dl_limit) || dl_limit < 0) {
+            alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+            return;
         }
         settings.set('dl_limit', dl_limit);
+
+        // Alternative Global Rate Limits
+        var alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
+        if (isNaN(alt_up_limit) || alt_up_limit < 0) {
+            alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+            return;
+        }
+        settings.set('alt_up_limit', alt_up_limit);
+
+        var alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
+        if (isNaN(alt_dl_limit) || alt_dl_limit < 0) {
+            alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+            return;
+        }
+        settings.set('alt_dl_limit', alt_dl_limit);
+
         settings.set('bittorrent_protocol', $('enable_protocol_combobox').getProperty('value'));
         settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
         settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
-
-        // Alternative Global Rate Limits
-        var alt_up_limit = -1;
-        if ($('alt_up_limit_checkbox').getProperty('checked')) {
-            alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(alt_up_limit) || alt_up_limit <= 0) {
-                alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('alt_up_limit', alt_up_limit);
-        var alt_dl_limit = -1;
-        if ($('alt_dl_limit_checkbox').getProperty('checked')) {
-            alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(alt_dl_limit) || alt_dl_limit <= 0) {
-                alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('alt_dl_limit', alt_dl_limit);
 
         // Scheduler
         var scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');

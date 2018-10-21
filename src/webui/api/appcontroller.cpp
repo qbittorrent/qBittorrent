@@ -147,11 +147,11 @@ void AppController::preferencesAction()
     // Global Rate Limits
     data["dl_limit"] = session->globalDownloadSpeedLimit();
     data["up_limit"] = session->globalUploadSpeedLimit();
+    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
+    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
     data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
     data["limit_utp_rate"] = session->isUTPRateLimited();
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
-    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
-    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
@@ -368,16 +368,16 @@ void AppController::setPreferencesAction()
         session->setGlobalDownloadSpeedLimit(m["dl_limit"].toInt());
     if (m.contains("up_limit"))
         session->setGlobalUploadSpeedLimit(m["up_limit"].toInt());
+    if (m.contains("alt_dl_limit"))
+        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
+    if (m.contains("alt_up_limit"))
+       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
     if (m.contains("bittorrent_protocol"))
         session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m["bittorrent_protocol"].toInt()));
     if (m.contains("limit_utp_rate"))
         session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
         session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
-    if (m.contains("alt_dl_limit"))
-        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
-    if (m.contains("alt_up_limit"))
-       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
