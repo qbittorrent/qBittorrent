@@ -52,9 +52,9 @@ int TorrentContentModelFile::fileIndex() const
     return m_fileIndex;
 }
 
-void TorrentContentModelFile::setPriority(int newPriority, bool updateParent)
+void TorrentContentModelFile::setPriority(BitTorrent::FilePriority newPriority, bool updateParent)
 {
-    Q_ASSERT(newPriority != prio::MIXED);
+    Q_ASSERT(newPriority != BitTorrent::FilePriority::Mixed);
 
     if (m_priority == newPriority)
         return;

@@ -38,6 +38,7 @@
 #include <QThread>
 #include <QTimer>
 
+#include "base/bittorrent/filepriority.h"
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
@@ -621,18 +622,18 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         renameSelectedFile();
     }
     else {
-        int prio = prio::NORMAL;
+        BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal;
         if (act == m_ui->actionHigh)
-            prio = prio::HIGH;
+            prio = BitTorrent::FilePriority::High;
         else if (act == m_ui->actionMaximum)
-            prio = prio::MAXIMUM;
+            prio = BitTorrent::FilePriority::Maximum;
         else if (act == m_ui->actionNotDownloaded)
-            prio = prio::IGNORED;
+            prio = BitTorrent::FilePriority::Ignored;
 
         qDebug("Setting files priority");
         for (const QModelIndex &index : selectedRows) {
-            qDebug("Setting priority(%d) for file at row %d", prio, index.row());
-            m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), prio);
+            qDebug("Setting priority(%d) for file at row %d", static_cast<int>(prio), index.row());
+            m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
         }
         // Save changes
         filteredFilesChanged();

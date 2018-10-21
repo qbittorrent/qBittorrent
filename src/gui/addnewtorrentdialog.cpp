@@ -36,6 +36,7 @@
 #include <QUrl>
 #include <QVector>
 
+#include "base/bittorrent/filepriority.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -622,18 +623,18 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
             renameSelectedFile();
         }
         else {
-            int prio = prio::NORMAL;
+            BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal;
             if (act == m_ui->actionHigh)
-                prio = prio::HIGH;
+                prio = BitTorrent::FilePriority::High;
             else if (act == m_ui->actionMaximum)
-                prio = prio::MAXIMUM;
+                prio = BitTorrent::FilePriority::Maximum;
             else if (act == m_ui->actionNotDownloaded)
-                prio = prio::IGNORED;
+                prio = BitTorrent::FilePriority::Ignored;
 
             qDebug("Setting files priority");
             for (const QModelIndex &index : selectedRows) {
-                qDebug("Setting priority(%d) for file at row %d", prio, index.row());
-                m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), prio);
+                qDebug("Setting priority(%d) for file at row %d", static_cast<int>(prio), index.row());
+                m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
             }
         }
     }
