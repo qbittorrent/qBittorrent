@@ -450,12 +450,6 @@ td.generalLabel {
     line-height: 25px;
 }
 
-#addTrackersPlus {
-    width: 16px;
-    cursor: pointer;
-    margin-bottom: -3px;
-}
-
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

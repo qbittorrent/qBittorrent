@@ -59,6 +59,8 @@ private slots:
     void addAction();
     void deleteAction();
     void addTrackersAction();
+    void editTrackerAction();
+    void removeTrackersAction();
     void filePrioAction();
     void uploadLimitAction();
     void downloadLimitAction();

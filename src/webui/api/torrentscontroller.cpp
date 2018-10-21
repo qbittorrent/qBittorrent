@@ -377,7 +377,7 @@ void TorrentsController::trackersAction()
     checkParams({"hash"});
 
     const QString hash {params()["hash"]};
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -613,15 +613,82 @@ void TorrentsController::addTrackersAction()
     const QString hash = params()["hash"];
 
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-    if (torrent) {
-        QList<BitTorrent::TrackerEntry> trackers;
-        for (QString url : asConst(params()["urls"].split('\n'))) {
-            url = url.trimmed();
-            if (!url.isEmpty())
-                trackers << url;
-        }
-        torrent->addTrackers(trackers);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    QList<BitTorrent::TrackerEntry> trackers;
+    for (const QString &urlStr : asConst(params()["urls"].split('\n'))) {
+        const QUrl url {urlStr.trimmed()};
+        if (url.isValid())
+            trackers << url.toString();
     }
+    torrent->addTrackers(trackers);
+}
+
+void TorrentsController::editTrackerAction()
+{
+    checkParams({"hash", "origUrl", "newUrl"});
+
+    const QString hash = params()["hash"];
+    const QString origUrl = params()["origUrl"];
+    const QString newUrl = params()["newUrl"];
+
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const QUrl origTrackerUrl(origUrl);
+    const QUrl newTrackerUrl(newUrl);
+    if (origTrackerUrl == newTrackerUrl)
+        return;
+    if (!newTrackerUrl.isValid())
+        throw APIError(APIErrorType::BadParams, "New tracker URL is invalid");
+
+    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    bool match = false;
+    for (BitTorrent::TrackerEntry &tracker : trackers) {
+        const QUrl trackerUrl(tracker.url());
+        if (trackerUrl == newTrackerUrl)
+            throw APIError(APIErrorType::Conflict, "New tracker URL already exists");
+        if (trackerUrl == origTrackerUrl) {
+            match = true;
+            BitTorrent::TrackerEntry newTracker(newTrackerUrl.toString());
+            newTracker.setTier(tracker.tier());
+            tracker = newTracker;
+        }
+    }
+    if (!match)
+        throw APIError(APIErrorType::Conflict, "Tracker not found");
+
+    torrent->replaceTrackers(trackers);
+    if (!torrent->isPaused())
+        torrent->forceReannounce();
+}
+
+void TorrentsController::removeTrackersAction()
+{
+    checkParams({"hash", "urls"});
+
+    const QString hash = params()["hash"];
+    const QStringList urls = params()["urls"].split('|');
+
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    QList<BitTorrent::TrackerEntry> remainingTrackers;
+    const QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    for (const BitTorrent::TrackerEntry &entry : trackers) {
+        if (!urls.contains(entry.url()))
+            remainingTrackers.push_back(entry);
+    }
+
+    if (remainingTrackers.size() == trackers.size())
+        throw APIError(APIErrorType::Conflict, "No trackers were removed");
+
+    torrent->replaceTrackers(remainingTrackers);
+    if (!torrent->isPaused())
+        torrent->forceReannounce();
 }
 
 void TorrentsController::pauseAction()
