@@ -79,7 +79,6 @@ public:
     static void show(const QString &source, QWidget *parent);
 
 private slots:
-    void showAdvancedSettings(bool show);
     void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
     void onSavePathChanged(const QString &newPath);

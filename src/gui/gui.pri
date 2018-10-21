@@ -13,6 +13,8 @@ HEADERS += \
     $$PWD/banlistoptionsdialog.h \
     $$PWD/categoryfiltermodel.h \
     $$PWD/categoryfilterproxymodel.h \
+    $$PWD/clickablelabel.h \
+    $$PWD/checkboxwordwrap.h \
     $$PWD/categoryfilterwidget.h \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
@@ -73,6 +75,8 @@ SOURCES += \
     $$PWD/categoryfiltermodel.cpp \
     $$PWD/categoryfilterproxymodel.cpp \
     $$PWD/categoryfilterwidget.cpp \
+    $$PWD/clickablelabel.cpp \
+    $$PWD/checkboxwordwrap.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
     $$PWD/downloadfromurldialog.cpp \

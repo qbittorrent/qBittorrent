@@ -20,6 +20,8 @@ banlistoptionsdialog.h
 categoryfiltermodel.h
 categoryfilterproxymodel.h
 categoryfilterwidget.h
+checkboxwordwrap.h 
+clickablelabel.h
 cookiesdialog.h
 cookiesmodel.h
 deletionconfirmationdialog.h
@@ -68,6 +70,8 @@ banlistoptionsdialog.cpp
 categoryfiltermodel.cpp
 categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
+checkboxwordwrap.cpp 
+clickablelabel.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
 downloadfromurldialog.cpp
