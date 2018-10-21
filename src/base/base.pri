@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/filepriority.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/magneturi.h \
     $$PWD/bittorrent/peerinfo.h \
@@ -75,6 +76,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
+    $$PWD/bittorrent/filepriority.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
