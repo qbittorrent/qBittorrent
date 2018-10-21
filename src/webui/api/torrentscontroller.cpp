@@ -39,6 +39,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 
+#include "base/bittorrent/filepriority.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
@@ -371,7 +372,7 @@ void TorrentsController::filesAction()
 
     const QString hash {params()["hash"]};
     QVariantList fileList;
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -561,12 +562,38 @@ void TorrentsController::filePrioAction()
     checkParams({"hash", "id", "priority"});
 
     const QString hash = params()["hash"];
-    int fileID = params()["id"].toInt();
-    int priority = params()["priority"].toInt();
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    bool ok = false;
+    const int priority = params()["priority"].toInt(&ok);
+    if (!ok)
+        throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
 
-    if (torrent && torrent->hasMetadata())
-        torrent->setFilePriority(fileID, priority);
+    if (!BitTorrent::isValidFilePriority(static_cast<BitTorrent::FilePriority>(priority)))
+        throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
+
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent's metadata has not yet downloaded"));
+
+    const int filesCount = torrent->filesCount();
+    QVector<int> priorities = torrent->filePriorities();
+    bool priorityChanged = false;
+    for (const QString &fileID : params()["id"].split('|')) {
+        const int id = fileID.toInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, tr("File IDs must be integers"));
+        if ((id < 0) || (id >= filesCount))
+            throw APIError(APIErrorType::Conflict, tr("File ID is not valid"));
+
+        if (priorities[id] != priority) {
+            priorities[id] = priority;
+            priorityChanged = true;
+        }
+    }
+
+    if (priorityChanged)
+        torrent->prioritizeFiles(priorities);
 }
 
 void TorrentsController::uploadLimitAction()
