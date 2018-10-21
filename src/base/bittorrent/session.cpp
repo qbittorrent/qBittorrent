@@ -325,10 +325,10 @@ Session::Session(QObject *parent)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
     , m_torrentExportDirectory(BITTORRENT_SESSION_KEY("TorrentExportDirectory"))
     , m_finishedTorrentExportDirectory(BITTORRENT_SESSION_KEY("FinishedTorrentExportDirectory"))
-    , m_globalDownloadSpeedLimit(BITTORRENT_SESSION_KEY("GlobalDLSpeedLimit"), 0, lowerLimited(0))
-    , m_globalUploadSpeedLimit(BITTORRENT_SESSION_KEY("GlobalUPSpeedLimit"), 0, lowerLimited(0))
-    , m_altGlobalDownloadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalDLSpeedLimit"), 10, lowerLimited(0))
-    , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalUPSpeedLimit"), 10, lowerLimited(0))
+    , m_globalDownloadSpeedLimit(BITTORRENT_SESSION_KEY("GlobalDLSpeedLimit"), 0)
+    , m_globalUploadSpeedLimit(BITTORRENT_SESSION_KEY("GlobalUPSpeedLimit"), 0)
+    , m_altGlobalDownloadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalDLSpeedLimit"), 10)
+    , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalUPSpeedLimit"), 10)
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
@@ -1108,9 +1108,10 @@ void Session::adjustLimits(libt::settings_pack &settingsPack)
 
 void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
 {
-    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
-    settingsPack.set_int(libt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
-    settingsPack.set_int(libt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+    const int downloadRate = qMax(0, (isAltGlobalSpeedLimitEnabled() ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit()));
+    settingsPack.set_int(libt::settings_pack::download_rate_limit, downloadRate);
+    const int uploadRate = qMax(0, (isAltGlobalSpeedLimitEnabled() ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit()));
+    settingsPack.set_int(libt::settings_pack::upload_rate_limit, uploadRate);
 }
 
 void Session::initMetrics()
@@ -1531,9 +1532,10 @@ void Session::adjustLimits(libt::session_settings &sessionSettings)
 
 void Session::applyBandwidthLimits(libt::session_settings &sessionSettings)
 {
-    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
-    sessionSettings.download_rate_limit = altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit();
-    sessionSettings.upload_rate_limit = altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit();
+    const int downloadRate = qMax(0, (isAltGlobalSpeedLimitEnabled() ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit()));
+    sessionSettings.download_rate_limit = downloadRate;
+    const int uploadRate = qMax(0, (isAltGlobalSpeedLimitEnabled() ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit()));
+    sessionSettings.upload_rate_limit = uploadRate;
 }
 
 void Session::configure(libtorrent::session_settings &sessionSettings)
@@ -2568,16 +2570,18 @@ void Session::configureListeningInterface()
 int Session::globalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
-    return m_globalDownloadSpeedLimit * 1024;
+    // It is better to pass it around internally(+ webui) as Bytes.
+    return (m_globalDownloadSpeedLimit * 1024);
 }
 
 void Session::setGlobalDownloadSpeedLimit(int limit)
 {
+    // limit <= 0: speed limit off
+    // limit > 0: speed limit on
+
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
+    // It is better to pass it around internally(+ webui) as Bytes.
     limit /= 1024;
-    if (limit < 0) limit = 0;
     if (limit == globalDownloadSpeedLimit()) return;
 
     m_globalDownloadSpeedLimit = limit;
@@ -2588,16 +2592,18 @@ void Session::setGlobalDownloadSpeedLimit(int limit)
 int Session::globalUploadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
-    return m_globalUploadSpeedLimit * 1024;
+    // It is better to pass it around internally(+ webui) as Bytes.
+    return (m_globalUploadSpeedLimit * 1024);
 }
 
 void Session::setGlobalUploadSpeedLimit(int limit)
 {
+    // limit <= 0: speed limit off
+    // limit > 0: speed limit on
+
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
+    // It is better to pass it around internally(+ webui) as Bytes.
     limit /= 1024;
-    if (limit < 0) limit = 0;
     if (limit == globalUploadSpeedLimit()) return;
 
     m_globalUploadSpeedLimit = limit;
@@ -2608,16 +2614,18 @@ void Session::setGlobalUploadSpeedLimit(int limit)
 int Session::altGlobalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
-    return m_altGlobalDownloadSpeedLimit * 1024;
+    // It is better to pass it around internally(+ webui) as Bytes.
+    return (m_altGlobalDownloadSpeedLimit * 1024);
 }
 
 void Session::setAltGlobalDownloadSpeedLimit(int limit)
 {
+    // limit <= 0: speed limit off
+    // limit > 0: speed limit on
+
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
+    // It is better to pass it around internally(+ webui) as Bytes.
     limit /= 1024;
-    if (limit < 0) limit = 0;
     if (limit == altGlobalDownloadSpeedLimit()) return;
 
     m_altGlobalDownloadSpeedLimit = limit;
@@ -2628,16 +2636,18 @@ void Session::setAltGlobalDownloadSpeedLimit(int limit)
 int Session::altGlobalUploadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
-    return m_altGlobalUploadSpeedLimit * 1024;
+    // It is better to pass it around internally(+ webui) as Bytes.
+    return (m_altGlobalUploadSpeedLimit * 1024);
 }
 
 void Session::setAltGlobalUploadSpeedLimit(int limit)
 {
+    // limit <= 0: speed limit off
+    // limit > 0: speed limit on
+
     // Unfortunately the value was saved as KiB instead of B.
-    // But it is better to pass it around internally(+ webui) as Bytes.
+    // It is better to pass it around internally(+ webui) as Bytes.
     limit /= 1024;
-    if (limit < 0) limit = 0;
     if (limit == altGlobalUploadSpeedLimit()) return;
 
     m_altGlobalUploadSpeedLimit = limit;
@@ -2652,7 +2662,7 @@ int Session::downloadSpeedLimit() const
             : globalDownloadSpeedLimit();
 }
 
-void Session::setDownloadSpeedLimit(int limit)
+void Session::setDownloadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalDownloadSpeedLimit(limit);
@@ -2667,7 +2677,7 @@ int Session::uploadSpeedLimit() const
             : globalUploadSpeedLimit();
 }
 
-void Session::setUploadSpeedLimit(int limit)
+void Session::setUploadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalUploadSpeedLimit(limit);

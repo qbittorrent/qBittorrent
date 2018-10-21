@@ -643,15 +643,17 @@ void OptionsDialog::saveOptions()
     session->setPort(getPort());
     session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
-    const QPair<int, int> downUpLimit = getGlobalBandwidthLimits();
-    session->setGlobalDownloadSpeedLimit(downUpLimit.first);
-    session->setGlobalUploadSpeedLimit(downUpLimit.second);
+    session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024
+        * (m_ui->checkDownloadLimit->isChecked() ? 1 : -1));
+    session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024
+        * (m_ui->checkUploadLimit->isChecked() ? 1 : -1));
+    session->setAltGlobalDownloadSpeedLimit(m_ui->spinDownloadLimitAlt->value() * 1024
+        * (m_ui->checkDownloadLimitAlt->isChecked() ? 1 : -1));
+    session->setAltGlobalUploadSpeedLimit(m_ui->spinUploadLimitAlt->value() * 1024
+        * (m_ui->checkUploadLimitAlt->isChecked() ? 1 : -1));
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
-    const QPair<int, int> altDownUpLimit = getAltGlobalBandwidthLimits();
-    session->setAltGlobalDownloadSpeedLimit(altDownUpLimit.first);
-    session->setAltGlobalUploadSpeedLimit(altDownUpLimit.second);
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
     pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
@@ -1010,52 +1012,40 @@ void OptionsDialog::loadOptions()
     // End Connection preferences
 
     // Speed preferences
-    intValue = session->globalDownloadSpeedLimit() / 1024;
-    if (intValue > 0) {
-        // Enabled
+    m_ui->spinDownloadLimit->setValue(qAbs(session->globalDownloadSpeedLimit() / 1024));
+    if (session->globalDownloadSpeedLimit() > 0) {
         m_ui->checkDownloadLimit->setChecked(true);
         m_ui->spinDownloadLimit->setEnabled(true);
-        m_ui->spinDownloadLimit->setValue(intValue);
     }
     else {
-        // Disabled
         m_ui->checkDownloadLimit->setChecked(false);
         m_ui->spinDownloadLimit->setEnabled(false);
     }
-    intValue = session->globalUploadSpeedLimit() / 1024;
-    if (intValue > 0) {
-        // Enabled
+    m_ui->spinUploadLimit->setValue(qAbs(session->globalUploadSpeedLimit() / 1024));
+    if (session->globalUploadSpeedLimit() > 0) {
         m_ui->checkUploadLimit->setChecked(true);
         m_ui->spinUploadLimit->setEnabled(true);
-        m_ui->spinUploadLimit->setValue(intValue);
     }
     else {
-        // Disabled
         m_ui->checkUploadLimit->setChecked(false);
         m_ui->spinUploadLimit->setEnabled(false);
     }
 
-    intValue = session->altGlobalDownloadSpeedLimit() / 1024;
-    if (intValue > 0) {
-        // Enabled
+    m_ui->spinDownloadLimitAlt->setValue(qAbs(session->altGlobalDownloadSpeedLimit() / 1024));
+    if (session->altGlobalDownloadSpeedLimit() > 0) {
         m_ui->checkDownloadLimitAlt->setChecked(true);
         m_ui->spinDownloadLimitAlt->setEnabled(true);
-        m_ui->spinDownloadLimitAlt->setValue(intValue);
     }
     else {
-        // Disabled
         m_ui->checkDownloadLimitAlt->setChecked(false);
         m_ui->spinDownloadLimitAlt->setEnabled(false);
     }
-    intValue = session->altGlobalUploadSpeedLimit() / 1024;
-    if (intValue > 0) {
-        // Enabled
+    m_ui->spinUploadLimitAlt->setValue(qAbs(session->altGlobalUploadSpeedLimit() / 1024));
+    if (session->altGlobalUploadSpeedLimit() > 0) {
         m_ui->checkUploadLimitAlt->setChecked(true);
         m_ui->spinUploadLimitAlt->setEnabled(true);
-        m_ui->spinUploadLimitAlt->setValue(intValue);
     }
     else {
-        // Disabled
         m_ui->checkUploadLimitAlt->setChecked(false);
         m_ui->spinUploadLimitAlt->setEnabled(false);
     }
@@ -1196,30 +1186,6 @@ bool OptionsDialog::isLSDEnabled() const
 bool OptionsDialog::isUPnPEnabled() const
 {
     return m_ui->checkUPnP->isChecked();
-}
-
-// Return Download & Upload limits in kbps
-// [download,upload]
-QPair<int, int> OptionsDialog::getGlobalBandwidthLimits() const
-{
-    int DL = 0, UP = 0;
-    if (m_ui->checkDownloadLimit->isChecked())
-        DL = m_ui->spinDownloadLimit->value() * 1024;
-    if (m_ui->checkUploadLimit->isChecked())
-        UP = m_ui->spinUploadLimit->value() * 1024;
-    return qMakePair(DL, UP);
-}
-
-// Return alternate Download & Upload limits in kbps
-// [download,upload]
-QPair<int, int> OptionsDialog::getAltGlobalBandwidthLimits() const
-{
-    int DL = 0, UP = 0;
-    if (m_ui->checkDownloadLimitAlt->isChecked())
-        DL = m_ui->spinDownloadLimitAlt->value() * 1024;
-    if (m_ui->checkUploadLimitAlt->isChecked())
-        UP = m_ui->spinUploadLimitAlt->value() * 1024;
-    return qMakePair(DL, UP);
 }
 
 bool OptionsDialog::startMinimized() const

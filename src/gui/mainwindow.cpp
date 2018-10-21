@@ -987,7 +987,7 @@ void MainWindow::on_actionSetGlobalUploadLimit_triggered()
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        this, &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
+        this, &ok, tr("Global Upload Speed Limit"), qMax(0, session->uploadSpeedLimit()));
 
     if (ok) {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
@@ -1002,7 +1002,7 @@ void MainWindow::on_actionSetGlobalDownloadLimit_triggered()
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        this, &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
+        this, &ok, tr("Global Download Speed Limit"), qMax(0, session->downloadSpeedLimit()));
 
     if (ok) {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
