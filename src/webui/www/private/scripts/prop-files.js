@@ -47,28 +47,34 @@ var switchCBState = function() {
     if ($("all_files_cb").hasClass("partial")) {
         $("all_files_cb").removeClass("partial");
         // Uncheck all checkboxes
+        var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
             item.erase("checked");
-            setFilePriority(index, 0);
+            indexes.push(index);
         });
+        setFilePriority(indexes, 0);
         return;
     }
     if ($("all_files_cb").hasClass("checked")) {
         $("all_files_cb").removeClass("checked");
         // Uncheck all checkboxes
+        var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
             item.erase("checked");
-            setFilePriority(index, 0);
+            indexes.push(index);
         });
+        setFilePriority(indexes, 0);
         return;
     }
     // Check
     $("all_files_cb").addClass("checked");
     // Check all checkboxes
+    var indexes = [];
     $$('input.DownloadedCB').each(function(item, index) {
         item.set("checked", "checked");
-        setFilePriority(index, 1);
+        indexes.push(index);
     });
+    setFilePriority(indexes, 1);
 };
 
 var allCBChecked = function() {
@@ -93,22 +99,31 @@ var allCBUnchecked = function() {
 
 var setFilePriority = function(id, priority) {
     if (current_hash === "") return;
+    var ids = Array.isArray(id) ? id : [id];
+
     new Request({
         url: 'api/v2/torrents/filePrio',
         method: 'post',
         data: {
             'hash': current_hash,
-            'id': id,
+            'id': ids.join('|'),
             'priority': priority
         }
     }).send();
     // Display or add combobox
     if (priority > 0) {
-        $('comboPrio' + id).set("value", 1);
-        $('comboPrio' + id).removeClass("invisible");
+        ids.forEach(function(_id) {
+            if ($('comboPrio' + _id).hasClass("invisible")) {
+                $('comboPrio' + _id).set("value", priority);
+                $('comboPrio' + _id).removeClass("invisible");
+            }
+        });
     }
     else {
-        $('comboPrio' + id).addClass("invisible");
+        ids.forEach(function(_id) {
+            if (!$('comboPrio' + _id).hasClass("invisible"))
+                $('comboPrio' + _id).addClass("invisible");
+        });
     }
 };
 
@@ -146,24 +161,27 @@ var createPriorityCombo = function(id, selected_prio) {
         var new_prio = $('comboPrio' + id).get('value');
         setFilePriority(id, new_prio);
     });
-    var opt = new Element("option");
-    opt.set('value', '1');
-    opt.set('html', "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio <= 1)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '2');
-    opt.set('html', "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio == 2)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '7');
-    opt.set('html', "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio == 7)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
+
+    function createOptionElement(priority, html) {
+        var elem = new Element("option");
+        elem.set('value', priority.toString());
+        elem.set('html', html);
+        if (selected_prio == priority)
+            elem.setAttribute('selected', 'true');
+        return elem;
+    }
+
+    var normal = createOptionElement(1, "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]");
+    if (selected_prio <= 0)
+        normal.setAttribute('selected', '');
+    normal.injectInside(select);
+
+    var high = createOptionElement(2, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
+    high.injectInside(select);
+
+    var maximum = createOptionElement(7, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
+    maximum.injectInside(select);
+
     if (is_seed || selected_prio < 1) {
         select.addClass("invisible");
     }
@@ -203,19 +221,20 @@ var filesDynTable = new Class({
         var tds = tr.getElements('td');
         for (var i = 0; i < row.length; ++i) {
             switch (i) {
-                case 0:
+                case 0:  // checkbox
                     if (row[i] > 0)
                         tds[i].getChildren('input')[0].set('checked', 'checked');
                     else
                         tds[i].getChildren('input')[0].removeProperty('checked');
                     break;
-                case 3:
+                case 3:  // progress bar
                     $('pbf_' + id).setValue(row[i].toFloat());
                     break;
-                case 4:
+                case 4:  // download priority
                     if (!is_seed && row[i] > 0) {
                         tds[i].getChildren('select').set('value', row[i]);
-                        $('comboPrio' + id).removeClass("invisible");
+                        if ($('comboPrio' + id).hasClass("invisible"))
+                            $('comboPrio' + id).removeClass("invisible");
                     }
                     else {
                         if (!$('comboPrio' + id).hasClass("invisible"))

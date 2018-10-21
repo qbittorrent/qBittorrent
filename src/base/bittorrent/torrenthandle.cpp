@@ -1424,16 +1424,6 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
     return false;
 }
 
-void TorrentHandle::setFilePriority(int index, int priority)
-{
-    std::vector<int> priorities = m_nativeHandle.file_priorities();
-
-    if ((priorities.size() > static_cast<quint64>(index)) && (priorities[index] != priority)) {
-        priorities[index] = priority;
-        prioritizeFiles(QVector<int>::fromStdVector(priorities));
-    }
-}
-
 void TorrentHandle::handleStateUpdate(const libt::torrent_status &nativeStatus)
 {
     updateStatus(nativeStatus);
