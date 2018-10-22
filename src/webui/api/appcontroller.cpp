@@ -164,6 +164,7 @@ void AppController::preferencesAction()
     data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
     data["limit_utp_rate"] = session->isUTPRateLimited();
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
+    data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
@@ -411,6 +412,8 @@ void AppController::setPreferencesAction()
         session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
         session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
+    if ((it = m.find(QLatin1String("limit_lan_peers"))) != m.constEnd())
+        session->setIgnoreLimitsOnLAN(!it.value().toBool());
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
