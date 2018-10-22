@@ -521,10 +521,38 @@
                 </td>
             </tr>
         </table>
-        <div class="formRow">
-            <input type="checkbox" id="dont_count_slow_torrents_checkbox" />
-            <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="dont_count_slow_torrents_checkbox" onclick="updateSlowTorrentsSettings();" />
+                <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table>
+                <tr>
+                    <td>
+                        <label for="dl_rate_threshold">QBT_TR(Download rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="dl_rate_threshold" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ul_rate_threshold">QBT_TR(Upload rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="ul_rate_threshold" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="torrent_inactive_timer">QBT_TR(Torrent inactivity timer:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="torrent_inactive_timer" style="width: 4em;" />&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -985,6 +1013,14 @@
         $('max_active_up_value').setProperty('disabled', !isQueueingEnabled);
         $('max_active_to_value').setProperty('disabled', !isQueueingEnabled);
         $('dont_count_slow_torrents_checkbox').setProperty('disabled', !isQueueingEnabled);
+        updateSlowTorrentsSettings();
+    };
+
+    updateSlowTorrentsSettings = function() {
+        var isDontCountSlowTorrentsEnabled = (!$('dont_count_slow_torrents_checkbox').getProperty('disabled')) && $('dont_count_slow_torrents_checkbox').getProperty('checked');
+        $('dl_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
+        $('ul_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
+        $('torrent_inactive_timer').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
     };
 
     updateMaxRatioTimeEnabled = function() {
@@ -1255,6 +1291,9 @@
                     $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
                     $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
                     $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
+                    $('dl_rate_threshold').setProperty('value', pref.slow_torrent_dl_rate_threshold.toInt());
+                    $('ul_rate_threshold').setProperty('value', pref.slow_torrent_ul_rate_threshold.toInt());
+                    $('torrent_inactive_timer').setProperty('value', pref.slow_torrent_inactive_timer.toInt());
                     updateQueueingSystem();
 
                     // Share Limiting
@@ -1541,6 +1580,24 @@
             }
             settings.set('max_active_torrents', max_active_torrents);
             settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+            var dl_rate_threshold = $('dl_rate_threshold').getProperty('value').toInt();
+            if (isNaN(dl_rate_threshold) || (dl_rate_threshold < 1)) {
+                alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('slow_torrent_dl_rate_threshold', dl_rate_threshold);
+            var ul_rate_threshold = $('ul_rate_threshold').getProperty('value').toInt();
+            if (isNaN(ul_rate_threshold) || (ul_rate_threshold < 1)) {
+                alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('slow_torrent_ul_rate_threshold', ul_rate_threshold);
+            var torrent_inactive_timer = $('torrent_inactive_timer').getProperty('value').toInt();
+            if (isNaN(torrent_inactive_timer) || (torrent_inactive_timer < 1)) {
+                alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('slow_torrent_inactive_timer', torrent_inactive_timer);
         }
 
         // Share Ratio Limiting
