@@ -454,6 +454,10 @@
             <input type="checkbox" id="limit_tcp_overhead_checkbox" />
             <label for="limit_tcp_overhead_checkbox">QBT_TR(Apply rate limit to transport overhead)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow">
+            <input type="checkbox" id="limit_lan_peers_checkbox" />
+            <label for="limit_lan_peers_checkbox">QBT_TR(Apply rate limit to peers on LAN)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 </div>
 
@@ -1211,6 +1215,7 @@
                     $('enable_protocol_combobox').setProperty('value', pref.bittorrent_protocol);
                     $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
                     $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
+                    $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
 
                     // Scheduling
                     $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
@@ -1474,6 +1479,7 @@
         settings.set('bittorrent_protocol', $('enable_protocol_combobox').getProperty('value'));
         settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
         settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
+        settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
 
         // Scheduler
         var scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
