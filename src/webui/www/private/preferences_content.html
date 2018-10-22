@@ -150,6 +150,14 @@
         <table>
             <tr>
                 <td>
+                    <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="src_email_txt" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -858,6 +866,7 @@
 
     updateMailNotification = function() {
         var isMailNotificationEnabled = $('mail_notification_checkbox').getProperty('checked');
+        $('src_email_txt').setProperty('disabled', !isMailNotificationEnabled);
         $('dest_email_txt').setProperty('disabled', !isMailNotificationEnabled);
         $('smtp_server_txt').setProperty('disabled', !isMailNotificationEnabled);
         $('mail_ssl_checkbox').setProperty('disabled', !isMailNotificationEnabled);
@@ -1093,6 +1102,7 @@
 
                     // Email notification upon download completion
                     $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
+                    $('src_email_txt').setProperty('value', pref.mail_notification_sender);
                     $('dest_email_txt').setProperty('value', pref.mail_notification_email);
                     $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
                     $('mail_ssl_checkbox').setProperty('checked', pref.mail_notification_ssl_enabled);
@@ -1324,6 +1334,7 @@
 
         // Email notification upon download completion
         settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
+        settings.set('mail_notification_sender', $('src_email_txt').getProperty('value'));
         settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
         settings.set('mail_notification_smtp', $('smtp_server_txt').getProperty('value'));
         settings.set('mail_notification_ssl_enabled', $('mail_ssl_checkbox').getProperty('checked'));

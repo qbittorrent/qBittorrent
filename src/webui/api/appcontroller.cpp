@@ -112,6 +112,7 @@ void AppController::preferencesAction()
     data["scan_dirs"] = nativeDirs;
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
+    data["mail_notification_sender"] = pref->getMailNotificationSender();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
     data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
     data["mail_notification_ssl_enabled"] = pref->getMailNotificationSMTPSSL();
@@ -324,6 +325,8 @@ void AppController::setPreferencesAction()
     // Email notification upon download completion
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
+    if ((it = m.find(QLatin1String("mail_notification_sender"))) != m.constEnd())
+        pref->setMailNotificationSender(it.value().toString());
     if (m.contains("mail_notification_email"))
         pref->setMailNotificationEmail(m["mail_notification_email"].toString());
     if (m.contains("mail_notification_smtp"))
