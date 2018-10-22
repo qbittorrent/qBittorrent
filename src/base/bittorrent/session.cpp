@@ -2704,7 +2704,8 @@ void Session::applyAltPauseUploads(bool enabled)
     else {
         for (TorrentHandle *const torrent : m_torrents) {
             //torrent is paused and completed, resume upload
-            if (torrent->isPaused() && torrent->isCompleted())
+            if (torrent->isPaused() && torrent->isCompleted() &&
+                !torrent->isSeedTimeLimitReached() && !torrent->isRatioLimitReached())
                 torrent->resume();
         }
     }
