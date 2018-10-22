@@ -176,7 +176,7 @@ var createPriorityCombo = function(id, selected_prio) {
         normal.setAttribute('selected', '');
     normal.injectInside(select);
 
-    var high = createOptionElement(2, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
+    var high = createOptionElement(6, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
     high.injectInside(select);
 
     var maximum = createOptionElement(7, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
