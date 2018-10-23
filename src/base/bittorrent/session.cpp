@@ -2677,17 +2677,25 @@ void Session::setAltPauseUploads(bool enabled)
 void Session::applyAltPauseDownloads(bool enabled)
 {
     if (enabled) {
+        // go through all torrents before pausing
         for (TorrentHandle *const torrent : m_torrents) {
+            // if torrent is alredy paused, it will not be resumed later,
+            // otherwise add it to the list of torrents and apply pause
             if (torrent->isDownloading()) {
                 torrent->pause();
+                m_torrents_to_resume.insert(torrent->hash(), torrent);
             }
         }
     }
     else {
-        for (TorrentHandle *const torrent : m_torrents) {
-            //torrent is paused, not completed and has no errors, resume download
-            if (torrent->isPaused() && !torrent->isCompleted() && !torrent->isErrored())
+        // loop through the list of torrents to resume when applying pause
+        for (TorrentHandle *const torrent : m_torrents_to_resume) {
+            // torrent is paused, not completed and has no errors, resume download
+            // and remove item from list
+            if (torrent->isPaused() && !torrent->isCompleted() && !torrent->isErrored()) {
                 torrent->resume();
+            }
+            m_torrents_to_resume.remove(torrent->hash());
         }
     }
 }
@@ -2698,15 +2706,21 @@ void Session::applyAltPauseUploads(bool enabled)
         for (TorrentHandle *const torrent : m_torrents) {
             if (torrent->isUploading()) {
                 torrent->pause();
+                m_torrents_to_resume.insert(torrent->hash(), torrent);
             }
         }
     }
     else {
-        for (TorrentHandle *const torrent : m_torrents) {
-            //torrent is paused and completed, resume upload
+        // loop through the list of torrents collected when applying pause
+        for (TorrentHandle *const torrent : m_torrents_to_resume) {
+            // torrent is paused and completed, resume upload
+            // and remove item from list
             if (torrent->isPaused() && torrent->isCompleted() &&
-                !torrent->isSeedTimeLimitReached() && !torrent->isRatioLimitReached())
+                !torrent->isSeedTimeLimitReached() && !torrent->isRatioLimitReached()) {
                 torrent->resume();
+
+            }
+            m_torrents_to_resume.remove(torrent->hash());
         }
     }
 }

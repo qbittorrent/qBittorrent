@@ -768,6 +768,7 @@ namespace BitTorrent
 
         QHash<InfoHash, TorrentInfo> m_loadedMetadata;
         QHash<InfoHash, TorrentHandle *> m_torrents;
+        QHash<InfoHash, TorrentHandle *> m_torrents_to_resume;
         QHash<InfoHash, CreateTorrentParams> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<InfoHash, RemovingTorrentData> m_removingTorrents;
