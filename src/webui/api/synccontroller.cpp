@@ -329,6 +329,8 @@ SyncController::SyncController(ISessionManager *sessionManager, QObject *parent)
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, &SyncController::freeDiskSpaceSizeUpdated);
 
     m_freeDiskSpaceThread->start();
+    QTimer::singleShot(0, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+    m_freeDiskSpaceElapsedTimer.start();
 }
 
 SyncController::~SyncController()
@@ -512,11 +514,11 @@ void SyncController::torrentPeersAction()
 
 qint64 SyncController::getFreeDiskSpace()
 {
-    const qint64 now = QDateTime::currentMSecsSinceEpoch();
-    if ((now - m_freeDiskSpaceLastUpdate) >= FREEDISKSPACE_CHECK_TIMEOUT) {
+    if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT)) {
         QTimer::singleShot(0, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
-        m_freeDiskSpaceLastUpdate = now;
+        m_freeDiskSpaceElapsedTimer.restart();
     }
+
     return m_freeDiskSpace;
 }
 

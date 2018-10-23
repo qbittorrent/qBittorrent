@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <QElapsedTimer>
+
 #include "apicontroller.h"
 
 struct ISessionManager;
@@ -56,7 +58,7 @@ private:
     qint64 getFreeDiskSpace();
 
     qint64 m_freeDiskSpace = 0;
-    qint64 m_freeDiskSpaceLastUpdate = 0;
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
     QThread *m_freeDiskSpaceThread = nullptr;
+    QElapsedTimer m_freeDiskSpaceElapsedTimer;
 };
