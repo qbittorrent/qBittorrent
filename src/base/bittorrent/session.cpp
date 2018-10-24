@@ -1120,6 +1120,11 @@ void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
     // apply pause/resume uploads
     applyAltPauseUploads(altSpeedLimitEnabled && m_isAltPauseUploadsEnabled);
 
+    // clear list of torrents to resume, if list is not empty after exiting alternative mode
+    if (!altSpeedLimitEnabled && !m_torrents_to_resume.isEmpty()) {
+            m_torrents_to_resume.clear();
+    }
+
 }
 
 void Session::initMetrics()
@@ -2679,7 +2684,7 @@ void Session::applyAltPauseDownloads(bool enabled)
     if (enabled) {
         // go through all torrents before pausing
         for (TorrentHandle *const torrent : m_torrents) {
-            // if torrent is alredy paused, it will not be resumed later,
+            // if torrent is already paused, it will not be resumed later,
             // otherwise add it to the list of torrents and apply pause
             if (torrent->isDownloading()) {
                 torrent->pause();
@@ -2688,7 +2693,7 @@ void Session::applyAltPauseDownloads(bool enabled)
         }
     }
     else {
-        // loop through the list of torrents to resume when applying pause
+        // loop through the list of torrents collected when applying pause
         for (TorrentHandle *const torrent : m_torrents_to_resume) {
             // torrent is paused, not completed and has no errors, resume download
             // and remove item from list
@@ -2703,7 +2708,10 @@ void Session::applyAltPauseDownloads(bool enabled)
 void Session::applyAltPauseUploads(bool enabled)
 {
     if (enabled) {
+        // go through all torrents before pausing
         for (TorrentHandle *const torrent : m_torrents) {
+            // if torrent is already paused, it will not be resumed later,
+            // otherwise add it to the list of torrents and apply pause
             if (torrent->isUploading()) {
                 torrent->pause();
                 m_torrents_to_resume.insert(torrent->hash(), torrent);
@@ -2713,7 +2721,7 @@ void Session::applyAltPauseUploads(bool enabled)
     else {
         // loop through the list of torrents collected when applying pause
         for (TorrentHandle *const torrent : m_torrents_to_resume) {
-            // torrent is paused and completed, resume upload
+            // torrent is paused, completed but not reached seed time and ratio limit, resume upload
             // and remove item from list
             if (torrent->isPaused() && torrent->isCompleted() &&
                 !torrent->isSeedTimeLimitReached() && !torrent->isRatioLimitReached()) {
