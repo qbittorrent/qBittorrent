@@ -1971,34 +1971,6 @@ void TorrentHandle::setSeedingTimeLimit(int limit)
     }
 }
 
-bool TorrentHandle::isRatioLimitReached() const
-{
-    qreal limit = ratioLimit();
-    if (limit != TorrentHandle::NO_RATIO_LIMIT) {
-        const qreal ratio = realRatio();
-        if (limit == TorrentHandle::USE_GLOBAL_RATIO)
-            limit = m_session->globalMaxRatio();
-        if (limit >= 0)
-            if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= limit))
-                return true;
-    }
-    return false;
-}
-
-bool TorrentHandle::isSeedTimeLimitReached() const
-{
-    int limit = seedingTimeLimit();
-    if (seedingTimeLimit() != TorrentHandle::NO_SEEDING_TIME_LIMIT) {
-        const int seedingTimeInMinutes = seedingTime() / 60;
-        if (limit == TorrentHandle::USE_GLOBAL_SEEDING_TIME)
-            limit = m_session->globalMaxSeedingMinutes();
-        if (limit >= 0)
-            if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= limit))
-                return true;
-    }
-    return false;
-}
-
 void TorrentHandle::setUploadLimit(int limit)
 {
     m_nativeHandle.set_upload_limit(limit);

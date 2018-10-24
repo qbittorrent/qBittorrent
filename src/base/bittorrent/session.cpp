@@ -2721,10 +2721,9 @@ void Session::applyAltPauseUploads(bool enabled)
     else {
         // loop through the list of torrents collected when applying pause
         for (TorrentHandle *const torrent : m_torrents_to_resume) {
-            // torrent is paused, completed but not reached seed time and ratio limit, resume upload
+            // torrent is paused, completed, resume upload
             // and remove item from list
-            if (torrent->isPaused() && torrent->isCompleted() &&
-                !torrent->isSeedTimeLimitReached() && !torrent->isRatioLimitReached()) {
+            if (torrent->isPaused() && torrent->isCompleted()) {
                 torrent->resume();
 
             }

@@ -351,8 +351,6 @@ namespace BitTorrent
         void setFilePriority(int index, int priority);
         void setRatioLimit(qreal limit);
         void setSeedingTimeLimit(int limit);
-        bool isRatioLimitReached() const;
-        bool isSeedTimeLimitReached() const;
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
