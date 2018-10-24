@@ -404,6 +404,18 @@ void TorrentInfo::stripRootFolder()
     m_nativeInfo->remap_files(files);
 }
 
+bool TorrentInfo::hasPreviewableFiles() const
+{
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString ext = Utils::Fs::fileExtension(fileName(i));
+        if (Utils::Misc::isPreviewable(ext)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 TorrentInfo::NativePtr TorrentInfo::nativeInfo() const
 {
     return m_nativeInfo;

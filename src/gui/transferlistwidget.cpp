@@ -588,8 +588,10 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 void TransferListWidget::previewSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        if (torrent->hasMetadata())
+        if (torrent->info().hasPreviewableFiles())
             new PreviewSelectDialog(this, torrent);
+        else
+            QMessageBox::critical(this, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
     }
 }
 
