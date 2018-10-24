@@ -187,8 +187,6 @@ void SearchPluginManager::updatePlugin(const QString &name)
 // Install or update plugin from file or url
 void SearchPluginManager::installPlugin(const QString &source)
 {
-    qDebug("Asked to install plugin at %s", qUtf8Printable(source));
-
     clearPythonCache(engineLocation());
 
     if (Utils::Misc::isUrl(source)) {
@@ -215,12 +213,10 @@ void SearchPluginManager::installPlugin(const QString &source)
 
 void SearchPluginManager::installPlugin_impl(const QString &name, const QString &path)
 {
-    PluginVersion newVersion = getPluginVersion(path);
-    qDebug() << "Version to be installed:" << newVersion;
-
+    const PluginVersion newVersion = getPluginVersion(path);
     PluginInfo *plugin = pluginInfo(name);
     if (plugin && !(plugin->version < newVersion)) {
-        qDebug("Apparently update is not needed, we have a more recent version");
+        LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version, newVersion), Log::INFO);
         emit pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
         return;
     }
@@ -242,6 +238,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
     if (!m_plugins.contains(name)) {
         // Remove broken file
         Utils::Fs::forceRemove(destPath);
+        LogMsg(tr("Plugin %1 is not supported.").arg(name), Log::INFO);
         if (updated) {
             // restore backup
             QFile::copy(destPath + ".bak", destPath);
@@ -256,8 +253,10 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
     }
     else {
         // Install was successful, remove backup
-        if (updated)
+        if (updated) {
+            LogMsg(tr("Plugin %1 has been successfully updated.").arg(name), Log::INFO);
             Utils::Fs::forceRemove(destPath + ".bak");
+        }
     }
 }
 
@@ -494,10 +493,8 @@ void SearchPluginManager::update()
 
 void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
-    qDebug("Checking if update is needed");
-
     QHash<QString, PluginVersion> updateInfo;
-    bool dataCorrect = false;
+    int numCorrectData = 0;
     QList<QByteArray> lines = info.split('\n');
     foreach (QByteArray line, lines) {
         line = line.trimmed();
@@ -514,15 +511,15 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         PluginVersion version = PluginVersion::tryParse(list.last(), {});
         if (version == PluginVersion()) continue;
 
-        dataCorrect = true;
+        ++numCorrectData;
         if (isUpdateNeeded(pluginName, version)) {
-            qDebug("Plugin: %s is outdated", qUtf8Printable(pluginName));
+            LogMsg(tr("Plugin %1 is outdated").arg(pluginName), Log::INFO);
             updateInfo[pluginName] = version;
         }
     }
 
-    if (!dataCorrect)
-        emit checkForUpdatesFailed(tr("An incorrect update info received."));
+    if (numCorrectData < lines.size())
+        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.").arg((lines.size() - numCorrectData), lines.size()));
     else
         emit checkForUpdatesFinished(updateInfo);
 }
@@ -533,7 +530,6 @@ bool SearchPluginManager::isUpdateNeeded(QString pluginName, PluginVersion newVe
     if (!plugin) return true;
 
     PluginVersion oldVersion = plugin->version;
-    qDebug() << "IsUpdate needed? to be installed:" << newVersion << ", already installed:" << oldVersion;
     return (newVersion > oldVersion);
 }
 

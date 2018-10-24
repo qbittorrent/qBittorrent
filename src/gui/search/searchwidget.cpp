@@ -133,8 +133,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped)
             , this, &SearchWidget::tabStatusChanged);
 
-    // NOTE: Although SearchManager is Application-wide component now, we still create it the legacy way.
-    auto *searchManager = new SearchPluginManager;
+    auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
     {
         fillPluginComboBox();
@@ -231,7 +230,6 @@ void SearchWidget::selectActivePage()
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-    delete SearchPluginManager::instance();
     delete m_ui;
 }
 
@@ -296,7 +294,7 @@ void SearchWidget::giveFocusToSearchInput()
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
-    if (Utils::ForeignApps::pythonInfo().version.majorNumber() <= 0) {
+    if (!Utils::ForeignApps::pythonInfo().isValid()) {
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }

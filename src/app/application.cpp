@@ -72,6 +72,7 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
+#include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -514,6 +515,7 @@ int Application::exec(const QStringList &params)
 
     new RSS::Session; // create RSS::Session singleton
     new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+    new SearchPluginManager;
 
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
@@ -708,6 +710,7 @@ void Application::cleanup()
     delete m_webui;
 #endif
 
+    delete SearchPluginManager::instance();
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();
 
