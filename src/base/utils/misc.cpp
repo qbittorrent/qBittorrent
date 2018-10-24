@@ -335,6 +335,7 @@ bool Utils::Misc::isPreviewable(const QString &extension)
         "RMVB",
         "SWA",
         "SWF",
+        "TS",
         "VOB",
         "WAV",
         "WMA",
