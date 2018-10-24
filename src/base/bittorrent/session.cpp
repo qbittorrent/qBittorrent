@@ -2686,21 +2686,21 @@ void Session::applyAltPauseDownloads(bool enabled)
         for (TorrentHandle *const torrent : m_torrents) {
             // if torrent is already paused, it will not be resumed later,
             // otherwise add it to the list of torrents and apply pause
-            if (torrent->isDownloading()) {
+            if (torrent->isDownloading() && !torrent->isPaused()) {
                 torrent->pause();
                 m_torrents_to_resume.insert(torrent->hash(), torrent);
             }
         }
     }
     else {
-        // loop through the list of torrents collected when applying pause
-        for (TorrentHandle *const torrent : m_torrents_to_resume) {
-            // torrent is paused, not completed and has no errors, resume download
-            // and remove item from list
-            if (torrent->isPaused() && !torrent->isCompleted() && !torrent->isErrored()) {
-                torrent->resume();
+        if (!m_torrents_to_resume.isEmpty()) {
+            // loop through the list of torrents collected when applying pause
+            for (TorrentHandle *const torrent : m_torrents_to_resume) {
+                // torrent is paused, not completed and has no errors, resume download
+                if (torrent->isPaused() && !torrent->isCompleted() && !torrent->isErrored()) {
+                    torrent->resume();
+                }
             }
-            m_torrents_to_resume.remove(torrent->hash());
         }
     }
 }
@@ -2712,22 +2712,21 @@ void Session::applyAltPauseUploads(bool enabled)
         for (TorrentHandle *const torrent : m_torrents) {
             // if torrent is already paused, it will not be resumed later,
             // otherwise add it to the list of torrents and apply pause
-            if (torrent->isUploading()) {
+            if (torrent->isUploading() && !torrent->isPaused()) {
                 torrent->pause();
                 m_torrents_to_resume.insert(torrent->hash(), torrent);
             }
         }
     }
     else {
-        // loop through the list of torrents collected when applying pause
-        for (TorrentHandle *const torrent : m_torrents_to_resume) {
-            // torrent is paused, completed, resume upload
-            // and remove item from list
-            if (torrent->isPaused() && torrent->isCompleted()) {
-                torrent->resume();
-
+        if (!m_torrents_to_resume.isEmpty()) {
+            // loop through the list of torrents collected when applying pause
+            for (TorrentHandle *const torrent : m_torrents_to_resume) {
+                // torrent is paused, completed, resume upload
+                if (torrent->isPaused() && torrent->isCompleted()) {
+                    torrent->resume();
+                }
             }
-            m_torrents_to_resume.remove(torrent->hash());
         }
     }
 }
