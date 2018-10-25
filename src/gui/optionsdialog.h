@@ -172,6 +172,7 @@ private:
     bool setSslCertificate(const QByteArray &cert);
     bool schedTimesOk();
     bool webUIAuthenticationOk();
+    bool isAlternativeWebUIPathValid();
 
     QByteArray m_sslCert, m_sslKey;
 

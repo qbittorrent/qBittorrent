@@ -1666,8 +1666,14 @@
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
 
         // Use alternative Web UI
-        settings.set('alternative_webui_enabled', $('use_alt_webui_checkbox').getProperty('checked'));
-        settings.set('alternative_webui_path', $('webui_files_location_textarea').getProperty('value'));
+        var alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');
+        var webui_files_location_textarea = $('webui_files_location_textarea').getProperty('value');
+        if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
+            alert("QBT_TR(The alternative Web UI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
+            return;
+        }
+        settings.set('alternative_webui_enabled', alternative_webui_enabled);
+        settings.set('alternative_webui_path', webui_files_location_textarea);
 
         settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
         settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));

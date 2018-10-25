@@ -1249,6 +1249,10 @@ void OptionsDialog::on_buttonBox_accepted()
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
+        if (!isAlternativeWebUIPathValid()) {
+            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+            return;
+        }
         m_applyButton->setEnabled(false);
         this->hide();
         saveOptions();
@@ -1265,6 +1269,10 @@ void OptionsDialog::applySettings(QAbstractButton *button)
             return;
         }
         if (!webUIAuthenticationOk()) {
+            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+            return;
+        }
+        if (!isAlternativeWebUIPathValid()) {
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
@@ -1745,6 +1753,15 @@ bool OptionsDialog::webUIAuthenticationOk()
     }
     if (webUiPassword().length() < 6) {
         QMessageBox::warning(this, tr("Length Error"), tr("The Web UI password must be at least 6 characters long."));
+        return false;
+    }
+    return true;
+}
+
+bool OptionsDialog::isAlternativeWebUIPathValid()
+{
+    if (m_ui->groupAltWebUI->isChecked() && m_ui->textWebUIRootFolder->selectedPath().trimmed().isEmpty()) {
+        QMessageBox::warning(this, tr("Location Error"), tr("The alternative Web UI files location cannot be blank."));
         return false;
     }
     return true;
