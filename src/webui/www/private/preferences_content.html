@@ -15,6 +15,52 @@
         <table>
             <tr>
                 <td>
+                    <label>QBT_TR(Default Torrent Management Mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="default_tmm_combobox">
+                        <option value="false" selected>QBT_TR(Manual)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="true">QBT_TR(Automatic)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>QBT_TR(When Torrent Category changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="torrent_changed_tmm_combobox">
+                        <option value="true">QBT_TR(Relocate torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="false" selected>QBT_TR(Switch torrent to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>QBT_TR(When Default Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="save_path_changed_tmm_combobox">
+                        <option value="true">QBT_TR(Relocate affected torrents)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="false" selected>QBT_TR(Switch affected torrents to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>QBT_TR(When Category Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="category_changed_tmm_combobox">
+                        <option value="true">QBT_TR(Relocate affected torrents)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="false" selected>QBT_TR(Switch affected torrents to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
                     <label for="savepath_text">QBT_TR(Default Save Path:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -984,6 +1030,10 @@
                     $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
 
                     // Saving Managmenet
+                    $('default_tmm_combobox').setProperty('value', pref.auto_tmm_enabled);
+                    $('torrent_changed_tmm_combobox').setProperty('value', pref.torrent_changed_tmm_enabled);
+                    $('save_path_changed_tmm_combobox').setProperty('value', pref.save_path_changed_tmm_enabled);
+                    $('category_changed_tmm_combobox').setProperty('value', pref.category_changed_tmm_enabled);
                     $('savepath_text').setProperty('value', pref.save_path);
                     $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
                     $('temppath_text').setProperty('value', pref.temp_path);
@@ -1228,6 +1278,10 @@
         settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
 
         // Saving Management
+        settings.set('auto_tmm_enabled', $('default_tmm_combobox').getProperty('value'));
+        settings.set('torrent_changed_tmm_enabled', $('torrent_changed_tmm_combobox').getProperty('value'));
+        settings.set('save_path_changed_tmm_enabled', $('save_path_changed_tmm_combobox').getProperty('value'));
+        settings.set('category_changed_tmm_enabled', $('category_changed_tmm_combobox').getProperty('value'));
         settings.set('save_path', $('savepath_text').getProperty('value'));
         settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
         settings.set('temp_path', $('temppath_text').getProperty('value'));

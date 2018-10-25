@@ -21,22 +21,39 @@
  * THE SOFTWARE.
  */
 
-getSavePath = function() {
-    new Request({
-        url: 'api/v2/app/defaultSavePath',
+
+getPreferences = function() {
+    new Request.JSON({
+        url: 'api/v2/app/preferences',
         method: 'get',
         noCache: true,
         onFailure: function() {
             alert("Could not contact qBittorrent");
         },
-        onSuccess: function(data) {
-            if (data) {
-                $('savepath').setProperty('value', data);
+        onSuccess: function(pref) {
+            if (pref) {
+                $('savepath').setProperty('value', pref.save_path);
+                if (pref.auto_tmm_enabled == 1) {
+                    $('autoTMM').selectedIndex = 1;
+                    $('savepath').disabled = true;
+                }
+                else {
+                    $('autoTMM').selectedIndex = 0;
+                }
             }
         }
     }).send();
 };
 
+changeTMM = function(item) {
+    if (item.selectedIndex == 1) {
+        $('savepath').disabled = true;
+    }
+    else {
+        $('savepath').disabled = false;
+    }
+};
+
 $(window).addEventListener("load", function() {
-    getSavePath();
+    getPreferences();
 });

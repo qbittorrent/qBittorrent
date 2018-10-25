@@ -22,6 +22,17 @@
                 <table style="margin: auto;">
                     <tr>
                         <td>
+                            <label for="autoTMM">QBT_TR(Torrent Management Mode:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <select id="autoTMM" name="autoTMM" onchange="changeTMM(this)">
+                                <option selected value="false">Manual</option>
+                                <option value="true">Automatic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <label for="savepath">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
                         </td>
                         <td>
