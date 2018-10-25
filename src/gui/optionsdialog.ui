@@ -941,7 +941,7 @@
                  <item row="3" column="0">
                   <widget class="QLabel" name="labelCategoryChanged">
                    <property name="text">
-                    <string>When Category changed:</string>
+                    <string>When Category Save Path changed:</string>
                    </property>
                   </widget>
                  </item>

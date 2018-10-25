@@ -86,6 +86,10 @@ void AppController::preferencesAction()
     data["preallocate_all"] = session->isPreallocationEnabled();
     data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
     // Saving Management
+    data["auto_tmm_enabled"] = !session->isAutoTMMDisabledByDefault();
+    data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
+    data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
+    data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
     data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
     data["temp_path_enabled"] = session->isTempPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
@@ -242,6 +246,14 @@ void AppController::setPreferencesAction()
         session->setAppendExtensionEnabled(it.value().toBool());
 
     // Saving Management
+    if ((it = m.find(QLatin1String("auto_tmm_enabled"))) != m.constEnd())
+        session->setAutoTMMDisabledByDefault(!it.value().toBool());
+    if ((it = m.find(QLatin1String("torrent_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("save_path_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("category_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (m.contains("save_path"))
         session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
