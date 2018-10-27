@@ -91,7 +91,8 @@ void Preferences::setValue(const QString &key, const QVariant &value)
 // General options
 QString Preferences::getLocale() const
 {
-    return value("Preferences/General/Locale", QLocale::system().name()).toString();
+    const QString localeName = value("Preferences/General/Locale").toString();
+    return (localeName.isEmpty() ? QLocale::system().name() : localeName);
 }
 
 void Preferences::setLocale(const QString &locale)
