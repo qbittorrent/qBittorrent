@@ -44,15 +44,15 @@ ts_folder = os.path.join(www_folder, "translations")
 def parseSource(filename, sources):
     print("Parsing %s..." % (os.path.normpath(filename)))
     with open(filename, encoding = 'utf-8', mode = 'r') as file:
-		regex = re.compile(
-			r"QBT_TR\((([^\)]|\)(?!QBT_TR))+)\)QBT_TR\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\]")
-		for match in regex.finditer(file.read()):
-			string = match.group(1)
-			context = match.group(3)
+        regex = re.compile(
+            r"QBT_TR\((([^\)]|\)(?!QBT_TR))+)\)QBT_TR\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\]")
+        for match in regex.finditer(file.read()):
+            string = match.group(1)
+            context = match.group(3)
 
-			if context not in sources:
-				sources[context] = set()
-			sources[context].add(string)
+            if context not in sources:
+                sources[context] = set()
+            sources[context].add(string)
 
 def processTranslation(filename, sources):
     print('Processing %s...' % (os.path.normpath(filename)))
@@ -132,9 +132,9 @@ def processTranslation(filename, sources):
 
     try:
         with open(filename, mode = 'wb') as file:
-			file.write(b'<?xml version="1.0" encoding="utf-8"?>\n'
-					   b'<!DOCTYPE TS>\n')
-			tree.write(file, encoding = 'utf-8')
+            file.write(b'<?xml version="1.0" encoding="utf-8"?>\n'
+                       b'<!DOCTYPE TS>\n')
+            tree.write(file, encoding = 'utf-8')
     except Exception:
         print('\tFailed to write %s!' % (os.path.normpath(filename)))
 
