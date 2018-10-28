@@ -414,13 +414,19 @@ void WebApplication::doProcessRequest()
 
 void WebApplication::configure()
 {
-    const auto pref = Preferences::instance();
+    const auto *pref = Preferences::instance();
 
+    const bool isAltUIUsed = pref->isAltWebUiEnabled();
     const QString rootFolder = Utils::Fs::expandPathAbs(
-                !pref->isAltWebUiEnabled() ? WWW_FOLDER : pref->getWebUiRootFolder());
-    if (rootFolder != m_rootFolder) {
-        m_translatedFiles.clear();
+                !isAltUIUsed ? WWW_FOLDER : pref->getWebUiRootFolder());
+    if ((isAltUIUsed != m_isAltUIUsed) || (rootFolder != m_rootFolder)) {
+        m_isAltUIUsed = isAltUIUsed;
         m_rootFolder = rootFolder;
+        m_translatedFiles.clear();
+        if (!m_isAltUIUsed)
+            LogMsg(tr("Using built-in Web UI."));
+        else
+            LogMsg(tr("Using custom Web UI. Location: \"%1\".").arg(m_rootFolder));
     }
 
     const QString newLocale = pref->getLocale();
@@ -428,11 +434,11 @@ void WebApplication::configure()
         m_currentLocale = newLocale;
         m_translatedFiles.clear();
         if (m_translator.load(m_rootFolder + QLatin1String("/translations/webui_") + m_currentLocale)) {
-            LogMsg(tr("WebUI translation for selected locale (%1) is successfully loaded.")
+            LogMsg(tr("Web UI translation for selected locale (%1) is successfully loaded.")
                    .arg(m_currentLocale));
         }
         else {
-            LogMsg(tr("Couldn't load WebUI translation for selected locale (%1). Falling back to default (en).")
+            LogMsg(tr("Couldn't load Web UI translation for selected locale (%1). Falling back to default (en).")
                    .arg(m_currentLocale), Log::WARNING);
         }
     }
