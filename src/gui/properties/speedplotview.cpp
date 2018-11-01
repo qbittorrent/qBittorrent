@@ -28,9 +28,11 @@
 
 #include "speedplotview.h"
 
+#include <QLocale>
 #include <QPainter>
 #include <QPen>
 #include "base/global.h"
+#include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 
 namespace
@@ -48,6 +50,63 @@ namespace
     const int HOUR6_BUF_SIZE = 5 * 60;
     const int DIVIDER_30MIN = MIN30_SEC / MIN30_BUF_SIZE;
     const int DIVIDER_6HOUR = HOUR6_SEC / HOUR6_BUF_SIZE;
+
+
+    // table of supposed nice steps for grid marks to get nice looking quarters of scale
+    const double roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
+
+    struct SplittedValue
+    {
+        double arg;
+        Utils::Misc::SizeUnit unit;
+        qint64 sizeInBytes() const
+        {
+            return Utils::Misc::sizeInBytes(arg, unit);
+        }
+    };
+
+    SplittedValue getRoundedYScale(double value)
+    {
+        using Utils::Misc::SizeUnit;
+
+        if (value == 0.0) return {0, SizeUnit::Byte};
+        if (value <= 12.0) return {12, SizeUnit::Byte};
+
+        SizeUnit calculatedUnit = SizeUnit::Byte;
+        while (value > 1024) {
+            value /= 1024;
+            calculatedUnit = static_cast<SizeUnit>(static_cast<int>(calculatedUnit) + 1);
+        }
+
+        if (value > 100.0) {
+            int roundedValue = static_cast<int>(value / 40) * 40;
+            while (roundedValue < value)
+                roundedValue += 40;
+            return {static_cast<double>(roundedValue), calculatedUnit};
+        }
+
+        if (value > 10.0) {
+            int roundedValue = static_cast<int>(value / 4) * 4;
+            while (roundedValue < value)
+                roundedValue += 4;
+            return {static_cast<double>(roundedValue), calculatedUnit};
+        }
+
+        for (const auto &roundedValue : roundingTable) {
+            if (value <= roundedValue)
+                return {roundedValue, calculatedUnit};
+        }
+        return {10.0, calculatedUnit};
+    }
+
+    QString formatLabel(const double argValue, const Utils::Misc::SizeUnit unit)
+    {
+        // check is there need for digits after decimal separator
+        const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
+        return QLocale::system().toString(argValue, 'f', precision)
+               + QString::fromUtf8(C_NON_BREAKING_SPACE)
+               + unitString(unit, true);
+    }
 }
 
 SpeedPlotView::Averager::Averager(int divider, boost::circular_buffer<PointData> &sink)
@@ -211,18 +270,16 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
-
-    quint64 maxY = maxYValue();
-
+    const SplittedValue niceScale = getRoundedYScale(maxYValue());
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
     QVector<QString> speedLabels = {
-        Utils::Misc::friendlyUnit(maxY, true),
-        Utils::Misc::friendlyUnit(0.75 * maxY, true),
-        Utils::Misc::friendlyUnit(0.5 * maxY, true),
-        Utils::Misc::friendlyUnit(0.25 * maxY, true),
-        Utils::Misc::friendlyUnit(0, true)
+        formatLabel(niceScale.arg, niceScale.unit),
+        formatLabel((0.75 * niceScale.arg), niceScale.unit),
+        formatLabel((0.50 * niceScale.arg), niceScale.unit),
+        formatLabel((0.25 * niceScale.arg), niceScale.unit),
+        formatLabel(0.0, niceScale.unit),
     };
 
     int yAxisWidth = 0;
@@ -264,8 +321,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    double yMultiplier = (maxY == 0) ? 0.0 : static_cast<double>(rect.height()) / maxY;
-    double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
+    const double yMultiplier = (niceScale.arg == 0.0) ? 0.0 : (rect.height() / niceScale.sizeInBytes());
+    const double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
 
     boost::circular_buffer<PointData> &queue = getCurrentData();
 
