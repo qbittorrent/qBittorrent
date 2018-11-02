@@ -31,9 +31,6 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/session.h"
-#include "base/utils/misc.h"
-
 namespace Ui
 {
     class SpeedLimitDialog;
@@ -46,15 +43,15 @@ class SpeedLimitDialog : public QDialog
 public:
     explicit SpeedLimitDialog(QWidget *parent);
     ~SpeedLimitDialog();
-    static long askSpeedLimit(QWidget *parent, bool *ok, QString title, long defaultVal, long maxVal=10240000);
+    static long askSpeedLimit(QWidget *parent, bool *ok, const QString &title, long defaultVal, long maxVal = 10240000);
 
-protected slots:
-    void updateSpinValue(int val) const;
-    void updateSliderValue(int val) const;
-    void setupDialog(long maxSlider, long val) const;
+private slots:
+    void updateSpinValue(int val);
+    void updateSliderValue(int val);
 
 private:
-    long getSpeedLimit() const;
+    void setupDialog(long maxSlider, long val);
+    int getSpeedLimit() const;
 
     Ui::SpeedLimitDialog *m_ui;
 };

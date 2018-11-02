@@ -40,6 +40,7 @@
 #include <QWheelEvent>
 
 #include "base/bittorrent/peerinfo.h"
+#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/logger.h"
 #include "base/net/geoipmanager.h"
