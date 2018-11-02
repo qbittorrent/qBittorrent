@@ -518,10 +518,13 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         }
     }
 
-    if (numCorrectData < lines.size())
-        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.").arg((lines.size() - numCorrectData), lines.size()));
-    else
+    if (numCorrectData < lines.size()) {
+        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
+            .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
+    }
+    else {
         emit checkForUpdatesFinished(updateInfo);
+    }
 }
 
 bool SearchPluginManager::isUpdateNeeded(QString pluginName, PluginVersion newVersion) const
