@@ -51,7 +51,7 @@ namespace
     void removeActiveSearch(ISession *session, const int id)
     {
         auto activeSearches = session->getData<QSet<int>>(ACTIVE_SEARCHES);
-        if (activeSearches.remove(id) > 0)
+        if (activeSearches.remove(id))
             session->setData(ACTIVE_SEARCHES, QVariant::fromValue(activeSearches));
     }
 }
