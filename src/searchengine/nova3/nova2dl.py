@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.22
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -45,7 +45,7 @@ for engine in engines:
         exec("from engines.%s import %s" % (e, e))
         exec("engine_url = %s.url" % e)
         supported_engines[engine_url] = e
-    except:
+    except Exception:
         pass
 
 if __name__ == '__main__':
