@@ -1,4 +1,4 @@
-#VERSION: 1.41
+#VERSION: 1.42
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -90,7 +90,7 @@ def retrieve_url(url):
     charset = 'utf-8'
     try:
         ignore, charset = info['Content-Type'].split('charset=')
-    except:
+    except Exception:
         pass
     dat = dat.decode(charset, 'replace')
     dat = htmlentitydecode(dat)
