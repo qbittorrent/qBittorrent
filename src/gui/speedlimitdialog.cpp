@@ -28,16 +28,14 @@
 
 #include "speedlimitdialog.h"
 
-#include "base/unicodestrings.h"
 #include "ui_speedlimitdialog.h"
 #include "utils.h"
 
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::SpeedLimitDialog())
+    , m_ui(new Ui::SpeedLimitDialog)
 {
     m_ui->setupUi(this);
-    qDebug("Bandwidth allocation dialog creation");
 
     // Connect to slots
     connect(m_ui->bandwidthSlider, &QSlider::valueChanged, this, &SpeedLimitDialog::updateSpinValue);
@@ -49,73 +47,59 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 
 SpeedLimitDialog::~SpeedLimitDialog()
 {
-    qDebug("Deleting bandwidth allocation dialog");
     delete m_ui;
 }
 
 // -2: if cancel
-long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, QString title, long defaultVal, long maxVal)
+long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, const QString &title, const long defaultVal, const long maxVal)
 {
+    if (ok) *ok = false;
+
     SpeedLimitDialog dlg(parent);
     dlg.setWindowTitle(title);
-    dlg.setupDialog(maxVal / 1024., defaultVal / 1024.);
+    dlg.setupDialog((maxVal / 1024.), (defaultVal / 1024.));
+
     if (dlg.exec() == QDialog::Accepted) {
-        *ok = true;
-        int val = dlg.getSpeedLimit();
-        if (val <= 0)
+        if (ok) *ok = true;
+
+        const int val = dlg.getSpeedLimit();
+        if (val < 0)
             return 0;
         return (val * 1024);
     }
-    else {
-        *ok = false;
-        return -2;
-    }
+
+    return -2;
 }
 
-void SpeedLimitDialog::updateSpinValue(int val) const
+void SpeedLimitDialog::updateSpinValue(const int value)
 {
-    qDebug("Called updateSpinValue with %d", val);
-    if (val <= 0) {
-        m_ui->spinBandwidth->setValue(0);
-        m_ui->spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
-        m_ui->spinBandwidth->setSuffix("");
-    }
-    else {
-        m_ui->spinBandwidth->setValue(val);
-        m_ui->spinBandwidth->setSuffix(' ' + tr("KiB/s"));
-    }
+    m_ui->spinBandwidth->setValue(value);
 }
 
-void SpeedLimitDialog::updateSliderValue(int val) const
+void SpeedLimitDialog::updateSliderValue(const int value)
 {
-    if (val <= 0) {
-        m_ui->spinBandwidth->setValue(0);
-        m_ui->spinBandwidth->setSpecialValueText(QString::fromUtf8(C_INFINITY));
-        m_ui->spinBandwidth->setSuffix("");
-    }
-    if (val > m_ui->bandwidthSlider->maximum())
-        m_ui->bandwidthSlider->setMaximum(val);
-    m_ui->bandwidthSlider->setValue(val);
+    if (value > m_ui->bandwidthSlider->maximum())
+        m_ui->bandwidthSlider->setMaximum(value);
+    m_ui->bandwidthSlider->setValue(value);
 }
 
-long SpeedLimitDialog::getSpeedLimit() const
+int SpeedLimitDialog::getSpeedLimit() const
 {
-    long val = m_ui->bandwidthSlider->value();
-    if (val > 0)
-        return val;
-    return -1;
+    return m_ui->spinBandwidth->value();
 }
 
-void SpeedLimitDialog::setupDialog(long maxSlider, long val) const
+void SpeedLimitDialog::setupDialog(long maxSlider, long val)
 {
-    if (val < 0)
-        val = 0;
+    val = qMax<long>(0, val);
+
     if (maxSlider <= 0)
         maxSlider = 10000;
+
     // This can happen for example if global rate limit is lower
     // than torrent rate limit.
     if (val > maxSlider)
         maxSlider = val;
+
     m_ui->bandwidthSlider->setMaximum(maxSlider);
     m_ui->bandwidthSlider->setValue(val);
     updateSpinValue(val);
