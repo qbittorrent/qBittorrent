@@ -355,10 +355,10 @@ namespace BitTorrent
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
         void flushCache();
-        void addTrackers(const QList<TrackerEntry> &trackers);
+        int addTrackers(const QList<TrackerEntry> &trackers);
         void replaceTrackers(QList<TrackerEntry> trackers);
-        void addUrlSeeds(const QList<QUrl> &urlSeeds);
-        void removeUrlSeeds(const QList<QUrl> &urlSeeds);
+        int addUrlSeeds(const QList<QUrl> &urlSeeds);
+        int removeUrlSeeds(const QList<QUrl> &urlSeeds);
         bool connectPeer(const PeerAddress &peerAddress);
 
         QString toMagnetUri() const;
