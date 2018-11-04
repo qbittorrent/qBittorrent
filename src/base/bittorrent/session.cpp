@@ -2087,10 +2087,10 @@ TorrentStatusReport Session::torrentStatusReport() const
 bool Session::addTorrent(QString source, const AddTorrentParams &params)
 {
     MagnetUri magnetUri(source);
-    if (magnetUri.isValid()) {
+    if (magnetUri.isValid())
         return addTorrent_impl(params, magnetUri);
-    }
-    else if (Utils::Misc::isUrl(source)) {
+
+    if (Utils::Misc::isUrl(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler =
@@ -2100,13 +2100,13 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::handleDownloadFailed);
         connect(handler, &Net::DownloadHandler::redirectedToMagnet, this, &Session::handleRedirectedToMagnet);
         m_downloadedTorrents[handler->url()] = params;
+        return true;
     }
-    else {
-        TorrentFileGuard guard(source);
-        if (addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source))) {
-            guard.markAsAddedToSession();
-            return true;
-        }
+
+    TorrentFileGuard guard(source);
+    if (addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source))) {
+        guard.markAsAddedToSession();
+        return true;
     }
 
     return false;
