@@ -47,6 +47,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
+#include "base/utils/bytearray.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -495,33 +496,35 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
     QHash<QString, PluginVersion> updateInfo;
     int numCorrectData = 0;
-    QList<QByteArray> lines = info.split('\n');
-    foreach (QByteArray line, lines) {
+
+    const QList<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", QString::SkipEmptyParts);
+    for (QByteArray line : lines) {
         line = line.trimmed();
         if (line.isEmpty()) continue;
         if (line.startsWith('#')) continue;
 
-        QList<QByteArray> list = line.split(' ');
+        const QList<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", QString::SkipEmptyParts);
         if (list.size() != 2) continue;
 
-        QString pluginName = QString(list.first());
-        if (!pluginName.endsWith(':')) continue;
+        const QString pluginName = list.first().trimmed();
+        const PluginVersion version = PluginVersion::tryParse(list.last().trimmed(), {});
 
-        pluginName.chop(1); // remove trailing ':'
-        PluginVersion version = PluginVersion::tryParse(list.last(), {});
-        if (version == PluginVersion()) continue;
+        if (!version.isValid()) continue;
 
         ++numCorrectData;
         if (isUpdateNeeded(pluginName, version)) {
-            LogMsg(tr("Plugin %1 is outdated").arg(pluginName), Log::INFO);
+            LogMsg(tr("Plugin \"%1\" is outdated, updating to version %2").arg(pluginName, version), Log::INFO);
             updateInfo[pluginName] = version;
         }
     }
 
-    if (numCorrectData < lines.size())
-        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.").arg((lines.size() - numCorrectData), lines.size()));
-    else
+    if (numCorrectData < lines.size()) {
+        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
+            .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
+    }
+    else {
         emit checkForUpdatesFinished(updateInfo);
+    }
 }
 
 bool SearchPluginManager::isUpdateNeeded(QString pluginName, PluginVersion newVersion) const
