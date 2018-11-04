@@ -175,31 +175,6 @@
               </property>
              </spacer>
             </item>
-            <item>
-             <widget class="CheckBoxWordWrap" name="createSubfolderCheckBox">
-              <property name="minimumSize">
-               <size>
-                <width>200</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="mouseTracking">
-               <bool>true</bool>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::StrongFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">font: 10pt &quot;Cantarell&quot;;</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Create subfolder</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </item>
           <item>
@@ -232,7 +207,44 @@
              <number>3</number>
             </property>
             <item>
+             <widget class="CheckBoxWordWrap" name="createSubfolderCheckBox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="mouseTracking">
+               <bool>true</bool>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Cantarell&quot;;</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Create subfolder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="CheckBoxWordWrap" name="checkBoxRememberLastSavePath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Cantarell&quot;;</string>
               </property>
@@ -705,8 +717,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>457</width>
-               <height>138</height>
+               <width>454</width>
+               <height>147</height>
               </rect>
              </property>
              <property name="sizePolicy">
