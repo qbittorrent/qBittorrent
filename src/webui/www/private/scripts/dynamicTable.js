@@ -56,6 +56,7 @@ var DynamicTable = new Class({
         this.setupCommonEvents();
         this.setupHeaderEvents();
         this.setupHeaderMenu();
+        this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === '1'));
     },
 
     setupCommonEvents: function() {
@@ -403,6 +404,7 @@ var DynamicTable = new Class({
             th.innerHTML = this.columns[i].caption;
             th.setAttribute('style', 'width: ' + this.columns[i].width + 'px;' + this.columns[i].style);
             th.columnName = this.columns[i].name;
+            th.addClass('column_' + th.columnName);
             if ((this.columns[i].visible == '0') || this.columns[i].force_hide)
                 th.addClass('invisible');
             else
@@ -447,16 +449,42 @@ var DynamicTable = new Class({
 
     setSortedColumn: function(column) {
         if (column != this.sortedColumn) {
+            var oldColumn = this.sortedColumn;
             this.sortedColumn = column;
             this.reverseSort = '0';
+            this.setSortedColumnIcon(column, oldColumn, false);
         }
         else {
             // Toggle sort order
             this.reverseSort = this.reverseSort == '0' ? '1' : '0';
+            this.setSortedColumnIcon(column, null, (this.reverseSort === '1'));
         }
         localStorage.setItem('sorted_column_' + this.dynamicTableDivId, column);
         localStorage.setItem('reverse_sort_' + this.dynamicTableDivId, this.reverseSort);
         this.updateTable(false);
+    },
+
+    setSortedColumnIcon: function(newColumn, oldColumn, isReverse) {
+        var getCol = function(headerDivId, colName) {
+            var colElem = $$("#" + headerDivId + " .column_" + colName);
+            if (colElem.length == 1)
+                return colElem[0];
+            return null;
+        };
+
+        var colElem = getCol(this.dynamicTableFixedHeaderDivId, newColumn);
+        if (colElem !== null) {
+            colElem.addClass('sorted');
+            if (isReverse)
+                colElem.addClass('reverse');
+            else
+                colElem.removeClass('reverse');
+        }
+        var oldColElem = getCol(this.dynamicTableFixedHeaderDivId, oldColumn);
+        if (oldColElem !== null) {
+            oldColElem.removeClass('sorted');
+            oldColElem.removeClass('reverse');
+        }
     },
 
     getSelectedRowId: function() {
