@@ -77,6 +77,17 @@ tr.dynamicTableHeader {
     white-space: nowrap;
 }
 
+.dynamicTable th.sorted {
+    background-image: url(../images/qbt-theme/go-down.svg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+.dynamicTable th.sorted.reverse {
+    background-image: url(../images/qbt-theme/go-up.svg);
+}
+
 .dynamicTable td img.flags {
     height: 1.25em;
     vertical-align: middle;
