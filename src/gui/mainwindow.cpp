@@ -802,8 +802,6 @@ void MainWindow::cleanup()
     m_programUpdateTimer->stop();
 #endif
 
-    delete m_searchFilterAction;
-
     // remove all child widgets
     while (QWidget *w = findChild<QWidget * >())
         delete w;
