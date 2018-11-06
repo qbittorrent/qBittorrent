@@ -190,7 +190,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     , m_hasMissingFiles(false)
     , m_hasRootFolder(params.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
-    , m_pauseAfterRecheck(false)
+    , m_needsToStartForced(params.forced)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -220,14 +220,14 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     // When torrent added/restored in "paused" state it become "started" immediately after construction.
     // When it is added/restored in "resumed" state, it become "started" after it is really resumed
     // (i.e. after receiving "torrent resumed" alert).
-    m_started = (params.restored && hasMetadata() ? isPaused() : params.paused);
-
-    if (!m_started) {
-        if (!params.restored || !hasMetadata()) {
-            // Resume torrent because it was added in "resumed" state
-            // but it's actually paused during initialization
-            resume(params.forced);
-        }
+    if (params.paused) {
+        m_startupState = Started;
+    }
+    else if (!params.restored) {
+        // Resume torrent because it was added in "resumed" state
+        // but it's actually paused during initialization
+        m_startupState = Starting;
+        resume(params.forced);
     }
 }
 
@@ -1274,11 +1274,9 @@ void TorrentHandle::forceRecheck()
     m_unchecked = false;
 
     if (isPaused()) {
-        m_pauseAfterRecheck = true;
+        m_nativeHandle.stop_when_ready(true);
         resume_impl(true, true);
     }
-
-    m_nativeHandle.force_recheck();
 }
 
 void TorrentHandle::setSequentialDownload(bool b)
@@ -1363,7 +1361,12 @@ void TorrentHandle::resume_impl(bool forced, bool uploadMode)
 {
     if (hasError())
         m_nativeHandle.clear_error();
-    m_hasMissingFiles = false;
+
+    if (m_hasMissingFiles) {
+        m_hasMissingFiles = false;
+        m_nativeHandle.force_recheck();
+    }
+
     m_nativeHandle.auto_managed(!forced);
     m_nativeHandle.set_upload_mode(uploadMode);
     m_nativeHandle.resume();
@@ -1555,21 +1558,32 @@ void TorrentHandle::handleTrackerErrorAlert(const libtorrent::tracker_error_aler
 void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("%s have just finished checking", qUtf8Printable(hash()));
+    qDebug("\"%s\" have just finished checking", qUtf8Printable(name()));
+
+    if (m_startupState == NotStarted) {
+        if (!m_hasMissingFiles) {
+            // Resume torrent because it was added in "resumed" state
+            // but it's actually paused during initialization.
+            m_startupState = Starting;
+            resume(m_needsToStartForced);
+        }
+        else {
+            // Torrent that has missing files is marked as "started"
+            // but it remains paused.
+            m_startupState = Started;
+        }
+    }
 
     updateStatus();
 
-    if ((progress() < 1.0) && (wantedSize() > 0))
-        m_hasSeedStatus = false;
-    else if (progress() == 1.0)
-        m_hasSeedStatus = true;
+    if (!m_hasMissingFiles) {
+        if ((progress() < 1.0) && (wantedSize() > 0))
+            m_hasSeedStatus = false;
+        else if (progress() == 1.0)
+            m_hasSeedStatus = true;
 
-    adjustActualSavePath();
-    manageIncompleteFiles();
-
-    if (m_pauseAfterRecheck) {
-        m_pauseAfterRecheck = false;
-        pause();
+        adjustActualSavePath();
+        manageIncompleteFiles();
     }
 
     m_session->handleTorrentChecked(this);
@@ -1578,7 +1592,7 @@ void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_
 void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finished_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("Got a torrent finished alert for %s", qUtf8Printable(name()));
+    qDebug("Got a torrent finished alert for \"%s\"", qUtf8Printable(name()));
     qDebug("Torrent has seed status: %s", m_hasSeedStatus ? "yes" : "no");
     if (m_hasSeedStatus) return;
 
@@ -1605,19 +1619,22 @@ void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finishe
 void TorrentHandle::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p)
 {
     Q_UNUSED(p);
-    updateStatus();
-    m_speedMonitor.reset();
-    m_session->handleTorrentPaused(this);
+
+    if (m_startupState == Started) {
+        updateStatus();
+        m_speedMonitor.reset();
+        m_session->handleTorrentPaused(this);
+    }
 }
 
 void TorrentHandle::handleTorrentResumedAlert(const libtorrent::torrent_resumed_alert *p)
 {
     Q_UNUSED(p);
 
-    if (m_started)
+    if (m_startupState == Started)
         m_session->handleTorrentResumed(this);
-    else
-        m_started = true;
+    else if (m_startupState == Starting)
+        m_startupState = Started;
 }
 
 void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data_alert *p)
@@ -1668,7 +1685,6 @@ void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_r
 {
     if (p->error.value() == libt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
-        pause();
         m_hasMissingFiles = true;
         LogMsg(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
     }
@@ -1703,7 +1719,9 @@ void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert 
         }
     }
 
-    updateStatus();
+    // We don't really need to call updateStatus() in this place.
+    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
@@ -1721,7 +1739,9 @@ void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_fa
 
 void TorrentHandle::handleFileCompletedAlert(const libtorrent::file_completed_alert *p)
 {
-    updateStatus();
+    // We don't really need to call updateStatus() in this place.
+    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
 
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled()) {
@@ -1984,8 +2004,6 @@ void TorrentHandle::setDownloadLimit(int limit)
 void TorrentHandle::setSuperSeeding(bool enable)
 {
     m_nativeHandle.super_seeding(enable);
-    if (superSeeding() != enable)
-        updateStatus();
 }
 
 void TorrentHandle::flushCache()
@@ -2078,8 +2096,6 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
     // Restore first/last piece first option if necessary
     if (firstLastPieceFirst)
         setFirstLastPiecePriorityImpl(true, priorities);
-
-    updateStatus();
 }
 
 QVector<qreal> TorrentHandle::availableFileFractions() const
