@@ -146,7 +146,7 @@ namespace
 #elif defined(Q_OS_MAC)
     // There is a similar bug on macOS, to be reported to Qt
     // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
-    class MacFileIconProvider final: public CachingFileIconProvider
+    class MacFileIconProvider final : public CachingFileIconProvider
     {
         QPixmap pixmapForExtension(const QString &ext) const override
         {
@@ -346,7 +346,7 @@ int TorrentContentModel::getFileIndex(const QModelIndex &index)
     return -1;
 }
 
-QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
+QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();

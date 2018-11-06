@@ -66,7 +66,7 @@
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
 #include "base/utils/version.h"
 #endif
-#endif
+#endif // DISABLE_GUI
 
 #include "base/logger.h"
 #include "base/unicodestrings.h"

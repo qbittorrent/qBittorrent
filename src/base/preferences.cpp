@@ -212,7 +212,7 @@ void Preferences::setCloseToTrayNotified(bool b)
 {
     setValue("Preferences/General/CloseToTrayNotified", b);
 }
-#endif
+#endif // Q_OS_MAC
 
 bool Preferences::isToolbarDisplayed() const
 {
@@ -293,7 +293,7 @@ void Preferences::setWinStartup(bool b)
         settings.remove("qBittorrent");
     }
 }
-#endif
+#endif // Q_OS_WIN
 
 // Downloads
 QString Preferences::lastLocationPath() const
@@ -967,7 +967,7 @@ void Preferences::setMagnetLinkAssoc(bool set)
 
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
-#endif
+#endif // Q_OS_WIN
 
 #ifdef Q_OS_MAC
 namespace
@@ -1023,7 +1023,7 @@ void Preferences::setMagnetLinkAssoc()
     CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
     LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
-#endif
+#endif // Q_OS_MAC
 
 int Preferences::getTrackerPort() const
 {

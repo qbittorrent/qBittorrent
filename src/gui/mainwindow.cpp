@@ -305,7 +305,7 @@ MainWindow::MainWindow(QWidget *parent)
         spacer->setMinimumWidth(8);
         m_ui->toolBar->addWidget(spacer);
     }
-#endif
+#endif // Q_OS_MAC
 
     // Transfer list slots
     connect(m_ui->actionStart, &QAction::triggered, m_transferListWidget, &TransferListWidget::startSelectedTorrents);
@@ -1110,7 +1110,7 @@ void MainWindow::toggleVisibility(const QSystemTrayIcon::ActivationReason reason
         break;
     }
 }
-#endif
+#endif // Q_OS_MAC
 
 // Display About Dialog
 void MainWindow::on_actionAbout_triggered()
@@ -1272,7 +1272,7 @@ bool MainWindow::event(QEvent *e)
     default:
         break;
     }
-#endif
+#endif // Q_OS_MAC
 
     return QMainWindow::event(e);
 }
@@ -1361,7 +1361,7 @@ void MainWindow::setupDockClickHandler()
     MacUtils::overrideDockClickHandler(dockClickHandler);
 }
 
-#endif
+#endif // Q_OS_MAC
 
 /*****************************************************
 *                                                   *

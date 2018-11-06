@@ -425,7 +425,7 @@ void AdvancedSettings::loadAdvancedSettings()
     const QString currentInterface = session->networkInterface();
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
-    foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
+    foreach (const QNetworkInterface &iface, QNetworkInterface::allInterfaces()) {
         // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
         // Tested in Qt 5.6.0. For more info see:
         // https://github.com/qbittorrent/qBittorrent/issues/5131

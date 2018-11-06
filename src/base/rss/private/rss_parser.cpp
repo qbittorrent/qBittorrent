@@ -435,13 +435,13 @@ namespace
         if (leapSecond)
             second = 59;   // apparently a leap second - validate below, once time zone is known
         int month = 0;
-        for ( ; (month < 12)  &&  (parts[nmonth] != shortMonth[month]); ++month);
+        for ( ; (month < 12) && (parts[nmonth] != shortMonth[month]); ++month);
         int dayOfWeek = -1;
         if (!parts[nwday].isEmpty()) {
             // Look up the weekday name
-            while (++dayOfWeek < 7 && (shortDay[dayOfWeek] != parts[nwday]));
+            while ((++dayOfWeek < 7) && (shortDay[dayOfWeek] != parts[nwday]));
             if (dayOfWeek >= 7)
-                for (dayOfWeek = 0; dayOfWeek < 7 && (longDay[dayOfWeek] != parts[nwday]); ++dayOfWeek);
+                for (dayOfWeek = 0; (dayOfWeek < 7) && (longDay[dayOfWeek] != parts[nwday]); ++dayOfWeek);
         }
 
         //       if (month >= 12 || dayOfWeek >= 7
@@ -450,7 +450,7 @@ namespace
         int i = parts[nyear].size();
         if (i < 4) {
             // It's an obsolete year specification with less than 4 digits
-            year += (i == 2  &&  year < 50) ? 2000 : 1900;
+            year += ((i == 2) && (year < 50)) ? 2000 : 1900;
         }
 
         // Parse the UTC offset part
@@ -473,17 +473,17 @@ namespace
             else {
                 // Check for an obsolete time zone name
                 QByteArray zone = parts[10].toLatin1();
-                if (zone.length() == 1  &&  isalpha(zone[0])  &&  toupper(zone[0]) != 'J') {
+                if ((zone.length() == 1) && (isalpha(zone[0])) && (toupper(zone[0]) != 'J')) {
                     negOffset = true;    // military zone: RFC 2822 treats as '-0000'
                 }
-                else if (zone != "UT" && zone != "GMT") { // treated as '+0000'
+                else if ((zone != "UT") && (zone != "GMT")) { // treated as '+0000'
                     offset = (zone == "EDT")
                             ? -4 * 3600
                             : ((zone == "EST") || (zone == "CDT"))
                               ? -5 * 3600
                               : ((zone == "CST") || (zone == "MDT"))
                                 ? -6 * 3600
-                                : (zone == "MST" || zone == "PDT")
+                                : ((zone == "MST") || (zone == "PDT"))
                                   ? -7 * 3600
                                   : (zone == "PST")
                                     ? -8 * 3600
@@ -502,12 +502,12 @@ namespace
             }
         }
 
-        QDate qdate(year, month + 1, day);   // convert date, and check for out-of-range
-        if (!qdate.isValid())
+        QDate qDate(year, month + 1, day);   // convert date, and check for out-of-range
+        if (!qDate.isValid())
             return QDateTime::currentDateTime();
 
         QTime qTime(hour, minute, second);
-        QDateTime result(qdate, qTime, Qt::UTC);
+        QDateTime result(qDate, qTime, Qt::UTC);
         if (offset)
             result = result.addSecs(-offset);
         if (!result.isValid())

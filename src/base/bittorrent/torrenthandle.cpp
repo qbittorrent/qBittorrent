@@ -158,14 +158,14 @@ namespace
 {
     // new constructor is available
     template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    T makeTorrentCreator(const libtorrent::torrent_info &ti)
     {
         return T(ti, true);
     }
 
     // new constructor isn't available
     template<typename T, typename std::enable_if<!std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    T makeTorrentCreator(const libtorrent::torrent_info &ti)
     {
         return T(ti);
     }
@@ -623,7 +623,7 @@ QString TorrentHandle::filePath(int index) const
 
 QString TorrentHandle::fileName(int index) const
 {
-    if (!hasMetadata()) return  QString();
+    if (!hasMetadata()) return QString();
     return Utils::Fs::fileName(filePath(index));
 }
 
@@ -636,7 +636,7 @@ qlonglong TorrentHandle::fileSize(int index) const
 // to all files in a torrent
 QStringList TorrentHandle::absoluteFilePaths() const
 {
-    if (!hasMetadata()) return  QStringList();
+    if (!hasMetadata()) return QStringList();
 
     QDir saveDir(savePath(true));
     QStringList res;
@@ -647,7 +647,7 @@ QStringList TorrentHandle::absoluteFilePaths() const
 
 QStringList TorrentHandle::absoluteFilePathsUnwanted() const
 {
-    if (!hasMetadata()) return  QStringList();
+    if (!hasMetadata()) return QStringList();
 
     QDir saveDir(savePath(true));
     QStringList res;
@@ -2063,7 +2063,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
                 if (created) {
                     // Hide the folder on Windows
                     qDebug() << "Hiding folder (Windows)";
-                    std::wstring winPath =  Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
+                    std::wstring winPath = Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
                     DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
                     bool ret = ::SetFileAttributesW(winPath.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
                     Q_ASSERT(ret != 0); Q_UNUSED(ret);

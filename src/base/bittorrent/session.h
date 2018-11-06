@@ -237,7 +237,7 @@ namespace BitTorrent
             int diskJobTime = 0;
         } disk;
     };
-#endif
+#endif // LIBTORRENT_VERSION_NUM >= 10100
 
     class Session : public QObject
     {

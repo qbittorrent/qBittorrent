@@ -350,7 +350,7 @@ void TorrentInfo::renameFile(const int index, const QString &newPath)
     nativeInfo()->rename_file(index, Utils::Fs::toNativePath(newPath).toStdString());
 }
 
-int BitTorrent::TorrentInfo::fileIndex(const QString& fileName) const
+int BitTorrent::TorrentInfo::fileIndex(const QString &fileName) const
 {
     // the check whether the object is valid is not needed here
     // because if filesCount() returns -1 the loop exits immediately

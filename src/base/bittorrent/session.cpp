@@ -469,7 +469,7 @@ Session::Session(QObject *parent)
     });
 
     configurePeerClasses();
-#endif
+#endif // LIBTORRENT_VERSION_NUM < 10100
 
     // Enabling plugins
     //m_nativeSession->add_extension(&libt::create_metadata_plugin);
@@ -1253,7 +1253,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
         }
 #else
         settingsPack.set_str(libt::settings_pack::outgoing_interfaces, networkInterface().toStdString());
-#endif
+#endif // Q_OS_WIN
         m_listenInterfaceChanged = false;
     }
 
@@ -1462,7 +1462,7 @@ void Session::configurePeerClasses()
                    , 1 << libt::session::global_peer_class_id);
     }
     catch (std::exception &) {}
-#endif
+#endif // TORRENT_USE_IPV6
     if (ignoreLimitsOnLAN()) {
         // local networks
         f.add_rule(libt::address_v4::from_string("10.0.0.0")
@@ -1501,7 +1501,7 @@ void Session::configurePeerClasses()
                        , 1 << libt::session::local_peer_class_id);
         }
         catch (std::exception &) {}
-#endif
+#endif // TORRENT_USE_IPV6
     }
     m_nativeSession->set_peer_class_filter(f);
 
@@ -1518,7 +1518,7 @@ void Session::configurePeerClasses()
     m_nativeSession->set_peer_class_type_filter(peerClassTypeFilter);
 }
 
-#else
+#else // LIBTORRENT_VERSION_NUM >= 10100
 
 void Session::adjustLimits(libt::session_settings &sessionSettings)
 {
@@ -1735,7 +1735,7 @@ void Session::configure(libtorrent::session_settings &sessionSettings)
         break;
     }
 }
-#endif
+#endif // LIBTORRENT_VERSION_NUM >= 10100
 
 void Session::enableTracker(bool enable)
 {
@@ -1983,8 +1983,8 @@ void Session::increaseTorrentsPriority(const QStringList &hashes)
             std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
-    foreach (const InfoHash &hash, hashes) {
-        TorrentHandle *const torrent = m_torrents.value(hash);
+    foreach (const InfoHash &infoHash, hashes) {
+        TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
@@ -2006,8 +2006,8 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
             std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
-    foreach (const InfoHash &hash, hashes) {
-        TorrentHandle *const torrent = m_torrents.value(hash);
+    foreach (const InfoHash &infoHash, hashes) {
+        TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
@@ -2032,8 +2032,8 @@ void Session::topTorrentsPriority(const QStringList &hashes)
             std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
-    foreach (const InfoHash &hash, hashes) {
-        TorrentHandle *const torrent = m_torrents.value(hash);
+    foreach (const InfoHash &infoHash, hashes) {
+        TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
@@ -2055,8 +2055,8 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
             std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
-    foreach (const InfoHash &hash, hashes) {
-        TorrentHandle *const torrent = m_torrents.value(hash);
+    foreach (const InfoHash &infoHash, hashes) {
+        TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
@@ -2397,7 +2397,7 @@ void Session::saveResumeData()
             break;
         }
 
-        for (const auto a: alerts) {
+        for (const auto a : alerts) {
             switch (a->type()) {
             case libt::save_resume_data_failed_alert::alert_type:
             case libt::save_resume_data_alert::alert_type:
@@ -2598,7 +2598,7 @@ void Session::configureListeningInterface()
 #else
     m_listenInterfaceChanged = true;
     configureDeferred();
-#endif
+#endif // LIBTORRENT_VERSION_NUM < 10100
 }
 
 int Session::globalDownloadSpeedLimit() const
@@ -3011,7 +3011,7 @@ void Session::setMaxConnectionsPerTorrent(int max)
         m_maxConnectionsPerTorrent = max;
 
         // Apply this to all session torrents
-        for (const auto &handle: m_nativeSession->get_torrents()) {
+        for (const auto &handle : m_nativeSession->get_torrents()) {
             if (!handle.is_valid()) continue;
             try {
                 handle.set_max_connections(max);
@@ -3033,7 +3033,7 @@ void Session::setMaxUploadsPerTorrent(int max)
         m_maxUploadsPerTorrent = max;
 
         // Apply this to all session torrents
-        for (const auto &handle: m_nativeSession->get_torrents()) {
+        for (const auto &handle : m_nativeSession->get_torrents()) {
             if (!handle.is_valid()) continue;
             try {
                 handle.set_max_uploads(max);
@@ -4095,7 +4095,7 @@ void Session::readAlerts()
     std::vector<libt::alert *> alerts;
     getPendingAlerts(alerts);
 
-    for (const auto a: alerts) {
+    for (const auto a : alerts) {
         handleAlert(a);
 #if LIBTORRENT_VERSION_NUM < 10100
         delete a;
@@ -4502,7 +4502,7 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
 
     emit statsUpdated();
 }
-#else
+#else // LIBTORRENT_VERSION_NUM >= 10100
 void Session::updateStats()
 {
     libt::session_status ss = m_nativeSession->status();
@@ -4539,7 +4539,7 @@ void Session::updateStats()
 
     emit statsUpdated();
 }
-#endif
+#endif // LIBTORRENT_VERSION_NUM >= 10100
 
 void Session::handleStateUpdateAlert(libt::state_update_alert *p)
 {
@@ -4590,7 +4590,7 @@ namespace
         return true;
     }
 
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio,  MagnetUri &magnetUri)
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri)
     {
         torrentParams = CreateTorrentParams();
         torrentParams.restored = true;

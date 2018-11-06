@@ -124,7 +124,7 @@ namespace Utils
             return reinterpret_cast<T>(
                 ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
         }
-#endif
+#endif // Q_OS_WIN
     }
 }
 

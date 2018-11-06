@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
         // this is the default in Qt6
         app->setAttribute(Qt::AA_DisableWindowContextHelpButton);
 #endif
-#endif
+#endif // Q_OS_WIN
 
 #if defined(Q_OS_MAC)
         // Since Apple made difficult for users to set PATH, we set here for convenience.

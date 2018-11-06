@@ -373,7 +373,7 @@ void AutoDownloader::addJobForArticle(Article *article)
 
 void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 {
-    for (AutoDownloadRule &rule: m_rules) {
+    for (AutoDownloadRule &rule : m_rules) {
         if (!rule.isEnabled()) continue;
         if (!rule.feedURLs().contains(job->feedURL)) continue;
         if (!rule.accepts(job->articleData)) continue;

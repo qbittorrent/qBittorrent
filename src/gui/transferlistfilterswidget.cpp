@@ -404,7 +404,7 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
         applyFilter(3);
 }
 
-void TrackerFiltersList::downloadFavicon(const QString& url)
+void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadHandler *h = Net::DownloadManager::instance()->download(
@@ -416,7 +416,7 @@ void TrackerFiltersList::downloadFavicon(const QString& url)
             , &TrackerFiltersList::handleFavicoFailure);
 }
 
-void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
+void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString &filePath)
 {
     QString host = url.startsWith(GOOGLE_FAVICON_URL)
                             ? url.mid(GOOGLE_FAVICON_URL.size())
