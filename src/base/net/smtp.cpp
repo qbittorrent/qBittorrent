@@ -291,7 +291,7 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTex
     if (!prefix.isEmpty()) line += prefix;
     if (!value.contains("=?") && latin1->canEncode(value)) {
         bool firstWord = true;
-        foreach (const QByteArray& word, value.toLatin1().split(' ')) {
+        foreach (const QByteArray &word, value.toLatin1().split(' ')) {
             if (line.size() > 78) {
                 rv = rv + line + "\r\n";
                 line.clear();

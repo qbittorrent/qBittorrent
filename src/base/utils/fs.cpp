@@ -329,7 +329,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
+#else // Q_OS_WIN
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -351,6 +351,6 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     default:
         return false;
     }
-#endif
+#endif // Q_OS_WIN
 }
-#endif
+#endif // Q_OS_HAIKU

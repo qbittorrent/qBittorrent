@@ -246,7 +246,7 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
     return false;
 }
 
-bool AutoDownloadRule::matchesMustNotContainExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTitle) const
 {
     if (m_dataPtr->mustNotContain.empty())
         return true;
@@ -262,7 +262,7 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString& articleTit
     return true;
 }
 
-bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitle) const
 {
     // Reset the lastComputedEpisode, we don't want to leak it between matches
     m_dataPtr->lastComputedEpisode.clear();
@@ -332,7 +332,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitl
     return false;
 }
 
-bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) const
+bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) const
 {
     if (!useSmartFilter())
         return true;

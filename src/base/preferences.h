@@ -299,7 +299,7 @@ public:
     void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
-#endif
+#endif // Q_OS_MAC
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

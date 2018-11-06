@@ -107,7 +107,7 @@ namespace Http
         uint code;
         QString text;
 
-        ResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
+        ResponseStatus(uint code = 200, const QString &text = "OK"): code(code), text(text) {}
     };
 
     struct Response
@@ -116,7 +116,7 @@ namespace Http
         QStringMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString& text = "OK"): status(code, text) {}
+        Response(uint code = 200, const QString &text = "OK"): status(code, text) {}
     };
 }
 

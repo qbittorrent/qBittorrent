@@ -486,7 +486,7 @@ CommandLineParameterError::CommandLineParameterError(const QString &messageForUs
 {
 }
 
-const QString& CommandLineParameterError::messageForUser() const
+const QString &CommandLineParameterError::messageForUser() const
 {
     return m_messageForUser;
 }

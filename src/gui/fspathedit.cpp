@@ -350,7 +350,7 @@ void FileSystemPathComboEdit::addItem(const QString &text)
     editWidget<WidgetType>()->addItem(Utils::Fs::toNativePath(text));
 }
 
-void FileSystemPathComboEdit::insertItem(int index, const QString& text)
+void FileSystemPathComboEdit::insertItem(int index, const QString &text)
 {
     editWidget<WidgetType>()->insertItem(index, Utils::Fs::toNativePath(text));
 }

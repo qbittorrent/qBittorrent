@@ -83,7 +83,7 @@ bool userAcceptsUpgrade()
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     if (msgBox.exec() == QMessageBox::Ok)
         return true;
-#endif
+#endif // DISABLE_GUI
 
     return false;
 }
