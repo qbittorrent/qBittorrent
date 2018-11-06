@@ -321,7 +321,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
-    const double yMultiplier = (niceScale.arg == 0.0) ? 0.0 : (rect.height() / niceScale.sizeInBytes());
+    const double yMultiplier = (niceScale.arg == 0.0) ? 0.0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
     const double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
 
     boost::circular_buffer<PointData> &queue = getCurrentData();
