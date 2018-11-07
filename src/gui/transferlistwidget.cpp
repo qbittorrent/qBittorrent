@@ -827,8 +827,7 @@ bool TransferListWidget::hasTorrentPreviewableFiles(const BitTorrent::TorrentHan
     }
 
     for (int i = 0; i < torrent->filesCount(); ++i) {
-        const QString ext = Utils::Fs::fileExtension(torrent->fileName(i));
-        if (Utils::Misc::isPreviewable(ext)) {
+        if (Utils::Misc::isPreviewable(Utils::Fs::fileExtension(torrent->fileName(i)))) {
             return true;
         }
     }
