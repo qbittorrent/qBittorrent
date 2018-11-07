@@ -2660,7 +2660,7 @@ int Session::downloadSpeedLimit() const
             : globalDownloadSpeedLimit();
 }
 
-void Session::setDownloadSpeedLimit(int limit)
+void Session::setDownloadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalDownloadSpeedLimit(limit);
@@ -2675,7 +2675,7 @@ int Session::uploadSpeedLimit() const
             : globalUploadSpeedLimit();
 }
 
-void Session::setUploadSpeedLimit(int limit)
+void Session::setUploadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalUploadSpeedLimit(limit);
@@ -2688,7 +2688,7 @@ bool Session::isAltGlobalSpeedLimitEnabled() const
     return m_isAltGlobalSpeedLimitEnabled;
 }
 
-void Session::setAltGlobalSpeedLimitEnabled(bool enabled)
+void Session::setAltGlobalSpeedLimitEnabled(const bool enabled)
 {
     if (enabled == isAltGlobalSpeedLimitEnabled()) return;
 
