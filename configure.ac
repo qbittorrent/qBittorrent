@@ -8,8 +8,6 @@ AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
 
-
-
 # Define --wth-* and --enable-* arguments
 
 AC_ARG_WITH(qtsingleapplication,
@@ -203,6 +201,32 @@ PKG_CHECK_MODULES(zlib,
                  [zlib >= 1.2.5.2],
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
+
+# Check compiler C++11 support
+AC_LANG_PUSH(C++)
+m4_define([DETECT_CPP11_PROGRAM],
+    [AC_LANG_PROGRAM([[
+#ifndef __cplusplus
+#error "This is not a C++ compiler"
+#elif __cplusplus < 201103L
+#error "This is not a C++11 compiler"
+#endif]],
+    [[]])])
+
+_tmp="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -std=c++11"
+AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+    [],
+    [AC_MSG_ERROR([A compiler supporting C++11 is required.])])
+
+CXXFLAGS="$_tmp $libtorrent_CFLAGS"
+AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+    [],
+    [AC_MSG_ERROR([Compiler is not working in C++11 or later mode.
+    Make sure you use the same C++ mode for qBittorrent and its dependencies.
+    Example: `CXXFLAGS="\$CXXFLAGS -std=c++11" ./configure`])])
+CXXFLAGS="$_tmp"
+AC_LANG_POP([C++])
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
