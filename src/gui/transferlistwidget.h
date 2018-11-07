@@ -123,6 +123,7 @@ private:
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
+    bool hasTorrentPreviewableFiles(const BitTorrent::TorrentHandle *const torrent) const;
 
     TransferListDelegate *m_listDelegate;
     TransferListModel *m_listModel;

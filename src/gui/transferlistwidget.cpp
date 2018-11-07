@@ -588,7 +588,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 void TransferListWidget::previewSelectedTorrents()
 {
     foreach (BitTorrent::TorrentHandle *const torrent, getSelectedTorrents()) {
-        if (torrent->info().hasPreviewableFiles())
+        if (hasTorrentPreviewableFiles(torrent))
             new PreviewSelectDialog(this, torrent);
         else
             QMessageBox::critical(this, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
@@ -818,6 +818,22 @@ void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTo
         Q_ASSERT(torrent);
         fn(torrent);
     }
+}
+
+bool TransferListWidget::hasTorrentPreviewableFiles(const BitTorrent::TorrentHandle *const torrent) const
+{
+    if (!torrent->hasMetadata()) {
+        return false;
+    }
+
+    for (int i = 0; i < torrent->filesCount(); ++i) {
+        const QString ext = Utils::Fs::fileExtension(torrent->fileName(i));
+        if (Utils::Misc::isPreviewable(ext)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void TransferListWidget::renameSelectedTorrent()

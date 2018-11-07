@@ -108,8 +108,6 @@ namespace BitTorrent
         bool hasRootFolder() const;
         void stripRootFolder();
 
-        bool hasPreviewableFiles() const;
-
         NativePtr nativeInfo() const;
 
     private:
