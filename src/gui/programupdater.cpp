@@ -41,7 +41,7 @@
 
 namespace
 {
-    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/software/feedqBittorent")};
+    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml")};
 
     QString getStringValue(QXmlStreamReader &xml);
 }
