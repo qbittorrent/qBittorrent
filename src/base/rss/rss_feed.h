@@ -104,6 +104,7 @@ namespace RSS
         void increaseUnreadCount();
         void decreaseUnreadCount();
         void downloadIcon();
+        int updateArticles(const QList<QVariantHash> &loadedArticles);
 
         Session *m_session;
         Private::Parser *m_parser;
