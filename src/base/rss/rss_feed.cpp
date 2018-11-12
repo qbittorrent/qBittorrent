@@ -30,6 +30,9 @@
 
 #include "rss_feed.h"
 
+#include <algorithm>
+#include <vector>
+
 #include <QDebug>
 #include <QDir>
 #include <QJsonArray>
@@ -215,47 +218,30 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 {
     m_hasError = !result.error.isEmpty();
 
+    if (!result.title.isEmpty() && (title() != result.title)) {
+        m_title = result.title;
+        m_dirty = true;
+        emit titleChanged(this);
+    }
+
+    if (!result.lastBuildDate.isEmpty()) {
+        m_lastBuildDate = result.lastBuildDate;
+        m_dirty = true;
+    }
+
     // For some reason, the RSS feed may contain malformed XML data and it may not be
     // successfully parsed by the XML parser. We are still trying to load as many articles
     // as possible until we encounter corrupted data. So we can have some articles here
     // even in case of parsing error.
-    if (!m_hasError || !result.articles.isEmpty()) {
-        if (title() != result.title) {
-            m_title = result.title;
-            emit titleChanged(this);
-        }
-
-        m_lastBuildDate = result.lastBuildDate;
-
-        int newArticlesCount = 0;
-        const QDateTime now {QDateTime::currentDateTime()};
-        for (QVariantHash varHash : result.articles) {
-            // if article has no publication date we use feed update time as a fallback
-            QVariant &articleDate = varHash[Article::KeyDate];
-            if (!articleDate.toDateTime().isValid())
-                articleDate = now;
-
-            try {
-                auto article = new Article(this, varHash);
-                if (addArticle(article))
-                    ++newArticlesCount;
-                else
-                    delete article;
-            }
-            catch (const std::runtime_error&) {}
-        }
-
-        m_dirty = (newArticlesCount > 0);
-        store();
-
-        LogMsg(tr("RSS feed at '%1' updated. Added %2 new articles.")
-               .arg(m_url, QString::number(newArticlesCount)));
-    }
+    const int newArticlesCount = updateArticles(result.articles);
+    store();
 
     if (m_hasError) {
         LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url, result.error)
                , Log::WARNING);
     }
+    LogMsg(tr("RSS feed at '%1' updated. Added %2 new articles.")
+           .arg(url(), QString::number(newArticlesCount)));
 
     m_isLoading = false;
     emit stateChanged(this);
@@ -358,9 +344,7 @@ void Feed::storeDeferred()
 bool Feed::addArticle(Article *article)
 {
     Q_ASSERT(article);
-
-    if (m_articles.contains(article->guid()))
-        return false;
+    Q_ASSERT(!m_articles.contains(article->guid()));
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
@@ -375,6 +359,8 @@ bool Feed::addArticle(Article *article)
         increaseUnreadCount();
         connect(article, &Article::read, this, &Feed::handleArticleRead);
     }
+
+    m_dirty = true;
     emit newArticle(article);
 
     if (m_articlesByDate.size() > maxArticles)
@@ -422,6 +408,85 @@ void Feed::downloadIcon()
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
             , this, &Feed::handleIconDownloadFinished);
+}
+
+int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
+{
+    if (loadedArticles.empty())
+        return 0;
+
+    QDateTime dummyPubDate {QDateTime::currentDateTime()};
+    QVector<QVariantHash> newArticles;
+    newArticles.reserve(loadedArticles.size());
+    for (QVariantHash article : loadedArticles) {
+        QVariant &torrentURL = article[Article::KeyTorrentURL];
+        if (torrentURL.toString().isEmpty())
+            torrentURL = article[Article::KeyLink];
+
+        // If item does not have an ID, fall back to some other identifier.
+        QVariant &localId = article[Article::KeyId];
+        if (localId.toString().isEmpty())
+            localId = article.value(Article::KeyTorrentURL);
+        if (localId.toString().isEmpty())
+            localId = article.value(Article::KeyTitle);
+
+        if (localId.toString().isEmpty())
+            continue;
+
+        // If article has no publication date we use feed update time as a fallback.
+        // To prevent processing of "out-of-limit" articles we must not assign dates
+        // that are earlier than the dates of existing articles.
+        const Article *existingArticle = articleByGUID(localId.toString());
+        if (existingArticle) {
+            dummyPubDate = existingArticle->date().addMSecs(-1);
+            continue;
+        }
+
+        QVariant &articleDate = article[Article::KeyDate];
+        if (!articleDate.toDateTime().isValid())
+            articleDate = dummyPubDate;
+
+        newArticles.append(article);
+    }
+
+    if (newArticles.empty())
+        return 0;
+
+    using ArticleSortAdaptor = QPair<QDateTime, const QVariantHash *>;
+    std::vector<ArticleSortAdaptor> sortData;
+    const QList<Article *> existingArticles = articles();
+    sortData.reserve(existingArticles.size() + newArticles.size());
+    std::transform(existingArticles.begin(), existingArticles.end(), std::back_inserter(sortData)
+                   , [](const Article *article)
+    {
+        return qMakePair(article->date(), nullptr);
+    });
+    std::transform(newArticles.begin(), newArticles.end(), std::back_inserter(sortData)
+                   , [](const QVariantHash &article)
+    {
+        return qMakePair(article[Article::KeyDate].toDateTime(), &article);
+    });
+
+    // Sort article list in reverse chronological order
+    std::sort(sortData.begin(), sortData.end()
+              , [](const ArticleSortAdaptor &a1, const ArticleSortAdaptor &a2)
+    {
+        return (a1.first > a2.first);
+    });
+
+    if (sortData.size() > m_session->maxArticlesPerFeed())
+        sortData.resize(m_session->maxArticlesPerFeed());
+
+    int newArticlesCount = 0;
+    std::for_each(sortData.crbegin(), sortData.crend(), [this, &newArticlesCount](const ArticleSortAdaptor &a)
+    {
+        if (a.second) {
+            addArticle(new Article {this, *a.second});
+            ++newArticlesCount;
+        }
+    });
+
+    return newArticlesCount;
 }
 
 QString Feed::iconPath() const

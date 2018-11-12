@@ -582,16 +582,6 @@ void Parser::parse_impl(const QByteArray &feedData)
                 .arg(xml.errorString()).arg(xml.lineNumber())
                 .arg(xml.columnNumber()).arg(xml.characterOffset());
     }
-    else {
-        // Sort article list chronologically
-        // NOTE: We don't need to sort it here if articles are always
-        // sorted in fetched XML in reverse chronological order
-        std::sort(m_result.articles.begin(), m_result.articles.end()
-                  , [](const QVariantHash &a1, const QVariantHash &a2)
-        {
-            return a1["date"].toDateTime() < a2["date"].toDateTime();
-        });
-    }
 
     emit finished(m_result);
     m_result.articles.clear(); // clear articles only
