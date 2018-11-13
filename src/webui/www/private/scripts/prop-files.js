@@ -1,51 +1,26 @@
 var is_seed = true;
 var current_hash = "";
 
-if (!(Browser.name == "ie" && Browser.version < 9)) {
-    $("all_files_cb").removeClass("tristate");
-    $("all_files_cb").removeClass("partial");
-    $("all_files_cb").removeClass("checked");
-    $("tristate_cb").style.display = "inline";
-}
-
 var setCBState = function(state) {
-    if (Browser.name == "ie" && Browser.version < 9) {
-        if (state == "partial") {
-            if (!$("all_files_cb").hasClass("partial")) {
-                $("all_files_cb").removeClass("checked");
-                $("all_files_cb").addClass("partial");
-            }
-            return;
-        }
-        if (state == "checked") {
-            if (!$("all_files_cb").hasClass("checked")) {
-                $("all_files_cb").removeClass("partial");
-                $("all_files_cb").addClass("checked");
-            }
-            return;
-        }
-        $("all_files_cb").removeClass("partial");
-        $("all_files_cb").removeClass("checked");
+    $("tristate_cb").state = state;
+    if (state === "partial") {
+        $("tristate_cb").indeterminate = true;
     }
-    else {
-        if (state == "partial") {
-            $("tristate_cb").indeterminate = true;
-        }
-        else if (state == "checked") {
-            $("tristate_cb").indeterminate = false;
-            $("tristate_cb").checked = true;
-        }
-        else {
-            $("tristate_cb").indeterminate = false;
-            $("tristate_cb").checked = false;
-        }
+    else if (state === "checked") {
+        $("tristate_cb").indeterminate = false;
+        $("tristate_cb").checked = true;
+    }
+    else if (state === "unchecked") {
+        $("tristate_cb").indeterminate = false;
+        $("tristate_cb").checked = false;
     }
 };
 
 var switchCBState = function() {
     // Uncheck
-    if ($("all_files_cb").hasClass("partial")) {
-        $("all_files_cb").removeClass("partial");
+    if (($("tristate_cb").state === "partial") || ($("tristate_cb").state === "checked")) {
+        $("tristate_cb").state = "unchecked";
+        $("tristate_cb").checked = false;
         // Uncheck all checkboxes
         var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
@@ -53,28 +28,19 @@ var switchCBState = function() {
             indexes.push(index);
         });
         setFilePriority(indexes, 0);
-        return;
     }
-    if ($("all_files_cb").hasClass("checked")) {
-        $("all_files_cb").removeClass("checked");
-        // Uncheck all checkboxes
+    else if ($("tristate_cb").state === "unchecked") {
+        // Check
+        $("tristate_cb").state = "checked";
+        $("tristate_cb").checked = true;
+        // Check all checkboxes
         var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
-            item.erase("checked");
+            item.set("checked", "checked");
             indexes.push(index);
         });
-        setFilePriority(indexes, 0);
-        return;
+        setFilePriority(indexes, FilePriority.Normal);
     }
-    // Check
-    $("all_files_cb").addClass("checked");
-    // Check all checkboxes
-    var indexes = [];
-    $$('input.DownloadedCB').each(function(item, index) {
-        item.set("checked", "checked");
-        indexes.push(index);
-    });
-    setFilePriority(indexes, 1);
 };
 
 var allCBChecked = function() {
@@ -97,10 +63,32 @@ var allCBUnchecked = function() {
     return true;
 };
 
+var FilePriority = {
+    "Ignored": 0,
+    "Normal": 1,
+    "High": 6,
+    "Maximum": 7,
+    "Mixed": -1
+};
+
+var normalizePriority = function(priority) {
+    switch (priority) {
+        case FilePriority.Ignored:
+        case FilePriority.Normal:
+        case FilePriority.High:
+        case FilePriority.Maximum:
+        case FilePriority.Mixed:
+            return priority;
+        default:
+            return FilePriority.Normal;
+    }
+};
+
 var setFilePriority = function(id, priority) {
     if (current_hash === "") return;
     var ids = Array.isArray(id) ? id : [id];
 
+    clearTimeout(loadTorrentFilesDataTimer);
     new Request({
         url: 'api/v2/torrents/filePrio',
         method: 'post',
@@ -108,6 +96,9 @@ var setFilePriority = function(id, priority) {
             'hash': current_hash,
             'id': ids.join('|'),
             'priority': priority
+        },
+        onComplete: function() {
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
         }
     }).send();
     // Display or add combobox
@@ -142,13 +133,11 @@ var createDownloadedCB = function(id, downloaded) {
         if (allCBChecked()) {
             setCBState("checked");
         }
+        else if (allCBUnchecked()) {
+            setCBState("unchecked");
+        }
         else {
-            if (allCBUnchecked()) {
-                setCBState("unchecked");
-            }
-            else {
-                setCBState("partial");
-            }
+            setCBState("partial");
         }
     });
     return CB;
@@ -166,23 +155,16 @@ var createPriorityCombo = function(id, selected_prio) {
         var elem = new Element("option");
         elem.set('value', priority.toString());
         elem.set('html', html);
-        if (selected_prio == priority)
-            elem.setAttribute('selected', 'true');
+        if (priority == selected_prio)
+            elem.setAttribute('selected', '');
         return elem;
     }
 
-    var normal = createOptionElement(1, "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio <= 0)
-        normal.setAttribute('selected', '');
-    normal.injectInside(select);
+    createOptionElement(FilePriority.Normal, "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+    createOptionElement(FilePriority.High, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+    createOptionElement(FilePriority.Maximum, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
 
-    var high = createOptionElement(6, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
-    high.injectInside(select);
-
-    var maximum = createOptionElement(7, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
-    maximum.injectInside(select);
-
-    if (is_seed || selected_prio < 1) {
+    if (is_seed || (selected_prio === FilePriority.Ignored) || (selected_prio === FilePriority.Mixed)) {
         select.addClass("invisible");
     }
     else {
@@ -231,8 +213,9 @@ var filesDynTable = new Class({
                     $('pbf_' + id).setValue(row[i].toFloat());
                     break;
                 case 4:  // download priority
-                    if (!is_seed && row[i] > 0) {
-                        tds[i].getChildren('select').set('value', row[i]);
+                    var priority = normalizePriority(row[i]);
+                    if (!is_seed && (priority > 0)) {
+                        tds[i].getChildren('select').set('value', priority);
                         if ($('comboPrio' + id).hasClass("invisible"))
                             $('comboPrio' + id).removeClass("invisible");
                     }
@@ -278,7 +261,7 @@ var filesDynTable = new Class({
                     }));
                     break;
                 case 4:
-                    td.adopt(createPriorityCombo(id, row[i]));
+                    td.adopt(createPriorityCombo(id, normalizePriority(row[i])));
                     break;
                 default:
                     td.set('html', row[i]);
@@ -346,13 +329,11 @@ var loadTorrentFilesData = function() {
                 if (allCBChecked()) {
                     setCBState("checked");
                 }
+                else if (allCBUnchecked()) {
+                    setCBState("unchecked");
+                }
                 else {
-                    if (allCBUnchecked()) {
-                        setCBState("unchecked");
-                    }
-                    else {
-                        setCBState("partial");
-                    }
+                    setCBState("partial");
                 }
             }
             else {
