@@ -452,6 +452,7 @@ void WebApplication::configure()
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
+    m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 }
 
@@ -542,7 +543,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     try {
         // block suspicious requests
         if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
-            || !validateHostHeader(m_domainList)) {
+            || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList))) {
             throw UnauthorizedHTTPError();
         }
 

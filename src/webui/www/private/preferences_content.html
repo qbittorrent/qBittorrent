@@ -457,6 +457,10 @@
             <input type="checkbox" id="csrf_protection_checkbox" />
             <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow">
+            <input type="checkbox" id="host_header_validation_checkbox" />
+            <label for="host_header_validation_checkbox">QBT_TR(Enable Host header validation)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -710,6 +714,11 @@
     updateBypasssAuthSettings = function() {
         var isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
         $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
+    };
+
+    updateHostHeaderValidationSettings = function() {
+        var isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
+        $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
     };
 
     updateDynDnsSettings = function() {
@@ -971,6 +980,8 @@
                     // Security
                     $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                     $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                    $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
+                    updateHostHeaderValidationSettings();
 
                     // Update my dynamic domain name
                     $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -1256,6 +1267,7 @@
 
         settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
         settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
+        settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
 
         // Update my dynamic domain name
         settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));

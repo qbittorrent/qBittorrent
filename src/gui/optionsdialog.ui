@@ -2945,28 +2945,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_10">
-                 <item>
-                  <widget class="QLabel" name="labelServerDomains">
-                   <property name="text">
-                    <string>Server domains:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="textServerDomains">
-                   <property name="toolTip">
-                    <string>Whitelist for filtering HTTP Host header values.
-In order to defend against DNS rebinding attack,
-you should put in domain names used by WebUI server.
-
-Use ';' to split multiple entries. Can use wildcard '*'.</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkWebUIUPnP">
                  <property name="text">
                   <string>Use UPnP / NAT-PMP to forward the port from my router</string>
@@ -3188,6 +3166,40 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  <property name="text">
                   <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
                  </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupHostHeaderValidation">
+                 <property name="title">
+                  <string>Enable Host header validation</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_32">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                    <item>
+                     <widget class="QLabel" name="labelServerDomains">
+                      <property name="text">
+                       <string>Server domains:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="textServerDomains">
+                      <property name="toolTip">
+                       <string>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
