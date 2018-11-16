@@ -155,5 +155,6 @@ private:
     QStringList m_domainList;
     bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
+    bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
 };
