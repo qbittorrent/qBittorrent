@@ -411,7 +411,6 @@
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
         <label class="leftLabelMedium" for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_address_value" />
         <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;" /><br/>
-        <label class="leftLabelMedium" for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
         <input type="checkbox" id="webui_upnp_checkbox" />
         <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
         <fieldset class="settings">
@@ -449,18 +448,28 @@
             </div>
         </fieldset>
 
-        <div class="formRow">
-            <input type="checkbox" id="clickjacking_protection_checkbox" />
-            <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="csrf_protection_checkbox" />
-            <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="host_header_validation_checkbox" />
-            <label for="host_header_validation_checkbox">QBT_TR(Enable Host header validation)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
+        <fieldset class="settings">
+            <legend>QBT_TR(Security)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <input type="checkbox" id="clickjacking_protection_checkbox" />
+                <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="csrf_protection_checkbox" />
+                <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+
+            <fieldset class="settings">
+                <legend>
+                    <input type="checkbox" id="host_header_validation_checkbox" onclick="updateHostHeaderValidationSettings();" />
+                    <label for="host_header_validation_checkbox">QBT_TR(Enable Host header validation)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </legend>
+                <div class="formRow">
+                    <label class="leftLabelMedium" for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <textarea id="webui_domain_textarea" rows="1" cols="60"></textarea>
+                </div>
+            </fieldset>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
