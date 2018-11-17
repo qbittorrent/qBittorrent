@@ -252,9 +252,11 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_UPLOADED] = torrent->totalUpload();
     dataDict[KEY_PROP_UPLOADED_SESSION] = torrent->totalPayloadUpload();
     dataDict[KEY_PROP_DL_SPEED] = torrent->downloadPayloadRate();
-    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() / (1 + torrent->activeTime() - torrent->finishedTime());
+    const int dlDuration = torrent->activeTime() - torrent->finishedTime();
+    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration);
     dataDict[KEY_PROP_UP_SPEED] = torrent->uploadPayloadRate();
-    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() / (1 + torrent->activeTime());
+    const int ulDuration = torrent->activeTime();
+    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() / ((ulDuration == 0) ? -1 : ulDuration);
     dataDict[KEY_PROP_DL_LIMIT] = torrent->downloadLimit() <= 0 ? -1 : torrent->downloadLimit();
     dataDict[KEY_PROP_UP_LIMIT] = torrent->uploadLimit() <= 0 ? -1 : torrent->uploadLimit();
     dataDict[KEY_PROP_WASTED] = torrent->wastedSize();
