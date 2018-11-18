@@ -1,7 +1,8 @@
-* <unreleased> - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.4
+* Mon Nov 19 2018 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.4
     - FEATURE: Recognize *.ts files as previewable (silver)
     - FEATURE: Allow to disable speed graphs (dzmat)
     - FEATURE: Clear LineEdit on ESC (silverqx)
+    - BUGFIX: Fix divide-by-zero crash (Chocobo1)
     - BUGFIX: Remove speed limit checkbox in Options dialog (Chocobo1)
     - BUGFIX: Fix speed graph "high speeds" bug (dzmat)
     - BUGFIX: Don't update torrent status unnecessarily (glassez)
@@ -27,6 +28,7 @@
     - WEBUI: Translate WebUI torrents Status column (Thomas Piccirello)
     - WEBUI: Bump Web API version
     - RSS: Allow to disable downloading REPACK/PROPER matches (Stephen Dawkins)
+    - RSS: Improve RSS Feed updating (glassez)
     - SEARCH: Allow resizing search filter in search job (thalieht)
     - SEARCH: Improve parser for search engine versions.txt (Chocobo1)
     - SEARCH: Update Python URLs (Chocobo1)
