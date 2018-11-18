@@ -428,7 +428,7 @@ void Application::processParams(const QStringList &params)
     BitTorrent::AddTorrentParams torrentParams;
     TriStateBool skipTorrentDialog;
 
-    foreach (QString param, params) {
+    for (QString param : params) {
         param = param.trimmed();
 
         // Process strings indicating options specified by the user.

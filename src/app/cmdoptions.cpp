@@ -41,6 +41,7 @@
 #include <QMessageBox>
 #endif
 
+#include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
@@ -497,7 +498,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
 
-    foreach (const QString &word, words.mid(1)) {
+    for (const QString &word : copyAsConst(words.mid(1))) {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength) {
             lines.last().append(' ' + word);
         }

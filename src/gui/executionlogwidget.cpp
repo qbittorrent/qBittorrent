@@ -32,6 +32,7 @@
 #include <QDateTime>
 #include <QPalette>
 
+#include "base/global.h"
 #include "guiiconprovider.h"
 #include "loglistwidget.h"
 #include "ui_executionlogwidget.h"
@@ -52,9 +53,9 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
     m_ui->tabBan->layout()->addWidget(m_peerList);
 
     const Logger *const logger = Logger::instance();
-    foreach (const Log::Msg &msg, logger->getMessages())
+    for (const Log::Msg &msg : copyAsConst(logger->getMessages()))
         addLogMessage(msg);
-    foreach (const Log::Peer &peer, logger->getPeers())
+    for (const Log::Peer &peer : copyAsConst(logger->getPeers()))
         addPeerMessage(peer);
     connect(logger, &Logger::newLogMessage, this, &ExecutionLogWidget::addLogMessage);
     connect(logger, &Logger::newLogPeer, this, &ExecutionLogWidget::addPeerMessage);

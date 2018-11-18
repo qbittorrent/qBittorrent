@@ -143,7 +143,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         m_ui->categoryComboBox->addItem(defaultCategory);
     m_ui->categoryComboBox->addItem("");
 
-    foreach (const QString &category, categories)
+    for (const QString &category : qAsConst(categories))
         if (category != defaultCategory && category != m_torrentParams.category)
             m_ui->categoryComboBox->addItem(category);
 
@@ -631,7 +631,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
                 prio = prio::IGNORED;
 
             qDebug("Setting files priority");
-            foreach (const QModelIndex &index, selectedRows) {
+            for (const QModelIndex &index : selectedRows) {
                 qDebug("Setting priority(%d) for file at row %d", prio, index.row());
                 m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), prio);
             }

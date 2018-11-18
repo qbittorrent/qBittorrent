@@ -30,6 +30,7 @@
 
 #include <QListWidgetItem>
 
+#include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
 
@@ -68,7 +69,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-        foreach (auto article, rssItem->articles()) {
+        for (const auto article : copyAsConst(rssItem->articles())) {
             if (!(m_unreadOnly && article->isRead())) {
                 auto item = createItem(article);
                 addItem(item);

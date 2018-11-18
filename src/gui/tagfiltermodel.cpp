@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "guiiconprovider.h"
 
 namespace
@@ -236,7 +237,7 @@ void TagFilterModel::torrentAdded(BitTorrent::TorrentHandle *const torrent)
     if (items.isEmpty())
         untaggedItem()->increaseTorrentsCount();
 
-    foreach (TagModelItem *item, items)
+    for (TagModelItem *item : items)
         item->increaseTorrentsCount();
 }
 
@@ -247,7 +248,7 @@ void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const to
     if (torrent->tags().isEmpty())
         untaggedItem()->decreaseTorrentsCount();
 
-    foreach (TagModelItem *item, findItems(torrent->tags()))
+    for (TagModelItem *item : copyAsConst(findItems(torrent->tags())))
         item->decreaseTorrentsCount();
 }
 
@@ -274,7 +275,7 @@ void TagFilterModel::populate()
                                              [](Torrent *torrent) { return torrent->tags().isEmpty(); });
     addToModel(getSpecialUntaggedTag(), untaggedCount);
 
-    foreach (const QString &tag, session->tags()) {
+    for (const QString &tag : copyAsConst(session->tags())) {
         const int count = std::count_if(torrents.begin(), torrents.end(),
                                         [tag](Torrent *torrent) { return torrent->hasTag(tag); });
         addToModel(tag, count);
@@ -313,7 +314,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
 {
     QVector<TagModelItem *> items;
     items.reserve(tags.size());
-    foreach (const QString &tag, tags) {
+    for (const QString &tag : tags) {
         TagModelItem *item = findItem(tag);
         if (item)
             items.push_back(item);

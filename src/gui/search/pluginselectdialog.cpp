@@ -39,6 +39,7 @@
 #include <QMimeData>
 #include <QTableView>
 
+#include "base/global.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
@@ -110,7 +111,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 
     QStringList files;
     if (event->mimeData()->hasUrls()) {
-        foreach (const QUrl &url, event->mimeData()->urls()) {
+        for (const QUrl &url : copyAsConst(event->mimeData()->urls())) {
             if (!url.isEmpty()) {
                 if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
                     files << url.toLocalFile();
@@ -125,7 +126,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 
     if (files.isEmpty()) return;
 
-    foreach (QString file, files) {
+    for (const QString &file : qAsConst(files)) {
         qDebug("dropped %s", qUtf8Printable(file));
         startAsyncOp();
         m_pluginManager->installPlugin(file);
@@ -135,8 +136,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 // Decode if we accept drag 'n drop or not
 void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
 {
-    QString mime;
-    foreach (mime, event->mimeData()->formats()) {
+    for (const QString &mime : copyAsConst(event->mimeData()->formats())) {
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
@@ -188,7 +188,7 @@ void PluginSelectDialog::on_closeButton_clicked()
 void PluginSelectDialog::on_actionUninstall_triggered()
 {
     bool error = false;
-    foreach (QTreeWidgetItem *item, m_ui->pluginsTree->selectedItems()) {
+    for (QTreeWidgetItem *item : copyAsConst(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -212,7 +212,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
 
 void PluginSelectDialog::enableSelection(bool enable)
 {
-    foreach (QTreeWidgetItem *item, m_ui->pluginsTree->selectedItems()) {
+    for (QTreeWidgetItem *item : copyAsConst(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -265,7 +265,7 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
 {
     // Some clean up first
     m_ui->pluginsTree->clear();
-    foreach (QString name, m_pluginManager->allPlugins())
+    for (const QString &name : copyAsConst(m_pluginManager->allPlugins()))
         addNewPlugin(name);
 }
 
@@ -360,11 +360,11 @@ void PluginSelectDialog::askForPluginUrl()
 
 void PluginSelectDialog::askForLocalPlugin()
 {
-    QStringList pathsList = QFileDialog::getOpenFileNames(
+    const QStringList pathsList = QFileDialog::getOpenFileNames(
                 nullptr, tr("Select search plugins"), QDir::homePath(),
                 tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
                 );
-    foreach (QString path, pathsList) {
+    for (const QString &path : pathsList) {
         startAsyncOp();
         m_pluginManager->installPlugin(path);
     }
@@ -380,7 +380,7 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (!invalid) {
-        foreach (QTreeWidgetItem *item, findItemsWithUrl(url)) {
+        for (QTreeWidgetItem *item : copyAsConst(findItemsWithUrl(url))) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;

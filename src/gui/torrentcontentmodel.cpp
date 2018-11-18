@@ -48,6 +48,7 @@
 #include <QPixmapCache>
 #endif
 
+#include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/fs.h"
 #include "guiiconprovider.h"
@@ -266,14 +267,14 @@ QVector<int> TorrentContentModel::getFilePriorities() const
 {
     QVector<int> prio;
     prio.reserve(m_filesIndex.size());
-    foreach (const TorrentContentModelFile *file, m_filesIndex)
+    for (const TorrentContentModelFile *file : qAsConst(m_filesIndex))
         prio.push_back(file->priority());
     return prio;
 }
 
 bool TorrentContentModel::allFiltered() const
 {
-    foreach (const TorrentContentModelFile *fileItem, m_filesIndex)
+    for (const TorrentContentModelFile *fileItem : qAsConst(m_filesIndex))
         if (fileItem->priority() != prio::IGNORED)
             return false;
     return true;
@@ -476,7 +477,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         // Iterate of parts of the path to create necessary folders
         QStringList pathFolders = path.split('/', QString::SkipEmptyParts);
         pathFolders.removeLast();
-        foreach (const QString &pathPart, pathFolders) {
+        for (const QString &pathPart : qAsConst(pathFolders)) {
             if (pathPart == ".unwanted")
                 continue;
             TorrentContentModelFolder* newParent = currentParent->childFolderWithName(pathPart);

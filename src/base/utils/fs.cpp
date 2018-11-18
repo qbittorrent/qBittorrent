@@ -141,7 +141,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
 
         // remove temp files on linux (file ends with '~'), e.g. `filename~`
         QDir dir(p);
-        QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QStringList tmpFileList = dir.entryList(QDir::Files);
         for (const QString &f : tmpFileList) {
             if (f.endsWith('~'))
                 forceRemove(p + f);

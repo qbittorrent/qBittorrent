@@ -263,7 +263,7 @@ void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersio
     LogMsg(tr("Updating %1 plugins").arg(updateInfo.size()), Log::INFO);
 
     SearchPluginManager *const pluginManager = SearchPluginManager::instance();
-    for (const QString &pluginName : updateInfo.keys()) {
+    for (const QString &pluginName : copyAsConst(updateInfo.keys())) {
         LogMsg(tr("Updating plugin %1").arg(pluginName), Log::INFO);
         pluginManager->updatePlugin(pluginName);
     }

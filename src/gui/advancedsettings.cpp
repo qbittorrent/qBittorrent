@@ -36,6 +36,7 @@
 #include <QNetworkInterface>
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "app/application.h"
@@ -286,13 +287,13 @@ void AdvancedSettings::updateInterfaceAddressCombo()
     };
 
     if (ifaceName.isEmpty()) {
-        foreach (const QHostAddress &ip, QNetworkInterface::allAddresses())
+        for (const QHostAddress &ip : copyAsConst(QNetworkInterface::allAddresses()))
             populateCombo(ip.toString(), ip.protocol());
     }
     else {
         const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
         const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
-        foreach (const QNetworkAddressEntry &entry, addresses) {
+        for (const QNetworkAddressEntry &entry : addresses) {
             const QHostAddress ip = entry.ip();
             populateCombo(ip.toString(), ip.protocol());
         }
@@ -425,7 +426,7 @@ void AdvancedSettings::loadAdvancedSettings()
     const QString currentInterface = session->networkInterface();
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
-    foreach (const QNetworkInterface &iface, QNetworkInterface::allInterfaces()) {
+    for (const QNetworkInterface &iface : copyAsConst(QNetworkInterface::allInterfaces())) {
         // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
         // Tested in Qt 5.6.0. For more info see:
         // https://github.com/qbittorrent/qBittorrent/issues/5131

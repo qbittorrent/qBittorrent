@@ -35,6 +35,7 @@
 #include <QMessageBox>
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "tagfiltermodel.h"
@@ -222,7 +223,7 @@ void TagFilterWidget::removeTag()
 void TagFilterWidget::removeUnusedTags()
 {
     auto session = BitTorrent::Session::instance();
-    foreach (const QString &tag, session->tags())
+    for (const QString &tag : copyAsConst(session->tags()))
         if (model()->data(static_cast<TagFilterProxyModel *>(model())->index(tag), Qt::UserRole) == 0)
             session->removeTag(tag);
     updateGeometry();

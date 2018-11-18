@@ -50,6 +50,7 @@
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include "global.h"
 #include "logger.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
@@ -505,7 +506,7 @@ void Preferences::setWebUiAuthSubnetWhitelistEnabled(bool enabled)
 QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 {
     QList<Utils::Net::Subnet> subnets;
-    foreach (const QString &rawSubnet, value("Preferences/WebUI/AuthSubnetWhitelist").toStringList()) {
+    for (const QString &rawSubnet : copyAsConst(value("Preferences/WebUI/AuthSubnetWhitelist").toStringList())) {
         bool ok = false;
         const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
         if (ok)
@@ -1426,8 +1427,8 @@ void Preferences::setToolbarTextPosition(const int position)
 QList<QNetworkCookie> Preferences::getNetworkCookies() const
 {
     QList<QNetworkCookie> cookies;
-    QStringList rawCookies = value("Network/Cookies").toStringList();
-    foreach (const QString &rawCookie, rawCookies)
+    const QStringList rawCookies = value("Network/Cookies").toStringList();
+    for (const QString &rawCookie : rawCookies)
         cookies << QNetworkCookie::parseCookies(rawCookie.toUtf8());
 
     return cookies;
@@ -1436,7 +1437,7 @@ QList<QNetworkCookie> Preferences::getNetworkCookies() const
 void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
 {
     QStringList rawCookies;
-    foreach (const QNetworkCookie &cookie, cookies)
+    for (const QNetworkCookie &cookie : cookies)
         rawCookies << cookie.toRawForm();
 
     setValue("Network/Cookies", rawCookies);
@@ -1477,10 +1478,10 @@ void Preferences::upgrade()
 {
     SettingsStorage *settingsStorage = SettingsStorage::instance();
 
-    QStringList labels = value("TransferListFilters/customLabels").toStringList();
+    const QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.isEmpty()) {
         QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
-        foreach (const QString &label, labels) {
+        for (const QString &label : labels) {
             if (!categories.contains(label))
                 categories[label] = "";
         }

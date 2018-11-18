@@ -160,8 +160,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
     // Get apply button in button box
-    QList<QAbstractButton *> buttons = m_ui->buttonBox->buttons();
-    foreach (QAbstractButton *button, buttons) {
+    const QList<QAbstractButton *> buttons = m_ui->buttonBox->buttons();
+    for (QAbstractButton *button : buttons) {
         if (m_ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole) {
             m_applyButton = button;
             break;
@@ -469,7 +469,7 @@ void OptionsDialog::initializeLanguageCombo()
     // List language files
     const QDir langDir(":/lang");
     const QStringList langFiles = langDir.entryList(QStringList("qbittorrent_*.qm"), QDir::Files);
-    foreach (const QString langFile, langFiles) {
+    for (const QString &langFile : langFiles) {
         QString localeStr = langFile.mid(12); // remove "qbittorrent_"
         localeStr.chop(3); // Remove ".qm"
         QString languageName;
@@ -493,7 +493,7 @@ OptionsDialog::~OptionsDialog()
 
     saveWindowState();
 
-    foreach (const QString &path, m_addedScanDirs)
+    for (const QString &path : qAsConst(m_addedScanDirs))
         ScanFoldersModel::instance()->removePath(path);
     ScanFoldersModel::instance()->configure(); // reloads "removed" paths
     delete m_ui;
@@ -1504,7 +1504,7 @@ void OptionsDialog::on_removeScanFolderButton_clicked()
     if (selected.isEmpty())
         return;
     Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
-    foreach (const QModelIndex &index, selected) {
+    for (const QModelIndex &index : selected) {
         if (index.column() == ScanFoldersModel::WATCH)
             m_removedScanDirs << index.data().toString();
     }

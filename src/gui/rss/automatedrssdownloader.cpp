@@ -41,6 +41,7 @@
 #include <QString>
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_autodownloader.h"
@@ -131,7 +132,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     loadFeedList();
 
     m_ui->listRules->blockSignals(true);
-    foreach (const RSS::AutoDownloadRule &rule, RSS::AutoDownloader::instance()->rules())
+    for (const RSS::AutoDownloadRule &rule : copyAsConst(RSS::AutoDownloader::instance()->rules()))
         createRuleItem(rule);
     m_ui->listRules->blockSignals(false);
 
@@ -181,7 +182,7 @@ void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
 
-    foreach (auto feed, RSS::Session::instance()->feeds()) {
+    for (const auto feed : copyAsConst(RSS::Session::instance()->feeds())) {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
@@ -211,7 +212,7 @@ void AutomatedRssDownloader::updateFeedList()
         bool allEnabled = true;
         bool anyEnabled = false;
 
-        foreach (const QListWidgetItem *ruleItem, selection) {
+        for (const QListWidgetItem *ruleItem : qAsConst(selection)) {
             auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
             if (rule.feedURLs().contains(feedURL))
                 anyEnabled = true;
@@ -384,7 +385,7 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
     if (QMessageBox::question(this, tr("Rule deletion confirmation"), confirmText, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
         return;
 
-    foreach (QListWidgetItem *item, selection)
+    for (const QListWidgetItem *item : selection)
         RSS::AutoDownloader::instance()->removeRule(item->text());
 }
 
@@ -548,7 +549,7 @@ void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
 void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem)
 {
     const QString feedURL = feedItem->data(Qt::UserRole).toString();
-    foreach (QListWidgetItem *ruleItem, m_ui->listRules->selectedItems()) {
+    for (QListWidgetItem *ruleItem : copyAsConst(m_ui->listRules->selectedItems())) {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
@@ -572,16 +573,16 @@ void AutomatedRssDownloader::updateMatchingArticles()
 {
     m_ui->treeMatchingArticles->clear();
 
-    foreach (const QListWidgetItem *ruleItem, m_ui->listRules->selectedItems()) {
+    for (const QListWidgetItem *ruleItem : copyAsConst(m_ui->listRules->selectedItems())) {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
-        foreach (const QString &feedURL, rule.feedURLs()) {
+        for (const QString &feedURL : copyAsConst(rule.feedURLs())) {
             auto feed = RSS::Session::instance()->feedByURL(feedURL);
             if (!feed) continue; // feed doesn't exist
 
             QStringList matchingArticles;
-            foreach (auto article, feed->articles())
+            for (const auto article : copyAsConst(feed->articles()))
                 if (rule.matches(article->data()))
                     matchingArticles << article->title();
             if (!matchingArticles.isEmpty())
@@ -620,7 +621,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
     }
 
     // Insert the articles
-    foreach (const QString &article, articles) {
+    for (const QString &article : articles) {
         QPair<QString, QString> key(feed->name(), article);
 
         if (!m_treeListEntries.contains(key)) {
@@ -675,10 +676,10 @@ void AutomatedRssDownloader::updateMustLineValidity()
         if (isRegex)
             tokens << text;
         else
-            foreach (const QString &token, text.split('|'))
+            for (const QString &token : copyAsConst(text.split('|')))
                 tokens << Utils::String::wildcardToRegex(token);
 
-        foreach (const QString &token, tokens) {
+        for (const QString &token : qAsConst(tokens)) {
             QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
             if (!reg.isValid()) {
                 if (isRegex)
@@ -713,10 +714,10 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
         if (isRegex)
             tokens << text;
         else
-            foreach (const QString &token, text.split('|'))
+            for (const QString &token : copyAsConst(text.split('|')))
                 tokens << Utils::String::wildcardToRegex(token);
 
-        foreach (const QString &token, tokens) {
+        for (const QString &token : qAsConst(tokens)) {
             QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
             if (!reg.isValid()) {
                 if (isRegex)

@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/settingsstorage.h"
 #include "cookiesmodel.h"
@@ -100,6 +101,6 @@ void CookiesDialog::onButtonDeleteClicked()
         }
     );
 
-    for (const QModelIndex &idx : idxs)
+    for (const QModelIndex &idx : qAsConst(idxs))
         m_cookiesModel->removeRow(idx.row());
 }
