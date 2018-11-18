@@ -391,7 +391,7 @@ QString Utils::Misc::getUserIDString()
 QStringList Utils::Misc::toStringList(const QList<bool> &l)
 {
     QStringList ret;
-    foreach (const bool &b, l)
+    for (const bool b : l)
         ret << (b ? "1" : "0");
     return ret;
 }
@@ -399,7 +399,7 @@ QStringList Utils::Misc::toStringList(const QList<bool> &l)
 QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
 {
     QList<int> ret;
-    foreach (const QString &s, l)
+    for (const QString &s : l)
         ret << s.toInt();
     return ret;
 }
@@ -407,7 +407,7 @@ QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
 QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
 {
     QList<bool> ret;
-    foreach (const QString &s, l)
+    for (const QString &s : l)
         ret << (s == "1");
     return ret;
 }

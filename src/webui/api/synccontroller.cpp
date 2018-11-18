@@ -35,6 +35,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
@@ -133,7 +134,7 @@ namespace
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
         quint32 peers = 0;
-        foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+        for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
             peers += torrent->peersCount();
         map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
         map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
@@ -268,7 +269,7 @@ namespace
             syncData = data;
         }
         else {
-            foreach (QVariant item, data) {
+            for (const QVariant &item : data) {
                 if (!prevData.contains(item))
                     // new list item found - append it to syncData
                     syncData.append(item);
@@ -409,7 +410,7 @@ void SyncController::maindataAction()
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    foreach (BitTorrent::TorrentHandle *const torrent, session->torrents()) {
+    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(session->torrents())) {
         QVariantMap map = serialize(*torrent);
         map.remove(KEY_TORRENT_HASH);
 
@@ -468,7 +469,7 @@ void SyncController::torrentPeersAction()
 
     QVariantMap data;
     QVariantHash peers;
-    QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+    const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 #else
@@ -477,7 +478,7 @@ void SyncController::torrentPeersAction()
 
     data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
 
-    foreach (const BitTorrent::PeerInfo &pi, peersList) {
+    for (const BitTorrent::PeerInfo &pi : peersList) {
         if (pi.address().ip.isNull()) continue;
         QVariantMap peer;
 #ifndef DISABLE_COUNTRIES_RESOLUTION

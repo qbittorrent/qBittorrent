@@ -141,14 +141,14 @@ void TorrentCreatorThread::run()
 #endif
 
         // Add url seeds
-        foreach (QString seed, m_params.urlSeeds) {
+        for (QString seed : qAsConst(m_params.urlSeeds)) {
             seed = seed.trimmed();
             if (!seed.isEmpty())
                 newTorrent.add_url_seed(seed.toStdString());
         }
 
         int tier = 0;
-        foreach (const QString &tracker, m_params.trackers) {
+        for (const QString &tracker : qAsConst(m_params.trackers)) {
             if (tracker.isEmpty())
                 ++tier;
             else

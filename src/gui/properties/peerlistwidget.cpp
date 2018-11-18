@@ -248,9 +248,9 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     if (!act) return;
 
     if (act == addPeerAct) {
-        QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+        const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
         int peerCount = 0;
-        foreach (const BitTorrent::PeerAddress &addr, peersList) {
+        for (const BitTorrent::PeerAddress &addr : peersList) {
             if (torrent->connectPeer(addr)) {
                 qDebug("Adding peer %s...", qUtf8Printable(addr.ip.toString()));
                 Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
@@ -284,8 +284,8 @@ void PeerListWidget::banSelectedPeers()
                                     QString(), 0, 1);
     if (ret) return;
 
-    QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    foreach (const QModelIndex &index, selectedIndexes) {
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+    for (const QModelIndex &index : selectedIndexes) {
         int row = m_proxyModel->mapToSource(index).row();
         QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
         qDebug("Banning peer %s...", ip.toLocal8Bit().data());
@@ -298,9 +298,9 @@ void PeerListWidget::banSelectedPeers()
 
 void PeerListWidget::copySelectedPeers()
 {
-    QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     QStringList selectedPeers;
-    foreach (const QModelIndex &index, selectedIndexes) {
+    for (const QModelIndex &index : selectedIndexes) {
         int row = m_proxyModel->mapToSource(index).row();
         QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
         QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
@@ -339,10 +339,10 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
 {
     if (!torrent) return;
 
-    QList<BitTorrent::PeerInfo> peers = torrent->peers();
+    const QList<BitTorrent::PeerInfo> peers = torrent->peers();
     QSet<QString> oldPeersSet = m_peerItems.keys().toSet();
 
-    foreach (const BitTorrent::PeerInfo &peer, peers) {
+    for (const BitTorrent::PeerInfo &peer : peers) {
         BitTorrent::PeerAddress addr = peer.address();
         if (addr.ip.isNull()) continue;
 

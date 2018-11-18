@@ -247,7 +247,7 @@ QList<TrackerEntry> TorrentInfo::trackers() const
     if (!isValid()) return QList<TrackerEntry>();
 
     QList<TrackerEntry> trackers;
-    foreach (const libt::announce_entry &tracker, m_nativeInfo->trackers())
+    for (const libt::announce_entry &tracker : m_nativeInfo->trackers())
         trackers.append(tracker);
 
     return trackers;
@@ -258,7 +258,7 @@ QList<QUrl> TorrentInfo::urlSeeds() const
     if (!isValid()) return QList<QUrl>();
 
     QList<QUrl> urlSeeds;
-    foreach (const libt::web_seed_entry &webSeed, m_nativeInfo->web_seeds())
+    for (const libt::web_seed_entry &webSeed : m_nativeInfo->web_seeds())
         if (webSeed.type == libt::web_seed_entry::url_seed)
             urlSeeds.append(QUrl(webSeed.url.c_str()));
 

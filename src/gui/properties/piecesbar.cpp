@@ -259,7 +259,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
             stream << "<html><body>";
             PieceIndexToImagePos transform {m_torrent->info(), m_image};
             int pieceIndex = transform.pieceIndex(imagePos);
-            QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
+            const QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
 
             QString tooltipTitle;
             if (files.count() > 1) {

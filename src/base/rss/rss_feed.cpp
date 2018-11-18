@@ -109,7 +109,7 @@ QList<Article *> Feed::articles() const
 void Feed::markAsRead()
 {
     auto oldUnreadCount = m_unreadCount;
-    foreach (Article *article, m_articles) {
+    for (Article *article : qAsConst(m_articles)) {
         if (!article->isRead()) {
             article->disconnect(this);
             article->markAsRead();
@@ -282,9 +282,9 @@ void Feed::loadArticles(const QByteArray &data)
         return;
     }
 
-    QJsonArray jsonArr = jsonDoc.array();
+    const QJsonArray jsonArr = jsonDoc.array();
     int i = -1;
-    foreach (const QJsonValue &jsonVal, jsonArr) {
+    for (const QJsonValue &jsonVal : jsonArr) {
         ++i;
         if (!jsonVal.isObject()) {
             LogMsg(tr("Couldn't load RSS article '%1#%2'. Invalid data format.").arg(m_url).arg(i)
@@ -304,9 +304,9 @@ void Feed::loadArticles(const QByteArray &data)
 void Feed::loadArticlesLegacy()
 {
     SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
-    QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
+    const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
-    foreach (const QVariant &var, allOldItems.value(m_url).toList()) {
+    for (const QVariant &var : copyAsConst(allOldItems.value(m_url).toList())) {
         auto hash = var.toHash();
         // update legacy keys
         hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));
@@ -329,7 +329,7 @@ void Feed::store()
     m_savingTimer.stop();
 
     QJsonArray jsonArr;
-    foreach (Article *article, m_articles)
+    for (Article *article :qAsConst(m_articles))
         jsonArr << article->toJsonObject();
 
     m_session->dataFileStorage()->store(m_dataFileName, QJsonDocument(jsonArr).toJson());

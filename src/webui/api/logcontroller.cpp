@@ -30,6 +30,7 @@
 
 #include <QJsonArray>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/string.h"
 
@@ -71,7 +72,7 @@ void LogController::mainAction()
     Logger *const logger = Logger::instance();
     QVariantList msgList;
 
-    foreach (const Log::Msg &msg, logger->getMessages(lastKnownId)) {
+    for (const Log::Msg &msg : copyAsConst(logger->getMessages(lastKnownId))) {
         if (!((msg.type == Log::NORMAL && isNormal)
               || (msg.type == Log::INFO && isInfo)
               || (msg.type == Log::WARNING && isWarning)
@@ -110,7 +111,7 @@ void LogController::peersAction()
     Logger *const logger = Logger::instance();
     QVariantList peerList;
 
-    foreach (const Log::Peer &peer, logger->getPeers(lastKnownId)) {
+    for (const Log::Peer &peer : copyAsConst(logger->getPeers(lastKnownId))) {
         QVariantMap map;
         map[KEY_LOG_ID] = peer.id;
         map[KEY_LOG_TIMESTAMP] = peer.timestamp;

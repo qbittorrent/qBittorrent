@@ -32,6 +32,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
@@ -89,7 +90,7 @@ void StatsDialog::update()
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
     quint32 peers = 0;
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
+    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
         peers += torrent->peersCount();
 
     m_ui->labelWriteStarve->setText(QString("%1%")

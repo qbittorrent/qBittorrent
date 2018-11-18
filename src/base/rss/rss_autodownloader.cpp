@@ -435,8 +435,8 @@ void AutoDownloader::loadRules(const QByteArray &data)
 void AutoDownloader::loadRulesLegacy()
 {
     SettingsPtr settings = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss"));
-    QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
-    foreach (const QVariant &ruleVar, rules) {
+    const QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
+    for (const QVariant &ruleVar : rules) {
         auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
         if (!rule.name().isEmpty())
             insertRule(rule);
@@ -451,7 +451,7 @@ void AutoDownloader::store()
     m_savingTimer.stop();
 
     QJsonObject jsonObj;
-    foreach (auto rule, m_rules)
+    for (const auto &rule : qAsConst(m_rules))
         jsonObj.insert(rule.name(), rule.toJsonObject());
 
     m_fileStorage->store(RulesFileName, QJsonDocument(jsonObj).toJson());
@@ -473,7 +473,7 @@ void AutoDownloader::resetProcessingQueue()
     m_processingQueue.clear();
     if (!m_processingEnabled) return;
 
-    foreach (Article *article, Session::instance()->rootFolder()->articles()) {
+    for (Article *article : copyAsConst(Session::instance()->rootFolder()->articles())) {
         if (!article->isRead() && !article->torrentUrl().isEmpty())
             addJobForArticle(article);
     }

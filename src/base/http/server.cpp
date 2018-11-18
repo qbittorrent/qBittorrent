@@ -146,9 +146,9 @@ QList<QSslCipher> Server::safeCipherList() const
     const QStringList badCiphers = {"idea", "rc4"};
     const QList<QSslCipher> allCiphers = QSslSocket::supportedCiphers();
     QList<QSslCipher> safeCiphers;
-    foreach (const QSslCipher &cipher, allCiphers) {
+    for (const QSslCipher &cipher : allCiphers) {
         bool isSafe = true;
-        foreach (const QString &badCipher, badCiphers) {
+        for (const QString &badCipher : badCiphers) {
             if (cipher.name().contains(badCipher, Qt::CaseInsensitive)) {
                 isSafe = false;
                 break;

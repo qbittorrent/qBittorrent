@@ -511,7 +511,7 @@ void PropertiesWidget::loadUrlSeeds()
     qDebug("Loading URL seeds");
     const QList<QUrl> hcSeeds = m_torrent->urlSeeds();
     // Add url seeds
-    foreach (const QUrl &hcSeed, hcSeeds) {
+    for (const QUrl &hcSeed : hcSeeds) {
         qDebug("Loading URL seed: %s", qUtf8Printable(hcSeed.toString()));
         new QListWidgetItem(hcSeed.toString(), m_ui->listWebSeeds);
     }
@@ -582,7 +582,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
 {
     if (!m_torrent) return;
 
-    QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
+    const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedRows.empty()) return;
 
     QMenu myFilesLlistMenu;
@@ -630,7 +630,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
             prio = prio::IGNORED;
 
         qDebug("Setting files priority");
-        foreach (QModelIndex index, selectedRows) {
+        for (const QModelIndex &index : selectedRows) {
             qDebug("Setting priority(%d) for file at row %d", prio, index.row());
             m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), prio);
         }
@@ -847,7 +847,7 @@ void PropertiesWidget::deleteSelectedUrlSeeds()
     if (selectedItems.isEmpty()) return;
 
     QList<QUrl> urlSeeds;
-    foreach (const QListWidgetItem *item, selectedItems)
+    for (const QListWidgetItem *item : selectedItems)
         urlSeeds << item->text();
 
     m_torrent->removeUrlSeeds(urlSeeds);
@@ -861,7 +861,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const
     if (selectedItems.isEmpty()) return;
 
     QStringList urlsToCopy;
-    foreach (QListWidgetItem *item, selectedItems)
+    for (const QListWidgetItem *item : selectedItems)
         urlsToCopy << item->text();
 
     QApplication::clipboard()->setText(urlsToCopy.join('\n'));

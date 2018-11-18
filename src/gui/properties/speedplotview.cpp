@@ -274,7 +274,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
-    QVector<QString> speedLabels = {
+    const QVector<QString> speedLabels = {
         formatLabel(niceScale.arg, niceScale.unit),
         formatLabel((0.75 * niceScale.arg), niceScale.unit),
         formatLabel((0.50 * niceScale.arg), niceScale.unit),

@@ -113,7 +113,7 @@ namespace
     void applyToTorrents(const QStringList &hashes, const std::function<void (BitTorrent::TorrentHandle *torrent)> &func)
     {
         if ((hashes.size() == 1) && (hashes[0] == QLatin1String("all"))) {
-            foreach (BitTorrent::TorrentHandle *torrent, BitTorrent::Session::instance()->torrents())
+            for (BitTorrent::TorrentHandle *torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
                 func(torrent);
         }
         else {
@@ -167,7 +167,7 @@ void TorrentsController::infoAction()
 
     QVariantList torrentList;
     TorrentFilter torrentFilter(filter, (hashSet.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
+    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents())) {
         if (torrentFilter.match(torrent))
             torrentList.append(serialize(*torrent));
     }
@@ -307,7 +307,7 @@ void TorrentsController::trackersAction()
         throw APIError(APIErrorType::NotFound);
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
-    foreach (const BitTorrent::TrackerEntry &tracker, torrent->trackers()) {
+    for (const BitTorrent::TrackerEntry &tracker : copyAsConst(torrent->trackers())) {
         QVariantMap trackerDict;
         trackerDict[KEY_TRACKER_URL] = tracker.url();
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
@@ -346,7 +346,7 @@ void TorrentsController::webseedsAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    foreach (const QUrl &webseed, torrent->urlSeeds()) {
+    for (const QUrl &webseed : copyAsConst(torrent->urlSeeds())) {
         QVariantMap webSeedDict;
         webSeedDict[KEY_WEBSEED_URL] = webseed.toString();
         webSeedList.append(webSeedDict);
@@ -419,7 +419,7 @@ void TorrentsController::pieceHashesAction()
 
     const QVector<QByteArray> hashes = torrent->info().pieceHashes();
     pieceHashes.reserve(hashes.size());
-    foreach (const QByteArray &hash, hashes)
+    for (const QByteArray &hash : hashes)
         pieceHashes.append(hash.toHex());
 
     setResult(QJsonArray::fromVariantList(pieceHashes));
@@ -531,7 +531,7 @@ void TorrentsController::addTrackersAction()
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (torrent) {
         QList<BitTorrent::TrackerEntry> trackers;
-        foreach (QString url, params()["urls"].split('\n')) {
+        for (QString url : copyAsConst(params()["urls"].split('\n'))) {
             url = url.trimmed();
             if (!url.isEmpty())
                 trackers << url;
@@ -575,7 +575,7 @@ void TorrentsController::uploadLimitAction()
 
     const QStringList hashes {params()["hashes"].split('|')};
     QVariantMap map;
-    foreach (const QString &hash, hashes) {
+    for (const QString &hash : hashes) {
         int limit = -1;
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent)
@@ -592,7 +592,7 @@ void TorrentsController::downloadLimitAction()
 
     const QStringList hashes {params()["hashes"].split('|')};
     QVariantMap map;
-    foreach (const QString &hash, hashes) {
+    for (const QString &hash : hashes) {
         int limit = -1;
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
         if (torrent)

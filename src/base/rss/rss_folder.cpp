@@ -47,7 +47,7 @@ Folder::~Folder()
 {
     emit aboutToBeDestroyed(this);
 
-    foreach (auto item, items())
+    for (auto item : copyAsConst(items()))
         delete item;
 }
 
@@ -55,7 +55,7 @@ QList<Article *> Folder::articles() const
 {
     QList<Article *> news;
 
-    foreach (Item *item, items()) {
+    for (Item *item : copyAsConst(items())) {
         int n = news.size();
         news << item->articles();
         std::inplace_merge(news.begin(), news.begin() + n, news.end()
@@ -70,20 +70,20 @@ QList<Article *> Folder::articles() const
 int Folder::unreadCount() const
 {
     int count = 0;
-    foreach (Item *item, items())
+    for (Item *item : copyAsConst(items()))
         count += item->unreadCount();
     return count;
 }
 
 void Folder::markAsRead()
 {
-    foreach (Item *item, items())
+    for (Item *item : copyAsConst(items()))
         item->markAsRead();
 }
 
 void Folder::refresh()
 {
-    foreach (Item *item, items())
+    for (Item *item : copyAsConst(items()))
         item->refresh();
 }
 
@@ -95,7 +95,7 @@ QList<Item *> Folder::items() const
 QJsonValue Folder::toJsonValue(bool withData) const
 {
     QJsonObject jsonObj;
-    foreach (Item *item, items())
+    for (Item *item : copyAsConst(items()))
         jsonObj.insert(item->name(), item->toJsonValue(withData));
 
     return jsonObj;
@@ -108,7 +108,7 @@ void Folder::handleItemUnreadCountChanged()
 
 void Folder::cleanup()
 {
-    foreach (Item *item, items())
+    for (Item *item : copyAsConst(items()))
         item->cleanup();
 }
 

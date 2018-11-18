@@ -133,7 +133,7 @@ bool Connection::acceptsGzipEncoding(QString codings)
 
     const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
     {
-        foreach (const QString &str, list) {
+        for (const QString &str : list) {
             if (!str.startsWith(encoding))
                 continue;
 

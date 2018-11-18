@@ -179,9 +179,9 @@ bool upgrade(bool ask = true)
 
     // ****************************************************************************************
     // Silently converts old v3.3.x .fastresume files
-    QStringList backupFiles_3_3 = backupFolderDir.entryList(
+    const QStringList backupFiles_3_3 = backupFolderDir.entryList(
                 QStringList(QLatin1String("*.fastresume.*")), QDir::Files, QDir::Unsorted);
-    foreach (const QString &backupFile, backupFiles_3_3)
+    for (const QString &backupFile : backupFiles_3_3)
         upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
     // ****************************************************************************************
 
@@ -197,10 +197,10 @@ bool upgrade(bool ask = true)
 
     if (ask && !userAcceptsUpgrade()) return false;
 
-    QStringList backupFiles = backupFolderDir.entryList(
+    const QStringList backupFiles = backupFolderDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
     const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
-    foreach (QString backupFile, backupFiles) {
+    for (const QString &backupFile : backupFiles) {
         const QRegularExpressionMatch rxMatch = rx.match(backupFile);
         if (rxMatch.hasMatch()) {
             const QString hashStr = rxMatch.captured(1);
@@ -265,7 +265,7 @@ void migratePlistToIni(const QString &application)
     plistFile->setFallbacksEnabled(false);
     const QStringList plist = plistFile->allKeys();
     if (!plist.isEmpty()) {
-        foreach (const QString &key, plist)
+        for (const QString &key : plist)
             iniFile.setValue(key, plistFile->value(key));
         plistFile->clear();
     }

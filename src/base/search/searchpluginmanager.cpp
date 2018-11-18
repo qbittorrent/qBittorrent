@@ -133,7 +133,7 @@ QStringList SearchPluginManager::supportedCategories() const
     QStringList result;
     for (const PluginInfo *plugin : qAsConst(m_plugins)) {
         if (plugin->enabled) {
-            foreach (QString cat, plugin->supportedCategories) {
+            for (const QString &cat : plugin->supportedCategories) {
                 if (!result.contains(cat))
                     result << cat;
             }
@@ -277,9 +277,8 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     QDir pluginsFolder(pluginsLocation());
     QStringList filters;
     filters << name + ".*";
-    QStringList files = pluginsFolder.entryList(filters, QDir::Files, QDir::Unsorted);
-    QString file;
-    foreach (file, files)
+    const QStringList files = pluginsFolder.entryList(filters, QDir::Files, QDir::Unsorted);
+    for (const QString &file : files)
         Utils::Fs::forceRemove(pluginsFolder.absoluteFilePath(file));
     // Remove it from supported engines
     delete m_plugins.take(name);

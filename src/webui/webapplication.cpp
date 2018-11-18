@@ -649,7 +649,8 @@ void WebApplication::sessionStart()
 
     // remove outdated sessions
     const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    foreach (const auto session, m_sessions) {
+    const QMap<QString, WebSession *> sessionsCopy {m_sessions};
+    for (const auto session : sessionsCopy) {
         if ((now - session->timestamp()) > INACTIVE_TIME)
             delete m_sessions.take(session->id());
     }
