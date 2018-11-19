@@ -158,7 +158,9 @@ script:
       if [ "$TRAVIS_OS_NAME" = "osx" ]; then
         # For some reason for RC_1_1 we need to also specify the OpenSSL compiler/linker flags
         # Homebrew doesn't symlink OpenSSL for security reasons
-        ./bootstrap.sh && ./configure $qbtconf CXXFLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --cflags openssl)" LDFLAGS="$(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --libs openssl)"
+        ./bootstrap.sh
+        ./configure $qbtconf CXXFLAGS="$CXXFLAGS $(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --cflags openssl) -std=c++14" \
+          LDFLAGS="$LDFLAGS $(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --libs openssl)"
         sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
         sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile
         sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile

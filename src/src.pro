@@ -2,9 +2,6 @@
 TEMPLATE = app
 CONFIG += qt thread silent
 
-# C++11 support
-CONFIG += c++11
-
 # Platform specific configuration
 win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
