@@ -474,7 +474,7 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
         return (a1.first > a2.first);
     });
 
-    if (sortData.size() > m_session->maxArticlesPerFeed())
+    if (sortData.size() > static_cast<uint>(m_session->maxArticlesPerFeed()))
         sortData.resize(m_session->maxArticlesPerFeed());
 
     int newArticlesCount = 0;
