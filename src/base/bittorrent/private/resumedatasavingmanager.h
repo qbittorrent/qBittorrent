@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef RESUMEDATASAVINGMANAGER_H
-#define RESUMEDATASAVINGMANAGER_H
+#pragma once
 
 #include <QByteArray>
 #include <QDir>
@@ -36,15 +35,15 @@
 class ResumeDataSavingManager : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(ResumeDataSavingManager)
 
 public:
     explicit ResumeDataSavingManager(const QString &resumeFolderPath);
 
 public slots:
-    void saveResumeData(QString infoHash, QByteArray data) const;
+    void save(const QString &filename, const QByteArray &data) const;
+    void remove(const QString &filename) const;
 
 private:
     QDir m_resumeDataDir;
 };
-
-#endif // RESUMEDATASAVINGMANAGER_H

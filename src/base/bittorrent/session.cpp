@@ -69,6 +69,7 @@
 #endif
 
 #include "base/algorithm.h"
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
@@ -532,7 +533,7 @@ Session::Session(QObject *parent)
     connect(&m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
 
     m_ioThread = new QThread(this);
-    m_resumeDataSavingManager = new ResumeDataSavingManager(m_resumeFolderPath);
+    m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
     m_ioThread->start();
@@ -1978,8 +1979,8 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
 void Session::increaseTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::greater<QPair<int, TorrentHandle *> > > torrentQueue;
+            std::vector<QPair<int, TorrentHandle *>>,
+            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -1995,14 +1996,14 @@ void Session::increaseTorrentsPriority(const QStringList &hashes)
         torrentQueue.pop();
     }
 
-    handleTorrentsPrioritiesChanged();
+    saveTorrentsQueue();
 }
 
 void Session::decreaseTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::less<QPair<int, TorrentHandle *> > > torrentQueue;
+            std::vector<QPair<int, TorrentHandle *>>,
+            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -2021,14 +2022,14 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
     for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
 
-    handleTorrentsPrioritiesChanged();
+    saveTorrentsQueue();
 }
 
 void Session::topTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::greater<QPair<int, TorrentHandle *> > > torrentQueue;
+            std::vector<QPair<int, TorrentHandle *>>,
+            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -2044,14 +2045,14 @@ void Session::topTorrentsPriority(const QStringList &hashes)
         torrentQueue.pop();
     }
 
-    handleTorrentsPrioritiesChanged();
+    saveTorrentsQueue();
 }
 
 void Session::bottomTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *> >,
-            std::less<QPair<int, TorrentHandle *> > > torrentQueue;
+            std::vector<QPair<int, TorrentHandle *>>,
+            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     foreach (const InfoHash &hash, hashes) {
@@ -2070,7 +2071,7 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
     for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(i.key()));
 
-    handleTorrentsPrioritiesChanged();
+    saveTorrentsQueue();
 }
 
 QHash<InfoHash, TorrentHandle *> Session::torrents() const
@@ -2379,11 +2380,13 @@ void Session::generateResumeData(bool final)
 // Called on exit
 void Session::saveResumeData()
 {
-    qDebug("Saving fast resume data...");
+    qDebug("Saving resume data...");
 
     // Pause session
     m_nativeSession->pause();
 
+    if (isQueueingSystemEnabled())
+        saveTorrentsQueue();
     generateResumeData(true);
 
     while (m_numResumeData > 0) {
@@ -2406,6 +2409,31 @@ void Session::saveResumeData()
 #endif
         }
     }
+}
+
+void Session::saveTorrentsQueue()
+{
+    QMap<int, QString> queue; // Use QMap since it should be ordered by key
+    for (const TorrentHandle *torrent : copyAsConst(torrents())) {
+        // We require actual (non-cached) queue position here!
+        const int queuePos = torrent->nativeHandle().queue_position();
+        if (queuePos >= 0)
+            queue[queuePos] = torrent->hash();
+    }
+
+    QByteArray data;
+    for (const QString &hash : qAsConst(queue))
+        data += (hash.toLatin1() + '\n');
+
+    const QString filename = QLatin1String {"queue"};
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
+                              , Q_ARG(QString, filename), Q_ARG(QByteArray, data));
+}
+
+void Session::removeTorrentsQueue()
+{
+    const QString filename = QLatin1String {"queue"};
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, filename));
 }
 
 void Session::setDefaultSavePath(QString path)
@@ -3213,6 +3241,11 @@ void Session::setQueueingSystemEnabled(bool enabled)
     if (enabled != m_isQueueingEnabled) {
         m_isQueueingEnabled = enabled;
         configureDeferred();
+
+        if (enabled)
+            saveTorrentsQueue();
+        else
+            removeTorrentsQueue();
     }
 }
 
@@ -3543,18 +3576,6 @@ void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
     updateSeedingLimitTimer();
 }
 
-void Session::handleTorrentsPrioritiesChanged()
-{
-    // Save fastresume for the torrents that changed queue position
-    for (TorrentHandle *const torrent : torrents()) {
-        if (!torrent->isSeed()) {
-            // cached vs actual queue position, qBt starts queue at 1
-            if (torrent->queuePosition() != (torrent->nativeHandle().queue_position() + 1))
-                saveTorrentResumeData(torrent);
-        }
-    }
-}
-
 void Session::saveTorrentResumeData(TorrentHandle *const torrent)
 {
     qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
@@ -3677,11 +3698,8 @@ void Session::handleTorrentChecked(TorrentHandle *const torrent)
 
 void Session::handleTorrentFinished(TorrentHandle *const torrent)
 {
-    if (!torrent->hasError() && !torrent->hasMissingFiles()) {
+    if (!torrent->hasError() && !torrent->hasMissingFiles())
         saveTorrentResumeData(torrent);
-        if (isQueueingSystemEnabled())
-            handleTorrentsPrioritiesChanged();
-    }
     emit torrentFinished(torrent);
 
     qDebug("Checking if the torrent contains torrent files to download");
@@ -3724,8 +3742,9 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
     QByteArray out;
     libt::bencode(std::back_inserter(out), data);
 
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "saveResumeData",
-                              Q_ARG(QString, torrent->hash()), Q_ARG(QByteArray, out));
+    const QString filename = QString("%1.fastresume").arg(torrent->hash());
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save",
+                              Q_ARG(QString, filename), Q_ARG(QByteArray, out));
 }
 
 void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
@@ -3894,56 +3913,97 @@ void Session::startUpTorrents()
         ++resumedTorrentsCount;
     };
 
-    qDebug("Starting up torrents");
+    qDebug("Starting up torrents...");
     qDebug("Queue size: %d", fastresumes.size());
-    // Resume downloads
-    QMap<int, TorrentResumeData> queuedResumeData;
-    int nextQueuePosition = 1;
-    int numOfRemappedFiles = 0;
+
     const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
-    foreach (const QString &fastresumeName, fastresumes) {
+
+    if (isQueueingSystemEnabled()) {
+        QFile queueFile {resumeDataDir.absoluteFilePath(QLatin1String {"queue"})};
+
+        // TODO: The following code is deprecated in 4.1.5. Remove after several releases in 4.2.x.
+        // === BEGIN DEPRECATED CODE === //
+        if (!queueFile.exists()) {
+            // Resume downloads in a legacy manner
+            QMap<int, TorrentResumeData> queuedResumeData;
+            int nextQueuePosition = 1;
+            int numOfRemappedFiles = 0;
+            foreach (const QString &fastresumeName, fastresumes) {
+                const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
+                if (!rxMatch.hasMatch()) continue;
+
+                QString hash = rxMatch.captured(1);
+                QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
+                QByteArray data;
+                CreateTorrentParams torrentParams;
+                MagnetUri magnetUri;
+                int queuePosition;
+                if (readFile(fastresumePath, data) && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
+                    if (queuePosition <= nextQueuePosition) {
+                        startupTorrent({ hash, magnetUri, torrentParams, data });
+
+                        if (queuePosition == nextQueuePosition) {
+                            ++nextQueuePosition;
+                            while (queuedResumeData.contains(nextQueuePosition)) {
+                                startupTorrent(queuedResumeData.take(nextQueuePosition));
+                                ++nextQueuePosition;
+                            }
+                        }
+                    }
+                    else {
+                        int q = queuePosition;
+                        for (; queuedResumeData.contains(q); ++q) {}
+                        if (q != queuePosition)
+                            ++numOfRemappedFiles;
+                        queuedResumeData[q] = {hash, magnetUri, torrentParams, data};
+                    }
+                }
+            }
+
+            if (numOfRemappedFiles > 0) {
+                logger->addMessage(
+                            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
+                            Log::CRITICAL);
+            }
+
+            // starting up downloading torrents (queue position > 0)
+            foreach (const TorrentResumeData &torrentResumeData, queuedResumeData)
+                startupTorrent(torrentResumeData);
+
+            return;
+        }
+        // === END DEPRECATED CODE === //
+
+        QStringList queue;
+        if (queueFile.open(QFile::ReadOnly)) {
+            QByteArray line;
+            while (!(line = queueFile.readLine()).isEmpty())
+                queue.append(QString::fromLatin1(line.trimmed()) + QLatin1String {".fastresume"});
+        }
+        else {
+            LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
+                   .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
+        }
+
+        if (!queue.empty())
+            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).toList();
+    }
+
+    for (const QString &fastresumeName : qAsConst(fastresumes)) {
         const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
         if (!rxMatch.hasMatch()) continue;
 
-        QString hash = rxMatch.captured(1);
-        QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
+        const QString hash = rxMatch.captured(1);
+        const QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
         QByteArray data;
         CreateTorrentParams torrentParams;
         MagnetUri magnetUri;
         int queuePosition;
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
-            if (queuePosition <= nextQueuePosition) {
-                startupTorrent({ hash, magnetUri, torrentParams, data });
-
-                if (queuePosition == nextQueuePosition) {
-                    ++nextQueuePosition;
-                    while (queuedResumeData.contains(nextQueuePosition)) {
-                        startupTorrent(queuedResumeData.take(nextQueuePosition));
-                        ++nextQueuePosition;
-                    }
-                }
-            }
-            else {
-                int q = queuePosition;
-                for (; queuedResumeData.contains(q); ++q) {
-                }
-                if (q != queuePosition) {
-                    ++numOfRemappedFiles;
-                }
-                queuedResumeData[q] = {hash, magnetUri, torrentParams, data};
-            }
+        if (readFile(fastresumePath, data)
+            && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
+            startupTorrent({hash, magnetUri, torrentParams, data});
         }
     }
-
-    if (numOfRemappedFiles > 0) {
-        logger->addMessage(
-            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
-            Log::CRITICAL);
-    }
-
-    // starting up downloading torrents (queue position > 0)
-    foreach (const TorrentResumeData &torrentResumeData, queuedResumeData)
-        startupTorrent(torrentResumeData);
 }
 
 quint64 Session::getAlltimeDL() const
