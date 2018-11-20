@@ -411,7 +411,6 @@
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
         <label class="leftLabelMedium" for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_address_value" />
         <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_port_value" style="width: 4em;" /><br/>
-        <label class="leftLabelMedium" for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label><textarea id="webui_domain_textarea" rows="1" cols="70"></textarea><br/>
         <input type="checkbox" id="webui_upnp_checkbox" />
         <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label><br/>
         <fieldset class="settings">
@@ -449,14 +448,28 @@
             </div>
         </fieldset>
 
-        <div class="formRow">
-            <input type="checkbox" id="clickjacking_protection_checkbox" />
-            <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="csrf_protection_checkbox" />
-            <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
+        <fieldset class="settings">
+            <legend>QBT_TR(Security)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <input type="checkbox" id="clickjacking_protection_checkbox" />
+                <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="csrf_protection_checkbox" />
+                <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+
+            <fieldset class="settings">
+                <legend>
+                    <input type="checkbox" id="host_header_validation_checkbox" onclick="updateHostHeaderValidationSettings();" />
+                    <label for="host_header_validation_checkbox">QBT_TR(Enable Host header validation)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </legend>
+                <div class="formRow">
+                    <label class="leftLabelMedium" for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <textarea id="webui_domain_textarea" rows="1" cols="60"></textarea>
+                </div>
+            </fieldset>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -710,6 +723,11 @@
     updateBypasssAuthSettings = function() {
         var isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
         $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
+    };
+
+    updateHostHeaderValidationSettings = function() {
+        var isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
+        $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
     };
 
     updateDynDnsSettings = function() {
@@ -971,6 +989,8 @@
                     // Security
                     $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                     $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                    $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
+                    updateHostHeaderValidationSettings();
 
                     // Update my dynamic domain name
                     $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -1256,6 +1276,7 @@
 
         settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
         settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
+        settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
 
         // Update my dynamic domain name
         settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
