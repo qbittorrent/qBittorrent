@@ -657,7 +657,10 @@ void WebApplication::sessionStart()
     QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
     cookie.setHttpOnly(true);
     cookie.setPath(QLatin1String("/"));
-    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+    QByteArray cookieRawForm = cookie.toRawForm();
+    if (m_isCSRFProtectionEnabled)
+        cookieRawForm.append("; SameSite=Strict");
+    header(Http::HEADER_SET_COOKIE, cookieRawForm);
 }
 
 void WebApplication::sessionEnd()
