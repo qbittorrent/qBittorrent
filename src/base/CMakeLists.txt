@@ -54,6 +54,7 @@ utils/fs.h
 utils/gzip.h
 utils/misc.h
 utils/net.h
+utils/password.h
 utils/random.h
 utils/string.h
 utils/version.h
@@ -123,6 +124,7 @@ utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
 utils/net.cpp
+utils/password.cpp
 utils/random.cpp
 utils/string.cpp
 asyncfilestorage.cpp

@@ -193,8 +193,8 @@ public:
     void setWebUiAuthSubnetWhitelist(QStringList subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
-    QString getWebUiPassword() const;
-    void setWebUiPassword(const QString &newPassword);
+    QByteArray getWebUIPassword() const;
+    void setWebUIPassword(const QByteArray &password);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

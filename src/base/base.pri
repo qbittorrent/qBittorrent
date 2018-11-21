@@ -69,6 +69,7 @@ HEADERS += \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/net.h \
+    $$PWD/utils/password.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
     $$PWD/utils/version.h
@@ -133,5 +134,6 @@ SOURCES += \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/net.cpp \
+    $$PWD/utils/password.cpp \
     $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp

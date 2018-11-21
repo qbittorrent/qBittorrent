@@ -59,6 +59,7 @@
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
@@ -728,7 +729,8 @@ void OptionsDialog::saveOptions()
         }
         // Authentication
         pref->setWebUiUsername(webUiUsername());
-        pref->setWebUiPassword(webUiPassword());
+        if (!webUiPassword().isEmpty())
+            pref->setWebUIPassword(Utils::Password::PBKDF2::generate(webUiPassword()));
         pref->setWebUiLocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
         pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
         // Security
@@ -1090,7 +1092,6 @@ void OptionsDialog::loadOptions()
     setSslCertificate(pref->getWebUiHttpsCertificate());
     setSslKey(pref->getWebUiHttpsKey());
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
-    m_ui->textWebUiPassword->setText(pref->getWebUiPassword());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
     m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -1743,7 +1744,7 @@ bool OptionsDialog::webUIAuthenticationOk()
         QMessageBox::warning(this, tr("Length Error"), tr("The Web UI username must be at least 3 characters long."));
         return false;
     }
-    if (webUiPassword().length() < 6) {
+    if (!webUiPassword().isEmpty() && (webUiPassword().length() < 6)) {
         QMessageBox::warning(this, tr("Length Error"), tr("The Web UI password must be at least 6 characters long."));
         return false;
     }

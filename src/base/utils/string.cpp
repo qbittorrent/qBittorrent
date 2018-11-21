@@ -31,7 +31,6 @@
 
 #include <cmath>
 
-#include <QByteArray>
 #include <QCollator>
 #include <QLocale>
 #include <QRegExp>
@@ -162,20 +161,6 @@ QString Utils::String::fromDouble(double n, int precision)
 
     double prec = std::pow(10.0, precision);
     return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
-}
-
-// Implements constant-time comparison to protect against timing attacks
-// Taken from https://crackstation.net/hashing-security.htm
-bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
-{
-    int lengthA = a.length();
-    int lengthB = b.length();
-
-    int diff = lengthA ^ lengthB;
-    for (int i = 0; (i < lengthA) && (i < lengthB); ++i)
-        diff |= a[i] ^ b[i];
-
-    return (diff == 0);
 }
 
 // This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to
