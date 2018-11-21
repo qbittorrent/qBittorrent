@@ -101,7 +101,15 @@ SearchPluginManager::~SearchPluginManager()
 
 SearchPluginManager *SearchPluginManager::instance()
 {
+    if (!m_instance)
+        m_instance = new SearchPluginManager;
     return m_instance;
+}
+
+void SearchPluginManager::freeInstance()
+{
+    if (m_instance)
+        delete m_instance;
 }
 
 QStringList SearchPluginManager::allPlugins() const
