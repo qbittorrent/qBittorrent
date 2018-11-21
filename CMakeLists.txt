@@ -32,6 +32,7 @@ include(FeatureSummary)
 # version requirements
 set(requiredBoostVersion 1.35)
 set(requiredQtVersion 5.5.1)
+set(requiredOpensslVersion 1.0)
 
 if(WIN32)
     include(winconf)

@@ -16,6 +16,7 @@ include(QbtTargetSources)
 
 find_package(Boost ${requiredBoostVersion} REQUIRED)
 find_package(LibtorrentRasterbar REQUIRED)
+find_package(OpenSSL ${requiredOpensslVersion} REQUIRED)
 
 if (Boost_VERSION VERSION_LESS 106000)
     add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)

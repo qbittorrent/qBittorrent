@@ -80,7 +80,7 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
     else
-      qbtconf="$qbtconf --prefix="$qbt_path""
+      qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
     fi
 
   # options for specific branches
@@ -120,7 +120,8 @@ install:
       # dependencies
       brew update > /dev/null
       brew outdated "pkg-config" || brew upgrade "pkg-config"
-      brew install colormake ccache zlib qt libtorrent-rasterbar
+      brew install colormake ccache zlib qt openssl libtorrent-rasterbar
+
       PATH="/usr/local/opt/ccache/libexec:$PATH"
       brew link --force zlib qt
 
@@ -130,9 +131,9 @@ install:
 
         sudo ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
         sudo ln -s /usr/local/opt/qt/plugins /usr/local/plugins
-      fi
 
-      MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
+        MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
+      fi
     fi
   - |
     if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
@@ -159,8 +160,8 @@ script:
         # For some reason for RC_1_1 we need to also specify the OpenSSL compiler/linker flags
         # Homebrew doesn't symlink OpenSSL for security reasons
         ./bootstrap.sh
-        ./configure $qbtconf CXXFLAGS="$CXXFLAGS $(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --cflags openssl) -std=c++14" \
-          LDFLAGS="$LDFLAGS $(PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH" pkg-config --libs openssl)"
+        ./configure $qbtconf CXXFLAGS="$CXXFLAGS -std=c++14"
+
         sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
         sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile
         sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile
