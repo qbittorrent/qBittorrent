@@ -109,7 +109,7 @@ private slots:
     void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
     void handleDownloadFromUrlFailure(QString, QString) const;
     void tabChanged(int newTab);
-    void defineUILockPassword();
+    bool defineUILockPassword();
     void clearUILockPassword();
     bool unlockUI();
     void notifyOfUpdate(QString);

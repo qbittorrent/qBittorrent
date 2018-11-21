@@ -229,9 +229,8 @@ public:
     void setDynDNSPassword(const QString &password);
 
     // Advanced settings
-    void setUILockPassword(const QString &clearPassword);
-    void clearUILockPassword();
-    QString getUILockPasswordMD5() const;
+    QByteArray getUILockPassword() const;
+    void setUILockPassword(const QByteArray &password);
     bool isUILocked() const;
     void setUILocked(bool locked);
     bool isAutoRunEnabled() const;

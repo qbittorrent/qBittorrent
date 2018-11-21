@@ -29,7 +29,6 @@
 
 #include "preferences.h"
 
-#include <QCryptographicHash>
 #include <QDir>
 #include <QLocale>
 #include <QMutableListIterator>
@@ -725,22 +724,14 @@ void Preferences::setDynDNSPassword(const QString &password)
 }
 
 // Advanced settings
-void Preferences::clearUILockPassword()
+QByteArray Preferences::getUILockPassword() const
 {
-    setValue("Locking/password", QString());
+    return value("Locking/password_PBKDF2").toByteArray();
 }
 
-QString Preferences::getUILockPasswordMD5() const
+void Preferences::setUILockPassword(const QByteArray &password)
 {
-    return value("Locking/password").toString();
-}
-
-void Preferences::setUILockPassword(const QString &clearPassword)
-{
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(clearPassword.toLocal8Bit());
-    QString md5Password = md5.result().toHex();
-    setValue("Locking/password", md5Password);
+    setValue("Locking/password_PBKDF2", password);
 }
 
 bool Preferences::isUILocked() const
