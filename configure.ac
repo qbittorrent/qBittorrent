@@ -167,7 +167,6 @@ CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 # add workaround for problematic boost version
-AC_LANG_PUSH(C++)
 # taken from ax_boost_base.m4
 m4_define([DETECT_BOOST_VERSION_PROGRAM],
     [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
@@ -175,7 +174,6 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
 
 AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
     [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
-AC_LANG_POP([C++])
 
 AX_BOOST_SYSTEM()
 AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
@@ -202,31 +200,37 @@ PKG_CHECK_MODULES(zlib,
                  [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
-# Check compiler C++11 support
-AC_LANG_PUSH(C++)
-m4_define([DETECT_CPP11_PROGRAM],
-    [AC_LANG_PROGRAM([[
-#ifndef __cplusplus
-#error "This is not a C++ compiler"
-#elif __cplusplus < 201103L
-#error "This is not a C++11 compiler"
-#endif]],
-    [[]])])
-
-_tmp="$CXXFLAGS"
-CXXFLAGS="$CXXFLAGS -std=c++11"
+# Check if already in >= C++11 mode because of the flags returned by one of the above packages
+AC_MSG_CHECKING([if compiler is using C++11 or later mode])
 AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
-    [],
-    [AC_MSG_ERROR([A compiler supporting C++11 is required.])])
-
-CXXFLAGS="$_tmp $libtorrent_CFLAGS"
-AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
-    [],
-    [AC_MSG_ERROR([Compiler is not working in C++11 or later mode.
-    Make sure you use the same C++ mode for qBittorrent and its dependencies.
-    Example: `CXXFLAGS="\$CXXFLAGS -std=c++11" ./configure`])])
-CXXFLAGS="$_tmp"
-AC_LANG_POP([C++])
+                  [AC_MSG_RESULT([yes])
+                   QBT_CXX11_FOUND="yes"],
+                  [AC_MSG_RESULT([no])
+                   QBT_CXX11_FOUND="no"])
+                  
+# In case of no, check if the compiler can support at least C++11
+# and if yes, enable it leaving a warning to the user
+AS_IF([test "x$QBT_CXX11_FOUND" = "xno"],
+      [AC_MSG_CHECKING([if compiler supports C++11])
+       TMP_CPPFLAGS="$CPPFLAGS"
+       CPPFLAGS="$CPPFLAGS -std=c++11"
+       AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+                        [AC_MSG_RESULT([yes])
+                         AC_MSG_CHECKING([if C++11 is disabled by the set compiler flags])
+                         # prepend the flag so it won't override conflicting user defined flags
+                         CPPFLAGS="-std=c++11 $TMP_CPPFLAGS"
+                         AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+                                           [AC_MSG_RESULT([no])
+                                            CPPFLAGS="$TMP_CPPFLAGS -std=c++11"
+                                            AC_MSG_WARN([C++11 mode is now force enabled.
+Make sure you use the same C++ mode for qBittorrent and its dependencies.
+To explicitly set qBittorrent to a later mode use CPPFLAGS.
+Example: `CPPFLAGS="\$CPPFLAGS -std=c++14" ./configure`])],
+                                           [AC_MSG_RESULT([yes])
+                                            AC_MSG_ERROR([The compiler supports C++11 but the user or a dependency has explicitly enabled a lower mode.])])],
+                        [AC_MSG_RESULT([no])
+                         AC_MSG_ERROR([A compiler supporting C++11 is required.])])
+      ])
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
@@ -254,15 +258,15 @@ extract() {
   for i in $string; do
     case "$(echo "$i" | cut -c1)" in
       '') ;;
-      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
-      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
-      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+      D) QBT_CONF_DEFINES="$QBT_CONF_DEFINES $(echo $i | cut -c2-)";;
+      I) QBT_CONF_INCLUDES="$QBT_CONF_INCLUDES $(echo $i | cut -c2-)";;
+      *) QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS -$i";;
     esac
   done
   IFS=$SAVEIFS
 }
 
-extract "$CFLAGS $CPPFLAGS $CXXFLAGS"
+extract "$CFLAGS $CXXFLAGS $CPPFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in
