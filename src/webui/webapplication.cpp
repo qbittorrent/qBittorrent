@@ -209,12 +209,15 @@ void WebApplication::translateDocument(QString &data)
         QRegularExpressionMatch regexMatch;
         i = data.indexOf(regex, i, &regexMatch);
         if (i >= 0) {
-            const QString word = regexMatch.captured(1);
+            const QString sourceText = regexMatch.captured(1);
             const QString context = regexMatch.captured(3);
 
-            QString translation = isTranslationNeeded
-                    ? m_translator.translate(context.toUtf8().constData(), word.toUtf8().constData(), nullptr, 1)
-                    : word;
+            QString translation = sourceText;
+            if (isTranslationNeeded) {
+                const QString loadedText = m_translator.translate(context.toUtf8().constData(), sourceText.toUtf8().constData(), nullptr, 1);
+                if (!loadedText.isEmpty())
+                    translation = loadedText;
+            }
 
             // Use HTML code for quotes to prevent issues with JS
             translation.replace('\'', "&#39;");
