@@ -4995,10 +4995,10 @@ $as_echo "$as_me: Your boost libraries seems to old (version $_version)." >&6;}
 $as_echo "#define HAVE_BOOST /**/" >>confdefs.h
 
         # execute ACTION-IF-FOUND (if present):
-        { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"
-                Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&5
-$as_echo "$as_me: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"
-                Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&6;}
+        { $as_echo "$as_me:${as_lineno-$LINENO}: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"" >&5
+$as_echo "$as_me: Boost CPPFLAGS: \"$BOOST_CPPFLAGS\"" >&6;}
+               { $as_echo "$as_me:${as_lineno-$LINENO}: Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&5
+$as_echo "$as_me: Boost LDFLAGS: \"$BOOST_LDFLAGS\"" >&6;}
     fi
 
     CPPFLAGS="$CPPFLAGS_SAVED"
