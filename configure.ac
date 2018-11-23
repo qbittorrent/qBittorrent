@@ -160,8 +160,8 @@ AS_CASE(["x$enable_qt_dbus"],
 
 
 AX_BOOST_BASE([1.35],
-              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"
-                Boost LDFLAGS: "$BOOST_LDFLAGS"])],
+              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"])
+               AC_MSG_NOTICE([Boost LDFLAGS: "$BOOST_LDFLAGS"])],
               [AC_MSG_ERROR([Could not find Boost])])
 CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
