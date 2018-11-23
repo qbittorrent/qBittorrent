@@ -5013,12 +5013,6 @@ CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 # add workaround for problematic boost version
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
-
 # taken from ax_boost_base.m4
 
 
@@ -5039,12 +5033,6 @@ else
   QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
-
 
 
 
@@ -5495,25 +5483,17 @@ $as_echo "yes" >&6; }
                  LIBS="$zlib_LIBS $LIBS"
 fi
 
-# Check compiler C++11 support
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
-
-
-
-_tmp="$CXXFLAGS"
-CXXFLAGS="$CXXFLAGS -std=c++11"
+# Check if already in >= C++11 mode because of the flags returned by one of the above packages
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler is using C++11 or later mode" >&5
+$as_echo_n "checking if compiler is using C++11 or later mode... " >&6; }
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-#ifndef __cplusplus
-#error "This is not a C++ compiler"
-#elif __cplusplus < 201103L
-#error "This is not a C++11 compiler"
-#endif
+            #ifndef __cplusplus
+            #error "This is not a C++ compiler"
+            #elif __cplusplus < 201103L
+            #error "This is not a C++11 compiler"
+            #endif
 int
 main ()
 {
@@ -5521,25 +5501,34 @@ main ()
   ;
   return 0;
 }
+
 _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
-
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+                   QBT_CXX11_FOUND="yes"
 else
-  as_fn_error $? "A compiler supporting C++11 is required." "$LINENO" 5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+                   QBT_CXX11_FOUND="no"
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-CXXFLAGS="$_tmp"
 
-_tmp="$CXXFLAGS"
-CXXFLAGS="$CXXFLAGS $libtorrent_CFLAGS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+# In case of no, check if the compiler can support at least C++11
+# and if yes, enable it leaving a warning to the user
+if test "x$QBT_CXX11_FOUND" = "xno"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler supports C++11" >&5
+$as_echo_n "checking if compiler supports C++11... " >&6; }
+       TMP_CPPFLAGS="$CPPFLAGS"
+       CPPFLAGS="$CPPFLAGS -std=c++11"
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-#ifndef __cplusplus
-#error "This is not a C++ compiler"
-#elif __cplusplus < 201103L
-#error "This is not a C++11 compiler"
-#endif
+            #ifndef __cplusplus
+            #error "This is not a C++ compiler"
+            #elif __cplusplus < 201103L
+            #error "This is not a C++11 compiler"
+            #endif
 int
 main ()
 {
@@ -5547,22 +5536,58 @@ main ()
   ;
   return 0;
 }
+
 _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+                         { $as_echo "$as_me:${as_lineno-$LINENO}: checking if C++11 is disabled by the set compiler flags" >&5
+$as_echo_n "checking if C++11 is disabled by the set compiler flags... " >&6; }
+                         # prepend the flag so it won't override conflicting user defined flags
+                         CPPFLAGS="-std=c++11 $TMP_CPPFLAGS"
+                         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
+            #ifndef __cplusplus
+            #error "This is not a C++ compiler"
+            #elif __cplusplus < 201103L
+            #error "This is not a C++11 compiler"
+            #endif
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+                                            CPPFLAGS="$TMP_CPPFLAGS -std=c++11"
+                                            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: C++11 mode is now force enabled.
+Make sure you use the same C++ mode for qBittorrent and its dependencies.
+To explicitly set qBittorrent to a later mode use CPPFLAGS.
+Example: \`CPPFLAGS=\"\$CPPFLAGS -std=c++14\" ./configure\`" >&5
+$as_echo "$as_me: WARNING: C++11 mode is now force enabled.
+Make sure you use the same C++ mode for qBittorrent and its dependencies.
+To explicitly set qBittorrent to a later mode use CPPFLAGS.
+Example: \`CPPFLAGS=\"\$CPPFLAGS -std=c++14\" ./configure\`" >&2;}
 else
-  as_fn_error $? "Compiler is not working in C++11 or later mode.
-    Make sure you use the same C++ mode for qBittorrent and its dependencies.
-    Example: \`CXXFLAGS=\"\$CXXFLAGS -std=c++11\" ./configure\`" "$LINENO" 5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+                                            as_fn_error $? "The compiler supports C++11 but the user or a dependency has explicitly enabled a lower mode." "$LINENO" 5
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-CXXFLAGS="$_tmp"
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+                         as_fn_error $? "A compiler supporting C++11 is required." "$LINENO" 5
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
+fi
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
@@ -5650,15 +5675,15 @@ extract() {
   for i in $string; do
     case "$(echo "$i" | cut -c1)" in
       '') ;;
-      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
-      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
-      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+      D) QBT_CONF_DEFINES="$QBT_CONF_DEFINES $(echo $i | cut -c2-)";;
+      I) QBT_CONF_INCLUDES="$QBT_CONF_INCLUDES $(echo $i | cut -c2-)";;
+      *) QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS -$i";;
     esac
   done
   IFS=$SAVEIFS
 }
 
-extract "$CFLAGS $CPPFLAGS $CXXFLAGS"
+extract "$CFLAGS $CXXFLAGS $CPPFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in

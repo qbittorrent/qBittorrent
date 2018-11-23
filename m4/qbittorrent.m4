@@ -36,3 +36,16 @@ AC_DEFUN([FIND_QTDBUS],
                         [AC_MSG_RESULT([not found])
                          HAVE_QTDBUS=[false]])
 ])
+
+# DETECT_CPP11_PROGRAM()
+# Detects if at least C++11 mode is enabled.
+# --------------------------------------
+AC_DEFUN([DETECT_CPP11_PROGRAM],
+       [AC_LANG_PROGRAM([[
+            #ifndef __cplusplus
+            #error "This is not a C++ compiler"
+            #elif __cplusplus < 201103L
+            #error "This is not a C++11 compiler"
+            #endif]],
+            [[]])
+])
