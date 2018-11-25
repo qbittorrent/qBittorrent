@@ -32,7 +32,7 @@
             <div class="formRow">
                 <label for="start_torrent" class="leftLabelLarge">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                 <input type="checkbox" id="start_torrent" checked="checked" />
-                <input type="hidden" id="add_paused" name="paused" value="true" disabled="disabled" />
+                <input type="hidden" id="add_paused" name="paused" value="false" readonly />
             </div>
             <div class="formRow">
                 <label for="skip_checking" class="leftLabelLarge">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
@@ -77,7 +77,7 @@
         });
 
         $('start_torrent').addEventListener('change', function() {
-            $('add_paused').disabled = $('start_torrent').checked;
+            $('add_paused').value = !$('start_torrent').checked;
         });
     </script>
     <div id="upload_spinner" class="mochaSpinner"></div>
