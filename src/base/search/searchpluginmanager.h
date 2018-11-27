@@ -62,6 +62,7 @@ public:
     ~SearchPluginManager() override;
 
     static SearchPluginManager *instance();
+    static void freeInstance();
 
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
