@@ -237,7 +237,7 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Accept if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustContain)) {
+    for (const QString &expression : asConst(m_dataPtr->mustContain)) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         if (matchesExpression(articleTitle, expression))
             return true;
@@ -253,7 +253,7 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTit
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Reject if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustNotContain)) {
+    for (const QString &expression : asConst(m_dataPtr->mustNotContain)) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         if (matchesExpression(articleTitle, expression))
             return false;
@@ -442,7 +442,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     QStringList feedURLs;
     if (feedsVal.isString())
         feedURLs << feedsVal.toString();
-    else for (const QJsonValue &urlVal : copyAsConst(feedsVal.toArray()))
+    else for (const QJsonValue &urlVal : asConst(feedsVal.toArray()))
         feedURLs << urlVal.toString();
     rule.setFeedURLs(feedURLs);
 
@@ -452,7 +452,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
         previouslyMatched << previouslyMatchedVal.toString();
     }
     else {
-        for (const QJsonValue &val : copyAsConst(previouslyMatchedVal.toArray()))
+        for (const QJsonValue &val : asConst(previouslyMatchedVal.toArray()))
             previouslyMatched << val.toString();
     }
     rule.setPreviouslyMatchedEpisodes(previouslyMatched);

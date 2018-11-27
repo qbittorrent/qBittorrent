@@ -62,7 +62,7 @@ void PeersAdditionDialog::validateInput()
                     QMessageBox::Ok);
         return;
     }
-    for (const QString &peer : copyAsConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n'))) {
+    for (const QString &peer : asConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n'))) {
         BitTorrent::PeerAddress addr = parsePeer(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);

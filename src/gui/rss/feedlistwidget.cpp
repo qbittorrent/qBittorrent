@@ -220,7 +220,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
                                : RSS::Session::instance()->rootFolder());
 
     // move as much items as possible
-    for (QTreeWidgetItem *srcItem : copyAsConst(selectedItems())) {
+    for (QTreeWidgetItem *srcItem : asConst(selectedItems())) {
         auto rssItem = getRSSItem(srcItem);
         RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
     }
@@ -265,7 +265,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
 
 void FeedListWidget::fill(QTreeWidgetItem *parent, RSS::Folder *rssParent)
 {
-    for (const auto rssItem : copyAsConst(rssParent->items())) {
+    for (const auto rssItem : asConst(rssParent->items())) {
         QTreeWidgetItem *item = createItem(rssItem, parent);
         // Recursive call if this is a folder.
         if (auto folder = qobject_cast<RSS::Folder *>(rssItem))

@@ -136,7 +136,7 @@ void Tracker::respondToAnnounceRequest()
     QMap<QString, QByteArray> queryParams;
     // Parse GET parameters
     using namespace Utils::ByteArray;
-    for (const QByteArray &param : copyAsConst(splitToViews(m_request.query, "&"))) {
+    for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
         const int sepPos = param.indexOf('=');
         if (sepPos <= 0) continue; // ignores params without name
 

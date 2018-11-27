@@ -199,7 +199,7 @@ namespace
 
         for (auto i = categories.cbegin(); i != categories.cend(); ++i) {
             const QString &category = i.key();
-            for (const QString &subcat : copyAsConst(Session::expandCategory(category))) {
+            for (const QString &subcat : asConst(Session::expandCategory(category))) {
                 if (!expanded.contains(subcat))
                     expanded[subcat] = "";
             }
@@ -610,7 +610,7 @@ void Session::setTempPathEnabled(bool enabled)
 {
     if (enabled != isTempPathEnabled()) {
         m_isTempPathEnabled = enabled;
-        for (TorrentHandle *const torrent : qAsConst(m_torrents))
+        for (TorrentHandle *const torrent : asConst(m_torrents))
             torrent->handleTempPathChanged();
     }
 }
@@ -624,7 +624,7 @@ void Session::setAppendExtensionEnabled(bool enabled)
 {
     if (isAppendExtensionEnabled() != enabled) {
         // append or remove .!qB extension for incomplete files
-        for (TorrentHandle *const torrent : qAsConst(m_torrents))
+        for (TorrentHandle *const torrent : asConst(m_torrents))
             torrent->handleAppendExtensionToggled();
 
         m_isAppendExtensionEnabled = enabled;
@@ -752,7 +752,7 @@ bool Session::addCategory(const QString &name, const QString &savePath)
         return false;
 
     if (isSubcategoriesEnabled()) {
-        for (const QString &parent : copyAsConst(expandCategory(name))) {
+        for (const QString &parent : asConst(expandCategory(name))) {
             if ((parent != name) && !m_categories.contains(parent)) {
                 m_categories[parent] = "";
                 emit categoryAdded(parent);
@@ -775,12 +775,12 @@ bool Session::editCategory(const QString &name, const QString &savePath)
     m_categories[name] = savePath;
     m_storedCategories = map_cast(m_categories);
     if (isDisableAutoTMMWhenCategorySavePathChanged()) {
-        for (TorrentHandle *const torrent : copyAsConst(torrents()))
+        for (TorrentHandle *const torrent : asConst(torrents()))
             if (torrent->category() == name)
                 torrent->setAutoTMMEnabled(false);
     }
     else {
-        for (TorrentHandle *const torrent : copyAsConst(torrents()))
+        for (TorrentHandle *const torrent : asConst(torrents()))
             if (torrent->category() == name)
                 torrent->handleCategorySavePathChanged();
     }
@@ -790,7 +790,7 @@ bool Session::editCategory(const QString &name, const QString &savePath)
 
 bool Session::removeCategory(const QString &name)
 {
-    for (TorrentHandle *const torrent : copyAsConst(torrents()))
+    for (TorrentHandle *const torrent : asConst(torrents()))
         if (torrent->belongsToCategory(name))
             torrent->setCategory("");
 
@@ -877,7 +877,7 @@ bool Session::addTag(const QString &tag)
 bool Session::removeTag(const QString &tag)
 {
     if (m_tags.remove(tag)) {
-        for (TorrentHandle *const torrent : copyAsConst(torrents()))
+        for (TorrentHandle *const torrent : asConst(torrents()))
             torrent->removeTag(tag);
         m_storedTags = m_tags.toList();
         emit tagRemoved(tag);
@@ -1085,7 +1085,7 @@ void Session::configure()
 void Session::processBannedIPs(libt::ip_filter &filter)
 {
     // First, import current filter
-    for (const QString &ip : copyAsConst(m_bannedIPs.value())) {
+    for (const QString &ip : asConst(m_bannedIPs.value())) {
         boost::system::error_code ec;
         libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
@@ -1770,7 +1770,7 @@ void Session::enableBandwidthScheduler()
 void Session::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
-    for (QString tracker : copyAsConst(additionalTrackers().split('\n'))) {
+    for (QString tracker : asConst(additionalTrackers().split('\n'))) {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
             m_additionalTrackerList << tracker;
@@ -1781,7 +1781,7 @@ void Session::processShareLimits()
 {
     qDebug("Processing share limits...");
 
-    for (TorrentHandle *const torrent : copyAsConst(torrents())) {
+    for (TorrentHandle *const torrent : asConst(torrents())) {
         if (torrent->isSeed() && !torrent->isForced()) {
             if (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT) {
                 const qreal ratio = torrent->realRatio();
@@ -1934,7 +1934,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
         m_nativeSession->remove_torrent(torrent->nativeHandle(), libt::session::delete_partfile);
 #endif
         // Remove unwanted and incomplete files
-        for (const QString &unwantedFile : qAsConst(unwantedFiles)) {
+        for (const QString &unwantedFile : asConst(unwantedFiles)) {
             qDebug("Removing unwanted file: %s", qUtf8Printable(unwantedFile));
             Utils::Fs::forceRemove(unwantedFile);
             const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
@@ -2367,7 +2367,7 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
 
 void Session::generateResumeData(bool final)
 {
-    for (TorrentHandle *const torrent : qAsConst(m_torrents)) {
+    for (TorrentHandle *const torrent : asConst(m_torrents)) {
         if (!torrent->isValid()) continue;
         if (torrent->isChecking() || torrent->isPaused()) continue;
         if (!final && !torrent->needSaveResumeData()) continue;
@@ -2414,7 +2414,7 @@ void Session::saveResumeData()
 void Session::saveTorrentsQueue()
 {
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
-    for (const TorrentHandle *torrent : copyAsConst(torrents())) {
+    for (const TorrentHandle *torrent : asConst(torrents())) {
         // We require actual (non-cached) queue position here!
         const int queuePos = torrent->nativeHandle().queue_position();
         if (queuePos >= 0)
@@ -2422,7 +2422,7 @@ void Session::saveTorrentsQueue()
     }
 
     QByteArray data;
-    for (const QString &hash : qAsConst(queue))
+    for (const QString &hash : asConst(queue))
         data += (hash.toLatin1() + '\n');
 
     const QString filename = QLatin1String {"queue"};
@@ -2444,10 +2444,10 @@ void Session::setDefaultSavePath(QString path)
     m_defaultSavePath = path;
 
     if (isDisableAutoTMMWhenDefaultSavePathChanged())
-        for (TorrentHandle *const torrent : copyAsConst(torrents()))
+        for (TorrentHandle *const torrent : asConst(torrents()))
             torrent->setAutoTMMEnabled(false);
     else
-        for (TorrentHandle *const torrent : copyAsConst(torrents()))
+        for (TorrentHandle *const torrent : asConst(torrents()))
             torrent->handleCategorySavePathChanged();
 }
 
@@ -2458,7 +2458,7 @@ void Session::setTempPath(QString path)
 
     m_tempPath = path;
 
-    for (TorrentHandle *const torrent : qAsConst(m_torrents))
+    for (TorrentHandle *const torrent : asConst(m_torrents))
         torrent->handleTempPathChanged();
 }
 
@@ -3776,7 +3776,7 @@ void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QS
 
 bool Session::hasPerTorrentRatioLimit() const
 {
-    for (TorrentHandle *const torrent : qAsConst(m_torrents))
+    for (TorrentHandle *const torrent : asConst(m_torrents))
         if (torrent->ratioLimit() >= 0) return true;
 
     return false;
@@ -3784,7 +3784,7 @@ bool Session::hasPerTorrentRatioLimit() const
 
 bool Session::hasPerTorrentSeedingTimeLimit() const
 {
-    for (TorrentHandle *const torrent : qAsConst(m_torrents))
+    for (TorrentHandle *const torrent : asConst(m_torrents))
         if (torrent->seedingTimeLimit() >= 0) return true;
 
     return false;
@@ -3928,7 +3928,7 @@ void Session::startUpTorrents()
             QMap<int, TorrentResumeData> queuedResumeData;
             int nextQueuePosition = 1;
             int numOfRemappedFiles = 0;
-            for (const QString &fastresumeName : qAsConst(fastresumes)) {
+            for (const QString &fastresumeName : asConst(fastresumes)) {
                 const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
                 if (!rxMatch.hasMatch()) continue;
 
@@ -3967,7 +3967,7 @@ void Session::startUpTorrents()
             }
 
             // starting up downloading torrents (queue position > 0)
-            for (const TorrentResumeData &torrentResumeData : qAsConst(queuedResumeData))
+            for (const TorrentResumeData &torrentResumeData : asConst(queuedResumeData))
                 startupTorrent(torrentResumeData);
 
             return;
@@ -3989,7 +3989,7 @@ void Session::startUpTorrents()
             fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).toList();
     }
 
-    for (const QString &fastresumeName : qAsConst(fastresumes)) {
+    for (const QString &fastresumeName : asConst(fastresumes)) {
         const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
         if (!rxMatch.hasMatch()) continue;
 
@@ -4554,7 +4554,7 @@ void Session::handleStateUpdateAlert(libt::state_update_alert *p)
     }
 
     m_torrentStatusReport = TorrentStatusReport();
-    for (TorrentHandle *const torrent : qAsConst(m_torrents)) {
+    for (TorrentHandle *const torrent : asConst(m_torrents)) {
         if (torrent->isDownloading())
             ++m_torrentStatusReport.nbDownloading;
         if (torrent->isUploading())

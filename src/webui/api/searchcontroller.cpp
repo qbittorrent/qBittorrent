@@ -202,7 +202,7 @@ void SearchController::categoriesAction()
     const QString name = params()["pluginName"].trimmed();
 
     categories << SearchPluginManager::categoryFullName("all");
-    for (const QString &category : copyAsConst(SearchPluginManager::instance()->getPluginCategories(name)))
+    for (const QString &category : asConst(SearchPluginManager::instance()->getPluginCategories(name)))
         categories << SearchPluginManager::categoryFullName(category);
 
     const QJsonArray result = QJsonArray::fromStringList(categories);
@@ -263,7 +263,7 @@ void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersio
     LogMsg(tr("Updating %1 plugins").arg(updateInfo.size()), Log::INFO);
 
     SearchPluginManager *const pluginManager = SearchPluginManager::instance();
-    for (const QString &pluginName : copyAsConst(updateInfo.keys())) {
+    for (const QString &pluginName : asConst(updateInfo.keys())) {
         LogMsg(tr("Updating plugin %1").arg(pluginName), Log::INFO);
         pluginManager->updatePlugin(pluginName);
     }

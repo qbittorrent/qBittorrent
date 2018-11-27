@@ -62,7 +62,7 @@ TransferListModel::TransferListModel(QObject *parent)
 {
     // Load the torrents
     using namespace BitTorrent;
-    for (TorrentHandle *const torrent : copyAsConst(Session::instance()->torrents()))
+    for (TorrentHandle *const torrent : asConst(Session::instance()->torrents()))
         addTorrent(torrent);
 
     // Listen for torrent changes

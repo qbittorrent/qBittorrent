@@ -113,7 +113,7 @@ namespace
     void applyToTorrents(const QStringList &hashes, const std::function<void (BitTorrent::TorrentHandle *torrent)> &func)
     {
         if ((hashes.size() == 1) && (hashes[0] == QLatin1String("all"))) {
-            for (BitTorrent::TorrentHandle *torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
+            for (BitTorrent::TorrentHandle *torrent : asConst(BitTorrent::Session::instance()->torrents()))
                 func(torrent);
         }
         else {
@@ -167,7 +167,7 @@ void TorrentsController::infoAction()
 
     QVariantList torrentList;
     TorrentFilter torrentFilter(filter, (hashSet.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
-    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents())) {
         if (torrentFilter.match(torrent))
             torrentList.append(serialize(*torrent));
     }
@@ -307,7 +307,7 @@ void TorrentsController::trackersAction()
         throw APIError(APIErrorType::NotFound);
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
-    for (const BitTorrent::TrackerEntry &tracker : copyAsConst(torrent->trackers())) {
+    for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
         QVariantMap trackerDict;
         trackerDict[KEY_TRACKER_URL] = tracker.url();
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
@@ -346,7 +346,7 @@ void TorrentsController::webseedsAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    for (const QUrl &webseed : copyAsConst(torrent->urlSeeds())) {
+    for (const QUrl &webseed : asConst(torrent->urlSeeds())) {
         QVariantMap webSeedDict;
         webSeedDict[KEY_WEBSEED_URL] = webseed.toString();
         webSeedList.append(webSeedDict);
@@ -498,7 +498,7 @@ void TorrentsController::addAction()
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
 
     bool partialSuccess = false;
-    for (QString url : copyAsConst(urls.split('\n'))) {
+    for (QString url : asConst(urls.split('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
@@ -531,7 +531,7 @@ void TorrentsController::addTrackersAction()
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (torrent) {
         QList<BitTorrent::TrackerEntry> trackers;
-        for (QString url : copyAsConst(params()["urls"].split('\n'))) {
+        for (QString url : asConst(params()["urls"].split('\n'))) {
             url = url.trimmed();
             if (!url.isEmpty())
                 trackers << url;

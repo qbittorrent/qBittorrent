@@ -72,7 +72,7 @@ void LogController::mainAction()
     Logger *const logger = Logger::instance();
     QVariantList msgList;
 
-    for (const Log::Msg &msg : copyAsConst(logger->getMessages(lastKnownId))) {
+    for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId))) {
         if (!((msg.type == Log::NORMAL && isNormal)
               || (msg.type == Log::INFO && isInfo)
               || (msg.type == Log::WARNING && isWarning)
@@ -111,7 +111,7 @@ void LogController::peersAction()
     Logger *const logger = Logger::instance();
     QVariantList peerList;
 
-    for (const Log::Peer &peer : copyAsConst(logger->getPeers(lastKnownId))) {
+    for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId))) {
         QVariantMap map;
         map[KEY_LOG_ID] = peer.id;
         map[KEY_LOG_TIMESTAMP] = peer.timestamp;

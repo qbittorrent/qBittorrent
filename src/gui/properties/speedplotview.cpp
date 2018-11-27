@@ -348,7 +348,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     double legendHeight = 0;
     int legendWidth = 0;
-    for (const auto &property : qAsConst(m_properties)) {
+    for (const auto &property : asConst(m_properties)) {
         if (!property.enable)
             continue;
 
@@ -363,7 +363,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.fillRect(legendBackgroundRect, legendBackgroundColor);
 
     i = 0;
-    for (const auto &property : qAsConst(m_properties)) {
+    for (const auto &property : asConst(m_properties)) {
         if (!property.enable)
             continue;
 

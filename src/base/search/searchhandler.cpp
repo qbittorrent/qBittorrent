@@ -139,7 +139,7 @@ void SearchHandler::readSearchOutput()
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
     QList<SearchResult> searchResultList;
-    for (const QByteArray &line : qAsConst(lines)) {
+    for (const QByteArray &line : asConst(lines)) {
         SearchResult searchResult;
         if (parseSearchResult(QString::fromUtf8(line), searchResult))
             searchResultList << searchResult;

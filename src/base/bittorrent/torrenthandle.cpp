@@ -596,7 +596,7 @@ bool TorrentHandle::removeTag(const QString &tag)
 
 void TorrentHandle::removeAllTags()
 {
-    for (const QString &tag : copyAsConst(tags()))
+    for (const QString &tag : asConst(tags()))
         removeTag(tag);
 }
 

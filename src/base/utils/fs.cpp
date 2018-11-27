@@ -133,7 +133,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     std::sort(dirList.begin(), dirList.end()
               , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : qAsConst(dirList)) {
+    for (const QString &p : asConst(dirList)) {
         // remove unwanted files
         for (const QString &f : deleteFilesList) {
             forceRemove(p + f);

@@ -101,6 +101,6 @@ void CookiesDialog::onButtonDeleteClicked()
         }
     );
 
-    for (const QModelIndex &idx : qAsConst(idxs))
+    for (const QModelIndex &idx : asConst(idxs))
         m_cookiesModel->removeRow(idx.row());
 }

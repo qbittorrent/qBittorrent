@@ -132,7 +132,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     loadFeedList();
 
     m_ui->listRules->blockSignals(true);
-    for (const RSS::AutoDownloadRule &rule : copyAsConst(RSS::AutoDownloader::instance()->rules()))
+    for (const RSS::AutoDownloadRule &rule : asConst(RSS::AutoDownloader::instance()->rules()))
         createRuleItem(rule);
     m_ui->listRules->blockSignals(false);
 
@@ -182,7 +182,7 @@ void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
 
-    for (const auto feed : copyAsConst(RSS::Session::instance()->feeds())) {
+    for (const auto feed : asConst(RSS::Session::instance()->feeds())) {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
@@ -212,7 +212,7 @@ void AutomatedRssDownloader::updateFeedList()
         bool allEnabled = true;
         bool anyEnabled = false;
 
-        for (const QListWidgetItem *ruleItem : qAsConst(selection)) {
+        for (const QListWidgetItem *ruleItem : asConst(selection)) {
             auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
             if (rule.feedURLs().contains(feedURL))
                 anyEnabled = true;
@@ -549,7 +549,7 @@ void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
 void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem)
 {
     const QString feedURL = feedItem->data(Qt::UserRole).toString();
-    for (QListWidgetItem *ruleItem : copyAsConst(m_ui->listRules->selectedItems())) {
+    for (QListWidgetItem *ruleItem : asConst(m_ui->listRules->selectedItems())) {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
@@ -573,16 +573,16 @@ void AutomatedRssDownloader::updateMatchingArticles()
 {
     m_ui->treeMatchingArticles->clear();
 
-    for (const QListWidgetItem *ruleItem : copyAsConst(m_ui->listRules->selectedItems())) {
+    for (const QListWidgetItem *ruleItem : asConst(m_ui->listRules->selectedItems())) {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
-        for (const QString &feedURL : copyAsConst(rule.feedURLs())) {
+        for (const QString &feedURL : asConst(rule.feedURLs())) {
             auto feed = RSS::Session::instance()->feedByURL(feedURL);
             if (!feed) continue; // feed doesn't exist
 
             QStringList matchingArticles;
-            for (const auto article : copyAsConst(feed->articles()))
+            for (const auto article : asConst(feed->articles()))
                 if (rule.matches(article->data()))
                     matchingArticles << article->title();
             if (!matchingArticles.isEmpty())
@@ -676,10 +676,10 @@ void AutomatedRssDownloader::updateMustLineValidity()
         if (isRegex)
             tokens << text;
         else
-            for (const QString &token : copyAsConst(text.split('|')))
+            for (const QString &token : asConst(text.split('|')))
                 tokens << Utils::String::wildcardToRegex(token);
 
-        for (const QString &token : qAsConst(tokens)) {
+        for (const QString &token : asConst(tokens)) {
             QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
             if (!reg.isValid()) {
                 if (isRegex)
@@ -714,10 +714,10 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
         if (isRegex)
             tokens << text;
         else
-            for (const QString &token : copyAsConst(text.split('|')))
+            for (const QString &token : asConst(text.split('|')))
                 tokens << Utils::String::wildcardToRegex(token);
 
-        for (const QString &token : qAsConst(tokens)) {
+        for (const QString &token : asConst(tokens)) {
             QRegularExpression reg(token, QRegularExpression::CaseInsensitiveOption);
             if (!reg.isValid()) {
                 if (isRegex)
