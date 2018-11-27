@@ -290,7 +290,7 @@ void TrackerListWidget::loadStickyItems(BitTorrent::TorrentHandle *const torrent
     // XXX: libtorrent should provide this info...
     // Count peers from DHT, PeX, LSD
     uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
-    for (const BitTorrent::PeerInfo &peer : copyAsConst(torrent->peers())) {
+    for (const BitTorrent::PeerInfo &peer : asConst(torrent->peers())) {
         if (peer.isConnecting()) continue;
 
         if (peer.fromDHT()) {
@@ -332,7 +332,7 @@ void TrackerListWidget::loadTrackers()
     // Load actual trackers information
     QHash<QString, BitTorrent::TrackerInfo> trackerData = torrent->trackerInfos();
     QStringList oldTrackerURLs = m_trackerItems.keys();
-    for (const BitTorrent::TrackerEntry &entry : copyAsConst(torrent->trackers())) {
+    for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers())) {
         QString trackerURL = entry.url();
         QTreeWidgetItem *item = m_trackerItems.value(trackerURL, nullptr);
         if (!item) {
@@ -384,7 +384,7 @@ void TrackerListWidget::loadTrackers()
         item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     }
     // Remove old trackers
-    for (const QString &tracker : qAsConst(oldTrackerURLs))
+    for (const QString &tracker : asConst(oldTrackerURLs))
         delete m_trackerItems.take(tracker);
 }
 
@@ -395,7 +395,7 @@ void TrackerListWidget::askForTrackers()
     if (!torrent) return;
 
     QList<BitTorrent::TrackerEntry> trackers;
-    for (const QString &tracker : copyAsConst(TrackersAdditionDialog::askForTrackers(this, torrent)))
+    for (const QString &tracker : asConst(TrackersAdditionDialog::askForTrackers(this, torrent)))
         trackers << tracker;
 
     torrent->addTrackers(trackers);

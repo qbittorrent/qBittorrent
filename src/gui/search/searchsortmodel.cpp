@@ -128,7 +128,7 @@ bool SearchSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
     const QAbstractItemModel *const sourceModel = this->sourceModel();
     if (m_isNameFilterEnabled && !m_searchTerm.isEmpty()) {
         QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent)).toString();
-        for (const QString &word : qAsConst(m_searchTermWords)) {
+        for (const QString &word : asConst(m_searchTermWords)) {
             int i = name.indexOf(word, 0, Qt::CaseInsensitive);
             if (i == -1) {
                 return false;

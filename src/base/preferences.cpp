@@ -506,7 +506,7 @@ void Preferences::setWebUiAuthSubnetWhitelistEnabled(bool enabled)
 QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 {
     QList<Utils::Net::Subnet> subnets;
-    for (const QString &rawSubnet : copyAsConst(value("Preferences/WebUI/AuthSubnetWhitelist").toStringList())) {
+    for (const QString &rawSubnet : asConst(value("Preferences/WebUI/AuthSubnetWhitelist").toStringList())) {
         bool ok = false;
         const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
         if (ok)

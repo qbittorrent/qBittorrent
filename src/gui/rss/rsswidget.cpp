@@ -187,7 +187,7 @@ void RSSWidget::displayItemsListMenu(const QPoint &)
 {
     bool hasTorrent = false;
     bool hasLink = false;
-    for (const QListWidgetItem *item : copyAsConst(m_articleListWidget->selectedItems())) {
+    for (const QListWidgetItem *item : asConst(m_articleListWidget->selectedItems())) {
         auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
         Q_ASSERT(article);
 
@@ -309,7 +309,7 @@ void RSSWidget::loadFoldersOpenState()
     const QStringList openedFolders = Preferences::instance()->getRssOpenFolders();
     for (const QString &varPath : openedFolders) {
         QTreeWidgetItem *parent = nullptr;
-        for (const QString &name : copyAsConst(varPath.split('\\'))) {
+        for (const QString &name : asConst(varPath.split('\\'))) {
             int nbChildren = (parent ? parent->childCount() : m_feedListWidget->topLevelItemCount());
             for (int i = 0; i < nbChildren; ++i) {
                 QTreeWidgetItem *child = (parent ? parent->child(i) : m_feedListWidget->topLevelItem(i));
@@ -326,7 +326,7 @@ void RSSWidget::loadFoldersOpenState()
 void RSSWidget::saveFoldersOpenState()
 {
     QStringList openedFolders;
-    for (QTreeWidgetItem *item : copyAsConst(m_feedListWidget->getAllOpenedFolders()))
+    for (QTreeWidgetItem *item : asConst(m_feedListWidget->getAllOpenedFolders()))
         openedFolders << m_feedListWidget->itemPath(item);
     Preferences::instance()->setRssOpenFolders(openedFolders);
 }
@@ -338,7 +338,7 @@ void RSSWidget::refreshAllFeeds()
 
 void RSSWidget::downloadSelectedTorrents()
 {
-    for (QListWidgetItem *item : copyAsConst(m_articleListWidget->selectedItems())) {
+    for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems())) {
         auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
         Q_ASSERT(article);
 
@@ -357,7 +357,7 @@ void RSSWidget::downloadSelectedTorrents()
 // open the url of the selected RSS articles in the Web browser
 void RSSWidget::openSelectedArticlesUrls()
 {
-    for (QListWidgetItem *item : copyAsConst(m_articleListWidget->selectedItems())) {
+    for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems())) {
         auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
         Q_ASSERT(article);
 
@@ -398,7 +398,7 @@ void RSSWidget::renameSelectedRSSItem()
 
 void RSSWidget::refreshSelectedItems()
 {
-    for (QTreeWidgetItem *item : copyAsConst(m_feedListWidget->selectedItems())) {
+    for (QTreeWidgetItem *item : asConst(m_feedListWidget->selectedItems())) {
         if (item == m_feedListWidget->stickyUnreadItem()) {
             refreshAllFeeds();
             return;
@@ -411,7 +411,7 @@ void RSSWidget::refreshSelectedItems()
 void RSSWidget::copySelectedFeedsURL()
 {
     QStringList URLs;
-    for (QTreeWidgetItem *item : copyAsConst(m_feedListWidget->selectedItems())) {
+    for (QTreeWidgetItem *item : asConst(m_feedListWidget->selectedItems())) {
         if (auto feed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item)))
             URLs << feed->url();
     }
@@ -426,7 +426,7 @@ void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
 
 void RSSWidget::on_markReadButton_clicked()
 {
-    for (QTreeWidgetItem *item : copyAsConst(m_feedListWidget->selectedItems())) {
+    for (QTreeWidgetItem *item : asConst(m_feedListWidget->selectedItems())) {
         m_feedListWidget->getRSSItem(item)->markAsRead();
         if (item == m_feedListWidget->stickyUnreadItem())
             break; // all items was read

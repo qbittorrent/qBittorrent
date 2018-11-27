@@ -134,7 +134,7 @@ namespace
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
         quint32 peers = 0;
-        for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
+        for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
             peers += torrent->peersCount();
         map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
         map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
@@ -410,7 +410,7 @@ void SyncController::maindataAction()
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(session->torrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConst(session->torrents())) {
         QVariantMap map = serialize(*torrent);
         map.remove(KEY_TORRENT_HASH);
 

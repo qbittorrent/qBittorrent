@@ -327,7 +327,7 @@ void ScanFoldersModel::makePersistent()
 {
     QVariantHash dirs;
 
-    for (const PathData *pathData : qAsConst(m_pathList)) {
+    for (const PathData *pathData : asConst(m_pathList)) {
         if (pathData->downloadType == CUSTOM_LOCATION)
             dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), Utils::Fs::fromNativePath(pathData->downloadPath));
         else

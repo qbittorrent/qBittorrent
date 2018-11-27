@@ -220,7 +220,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 
 TrackerFiltersList::~TrackerFiltersList()
 {
-    for (const QString &iconPath : qAsConst(m_iconPaths))
+    for (const QString &iconPath : asConst(m_iconPaths))
         Utils::Fs::forceRemove(iconPath);
 }
 

@@ -267,14 +267,14 @@ QVector<int> TorrentContentModel::getFilePriorities() const
 {
     QVector<int> prio;
     prio.reserve(m_filesIndex.size());
-    for (const TorrentContentModelFile *file : qAsConst(m_filesIndex))
+    for (const TorrentContentModelFile *file : asConst(m_filesIndex))
         prio.push_back(file->priority());
     return prio;
 }
 
 bool TorrentContentModel::allFiltered() const
 {
-    for (const TorrentContentModelFile *fileItem : qAsConst(m_filesIndex))
+    for (const TorrentContentModelFile *fileItem : asConst(m_filesIndex))
         if (fileItem->priority() != prio::IGNORED)
             return false;
     return true;
@@ -477,7 +477,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         // Iterate of parts of the path to create necessary folders
         QStringList pathFolders = path.split('/', QString::SkipEmptyParts);
         pathFolders.removeLast();
-        for (const QString &pathPart : qAsConst(pathFolders)) {
+        for (const QString &pathPart : asConst(pathFolders)) {
             if (pathPart == ".unwanted")
                 continue;
             TorrentContentModelFolder* newParent = currentParent->childFolderWithName(pathPart);

@@ -167,11 +167,11 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    for (const QString &cat : copyAsConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
+    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
         tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
-    for (const QStrPair &p : qAsConst(tmpList)) {
+    for (const QStrPair &p : asConst(tmpList)) {
         qDebug("Supported category: %s", qUtf8Printable(p.second));
         m_ui->comboCategory->addItem(p.first, QVariant(p.second));
     }
@@ -189,11 +189,11 @@ void SearchWidget::fillPluginComboBox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    for (const QString &name : copyAsConst(SearchPluginManager::instance()->enabledPlugins()))
+    for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
-    for (const QStrPair &p : qAsConst(tmpList))
+    for (const QStrPair &p : asConst(tmpList))
         m_ui->selectPlugin->addItem(p.first, QVariant(p.second));
 
     if (m_ui->selectPlugin->count() > 3)

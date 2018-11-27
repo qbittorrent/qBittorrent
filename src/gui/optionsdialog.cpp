@@ -453,9 +453,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // disable mouse wheel event on widgets to avoid mis-selection
     WheelEventEater *wheelEventEater = new WheelEventEater(this);
-    for (QComboBox *widget : copyAsConst(findChildren<QComboBox *>()))
+    for (QComboBox *widget : asConst(findChildren<QComboBox *>()))
         widget->installEventFilter(wheelEventEater);
-    for (QSpinBox *widget : copyAsConst(findChildren<QSpinBox *>()))
+    for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
         widget->installEventFilter(wheelEventEater);
 
     loadWindowState();
@@ -493,7 +493,7 @@ OptionsDialog::~OptionsDialog()
 
     saveWindowState();
 
-    for (const QString &path : qAsConst(m_addedScanDirs))
+    for (const QString &path : asConst(m_addedScanDirs))
         ScanFoldersModel::instance()->removePath(path);
     ScanFoldersModel::instance()->configure(); // reloads "removed" paths
     delete m_ui;

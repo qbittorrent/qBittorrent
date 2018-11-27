@@ -60,7 +60,7 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 QStringList TrackersAdditionDialog::newTrackers() const
 {
     QStringList cleanTrackers;
-    for (QString url : copyAsConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
+    for (QString url : asConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty())
             cleanTrackers << url;

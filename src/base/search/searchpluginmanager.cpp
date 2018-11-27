@@ -65,7 +65,7 @@ namespace
         while (iter.hasNext())
             dirs += iter.next();
 
-        for (const QString &dir : qAsConst(dirs)) {
+        for (const QString &dir : asConst(dirs)) {
             // python 3: remove "__pycache__" folders
             if (dir.endsWith("/__pycache__")) {
                 Utils::Fs::removeDirRecursive(dir);
@@ -120,7 +120,7 @@ QStringList SearchPluginManager::allPlugins() const
 QStringList SearchPluginManager::enabledPlugins() const
 {
     QStringList plugins;
-    for (const PluginInfo *plugin : qAsConst(m_plugins)) {
+    for (const PluginInfo *plugin : asConst(m_plugins)) {
         if (plugin->enabled)
             plugins << plugin->name;
     }
@@ -131,7 +131,7 @@ QStringList SearchPluginManager::enabledPlugins() const
 QStringList SearchPluginManager::supportedCategories() const
 {
     QStringList result;
-    for (const PluginInfo *plugin : qAsConst(m_plugins)) {
+    for (const PluginInfo *plugin : asConst(m_plugins)) {
         if (plugin->enabled) {
             for (const QString &cat : plugin->supportedCategories) {
                 if (!result.contains(cat))
@@ -154,7 +154,7 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
         plugins << pluginName.trimmed();
 
     QSet<QString> categories;
-    for (const QString &name : qAsConst(plugins)) {
+    for (const QString &name : asConst(plugins)) {
         const PluginInfo *plugin = pluginInfo(name);
         if (!plugin) continue; // plugin wasn't found
         for (const QString &category : plugin->supportedCategories)

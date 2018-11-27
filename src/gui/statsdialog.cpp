@@ -90,7 +90,7 @@ void StatsDialog::update()
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
     quint32 peers = 0;
-    for (BitTorrent::TorrentHandle *const torrent : copyAsConst(BitTorrent::Session::instance()->torrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
         peers += torrent->peersCount();
 
     m_ui->labelWriteStarve->setText(QString("%1%")

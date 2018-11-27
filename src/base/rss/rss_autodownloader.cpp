@@ -241,7 +241,7 @@ void AutoDownloader::importRules(const QByteArray &data, AutoDownloader::RulesFi
 QByteArray AutoDownloader::exportRulesToJSONFormat() const
 {
     QJsonObject jsonObj;
-    for (const auto &rule : copyAsConst(rules()))
+    for (const auto &rule : asConst(rules()))
         jsonObj.insert(rule.name(), rule.toJsonObject());
 
     return QJsonDocument(jsonObj).toJson();
@@ -249,14 +249,14 @@ QByteArray AutoDownloader::exportRulesToJSONFormat() const
 
 void AutoDownloader::importRulesFromJSONFormat(const QByteArray &data)
 {
-    for (const auto &rule : copyAsConst(rulesFromJSON(data)))
+    for (const auto &rule : asConst(rulesFromJSON(data)))
         insertRule(rule);
 }
 
 QByteArray AutoDownloader::exportRulesToLegacyFormat() const
 {
     QVariantHash dict;
-    for (const auto &rule : copyAsConst(rules()))
+    for (const auto &rule : asConst(rules()))
         dict[rule.name()] = rule.toLegacyDict();
 
     QByteArray data;
@@ -276,7 +276,7 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
     if (in.status() != QDataStream::Ok)
         throw ParsingError(tr("Invalid data format"));
 
-    for (const QVariant &val : qAsConst(dict))
+    for (const QVariant &val : asConst(dict))
         insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
 }
 
@@ -451,7 +451,7 @@ void AutoDownloader::store()
     m_savingTimer.stop();
 
     QJsonObject jsonObj;
-    for (const auto &rule : qAsConst(m_rules))
+    for (const auto &rule : asConst(m_rules))
         jsonObj.insert(rule.name(), rule.toJsonObject());
 
     m_fileStorage->store(RulesFileName, QJsonDocument(jsonObj).toJson());
@@ -473,7 +473,7 @@ void AutoDownloader::resetProcessingQueue()
     m_processingQueue.clear();
     if (!m_processingEnabled) return;
 
-    for (Article *article : copyAsConst(Session::instance()->rootFolder()->articles())) {
+    for (Article *article : asConst(Session::instance()->rootFolder()->articles())) {
         if (!article->isRead() && !article->torrentUrl().isEmpty())
             addJobForArticle(article);
     }

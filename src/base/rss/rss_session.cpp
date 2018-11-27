@@ -284,7 +284,7 @@ void Session::load()
 void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
     bool updated = false;
-    for (const QString &key : copyAsConst(jsonObj.keys())) {
+    for (const QString &key : asConst(jsonObj.keys())) {
         const QJsonValue val {jsonObj[key]};
         if (val.isString()) {
             // previous format (reduced form) doesn't contain UID
@@ -356,7 +356,7 @@ void Session::loadLegacy()
         const QString parentFolderPath = Item::parentPath(legacyPath);
         const QString feedUrl = Item::relativeName(legacyPath);
 
-        for (const QString &folderPath : copyAsConst(Item::expandPath(parentFolderPath)))
+        for (const QString &folderPath : asConst(Item::expandPath(parentFolderPath)))
             addFolder(folderPath);
 
         const QString feedPath = feedAliases[i].isEmpty()

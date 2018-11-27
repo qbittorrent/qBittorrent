@@ -53,9 +53,9 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
     m_ui->tabBan->layout()->addWidget(m_peerList);
 
     const Logger *const logger = Logger::instance();
-    for (const Log::Msg &msg : copyAsConst(logger->getMessages()))
+    for (const Log::Msg &msg : asConst(logger->getMessages()))
         addLogMessage(msg);
-    for (const Log::Peer &peer : copyAsConst(logger->getPeers()))
+    for (const Log::Peer &peer : asConst(logger->getPeers()))
         addPeerMessage(peer);
     connect(logger, &Logger::newLogMessage, this, &ExecutionLogWidget::addLogMessage);
     connect(logger, &Logger::newLogPeer, this, &ExecutionLogWidget::addPeerMessage);
