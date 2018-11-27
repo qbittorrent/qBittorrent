@@ -410,6 +410,9 @@ div.formRow {
     padding-left: 5px;
     padding-top: 5px;
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .filterTitle img {
@@ -430,6 +433,9 @@ ul.filterList {
 
 ul.filterList a {
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 ul.filterList li:hover {

@@ -97,13 +97,11 @@ window.addEvent('load', function() {
         placement: 'left',
         onResize: saveColumnSizes,
         width: filt_w,
-        resizeLimit: [100, 300]
+        resizeLimit: [1, 300]
     });
     new MochaUI.Column({
         id: 'mainColumn',
-        placement: 'main',
-        width: null,
-        resizeLimit: [100, 300]
+        placement: 'main'
     });
 
     setCategoryFilter = function(hash) {
