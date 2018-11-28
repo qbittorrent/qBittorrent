@@ -160,10 +160,10 @@ AS_CASE(["x$enable_qt_dbus"],
 
 
 AX_BOOST_BASE([1.35],
-              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"])
+              [AC_MSG_NOTICE([Boost CXXFLAGS: "$BOOST_CPPFLAGS"])
                AC_MSG_NOTICE([Boost LDFLAGS: "$BOOST_LDFLAGS"])],
               [AC_MSG_ERROR([Could not find Boost])])
-CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+CXXFLAGS="$BOOST_CPPFLAGS $CXXFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 # add workaround for problematic boost version
@@ -192,12 +192,12 @@ AS_CASE(["x$with_qtsingleapplication"],
 
 PKG_CHECK_MODULES(libtorrent,
                   [libtorrent-rasterbar >= 1.0.6],
-                  [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                  [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
                  [zlib >= 1.2.5.2],
-                 [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
+                 [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
 # Check if already in >= C++11 mode because of the flags returned by one of the above packages
@@ -212,20 +212,20 @@ AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
 # and if yes, enable it leaving a warning to the user
 AS_IF([test "x$QBT_CXX11_FOUND" = "xno"],
       [AC_MSG_CHECKING([if compiler supports C++11])
-       TMP_CPPFLAGS="$CPPFLAGS"
-       CPPFLAGS="$CPPFLAGS -std=c++11"
+       TMP_CXXFLAGS="$CXXFLAGS"
+       CXXFLAGS="$CXXFLAGS -std=c++11"
        AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
                         [AC_MSG_RESULT([yes])
                          AC_MSG_CHECKING([if C++11 is disabled by the set compiler flags])
                          # prepend the flag so it won't override conflicting user defined flags
-                         CPPFLAGS="-std=c++11 $TMP_CPPFLAGS"
+                         CXXFLAGS="-std=c++11 $TMP_CXXFLAGS"
                          AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
                                            [AC_MSG_RESULT([no])
-                                            CPPFLAGS="$TMP_CPPFLAGS -std=c++11"
+                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++11"
                                             AC_MSG_WARN([C++11 mode is now force enabled.
 Make sure you use the same C++ mode for qBittorrent and its dependencies.
-To explicitly set qBittorrent to a later mode use CPPFLAGS.
-Example: `CPPFLAGS="\$CPPFLAGS -std=c++14" ./configure`])],
+To explicitly set qBittorrent to a later mode use CXXFLAGS.
+Example: `CXXFLAGS="\$CXXFLAGS -std=c++14" ./configure`])],
                                            [AC_MSG_RESULT([yes])
                                             AC_MSG_ERROR([The compiler supports C++11 but the user or a dependency has explicitly enabled a lower mode.])])],
                         [AC_MSG_RESULT([no])
@@ -266,7 +266,7 @@ extract() {
   IFS=$SAVEIFS
 }
 
-extract "$CFLAGS $CXXFLAGS $CPPFLAGS"
+extract "$CFLAGS $CXXFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in
