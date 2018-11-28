@@ -71,6 +71,21 @@
 #include "ui_optionsdialog.h"
 #include "utils.h"
 
+namespace
+{
+    QStringList translatedWeekdayNames()
+    {
+        // return translated strings from Monday to Sunday in user selected locale
+
+        const QLocale locale {Preferences::instance()->getLocale()};
+        const QDate date {2018, 11, 5};  // Monday
+        QStringList ret;
+        for (int i = 0; i < 7; ++i)
+            ret.append(locale.toString(date.addDays(i), "dddd"));
+        return ret;
+    }
+}
+
 class WheelEventEater : public QObject
 {
 public:
@@ -164,8 +179,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     initializeLanguageCombo();
 
     // Load week days (scheduler)
-    for (uint i = 1; i <= 7; ++i)
-        m_ui->comboBoxScheduleDays->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
+    m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames());
 
     // Load options
     loadOptions();
