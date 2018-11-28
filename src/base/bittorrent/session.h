@@ -481,7 +481,6 @@ namespace BitTorrent
 
         // TorrentHandle interface
         void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
-        void handleTorrentsPrioritiesChanged();
         void handleTorrentNameChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
         void handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory);
@@ -633,6 +632,8 @@ namespace BitTorrent
         void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 
         void saveResumeData();
+        void saveTorrentsQueue();
+        void removeTorrentsQueue();
 
 #if LIBTORRENT_VERSION_NUM < 10100
         void dispatchAlerts(libtorrent::alert *alertPtr);
