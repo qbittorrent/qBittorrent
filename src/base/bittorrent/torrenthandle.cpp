@@ -973,12 +973,13 @@ qulonglong TorrentHandle::eta() const
 QVector<qreal> TorrentHandle::filesProgress() const
 {
     std::vector<boost::int64_t> fp;
-    QVector<qreal> result;
     m_nativeHandle.file_progress(fp, libt::torrent_handle::piece_granularity);
 
-    int count = static_cast<int>(fp.size());
+    const int count = static_cast<int>(fp.size());
+    QVector<qreal> result;
+    result.reserve(count);
     for (int i = 0; i < count; ++i) {
-        qlonglong size = fileSize(i);
+        const qlonglong size = fileSize(i);
         if ((size <= 0) || (fp[i] == size))
             result << 1;
         else
@@ -2100,7 +2101,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
 
 QVector<qreal> TorrentHandle::availableFileFractions() const
 {
-    const auto filesCount = this->filesCount();
+    const int filesCount = this->filesCount();
     if (filesCount < 0) return {};
 
     const QVector<int> piecesAvailability = pieceAvailability();
@@ -2109,12 +2110,13 @@ QVector<qreal> TorrentHandle::availableFileFractions() const
 
     QVector<qreal> res;
     res.reserve(filesCount);
-    TorrentInfo info = this->info();
-    for (int file = 0; file < filesCount; ++file) {
-        TorrentInfo::PieceRange filePieces = info.filePieces(file);
+    const TorrentInfo info = this->info();
+    for (int i = 0; i < filesCount; ++i) {
+        const TorrentInfo::PieceRange filePieces = info.filePieces(i);
+
         int availablePieces = 0;
         for (int piece = filePieces.first(); piece <= filePieces.last(); ++piece) {
-            availablePieces += piecesAvailability[piece] > 0 ? 1 : 0;
+            availablePieces += (piecesAvailability[piece] > 0) ? 1 : 0;
         }
         res.push_back(static_cast<qreal>(availablePieces) / filePieces.size());
     }
