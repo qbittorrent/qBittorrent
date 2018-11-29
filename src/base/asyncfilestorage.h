@@ -28,22 +28,22 @@
 
 #pragma once
 
-#include <stdexcept>
-
 #include <QDir>
 #include <QFile>
 #include <QObject>
 
-class AsyncFileStorageError : public std::runtime_error
+#include "base/exceptions.h"
+
+class AsyncFileStorageError : public RuntimeError
 {
 public:
-    explicit AsyncFileStorageError(const QString &message);
-    QString message() const;
+    using RuntimeError::RuntimeError;
 };
 
 class AsyncFileStorage : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AsyncFileStorage)
 
 public:
     explicit AsyncFileStorage(const QString &storageFolderPath, QObject *parent = nullptr);
