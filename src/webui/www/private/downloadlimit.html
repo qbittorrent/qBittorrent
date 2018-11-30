@@ -25,7 +25,7 @@
             'use strict';
 
             var hashes = new URI().getData('hashes').split('|');
-            setDlLimit = function() {
+            var setDlLimit = function() {
                 var limit = $("dllimitUpdatevalue").value.toInt() * 1024;
                 if (hashes[0] == "global") {
                     new Request({

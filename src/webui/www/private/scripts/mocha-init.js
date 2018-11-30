@@ -31,12 +31,43 @@ function getLocalStorageItem(name, defaultVal) {
     return val;
 }
 
+var saveWindowSize = function() {};
+var loadWindowWidth = function() {};
+var loadWindowHeight = function() {};
+var showDownloadPage = function() {};
+var globalUploadLimitFN = function() {};
+var uploadLimitFN = function() {};
+var shareRatioFN = function() {};
+var toggleSequentialDownloadFN = function() {};
+var toggleFirstLastPiecePrioFN = function() {};
+var setSuperSeedingFN = function() {};
+var setForceStartFN = function() {};
+var globalDownloadLimitFN = function() {};
+var StatisticsLinkFN = function() {};
+var downloadLimitFN = function() {};
 var deleteFN = function() {};
-var startFN = function() {};
 var pauseFN = function() {};
+var startFN = function() {};
+var autoTorrentManagementFN = function() {};
+var recheckFN = function() {};
+var reannounceFN = function() {};
+var setLocationFN = function() {};
+var renameFN = function() {};
+var torrentNewCategoryFN = function() {};
+var torrentSetCategoryFN = function() {};
+var createCategoryFN = function() {};
+var editCategoryFN = function() {};
+var removeCategoryFN = function() {};
+var deleteUnusedCategoriesFN = function() {};
+var startTorrentsByCategoryFN = function() {};
+var pauseTorrentsByCategoryFN = function() {};
+var deleteTorrentsByCategoryFN = function() {};
+var copyNameFN = function() {};
+var copyMagnetLinkFN = function() {};
+var copyHashFN = function() {};
+var setPriorityFN = function() {};
 
-initializeWindows = function() {
-
+var initializeWindows = function() {
     saveWindowSize = function(windowId) {
         var size = $(windowId).getSize();
         localStorage.setItem('window_' + windowId + '_width', size.x);

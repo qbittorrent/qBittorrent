@@ -352,5 +352,5 @@ var updateTorrentFilesData = function() {
     loadTorrentFilesData();
 };
 
-fTable = new filesDynTable();
+var fTable = new filesDynTable();
 fTable.setup($('filesTable'));

@@ -107,5 +107,5 @@ var updateWebSeedsData = function() {
     loadWebSeedsData();
 };
 
-wsTable = new webseedsDynTable();
+var wsTable = new webseedsDynTable();
 wsTable.setup($('webseedsTable'));
