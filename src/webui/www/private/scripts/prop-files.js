@@ -1,3 +1,5 @@
+'use strict';
+
 var is_seed = true;
 var current_hash = "";
 

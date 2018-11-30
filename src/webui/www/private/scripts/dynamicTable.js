@@ -31,6 +31,8 @@
 
  **************************************************************/
 
+'use strict';
+
 var DynamicTableHeaderContextMenuClass = null;
 var ProgressColumnWidth = -1;
 

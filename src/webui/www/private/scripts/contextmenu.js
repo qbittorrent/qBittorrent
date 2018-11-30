@@ -1,3 +1,5 @@
+'use strict';
+
 var lastShownContexMenu = null;
 var ContextMenu = new Class({
     //implements

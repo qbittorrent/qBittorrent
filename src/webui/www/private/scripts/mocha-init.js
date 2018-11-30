@@ -8,6 +8,8 @@
     it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
+'use strict';
+
 /* Define localStorage object for older browsers */
 if (typeof localStorage == 'undefined') {
     window['localStorage'] = {

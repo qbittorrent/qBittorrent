@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * JS counterpart of the function in src/misc.cpp
  */

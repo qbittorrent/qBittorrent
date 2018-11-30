@@ -22,6 +22,8 @@
             <div class="clear"></div>
         </div>
         <script>
+            'use strict';
+
             var hashes = new URI().getData('hashes').split('|');
             setDlLimit = function() {
                 var limit = $("dllimitUpdatevalue").value.toInt() * 1024;

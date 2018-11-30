@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+'use strict';
+
 torrentsTable = new TorrentsTable();
 torrentPeersTable = new TorrentPeersTable();
 searchResultsTable = new SearchResultsTable();

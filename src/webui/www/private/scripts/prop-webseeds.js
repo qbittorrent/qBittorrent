@@ -1,3 +1,5 @@
+'use strict';
+
 var webseedsDynTable = new Class({
 
     initialize: function() {},

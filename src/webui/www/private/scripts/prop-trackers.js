@@ -1,3 +1,5 @@
+'use strict';
+
 var trackersDynTable = new Class({
 
     initialize: function() {},

@@ -1,3 +1,5 @@
+'use strict';
+
 var clearData = function() {
     $('time_elapsed').set('html', '');
     $('eta').set('html', '');

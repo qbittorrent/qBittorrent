@@ -21,6 +21,8 @@
  * THE SOFTWARE.
  */
 
+'use strict';
+
 var categories = {};
 var defaultSavePath = "";
 
