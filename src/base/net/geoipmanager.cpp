@@ -34,6 +34,7 @@
 #include <QDir>
 #include <QFile>
 #include <QHostAddress>
+#include <QLocale>
 
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -100,12 +101,15 @@ void GeoIPManager::loadDatabase()
 
     QString error;
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
-    if (m_geoIPDatabase)
+    if (m_geoIPDatabase) {
+        const QLocale locale {Preferences::instance()->getLocale()};
         Logger::instance()->addMessage(tr("GeoIP database loaded. Type: %1. Build time: %2.")
-            .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
+            .arg(m_geoIPDatabase->type(), locale.toString(m_geoIPDatabase->buildEpoch())),
             Log::INFO);
-    else
+    }
+    else {
         Logger::instance()->addMessage(tr("Couldn't load GeoIP database. Reason: %1").arg(error), Log::WARNING);
+    }
 
     manageDatabaseUpdate();
 }
