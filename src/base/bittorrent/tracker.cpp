@@ -60,7 +60,7 @@ bool Peer::operator==(const Peer &other) const
 
 QString Peer::uid() const
 {
-    return ip + ':' + QString::number(port);
+    return ip.toString() + ':' + QString::number(port);
 }
 
 libtorrent::entry Peer::toEntry(bool noPeerId) const
@@ -68,7 +68,7 @@ libtorrent::entry Peer::toEntry(bool noPeerId) const
     libtorrent::entry::dictionary_type peerMap;
     if (!noPeerId)
         peerMap["id"] = libtorrent::entry(peerId.toStdString());
-    peerMap["ip"] = libtorrent::entry(ip.toStdString());
+    peerMap["ip"] = libtorrent::entry(ip.toString().toStdString());
     peerMap["port"] = libtorrent::entry(port);
 
     return libtorrent::entry(peerMap);
@@ -148,7 +148,7 @@ void Tracker::respondToAnnounceRequest()
     TrackerAnnounceRequest annonceReq;
 
     // IP
-    annonceReq.peer.ip = m_env.clientAddress.toString();
+    annonceReq.peer.ip = m_env.clientAddress;
 
     // 1. Get info_hash
     if (!queryParams.contains("info_hash")) {

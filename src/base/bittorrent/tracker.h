@@ -32,6 +32,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QHostAddress>
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
@@ -51,7 +52,7 @@ namespace BitTorrent
 {
     struct Peer
     {
-        QString ip;
+        QHostAddress ip;
         QByteArray peerId;
         int port;
 
