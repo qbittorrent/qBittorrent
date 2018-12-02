@@ -148,7 +148,9 @@ void Tracker::respondToAnnounceRequest()
     TrackerAnnounceRequest annonceReq;
 
     // IP
-    annonceReq.peer.ip = m_env.clientAddress;
+    // Use the "ip" parameter provided from tracker request first, then fall back to client IP if invalid
+    const QHostAddress paramIP {QString::fromLatin1(queryParams.value("ip"))};
+    annonceReq.peer.ip = paramIP.isNull() ? m_env.clientAddress : paramIP;
 
     // 1. Get info_hash
     if (!queryParams.contains("info_hash")) {
