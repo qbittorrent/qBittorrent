@@ -367,15 +367,9 @@ void TrackerListWidget::loadTrackers()
         }
 
         item->setText(COL_PEERS, QString::number(data.numPeers));
-#if LIBTORRENT_VERSION_NUM >= 10000
         item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete > -1) ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
         item->setText(COL_LEECHES, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
         item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded > -1) ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
-#else
-        item->setText(COL_SEEDS, tr("N/A"));
-        item->setText(COL_LEECHES, tr("N/A"));
-        item->setText(COL_DOWNLOADED, tr("N/A"));
-#endif
 
         item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
         item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
