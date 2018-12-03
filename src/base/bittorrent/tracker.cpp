@@ -145,12 +145,12 @@ void Tracker::respondToAnnounceRequest()
         queryParams[paramName] = paramValue;
     }
 
-    TrackerAnnounceRequest annonceReq;
+    TrackerAnnounceRequest announceReq;
 
     // IP
     // Use the "ip" parameter provided from tracker request first, then fall back to client IP if invalid
     const QHostAddress paramIP {QString::fromLatin1(queryParams.value("ip"))};
-    annonceReq.peer.ip = paramIP.isNull() ? m_env.clientAddress : paramIP;
+    announceReq.peer.ip = paramIP.isNull() ? m_env.clientAddress : paramIP;
 
     // 1. Get info_hash
     if (!queryParams.contains("info_hash")) {
@@ -158,7 +158,7 @@ void Tracker::respondToAnnounceRequest()
         status(101, "Missing info_hash");
         return;
     }
-    annonceReq.infoHash = queryParams.value("info_hash");
+    announceReq.infoHash = queryParams.value("info_hash");
     // info_hash cannot be longer than 20 bytes
     /*if (annonce_req.info_hash.toLatin1().length() > 20) {
         qDebug("Tracker: Info_hash is not 20 byte long: %s (%d)", qUtf8Printable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
@@ -172,7 +172,7 @@ void Tracker::respondToAnnounceRequest()
         status(102, "Missing peer_id");
         return;
     }
-    annonceReq.peer.peerId = queryParams.value("peer_id");
+    announceReq.peer.peerId = queryParams.value("peer_id");
     // peer_id cannot be longer than 20 bytes
     /*if (annonce_req.peer.peer_id.length() > 20) {
         qDebug("Tracker: peer_id is not 20 byte long: %s", qUtf8Printable(annonce_req.peer.peer_id));
@@ -187,52 +187,52 @@ void Tracker::respondToAnnounceRequest()
         return;
     }
     bool ok = false;
-    annonceReq.peer.port = queryParams.value("port").toInt(&ok);
-    if (!ok || (annonceReq.peer.port < 0) || (annonceReq.peer.port > 65535)) {
-        qDebug("Tracker: Invalid port number (%d)", annonceReq.peer.port);
+    announceReq.peer.port = queryParams.value("port").toInt(&ok);
+    if (!ok || (announceReq.peer.port < 0) || (announceReq.peer.port > 65535)) {
+        qDebug("Tracker: Invalid port number (%d)", announceReq.peer.port);
         status(103, "Missing port");
         return;
     }
 
     // 4.  Get event
-    annonceReq.event = "";
+    announceReq.event = "";
     if (queryParams.contains("event")) {
-        annonceReq.event = queryParams.value("event");
-        qDebug("Tracker: event is %s", qUtf8Printable(annonceReq.event));
+        announceReq.event = queryParams.value("event");
+        qDebug("Tracker: event is %s", qUtf8Printable(announceReq.event));
     }
 
     // 5. Get numwant
-    annonceReq.numwant = 50;
+    announceReq.numwant = 50;
     if (queryParams.contains("numwant")) {
         int tmp = queryParams.value("numwant").toInt();
         if (tmp > 0) {
             qDebug("Tracker: numwant = %d", tmp);
-            annonceReq.numwant = tmp;
+            announceReq.numwant = tmp;
         }
     }
 
     // 6. no_peer_id (extension)
-    annonceReq.noPeerId = false;
+    announceReq.noPeerId = false;
     if (queryParams.contains("no_peer_id"))
-        annonceReq.noPeerId = true;
+        announceReq.noPeerId = true;
 
     // 7. TODO: support "compact" extension
 
     // Done parsing, now let's reply
-    if (annonceReq.event == "stopped") {
-        unregisterPeer(annonceReq);
+    if (announceReq.event == "stopped") {
+        unregisterPeer(announceReq);
     }
     else {
-        registerPeer(annonceReq);
-        replyWithPeerList(annonceReq);
+        registerPeer(announceReq);
+        replyWithPeerList(announceReq);
     }
 }
 
-void Tracker::registerPeer(const TrackerAnnounceRequest &annonceReq)
+void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
 {
-    if (annonceReq.peer.port == 0) return;
+    if (announceReq.peer.port == 0) return;
 
-    if (!m_torrents.contains(annonceReq.infoHash)) {
+    if (!m_torrents.contains(announceReq.infoHash)) {
         // Unknown torrent
         if (m_torrents.size() == MAX_TORRENTS) {
             // Reached max size, remove a random torrent
@@ -241,34 +241,34 @@ void Tracker::registerPeer(const TrackerAnnounceRequest &annonceReq)
     }
 
     // Register the user
-    PeerList &peers = m_torrents[annonceReq.infoHash];
-    if (!peers.contains(annonceReq.peer.uid())) {
+    PeerList &peers = m_torrents[announceReq.infoHash];
+    if (!peers.contains(announceReq.peer.uid())) {
         // Unknown peer
         if (peers.size() == MAX_PEERS_PER_TORRENT) {
             // Too many peers, remove a random one
             peers.erase(peers.begin());
         }
     }
-    peers[annonceReq.peer.uid()] = annonceReq.peer;
+    peers[announceReq.peer.uid()] = announceReq.peer;
 }
 
-void Tracker::unregisterPeer(const TrackerAnnounceRequest &annonceReq)
+void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 {
-    if (annonceReq.peer.port == 0) return;
+    if (announceReq.peer.port == 0) return;
 
-    if (m_torrents[annonceReq.infoHash].remove(annonceReq.peer.uid()) > 0)
+    if (m_torrents[announceReq.infoHash].remove(announceReq.peer.uid()) > 0)
         qDebug("Tracker: Peer stopped downloading, deleting it from the list");
 }
 
-void Tracker::replyWithPeerList(const TrackerAnnounceRequest &annonceReq)
+void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
 {
     // Prepare the entry for bencoding
     libtorrent::entry::dictionary_type replyDict;
     replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
 
     libtorrent::entry::list_type peerList;
-    for (const Peer &p : m_torrents.value(annonceReq.infoHash))
-        peerList.push_back(p.toEntry(annonceReq.noPeerId));
+    for (const Peer &p : m_torrents.value(announceReq.infoHash))
+        peerList.push_back(p.toEntry(announceReq.noPeerId));
     replyDict["peers"] = libtorrent::entry(peerList);
 
     const libtorrent::entry replyEntry(replyDict);
