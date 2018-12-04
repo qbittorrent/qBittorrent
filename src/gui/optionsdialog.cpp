@@ -565,8 +565,8 @@ void OptionsDialog::saveOptions()
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
-    pref->setStartMinimized(startMinimized());
 #endif
+    pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
