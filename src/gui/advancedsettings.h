@@ -59,7 +59,7 @@ private:
     template <typename T> void addRow(int row, const QString &rowText, T *widget);
 
     QLabel labelQbtLink, labelLibtorrentLink;
-    QSpinBox spinBoxAsyncIOThreads, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh, spinBoxMaxHalfOpen,
+    QSpinBox spinBoxAsyncIOThreads, spinBoxCheckingMemUsage, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh, spinBoxMaxHalfOpen,
              spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,
              spinBoxSendBufferWatermarkFactor, spinBoxSavePathHistoryLength;
     QCheckBox checkBoxOsCache, checkBoxRecheckCompleted, checkBoxResolveCountries, checkBoxResolveHosts, checkBoxSuperSeeding,

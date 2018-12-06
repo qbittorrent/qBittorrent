@@ -276,6 +276,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
+    , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 16)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
@@ -1317,6 +1318,9 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
     settingsPack.set_bool(libt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     settingsPack.set_int(libt::settings_pack::aio_threads, asyncIOThreads());
+
+    const int checkingMemUsageSize = checkingMemUsage() * 64;
+    settingsPack.set_int(libt::settings_pack::checking_mem_usage, checkingMemUsageSize);
 
     const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(libt::settings_pack::cache_size, cacheSize);
@@ -3080,6 +3084,22 @@ void Session::setAsyncIOThreads(const int num)
         return;
 
     m_asyncIOThreads = num;
+    configureDeferred();
+}
+
+int Session::checkingMemUsage() const
+{
+    return qMax(1, m_checkingMemUsage.value());
+}
+
+void Session::setCheckingMemUsage(int size)
+{
+    size = qMax(size, 1);
+
+    if (size == m_checkingMemUsage)
+        return;
+
+    m_checkingMemUsage = size;
     configureDeferred();
 }
 
