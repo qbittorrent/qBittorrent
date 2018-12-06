@@ -39,6 +39,7 @@
 #include <QSslError>
 #include <QUrl>
 
+#include "base/global.h"
 #include "base/preferences.h"
 #include "downloadhandler.h"
 #include "proxyconfigurationmanager.h"
@@ -56,7 +57,7 @@ namespace
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-            foreach (const QNetworkCookie &cookie, Preferences::instance()->getNetworkCookies()) {
+            for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -68,7 +69,7 @@ namespace
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();
-            foreach (const QNetworkCookie &cookie, allCookies()) {
+            for (const QNetworkCookie &cookie : asConst(allCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -83,7 +84,7 @@ namespace
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-            foreach (const QNetworkCookie &cookie, QNetworkCookieJar::cookiesForUrl(url)) {
+            for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url))) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -95,7 +96,7 @@ namespace
         {
             QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = cookieList;
-            foreach (const QNetworkCookie &cookie, cookieList) {
+            for (const QNetworkCookie &cookie : cookieList) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }

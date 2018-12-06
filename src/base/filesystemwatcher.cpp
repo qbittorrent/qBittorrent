@@ -64,7 +64,7 @@ FileSystemWatcher::FileSystemWatcher(QObject *parent)
 QStringList FileSystemWatcher::directories() const
 {
     QStringList dirs = QFileSystemWatcher::directories();
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         dirs << dir.canonicalPath();
     return dirs;
 }
@@ -113,7 +113,7 @@ void FileSystemWatcher::scanLocalFolder(const QString &path)
 
 void FileSystemWatcher::scanNetworkFolders()
 {
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         processTorrentsInDir(dir);
 }
 

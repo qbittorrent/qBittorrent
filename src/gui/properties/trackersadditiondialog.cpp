@@ -34,6 +34,7 @@
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/global.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
@@ -59,7 +60,7 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 QStringList TrackersAdditionDialog::newTrackers() const
 {
     QStringList cleanTrackers;
-    foreach (QString url, m_ui->textEditTrackersList->toPlainText().split('\n')) {
+    for (QString url : asConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty())
             cleanTrackers << url;
@@ -83,8 +84,8 @@ void TrackersAdditionDialog::parseUTorrentList(const QString &, const QByteArray
     // Load from torrent handle
     QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     // Load from current user list
-    QStringList tmp = m_ui->textEditTrackersList->toPlainText().split('\n');
-    foreach (const QString &userURL, tmp) {
+    const QStringList tmp = m_ui->textEditTrackersList->toPlainText().split('\n');
+    for (const QString &userURL : tmp) {
         BitTorrent::TrackerEntry userTracker(userURL);
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;

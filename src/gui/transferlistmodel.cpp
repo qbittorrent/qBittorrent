@@ -36,6 +36,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 
@@ -61,7 +62,7 @@ TransferListModel::TransferListModel(QObject *parent)
 {
     // Load the torrents
     using namespace BitTorrent;
-    foreach (TorrentHandle *const torrent, Session::instance()->torrents())
+    for (TorrentHandle *const torrent : asConst(Session::instance()->torrents()))
         addTorrent(torrent);
 
     // Listen for torrent changes

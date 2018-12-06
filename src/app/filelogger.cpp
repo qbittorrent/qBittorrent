@@ -33,6 +33,7 @@
 #include <QFile>
 #include <QTextStream>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
@@ -50,7 +51,7 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
         this->deleteOld(age, ageType);
 
     const Logger *const logger = Logger::instance();
-    foreach (const Log::Msg &msg, logger->getMessages())
+    for (const Log::Msg &msg : asConst(logger->getMessages()))
         addLogMessage(msg);
 
     connect(logger, &Logger::newLogMessage, this, &FileLogger::addLogMessage);
@@ -87,7 +88,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
     QDateTime date = QDateTime::currentDateTime();
     QDir dir(Utils::Fs::branchPath(m_path));
 
-    foreach (const QFileInfo file, dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed)) {
+    for (const QFileInfo &file : asConst(dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed))) {
         QDateTime modificationDate = file.lastModified();
         switch (ageType) {
         case DAYS:

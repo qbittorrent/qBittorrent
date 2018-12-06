@@ -41,6 +41,7 @@
 #include <QVariantHash>
 
 #include "../asyncfilestorage.h"
+#include "../global.h"
 #include "../logger.h"
 #include "../profile.h"
 #include "../settingsstorage.h"
@@ -283,7 +284,7 @@ void Session::load()
 void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
     bool updated = false;
-    foreach (const QString &key, jsonObj.keys()) {
+    for (const QString &key : asConst(jsonObj.keys())) {
         const QJsonValue val {jsonObj[key]};
         if (val.isString()) {
             // previous format (reduced form) doesn't contain UID
@@ -355,7 +356,7 @@ void Session::loadLegacy()
         const QString parentFolderPath = Item::parentPath(legacyPath);
         const QString feedUrl = Item::relativeName(legacyPath);
 
-        foreach (const QString &folderPath, Item::expandPath(parentFolderPath))
+        for (const QString &folderPath : asConst(Item::expandPath(parentFolderPath)))
             addFolder(folderPath);
 
         const QString feedPath = feedAliases[i].isEmpty()

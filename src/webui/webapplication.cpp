@@ -525,7 +525,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     if (m_request.method == Http::METHOD_GET) {
         // Parse GET parameters
         using namespace Utils::ByteArray;
-        for (const QByteArray &param : copyAsConst(splitToViews(m_request.query, "&"))) {
+        for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
             const int sepPos = param.indexOf('=');
             if (sepPos <= 0) continue; // ignores params without name
 
@@ -649,7 +649,8 @@ void WebApplication::sessionStart()
 
     // remove outdated sessions
     const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    foreach (const auto session, m_sessions) {
+    const QMap<QString, WebSession *> sessionsCopy {m_sessions};
+    for (const auto session : sessionsCopy) {
         if ((now - session->timestamp()) > INACTIVE_TIME)
             delete m_sessions.take(session->id());
     }

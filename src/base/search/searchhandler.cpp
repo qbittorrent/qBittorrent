@@ -32,6 +32,7 @@
 #include <QProcess>
 #include <QTimer>
 
+#include "../global.h"
 #include "../utils/foreignapps.h"
 #include "../utils/fs.h"
 #include "searchpluginmanager.h"
@@ -138,7 +139,7 @@ void SearchHandler::readSearchOutput()
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
     QList<SearchResult> searchResultList;
-    foreach (const QByteArray &line, lines) {
+    for (const QByteArray &line : asConst(lines)) {
         SearchResult searchResult;
         if (parseSearchResult(QString::fromUtf8(line), searchResult))
             searchResultList << searchResult;

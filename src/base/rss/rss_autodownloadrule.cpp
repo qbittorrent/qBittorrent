@@ -237,7 +237,7 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Accept if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustContain)) {
+    for (const QString &expression : asConst(m_dataPtr->mustContain)) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         if (matchesExpression(articleTitle, expression))
             return true;
@@ -246,14 +246,14 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
     return false;
 }
 
-bool AutoDownloadRule::matchesMustNotContainExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTitle) const
 {
     if (m_dataPtr->mustNotContain.empty())
         return true;
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Reject if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustNotContain)) {
+    for (const QString &expression : asConst(m_dataPtr->mustNotContain)) {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         if (matchesExpression(articleTitle, expression))
             return false;
@@ -262,7 +262,7 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString& articleTit
     return true;
 }
 
-bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitle) const
 {
     // Reset the lastComputedEpisode, we don't want to leak it between matches
     m_dataPtr->lastComputedEpisode.clear();
@@ -332,7 +332,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitl
     return false;
 }
 
-bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) const
+bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) const
 {
     if (!useSmartFilter())
         return true;
@@ -442,7 +442,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     QStringList feedURLs;
     if (feedsVal.isString())
         feedURLs << feedsVal.toString();
-    else foreach (const QJsonValue &urlVal, feedsVal.toArray())
+    else for (const QJsonValue &urlVal : asConst(feedsVal.toArray()))
         feedURLs << urlVal.toString();
     rule.setFeedURLs(feedURLs);
 
@@ -452,7 +452,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
         previouslyMatched << previouslyMatchedVal.toString();
     }
     else {
-        foreach (const QJsonValue &val, previouslyMatchedVal.toArray())
+        for (const QJsonValue &val : asConst(previouslyMatchedVal.toArray()))
             previouslyMatched << val.toString();
     }
     rule.setPreviouslyMatchedEpisodes(previouslyMatched);

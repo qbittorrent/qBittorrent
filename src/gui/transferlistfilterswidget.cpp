@@ -40,6 +40,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
@@ -219,7 +220,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 
 TrackerFiltersList::~TrackerFiltersList()
 {
-    foreach (const QString &iconPath, m_iconPaths)
+    for (const QString &iconPath : asConst(m_iconPaths))
         Utils::Fs::forceRemove(iconPath);
 }
 
@@ -404,7 +405,7 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
         applyFilter(3);
 }
 
-void TrackerFiltersList::downloadFavicon(const QString& url)
+void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadHandler *h = Net::DownloadManager::instance()->download(
@@ -416,7 +417,7 @@ void TrackerFiltersList::downloadFavicon(const QString& url)
             , &TrackerFiltersList::handleFavicoFailure);
 }
 
-void TrackerFiltersList::handleFavicoDownload(const QString& url, const QString& filePath)
+void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString &filePath)
 {
     QString host = url.startsWith(GOOGLE_FAVICON_URL)
                             ? url.mid(GOOGLE_FAVICON_URL.size())
@@ -487,8 +488,8 @@ void TrackerFiltersList::applyFilter(int row)
 void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
 {
     QString hash = torrent->hash();
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    foreach (const BitTorrent::TrackerEntry &tracker, trackers)
+    const QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    for (const BitTorrent::TrackerEntry &tracker : trackers)
         addItem(tracker.url(), hash);
 
     //Check for trackerless torrent
@@ -501,8 +502,8 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torre
 void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
 {
     QString hash = torrent->hash();
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    foreach (const BitTorrent::TrackerEntry &tracker, trackers)
+    const QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    for (const BitTorrent::TrackerEntry &tracker : trackers)
         removeItem(tracker.url(), hash);
 
     //Check for trackerless torrent
@@ -662,13 +663,13 @@ void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
 
 void TransferListFiltersWidget::addTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers)
 {
-    foreach (const BitTorrent::TrackerEntry &tracker, trackers)
+    for (const BitTorrent::TrackerEntry &tracker : trackers)
         m_trackerFilters->addItem(tracker.url(), torrent->hash());
 }
 
 void TransferListFiltersWidget::removeTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers)
 {
-    foreach (const BitTorrent::TrackerEntry &tracker, trackers)
+    for (const BitTorrent::TrackerEntry &tracker : trackers)
         m_trackerFilters->removeItem(tracker.url(), torrent->hash());
 }
 

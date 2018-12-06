@@ -55,6 +55,7 @@
 #include <windows.h>
 #endif
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -77,7 +78,7 @@ namespace
     ListType setToEntryList(const QSet<QString> &input)
     {
         ListType entryList;
-        foreach (const QString &setValue, input)
+        for (const QString &setValue : input)
             entryList.emplace_back(setValue.toStdString());
         return entryList;
     }
@@ -158,14 +159,14 @@ namespace
 {
     // new constructor is available
     template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    T makeTorrentCreator(const libtorrent::torrent_info &ti)
     {
         return T(ti, true);
     }
 
     // new constructor isn't available
     template<typename T, typename std::enable_if<!std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info & ti)
+    T makeTorrentCreator(const libtorrent::torrent_info &ti)
     {
         return T(ti);
     }
@@ -374,10 +375,9 @@ QString TorrentHandle::nativeActualSavePath() const
 QList<TrackerEntry> TorrentHandle::trackers() const
 {
     QList<TrackerEntry> entries;
-    std::vector<libt::announce_entry> announces;
+    const std::vector<libt::announce_entry> announces = m_nativeHandle.trackers();
 
-    announces = m_nativeHandle.trackers();
-    foreach (const libt::announce_entry &tracker, announces)
+    for (const libt::announce_entry &tracker : announces)
         entries << tracker;
 
     return entries;
@@ -391,7 +391,7 @@ QHash<QString, TrackerInfo> TorrentHandle::trackerInfos() const
 void TorrentHandle::addTrackers(const QList<TrackerEntry> &trackers)
 {
     QList<TrackerEntry> addedTrackers;
-    foreach (const TrackerEntry &tracker, trackers) {
+    for (const TrackerEntry &tracker : trackers) {
         if (addTracker(tracker))
             addedTrackers << tracker;
     }
@@ -400,13 +400,13 @@ void TorrentHandle::addTrackers(const QList<TrackerEntry> &trackers)
         m_session->handleTorrentTrackersAdded(this, addedTrackers);
 }
 
-void TorrentHandle::replaceTrackers(QList<TrackerEntry> trackers)
+void TorrentHandle::replaceTrackers(const QList<TrackerEntry> &trackers)
 {
     QList<TrackerEntry> existingTrackers = this->trackers();
     QList<TrackerEntry> addedTrackers;
 
     std::vector<libt::announce_entry> announces;
-    foreach (const TrackerEntry &tracker, trackers) {
+    for (const TrackerEntry &tracker : trackers) {
         announces.push_back(tracker.nativeEntry());
         if (!existingTrackers.contains(tracker))
             addedTrackers << tracker;
@@ -438,9 +438,9 @@ bool TorrentHandle::addTracker(const TrackerEntry &tracker)
 QList<QUrl> TorrentHandle::urlSeeds() const
 {
     QList<QUrl> urlSeeds;
-    std::set<std::string> seeds = m_nativeHandle.url_seeds();
+    const std::set<std::string> seeds = m_nativeHandle.url_seeds();
 
-    foreach (const std::string &urlSeed, seeds)
+    for (const std::string &urlSeed : seeds)
         urlSeeds.append(QUrl(urlSeed.c_str()));
 
     return urlSeeds;
@@ -449,7 +449,7 @@ QList<QUrl> TorrentHandle::urlSeeds() const
 void TorrentHandle::addUrlSeeds(const QList<QUrl> &urlSeeds)
 {
     QList<QUrl> addedUrlSeeds;
-    foreach (const QUrl &urlSeed, urlSeeds) {
+    for (const QUrl &urlSeed : urlSeeds) {
         if (addUrlSeed(urlSeed))
             addedUrlSeeds << urlSeed;
     }
@@ -461,7 +461,7 @@ void TorrentHandle::addUrlSeeds(const QList<QUrl> &urlSeeds)
 void TorrentHandle::removeUrlSeeds(const QList<QUrl> &urlSeeds)
 {
     QList<QUrl> removedUrlSeeds;
-    foreach (const QUrl &urlSeed, urlSeeds) {
+    for (const QUrl &urlSeed : urlSeeds) {
         if (removeUrlSeed(urlSeed))
             removedUrlSeeds << urlSeed;
     }
@@ -596,8 +596,7 @@ bool TorrentHandle::removeTag(const QString &tag)
 
 void TorrentHandle::removeAllTags()
 {
-    // QT automatically copies the container in foreach, so it's safe to mutate it.
-    foreach (const QString &tag, m_tags)
+    for (const QString &tag : asConst(tags()))
         removeTag(tag);
 }
 
@@ -623,7 +622,7 @@ QString TorrentHandle::filePath(int index) const
 
 QString TorrentHandle::fileName(int index) const
 {
-    if (!hasMetadata()) return  QString();
+    if (!hasMetadata()) return QString();
     return Utils::Fs::fileName(filePath(index));
 }
 
@@ -636,7 +635,7 @@ qlonglong TorrentHandle::fileSize(int index) const
 // to all files in a torrent
 QStringList TorrentHandle::absoluteFilePaths() const
 {
-    if (!hasMetadata()) return  QStringList();
+    if (!hasMetadata()) return QStringList();
 
     QDir saveDir(savePath(true));
     QStringList res;
@@ -647,7 +646,7 @@ QStringList TorrentHandle::absoluteFilePaths() const
 
 QStringList TorrentHandle::absoluteFilePathsUnwanted() const
 {
-    if (!hasMetadata()) return  QStringList();
+    if (!hasMetadata()) return QStringList();
 
     QDir saveDir(savePath(true));
     QStringList res;
@@ -883,9 +882,9 @@ bool TorrentHandle::hasError() const
 
 bool TorrentHandle::hasFilteredPieces() const
 {
-    std::vector<int> pp = m_nativeHandle.piece_priorities();
+    const std::vector<int> pp = m_nativeHandle.piece_priorities();
 
-    foreach (const int priority, pp)
+    for (const int priority : pp)
         if (priority == 0) return true;
 
     return false;
@@ -1087,7 +1086,7 @@ QList<PeerInfo> TorrentHandle::peers() const
 
     m_nativeHandle.get_peer_info(nativePeers);
 
-    foreach (const libt::peer_info &peer, nativePeers)
+    for (const libt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
 
     return peers;
@@ -2063,7 +2062,7 @@ void TorrentHandle::prioritizeFiles(const QVector<int> &priorities)
                 if (created) {
                     // Hide the folder on Windows
                     qDebug() << "Hiding folder (Windows)";
-                    std::wstring winPath =  Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
+                    std::wstring winPath = Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
                     DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
                     bool ret = ::SetFileAttributesW(winPath.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
                     Q_ASSERT(ret != 0); Q_UNUSED(ret);

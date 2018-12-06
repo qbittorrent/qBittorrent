@@ -33,6 +33,7 @@
 #include <QPushButton>
 #include <QSpacerItem>
 
+#include "base/global.h"
 #include "guiiconprovider.h"
 
 PropTabBar::PropTabBar(QWidget *parent)
@@ -102,7 +103,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     connect(m_btnGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
             , this, &PropTabBar::setCurrentIndex);
     // Disable buttons focus
-    foreach (QAbstractButton *btn, m_btnGroup->buttons())
+    for (QAbstractButton *btn : asConst(m_btnGroup->buttons()))
         btn->setFocusPolicy(Qt::NoFocus);
 }
 

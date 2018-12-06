@@ -49,6 +49,7 @@
 #include <QTreeView>
 
 #include "base/bittorrent/session.h"
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/search/searchhandler.h"
@@ -166,11 +167,11 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &cat, SearchPluginManager::instance()->getPluginCategories(selectedPlugin()))
+    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
         tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
-    foreach (const QStrPair &p, tmpList) {
+    for (const QStrPair &p : asConst(tmpList)) {
         qDebug("Supported category: %s", qUtf8Printable(p.second));
         m_ui->comboCategory->addItem(p.first, QVariant(p.second));
     }
@@ -188,11 +189,11 @@ void SearchWidget::fillPluginComboBox()
 
     using QStrPair = QPair<QString, QString>;
     QList<QStrPair> tmpList;
-    foreach (const QString &name, SearchPluginManager::instance()->enabledPlugins())
+    for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
-    foreach (const QStrPair &p, tmpList)
+    for (const QStrPair &p : asConst(tmpList))
         m_ui->selectPlugin->addItem(p.first, QVariant(p.second));
 
     if (m_ui->selectPlugin->count() > 3)

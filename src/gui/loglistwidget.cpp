@@ -36,6 +36,7 @@
 #include <QListWidgetItem>
 #include <QRegularExpression>
 
+#include "base/global.h"
 #include "guiiconprovider.h"
 
 LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *parent)
@@ -97,7 +98,7 @@ void LogListWidget::copySelection()
 {
     static const QRegularExpression htmlTag("<[^>]+>");
     QStringList strings;
-    foreach (QListWidgetItem* it, selectedItems())
+    for (QListWidgetItem* it : asConst(selectedItems()))
         strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
 
     QApplication::clipboard()->setText(strings.join('\n'));

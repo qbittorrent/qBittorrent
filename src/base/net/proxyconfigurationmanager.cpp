@@ -40,7 +40,7 @@ const QString KEY_PASSWORD = SETTINGS_KEY("Password");
 
 namespace
 {
-    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+    inline SettingsStorage *settings() { return SettingsStorage::instance(); }
 
     inline bool isSameConfig(const Net::ProxyConfiguration &conf1, const Net::ProxyConfiguration &conf2)
     {

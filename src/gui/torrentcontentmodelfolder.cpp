@@ -29,6 +29,7 @@
 #include "torrentcontentmodelfolder.h"
 
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)
     : TorrentContentModelItem(parent)
@@ -85,7 +86,7 @@ TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
 
 TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const QString &name) const
 {
-    foreach (TorrentContentModelItem *child, m_childItems)
+    for (TorrentContentModelItem *child : asConst(m_childItems))
         if ((child->itemType() == FolderType) && (child->name() == name))
             return static_cast<TorrentContentModelFolder *>(child);
     return nullptr;
@@ -132,7 +133,7 @@ void TorrentContentModelFolder::setPriority(int newPriority, bool updateParent)
 
     // Update children
     if (m_priority != prio::MIXED)
-        foreach (TorrentContentModelItem *child, m_childItems)
+        for (TorrentContentModelItem *child : asConst(m_childItems))
             child->setPriority(m_priority, false);
 }
 
@@ -141,7 +142,7 @@ void TorrentContentModelFolder::recalculateProgress()
     qreal tProgress = 0;
     qulonglong tSize = 0;
     qulonglong tRemaining = 0;
-    foreach (TorrentContentModelItem *child, m_childItems) {
+    for (TorrentContentModelItem *child : asConst(m_childItems)) {
         if (child->priority() == prio::IGNORED)
             continue;
 
@@ -164,7 +165,7 @@ void TorrentContentModelFolder::recalculateAvailability()
     qreal tAvailability = 0;
     qulonglong tSize = 0;
     bool foundAnyData = false;
-    foreach (TorrentContentModelItem *child, m_childItems) {
+    for (TorrentContentModelItem *child : asConst(m_childItems)) {
         if (child->priority() == prio::IGNORED)
             continue;
 

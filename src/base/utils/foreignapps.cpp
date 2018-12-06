@@ -229,7 +229,7 @@ namespace
 
         return QString();
     }
-#endif
+#endif // Q_OS_WIN
 }
 
 bool Utils::ForeignApps::PythonInfo::isValid() const

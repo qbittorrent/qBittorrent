@@ -133,7 +133,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     std::sort(dirList.begin(), dirList.end()
               , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : qAsConst(dirList)) {
+    for (const QString &p : asConst(dirList)) {
         // remove unwanted files
         for (const QString &f : deleteFilesList) {
             forceRemove(p + f);
@@ -141,7 +141,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
 
         // remove temp files on linux (file ends with '~'), e.g. `filename~`
         QDir dir(p);
-        QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QStringList tmpFileList = dir.entryList(QDir::Files);
         for (const QString &f : tmpFileList) {
             if (f.endsWith('~'))
                 forceRemove(p + f);
@@ -329,7 +329,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
+#else // Q_OS_WIN
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -351,6 +351,6 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     default:
         return false;
     }
-#endif
+#endif // Q_OS_WIN
 }
-#endif
+#endif // Q_OS_HAIKU

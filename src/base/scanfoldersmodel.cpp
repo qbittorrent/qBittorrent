@@ -35,6 +35,7 @@
 
 #include "bittorrent/session.h"
 #include "filesystemwatcher.h"
+#include "global.h"
 #include "preferences.h"
 #include "utils/fs.h"
 
@@ -254,7 +255,7 @@ void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
     if (!m_fsWatcher)
         return; // addPath() wasn't called before this
 
-    foreach (const QString &path, watchPaths) {
+    for (const QString &path : watchPaths) {
         QDir watchDir(path);
         const QString canonicalWatchPath = watchDir.canonicalPath();
         m_fsWatcher->addPath(canonicalWatchPath);
@@ -282,7 +283,7 @@ bool ScanFoldersModel::removePath(const QString &path, bool removeFromFSWatcher)
 
 void ScanFoldersModel::removeFromFSWatcher(const QStringList &watchPaths)
 {
-    foreach (const QString &path, watchPaths)
+    for (const QString &path : watchPaths)
         m_fsWatcher->removePath(path);
 }
 
@@ -326,7 +327,7 @@ void ScanFoldersModel::makePersistent()
 {
     QVariantHash dirs;
 
-    foreach (const PathData *pathData, m_pathList) {
+    for (const PathData *pathData : asConst(m_pathList)) {
         if (pathData->downloadType == CUSTOM_LOCATION)
             dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), Utils::Fs::fromNativePath(pathData->downloadPath));
         else
@@ -350,7 +351,7 @@ void ScanFoldersModel::configure()
 
 void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 {
-    foreach (const QString &file, pathList) {
+    for (const QString &file : pathList) {
         qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;

@@ -259,7 +259,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
             stream << "<html><body>";
             PieceIndexToImagePos transform {m_torrent->info(), m_image};
             int pieceIndex = transform.pieceIndex(imagePos);
-            QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
+            const QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
 
             QString tooltipTitle;
             if (files.count() > 1) {
@@ -275,7 +275,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
             DetailedTooltipRenderer renderer(stream, tooltipTitle);
 
             const bool isFileNameCorrectionNeeded = this->isFileNameCorrectionNeeded();
-            for (int f: files) {
+            for (int f : files) {
                 QString filePath {m_torrent->info().filePath(f)};
                 if (isFileNameCorrectionNeeded)
                     filePath.replace(QLatin1String("/.unwanted"), QString());

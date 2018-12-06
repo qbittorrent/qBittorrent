@@ -141,7 +141,7 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
         qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
         QStringList remoteParts = remoteVersion.split('.');
         QStringList localParts = localVersion.split('.');
-        for (int i = 0; i<qMin(remoteParts.size(), localParts.size()); ++i) {
+        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i) {
             if (remoteParts[i].toInt() > localParts[i].toInt())
                 return true;
             if (remoteParts[i].toInt() < localParts[i].toInt())

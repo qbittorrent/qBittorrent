@@ -110,7 +110,7 @@ void TorrentCreatorThread::run()
             QStringList fileNames;
             QHash<QString, boost::int64_t> fileSizeMap;
 
-            for (const auto &dir : qAsConst(dirs)) {
+            for (const auto &dir : asConst(dirs)) {
                 QStringList tmpNames;  // natural sort files within each dir
 
                 QDirIterator fileIter(dir, QDir::Files);
@@ -126,7 +126,7 @@ void TorrentCreatorThread::run()
                 fileNames += tmpNames;
             }
 
-            for (const auto &fileName : qAsConst(fileNames))
+            for (const auto &fileName : asConst(fileNames))
                 fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
         }
 
@@ -141,14 +141,14 @@ void TorrentCreatorThread::run()
 #endif
 
         // Add url seeds
-        foreach (QString seed, m_params.urlSeeds) {
+        for (QString seed : asConst(m_params.urlSeeds)) {
             seed = seed.trimmed();
             if (!seed.isEmpty())
                 newTorrent.add_url_seed(seed.toStdString());
         }
 
         int tier = 0;
-        foreach (const QString &tracker, m_params.trackers) {
+        for (const QString &tracker : asConst(m_params.trackers)) {
             if (tracker.isEmpty())
                 ++tier;
             else

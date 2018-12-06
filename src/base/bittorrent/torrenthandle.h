@@ -356,7 +356,7 @@ namespace BitTorrent
         void setSuperSeeding(bool enable);
         void flushCache();
         void addTrackers(const QList<TrackerEntry> &trackers);
-        void replaceTrackers(QList<TrackerEntry> trackers);
+        void replaceTrackers(const QList<TrackerEntry> &trackers);
         void addUrlSeeds(const QList<QUrl> &urlSeeds);
         void removeUrlSeeds(const QList<QUrl> &urlSeeds);
         bool connectPeer(const PeerAddress &peerAddress);
