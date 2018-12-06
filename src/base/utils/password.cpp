@@ -78,16 +78,16 @@ QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()
-        , reinterpret_cast<const unsigned char *>(salt.data()), (sizeof(salt[0]) * salt.size())
+        , reinterpret_cast<const unsigned char *>(salt.data()), static_cast<int>(sizeof(salt[0]) * salt.size())
         , hashIterations, hashMethod
-        , outBuf.size(), outBuf.data());
+        , static_cast<int>(outBuf.size()), outBuf.data());
     if (hmacResult != 1)
         return {};
 
     const QByteArray saltView = QByteArray::fromRawData(
-        reinterpret_cast<const char *>(salt.data()), (sizeof(salt[0]) * salt.size()));
+        reinterpret_cast<const char *>(salt.data()), static_cast<int>(sizeof(salt[0]) * salt.size()));
     const QByteArray outBufView = QByteArray::fromRawData(
-        reinterpret_cast<const char *>(outBuf.data()), outBuf.size());
+        reinterpret_cast<const char *>(outBuf.data()), static_cast<int>(outBuf.size()));
 
     return (saltView.toBase64() + ':' + outBufView.toBase64());
 }
@@ -110,11 +110,11 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray 
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()
         , reinterpret_cast<const unsigned char *>(salt.constData()), salt.size()
         , hashIterations, hashMethod
-        , outBuf.size(), outBuf.data());
+        , static_cast<int>(outBuf.size()), outBuf.data());
     if (hmacResult != 1)
         return false;
 
     const QByteArray outBufView = QByteArray::fromRawData(
-        reinterpret_cast<const char *>(outBuf.data()), outBuf.size());
+        reinterpret_cast<const char *>(outBuf.data()), static_cast<int>(outBuf.size()));
     return slowEquals(key, outBufView);
 }
