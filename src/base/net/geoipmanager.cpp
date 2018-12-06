@@ -435,8 +435,9 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
             if (m_geoIPDatabase)
                 delete m_geoIPDatabase;
             m_geoIPDatabase = geoIPDatabase;
+            const QLocale locale {Preferences::instance()->getLocale()};
             Logger::instance()->addMessage(tr("GeoIP database loaded. Type: %1. Build time: %2.")
-                .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
+                .arg(m_geoIPDatabase->type(), locale.toString(m_geoIPDatabase->buildEpoch())),
                 Log::INFO);
             QString targetPath = Utils::Fs::expandPathAbs(
                         specialFolderLocation(SpecialFolder::Data) + GEOIP_FOLDER);
