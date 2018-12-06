@@ -3074,14 +3074,11 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   </item>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="textWebUiPassword">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="maxLength">
-                     <number>1000</number>
-                    </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Password</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Change current password</string>
                     </property>
                    </widget>
                   </item>

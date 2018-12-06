@@ -195,6 +195,11 @@ PKG_CHECK_MODULES(libtorrent,
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
+PKG_CHECK_MODULES(openssl,
+                  [openssl >= 1.0],
+                  [CXXFLAGS="$openssl_CFLAGS $CXXFLAGS"
+                  LIBS="$openssl_LIBS $LIBS"])
+
 PKG_CHECK_MODULES(zlib,
                  [zlib >= 1.2.5.2],
                  [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
@@ -207,7 +212,7 @@ AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
                    QBT_CXX11_FOUND="yes"],
                   [AC_MSG_RESULT([no])
                    QBT_CXX11_FOUND="no"])
-                  
+
 # In case of no, check if the compiler can support at least C++11
 # and if yes, enable it leaving a warning to the user
 AS_IF([test "x$QBT_CXX11_FOUND" = "xno"],

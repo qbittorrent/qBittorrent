@@ -30,7 +30,6 @@
 
 #include <QClipboard>
 #include <QCloseEvent>
-#include <QCryptographicHash>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFileDialog>
@@ -69,6 +68,7 @@
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/password.h"
 #include "aboutdialog.h"
 #include "addnewtorrentdialog.h"
 #include "application.h"
@@ -631,45 +631,41 @@ void MainWindow::toolbarFollowSystem()
     Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
 }
 
-void MainWindow::defineUILockPassword()
+bool MainWindow::defineUILockPassword()
 {
-    QString oldPassMd5 = Preferences::instance()->getUILockPasswordMD5();
-    if (oldPassMd5.isNull())
-        oldPassMd5 = "";
-
     bool ok = false;
-    QString newClearPassword = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, oldPassMd5, &ok);
-    if (ok) {
-        newClearPassword = newClearPassword.trimmed();
-        if (newClearPassword.size() < 3) {
-            QMessageBox::warning(this, tr("Invalid password"), tr("The password should contain at least 3 characters"));
-        }
-        else {
-            if (newClearPassword != oldPassMd5)
-                Preferences::instance()->setUILockPassword(newClearPassword);
-            QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
-        }
+    const QString newPassword = AutoExpandableDialog::getText(this, tr("UI lock password")
+        , tr("Please type the UI lock password:"), QLineEdit::Password, {}, &ok);
+    if (!ok)
+        return false;
+
+    if (newPassword.size() < 3) {
+        QMessageBox::warning(this, tr("Invalid password"), tr("The password should contain at least 3 characters"));
+        return false;
     }
+
+    Preferences::instance()->setUILockPassword(Utils::Password::PBKDF2::generate(newPassword));
+    return true;
 }
 
 void MainWindow::clearUILockPassword()
 {
-    QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password"), tr("Are you sure you want to clear the password?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+    const QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password")
+        , tr("Are you sure you want to clear the password?"), (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
     if (answer == QMessageBox::Yes)
-        Preferences::instance()->clearUILockPassword();
+        Preferences::instance()->setUILockPassword({});
 }
 
 void MainWindow::on_actionLock_triggered()
 {
     Preferences *const pref = Preferences::instance();
+
     // Check if there is a password
-    if (pref->getUILockPasswordMD5().isEmpty()) {
-        // Ask for a password
-        bool ok = false;
-        QString clearPassword = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
-        if (!ok) return;
-        pref->setUILockPassword(clearPassword);
+    if (pref->getUILockPassword().isEmpty()) {
+        if (!defineUILockPassword())
+            return;
     }
+
     // Lock the interface
     m_uiLocked = true;
     pref->setUILocked(true);
@@ -1049,27 +1045,24 @@ bool MainWindow::unlockUI()
 {
     if (m_unlockDlgShowing)
         return false;
-    else
-        m_unlockDlgShowing = true;
 
     bool ok = false;
-    QString clearPassword = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
-    m_unlockDlgShowing = false;
+    const QString password = AutoExpandableDialog::getText(this, tr("UI lock password")
+        , tr("Please type the UI lock password:"), QLineEdit::Password, {}, &ok);
     if (!ok) return false;
 
     Preferences *const pref = Preferences::instance();
-    QString realPassMd5 = pref->getUILockPasswordMD5();
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(clearPassword.toLocal8Bit());
-    QString passwordMd5 = md5.result().toHex();
-    if (realPassMd5 == passwordMd5) {
-        m_uiLocked = false;
-        pref->setUILocked(false);
-        m_trayIconMenu->setEnabled(true);
-        return true;
+
+    const QByteArray secret = pref->getUILockPassword();
+    if (!Utils::Password::PBKDF2::verify(secret, password)) {
+        QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
+        return false;
     }
-    QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
-    return false;
+
+    m_uiLocked = false;
+    pref->setUILocked(false);
+    m_trayIconMenu->setEnabled(true);
+    return true;
 }
 
 void MainWindow::notifyOfUpdate(QString)

@@ -433,7 +433,8 @@
                 <label for="webui_username_text" class="leftLabelSmall">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_username_text" />
             </div>
             <div class="formRow">
-                <label for="webui_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="password" id="webui_password_text" />
+                <label for="webui_password_text" class="leftLabelSmall">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="password" id="webui_password_text" placeholder="QBT_TR(Change current password)QBT_TR[CONTEXT=OptionsDialog]" />
             </div>
             <div class="formRow">
                 <input type="checkbox" id="bypass_local_auth_checkbox" />
@@ -980,7 +981,6 @@
 
                     // Authentication
                     $('webui_username_text').setProperty('value', pref.web_ui_username);
-                    $('webui_password_text').setProperty('value', pref.web_ui_password);
                     $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
                     $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
                     $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
@@ -1264,12 +1264,14 @@
             return;
         }
         var web_ui_password = $('webui_password_text').getProperty('value');
-        if (web_ui_password.length < 6) {
+        if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
             alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
             return;
         }
+
         settings.set('web_ui_username', web_ui_username);
-        settings.set('web_ui_password', web_ui_password);
+        if (web_ui_password.length > 0)
+            settings.set('web_ui_password', web_ui_password);
         settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));

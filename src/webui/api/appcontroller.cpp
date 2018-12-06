@@ -54,6 +54,7 @@
 #include "base/scanfoldersmodel.h"
 #include "base/utils/fs.h"
 #include "base/utils/net.h"
+#include "base/utils/password.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()
@@ -198,7 +199,6 @@ void AppController::preferencesAction()
     data["ssl_cert"] = QString::fromLatin1(pref->getWebUiHttpsCertificate());
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
-    data["web_ui_password"] = pref->getWebUiPassword();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
     data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
     QStringList authSubnetWhitelistStringList;
@@ -474,7 +474,7 @@ void AppController::setPreferencesAction()
     if (m.contains("web_ui_username"))
         pref->setWebUiUsername(m["web_ui_username"].toString());
     if (m.contains("web_ui_password"))
-        pref->setWebUiPassword(m["web_ui_password"].toString());
+        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(m["web_ui_password"].toByteArray()));
     if (m.contains("bypass_local_auth"))
         pref->setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
     if (m.contains("bypass_auth_subnet_whitelist_enabled"))

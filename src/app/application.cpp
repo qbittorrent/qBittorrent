@@ -522,12 +522,12 @@ int Application::exec(const QStringList &params)
     // Display some information to the user
     const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
         + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n'
-        + tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername()) + '\n';
+            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
     printf("%s", qUtf8Printable(mesg));
-    qDebug() << "Password:" << pref->getWebUiPassword();
-    if (pref->getWebUiPassword() == "f6fdffe48c908deb0f4c3bd36c032e72") {
-        const QString warning = tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
+
+    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
+        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
+            + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
             + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
         printf("%s", qUtf8Printable(warning));
     }

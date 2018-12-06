@@ -29,7 +29,6 @@
 
 #include "preferences.h"
 
-#include <QCryptographicHash>
 #include <QDir>
 #include <QLocale>
 #include <QMutableListIterator>
@@ -583,28 +582,16 @@ void Preferences::setWebUiUsername(const QString &username)
     setValue("Preferences/WebUI/Username", username);
 }
 
-QString Preferences::getWebUiPassword() const
+QByteArray Preferences::getWebUIPassword() const
 {
-    QString passHa1 = value("Preferences/WebUI/Password_ha1").toString();
-    if (passHa1.isEmpty()) {
-        QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData("adminadmin");
-        passHa1 = md5.result().toHex();
-    }
-    return passHa1;
+    // default: adminadmin
+    const QByteArray defaultValue = "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==";
+    return value("Preferences/WebUI/Password_PBKDF2", defaultValue).toByteArray();
 }
 
-void Preferences::setWebUiPassword(const QString &newPassword)
+void Preferences::setWebUIPassword(const QByteArray &password)
 {
-    // Do not overwrite current password with its hash
-    if (newPassword == getWebUiPassword())
-        return;
-
-    // Encode to md5 and save
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(newPassword.toLocal8Bit());
-
-    setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
+    setValue("Preferences/WebUI/Password_PBKDF2", password);
 }
 
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
@@ -738,22 +725,14 @@ void Preferences::setDynDNSPassword(const QString &password)
 }
 
 // Advanced settings
-void Preferences::clearUILockPassword()
+QByteArray Preferences::getUILockPassword() const
 {
-    setValue("Locking/password", QString());
+    return value("Locking/password_PBKDF2").toByteArray();
 }
 
-QString Preferences::getUILockPasswordMD5() const
+void Preferences::setUILockPassword(const QByteArray &password)
 {
-    return value("Locking/password").toString();
-}
-
-void Preferences::setUILockPassword(const QString &clearPassword)
-{
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(clearPassword.toLocal8Bit());
-    QString md5Password = md5.result().toHex();
-    setValue("Locking/password", md5Password);
+    setValue("Locking/password_PBKDF2", password);
 }
 
 bool Preferences::isUILocked() const

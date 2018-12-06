@@ -193,8 +193,8 @@ public:
     void setWebUiAuthSubnetWhitelist(QStringList subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
-    QString getWebUiPassword() const;
-    void setWebUiPassword(const QString &newPassword);
+    QByteArray getWebUIPassword() const;
+    void setWebUIPassword(const QByteArray &password);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
@@ -229,9 +229,8 @@ public:
     void setDynDNSPassword(const QString &password);
 
     // Advanced settings
-    void setUILockPassword(const QString &clearPassword);
-    void clearUILockPassword();
-    QString getUILockPasswordMD5() const;
+    QByteArray getUILockPassword() const;
+    void setUILockPassword(const QByteArray &password);
     bool isUILocked() const;
     void setUILocked(bool locked);
     bool isAutoRunEnabled() const;

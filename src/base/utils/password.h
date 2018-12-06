@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,45 +26,26 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_STRING_H
-#define UTILS_STRING_H
+#pragma once
 
-#include <QLatin1String>
-#include <QString>
-
-class TriStateBool;
+class QByteArray;
+class QString;
 
 namespace Utils
 {
-    namespace String
+    namespace Password
     {
-        QString fromDouble(double n, int precision);
+        // Implements constant-time comparison to protect against timing attacks
+        // Taken from https://crackstation.net/hashing-security.htm
+        bool slowEquals(const QByteArray &a, const QByteArray &b);
 
-        int naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity);
-        template <Qt::CaseSensitivity caseSensitivity>
-        bool naturalLessThan(const QString &left, const QString &right)
+        namespace PBKDF2
         {
-            return (naturalCompare(left, right, caseSensitivity) < 0);
+            QByteArray generate(const QString &password);
+            QByteArray generate(const QByteArray &password);
+
+            bool verify(const QByteArray &secret, const QString &password);
+            bool verify(const QByteArray &secret, const QByteArray &password);
         }
-
-        QString wildcardToRegex(const QString &pattern);
-
-        template <typename T>
-        T unquote(const T &str, const QString &quotes = QLatin1String("\""))
-        {
-            if (str.length() < 2) return str;
-
-            for (const auto &quote : quotes) {
-                if (str.startsWith(quote) && str.endsWith(quote))
-                    return str.mid(1, str.length() - 2);
-            }
-
-            return str;
-        }
-
-        bool parseBool(const QString &string, const bool defaultValue);
-        TriStateBool parseTriStateBool(const QString &string);
     }
 }
-
-#endif // UTILS_STRING_H
