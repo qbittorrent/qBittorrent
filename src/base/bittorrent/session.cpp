@@ -116,7 +116,7 @@ namespace
 #endif
 
     bool readFile(const QString &path, QByteArray &buf);
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri);
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri);
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle);
     void torrentQueuePositionDown(const lt::torrent_handle &handle);
@@ -1698,20 +1698,20 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
     return true;
 }
 
-void Session::increaseTorrentsPriority(const QStringList &hashes)
+void Session::increaseTorrentsQueuePos(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
             std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
-    // Sort torrents by priority
+    // Sort torrents by queue position
     for (const InfoHash infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Increase torrents priority (starting with the ones with highest priority)
+    // Increase torrents queue position (starting with the one in the highest queue position)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionUp(torrent->nativeHandle());
@@ -1721,20 +1721,20 @@ void Session::increaseTorrentsPriority(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::decreaseTorrentsPriority(const QStringList &hashes)
+void Session::decreaseTorrentsQueuePos(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
             std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
-    // Sort torrents by priority
+    // Sort torrents by queue position
     for (const InfoHash infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Decrease torrents priority (starting with the ones with lowest priority)
+    // Decrease torrents queue position (starting with the one in the lowest queue position)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionDown(torrent->nativeHandle());
@@ -1747,20 +1747,20 @@ void Session::decreaseTorrentsPriority(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::topTorrentsPriority(const QStringList &hashes)
+void Session::topTorrentsQueuePos(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
             std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
-    // Sort torrents by priority
+    // Sort torrents by queue position
     for (const InfoHash infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Top torrents priority (starting with the ones with highest priority)
+    // Top torrents queue position (starting with the one in the highest queue position)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionTop(torrent->nativeHandle());
@@ -1770,20 +1770,20 @@ void Session::topTorrentsPriority(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::bottomTorrentsPriority(const QStringList &hashes)
+void Session::bottomTorrentsQueuePos(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
             std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
-    // Sort torrents by priority
+    // Sort torrents by queue position
     for (const InfoHash infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Bottom torrents priority (starting with the ones with lowest priority)
+    // Bottom torrents queue position (starting with the one in the lowest queue position)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionBottom(torrent->nativeHandle());
@@ -4432,7 +4432,7 @@ namespace
         return true;
     }
 
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri)
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
     {
         torrentParams = CreateTorrentParams();
         torrentParams.restored = true;
@@ -4476,7 +4476,7 @@ namespace
         torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
 
-        prio = fast.dict_find_int_value("qBt-queuePosition");
+        queuePos = fast.dict_find_int_value("qBt-queuePosition");
 
         return true;
     }

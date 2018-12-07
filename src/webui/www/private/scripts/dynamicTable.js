@@ -959,10 +959,10 @@ var TorrentsTable = new Class({
 
         // priority
         this.columns['priority'].updateTd = function(td, row) {
-            const priority = this.getRowValue(row);
-            const formattedPriority = (priority < 1) ? '*' : priority;
-            td.set('html', formattedPriority);
-            td.set('title', formattedPriority);
+            const queuePos = this.getRowValue(row);
+            const formattedQueuePos = (queuePos < 1) ? '*' : queuePos;
+            td.set('html', formattedQueuePos);
+            td.set('title', formattedQueuePos);
         };
 
         this.columns['priority'].compareRows = function(row1, row2) {

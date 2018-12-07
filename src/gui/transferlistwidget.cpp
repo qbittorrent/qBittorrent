@@ -398,30 +398,30 @@ void TransferListWidget::deleteVisibleTorrents()
         BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
 }
 
-void TransferListWidget::increasePrioSelectedTorrents()
+void TransferListWidget::increaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->increaseTorrentsPriority(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->increaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
 }
 
-void TransferListWidget::decreasePrioSelectedTorrents()
+void TransferListWidget::decreaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->decreaseTorrentsPriority(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->decreaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
 }
 
-void TransferListWidget::topPrioSelectedTorrents()
+void TransferListWidget::topQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->topTorrentsPriority(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->topTorrentsQueuePos(extractHashes(getSelectedTorrents()));
 }
 
-void TransferListWidget::bottomPrioSelectedTorrents()
+void TransferListWidget::bottomQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->bottomTorrentsPriority(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->bottomTorrentsQueuePos(extractHashes(getSelectedTorrents()));
 }
 
 void TransferListWidget::copySelectedMagnetURIs() const
@@ -451,12 +451,11 @@ void TransferListWidget::copySelectedHashes() const
     qApp->clipboard()->setText(torrentHashes.join('\n'));
 }
 
-void TransferListWidget::hidePriorityColumn(bool hide)
+void TransferListWidget::hideQueuePosColumn(bool hide)
 {
-    qDebug("hidePriorityColumn(%d)", hide);
-    setColumnHidden(TransferListModel::TR_PRIORITY, hide);
-    if (!hide && !columnWidth(TransferListModel::TR_PRIORITY))
-        resizeColumnToContents(TransferListModel::TR_PRIORITY);
+    setColumnHidden(TransferListModel::TR_QUEUE_POSITION, hide);
+    if (!hide && (columnWidth(TransferListModel::TR_QUEUE_POSITION) == 0))
+        resizeColumnToContents(TransferListModel::TR_QUEUE_POSITION);
 }
 
 void TransferListWidget::openSelectedTorrentsFolder() const
@@ -613,7 +612,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
     menu->setTitle(tr("Column visibility"));
 
     for (int i = 0; i < m_listModel->columnCount(); ++i) {
-        if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && (i == TransferListModel::TR_PRIORITY))
+        if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && (i == TransferListModel::TR_QUEUE_POSITION))
             continue;
 
         QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
@@ -831,14 +830,14 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionSetDownloadLimit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
     auto *actionOpenDestinationFolder = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
-    auto *actionIncreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
-    connect(actionIncreasePriority, &QAction::triggered, this, &TransferListWidget::increasePrioSelectedTorrents);
-    auto *actionDecreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), listMenu);
-    connect(actionDecreasePriority, &QAction::triggered, this, &TransferListWidget::decreasePrioSelectedTorrents);
-    auto *actionTopPriority = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), listMenu);
-    connect(actionTopPriority, &QAction::triggered, this, &TransferListWidget::topPrioSelectedTorrents);
-    auto *actionBottomPriority = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
-    connect(actionBottomPriority, &QAction::triggered, this, &TransferListWidget::bottomPrioSelectedTorrents);
+    auto *actionIncreaseQueuePos = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
+    connect(actionIncreaseQueuePos, &QAction::triggered, this, &TransferListWidget::increaseQueuePosSelectedTorrents);
+    auto *actionDecreaseQueuePos = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), listMenu);
+    connect(actionDecreaseQueuePos, &QAction::triggered, this, &TransferListWidget::decreaseQueuePosSelectedTorrents);
+    auto *actionTopQueuePos = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), listMenu);
+    connect(actionTopQueuePos, &QAction::triggered, this, &TransferListWidget::topQueuePosSelectedTorrents);
+    auto *actionBottomQueuePos = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
+    connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
     auto *actionSetTorrentPath = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
     auto *actionForceRecheck = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
@@ -1075,11 +1074,11 @@ void TransferListWidget::displayListMenu(const QPoint &)
     listMenu->addAction(actionOpenDestinationFolder);
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotSeed) {
         listMenu->addSeparator();
-        QMenu *prioMenu = listMenu->addMenu(tr("Priority"));
-        prioMenu->addAction(actionTopPriority);
-        prioMenu->addAction(actionIncreasePriority);
-        prioMenu->addAction(actionDecreasePriority);
-        prioMenu->addAction(actionBottomPriority);
+        QMenu *queueMenu = listMenu->addMenu(tr("Queue"));
+        queueMenu->addAction(actionTopQueuePos);
+        queueMenu->addAction(actionIncreaseQueuePos);
+        queueMenu->addAction(actionDecreaseQueuePos);
+        queueMenu->addAction(actionBottomQueuePos);
     }
 
     QMenu *copySubMenu = listMenu->addMenu(

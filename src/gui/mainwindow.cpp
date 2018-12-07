@@ -171,14 +171,14 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionCreateTorrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
     m_ui->actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
     m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
-    m_ui->actionDecreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
-    m_ui->actionBottomPriority->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
+    m_ui->actionTopQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
+    m_ui->actionIncreaseQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
+    m_ui->actionDecreaseQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
+    m_ui->actionBottomQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
     m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
     m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
     m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
     m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
-    m_ui->actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
-    m_ui->actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
     m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
     m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
     m_ui->actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
@@ -265,8 +265,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_ui->centralWidgetLayout->addWidget(m_tabs);
 
-    m_prioSeparator = m_ui->toolBar->insertSeparator(m_ui->actionTopPriority);
-    m_prioSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopPriority);
+    m_queueSeparator = m_ui->toolBar->insertSeparator(m_ui->actionTopQueuePos);
+    m_queueSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopQueuePos);
 
 #ifdef Q_OS_MAC
     for (QAction *action : asConst(m_ui->toolBar->actions())) {
@@ -298,10 +298,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionPause, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseSelectedTorrents);
     connect(m_ui->actionPauseAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseAllTorrents);
     connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);
-    connect(m_ui->actionTopPriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::topPrioSelectedTorrents);
-    connect(m_ui->actionIncreasePriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::increasePrioSelectedTorrents);
-    connect(m_ui->actionDecreasePriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::decreasePrioSelectedTorrents);
-    connect(m_ui->actionBottomPriority, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomPrioSelectedTorrents);
+    connect(m_ui->actionTopQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::topQueuePosSelectedTorrents);
+    connect(m_ui->actionIncreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::increaseQueuePosSelectedTorrents);
+    connect(m_ui->actionDecreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::decreaseQueuePosSelectedTorrents);
+    connect(m_ui->actionBottomQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomQueuePosSelectedTorrents);
 #ifndef Q_OS_MAC
     connect(m_ui->actionToggleVisibility, &QAction::triggered, this, [this]() { toggleVisibility(); });
 #endif
@@ -875,10 +875,10 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
     m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
     m_ui->actionPauseAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
-    m_ui->actionBottomPriority->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
-    m_ui->actionDecreasePriority->setShortcut(Qt::CTRL + Qt::Key_Minus);
-    m_ui->actionIncreasePriority->setShortcut(Qt::CTRL + Qt::Key_Plus);
-    m_ui->actionTopPriority->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
+    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
+    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Minus);
+    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Plus);
+    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
 #ifdef Q_OS_MAC
     m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
     addAction(m_ui->actionMinimize);
@@ -1466,29 +1466,29 @@ void MainWindow::loadPreferences(bool configureSession)
 
     // Queueing System
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled()) {
-        if (!m_ui->actionDecreasePriority->isVisible()) {
-            m_transferListWidget->hidePriorityColumn(false);
-            m_ui->actionDecreasePriority->setVisible(true);
-            m_ui->actionIncreasePriority->setVisible(true);
-            m_ui->actionTopPriority->setVisible(true);
-            m_ui->actionBottomPriority->setVisible(true);
+        if (!m_ui->actionDecreaseQueuePos->isVisible()) {
+            m_transferListWidget->hideQueuePosColumn(false);
+            m_ui->actionDecreaseQueuePos->setVisible(true);
+            m_ui->actionIncreaseQueuePos->setVisible(true);
+            m_ui->actionTopQueuePos->setVisible(true);
+            m_ui->actionBottomQueuePos->setVisible(true);
 #ifndef Q_OS_MAC
-            m_prioSeparator->setVisible(true);
+            m_queueSeparator->setVisible(true);
 #endif
-            m_prioSeparatorMenu->setVisible(true);
+            m_queueSeparatorMenu->setVisible(true);
         }
     }
     else {
-        if (m_ui->actionDecreasePriority->isVisible()) {
-            m_transferListWidget->hidePriorityColumn(true);
-            m_ui->actionDecreasePriority->setVisible(false);
-            m_ui->actionIncreasePriority->setVisible(false);
-            m_ui->actionTopPriority->setVisible(false);
-            m_ui->actionBottomPriority->setVisible(false);
+        if (m_ui->actionDecreaseQueuePos->isVisible()) {
+            m_transferListWidget->hideQueuePosColumn(true);
+            m_ui->actionDecreaseQueuePos->setVisible(false);
+            m_ui->actionIncreaseQueuePos->setVisible(false);
+            m_ui->actionTopQueuePos->setVisible(false);
+            m_ui->actionBottomQueuePos->setVisible(false);
 #ifndef Q_OS_MAC
-            m_prioSeparator->setVisible(false);
+            m_queueSeparator->setVisible(false);
 #endif
-            m_prioSeparatorMenu->setVisible(false);
+            m_queueSeparatorMenu->setVisible(false);
         }
     }
 

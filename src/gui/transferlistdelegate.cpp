@@ -145,10 +145,10 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, opt.rect, str);
         }
         break;
-    case TransferListModel::TR_PRIORITY: {
-            const int priority = index.data().toInt();
+    case TransferListModel::TR_QUEUE_POSITION: {
+            const int queuePos = index.data().toInt();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            if (priority > 0) {
+            if (queuePos > 0) {
                 QItemDelegate::paint(painter, opt, index);
             }
             else {

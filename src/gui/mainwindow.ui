@@ -48,10 +48,10 @@
     <addaction name="actionPauseAll"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
-    <addaction name="actionTopPriority"/>
-    <addaction name="actionIncreasePriority"/>
-    <addaction name="actionDecreasePriority"/>
-    <addaction name="actionBottomPriority"/>
+    <addaction name="actionTopQueuePos"/>
+    <addaction name="actionIncreaseQueuePos"/>
+    <addaction name="actionDecreaseQueuePos"/>
+    <addaction name="actionBottomQueuePos"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -153,10 +153,10 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
-   <addaction name="actionTopPriority"/>
-   <addaction name="actionIncreasePriority"/>
-   <addaction name="actionDecreasePriority"/>
-   <addaction name="actionBottomPriority"/>
+   <addaction name="actionTopQueuePos"/>
+   <addaction name="actionIncreaseQueuePos"/>
+   <addaction name="actionDecreaseQueuePos"/>
+   <addaction name="actionBottomQueuePos"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
@@ -248,33 +248,45 @@
     <string>Set Global Upload Limit...</string>
    </property>
   </action>
-  <action name="actionBottomPriority">
+  <action name="actionBottomQueuePos">
    <property name="text">
-    <string>Minimum Priority</string>
+    <string>Bottom of Queue</string>
+   </property>
+   <property name="toolTip">
+    <string>Move to the bottom of the queue</string>
    </property>
    <property name="visible">
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionTopPriority">
+  <action name="actionTopQueuePos">
    <property name="text">
-    <string>Top Priority</string>
+    <string>Top of Queue</string>
+   </property>
+   <property name="toolTip">
+    <string>Move to the top of the queue</string>
    </property>
    <property name="visible">
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionDecreasePriority">
+  <action name="actionDecreaseQueuePos">
    <property name="text">
-    <string>Decrease Priority</string>
+    <string>Move Down Queue</string>
+   </property>
+   <property name="toolTip">
+    <string>Move down in the queue</string>
    </property>
    <property name="visible">
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionIncreasePriority">
+  <action name="actionIncreaseQueuePos">
    <property name="text">
-    <string>Increase Priority</string>
+    <string>Move Up Queue</string>
+   </property>
+   <property name="toolTip">
+    <string>Move up in the queue</string>
    </property>
    <property name="visible">
     <bool>true</bool>

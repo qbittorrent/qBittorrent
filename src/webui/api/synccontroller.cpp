@@ -362,7 +362,7 @@ SyncController::~SyncController()
 //  - "progress": Torrent progress
 //  - "dlspeed": Torrent download speed
 //  - "upspeed": Torrent upload speed
-//  - "priority": Torrent priority (-1 if queuing is disabled)
+//  - "priority": Torrent queue position (-1 if queuing is disabled)
 //  - "num_seeds": Torrent seeds connected to
 //  - "num_complete": Torrent seeds in the swarm
 //  - "num_leechs": Torrent leechers connected to
@@ -399,7 +399,7 @@ SyncController::~SyncController()
 //  - "up_info_data: bytes uploaded
 //  - "up_info_speed: upload speed
 //  - "up_rate_limit: upload speed limit
-//  - "queueing": priority system usage flag
+//  - "queueing": queue system usage flag
 //  - "refresh_interval": torrents table refresh interval
 //  - "free_space_on_disk": Free space on the default save path
 // GET param:

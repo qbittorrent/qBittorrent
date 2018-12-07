@@ -47,7 +47,7 @@ class TransferListModel : public QAbstractListModel
 public:
     enum Column
     {
-        TR_PRIORITY,
+        TR_QUEUE_POSITION,
         TR_NAME,
         TR_SIZE,
         TR_TOTAL_SIZE,

@@ -93,7 +93,7 @@ var deleteTorrentsByCategoryFN = function() {};
 var copyNameFN = function() {};
 var copyMagnetLinkFN = function() {};
 var copyHashFN = function() {};
-var setPriorityFN = function() {};
+var setQueuePositionFN = function() {};
 
 var initializeWindows = function() {
     saveWindowSize = function(windowId) {
@@ -742,11 +742,11 @@ var initializeWindows = function() {
     ['decreasePrio', 'increasePrio', 'topPrio', 'bottomPrio'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
-            setPriorityFN(item);
+            setQueuePositionFN(item);
         });
     });
 
-    setPriorityFN = function(cmd) {
+    setQueuePositionFN = function(cmd) {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
