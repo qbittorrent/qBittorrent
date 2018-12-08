@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>About</translation>
     </message>
 </context>
 <context>
