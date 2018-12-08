@@ -69,16 +69,18 @@ public:
             "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
             "Boost version: %2<br/>"
-            "OS version: %3<br/><br/>"
-            "Caught signal: %4"
+            "OpenSSL version: %3<br/>"
+            "OS version: %4<br/><br/>"
+            "Caught signal: %5"
             "</font></p>"
-            "<pre><code>%5</code></pre>"
+            "<pre><code>%6</code></pre>"
             "<br/><hr><br/><br/>")
-                .arg(Utils::Misc::libtorrentVersionString())
-                .arg(Utils::Misc::boostVersionString())
-                .arg(Utils::Misc::osName())
-                .arg(sigName)
-                .arg(trace);
+                .arg(Utils::Misc::libtorrentVersionString()
+                     , Utils::Misc::boostVersionString()
+                     , Utils::Misc::opensslVersionString()
+                     , Utils::Misc::osName()
+                     , sigName
+                     , trace);
 
         errorText->setHtml(htmlStr);
     }
