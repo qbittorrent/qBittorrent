@@ -469,6 +469,7 @@ void TorrentsController::addAction()
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = params()["upLimit"].toInt();
     const int dlLimit = params()["dlLimit"].toInt();
+    const TriStateBool autoTMM = parseTriStateBool(params()["autoTMM"]);
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty()) {
@@ -496,6 +497,7 @@ void TorrentsController::addAction()
     params.name = torrentName;
     params.uploadLimit = (upLimit > 0) ? upLimit : -1;
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+    params.useAutoTMM = autoTMM;
 
     bool partialSuccess = false;
     for (QString url : asConst(urls.split('\n'))) {

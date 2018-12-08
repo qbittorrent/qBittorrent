@@ -375,28 +375,8 @@ fieldset.settings label {
     padding: 2px;
 }
 
-fieldset.settings .leftLabelSmall {
-    width: 5em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
-}
-
-fieldset.settings .leftLabelMedium {
-    width: 9em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
-}
-
-fieldset.settings .leftLabelLarge {
-    width: 14em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
+fieldset.settings + div.formRow {
+    margin-top: 10px;
 }
 
 div.formRow {

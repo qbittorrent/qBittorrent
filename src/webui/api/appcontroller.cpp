@@ -52,6 +52,7 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
+#include "base/torrentfileguard.h"
 #include "base/utils/fs.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
@@ -84,12 +85,23 @@ void AppController::preferencesAction()
     QVariantMap data;
 
     // Downloads
-    // Hard Disk
+    // When adding a torrent
+    data["create_subfolder_enabled"] = session->isCreateTorrentSubfolder();
+    data["start_paused_enabled"] = session->isAddTorrentPaused();
+    data["auto_delete_mode"] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
+    data["preallocate_all"] = session->isPreallocationEnabled();
+    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    // Saving Management
+    data["auto_tmm_enabled"] = !session->isAutoTMMDisabledByDefault();
+    data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
+    data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
+    data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
     data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
     data["temp_path_enabled"] = session->isTempPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
-    data["preallocate_all"] = session->isPreallocationEnabled();
-    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
+    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
+    // Automatically add torrents from
     const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
     for (QVariantHash::const_iterator i = dirs.cbegin(), e = dirs.cend(); i != e; ++i) {
@@ -99,10 +111,9 @@ void AppController::preferencesAction()
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
     }
     data["scan_dirs"] = nativeDirs;
-    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
-    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
+    data["mail_notification_sender"] = pref->getMailNotificationSender();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
     data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
     data["mail_notification_ssl_enabled"] = pref->getMailNotificationSMTPSSL();
@@ -153,6 +164,7 @@ void AppController::preferencesAction()
     data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
     data["limit_utp_rate"] = session->isUTPRateLimited();
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
+    data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
@@ -176,6 +188,9 @@ void AppController::preferencesAction()
     data["max_active_torrents"] = session->maxActiveTorrents();
     data["max_active_uploads"] = session->maxActiveUploads();
     data["dont_count_slow_torrents"] = session->ignoreSlowTorrentsForQueueing();
+    data["slow_torrent_dl_rate_threshold"] = session->downloadRateForSlowTorrents();
+    data["slow_torrent_ul_rate_threshold"] = session->uploadRateForSlowTorrents();
+    data["slow_torrent_inactive_timer"] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
     data["max_ratio"] = session->globalMaxRatio();
@@ -205,6 +220,9 @@ void AppController::preferencesAction()
     for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
+    // Use alternative Web UI
+    data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
+    data["alternative_webui_path"] = pref->getWebUiRootFolder();
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
@@ -232,19 +250,42 @@ void AppController::setPreferencesAction()
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
     const QVariantMap m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toMap();
+    QVariantMap::ConstIterator it;
 
     // Downloads
-    // Hard Disk
+    // When adding a torrent
+    if ((it = m.find(QLatin1String("create_subfolder_enabled"))) != m.constEnd())
+        session->setCreateTorrentSubfolder(it.value().toBool());
+    if ((it = m.find(QLatin1String("start_paused_enabled"))) != m.constEnd())
+        session->setAddTorrentPaused(it.value().toBool());
+    if ((it = m.find(QLatin1String("auto_delete_mode"))) != m.constEnd())
+        TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
+
+    if ((it = m.find(QLatin1String("preallocate_all"))) != m.constEnd())
+        session->setPreallocationEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("incomplete_files_ext"))) != m.constEnd())
+        session->setAppendExtensionEnabled(it.value().toBool());
+
+    // Saving Management
+    if ((it = m.find(QLatin1String("auto_tmm_enabled"))) != m.constEnd())
+        session->setAutoTMMDisabledByDefault(!it.value().toBool());
+    if ((it = m.find(QLatin1String("torrent_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("save_path_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("category_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (m.contains("save_path"))
         session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
         session->setTempPathEnabled(m["temp_path_enabled"].toBool());
     if (m.contains("temp_path"))
         session->setTempPath(m["temp_path"].toString());
-    if (m.contains("preallocate_all"))
-        session->setPreallocationEnabled(m["preallocate_all"].toBool());
-    if (m.contains("incomplete_files_ext"))
-        session->setAppendExtensionEnabled(m["incomplete_files_ext"].toBool());
+    if ((it = m.find(QLatin1String("export_dir"))) != m.constEnd())
+        session->setTorrentExportDirectory(it.value().toString());
+    if ((it = m.find(QLatin1String("export_dir_fin"))) != m.constEnd())
+        session->setFinishedTorrentExportDirectory(it.value().toString());
+    // Automatically add torrents from
     if (m.contains("scan_dirs")) {
         const QVariantMap nativeDirs = m["scan_dirs"].toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
@@ -288,13 +329,11 @@ void AppController::setPreferencesAction()
         }
         pref->setScanDirs(scanDirs);
     }
-    if (m.contains("export_dir"))
-        session->setTorrentExportDirectory(m["export_dir"].toString());
-    if (m.contains("export_dir_fin"))
-        session->setFinishedTorrentExportDirectory(m["export_dir_fin"].toString());
     // Email notification upon download completion
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
+    if ((it = m.find(QLatin1String("mail_notification_sender"))) != m.constEnd())
+        pref->setMailNotificationSender(it.value().toString());
     if (m.contains("mail_notification_email"))
         pref->setMailNotificationEmail(m["mail_notification_email"].toString());
     if (m.contains("mail_notification_smtp"))
@@ -379,6 +418,8 @@ void AppController::setPreferencesAction()
         session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
         session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
+    if ((it = m.find(QLatin1String("limit_lan_peers"))) != m.constEnd())
+        session->setIgnoreLimitsOnLAN(!it.value().toBool());
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
@@ -412,6 +453,12 @@ void AppController::setPreferencesAction()
         session->setMaxActiveUploads(m["max_active_uploads"].toInt());
     if (m.contains("dont_count_slow_torrents"))
         session->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
+    if ((it = m.find(QLatin1String("slow_torrent_dl_rate_threshold"))) != m.constEnd())
+        session->setDownloadRateForSlowTorrents(it.value().toInt());
+    if ((it = m.find(QLatin1String("slow_torrent_ul_rate_threshold"))) != m.constEnd())
+        session->setUploadRateForSlowTorrents(it.value().toInt());
+    if ((it = m.find(QLatin1String("slow_torrent_inactive_timer"))) != m.constEnd())
+        session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
     if (m.contains("max_ratio_enabled")) {
         if (m["max_ratio_enabled"].toBool())
@@ -483,6 +530,11 @@ void AppController::setPreferencesAction()
         // recognize new lines and commas as delimiters
         pref->setWebUiAuthSubnetWhitelist(m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
+    // Use alternative Web UI
+    if ((it = m.find(QLatin1String("alternative_webui_enabled"))) != m.constEnd())
+        pref->setAltWebUiEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("alternative_webui_path"))) != m.constEnd())
+        pref->setWebUiRootFolder(it.value().toString());
     // Security
     if (m.contains("web_ui_clickjacking_protection_enabled"))
         pref->setWebUiClickjackingProtectionEnabled(m["web_ui_clickjacking_protection_enabled"].toBool());
@@ -505,7 +557,6 @@ void AppController::setPreferencesAction()
     // Save preferences
     pref->apply();
 
-    QVariantMap::ConstIterator it;
     if ((it = m.find(QLatin1String("rss_refresh_interval"))) != m.constEnd())
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
     if ((it = m.find(QLatin1String("rss_max_articles_per_feed"))) != m.constEnd())
