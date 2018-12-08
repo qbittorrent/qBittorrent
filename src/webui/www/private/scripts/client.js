@@ -348,6 +348,7 @@ window.addEvent('load', function() {
             onSuccess: function(response) {
                 $('error_div').set('html', '');
                 if (response) {
+                    clearTimeout(torrentsFilterInputTimer);
                     var torrentsTableSelectedRows;
                     var update_categories = false;
                     var full_update = (response['full_update'] === true);
@@ -773,11 +774,24 @@ window.addEvent('load', function() {
         height: prop_h
     });
 
+    var prevTorrentsFilterValue;
+    var torrentsFilterInputTimer = null;
+    // listen for changes to torrentsFilterInput
+    $('torrentsFilterInput').addEvent('input', function() {
+        var value = $('torrentsFilterInput').get("value");
+        if (value !== prevTorrentsFilterValue) {
+            prevTorrentsFilterValue = value;
+            clearTimeout(torrentsFilterInputTimer);
+            torrentsFilterInputTimer = setTimeout(function() {
+                torrentsTable.updateTable(false);
+            }, 400);
+        }
+    });
+
     if (showSearchEngine) {
         addMainWindowTabsEventListener();
         addSearchPanel();
     }
-
 });
 
 function closeWindows() {
