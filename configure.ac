@@ -8,6 +8,10 @@ AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
 
+# use compiler from env variables if available
+QBT_CC="$CC"
+QBT_CXX="$CXX"
+
 # Define --wth-* and --enable-* arguments
 
 AC_ARG_WITH(qtsingleapplication,
@@ -275,6 +279,8 @@ extract "$CFLAGS $CXXFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in
+AC_SUBST(QBT_CC)
+AC_SUBST(QBT_CXX)
 AC_SUBST(QBT_CONF_INCLUDES)
 AC_SUBST(QBT_CONF_EXTRA_CFLAGS)
 AC_SUBST(QBT_ADD_CONFIG)
