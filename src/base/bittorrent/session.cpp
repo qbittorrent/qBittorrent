@@ -69,6 +69,7 @@
 #endif
 
 #include "base/algorithm.h"
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadhandler.h"
@@ -3817,11 +3818,11 @@ void Session::initResumeFolder()
     if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath())) {
         m_resumeFolderLock.setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
         if (!m_resumeFolderLock.open(QFile::WriteOnly)) {
-            throw std::runtime_error("Cannot write to torrent resume folder.");
+            throw RuntimeError {tr("Cannot write to torrent resume folder.")};
         }
     }
     else {
-        throw std::runtime_error("Cannot create torrent resume folder.");
+        throw RuntimeError {tr("Cannot create torrent resume folder.")};
     }
 }
 
