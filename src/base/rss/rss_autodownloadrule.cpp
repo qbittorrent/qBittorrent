@@ -126,7 +126,7 @@ namespace RSS
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
 
-        mutable QString lastComputedEpisode;
+        mutable QStringList lastComputedEpisodes;
         mutable QHash<QString, QRegularExpression> cachedRegexes;
 
         bool operator==(const AutoDownloadRuleData &other) const
@@ -265,7 +265,7 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTit
 bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitle) const
 {
     // Reset the lastComputedEpisode, we don't want to leak it between matches
-    m_dataPtr->lastComputedEpisode.clear();
+    m_dataPtr->lastComputedEpisodes.clear();
 
     if (m_dataPtr->episodeFilter.isEmpty())
         return true;
@@ -343,11 +343,35 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
 
     // See if this episode has been downloaded before
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
-    const bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive) || articleTitle.contains("PROPER", Qt::CaseInsensitive);
-    if (previouslyMatched && (!isRepack || !AutoDownloader::instance()->downloadRepacks()))
-        return false;
+    if (previouslyMatched) {
+        if (!AutoDownloader::instance()->downloadRepacks())
+            return false;
 
-    m_dataPtr->lastComputedEpisode = episodeStr;
+        // Now see if we've downloaded this particular repack/proper combination
+        const bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive);
+        const bool isProper = articleTitle.contains("PROPER", Qt::CaseInsensitive);
+
+        if (!isRepack && !isProper)
+            return false;
+
+        const QString fullEpisodeStr = QString("%1%2%3").arg(episodeStr,
+                                                             isRepack ? "-REPACK" : "",
+                                                             isProper ? "-PROPER" : "");
+        const bool previouslyMatchedFull = m_dataPtr->previouslyMatchedEpisodes.contains(fullEpisodeStr);
+        if (previouslyMatchedFull)
+            return false;
+
+        m_dataPtr->lastComputedEpisodes.append(fullEpisodeStr);
+
+        // If this is a REPACK and PROPER download, add the individual entries to the list
+        // so we don't download those
+        if (isRepack && isProper) {
+            m_dataPtr->lastComputedEpisodes.append(QString("%1-REPACK").arg(episodeStr));
+            m_dataPtr->lastComputedEpisodes.append(QString("%1-PROPER").arg(episodeStr));
+        }
+    }
+
+    m_dataPtr->lastComputedEpisodes.append(episodeStr);
     return true;
 }
 
@@ -379,10 +403,10 @@ bool AutoDownloadRule::accepts(const QVariantHash &articleData)
 
     setLastMatch(articleData[Article::KeyDate].toDateTime());
 
-    if (!m_dataPtr->lastComputedEpisode.isEmpty()) {
-        // TODO: probably need to add a marker for PROPER/REPACK to avoid duplicate downloads
-        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisode);
-        m_dataPtr->lastComputedEpisode.clear();
+    // If there's a matched episode string, add that to the previously matched list
+    if (!m_dataPtr->lastComputedEpisodes.isEmpty()) {
+        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisodes);
+        m_dataPtr->lastComputedEpisodes.clear();
     }
 
     return true;
