@@ -44,6 +44,8 @@
 #include <Carbon/Carbon.h>
 #endif
 
+#include <openssl/opensslv.h>
+
 #include <QByteArray>
 #include <QDebug>
 #include <QFileInfo>
@@ -575,6 +577,12 @@ QString Utils::Misc::libtorrentVersionString()
     // static initialization for usage in signal handler
     static const QString ver = LIBTORRENT_VERSION;
     return ver;
+}
+
+QString Utils::Misc::opensslVersionString()
+{
+    const QString version {OPENSSL_VERSION_TEXT};
+    return version.split(' ', QString::SkipEmptyParts)[1];
 }
 
 #ifdef Q_OS_WIN

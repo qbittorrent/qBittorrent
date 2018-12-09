@@ -78,6 +78,7 @@ namespace Utils
         QString osName();
         QString boostVersionString();
         QString libtorrentVersionString();
+        QString opensslVersionString();
 
         QString unitString(SizeUnit unit, bool isSpeed = false);
 

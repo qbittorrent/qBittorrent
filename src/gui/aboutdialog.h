@@ -101,6 +101,7 @@ public:
         labelQtVer->setText(QT_VERSION_STR);
         labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
         labelBoostVer->setText(Utils::Misc::boostVersionString());
+        labelOpensslVer->setText(Utils::Misc::opensslVersionString());
 
         Utils::Gui::resize(this);
         show();
