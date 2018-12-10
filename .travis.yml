@@ -39,8 +39,6 @@ cache:
 
 # opt-in Ubuntu Trusty
 dist: trusty
-# container-based builds
-sudo: false
 
 addons:
   coverity_scan:
@@ -67,20 +65,21 @@ addons:
       - [libboost-dev, libboost-system-dev]
       - libtorrent-rasterbar-dev
       - [qt55base, qt55svg, qt55tools]
-      - [gcc-6, g++-6]
+      - [gcc-5, g++-5]
 
 before_install:
   # only allow specific build for coverity scan, others will stop
   - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$lt_branch" = "RC_1_0" -a "$gui" = true -a "$build_system" = "qmake" ]; then exit ; fi
 
   - shopt -s expand_aliases
-  - alias make="colormake -j3" # Using nprocs/2 sometimes may fail (gcc is killed by system)
+  - alias make="colormake -j2" # Using nprocs/2 sometimes may fail (gcc is killed by system)
   - qbt_path="$HOME/qbt_install"
   - |
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
     else
       qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
+      CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs -Wno-inconsistent-missing-override"
     fi
 
   # options for specific branches
@@ -93,10 +92,7 @@ before_install:
       # Qt 5
       PATH=/opt/qt55/bin:${PATH}
 
-      if [ "$build_system" = "cmake" ]; then
-          COMPILER_VERSION=6
-          export CXX="${CXX}-${COMPILER_VERSION}" CC="${CC}-${COMPILER_VERSION}"
-      fi
+      export CXX="${CXX}-5" CC="${CC}-5"
     fi
 
   # print settings
@@ -156,18 +152,7 @@ script:
       BUILD_TOOL="ninja"
     fi
     if [ "$build_system" = "qmake" ]; then
-      if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-        # For some reason for RC_1_1 we need to also specify the OpenSSL compiler/linker flags
-        # Homebrew doesn't symlink OpenSSL for security reasons
-        ./bootstrap.sh
-        ./configure $qbtconf CXXFLAGS="$CXXFLAGS -std=c++14"
-
-        sed -i "" -e "s/^\(CC.*&&\).*$/\1 $CC/" src/Makefile  # workaround for Qt & ccache: https://bugreports.qt.io/browse/QTBUG-31034
-        sed -i "" -e "s/^\(CXX.*&&\).*$/\1 $CXX/" src/Makefile
-        sed -i "" -e 's/^\(CXXFLAGS.*\)$/\1 -Wno-unused-local-typedefs -Wno-inconsistent-missing-override/' src/Makefile
-      else
-        ./bootstrap.sh && ./configure $qbtconf
-      fi
+      ./bootstrap.sh && ./configure $qbtconf CXXFLAGS="$CXXFLAGS"
       BUILD_TOOL="make"
     fi
   - $BUILD_TOOL && $BUILD_TOOL install

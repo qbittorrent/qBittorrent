@@ -595,6 +595,8 @@ QBT_REMOVE_CONFIG
 QBT_ADD_CONFIG
 QBT_CONF_EXTRA_CFLAGS
 QBT_CONF_INCLUDES
+QBT_CXX
+QBT_CC
 EXPAND_MANDIR
 EXPAND_DATADIR
 EXPAND_BINDIR
@@ -4178,6 +4180,10 @@ END
 fi
 
 
+# use compiler from env variables if available
+QBT_CC="$CC"
+QBT_CXX="$CXX"
+
 # Define --wth-* and --enable-* arguments
 
 
@@ -5788,6 +5794,8 @@ extract "$CFLAGS $CXXFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in
+
+
 
 
 
