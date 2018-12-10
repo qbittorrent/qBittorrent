@@ -157,4 +157,5 @@ private:
     bool m_isCSRFProtectionEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+    QString m_contentSecurityPolicy;
 };
