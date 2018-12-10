@@ -52,6 +52,7 @@ namespace Http
     const char HEADER_HOST[] = "host";
     const char HEADER_ORIGIN[] = "origin";
     const char HEADER_REFERER[] = "referer";
+    const char HEADER_REFERRER_POLICY[] = "referrer-policy";
     const char HEADER_SET_COOKIE[] = "set-cookie";
     const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
     const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
