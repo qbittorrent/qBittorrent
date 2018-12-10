@@ -570,8 +570,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     if (m_isHttpsEnabled) {
         csp += QLatin1String(" upgrade-insecure-requests;");
     }
-
     header(Http::HEADER_CONTENT_SECURITY_POLICY, csp);
+
+    if (!m_isAltUIUsed)
+        header(Http::HEADER_REFERRER_POLICY, "same-origin");
 
     return response();
 }
