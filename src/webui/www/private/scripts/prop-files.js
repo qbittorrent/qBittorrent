@@ -1,74 +1,46 @@
 var is_seed = true;
 var current_hash = "";
 
-if (!(Browser.name == "ie" && Browser.version < 9)) {
-    $("all_files_cb").removeClass("tristate");
-    $("all_files_cb").removeClass("partial");
-    $("all_files_cb").removeClass("checked");
-    $("tristate_cb").style.display = "inline";
-}
-
 var setCBState = function(state) {
-    if (Browser.name == "ie" && Browser.version < 9) {
-        if (state == "partial") {
-            if (!$("all_files_cb").hasClass("partial")) {
-                $("all_files_cb").removeClass("checked");
-                $("all_files_cb").addClass("partial");
-            }
-            return;
-        }
-        if (state == "checked") {
-            if (!$("all_files_cb").hasClass("checked")) {
-                $("all_files_cb").removeClass("partial");
-                $("all_files_cb").addClass("checked");
-            }
-            return;
-        }
-        $("all_files_cb").removeClass("partial");
-        $("all_files_cb").removeClass("checked");
+    $("tristate_cb").state = state;
+    if (state === "partial") {
+        $("tristate_cb").indeterminate = true;
     }
-    else {
-        if (state == "partial") {
-            $("tristate_cb").indeterminate = true;
-        }
-        else if (state == "checked") {
-            $("tristate_cb").indeterminate = false;
-            $("tristate_cb").checked = true;
-        }
-        else {
-            $("tristate_cb").indeterminate = false;
-            $("tristate_cb").checked = false;
-        }
+    else if (state === "checked") {
+        $("tristate_cb").indeterminate = false;
+        $("tristate_cb").checked = true;
+    }
+    else if (state === "unchecked") {
+        $("tristate_cb").indeterminate = false;
+        $("tristate_cb").checked = false;
     }
 };
 
 var switchCBState = function() {
     // Uncheck
-    if ($("all_files_cb").hasClass("partial")) {
-        $("all_files_cb").removeClass("partial");
+    if (($("tristate_cb").state === "partial") || ($("tristate_cb").state === "checked")) {
+        $("tristate_cb").state = "unchecked";
+        $("tristate_cb").checked = false;
         // Uncheck all checkboxes
+        var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
             item.erase("checked");
-            setFilePriority(index, 0);
+            indexes.push(index);
         });
-        return;
+        setFilePriority(indexes, 0);
     }
-    if ($("all_files_cb").hasClass("checked")) {
-        $("all_files_cb").removeClass("checked");
-        // Uncheck all checkboxes
+    else if ($("tristate_cb").state === "unchecked") {
+        // Check
+        $("tristate_cb").state = "checked";
+        $("tristate_cb").checked = true;
+        // Check all checkboxes
+        var indexes = [];
         $$('input.DownloadedCB').each(function(item, index) {
-            item.erase("checked");
-            setFilePriority(index, 0);
+            item.set("checked", "checked");
+            indexes.push(index);
         });
-        return;
+        setFilePriority(indexes, FilePriority.Normal);
     }
-    // Check
-    $("all_files_cb").addClass("checked");
-    // Check all checkboxes
-    $$('input.DownloadedCB').each(function(item, index) {
-        item.set("checked", "checked");
-        setFilePriority(index, 1);
-    });
 };
 
 var allCBChecked = function() {
@@ -91,24 +63,58 @@ var allCBUnchecked = function() {
     return true;
 };
 
+var FilePriority = {
+    "Ignored": 0,
+    "Normal": 1,
+    "High": 6,
+    "Maximum": 7,
+    "Mixed": -1
+};
+
+var normalizePriority = function(priority) {
+    switch (priority) {
+        case FilePriority.Ignored:
+        case FilePriority.Normal:
+        case FilePriority.High:
+        case FilePriority.Maximum:
+        case FilePriority.Mixed:
+            return priority;
+        default:
+            return FilePriority.Normal;
+    }
+};
+
 var setFilePriority = function(id, priority) {
     if (current_hash === "") return;
+    var ids = Array.isArray(id) ? id : [id];
+
+    clearTimeout(loadTorrentFilesDataTimer);
     new Request({
         url: 'api/v2/torrents/filePrio',
         method: 'post',
         data: {
             'hash': current_hash,
-            'id': id,
+            'id': ids.join('|'),
             'priority': priority
+        },
+        onComplete: function() {
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
         }
     }).send();
     // Display or add combobox
     if (priority > 0) {
-        $('comboPrio' + id).set("value", 1);
-        $('comboPrio' + id).removeClass("invisible");
+        ids.forEach(function(_id) {
+            if ($('comboPrio' + _id).hasClass("invisible")) {
+                $('comboPrio' + _id).set("value", priority);
+                $('comboPrio' + _id).removeClass("invisible");
+            }
+        });
     }
     else {
-        $('comboPrio' + id).addClass("invisible");
+        ids.forEach(function(_id) {
+            if (!$('comboPrio' + _id).hasClass("invisible"))
+                $('comboPrio' + _id).addClass("invisible");
+        });
     }
 };
 
@@ -127,13 +133,11 @@ var createDownloadedCB = function(id, downloaded) {
         if (allCBChecked()) {
             setCBState("checked");
         }
+        else if (allCBUnchecked()) {
+            setCBState("unchecked");
+        }
         else {
-            if (allCBUnchecked()) {
-                setCBState("unchecked");
-            }
-            else {
-                setCBState("partial");
-            }
+            setCBState("partial");
         }
     });
     return CB;
@@ -146,25 +150,21 @@ var createPriorityCombo = function(id, selected_prio) {
         var new_prio = $('comboPrio' + id).get('value');
         setFilePriority(id, new_prio);
     });
-    var opt = new Element("option");
-    opt.set('value', '1');
-    opt.set('html', "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio <= 1)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '2');
-    opt.set('html', "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio == 2)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    opt = new Element("option");
-    opt.set('value', '7');
-    opt.set('html', "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]");
-    if (selected_prio == 7)
-        opt.setAttribute('selected', '');
-    opt.injectInside(select);
-    if (is_seed || selected_prio < 1) {
+
+    function createOptionElement(priority, html) {
+        var elem = new Element("option");
+        elem.set('value', priority.toString());
+        elem.set('html', html);
+        if (priority == selected_prio)
+            elem.setAttribute('selected', '');
+        return elem;
+    }
+
+    createOptionElement(FilePriority.Normal, "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+    createOptionElement(FilePriority.High, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+    createOptionElement(FilePriority.Maximum, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+
+    if (is_seed || (selected_prio === FilePriority.Ignored) || (selected_prio === FilePriority.Mixed)) {
         select.addClass("invisible");
     }
     else {
@@ -203,19 +203,21 @@ var filesDynTable = new Class({
         var tds = tr.getElements('td');
         for (var i = 0; i < row.length; ++i) {
             switch (i) {
-                case 0:
+                case 0:  // checkbox
                     if (row[i] > 0)
                         tds[i].getChildren('input')[0].set('checked', 'checked');
                     else
                         tds[i].getChildren('input')[0].removeProperty('checked');
                     break;
-                case 3:
+                case 3:  // progress bar
                     $('pbf_' + id).setValue(row[i].toFloat());
                     break;
-                case 4:
-                    if (!is_seed && row[i] > 0) {
-                        tds[i].getChildren('select').set('value', row[i]);
-                        $('comboPrio' + id).removeClass("invisible");
+                case 4:  // download priority
+                    var priority = normalizePriority(row[i]);
+                    if (!is_seed && (priority > 0)) {
+                        tds[i].getChildren('select').set('value', priority);
+                        if ($('comboPrio' + id).hasClass("invisible"))
+                            $('comboPrio' + id).removeClass("invisible");
                     }
                     else {
                         if (!$('comboPrio' + id).hasClass("invisible"))
@@ -259,7 +261,7 @@ var filesDynTable = new Class({
                     }));
                     break;
                 case 4:
-                    td.adopt(createPriorityCombo(id, row[i]));
+                    td.adopt(createPriorityCombo(id, normalizePriority(row[i])));
                     break;
                 default:
                     td.set('html', row[i]);
@@ -327,13 +329,11 @@ var loadTorrentFilesData = function() {
                 if (allCBChecked()) {
                     setCBState("checked");
                 }
+                else if (allCBUnchecked()) {
+                    setCBState("unchecked");
+                }
                 else {
-                    if (allCBUnchecked()) {
-                        setCBState("unchecked");
-                    }
-                    else {
-                        setCBState("partial");
-                    }
+                    setCBState("partial");
                 }
             }
             else {

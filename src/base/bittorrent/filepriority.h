@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,18 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFILE_H
-#define TORRENTCONTENTMODELFILE_H
+#pragma once
 
-#include "base/bittorrent/filepriority.h"
-#include "torrentcontentmodelitem.h"
-
-class TorrentContentModelFile : public TorrentContentModelItem
+namespace BitTorrent
 {
-public:
-    TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                            TorrentContentModelFolder *parent, int fileIndex);
+    enum class FilePriority : int
+    {
+        Ignored = 0,
+        Normal = 1,
+        High = 6,
+        Maximum = 7,
+        Mixed = -1
+    };
 
-    int fileIndex() const;
-    void setPriority(BitTorrent::FilePriority newPriority, bool updateParent = true) override;
-    void setProgress(qreal progress);
-    void setAvailability(qreal availability);
-    ItemType itemType() const override;
-
-private:
-    int m_fileIndex;
-};
-
-#endif // TORRENTCONTENTMODELFILE_H
+    bool isValidFilePriority(BitTorrent::FilePriority priority);
+}
