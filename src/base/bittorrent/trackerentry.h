@@ -44,10 +44,10 @@ namespace BitTorrent
     public:
         enum Status
         {
-            NotContacted,
-            Working,
-            Updating,
-            NotWorking
+            NotContacted = 1,
+            Working = 2,
+            Updating = 3,
+            NotWorking = 4
         };
 
         TrackerEntry(const QString &url);

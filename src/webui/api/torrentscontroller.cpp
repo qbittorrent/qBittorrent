@@ -386,22 +386,11 @@ void TorrentsController::trackersAction()
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
-        QString status;
-        switch (tracker.status()) {
-        case BitTorrent::TrackerEntry::NotContacted:
-            status = tr("Not contacted yet"); break;
-        case BitTorrent::TrackerEntry::Updating:
-            status = tr("Updating..."); break;
-        case BitTorrent::TrackerEntry::Working:
-            status = tr("Working"); break;
-        case BitTorrent::TrackerEntry::NotWorking:
-            status = tr("Not working"); break;
-        }
 
         trackerList << QVariantMap {
             {KEY_TRACKER_URL, tracker.url()},
             {KEY_TRACKER_TIER, tracker.tier()},
-            {KEY_TRACKER_STATUS, status},
+            {KEY_TRACKER_STATUS, static_cast<int>(tracker.status())},
             {KEY_TRACKER_PEERS_COUNT, data.numPeers},
             {KEY_TRACKER_MSG, data.lastMessage.trimmed()},
             {KEY_TRACKER_SEEDS_COUNT, tracker.nativeEntry().scrape_complete},
