@@ -406,7 +406,7 @@ var CategoriesFilterContextMenu = new Class({
 var SearchPluginsTableContextMenu = new Class({
     Extends: ContextMenu,
 
-    updateMenuItems: function () {
+    updateMenuItems: function() {
         var enabledColumnIndex = function(text) {
             var columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
             for (var i = 0; i < columns.length; ++i)

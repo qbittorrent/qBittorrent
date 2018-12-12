@@ -38,6 +38,7 @@
     #searchPlugins_content {
         height: 100%;
     }
+
 </style>
 
 <div id="searchPluginsContainer">
@@ -90,7 +91,7 @@
                 Enabled: enablePlugin,
                 Uninstall: uninstallPlugin
             },
-            offsets : calculateContextMenuOffsets()
+            offsets: calculateContextMenuOffsets()
         });
         searchPluginsTable.setup('searchPluginsTableDiv', 'searchPluginsTableFixedHeaderDiv', searchPluginsTableContextMenu);
         updateSearchPluginsTable();

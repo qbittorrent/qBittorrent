@@ -56,6 +56,7 @@
         line-height: 1.5em;
         float: right;
     }
+
 </style>
 
 <div id="searchResults">
@@ -201,7 +202,7 @@
         var searchKeyboardEvents = new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function (e) {
+                'enter': function(e) {
                     // accept enter key as a click
                     new Event(e).stop();
 
@@ -453,7 +454,7 @@
                         $('searchResultsTableContainer').style.display = "block";
 
                         // sort plugins alphabetically
-                        var allPlugins = searchPlugins.sort(function(pluginA, pluginB){
+                        var allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
                             var a = pluginA.fullName.toLowerCase();
                             var b = pluginB.fullName.toLowerCase();
                             if (a < b) return -1;

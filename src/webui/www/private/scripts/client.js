@@ -644,20 +644,20 @@ window.addEvent('load', function() {
 
     var addSearchPanel = function() {
         new MochaUI.Panel({
-            id : 'SearchPanel',
-            title : 'Search',
-            header : false,
-            padding : {
-                top : 0,
-                right : 0,
-                bottom : 0,
-                left : 0
+            id: 'SearchPanel',
+            title: 'Search',
+            header: false,
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
             },
-            loadMethod : 'xhr',
-            contentURL : 'search.html',
+            loadMethod: 'xhr',
+            contentURL: 'search.html',
             content: '',
-            column : 'searchTabColumn',
-            height : null
+            column: 'searchTabColumn',
+            height: null
         });
     };
 
