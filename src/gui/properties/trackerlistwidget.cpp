@@ -97,23 +97,23 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     insertTopLevelItem(2, m_LSDItem);
     setRowColor(2, QColor("grey"));
     // Set static items alignment
-    m_DHTItem->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
-    m_PEXItem->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
-    m_LSDItem->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
-    m_DHTItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
-    m_PEXItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
-    m_LSDItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
     m_DHTItem->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
     m_PEXItem->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
     m_LSDItem->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+    m_DHTItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+    m_PEXItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+    m_LSDItem->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+    m_DHTItem->setTextAlignment(COL_LEECHES, (Qt::AlignRight | Qt::AlignVCenter));
+    m_PEXItem->setTextAlignment(COL_LEECHES, (Qt::AlignRight | Qt::AlignVCenter));
+    m_LSDItem->setTextAlignment(COL_LEECHES, (Qt::AlignRight | Qt::AlignVCenter));
     m_DHTItem->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     m_PEXItem->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     m_LSDItem->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     // Set header alignment
     headerItem()->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
-    headerItem()->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
-    headerItem()->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
     headerItem()->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+    headerItem()->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+    headerItem()->setTextAlignment(COL_LEECHES, (Qt::AlignRight | Qt::AlignVCenter));
     headerItem()->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     // Set hotkeys
     m_editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
@@ -245,15 +245,15 @@ void TrackerListWidget::clear()
     m_trackerItems.clear();
     m_DHTItem->setText(COL_STATUS, "");
     m_DHTItem->setText(COL_SEEDS, "");
-    m_DHTItem->setText(COL_PEERS, "");
+    m_DHTItem->setText(COL_LEECHES, "");
     m_DHTItem->setText(COL_MSG, "");
     m_PEXItem->setText(COL_STATUS, "");
     m_PEXItem->setText(COL_SEEDS, "");
-    m_PEXItem->setText(COL_PEERS, "");
+    m_PEXItem->setText(COL_LEECHES, "");
     m_PEXItem->setText(COL_MSG, "");
     m_LSDItem->setText(COL_STATUS, "");
     m_LSDItem->setText(COL_SEEDS, "");
-    m_LSDItem->setText(COL_PEERS, "");
+    m_LSDItem->setText(COL_LEECHES, "");
     m_LSDItem->setText(COL_MSG, "");
 }
 
@@ -314,11 +314,11 @@ void TrackerListWidget::loadStickyItems(BitTorrent::TorrentHandle *const torrent
     }
 
     m_DHTItem->setText(COL_SEEDS, QString::number(seedsDHT));
-    m_DHTItem->setText(COL_PEERS, QString::number(peersDHT));
+    m_DHTItem->setText(COL_LEECHES, QString::number(peersDHT));
     m_PEXItem->setText(COL_SEEDS, QString::number(seedsPeX));
-    m_PEXItem->setText(COL_PEERS, QString::number(peersPeX));
+    m_PEXItem->setText(COL_LEECHES, QString::number(peersPeX));
     m_LSDItem->setText(COL_SEEDS, QString::number(seedsLSD));
-    m_LSDItem->setText(COL_PEERS, QString::number(peersLSD));
+    m_LSDItem->setText(COL_LEECHES, QString::number(peersLSD));
 }
 
 void TrackerListWidget::loadTrackers()
@@ -366,21 +366,15 @@ void TrackerListWidget::loadTrackers()
             break;
         }
 
-        item->setText(COL_RECEIVED, QString::number(data.numPeers));
-#if LIBTORRENT_VERSION_NUM >= 10000
+        item->setText(COL_PEERS, QString::number(data.numPeers));
         item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete > -1) ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
-        item->setText(COL_PEERS, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
+        item->setText(COL_LEECHES, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
         item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded > -1) ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
-#else
-        item->setText(COL_SEEDS, tr("N/A"));
-        item->setText(COL_PEERS, tr("N/A"));
-        item->setText(COL_DOWNLOADED, tr("N/A"));
-#endif
 
         item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
-        item->setTextAlignment(COL_RECEIVED, (Qt::AlignRight | Qt::AlignVCenter));
-        item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
         item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));
+        item->setTextAlignment(COL_SEEDS, (Qt::AlignRight | Qt::AlignVCenter));
+        item->setTextAlignment(COL_LEECHES, (Qt::AlignRight | Qt::AlignVCenter));
         item->setTextAlignment(COL_DOWNLOADED, (Qt::AlignRight | Qt::AlignVCenter));
     }
     // Remove old trackers
@@ -534,9 +528,9 @@ void TrackerListWidget::showTrackerListMenu(QPoint)
     QAction *delAct = nullptr;
     QAction *editAct = nullptr;
     if (!getSelectedTrackerItems().isEmpty()) {
+        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
         delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
         copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
-        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
     }
     QAction *reannounceSelAct = nullptr;
     QAction *reannounceAllAct = nullptr;
@@ -592,9 +586,9 @@ QStringList TrackerListWidget::headerLabels()
         "#"
         , tr("URL")
         , tr("Status")
-        , tr("Received")
-        , tr("Seeds")
         , tr("Peers")
+        , tr("Seeds")
+        , tr("Leeches")
         , tr("Downloaded")
         , tr("Message")
     };

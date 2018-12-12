@@ -2,9 +2,10 @@ var trackersDynTable = new Class({
 
     initialize: function() {},
 
-    setup: function(table) {
+    setup: function(table, contextMenu) {
         this.table = $(table);
         this.rows = new Hash();
+        this.contextMenu = contextMenu;
     },
 
     removeRow: function(url) {
@@ -32,7 +33,7 @@ var trackersDynTable = new Class({
     },
 
     insertRow: function(row) {
-        var url = row[0];
+        var url = row[1];
         if (this.rows.has(url)) {
             var tableRow = this.rows.get(url);
             this.updateRow(tableRow, row);
@@ -46,11 +47,13 @@ var trackersDynTable = new Class({
             td.set('html', row[i]);
             td.injectInside(tr);
         }
+        this.contextMenu.addTarget(tr);
         tr.injectInside(this.table);
-    },
+    }
 });
 
 var current_hash = "";
+var selectedTracker = "";
 
 var loadTrackersDataTimer;
 var loadTrackersData = function() {
@@ -61,13 +64,13 @@ var loadTrackersData = function() {
     }
     var new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
-        tTable.removeAllRows();
+        torrentTrackersTable.removeAllRows();
         clearTimeout(loadTrackersDataTimer);
         loadTrackersDataTimer = loadTrackersData.delay(10000);
         return;
     }
     if (new_hash != current_hash) {
-        tTable.removeAllRows();
+        torrentTrackersTable.removeAllRows();
         current_hash = new_hash;
     }
     var url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
@@ -82,20 +85,43 @@ var loadTrackersData = function() {
         },
         onSuccess: function(trackers) {
             $('error_div').set('html', '');
+            torrentTrackersTable.removeAllRows();
+
             if (trackers) {
                 // Update Trackers data
                 trackers.each(function(tracker) {
-                    var row = [];
-                    row.length = 4;
-                    row[0] = escapeHtml(tracker.url);
-                    row[1] = tracker.status;
-                    row[2] = tracker.num_peers;
-                    row[3] = escapeHtml(tracker.msg);
-                    tTable.insertRow(row);
+                    var status;
+                    switch (tracker.status) {
+                        case 0:
+                            status = "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
+                            break;
+                        case 1:
+                            status = "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
+                            break;
+                        case 2:
+                            status = "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
+                            break;
+                        case 3:
+                            status = "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
+                            break;
+                        case 4:
+                            status = "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
+                            break;
+                    }
+
+                    var row = [
+                        tracker.tier,
+                        escapeHtml(tracker.url),
+                        status,
+                        tracker.num_peers,
+                        (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        escapeHtml(tracker.msg)
+                    ];
+
+                    torrentTrackersTable.insertRow(row);
                 });
-            }
-            else {
-                tTable.removeAllRows();
             }
             clearTimeout(loadTrackersDataTimer);
             loadTrackersDataTimer = loadTrackersData.delay(10000);
@@ -108,11 +134,42 @@ var updateTrackersData = function() {
     loadTrackersData();
 };
 
-tTable = new trackersDynTable();
-tTable.setup($('trackersTable'));
+var torrentTrackersContextMenu = new ContextMenu({
+    targets: '.torrentTrackersMenuTarget',
+    menu: 'torrentTrackersMenu',
+    actions: {
+        AddTracker: function(element, ref) {
+            addTrackerFN();
+        },
+        EditTracker: function(element, ref) {
+            editTrackerFN(element);
+        },
+        RemoveTracker: function(element, ref) {
+            removeTrackerFN(element);
+        }
+    },
+    offsets: {
+        x: -15,
+        y: 2
+    },
+    onShow: function() {
+        var element = this.options.element;
+        selectedTracker = element;
+        if (element.childNodes[1].innerText.indexOf("** [") === 0) {
+            this.hideItem('EditTracker');
+            this.hideItem('RemoveTracker');
+            this.hideItem('CopyTrackerUrl');
+        }
+        else {
+            this.showItem('EditTracker');
+            this.showItem('RemoveTracker');
+            this.showItem('CopyTrackerUrl');
+        }
+        this.options.element.firstChild.click();
+    }
+});
 
-// Add trackers code
-$('addTrackersPlus').addEvent('click', function addTrackerDlg() {
+var addTrackerFN = function() {
     if (current_hash.length === 0) return;
     new MochaUI.Window({
         id: 'trackersPage',
@@ -126,6 +183,62 @@ $('addTrackersPlus').addEvent('click', function addTrackerDlg() {
         paddingVertical: 0,
         paddingHorizontal: 0,
         width: 500,
-        height: 250
+        height: 250,
+        onCloseComplete: function() {
+            updateTrackersData();
+        }
     });
+};
+
+var editTrackerFN = function(element) {
+    if (current_hash.length === 0) return;
+
+    var trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
+    new MochaUI.Window({
+        id: 'trackersPage',
+        title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
+        loadMethod: 'iframe',
+        contentURL: 'edittracker.html?hash=' + current_hash + '&url=' + trackerUrl,
+        scrollbars: true,
+        resizable: false,
+        maximizable: false,
+        closable: true,
+        paddingVertical: 0,
+        paddingHorizontal: 0,
+        width: 500,
+        height: 150,
+        onCloseComplete: function() {
+            updateTrackersData();
+        }
+    });
+};
+
+var removeTrackerFN = function(element) {
+    if (current_hash.length === 0) return;
+
+    var trackerUrl = element.childNodes[1].innerText;
+    new Request({
+        url: 'api/v2/torrents/removeTrackers',
+        method: 'post',
+        data: {
+            hash: current_hash,
+            urls: trackerUrl
+        },
+        onSuccess: function() {
+            updateTrackersData();
+        }
+    }).send();
+};
+
+torrentTrackersTable = new trackersDynTable();
+torrentTrackersTable.setup($('trackersTable'), torrentTrackersContextMenu);
+
+new ClipboardJS('#CopyTrackerUrl', {
+    text: function(trigger) {
+        if (selectedTracker) {
+            var url = selectedTracker.childNodes[1].innerText;
+            selectedTracker = "";
+            return url;
+        }
+    }
 });

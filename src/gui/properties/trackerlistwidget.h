@@ -54,9 +54,9 @@ public:
         COL_TIER,
         COL_URL,
         COL_STATUS,
-        COL_RECEIVED,
-        COL_SEEDS,
         COL_PEERS,
+        COL_SEEDS,
+        COL_LEECHES,
         COL_DOWNLOADED,
         COL_MSG,
 
