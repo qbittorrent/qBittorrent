@@ -313,12 +313,14 @@ void AdvancedSettings::loadAdvancedSettings()
     boldFont.setBold(true);
     addRow(QBITTORRENT_HEADER, tr("qBittorrent Section"), &labelQbtLink);
     item(QBITTORRENT_HEADER, PROPERTY)->setFont(boldFont);
+    item(QBITTORRENT_HEADER, PROPERTY)->setTextAlignment(Qt::AlignCenter | Qt::AlignVCenter);
     labelQbtLink.setText(QString("<a href=\"%1\">%2</a>")
         .arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced", tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);
 
     addRow(LIBTORRENT_HEADER, tr("libtorrent Section"), &labelLibtorrentLink);
     item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
+    item(LIBTORRENT_HEADER, PROPERTY)->setTextAlignment(Qt::AlignCenter | Qt::AlignVCenter);
     labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
 
