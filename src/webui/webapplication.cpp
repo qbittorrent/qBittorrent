@@ -457,6 +457,13 @@ void WebApplication::configure()
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
+
+    m_contentSecurityPolicy =
+        (m_isAltUIUsed
+            ? QLatin1String("")
+            : QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"))
+        + (m_isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
+        + (m_isHttpsEnabled ? QLatin1String(" upgrade-insecure-requests;") : QLatin1String(""));
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -559,19 +566,17 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             print(error.message(), Http::CONTENT_TYPE_TXT);
     }
 
-    header(Http::HEADER_X_XSS_PROTECTION, "1; mode=block");
-    header(Http::HEADER_X_CONTENT_TYPE_OPTIONS, "nosniff");
+    header(QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block"));
+    header(QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff"));
 
-    QString csp = QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';");
-    if (m_isClickjackingProtectionEnabled) {
-        header(Http::HEADER_X_FRAME_OPTIONS, "SAMEORIGIN");
-        csp += QLatin1String(" frame-ancestors 'self';");
-    }
-    if (m_isHttpsEnabled) {
-        csp += QLatin1String(" upgrade-insecure-requests;");
-    }
+    if (m_isClickjackingProtectionEnabled)
+        header(QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN"));
 
-    header(Http::HEADER_CONTENT_SECURITY_POLICY, csp);
+    if (!m_isAltUIUsed)
+        header(QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin"));
+
+    if (!m_contentSecurityPolicy.isEmpty())
+        header(QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), m_contentSecurityPolicy);
 
     return response();
 }
