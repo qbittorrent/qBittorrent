@@ -4,6 +4,8 @@ os:
   - linux
   - osx
 
+dist: xenial
+
 env:
   matrix:
     # Uncomment when Travis upgraded "Ubuntu 12.04 LTS" to a newer version whose repo will have a more up-to-date libtorrent package
@@ -37,9 +39,6 @@ cache:
   directories:
     - $HOME/hombebrew_cache
 
-# opt-in Ubuntu Trusty
-dist: trusty
-
 addons:
   coverity_scan:
     project:
@@ -51,21 +50,16 @@ addons:
     notification_email: sledgehammer999@qbittorrent.org
   apt:
     sources:
-      # sources list: https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-      - ubuntu-toolchain-r-test
-      #- boost-latest
+      # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
       - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
-      - sourceline: 'ppa:beineri/opt-qt551-trusty'
-      - sourceline: 'ppa:adrozdoff/cmake'
     packages:
-      # packages list: https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+      # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
       - [autoconf, automake, colormake]
-      - [cmake, ninja-build]
+      - [ninja-build]
       - libssl-dev
       - [libboost-dev, libboost-system-dev]
       - libtorrent-rasterbar-dev
-      - [qt55base, qt55svg, qt55tools]
-      - [gcc-5, g++-5]
+      - [qtbase5-dev, qttools5-dev-tools, libqt5svg5-dev]
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -88,11 +82,6 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = true ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
-
-      # Qt 5
-      PATH=/opt/qt55/bin:${PATH}
-
-      export CXX="${CXX}-5" CC="${CC}-5"
     fi
 
   # print settings
@@ -134,6 +123,7 @@ install:
   - |
     if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
       export use_ccache=true
+      ccache -M 512M
       ccache -V && ccache --show-stats && ccache --zero-stats
     fi
 
