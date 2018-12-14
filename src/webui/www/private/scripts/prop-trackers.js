@@ -1,61 +1,6 @@
 'use strict';
 
-var trackersDynTable = new Class({
-
-    initialize: function() {},
-
-    setup: function(table, contextMenu) {
-        this.table = $(table);
-        this.rows = new Hash();
-        this.contextMenu = contextMenu;
-    },
-
-    removeRow: function(url) {
-        if (this.rows.has(url)) {
-            var tr = this.rows.get(url);
-            tr.dispose();
-            this.rows.erase(url);
-            return true;
-        }
-        return false;
-    },
-
-    removeAllRows: function() {
-        this.rows.each(function(tr, url) {
-            this.removeRow(url);
-        }.bind(this));
-    },
-
-    updateRow: function(tr, row) {
-        var tds = tr.getElements('td');
-        for (var i = 0; i < row.length; ++i) {
-            tds[i].set('html', row[i]);
-        }
-        return true;
-    },
-
-    insertRow: function(row) {
-        var url = row[1];
-        if (this.rows.has(url)) {
-            var tableRow = this.rows.get(url);
-            this.updateRow(tableRow, row);
-            return;
-        }
-        //this.removeRow(id);
-        var tr = new Element('tr');
-        this.rows.set(url, tr);
-        for (var i = 0; i < row.length; ++i) {
-            var td = new Element('td');
-            td.set('html', row[i]);
-            td.injectInside(tr);
-        }
-        this.contextMenu.addTarget(tr);
-        tr.injectInside(this.table);
-    }
-});
-
 var current_hash = "";
-var selectedTracker = "";
 
 var loadTrackersDataTimer;
 var loadTrackersData = function() {
@@ -66,13 +11,13 @@ var loadTrackersData = function() {
     }
     var new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
-        torrentTrackersTable.removeAllRows();
+        torrentTrackersTable.clear();
         clearTimeout(loadTrackersDataTimer);
         loadTrackersDataTimer = loadTrackersData.delay(10000);
         return;
     }
     if (new_hash != current_hash) {
-        torrentTrackersTable.removeAllRows();
+        torrentTrackersTable.clear();
         current_hash = new_hash;
     }
     var url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
@@ -80,18 +25,17 @@ var loadTrackersData = function() {
         url: url,
         noCache: true,
         method: 'get',
-        onFailure: function() {
-            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+        onComplete: function() {
             clearTimeout(loadTrackersDataTimer);
-            loadTrackersDataTimer = loadTrackersData.delay(20000);
+            loadTrackersDataTimer = loadTrackersData.delay(10000);
         },
         onSuccess: function(trackers) {
-            $('error_div').set('html', '');
-            torrentTrackersTable.removeAllRows();
+            var selectedTrackers = torrentTrackersTable.selectedRowsIds();
+            torrentTrackersTable.clear();
 
             if (trackers) {
-                // Update Trackers data
                 trackers.each(function(tracker) {
+                    var url = escapeHtml(tracker.url);
                     var status;
                     switch (tracker.status) {
                         case 0:
@@ -111,22 +55,27 @@ var loadTrackersData = function() {
                             break;
                     }
 
-                    var row = [
-                        tracker.tier,
-                        escapeHtml(tracker.url),
-                        status,
-                        tracker.num_peers,
-                        (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                        (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                        (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                        escapeHtml(tracker.msg)
-                    ];
+                    var row = {
+                        rowId: url,
+                        tier: tracker.tier,
+                        url: url,
+                        status: status,
+                        peers: tracker.num_peers,
+                        seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                        message: escapeHtml(tracker.msg)
+                    };
 
-                    torrentTrackersTable.insertRow(row);
+                    torrentTrackersTable.updateRowData(row);
                 });
+
+                torrentTrackersTable.updateTable(false);
+                torrentTrackersTable.altRow();
+
+                if (selectedTrackers.length > 0)
+                    torrentTrackersTable.reselectRows(selectedTrackers);
             }
-            clearTimeout(loadTrackersDataTimer);
-            loadTrackersDataTimer = loadTrackersData.delay(10000);
         }
     }).send();
 };
@@ -137,13 +86,15 @@ var updateTrackersData = function() {
 };
 
 var torrentTrackersContextMenu = new ContextMenu({
-    targets: '.torrentTrackersMenuTarget',
+    targets: '#torrentTrackersTableDiv',
     menu: 'torrentTrackersMenu',
     actions: {
         AddTracker: function(element, ref) {
             addTrackerFN();
         },
         EditTracker: function(element, ref) {
+            // only allow editing of one row
+            element.firstChild.click();
             editTrackerFN(element);
         },
         RemoveTracker: function(element, ref) {
@@ -155,9 +106,12 @@ var torrentTrackersContextMenu = new ContextMenu({
         y: 2
     },
     onShow: function() {
-        var element = this.options.element;
-        selectedTracker = element;
-        if (element.childNodes[1].innerText.indexOf("** [") === 0) {
+        var selectedTrackers = torrentTrackersTable.selectedRowsIds();
+        var containsStaticTracker = selectedTrackers.some(function(tracker) {
+            return (tracker.indexOf("** [") === 0);
+        });
+
+        if (containsStaticTracker || (selectedTrackers.length === 0)) {
             this.hideItem('EditTracker');
             this.hideItem('RemoveTracker');
             this.hideItem('CopyTrackerUrl');
@@ -167,7 +121,6 @@ var torrentTrackersContextMenu = new ContextMenu({
             this.showItem('RemoveTracker');
             this.showItem('CopyTrackerUrl');
         }
-        this.options.element.firstChild.click();
     }
 });
 
@@ -218,13 +171,13 @@ var editTrackerFN = function(element) {
 var removeTrackerFN = function(element) {
     if (current_hash.length === 0) return;
 
-    var trackerUrl = element.childNodes[1].innerText;
+    var selectedTrackers = torrentTrackersTable.selectedRowsIds();
     new Request({
         url: 'api/v2/torrents/removeTrackers',
         method: 'post',
         data: {
             hash: current_hash,
-            urls: trackerUrl
+            urls: selectedTrackers.join("|")
         },
         onSuccess: function() {
             updateTrackersData();
@@ -232,15 +185,10 @@ var removeTrackerFN = function(element) {
     }).send();
 };
 
-var torrentTrackersTable = new trackersDynTable();
-torrentTrackersTable.setup($('trackersTable'), torrentTrackersContextMenu);
-
 new ClipboardJS('#CopyTrackerUrl', {
     text: function(trigger) {
-        if (selectedTracker) {
-            var url = selectedTracker.childNodes[1].innerText;
-            selectedTracker = "";
-            return url;
-        }
+        return torrentTrackersTable.selectedRowsIds().join("\n");
     }
 });
+
+torrentTrackersTable.setup('torrentTrackersTableDiv', 'torrentTrackersTableFixedHeaderDiv', torrentTrackersContextMenu);

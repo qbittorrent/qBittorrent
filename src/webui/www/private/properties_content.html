@@ -79,23 +79,23 @@
     </fieldset>
 </div>
 
-<div id="prop_trackers" class="invisible">
+<div id="prop_trackers" class="invisible unselectable">
     <div id="trackers">
-        <table class="dynamicTable" style="width: 100%">
-            <thead>
-                <tr>
-                    <th style="width: 5%;">QBT_TR(#)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 30%;">QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 10%;">QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Downloaded)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 35%;">QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                </tr>
-            </thead>
-            <tbody id="trackersTable"></tbody>
-        </table>
+        <div id="torrentTrackersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentTrackersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 

@@ -1564,4 +1564,19 @@ var SearchPluginsTable = new Class({
     }
 });
 
+var TorrentTrackersTable = new Class({
+    Extends: DynamicTable,
+
+    initColumns: function() {
+        this.newColumn('tier', '', 'QBT_TR(#)QBT_TR[CONTEXT=TrackerListWidget]', 35, true);
+        this.newColumn('url', '', 'QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
+        this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]', 125, true);
+        this.newColumn('peers', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('leeches', '', 'QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
+        this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
+    },
+});
+
 /*************************************************************/

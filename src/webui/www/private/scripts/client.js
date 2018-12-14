@@ -25,6 +25,7 @@
 'use strict';
 
 var torrentsTable = new TorrentsTable();
+var torrentTrackersTable = new TorrentTrackersTable();
 var torrentPeersTable = new TorrentPeersTable();
 var searchResultsTable = new SearchResultsTable();
 var searchPluginsTable = new SearchPluginsTable();
