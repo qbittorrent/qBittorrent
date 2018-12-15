@@ -583,7 +583,7 @@ void TrackerListWidget::saveSettings() const
 QStringList TrackerListWidget::headerLabels()
 {
     static const QStringList header {
-        "#"
+          tr("Tier")
         , tr("URL")
         , tr("Status")
         , tr("Peers")
