@@ -28,10 +28,8 @@
 
 #include "resumedatasavingmanager.h"
 
-#include <QDebug>
 #include <QSaveFile>
 
-#include "base/logger.h"
 #include "base/utils/fs.h"
 
 ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath)
@@ -39,21 +37,16 @@ ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath
 {
 }
 
-void ResumeDataSavingManager::save(const QString &filename, const QByteArray &data) const
+void ResumeDataSavingManager::save(const QString &filename, const QByteArray &data)
 {
     const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     QSaveFile file {filepath};
-    if (file.open(QIODevice::WriteOnly)) {
-        file.write(data);
-        if (!file.commit()) {
-            Logger::instance()->addMessage(QString("Couldn't save data in '%1'. Error: %2")
-                                           .arg(filepath, file.errorString()), Log::WARNING);
-        }
-    }
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) == -1) || !file.commit())
+        emit fatalError(tr("Couldn't save data in '%1'. Error: %2").arg(filepath, file.errorString()));
 }
 
-void ResumeDataSavingManager::remove(const QString &filename) const
+void ResumeDataSavingManager::remove(const QString &filename)
 {
     const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 

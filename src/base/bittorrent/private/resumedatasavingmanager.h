@@ -41,8 +41,11 @@ public:
     explicit ResumeDataSavingManager(const QString &resumeFolderPath);
 
 public slots:
-    void save(const QString &filename, const QByteArray &data) const;
-    void remove(const QString &filename) const;
+    void save(const QString &filename, const QByteArray &data);
+    void remove(const QString &filename);
+
+signals:
+    void fatalError(const QString &errorMessage);
 
 private:
     QDir m_resumeDataDir;

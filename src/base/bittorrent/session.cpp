@@ -536,6 +536,11 @@ Session::Session(QObject *parent)
 
     m_ioThread = new QThread(this);
     m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
+    connect(m_resumeDataSavingManager, &ResumeDataSavingManager::fatalError, this, [](const QString &errMsg)
+    {
+        LogMsg(errMsg, Log::CRITICAL);
+        throw RuntimeError {errMsg};
+    });
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
     m_ioThread->start();
