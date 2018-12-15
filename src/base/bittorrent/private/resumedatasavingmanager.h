@@ -49,4 +49,5 @@ signals:
 
 private:
     QDir m_resumeDataDir;
+    bool m_isErrored = false;
 };

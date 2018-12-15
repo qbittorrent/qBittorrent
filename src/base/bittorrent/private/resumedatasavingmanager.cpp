@@ -39,11 +39,15 @@ ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath
 
 void ResumeDataSavingManager::save(const QString &filename, const QByteArray &data)
 {
+    if (m_isErrored) return;
+
     const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) == -1) || !file.commit())
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) == -1) || !file.commit()) {
+        m_isErrored = true;
         emit fatalError(tr("Couldn't save data in '%1'. Error: %2").arg(filepath, file.errorString()));
+    }
 }
 
 void ResumeDataSavingManager::remove(const QString &filename)
