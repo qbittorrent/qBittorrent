@@ -110,7 +110,6 @@ protected:
 #ifdef Q_OS_MAC
     bool event(QEvent *) override;
 #endif
-    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:

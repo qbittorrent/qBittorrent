@@ -518,53 +518,50 @@ int Application::exec(const QStringList &params)
 
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+
+#ifdef DISABLE_GUI
+#ifndef DISABLE_WEBUI
+        Preferences *const pref = Preferences::instance();
+        // Display some information to the user
+        const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
+                             + tr("To control qBittorrent, access the Web UI at %1")
+                             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
+        printf("%s", qUtf8Printable(mesg));
+
+        if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
+            const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
+                                    + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
+                                    + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
+            printf("%s", qUtf8Printable(warning));
+        }
+#endif // DISABLE_WEBUI
+#else
+        m_window = new MainWindow;
+#endif // DISABLE_GUI
+
+        m_running = true;
+
+        // Now UI is ready to process signals from Session
+        BitTorrent::Session::instance()->startUpTorrents();
+
+        m_paramsQueue = params + m_paramsQueue;
+        if (!m_paramsQueue.isEmpty()) {
+            processParams(m_paramsQueue);
+            m_paramsQueue.clear();
+        }
+        return BaseApplication::exec();
     }
-    catch (const RuntimeError &err) {
+    catch (const std::exception &err) {
 #ifdef DISABLE_GUI
         fprintf(stderr, "%s", err.what());
 #else
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(tr("Application failed to start."));
-        msgBox.setInformativeText(err.message());
+        QMessageBox msgBox {QMessageBox::Critical, applicationName(), err.what(), QMessageBox::Ok};
         msgBox.show(); // Need to be shown or to moveToCenter does not work
         msgBox.move(Utils::Misc::screenCenter(&msgBox));
         msgBox.exec();
 #endif
         return 1;
     }
-
-#ifdef DISABLE_GUI
-#ifndef DISABLE_WEBUI
-    Preferences *const pref = Preferences::instance();
-    // Display some information to the user
-    const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
-    printf("%s", qUtf8Printable(mesg));
-
-    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
-        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
-            + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
-            + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
-        printf("%s", qUtf8Printable(warning));
-    }
-#endif // DISABLE_WEBUI
-#else
-    m_window = new MainWindow;
-#endif // DISABLE_GUI
-
-    m_running = true;
-
-    // Now UI is ready to process signals from Session
-    BitTorrent::Session::instance()->startUpTorrents();
-
-    m_paramsQueue = params + m_paramsQueue;
-    if (!m_paramsQueue.isEmpty()) {
-        processParams(m_paramsQueue);
-        m_paramsQueue.clear();
-    }
-    return BaseApplication::exec();
 }
 
 #ifndef DISABLE_GUI
@@ -615,19 +612,6 @@ bool Application::event(QEvent *ev)
     }
 }
 #endif // Q_OS_MAC
-
-bool Application::notify(QObject *receiver, QEvent *event)
-{
-    try {
-        return QApplication::notify(receiver, event);
-    }
-    catch (const std::exception &e) {
-        qCritical() << "Exception thrown:" << e.what() << ", receiver: " << receiver->objectName();
-        receiver->dumpObjectInfo();
-    }
-
-    return false;
-}
 #endif // DISABLE_GUI
 
 void Application::initializeTranslation()
@@ -652,7 +636,6 @@ void Application::initializeTranslation()
 
 #ifndef DISABLE_GUI
     if (localeStr.startsWith("ar") || localeStr.startsWith("he")) {
-        qDebug("Right to Left mode");
         setLayoutDirection(Qt::RightToLeft);
     }
     else {
