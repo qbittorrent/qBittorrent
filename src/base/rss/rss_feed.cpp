@@ -131,7 +131,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({m_url});
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_url);
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &Feed::handleDownloadFinished);

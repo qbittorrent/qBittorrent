@@ -15,7 +15,7 @@ class Statistics : public QObject
     Q_DISABLE_COPY(Statistics)
 
 public:
-    Statistics(BitTorrent::Session *session);
+    explicit Statistics(BitTorrent::Session *session);
     ~Statistics();
 
     quint64 getAlltimeDL() const;

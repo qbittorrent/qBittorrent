@@ -55,7 +55,7 @@ namespace
     class Option
     {
     protected:
-        constexpr Option(const char *name, char shortcut = 0)
+        explicit constexpr Option(const char *name, char shortcut = 0)
             : m_name {name}
             , m_shortcut {shortcut}
         {
@@ -102,7 +102,7 @@ namespace
     class BoolOption : protected Option
     {
     public:
-        constexpr BoolOption(const char *name, char shortcut = 0)
+        explicit constexpr BoolOption(const char *name, char shortcut = 0)
             : Option {name, shortcut}
         {
         }
@@ -139,7 +139,7 @@ namespace
     struct StringOption : protected Option
     {
     public:
-        constexpr StringOption(const char *name)
+        explicit constexpr StringOption(const char *name)
             : Option {name, 0}
         {
         }
@@ -186,7 +186,7 @@ namespace
     class IntOption : protected StringOption
     {
     public:
-        constexpr IntOption(const char *name)
+        explicit constexpr IntOption(const char *name)
             : StringOption {name}
         {
         }
@@ -305,25 +305,25 @@ namespace
         return o == s;
     }
 
-    constexpr const BoolOption SHOW_HELP_OPTION = {"help", 'h'};
-    constexpr const BoolOption SHOW_VERSION_OPTION = {"version", 'v'};
+    constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
+    constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};
 #ifdef DISABLE_GUI
-    constexpr const BoolOption DAEMON_OPTION = {"daemon", 'd'};
+    constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
 #else
-    constexpr const BoolOption NO_SPLASH_OPTION = {"no-splash"};
+    constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
 #endif
-    constexpr const IntOption WEBUI_PORT_OPTION = {"webui-port"};
-    constexpr const StringOption PROFILE_OPTION = {"profile"};
-    constexpr const StringOption CONFIGURATION_OPTION = {"configuration"};
-    constexpr const BoolOption PORTABLE_OPTION = {"portable"};
-    constexpr const BoolOption RELATIVE_FASTRESUME = {"relative-fastresume"};
-    constexpr const StringOption SAVE_PATH_OPTION = {"save-path"};
-    constexpr const TriStateBoolOption PAUSED_OPTION = {"add-paused", true};
-    constexpr const BoolOption SKIP_HASH_CHECK_OPTION = {"skip-hash-check"};
-    constexpr const StringOption CATEGORY_OPTION = {"category"};
-    constexpr const BoolOption SEQUENTIAL_OPTION = {"sequential"};
-    constexpr const BoolOption FIRST_AND_LAST_OPTION = {"first-and-last"};
-    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION = {"skip-dialog", true};
+    constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
+    constexpr const StringOption PROFILE_OPTION {"profile"};
+    constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
+    constexpr const BoolOption PORTABLE_OPTION {"portable"};
+    constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
+    constexpr const StringOption SAVE_PATH_OPTION {"save-path"};
+    constexpr const TriStateBoolOption PAUSED_OPTION {"add-paused", true};
+    constexpr const BoolOption SKIP_HASH_CHECK_OPTION {"skip-hash-check"};
+    constexpr const StringOption CATEGORY_OPTION {"category"};
+    constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
+    constexpr const BoolOption FIRST_AND_LAST_OPTION {"first-and-last"};
+    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {"skip-dialog", true};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)

@@ -38,7 +38,7 @@ template <typename T> class CachedSettingValue;
 class FileGuard
 {
 public:
-    FileGuard(const QString &path = QString());
+    explicit FileGuard(const QString &path = QString());
     ~FileGuard();
 
     /// Cancels or re-enables deferred file deletion
@@ -56,7 +56,7 @@ class TorrentFileGuard : private FileGuard
     Q_GADGET
 
 public:
-    TorrentFileGuard(const QString &path = QString());
+    explicit TorrentFileGuard(const QString &path = QString());
     ~TorrentFileGuard();
 
     /// marks the torrent file as loaded (added) into the BitTorrent::Session

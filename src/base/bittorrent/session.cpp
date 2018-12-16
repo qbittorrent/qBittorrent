@@ -1847,14 +1847,15 @@ void Session::handleDownloadFailed(const QString &url, const QString &reason)
 
 void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
 {
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(magnetUri));
+    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url)), MagnetUri(magnetUri));
 }
 
 // Add to BitTorrent session the downloaded torrent file
 void Session::handleDownloadFinished(const QString &url, const QByteArray &data)
 {
     emit downloadFromUrlFinished(url);
-    addTorrent_impl(m_downloadedTorrents.take(url), MagnetUri(), TorrentInfo::load(data));
+    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url))
+                    , MagnetUri(), TorrentInfo::load(data));
 }
 
 // Return the torrent handle, given its hash
@@ -2094,7 +2095,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
 {
     MagnetUri magnetUri(source);
     if (magnetUri.isValid())
-        return addTorrent_impl(params, magnetUri);
+        return addTorrent_impl(CreateTorrentParams(params), magnetUri);
 
     if (Utils::Misc::isUrl(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
@@ -2110,7 +2111,8 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
     }
 
     TorrentFileGuard guard(source);
-    if (addTorrent_impl(params, MagnetUri(), TorrentInfo::loadFromFile(source))) {
+    if (addTorrent_impl(CreateTorrentParams(params)
+                        , MagnetUri(), TorrentInfo::loadFromFile(source))) {
         guard.markAsAddedToSession();
         return true;
     }
@@ -2122,7 +2124,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 {
     if (!torrentInfo.isValid()) return false;
 
-    return addTorrent_impl(params, MagnetUri(), torrentInfo);
+    return addTorrent_impl(CreateTorrentParams(params), MagnetUri(), torrentInfo);
 }
 
 // Add a torrent to the BitTorrent session
@@ -4280,23 +4282,27 @@ void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
 
 void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
 {
-    if (m_loadedMetadata.contains(p->info_hash))
-        emit metadataLoaded(m_loadedMetadata.take(p->info_hash));
+    const InfoHash infoHash {p->info_hash};
 
-    if (m_removingTorrents.contains(p->info_hash)) {
-        const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[p->info_hash];
+    if (m_loadedMetadata.contains(infoHash))
+        emit metadataLoaded(m_loadedMetadata.take(infoHash));
+
+    if (m_removingTorrents.contains(infoHash)) {
+        const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[infoHash];
         if (!tmpRemovingTorrentData.requestedFileDeletion) {
             LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
-            m_removingTorrents.remove(p->info_hash);
+            m_removingTorrents.remove(infoHash);
         }
     }
 }
 
 void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 {
-    if (!m_removingTorrents.contains(p->info_hash))
+    const InfoHash infoHash {p->info_hash};
+
+    if (!m_removingTorrents.contains(infoHash))
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(p->info_hash);
+    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
     Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
 
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
@@ -4304,9 +4310,11 @@ void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
 
 void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
 {
-    if (!m_removingTorrents.contains(p->info_hash))
+    const InfoHash infoHash {p->info_hash};
+
+    if (!m_removingTorrents.contains(infoHash))
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(p->info_hash);
+    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
     Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
@@ -4318,7 +4326,7 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
 
 void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
 {
-    InfoHash hash = p->handle.info_hash();
+    const InfoHash hash {p->handle.info_hash()};
 
     if (m_loadedMetadata.contains(hash)) {
         --m_extraLimit;

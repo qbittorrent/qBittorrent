@@ -56,7 +56,7 @@ public:
         FolderType
     };
 
-    TorrentContentModelItem(TorrentContentModelFolder *parent);
+    explicit TorrentContentModelItem(TorrentContentModelFolder *parent);
     virtual ~TorrentContentModelItem();
 
     bool isRootItem() const;
