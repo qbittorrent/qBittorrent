@@ -1,3 +1,5 @@
+'use strict';
+
 var webseedsDynTable = new Class({
 
     initialize: function() {},
@@ -105,5 +107,5 @@ var updateWebSeedsData = function() {
     loadWebSeedsData();
 };
 
-wsTable = new webseedsDynTable();
+var wsTable = new webseedsDynTable();
 wsTable.setup($('webseedsTable'));

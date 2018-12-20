@@ -11,6 +11,7 @@
         width: 100%;
         line-height: 2em;
     }
+
 </style>
 
 <div id="installSearchPluginContainer">
@@ -20,7 +21,7 @@
         <input type="text" id="newPluginPath" placeholder="QBT_TR(URL or local directory)QBT_TR[CONTEXT=PluginSourceDlg]" autocorrect="off" autocapitalize="none" />
         <div style="margin-top: 10px; text-align: center;">
             <button id="newPluginCancel" onclick="closeSearchWindow('installSearchPlugin');">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
-            <button id="newPluginOk" onclick="newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button></div>
+            <button id="newPluginOk" onclick="newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button>
         </div>
     </div>
 </div>
@@ -32,7 +33,7 @@
         var installSearchPluginKeyboardEvents = new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function (e) {
+                'enter': function(e) {
                     // accept enter key as a click
                     new Event(e).stop();
 
@@ -59,7 +60,7 @@
                 data: {
                     sources: path,
                 },
-                onRequest: function(){
+                onRequest: function() {
                     closeSearchWindow('installSearchPlugin');
                 }
             }).send();

@@ -21,10 +21,12 @@
  * THE SOFTWARE.
  */
 
+'use strict';
+
 var categories = {};
 var defaultSavePath = "";
 
-getCategories = function() {
+var getCategories = function() {
     new Request.JSON({
         url: 'api/v2/torrents/categories',
         noCache: true,
@@ -44,7 +46,7 @@ getCategories = function() {
     }).send();
 };
 
-getPreferences = function() {
+var getPreferences = function() {
     new Request.JSON({
         url: 'api/v2/app/preferences',
         method: 'get',
@@ -71,7 +73,7 @@ getPreferences = function() {
     }).send();
 };
 
-changeCategorySelect = function(item) {
+var changeCategorySelect = function(item) {
     if (item.value == "\\other") {
         item.nextElementSibling.hidden = false;
         item.nextElementSibling.value = "";
@@ -96,7 +98,7 @@ changeCategorySelect = function(item) {
     }
 };
 
-changeTMM = function(item) {
+var changeTMM = function(item) {
     if (item.selectedIndex == 1) {
         $('savepath').disabled = true;
 

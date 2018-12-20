@@ -22,8 +22,10 @@
             <div class="clear"></div>
         </div>
         <script>
+            'use strict';
+
             var hashes = new URI().getData('hashes').split('|');
-            setUpLimit = function() {
+            var setUpLimit = function() {
                 var limit = $("uplimitUpdatevalue").value.toInt() * 1024;
                 if (hashes[0] == "global") {
                     new Request({

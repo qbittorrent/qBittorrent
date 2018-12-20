@@ -8,6 +8,8 @@
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
     <script>
+        'use strict';
+
         var hashes = new URI().getData('hashes').split('|');
         window.addEvent('domready', function() {
             $('cancelBtn').focus();

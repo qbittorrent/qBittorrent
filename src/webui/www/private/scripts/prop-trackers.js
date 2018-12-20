@@ -1,3 +1,5 @@
+'use strict';
+
 var trackersDynTable = new Class({
 
     initialize: function() {},
@@ -230,7 +232,7 @@ var removeTrackerFN = function(element) {
     }).send();
 };
 
-torrentTrackersTable = new trackersDynTable();
+var torrentTrackersTable = new trackersDynTable();
 torrentTrackersTable.setup($('trackersTable'), torrentTrackersContextMenu);
 
 new ClipboardJS('#CopyTrackerUrl', {

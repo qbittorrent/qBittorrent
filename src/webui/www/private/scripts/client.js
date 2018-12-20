@@ -22,10 +22,12 @@
  * THE SOFTWARE.
  */
 
-torrentsTable = new TorrentsTable();
-torrentPeersTable = new TorrentPeersTable();
-searchResultsTable = new SearchResultsTable();
-searchPluginsTable = new SearchPluginsTable();
+'use strict';
+
+var torrentsTable = new TorrentsTable();
+var torrentPeersTable = new TorrentPeersTable();
+var searchResultsTable = new SearchResultsTable();
+var searchPluginsTable = new SearchPluginsTable();
 
 var updatePropertiesPanel = function() {};
 
@@ -322,7 +324,7 @@ window.addEvent('load', function() {
         if (!categoryList)
             return;
         var childrens = categoryList.childNodes;
-        for (var i in childrens) {
+        for (var i = 0; i < childrens.length; ++i) {
             if (childrens[i].id == selected_category)
                 childrens[i].className = "selectedFilter";
             else
@@ -643,20 +645,20 @@ window.addEvent('load', function() {
 
     var addSearchPanel = function() {
         new MochaUI.Panel({
-            id : 'SearchPanel',
-            title : 'Search',
-            header : false,
-            padding : {
-                top : 0,
-                right : 0,
-                bottom : 0,
-                left : 0
+            id: 'SearchPanel',
+            title: 'Search',
+            header: false,
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
             },
-            loadMethod : 'xhr',
-            contentURL : 'search.html',
+            loadMethod: 'xhr',
+            contentURL: 'search.html',
             content: '',
-            column : 'searchTabColumn',
-            height : null
+            column: 'searchTabColumn',
+            height: null
         });
     };
 

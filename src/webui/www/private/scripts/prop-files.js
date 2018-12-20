@@ -1,3 +1,5 @@
+'use strict';
+
 var is_seed = true;
 var current_hash = "";
 
@@ -350,5 +352,5 @@ var updateTorrentFilesData = function() {
     loadTorrentFilesData();
 };
 
-fTable = new filesDynTable();
+var fTable = new filesDynTable();
 fTable.setup($('filesTable'));

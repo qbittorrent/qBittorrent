@@ -86,7 +86,7 @@
             <tr>
                 <td>
                     <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();" />
-                    <label for="temppath_checkbox" >QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="temppath_text" />
@@ -95,7 +95,7 @@
             <tr>
                 <td>
                     <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();" />
-                    <label for="exportdir_checkbox" >QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="exportdir_text" />
@@ -104,7 +104,7 @@
             <tr>
                 <td>
                     <input type="checkbox" id="exportdirfin_checkbox" onclick="updateExportDirFinEnabled();" />
-                    <label for="exportdirfin_checkbox" >QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="exportdirfin_text" />
@@ -814,15 +814,17 @@
 <div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();" /></div>
 
 <script>
+    'use strict';
+
     // Downloads tab
     var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
-    updateTempDirEnabled = function() {
+    var updateTempDirEnabled = function() {
         var isTempDirEnabled = $('temppath_checkbox').getProperty('checked');
         $('temppath_text').setProperty('disabled', !isTempDirEnabled);
     };
 
-    addWatchFolder = function() {
+    var addWatchFolder = function() {
         var new_folder = $('new_watch_folder_txt').getProperty('value').trim();
         if (new_folder.length <= 0) return;
 
@@ -842,7 +844,7 @@
         $('new_watch_folder_other_txt').setProperty('value', text);
     };
 
-    changeWatchFolderSelect = function(item) {
+    var changeWatchFolderSelect = function(item) {
         if (item.value == "other") {
             item.nextElementSibling.hidden = false;
             item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=HttpServer]';
@@ -855,7 +857,7 @@
         }
     };
 
-    pushWatchFolder = function(pos, folder, sel, other) {
+    var pushWatchFolder = function(pos, folder, sel, other) {
         var myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
         var disableInput = (sel != "other");
         var mycb = "<div class='select-watched-folder-editable'>"
@@ -875,7 +877,7 @@
         $('cb_watch_txt_' + pos).setProperty('value', other);
     };
 
-    getWatchedFolders = function() {
+    var getWatchedFolders = function() {
         var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
         var folders = new Hash();
         for (var i = 0; i < nb_folders; ++i) {
@@ -895,17 +897,17 @@
         return folders;
     };
 
-    updateExportDirEnabled = function() {
+    var updateExportDirEnabled = function() {
         var isExportDirEnabled = $('exportdir_checkbox').getProperty('checked');
         $('exportdir_text').setProperty('disabled', !isExportDirEnabled);
     };
 
-    updateExportDirFinEnabled = function() {
+    var updateExportDirFinEnabled = function() {
         var isExportDirFinEnabled = $('exportdirfin_checkbox').getProperty('checked');
         $('exportdirfin_text').setProperty('disabled', !isExportDirFinEnabled);
     };
 
-    updateMailNotification = function() {
+    var updateMailNotification = function() {
         var isMailNotificationEnabled = $('mail_notification_checkbox').getProperty('checked');
         $('src_email_txt').setProperty('disabled', !isMailNotificationEnabled);
         $('dest_email_txt').setProperty('disabled', !isMailNotificationEnabled);
@@ -919,39 +921,39 @@
         }
     };
 
-    updateMailAuthSettings = function() {
+    var updateMailAuthSettings = function() {
         var isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
         $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
         $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
     };
 
-    updateAutoRun = function() {
+    var updateAutoRun = function() {
         var isAutoRunEnabled = $('autorun_checkbox').getProperty('checked');
         $('autorunProg_txt').setProperty('disabled', !isAutoRunEnabled);
     };
 
     // Connection tab
-    updateMaxConnecEnabled = function() {
+    var updateMaxConnecEnabled = function() {
         var isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
         $('max_connec_value').setProperty('disabled', !isMaxConnecEnabled);
     };
 
-    updateMaxConnecPerTorrentEnabled = function() {
+    var updateMaxConnecPerTorrentEnabled = function() {
         var isMaxConnecPerTorrentEnabled = $('max_connec_per_torrent_checkbox').getProperty('checked');
         $('max_connec_per_torrent_value').setProperty('disabled', !isMaxConnecPerTorrentEnabled);
     };
 
-    updateMaxUploadsEnabled = function() {
+    var updateMaxUploadsEnabled = function() {
         var isMaxUploadsEnabled = $('max_uploads_checkbox').getProperty('checked');
         $('max_uploads_value').setProperty('disabled', !isMaxUploadsEnabled);
     };
 
-    updateMaxUploadsPerTorrentEnabled = function() {
+    var updateMaxUploadsPerTorrentEnabled = function() {
         var isMaxUploadsPerTorrentEnabled = $('max_uploads_per_torrent_checkbox').getProperty('checked');
         $('max_uploads_per_torrent_value').setProperty('disabled', !isMaxUploadsPerTorrentEnabled);
     };
 
-    updatePeerProxySettings = function() {
+    var updatePeerProxySettings = function() {
         var isPeerProxyTypeSelected = $('peer_proxy_type_select').getProperty('value') != "none";
         $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
         $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
@@ -977,19 +979,19 @@
         updateForceProxySettings();
     };
 
-    updateForceProxySettings = function() {
+    var updateForceProxySettings = function() {
         var isForceProxyEnabled = (!$('force_proxy_checkbox').getProperty('disabled')) && ($('force_proxy_checkbox').getProperty('checked'));
         $('upnp_checkbox').setProperty('disabled', isForceProxyEnabled);
         $('lsd_checkbox').setProperty('disabled', isForceProxyEnabled);
     };
 
-    updatePeerProxyAuthSettings = function() {
+    var updatePeerProxyAuthSettings = function() {
         var isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
         $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
         $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
     };
 
-    updateFilterSettings = function() {
+    var updateFilterSettings = function() {
         var isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
         $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
         $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
@@ -997,7 +999,7 @@
     };
 
     // Speed tab
-    updateSchedulingEnabled = function() {
+    var updateSchedulingEnabled = function() {
         var isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
         $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
         $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
@@ -1007,7 +1009,7 @@
     };
 
     // Bittorrent tab
-    updateQueueingSystem = function() {
+    var updateQueueingSystem = function() {
         var isQueueingEnabled = $('queueing_checkbox').getProperty('checked');
         $('max_active_dl_value').setProperty('disabled', !isQueueingEnabled);
         $('max_active_up_value').setProperty('disabled', !isQueueingEnabled);
@@ -1016,14 +1018,14 @@
         updateSlowTorrentsSettings();
     };
 
-    updateSlowTorrentsSettings = function() {
+    var updateSlowTorrentsSettings = function() {
         var isDontCountSlowTorrentsEnabled = (!$('dont_count_slow_torrents_checkbox').getProperty('disabled')) && $('dont_count_slow_torrents_checkbox').getProperty('checked');
         $('dl_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
         $('ul_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
         $('torrent_inactive_timer').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
     };
 
-    updateMaxRatioTimeEnabled = function() {
+    var updateMaxRatioTimeEnabled = function() {
         var isMaxRatioEnabled = $('max_ratio_checkbox').getProperty('checked');
         $('max_ratio_value').setProperty('disabled', !isMaxRatioEnabled);
 
@@ -1033,34 +1035,34 @@
         $('max_ratio_act').setProperty('disabled', !(isMaxRatioEnabled || isMaxSeedingTimeEnabled));
     };
 
-    updateAddTrackersEnabled = function() {
+    var updateAddTrackersEnabled = function() {
         var isAddTrackersEnabled = $('add_trackers_checkbox').getProperty('checked');
         $('add_trackers_textarea').setProperty('disabled', !isAddTrackersEnabled);
     };
 
     // Web UI tab
-    updateHttpsSettings = function() {
+    var updateHttpsSettings = function() {
         var isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
         $('ssl_key_textarea').setProperty('disabled', !isUseHttpsEnabled);
         $('ssl_cert_textarea').setProperty('disabled', !isUseHttpsEnabled);
     };
 
-    updateBypasssAuthSettings = function() {
+    var updateBypasssAuthSettings = function() {
         var isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
         $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
     };
 
-    updateAlternativeWebUISettings = function() {
+    var updateAlternativeWebUISettings = function() {
         var isUseAlternativeWebUIEnabled = $('use_alt_webui_checkbox').getProperty('checked');
         $('webui_files_location_textarea').setProperty('disabled', !isUseAlternativeWebUIEnabled);
     };
 
-    updateHostHeaderValidationSettings = function() {
+    var updateHostHeaderValidationSettings = function() {
         var isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
         $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
     };
 
-    updateDynDnsSettings = function() {
+    var updateDynDnsSettings = function() {
         var isDynDnsEnabled = $('use_dyndns_checkbox').getProperty('checked');
         $('dyndns_select').setProperty('disabled', !isDynDnsEnabled);
         $('dyndns_domain_text').setProperty('disabled', !isDynDnsEnabled);
@@ -1068,7 +1070,7 @@
         $('dyndns_password_text').setProperty('disabled', !isDynDnsEnabled);
     };
 
-    registerDynDns = function() {
+    var registerDynDns = function() {
         if ($('dyndns_select').getProperty('value').toInt() == 1) {
             window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
         }
@@ -1077,21 +1079,21 @@
         }
     };
 
-    generateRandomPort = function() {
+    var generateRandomPort = function() {
         var min = 1024;
         var max = 65535;
         var port = Math.floor(Math.random() * (max - min + 1) + min);
         $('port_value').setProperty('value', port);
     };
 
-    time_padding = function(val) {
+    var time_padding = function(val) {
         var ret = val.toString();
         if (ret.length == 1)
             ret = '0' + ret;
         return ret;
     };
 
-    loadPreferences = function() {
+    var loadPreferences = function() {
         var url = 'api/v2/app/preferences';
         new Request.JSON({
             url: url,
@@ -1362,7 +1364,7 @@
         }).send();
     };
 
-    applyPreferences = function() {
+    var applyPreferences = function() {
         var settings = new Hash();
         // Validate form data
         // Downloads tab
