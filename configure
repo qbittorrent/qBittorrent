@@ -8433,21 +8433,17 @@ fi
 
 fi
 
-
-
 { $as_echo "$as_me:${as_lineno-$LINENO}: Running qmake to generate the makefile..." >&5
 $as_echo "$as_me: Running qmake to generate the makefile..." >&6;}
-CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
-
-$QT_QMAKE -r $CONFDIR/qbittorrent.pro "QMAKE_LRELEASE=$QMAKE_LRELEASE"
-
-ret="$?"
+TOPDIR="$(cd "$(dirname "$0")" && pwd)"
+$QT_QMAKE -r "$TOPDIR/qbittorrent.pro" "QMAKE_LRELEASE=$QMAKE_LRELEASE"
+qmake_ret="$?"
 
 $as_echo
-if test "x$ret" = "x0"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: Good, your configure finished." >&5
-$as_echo "$as_me: Good, your configure finished." >&6;}
-else
-  as_fn_error $? "Failed running $QT_QMAKE to generate the makefile" "$LINENO" 5
+if test "x$qmake_ret" != "x0"; then :
+  as_fn_error $? "$QT_QMAKE failed to generate the makefile" "$LINENO" 5
 fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: Good, the configure finished." >&5
+$as_echo "$as_me: Good, the configure finished." >&6;}
 $as_echo

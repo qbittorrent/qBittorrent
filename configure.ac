@@ -292,17 +292,14 @@ AC_OUTPUT(conf.pri)
 AS_IF([test "x$enable_systemd" = "xyes"],
       [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
 
-
-
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
-CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
-
-$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro "QMAKE_LRELEASE=$QMAKE_LRELEASE"
-
-ret="$?"
+TOPDIR="$(cd "$(dirname "$0")" && pwd)"
+$QT_QMAKE -r "$TOPDIR/qbittorrent.pro" "QMAKE_LRELEASE=$QMAKE_LRELEASE"
+qmake_ret="$?"
 
 AS_ECHO()
-AS_IF([test "x$ret" = "x0"],
-      [AC_MSG_NOTICE([Good, your configure finished.])],
-      [AC_MSG_ERROR([Failed running $QT_QMAKE to generate the makefile])])
+AS_IF([test "x$qmake_ret" != "x0"],
+      [AC_MSG_ERROR([$QT_QMAKE failed to generate the makefile])])
+
+AC_MSG_NOTICE([Good, the configure finished.])
 AS_ECHO()
