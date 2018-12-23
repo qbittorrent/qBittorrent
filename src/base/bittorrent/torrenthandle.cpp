@@ -224,7 +224,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
     if (params.paused) {
         m_startupState = Started;
     }
-    else if (!params.restored) {
+    else if (!params.restored || !hasMetadata()) {
         // Resume torrent because it was added in "resumed" state
         // but it's actually paused during initialization
         m_startupState = Starting;
