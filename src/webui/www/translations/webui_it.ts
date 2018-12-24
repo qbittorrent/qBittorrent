@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Nuova Categoria</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Modifica categoria...</translation>
     </message>
 </context>
 <context>
@@ -138,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Disco fisso</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorent è stato chiuso.</translation>
+        <translation type="vanished">qBittorent è stato chiuso.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>

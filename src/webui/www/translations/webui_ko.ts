@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>토런트 관리 모드:</translation>
     </message>
 </context>
 <context>
@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>새 카테고리</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>카테고리 편집...</translation>
     </message>
 </context>
 <context>
@@ -138,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">하드 디스크</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -286,7 +282,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>전송 목록에서 선택한 토런트를 삭제할까요?</translation>
+        <translation>선택하신 토런트를 전송 목록에서 삭제하시겠습니까?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -298,19 +294,19 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>큐빗토런트를 종료했습니다.</translation>
+        <translation type="vanished">큐빗토런트를 종료했습니다.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>전역 업로드 슬롯 제한은 0보다 높거나 비활성화되어야 합니다.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>무효한 카테고리 이름:\n카테고리 이름은 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>카테고리를 만들 수 없습니다</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1937,39 +1937,39 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation>차례대로 다운로드</translation>
+        <translation>차례대로 받기</translation>
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>강제로 다시 검사</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>새 카테고리</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>위치</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>새 이름</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>위치 지정</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>강제로 다시 알리기</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>카테고리 편집</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>저장 경로</translation>
     </message>
 </context>
 <context>
@@ -2003,7 +2003,7 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Qt 툴킷과 libtorrent-rasterbar 기반의 C++로 짠 고급 비트토런트 클라이언트입니다.</translation>
+        <translation>Qt 툴킷과 libtorrent-rasterbar를 기반으로하는 C++로 작성된 비트토런트 클라이언트입니다.</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -2030,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>삭제 확인 - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2045,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>토런트 링크 추가</translation>
     </message>
 </context>
 <context>
@@ -2120,26 +2120,26 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>저장 경로가 비어 있습니다</translation>
     </message>
 </context>
 <context>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>취소</translation>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>플러그인 경로:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL 또는 로컬 디렉토리</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>플러그인 설치</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2225,77 +2225,77 @@
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>새 플러그인 설치</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>이곳에서 새로운 검색 엔진 플러그인을 얻을 수 있습니다:</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>닫기</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished" />
+        <translation>설치한 검색 플러그인:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>활성화됨</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished" />
+        <translation>경고: 이러한 검색 엔진에서 토런트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>업데이트 확인</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>검색 플러그인</translation>
     </message>
 </context>
 <context>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>이름</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>크기</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>공유자</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>검색 엔진</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>배포자</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>이름</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>활성화됨</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>버전</translation>
     </message>
 </context>
 </TS>

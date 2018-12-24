@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Անհայտ</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished">Մուտքաբառը</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original authors</source>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent-ը անջատվել է:</translation>
+        <translation type="vanished">qBittorrent-ը անջատվել է:</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -330,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -485,11 +489,11 @@
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Բեռնումներ</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Միացումը</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Speed</source>
@@ -505,7 +509,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Լեզուն</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>User Interface Language:</source>
@@ -605,11 +609,11 @@
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">Օգտվողը.</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Ծածկագիրը.</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enabled protocol:</source>
@@ -718,10 +722,6 @@
     <message>
         <source>Upload:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>Կբիթ/վ</translation>
     </message>
     <message>
         <source>Download:</source>
@@ -920,6 +920,10 @@
     <message>
         <source>minutes</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>Կբիթ/վ</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1251,7 +1255,7 @@
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">Երբեք</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%1 x %2 (have %3)</source>
@@ -1482,7 +1486,7 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished">Մնում է</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Availability</source>
@@ -1804,7 +1808,7 @@
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Վիճակը</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Categories</source>
@@ -2017,16 +2021,16 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>Հաստատեք ջնջումը</translation>
-    </message>
-    <message>
         <source>Deletion confirmation</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
         <translation>Նաև ջնջել ֆայլերը պնակից</translation>
+    </message>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation>Հաստատեք ջնջումը</translation>
     </message>
 </context>
 <context>

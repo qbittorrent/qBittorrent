@@ -140,10 +140,6 @@
         <translation>Неизвестен</translation>
     </message>
     <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Твърд диск</translation>
-    </message>
-    <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
         <translation>Ограничението на съотношението на споделяне трябва да бъде между 0 и 9998.</translation>
     </message>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent се изключва.</translation>
+        <translation type="vanished">qBittorrent се изключва.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -140,10 +140,6 @@
         <translation>Ukjent</translation>
     </message>
     <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Harddisk</translation>
-    </message>
-    <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
         <translation>Delingssforholdsgrense må være mellom 0 og 9998.</translation>
     </message>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent har blitt avslått.</translation>
+        <translation type="vanished">qBittorrent har blitt avslått.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>

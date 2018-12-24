@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Uusi kategoria</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Muokkaa kategoriaa...</translation>
     </message>
 </context>
 <context>
@@ -138,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Kiintolevy</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -218,7 +214,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Aseta sijainti</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent on sammutettu.</translation>
+        <translation type="vanished">qBittorrent on sammutettu.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -318,11 +314,11 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Muokkaa</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Vapaata tilaa: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -466,7 +466,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Hakukone</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Siirrot</translation>
     </message>
 </context>
 <context>
@@ -947,11 +947,11 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>Vaihda nykyinen salasana</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Automaattinen</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1023,7 +1023,7 @@
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>Tiedostojen sijainti:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1283,11 +1283,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Latausraja:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Lähetysraja:</translation>
     </message>
 </context>
 <context>
@@ -1666,7 +1666,7 @@
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Päivitetään...</translation>
     </message>
     <message>
         <source>Working</source>
@@ -1945,19 +1945,19 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Uusi kategoria</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Sijainti</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Uusi nimi</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Aseta sijainti</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -1965,7 +1965,7 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Muokkaa kategoriaa</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2127,7 +2127,7 @@
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Peruuta</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2139,11 +2139,11 @@
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Asenna liitännäinen</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -2154,11 +2154,11 @@
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>Kaikki liitännäiset</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Koko:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -2221,11 +2221,11 @@
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Poista asennus</translation>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Asenna uusi liitännäinen</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
@@ -2233,15 +2233,15 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Sulje</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished" />
+        <translation>Asennetut hakuliitännäiset:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Käytössä</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2249,22 +2249,22 @@
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Tarkista päivitykset</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>Hakuliitännäiset</translation>
     </message>
 </context>
 <context>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Koko</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2272,7 +2272,7 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Hakukone</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -2283,7 +2283,7 @@
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Url</source>
@@ -2295,7 +2295,7 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Versio</translation>
     </message>
 </context>
 </TS>

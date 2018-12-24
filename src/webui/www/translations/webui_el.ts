@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Νέα κατηγορία</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Επεξεργασία κατηγορίας...</translation>
     </message>
 </context>
 <context>
@@ -138,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Σκληρός δίσκος</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>Το qBittorrent τερματίστηκε.</translation>
+        <translation type="vanished">Το qBittorrent τερματίστηκε.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -318,11 +314,11 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Επεξεργασία</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Ελεύθερος χώρος: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -462,11 +462,11 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Εναλλακτικά όρια ταχύτητας</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Μηχανή αναζήτησης</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -474,11 +474,11 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Αναζήτηση</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Μεταφορές</translation>
     </message>
 </context>
 <context>
@@ -919,7 +919,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>λεπτά</translation>
     </message>
     <message>
         <source>KiB/s</source>
