@@ -209,36 +209,36 @@ PKG_CHECK_MODULES(zlib,
                  [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
-# Check if already in >= C++11 mode because of the flags returned by one of the above packages
-AC_MSG_CHECKING([if compiler is using C++11 or later mode])
-AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+# Check if already in >= C++14 mode because of the flags returned by one of the above packages
+AC_MSG_CHECKING([if compiler is using C++14 or later mode])
+AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                   [AC_MSG_RESULT([yes])
-                   QBT_CXX11_FOUND="yes"],
+                   QBT_CXX14_FOUND="yes"],
                   [AC_MSG_RESULT([no])
-                   QBT_CXX11_FOUND="no"])
+                   QBT_CXX14_FOUND="no"])
 
-# In case of no, check if the compiler can support at least C++11
+# In case of no, check if the compiler can support at least C++14
 # and if yes, enable it leaving a warning to the user
-AS_IF([test "x$QBT_CXX11_FOUND" = "xno"],
-      [AC_MSG_CHECKING([if compiler supports C++11])
+AS_IF([test "x$QBT_CXX14_FOUND" = "xno"],
+      [AC_MSG_CHECKING([if compiler supports C++14])
        TMP_CXXFLAGS="$CXXFLAGS"
-       CXXFLAGS="$CXXFLAGS -std=c++11"
-       AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+       CXXFLAGS="$CXXFLAGS -std=c++14"
+       AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                         [AC_MSG_RESULT([yes])
-                         AC_MSG_CHECKING([if C++11 is disabled by the set compiler flags])
+                         AC_MSG_CHECKING([if C++14 is disabled by the set compiler flags])
                          # prepend the flag so it won't override conflicting user defined flags
-                         CXXFLAGS="-std=c++11 $TMP_CXXFLAGS"
-                         AC_COMPILE_IFELSE([DETECT_CPP11_PROGRAM()],
+                         CXXFLAGS="-std=c++14 $TMP_CXXFLAGS"
+                         AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                                            [AC_MSG_RESULT([no])
-                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++11"
-                                            AC_MSG_WARN([C++11 mode is now force enabled.
+                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++14"
+                                            AC_MSG_WARN([C++14 mode is now force enabled.
 Make sure you use the same C++ mode for qBittorrent and its dependencies.
 To explicitly set qBittorrent to a later mode use CXXFLAGS.
 Example: `CXXFLAGS="\$CXXFLAGS -std=c++14" ./configure`])],
                                            [AC_MSG_RESULT([yes])
-                                            AC_MSG_ERROR([The compiler supports C++11 but the user or a dependency has explicitly enabled a lower mode.])])],
+                                            AC_MSG_ERROR([The compiler supports C++14 but the user or a dependency has explicitly enabled a lower mode.])])],
                         [AC_MSG_RESULT([no])
-                         AC_MSG_ERROR([A compiler supporting C++11 is required.])])
+                         AC_MSG_ERROR([A compiler supporting C++14 is required.])])
       ])
 
 # These are required because autoconf doesn't expand these **particular**
