@@ -58,15 +58,15 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished">استئناف التورنتات</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished">إلباث التورنتات</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished">حذف التورنتات</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>New Category</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">غير معروف</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>تم اغلاق البرنامج</translation>
+        <translation type="vanished">تم اغلاق البرنامج</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -330,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -485,15 +489,15 @@
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">التنزيلات</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">الاتصال</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">السرعة</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>BitTorrent</source>
@@ -1482,7 +1486,7 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished">المتبقي</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Availability</source>

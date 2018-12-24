@@ -50,7 +50,7 @@
     </message>
     <message>
         <source>Remove category</source>
-        <translation>Вилучити категорію</translation>
+        <translation>Видалити категорію</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Нова категорія</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Змінити категорію...</translation>
     </message>
 </context>
 <context>
@@ -138,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Невідомо</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation type="vanished">Жорсткий диск</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -298,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent вимкнено.</translation>
+        <translation type="vanished">qBittorrent вимкнено.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -306,11 +302,11 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Некоректна назва категорії:\nБудь ласка, не використовуйте спеціальні символи у назві категорії.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Неможливо створити категорію</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -318,7 +314,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Редагувати</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -975,7 +975,7 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>Коли змінилася категорія торенту:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1007,7 +1007,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Коли змінився шлях збереження категорії:</translation>
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
@@ -1945,7 +1945,7 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Нова категорія</translation>
     </message>
     <message>
         <source>Location</source>
@@ -1965,7 +1965,7 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Змінити категорію</translation>
     </message>
     <message>
         <source>Save path</source>

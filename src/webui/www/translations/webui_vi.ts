@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Chưa rõ</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished">Đăng nhập</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original authors</source>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent đã bị tắt đi.</translation>
+        <translation type="vanished">qBittorrent đã bị tắt đi.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -330,6 +330,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -485,11 +489,11 @@
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Tải về</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Kết nối</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Speed</source>
@@ -605,11 +609,11 @@
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">Tên người dùng:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Mật khẩu:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enabled protocol:</source>
@@ -718,10 +722,6 @@
     <message>
         <source>Upload:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>KiB/giây</translation>
     </message>
     <message>
         <source>Download:</source>
@@ -920,6 +920,10 @@
     <message>
         <source>minutes</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiB/giây</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1482,7 +1486,7 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished">Còn lại</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Availability</source>
@@ -1804,7 +1808,7 @@
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Trạng thái</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Categories</source>

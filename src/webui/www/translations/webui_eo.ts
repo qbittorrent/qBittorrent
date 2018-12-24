@@ -58,15 +58,15 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished">Reaktivigi la torentojn</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished">Paŭzigi la torentojn</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished">Forigi la torentojn</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>New Category</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Nekonata</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -293,10 +293,6 @@
         <translation>La qBittorrent-kliento ne atingiĝeblas.</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation type="unfinished" />
     </message>
@@ -330,6 +326,10 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -485,15 +485,15 @@
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Elŝutoj</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Konekto</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Rapido</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>BitTorrent</source>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">Uzantnomo:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Pasvorto:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enabled protocol:</source>
@@ -1482,7 +1482,7 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished">Restanta</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Availability</source>
