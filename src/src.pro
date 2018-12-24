@@ -66,11 +66,26 @@ include(base/base.pri)
 !nogui: include(gui/gui.pri)
 !nowebui: include(webui/webui.pri)
 
+# Translations
+CONFIG += lrelease embed_translations
+QMAKE_LRELEASE_FLAGS = -silent
+QM_FILES_RESOURCE_PREFIX = /lang
+TRANSLATIONS = $$files($$PWD/lang/qbittorrent_*.ts)
+
+equals(QT_MAJOR_VERSION, 5) {  # this include is not needed for Qt >= 5.12.0
+    equals(QT_MINOR_VERSION, 1) | equals(QT_MINOR_VERSION, 2) | equals(QT_MINOR_VERSION, 3) \
+        | equals(QT_MINOR_VERSION, 4) | equals(QT_MINOR_VERSION, 5) | equals(QT_MINOR_VERSION, 6) \
+        | equals(QT_MINOR_VERSION, 7) | equals(QT_MINOR_VERSION, 8) | equals(QT_MINOR_VERSION, 9) \
+        | equals(QT_MINOR_VERSION, 10) | equals(QT_MINOR_VERSION, 11) {
+        # include() must come after setting the variables
+        include(../qmake/lrelease.prf)
+    }
+}
+
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons/icons.qrc \
-    lang/lang.qrc \
     searchengine/searchengine.qrc
 
 DESTDIR = .

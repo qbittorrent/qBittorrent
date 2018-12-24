@@ -433,7 +433,9 @@ void WebApplication::configure()
         m_currentLocale = newLocale;
         m_translatedFiles.clear();
 
-        m_translationFileLoaded = m_translator.load(m_rootFolder + QLatin1String("/translations/webui_") + newLocale);
+        m_translationFileLoaded = isAltUIUsed
+            ? m_translator.load(m_rootFolder + QLatin1String("/translations/webui_") + newLocale)
+            : m_translator.load(QLatin1String(":/lang/webui_") + newLocale);
         if (m_translationFileLoaded) {
             LogMsg(tr("Web UI translation for selected locale (%1) has been successfully loaded.")
                    .arg(newLocale));
