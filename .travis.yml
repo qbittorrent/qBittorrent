@@ -72,7 +72,7 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/opt/qt55/lib/pkgconfig:$PKG_CONFIG_PATH"
     else
-      qbtconf="$qbtconf --prefix="$qbt_path""
+      qbtconf="$qbtconf --prefix="$qbt_path" PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
       CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs -Wno-inconsistent-missing-override"
     fi
 
@@ -115,9 +115,9 @@ install:
 
         sudo ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
         sudo ln -s /usr/local/opt/qt/plugins /usr/local/plugins
+        
+        MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
       fi
-
-      MY_CMAKE_OPENSSL_HINT="-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/"
     fi
   - |
     if [ "$TRAVIS_BRANCH" != "$coverity_branch" ]; then
