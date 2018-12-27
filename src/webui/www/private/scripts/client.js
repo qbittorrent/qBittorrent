@@ -27,6 +27,7 @@
 var torrentsTable = new TorrentsTable();
 var torrentTrackersTable = new TorrentTrackersTable();
 var torrentPeersTable = new TorrentPeersTable();
+var torrentFilesTable = new TorrentFilesTable();
 var searchResultsTable = new SearchResultsTable();
 var searchPluginsTable = new SearchPluginsTable();
 
