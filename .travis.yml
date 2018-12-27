@@ -105,7 +105,7 @@ install:
       # dependencies
       brew update > /dev/null
       brew outdated "pkg-config" || brew upgrade "pkg-config"
-      brew install colormake ccache zlib qt libtorrent-rasterbar
+      brew install colormake ccache zlib qt openssl libtorrent-rasterbar
       PATH="/usr/local/opt/ccache/libexec:$PATH"
       brew link --force zlib qt
 
