@@ -29,24 +29,17 @@
 #include "trackerentry.h"
 
 #include <QString>
-
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
+#include <QUrl>
 
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(libtorrent::announce_entry(url.toStdString()))
+    : m_nativeEntry(url.toStdString())
 {
 }
 
 TrackerEntry::TrackerEntry(const libtorrent::announce_entry &nativeEntry)
     : m_nativeEntry(nativeEntry)
-{
-}
-
-TrackerEntry::TrackerEntry(const TrackerEntry &other)
-    : m_nativeEntry(other.m_nativeEntry)
 {
 }
 
@@ -74,23 +67,17 @@ TrackerEntry::Status TrackerEntry::status() const
         return NotWorking;
 }
 
-void TrackerEntry::setTier(int value)
+void TrackerEntry::setTier(const int value)
 {
     m_nativeEntry.tier = value;
-}
-
-TrackerEntry &TrackerEntry::operator=(const TrackerEntry &other)
-{
-    this->m_nativeEntry = other.m_nativeEntry;
-    return *this;
-}
-
-bool TrackerEntry::operator==(const TrackerEntry &other) const
-{
-    return (QUrl(url()) == QUrl(other.url()));
 }
 
 libtorrent::announce_entry TrackerEntry::nativeEntry() const
 {
     return m_nativeEntry;
+}
+
+bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
+{
+    return (QUrl(left.url()) == QUrl(right.url()));
 }

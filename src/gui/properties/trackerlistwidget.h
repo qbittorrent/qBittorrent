@@ -63,7 +63,7 @@ public:
         COL_COUNT
     };
 
-    TrackerListWidget(PropertiesWidget *properties);
+    explicit TrackerListWidget(PropertiesWidget *properties);
     ~TrackerListWidget();
 
     int visibleColumnsCount() const;

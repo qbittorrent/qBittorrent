@@ -113,7 +113,7 @@ namespace BitTorrent
         int seedingTimeLimit;
 
         CreateTorrentParams();
-        CreateTorrentParams(const AddTorrentParams &params);
+        explicit CreateTorrentParams(const AddTorrentParams &params);
     };
 
     struct TrackerInfo

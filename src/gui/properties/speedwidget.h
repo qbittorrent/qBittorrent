@@ -59,7 +59,7 @@ class SpeedWidget : public QWidget
     Q_OBJECT
 
 public:
-    SpeedWidget(PropertiesWidget *parent);
+    explicit SpeedWidget(PropertiesWidget *parent);
     ~SpeedWidget();
 
 private slots:

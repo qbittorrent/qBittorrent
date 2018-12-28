@@ -40,14 +40,12 @@ namespace BitTorrent
         InfoHash();
         InfoHash(const libtorrent::sha1_hash &nativeHash);
         InfoHash(const QString &hashString);
-        InfoHash(const InfoHash &other);
+        InfoHash(const InfoHash &other) = default;
 
         bool isValid() const;
 
         operator libtorrent::sha1_hash() const;
         operator QString() const;
-        bool operator==(const InfoHash &other) const;
-        bool operator!=(const InfoHash &other) const;
 
     private:
         bool m_valid;
@@ -55,6 +53,8 @@ namespace BitTorrent
         QString m_hashString;
     };
 
+    bool operator==(const InfoHash &left, const InfoHash &right);
+    bool operator!=(const InfoHash &left, const InfoHash &right);
     uint qHash(const InfoHash &key, uint seed);
 }
 

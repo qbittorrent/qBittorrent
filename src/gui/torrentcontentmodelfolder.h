@@ -39,7 +39,7 @@ public:
     TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
     // Invisible root item constructor
-    TorrentContentModelFolder(const QList<QVariant> &data);
+    explicit TorrentContentModelFolder(const QList<QVariant> &data);
 
     ~TorrentContentModelFolder() override;
 

@@ -52,21 +52,22 @@ namespace BitTorrent
 
         TrackerEntry(const QString &url);
         TrackerEntry(const libtorrent::announce_entry &nativeEntry);
-        TrackerEntry(const TrackerEntry &other);
+        TrackerEntry(const TrackerEntry &other) = default;
+        TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
-        int tier() const;
         Status status() const;
 
+        int tier() const;
         void setTier(int value);
-        TrackerEntry &operator=(const TrackerEntry &other);
-        bool operator==(const TrackerEntry &other) const;
 
         libtorrent::announce_entry nativeEntry() const;
 
     private:
         libtorrent::announce_entry m_nativeEntry;
     };
+
+    bool operator==(const TrackerEntry &left, const TrackerEntry &right);
 }
 
 #endif // BITTORRENT_TRACKERENTRY_H

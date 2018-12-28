@@ -46,7 +46,7 @@ namespace
     class TransactionalSettings
     {
     public:
-        TransactionalSettings(const QString &name)
+        explicit TransactionalSettings(const QString &name)
             : m_name(name)
         {
         }

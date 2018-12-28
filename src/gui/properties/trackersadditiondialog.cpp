@@ -71,7 +71,7 @@ QStringList TrackersAdditionDialog::newTrackers() const
 void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 {
     m_ui->uTorrentListButton->setEnabled(false);
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({m_ui->lineEditListURL->text()});
+    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_ui->lineEditListURL->text());
     connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &TrackersAdditionDialog::parseUTorrentList);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &TrackersAdditionDialog::getTrackerError);
