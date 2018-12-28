@@ -334,53 +334,53 @@ var TorrentsTableContextMenu = new Class({
             show_f_l_piece_prio = false;
 
         if (all_are_downloaded) {
-            this.hideItem('DownloadLimit');
-            this.menu.getElement('a[href$=UploadLimit]').parentNode.addClass('separator');
-            this.hideItem('SequentialDownload');
-            this.hideItem('FirstLastPiecePrio');
-            this.showItem('SuperSeeding');
-            this.setItemChecked('SuperSeeding', all_are_super_seeding);
+            this.hideItem('downloadLimit');
+            this.menu.getElement('a[href$=uploadLimit]').parentNode.addClass('separator');
+            this.hideItem('sequentialDownload');
+            this.hideItem('firstLastPiecePrio');
+            this.showItem('superSeeding');
+            this.setItemChecked('superSeeding', all_are_super_seeding);
         }
         else {
             if (!show_seq_dl && show_f_l_piece_prio)
-                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.addClass('separator');
+                this.menu.getElement('a[href$=firstLastPiecePrio]').parentNode.addClass('separator');
             else
-                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.removeClass('separator');
+                this.menu.getElement('a[href$=firstLastPiecePrio]').parentNode.removeClass('separator');
 
             if (show_seq_dl)
-                this.showItem('SequentialDownload');
+                this.showItem('sequentialDownload');
             else
-                this.hideItem('SequentialDownload');
+                this.hideItem('sequentialDownload');
 
             if (show_f_l_piece_prio)
-                this.showItem('FirstLastPiecePrio');
+                this.showItem('firstLastPiecePrio');
             else
-                this.hideItem('FirstLastPiecePrio');
+                this.hideItem('firstLastPiecePrio');
 
-            this.setItemChecked('SequentialDownload', all_are_seq_dl);
-            this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
+            this.setItemChecked('sequentialDownload', all_are_seq_dl);
+            this.setItemChecked('firstLastPiecePrio', all_are_f_l_piece_prio);
 
-            this.showItem('DownloadLimit');
-            this.menu.getElement('a[href$=UploadLimit]').parentNode.removeClass('separator');
-            this.hideItem('SuperSeeding');
+            this.showItem('downloadLimit');
+            this.menu.getElement('a[href$=uploadLimit]').parentNode.removeClass('separator');
+            this.hideItem('superSeeding');
         }
 
-        this.showItem('Start');
-        this.showItem('Pause');
-        this.showItem('ForceStart');
+        this.showItem('start');
+        this.showItem('pause');
+        this.showItem('forceStart');
         if (all_are_paused)
-            this.hideItem('Pause');
+            this.hideItem('pause');
         else if (all_are_force_start)
-            this.hideItem('ForceStart');
+            this.hideItem('forceStart');
         else if (!there_are_paused && !there_are_force_start)
-            this.hideItem('Start');
+            this.hideItem('start');
 
         if (!all_are_auto_tmm && there_are_auto_tmm) {
-            this.hideItem('AutoTorrentManagement');
+            this.hideItem('autoTorrentManagement');
         }
         else {
-            this.showItem('AutoTorrentManagement');
-            this.setItemChecked('AutoTorrentManagement', all_are_auto_tmm);
+            this.showItem('autoTorrentManagement');
+            this.setItemChecked('autoTorrentManagement', all_are_auto_tmm);
         }
 
     },
@@ -421,12 +421,12 @@ var CategoriesFilterContextMenu = new Class({
     updateMenuItems: function() {
         var id = this.options.element.id;
         if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
-            this.showItem('EditCategory');
-            this.showItem('DeleteCategory');
+            this.showItem('editCategory');
+            this.showItem('deleteCategory');
         }
         else {
-            this.hideItem('EditCategory');
-            this.hideItem('DeleteCategory');
+            this.hideItem('editCategory');
+            this.hideItem('deleteCategory');
         }
     }
 });

@@ -29,25 +29,25 @@
         targets: '.categoriesFilterContextMenuTarget',
         menu: 'categoriesFilterMenu',
         actions: {
-            CreateCategory: function(element, ref) {
+            createCategory: function(element, ref) {
                 createCategoryFN();
             },
-            EditCategory: function(element, ref) {
+            editCategory: function(element, ref) {
                 editCategoryFN(element.id);
             },
-            DeleteCategory: function(element, ref) {
+            deleteCategory: function(element, ref) {
                 removeCategoryFN(element.id);
             },
-            DeleteUnusedCategories: function(element, ref) {
+            deleteUnusedCategories: function(element, ref) {
                 deleteUnusedCategoriesFN();
             },
-            StartTorrentsByCategory: function(element, ref) {
+            startTorrentsByCategory: function(element, ref) {
                 startTorrentsByCategoryFN(element.id);
             },
-            PauseTorrentsByCategory: function(element, ref) {
+            pauseTorrentsByCategory: function(element, ref) {
                 pauseTorrentsByCategoryFN(element.id);
             },
-            DeleteTorrentsByCategory: function(element, ref) {
+            deleteTorrentsByCategory: function(element, ref) {
                 deleteTorrentsByCategoryFN(element.id);
             }
         },

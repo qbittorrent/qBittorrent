@@ -854,11 +854,11 @@ function setupCopyEventHandler() {
     clipboardEvent = new ClipboardJS('.copyToClipboard', {
         text: function(trigger) {
             switch (trigger.id) {
-                case "CopyName":
+                case "copyName":
                     return copyNameFN();
-                case "CopyMagnetLink":
+                case "copyMagnetLink":
                     return copyMagnetLinkFN();
-                case "CopyHash":
+                case "copyHash":
                     return copyHashFN();
                 case "copyDescriptionPageUrl":
                     return copySearchTorrentUrl();
