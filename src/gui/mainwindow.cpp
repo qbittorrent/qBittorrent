@@ -38,7 +38,6 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
-#include <QRegularExpression>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
@@ -1628,11 +1627,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    for (QString url : urlList) {
-        if (((url.size() == 40) && !url.contains(QRegularExpression("[^0-9A-Fa-f]")))
-            || ((url.size() == 32) && !url.contains(QRegularExpression("[^2-7A-Za-z]"))))
-            url = "magnet:?xt=urn:btih:" + url;
-
+    for (const QString &url : urlList) {
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(url, this);
         else
