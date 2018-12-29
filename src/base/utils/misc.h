@@ -71,7 +71,6 @@ namespace Utils
         };
 
         QString parseHtmlLinks(const QString &rawText);
-        bool isUrl(const QString &s);
 
         void shutdownComputer(const ShutdownDialogAction &action);
 

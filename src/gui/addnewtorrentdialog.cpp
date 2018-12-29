@@ -231,7 +231,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
 {
     AddNewTorrentDialog *dlg = new AddNewTorrentDialog(inParams, parent);
 
-    if (Utils::Misc::isUrl(source)) {
+    if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
         // TODO: Don't save loaded torrent to file, just use downloaded data!
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(

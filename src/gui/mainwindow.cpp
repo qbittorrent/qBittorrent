@@ -60,6 +60,7 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
@@ -1295,7 +1296,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     for (const QString &file : asConst(files)) {
         const bool isTorrentLink = (file.startsWith("magnet:", Qt::CaseInsensitive)
             || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
-            || Utils::Misc::isUrl(file));
+            || Net::DownloadManager::hasSupportedScheme(file));
         if (isTorrentLink)
             torrentFiles << file;
         else

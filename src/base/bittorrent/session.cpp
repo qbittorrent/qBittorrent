@@ -2094,7 +2094,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 {
     // `source`: .torrent file path/url or magnet uri
 
-    if (Utils::Misc::isUrl(source)) {
+    if (Net::DownloadManager::hasSupportedScheme(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler =
