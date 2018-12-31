@@ -78,7 +78,7 @@ void sigNormalHandler(int signum);
 void sigAbnormalHandler(int signum);
 #endif
 // sys_signame[] is only defined in BSD
-const char *sysSigName[] = {
+const char *const sysSigName[] = {
 #if defined(Q_OS_WIN)
     "", "", "SIGINT", "", "SIGILL", "", "SIGABRT_COMPAT", "", "SIGFPE", "",
     "", "SIGSEGV", "", "", "", "SIGTERM", "", "", "", "",

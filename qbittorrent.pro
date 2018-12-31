@@ -17,10 +17,6 @@ tarball.commands += rm -fR $${PROJECT_NAME}-$${PROJECT_VERSION}
 
 QMAKE_EXTRA_TARGETS += tarball
 
-# Translations included here (at top level) is to avoid regenerating the .qm files
-# every time when src.pro is processed
-include(src/lang/lang.pri)
-
 # For Qt Creator beautifier
 DISTFILES += \
     uncrustify.cfg
