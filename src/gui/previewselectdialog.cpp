@@ -35,6 +35,7 @@
 #include <QStandardItemModel>
 #include <QTableView>
 
+#include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -93,10 +94,6 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
         }
     }
 
-    if (m_previewListModel->rowCount() == 0) {
-        QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
-        close();
-    }
     connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
     m_previewListModel->sort(NAME);
     previewList->header()->setSortIndicator(0, Qt::AscendingOrder);

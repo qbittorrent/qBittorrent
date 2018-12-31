@@ -31,12 +31,15 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/torrenthandle.h"
 #include "base/settingvalue.h"
 #include "ui_previewselectdialog.h"
 
 class QStandardItemModel;
 
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 class PreviewListDelegate;
 
 class PreviewSelectDialog : public QDialog, private Ui::preview

@@ -48,6 +48,7 @@
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "deletionconfirmationdialog.h"
@@ -198,6 +199,19 @@ namespace
             setDefaultWidget(new MenuCheckBox(text, onToggle, initialState));
         }
     };
+
+    bool torrentContainsPreviewableFiles(const BitTorrent::TorrentHandle *const torrent)
+    {
+        if (!torrent->hasMetadata())
+            return false;
+
+        for (int i = 0; i < torrent->filesCount(); ++i) {
+            if (Utils::Misc::isPreviewable(Utils::Fs::fileExtension(torrent->fileName(i))))
+                return true;
+        }
+
+        return false;
+    }
 }
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
@@ -589,8 +603,10 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 void TransferListWidget::previewSelectedTorrents()
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
-        if (torrent->hasMetadata())
+        if (torrentContainsPreviewableFiles(torrent))
             new PreviewSelectDialog(this, torrent);
+        else
+            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent does not contain previewable files"));
     }
 }
 
