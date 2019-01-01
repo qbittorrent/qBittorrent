@@ -48,7 +48,6 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
 #include "articlelistwidget.h"
 #include "autoexpandabledialog.h"
@@ -249,7 +248,7 @@ void RSSWidget::on_newFeedButton_clicked()
 {
     // Ask for feed URL
     const QString clipText = qApp->clipboard()->text();
-    const QString defaultURL = (Utils::Misc::isUrl(clipText) ? clipText : "http://");
+    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : "http://";
 
     bool ok;
     QString newURL = AutoExpandableDialog::getText(

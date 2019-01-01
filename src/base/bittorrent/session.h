@@ -469,7 +469,7 @@ namespace BitTorrent
         void banIP(const QString &ip);
 
         bool isKnownTorrent(const InfoHash &hash) const;
-        bool addTorrent(QString source, const AddTorrentParams &params = AddTorrentParams());
+        bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
         bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
         bool loadMetadata(const MagnetUri &magnetUri);

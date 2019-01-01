@@ -103,6 +103,8 @@ namespace Net
         void setAllCookies(const QList<QNetworkCookie> &cookieList);
         bool deleteCookie(const QNetworkCookie &cookie);
 
+        static bool hasSupportedScheme(const QString &url);
+
     private slots:
     #ifndef QT_NO_OPENSSL
         void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);

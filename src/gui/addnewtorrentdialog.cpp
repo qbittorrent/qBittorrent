@@ -227,11 +227,11 @@ void AddNewTorrentDialog::saveState()
     settings()->storeValue(KEY_EXPANDED, m_ui->toolButtonAdvanced->isChecked());
 }
 
-void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
+void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
     AddNewTorrentDialog *dlg = new AddNewTorrentDialog(inParams, parent);
 
-    if (Utils::Misc::isUrl(source)) {
+    if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
         // TODO: Don't save loaded torrent to file, just use downloaded data!
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
@@ -240,27 +240,27 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
                 , dlg, &AddNewTorrentDialog::handleDownloadFinished);
         connect(handler, &Net::DownloadHandler::downloadFailed, dlg, &AddNewTorrentDialog::handleDownloadFailed);
         connect(handler, &Net::DownloadHandler::redirectedToMagnet, dlg, &AddNewTorrentDialog::handleRedirectedToMagnet);
+        return;
+    }
+
+    const BitTorrent::MagnetUri magnetUri(source);
+    const bool isLoaded = magnetUri.isValid()
+        ? dlg->loadMagnet(magnetUri)
+        : dlg->loadTorrent(source);
+
+    if (isLoaded) {
+#ifdef Q_OS_MAC
+        dlg->exec();
+#else
+        dlg->open();
+#endif
     }
     else {
-        bool ok = false;
-        BitTorrent::MagnetUri magnetUri(source);
-        if (magnetUri.isValid())
-            ok = dlg->loadMagnet(magnetUri);
-        else
-            ok = dlg->loadTorrent(source);
-
-        if (ok)
-#ifdef Q_OS_MAC
-            dlg->exec();
-#else
-            dlg->open();
-#endif
-        else
-            delete dlg;
+        delete dlg;
     }
 }
 
-void AddNewTorrentDialog::show(QString source, QWidget *parent)
+void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
 {
     show(source, BitTorrent::AddTorrentParams(), parent);
 }

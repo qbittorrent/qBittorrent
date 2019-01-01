@@ -31,29 +31,26 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/sha1_hash.hpp>
 
-#include <QByteArray>
 #include <QRegularExpression>
-#include <QStringList>
-
-#include "base/utils/string.h"
 
 namespace
 {
-    QString bcLinkToMagnet(QString bcLink)
+    bool isBitTorrentInfoHash(const QString &string)
     {
-        QByteArray rawBc = bcLink.toUtf8();
-        rawBc = rawBc.mid(8); // skip bc://bt/
-        rawBc = QByteArray::fromBase64(rawBc); // Decode base64
-        // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
-        QStringList parts = QString(rawBc).split('/');
-        if (parts.size() != 5) return QString();
+        // There are 2 represenations for BitTorrent info hash:
+        // 1. 40 chars hex-encoded string
+        //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
+        // 2. 32 chars Base32 encoded string
+        //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
+        const int SHA1_HEX_SIZE = libtorrent::sha1_hash::size * 2;
+        const int SHA1_BASE32_SIZE = libtorrent::sha1_hash::size * 1.6;
 
-        QString filename = parts.at(1);
-        QString hash = parts.at(3);
-        QString magnet = "magnet:?xt=urn:btih:" + hash;
-        magnet += "&dn=" + filename;
-        return magnet;
+        return ((((string.size() == SHA1_HEX_SIZE))
+                && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]"))))
+            || ((string.size() == SHA1_BASE32_SIZE)
+                && !string.contains(QRegularExpression(QLatin1String("[^2-7A-Za-z]")))));
     }
 }
 
@@ -66,17 +63,11 @@ MagnetUri::MagnetUri(const QString &source)
 {
     if (source.isEmpty()) return;
 
-    if (source.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-        qDebug("Creating magnet link from bc link");
-        m_url = bcLinkToMagnet(source);
-    }
-    else if (((source.size() == 40) && !source.contains(QRegularExpression("[^0-9A-Fa-f]")))
-             || ((source.size() == 32) && !source.contains(QRegularExpression("[^2-7A-Za-z]")))) {
-        m_url = "magnet:?xt=urn:btih:" + source;
-    }
+    if (isBitTorrentInfoHash(source))
+        m_url = QLatin1String("magnet:?xt=urn:btih:") + source;
 
     libt::error_code ec;
-    libt::parse_magnet_uri(m_url.toUtf8().constData(), m_addTorrentParams, ec);
+    libt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);
     if (ec) return;
 
     m_valid = true;
@@ -84,10 +75,10 @@ MagnetUri::MagnetUri(const QString &source)
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
     for (const std::string &tracker : m_addTorrentParams.trackers)
-        m_trackers.append(QString::fromStdString(tracker));
+        m_trackers.append(TrackerEntry(tracker));
 
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)
-        m_urlSeeds.append(QUrl(urlSeed.c_str()));
+        m_urlSeeds.append(QUrl(QString::fromStdString(urlSeed)));
 }
 
 bool MagnetUri::isValid() const

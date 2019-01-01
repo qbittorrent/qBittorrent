@@ -68,8 +68,8 @@ public:
     static int savePathHistoryLength();
     static void setSavePathHistoryLength(int value);
 
-    static void show(QString source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    static void show(QString source, QWidget *parent);
+    static void show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
+    static void show(const QString &source, QWidget *parent);
 
 private slots:
     void showAdvancedSettings(bool show);

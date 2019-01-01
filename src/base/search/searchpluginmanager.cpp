@@ -50,7 +50,6 @@
 #include "base/utils/bytearray.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "searchdownloadhandler.h"
 #include "searchhandler.h"
 
@@ -198,7 +197,7 @@ void SearchPluginManager::installPlugin(const QString &source)
 {
     clearPythonCache(engineLocation());
 
-    if (Utils::Misc::isUrl(source)) {
+    if (Net::DownloadManager::hasSupportedScheme(source)) {
         using namespace Net;
         DownloadHandler *handler = DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true));
         connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)

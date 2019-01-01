@@ -43,7 +43,6 @@
 #include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "pluginsourcedialog.h"
@@ -337,7 +336,7 @@ void PluginSelectDialog::askForPluginUrl()
     bool ok = false;
     QString clipTxt = qApp->clipboard()->text();
     QString defaultUrl = "http://";
-    if (Utils::Misc::isUrl(clipTxt) && clipTxt.endsWith(".py"))
+    if (Net::DownloadManager::hasSupportedScheme(clipTxt) && clipTxt.endsWith(".py"))
       defaultUrl = clipTxt;
     QString url = AutoExpandableDialog::getText(
                 this, tr("New search engine plugin URL"),

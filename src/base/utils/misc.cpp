@@ -414,14 +414,6 @@ QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
     return ret;
 }
 
-bool Utils::Misc::isUrl(const QString &s)
-{
-    static const QRegularExpression reURLScheme(
-                "http[s]?|ftp", QRegularExpression::CaseInsensitiveOption);
-
-    return reURLScheme.match(QUrl(s).scheme()).hasMatch();
-}
-
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
 {
     QString result = rawText;

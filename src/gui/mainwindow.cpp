@@ -38,7 +38,6 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
-#include <QRegularExpression>
 #include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
@@ -61,6 +60,7 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
@@ -1296,7 +1296,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     for (const QString &file : asConst(files)) {
         const bool isTorrentLink = (file.startsWith("magnet:", Qt::CaseInsensitive)
             || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
-            || Utils::Misc::isUrl(file));
+            || Net::DownloadManager::hasSupportedScheme(file));
         if (isTorrentLink)
             torrentFiles << file;
         else
@@ -1628,11 +1628,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    for (QString url : urlList) {
-        if (((url.size() == 40) && !url.contains(QRegularExpression("[^0-9A-Fa-f]")))
-            || ((url.size() == 32) && !url.contains(QRegularExpression("[^2-7A-Za-z]"))))
-            url = "magnet:?xt=urn:btih:" + url;
-
+    for (const QString &url : urlList) {
         if (useTorrentAdditionDialog)
             AddNewTorrentDialog::show(url, this);
         else
