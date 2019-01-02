@@ -27,7 +27,13 @@
  * exception statement from your version.
  */
 
+#include <QtGlobal>
+
 #include <cstdlib>
+
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#include <unistd.h>
+#endif
 
 #include <QDebug>
 #include <QScopedPointer>
@@ -50,9 +56,6 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #else
 // NoGUI-only includes
 #include <cstdio>
-#ifdef Q_OS_UNIX
-#include "unistd.h"
-#endif
 #endif // DISABLE_GUI
 
 #include <signal.h>
@@ -110,22 +113,10 @@ int main(int argc, char *argv[])
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
-#ifdef Q_OS_MAC
-    // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
-    // Due to this, we have to move from native plist to IniFormat
-    macMigratePlists();
-#endif
-
     try {
         // Create Application
         QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
         QScopedPointer<Application> app(new Application(appId, argc, argv));
-
-#ifndef DISABLE_GUI
-        // after the application object creation because we need a profile to be set already
-        // for the migration
-        migrateRSS();
-#endif
 
         const QBtCommandLineParameters params = app->commandLineArgs();
 

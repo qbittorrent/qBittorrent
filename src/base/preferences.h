@@ -379,8 +379,6 @@ public:
     bool getSpeedWidgetGraphEnable(int id) const;
     void setSpeedWidgetGraphEnable(int id, const bool enable);
 
-    void upgrade();
-
 public slots:
     void setStatusFilterState(bool checked);
     void setCategoryFilterState(bool checked);

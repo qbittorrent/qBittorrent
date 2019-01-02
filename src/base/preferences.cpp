@@ -1453,31 +1453,6 @@ void Preferences::setSpeedWidgetGraphEnable(int id, const bool enable)
     setValue("SpeedWidget/graph_enable_" + QString::number(id), enable);
 }
 
-void Preferences::upgrade()
-{
-    SettingsStorage *settingsStorage = SettingsStorage::instance();
-
-    const QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if (!labels.isEmpty()) {
-        QVariantMap categories = value("BitTorrent/Session/Categories").toMap();
-        for (const QString &label : labels) {
-            if (!categories.contains(label))
-                categories[label] = "";
-        }
-        setValue("BitTorrent/Session/Categories", categories);
-        settingsStorage->removeValue("TransferListFilters/customLabels");
-    }
-
-    settingsStorage->removeValue("Preferences/Downloads/AppendLabel");
-
-    // Inhibit sleep based on running downloads/available seeds rather than network activity.
-    if (value("Preferences/General/PreventFromSuspend", false).toBool()) {
-        setPreventFromSuspendWhenDownloading(true);
-        setPreventFromSuspendWhenSeeding(true);
-    }
-    settingsStorage->removeValue("Preferences/General/PreventFromSuspend");
-}
-
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())
