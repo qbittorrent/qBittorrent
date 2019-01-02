@@ -36,7 +36,7 @@
 #include <QProgressBar>
 #include <QStyleOptionProgressBar>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include <QProxyStyle>
 #endif
 
@@ -101,7 +101,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
                 newopt.state |= QStyle::State_Enabled;
             }
 
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
             // XXX: To avoid having the progress text on the right of the bar
