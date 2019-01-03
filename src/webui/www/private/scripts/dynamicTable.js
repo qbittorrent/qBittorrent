@@ -1192,7 +1192,7 @@ var TorrentsTable = new Class({
                     break;  // do nothing
                 case CATEGORIES_UNCATEGORIZED:
                     if (row['full_data'].category.length !== 0)
-                        return false
+                        return false;
                     break;  // do nothing
                 default:
                     if (categoryHashInt !== genHash(row['full_data'].category))
@@ -1478,7 +1478,7 @@ var SearchResultsTable = new Class({
                 min: minSeeds,
                 max: maxSeeds
             }
-        }
+        };
 
         var filteredRows = [];
         var rows = this.rows.getValues();
