@@ -1396,7 +1396,7 @@ var TorrentPeersTable = new Class({
         // files
 
         this.columns['files'].updateTd = function(td, row) {
-            td.innerHTML = escapeHtml(this.getRowValue(row, 0).replace('\n', ';'));
+            td.innerHTML = escapeHtml(this.getRowValue(row, 0).replace(/\n/g, ';'));
             td.title = escapeHtml(this.getRowValue(row, 0));
         };
 
