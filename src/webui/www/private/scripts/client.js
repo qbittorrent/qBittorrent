@@ -515,9 +515,9 @@ window.addEvent('load', function() {
 
     var updateAltSpeedIcon = function(enabled) {
         if (enabled)
-            $('alternativeSpeedLimits').src = "images/slow.png";
+            $('alternativeSpeedLimits').src = "images/slow.svg";
         else
-            $('alternativeSpeedLimits').src = "images/slow_off.png";
+            $('alternativeSpeedLimits').src = "images/slow_off.svg";
     };
 
     $('alternativeSpeedLimits').addEvent('click', function() {
