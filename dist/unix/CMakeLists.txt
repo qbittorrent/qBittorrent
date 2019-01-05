@@ -31,12 +31,12 @@ if (Qt5Widgets_FOUND)
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor
             FILES_MATCHING PATTERN "*.png")
 
-    install(FILES qbittorrent.desktop
+    install(FILES org.qbittorrent.qBittorrent.desktop
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
             COMPONENT data)
 
-    install(FILES qbittorrent.appdata.xml
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata/
+    install(FILES org.qbittorrent.qBittorrent.appdata.xml
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo/
             COMPONENT data)
 
     install(FILES
