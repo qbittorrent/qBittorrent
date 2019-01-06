@@ -30,7 +30,6 @@
 
 #include <fstream>
 
-#include <boost/bind.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/storage.hpp>
@@ -108,7 +107,7 @@ void TorrentCreatorThread::run()
             std::sort(dirs.begin(), dirs.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
 
             QStringList fileNames;
-            QHash<QString, boost::int64_t> fileSizeMap;
+            QHash<QString, qint64> fileSizeMap;
 
             for (const auto &dir : asConst(dirs)) {
                 QStringList tmpNames;  // natural sort files within each dir
