@@ -49,8 +49,6 @@
 #include <libtorrent/time.hpp>
 #endif
 
-#include <boost/bind.hpp>
-
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -1596,8 +1594,8 @@ void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finishe
     const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
     if (isMoveInProgress() || (m_renameCount > 0)) {
         if (recheckTorrentsOnCompletion)
-            m_moveFinishedTriggers.append(boost::bind(&TorrentHandle::forceRecheck, this));
-        m_moveFinishedTriggers.append(boost::bind(&Session::handleTorrentFinished, m_session, this));
+            m_moveFinishedTriggers.append([this]() { forceRecheck(); });
+        m_moveFinishedTriggers.append([this]() { m_session->handleTorrentFinished(this); });
     }
     else {
         if (recheckTorrentsOnCompletion && m_unchecked)
@@ -1890,7 +1888,7 @@ void TorrentHandle::adjustActualSavePath()
     if (!isMoveInProgress())
         adjustActualSavePath_impl();
     else
-        m_moveFinishedTriggers.append(boost::bind(&TorrentHandle::adjustActualSavePath_impl, this));
+        m_moveFinishedTriggers.append([this]() { adjustActualSavePath_impl(); });
 }
 
 void TorrentHandle::adjustActualSavePath_impl()
