@@ -6445,7 +6445,7 @@ De a modulok kikapcsolásra kerültek.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="709"/>
         <source>Added On:</source>
-        <translation>Hozáadva</translation>
+        <translation>Hozzáadva</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="738"/>
@@ -9119,7 +9119,7 @@ Válasszon egy másik nevet, és próbálja újra. </translation>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Hozáadva</translation>
+        <translation>Hozzáadva</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="111"/>
