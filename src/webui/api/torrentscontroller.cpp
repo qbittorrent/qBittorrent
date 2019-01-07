@@ -37,6 +37,7 @@
 #include <QList>
 #include <QNetworkCookie>
 #include <QRegularExpression>
+#include <QThread>
 #include <QUrl>
 
 #include "base/bittorrent/downloadpriority.h"
@@ -980,7 +981,7 @@ void TorrentsController::renameAction()
     const QString hash = params()["hash"];
     QString name = params()["name"].trimmed();
 
-    if (name.isEmpty())
+    if (!Utils::Fs::isValidFileSystemName(name, true))
         throw APIError(APIErrorType::Conflict, tr("Incorrect torrent name"));
 
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
@@ -988,6 +989,42 @@ void TorrentsController::renameAction()
         throw APIError(APIErrorType::NotFound);
 
     name.replace(QRegularExpression("\r?\n|\r"), " ");
+
+    const QString oldContainingPath = torrent->name();
+    QString newContainingPath = name;
+
+    qDebug("WebUI Rename: moving \"%s\" to \"%s\"", qUtf8Printable(oldContainingPath), qUtf8Printable(newContainingPath));
+
+    // Renaming the containing folder
+    if (oldContainingPath == newContainingPath) {
+        qDebug("Name did not change");
+        return;
+    }
+    if (!newContainingPath.endsWith('/')) newContainingPath += '/';
+
+    bool needForceRecheck = false;
+    // Replace path in all files
+    for (int i = 0; i < torrent->filesCount(); ++i) {
+        const QString currentPath = torrent->filePath(i);
+        if (currentPath.startsWith(oldContainingPath)) {
+            QString newPath {newContainingPath + currentPath.mid(oldContainingPath.length())};
+            if (!needForceRecheck && QDir(torrent->savePath(true)).exists(newPath))
+                needForceRecheck = true;
+            newPath = Utils::Fs::expandPath(newPath);
+            qDebug("Rename %s to %s", qUtf8Printable(currentPath), qUtf8Printable(newPath));
+            torrent->renameFile(i, newPath);
+        }
+    }
+    // Force recheck
+    if (needForceRecheck) torrent->forceRecheck();
+    // Remove old folder
+    const QDir oldFolder(torrent->savePath(true) + '/' + oldContainingPath);
+    int timeout = 10;
+    while (!QDir().rmpath(oldFolder.absolutePath()) && (timeout > 0)) {
+        QThread::msleep(100);
+        --timeout;
+    }
+
     torrent->setName(name);
 }
 
