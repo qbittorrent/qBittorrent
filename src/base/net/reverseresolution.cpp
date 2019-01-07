@@ -28,9 +28,6 @@
 
 #include "reverseresolution.h"
 
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/version.hpp>
-
 #include <QDebug>
 #include <QHostInfo>
 #include <QString>
