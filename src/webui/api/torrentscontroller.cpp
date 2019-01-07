@@ -1020,7 +1020,7 @@ void TorrentsController::renameAction()
     // Remove old folder
     const QDir oldFolder(torrent->savePath(true) + '/' + oldContainingPath);
     int timeout = 10;
-    while (!QDir().rmpath(oldFolder.absolutePath()) && (timeout > 0)) {
+    while (!Utils::Fs::removeEmptyDir(oldFolder.absolutePath()) && (timeout > 0)) {
         QThread::msleep(100);
         --timeout;
     }

@@ -174,6 +174,29 @@ void Utils::Fs::removeDirRecursive(const QString &path)
 }
 
 /**
+ * Removes empty directory and its empty sub directories recursively.
+ */
+bool Utils::Fs::removeEmptyDir(const QString &dirName)
+{
+    bool result = true;
+    QDir dir(dirName);
+
+    if (dir.exists()) {
+        QDirIterator it(dirName, QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs);
+        while (it.hasNext()) {
+            const QString subDir = it.next();
+            result = removeEmptyDir(subDir);
+
+            if (!result) {
+                return result;
+            }
+        }
+        result = dir.rmdir(dirName);
+    }
+    return result;
+}
+
+/**
  * Returns the size of a file.
  * If the file is a folder, it will compute its size based on its content.
  *

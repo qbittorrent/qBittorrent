@@ -71,6 +71,7 @@ namespace Utils
         bool smartRemoveEmptyFolderTree(const QString &path);
         bool forceRemove(const QString &filePath);
         void removeDirRecursive(const QString &path);
+        bool removeEmptyDir(const QString &path);
 
         QString tempPath();
 
