@@ -41,10 +41,7 @@
 #include <QVector>
 
 #include <libtorrent/torrent_handle.hpp>
-#include <libtorrent/version.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/torrent_status.hpp>
-#endif
 
 #include "base/tristatebool.h"
 #include "private/speedmonitor.h"
@@ -136,9 +133,6 @@ namespace BitTorrent
         Uploading,
         StalledUploading,
 
-#if LIBTORRENT_VERSION_NUM < 10100
-        QueuedForChecking,
-#endif
         CheckingResumeData,
         QueuedDownloading,
         QueuedUploading,
@@ -342,9 +336,6 @@ namespace BitTorrent
         void forceReannounce(int index = -1);
         void forceDHTAnnounce();
         void forceRecheck();
-#if LIBTORRENT_VERSION_NUM < 10100
-        void setTrackerLogin(const QString &username, const QString &password);
-#endif
         void renameFile(int index, const QString &name);
         bool saveTorrentFile(const QString &path);
         void prioritizeFiles(const QVector<int> &priorities);

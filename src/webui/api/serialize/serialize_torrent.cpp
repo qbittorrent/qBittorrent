@@ -70,10 +70,6 @@ namespace
             return QLatin1String("checkingDL");
         case BitTorrent::TorrentState::ForcedDownloading:
             return QLatin1String("forcedDL");
-#if LIBTORRENT_VERSION_NUM < 10100
-        case BitTorrent::TorrentState::QueuedForChecking:
-            return QLatin1String("queuedForChecking");
-#endif
         case BitTorrent::TorrentState::CheckingResumeData:
             return QLatin1String("checkingResumeData");
         case BitTorrent::TorrentState::Moving:

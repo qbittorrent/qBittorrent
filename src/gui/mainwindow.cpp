@@ -106,9 +106,6 @@
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 #include "programupdater.h"
 #endif
-#if LIBTORRENT_VERSION_NUM < 10100
-#include "trackerlogindialog.h"
-#endif
 
 #ifdef Q_OS_MAC
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -214,7 +211,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::addTorrentFailed, this, &MainWindow::addTorrentFailed);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentNew,this, &MainWindow::torrentNew);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &MainWindow::finishedTorrent);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerAuthenticationRequired, this, &MainWindow::trackerAuthenticationRequired);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed, this, &MainWindow::handleDownloadFromUrlFailure);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
@@ -1525,25 +1521,6 @@ void MainWindow::loadPreferences(bool configureSession)
 #endif
 
     qDebug("GUI settings loaded");
-}
-
-void MainWindow::addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *, QString> &tracker)
-{
-    // Trackers whose authentication was cancelled
-    if (m_unauthenticatedTrackers.indexOf(tracker) < 0)
-        m_unauthenticatedTrackers << tracker;
-}
-
-// Called when a tracker requires authentication
-void MainWindow::trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent)
-{
-#if LIBTORRENT_VERSION_NUM < 10100
-    if (m_unauthenticatedTrackers.indexOf(qMakePair(torrent, torrent->currentTracker())) < 0)
-        // Tracker login
-        new TrackerLoginDialog(this, torrent);
-#else
-    Q_UNUSED(torrent);
-#endif
 }
 
 // Check connection status and display right icon

@@ -68,15 +68,9 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
     const int tokenLimit = 10000000;
     libt::error_code ec;
 
-#if LIBTORRENT_VERSION_NUM < 10100
-    libt::lazy_entry node;
-    libt::lazy_bdecode(data.constData(), (data.constData() + data.size()), node, ec
-        , nullptr, depthLimit, tokenLimit);
-#else
     libt::bdecode_node node;
     bdecode(data.constData(), (data.constData() + data.size()), node, ec
         , nullptr, depthLimit, tokenLimit);
-#endif
     if (ec) {
         if (error)
             *error = QString::fromStdString(ec.message());
