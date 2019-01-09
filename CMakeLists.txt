@@ -33,6 +33,7 @@ include(FeatureSummary)
 set(requiredBoostVersion 1.35)
 set(requiredQtVersion 5.5.1)
 set(requiredOpensslVersion 1.0)
+set(requiredLibtorrentVersion 1.1.10)
 
 if(WIN32)
     include(winconf)
