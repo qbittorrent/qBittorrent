@@ -35,10 +35,7 @@
             var uriCategoryName = safeTrim(new URI().getData('categoryName'));
             var uriSavePath = safeTrim(new URI().getData('savePath'));
 
-            if (uriAction === "create") {
-                $('categoryName').focus();
-            }
-            else if (uriAction === "edit") {
+            if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return false;
 
@@ -46,6 +43,9 @@
                 $('categoryName').set('value', escapeHtml(uriCategoryName));
                 $('savePath').set('value', escapeHtml(uriSavePath));
                 $('savePath').focus();
+            }
+            else {
+                $('categoryName').focus();
             }
 
             $('categoryNameButton').addEvent('click', function(e) {
