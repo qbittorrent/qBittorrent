@@ -55,10 +55,30 @@
                 }
             }
         </script>
-        <input type="button" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setUpLimit()" />
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setUpLimit()" />
     </div>
 
     <script>
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'enter': function(event) {
+                    $('applyButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        $('uplimitUpdatevalue').focus();
+
         MochaUI.addUpLimitSlider(hashes);
     </script>
 

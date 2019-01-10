@@ -199,7 +199,7 @@
             }
         });
 
-        var searchKeyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
                 'enter': function(e) {
@@ -228,8 +228,7 @@
                     }
                 }
             }
-        });
-        searchKeyboardEvents.activate();
+        }).activate();
     };
 
     var startSearch = function(pattern, category, plugins) {

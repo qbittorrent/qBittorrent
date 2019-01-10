@@ -11,16 +11,23 @@
     <script>
         'use strict';
 
-        var renameKeyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
                 'enter': function(event) {
                     $('renameButton').click();
                     event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
                 }
             }
-        });
-        renameKeyboardEvents.activate();
+        }).activate();
 
         window.addEvent('domready', function() {
             var name = new URI().getData('name');

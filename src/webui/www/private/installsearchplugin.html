@@ -30,7 +30,7 @@
     'use strict';
 
     var initInstallSearchPlugin = function() {
-        var installSearchPluginKeyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
                 'enter': function(e) {
@@ -44,8 +44,7 @@
                         closeSearchWindow('installSearchPlugin');
                 }
             }
-        });
-        installSearchPluginKeyboardEvents.activate();
+        }).activate();
 
         $('newPluginPath').select();
     };
