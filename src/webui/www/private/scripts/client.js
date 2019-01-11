@@ -25,7 +25,9 @@
 'use strict';
 
 var torrentsTable = new TorrentsTable();
+var torrentTrackersTable = new TorrentTrackersTable();
 var torrentPeersTable = new TorrentPeersTable();
+var torrentFilesTable = new TorrentFilesTable();
 var searchResultsTable = new SearchResultsTable();
 var searchPluginsTable = new SearchPluginsTable();
 
@@ -699,7 +701,7 @@ window.addEvent('load', function() {
         contentURL: 'properties_content.html',
         require: {
             css: ['css/Tabs.css', 'css/dynamicTable.css'],
-            js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
+            js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-peers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
         tabsURL: 'properties.html',
         tabsOnload: function() {
@@ -837,82 +839,3 @@ var keyboardEvents = new Keyboard({
 });
 
 keyboardEvents.activate();
-
-var loadTorrentPeersTimer;
-var syncTorrentPeersLastResponseId = 0;
-var show_flags = true;
-var loadTorrentPeersData = function() {
-    if ($('prop_peers').hasClass('invisible')
-        || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
-        syncTorrentPeersLastResponseId = 0;
-        torrentPeersTable.clear();
-        return;
-    }
-    var current_hash = torrentsTable.getCurrentTorrentHash();
-    if (current_hash === "") {
-        syncTorrentPeersLastResponseId = 0;
-        torrentPeersTable.clear();
-        clearTimeout(loadTorrentPeersTimer);
-        loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
-        return;
-    }
-    var url = new URI('api/v2/sync/torrentPeers');
-    url.setData('rid', syncTorrentPeersLastResponseId);
-    url.setData('hash', current_hash);
-    new Request.JSON({
-        url: url,
-        noCache: true,
-        method: 'get',
-        onFailure: function() {
-            $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
-            clearTimeout(loadTorrentPeersTimer);
-            loadTorrentPeersTimer = loadTorrentPeersData.delay(5000);
-        },
-        onSuccess: function(response) {
-            $('error_div').set('html', '');
-            if (response) {
-                var full_update = (response['full_update'] === true);
-                if (full_update) {
-                    torrentPeersTable.clear();
-                }
-                if (response['rid']) {
-                    syncTorrentPeersLastResponseId = response['rid'];
-                }
-                if (response['peers']) {
-                    for (var key in response['peers']) {
-                        response['peers'][key]['rowId'] = key;
-
-                        if (response['peers'][key]['client'])
-                            response['peers'][key]['client'] = escapeHtml(response['peers'][key]['client']);
-
-                        torrentPeersTable.updateRowData(response['peers'][key]);
-                    }
-                }
-                if (response['peers_removed'])
-                    response['peers_removed'].each(function(hash) {
-                        torrentPeersTable.removeRow(hash);
-                    });
-                torrentPeersTable.updateTable(full_update);
-                torrentPeersTable.altRow();
-
-                if (response['show_flags']) {
-                    if (show_flags != response['show_flags']) {
-                        show_flags = response['show_flags'];
-                        torrentPeersTable.columns['country'].force_hide = !show_flags;
-                        torrentPeersTable.updateColumn('country');
-                    }
-                }
-            }
-            else {
-                torrentPeersTable.clear();
-            }
-            clearTimeout(loadTorrentPeersTimer);
-            loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
-        }
-    }).send();
-};
-
-updateTorrentPeersData = function() {
-    clearTimeout(loadTorrentPeersTimer);
-    loadTorrentPeersData();
-};

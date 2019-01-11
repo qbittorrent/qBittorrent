@@ -452,6 +452,10 @@ var DynamicTable = new Class({
         }
     },
 
+    getSortedColunn: function() {
+        return localStorage.getItem('sorted_column_' + this.dynamicTableDivId);
+    },
+
     setSortedColumn: function(column) {
         if (column != this.sortedColumn) {
             var oldColumn = this.sortedColumn;
@@ -1561,6 +1565,95 @@ var SearchPluginsTable = new Class({
 
     setupTr: function(tr) {
         tr.addClass("searchPluginsTableRow");
+    }
+});
+
+var TorrentTrackersTable = new Class({
+    Extends: DynamicTable,
+
+    initColumns: function() {
+        this.newColumn('tier', '', 'QBT_TR(#)QBT_TR[CONTEXT=TrackerListWidget]', 35, true);
+        this.newColumn('url', '', 'QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
+        this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]', 125, true);
+        this.newColumn('peers', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('leeches', '', 'QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
+        this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
+    },
+});
+
+var TorrentFilesTable = new Class({
+    Extends: DynamicTable,
+
+    initColumns: function() {
+        this.newColumn('checked', '', '', 50, true);
+        this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]', 300, true);
+        this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
+        this.newColumn('priority', '', 'QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]', 150, true);
+        this.newColumn('remaining', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+        this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+
+        this.initColumnsFunctions();
+    },
+
+    initColumnsFunctions: function() {
+        var displaySize = function(td, row) {
+            var size = this.getRowValue(row);
+            td.set('html', friendlyUnit(size, false));
+        }
+        var displayPercentage = function(td, row) {
+            var value = this.getRowValue(row);
+            td.set('html', friendlyPercentage(value));
+        };
+
+        this.columns['checked'].updateTd = function(td, row) {
+            var id = row.rowId;
+            var value = this.getRowValue(row);
+
+            if (isDownloadCheckboxExists(id)) {
+                updateDownloadCheckbox(id, value);
+            }
+            else {
+                var treeImg = new Element('img', {
+                    src: 'images/L.gif',
+                    style: 'margin-bottom: -2px'
+                });
+                td.adopt(treeImg, createDownloadCheckbox(row.rowId, value));
+            }
+        };
+
+        this.columns['size'].updateTd = displaySize;
+
+        this.columns['progress'].updateTd = function(td, row) {
+            var id = row.rowId;
+            var value = this.getRowValue(row);
+
+            var progressBar = $('pbf_' + id);
+            if (progressBar === null) {
+                td.adopt(new ProgressBar(value.toFloat(), {
+                    'id': 'pbf_' + id,
+                    'width': 80
+                }));
+            }
+            else {
+                progressBar.setValue(value.toFloat());
+            }
+        };
+
+        this.columns['priority'].updateTd = function(td, row) {
+            var id = row.rowId;
+            var value = this.getRowValue(row);
+
+            if (isPriorityComboExists(id))
+                updatePriorityCombo(id, value);
+            else
+                td.adopt(createPriorityCombo(id, value));
+        };
+
+        this.columns['remaining'].updateTd = displaySize;
+        this.columns['availability'].updateTd = displayPercentage;
     }
 });
 

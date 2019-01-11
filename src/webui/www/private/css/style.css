@@ -456,11 +456,11 @@ td.generalLabel {
     vertical-align: top;
 }
 
-#filesTable {
+#torrentFilesTableDiv {
     line-height: 20px;
 }
 
-#trackersTable,
+#torrentTrackersTableDiv,
 #webseedsTable {
     line-height: 25px;
 }

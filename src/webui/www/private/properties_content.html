@@ -79,27 +79,27 @@
     </fieldset>
 </div>
 
-<div id="prop_trackers" class="invisible">
+<div id="prop_trackers" class="invisible unselectable">
     <div id="trackers">
-        <table class="dynamicTable" style="width: 100%">
-            <thead>
-                <tr>
-                    <th style="width: 5%;">QBT_TR(#)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 30%;">QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 10%;">QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 5%;">QBT_TR(Downloaded)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                    <th style="width: 35%;">QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                </tr>
-            </thead>
-            <tbody id="trackersTable"></tbody>
-        </table>
+        <div id="torrentTrackersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentTrackersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-<div id="prop_peers" class="invisible">
+<div id="prop_peers" class="invisible unselectable">
     <div>
         <div id="torrentPeersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable" style="position:relative;">
@@ -119,7 +119,7 @@
     </div>
 </div>
 
-<div id="prop_webseeds" class="invisible">
+<div id="prop_webseeds" class="invisible unselectable">
     <div id="webseeds">
         <table class="dynamicTable" style="width: 100%">
             <thead>
@@ -132,29 +132,29 @@
     </div>
 </div>
 
-<div id="prop_files" class="invisible">
+<div id="prop_files" class="invisible unselectable">
     <div id="torrentFiles">
-        <table class="dynamicTable" style="width: 100%">
-            <thead>
-                <tr>
-                    <th style="width: 4.5em; border-right: 0"><input type="checkbox" id="tristate_cb" onclick="switchCBState()" /></th>
-                    <th>QBT_TR(Name)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                    <th style="width: 150px;">QBT_TR(Size)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                    <th style="width: 90px;">QBT_TR(Progress)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                    <th style="width: 150px;">QBT_TR(Download Priority)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                    <th style="width: 150px;">QBT_TR(Remaining)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                    <th style="width: 150px; border-right: 0">QBT_TR(Availability)QBT_TR[CONTEXT=TorrentContentModel]</th>
-                </tr>
-            </thead>
-            <tbody id="filesTable"></tbody>
-        </table>
+        <div id="torrentFilesTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentFilesTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <script>
     'use strict';
 
-    torrentPeersTable.setup('torrentPeersTableDiv', 'torrentPeersTableFixedHeaderDiv', null);
     var selectedTab = $(getLocalStorageItem('selected_tab', 'PropGeneralLink'));
     if (selectedTab)
         selectedTab.click();
