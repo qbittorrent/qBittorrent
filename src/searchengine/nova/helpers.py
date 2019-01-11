@@ -39,6 +39,11 @@ import StringIO
 import tempfile
 import urllib2
 
+try:
+    unichr        # Python 2
+except NameError:
+    unichr = chr  # Python 3
+
 # Some sites blocks default python User-agent
 user_agent = 'Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0'
 headers = {'User-Agent': user_agent}

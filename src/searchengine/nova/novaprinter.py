@@ -28,6 +28,11 @@ import codecs
 import sys
 from io import open
 
+try:
+    unicode        # Python 2
+except NameError:
+    unicode = str  # Python 3
+
 # Force UTF-8 printing
 sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 

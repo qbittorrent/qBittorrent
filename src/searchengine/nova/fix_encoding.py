@@ -11,6 +11,12 @@ import locale
 import os
 import sys
 
+try:
+  unicode        # Python 2
+  xrange
+except NameError:
+  unicode = str  # Python 3
+  xrange = range
 
 # Prevents initializing multiple times.
 _SYS_ARGV_PROCESSED = False
@@ -34,14 +40,18 @@ def fix_default_encoding():
 
   http://uucode.com/blog/2007/03/23/shut-up-you-dummy-7-bit-python/
   """
-  if sys.getdefaultencoding() == 'utf-8':
-    return False
+  try:    # Python 2
+    if sys.getdefaultencoding() == 'utf-8':
+      return False
 
-  # Regenerate setdefaultencoding.
-  reload(sys)
-  # Module 'sys' has no 'setdefaultencoding' member
-  # pylint: disable=E1101
-  sys.setdefaultencoding('utf-8')
+    # Regenerate setdefaultencoding.
+    reload(sys)  # Moved to importlib in Python 3
+    # Module 'sys' has no 'setdefaultencoding' member
+    # pylint: disable=E1101
+    sys.setdefaultencoding('utf-8')  # Removed in Python 3
+  except NameError:
+    pass  # Python 3
+
   for attr in dir(locale):
     if attr[0:3] != 'LC_':
       continue
@@ -171,7 +181,7 @@ class WinUnicodeOutputBase(object):
     try:
       for line in lines:
         self.write(line)
-    except Exception, e:
+    except Exception as e:
       complain('%s.writelines: %r' % (self.name, e))
       raise
 
@@ -230,7 +240,7 @@ class WinUnicodeConsoleOutput(WinUnicodeOutputBase):
         if not remaining:
           break
         text = text[n.value:]
-    except Exception, e:
+    except Exception as e:
       complain('%s.write: %r' % (self.name, e))
       raise
 
@@ -253,7 +263,7 @@ class WinUnicodeOutput(WinUnicodeOutputBase):
   def flush(self):
     try:
       self._stream.flush()
-    except Exception, e:
+    except Exception as e:
       complain('%s.flush: %r from %r' % (self.name, e, self._stream))
       raise
 
@@ -263,7 +273,7 @@ class WinUnicodeOutput(WinUnicodeOutputBase):
         # Replace characters that cannot be printed instead of failing.
         text = text.encode(self.encoding, 'replace')
       self._stream.write(text)
-    except Exception, e:
+    except Exception as e:
       complain('%s.write: %r' % (self.name, e))
       raise
 
@@ -348,7 +358,7 @@ def fix_win_console(encoding):
     # TODO(maruel): Do sys.stdin with ReadConsoleW(). Albeit the limitation is
     # "It doesn't appear to be possible to read Unicode characters in UTF-8
     # mode" and this appears to be a limitation of cmd.exe.
-  except Exception, e:
+  except Exception as e:
     complain('exception %r while fixing up sys.stdout and sys.stderr' % e)
   return True
 

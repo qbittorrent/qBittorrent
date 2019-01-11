@@ -44,7 +44,7 @@ for engine in engines:
     try:
         exec("from engines.%s import %s" % (e, e))
         exec("engine_url = %s.url" % e)
-        supported_engines[engine_url] = e
+        supported_engines[engine_url] = e  # noqa: F821
     except Exception:
         pass
 

@@ -8,6 +8,7 @@
 # and CDATA (character data -- only end tags are special).  RCDATA is
 # not supported at all.
 
+from __future__ import print_function
 import _markupbase
 import re
 

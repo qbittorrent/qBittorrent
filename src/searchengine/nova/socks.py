@@ -200,7 +200,7 @@ class socksocket(socket.socket):
             if authstat[1] != "\x00":
                 # Authentication failed
                 self.close()
-                raise Socks5AuthError,((3,_socks5autherrors[3]))
+                raise Socks5AuthError((3,_socks5autherrors[3]))
             # Authentication succeeded
         else:
             # Reaching here is always bad
@@ -362,7 +362,7 @@ class socksocket(socket.socket):
         To select the proxy server use setproxy().
         """
         # Do a minimal input check first
-        if (type(destpair) in (list,tuple)==False) or (len(destpair)<2) or (type(destpair[0])!=str) or (type(destpair[1])!=int):
+        if (not isinstance(destpair, (list,tuple))) or (len(destpair)<2) or (not isinstance(destpair[0], str)) or (not isinstance(destpair[1], int)):
             raise GeneralProxyError((5,_generalerrors[5]))
         if self.__proxy[0] == PROXY_TYPE_SOCKS5:
             if self.__proxy[2] != None:
