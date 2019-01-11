@@ -29,12 +29,14 @@ matrix:
       python: 2.7   # legacy Python
       addons: true  # override
       before_install: true
+      env: build_system=Python
       install: pip install flake8
       script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
     - language: python
       python: 3.7   # Python
       addons: true  # override
       before_install: true
+      env: build_system=Python
       install: pip install flake8
       script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
 
