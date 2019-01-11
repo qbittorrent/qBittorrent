@@ -30,6 +30,8 @@
 
 #include "rss_folder.h"
 
+#include <algorithm>
+
 #include <QJsonObject>
 #include <QJsonValue>
 
@@ -69,10 +71,11 @@ QList<Article *> Folder::articles() const
 
 int Folder::unreadCount() const
 {
-    int count = 0;
-    for (Item *item : asConst(items()))
-        count += item->unreadCount();
-    return count;
+    const auto itemList = items();
+    return std::accumulate(itemList.cbegin(), itemList.cend(), 0, [](const int acc, const Item *item)
+    {
+        return (acc + item->unreadCount());
+    });
 }
 
 void Folder::markAsRead()

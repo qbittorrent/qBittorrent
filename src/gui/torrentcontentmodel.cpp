@@ -28,6 +28,8 @@
 
 #include "torrentcontentmodel.h"
 
+#include <algorithm>
+
 #include <QDir>
 #include <QFileIconProvider>
 #include <QFileInfo>
@@ -275,10 +277,10 @@ QVector<int> TorrentContentModel::getFilePriorities() const
 
 bool TorrentContentModel::allFiltered() const
 {
-    for (const TorrentContentModelFile *fileItem : asConst(m_filesIndex))
-        if (fileItem->priority() != BitTorrent::FilePriority::Ignored)
-            return false;
-    return true;
+    return std::all_of(m_filesIndex.cbegin(), m_filesIndex.cend(), [](const TorrentContentModelFile *fileItem)
+    {
+        return (fileItem->priority() == BitTorrent::FilePriority::Ignored);
+    });
 }
 
 int TorrentContentModel::columnCount(const QModelIndex &parent) const

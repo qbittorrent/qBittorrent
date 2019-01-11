@@ -841,11 +841,10 @@ bool TorrentHandle::hasError() const
 bool TorrentHandle::hasFilteredPieces() const
 {
     const std::vector<int> pp = m_nativeHandle.piece_priorities();
-
-    for (const int priority : pp)
-        if (priority == 0) return true;
-
-    return false;
+    return std::any_of(pp.cbegin(), pp.cend(), [](const int priority)
+    {
+        return (priority == 0);
+    });
 }
 
 int TorrentHandle::queuePosition() const

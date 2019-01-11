@@ -3460,18 +3460,18 @@ void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QS
 
 bool Session::hasPerTorrentRatioLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->ratioLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->ratioLimit() >= 0);
+    });
 }
 
 bool Session::hasPerTorrentSeedingTimeLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->seedingTimeLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->seedingTimeLimit() >= 0);
+    });
 }
 
 void Session::initResumeFolder()

@@ -28,6 +28,8 @@
 
 #include "statsdialog.h"
 
+#include <algorithm>
+
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
@@ -89,9 +91,11 @@ void StatsDialog::update()
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-    quint32 peers = 0;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        peers += torrent->peersCount();
+    const auto torrents = BitTorrent::Session::instance()->torrents();
+    const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
+    {
+        return (acc + torrent->peersCount());
+    });
 
     m_ui->labelWriteStarve->setText(QString("%1%")
                                     .arg(((ss.diskWriteQueue > 0) && (peers > 0))

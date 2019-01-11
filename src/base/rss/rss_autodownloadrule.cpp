@@ -29,6 +29,8 @@
 
 #include "rss_autodownloadrule.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QDir>
 #include <QHash>
@@ -237,13 +239,11 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Accept if any complete expression matches.
-    for (const QString &expression : asConst(m_dataPtr->mustContain)) {
+    return std::any_of(m_dataPtr->mustContain.cbegin(), m_dataPtr->mustContain.cend(), [this, &articleTitle](const QString &expression)
+    {
         // A regex of the form "expr|" will always match, so do the same for wildcards
-        if (matchesExpression(articleTitle, expression))
-            return true;
-    }
-
-    return false;
+        return matchesExpression(articleTitle, expression);
+    });
 }
 
 bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTitle) const
@@ -253,13 +253,11 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTit
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Reject if any complete expression matches.
-    for (const QString &expression : asConst(m_dataPtr->mustNotContain)) {
+    return std::none_of(m_dataPtr->mustNotContain.cbegin(), m_dataPtr->mustNotContain.cend(), [this, &articleTitle](const QString &expression)
+    {
         // A regex of the form "expr|" will always match, so do the same for wildcards
-        if (matchesExpression(articleTitle, expression))
-            return false;
-    }
-
-    return true;
+        return matchesExpression(articleTitle, expression);
+    });
 }
 
 bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitle) const
