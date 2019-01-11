@@ -24,19 +24,19 @@ matrix:
     - env: lt_branch=RC_1_0 gui=true build_system=cmake
     - env: lt_branch=RC_1_0 gui=false build_system=cmake
     - python: 3.7
- include:
-   - language: python
-     python: 2.7   # legacy Python
-     addons: true  # override
-     before_install: true
-     install: pip install flake8
-     script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
-   - language: python
-     python: 3.7   # Python
-     addons: true  # override
-     before_install: true
-     install: pip install flake8
-     script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+  include:
+    - language: python
+      python: 2.7   # legacy Python
+      addons: true  # override
+      before_install: true
+      install: pip install flake8
+      script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+    - language: python
+      python: 3.7   # Python
+      addons: true  # override
+      before_install: true
+      install: pip install flake8
+      script: flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
 
 branches:
   except:
