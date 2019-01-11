@@ -248,165 +248,55 @@ const Http::Environment &WebApplication::env() const
 
 void WebApplication::doProcessRequest()
 {
-    QString scope, action;
+    const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
+    if (!match.hasMatch()) {
+        sendWebUIFile();
+        return;
+    }
 
-    const auto findAPICall = [&]() -> bool
-    {
-        QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
-        if (!match.hasMatch()) return false;
-
-        action = match.captured(QLatin1String("action"));
-        scope = match.captured(QLatin1String("scope"));
-        return true;
-    };
-
-    const auto findLegacyAPICall = [&]() -> bool
-    {
-        QRegularExpressionMatch match = m_apiLegacyPathPattern.match(request().path);
-        if (!match.hasMatch()) return false;
-
-        struct APICompatInfo
-        {
-            QString scope;
-            QString action;
-            std::function<void ()> convertFunc;
-        };
-        const QMap<QString, APICompatInfo> APICompatMapping {
-            {"sync/maindata", {"sync", "maindata", nullptr}},
-            {"sync/torrent_peers", {"sync", "torrentPeers", nullptr}},
-
-            {"login", {"auth", "login", nullptr}},
-            {"logout", {"auth", "logout", nullptr}},
-
-            {"command/shutdown", {"app", "shutdown", nullptr}},
-            {"query/preferences", {"app", "preferences", nullptr}},
-            {"command/setPreferences", {"app", "setPreferences", nullptr}},
-            {"command/getSavePath", {"app", "defaultSavePath", nullptr}},
-
-            {"query/getLog", {"log", "main", nullptr}},
-            {"query/getPeerLog", {"log", "peers", nullptr}},
-
-            {"query/torrents", {"torrents", "info", nullptr}},
-            {"query/propertiesGeneral", {"torrents", "properties", nullptr}},
-            {"query/propertiesTrackers", {"torrents", "trackers", nullptr}},
-            {"query/propertiesWebSeeds", {"torrents", "webseeds", nullptr}},
-            {"query/propertiesFiles", {"torrents", "files", nullptr}},
-            {"query/getPieceHashes", {"torrents", "pieceHashes", nullptr}},
-            {"query/getPieceStates", {"torrents", "pieceStates", nullptr}},
-            {"command/resume", {"torrents", "resume", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
-            {"command/pause", {"torrents", "pause", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
-            {"command/recheck", {"torrents", "recheck", [this]() { m_params["hashes"] = m_params.take("hash"); }}},
-            {"command/resumeAll", {"torrents", "resume", [this]() { m_params["hashes"] = "all"; }}},
-            {"command/pauseAll", {"torrents", "pause", [this]() { m_params["hashes"] = "all"; }}},
-            {"command/rename", {"torrents", "rename", nullptr}},
-            {"command/download", {"torrents", "add", nullptr}},
-            {"command/upload", {"torrents", "add", nullptr}},
-            {"command/delete", {"torrents", "delete", [this]() { m_params["deleteFiles"] = "false"; }}},
-            {"command/deletePerm", {"torrents", "delete", [this]() { m_params["deleteFiles"] = "true"; }}},
-            {"command/addTrackers", {"torrents", "addTrackers", nullptr}},
-            {"command/setFilePrio", {"torrents", "filePrio", nullptr}},
-            {"command/setCategory", {"torrents", "setCategory", nullptr}},
-            {"command/addCategory", {"torrents", "createCategory", nullptr}},
-            {"command/removeCategories", {"torrents", "removeCategories", nullptr}},
-            {"command/getTorrentsUpLimit", {"torrents", "uploadLimit", nullptr}},
-            {"command/getTorrentsDlLimit", {"torrents", "downloadLimit", nullptr}},
-            {"command/setTorrentsUpLimit", {"torrents", "setUploadLimit", nullptr}},
-            {"command/setTorrentsDlLimit", {"torrents", "setDownloadLimit", nullptr}},
-            {"command/increasePrio", {"torrents", "increasePrio", nullptr}},
-            {"command/decreasePrio", {"torrents", "decreasePrio", nullptr}},
-            {"command/topPrio", {"torrents", "topPrio", nullptr}},
-            {"command/bottomPrio", {"torrents", "bottomPrio", nullptr}},
-            {"command/setLocation", {"torrents", "setLocation", nullptr}},
-            {"command/setAutoTMM", {"torrents", "setAutoManagement", nullptr}},
-            {"command/setSuperSeeding", {"torrents", "setSuperSeeding", nullptr}},
-            {"command/setForceStart", {"torrents", "setForceStart", nullptr}},
-            {"command/toggleSequentialDownload", {"torrents", "toggleSequentialDownload", nullptr}},
-            {"command/toggleFirstLastPiecePrio", {"torrents", "toggleFirstLastPiecePrio", nullptr}},
-
-            {"query/transferInfo", {"transfer", "info", nullptr}},
-            {"command/alternativeSpeedLimitsEnabled", {"transfer", "speedLimitsMode", nullptr}},
-            {"command/toggleAlternativeSpeedLimits", {"transfer", "toggleSpeedLimitsMode", nullptr}},
-            {"command/getGlobalUpLimit", {"transfer", "uploadLimit", nullptr}},
-            {"command/getGlobalDlLimit", {"transfer", "downloadLimit", nullptr}},
-            {"command/setGlobalUpLimit", {"transfer", "setUploadLimit", nullptr}},
-            {"command/setGlobalDlLimit", {"transfer", "setDownloadLimit", nullptr}}
-        };
-
-        const QString legacyAction {match.captured(QLatin1String("action"))};
-        const APICompatInfo compatInfo = APICompatMapping.value(legacyAction);
-
-        scope = compatInfo.scope;
-        action = compatInfo.action;
-        if (compatInfo.convertFunc)
-            compatInfo.convertFunc();
-
-        const QString hash {match.captured(QLatin1String("hash"))};
-        if (!hash.isEmpty())
-            m_params[QLatin1String("hash")] = hash;
-
-        return true;
-    };
-
-    if (!findAPICall())
-        findLegacyAPICall();
+    const QString action = match.captured(QLatin1String("action"));
+    const QString scope = match.captured(QLatin1String("scope"));
 
     APIController *controller = m_apiControllers.value(scope);
-    if (!controller) {
-        if (request().path == QLatin1String("/version/api")) {
-            print(QString::number(COMPAT_API_VERSION), Http::CONTENT_TYPE_TXT);
-            return;
-        }
+    if (!controller)
+        throw NotFoundHTTPError();
 
-        if (request().path == QLatin1String("/version/api_min")) {
-            print(QString::number(COMPAT_API_VERSION_MIN), Http::CONTENT_TYPE_TXT);
-            return;
-        }
+    if (!session() && !isPublicAPI(scope, action))
+        throw ForbiddenHTTPError();
 
-        if (request().path == QLatin1String("/version/qbittorrent")) {
-            print(QString(QBT_VERSION), Http::CONTENT_TYPE_TXT);
-            return;
-        }
+    DataMap data;
+    for (const Http::UploadedFile &torrent : request().files)
+        data[torrent.filename] = torrent.data;
 
-        sendWebUIFile();
+    try {
+        const QVariant result = controller->run(action, m_params, data);
+        switch (result.userType()) {
+        case QMetaType::QString:
+            print(result.toString(), Http::CONTENT_TYPE_TXT);
+            break;
+        case QMetaType::QJsonDocument:
+            print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+            break;
+        default:
+            print(result.toString(), Http::CONTENT_TYPE_TXT);
+            break;
+        }
     }
-    else {
-        if (!session() && !isPublicAPI(scope, action))
-            throw ForbiddenHTTPError();
-
-        DataMap data;
-        for (const Http::UploadedFile &torrent : request().files)
-            data[torrent.filename] = torrent.data;
-
-        try {
-            const QVariant result = controller->run(action, m_params, data);
-            switch (result.userType()) {
-            case QMetaType::QString:
-                print(result.toString(), Http::CONTENT_TYPE_TXT);
-                break;
-            case QMetaType::QJsonDocument:
-                print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
-                break;
-            default:
-                print(result.toString(), Http::CONTENT_TYPE_TXT);
-                break;
-            }
-        }
-        catch (const APIError &error) {
-            // re-throw as HTTPError
-            switch (error.type()) {
-            case APIErrorType::AccessDenied:
-                throw ForbiddenHTTPError(error.message());
-            case APIErrorType::BadData:
-                throw UnsupportedMediaTypeHTTPError(error.message());
-            case APIErrorType::BadParams:
-                throw BadRequestHTTPError(error.message());
-            case APIErrorType::Conflict:
-                throw ConflictHTTPError(error.message());
-            case APIErrorType::NotFound:
-                throw NotFoundHTTPError(error.message());
-            default:
-                Q_ASSERT(false);
-            }
+    catch (const APIError &error) {
+        // re-throw as HTTPError
+        switch (error.type()) {
+        case APIErrorType::AccessDenied:
+            throw ForbiddenHTTPError(error.message());
+        case APIErrorType::BadData:
+            throw UnsupportedMediaTypeHTTPError(error.message());
+        case APIErrorType::BadParams:
+            throw BadRequestHTTPError(error.message());
+        case APIErrorType::Conflict:
+            throw ConflictHTTPError(error.message());
+        case APIErrorType::NotFound:
+            throw NotFoundHTTPError(error.message());
+        default:
+            Q_ASSERT(false);
         }
     }
 }

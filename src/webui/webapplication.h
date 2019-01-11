@@ -44,8 +44,6 @@
 #include "base/utils/version.h"
 
 constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 0};
-constexpr int COMPAT_API_VERSION = 23;
-constexpr int COMPAT_API_VERSION_MIN = 23;
 
 class APIController;
 class WebApplication;
@@ -131,7 +129,6 @@ private:
     QMap<QString, QString> m_params;
 
     const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
-    const QRegularExpression m_apiLegacyPathPattern {QLatin1String("^/(?<action>((sync|command|query)/[A-Za-z_][A-Za-z_0-9]*|login|logout))(/(?<hash>[^/]+))?$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
