@@ -52,7 +52,6 @@ torrentcontentmodelfolder.h
 torrentcontentmodelitem.h
 torrentcontenttreeview.h
 torrentcreatordialog.h
-trackerlogindialog.h
 transferlistdelegate.h
 transferlistfilterswidget.h
 transferlistmodel.h
@@ -98,7 +97,6 @@ torrentcontentmodelfolder.cpp
 torrentcontentmodelitem.cpp
 torrentcontenttreeview.cpp
 torrentcreatordialog.cpp
-trackerlogindialog.cpp
 transferlistdelegate.cpp
 transferlistfilterswidget.cpp
 transferlistmodel.cpp
@@ -125,7 +123,6 @@ speedlimitdialog.ui
 statsdialog.ui
 torrentcategorydialog.ui
 torrentcreatordialog.ui
-trackerlogindialog.ui
 updownratiodialog.ui
 )
 

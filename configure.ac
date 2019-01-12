@@ -195,7 +195,7 @@ AS_CASE(["x$with_qtsingleapplication"],
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.0.6],
+                  [libtorrent-rasterbar >= 1.1.10],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 

@@ -45,9 +45,7 @@
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/time.hpp>
-#endif
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -144,31 +142,6 @@ const int TorrentHandle::NO_SEEDING_TIME_LIMIT = -1;
 
 const qreal TorrentHandle::MAX_RATIO = 9999.;
 const int TorrentHandle::MAX_SEEDING_TIME = 525600;
-
-// The new libtorrent::create_torrent constructor appeared after 1.0.11 in RC_1_0
-// and after 1.1.1 in RC_1_1. Since it fixed an ABI incompatibility with previous versions
-// distros might choose to backport it onto 1.0.11 and 1.1.1 respectively.
-// So we need a way to detect its presence without relying solely on the LIBTORRENT_VERSION_NUM.
-// Relevant links:
-// 1. https://github.com/arvidn/libtorrent/issues/1696
-// 2. https://github.com/qbittorrent/qBittorrent/issues/6406
-// The following can be removed after one or two libtorrent releases on each branch.
-namespace
-{
-    // new constructor is available
-    template<typename T, typename std::enable_if<std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info &ti)
-    {
-        return T(ti, true);
-    }
-
-    // new constructor isn't available
-    template<typename T, typename std::enable_if<!std::is_constructible<T, libt::torrent_info, bool>::value, int>::type = 0>
-    T makeTorrentCreator(const libtorrent::torrent_info &ti)
-    {
-        return T(ti);
-    }
-}
 
 TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
                                      const CreateTorrentParams &params)
@@ -694,11 +667,7 @@ bool TorrentHandle::isQueued() const
 bool TorrentHandle::isChecking() const
 {
     return ((m_nativeStatus.state == libt::torrent_status::checking_files)
-            || (m_nativeStatus.state == libt::torrent_status::checking_resume_data)
-#if LIBTORRENT_VERSION_NUM < 10100
-            || (m_nativeStatus.state == libt::torrent_status::queued_for_checking)
-#endif
-            );
+            || (m_nativeStatus.state == libt::torrent_status::checking_resume_data));
 }
 
 bool TorrentHandle::isDownloading() const
@@ -834,11 +803,6 @@ void TorrentHandle::updateState()
             case libt::torrent_status::allocating:
                 m_state = TorrentState::Allocating;
                 break;
-#if LIBTORRENT_VERSION_NUM < 10100
-            case libt::torrent_status::queued_for_checking:
-                m_state = TorrentState::QueuedForChecking;
-                break;
-#endif
             case libt::torrent_status::checking_files:
                 m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
                 break;
@@ -871,11 +835,7 @@ bool TorrentHandle::hasMissingFiles() const
 
 bool TorrentHandle::hasError() const
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    return (m_nativeStatus.paused && !m_nativeStatus.error.empty());
-#else
     return (m_nativeStatus.paused && m_nativeStatus.errc);
-#endif
 }
 
 bool TorrentHandle::hasFilteredPieces() const
@@ -897,11 +857,7 @@ int TorrentHandle::queuePosition() const
 
 QString TorrentHandle::error() const
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    return QString::fromStdString(m_nativeStatus.error);
-#else
     return QString::fromStdString(m_nativeStatus.errc.message());
-#endif
 }
 
 qlonglong TorrentHandle::totalDownload() const
@@ -1190,11 +1146,7 @@ int TorrentHandle::connectionsLimit() const
 
 qlonglong TorrentHandle::nextAnnounce() const
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    return m_nativeStatus.next_announce.total_seconds();
-#else
     return libt::duration_cast<libt::seconds>(m_nativeStatus.next_announce).count();
-#endif
 }
 
 void TorrentHandle::setName(const QString &name)
@@ -1391,14 +1343,6 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
     }
 }
 
-#if LIBTORRENT_VERSION_NUM < 10100
-void TorrentHandle::setTrackerLogin(const QString &username, const QString &password)
-{
-    m_nativeHandle.set_tracker_login(std::string(username.toLocal8Bit().constData())
-                                     , std::string(password.toLocal8Bit().constData()));
-}
-#endif
-
 void TorrentHandle::renameFile(int index, const QString &name)
 {
     ++m_renameCount;
@@ -1410,7 +1354,7 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
 {
     if (!m_torrentInfo.isValid()) return false;
 
-    libt::create_torrent torrentCreator = makeTorrentCreator<libt::create_torrent>(*(m_torrentInfo.nativeInfo()));
+    libt::create_torrent torrentCreator = libt::create_torrent(*(m_torrentInfo.nativeInfo()), true);
     libt::entry torrentEntry = torrentCreator.generate();
 
     QVector<char> out;
@@ -1434,11 +1378,7 @@ void TorrentHandle::handleStorageMovedAlert(const libtorrent::storage_moved_aler
         return;
     }
 
-#if LIBTORRENT_VERSION_NUM < 10100
-    const QString newPath = QString::fromStdString(p->path);
-#else
     const QString newPath(p->storage_path());
-#endif
     if (newPath != m_moveStorageInfo.newPath) {
         qWarning() << Q_FUNC_INFO << ": New path doesn't match a path in a queue.";
         return;
@@ -1496,11 +1436,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(const libtorrent::storage_move
 
 void TorrentHandle::handleTrackerReplyAlert(const libtorrent::tracker_reply_alert *p)
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    QString trackerUrl = QString::fromStdString(p->url);
-#else
     QString trackerUrl(p->tracker_url());
-#endif
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
@@ -1511,13 +1447,8 @@ void TorrentHandle::handleTrackerReplyAlert(const libtorrent::tracker_reply_aler
 
 void TorrentHandle::handleTrackerWarningAlert(const libtorrent::tracker_warning_alert *p)
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    const QString trackerUrl = QString::fromStdString(p->url);
-    const QString message = QString::fromStdString(p->msg);
-#else
     const QString trackerUrl = p->tracker_url();
     const QString message = p->warning_message();
-#endif
 
     // Connection was successful now but there is a warning message
     m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
@@ -1527,13 +1458,8 @@ void TorrentHandle::handleTrackerWarningAlert(const libtorrent::tracker_warning_
 
 void TorrentHandle::handleTrackerErrorAlert(const libtorrent::tracker_error_alert *p)
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    const QString trackerUrl = QString::fromStdString(p->url);
-    const QString message = QString::fromStdString(p->msg);
-#else
     const QString trackerUrl = p->tracker_url();
     const QString message = p->error_message();
-#endif
 
     m_trackerInfos[trackerUrl].lastMessage = message;
 
@@ -1684,11 +1610,7 @@ void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_r
 
 void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert *p)
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    QString newName = Utils::Fs::fromNativePath(QString::fromStdString(p->name));
-#else
     QString newName = Utils::Fs::fromNativePath(p->new_name());
-#endif
 
     // TODO: Check this!
     if (filesCount() > 1) {
@@ -1916,11 +1838,8 @@ libtorrent::torrent_handle TorrentHandle::nativeHandle() const
 void TorrentHandle::updateTorrentInfo()
 {
     if (!hasMetadata()) return;
-#if LIBTORRENT_VERSION_NUM < 10100
-    m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file);
-#else
+
     m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file.lock());
-#endif
 }
 
 bool TorrentHandle::isMoveInProgress() const

@@ -124,7 +124,6 @@ private slots:
     void focusSearchFilter();
     void updateGUI();
     void loadPreferences(bool configureSession = true);
-    void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *, QString> &tracker);
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
@@ -142,7 +141,6 @@ private slots:
     void addToolbarContextMenu();
     void manageCookies();
 
-    void trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent);
     void downloadFromURLList(const QStringList &urlList);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
@@ -217,8 +215,6 @@ private:
     Ui::MainWindow *m_ui;
 
     QFileSystemWatcher *m_executableWatcher;
-    // Bittorrent
-    QList<QPair<BitTorrent::TorrentHandle *, QString >> m_unauthenticatedTrackers; // Still needed?
     // GUI related
     bool m_posInitialized;
     QPointer<QTabWidget> m_tabs;
