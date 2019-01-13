@@ -77,7 +77,7 @@ public:
     Application(const QString &id, int &argc, char **argv);
     ~Application() override;
 
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
+#if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
 #endif
     int exec(const QStringList &params);
@@ -110,7 +110,6 @@ protected:
 #ifdef Q_OS_MAC
     bool event(QEvent *) override;
 #endif
-    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:

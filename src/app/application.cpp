@@ -615,19 +615,6 @@ bool Application::event(QEvent *ev)
     }
 }
 #endif // Q_OS_MAC
-
-bool Application::notify(QObject *receiver, QEvent *event)
-{
-    try {
-        return QApplication::notify(receiver, event);
-    }
-    catch (const std::exception &e) {
-        qCritical() << "Exception thrown:" << e.what() << ", receiver: " << receiver->objectName();
-        receiver->dumpObjectInfo();
-    }
-
-    return false;
-}
 #endif // DISABLE_GUI
 
 void Application::initializeTranslation()
