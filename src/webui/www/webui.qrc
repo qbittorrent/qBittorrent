@@ -33,12 +33,12 @@
         <file>private/scripts/lib/mootools-1.2-more.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
-        <file>private/scripts/parametrics.js</file>
         <file>private/scripts/progressbar.js</file>
         <file>private/scripts/prop-files.js</file>
         <file>private/scripts/prop-general.js</file>
         <file>private/scripts/prop-trackers.js</file>
         <file>private/scripts/prop-webseeds.js</file>
+        <file>private/scripts/speedslider.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/statistics.html</file>
