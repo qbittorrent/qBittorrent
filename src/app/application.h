@@ -48,7 +48,7 @@ class QSessionManager;
 typedef QtSingleCoreApplication BaseApplication;
 #endif // DISABLE_GUI
 
-#include "base/utils/misc.h"
+#include "base/types.h"
 #include "cmdoptions.h"
 
 #ifndef DISABLE_WEBUI

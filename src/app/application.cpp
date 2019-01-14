@@ -29,19 +29,20 @@
 
 #include "application.h"
 
+#include <QtGlobal>
+
 #include <algorithm>
+
+#ifdef Q_OS_WIN
+#include <memory>
+#include <Windows.h>
+#include <Shellapi.h>
+#endif
 
 #include <QAtomicInt>
 #include <QDebug>
 #include <QLibraryInfo>
-#include <QLocale>
 #include <QProcess>
-#include <QSysInfo>
-
-#ifdef Q_OS_WIN
-#include <memory>
-#include <Shellapi.h>
-#endif
 
 #ifndef DISABLE_GUI
 #include <QMessageBox>
