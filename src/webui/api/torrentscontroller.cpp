@@ -40,6 +40,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -680,6 +681,42 @@ void TorrentsController::removeTrackersAction()
 
     if (!torrent->isPaused())
         torrent->forceReannounce();
+}
+
+void TorrentsController::addPeersAction()
+{
+    checkParams({"hashes", "peers"});
+
+    const QStringList hashes = params()["hashes"].split('|');
+    const QStringList peers = params()["peers"].split('|');
+
+    QVector<BitTorrent::PeerAddress> peerList;
+    peerList.reserve(peers.size());
+    for (const QString &peer : peers) {
+        const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
+        if (!addr.ip.isNull())
+            peerList.append(addr);
+    }
+
+    if (peerList.isEmpty())
+        throw APIError(APIErrorType::BadParams, "No valid peers were specified");
+
+    QJsonObject results;
+
+    applyToTorrents(hashes, [peers, peerList, &results](BitTorrent::TorrentHandle *const torrent)
+    {
+        const int peersAdded = std::count_if(peerList.cbegin(), peerList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
+        {
+            return torrent->connectPeer(peer);
+        });
+
+        results[torrent->hash()] = QJsonObject {
+            {"added", peersAdded},
+            {"failed", (peers.size() - peersAdded)}
+        };
+    });
+
+    setResult(results);
 }
 
 void TorrentsController::pauseAction()

@@ -103,4 +103,69 @@ updateTorrentPeersData = function() {
     loadTorrentPeersData();
 };
 
-torrentPeersTable.setup('torrentPeersTableDiv', 'torrentPeersTableFixedHeaderDiv', null);
+const torrentPeersContextMenu = new ContextMenu({
+    targets: '#torrentPeersTableDiv',
+    menu: 'torrentPeersMenu',
+    actions: {
+        addPeer: function(element, ref) {
+            const hash = torrentsTable.getCurrentTorrentHash();
+            if (!hash)
+                return;
+
+            new MochaUI.Window({
+                id: 'addPeersPage',
+                title: "QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]",
+                loadMethod: 'iframe',
+                contentURL: 'addpeers.html?hash=' + hash,
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 350,
+                height: 240
+            });
+        },
+        banPeer: function(element, ref) {
+            const selectedPeers = torrentPeersTable.selectedRowsIds();
+            if (selectedPeers.length === 0)
+                return;
+
+            if (confirm('QBT_TR(Are you sure you want to permanently ban the selected peers?)QBT_TR[CONTEXT=PeerListWidget]')) {
+                new Request({
+                    url: 'api/v2/torrents/banPeers',
+                    noCache: true,
+                    method: 'post',
+                    data: {
+                        hash: torrentsTable.getCurrentTorrentHash(),
+                        peers: selectedPeers.join('|')
+                    }
+                }).send();
+            }
+        }
+    },
+    offsets: {
+        x: -15,
+        y: 2
+    },
+    onShow: function() {
+        const selectedPeers = torrentPeersTable.selectedRowsIds();
+
+        if (selectedPeers.length >= 1) {
+            this.showItem('copyPeer');
+            this.showItem('banPeer');
+        }
+        else {
+            this.hideItem('copyPeer');
+            this.hideItem('banPeer');
+        }
+    }
+});
+
+new ClipboardJS('#CopyPeerInfo', {
+    text: function(trigger) {
+        return torrentPeersTable.selectedRowsIds().join("\n");
+    }
+});
+
+torrentPeersTable.setup('torrentPeersTableDiv', 'torrentPeersTableFixedHeaderDiv', torrentPeersContextMenu);
