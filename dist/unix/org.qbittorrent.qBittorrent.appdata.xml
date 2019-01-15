@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 sledgehammer999 <sledgehammer999@qbittorrent.org> -->
+<component type="desktop">
+  <id>org.qbittorrent.qBittorrent</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0 and OpenSSL</project_license>
+  <name>qBittorrent</name>
+  <summary>An open-source Bittorrent client</summary>
+  <description>
+    <p>
+      The qBittorrent project aims to provide an open-source software alternative to µTorrent.
+      Additionally, qBittorrent runs and provides the same features on all major platforms (FreeBSD, Linux, macOS, OS/2, Windows).
+      qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
+    </p>
+    <ul>
+      <li>Polished µTorrent-like User Interface</li>
+      <li>
+        Well-integrated and extensible Search Engine
+        <ul>
+          <li>Simultaneous search in many Torrent search sites</li>
+          <li>Category-specific search requests (e.g. Books, Music, Software)</li>
+        </ul>
+      </li>
+      <li>RSS feed support with advanced download filters (incl. regex)</li>
+      <li>
+        Many Bittorrent extensions supported:
+        <ul>
+          <li>Magnet links</li>
+          <li>Distributed hash table (DHT), peer exchange protocol (PEX), local peer discovery (LSD)</li>
+          <li>Private torrents</li>
+          <li>Encrypted connections</li>
+          <li>and many more...</li>
+        </ul>
+      </li>
+      <li>Remote control through Web user interface, written with AJAX</li>
+      <li>Sequential downloading (Download in order)</li>
+      <li>
+        Advanced control over torrents, trackers and peers
+        <ul>
+          <li>Torrents queueing and prioritizing</li>
+          <li>Torrent content selection and prioritizing</li>
+        </ul>
+      </li>
+      <li>Bandwidth scheduler</li>
+      <li>Torrent creation tool</li>
+      <li>IP Filtering (eMule &amp; PeerGuardian format compatible)</li>
+      <li>IPv6 compliant</li>
+      <li>UPnP / NAT-PMP port forwarding support</li>
+      <li>Available on all platforms: Windows, Linux, macOS, FreeBSD, OS/2</li>
+      <li>Available in ~70 languages</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">org.qbittorrent.qBittorrent.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_01.png</image>
+    </screenshot>
+    <screenshot>
+      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_02.png</image>
+    </screenshot>
+    <screenshot>
+      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_03.png</image>
+    </screenshot>
+    <screenshot>
+      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_04.png</image>
+    </screenshot>
+  </screenshots>
+  <update_contact>sledgehammer999@qbittorrent.org</update_contact>
+  <developer_name>The qBittorrent Project</developer_name>
+  <url type="homepage">https://www.qbittorrent.org/</url>
+  <url type="bugtracker">http://bugs.qbittorrent.org/</url>
+  <url type="donation">https://www.qbittorrent.org/donate</url>
+  <url type="help">http://forum.qbittorrent.org/</url>
+  <url type="translate">https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent</url>
+</component>
