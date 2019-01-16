@@ -50,7 +50,7 @@ public:
     void setStacktraceString(const QString &sigName, const QString &trace)
     {
         // try to call Qt function as less as possible
-        QString htmlStr = QString(
+        const QString htmlStr = QString(
             "<p align=center><b><font size=7 color=red>"
             "qBittorrent has crashed"
             "</font></b></p>"
@@ -61,21 +61,18 @@ public:
             "</p></font>"
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
-#if defined(__x86_64__) || defined(_M_X64)
-            "qBittorrent version: " QBT_VERSION " (64-bit)<br/>"
-#else
-            "qBittorrent version: " QBT_VERSION " (32-bit)<br/>"
-#endif
-            "Libtorrent version: %1<br/>"
+            "qBittorrent version: " QBT_VERSION " (%1-bit)<br/>"
+            "Libtorrent version: %2<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %2<br/>"
-            "OpenSSL version: %3<br/>"
-            "OS version: %4<br/><br/>"
-            "Caught signal: %5"
+            "Boost version: %3<br/>"
+            "OpenSSL version: %4<br/>"
+            "OS version: %5<br/><br/>"
+            "Caught signal: %6"
             "</font></p>"
-            "<pre><code>%6</code></pre>"
+            "<pre><code>%7</code></pre>"
             "<br/><hr><br/><br/>")
-                .arg(Utils::Misc::libtorrentVersionString()
+                .arg(QString::number(QT_POINTER_SIZE * 8)
+                     , Utils::Misc::libtorrentVersionString()
                      , Utils::Misc::boostVersionString()
                      , Utils::Misc::opensslVersionString()
                      , Utils::Misc::osName()

@@ -325,7 +325,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // Checking Memory Usage
     spinBoxCheckingMemUsage.setMinimum(1);
     // When build as 32bit binary, set the maximum value lower to prevent crashes.
-#if (QT_POINTER_SIZE == 8)
+#ifdef QBT_APP_64BIT
     spinBoxCheckingMemUsage.setMaximum(1024);
 #else
     // Allocate at most 128MiB out of the remaining 512MiB (see the cache part below)
@@ -339,7 +339,7 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
     // These macros may not be available on compilers other than MSVC and GCC
-#if defined(__x86_64__) || defined(_M_X64)
+#ifdef QBT_APP_64BIT
     spinBoxCache.setMaximum(4096);
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
