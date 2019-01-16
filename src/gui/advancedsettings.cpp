@@ -324,6 +324,13 @@ void AdvancedSettings::loadAdvancedSettings()
 
     // Checking Memory Usage
     spinBoxCheckingMemUsage.setMinimum(1);
+    // When build as 32bit binary, set the maximum value lower to prevent crashes.
+#if (QT_POINTER_SIZE == 8)
+    spinBoxCheckingMemUsage.setMaximum(1024);
+#else
+    // Allocate at most 128MiB out of the remaining 512MiB (see the cache part below)
+    spinBoxCheckingMemUsage.setMaximum(128);
+#endif
     spinBoxCheckingMemUsage.setValue(session->checkingMemUsage());
     spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
     addRow(CHECKING_MEM_USAGE, tr("Outstanding memory when checking torrents"), &spinBoxCheckingMemUsage);
