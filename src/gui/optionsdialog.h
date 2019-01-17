@@ -60,7 +60,6 @@ class OptionsDialog : public QDialog
     Q_OBJECT
     using ThisType = OptionsDialog;
 
-private:
     enum Tabs
     {
         TAB_UI,
@@ -71,6 +70,12 @@ private:
         TAB_RSS,
         TAB_WEBUI,
         TAB_ADVANCED
+    };
+
+    enum class ShowError
+    {
+        NotShow,
+        Show
     };
 
 public:
@@ -102,10 +107,10 @@ private slots:
     void on_randomButton_clicked();
     void on_addScanFolderButton_clicked();
     void on_removeScanFolderButton_clicked();
-    void on_btnWebUiCrt_clicked();
-    void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
+    void webUIHttpsCertChanged(const QString &path, ShowError showError);
+    void webUIHttpsKeyChanged(const QString &path, ShowError showError);
 
 private:
     // Methods
@@ -164,17 +169,14 @@ private:
     int getMaxActiveDownloads() const;
     int getMaxActiveUploads() const;
     int getMaxActiveTorrents() const;
+    // WebUI
     bool isWebUiEnabled() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
-    // WebUI SSL Cert / key
-    bool setSslKey(const QByteArray &key);
-    bool setSslCertificate(const QByteArray &cert);
-    bool schedTimesOk();
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 
-    QByteArray m_sslCert, m_sslKey;
+    bool schedTimesOk();
 
     Ui::OptionsDialog *m_ui;
     QAbstractButton *m_applyButton;

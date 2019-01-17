@@ -2966,79 +2966,25 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="lblSslCertStatus"/>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="lblWebUiKey">
+                    <property name="text">
+                     <string>Key:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLabel" name="lblWebUiCrt">
                     <property name="text">
                      <string>Certificate:</string>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
                    </widget>
                   </item>
-                  <item row="0" column="2">
-                   <layout class="QHBoxLayout" name="horizontalLayout_4">
-                    <item>
-                     <widget class="QPushButton" name="btnWebUiCrt">
-                      <property name="text">
-                       <string>Import SSL Certificate</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_12">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>138</width>
-                        <height>28</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblSslCertStatus"/>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="lblSslKeyStatus"/>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="lblWebUiKey">
-                    <property name="text">
-                     <string>Key:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <layout class="QHBoxLayout" name="horizontalLayout_5">
-                    <item>
-                     <widget class="QPushButton" name="btnWebUiKey">
-                      <property name="text">
-                       <string>Import SSL Key</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_13">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
                   </item>
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUIInfo">
@@ -3049,6 +2995,12 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      <bool>true</bool>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsCert" native="true"/>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsKey" native="true"/>
                   </item>
                  </layout>
                 </widget>
@@ -3464,8 +3416,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboRatioLimitAct</tabstop>
   <tabstop>checkWebUIUPnP</tabstop>
   <tabstop>checkWebUiHttps</tabstop>
-  <tabstop>btnWebUiCrt</tabstop>
-  <tabstop>btnWebUiKey</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
   <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
   <tabstop>IPSubnetWhitelistButton</tabstop>

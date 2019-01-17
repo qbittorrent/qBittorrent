@@ -203,10 +203,10 @@ public:
     // HTTPS
     bool isWebUiHttpsEnabled() const;
     void setWebUiHttpsEnabled(bool enabled);
-    QByteArray getWebUiHttpsCertificate() const;
-    void setWebUiHttpsCertificate(const QByteArray &data);
-    QByteArray getWebUiHttpsKey() const;
-    void setWebUiHttpsKey(const QByteArray &data);
+    QString getWebUIHttpsCertificatePath() const;
+    void setWebUIHttpsCertificatePath(const QString &path);
+    QString getWebUIHttpsKeyPath() const;
+    void setWebUIHttpsKeyPath(const QString &path);
     bool isAltWebUiEnabled() const;
     void setAltWebUiEnabled(bool enabled);
     QString getWebUiRootFolder() const;

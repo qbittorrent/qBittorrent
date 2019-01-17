@@ -28,6 +28,8 @@
 
 #include "net.h"
 
+#include <QSslCertificate>
+#include <QSslKey>
 #include <QString>
 
 namespace Utils
@@ -87,6 +89,33 @@ namespace Utils
         QString subnetToString(const Subnet &subnet)
         {
             return subnet.first.toString() + '/' + QString::number(subnet.second);
+        }
+
+        QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
+        {
+            const QList<QSslCertificate> certs {QSslCertificate::fromData(data)};
+            if (std::any_of(certs.cbegin(), certs.cend(), [](const QSslCertificate &c) { return c.isNull(); }))
+                return {};
+            return certs;
+        }
+
+        bool isSSLCertificatesValid(const QByteArray &data)
+        {
+            return !loadSSLCertificate(data).isEmpty();
+        }
+
+        QSslKey loadSSLKey(const QByteArray &data)
+        {
+            // try different formats
+            QSslKey key {data, QSsl::Rsa};
+            if (!key.isNull())
+                return key;
+            return QSslKey(data, QSsl::Ec);
+        }
+
+        bool isSSLKeyValid(const QByteArray &data)
+        {
+            return !loadSSLKey(data).isNull();
         }
     }
 }
