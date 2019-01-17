@@ -68,7 +68,7 @@ public:
             "</table>"
             "</p>")
             .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-                , tr("Copyright %1 2006-2018 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+                , tr("Copyright %1 2006-2019 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
                 , tr("Home Page:")
                 , tr("Forum:")
                 , tr("Bug Tracker:"));
