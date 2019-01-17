@@ -50,7 +50,6 @@
 #endif
 
 #include "global.h"
-#include "logger.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
 #include "utils/misc.h"

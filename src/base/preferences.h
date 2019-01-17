@@ -31,18 +31,14 @@
 #define PREFERENCES_H
 
 #include <QDateTime>
-#include <QHostAddress>
 #include <QList>
 #include <QNetworkCookie>
-#include <QReadWriteLock>
 #include <QSize>
 #include <QStringList>
 #include <QTime>
-#include <QTimer>
 #include <QVariant>
 
 #include "base/utils/net.h"
-#include "types.h"
 
 enum SchedulerDays
 {

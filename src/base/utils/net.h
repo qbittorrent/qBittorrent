@@ -29,10 +29,10 @@
 #ifndef BASE_UTILS_NET_H
 #define BASE_UTILS_NET_H
 
+#include <QHostAddress>
 #include <QList>
 #include <QPair>
 
-class QHostAddress;
 class QString;
 
 namespace Utils
