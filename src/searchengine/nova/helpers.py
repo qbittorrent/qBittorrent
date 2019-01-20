@@ -1,4 +1,4 @@
-#VERSION: 1.43
+#VERSION: 1.45
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -35,12 +35,16 @@ import os
 import re
 import socket
 import socks
+import ssl
 import StringIO
 import tempfile
 import urllib2
 
+# Some sites have invalid certificates
+ssl._create_default_https_context = ssl._create_unverified_context
+
 # Some sites blocks default python User-agent
-user_agent = 'Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0'
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0'
 headers = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if ("sock_proxy" in os.environ) and (len(os.environ["sock_proxy"].strip()) > 0):
