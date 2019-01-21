@@ -79,7 +79,7 @@ var changeCategorySelect = function(item) {
         item.nextElementSibling.value = "";
         item.nextElementSibling.select();
 
-        if ($('autotmm').selectedIndex == 1)
+        if ($('autoTMM').selectedIndex == 1)
             $('savepath').value = defaultSavePath;
     }
     else {
@@ -87,7 +87,7 @@ var changeCategorySelect = function(item) {
         var text = item.options[item.selectedIndex].innerHTML;
         item.nextElementSibling.value = text;
 
-        if ($('autotmm').selectedIndex == 1) {
+        if ($('autoTMM').selectedIndex == 1) {
             var categoryName = item.value;
             var category = categories[categoryName];
             var savePath = defaultSavePath;
