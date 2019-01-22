@@ -824,7 +824,7 @@ function setupCopyEventHandler() {
     });
 }
 
-var keyboardEvents = new Keyboard({
+new Keyboard({
     defaultEventType: 'keydown',
     events: {
         'ctrl+a': function(event) {
@@ -836,6 +836,4 @@ var keyboardEvents = new Keyboard({
             event.preventDefault();
         }
     }
-});
-
-keyboardEvents.activate();
+}).activate();

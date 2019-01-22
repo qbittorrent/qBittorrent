@@ -11,16 +11,23 @@
     <script>
         'use strict';
 
-        var newCategoryKeyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function(event) {
+                'Enter': function(event) {
                     $('categoryNameButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
                     event.preventDefault();
                 }
             }
-        });
-        newCategoryKeyboardEvents.activate();
+        }).activate();
 
         window.addEvent('domready', function() {
             var uriAction = safeTrim(new URI().getData('action'));
@@ -28,10 +35,7 @@
             var uriCategoryName = safeTrim(new URI().getData('categoryName'));
             var uriSavePath = safeTrim(new URI().getData('savePath'));
 
-            if (uriAction === "create") {
-                $('categoryName').focus();
-            }
-            else if (uriAction === "edit") {
+            if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return false;
 
@@ -39,6 +43,9 @@
                 $('categoryName').set('value', escapeHtml(uriCategoryName));
                 $('savePath').set('value', escapeHtml(uriSavePath));
                 $('savePath').focus();
+            }
+            else {
+                $('categoryName').focus();
             }
 
             $('categoryNameButton').addEvent('click', function(e) {

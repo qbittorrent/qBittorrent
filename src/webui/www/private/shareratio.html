@@ -14,16 +14,23 @@
         var UseGlobalLimit = -2;
         var NoLimit = -1;
 
-        var keyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function(event) {
+                'Enter': function(event) {
                     $('save').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
                     event.preventDefault();
                 }
             }
-        });
-        keyboardEvents.activate();
+        }).activate();
 
         window.addEvent('domready', function() {
             var hashesList = new URI().getData('hashes').split('|');

@@ -55,10 +55,30 @@
                 }
             }
         </script>
-        <input type="button" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
     </div>
 
     <script>
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('applyButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        $('dllimitUpdatevalue').focus();
+
         MochaUI.addDlLimitSlider(hashes);
     </script>
 
