@@ -72,4 +72,8 @@
   <url type="donation">https://www.qbittorrent.org/donate</url>
   <url type="help">http://forum.qbittorrent.org/</url>
   <url type="translate">https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="4.1.5" date="2018-12-24"/>
+  </releases>
 </component>
