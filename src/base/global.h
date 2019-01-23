@@ -31,6 +31,10 @@
 #include <type_traits>
 #include <QtGlobal>
 
+#if (QT_POINTER_SIZE == 8)
+#define QBT_APP_64BIT
+#endif
+
 const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
 
 template <typename T>
