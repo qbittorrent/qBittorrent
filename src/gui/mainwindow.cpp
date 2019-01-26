@@ -240,8 +240,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(hSplitter, this);
-    // transferList->setStyleSheet("QTreeView {border: none;}");  // borderless
-    m_propertiesWidget = new PropertiesWidget(hSplitter, this, m_transferListWidget);
+    // m_transferListWidget->setStyleSheet("QTreeView {border: none;}");  // borderless
+    m_propertiesWidget = new PropertiesWidget(hSplitter);
+    connect(m_transferListWidget, &TransferListWidget::currentTorrentChanged, m_propertiesWidget, &PropertiesWidget::loadTorrentInfos);
     m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget);
     m_transferListFiltersWidget->setDownloadTrackerFavicon(isDownloadTrackerFavicon());
     hSplitter->addWidget(m_transferListWidget);
@@ -1526,6 +1527,9 @@ void MainWindow::loadPreferences(bool configureSession)
 // Check connection status and display right icon
 void MainWindow::updateGUI()
 {
+    if (currentTabWidget() == m_transferListWidget)
+        m_propertiesWidget->loadDynamicData();
+
     const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
 
     // update global information
