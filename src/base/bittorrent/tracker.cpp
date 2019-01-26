@@ -140,8 +140,11 @@ void Tracker::respondToAnnounceRequest()
         const int sepPos = param.indexOf('=');
         if (sepPos <= 0) continue; // ignores params without name
 
-        const QString paramName {QString::fromUtf8(param.constData(), sepPos)};
-        const QByteArray paramValue {param.mid(sepPos + 1)};
+        const QByteArray nameComponent = midView(param, 0, sepPos);
+        const QByteArray valueComponent = midView(param, (sepPos + 1));
+
+        const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
+        const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent);
         queryParams[paramName] = paramValue;
     }
 
