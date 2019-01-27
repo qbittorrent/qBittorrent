@@ -67,8 +67,6 @@ namespace
             scheme = "http";
         return scheme;
     }
-
-    const QLatin1String GOOGLE_FAVICON_URL("https://www.google.com/s2/favicons?domain=");
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -419,9 +417,7 @@ void TrackerFiltersList::downloadFavicon(const QString &url)
 
 void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString &filePath)
 {
-    QString host = url.startsWith(GOOGLE_FAVICON_URL)
-                            ? url.mid(GOOGLE_FAVICON_URL.size())
-                            : getHost(url);
+    const QString host = getHost(url);
 
     if (!m_trackers.contains(host)) {
         Utils::Fs::forceRemove(filePath);
@@ -449,12 +445,8 @@ void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString 
 void TrackerFiltersList::handleFavicoFailure(const QString &url, const QString &error)
 {
     Q_UNUSED(error)
-    if (url.endsWith(".ico", Qt::CaseInsensitive)) {
+    if (url.endsWith(".ico", Qt::CaseInsensitive))
         downloadFavicon(url.left(url.size() - 4) + ".png");
-    }
-    else if (!url.startsWith(GOOGLE_FAVICON_URL)) {
-        downloadFavicon(GOOGLE_FAVICON_URL + getHost(url));
-    }
 }
 
 void TrackerFiltersList::showMenu(QPoint)
