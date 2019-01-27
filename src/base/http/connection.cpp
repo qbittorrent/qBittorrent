@@ -79,7 +79,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::BadRequest: {
-                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %s")
+                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                 Response resp(400, "Bad Request");
