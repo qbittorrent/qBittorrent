@@ -3453,12 +3453,6 @@ void Session::handleTorrentTrackerError(TorrentHandle *const torrent, const QStr
     emit trackerError(torrent, trackerUrl);
 }
 
-void Session::handleTorrentTrackerAuthenticationRequired(TorrentHandle *const torrent, const QString &trackerUrl)
-{
-    Q_UNUSED(trackerUrl);
-    emit trackerAuthenticationRequired(torrent);
-}
-
 void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl)
 {
     emit trackerWarning(torrent, trackerUrl);

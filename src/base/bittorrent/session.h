@@ -489,7 +489,6 @@ namespace BitTorrent
         void handleTorrentTrackerReply(TorrentHandle *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerError(TorrentHandle *const torrent, const QString &trackerUrl);
-        void handleTorrentTrackerAuthenticationRequired(TorrentHandle *const torrent, const QString &trackerUrl);
 
     signals:
         void statsUpdated();
