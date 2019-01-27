@@ -49,6 +49,5 @@
         <file>private/uploadlimit.html</file>
         <file>public/css/login.css</file>
         <file>public/login.html</file>
-        <file>public/scripts/lib/mootools-1.2-core-yc.js</file>
     </qresource>
 </RCC>
