@@ -7,7 +7,7 @@ win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
 
-QT += network xml
+QT += network sql xml
 
 nogui {
     TARGET = qbittorrent-nox

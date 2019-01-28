@@ -50,6 +50,7 @@ search/searchdownloadhandler.h
 search/searchhandler.h
 search/searchpluginmanager.h
 utils/bytearray.h
+utils/db.h
 utils/foreignapps.h
 utils/fs.h
 utils/gzip.h
@@ -148,7 +149,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml
 )
 
 if (Qt5Widgets_FOUND)

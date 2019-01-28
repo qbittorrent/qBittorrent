@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/db.h \
     $$PWD/bittorrent/filepriority.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/magneturi.h \

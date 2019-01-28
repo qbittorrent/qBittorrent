@@ -43,6 +43,9 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QString>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
 #include <QThread>
 #include <QTimer>
 #include <QUuid>
@@ -80,6 +83,7 @@
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
+#include "db.h"
 #include "magneturi.h"
 #include "private/bandwidthscheduler.h"
 #include "private/filterparserthread.h"
@@ -107,8 +111,7 @@ using namespace BitTorrent;
 
 namespace
 {
-    bool readFile(const QString &path, QByteArray &buf);
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri);
+    void loadTorrentParams(const QSqlQuery &query, CreateTorrentParams &torrentParams);
 
     void torrentQueuePositionUp(const libt::torrent_handle &handle);
     void torrentQueuePositionDown(const libt::torrent_handle &handle);
@@ -133,31 +136,6 @@ namespace
         for (auto i = map.cbegin(); i != map.cend(); ++i)
             result[i.key()] = i.value();
         return result;
-    }
-
-    template <typename Entry>
-    QSet<QString> entryListToSetImpl(const Entry &entry)
-    {
-        Q_ASSERT(entry.type() == Entry::list_t);
-        QSet<QString> output;
-        for (int i = 0; i < entry.list_size(); ++i) {
-            const QString tag = QString::fromStdString(entry.list_string_value_at(i));
-            if (Session::isValidTag(tag))
-                output.insert(tag);
-            else
-                qWarning() << QString("Dropping invalid stored tag: %1").arg(tag);
-        }
-        return output;
-    }
-
-    bool isList(const libt::bdecode_node &entry)
-    {
-        return entry.type() == libt::bdecode_node::list_t;
-    }
-
-    QSet<QString> entryListToSet(const libt::bdecode_node &entry)
-    {
-        return entryListToSetImpl(entry);
     }
 
     QString normalizePath(const QString &path)
@@ -358,7 +336,7 @@ Session::Session(QObject *parent)
 {
     Logger *const logger = Logger::instance();
 
-    initResumeFolder();
+    initiliazeDB();
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1000);
@@ -477,7 +455,10 @@ Session::Session(QObject *parent)
     connect(&m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
 
     m_ioThread = new QThread(this);
-    m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
+    const QString dbFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data));
+    const QDir dbFolderDir(dbFolderPath);
+    const QString dbPath = dbFolderDir.absoluteFilePath(QLatin1String{BitTorrent::DB::FILENAME});
+    m_resumeDataSavingManager = new ResumeDataSavingManager{dbPath};
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
     m_ioThread->start();
@@ -945,9 +926,6 @@ Session::~Session()
 
     m_ioThread->quit();
     m_ioThread->wait();
-
-    m_resumeFolderLock.close();
-    m_resumeFolderLock.remove();
 }
 
 void Session::initInstance()
@@ -1647,13 +1625,11 @@ bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
         }
     }
 
-    // Remove it from torrent resume directory
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QStringList filters;
-    filters << QString("%1.*").arg(torrent->hash());
-    const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
-    for (const QString &file : files)
-        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
+    // Remove it from the db
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.exec(QString("DELETE FROM %1 WHERE %2 = '%3'").arg(TABLE_NAME, COL_HASH, torrent->hash()));
 
     delete torrent;
     qDebug("Torrent deleted.");
@@ -2052,22 +2028,35 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     Q_ASSERT(((folder == TorrentExportFolder::Regular) && !torrentExportDirectory().isEmpty()) ||
              ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
 
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+                  .arg(COL_METADATA, TABLE_NAME, COL_HASH, torrent->hash()));
+    if (!query.exec() || !query.next())
+        return;
+
+    QByteArray data = query.value(0).toByteArray();
+    if (data.isEmpty())
+        return;
+
     const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
-    const QString torrentFilename = QString("%1.torrent").arg(torrent->hash());
     QString torrentExportFilename = QString("%1.torrent").arg(validName);
-    const QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
     const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
         QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         int counter = 0;
-        while (QFile::exists(newTorrentPath) && !Utils::Fs::sameFiles(torrentPath, newTorrentPath)) {
+        while (QFile::exists(newTorrentPath)) {
             // Append number to torrent name to make it unique
             torrentExportFilename = QString("%1 %2.torrent").arg(validName).arg(++counter);
             newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         }
 
-        if (!QFile::exists(newTorrentPath))
-            QFile::copy(torrentPath, newTorrentPath);
+        if (!QFile::exists(newTorrentPath)) {
+            QFile file(newTorrentPath);
+            if (file.open(QIODevice::WriteOnly))
+                file.write(data.constData(), data.size());
+        }
     }
 }
 
@@ -2091,8 +2080,6 @@ void Session::saveResumeData()
     // Pause session
     m_nativeSession->pause();
 
-    if (isQueueingSystemEnabled())
-        saveTorrentsQueue();
     generateResumeData(true);
 
     while (m_numResumeData > 0) {
@@ -2105,9 +2092,11 @@ void Session::saveResumeData()
 
         for (const auto a : alerts) {
             switch (a->type()) {
-            case libt::save_resume_data_failed_alert::alert_type:
             case libt::save_resume_data_alert::alert_type:
-                dispatchTorrentAlert(a);
+                handleTorrentResumeDataAlert(static_cast<libt::save_resume_data_alert*>(a));
+                break;
+            case libt::save_resume_data_failed_alert::alert_type:
+                 handleTorrentResumeDataFailedAlert(static_cast<libt::save_resume_data_failed_alert*>(a));
                 break;
             }
         }
@@ -2116,27 +2105,26 @@ void Session::saveResumeData()
 
 void Session::saveTorrentsQueue()
 {
-    QMap<int, QString> queue; // Use QMap since it should be ordered by key
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    db.transaction();
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 =  :queue "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_QUEUE, COL_HASH));
+
     for (const TorrentHandle *torrent : asConst(torrents())) {
         // We require actual (non-cached) queue position here!
         const int queuePos = torrent->nativeHandle().queue_position();
-        if (queuePos >= 0)
-            queue[queuePos] = torrent->hash();
+        if (queuePos >= 0) {
+            query.bindValue(":queue", queuePos);
+            query.bindValue(":hash", QString(torrent->hash()));
+            query.exec();
+        }
     }
 
-    QByteArray data;
-    for (const QString &hash : asConst(queue))
-        data += (hash.toLatin1() + '\n');
-
-    const QString filename = QLatin1String {"queue"};
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
-                              , Q_ARG(QString, filename), Q_ARG(QByteArray, data));
-}
-
-void Session::removeTorrentsQueue()
-{
-    const QString filename = QLatin1String {"queue"};
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, filename));
+    db.commit();
 }
 
 void Session::setDefaultSavePath(QString path)
@@ -2934,8 +2922,6 @@ void Session::setQueueingSystemEnabled(const bool enabled)
 
         if (enabled)
             saveTorrentsQueue();
-        else
-            removeTorrentsQueue();
     }
 }
 
@@ -3262,7 +3248,18 @@ void Session::updateSeedingLimitTimer()
 
 void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :ratioLimit, %3 = :seedingTimeLimit "
+                          "WHERE %4 = :hash")
+                  .arg(TABLE_NAME, COL_RATIO_LIMIT, COL_SEEDING_TIME_LIMIT, COL_HASH));
+    query.bindValue(":ratioLimit", static_cast<int>(torrent->ratioLimit() * 1000));
+    query.bindValue(":seedingTimeLimit", torrent->seedingTimeLimit());
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+
     updateSeedingLimitTimer();
 }
 
@@ -3273,38 +3270,73 @@ void Session::saveTorrentResumeData(TorrentHandle *const torrent)
     ++m_numResumeData;
 }
 
-void Session::handleTorrentNameChanged(TorrentHandle *const torrent)
+void Session::handleTorrentNameChanged(TorrentHandle *const torrent, const QString &torrentName)
 {
-    saveTorrentResumeData(torrent);
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :name "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_NAME, COL_HASH));
+    query.bindValue(":name", torrentName); // different from the one returned by TorrentHandle::name()
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
 }
 
-void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
+void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent, const QString &savePath)
 {
-    saveTorrentResumeData(torrent);
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :savePath "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_SAVE_PATH, COL_HASH));
+    query.bindValue(":savePath", savePath);
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+
     emit torrentSavePathChanged(torrent);
 }
 
-void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory)
+void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory, const QString &newCategory)
 {
-    saveTorrentResumeData(torrent);
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :category "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_CATEGORY, COL_HASH));
+    query.bindValue(":category", newCategory);
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
-void Session::handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag)
+void Session::handleTorrentTagChanged(TorrentHandle *const torrent, const QString &tag, const QString &tags, bool removed)
 {
-    saveTorrentResumeData(torrent);
-    emit torrentTagAdded(torrent, tag);
-}
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :tags "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_TAGS, COL_HASH));
+    query.bindValue(":tags", tags);
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
 
-void Session::handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag)
-{
-    saveTorrentResumeData(torrent);
-    emit torrentTagRemoved(torrent, tag);
+    if (removed)
+        emit torrentTagRemoved(torrent, tag);
+    else
+        emit torrentTagAdded(torrent, tag);
 }
 
 void Session::handleTorrentSavingModeChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
     emit torrentSavingModeChanged(torrent);
 }
 
@@ -3357,12 +3389,22 @@ void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
     saveTorrentResumeData(torrent);
 
     // Save metadata
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QString torrentFile = resumeDataDir.absoluteFilePath(QString("%1.torrent").arg(torrent->hash()));
-    if (torrent->saveTorrentFile(torrentFile)) {
-        // Copy the torrent file to the export folder
-        if (!torrentExportDirectory().isEmpty())
-            exportTorrentFile(torrent);
+    QByteArray metadata{torrent->metadata()};
+    if (!metadata.isEmpty()) {
+        using namespace BitTorrent::DB;
+        QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+        QSqlQuery query(db);
+        query.prepare(QString("UPDATE %1 "
+                              "SET %2 =  :metadata "
+                              "WHERE %3 = :hash")
+                      .arg(TABLE_NAME, COL_METADATA, COL_HASH));
+        query.bindValue(":hash", QString(torrent->hash()));
+        query.bindValue(":metadata", metadata);
+        if (query.exec()) {
+            // Copy the torrent file to the export folder
+            if (!torrentExportDirectory().isEmpty())
+                exportTorrentFile(torrent);
+        }
     }
 
     emit torrentMetadataLoaded(torrent);
@@ -3377,7 +3419,6 @@ void Session::handleTorrentPaused(TorrentHandle *const torrent)
 
 void Session::handleTorrentResumed(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
     emit torrentResumed(torrent);
 }
 
@@ -3421,26 +3462,30 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const libtorrent::entry &data)
+void Session::handleTorrentResumeDataAlert(const libt::save_resume_data_alert *p)
 {
+    TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
+    if (!torrent) return;
+
     --m_numResumeData;
 
-    // Separated thread is used for the blocking IO which results in slow processing of many torrents.
+    // Separate thread is used for the blocking IO which results in slow processing of many torrents.
     // Encoding data in parallel while doing IO saves time. Copying libtorrent::entry objects around
     // isn't cheap too.
 
     QByteArray out;
-    libt::bencode(std::back_inserter(out), data);
+    libt::bencode(std::back_inserter(out), *p->resume_data);
 
-    const QString filename = QString("%1.fastresume").arg(torrent->hash());
     QMetaObject::invokeMethod(m_resumeDataSavingManager, "save",
-                              Q_ARG(QString, filename), Q_ARG(QByteArray, out));
+                              Q_ARG(QString, torrent->hash()), Q_ARG(QByteArray, out),
+                              Q_ARG(int, torrent->nativeHandle().queue_position()));
 }
 
-void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
+void Session::handleTorrentResumeDataFailedAlert(const libt::save_resume_data_failed_alert *p)
 {
-    Q_UNUSED(torrent)
-    --m_numResumeData;
+    TorrentHandle *const torrent = m_torrents.value(p->handle.info_hash());
+    if (torrent)
+        --m_numResumeData;
 }
 
 void Session::handleTorrentTrackerReply(TorrentHandle *const torrent, const QString &trackerUrl)
@@ -3448,14 +3493,85 @@ void Session::handleTorrentTrackerReply(TorrentHandle *const torrent, const QStr
     emit trackerSuccess(torrent, trackerUrl);
 }
 
+void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl)
+{
+    emit trackerWarning(torrent, trackerUrl);
+}
+
 void Session::handleTorrentTrackerError(TorrentHandle *const torrent, const QString &trackerUrl)
 {
     emit trackerError(torrent, trackerUrl);
 }
 
-void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl)
+void Session::handleTorrentHasRootChanged(TorrentHandle *const torrent)
 {
-    emit trackerWarning(torrent, trackerUrl);
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :hasRootFolder "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_HAS_ROOT_FOLDER, COL_HASH));
+    query.bindValue(":hasRootFolder", torrent->hasRootFolder());
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+}
+
+void Session::handleTorrentSequentialToggled(TorrentHandle *const torrent)
+{
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :sequential "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_SEQUENTIAL, COL_HASH));
+    query.bindValue(":sequential", torrent->isSequentialDownload());
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+}
+
+void Session::handleTorrentFirstLastPieceToggled(TorrentHandle *const torrent, bool enabled)
+{
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :prio "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_HAS_FIRST_LAST_PIECE_PRIO, COL_HASH));
+    query.bindValue(":sequential", enabled); // Torrent::hasFirstLastPiecePriority() can be expensive
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+}
+
+void Session::handleTorrentUserPaused(TorrentHandle *const torrent, bool paused, bool forced)
+{
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :paused, %3 = :forced "
+                          "WHERE %4 = :hash")
+                  .arg(TABLE_NAME, COL_PAUSED, COL_FORCED, COL_HASH));
+    query.bindValue(":paused", paused);
+    query.bindValue(":forced", forced);
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
+}
+
+void Session::handleTorrentSeedStatusChanged(TorrentHandle *const torrent, bool seedStatus)
+{
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :seedStatus "
+                          "WHERE %3 = :hash")
+                  .arg(TABLE_NAME, COL_SEED_STATUS, COL_HASH));
+    query.bindValue(":seedStatus", seedStatus);
+    query.bindValue(":hash", QString(torrent->hash()));
+    query.exec();
 }
 
 bool Session::hasPerTorrentRatioLimit() const
@@ -3474,19 +3590,61 @@ bool Session::hasPerTorrentSeedingTimeLimit() const
     });
 }
 
-void Session::initResumeFolder()
+void Session::initiliazeDB()
 {
-    m_resumeFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER);
-    const QDir resumeFolderDir(m_resumeFolderPath);
-    if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath())) {
-        m_resumeFolderLock.setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
-        if (!m_resumeFolderLock.open(QFile::WriteOnly)) {
-            throw RuntimeError {tr("Cannot write to torrent resume folder.")};
-        }
-    }
-    else {
-        throw RuntimeError {tr("Cannot create torrent resume folder.")};
-    }
+    static bool runOnce = false;
+    if (runOnce) return;
+    runOnce = true;
+
+    if(!QSqlDatabase::isDriverAvailable("QSQLITE"))
+        throw RuntimeError {QCoreApplication::translate("BitTorrent::Session", "The Qt version being used doesn't have SQLite support.")};
+
+    using namespace BitTorrent::DB;
+    const QString dbFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data));
+    const QDir dbFolderDir(dbFolderPath);
+    const QString dbPath = dbFolderDir.absoluteFilePath(QLatin1String{FILENAME});
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", MAIN_CONNECTION_NAME);
+    db.setDatabaseName(dbPath);
+
+    if (!db.open())
+        throw RuntimeError {QCoreApplication::translate("BitTorrent::Session", "Cannot open database. Error: %1").arg(db.lastError().text())};
+
+    // Check DB version
+    QSqlQuery query(db);
+    query.exec(QLatin1String("PRAGMA user_version"));
+    if (query.next() && query.value(0).toInt())
+        return;
+
+    // Probably 1st run.
+    // Input PRAGMAs and create table
+    query.exec(QLatin1String("PRAGMA auto_vacuum = FULL"));
+    query.exec(QString("PRAGMA user_version = %1").arg(BitTorrent::DB::VERSION));
+
+    query.exec(QString("CREATE TABLE %1 "
+                       "("
+                       "%2 TEXT PRIMARY KEY NOT NULL, " // hash
+                       "%3 BLOB NOT NULL, " // metadata
+                       "%4 BLOB, " // fastresume
+                       "%5 INT DEFAULT -1, " // queue
+                       "%6 TEXT," // save path
+                       "%7 INT, " // ratio limit
+                       "%8 INT, " // seeding time limi
+                       "%9 TEXT, " // category
+                       "%10 TEXT, " // tags
+                       "%11 TEXT, " // name
+                       "%12 BOOL, " // has seed status
+                       "%13 BOOL, " // temp path disabled
+                       "%14 BOOL, " // has root folder
+                       "%15 BOOL, " // paused
+                       "%16 BOOL, " // forced
+                       "%17 BOOL, " // has first-last piece prio
+                       "%18 BOOL " // sequential
+                       ")"
+                       ).arg(TABLE_NAME, COL_HASH, COL_METADATA, COL_FASTRESUME, COL_QUEUE,
+                             COL_SAVE_PATH, COL_RATIO_LIMIT, COL_SEEDING_TIME_LIMIT, COL_CATEGORY)
+                        .arg(COL_TAGS, COL_NAME, COL_SEED_STATUS, COL_TMP_PATH_DISABLED, COL_HAS_ROOT_FOLDER,
+                             COL_PAUSED, COL_FORCED, COL_HAS_FIRST_LAST_PIECE_PRIO, COL_SEQUENTIAL));
 }
 
 void Session::configureDeferred()
@@ -3567,28 +3725,40 @@ const CacheStatus &Session::cacheStatus() const
 void Session::startUpTorrents()
 {
     qDebug("Resuming torrents...");
+    using namespace BitTorrent::DB;
+    QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.exec(QLatin1String("PRAGMA user_version"));
+    if (query.next()) {
+        int ver = query.value(0).toInt();
+        if (ver != BitTorrent::DB::VERSION) {
+            LogMsg(tr("Can't load torrents from DB. DB version: %1. Program version: %2").arg(ver).arg(BitTorrent::DB::VERSION),
+                   Log::WARNING);
+            return;
+        }
+    }
+    else {
+        return; // should we throw instead?
+    }
 
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QStringList fastresumes = resumeDataDir.entryList(
-                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-
-    Logger *const logger = Logger::instance();
-
-    typedef struct
+    struct TorrentResumeData
     {
         QString hash;
-        MagnetUri magnetUri;
         CreateTorrentParams addTorrentData;
         QByteArray data;
-    } TorrentResumeData;
+    };
 
     int resumedTorrentsCount = 0;
-    const auto startupTorrent = [this, logger, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
+    const auto startupTorrent = [this, &resumedTorrentsCount](const QByteArray &metadata, const TorrentResumeData &params)
     {
-        const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
-        if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
-            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+        // The 'metadata' var might be a magnet URI saved into the COL_METADATA column before the metadata
+        // were received from the network. Internally addTorrent_impl() checks if the constructed below
+        // MagnetUri is valid.
+        MagnetUri magnetUri{metadata};
+
+        if (!addTorrent_impl(params.addTorrentData, magnetUri, TorrentInfo::load(metadata), params.data))
+            Logger::instance()->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                                .arg(params.hash), Log::CRITICAL);
 
         // process add torrent messages before message queue overflow
@@ -3597,96 +3767,21 @@ void Session::startUpTorrents()
         ++resumedTorrentsCount;
     };
 
-    qDebug("Starting up torrents...");
-    qDebug("Queue size: %d", fastresumes.size());
+    query.exec(QString("SELECT %1, %2, %3, %4, %5, %6, %7, %8, %9"
+                       ", %10, %11, %12, %13, %14, %15, %16, %17 "
+                       "FROM %18 ORDER BY %4 ASC")
+               .arg(COL_HASH, COL_METADATA, COL_FASTRESUME, COL_QUEUE, COL_SAVE_PATH,
+                    COL_RATIO_LIMIT, COL_SEEDING_TIME_LIMIT, COL_CATEGORY, COL_TAGS)
+               .arg(COL_NAME, COL_SEED_STATUS, COL_TMP_PATH_DISABLED, COL_HAS_ROOT_FOLDER,
+                    COL_PAUSED, COL_FORCED, COL_HAS_FIRST_LAST_PIECE_PRIO, COL_SEQUENTIAL, TABLE_NAME));
 
-    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
-
-    if (isQueueingSystemEnabled()) {
-        QFile queueFile {resumeDataDir.absoluteFilePath(QLatin1String {"queue"})};
-
-        // TODO: The following code is deprecated in 4.1.5. Remove after several releases in 4.2.x.
-        // === BEGIN DEPRECATED CODE === //
-        if (!queueFile.exists()) {
-            // Resume downloads in a legacy manner
-            QMap<int, TorrentResumeData> queuedResumeData;
-            int nextQueuePosition = 1;
-            int numOfRemappedFiles = 0;
-            for (const QString &fastresumeName : asConst(fastresumes)) {
-                const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
-                if (!rxMatch.hasMatch()) continue;
-
-                QString hash = rxMatch.captured(1);
-                QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
-                QByteArray data;
-                CreateTorrentParams torrentParams;
-                MagnetUri magnetUri;
-                int queuePosition;
-                if (readFile(fastresumePath, data) && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
-                    if (queuePosition <= nextQueuePosition) {
-                        startupTorrent({ hash, magnetUri, torrentParams, data });
-
-                        if (queuePosition == nextQueuePosition) {
-                            ++nextQueuePosition;
-                            while (queuedResumeData.contains(nextQueuePosition)) {
-                                startupTorrent(queuedResumeData.take(nextQueuePosition));
-                                ++nextQueuePosition;
-                            }
-                        }
-                    }
-                    else {
-                        int q = queuePosition;
-                        for (; queuedResumeData.contains(q); ++q) {}
-                        if (q != queuePosition)
-                            ++numOfRemappedFiles;
-                        queuedResumeData[q] = {hash, magnetUri, torrentParams, data};
-                    }
-                }
-            }
-
-            if (numOfRemappedFiles > 0) {
-                logger->addMessage(
-                            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
-                            Log::CRITICAL);
-            }
-
-            // starting up downloading torrents (queue position > 0)
-            for (const TorrentResumeData &torrentResumeData : asConst(queuedResumeData))
-                startupTorrent(torrentResumeData);
-
-            return;
-        }
-        // === END DEPRECATED CODE === //
-
-        QStringList queue;
-        if (queueFile.open(QFile::ReadOnly)) {
-            QByteArray line;
-            while (!(line = queueFile.readLine()).isEmpty())
-                queue.append(QString::fromLatin1(line.trimmed()) + QLatin1String {".fastresume"});
-        }
-        else {
-            LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-                   .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
-        }
-
-        if (!queue.empty())
-            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).toList();
-    }
-
-    for (const QString &fastresumeName : asConst(fastresumes)) {
-        const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
-        if (!rxMatch.hasMatch()) continue;
-
-        const QString hash = rxMatch.captured(1);
-        const QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
-        QByteArray data;
+    while (query.next()) {
+        const QString hash = query.value(0).toString();
+        const QByteArray metadata = query.value(1).toByteArray();
+        const QByteArray fastresume = query.value(2).toByteArray();
         CreateTorrentParams torrentParams;
-        MagnetUri magnetUri;
-        int queuePosition;
-        if (readFile(fastresumePath, data)
-            && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
-            startupTorrent({hash, magnetUri, torrentParams, data});
-        }
+        loadTorrentParams(query, torrentParams);
+        startupTorrent(metadata, {hash, torrentParams, fastresume});
     }
 }
 
@@ -3764,8 +3859,6 @@ void Session::handleAlert(const libt::alert *a)
         case libt::file_renamed_alert::alert_type:
         case libt::file_completed_alert::alert_type:
         case libt::torrent_finished_alert::alert_type:
-        case libt::save_resume_data_alert::alert_type:
-        case libt::save_resume_data_failed_alert::alert_type:
         case libt::storage_moved_alert::alert_type:
         case libt::storage_moved_failed_alert::alert_type:
         case libt::torrent_paused_alert::alert_type:
@@ -3776,6 +3869,12 @@ void Session::handleAlert(const libt::alert *a)
         case libt::fastresume_rejected_alert::alert_type:
         case libt::torrent_checked_alert::alert_type:
             dispatchTorrentAlert(a);
+            break;
+        case libt::save_resume_data_alert::alert_type:
+            handleTorrentResumeDataAlert(static_cast<const libt::save_resume_data_alert*>(a));
+            break;
+        case libt::save_resume_data_failed_alert::alert_type:
+            handleTorrentResumeDataFailedAlert(static_cast<const libt::save_resume_data_failed_alert*>(a));
             break;
         case libt::metadata_received_alert::alert_type:
             handleMetadataReceivedAlert(static_cast<const libt::metadata_received_alert*>(a));
@@ -3858,19 +3957,46 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         logger->addMessage(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
     }
     else {
-        // The following is useless for newly added magnet
-        if (!fromMagnetUri) {
-            // Backup torrent file
-            const QDir resumeDataDir(m_resumeFolderPath);
-            const QString newFile = resumeDataDir.absoluteFilePath(QString("%1.torrent").arg(torrent->hash()));
-            if (torrent->saveTorrentFile(newFile)) {
-                // Copy the torrent file to the export folder
-                if (!torrentExportDirectory().isEmpty())
-                    exportTorrentFile(torrent);
-            }
-            else {
-                logger->addMessage(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
-            }
+        QByteArray metadata = fromMagnetUri ? torrent->toMagnetUri().toUtf8() : torrent->metadata();
+        if (!metadata.isEmpty()) {
+            using namespace BitTorrent::DB;
+            QSqlDatabase db = QSqlDatabase::database(MAIN_CONNECTION_NAME);
+            QSqlQuery query(db);
+            query.prepare(QString("INSERT INTO %1 (%2, %3, %4, %5, %6, %7, %8"
+                                  ", %9, %10, %11, %12, %13, %14, %15, %16) "
+                                  "VALUES (:hash, :metadata, :savePath, :ratioLimit, :seedingTimeLimit"
+                                  ", :category, :tags, :name, :seedStatus, :tempPathDisabled, :hasRootFolder"
+                                  ", :paused, :forced, :hasFirstLastPiecePrio, :sequential)")
+                                  .arg(TABLE_NAME, COL_HASH, COL_METADATA, COL_SAVE_PATH, COL_RATIO_LIMIT, COL_SEEDING_TIME_LIMIT,
+                                       COL_CATEGORY, COL_TAGS, COL_NAME)
+                                  .arg(COL_SEED_STATUS, COL_TMP_PATH_DISABLED, COL_HAS_ROOT_FOLDER, COL_PAUSED, COL_FORCED,
+                                       COL_HAS_FIRST_LAST_PIECE_PRIO, COL_SEQUENTIAL));
+            query.bindValue(":hash", QString(torrent->hash()));
+            query.bindValue(":metadata", metadata);
+            QString savePath = params.savePath.isEmpty() ? "" : Profile::instance().toPortablePath(Utils::Fs::toNativePath(params.savePath));
+            query.bindValue(":savePath", savePath);
+            query.bindValue(":ratioLimit", params.ratioLimit);
+            query.bindValue(":seedingTimeLimit", params.seedingTimeLimit);
+            query.bindValue(":category", params.category);
+            query.bindValue(":tags", params.tags.toList().join(','));
+            query.bindValue(":name", params.name);
+            query.bindValue(":seedStatus", params.hasSeedStatus);
+            query.bindValue(":tempPathDisabled", params.disableTempPath);
+            query.bindValue(":hasRootFolder", torrent->hasRootFolder()); // don't use params.hasRootFolder, the value can change in the constructor of TorrentHandle
+            query.bindValue(":paused", torrent->isPaused());
+            query.bindValue(":forced", torrent->isForced());
+            query.bindValue(":hasFirstLastPiecePrio", torrent->hasFirstLastPiecePriority());
+            query.bindValue(":sequential", torrent->isSequentialDownload());
+            if (!query.exec())
+                logger->addMessage(tr("Couldn't save torrent %1 into the database. Error: %2")
+                                   .arg(torrent->name(), query.lastError().text()), Log::CRITICAL);
+
+            // Copy the torrent file to the export folder
+            if (!fromMagnetUri && !torrentExportDirectory().isEmpty())
+                exportTorrentFile(torrent);
+        }
+        else {
+            logger->addMessage(tr("Couldn't save torrent %1 into the database. Error: Metadata array is empty.").arg(torrent->hash()), Log::CRITICAL);
         }
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
@@ -3878,10 +4004,6 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
 
         logger->addMessage(tr("'%1' added to download list.", "'torrent name' was added to download list.")
                            .arg(torrent->name()));
-
-        // In case of crash before the scheduled generation
-        // of the fastresumes.
-        saveTorrentResumeData(torrent);
     }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
@@ -4188,65 +4310,29 @@ void Session::handleStateUpdateAlert(const libt::state_update_alert *p)
 
 namespace
 {
-    bool readFile(const QString &path, QByteArray &buf)
+    void loadTorrentParams(const QSqlQuery &query, CreateTorrentParams &torrentParams)
     {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly)) {
-            qDebug("Cannot read file %s: %s", qUtf8Printable(path), qUtf8Printable(file.errorString()));
-            return false;
-        }
-
-        buf = file.readAll();
-        return true;
-    }
-
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri)
-    {
-        torrentParams = CreateTorrentParams();
         torrentParams.restored = true;
         torrentParams.skipChecking = false;
 
-        libt::error_code ec;
-        libt::bdecode_node fast;
-        libt::bdecode(data.constData(), data.constData() + data.size(), fast, ec);
-        if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
-
         torrentParams.savePath = Profile::instance().fromPortablePath(
-            Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
+            Utils::Fs::fromNativePath(query.value(4).toString()));
 
-        std::string ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
-        if (ratioLimitString.empty())
-            torrentParams.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
-        else
-            torrentParams.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
-        torrentParams.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
-        // **************************************************************************************
-        // Workaround to convert legacy label to category
-        // TODO: Should be removed in future
-        torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
-        if (torrentParams.category.isEmpty())
-        // **************************************************************************************
-            torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
-        // auto because the return type depends on the #if above.
-        const auto tagsEntry = fast.dict_find_list("qBt-tags");
-        if (isList(tagsEntry))
-            torrentParams.tags = entryListToSet(tagsEntry);
-        torrentParams.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
-        torrentParams.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
-        torrentParams.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
-        torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
+        torrentParams.ratioLimit = query.value(5).toInt() / 1000;
+        torrentParams.seedingTimeLimit = query.value(6).toInt();
+        torrentParams.category = query.value(7).toString();
 
-        magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
-        const bool isAutoManaged = fast.dict_find_int_value("auto_managed");
-        const bool isPaused = fast.dict_find_int_value("paused");
-        torrentParams.paused = fast.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
-        torrentParams.forced = fast.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
-        torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
-        torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
+        QString tags = query.value(8).toString();
+        torrentParams.tags = tags.split(',').toSet();
 
-        prio = fast.dict_find_int_value("qBt-queuePosition");
-
-        return true;
+        torrentParams.name = query.value(9).toString();
+        torrentParams.hasSeedStatus = query.value(10).toBool();
+        torrentParams.disableTempPath = query.value(11).toBool();
+        torrentParams.hasRootFolder = query.value(12).toBool();
+        torrentParams.paused = query.value(13).toBool();
+        torrentParams.forced = query.value(14).toBool();
+        torrentParams.firstLastPiecePriority = query.value(15).toBool();
+        torrentParams.sequential = query.value(16).toBool();
     }
 
     void torrentQueuePositionUp(const libt::torrent_handle &handle)

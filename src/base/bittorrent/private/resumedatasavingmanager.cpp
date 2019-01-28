@@ -28,34 +28,47 @@
 
 #include "resumedatasavingmanager.h"
 
-#include <QDebug>
-#include <QSaveFile>
+#include <QByteArray>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QVariant>
 
+#include "base/bittorrent/db.h"
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
-ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath)
-    : m_resumeDataDir(resumeFolderPath)
+static const char DB_CONNECTION_NAME[] = "saveManager";
+
+using namespace BitTorrent::DB;
+
+ResumeDataSavingManager::ResumeDataSavingManager(const QString &dbFilename)
+    : m_dbFilename(dbFilename)
 {
 }
 
-void ResumeDataSavingManager::save(const QString &filename, const QByteArray &data) const
+void ResumeDataSavingManager::save(const QString &hash, const QByteArray &data, int pos) const
 {
-    const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
-
-    QSaveFile file {filepath};
-    if (file.open(QIODevice::WriteOnly)) {
-        file.write(data);
-        if (!file.commit()) {
-            Logger::instance()->addMessage(QString("Couldn't save data in '%1'. Error: %2")
-                                           .arg(filepath, file.errorString()), Log::WARNING);
-        }
+    static bool setup = false;
+    if (!setup) {
+        // A connection to the database can be used only from the same thread that created it
+        // So here we create another one from the main one
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", DB_CONNECTION_NAME);
+        db.setDatabaseName(m_dbFilename);
+        setup = true;
     }
-}
 
-void ResumeDataSavingManager::remove(const QString &filename) const
-{
-    const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
+    QSqlDatabase db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    QSqlQuery query(db);
+    query.prepare(QString("UPDATE %1 "
+                          "SET %2 = :resume, %3 = :queue "
+                          "WHERE %4 = :hash")
+                  .arg(TABLE_NAME, COL_FASTRESUME, COL_QUEUE, COL_HASH));
+    query.bindValue(":resume", data);
+    query.bindValue(":queue", pos);
+    query.bindValue(":hash", hash);
 
-    Utils::Fs::forceRemove(filepath);
+    if (!query.exec())
+        Logger::instance()->addMessage(QString("ResumeDataSavingManager couldn't save data in '%1'. Error: %2")
+                                       .arg(hash, query.lastError().text()), Log::WARNING);
 }

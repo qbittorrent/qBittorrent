@@ -62,8 +62,6 @@ namespace libtorrent
     struct torrent_finished_alert;
     struct torrent_paused_alert;
     struct torrent_resumed_alert;
-    struct save_resume_data_alert;
-    struct save_resume_data_failed_alert;
     struct file_renamed_alert;
     struct file_rename_failed_alert;
     struct storage_moved_alert;
@@ -337,7 +335,7 @@ namespace BitTorrent
         void forceDHTAnnounce();
         void forceRecheck();
         void renameFile(int index, const QString &name);
-        bool saveTorrentFile(const QString &path);
+        QByteArray metadata() const;
         void prioritizeFiles(const QVector<int> &priorities);
         void setRatioLimit(qreal limit);
         void setSeedingTimeLimit(int limit);
@@ -390,8 +388,6 @@ namespace BitTorrent
         void handleTorrentFinishedAlert(const libtorrent::torrent_finished_alert *p);
         void handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p);
         void handleTorrentResumedAlert(const libtorrent::torrent_resumed_alert *p);
-        void handleSaveResumeDataAlert(const libtorrent::save_resume_data_alert *p);
-        void handleSaveResumeDataFailedAlert(const libtorrent::save_resume_data_failed_alert *p);
         void handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p);
         void handleFileRenamedAlert(const libtorrent::file_renamed_alert *p);
         void handleFileRenameFailedAlert(const libtorrent::file_rename_failed_alert *p);

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,22 +27,32 @@
  */
 
 #pragma once
-
-#include <QObject>
-
-class QByteArray;
-
-class ResumeDataSavingManager : public QObject
+namespace BitTorrent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(ResumeDataSavingManager)
+    namespace DB
+    {
+        const char MAIN_CONNECTION_NAME[] = "torrentsMain";
+        const char FILENAME[] = "torrentData.db";
+        const int VERSION = 1;
 
-public:
-    explicit ResumeDataSavingManager(const QString &dbFilename);
-
-public slots:
-    void save(const QString &hash, const QByteArray &data, int pos) const;
-
-private:
-    QString m_dbFilename;
-};
+        const char TABLE_NAME[] = "torrents";
+        const char COL_HASH[] = "hash";
+        const char COL_METADATA[] = "metadata";
+        const char COL_FASTRESUME[] = "fastresume";
+        const char COL_QUEUE[] = "queue";
+        const char COL_SAVE_PATH[] = "savePath";
+        const char COL_RATIO_LIMIT[] = "ratioLimit";
+        const char COL_SEEDING_TIME_LIMIT[] = "seedingTimeLimit";
+        const char COL_CATEGORY[] = "category";
+        const char COL_TAGS[] = "tags";
+        const char COL_NAME[] = "name";
+        const char COL_SEED_STATUS[] = "seedStatus";
+        const char COL_TMP_PATH_DISABLED[] = "tempPathDisabled";
+        const char COL_HAS_ROOT_FOLDER[] = "hasRootFolder";
+        const char COL_PAUSED[] = "paused";
+        const char COL_FORCED[] = "forced";
+        // magnet URI specific columns
+        const char COL_HAS_FIRST_LAST_PIECE_PRIO[] = "hasFirstLastPiecePrio";
+        const char COL_SEQUENTIAL[] = "sequential";
+    }
+}
