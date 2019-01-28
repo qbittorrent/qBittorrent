@@ -423,10 +423,11 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             const int sepPos = param.indexOf('=');
             if (sepPos <= 0) continue; // ignores params without name
 
-            const QString paramName {QString::fromUtf8(param.constData(), sepPos)};
-            const int valuePos = sepPos + 1;
-            const QString paramValue {
-                QString::fromUtf8(param.constData() + valuePos, param.size() - valuePos)};
+            const QByteArray nameComponent = midView(param, 0, sepPos);
+            const QByteArray valueComponent = midView(param, (sepPos + 1));
+
+            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
+            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent));
             m_params[paramName] = paramValue;
         }
     }

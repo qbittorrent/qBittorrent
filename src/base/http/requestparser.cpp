@@ -180,11 +180,14 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    const QByteArray decodedUrl {QByteArray::fromPercentEncoding(match.captured(2).toLatin1())};
-    const int sepPos = decodedUrl.indexOf('?');
-    m_request.path = QString::fromUtf8(decodedUrl.constData(), (sepPos == -1 ? decodedUrl.size() : sepPos));
+    // URL components should be separated before percent-decoding
+    // [rfc3986] 2.4 When to Encode or Decode
+    const QByteArray url {match.captured(2).toLatin1()};
+    const int sepPos = url.indexOf('?');
+    const QByteArray pathComponent = ((sepPos == -1) ? url : Utils::ByteArray::midView(url, 0, sepPos));
+    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent));
     if (sepPos >= 0)
-        m_request.query = decodedUrl.mid(sepPos + 1);
+        m_request.query = url.mid(sepPos + 1);
 
     // HTTP-version
     m_request.version = match.captured(3);
