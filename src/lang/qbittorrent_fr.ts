@@ -5076,7 +5076,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="1602"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>Les connexions désactivées ne sont pas supportées par les proxys.</translation>
+        <translation>Désactiver les connexions qui ne sont pas prises en charge par les proxys.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1612"/>
