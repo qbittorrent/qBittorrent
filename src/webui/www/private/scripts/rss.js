@@ -187,6 +187,8 @@
                             closable: true,
                             paddingVertical: 0,
                             paddingHorizontal: 0,
+                            width: 512,
+                            height: 256,
                             onClose: function () {
                                 valueAccessor()(null);
                             }
