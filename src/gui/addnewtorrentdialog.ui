@@ -833,6 +833,19 @@
    <item>
     <layout class="QHBoxLayout" name="buttonsHLayout">
      <item>
+      <widget class="QCheckBox" name="checkBoxNeverShow">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Never show again</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QProgressBar" name="progMetaLoading">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -860,19 +873,6 @@
         <font>
          <pointsize>10</pointsize>
         </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBoxNeverShow">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Never show again</string>
        </property>
       </widget>
      </item>
@@ -941,7 +941,6 @@
   <tabstop>categoryComboBox</tabstop>
   <tabstop>labelCommentScroll</tabstop>
   <tabstop>contentTreeView</tabstop>
-  <tabstop>checkBoxNeverShow</tabstop>
  </tabstops>
  <resources/>
  <connections>
