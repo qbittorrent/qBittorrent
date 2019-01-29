@@ -323,6 +323,7 @@ namespace
     constexpr const StringOption CATEGORY_OPTION {"category"};
     constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
     constexpr const BoolOption FIRST_AND_LAST_OPTION {"first-and-last"};
+    constexpr const BoolOption EXPORT_TORRENT_DATA_OPTION {"export-torrent-data"};
     constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {"skip-dialog", true};
 }
 
@@ -333,6 +334,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
+    , exportTorrentData(EXPORT_TORRENT_DATA_OPTION.value(env))
 #ifndef Q_OS_WIN
     , showVersion(false)
 #endif
@@ -383,6 +385,9 @@ QStringList QBtCommandLineParameters::paramList() const
 
     if (firstLastPiecePriority)
         result.append(QLatin1String("@firstLastPiecePriority"));
+
+    if (exportTorrentData)
+        result.append(QLatin1String("@exportTorrentData"));
 
     if (skipDialog == TriStateBool::True) {
         result.append(QLatin1String("@skipDialog=1"));
@@ -457,6 +462,9 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             }
             else if (arg == FIRST_AND_LAST_OPTION) {
                 result.firstLastPiecePriority = true;
+            }
+            else if (arg == EXPORT_TORRENT_DATA_OPTION) {
+                result.exportTorrentData = true;
             }
             else if (arg == SKIP_DIALOG_OPTION) {
                 result.skipDialog = SKIP_DIALOG_OPTION.value(arg);
@@ -558,6 +566,9 @@ QString makeUsage(const QString &prgName)
     stream << SEQUENTIAL_OPTION.usage() << wrapText(QObject::tr("Download files in sequential order")) << '\n';
     stream << FIRST_AND_LAST_OPTION.usage()
            << wrapText(QObject::tr("Download first and last pieces first")) << '\n';
+    stream << EXPORT_TORRENT_DATA_OPTION.usage()
+           << wrapText(QObject::tr("Export torrent data to the saving system used by 4.1.x series. "
+                                   "Torrents/fastresumes will be exported in the BT_backup folder.")) << '\n';
     stream << SKIP_DIALOG_OPTION.usage()
            << wrapText(QObject::tr("Specify whether the \"Add New Torrent\" dialog opens when adding a "
                                    "torrent.")) << '\n';

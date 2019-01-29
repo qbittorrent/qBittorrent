@@ -233,6 +233,11 @@ int main(int argc, char *argv[])
             return 1;
         }
 
+        if (params.exportTorrentData) {
+            exportTorrentData();
+            return EXIT_SUCCESS;
+        }
+
 #ifdef DISABLE_GUI
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application

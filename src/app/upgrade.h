@@ -29,3 +29,4 @@
 #pragma once
 
 bool upgrade(bool ask = true);
+void exportTorrentData();

@@ -43,10 +43,13 @@
 #endif
 
 #include <libtorrent/bdecode.hpp>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/entry.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/version.hpp>
 
 #include "base/bittorrent/db.h"
+#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -122,6 +125,50 @@ namespace
         prio = fast.dict_find_int_value("qBt-queuePosition");
 
         return true;
+    }
+
+    void prepareTorrentData(const QSqlQuery &query, int &queuePos, QByteArray &metadata,
+                            QByteArray &fastresume, bool &isMagnetUri)
+    {
+        metadata = query.value(1).toByteArray();
+        QByteArray tmpFastresume = query.value(2).toByteArray();
+
+        namespace libt = libtorrent;
+
+        libt::error_code ec;
+        libt::bdecode_node fast;
+        libt::bdecode(tmpFastresume.constData(), tmpFastresume.constData() + tmpFastresume.size(), fast, ec);
+        if (ec || (fast.type() != libt::bdecode_node::dict_t)) return;
+
+        libt::entry resumeData(libt::entry::dictionary_t);
+        resumeData = fast;
+
+        resumeData["qBt-savePath"] = query.value(4).toString().toStdString();
+        resumeData["qBt-ratioLimit"] = query.value(5).toInt();
+        resumeData["qBt-seedingTimeLimit"] = query.value(6).toInt();
+        resumeData["qBt-category"] = query.value(7).toString().toStdString();
+        /*???*/ resumeData["qBt-tags"] = query.value(8).toString().toStdString();
+        resumeData["qBt-name"] = query.value(9).toString().toStdString();
+        resumeData["qBt-seedStatus"] = query.value(10).toBool();
+        resumeData["qBt-tempPathDisabled"] = query.value(11).toBool();
+        queuePos = query.value(3).toInt();
+        resumeData["qBt-queuePosition"] = (queuePos + 1); // qBt starts queue at 1. Compatibility with pre 4.1.5 versions
+        resumeData["qBt-hasRootFolder"] = query.value(12).toBool();
+
+        // The 'metadata' var might be a magnet URI saved into the COL_METADATA column before the metadata
+        // were received from the network. Internally addTorrent_impl() checks if the constructed below
+        // MagnetUri is valid.
+        BitTorrent::MagnetUri magnetUri{metadata};
+        if (magnetUri.isValid()) {
+            isMagnetUri = true;
+            resumeData["qBt-magnetUri"] = metadata.toStdString();
+            resumeData["qBt-paused"] = query.value(13).toBool();
+            resumeData["qBt-forced"] = query.value(14).toBool();
+            resumeData["qBt-firstLastPiecePriority"] = query.value(15).toBool();
+            resumeData["qBt-sequential"] = query.value(16).toBool();
+        }
+
+        libt::bencode(std::back_inserter(fastresume), resumeData);
     }
 
     bool userAcceptsUpgrade()
@@ -268,4 +315,51 @@ bool upgrade(const bool ask)
 
     db.commit();
     return true;
+}
+
+void exportTorrentData()
+{
+    const QString backupFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "BT_backup");
+    const QDir backupFolderDir(backupFolderPath);
+
+    using namespace BitTorrent::DB;
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.exec(QString("SELECT %1, %2, %3, %4, %5, %6, %7, %8, %9, %10, %11, %12, %13, %14, %15, %16, %17 FROM %18 ORDER BY %4 ASC")
+               .arg(COL_HASH, COL_METADATA, COL_FASTRESUME, COL_QUEUE, COL_SAVE_PATH,
+                    COL_RATIO_LIMIT, COL_SEEDING_TIME_LIMIT, COL_CATEGORY, COL_TAGS)
+               .arg(COL_NAME, COL_SEED_STATUS, COL_TMP_PATH_DISABLED, COL_HAS_ROOT_FOLDER,
+                    COL_PAUSED, COL_FORCED, COL_HAS_FIRST_LAST_PIECE_PRIO, COL_SEQUENTIAL, TABLE_NAME));
+
+    QByteArray queueList;
+    while (query.next()) {
+        const QString hash = query.value(0).toString();
+        int queuePosition = -1;
+        QByteArray metadata;
+        QByteArray fastresume;
+        bool isMagnetUri = false;
+
+        prepareTorrentData(query, queuePosition, metadata, fastresume, isMagnetUri);
+
+        if (queuePosition >= 0)
+            queueList += hash.toLatin1() + '\n';
+
+        QFile file(backupFolderDir.absoluteFilePath(QString("%1.fastresume").arg(hash)));
+        if (file.open(QIODevice::WriteOnly)) {
+            file.write(fastresume.constData(), fastresume.size());
+            file.close();
+            if (!isMagnetUri) {
+                file.setFileName(backupFolderDir.absoluteFilePath(QString("%1.torrent").arg(hash)));
+                if (file.open(QIODevice::WriteOnly))
+                    file.write(metadata.constData(), metadata.size());
+            }
+        }
+    }
+
+    if (queueList.isEmpty()) return;
+
+    QFile file(backupFolderDir.absoluteFilePath(QLatin1String{"queue"}));
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(queueList.constData(), queueList.size());
+    }
 }
