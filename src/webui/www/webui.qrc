@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/www">
         <file>private/about.html</file>
+        <file>private/aboutToolbar.html</file>
         <file>private/addtrackers.html</file>
         <file>private/confirmdeletion.html</file>
         <file>private/css/Core.css</file>

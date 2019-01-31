@@ -737,9 +737,14 @@ var initializeWindows = function() {
         var id = 'aboutpage';
         new MochaUI.Window({
             id: id,
-            title: 'QBT_TR(About)QBT_TR[CONTEXT=AboutDlg]',
+            title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',
             loadMethod: 'xhr',
             contentURL: 'about.html',
+            require: {
+                css: ['css/Tabs.css']
+            },
+            toolbar: true,
+            toolbarURL: 'aboutToolbar.html',
             padding: 10,
             width: loadWindowWidth(id, 550),
             height: loadWindowHeight(id, 290),
