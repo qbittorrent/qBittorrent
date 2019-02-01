@@ -39,11 +39,6 @@
 #include <QTimer>
 #include <QTranslator>
 
-#ifndef QT_NO_OPENSSL
-#include <QSslCertificate>
-#include <QSslKey>
-#endif
-
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -223,8 +218,8 @@ void AppController::preferencesAction()
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
     data["use_https"] = pref->isWebUiHttpsEnabled();
-    data["ssl_key"] = QString::fromLatin1(pref->getWebUiHttpsKey());
-    data["ssl_cert"] = QString::fromLatin1(pref->getWebUiHttpsCertificate());
+    data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath();
+    data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath();
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
@@ -518,18 +513,10 @@ void AppController::setPreferencesAction()
         pref->setUPnPForWebUIPort(m["web_ui_upnp"].toBool());
     if (m.contains("use_https"))
         pref->setWebUiHttpsEnabled(m["use_https"].toBool());
-#ifndef QT_NO_OPENSSL
-    if (m.contains("ssl_key")) {
-        QByteArray raw_key = m["ssl_key"].toString().toLatin1();
-        if (!QSslKey(raw_key, QSsl::Rsa).isNull())
-            pref->setWebUiHttpsKey(raw_key);
-    }
-    if (m.contains("ssl_cert")) {
-        QByteArray raw_cert = m["ssl_cert"].toString().toLatin1();
-        if (!QSslCertificate(raw_cert).isNull())
-            pref->setWebUiHttpsCertificate(raw_cert);
-    }
-#endif
+    if ((it = m.find(QLatin1String("web_ui_https_cert_path"))) != m.constEnd())
+        pref->setWebUIHttpsCertificatePath(it.value().toString());
+    if ((it = m.find(QLatin1String("web_ui_https_key_path"))) != m.constEnd())
+        pref->setWebUIHttpsKeyPath(it.value().toString());
     // Authentication
     if (m.contains("web_ui_username"))
         pref->setWebUiUsername(m["web_ui_username"].toString());

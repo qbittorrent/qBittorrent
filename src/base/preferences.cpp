@@ -50,7 +50,6 @@
 #endif
 
 #include "global.h"
-#include "logger.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
 #include "utils/misc.h"
@@ -634,24 +633,24 @@ void Preferences::setWebUiHttpsEnabled(bool enabled)
     setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
 }
 
-QByteArray Preferences::getWebUiHttpsCertificate() const
+QString Preferences::getWebUIHttpsCertificatePath() const
 {
-    return value("Preferences/WebUI/HTTPS/Certificate").toByteArray();
+    return value("Preferences/WebUI/HTTPS/CertificatePath").toString();
 }
 
-void Preferences::setWebUiHttpsCertificate(const QByteArray &data)
+void Preferences::setWebUIHttpsCertificatePath(const QString &path)
 {
-    setValue("Preferences/WebUI/HTTPS/Certificate", data);
+    setValue("Preferences/WebUI/HTTPS/CertificatePath", path);
 }
 
-QByteArray Preferences::getWebUiHttpsKey() const
+QString Preferences::getWebUIHttpsKeyPath() const
 {
-    return value("Preferences/WebUI/HTTPS/Key").toByteArray();
+    return value("Preferences/WebUI/HTTPS/KeyPath").toString();
 }
 
-void Preferences::setWebUiHttpsKey(const QByteArray &data)
+void Preferences::setWebUIHttpsKeyPath(const QString &path)
 {
-    setValue("Preferences/WebUI/HTTPS/Key", data);
+    setValue("Preferences/WebUI/HTTPS/KeyPath", path);
 }
 
 bool Preferences::isAltWebUiEnabled() const

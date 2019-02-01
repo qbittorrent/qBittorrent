@@ -42,13 +42,9 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
-#ifndef QT_NO_OPENSSL
-#include <QSslCertificate>
-#include <QSslKey>
-#endif
-
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/http/server.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
@@ -59,6 +55,7 @@
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
@@ -194,11 +191,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->labelTrayIconStyle->setVisible(false);
         m_ui->comboTrayIcon->setVisible(false);
     }
-#endif
-
-#if defined(QT_NO_OPENSSL)
-    m_ui->checkWebUiHttps->setVisible(false);
-    m_ui->checkSmtpSSL->setVisible(false);
 #endif
 
 #ifndef Q_OS_WIN
@@ -390,14 +382,23 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 #ifndef DISABLE_WEBUI
     // Web UI tab
+    m_ui->textWebUIHttpsCert->setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_ui->textWebUIHttpsCert->setFileNameFilter(tr("Certificate") + QLatin1String(" (*.cer *.crt *.pem)"));
+    m_ui->textWebUIHttpsCert->setDialogCaption(tr("Select certificate"));
+    m_ui->textWebUIHttpsKey->setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_ui->textWebUIHttpsKey->setFileNameFilter(tr("Private key") + QLatin1String(" (*.key *.pem)"));
+    m_ui->textWebUIHttpsKey->setDialogCaption(tr("Select private key"));
+
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUi, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinWebUiPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->btnWebUiKey, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
-    connect(m_ui->btnWebUiCrt, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const QString &s) { webUIHttpsCertChanged(s, ShowError::Show); });
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const QString &s) { webUIHttpsKeyChanged(s, ShowError::Show); });
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -722,11 +723,8 @@ void OptionsDialog::saveOptions()
         pref->setWebUiPort(m_ui->spinWebUiPort->value());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
-        // HTTPS
-        if (m_ui->checkWebUiHttps->isChecked()) {
-            pref->setWebUiHttpsCertificate(m_sslCert);
-            pref->setWebUiHttpsKey(m_sslKey);
-        }
+        pref->setWebUIHttpsCertificatePath(m_ui->textWebUIHttpsCert->selectedPath());
+        pref->setWebUIHttpsKeyPath(m_ui->textWebUIHttpsKey->selectedPath());
         // Authentication
         pref->setWebUiUsername(webUiUsername());
         if (!webUiPassword().isEmpty())
@@ -1089,8 +1087,8 @@ void OptionsDialog::loadOptions()
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
     m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
-    setSslCertificate(pref->getWebUiHttpsCertificate());
-    setSslKey(pref->getWebUiHttpsKey());
+    webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath(), ShowError::NotShow);
+    webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath(), ShowError::NotShow);
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
@@ -1559,39 +1557,57 @@ QString OptionsDialog::webUiPassword() const
     return m_ui->textWebUiPassword->text();
 }
 
+void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError showError)
+{
+    m_ui->textWebUIHttpsCert->setSelectedPath(path);
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+
+    if (path.isEmpty())
+        return;
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly)) {
+        if (showError == ShowError::Show)
+            QMessageBox::warning(this, tr("Invalid path"), file.errorString());
+        return;
+    }
+
+    if (!Utils::Net::isSSLCertificatesValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE))) {
+        if (showError == ShowError::Show)
+            QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
+        return;
+    }
+
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+}
+
+void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError showError)
+{
+    m_ui->textWebUIHttpsKey->setSelectedPath(path);
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+
+    if (path.isEmpty())
+        return;
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly)) {
+        if (showError == ShowError::Show)
+            QMessageBox::warning(this, tr("Invalid path"), file.errorString());
+        return;
+    }
+
+    if (!Utils::Net::isSSLKeyValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE))) {
+        if (showError == ShowError::Show)
+            QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
+        return;
+    }
+
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+}
+
 void OptionsDialog::showConnectionTab()
 {
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
-}
-
-void OptionsDialog::on_btnWebUiCrt_clicked()
-{
-    const QString filename = QFileDialog::getOpenFileName(this, tr("Import SSL certificate"), QString(), tr("SSL Certificate") + QLatin1String(" (*.crt *.pem)"));
-    if (filename.isEmpty())
-        return;
-
-    QFile cert(filename);
-    if (!cert.open(QIODevice::ReadOnly))
-        return;
-
-    bool success = setSslCertificate(cert.read(1024 * 1024));
-    if (!success)
-        QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
-}
-
-void OptionsDialog::on_btnWebUiKey_clicked()
-{
-    const QString filename = QFileDialog::getOpenFileName(this, tr("Import SSL key"), QString(), tr("SSL key") + QLatin1String(" (*.key *.pem)"));
-    if (filename.isEmpty())
-        return;
-
-    QFile key(filename);
-    if (!key.open(QIODevice::ReadOnly))
-        return;
-
-    bool success = setSslKey(key.read(1024 * 1024));
-    if (!success)
-        QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
 }
 
 void OptionsDialog::on_registerDNSBtn_clicked()
@@ -1696,45 +1712,6 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
         return engLang;
     }
     }
-}
-
-bool OptionsDialog::setSslKey(const QByteArray &key)
-{
-#ifndef QT_NO_OPENSSL
-    // try different formats
-    const bool isKeyValid = (!QSslKey(key, QSsl::Rsa).isNull() || !QSslKey(key, QSsl::Ec).isNull());
-    if (isKeyValid) {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
-        m_sslKey = key;
-    }
-    else {
-        m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
-        m_sslKey.clear();
-    }
-    return isKeyValid;
-#else
-    Q_UNUSED(key);
-    return false;
-#endif
-}
-
-bool OptionsDialog::setSslCertificate(const QByteArray &cert)
-{
-#ifndef QT_NO_OPENSSL
-    const bool isCertValid = !QSslCertificate(cert).isNull();
-    if (isCertValid) {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
-        m_sslCert = cert;
-    }
-    else {
-        m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
-        m_sslCert.clear();
-    }
-    return isCertValid;
-#else
-    Q_UNUSED(cert);
-    return false;
-#endif
 }
 
 bool OptionsDialog::schedTimesOk()
