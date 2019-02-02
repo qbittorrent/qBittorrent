@@ -576,15 +576,15 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedRows.empty()) return;
 
-    QMenu myFilesLlistMenu;
+    QMenu myFilesListMenu;
     QAction *actOpen = nullptr;
     QAction *actOpenContainingFolder = nullptr;
     QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
-        actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
-        actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
-        myFilesLlistMenu.addSeparator();
+        actOpen = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
+        actOpenContainingFolder = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
+        actRename = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        myFilesListMenu.addSeparator();
     }
     QMenu subMenu;
     if (!m_torrent->isSeed()) {
@@ -593,15 +593,22 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         subMenu.addAction(m_ui->actionNormal);
         subMenu.addAction(m_ui->actionHigh);
         subMenu.addAction(m_ui->actionMaximum);
-        myFilesLlistMenu.addMenu(&subMenu);
+        myFilesListMenu.addMenu(&subMenu);
     }
-    // Call menu
-    const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
-    // The selected torrent might have disappeared during exec()
-    // from the current view thus leaving invalid indices.
-    const QModelIndex index = *(selectedRows.begin());
-    if (!index.isValid() || !act) return;
 
+    // The selected torrent might have disappeared during exec()
+    // so we just close menu when an appropriate model is reset
+    connect(m_ui->filesList->model(), &QAbstractItemModel::modelAboutToBeReset
+            , &myFilesListMenu, [&myFilesListMenu]()
+    {
+        myFilesListMenu.setActiveAction(nullptr);
+        myFilesListMenu.close();
+    });
+    // Call menu
+    const QAction *act = myFilesListMenu.exec(QCursor::pos());
+    if (!act) return;
+
+    const QModelIndex index = selectedRows[0];
     if (act == actOpen) {
         openDoubleClickedFile(index);
     }
