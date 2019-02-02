@@ -51,5 +51,6 @@
         <file>public/css/login.css</file>
         <file>public/css/noscript.css</file>
         <file>public/login.html</file>
+        <file>public/scripts/login.js</file>
     </qresource>
 </RCC>
