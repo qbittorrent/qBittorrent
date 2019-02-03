@@ -723,51 +723,36 @@ window.addEvent('load', function() {
             };
 
             $('PropGeneralLink').addEvent('click', function(e) {
+                $$('.propertiesTabContent').addClass('invisible');
                 $('prop_general').removeClass("invisible");
-                $('prop_trackers').addClass("invisible");
-                $('prop_webseeds').addClass("invisible");
-                $('prop_files').addClass("invisible");
-                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropTrackersLink').addEvent('click', function(e) {
+                $$('.propertiesTabContent').addClass('invisible');
                 $('prop_trackers').removeClass("invisible");
-                $('prop_general').addClass("invisible");
-                $('prop_webseeds').addClass("invisible");
-                $('prop_files').addClass("invisible");
-                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropPeersLink').addEvent('click', function(e) {
+                $$('.propertiesTabContent').addClass('invisible');
                 $('prop_peers').removeClass("invisible");
-                $('prop_trackers').addClass("invisible");
-                $('prop_general').addClass("invisible");
-                $('prop_webseeds').addClass("invisible");
-                $('prop_files').addClass("invisible");
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropWebSeedsLink').addEvent('click', function(e) {
+                $$('.propertiesTabContent').addClass('invisible');
                 $('prop_webseeds').removeClass("invisible");
-                $('prop_general').addClass("invisible");
-                $('prop_trackers').addClass("invisible");
-                $('prop_files').addClass("invisible");
-                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
 
             $('PropFilesLink').addEvent('click', function(e) {
+                $$('.propertiesTabContent').addClass('invisible');
                 $('prop_files').removeClass("invisible");
-                $('prop_general').addClass("invisible");
-                $('prop_trackers').addClass("invisible");
-                $('prop_webseeds').addClass("invisible");
-                $('prop_peers').addClass("invisible");
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });

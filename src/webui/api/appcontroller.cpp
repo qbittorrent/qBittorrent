@@ -54,6 +54,7 @@
 #include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "../webapplication.h"
@@ -66,6 +67,18 @@ void AppController::webapiVersionAction()
 void AppController::versionAction()
 {
     setResult(QBT_VERSION);
+}
+
+void AppController::buildInfoAction()
+{
+    const QJsonObject versions = {
+        {"qt", QT_VERSION_STR},
+        {"libtorrent", Utils::Misc::libtorrentVersionString()},
+        {"boost", Utils::Misc::boostVersionString()},
+        {"openssl", Utils::Misc::opensslVersionString()},
+        {"bitness", (QT_POINTER_SIZE * 8)}
+    };
+    setResult(versions);
 }
 
 void AppController::shutdownAction()
