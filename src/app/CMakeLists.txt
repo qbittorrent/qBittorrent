@@ -7,6 +7,7 @@ application.cpp
 cmdoptions.cpp
 filelogger.cpp
 main.cpp
+upgrade.cpp
 )
 
 target_include_directories(qBittorrent PRIVATE ${CMAKE_CURRENT_BINARY_DIR})

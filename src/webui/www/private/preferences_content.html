@@ -682,18 +682,18 @@
             <table>
                 <tr>
                     <td>
-                        <label for="ssl_key_textarea">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="ssl_cert_text">QBT_TR(Certificate:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <textarea id="ssl_key_textarea" rows="5" cols="70"></textarea>
+                        <input type="text" id="ssl_cert_text" style="width: 30em;" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="ssl_cert_textarea">QBT_TR(Certificate:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="ssl_key_text">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea>
+                        <input type="text" id="ssl_key_text" style="width: 30em;" />
                     </td>
                 </tr>
             </table>
@@ -1043,8 +1043,8 @@
     // Web UI tab
     var updateHttpsSettings = function() {
         var isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
-        $('ssl_key_textarea').setProperty('disabled', !isUseHttpsEnabled);
-        $('ssl_cert_textarea').setProperty('disabled', !isUseHttpsEnabled);
+        $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
+        $('ssl_key_text').setProperty('disabled', !isUseHttpsEnabled);
     };
 
     var updateBypasssAuthSettings = function() {
@@ -1330,8 +1330,8 @@
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
                     $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
                     $('use_https_checkbox').setProperty('checked', pref.use_https);
-                    $('ssl_key_textarea').setProperty('value', pref.ssl_key);
-                    $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
+                    $('ssl_cert_text').setProperty('value', pref.web_ui_https_cert_path);
+                    $('ssl_key_text').setProperty('value', pref.web_ui_https_key_path);
                     updateHttpsSettings();
 
                     // Authentication
@@ -1646,8 +1646,8 @@
         settings.set('web_ui_port', web_ui_port);
         settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
         settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
-        settings.set('ssl_key', $('ssl_key_textarea').getProperty('value'));
-        settings.set('ssl_cert', $('ssl_cert_textarea').getProperty('value'));
+        settings.set('web_ui_https_cert_path', $('ssl_cert_text').getProperty('value'));
+        settings.set('web_ui_https_key_path', $('ssl_key_text').getProperty('value'));
 
         // Authentication
         var web_ui_username = $('webui_username_text').getProperty('value');

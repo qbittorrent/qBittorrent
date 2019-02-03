@@ -47,6 +47,7 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
+#include <QTimer>
 
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>

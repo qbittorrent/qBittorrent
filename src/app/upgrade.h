@@ -28,9 +28,4 @@
 
 #pragma once
 
-bool upgrade(bool /*ask*/ = true)
-{
-    // Intentionally left no-op as a placeholder for future use
-
-    return true;
-}
+bool upgrade(bool ask = true);

@@ -17,13 +17,15 @@ usesystemqtsingleapplication {
 HEADERS += \
     $$PWD/application.h \
     $$PWD/cmdoptions.h \
-    $$PWD/filelogger.h
+    $$PWD/filelogger.h \
+    $$PWD/upgrade.h
 
 SOURCES += \
     $$PWD/application.cpp \
     $$PWD/cmdoptions.cpp \
     $$PWD/filelogger.cpp \
-    $$PWD/main.cpp
+    $$PWD/main.cpp \
+    $$PWD/upgrade.cpp
 
 stacktrace {
     unix {
@@ -37,6 +39,3 @@ stacktrace {
         }
     }
 }
-
-# upgrade code
-HEADERS += $$PWD/upgrade.h
