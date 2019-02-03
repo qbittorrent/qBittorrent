@@ -8,6 +8,7 @@
       <div><label>Name</label><input data-name="name" /></div>\
       <div><label>Must contain</label><input data-name="mustContain" /></div>\
       <div><label>Must NOT contain</label><input data-name="mustNotContain" /></div>\
+      <div><label>Ignore days</label><select data-bind="options: $parent.days, value: ignoreDays"></select></div>\
       <div><label>Save path</label><input data-name="savePath" /><select data-bind="options: $parent.paths, value: selectedPath"></select></div>\
       <label>Feeds</label>\
       <div data-name="feeds">\
@@ -60,6 +61,7 @@
 
         this.listRules();
         this.canDeleteSelectedRule = ko.computed(function () { return this.selectedRule() != null }, this);
+        this.days = [...Array(14).keys()];
     };
 
     RssModel.prototype = {
@@ -109,6 +111,7 @@
         this.mustContain = data.mustContain;
         this.mustNotContain = data.mustNotContain;
         this.savePath = ko.observable(data.savePath);
+        this.ignoreDays = data.ignoreDays;
         this.feeds = feeds.map(function (f) { return new Feed(f, data.affectedFeeds.indexOf(f.url.url) >= 0) });
 
         this.data = data;
