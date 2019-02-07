@@ -225,7 +225,7 @@ namespace
     template <typename T>
     std::function<T (const T&)> clampValue(const T lower, const T upper)
     {
-        // TODO: change return type to `auto` when using C++14
+        // TODO: change return type to `auto` when using C++17
         return [lower, upper](const T value) -> T
         {
             if (value < lower)
@@ -3460,18 +3460,18 @@ void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QS
 
 bool Session::hasPerTorrentRatioLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->ratioLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->ratioLimit() >= 0);
+    });
 }
 
 bool Session::hasPerTorrentSeedingTimeLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->seedingTimeLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->seedingTimeLimit() >= 0);
+    });
 }
 
 void Session::initResumeFolder()

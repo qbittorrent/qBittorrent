@@ -30,6 +30,8 @@
 
 #include "requestparser.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QRegularExpression>
 #include <QStringList>
@@ -242,12 +244,10 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
         const QByteArray endDelimiter = QByteArray("--") + delimiter + QByteArray("--") + CRLF;
         multipart.push_back(viewWithoutEndingWith(multipart.takeLast(), endDelimiter));
 
-        for (const auto &part : multipart) {
-            if (!parseFormData(part))
-                return false;
-        }
-
-        return true;
+        return std::all_of(multipart.cbegin(), multipart.cend(), [this](const QByteArray &part)
+        {
+            return this->parseFormData(part);
+        });
     }
 
     qWarning() << Q_FUNC_INFO << "unknown content type:" << contentType;
