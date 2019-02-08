@@ -399,7 +399,7 @@ namespace BitTorrent
         void handleMetadataReceivedAlert(const libtorrent::metadata_received_alert *p);
         void handleStatsAlert(const libtorrent::stats_alert *p);
 
-        void resume_impl(bool forced, bool uploadMode);
+        void resume_impl(bool forced);
         bool isMoveInProgress() const;
         QString nativeActualSavePath() const;
 
