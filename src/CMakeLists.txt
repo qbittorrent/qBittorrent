@@ -68,18 +68,6 @@ endif()
 
 configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-find_package(QtSingleApplication)
-set_package_properties(QtSingleApplication PROPERTIES
-    URL "https://code.qt.io/cgit/qt-solutions/qt-solutions.git/"
-    DESCRIPTION "Qt library to start applications only once per user"
-    TYPE RECOMMENDED
-    PURPOSE "Use the system qtsingleapplication library or shipped one otherwise"
-)
-
-if (NOT QtSingleApplication_FOUND)
-    add_subdirectory(app/qtsingleapplication)
-endif ()
-
 add_subdirectory(app)
 add_subdirectory(base)
 

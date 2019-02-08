@@ -1,12 +1,16 @@
 add_executable(qBittorrent
 application.h
+applicationinstancemanager.h
 cmdoptions.h
 filelogger.h
+qtlocalpeer/qtlocalpeer.h
 upgrade.h
 application.cpp
+applicationinstancemanager.cpp
 cmdoptions.cpp
 filelogger.cpp
 main.cpp
+qtlocalpeer/qtlocalpeer.cpp
 upgrade.cpp
 )
 
@@ -134,8 +138,6 @@ endif (APPLE)
 target_sources(qBittorrent PRIVATE ${QBT_QM_FILES} ${QBT_APP_RESOURCE_SOURCE})
 
 get_target_property(QBT_EXECUTABLE_NAME qBittorrent OUTPUT_NAME)
-
-target_link_libraries(qBittorrent PRIVATE ${QBT_TARGET_LIBRARIES} QtSingleApplication::QtSingleApplication)
 
 if (APPLE)
     set(qbt_BUNDLE_NAME ${QBT_EXECUTABLE_NAME})

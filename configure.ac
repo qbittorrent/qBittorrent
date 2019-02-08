@@ -14,12 +14,6 @@ QBT_CXX="$CXX"
 
 # Define --wth-* and --enable-* arguments
 
-AC_ARG_WITH(qtsingleapplication,
-            [AS_HELP_STRING([--with-qtsingleapplication=@<:@system|shipped@:>@],
-                            [Use the shipped qtsingleapplication library or the system one (default=shipped)])],
-            [],
-            [with_qtsingleapplication=shipped])
-
 AC_ARG_ENABLE(debug,
               [AS_HELP_STRING([--enable-debug],
                               [Enable debug build])],
@@ -182,17 +176,6 @@ AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
 AX_BOOST_SYSTEM()
 AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
-
-AC_MSG_CHECKING([which qtsingleapplication to use])
-AS_CASE(["x$with_qtsingleapplication"],
-        ["xshipped"],
-                   [AC_MSG_RESULT([shipped])
-                   QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqtsingleapplication"],
-        ["xsystem"],
-                  [AC_MSG_RESULT([system])
-                  QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqtsingleapplication"],
-        [AC_MSG_RESULT([$with_qtsingleapplication])
-        AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
 PKG_CHECK_MODULES(libtorrent,
                   [libtorrent-rasterbar >= 1.1.10],
