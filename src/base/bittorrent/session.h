@@ -543,7 +543,7 @@ namespace BitTorrent
         void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
 
         // Session reconfiguration triggers
-        void networkOnlineStateChanged(const bool online);
+        void networkOnlineStateChanged(bool online);
         void networkConfigurationChange(const QNetworkConfiguration&);
 
     private:

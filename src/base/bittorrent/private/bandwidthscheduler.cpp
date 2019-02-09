@@ -93,7 +93,7 @@ bool BandwidthScheduler::isTimeForAlternative() const
 
 void BandwidthScheduler::onTimeout()
 {
-    bool alternative = isTimeForAlternative();
+    const bool alternative = isTimeForAlternative();
 
     if (alternative != m_lastAlternative) {
         m_lastAlternative = alternative;

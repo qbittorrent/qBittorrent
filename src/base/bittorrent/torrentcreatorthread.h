@@ -57,7 +57,7 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
-        static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized);
+        static int calculateTotalPieces(const QString &inputPath, int pieceSize, bool isAlignmentOptimized);
 
     protected:
         void run();

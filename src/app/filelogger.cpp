@@ -85,8 +85,8 @@ void FileLogger::changePath(const QString &newPath)
 
 void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
-    QDateTime date = QDateTime::currentDateTime();
-    QDir dir(Utils::Fs::branchPath(m_path));
+    const QDateTime date = QDateTime::currentDateTime();
+    const QDir dir(Utils::Fs::branchPath(m_path));
 
     for (const QFileInfo &file : asConst(dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed))) {
         QDateTime modificationDate = file.lastModified();
@@ -111,7 +111,7 @@ void FileLogger::setBackup(bool value)
     m_backup = value;
 }
 
-void FileLogger::setMaxSize(int value)
+void FileLogger::setMaxSize(const int value)
 {
     m_maxSize = value;
 }

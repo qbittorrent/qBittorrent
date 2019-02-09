@@ -228,7 +228,7 @@ void PluginSelectDialog::enableSelection(bool enable)
 }
 
 // Set the color of a row in data model
-void PluginSelectDialog::setRowColor(int row, QString color)
+void PluginSelectDialog::setRowColor(const int row, QString color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i) {
