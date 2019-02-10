@@ -780,7 +780,7 @@ void AddNewTorrentDialog::TMMChanged(int index)
 
 void AddNewTorrentDialog::setCommentText(const QString &str) const
 {
-    m_ui->commentLabel->setText(str);
+    m_ui->commentText->setText(str);
 }
 
 void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
