@@ -287,8 +287,8 @@ int TorrentContentModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return static_cast<TorrentContentModelItem*>(parent.internalPointer())->columnCount();
-    else
-        return m_rootItem->columnCount();
+
+    return m_rootItem->columnCount();
 }
 
 bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -361,8 +361,8 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
-        else
-            return m_fileIconProvider->icon(QFileInfo(item->name()));
+
+        return m_fileIconProvider->icon(QFileInfo(item->name()));
     }
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {

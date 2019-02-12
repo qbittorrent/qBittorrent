@@ -543,12 +543,12 @@ QStringList TrackerFiltersList::getHashes(int row)
 {
     if (row == 1)
         return m_trackers.value("");
-    else if (row == 2)
+    if (row == 2)
         return m_errors.keys();
-    else if (row == 3)
+    if (row == 3)
         return m_warnings.keys();
-    else
-        return m_trackers.value(trackerFromRow(row));
+
+     return m_trackers.value(trackerFromRow(row));
 }
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)

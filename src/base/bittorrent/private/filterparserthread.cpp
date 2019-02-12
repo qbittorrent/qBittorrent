@@ -177,9 +177,8 @@ int FilterParserThread::parseDATFilterFile()
                 memmove(buffer.data(), buffer.data() + start, offset);
                 break;
             }
-            else {
-                ++nbLine;
-            }
+
+            ++nbLine;
 
             if ((buffer[start] == '#')
                 || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/')))) {
@@ -325,9 +324,8 @@ int FilterParserThread::parseP2PFilterFile()
                 memmove(buffer.data(), buffer.data() + start, offset);
                 break;
             }
-            else {
-                ++nbLine;
-            }
+
+            ++nbLine;
 
             if ((buffer[start] == '#')
                 || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/')))) {

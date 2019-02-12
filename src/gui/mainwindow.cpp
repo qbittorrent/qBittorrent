@@ -758,9 +758,8 @@ void MainWindow::tabChanged(int newTab)
         m_searchFilterAction->setVisible(true);
         return;
     }
-    else {
-        m_searchFilterAction->setVisible(false);
-    }
+    m_searchFilterAction->setVisible(false);
+
     if (m_tabs->currentWidget() == m_searchWidget) {
         qDebug("Changed tab to search engine, giving focus to search input");
         m_searchWidget->giveFocusToSearchInput();

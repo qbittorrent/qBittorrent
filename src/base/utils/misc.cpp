@@ -285,8 +285,8 @@ int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
     // friendlyUnit's number of digits after the decimal point
     if (unit == SizeUnit::Byte) return 0;
     if (unit <= SizeUnit::MebiByte) return 1;
-    else if (unit == SizeUnit::GibiByte) return 2;
-    else return 3;
+    if (unit == SizeUnit::GibiByte) return 2;
+    return 3;
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)

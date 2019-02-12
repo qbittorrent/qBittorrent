@@ -1209,32 +1209,32 @@ int OptionsDialog::getMaxConnecs() const
 {
     if (!m_ui->checkMaxConnecs->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxConnec->value();
+
+    return m_ui->spinMaxConnec->value();
 }
 
 int OptionsDialog::getMaxConnecsPerTorrent() const
 {
     if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxConnecPerTorrent->value();
+
+    return m_ui->spinMaxConnecPerTorrent->value();
 }
 
 int OptionsDialog::getMaxUploads() const
 {
     if (!m_ui->checkMaxUploads->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxUploads->value();
+
+    return m_ui->spinMaxUploads->value();
 }
 
 int OptionsDialog::getMaxUploadsPerTorrent() const
 {
     if (!m_ui->checkMaxUploadsPerTorrent->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxUploadsPerTorrent->value();
+
+    return m_ui->spinMaxUploadsPerTorrent->value();
 }
 
 void OptionsDialog::on_buttonBox_accepted()
@@ -1645,7 +1645,7 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::English: {
         if (locale.country() == QLocale::Australia)
             return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
-        else if (locale.country() == QLocale::UnitedKingdom)
+        if (locale.country() == QLocale::UnitedKingdom)
             return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
         return QString::fromUtf8(C_LOCALE_ENGLISH);
     }

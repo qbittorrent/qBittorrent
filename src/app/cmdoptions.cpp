@@ -89,8 +89,8 @@ namespace
 
             if ((USAGE_TEXT_COLUMN - usage.length() - 4) > 0)
                 return res + QString(USAGE_TEXT_COLUMN - usage.length() - 4, ' ');
-            else
-                return res;
+
+            return res;
         }
 
     private:
@@ -256,13 +256,13 @@ namespace
             if (parts.size() == 1) {
                 return TriStateBool(m_defaultValue);
             }
-            else if (parts.size() == 2) {
+            if (parts.size() == 2) {
                 QString val = parts[1];
 
                 if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                     return TriStateBool::True;
                 }
-                else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
+                if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                     return TriStateBool::False;
                 }
             }
@@ -281,20 +281,19 @@ namespace
             if (val.isEmpty()) {
                 return TriStateBool(m_defaultValue);
             }
-            else if (val == QLatin1String("-1")) {
+            if (val == QLatin1String("-1")) {
                 return TriStateBool::Undefined;
             }
-            else if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
+            if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                 return TriStateBool::True;
             }
-            else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
+            if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                 return TriStateBool::False;
             }
-            else {
-                qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
-                    .arg(QLatin1String("true|false"), envVarName(), val);
-                return TriStateBool::Undefined;
-            }
+
+            qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
+                .arg(QLatin1String("true|false"), envVarName(), val);
+            return TriStateBool::Undefined;
         }
 
         bool m_defaultValue;

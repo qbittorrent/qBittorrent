@@ -556,22 +556,20 @@ void Parser::parse_impl(const QByteArray &feedData)
                     foundChannel = true;
                     break;
                 }
-                else {
-                    qDebug() << "Skip rss item: " << xml.name();
-                    xml.skipCurrentElement();
-                }
+
+                qDebug() << "Skip rss item: " << xml.name();
+                xml.skipCurrentElement();
             }
             break;
         }
-        else if (xml.name() == "feed") { // Atom feed
+        if (xml.name() == "feed") { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;
             break;
         }
-        else {
-            qDebug() << "Skip root item: " << xml.name();
-            xml.skipCurrentElement();
-        }
+
+        qDebug() << "Skip root item: " << xml.name();
+        xml.skipCurrentElement();
     }
 
     if (!foundChannel) {

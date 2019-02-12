@@ -178,7 +178,7 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
             if (id == m_nodeCount) {
                 return QString();
             }
-            else if (id > m_nodeCount) {
+            if (id > m_nodeCount) {
                 QString country = m_countries.value(id);
                 if (country.isEmpty()) {
                     const quint32 offset = id - m_nodeCount - sizeof(DATA_SECTION_SEPARATOR);
@@ -191,9 +191,8 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
                 }
                 return country;
             }
-            else {
-                ptr = m_data + (id * m_nodeSize);
-            }
+
+            ptr = m_data + (id * m_nodeSize);
         }
     }
 
@@ -205,7 +204,7 @@ if (!metadata.contains(#key)) { \
     error = errMsgNotFound.arg(#key); \
     return false; \
 } \
-else if (metadata.value(#key).userType() != QMetaType::type) { \
+if (metadata.value(#key).userType() != QMetaType::type) { \
     error = errMsgInvalid.arg(#key);  \
     return false; \
 }
