@@ -280,7 +280,7 @@ void SearchWidget::on_pluginsButton_clicked()
     new PluginSelectDialog(SearchPluginManager::instance(), this);
 }
 
-void SearchWidget::searchTextEdited(QString)
+void SearchWidget::searchTextEdited(const QString &)
 {
     // Enable search button
     m_ui->searchButton->setText(tr("Search"));

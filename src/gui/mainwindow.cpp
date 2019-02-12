@@ -849,7 +849,7 @@ void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
+void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const
 {
     showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
         , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
@@ -963,7 +963,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
     confirmBox->show();
 }
 
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
+void MainWindow::handleDownloadFromUrlFailure(const QString &url, const QString &reason) const
 {
     // Display a message box
     showNotificationBaloon(tr("URL download error")
@@ -1061,7 +1061,7 @@ bool MainWindow::unlockUI()
     return true;
 }
 
-void MainWindow::notifyOfUpdate(QString)
+void MainWindow::notifyOfUpdate(const QString &)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
@@ -1565,7 +1565,7 @@ void MainWindow::updateGUI()
     }
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
+void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
 {
     if (!isNotificationsEnabled()) return;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)

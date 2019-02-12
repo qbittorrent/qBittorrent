@@ -3762,7 +3762,7 @@ void Session::readAlerts()
         handleAlert(a);
 }
 
-void Session::handleAlert(libt::alert *a)
+void Session::handleAlert(const libt::alert *a)
 {
     try {
         switch (a->type()) {
@@ -3784,53 +3784,53 @@ void Session::handleAlert(libt::alert *a)
             dispatchTorrentAlert(a);
             break;
         case libt::metadata_received_alert::alert_type:
-            handleMetadataReceivedAlert(static_cast<libt::metadata_received_alert*>(a));
+            handleMetadataReceivedAlert(static_cast<const libt::metadata_received_alert*>(a));
             dispatchTorrentAlert(a);
             break;
         case libt::state_update_alert::alert_type:
-            handleStateUpdateAlert(static_cast<libt::state_update_alert*>(a));
+            handleStateUpdateAlert(static_cast<const libt::state_update_alert*>(a));
             break;
         case libt::session_stats_alert::alert_type:
-            handleSessionStatsAlert(static_cast<libt::session_stats_alert*>(a));
+            handleSessionStatsAlert(static_cast<const libt::session_stats_alert*>(a));
             break;
         case libt::file_error_alert::alert_type:
-            handleFileErrorAlert(static_cast<libt::file_error_alert*>(a));
+            handleFileErrorAlert(static_cast<const libt::file_error_alert*>(a));
             break;
         case libt::add_torrent_alert::alert_type:
-            handleAddTorrentAlert(static_cast<libt::add_torrent_alert*>(a));
+            handleAddTorrentAlert(static_cast<const libt::add_torrent_alert*>(a));
             break;
         case libt::torrent_removed_alert::alert_type:
-            handleTorrentRemovedAlert(static_cast<libt::torrent_removed_alert*>(a));
+            handleTorrentRemovedAlert(static_cast<const libt::torrent_removed_alert*>(a));
             break;
         case libt::torrent_deleted_alert::alert_type:
-            handleTorrentDeletedAlert(static_cast<libt::torrent_deleted_alert*>(a));
+            handleTorrentDeletedAlert(static_cast<const libt::torrent_deleted_alert*>(a));
             break;
         case libt::torrent_delete_failed_alert::alert_type:
-            handleTorrentDeleteFailedAlert(static_cast<libt::torrent_delete_failed_alert*>(a));
+            handleTorrentDeleteFailedAlert(static_cast<const libt::torrent_delete_failed_alert*>(a));
             break;
         case libt::portmap_error_alert::alert_type:
-            handlePortmapWarningAlert(static_cast<libt::portmap_error_alert*>(a));
+            handlePortmapWarningAlert(static_cast<const libt::portmap_error_alert*>(a));
             break;
         case libt::portmap_alert::alert_type:
-            handlePortmapAlert(static_cast<libt::portmap_alert*>(a));
+            handlePortmapAlert(static_cast<const libt::portmap_alert*>(a));
             break;
         case libt::peer_blocked_alert::alert_type:
-            handlePeerBlockedAlert(static_cast<libt::peer_blocked_alert*>(a));
+            handlePeerBlockedAlert(static_cast<const libt::peer_blocked_alert*>(a));
             break;
         case libt::peer_ban_alert::alert_type:
-            handlePeerBanAlert(static_cast<libt::peer_ban_alert*>(a));
+            handlePeerBanAlert(static_cast<const libt::peer_ban_alert*>(a));
             break;
         case libt::url_seed_alert::alert_type:
-            handleUrlSeedAlert(static_cast<libt::url_seed_alert*>(a));
+            handleUrlSeedAlert(static_cast<const libt::url_seed_alert*>(a));
             break;
         case libt::listen_succeeded_alert::alert_type:
-            handleListenSucceededAlert(static_cast<libt::listen_succeeded_alert*>(a));
+            handleListenSucceededAlert(static_cast<const libt::listen_succeeded_alert*>(a));
             break;
         case libt::listen_failed_alert::alert_type:
-            handleListenFailedAlert(static_cast<libt::listen_failed_alert*>(a));
+            handleListenFailedAlert(static_cast<const libt::listen_failed_alert*>(a));
             break;
         case libt::external_ip_alert::alert_type:
-            handleExternalIPAlert(static_cast<libt::external_ip_alert*>(a));
+            handleExternalIPAlert(static_cast<const libt::external_ip_alert*>(a));
             break;
         }
     }
@@ -3839,7 +3839,7 @@ void Session::handleAlert(libt::alert *a)
     }
 }
 
-void Session::dispatchTorrentAlert(libt::alert *a)
+void Session::dispatchTorrentAlert(const libt::alert *a)
 {
     TorrentHandle *const torrent = m_torrents.value(static_cast<const libt::torrent_alert*>(a)->handle.info_hash());
     if (torrent)
@@ -3901,7 +3901,7 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         emit torrentNew(torrent);
 }
 
-void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
+void Session::handleAddTorrentAlert(const libt::add_torrent_alert *p)
 {
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
@@ -3914,7 +3914,7 @@ void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
     }
 }
 
-void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
+void Session::handleTorrentRemovedAlert(const libt::torrent_removed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3930,7 +3930,7 @@ void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
     }
 }
 
-void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
+void Session::handleTorrentDeletedAlert(const libt::torrent_deleted_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3942,7 +3942,7 @@ void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
 }
 
-void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
+void Session::handleTorrentDeleteFailedAlert(const libt::torrent_delete_failed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3958,7 +3958,7 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
            , Log::CRITICAL);
 }
 
-void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
+void Session::handleMetadataReceivedAlert(const libt::metadata_received_alert *p)
 {
     const InfoHash hash {p->handle.info_hash()};
 
@@ -3970,7 +3970,7 @@ void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
     }
 }
 
-void Session::handleFileErrorAlert(libt::file_error_alert *p)
+void Session::handleFileErrorAlert(const libt::file_error_alert *p)
 {
     qDebug() << Q_FUNC_INFO;
     // NOTE: Check this function!
@@ -3988,18 +3988,18 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     }
 }
 
-void Session::handlePortmapWarningAlert(libt::portmap_error_alert *p)
+void Session::handlePortmapWarningAlert(const libt::portmap_error_alert *p)
 {
     Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
-void Session::handlePortmapAlert(libt::portmap_alert *p)
+void Session::handlePortmapAlert(const libt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
     Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
-void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
+void Session::handlePeerBlockedAlert(const libt::peer_blocked_alert *p)
 {
     boost::system::error_code ec;
     const std::string ip = p->ip.to_string(ec);
@@ -4029,7 +4029,7 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
 }
 
-void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
+void Session::handlePeerBanAlert(const libt::peer_ban_alert *p)
 {
     boost::system::error_code ec;
     const std::string ip = p->ip.address().to_string(ec);
@@ -4037,14 +4037,14 @@ void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), false);
 }
 
-void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
+void Session::handleUrlSeedAlert(const libt::url_seed_alert *p)
 {
     Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2")
                                    .arg(QString::fromStdString(p->server_url()))
                                    .arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
-void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
+void Session::handleListenSucceededAlert(const libt::listen_succeeded_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
@@ -4067,7 +4067,7 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
         it->force_reannounce();
 }
 
-void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
+void Session::handleListenFailedAlert(const libt::listen_failed_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
@@ -4090,13 +4090,13 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         , Log::CRITICAL);
 }
 
-void Session::handleExternalIPAlert(libt::external_ip_alert *p)
+void Session::handleExternalIPAlert(const libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
     Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
-void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
+void Session::handleSessionStatsAlert(const libt::session_stats_alert *p)
 {
     const qreal interval = m_statsUpdateTimer.restart() / 1000.;
 
@@ -4161,7 +4161,7 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
     emit statsUpdated();
 }
 
-void Session::handleStateUpdateAlert(libt::state_update_alert *p)
+void Session::handleStateUpdateAlert(const libt::state_update_alert *p)
 {
     for (const libt::torrent_status &status : p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);

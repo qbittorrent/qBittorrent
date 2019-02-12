@@ -228,7 +228,7 @@ void PluginSelectDialog::enableSelection(bool enable)
 }
 
 // Set the color of a row in data model
-void PluginSelectDialog::setRowColor(const int row, QString color)
+void PluginSelectDialog::setRowColor(const int row, const QString &color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i) {
@@ -236,7 +236,7 @@ void PluginSelectDialog::setRowColor(const int row, QString color)
     }
 }
 
-QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(QString url)
+QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
 {
     QList<QTreeWidgetItem*> res;
 
@@ -249,7 +249,7 @@ QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(QString url)
     return res;
 }
 
-QTreeWidgetItem *PluginSelectDialog::findItemWithID(QString id)
+QTreeWidgetItem *PluginSelectDialog::findItemWithID(const QString &id)
 {
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(i);
@@ -268,7 +268,7 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
         addNewPlugin(name);
 }
 
-void PluginSelectDialog::addNewPlugin(QString pluginName)
+void PluginSelectDialog::addNewPlugin(const QString &pluginName)
 {
     QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->pluginsTree);
     PluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);

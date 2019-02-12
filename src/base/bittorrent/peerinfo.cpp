@@ -43,7 +43,7 @@ PeerAddress::PeerAddress()
 {
 }
 
-PeerAddress::PeerAddress(QHostAddress ip, ushort port)
+PeerAddress::PeerAddress(const QHostAddress &ip, ushort port)
     : ip(ip)
     , port(port)
 {

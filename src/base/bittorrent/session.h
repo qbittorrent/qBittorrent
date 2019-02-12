@@ -589,24 +589,24 @@ namespace BitTorrent
         void exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
         void saveTorrentResumeData(TorrentHandle *const torrent);
 
-        void handleAlert(libtorrent::alert *a);
-        void dispatchTorrentAlert(libtorrent::alert *a);
-        void handleAddTorrentAlert(libtorrent::add_torrent_alert *p);
-        void handleStateUpdateAlert(libtorrent::state_update_alert *p);
-        void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
-        void handleFileErrorAlert(libtorrent::file_error_alert *p);
-        void handleTorrentRemovedAlert(libtorrent::torrent_removed_alert *p);
-        void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert *p);
-        void handleTorrentDeleteFailedAlert(libtorrent::torrent_delete_failed_alert *p);
-        void handlePortmapWarningAlert(libtorrent::portmap_error_alert *p);
-        void handlePortmapAlert(libtorrent::portmap_alert *p);
-        void handlePeerBlockedAlert(libtorrent::peer_blocked_alert *p);
-        void handlePeerBanAlert(libtorrent::peer_ban_alert *p);
-        void handleUrlSeedAlert(libtorrent::url_seed_alert *p);
-        void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
-        void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
-        void handleExternalIPAlert(libtorrent::external_ip_alert *p);
-        void handleSessionStatsAlert(libtorrent::session_stats_alert *p);
+        void handleAlert(const libtorrent::alert *a);
+        void dispatchTorrentAlert(const libtorrent::alert *a);
+        void handleAddTorrentAlert(const libtorrent::add_torrent_alert *p);
+        void handleStateUpdateAlert(const libtorrent::state_update_alert *p);
+        void handleMetadataReceivedAlert(const libtorrent::metadata_received_alert *p);
+        void handleFileErrorAlert(const libtorrent::file_error_alert *p);
+        void handleTorrentRemovedAlert(const libtorrent::torrent_removed_alert *p);
+        void handleTorrentDeletedAlert(const libtorrent::torrent_deleted_alert *p);
+        void handleTorrentDeleteFailedAlert(const libtorrent::torrent_delete_failed_alert *p);
+        void handlePortmapWarningAlert(const libtorrent::portmap_error_alert *p);
+        void handlePortmapAlert(const libtorrent::portmap_alert *p);
+        void handlePeerBlockedAlert(const libtorrent::peer_blocked_alert *p);
+        void handlePeerBanAlert(const libtorrent::peer_ban_alert *p);
+        void handleUrlSeedAlert(const libtorrent::url_seed_alert *p);
+        void handleListenSucceededAlert(const libtorrent::listen_succeeded_alert *p);
+        void handleListenFailedAlert(const libtorrent::listen_failed_alert *p);
+        void handleExternalIPAlert(const libtorrent::external_ip_alert *p);
+        void handleSessionStatsAlert(const libtorrent::session_stats_alert *p);
 
         void createTorrentHandle(const libtorrent::torrent_handle &nativeHandle);
 

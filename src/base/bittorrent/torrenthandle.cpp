@@ -1717,7 +1717,7 @@ void TorrentHandle::handleAppendExtensionToggled()
     manageIncompleteFiles();
 }
 
-void TorrentHandle::handleAlert(libtorrent::alert *a)
+void TorrentHandle::handleAlert(const libtorrent::alert *a)
 {
     switch (a->type()) {
     case libt::stats_alert::alert_type:
