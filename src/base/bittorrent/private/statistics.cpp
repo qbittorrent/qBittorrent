@@ -88,7 +88,7 @@ void Statistics::gather()
 
 void Statistics::save() const
 {
-    qint64 now = QDateTime::currentMSecsSinceEpoch();
+    const qint64 now = QDateTime::currentMSecsSinceEpoch();
 
     if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
         return;
@@ -104,8 +104,8 @@ void Statistics::save() const
 
 void Statistics::load()
 {
-    SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
-    QVariantHash v = s->value("Stats/AllStats").toHash();
+    const SettingsPtr s = Profile::instance().applicationSettings(QLatin1String("qBittorrent-data"));
+    const QVariantHash v = s->value("Stats/AllStats").toHash();
 
     m_alltimeDL = v["AlltimeDL"].toULongLong();
     m_alltimeUL = v["AlltimeUL"].toULongLong();

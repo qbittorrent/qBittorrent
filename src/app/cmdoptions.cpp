@@ -276,7 +276,7 @@ namespace
 
         TriStateBool value(const QProcessEnvironment &env) const
         {
-            QString val = env.value(envVarName(), "-1");
+            const QString val = env.value(envVarName(), "-1");
 
             if (val.isEmpty()) {
                 return TriStateBool(m_defaultValue);

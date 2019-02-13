@@ -146,7 +146,7 @@ QString TorrentInfo::name() const
 QDateTime TorrentInfo::creationDate() const
 {
     if (!isValid()) return QDateTime();
-    boost::optional<time_t> t = m_nativeInfo->creation_date();
+    const boost::optional<time_t> t = m_nativeInfo->creation_date();
     return t ? QDateTime::fromTime_t(*t) : QDateTime();
 }
 
@@ -186,7 +186,7 @@ int TorrentInfo::pieceLength() const
     return m_nativeInfo->piece_length();
 }
 
-int TorrentInfo::pieceLength(int index) const
+int TorrentInfo::pieceLength(const int index) const
 {
     if (!isValid()) return -1;
     return m_nativeInfo->piece_size(index);
@@ -198,7 +198,7 @@ int TorrentInfo::piecesCount() const
     return m_nativeInfo->num_pieces();
 }
 
-QString TorrentInfo::filePath(int index) const
+QString TorrentInfo::filePath(const int index) const
 {
     if (!isValid()) return QString();
     return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->files().file_path(index)));
@@ -213,24 +213,24 @@ QStringList TorrentInfo::filePaths() const
     return list;
 }
 
-QString TorrentInfo::fileName(int index) const
+QString TorrentInfo::fileName(const int index) const
 {
     return Utils::Fs::fileName(filePath(index));
 }
 
-QString TorrentInfo::origFilePath(int index) const
+QString TorrentInfo::origFilePath(const int index) const
 {
     if (!isValid()) return QString();
     return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->orig_files().file_path(index)));
 }
 
-qlonglong TorrentInfo::fileSize(int index) const
+qlonglong TorrentInfo::fileSize(const int index) const
 {
     if (!isValid()) return -1;
     return m_nativeInfo->files().file_size(index);
 }
 
-qlonglong TorrentInfo::fileOffset(int index) const
+qlonglong TorrentInfo::fileOffset(const int index) const
 {
     if (!isValid()) return -1;
     return m_nativeInfo->files().file_offset(index);
@@ -265,10 +265,10 @@ QByteArray TorrentInfo::metadata() const
     return QByteArray(m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size());
 }
 
-QStringList TorrentInfo::filesForPiece(int pieceIndex) const
+QStringList TorrentInfo::filesForPiece(const int pieceIndex) const
 {
     // no checks here because fileIndicesForPiece() will return an empty list
-    QVector<int> fileIndices = fileIndicesForPiece(pieceIndex);
+    const QVector<int> fileIndices = fileIndicesForPiece(pieceIndex);
 
     QStringList res;
     res.reserve(fileIndices.size());
@@ -278,12 +278,12 @@ QStringList TorrentInfo::filesForPiece(int pieceIndex) const
     return res;
 }
 
-QVector<int> TorrentInfo::fileIndicesForPiece(int pieceIndex) const
+QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
 {
     if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
         return QVector<int>();
 
-    std::vector<libt::file_slice> files(
+    const std::vector<libt::file_slice> files(
         nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
     QVector<int> res;
     res.reserve(int(files.size()));
@@ -313,7 +313,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const QString &file) const
     if (!isValid()) // if we do not check here the debug message will be printed, which would be not correct
         return {};
 
-    int index = fileIndex(file);
+    const int index = fileIndex(file);
     if (index == -1) {
         qDebug() << "Filename" << file << "was not found in torrent" << name();
         return {};
@@ -321,7 +321,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const QString &file) const
     return filePieces(index);
 }
 
-TorrentInfo::PieceRange TorrentInfo::filePieces(int fileIndex) const
+TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
 {
     if (!isValid())
         return {};
@@ -387,7 +387,7 @@ void TorrentInfo::stripRootFolder()
     libtorrent::file_storage files = m_nativeInfo->files();
 
     // Solution for case of renamed root folder
-    std::string testName = filePath(0).split('/').value(0).toStdString();
+    const std::string testName = filePath(0).split('/').value(0).toStdString();
     if (files.name() != testName) {
         files.set_name(testName);
         for (int i = 0; i < files.num_files(); ++i)

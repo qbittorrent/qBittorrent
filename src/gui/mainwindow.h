@@ -99,20 +99,20 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBaloon(QString title, QString msg) const;
+    void showNotificationBaloon(const QString &title, const QString &msg) const;
 
 private slots:
     void showFilterContextMenu(const QPoint &);
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
+    void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
+    void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
     bool unlockUI();
-    void notifyOfUpdate(QString);
+    void notifyOfUpdate(const QString &);
     void showConnectionSettings();
     void minimizeWindow();
     // Keyboard shortcuts

@@ -358,7 +358,7 @@ namespace BitTorrent
         // Session interface
         libtorrent::torrent_handle nativeHandle() const;
 
-        void handleAlert(libtorrent::alert *a);
+        void handleAlert(const libtorrent::alert *a);
         void handleStateUpdate(const libtorrent::torrent_status &nativeStatus);
         void handleTempPathChanged();
         void handleCategorySavePathChanged();

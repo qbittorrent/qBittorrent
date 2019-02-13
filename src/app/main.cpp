@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 
     try {
         // Create Application
-        QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
+        const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
         QScopedPointer<Application> app(new Application(appId, argc, argv));
 
         const QBtCommandLineParameters params = app->commandLineArgs();
@@ -255,7 +255,7 @@ void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
     if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
-        auto dummy = write(STDOUT_FILENO, str, strLen);
+        const auto dummy = write(STDOUT_FILENO, str, strLen);
         Q_UNUSED(dummy);
     }
 }
@@ -305,7 +305,7 @@ void showSplashScreen()
 {
     QPixmap splashImg(":/icons/skin/splash.png");
     QPainter painter(&splashImg);
-    QString version = QBT_VERSION;
+    const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
@@ -323,7 +323,7 @@ void displayVersion()
 
 void displayBadArgMessage(const QString &message)
 {
-    QString help = QObject::tr("Run application with -h option to read about command line parameters.");
+    const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
 #ifdef Q_OS_WIN
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
                        message + QLatin1Char('\n') + help, QMessageBox::Ok);
@@ -351,7 +351,7 @@ bool userAgreesWithLegalNotice()
         + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
     printf("%s", qUtf8Printable(eula));
 
-    char ret = getchar(); // Read pressed key
+    const char ret = getchar(); // Read pressed key
     if ((ret == 'y') || (ret == 'Y')) {
         // Save the answer
         pref->setAcceptedLegal(true);
@@ -362,7 +362,7 @@ bool userAgreesWithLegalNotice()
     msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(QObject::tr("Legal notice"));
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
+    const QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Misc::screenCenter(&msgBox));
     msgBox.exec();

@@ -50,7 +50,7 @@ namespace
             char *endptr;
             for (; *str; ++str) {
                 if (*str == '.') {
-                    long int extractedNum = strtol(octetStart, &endptr, 10);
+                    const long int extractedNum = strtol(octetStart, &endptr, 10);
                     if ((extractedNum >= 0L) && (extractedNum <= 255L))
                         m_buf[octetIndex++] = static_cast<unsigned char>(extractedNum);
                     else
@@ -66,7 +66,7 @@ namespace
             }
 
             if (str != octetStart) {
-                long int extractedNum = strtol(octetStart, &endptr, 10);
+                const long int extractedNum = strtol(octetStart, &endptr, 10);
                 if ((extractedNum >= 0L) && (extractedNum <= 255L))
                     m_buf[octetIndex] = static_cast<unsigned char>(strtol(octetStart, &endptr, 10));
                 else
@@ -146,7 +146,7 @@ int FilterParserThread::parseDATFilterFile()
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
         if (bytesRead < 0)
             break;
-        int dataSize = bytesRead + offset;
+        const int dataSize = bytesRead + offset;
         if ((bytesRead == 0) && (dataSize == 0))
             break;
 
@@ -190,7 +190,7 @@ int FilterParserThread::parseDATFilterFile()
             // Each line should follow this format:
             // 001.009.096.105 - 001.009.096.105 , 000 , Some organization
             // The 3rd entry is access level and if above 127 the IP range isn't blocked.
-            int firstComma = findAndNullDelimiter(buffer.data(), ',', start, endOfLine);
+            const int firstComma = findAndNullDelimiter(buffer.data(), ',', start, endOfLine);
             if (firstComma != -1)
                 findAndNullDelimiter(buffer.data(), ',', firstComma + 1, endOfLine);
 
@@ -206,8 +206,8 @@ int FilterParserThread::parseDATFilterFile()
             }
 
             // IP Range should be split by a dash
-            int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
-            int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
+            const int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
+            const int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
             if (delimIP == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -294,7 +294,7 @@ int FilterParserThread::parseP2PFilterFile()
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
         if (bytesRead < 0)
             break;
-        int dataSize = bytesRead + offset;
+        const int dataSize = bytesRead + offset;
         if ((bytesRead == 0) && (dataSize == 0))
             break;
 
@@ -338,7 +338,7 @@ int FilterParserThread::parseP2PFilterFile()
             // Each line should follow this format:
             // Some organization:1.0.0.0-1.255.255.255
             // The "Some organization" part might contain a ':' char itself so we find the last occurrence
-            int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
+            const int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
             if (partsDelimiter == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -347,7 +347,7 @@ int FilterParserThread::parseP2PFilterFile()
             }
 
             // IP Range should be split by a dash
-            int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
+            const int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
             if (delimIP == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -404,7 +404,7 @@ int FilterParserThread::parseP2PFilterFile()
     return ruleCount;
 }
 
-int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, char delim)
+int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, const char delim)
 {
     char c;
     int totalRead = 0;
@@ -465,8 +465,8 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            libt::address_v4 first(ntohl(start));
-            libt::address_v4 last(ntohl(end));
+            const libt::address_v4 first(ntohl(start));
+            const libt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
                 m_filter.add_rule(first, last, libt::ip_filter::blocked);
@@ -515,8 +515,8 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            libt::address_v4 first(ntohl(start));
-            libt::address_v4 last(ntohl(end));
+            const libt::address_v4 first(ntohl(start));
+            const libt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
                 m_filter.add_rule(first, last, libt::ip_filter::blocked);
@@ -588,7 +588,7 @@ void FilterParserThread::run()
     qDebug("IP Filter thread: finished parsing, filter applied");
 }
 
-int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse)
+int FilterParserThread::findAndNullDelimiter(char *const data, const char delimiter, const int start, const int end, const bool reverse)
 {
     if (!reverse) {
         for (int i = start; i <= end; ++i) {
@@ -610,7 +610,7 @@ int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, i
     return -1;
 }
 
-int FilterParserThread::trim(char *const data, int start, int end)
+int FilterParserThread::trim(char *const data, const int start, const int end)
 {
     if (start >= end) return start;
     int newStart = start;
