@@ -131,9 +131,7 @@ Net::DownloadManager *Net::DownloadManager::m_instance = nullptr;
 Net::DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
 {
-#ifndef QT_NO_OPENSSL
     connect(&m_networkManager, &QNetworkAccessManager::sslErrors, this, &Net::DownloadManager::ignoreSslErrors);
-#endif
     connect(&m_networkManager, &QNetworkAccessManager::finished, this, &DownloadManager::handleReplyFinished);
     connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
             , this, &DownloadManager::applyProxySettings);
@@ -270,7 +268,6 @@ void Net::DownloadManager::handleReplyFinished(QNetworkReply *reply)
     handler->disconnect(this);
 }
 
-#ifndef QT_NO_OPENSSL
 void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
 {
     QStringList errorList;
@@ -281,7 +278,6 @@ void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSs
     // Ignore all SSL errors
     reply->ignoreSslErrors();
 }
-#endif
 
 Net::DownloadRequest::DownloadRequest(const QString &url)
     : m_url {url}
@@ -348,7 +344,7 @@ Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
     return {url.host(), url.port(80)};
 }
 
-uint Net::qHash(const ServiceID &serviceID, uint seed)
+uint Net::qHash(const ServiceID &serviceID, const uint seed)
 {
     return ::qHash(serviceID.hostName, seed) ^ serviceID.port;
 }

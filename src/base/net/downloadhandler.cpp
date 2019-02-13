@@ -41,7 +41,6 @@
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
 #include "base/utils/misc.h"
-#include "downloadmanager.h"
 
 namespace
 {
@@ -95,44 +94,43 @@ QString Net::DownloadHandler::url() const
 
 void Net::DownloadHandler::processFinishedDownload()
 {
-    QString url = m_reply->url().toString();
+    const QString url = m_reply->url().toString();
     qDebug("Download finished: %s", qUtf8Printable(url));
+
     // Check if the request was successful
     if (m_reply->error() != QNetworkReply::NoError) {
         // Failure
         qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
         emit downloadFailed(m_downloadRequest.url(), errorCodeToString(m_reply->error()));
         this->deleteLater();
+        return;
+    }
+
+    // Check if the server ask us to redirect somewhere else
+    const QVariant redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if (redirection.isValid()) {
+        // We should redirect
+        handleRedirection(redirection.toUrl());
+        return;
+    }
+
+    // Success
+    const QByteArray replyData = (m_reply->rawHeader("Content-Encoding") == "gzip")
+        ? Utils::Gzip::decompress(m_reply->readAll())
+        : m_reply->readAll();
+
+    if (m_downloadRequest.saveToFile()) {
+        QString filePath;
+        if (saveToFile(replyData, filePath))
+            emit downloadFinished(m_downloadRequest.url(), filePath);
+        else
+            emit downloadFailed(m_downloadRequest.url(), tr("I/O Error"));
     }
     else {
-        // Check if the server ask us to redirect somewhere else
-        const QVariant redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-        if (redirection.isValid()) {
-            // We should redirect
-            handleRedirection(redirection.toUrl());
-        }
-        else {
-            // Success
-            QByteArray replyData = m_reply->readAll();
-            if (m_reply->rawHeader("Content-Encoding") == "gzip") {
-                // decompress gzip reply
-                replyData = Utils::Gzip::decompress(replyData);
-            }
-
-            if (m_downloadRequest.saveToFile()) {
-                QString filePath;
-                if (saveToFile(replyData, filePath))
-                    emit downloadFinished(m_downloadRequest.url(), filePath);
-                else
-                    emit downloadFailed(m_downloadRequest.url(), tr("I/O Error"));
-            }
-            else {
-                emit downloadFinished(m_downloadRequest.url(), replyData);
-            }
-
-            this->deleteLater();
-        }
+        emit downloadFinished(m_downloadRequest.url(), replyData);
     }
+
+    this->deleteLater();
 }
 
 void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
@@ -155,13 +153,11 @@ void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesT
     }
 }
 
-void Net::DownloadHandler::handleRedirection(QUrl newUrl)
+void Net::DownloadHandler::handleRedirection(const QUrl &newUrl)
 {
     // Resolve relative urls
-    if (newUrl.isRelative())
-        newUrl = m_reply->url().resolved(newUrl);
-
-    const QString newUrlString = newUrl.toString();
+    const QUrl resolvedUrl = (newUrl.isRelative()) ? m_reply->url().resolved(newUrl) : newUrl;
+    const QString newUrlString = resolvedUrl.toString();
     qDebug("Redirecting from %s to %s...", qUtf8Printable(m_reply->url().toString()), qUtf8Printable(newUrlString));
 
     // Redirect to magnet workaround
@@ -174,29 +170,29 @@ void Net::DownloadHandler::handleRedirection(QUrl newUrl)
             emit downloadFailed(m_downloadRequest.url(), tr("Unexpected redirect to magnet URI."));
 
         this->deleteLater();
+        return;
     }
-    else {
-        DownloadHandler *redirected = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
-        connect(redirected, &DownloadHandler::destroyed, this, &DownloadHandler::deleteLater);
-        connect(redirected, &DownloadHandler::downloadFailed, this, [this](const QString &, const QString &reason)
-        {
-            emit downloadFailed(url(), reason);
-        });
-        connect(redirected, &DownloadHandler::redirectedToMagnet, this, [this](const QString &, const QString &magnetUri)
-        {
-            emit redirectedToMagnet(url(), magnetUri);
-        });
-        connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
-                , this, [this](const QString &, const QString &fileName)
-        {
-            emit downloadFinished(url(), fileName);
-        });
-        connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
-                , this, [this](const QString &, const QByteArray &data)
-        {
-            emit downloadFinished(url(), data);
-        });
-    }
+
+    const DownloadHandler *redirected = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
+    connect(redirected, &DownloadHandler::destroyed, this, &DownloadHandler::deleteLater);
+    connect(redirected, &DownloadHandler::downloadFailed, this, [this](const QString &, const QString &reason)
+    {
+        emit downloadFailed(url(), reason);
+    });
+    connect(redirected, &DownloadHandler::redirectedToMagnet, this, [this](const QString &, const QString &magnetUri)
+    {
+        emit redirectedToMagnet(url(), magnetUri);
+    });
+    connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
+            , this, [this](const QString &, const QString &fileName)
+    {
+        emit downloadFinished(url(), fileName);
+    });
+    connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
+            , this, [this](const QString &, const QByteArray &data)
+    {
+        emit downloadFinished(url(), data);
+    });
 }
 
 QString Net::DownloadHandler::errorCodeToString(const QNetworkReply::NetworkError status)

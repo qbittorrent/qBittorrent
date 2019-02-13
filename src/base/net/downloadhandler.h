@@ -67,7 +67,7 @@ namespace Net
 
     private:
         void assignNetworkReply(QNetworkReply *reply);
-        void handleRedirection(QUrl newUrl);
+        void handleRedirection(const QUrl &newUrl);
 
         static QString errorCodeToString(QNetworkReply::NetworkError status);
 
