@@ -42,6 +42,7 @@
 #include <QUrl>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "downloadhandler.h"
 #include "proxyconfigurationmanager.h"
@@ -272,7 +273,11 @@ void Net::DownloadManager::handleReplyFinished(QNetworkReply *reply)
 #ifndef QT_NO_OPENSSL
 void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
 {
-    Q_UNUSED(errors)
+    QStringList errorList;
+    for (const QSslError &error : errors)
+        errorList += error.errorString();
+    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(". ")), Log::WARNING);
+
     // Ignore all SSL errors
     reply->ignoreSslErrors();
 }
