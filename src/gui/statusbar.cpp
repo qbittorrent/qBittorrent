@@ -55,7 +55,7 @@ StatusBar::StatusBar(QWidget *parent)
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
     QWidget *container = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(container);
+    auto *layout = new QHBoxLayout(container);
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);

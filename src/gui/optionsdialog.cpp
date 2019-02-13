@@ -454,7 +454,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     // disable mouse wheel event on widgets to avoid mis-selection
-    WheelEventEater *wheelEventEater = new WheelEventEater(this);
+    auto *wheelEventEater = new WheelEventEater(this);
     for (QComboBox *widget : asConst(findChildren<QComboBox *>()))
         widget->installEventFilter(wheelEventEater);
     for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
@@ -548,7 +548,7 @@ void OptionsDialog::saveOptions()
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale) {
-        QTranslator *translator = new QTranslator;
+        auto *translator = new QTranslator;
         if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale))
             qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
         else
@@ -592,7 +592,7 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
-    Application *const app = static_cast<Application*>(QCoreApplication::instance());
+    auto *const app = static_cast<Application *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);

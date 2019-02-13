@@ -297,7 +297,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         return false;
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
-        TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d", qUtf8Printable(item->name()), value.toInt());
         if (static_cast<int>(item->priority()) != value.toInt()) {
             BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal;
@@ -318,7 +318,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
     if (role == Qt::EditRole) {
         Q_ASSERT(index.isValid());
-        TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         switch (index.column()) {
         case TorrentContentModelItem::COL_NAME:
             item->setName(value.toString());
@@ -343,7 +343,7 @@ TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelInde
 
 int TorrentContentModel::getFileIndex(const QModelIndex &index)
 {
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (item->itemType() == TorrentContentModelItem::FileType)
         return static_cast<TorrentContentModelFile*>(item)->fileIndex();
 
@@ -356,7 +356,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
@@ -427,7 +427,7 @@ QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return QModelIndex();
 
-    TorrentContentModelItem *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (!childItem)
         return QModelIndex();
 

@@ -171,7 +171,7 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
                 ptr += m_recordBytes;
 
             quint32 id = 0;
-            uchar *idPtr = reinterpret_cast<uchar *>(&id);
+            auto *idPtr = reinterpret_cast<uchar *>(&id);
             memcpy(&idPtr[4 - m_recordBytes], ptr, m_recordBytes);
             fromBigEndian(idPtr, 4);
 
@@ -298,7 +298,7 @@ QVariantHash GeoIPDatabase::readMetadata() const
     if (index >= 0) {
         if (m_size > MAX_METADATA_SIZE)
             index += (m_size - MAX_METADATA_SIZE); // from begin of all data
-        quint32 offset = static_cast<quint32>(index + strlen(METADATA_BEGIN_MARK));
+        auto offset = static_cast<quint32>(index + strlen(METADATA_BEGIN_MARK));
         QVariant metadata = readDataField(offset);
         if (metadata.userType() == QMetaType::QVariantHash)
             return metadata.toHash();

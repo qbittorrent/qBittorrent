@@ -97,7 +97,7 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        qreal rawVal = static_cast<qreal>(sizeInBytes);
+        auto rawVal = static_cast<qreal>(sizeInBytes);
 
         while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
             rawVal /= 1024.;

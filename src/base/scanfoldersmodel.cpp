@@ -183,7 +183,7 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         return false;
 
     if (role == Qt::UserRole) {
-        PathType type = static_cast<PathType>(value.toInt());
+        auto type = static_cast<PathType>(value.toInt());
         if (type == CUSTOM_LOCATION)
             return false;
 

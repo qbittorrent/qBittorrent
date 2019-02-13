@@ -153,7 +153,7 @@ namespace
         }
         m_checkBoxOffset.setWidth(layoutPadding.width());
 
-        QHBoxLayout *layout = new QHBoxLayout(this);
+        auto *layout = new QHBoxLayout(this);
         layout->addWidget(m_checkBox);
         layout->addStretch();
         layout->setContentsMargins(layoutPadding.width(), layoutPadding.height(), layoutPadding.width(), layoutPadding.height());

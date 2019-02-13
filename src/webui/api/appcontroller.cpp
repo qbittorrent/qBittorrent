@@ -491,10 +491,11 @@ void AppController::setPreferencesAction()
     if (m.contains("locale")) {
         QString locale = m["locale"].toString();
         if (pref->getLocale() != locale) {
-            QTranslator *translator = new QTranslator;
+            auto *translator = new QTranslator;
             if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale)) {
                 qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }else{
+            }
+            else {
                 qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
             }
             qApp->installTranslator(translator);

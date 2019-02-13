@@ -251,8 +251,7 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
         showCompletionPopup();
     }
 
-    const FileSystemPathValidator *validator =
-        qobject_cast<const FileSystemPathValidator *>(this->validator());
+    auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
     if (validator) {
         FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
         QValidator::State lastState = validator->lastValidationState();

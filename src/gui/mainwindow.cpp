@@ -199,7 +199,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
-    QMenu *lockMenu = new QMenu(this);
+    auto *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
     connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
     QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
@@ -222,7 +222,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_splitter = new QSplitter(Qt::Horizontal, this);
     // vSplitter->setChildrenCollapsible(false);
 
-    QSplitter *hSplitter = new QSplitter(Qt::Vertical, this);
+    auto *hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setFrameShape(QFrame::NoFrame);
 
@@ -380,7 +380,7 @@ MainWindow::MainWindow(QWidget *parent)
         QTimer::singleShot(0, this, &MainWindow::on_actionSearchWidget_triggered);
 
     // Auto shutdown actions
-    QActionGroup *autoShutdownGroup = new QActionGroup(this);
+    auto *autoShutdownGroup = new QActionGroup(this);
     autoShutdownGroup->setExclusive(true);
     autoShutdownGroup->addAction(m_ui->actionAutoShutdownDisabled);
     autoShutdownGroup->addAction(m_ui->actionAutoExit);
@@ -555,7 +555,7 @@ void MainWindow::addToolbarContextMenu()
     m_toolbarMenu->addAction(textBesideIcons);
     m_toolbarMenu->addAction(textUnderIcons);
     m_toolbarMenu->addAction(followSystemStyle);
-    QActionGroup *textPositionGroup = new QActionGroup(m_toolbarMenu);
+    auto *textPositionGroup = new QActionGroup(m_toolbarMenu);
     textPositionGroup->addAction(iconsOnly);
     iconsOnly->setCheckable(true);
     textPositionGroup->addAction(textOnly);
@@ -567,7 +567,7 @@ void MainWindow::addToolbarContextMenu()
     textPositionGroup->addAction(followSystemStyle);
     followSystemStyle->setCheckable(true);
 
-    const Qt::ToolButtonStyle buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
+    const auto buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
     if ((buttonStyle >= Qt::ToolButtonIconOnly) && (buttonStyle <= Qt::ToolButtonFollowStyle))
         m_ui->toolBar->setToolButtonStyle(buttonStyle);
     switch (buttonStyle) {
@@ -795,7 +795,7 @@ void MainWindow::cleanup()
 #endif
 
     // remove all child widgets
-    while (QWidget *w = findChild<QWidget * >())
+    while (auto *w = findChild<QWidget *>())
         delete w;
 }
 
