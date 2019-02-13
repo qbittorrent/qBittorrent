@@ -44,6 +44,8 @@
 
 namespace
 {
+    const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
+
     bool saveToFile(const QByteArray &replyData, QString &filePath)
     {
         QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
@@ -155,6 +157,12 @@ void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesT
 
 void Net::DownloadHandler::handleRedirection(const QUrl &newUrl)
 {
+    if (m_redirectionCounter >= MAX_REDIRECTIONS) {
+        emit downloadFailed(url(), tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
+        this->deleteLater();
+        return;
+    }
+
     // Resolve relative urls
     const QUrl resolvedUrl = (newUrl.isRelative()) ? m_reply->url().resolved(newUrl) : newUrl;
     const QString newUrlString = resolvedUrl.toString();
@@ -173,7 +181,8 @@ void Net::DownloadHandler::handleRedirection(const QUrl &newUrl)
         return;
     }
 
-    const DownloadHandler *redirected = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
+    DownloadHandler *redirected = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
+    redirected->m_redirectionCounter = (m_redirectionCounter + 1);
     connect(redirected, &DownloadHandler::destroyed, this, &DownloadHandler::deleteLater);
     connect(redirected, &DownloadHandler::downloadFailed, this, [this](const QString &, const QString &reason)
     {

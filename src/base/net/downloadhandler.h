@@ -74,6 +74,7 @@ namespace Net
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
         const DownloadRequest m_downloadRequest;
+        short m_redirectionCounter = 0;
     };
 }
 
