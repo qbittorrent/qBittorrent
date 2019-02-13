@@ -485,7 +485,7 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torre
         addItem(tracker.url(), hash);
 
     //Check for trackerless torrent
-    if (trackers.size() == 0)
+    if (trackers.isEmpty())
         addItem("", hash);
 
     item(0)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
@@ -499,7 +499,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
         removeItem(tracker.url(), hash);
 
     //Check for trackerless torrent
-    if (trackers.size() == 0)
+    if (trackers.isEmpty())
         removeItem("", hash);
 
     item(0)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));

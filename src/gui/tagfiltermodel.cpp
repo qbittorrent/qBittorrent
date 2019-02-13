@@ -326,7 +326,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
 
 TagModelItem *TagFilterModel::allTagsItem()
 {
-    Q_ASSERT(m_tagItems.size() > 0);
+    Q_ASSERT(!m_tagItems.isEmpty());
     return &m_tagItems[0];
 }
 

@@ -124,7 +124,7 @@ PreviewSelectDialog::~PreviewSelectDialog()
 void PreviewSelectDialog::previewButtonClicked()
 {
     QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
-    if (selectedIndexes.size() == 0) return;
+    if (selectedIndexes.isEmpty()) return;
 
     // Flush data
     m_torrent->flushCache();

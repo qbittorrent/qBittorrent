@@ -878,7 +878,7 @@ void TransferListWidget::clearSelectionTags()
 void TransferListWidget::displayListMenu(const QPoint&)
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() == 0) return;
+    if (selectedIndexes.isEmpty()) return;
 
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), nullptr);

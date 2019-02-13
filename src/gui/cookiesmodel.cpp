@@ -157,7 +157,7 @@ bool CookiesModel::insertRows(int row, int count, const QModelIndex &parent)
 
 bool CookiesModel::removeRows(int row, int count, const QModelIndex &parent)
 {
-    if ((m_cookies.size() == 0)
+    if ((m_cookies.isEmpty())
         || (row >= m_cookies.size())
         || ((row + count) > m_cookies.size()))
         return false;
