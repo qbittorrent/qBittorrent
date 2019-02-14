@@ -329,7 +329,7 @@ void AppController::setPreferencesAction()
 
         // Update deleted folders
         for (auto i = oldScanDirs.cbegin(); i != oldScanDirs.cend(); ++i) {
-            const QString folder = i.key();
+            const QString &folder = i.key();
             if (!scanDirs.contains(folder)) {
                 model->removePath(folder);
                 qDebug("Removed watched folder %s", qUtf8Printable(folder));

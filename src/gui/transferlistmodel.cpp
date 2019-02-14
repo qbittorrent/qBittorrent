@@ -468,6 +468,6 @@ bool isDarkTheme()
 {
     const QPalette pal = QApplication::palette();
     // QPalette::Base is used for the background of the Treeview
-    const QColor color = pal.color(QPalette::Active, QPalette::Base);
+    const QColor &color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
 }
