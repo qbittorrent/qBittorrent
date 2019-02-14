@@ -44,7 +44,6 @@ const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::TorrentHandle;
-using BitTorrent::TorrentState;
 
 TorrentFilter::TorrentFilter()
     : m_type(All)
