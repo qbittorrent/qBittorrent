@@ -110,7 +110,7 @@ namespace Utils
             QSslKey key {data, QSsl::Rsa};
             if (!key.isNull())
                 return key;
-            return QSslKey(data, QSsl::Ec);
+            return {data, QSsl::Ec};
         }
 
         bool isSSLKeyValid(const QByteArray &data)

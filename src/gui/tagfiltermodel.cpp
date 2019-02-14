@@ -114,7 +114,7 @@ bool TagFilterModel::isSpecialItem(const QModelIndex &index)
 QVariant TagFilterModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || (index.column() != 0))
-        return QVariant();
+        return {};
 
     const int row = index.internalId();
     Q_ASSERT(isValidRow(row));
@@ -129,7 +129,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     case Qt::UserRole:
         return item.torrentsCount();
     default:
-        return QVariant();
+        return {};
     }
 }
 
@@ -145,13 +145,13 @@ QVariant TagFilterModel::headerData(int section, Qt::Orientation orientation, in
     if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole))
         if (section == 0)
             return tr("Tags");
-    return QVariant();
+    return {};
 }
 
 QModelIndex TagFilterModel::index(int row, int, const QModelIndex &) const
 {
     if (!isValidRow(row))
-        return QModelIndex();
+        return {};
     return createIndex(row, 0, row);
 }
 
@@ -171,14 +171,14 @@ QModelIndex TagFilterModel::index(const QString &tag) const
 {
     const int row = findRow(tag);
     if (!isValidRow(row))
-        return QModelIndex();
+        return {};
     return index(row, 0, QModelIndex());
 }
 
 QString TagFilterModel::tag(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QString();
+        return {};
     const int row = index.internalId();
     Q_ASSERT(isValidRow(row));
     return m_tagItems[row].tag();

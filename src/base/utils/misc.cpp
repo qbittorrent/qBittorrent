@@ -256,7 +256,7 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
     QDesktopWidget *desktop = QApplication::desktop();
     int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
     QRect r = desktop->availableGeometry(scrn);
-    return QPoint(r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2);
+    return {r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2};
 }
 #endif
 

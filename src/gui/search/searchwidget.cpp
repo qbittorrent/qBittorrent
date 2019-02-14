@@ -83,7 +83,7 @@ namespace
         case SearchJobWidget::Status::NoResults:
             return QLatin1String("task-attention");
         default:
-            return QString();
+            return {};
         }
     }
 }

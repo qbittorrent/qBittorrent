@@ -107,7 +107,7 @@ int ScanFoldersModel::columnCount(const QModelIndex &parent) const
 QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || (index.row() >= rowCount()))
-        return QVariant();
+        return {};
 
     const PathData *pathData = m_pathList.at(index.row());
     QVariant value;
@@ -141,7 +141,7 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
 QVariant ScanFoldersModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if ((orientation != Qt::Horizontal) || (role != Qt::DisplayRole) || (section < 0) || (section >= columnCount()))
-        return QVariant();
+        return {};
 
     QVariant title;
 
@@ -311,7 +311,7 @@ QString ScanFoldersModel::downloadPathTorrentFolder(const QString &filePath) con
     if (data->downloadType == CUSTOM_LOCATION)
         return data->downloadPath;
 
-    return  QString();
+    return {};
 }
 
 int ScanFoldersModel::findPathData(const QString &path) const
@@ -399,5 +399,5 @@ QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
     default:
         qDebug("Invalid PathType: %d", type);
     };
-    return QString();
+    return {};
 }

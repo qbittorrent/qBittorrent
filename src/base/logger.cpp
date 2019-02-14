@@ -98,7 +98,7 @@ QVector<Log::Msg> Logger::getMessages(int lastKnownId) const
         return m_messages;
 
     if (diff <= 0)
-        return QVector<Log::Msg>();
+        return {};
 
     return m_messages.mid(size - diff);
 }
@@ -114,7 +114,7 @@ QVector<Log::Peer> Logger::getPeers(int lastKnownId) const
         return m_peers;
 
     if (diff <= 0)
-        return QVector<Log::Peer>();
+        return {};
 
     return m_peers.mid(size - diff);
 }

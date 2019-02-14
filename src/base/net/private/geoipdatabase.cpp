@@ -176,7 +176,7 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
             fromBigEndian(idPtr, 4);
 
             if (id == m_nodeCount) {
-                return QString();
+                return {};
             }
             if (id > m_nodeCount) {
                 QString country = m_countries.value(id);
@@ -196,7 +196,7 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
         }
     }
 
-    return QString();
+    return {};
 }
 
 #define CHECK_METADATA_REQ(key, type) \
@@ -304,14 +304,14 @@ QVariantHash GeoIPDatabase::readMetadata() const
             return metadata.toHash();
     }
 
-    return QVariantHash();
+    return {};
 }
 
 QVariant GeoIPDatabase::readDataField(quint32 &offset) const
 {
     DataFieldDescriptor descr;
     if (!readDataFieldDescriptor(offset, descr))
-        return QVariant();
+        return {};
 
     quint32 locOffset = offset;
     bool usePointer = false;
@@ -320,7 +320,7 @@ QVariant GeoIPDatabase::readDataField(quint32 &offset) const
         // convert offset from data section to global
         locOffset = descr.offset + (m_nodeCount * m_recordSize / 4) + sizeof(DATA_SECTION_SEPARATOR);
         if (!readDataFieldDescriptor(locOffset, descr))
-            return QVariant();
+            return {};
     }
 
     QVariant fieldValue;
@@ -459,12 +459,12 @@ QVariant GeoIPDatabase::readMapValue(quint32 &offset, quint32 count) const
     for (quint32 i = 0; i < count; ++i) {
         QVariant field = readDataField(offset);
         if (field.userType() != QMetaType::QString)
-            return QVariant();
+            return {};
 
         QString key = field.toString();
         field = readDataField(offset);
         if (field.userType() == QVariant::Invalid)
-            return QVariant();
+            return {};
 
         map[key] = field;
     }
@@ -479,7 +479,7 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, quint32 count) const
     for (quint32 i = 0; i < count; ++i) {
         QVariant field = readDataField(offset);
         if (field.userType() == QVariant::Invalid)
-            return QVariant();
+            return {};
 
         array.append(field);
     }

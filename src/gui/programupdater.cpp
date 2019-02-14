@@ -166,6 +166,6 @@ namespace
         if (xml.isCharacters() && !xml.isWhitespace())
             return xml.text().toString();
 
-        return QString();
+        return {};
     }
 }

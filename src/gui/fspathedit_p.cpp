@@ -311,7 +311,7 @@ QString Private::FileLineEdit::warningText(FileSystemPathValidator::TestResult r
     case TestResult::CantWrite:
         return tr("Does not have write permission in '%1'");
     default:
-        return QString();
+        return {};
     }
 }
 

@@ -101,7 +101,7 @@ namespace
     QSize CheckBoxIconHelper::sizeHint() const
     {
         const int dim = QCheckBox::sizeHint().height();
-        return QSize(dim, dim);
+        return {dim, dim};
     }
 
     void CheckBoxIconHelper::initStyleOption(QStyleOptionButton *opt) const
@@ -812,7 +812,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
         const QString tagsInput = AutoExpandableDialog::getText(
             this, dialogTitle, tr("Comma-separated tags:"), QLineEdit::Normal, "", &ok).trimmed();
         if (!ok || tagsInput.isEmpty())
-            return QStringList();
+            return {};
         tags = tagsInput.split(',', QString::SkipEmptyParts);
         for (QString &tag : tags) {
             tag = tag.trimmed();

@@ -1447,14 +1447,14 @@ QString OptionsDialog::getTorrentExportDir() const
 {
     if (m_ui->checkExportDir->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDir->selectedPath());
-    return QString();
+    return {};
 }
 
 QString OptionsDialog::getFinishedTorrentExportDir() const
 {
     if (m_ui->checkExportDirFin->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
-    return QString();
+    return {};
 }
 
 // Return action on double-click on a downloading torrent set in options

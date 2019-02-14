@@ -66,10 +66,10 @@ int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
 
 QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 {
-    if (!child.isValid()) return QModelIndex();
+    if (!child.isValid()) return {};
 
     QModelIndex sourceParent = m_model->parent(mapToSource(child));
-    if (!sourceParent.isValid()) return QModelIndex();
+    if (!sourceParent.isValid()) return {};
 
     return mapFromSource(sourceParent);
 }
