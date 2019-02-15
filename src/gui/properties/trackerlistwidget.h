@@ -69,7 +69,7 @@ public:
     int visibleColumnsCount() const;
 
 public slots:
-    void setRowColor(int row, QColor color);
+    void setRowColor(int row, const QColor &color);
 
     void moveSelectionUp();
     void moveSelectionDown();

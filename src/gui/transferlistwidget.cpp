@@ -338,7 +338,7 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
-void TransferListWidget::previewFile(QString filePath)
+void TransferListWidget::previewFile(const QString &filePath)
 {
     Utils::Misc::openPath(filePath);
 }
@@ -854,7 +854,7 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
-void TransferListWidget::setSelectionCategory(QString category)
+void TransferListWidget::setSelectionCategory(const QString &category)
 {
     for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
         m_listModel->setData(m_listModel->index(mapToSource(index).row(), TransferListModel::TR_CATEGORY), category, Qt::DisplayRole);
@@ -1173,7 +1173,7 @@ void TransferListWidget::currentChanged(const QModelIndex &current, const QModel
     emit currentTorrentChanged(torrent);
 }
 
-void TransferListWidget::applyCategoryFilter(QString category)
+void TransferListWidget::applyCategoryFilter(const QString &category)
 {
     if (category.isNull())
         m_sortFilterModel->disableCategoryFilter();

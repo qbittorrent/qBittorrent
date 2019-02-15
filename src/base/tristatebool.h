@@ -48,7 +48,7 @@ public:
         return m_value;
     }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++14
+    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++17
 
     constexpr bool operator==(const TriStateBool &other) const
     {

@@ -49,7 +49,7 @@ SpeedSampleAvg SpeedMonitor::average() const
     if (m_speedSamples.empty())
         return SpeedSampleAvg();
 
-    qreal k = qreal(1.) / m_speedSamples.size();
+    const qreal k = qreal(1.) / m_speedSamples.size();
     return SpeedSampleAvg(m_sum.download * k, m_sum.upload * k);
 }
 

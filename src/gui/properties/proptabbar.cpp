@@ -120,9 +120,9 @@ int PropTabBar::currentIndex() const
 void PropTabBar::setCurrentIndex(int index)
 {
     if (index >= m_btnGroup->buttons().size())
-    index = 0;
+        index = 0;
     // If asked to hide or if the currently selected tab is clicked
-    if (index < 0 || m_currentIndex == index) {
+    if ((index < 0) || (m_currentIndex == index)) {
         if (m_currentIndex >= 0) {
           m_btnGroup->button(m_currentIndex)->setDown(false);
           m_currentIndex = -1;

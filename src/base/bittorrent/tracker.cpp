@@ -63,7 +63,7 @@ QString Peer::uid() const
     return ip.toString() + ':' + QString::number(port);
 }
 
-libtorrent::entry Peer::toEntry(bool noPeerId) const
+libtorrent::entry Peer::toEntry(const bool noPeerId) const
 {
     libtorrent::entry::dictionary_type peerMap;
     if (!noPeerId)

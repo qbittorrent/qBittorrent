@@ -56,7 +56,7 @@ public:
     TransferListModel *getSourceModel() const;
 
 public slots:
-    void setSelectionCategory(QString category);
+    void setSelectionCategory(const QString &category);
     void addSelectionTag(const QString &tag);
     void removeSelectionTag(const QString &tag);
     void clearSelectionTags();
@@ -90,11 +90,11 @@ public slots:
     void displayDLHoSMenu(const QPoint&);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
-    void applyCategoryFilter(QString category);
+    void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QStringList &hashes);
-    void previewFile(QString filePath);
+    void previewFile(const QString &filePath);
     void renameSelectedTorrent();
 
 protected:

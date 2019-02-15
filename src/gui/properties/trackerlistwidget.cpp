@@ -149,7 +149,7 @@ QList<QTreeWidgetItem*> TrackerListWidget::getSelectedTrackerItems() const
     return selectedTrackers;
 }
 
-void TrackerListWidget::setRowColor(int row, QColor color)
+void TrackerListWidget::setRowColor(const int row, const QColor &color)
 {
     const int nbColumns = columnCount();
     QTreeWidgetItem *item = topLevelItem(row);

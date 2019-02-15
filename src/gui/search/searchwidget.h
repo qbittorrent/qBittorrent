@@ -74,7 +74,7 @@ private:
     void fillCatCombobox();
     void fillPluginComboBox();
     void selectActivePage();
-    void searchTextEdited(QString);
+    void searchTextEdited(const QString &);
     void updateButtons();
 
     QString selectedCategory() const;

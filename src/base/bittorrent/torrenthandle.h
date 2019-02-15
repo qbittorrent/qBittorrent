@@ -358,7 +358,7 @@ namespace BitTorrent
         // Session interface
         libtorrent::torrent_handle nativeHandle() const;
 
-        void handleAlert(libtorrent::alert *a);
+        void handleAlert(const libtorrent::alert *a);
         void handleStateUpdate(const libtorrent::torrent_status &nativeStatus);
         void handleTempPathChanged();
         void handleCategorySavePathChanged();
@@ -399,7 +399,7 @@ namespace BitTorrent
         void handleMetadataReceivedAlert(const libtorrent::metadata_received_alert *p);
         void handleStatsAlert(const libtorrent::stats_alert *p);
 
-        void resume_impl(bool forced, bool uploadMode);
+        void resume_impl(bool forced);
         bool isMoveInProgress() const;
         QString nativeActualSavePath() const;
 

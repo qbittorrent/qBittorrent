@@ -50,22 +50,16 @@ namespace
 
     QList<QSslCipher> safeCipherList()
     {
-        const QStringList badCiphers = {"idea", "rc4"};
-        const QList<QSslCipher> allCiphers = QSslSocket::supportedCiphers();
+        const QStringList badCiphers {"idea", "rc4"};
+        const QList<QSslCipher> allCiphers {QSslSocket::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
-        for (const QSslCipher &cipher : allCiphers) {
-            bool isSafe = true;
-            for (const QString &badCipher : badCiphers) {
-                if (cipher.name().contains(badCipher, Qt::CaseInsensitive)) {
-                    isSafe = false;
-                    break;
-                }
-            }
-
-            if (isSafe)
-                safeCiphers += cipher;
-        }
-
+        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
+        {
+            return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
+            {
+                return cipher.name().contains(badCipher, Qt::CaseInsensitive);
+            });
+        });
         return safeCiphers;
     }
 }

@@ -99,11 +99,11 @@ public:
     bool isFileLoggerDeleteOld() const;
     void setFileLoggerDeleteOld(bool value);
     int fileLoggerMaxSize() const;
-    void setFileLoggerMaxSize(const int bytes);
+    void setFileLoggerMaxSize(int bytes);
     int fileLoggerAge() const;
-    void setFileLoggerAge(const int value);
+    void setFileLoggerAge(int value);
     int fileLoggerAgeType() const;
-    void setFileLoggerAgeType(const int value);
+    void setFileLoggerAgeType(int value);
 
 protected:
 #ifndef DISABLE_GUI

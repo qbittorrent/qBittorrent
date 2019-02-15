@@ -466,8 +466,8 @@ QIcon getErrorIcon()
 
 bool isDarkTheme()
 {
-    QPalette pal = QApplication::palette();
+    const QPalette pal = QApplication::palette();
     // QPalette::Base is used for the background of the Treeview
-    QColor color = pal.color(QPalette::Active, QPalette::Base);
+    const QColor color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
 }

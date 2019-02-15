@@ -51,8 +51,8 @@ public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
     ~PluginSelectDialog();
 
-    QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
-    QTreeWidgetItem *findItemWithID(QString id);
+    QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
+    QTreeWidgetItem *findItemWithID(const QString &id);
 
 protected:
     void dropEvent(QDropEvent *event) override;
@@ -64,7 +64,7 @@ private slots:
     void on_installButton_clicked();
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
-    void setRowColor(int row, QString color);
+    void setRowColor(int row, const QString &color);
     void displayContextMenu(const QPoint &pos);
     void enableSelection(bool enable);
     void askForLocalPlugin();
@@ -81,7 +81,7 @@ private slots:
 
 private:
     void loadSupportedSearchPlugins();
-    void addNewPlugin(QString pluginName);
+    void addNewPlugin(const QString &pluginName);
     void startAsyncOp();
     void finishAsyncOp();
     void finishPluginUpdate();
