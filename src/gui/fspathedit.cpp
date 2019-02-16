@@ -28,6 +28,8 @@
 
 #include "fspathedit.h"
 
+#include <memory>
+
 #include <QAction>
 #include <QApplication>
 #include <QCoreApplication>
@@ -74,7 +76,7 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     QString dialogCaptionOrDefault() const;
 
     FileSystemPathEdit *q_ptr;
-    QScopedPointer<Private::FileEditorWithCompletion> m_editor;
+    std::unique_ptr<Private::FileEditorWithCompletion> m_editor;
     QAction *m_browseAction;
     QToolButton *m_browseBtn;
     QString m_fileNameFilter;
@@ -192,7 +194,10 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
 }
 
-FileSystemPathEdit::~FileSystemPathEdit() = default;
+FileSystemPathEdit::~FileSystemPathEdit()
+{
+    delete d_ptr;
+}
 
 QString FileSystemPathEdit::selectedPath() const
 {

@@ -29,8 +29,9 @@
 #ifndef ADDNEWTORRENTDIALOG_H
 #define ADDNEWTORRENTDIALOG_H
 
+#include <memory>
+
 #include <QDialog>
-#include <QScopedPointer>
 #include <QShortcut>
 
 #include "base/bittorrent/addtorrentparams.h"
@@ -113,7 +114,7 @@ private:
     BitTorrent::TorrentInfo m_torrentInfo;
     QByteArray m_headerState;
     int m_oldIndex;
-    QScopedPointer<TorrentFileGuard> m_torrentGuard;
+    std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 };
 

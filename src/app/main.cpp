@@ -30,13 +30,13 @@
 #include <QtGlobal>
 
 #include <cstdlib>
+#include <memory>
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #include <unistd.h>
 #endif
 
 #include <QDebug>
-#include <QScopedPointer>
 #include <QThread>
 
 #ifndef DISABLE_GUI
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     try {
         // Create Application
         const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
-        QScopedPointer<Application> app(new Application(appId, argc, argv));
+        std::unique_ptr<Application> app(new Application(appId, argc, argv));
 
         const QBtCommandLineParameters params = app->commandLineArgs();
 
