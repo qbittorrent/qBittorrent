@@ -69,6 +69,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
+#include "base/exceptions.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/misc.h"
@@ -208,13 +209,30 @@ int main(int argc, char *argv[])
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
+        try {
 #ifndef DISABLE_GUI
-        if (!upgrade()) return EXIT_FAILURE;
+            if (!upgrade()) return EXIT_FAILURE;
 #else
-        if (!upgrade(!params.shouldDaemonize
-                     && isatty(fileno(stdin))
-                     && isatty(fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(!params.shouldDaemonize
+                         && isatty(fileno(stdin))
+                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
+        }
+        catch (const RuntimeError &err) {
+#ifdef DISABLE_GUI
+            fprintf(stderr, "%s", err.what());
+#else
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setText(QObject::tr("Application failed to start."));
+            msgBox.setInformativeText(err.message());
+            msgBox.show(); // Need to be shown or to moveToCenter does not work
+            msgBox.move(Utils::Misc::screenCenter(&msgBox));
+            msgBox.exec();
+#endif
+            return 1;
+        }
+
 #ifdef DISABLE_GUI
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
