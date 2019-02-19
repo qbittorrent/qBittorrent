@@ -67,13 +67,14 @@ namespace Net
 
     private:
         void assignNetworkReply(QNetworkReply *reply);
-        void handleRedirection(QUrl newUrl);
+        void handleRedirection(const QUrl &newUrl);
 
         static QString errorCodeToString(QNetworkReply::NetworkError status);
 
         QNetworkReply *m_reply;
         DownloadManager *m_manager;
         const DownloadRequest m_downloadRequest;
+        short m_redirectionCounter = 0;
     };
 }
 
