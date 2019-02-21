@@ -135,7 +135,7 @@ void Net::DownloadHandler::processFinishedDownload()
     this->deleteLater();
 }
 
-void Net::DownloadHandler::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal)
+void Net::DownloadHandler::checkDownloadSize(const qint64 bytesReceived, const qint64 bytesTotal)
 {
     QString msg = tr("The file size is %1. It exceeds the download limit of %2.");
 

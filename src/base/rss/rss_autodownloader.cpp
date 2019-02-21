@@ -73,7 +73,7 @@ namespace
     QVector<RSS::AutoDownloadRule> rulesFromJSON(const QByteArray &jsonData)
     {
         QJsonParseError jsonError;
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &jsonError);
+        const QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &jsonError);
         if (jsonError.error != QJsonParseError::NoError)
             throw RSS::ParsingError(jsonError.errorString());
 
@@ -227,7 +227,7 @@ QByteArray AutoDownloader::exportRules(AutoDownloader::RulesFileFormat format) c
     }
 }
 
-void AutoDownloader::importRules(const QByteArray &data, AutoDownloader::RulesFileFormat format)
+void AutoDownloader::importRules(const QByteArray &data, const AutoDownloader::RulesFileFormat format)
 {
     switch (format) {
     case RulesFileFormat::Legacy:
@@ -333,7 +333,7 @@ void AutoDownloader::process()
 
 void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
 {
-    auto job = m_waitingJobs.take(url);
+    const auto job = m_waitingJobs.take(url);
     if (!job) return;
 
     if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
@@ -387,7 +387,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         params.addPaused = rule.addPaused();
         if (!rule.savePath().isEmpty())
             params.useAutoTMM = TriStateBool::False;
-        auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
+        const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, params);
 
         if (BitTorrent::MagnetUri(torrentURL).isValid()) {
@@ -434,10 +434,10 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss"));
+    const SettingsPtr settings = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss"));
     const QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
     for (const QVariant &ruleVar : rules) {
-        auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
+        const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
         if (!rule.name().isEmpty())
             insertRule(rule);
     }
@@ -485,7 +485,7 @@ void AutoDownloader::startProcessing()
     connect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
 }
 
-void AutoDownloader::setProcessingEnabled(bool enabled)
+void AutoDownloader::setProcessingEnabled(const bool enabled)
 {
     if (m_processingEnabled != enabled) {
         m_processingEnabled = enabled;

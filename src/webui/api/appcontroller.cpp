@@ -89,7 +89,7 @@ void AppController::shutdownAction()
 void AppController::preferencesAction()
 {
     const Preferences *const pref = Preferences::instance();
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
     QVariantMap data;
 
     // Downloads
@@ -144,7 +144,7 @@ void AppController::preferencesAction()
     data["max_uploads_per_torrent"] = session->maxUploadsPerTorrent();
 
     // Proxy Server
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     data["proxy_type"] = static_cast<int>(proxyConf.type);
     data["proxy_ip"] = proxyConf.ip;

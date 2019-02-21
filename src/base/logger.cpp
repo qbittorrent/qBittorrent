@@ -65,7 +65,7 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&m_lock);
 
-    Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
+    const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
     m_messages.push_back(temp);
 
     if (m_messages.size() >= MAX_LOG_MESSAGES)
@@ -74,11 +74,11 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
     emit newLogMessage(temp);
 }
 
-void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
+void Logger::addPeer(const QString &ip, const bool blocked, const QString &reason)
 {
     QWriteLocker locker(&m_lock);
 
-    Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
+    const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
     m_peers.push_back(temp);
 
     if (m_peers.size() >= MAX_LOG_MESSAGES)
@@ -87,12 +87,12 @@ void Logger::addPeer(const QString &ip, bool blocked, const QString &reason)
     emit newLogPeer(temp);
 }
 
-QVector<Log::Msg> Logger::getMessages(int lastKnownId) const
+QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
 {
     QReadLocker locker(&m_lock);
 
-    int diff = m_msgCounter - lastKnownId - 1;
-    int size = m_messages.size();
+    const int diff = m_msgCounter - lastKnownId - 1;
+    const int size = m_messages.size();
 
     if ((lastKnownId == -1) || (diff >= size))
         return m_messages;
@@ -103,12 +103,12 @@ QVector<Log::Msg> Logger::getMessages(int lastKnownId) const
     return m_messages.mid(size - diff);
 }
 
-QVector<Log::Peer> Logger::getPeers(int lastKnownId) const
+QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
 {
     QReadLocker locker(&m_lock);
 
-    int diff = m_peerCounter - lastKnownId - 1;
-    int size = m_peers.size();
+    const int diff = m_peerCounter - lastKnownId - 1;
+    const int size = m_peers.size();
 
     if ((lastKnownId == -1) || (diff >= size))
         return m_peers;

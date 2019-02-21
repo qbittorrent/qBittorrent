@@ -92,7 +92,7 @@ TagFilterModel::TagFilterModel(QObject *parent)
     : QAbstractListModel(parent)
 {
     using Session = BitTorrent::Session;
-    auto session = Session::instance();
+    const auto *session = Session::instance();
 
     connect(session, &Session::tagAdded, this, &TagFilterModel::tagAdded);
     connect(session, &Session::tagRemoved, this, &TagFilterModel::tagRemoved);
@@ -265,18 +265,18 @@ void TagFilterModel::populate()
 {
     using Torrent = BitTorrent::TorrentHandle;
 
-    auto session = BitTorrent::Session::instance();
-    auto torrents = session->torrents();
+    const auto *session = BitTorrent::Session::instance();
+    const auto torrents = session->torrents();
 
     // All torrents
     addToModel(getSpecialAllTag(), torrents.count());
 
-    const int untaggedCount = std::count_if(torrents.begin(), torrents.end(),
+    const int untaggedCount = std::count_if(torrents.cbegin(), torrents.cend(),
                                              [](Torrent *torrent) { return torrent->tags().isEmpty(); });
     addToModel(getSpecialUntaggedTag(), untaggedCount);
 
     for (const QString &tag : asConst(session->tags())) {
-        const int count = std::count_if(torrents.begin(), torrents.end(),
+        const int count = std::count_if(torrents.cbegin(), torrents.cend(),
                                         [tag](Torrent *torrent) { return torrent->hasTag(tag); });
         addToModel(tag, count);
     }

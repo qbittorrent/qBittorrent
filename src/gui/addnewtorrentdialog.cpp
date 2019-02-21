@@ -106,7 +106,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     setModal(true);
 #endif
 
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     if (m_torrentParams.addPaused == TriStateBool::True)
         m_ui->startTorrentCheckBox->setChecked(false);

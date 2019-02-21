@@ -168,7 +168,7 @@ PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
     return m_plugins.value(name);
 }
 
-void SearchPluginManager::enablePlugin(const QString &name, bool enabled)
+void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 {
     PluginInfo *plugin = m_plugins.value(name, 0);
     if (plugin) {
@@ -222,7 +222,7 @@ void SearchPluginManager::installPlugin(const QString &source)
 void SearchPluginManager::installPlugin_impl(const QString &name, const QString &path)
 {
     const PluginVersion newVersion = getPluginVersion(path);
-    PluginInfo *plugin = pluginInfo(name);
+    const PluginInfo *plugin = pluginInfo(name);
     if (plugin && !(plugin->version < newVersion)) {
         LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version, newVersion), Log::INFO);
         emit pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
@@ -230,7 +230,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
     }
 
     // Process with install
-    QString destPath = pluginPath(name);
+    const QString destPath = pluginPath(name);
     bool updated = false;
     if (QFile::exists(destPath)) {
         // Backup in case install fails
@@ -273,7 +273,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     clearPythonCache(engineLocation());
 
     // remove it from hard drive
-    QDir pluginsFolder(pluginsLocation());
+    const QDir pluginsFolder(pluginsLocation());
     QStringList filters;
     filters << name + ".*";
     const QStringList files = pluginsFolder.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -448,7 +448,7 @@ void SearchPluginManager::update()
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 
-    QString capabilities = nova.readAll();
+    const QString capabilities = nova.readAll();
     QDomDocument xmlDoc;
     if (!xmlDoc.setContent(capabilities)) {
         qWarning() << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
@@ -456,16 +456,16 @@ void SearchPluginManager::update()
         return;
     }
 
-    QDomElement root = xmlDoc.documentElement();
+    const QDomElement root = xmlDoc.documentElement();
     if (root.tagName() != "capabilities") {
         qWarning() << "Invalid XML file for Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
         return;
     }
 
     for (QDomNode engineNode = root.firstChild(); !engineNode.isNull(); engineNode = engineNode.nextSibling()) {
-        QDomElement engineElem = engineNode.toElement();
+        const QDomElement engineElem = engineNode.toElement();
         if (!engineElem.isNull()) {
-            QString pluginName = engineElem.tagName();
+            const QString pluginName = engineElem.tagName();
 
             std::unique_ptr<PluginInfo> plugin {new PluginInfo {}};
             plugin->name = pluginName;
@@ -480,7 +480,7 @@ void SearchPluginManager::update()
                     plugin->supportedCategories << cat;
             }
 
-            QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
+            const QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
             plugin->enabled = !disabledEngines.contains(pluginName);
 
             updateIconPath(plugin.get());
@@ -533,9 +533,9 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     }
 }
 
-bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, PluginVersion newVersion) const
+bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const PluginVersion newVersion) const
 {
-    PluginInfo *plugin = pluginInfo(pluginName);
+    const PluginInfo *plugin = pluginInfo(pluginName);
     if (!plugin) return true;
 
     PluginVersion oldVersion = plugin->version;

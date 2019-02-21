@@ -95,7 +95,7 @@ void GeoIPManager::loadDatabase()
         m_geoIPDatabase = nullptr;
     }
 
-    QString filepath = Utils::Fs::expandPathAbs(
+    const QString filepath = Utils::Fs::expandPathAbs(
         QString("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEOIP_FOLDER, GEOIP_FILENAME));
 
     QString error;
@@ -118,7 +118,7 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    DownloadHandler *handler = DownloadManager::instance()->download({DATABASE_URL});
+    const DownloadHandler *handler = DownloadManager::instance()->download({DATABASE_URL});
     connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
             , this, &GeoIPManager::downloadFinished);
     connect(handler, &Net::DownloadHandler::downloadFailed, this, &GeoIPManager::downloadFailed);
@@ -434,7 +434,7 @@ void GeoIPManager::downloadFinished(const QString &url, QByteArray data)
             Logger::instance()->addMessage(tr("GeoIP database loaded. Type: %1. Build time: %2.")
                 .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
                 Log::INFO);
-            QString targetPath = Utils::Fs::expandPathAbs(
+            const QString targetPath = Utils::Fs::expandPathAbs(
                         specialFolderLocation(SpecialFolder::Data) + GEOIP_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);

@@ -58,7 +58,7 @@ namespace
         explicit NetworkCookieJar(QObject *parent = nullptr)
             : QNetworkCookieJar(parent)
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
             for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
@@ -70,7 +70,7 @@ namespace
 
         ~NetworkCookieJar() override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();
             for (const QNetworkCookie &cookie : asConst(allCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
@@ -85,7 +85,7 @@ namespace
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
             for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url))) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
@@ -97,7 +97,7 @@ namespace
 
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url) override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = cookieList;
             for (const QNetworkCookie &cookie : cookieList) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
@@ -222,8 +222,8 @@ bool Net::DownloadManager::hasSupportedScheme(const QString &url)
 
 void Net::DownloadManager::applyProxySettings()
 {
-    auto proxyManager = ProxyConfigurationManager::instance();
-    ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    const auto *proxyManager = ProxyConfigurationManager::instance();
+    const ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     QNetworkProxy proxy;
 
     if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None)) {
@@ -256,7 +256,7 @@ void Net::DownloadManager::applyProxySettings()
 void Net::DownloadManager::handleReplyFinished(QNetworkReply *reply)
 {
     const ServiceID id = ServiceID::fromURL(reply->url());
-    auto waitingJobsIter = m_waitingJobs.find(id);
+    const auto waitingJobsIter = m_waitingJobs.find(id);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty()) {
         m_busyServices.remove(id);
         return;
@@ -311,7 +311,7 @@ qint64 Net::DownloadRequest::limit() const
     return m_limit;
 }
 
-Net::DownloadRequest &Net::DownloadRequest::limit(qint64 value)
+Net::DownloadRequest &Net::DownloadRequest::limit(const qint64 value)
 {
     m_limit = value;
     return *this;
@@ -322,7 +322,7 @@ bool Net::DownloadRequest::saveToFile() const
     return m_saveToFile;
 }
 
-Net::DownloadRequest &Net::DownloadRequest::saveToFile(bool value)
+Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
 {
     m_saveToFile = value;
     return *this;
@@ -333,7 +333,7 @@ bool Net::DownloadRequest::handleRedirectToMagnet() const
     return m_handleRedirectToMagnet;
 }
 
-Net::DownloadRequest &Net::DownloadRequest::handleRedirectToMagnet(bool value)
+Net::DownloadRequest &Net::DownloadRequest::handleRedirectToMagnet(const bool value)
 {
     m_handleRedirectToMagnet = value;
     return *this;

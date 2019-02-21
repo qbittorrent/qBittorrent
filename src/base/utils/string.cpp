@@ -151,7 +151,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
 }
 
 // to send numbers instead of strings with suffixes
-QString Utils::String::fromDouble(double n, int precision)
+QString Utils::String::fromDouble(const double n, const int precision)
 {
     /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
     ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
@@ -159,7 +159,7 @@ QString Utils::String::fromDouble(double n, int precision)
     ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
-    double prec = std::pow(10.0, precision);
+    const double prec = std::pow(10.0, precision);
     return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
 }
 

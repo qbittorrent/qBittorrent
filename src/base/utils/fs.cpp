@@ -81,14 +81,14 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(QB_EXT);
+    const QString ext = QString(filename).remove(QB_EXT);
     const int pointIndex = ext.lastIndexOf('.');
     return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
+    const QString path = fromNativePath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -97,7 +97,7 @@ QString Utils::Fs::fileName(const QString &filePath)
 
 QString Utils::Fs::folderName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
+    const QString path = fromNativePath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -140,7 +140,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
         }
 
         // remove temp files on linux (file ends with '~'), e.g. `filename~`
-        QDir dir(p);
+        const QDir dir(p);
         const QStringList tmpFileList = dir.entryList(QDir::Files);
         for (const QString &f : tmpFileList) {
             if (f.endsWith('~'))
@@ -188,7 +188,7 @@ void Utils::Fs::removeDirRecursive(const QString &path)
 qint64 Utils::Fs::computePathSize(const QString &path)
 {
     // Check if it is a file
-    QFileInfo fi(path);
+    const QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
 
@@ -221,7 +221,7 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     return true;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
+QString Utils::Fs::toValidFileSystemName(const QString &name, const bool allowSeparators, const QString &pad)
 {
     const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
@@ -232,7 +232,7 @@ QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparato
     return validName;
 }
 
-bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
+bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSeparators)
 {
     if (name.isEmpty()) return false;
 
@@ -272,7 +272,7 @@ bool Utils::Fs::sameFileNames(const QString &first, const QString &second)
 
 QString Utils::Fs::expandPath(const QString &path)
 {
-    QString ret = path.trimmed();
+    const QString ret = path.trimmed();
     if (ret.isEmpty())
         return ret;
 
