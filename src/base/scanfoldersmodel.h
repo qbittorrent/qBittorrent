@@ -68,7 +68,7 @@ public:
     static void freeInstance();
     static ScanFoldersModel *instance();
 
-    static QString pathTypeDisplayName(const PathType type);
+    static QString pathTypeDisplayName(PathType type);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

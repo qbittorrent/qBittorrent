@@ -84,7 +84,7 @@ public:
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
     int executionLogMsgTypes() const;
-    void setExecutionLogMsgTypes(const int value);
+    void setExecutionLogMsgTypes(int value);
 
     // Notifications properties
     bool isNotificationsEnabled() const;

@@ -1186,7 +1186,7 @@ int Preferences::getPropCurTab() const
     return value("TorrentProperties/CurrentTab", -1).toInt();
 }
 
-void Preferences::setPropCurTab(const int &tab)
+void Preferences::setPropCurTab(const int tab)
 {
     setValue("TorrentProperties/CurrentTab", tab);
 }
@@ -1356,7 +1356,7 @@ int Preferences::getTransSelFilter() const
     return value("TransferListFilters/selectedFilterIndex", 0).toInt();
 }
 
-void Preferences::setTransSelFilter(const int &index)
+void Preferences::setTransSelFilter(const int index)
 {
     setValue("TransferListFilters/selectedFilterIndex", index);
 }
