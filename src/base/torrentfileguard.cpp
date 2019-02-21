@@ -86,4 +86,3 @@ CachedSettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDele
     static CachedSettingValue<AutoDeleteMode> setting("Core/AutoDeleteAddedTorrentFile", AutoDeleteMode::Never);
     return setting;
 }
-

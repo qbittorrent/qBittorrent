@@ -121,7 +121,7 @@ QVariant TorrentContentModelItem::data(int column) const
         return availability();
     default:
         Q_ASSERT(false);
-        return QVariant();
+        return {};
     }
 }
 

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TOFFENTFILEGURAD_H
-#define TOFFENTFILEGURAD_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -82,5 +81,3 @@ private:
     AutoDeleteMode m_mode;
     bool m_wasAdded;
 };
-
-#endif // TOFFENTFILEGURAD_H

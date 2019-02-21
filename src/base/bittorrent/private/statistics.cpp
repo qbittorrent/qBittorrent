@@ -30,15 +30,12 @@
 
 #include <QDateTime>
 
-#include <libtorrent/session.hpp>
-
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
 
 static const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 Statistics::Statistics(Session *session)

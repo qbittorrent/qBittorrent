@@ -117,7 +117,7 @@ void ArticleListWidget::checkInvariant() const
 QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
 {
     Q_ASSERT(article);
-    QListWidgetItem *item = new QListWidgetItem;
+    auto *item = new QListWidgetItem;
 
     item->setData(Qt::DisplayRole, article->title());
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));

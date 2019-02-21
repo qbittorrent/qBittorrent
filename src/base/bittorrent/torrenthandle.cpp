@@ -297,7 +297,7 @@ QString TorrentHandle::savePath(bool actual) const
 QString TorrentHandle::rootPath(bool actual) const
 {
     if ((filesCount() > 1) && !hasRootFolder())
-        return QString();
+        return {};
 
     const QString firstFilePath = filePath(0);
     const int slashIndex = firstFilePath.indexOf('/');
@@ -593,7 +593,7 @@ QString TorrentHandle::filePath(int index) const
 
 QString TorrentHandle::fileName(int index) const
 {
-    if (!hasMetadata()) return QString();
+    if (!hasMetadata()) return {};
     return Utils::Fs::fileName(filePath(index));
 }
 
@@ -606,7 +606,7 @@ qlonglong TorrentHandle::fileSize(int index) const
 // to all files in a torrent
 QStringList TorrentHandle::absoluteFilePaths() const
 {
-    if (!hasMetadata()) return QStringList();
+    if (!hasMetadata()) return {};
 
     const QDir saveDir(savePath(true));
     QStringList res;
@@ -617,7 +617,7 @@ QStringList TorrentHandle::absoluteFilePaths() const
 
 QStringList TorrentHandle::absoluteFilePathsUnwanted() const
 {
-    if (!hasMetadata()) return QStringList();
+    if (!hasMetadata()) return {};
 
     const QDir saveDir(savePath(true));
     QStringList res;
@@ -987,7 +987,7 @@ QDateTime TorrentHandle::lastSeenComplete() const
     if (m_nativeStatus.last_seen_complete > 0)
         return QDateTime::fromTime_t(m_nativeStatus.last_seen_complete);
     else
-        return QDateTime();
+        return {};
 }
 
 QDateTime TorrentHandle::completedTime() const
@@ -995,7 +995,7 @@ QDateTime TorrentHandle::completedTime() const
     if (m_nativeStatus.completed_time > 0)
         return QDateTime::fromTime_t(m_nativeStatus.completed_time);
     else
-        return QDateTime();
+        return {};
 }
 
 int TorrentHandle::timeSinceUpload() const

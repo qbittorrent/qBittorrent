@@ -434,9 +434,9 @@ void SyncController::maindataAction()
     data["torrents"] = torrents;
 
     QVariantHash categories;
-    const auto categoriesList = session->categories();
+    const auto &categoriesList = session->categories();
     for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
-        const auto key = it.key();
+        const auto &key = it.key();
         categories[key] = QVariantMap {
             {"name", key},
             {"savePath", it.value()}

@@ -184,7 +184,7 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     Q_D(FileSystemPathEdit);
     editor->widget()->setParent(this);
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(editor->widget());
     layout->addWidget(d->m_browseBtn);

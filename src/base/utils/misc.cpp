@@ -97,7 +97,7 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        qreal rawVal = static_cast<qreal>(sizeInBytes);
+        auto rawVal = static_cast<qreal>(sizeInBytes);
 
         while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
             rawVal /= 1024.;
@@ -256,7 +256,7 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
     QDesktopWidget *desktop = QApplication::desktop();
     int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
     QRect r = desktop->availableGeometry(scrn);
-    return QPoint(r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2);
+    return {r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2};
 }
 #endif
 
@@ -285,8 +285,8 @@ int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
     // friendlyUnit's number of digits after the decimal point
     if (unit == SizeUnit::Byte) return 0;
     if (unit <= SizeUnit::MebiByte) return 1;
-    else if (unit == SizeUnit::GibiByte) return 2;
-    else return 3;
+    if (unit == SizeUnit::GibiByte) return 2;
+    return 3;
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)

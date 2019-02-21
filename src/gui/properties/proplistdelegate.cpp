@@ -153,7 +153,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
 void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox *>(editor);
+    auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
     switch (static_cast<BitTorrent::FilePriority>(index.data().toInt())) {
     case BitTorrent::FilePriority::Ignored:
@@ -184,7 +184,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     if (index.data().toInt() == static_cast<int>(BitTorrent::FilePriority::Mixed))
         return nullptr;
 
-    QComboBox *editor = new QComboBox(parent);
+    auto *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(tr("Do not download", "Do not download (priority)"));
     editor->addItem(tr("Normal", "Normal (priority)"));
@@ -195,7 +195,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 
 void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox *>(editor);
+    auto *combobox = static_cast<QComboBox *>(editor);
     int value = combobox->currentIndex();
     qDebug("PropListDelegate: setModelData(%d)", value);
 

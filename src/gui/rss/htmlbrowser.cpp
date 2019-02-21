@@ -80,7 +80,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
             m_netManager->get(req);
         }
 
-        return QVariant();
+        return {};
     }
 
     return QTextBrowser::loadResource(type, name);

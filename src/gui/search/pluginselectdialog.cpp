@@ -270,7 +270,7 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
 
 void PluginSelectDialog::addNewPlugin(const QString &pluginName)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->pluginsTree);
+    auto *item = new QTreeWidgetItem(m_ui->pluginsTree);
     PluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
     item->setText(PLUGIN_NAME, plugin->fullName);
     item->setText(PLUGIN_URL, plugin->url);
@@ -326,7 +326,7 @@ void PluginSelectDialog::finishPluginUpdate()
 
 void PluginSelectDialog::on_installButton_clicked()
 {
-    PluginSourceDialog *dlg = new PluginSourceDialog(this);
+    auto *dlg = new PluginSourceDialog(this);
     connect(dlg, &PluginSourceDialog::askForLocalFile, this, &PluginSelectDialog::askForLocalPlugin);
     connect(dlg, &PluginSourceDialog::askForUrl, this, &PluginSelectDialog::askForPluginUrl);
 }

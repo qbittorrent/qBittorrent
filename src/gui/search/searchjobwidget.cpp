@@ -385,7 +385,7 @@ QString SearchJobWidget::statusText(SearchJobWidget::Status st)
     case Status::NoResults:
         return tr("Search returned no results");
     default:
-        return QString();
+        return {};
     }
 }
 

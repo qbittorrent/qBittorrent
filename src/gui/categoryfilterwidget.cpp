@@ -59,7 +59,7 @@ namespace
 CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    CategoryFilterProxyModel *proxyModel = new CategoryFilterProxyModel(this);
+    auto *proxyModel = new CategoryFilterProxyModel(this);
     proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setSourceModel(new CategoryFilterModel(this));
     setModel(proxyModel);

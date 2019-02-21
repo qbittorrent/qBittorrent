@@ -171,14 +171,14 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
                 ptr += m_recordBytes;
 
             quint32 id = 0;
-            uchar *idPtr = reinterpret_cast<uchar *>(&id);
+            auto *idPtr = reinterpret_cast<uchar *>(&id);
             memcpy(&idPtr[4 - m_recordBytes], ptr, m_recordBytes);
             fromBigEndian(idPtr, 4);
 
             if (id == m_nodeCount) {
-                return QString();
+                return {};
             }
-            else if (id > m_nodeCount) {
+            if (id > m_nodeCount) {
                 QString country = m_countries.value(id);
                 if (country.isEmpty()) {
                     const quint32 offset = id - m_nodeCount - sizeof(DATA_SECTION_SEPARATOR);
@@ -191,13 +191,12 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
                 }
                 return country;
             }
-            else {
-                ptr = m_data + (id * m_nodeSize);
-            }
+
+            ptr = m_data + (id * m_nodeSize);
         }
     }
 
-    return QString();
+    return {};
 }
 
 #define CHECK_METADATA_REQ(key, type) \
@@ -205,7 +204,7 @@ if (!metadata.contains(#key)) { \
     error = errMsgNotFound.arg(#key); \
     return false; \
 } \
-else if (metadata.value(#key).userType() != QMetaType::type) { \
+if (metadata.value(#key).userType() != QMetaType::type) { \
     error = errMsgInvalid.arg(#key);  \
     return false; \
 }
@@ -299,20 +298,20 @@ QVariantHash GeoIPDatabase::readMetadata() const
     if (index >= 0) {
         if (m_size > MAX_METADATA_SIZE)
             index += (m_size - MAX_METADATA_SIZE); // from begin of all data
-        quint32 offset = static_cast<quint32>(index + strlen(METADATA_BEGIN_MARK));
+        auto offset = static_cast<quint32>(index + strlen(METADATA_BEGIN_MARK));
         QVariant metadata = readDataField(offset);
         if (metadata.userType() == QMetaType::QVariantHash)
             return metadata.toHash();
     }
 
-    return QVariantHash();
+    return {};
 }
 
 QVariant GeoIPDatabase::readDataField(quint32 &offset) const
 {
     DataFieldDescriptor descr;
     if (!readDataFieldDescriptor(offset, descr))
-        return QVariant();
+        return {};
 
     quint32 locOffset = offset;
     bool usePointer = false;
@@ -321,7 +320,7 @@ QVariant GeoIPDatabase::readDataField(quint32 &offset) const
         // convert offset from data section to global
         locOffset = descr.offset + (m_nodeCount * m_recordSize / 4) + sizeof(DATA_SECTION_SEPARATOR);
         if (!readDataFieldDescriptor(locOffset, descr))
-            return QVariant();
+            return {};
     }
 
     QVariant fieldValue;
@@ -460,12 +459,12 @@ QVariant GeoIPDatabase::readMapValue(quint32 &offset, quint32 count) const
     for (quint32 i = 0; i < count; ++i) {
         QVariant field = readDataField(offset);
         if (field.userType() != QMetaType::QString)
-            return QVariant();
+            return {};
 
         QString key = field.toString();
         field = readDataField(offset);
         if (field.userType() == QVariant::Invalid)
-            return QVariant();
+            return {};
 
         map[key] = field;
     }
@@ -480,7 +479,7 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, quint32 count) const
     for (quint32 i = 0; i < count; ++i) {
         QVariant field = readDataField(offset);
         if (field.userType() == QVariant::Invalid)
-            return QVariant();
+            return {};
 
         array.append(field);
     }
