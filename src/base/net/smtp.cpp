@@ -285,7 +285,7 @@ void Smtp::readyRead()
     }
 }
 
-QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTextCodec *latin1, const QByteArray &prefix)
+QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix)
 {
     QByteArray rv = "";
     QByteArray line = key.toLatin1() + ": ";

@@ -253,7 +253,7 @@ void Net::DownloadManager::applyProxySettings()
     m_networkManager.setProxy(proxy);
 }
 
-void Net::DownloadManager::handleReplyFinished(QNetworkReply *reply)
+void Net::DownloadManager::handleReplyFinished(const QNetworkReply *reply)
 {
     const ServiceID id = ServiceID::fromURL(reply->url());
     const auto waitingJobsIter = m_waitingJobs.find(id);

@@ -50,7 +50,7 @@ class PiecesBar : public QWidget
 public:
     explicit PiecesBar(QWidget *parent = nullptr);
 
-    void setTorrent(BitTorrent::TorrentHandle *torrent);
+    void setTorrent(const BitTorrent::TorrentHandle *torrent);
     void setColors(const QColor &background, const QColor &border, const QColor &complete);
 
     virtual void clear();

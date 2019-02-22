@@ -347,7 +347,7 @@ void AutoDownloader::handleTorrentDownloadFailed(const QString &url)
     // TODO: Re-schedule job here.
 }
 
-void AutoDownloader::handleNewArticle(Article *article)
+void AutoDownloader::handleNewArticle(const Article *article)
 {
     if (!article->isRead() && !article->torrentUrl().isEmpty())
         addJobForArticle(article);
@@ -358,7 +358,7 @@ void AutoDownloader::setRule_impl(const AutoDownloadRule &rule)
     m_rules.insert(rule.name(), rule);
 }
 
-void AutoDownloader::addJobForArticle(Article *article)
+void AutoDownloader::addJobForArticle(const Article *article)
 {
     const QString torrentURL = article->torrentUrl();
     if (m_waitingJobs.contains(torrentURL)) return;

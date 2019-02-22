@@ -118,7 +118,7 @@ PiecesBar::PiecesBar(QWidget *parent)
     setMouseTracking(true);
 }
 
-void PiecesBar::setTorrent(BitTorrent::TorrentHandle *torrent)
+void PiecesBar::setTorrent(const BitTorrent::TorrentHandle *torrent)
 {
     m_torrent = torrent;
     if (!m_torrent)
