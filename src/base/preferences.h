@@ -83,7 +83,7 @@ class Preferences : public QObject
 
     Preferences();
 
-    const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    const QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
     void setValue(const QString &key, const QVariant &value);
 
     static Preferences *m_instance;

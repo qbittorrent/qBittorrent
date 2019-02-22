@@ -79,7 +79,7 @@ public:
     static Logger *instance();
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);
-    void addPeer(const QString &ip, bool blocked, const QString &reason = QString());
+    void addPeer(const QString &ip, bool blocked, const QString &reason = {});
     QVector<Log::Msg> getMessages(int lastKnownId = -1) const;
     QVector<Log::Peer> getPeers(int lastKnownId = -1) const;
 

@@ -119,7 +119,7 @@ namespace
         return keys;
     }
 
-    QString getRegValue(const HKEY handle, const QString &name = QString())
+    QString getRegValue(const HKEY handle, const QString &name = {})
     {
         QString result;
 

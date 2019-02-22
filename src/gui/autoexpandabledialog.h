@@ -47,7 +47,7 @@ public:
     ~AutoExpandableDialog();
 
     static QString getText(QWidget *parent, const QString &title, const QString &label,
-                            QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = QString(),
+                           QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = {},
                             bool *ok = nullptr, bool excludeExtension = false, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
 
 protected:
