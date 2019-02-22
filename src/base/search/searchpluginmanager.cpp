@@ -170,7 +170,7 @@ PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
 
 void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 {
-    PluginInfo *plugin = m_plugins.value(name, 0);
+    PluginInfo *plugin = m_plugins.value(name, nullptr);
     if (plugin) {
         plugin->enabled = enabled;
         // Save to Hard disk

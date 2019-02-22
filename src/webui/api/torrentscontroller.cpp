@@ -134,7 +134,7 @@ namespace
     QVariantList getStickyTrackers(const BitTorrent::TorrentHandle *const torrent)
     {
         uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
-        for (const BitTorrent::PeerInfo &peer : torrent->peers()) {
+        for (const BitTorrent::PeerInfo &peer : asConst(torrent->peers())) {
             if (peer.isConnecting()) continue;
 
             if (peer.isSeed()) {

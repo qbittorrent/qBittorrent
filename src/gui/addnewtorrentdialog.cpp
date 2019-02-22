@@ -233,7 +233,7 @@ void AddNewTorrentDialog::saveState()
 
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
-    AddNewTorrentDialog *dlg = new AddNewTorrentDialog(inParams, parent);
+    auto *dlg = new AddNewTorrentDialog(inParams, parent);
 
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
