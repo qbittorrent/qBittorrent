@@ -38,8 +38,6 @@ namespace BitTorrent
 }
 
 class QShortcut;
-class QSortFilterProxyModel;
-class QStandardItemModel;
 
 class MainWindow;
 class TransferListDelegate;

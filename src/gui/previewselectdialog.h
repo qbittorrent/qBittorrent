@@ -32,7 +32,6 @@
 #include <QDialog>
 
 #include "base/settingvalue.h"
-#include "ui_previewselectdialog.h"
 
 class QStandardItemModel;
 
@@ -40,9 +39,13 @@ namespace BitTorrent
 {
     class TorrentHandle;
 }
+namespace Ui
+{
+    class PreviewSelectDialog;
+}
 class PreviewListDelegate;
 
-class PreviewSelectDialog : public QDialog, private Ui::preview
+class PreviewSelectDialog : public QDialog
 {
     Q_OBJECT
 
@@ -73,6 +76,7 @@ private:
     void loadWindowState();
     void saveWindowState();
 
+    Ui::PreviewSelectDialog *m_ui;
     QStandardItemModel *m_previewListModel;
     PreviewListDelegate *m_listDelegate;
     BitTorrent::TorrentHandle *const m_torrent;
