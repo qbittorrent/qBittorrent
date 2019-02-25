@@ -80,7 +80,7 @@ private slots:
     void updateMetadata(const BitTorrent::TorrentInfo &info);
     void handleDownloadFailed(const QString &url, const QString &reason);
     void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
-    void handleDownloadFinished(const QString &url, const QString &filePath);
+    void handleDownloadFinished(const QString &url, const QByteArray &data);
     void TMMChanged(int index);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
@@ -90,7 +90,8 @@ private slots:
 
 private:
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    bool loadTorrent(const QString &torrentPath);
+    bool loadTorrentFile(const QString &torrentPath);
+    bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
@@ -108,7 +109,6 @@ private:
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;
     bool m_hasMetadata;
-    QString m_filePath;
     BitTorrent::InfoHash m_hash;
     BitTorrent::TorrentInfo m_torrentInfo;
     QByteArray m_headerState;

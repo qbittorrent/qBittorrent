@@ -464,7 +464,7 @@ namespace
                 offset = parts[2].toInt(&ok[0]) * 3600;
                 int offsetMin = parts[3].toInt(&ok[1]);
                 if (!ok[0] || !ok[1] || offsetMin > 59)
-                    return QDateTime();
+                    return {};
                 offset += offsetMin * 60;
                 negOffset = (parts[1] == QLatin1String("-"));
                 if (negOffset)
@@ -494,7 +494,7 @@ namespace
                         for (int i = 0, end = zone.size(); (i < end) && !nonalpha; ++i)
                             nonalpha = !isalpha(zone[i]);
                         if (nonalpha)
-                            return QDateTime();
+                            return {};
                         // TODO: Attempt to recognize the time zone abbreviation?
                         negOffset = true;    // unknown time zone: RFC 2822 treats as '-0000'
                     }
@@ -556,22 +556,20 @@ void Parser::parse_impl(const QByteArray &feedData)
                     foundChannel = true;
                     break;
                 }
-                else {
-                    qDebug() << "Skip rss item: " << xml.name();
-                    xml.skipCurrentElement();
-                }
+
+                qDebug() << "Skip rss item: " << xml.name();
+                xml.skipCurrentElement();
             }
             break;
         }
-        else if (xml.name() == "feed") { // Atom feed
+        if (xml.name() == "feed") { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;
             break;
         }
-        else {
-            qDebug() << "Skip root item: " << xml.name();
-            xml.skipCurrentElement();
-        }
+
+        qDebug() << "Skip root item: " << xml.name();
+        xml.skipCurrentElement();
     }
 
     if (!foundChannel) {

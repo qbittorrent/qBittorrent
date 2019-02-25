@@ -129,7 +129,7 @@ QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
     if (m_enabled && m_geoIPDatabase)
         return m_geoIPDatabase->lookup(hostAddr);
 
-    return QString();
+    return {};
 }
 
 QString GeoIPManager::CountryName(const QString &countryISOCode)

@@ -227,7 +227,7 @@ namespace
                 return path;
         }
 
-        return QString();
+        return {};
     }
 #endif // Q_OS_WIN
 }

@@ -37,8 +37,8 @@
 #include <QQueue>
 #include <QSet>
 
-class QNetworkReply;
 class QNetworkCookie;
+class QNetworkReply;
 class QSslError;
 class QUrl;
 
@@ -83,6 +83,9 @@ namespace Net
         static ServiceID fromURL(const QUrl &url);
     };
 
+    uint qHash(const ServiceID &serviceID, uint seed);
+    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
+
     class DownloadManager : public QObject
     {
         Q_OBJECT
@@ -106,9 +109,7 @@ namespace Net
         static bool hasSupportedScheme(const QString &url);
 
     private slots:
-    #ifndef QT_NO_OPENSSL
         void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);
-    #endif
 
     private:
         explicit DownloadManager(QObject *parent = nullptr);
@@ -123,9 +124,6 @@ namespace Net
         QSet<ServiceID> m_busyServices;
         QHash<ServiceID, QQueue<DownloadHandler *>> m_waitingJobs;
     };
-
-    uint qHash(const ServiceID &serviceID, uint seed);
-    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
 }
 
 #endif // NET_DOWNLOADMANAGER_H

@@ -113,12 +113,12 @@ namespace
             const QString ext = info.suffix();
             if (!ext.isEmpty()) {
                 QPixmap cached;
-                if (QPixmapCache::find(ext, &cached)) return QIcon(cached);
+                if (QPixmapCache::find(ext, &cached)) return {cached};
 
                 const QPixmap pixmap = pixmapForExtension(ext);
                 if (!pixmap.isNull()) {
                     QPixmapCache::insert(ext, pixmap);
-                    return QIcon(pixmap);
+                    return {pixmap};
                 }
             }
             return UnifiedFileIconProvider::icon(info);
@@ -140,7 +140,7 @@ namespace
             HRESULT hr = ::SHGetFileInfoW(extWithDot.toStdWString().c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
-                return QPixmap();
+                return {};
 
             QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
             ::DestroyIcon(sfi.hIcon);
@@ -287,8 +287,8 @@ int TorrentContentModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return static_cast<TorrentContentModelItem*>(parent.internalPointer())->columnCount();
-    else
-        return m_rootItem->columnCount();
+
+    return m_rootItem->columnCount();
 }
 
 bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -297,7 +297,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         return false;
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
-        TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d", qUtf8Printable(item->name()), value.toInt());
         if (static_cast<int>(item->priority()) != value.toInt()) {
             BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal;
@@ -318,7 +318,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
     if (role == Qt::EditRole) {
         Q_ASSERT(index.isValid());
-        TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         switch (index.column()) {
         case TorrentContentModelItem::COL_NAME:
             item->setName(value.toString());
@@ -343,7 +343,7 @@ TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelInde
 
 int TorrentContentModel::getFileIndex(const QModelIndex &index)
 {
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (item->itemType() == TorrentContentModelItem::FileType)
         return static_cast<TorrentContentModelFile*>(item)->fileIndex();
 
@@ -354,15 +354,15 @@ int TorrentContentModel::getFileIndex(const QModelIndex &index)
 QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+        return {};
 
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
             return getDirectoryIcon();
-        else
-            return m_fileIconProvider->icon(QFileInfo(item->name()));
+
+        return m_fileIconProvider->icon(QFileInfo(item->name()));
     }
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
@@ -376,7 +376,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
         return item->data(index.column());
 
-    return QVariant();
+    return {};
 }
 
 Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
@@ -395,16 +395,16 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
     if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole))
         return m_rootItem->data(section);
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (parent.isValid() && (parent.column() != 0))
-        return QModelIndex();
+        return {};
 
     if (column >= TorrentContentModelItem::NB_COL)
-        return QModelIndex();
+        return {};
 
     TorrentContentModelFolder *parentItem;
     if (!parent.isValid())
@@ -414,26 +414,26 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &p
     Q_ASSERT(parentItem);
 
     if (row >= parentItem->childCount())
-        return QModelIndex();
+        return {};
 
     TorrentContentModelItem *childItem = parentItem->child(row);
     if (childItem)
         return createIndex(row, column, childItem);
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
-    TorrentContentModelItem *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (!childItem)
-        return QModelIndex();
+        return {};
 
     TorrentContentModelItem *parentItem = childItem->parent();
     if (parentItem == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return createIndex(parentItem->row(), 0, parentItem);
 }

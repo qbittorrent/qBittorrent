@@ -78,7 +78,7 @@ void LogListWidget::keyPressEvent(QKeyEvent *event)
 
 void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 {
-    QListWidgetItem *item = new QListWidgetItem;
+    auto *item = new QListWidgetItem;
     // We need to use QLabel here to support rich text
     QLabel *lbl = new QLabel(line);
     lbl->setContentsMargins(4, 2, 4, 2);

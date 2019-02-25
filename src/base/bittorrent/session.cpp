@@ -4299,11 +4299,11 @@ namespace
 
         using PCONVERTIFACENAMETOLUID = NETIO_STATUS (WINAPI *)(const WCHAR *, PNET_LUID);
         const auto ConvertIfaceNameToLuid = Utils::Misc::loadWinAPI<PCONVERTIFACENAMETOLUID>("Iphlpapi.dll", "ConvertInterfaceNameToLuidW");
-        if (!ConvertIfaceNameToLuid) return QString();
+        if (!ConvertIfaceNameToLuid) return {};
 
         using PCONVERTIFACELUIDTOGUID = NETIO_STATUS (WINAPI *)(const NET_LUID *, GUID *);
         const auto ConvertIfaceLuidToGuid = Utils::Misc::loadWinAPI<PCONVERTIFACELUIDTOGUID>("Iphlpapi.dll", "ConvertInterfaceLuidToGuid");
-        if (!ConvertIfaceLuidToGuid) return QString();
+        if (!ConvertIfaceLuidToGuid) return {};
 
         NET_LUID luid;
         const LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
@@ -4313,7 +4313,7 @@ namespace
                 return QUuid(guid).toString().toUpper();
         }
 
-        return QString();
+        return {};
     }
 #endif
 }

@@ -60,7 +60,7 @@ namespace
 TagFilterWidget::TagFilterWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    TagFilterProxyModel *proxyModel = new TagFilterProxyModel(this);
+    auto *proxyModel = new TagFilterProxyModel(this);
     proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setSourceModel(new TagFilterModel(this));
     setModel(proxyModel);

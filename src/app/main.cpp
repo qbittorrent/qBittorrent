@@ -29,6 +29,7 @@
 
 #include <QtGlobal>
 
+#include <csignal>
 #include <cstdlib>
 
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
@@ -59,7 +60,6 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include <cstdio>
 #endif // DISABLE_GUI
 
-#include <signal.h>
 #ifdef STACKTRACE
 #ifdef Q_OS_UNIX
 #include "stacktrace.h"

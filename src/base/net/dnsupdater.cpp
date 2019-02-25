@@ -288,11 +288,11 @@ QUrl DNSUpdater::getRegistrationUrl(int service)
 {
     switch (service) {
     case DNS::DYNDNS:
-        return QUrl("https://www.dyndns.com/account/services/hosts/add.html");
+        return {"https://www.dyndns.com/account/services/hosts/add.html"};
     case DNS::NOIP:
-        return QUrl("https://www.noip.com/remote-access");
+        return {"https://www.noip.com/remote-access"};
     default:
         Q_ASSERT(0);
     }
-    return QUrl();
+    return {};
 }

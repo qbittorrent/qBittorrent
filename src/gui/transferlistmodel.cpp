@@ -125,7 +125,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             default:
-                return QVariant();
+                return {};
             }
         }
         else if (role == Qt::TextAlignmentRole) {
@@ -149,22 +149,22 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_RATIO:
             case TR_PRIORITY:
             case TR_LAST_ACTIVITY:
-                return QVariant(Qt::AlignRight | Qt::AlignVCenter);
+                return {Qt::AlignRight | Qt::AlignVCenter};
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
             }
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant TransferListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid()) return QVariant();
+    if (!index.isValid()) return {};
 
     BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
-    if (!torrent) return QVariant();
+    if (!torrent) return {};
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
         return getIconByState(torrent->state());
@@ -173,7 +173,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         return getColorByState(torrent->state());
 
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
-        return QVariant();
+        return {};
 
     switch (index.column()) {
     case TR_NAME:
@@ -243,7 +243,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         return torrent->totalSize();
     }
 
-    return QVariant();
+    return {};
 }
 
 bool TransferListModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -366,32 +366,32 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::ForcedDownloading:
     case BitTorrent::TorrentState::DownloadingMetadata:
         if (!dark)
-            return QColor(34, 139, 34); // Forest Green
+            return {34, 139, 34}; // Forest Green
         else
-            return QColor(50, 205, 50); // Lime Green
+            return {50, 205, 50}; // Lime Green
     case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
     case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
-            return QColor(0, 0, 0); // Black
+            return {0, 0, 0}; // Black
         else
-            return QColor(204, 204, 204); // Gray 80
+            return {204, 204, 204}; // Gray 80
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
         if (!dark)
-            return QColor(65, 105, 225); // Royal Blue
+            return {65, 105, 225}; // Royal Blue
         else
-            return QColor(99, 184, 255); // Steel Blue 1
+            return {99, 184, 255}; // Steel Blue 1
     case BitTorrent::TorrentState::PausedDownloading:
-        return QColor(250, 128, 114); // Salmon
+        return {250, 128, 114}; // Salmon
     case BitTorrent::TorrentState::PausedUploading:
         if (!dark)
-            return QColor(0, 0, 139); // Dark Blue
+            return {0, 0, 139}; // Dark Blue
         else
-            return QColor(79, 148, 205); // Steel Blue 3
+            return {79, 148, 205}; // Steel Blue 3
     case BitTorrent::TorrentState::Error:
     case BitTorrent::TorrentState::MissingFiles:
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:
     case BitTorrent::TorrentState::CheckingDownloading:
@@ -399,14 +399,14 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::CheckingResumeData:
     case BitTorrent::TorrentState::Moving:
         if (!dark)
-            return QColor(0, 128, 128); // Teal
+            return {0, 128, 128}; // Teal
         else
-            return QColor(0, 205, 205); // Cyan 3
+            return {0, 205, 205}; // Cyan 3
     case BitTorrent::TorrentState::Unknown:
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     default:
         Q_ASSERT(false);
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     }
 }
 
@@ -468,6 +468,6 @@ bool isDarkTheme()
 {
     const QPalette pal = QApplication::palette();
     // QPalette::Base is used for the background of the Treeview
-    const QColor color = pal.color(QPalette::Active, QPalette::Base);
+    const QColor &color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
 }

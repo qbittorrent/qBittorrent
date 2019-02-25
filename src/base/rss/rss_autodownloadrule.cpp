@@ -68,7 +68,7 @@ namespace
         switch (static_cast<int>(triStateBool)) {
         case 0:  return false;
         case 1:  return true;
-        default: return QJsonValue();
+        default: return {};
         }
     }
 
@@ -159,7 +159,7 @@ QString computeEpisodeName(const QString &article)
 
     // See if we can extract an season/episode number or date from the title
     if (!match.hasMatch())
-        return QString();
+        return {};
 
     QStringList ret;
     for (int i = 1; i <= match.lastCapturedIndex(); ++i) {

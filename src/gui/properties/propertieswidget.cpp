@@ -198,7 +198,7 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
 void PropertiesWidget::setVisibility(bool visible)
 {
     if (!visible && (m_state == VISIBLE)) {
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         m_ui->stackedProperties->setVisible(false);
         m_slideSizes = hSplitter->sizes();
         hSplitter->handle(1)->setVisible(false);
@@ -211,7 +211,7 @@ void PropertiesWidget::setVisibility(bool visible)
 
     if (visible && (m_state == REDUCED)) {
         m_ui->stackedProperties->setVisible(true);
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->handle(1)->setDisabled(false);
         hSplitter->handle(1)->setVisible(true);
         hSplitter->setSizes(m_slideSizes);
@@ -344,7 +344,7 @@ void PropertiesWidget::readSettings()
     if (sizesStr.size() == 2) {
         m_slideSizes << sizesStr.first().toInt();
         m_slideSizes << sizesStr.last().toInt();
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->setSizes(m_slideSizes);
     }
     const int currentTab = pref->getPropCurTab();
@@ -360,7 +360,7 @@ void PropertiesWidget::saveSettings()
     Preferences *const pref = Preferences::instance();
     pref->setPropVisible(m_state == VISIBLE);
     // Splitter sizes
-    QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+    auto *hSplitter = static_cast<QSplitter *>(parentWidget());
     QList<int> sizes;
     if (m_state == VISIBLE)
         sizes = hSplitter->sizes();

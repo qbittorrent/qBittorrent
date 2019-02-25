@@ -74,7 +74,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     setProxy(QNetworkProxy::NoProxy);
     QSslSocket::setDefaultCiphers(safeCipherList());
 
-    QTimer *dropConnectionTimer = new QTimer(this);
+    auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
     dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
 }
@@ -102,7 +102,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
         static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
     }
 
-    Connection *c = new Connection(serverSocket, m_requestHandler, this);
+    auto *c = new Connection(serverSocket, m_requestHandler, this);
     m_connections.append(c);
 }
 

@@ -133,32 +133,32 @@ bool TorrentInfo::isValid() const
 
 InfoHash TorrentInfo::hash() const
 {
-    if (!isValid()) return InfoHash();
+    if (!isValid()) return {};
     return m_nativeInfo->info_hash();
 }
 
 QString TorrentInfo::name() const
 {
-    if (!isValid()) return QString();
+    if (!isValid()) return {};
     return QString::fromStdString(m_nativeInfo->name());
 }
 
 QDateTime TorrentInfo::creationDate() const
 {
-    if (!isValid()) return QDateTime();
+    if (!isValid()) return {};
     const boost::optional<time_t> t = m_nativeInfo->creation_date();
     return t ? QDateTime::fromTime_t(*t) : QDateTime();
 }
 
 QString TorrentInfo::creator() const
 {
-    if (!isValid()) return QString();
+    if (!isValid()) return {};
     return QString::fromStdString(m_nativeInfo->creator());
 }
 
 QString TorrentInfo::comment() const
 {
-    if (!isValid()) return QString();
+    if (!isValid()) return {};
     return QString::fromStdString(m_nativeInfo->comment());
 }
 
@@ -200,7 +200,7 @@ int TorrentInfo::piecesCount() const
 
 QString TorrentInfo::filePath(const int index) const
 {
-    if (!isValid()) return QString();
+    if (!isValid()) return {};
     return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->files().file_path(index)));
 }
 
@@ -220,7 +220,7 @@ QString TorrentInfo::fileName(const int index) const
 
 QString TorrentInfo::origFilePath(const int index) const
 {
-    if (!isValid()) return QString();
+    if (!isValid()) return {};
     return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->orig_files().file_path(index)));
 }
 
@@ -238,7 +238,7 @@ qlonglong TorrentInfo::fileOffset(const int index) const
 
 QList<TrackerEntry> TorrentInfo::trackers() const
 {
-    if (!isValid()) return QList<TrackerEntry>();
+    if (!isValid()) return {};
 
     QList<TrackerEntry> trackers;
     for (const libt::announce_entry &tracker : m_nativeInfo->trackers())
@@ -249,7 +249,7 @@ QList<TrackerEntry> TorrentInfo::trackers() const
 
 QList<QUrl> TorrentInfo::urlSeeds() const
 {
-    if (!isValid()) return QList<QUrl>();
+    if (!isValid()) return {};
 
     QList<QUrl> urlSeeds;
     for (const libt::web_seed_entry &webSeed : m_nativeInfo->web_seeds())
@@ -261,8 +261,8 @@ QList<QUrl> TorrentInfo::urlSeeds() const
 
 QByteArray TorrentInfo::metadata() const
 {
-    if (!isValid()) return QByteArray();
-    return QByteArray(m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size());
+    if (!isValid()) return {};
+    return {m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size()};
 }
 
 QStringList TorrentInfo::filesForPiece(const int pieceIndex) const
@@ -281,7 +281,7 @@ QStringList TorrentInfo::filesForPiece(const int pieceIndex) const
 QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
 {
     if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
-        return QVector<int>();
+        return {};
 
     const std::vector<libt::file_slice> files(
         nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
