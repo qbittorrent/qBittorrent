@@ -31,6 +31,7 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QFileDialog>
+#include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegExp>

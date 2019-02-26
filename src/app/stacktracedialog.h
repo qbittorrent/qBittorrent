@@ -30,21 +30,27 @@
 #ifndef STACKTRACEDIALOG_H
 #define STACKTRACEDIALOG_H
 
-#include <QString>
 #include <QDialog>
+#include <QString>
 
 #include "base/utils/misc.h"
 #include "ui_stacktracedialog.h"
 
-class StacktraceDialog : public QDialog, private Ui::StacktraceDialog
+class StacktraceDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     StacktraceDialog(QWidget *parent = nullptr)
         : QDialog(parent)
+        , m_ui(new Ui::StacktraceDialog)
     {
-        setupUi(this);
+        m_ui->setupUi(this);
+    }
+
+    ~StacktraceDialog()
+    {
+        delete m_ui;
     }
 
     void setStacktraceString(const QString &sigName, const QString &trace)
@@ -79,8 +85,11 @@ public:
                      , sigName
                      , trace);
 
-        errorText->setHtml(htmlStr);
+        m_ui->errorText->setHtml(htmlStr);
     }
+
+private:
+    Ui::StacktraceDialog *m_ui;
 };
 
 #endif // STACKTRACEDIALOG_H
