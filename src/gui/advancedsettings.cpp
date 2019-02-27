@@ -199,11 +199,11 @@ void AdvancedSettings::saveAdvancedSettings()
     // Interface address
     if (comboBoxInterfaceAddress.currentIndex() == 0) {
         // All addresses (default)
-        session->setNetworkInterfaceAddress(QString::null);
+        session->setNetworkInterfaceAddress({});
     }
     else {
         QHostAddress ifaceAddr(comboBoxInterfaceAddress.currentText().trimmed());
-        ifaceAddr.isNull() ? session->setNetworkInterfaceAddress(QString::null) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
+        ifaceAddr.isNull() ? session->setNetworkInterfaceAddress({}) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
     }
     session->setIPv6Enabled(checkBoxListenIPv6.isChecked());
     // Announce IP
