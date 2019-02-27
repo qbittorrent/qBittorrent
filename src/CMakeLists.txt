@@ -53,9 +53,10 @@ endif ()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # defines
+add_definitions(-DQT_DEPRECATED_WARNINGS)
 add_definitions(-DQT_NO_CAST_TO_ASCII)
-# Efficient construction for QString & QByteArray (Qt >= 4.8)
 add_definitions(-DQT_USE_QSTRINGBUILDER)
+add_definitions(-DQT_STRICT_ITERATORS)
 
 if (CMAKE_BUILD_TYPE MATCHES "Debug")
     message(STATUS "Project is built in DEBUG mode.")
