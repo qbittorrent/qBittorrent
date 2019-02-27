@@ -59,8 +59,10 @@
 #else
 #include <QApplication>
 #include <QDesktopServices>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QStyle>
+#include <QWidget>
+#include <QWindow>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
@@ -252,11 +254,26 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
 {
     // Returns the QPoint which the widget will be placed center on screen (where parent resides)
 
+    if (!w)
+        return {};
+
+    QRect r = QGuiApplication::primaryScreen()->availableGeometry();
+    const QPoint primaryScreenCenter {(r.x() + (r.width() - w->frameSize().width()) / 2), (r.y() + (r.height() - w->frameSize().height()) / 2)};
+
     const QWidget *parent = w->parentWidget();
-    const QDesktopWidget *desktop = QApplication::desktop();
-    const int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
-    const QRect r = desktop->availableGeometry(scrn);
-    return {r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2};
+    if (!parent)
+        return primaryScreenCenter;
+
+    const QWindow *window = parent->window()->windowHandle();
+    if (!window)
+        return primaryScreenCenter;
+
+    const QScreen *screen = window->screen();
+    if (!screen)
+        return primaryScreenCenter;
+
+    r = screen->availableGeometry();
+    return {(r.x() + (r.width() - w->frameSize().width()) / 2), (r.y() + (r.height() - w->frameSize().height()) / 2)};
 }
 #endif
 
