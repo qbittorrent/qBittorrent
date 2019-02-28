@@ -90,13 +90,13 @@ namespace Net
             AuthCramMD5
         };
 
-        QByteArray encodeMimeHeader(const QString &key, const QString &value, QTextCodec *latin1, const QByteArray &prefix = QByteArray());
+        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix = {});
         void ehlo();
         void helo();
         void parseEhloResponse(const QByteArray &code, bool continued, const QString &line);
         void authenticate();
         void startTLS();
-        void authCramMD5(const QByteArray &challenge = QByteArray());
+        void authCramMD5(const QByteArray &challenge = {});
         void authPlain();
         void authLogin();
         void logError(const QString &msg);

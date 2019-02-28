@@ -66,8 +66,8 @@ private:
 
     void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
-    void searchFinished(ISession *session, const int id);
-    void searchFailed(ISession *session, const int id);
+    void searchFinished(ISession *session, int id);
+    void searchFailed(ISession *session, int id);
     int generateSearchId() const;
     QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
     QJsonArray getPluginsInfo(const QStringList &plugins) const;

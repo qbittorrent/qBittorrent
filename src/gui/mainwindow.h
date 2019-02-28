@@ -84,7 +84,7 @@ public:
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
     int executionLogMsgTypes() const;
-    void setExecutionLogMsgTypes(const int value);
+    void setExecutionLogMsgTypes(int value);
 
     // Notifications properties
     bool isNotificationsEnabled() const;
@@ -209,7 +209,7 @@ private:
     bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
-    void createTorrentTriggered(const QString &path = QString());
+    void createTorrentTriggered(const QString &path = {});
     void showStatusBar(bool show);
 
     Ui::MainWindow *m_ui;

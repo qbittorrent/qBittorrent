@@ -57,7 +57,7 @@ namespace BitTorrent
         typedef boost::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
         typedef boost::shared_ptr<libtorrent::torrent_info> NativePtr;
 
-        explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());
+        explicit TorrentInfo(NativeConstPtr nativeInfo = {});
         TorrentInfo(const TorrentInfo &other);
 
         static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;

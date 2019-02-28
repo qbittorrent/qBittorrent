@@ -98,7 +98,7 @@ private:
     int indexOfSavePath(const QString &savePath);
     void loadState();
     void saveState();
-    void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
+    void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void setCommentText(const QString &str) const;
     void setSavePath(const QString &newPath);

@@ -181,7 +181,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
 {
     Logger *const logger = Logger::instance();
     qDebug() << Q_FUNC_INFO << reply;
-    QString code = reply.split(' ').first();
+    const QString code = reply.split(' ').first();
     qDebug() << Q_FUNC_INFO << "Code:" << code;
 
     if ((code == "good") || (code == "nochg")) {
@@ -284,7 +284,7 @@ void DNSUpdater::updateCredentials()
     }
 }
 
-QUrl DNSUpdater::getRegistrationUrl(int service)
+QUrl DNSUpdater::getRegistrationUrl(const int service)
 {
     switch (service) {
     case DNS::DYNDNS:

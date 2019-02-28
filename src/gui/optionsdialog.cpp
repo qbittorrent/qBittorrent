@@ -846,7 +846,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
     m_ui->spinRSSMaxArticlesPerFeed->setValue(RSS::Session::instance()->maxArticlesPerFeed());
 
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     // Downloads preferences
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
@@ -974,7 +974,7 @@ void OptionsDialog::loadOptions()
         m_ui->spinMaxUploadsPerTorrent->setEnabled(false);
     }
 
-    auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
     using Net::ProxyType;
     bool useProxyAuth = false;

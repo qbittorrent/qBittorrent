@@ -159,7 +159,7 @@ namespace
                                             .arg(fullParameter()).arg(QLatin1String("<value>")));
         }
 
-        QString value(const QProcessEnvironment &env, const QString &defaultValue = QString()) const
+        QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
         {
             QString val = env.value(envVarName());
             return val.isEmpty() ? defaultValue : Utils::String::unquote(val, QLatin1String("'\""));

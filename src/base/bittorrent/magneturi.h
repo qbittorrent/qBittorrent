@@ -43,7 +43,7 @@ namespace BitTorrent
     class MagnetUri
     {
     public:
-        explicit MagnetUri(const QString &source = QString());
+        explicit MagnetUri(const QString &source = {});
 
         bool isValid() const;
         InfoHash hash() const;

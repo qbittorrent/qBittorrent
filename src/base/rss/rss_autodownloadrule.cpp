@@ -72,7 +72,7 @@ namespace
         }
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(int val)
+    TriStateBool addPausedLegacyToTriStateBool(const int val)
     {
         switch (val) {
         case 1:  return TriStateBool::True; // always
@@ -163,13 +163,13 @@ QString computeEpisodeName(const QString &article)
 
     QStringList ret;
     for (int i = 1; i <= match.lastCapturedIndex(); ++i) {
-        QString cap = match.captured(i);
+        const QString cap = match.captured(i);
 
         if (cap.isEmpty())
             continue;
 
         bool isInt = false;
-        int x = cap.toInt(&isInt);
+        const int x = cap.toInt(&isInt);
 
         ret.append(isInt ? QString::number(x) : cap);
     }
@@ -189,7 +189,7 @@ AutoDownloadRule::AutoDownloadRule(const AutoDownloadRule &other)
 
 AutoDownloadRule::~AutoDownloadRule() {}
 
-QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, bool isRegex) const
+QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, const bool isRegex) const
 {
     // Use a cache of regexes so we don't have to continually recompile - big performance increase.
     // The cache is cleared whenever the regex/wildcard, must or must not contain fields or
@@ -216,7 +216,7 @@ bool AutoDownloadRule::matchesExpression(const QString &articleTitle, const QStr
     }
 
     if (m_dataPtr->useRegex) {
-        QRegularExpression reg(cachedRegex(expression));
+        const QRegularExpression reg(cachedRegex(expression));
         return reg.match(articleTitle).hasMatch();
     }
 
@@ -600,7 +600,7 @@ bool AutoDownloadRule::isEnabled() const
     return m_dataPtr->enabled;
 }
 
-void AutoDownloadRule::setEnabled(bool enable)
+void AutoDownloadRule::setEnabled(const bool enable)
 {
     m_dataPtr->enabled = enable;
 }
@@ -615,7 +615,7 @@ void AutoDownloadRule::setLastMatch(const QDateTime &lastMatch)
     m_dataPtr->lastMatch = lastMatch;
 }
 
-void AutoDownloadRule::setIgnoreDays(int d)
+void AutoDownloadRule::setIgnoreDays(const int d)
 {
     m_dataPtr->ignoreDays = d;
 }
@@ -640,7 +640,7 @@ bool AutoDownloadRule::useSmartFilter() const
     return m_dataPtr->smartFilter;
 }
 
-void AutoDownloadRule::setUseSmartFilter(bool enabled)
+void AutoDownloadRule::setUseSmartFilter(const bool enabled)
 {
     m_dataPtr->smartFilter = enabled;
 }
@@ -650,7 +650,7 @@ bool AutoDownloadRule::useRegex() const
     return m_dataPtr->useRegex;
 }
 
-void AutoDownloadRule::setUseRegex(bool enabled)
+void AutoDownloadRule::setUseRegex(const bool enabled)
 {
     m_dataPtr->useRegex = enabled;
     m_dataPtr->cachedRegexes.clear();

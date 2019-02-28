@@ -108,7 +108,7 @@ QList<Article *> Feed::articles() const
 
 void Feed::markAsRead()
 {
-    auto oldUnreadCount = m_unreadCount;
+    const int oldUnreadCount = m_unreadCount;
     for (Article *article : asConst(m_articles)) {
         if (!article->isRead()) {
             article->disconnect(this);
@@ -176,7 +176,7 @@ Article *Feed::articleByGUID(const QString &guid) const
     return m_articles.value(guid);
 }
 
-void Feed::handleMaxArticlesPerFeedChanged(int n)
+void Feed::handleMaxArticlesPerFeedChanged(const int n)
 {
     while (m_articlesByDate.size() > n)
         removeOldestArticle();
@@ -270,7 +270,7 @@ void Feed::load()
 void Feed::loadArticles(const QByteArray &data)
 {
     QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
         LogMsg(tr("Couldn't parse RSS Session data. Error: %1").arg(jsonError.errorString())
                , Log::WARNING);
@@ -303,7 +303,7 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
     const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
@@ -348,7 +348,7 @@ bool Feed::addArticle(Article *article)
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
-    auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
+    const auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
                                        , article->date(), Article::articleDateRecentThan);
     if ((lowerBound - m_articlesByDate.begin()) >= maxArticles)
         return false; // we reach max articles
@@ -376,7 +376,7 @@ void Feed::removeOldestArticle()
 
     m_articles.remove(oldestArticle->guid());
     m_articlesByDate.removeLast();
-    bool isRead = oldestArticle->isRead();
+    const bool isRead = oldestArticle->isRead();
     delete oldestArticle;
 
     if (!isRead)
@@ -402,8 +402,8 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
+    const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    const Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true));
     connect(handler
             , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
@@ -494,7 +494,7 @@ QString Feed::iconPath() const
     return m_iconPath;
 }
 
-QJsonValue Feed::toJsonValue(bool withData) const
+QJsonValue Feed::toJsonValue(const bool withData) const
 {
     QJsonObject jsonObj;
     jsonObj.insert(KEY_UID, uid().toString());
@@ -515,7 +515,7 @@ QJsonValue Feed::toJsonValue(bool withData) const
     return jsonObj;
 }
 
-void Feed::handleSessionProcessingEnabledChanged(bool enabled)
+void Feed::handleSessionProcessingEnabledChanged(const bool enabled)
 {
     if (enabled) {
         downloadIcon();

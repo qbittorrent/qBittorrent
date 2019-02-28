@@ -149,7 +149,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_RATIO:
             case TR_PRIORITY:
             case TR_LAST_ACTIVITY:
-                return {Qt::AlignRight | Qt::AlignVCenter};
+                return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
             }

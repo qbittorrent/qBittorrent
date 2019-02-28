@@ -176,7 +176,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     , m_rootItem(new CategoryModelItem)
 {
     using namespace BitTorrent;
-    auto session = Session::instance();
+    const auto *session = Session::instance();
 
     connect(session, &Session::categoryAdded, this, &CategoryFilterModel::categoryAdded);
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
@@ -209,7 +209,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) return {};
 
-    auto item = static_cast<CategoryModelItem *>(index.internalPointer());
+    auto item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
         return GuiIconProvider::instance()->getIcon("inode-directory");
@@ -384,8 +384,8 @@ void CategoryFilterModel::populate()
 {
     m_rootItem->clear();
 
-    auto session = BitTorrent::Session::instance();
-    auto torrents = session->torrents();
+    const auto *session = BitTorrent::Session::instance();
+    const auto torrents = session->torrents();
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
     const QString UID_ALL;
@@ -413,7 +413,7 @@ void CategoryFilterModel::populate()
                 if (!parent->hasChild(subcatName)) {
                     new CategoryModelItem(
                                 parent, subcatName
-                                , std::count_if(torrents.begin(), torrents.end()
+                                , std::count_if(torrents.cbegin(), torrents.cend()
                                                 , [subcat](Torrent *torrent) { return torrent->category() == subcat; }));
                 }
                 parent = parent->child(subcatName);

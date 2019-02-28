@@ -46,7 +46,7 @@ public:
     static void freeInstance();
     static SettingsStorage *instance();
 
-    QVariant loadValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    QVariant loadValue(const QString &key, const QVariant &defaultValue = {}) const;
     void storeValue(const QString &key, const QVariant &value);
     void removeValue(const QString &key);
 

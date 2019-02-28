@@ -142,7 +142,7 @@ QJsonObject Article::toJsonObject() const
     return jsonObj;
 }
 
-bool Article::articleDateRecentThan(Article *article, const QDateTime &date)
+bool Article::articleDateRecentThan(const Article *article, const QDateTime &date)
 {
     return article->date() > date;
 }

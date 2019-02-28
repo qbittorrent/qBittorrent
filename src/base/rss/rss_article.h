@@ -74,7 +74,7 @@ namespace RSS
 
         QJsonObject toJsonObject() const;
 
-        static bool articleDateRecentThan(Article *article, const QDateTime &date);
+        static bool articleDateRecentThan(const Article *article, const QDateTime &date);
 
     signals:
         void read(Article *article = nullptr);

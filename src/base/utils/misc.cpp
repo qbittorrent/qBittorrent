@@ -252,10 +252,10 @@ QPoint Utils::Misc::screenCenter(const QWidget *w)
 {
     // Returns the QPoint which the widget will be placed center on screen (where parent resides)
 
-    QWidget *parent = w->parentWidget();
-    QDesktopWidget *desktop = QApplication::desktop();
-    int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
-    QRect r = desktop->availableGeometry(scrn);
+    const QWidget *parent = w->parentWidget();
+    const QDesktopWidget *desktop = QApplication::desktop();
+    const int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
+    const QRect r = desktop->availableGeometry(scrn);
     return {r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2};
 }
 #endif
@@ -269,7 +269,7 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     return ret;
 }
 
-QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
+QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
 {
     SizeUnit unit;
     qreal friendlyVal;
@@ -289,7 +289,7 @@ int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
     return 3;
 }
 
-qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)
+qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
 {
     for (int i = 0; i < static_cast<int>(unit); ++i)
         size *= 1024;
@@ -347,7 +347,7 @@ bool Utils::Misc::isPreviewable(const QString &extension)
 
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
 {
     if ((seconds < 0) || (seconds >= MAX_ETA))
         return QString::fromUtf8(C_INFINITY);
@@ -511,7 +511,7 @@ void Utils::Misc::openFolderSelect(const QString &absolutePath)
     QProcess proc;
     proc.start("xdg-mime", {"query", "default", "inode/directory"});
     proc.waitForFinished();
-    QString output = proc.readLine().simplified();
+    const QString output = proc.readLine().simplified();
     if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop")) {
         proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
     }

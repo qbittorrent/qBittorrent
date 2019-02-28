@@ -581,7 +581,7 @@ namespace BitTorrent
 
         bool addTorrent_impl(CreateTorrentParams params, const MagnetUri &magnetUri,
                              TorrentInfo torrentInfo = TorrentInfo(),
-                             const QByteArray &fastresumeData = QByteArray());
+                             const QByteArray &fastresumeData = {});
         bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
 
         void updateSeedingLimitTimer();

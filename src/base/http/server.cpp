@@ -79,7 +79,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
 }
 
-void Server::incomingConnection(qintptr socketDescriptor)
+void Server::incomingConnection(const qintptr socketDescriptor)
 {
     if (m_connections.size() >= CONNECTIONS_LIMIT) return;
 
@@ -110,7 +110,7 @@ void Server::dropTimedOutConnection()
 {
     QMutableListIterator<Connection *> i(m_connections);
     while (i.hasNext()) {
-        auto connection = i.next();
+        const auto *connection = i.next();
         if (connection->isClosed() || connection->hasExpired(KEEP_ALIVE_DURATION)) {
             delete connection;
             i.remove();

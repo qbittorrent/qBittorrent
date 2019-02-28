@@ -115,7 +115,7 @@ namespace Net
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleReplyFinished(QNetworkReply *reply);
+        void handleReplyFinished(const QNetworkReply *reply);
 
         static DownloadManager *m_instance;
         QNetworkAccessManager m_networkManager;

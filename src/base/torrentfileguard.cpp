@@ -37,7 +37,7 @@ FileGuard::FileGuard(const QString &path)
 {
 }
 
-void FileGuard::setAutoRemove(bool remove) noexcept
+void FileGuard::setAutoRemove(const bool remove) noexcept
 {
     m_remove = remove;
 }
@@ -48,7 +48,7 @@ FileGuard::~FileGuard()
         Utils::Fs::forceRemove(m_path); // forceRemove() checks for file existence
 }
 
-TorrentFileGuard::TorrentFileGuard(const QString &path, TorrentFileGuard::AutoDeleteMode mode)
+TorrentFileGuard::TorrentFileGuard(const QString &path, const TorrentFileGuard::AutoDeleteMode mode)
     : FileGuard {mode != Never ? path : QString()}
     , m_mode {mode}
     , m_wasAdded {false}

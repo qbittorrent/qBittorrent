@@ -213,7 +213,7 @@ void AutomatedRssDownloader::updateFeedList()
         bool anyEnabled = false;
 
         for (const QListWidgetItem *ruleItem : asConst(selection)) {
-            auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
+            const auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
             if (rule.feedURLs().contains(feedURL))
                 anyEnabled = true;
             else

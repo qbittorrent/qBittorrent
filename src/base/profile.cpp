@@ -65,7 +65,7 @@ const Profile &Profile::instance()
     return *m_instance;
 }
 
-QString Profile::location(SpecialFolder folder) const
+QString Profile::location(const SpecialFolder folder) const
 {
     QString result;
     switch (folder) {
@@ -98,9 +98,9 @@ SettingsPtr Profile::applicationSettings(const QString &name) const
     return m_profileImpl->applicationSettings(name);
 }
 
-void Profile::ensureDirectoryExists(SpecialFolder folder)
+void Profile::ensureDirectoryExists(const SpecialFolder folder)
 {
-    QString locationPath = location(folder);
+    const QString locationPath = location(folder);
     if (!locationPath.isEmpty() && !QDir().mkpath(locationPath))
         qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath));
 }

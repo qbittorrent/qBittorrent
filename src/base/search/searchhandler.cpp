@@ -114,7 +114,7 @@ void SearchHandler::cancelSearch()
 // Slot called when QProcess is Finished
 // QProcess can be finished for 3 reasons:
 // Error | Stopped by user | Finished normally
-void SearchHandler::processFinished(int exitcode)
+void SearchHandler::processFinished(const int exitcode)
 {
     m_searchTimeout->stop();
 

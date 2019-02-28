@@ -91,7 +91,7 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
 QString CategoryFilterWidget::currentCategory() const
 {
     QModelIndex current;
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.isEmpty())
         current = selectedRows.first();
 
@@ -114,7 +114,7 @@ void CategoryFilterWidget::showMenu(QPoint)
                           , tr("Add category..."));
     connect(addAct, &QAction::triggered, this, &CategoryFilterWidget::addCategory);
 
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
             QAction *addSubAct = menu.addAction(
@@ -220,7 +220,7 @@ void CategoryFilterWidget::editCategory()
 
 void CategoryFilterWidget::removeCategory()
 {
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         BitTorrent::Session::instance()->removeCategory(
                     static_cast<CategoryFilterProxyModel *>(model())->categoryName(selectedRows.first()));

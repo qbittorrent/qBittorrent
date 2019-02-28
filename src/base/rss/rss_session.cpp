@@ -263,7 +263,7 @@ void Session::load()
     }
 
     QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
         Logger::instance()->addMessage(
                     QString("Couldn't parse RSS Session data from %1. Error: %2")
@@ -482,7 +482,7 @@ uint Session::refreshInterval() const
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(uint refreshInterval)
+void Session::setRefreshInterval(const uint refreshInterval)
 {
     if (m_refreshInterval != refreshInterval) {
         SettingsStorage::instance()->storeValue(SettingsKey_RefreshInterval, refreshInterval);
@@ -528,7 +528,7 @@ int Session::maxArticlesPerFeed() const
     return m_maxArticlesPerFeed;
 }
 
-void Session::setMaxArticlesPerFeed(int n)
+void Session::setMaxArticlesPerFeed(const int n)
 {
     if (m_maxArticlesPerFeed != n) {
         m_maxArticlesPerFeed = n;

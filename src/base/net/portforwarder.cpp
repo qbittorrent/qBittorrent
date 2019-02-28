@@ -78,7 +78,7 @@ bool PortForwarder::isEnabled() const
     return m_active;
 }
 
-void PortForwarder::setEnabled(bool enabled)
+void PortForwarder::setEnabled(const bool enabled)
 {
     if (m_active != enabled) {
         if (enabled)
@@ -90,7 +90,7 @@ void PortForwarder::setEnabled(bool enabled)
     }
 }
 
-void PortForwarder::addPort(quint16 port)
+void PortForwarder::addPort(const quint16 port)
 {
     if (!m_mappedPorts.contains(port)) {
         m_mappedPorts.insert(port, 0);
@@ -99,7 +99,7 @@ void PortForwarder::addPort(quint16 port)
     }
 }
 
-void PortForwarder::deletePort(quint16 port)
+void PortForwarder::deletePort(const quint16 port)
 {
     if (m_mappedPorts.contains(port)) {
         if (m_active)

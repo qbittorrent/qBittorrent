@@ -106,7 +106,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     setModal(true);
 #endif
 
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     if (m_torrentParams.addPaused == TriStateBool::True)
         m_ui->startTorrentCheckBox->setChecked(false);
@@ -233,7 +233,7 @@ void AddNewTorrentDialog::saveState()
 
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
-    AddNewTorrentDialog *dlg = new AddNewTorrentDialog(inParams, parent);
+    auto *dlg = new AddNewTorrentDialog(inParams, parent);
 
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader

@@ -52,7 +52,7 @@ public:
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
     bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
+    bool dateLessThan(int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 

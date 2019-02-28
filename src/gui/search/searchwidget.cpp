@@ -134,7 +134,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped)
             , this, &SearchWidget::tabStatusChanged);
 
-    auto *searchManager = SearchPluginManager::instance();
+    const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
     {
         fillPluginComboBox();
