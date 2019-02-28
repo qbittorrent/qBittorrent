@@ -28,19 +28,30 @@
 
 #include "logger.h"
 
+#include <algorithm>
+
 #include <QDateTime>
-#include "base/utils/string.h"
+
+namespace
+{
+    template <typename T>
+    QVector<T> loadFromBuffer(const boost::circular_buffer_space_optimized<T> &src, const int offset = 0)
+    {
+        QVector<T> ret;
+        ret.reserve(src.size() - offset);
+        std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
+        return ret;
+    }
+}
 
 Logger *Logger::m_instance = nullptr;
 
 Logger::Logger()
-    : m_lock(QReadWriteLock::Recursive)
-    , m_msgCounter(0)
-    , m_peerCounter(0)
+    : m_messages(MAX_LOG_MESSAGES)
+    , m_peers(MAX_LOG_MESSAGES)
+    , m_lock(QReadWriteLock::Recursive)
 {
 }
-
-Logger::~Logger() {}
 
 Logger *Logger::instance()
 {
@@ -68,9 +79,6 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
     const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
     m_messages.push_back(temp);
 
-    if (m_messages.size() >= MAX_LOG_MESSAGES)
-        m_messages.pop_front();
-
     emit newLogMessage(temp);
 }
 
@@ -80,9 +88,6 @@ void Logger::addPeer(const QString &ip, const bool blocked, const QString &reaso
 
     const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
     m_peers.push_back(temp);
-
-    if (m_peers.size() >= MAX_LOG_MESSAGES)
-        m_peers.pop_front();
 
     emit newLogPeer(temp);
 }
@@ -95,12 +100,12 @@ QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
     const int size = m_messages.size();
 
     if ((lastKnownId == -1) || (diff >= size))
-        return m_messages;
+        return loadFromBuffer(m_messages);
 
     if (diff <= 0)
         return {};
 
-    return m_messages.mid(size - diff);
+    return loadFromBuffer(m_messages, (size - diff));
 }
 
 QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
@@ -111,12 +116,12 @@ QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
     const int size = m_peers.size();
 
     if ((lastKnownId == -1) || (diff >= size))
-        return m_peers;
+        return loadFromBuffer(m_peers);
 
     if (diff <= 0)
         return {};
 
-    return m_peers.mid(size - diff);
+    return loadFromBuffer(m_peers, (size - diff));
 }
 
 void LogMsg(const QString &message, const Log::MsgType &type)
