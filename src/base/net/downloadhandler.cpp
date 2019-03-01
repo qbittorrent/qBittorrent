@@ -69,6 +69,8 @@ Net::DownloadHandler::DownloadHandler(QNetworkReply *reply, DownloadManager *man
 {
     if (reply)
         assignNetworkReply(reply);
+    m_result.url = url();
+    m_result.status = DownloadStatus::Success;
 }
 
 Net::DownloadHandler::~DownloadHandler()
@@ -103,8 +105,8 @@ void Net::DownloadHandler::processFinishedDownload()
     if (m_reply->error() != QNetworkReply::NoError) {
         // Failure
         qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
-        emit downloadFailed(m_downloadRequest.url(), errorCodeToString(m_reply->error()));
-        this->deleteLater();
+        setError(errorCodeToString(m_reply->error()));
+        finish();
         return;
     }
 
@@ -117,49 +119,43 @@ void Net::DownloadHandler::processFinishedDownload()
     }
 
     // Success
-    const QByteArray replyData = (m_reply->rawHeader("Content-Encoding") == "gzip")
+    m_result.data = (m_reply->rawHeader("Content-Encoding") == "gzip")
         ? Utils::Gzip::decompress(m_reply->readAll())
         : m_reply->readAll();
 
     if (m_downloadRequest.saveToFile()) {
         QString filePath;
-        if (saveToFile(replyData, filePath))
-            emit downloadFinished(m_downloadRequest.url(), filePath);
+        if (saveToFile(m_result.data, filePath))
+            m_result.filePath = filePath;
         else
-            emit downloadFailed(m_downloadRequest.url(), tr("I/O Error"));
-    }
-    else {
-        emit downloadFinished(m_downloadRequest.url(), replyData);
+            setError(tr("I/O Error"));
     }
 
-    this->deleteLater();
+    finish();
 }
 
 void Net::DownloadHandler::checkDownloadSize(const qint64 bytesReceived, const qint64 bytesTotal)
 {
-    QString msg = tr("The file size is %1. It exceeds the download limit of %2.");
-
-    if (bytesTotal > 0) {
+    if ((bytesTotal > 0) && (bytesTotal <= m_downloadRequest.limit())) {
         // Total number of bytes is available
-        if (bytesTotal > m_downloadRequest.limit()) {
-            m_reply->abort();
-            emit downloadFailed(m_downloadRequest.url(), msg.arg(Utils::Misc::friendlyUnit(bytesTotal), Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
-        }
-        else {
-            disconnect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
-        }
+        disconnect(m_reply, &QNetworkReply::downloadProgress, this, &Net::DownloadHandler::checkDownloadSize);
+        return;
     }
-    else if (bytesReceived > m_downloadRequest.limit()) {
+
+    if ((bytesTotal > m_downloadRequest.limit()) || (bytesReceived > m_downloadRequest.limit())) {
         m_reply->abort();
-        emit downloadFailed(m_downloadRequest.url(), msg.arg(Utils::Misc::friendlyUnit(bytesReceived), Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
+        setError(tr("The file size is %1. It exceeds the download limit of %2.")
+                 .arg(Utils::Misc::friendlyUnit(bytesTotal)
+                      , Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
+        finish();
     }
 }
 
 void Net::DownloadHandler::handleRedirection(const QUrl &newUrl)
 {
     if (m_redirectionCounter >= MAX_REDIRECTIONS) {
-        emit downloadFailed(url(), tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
-        this->deleteLater();
+        setError(tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
+        finish();
         return;
     }
 
@@ -172,36 +168,33 @@ void Net::DownloadHandler::handleRedirection(const QUrl &newUrl)
     if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
         qDebug("Magnet redirect detected.");
         m_reply->abort();
-        if (m_downloadRequest.handleRedirectToMagnet())
-            emit redirectedToMagnet(m_downloadRequest.url(), newUrlString);
-        else
-            emit downloadFailed(m_downloadRequest.url(), tr("Unexpected redirect to magnet URI."));
+        m_result.status = DownloadStatus::RedirectedToMagnet;
+        m_result.magnet = newUrlString;
 
-        this->deleteLater();
+        finish();
         return;
     }
 
     DownloadHandler *redirected = m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString));
     redirected->m_redirectionCounter = (m_redirectionCounter + 1);
-    connect(redirected, &DownloadHandler::destroyed, this, &DownloadHandler::deleteLater);
-    connect(redirected, &DownloadHandler::downloadFailed, this, [this](const QString &, const QString &reason)
+    connect(redirected, &DownloadHandler::finished, this, [this](const DownloadResult &result)
     {
-        emit downloadFailed(url(), reason);
+        m_result = result;
+        m_result.url = url();
+        finish();
     });
-    connect(redirected, &DownloadHandler::redirectedToMagnet, this, [this](const QString &, const QString &magnetUri)
-    {
-        emit redirectedToMagnet(url(), magnetUri);
-    });
-    connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
-            , this, [this](const QString &, const QString &fileName)
-    {
-        emit downloadFinished(url(), fileName);
-    });
-    connect(redirected, static_cast<void (DownloadHandler::*)(const QString &, const QByteArray &)>(&DownloadHandler::downloadFinished)
-            , this, [this](const QString &, const QByteArray &data)
-    {
-        emit downloadFinished(url(), data);
-    });
+}
+
+void Net::DownloadHandler::setError(const QString &error)
+{
+    m_result.errorString = error;
+    m_result.status = DownloadStatus::Failed;
+}
+
+void Net::DownloadHandler::finish()
+{
+    emit finished(m_result);
+    deleteLater();
 }
 
 QString Net::DownloadHandler::errorCodeToString(const QNetworkReply::NetworkError status)

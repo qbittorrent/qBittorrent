@@ -56,10 +56,7 @@ namespace Net
         QString url() const;
 
     signals:
-        void downloadFinished(const QString &url, const QByteArray &data);
-        void downloadFinished(const QString &url, const QString &filePath);
-        void downloadFailed(const QString &url, const QString &reason);
-        void redirectedToMagnet(const QString &url, const QString &magnetUri);
+        void finished(const DownloadResult &result);
 
     private slots:
         void processFinishedDownload();
@@ -68,6 +65,8 @@ namespace Net
     private:
         void assignNetworkReply(QNetworkReply *reply);
         void handleRedirection(const QUrl &newUrl);
+        void setError(const QString &error);
+        void finish();
 
         static QString errorCodeToString(QNetworkReply::NetworkError status);
 
@@ -75,6 +74,7 @@ namespace Net
         DownloadManager *m_manager;
         const DownloadRequest m_downloadRequest;
         short m_redirectionCounter = 0;
+        DownloadResult m_result;
     };
 }
 

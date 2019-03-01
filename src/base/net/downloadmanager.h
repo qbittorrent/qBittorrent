@@ -64,15 +64,28 @@ namespace Net
         bool saveToFile() const;
         DownloadRequest &saveToFile(bool value);
 
-        bool handleRedirectToMagnet() const;
-        DownloadRequest &handleRedirectToMagnet(bool value);
-
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
         bool m_saveToFile = false;
-        bool m_handleRedirectToMagnet = false;
+    };
+
+    enum class DownloadStatus
+    {
+        Success,
+        RedirectedToMagnet,
+        Failed
+    };
+
+    struct DownloadResult
+    {
+        QString url;
+        DownloadStatus status;
+        QString errorString;
+        QByteArray data;
+        QString filePath;
+        QString magnet;
     };
 
     struct ServiceID

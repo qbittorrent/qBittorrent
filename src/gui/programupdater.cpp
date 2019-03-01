@@ -58,14 +58,18 @@ void ProgramUpdater::checkForUpdates()
     // the filehost can identify it and contact us.
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"));
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &ProgramUpdater::rssDownloadFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &ProgramUpdater::rssDownloadFailed);
+    connect(handler, &Net::DownloadHandler::finished, this, &ProgramUpdater::rssDownloadFinished);
 }
 
-void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
+void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url);
+
+    if (result.status != Net::DownloadStatus::Success) {
+        qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
+        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        return;
+    }
+
     qDebug("Finished downloading the new qBittorrent updates RSS");
 
 #ifdef Q_OS_MAC
@@ -77,7 +81,7 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
 #endif
 
     QString version;
-    QXmlStreamReader xml(data);
+    QXmlStreamReader xml(result.data);
     bool inItem = false;
     QString updateLink;
     QString type;
@@ -116,14 +120,6 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
     }
 
     emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
-}
-
-void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-
-    qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
-    emit updateCheckFinished(false, QString(), m_invokedByUser);
 }
 
 void ProgramUpdater::updateProgram()

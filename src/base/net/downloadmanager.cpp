@@ -328,17 +328,6 @@ Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
     return *this;
 }
 
-bool Net::DownloadRequest::handleRedirectToMagnet() const
-{
-    return m_handleRedirectToMagnet;
-}
-
-Net::DownloadRequest &Net::DownloadRequest::handleRedirectToMagnet(const bool value)
-{
-    m_handleRedirectToMagnet = value;
-    return *this;
-}
-
 Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
 {
     return {url.host(), url.port(80)};

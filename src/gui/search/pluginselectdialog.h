@@ -38,6 +38,11 @@ class QDropEvent;
 class QStringList;
 class QTreeWidgetItem;
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class PluginSelectDialog;
@@ -46,10 +51,11 @@ namespace Ui
 class PluginSelectDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PluginSelectDialog)
 
 public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
-    ~PluginSelectDialog();
+    ~PluginSelectDialog() override;
 
     QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
     QTreeWidgetItem *findItemWithID(const QString &id);
@@ -69,8 +75,7 @@ private slots:
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();
-    void iconDownloaded(const QString &url, QString filePath);
-    void iconDownloadFailed(const QString &url, const QString &reason);
+    void iconDownloadFinished(const Net::DownloadResult &result);
 
     void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);

@@ -32,9 +32,15 @@
 #include <QObject>
 #include <QUrl>
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 class ProgramUpdater : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(ProgramUpdater)
 
 public:
     explicit ProgramUpdater(QObject *parent = nullptr, bool invokedByUser = false);
@@ -46,8 +52,7 @@ signals:
     void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
 
 private slots:
-    void rssDownloadFinished(const QString &url, const QByteArray &data);
-    void rssDownloadFailed(const QString &url, const QString &error);
+    void rssDownloadFinished(const Net::DownloadResult &result);
 
 private:
     bool isVersionMoreRecent(const QString &remoteVersion) const;

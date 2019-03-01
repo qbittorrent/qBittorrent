@@ -2020,26 +2020,31 @@ void MainWindow::installPython()
                                   : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
                                         Net::DownloadRequest(installerURL).saveToFile(true));
-
-    using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
-    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this, &MainWindow::pythonDownloadSuccess);
-    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFailed), this, &MainWindow::pythonDownloadFailure);
+    connect(handler, &Net::DownloadHandler::finished, this, &MainWindow::pythonDownloadFinished);
 }
 
-void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePath)
+void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url)
+    if (result.status != Net::DownloadStatus::Success) {
+        setCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::warning(
+                    this, tr("Download error")
+                    , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
+                    .arg(result.errorString));
+        return;
+    }
+
     setCursor(QCursor(Qt::ArrowCursor));
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
-        QFile::rename(filePath, filePath + ".exe");
-        installer.start('"' + Utils::Fs::toNativePath(filePath) + ".exe\" /passive");
+        QFile::rename(result.filePath, result.filePath + ".exe");
+        installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
     }
     else {
-        QFile::rename(filePath, filePath + ".msi");
-        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(filePath) + ".msi\"");
+        QFile::rename(result.filePath, result.filePath + ".msi");
+        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(result.filePath) + ".msi\"");
     }
 
     // Wait for setup to complete
@@ -2050,21 +2055,13 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     qDebug("Setup should be complete!");
     // Delete temp file
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-        Utils::Fs::forceRemove(filePath + ".exe");
+        Utils::Fs::forceRemove(result.filePath + ".exe");
     else
-        Utils::Fs::forceRemove(filePath + ".msi");
+        Utils::Fs::forceRemove(result.filePath + ".msi");
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion()) {
         m_ui->actionSearchWidget->setChecked(true);
         displaySearchTab(true);
     }
 }
-
-void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
-{
-    Q_UNUSED(url)
-    setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
-}
-
 #endif // Q_OS_WIN

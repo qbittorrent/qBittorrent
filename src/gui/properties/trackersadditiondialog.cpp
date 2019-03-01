@@ -72,15 +72,24 @@ void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 {
     m_ui->uTorrentListButton->setEnabled(false);
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_ui->lineEditListURL->text());
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &TrackersAdditionDialog::parseUTorrentList);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &TrackersAdditionDialog::getTrackerError);
+    connect(handler, &Net::DownloadHandler::finished, this, &TrackersAdditionDialog::torrentListDownloadFinished);
     // Just to show that it takes times
     setCursor(Qt::WaitCursor);
 }
 
-void TrackersAdditionDialog::parseUTorrentList(const QString &, const QByteArray &data)
+void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResult &result)
 {
+    if (result.status != Net::DownloadStatus::Success) {
+        // To restore the cursor ...
+        setCursor(Qt::ArrowCursor);
+        m_ui->uTorrentListButton->setEnabled(true);
+        QMessageBox::warning(
+                    this, tr("Download error")
+                    , tr("The trackers list could not be downloaded, reason: %1")
+                    .arg(result.errorString), QMessageBox::Ok);
+        return;
+    }
+
     // Load from torrent handle
     QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     // Load from current user list
@@ -96,7 +105,7 @@ void TrackersAdditionDialog::parseUTorrentList(const QString &, const QByteArray
         m_ui->textEditTrackersList->insertPlainText("\n");
     int nb = 0;
     QBuffer buffer;
-    buffer.setData(data);
+    buffer.setData(result.data);
     buffer.open(QBuffer::ReadOnly);
     while (!buffer.atEnd()) {
         const QString line = buffer.readLine().trimmed();
@@ -115,14 +124,6 @@ void TrackersAdditionDialog::parseUTorrentList(const QString &, const QByteArray
     // Display information message if necessary
     if (nb == 0)
         QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
-}
-
-void TrackersAdditionDialog::getTrackerError(const QString &, const QString &error)
-{
-    // To restore the cursor ...
-    setCursor(Qt::ArrowCursor);
-    m_ui->uTorrentListButton->setEnabled(true);
-    QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
 }
 
 QStringList TrackersAdditionDialog::askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent)

@@ -43,6 +43,11 @@ namespace BitTorrent
     class MagnetUri;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class AddNewTorrentDialog;
@@ -55,12 +60,13 @@ class TorrentFileGuard;
 class AddNewTorrentDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AddNewTorrentDialog)
 
 public:
     static const int minPathHistoryLength = 0;
     static const int maxPathHistoryLength = 99;
 
-    ~AddNewTorrentDialog();
+    ~AddNewTorrentDialog() override;
 
     static bool isEnabled();
     static void setEnabled(bool value);
@@ -79,9 +85,7 @@ private slots:
     void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
-    void handleDownloadFailed(const QString &url, const QString &reason);
-    void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
-    void handleDownloadFinished(const QString &url, const QByteArray &data);
+    void handleDownloadFinished(const Net::DownloadResult &result);
     void TMMChanged(int index);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);

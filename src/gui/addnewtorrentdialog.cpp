@@ -238,11 +238,8 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(source).limit(10485760 /* 10MB */).handleRedirectToMagnet(true));
-        connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-                , dlg, &AddNewTorrentDialog::handleDownloadFinished);
-        connect(handler, &Net::DownloadHandler::downloadFailed, dlg, &AddNewTorrentDialog::handleDownloadFailed);
-        connect(handler, &Net::DownloadHandler::redirectedToMagnet, dlg, &AddNewTorrentDialog::handleRedirectedToMagnet);
+                Net::DownloadRequest(source).limit(10485760 /* 10MB */));
+        connect(handler, &Net::DownloadHandler::finished, dlg, &AddNewTorrentDialog::handleDownloadFinished);
         return;
     }
 
@@ -761,39 +758,36 @@ void AddNewTorrentDialog::setupTreeview()
     showAdvancedSettings(settings()->loadValue(KEY_EXPANDED, false).toBool());
 }
 
-void AddNewTorrentDialog::handleDownloadFailed(const QString &url, const QString &reason)
-{
-    RaisedMessageBox::critical(this, tr("Download Error"),
-        QString("Cannot download '%1': %2").arg(url, reason));
-    this->deleteLater();
-}
-
-void AddNewTorrentDialog::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
-{
-    Q_UNUSED(url)
-
-    if (loadMagnet(BitTorrent::MagnetUri(magnetUri)))
-        open();
-    else
-        this->deleteLater();
-}
-
-void AddNewTorrentDialog::handleDownloadFinished(const QString &url, const QByteArray &data)
+void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &result)
 {
     QString error;
-    m_torrentInfo = BitTorrent::TorrentInfo::load(data, &error);
-    if (!m_torrentInfo.isValid()) {
-        RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
-            .arg(url, error));
-        return;
+    switch (result.status) {
+    case Net::DownloadStatus::Success:
+        m_torrentInfo = BitTorrent::TorrentInfo::load(result.data, &error);
+        if (!m_torrentInfo.isValid()) {
+            RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
+                                       .arg(result.url, error));
+            return;
+        }
+
+        m_torrentGuard.reset(new TorrentFileGuard);
+
+        if (loadTorrentImpl())
+            open();
+        else
+            deleteLater();
+        break;
+    case Net::DownloadStatus::RedirectedToMagnet:
+        if (loadMagnet(BitTorrent::MagnetUri(result.magnet)))
+            open();
+        else
+            deleteLater();
+        break;
+    default:
+        RaisedMessageBox::critical(this, tr("Download Error"),
+            tr("Cannot download '%1': %2").arg(result.url, result.errorString));
+        deleteLater();
     }
-
-    m_torrentGuard.reset(new TorrentFileGuard);
-
-    if (loadTorrentImpl())
-        open();
-    else
-        this->deleteLater();
 }
 
 void AddNewTorrentDialog::TMMChanged(int index)

@@ -1542,22 +1542,21 @@ void Session::processShareLimits()
     }
 }
 
-void Session::handleDownloadFailed(const QString &url, const QString &reason)
-{
-    emit downloadFromUrlFailed(url, reason);
-}
-
-void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
-{
-    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url)), MagnetUri(magnetUri));
-}
-
 // Add to BitTorrent session the downloaded torrent file
-void Session::handleDownloadFinished(const QString &url, const QByteArray &data)
+void Session::handleDownloadFinished(const Net::DownloadResult &result)
 {
-    emit downloadFromUrlFinished(url);
-    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url))
-                    , MagnetUri(), TorrentInfo::load(data));
+    switch (result.status) {
+    case Net::DownloadStatus::Success:
+        emit downloadFromUrlFinished(result.url);
+        addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(result.url))
+                        , MagnetUri(), TorrentInfo::load(result.data));
+        break;
+    case Net::DownloadStatus::RedirectedToMagnet:
+        addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(result.url)), MagnetUri(result.magnet));
+        break;
+    default:
+        emit downloadFromUrlFailed(result.url, result.errorString);
+    }
 }
 
 // Return the torrent handle, given its hash
@@ -1796,11 +1795,8 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         const Net::DownloadHandler *handler =
-                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */).handleRedirectToMagnet(true));
-        connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-                , this, &Session::handleDownloadFinished);
-        connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::handleDownloadFailed);
-        connect(handler, &Net::DownloadHandler::redirectedToMagnet, this, &Session::handleRedirectedToMagnet);
+                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */));
+        connect(handler, &Net::DownloadHandler::finished, this, &Session::handleDownloadFinished);
         m_downloadedTorrents[handler->url()] = params;
         return true;
     }
