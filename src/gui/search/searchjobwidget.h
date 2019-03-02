@@ -36,7 +36,6 @@
 
 class QHeaderView;
 class QModelIndex;
-class QStandardItem;
 class QStandardItemModel;
 
 template <typename T> class CachedSettingValue;

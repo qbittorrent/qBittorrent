@@ -28,6 +28,8 @@
 
 #include "serialize_torrent.h"
 
+#include <QDateTime>
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/utils/fs.h"

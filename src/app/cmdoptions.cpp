@@ -45,6 +45,10 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
+#ifndef DISABLE_GUI
+#include "gui/utils.h"
+#endif
+
 namespace
 {
     const int USAGE_INDENTATION = 4;
@@ -580,7 +584,7 @@ void displayUsage(const QString &prgName)
 #else
     QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prgName), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #endif
 }

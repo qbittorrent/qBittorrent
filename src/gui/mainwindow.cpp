@@ -1130,7 +1130,7 @@ void MainWindow::showEvent(QShowEvent *e)
 
     // Make sure the window is initially centered
     if (!m_posInitialized) {
-        move(Utils::Misc::screenCenter(this));
+        move(Utils::Gui::screenCenter(this));
         m_posInitialized = true;
     }
 }

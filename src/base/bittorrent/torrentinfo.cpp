@@ -30,14 +30,15 @@
 
 #include <libtorrent/error_code.hpp>
 
+#include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
+#include <QDir>
 #include <QString>
+#include <QStringList>
 #include <QUrl>
 
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "infohash.h"
 #include "trackerentry.h"
 

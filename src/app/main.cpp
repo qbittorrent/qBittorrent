@@ -76,6 +76,10 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "cmdoptions.h"
 #include "upgrade.h"
 
+#ifndef DISABLE_GUI
+#include "gui/utils.h"
+#endif
+
 // Signal handlers
 void sigNormalHandler(int signum);
 #ifdef STACKTRACE
@@ -328,7 +332,7 @@ void displayBadArgMessage(const QString &message)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
                        message + QLatin1Char('\n') + help, QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
     const QString errMsg = QObject::tr("Bad command line: ") + '\n'
@@ -364,7 +368,7 @@ bool userAgreesWithLegalNotice()
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
     const QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
     if (msgBox.clickedButton() == agreeButton) {
         // Save the answer
