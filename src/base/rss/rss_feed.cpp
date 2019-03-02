@@ -39,7 +39,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QScopedPointer>
 #include <QUrl>
 
 #include "../asyncfilestorage.h"
