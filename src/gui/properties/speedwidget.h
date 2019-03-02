@@ -38,7 +38,6 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QLabel;
 class QMenu;
-class QSignalMapper;
 class PropertiesWidget;
 
 class ComboBoxMenuButton : public QComboBox
@@ -80,7 +79,6 @@ private:
     ComboBoxMenuButton *m_graphsButton;
     QMenu *m_graphsMenu;
     QList<QAction *> m_graphsMenuActions;
-    QSignalMapper *m_graphsSignalMapper;
 };
 
 #endif // SPEEDWIDGET_H

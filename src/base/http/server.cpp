@@ -35,6 +35,7 @@
 #include <QMutableListIterator>
 #include <QNetworkProxy>
 #include <QSslCipher>
+#include <QSslConfiguration>
 #include <QSslSocket>
 #include <QStringList>
 #include <QTimer>
@@ -51,7 +52,7 @@ namespace
     QList<QSslCipher> safeCipherList()
     {
         const QStringList badCiphers {"idea", "rc4"};
-        const QList<QSslCipher> allCiphers {QSslSocket::supportedCiphers()};
+        const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
         std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
         {
@@ -72,7 +73,10 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     , m_https(false)
 {
     setProxy(QNetworkProxy::NoProxy);
-    QSslSocket::setDefaultCiphers(safeCipherList());
+
+    QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
+    sslConf.setCiphers(safeCipherList());
+    QSslConfiguration::setDefaultConfiguration(sslConf);
 
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);

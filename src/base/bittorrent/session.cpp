@@ -4012,7 +4012,7 @@ void Session::handlePeerBlockedAlert(const libt::peer_blocked_alert *p)
         reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
         break;
     case libt::peer_blocked_alert::utp_disabled:
-        reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
+        reason = tr("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case libt::peer_blocked_alert::tcp_disabled:
         reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP

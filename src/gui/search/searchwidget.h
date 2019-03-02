@@ -34,7 +34,6 @@
 #include <QWidget>
 
 class QShortcut;
-class QSignalMapper;
 class QTabWidget;
 
 class MainWindow;
@@ -81,7 +80,6 @@ private:
     QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui;
-    QSignalMapper *m_tabStatusChangedMapper;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
