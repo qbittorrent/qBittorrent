@@ -40,7 +40,6 @@
 #include <QTableView>
 
 #include "base/global.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
@@ -291,9 +290,9 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     else {
         // Icon is missing, we must download it
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true));
-        connect(handler, &DownloadHandler::finished, this, &PluginSelectDialog::iconDownloadFinished);
+        DownloadManager::instance()->download(
+                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true)
+                    , this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version);
 }

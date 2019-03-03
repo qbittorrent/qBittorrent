@@ -67,7 +67,6 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
@@ -1794,10 +1793,9 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        const Net::DownloadHandler *handler =
-                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */));
-        connect(handler, &Net::DownloadHandler::finished, this, &Session::handleDownloadFinished);
-        m_downloadedTorrents[handler->url()] = params;
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */)
+                                                   , this, &Session::handleDownloadFinished);
+        m_downloadedTorrents[source] = params;
         return true;
     }
 

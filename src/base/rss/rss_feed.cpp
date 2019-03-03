@@ -44,7 +44,6 @@
 #include "../asyncfilestorage.h"
 #include "../global.h"
 #include "../logger.h"
-#include "../net/downloadhandler.h"
 #include "../net/downloadmanager.h"
 #include "../profile.h"
 #include "../utils/fs.h"
@@ -130,8 +129,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_url);
-    connect(handler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
+    Net::DownloadManager::instance()->download(m_url, this, &Feed::handleDownloadFinished);
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -399,9 +397,9 @@ void Feed::downloadIcon()
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
     const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
-    const Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(iconUrl).saveToFile(true));
-    connect(handler, &Net::DownloadHandler::finished, this, &Feed::handleIconDownloadFinished);
+    Net::DownloadManager::instance()->download(
+            Net::DownloadRequest(iconUrl).saveToFile(true)
+                , this, &Feed::handleIconDownloadFinished);
 }
 
 int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)

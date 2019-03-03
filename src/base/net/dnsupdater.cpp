@@ -33,7 +33,6 @@
 #include <QUrlQuery>
 
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 
 using namespace Net;
@@ -74,9 +73,9 @@ void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
 
-    DownloadHandler *handler = DownloadManager::instance()->download(
-                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2));
-    connect(handler, &DownloadHandler::finished, this, &DNSUpdater::ipRequestFinished);
+    DownloadManager::instance()->download(
+                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2)
+                , this, &DNSUpdater::ipRequestFinished);
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
@@ -116,9 +115,9 @@ void DNSUpdater::updateDNSService()
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    DownloadHandler *handler = DownloadManager::instance()->download(
-                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2));
-    connect(handler, &DownloadHandler::finished, this, &DNSUpdater::ipUpdateFinished);
+    DownloadManager::instance()->download(
+                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2)
+                , this, &DNSUpdater::ipUpdateFinished);
 }
 
 QString DNSUpdater::getUpdateUrl() const

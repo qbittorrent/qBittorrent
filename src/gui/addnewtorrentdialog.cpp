@@ -42,7 +42,6 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
@@ -237,9 +236,9 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
 
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
-        Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(source).limit(10485760 /* 10MB */));
-        connect(handler, &Net::DownloadHandler::finished, dlg, &AddNewTorrentDialog::handleDownloadFinished);
+        Net::DownloadManager::instance()->download(
+                    Net::DownloadRequest(source).limit(10485760 /* 10MB */)
+                    , dlg, &AddNewTorrentDialog::handleDownloadFinished);
         return;
     }
 

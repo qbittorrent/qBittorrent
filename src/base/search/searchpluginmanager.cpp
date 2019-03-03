@@ -43,7 +43,6 @@
 
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -199,8 +198,8 @@ void SearchPluginManager::installPlugin(const QString &source)
 
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true));
-        connect(handler, &Net::DownloadHandler::finished, this, &SearchPluginManager::pluginDownloadFinished);
+        DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true)
+                                              , this, &SearchPluginManager::pluginDownloadFinished);
     }
     else {
         QString path = source;
@@ -302,8 +301,8 @@ void SearchPluginManager::checkForUpdates()
 {
     // Download version file from update server
     using namespace Net;
-    DownloadHandler *handler = DownloadManager::instance()->download({m_updateUrl + "versions.txt"});
-    connect(handler, &Net::DownloadHandler::finished, this, &SearchPluginManager::versionInfoDownloadFinished);
+    DownloadManager::instance()->download({m_updateUrl + "versions.txt"}
+                                          , this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
 SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &siteUrl, const QString &url)

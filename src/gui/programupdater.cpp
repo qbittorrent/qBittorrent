@@ -35,7 +35,6 @@
 #include <QSysInfo>
 #include <QXmlStreamReader>
 
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 
@@ -56,9 +55,9 @@ void ProgramUpdater::checkForUpdates()
 {
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"));
-    connect(handler, &Net::DownloadHandler::finished, this, &ProgramUpdater::rssDownloadFinished);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+                , this, &ProgramUpdater::rssDownloadFinished);
 }
 
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)

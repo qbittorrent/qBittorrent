@@ -42,7 +42,6 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
@@ -406,9 +405,9 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
-    Net::DownloadHandler *h = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(url).saveToFile(true));
-    connect(h, &Net::DownloadHandler::finished, this, &TrackerFiltersList::handleFavicoDownloadFinished);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(url).saveToFile(true)
+                , this, &TrackerFiltersList::handleFavicoDownloadFinished);
 }
 
 void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult &result)

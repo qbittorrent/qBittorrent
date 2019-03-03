@@ -34,7 +34,6 @@ HEADERS += \
     $$PWD/indexrange.h \
     $$PWD/logger.h \
     $$PWD/net/dnsupdater.h \
-    $$PWD/net/downloadhandler.h \
     $$PWD/net/downloadmanager.h \
     $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
@@ -103,7 +102,6 @@ SOURCES += \
     $$PWD/iconprovider.cpp \
     $$PWD/logger.cpp \
     $$PWD/net/dnsupdater.cpp \
-    $$PWD/net/downloadhandler.cpp \
     $$PWD/net/downloadmanager.cpp \
     $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \

@@ -40,7 +40,6 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
-#include "downloadhandler.h"
 #include "downloadmanager.h"
 #include "private/geoipdatabase.h"
 
@@ -118,8 +117,7 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    const DownloadHandler *handler = DownloadManager::instance()->download({DATABASE_URL});
-    connect(handler, &DownloadHandler::finished, this, &GeoIPManager::downloadFinished);
+    DownloadManager::instance()->download({DATABASE_URL}, this, &GeoIPManager::downloadFinished);
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const

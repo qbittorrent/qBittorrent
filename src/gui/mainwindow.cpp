@@ -97,7 +97,6 @@
 #include "utils.h"
 
 #ifdef Q_OS_WIN
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #endif
 #ifdef Q_OS_MAC
@@ -2018,9 +2017,9 @@ void MainWindow::installPython()
     const QString installerURL = ((QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
                                   ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
                                   : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                                        Net::DownloadRequest(installerURL).saveToFile(true));
-    connect(handler, &Net::DownloadHandler::finished, this, &MainWindow::pythonDownloadFinished);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(installerURL).saveToFile(true)
+                , this, &MainWindow::pythonDownloadFinished);
 }
 
 void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)

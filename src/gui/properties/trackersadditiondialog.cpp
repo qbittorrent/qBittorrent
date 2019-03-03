@@ -35,7 +35,6 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -71,8 +70,8 @@ QStringList TrackersAdditionDialog::newTrackers() const
 void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 {
     m_ui->uTorrentListButton->setEnabled(false);
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_ui->lineEditListURL->text());
-    connect(handler, &Net::DownloadHandler::finished, this, &TrackersAdditionDialog::torrentListDownloadFinished);
+    Net::DownloadManager::instance()->download(m_ui->lineEditListURL->text()
+                                               , this, &TrackersAdditionDialog::torrentListDownloadFinished);
     // Just to show that it takes times
     setCursor(Qt::WaitCursor);
 }

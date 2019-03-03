@@ -44,7 +44,23 @@ class QUrl;
 
 namespace Net
 {
-    class DownloadHandler;
+    struct ServiceID
+    {
+        QString hostName;
+        int port;
+
+        static ServiceID fromURL(const QUrl &url);
+    };
+
+    uint qHash(const ServiceID &serviceID, uint seed);
+    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
+
+    enum class DownloadStatus
+    {
+        Success,
+        RedirectedToMagnet,
+        Failed
+    };
 
     class DownloadRequest
     {
@@ -71,13 +87,6 @@ namespace Net
         bool m_saveToFile = false;
     };
 
-    enum class DownloadStatus
-    {
-        Success,
-        RedirectedToMagnet,
-        Failed
-    };
-
     struct DownloadResult
     {
         QString url;
@@ -88,16 +97,17 @@ namespace Net
         QString magnet;
     };
 
-    struct ServiceID
+    class DownloadHandler : public QObject
     {
-        QString hostName;
-        int port;
+        Q_OBJECT
+        Q_DISABLE_COPY(DownloadHandler)
 
-        static ServiceID fromURL(const QUrl &url);
+    public:
+        using QObject::QObject;
+
+    signals:
+        void finished(const DownloadResult &result);
     };
-
-    uint qHash(const ServiceID &serviceID, uint seed);
-    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
 
     class DownloadManager : public QObject
     {
@@ -110,6 +120,9 @@ namespace Net
         static DownloadManager *instance();
 
         DownloadHandler *download(const DownloadRequest &downloadRequest);
+
+        template <typename Context, typename Func>
+        void download(const DownloadRequest &downloadRequest, Context context, Func slot);
 
         void registerSequentialService(const ServiceID &serviceID);
 
@@ -137,6 +150,13 @@ namespace Net
         QSet<ServiceID> m_busyServices;
         QHash<ServiceID, QQueue<DownloadHandler *>> m_waitingJobs;
     };
+
+    template <typename Context, typename Func>
+    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func slot)
+    {
+        const DownloadHandler *handler = download(downloadRequest);
+        connect(handler, &DownloadHandler::finished, context, slot);
+    }
 }
 
 #endif // NET_DOWNLOADMANAGER_H
