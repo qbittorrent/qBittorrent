@@ -62,11 +62,7 @@ void ReverseResolution::resolve(const QString &ip)
     }
     else {
         // Actually resolve the ip
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
         m_lookups.insert(QHostInfo::lookupHost(ip, this, &ReverseResolution::hostResolved), ip);
-#else
-        m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
-#endif
     }
 }
 
