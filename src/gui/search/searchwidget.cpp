@@ -337,7 +337,7 @@ void SearchWidget::on_searchButton_clicked()
     m_ui->tabWidget->setCurrentWidget(newTab);
 
     connect(newTab, &SearchJobWidget::resultsCountUpdated, this, &SearchWidget::resultsCountUpdated);
-    connect(newTab, &SearchJobWidget::statusChanged, this, [this, &newTab]() { tabStatusChanged(newTab); });
+    connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });
 
     m_ui->searchButton->setText(tr("Stop"));
     m_activeSearchTab = newTab;
