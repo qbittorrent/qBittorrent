@@ -55,6 +55,8 @@ const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/
 
 namespace
 {
+    const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
+
     class NetworkCookieJar : public QNetworkCookieJar
     {
     public:
@@ -116,7 +118,7 @@ namespace
         Q_DISABLE_COPY(DownloadHandlerImpl)
 
     public:
-        DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest);
+        explicit DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent);
         ~DownloadHandlerImpl() override;
 
         QString url() const;
@@ -134,9 +136,7 @@ namespace
         static QString errorCodeToString(QNetworkReply::NetworkError status);
 
         QNetworkReply *m_reply = nullptr;
-        Net::DownloadManager *m_manager = nullptr;
         const Net::DownloadRequest m_downloadRequest;
-        short m_redirectionCounter = 0;
         Net::DownloadResult m_result;
     };
 
@@ -154,10 +154,11 @@ namespace
         // Accept gzip
         request.setRawHeader("Accept-Encoding", "gzip");
 
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::UserVerifiedRedirectPolicy);
+        request.setMaximumRedirectsAllowed(MAX_REDIRECTIONS);
+
         return request;
     }
-
-    const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
     bool saveToFile(const QByteArray &replyData, QString &filePath)
     {
@@ -213,7 +214,7 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     const ServiceID id = ServiceID::fromURL(request.url());
     const bool isSequentialService = m_sequentialServices.contains(id);
 
-    auto downloadHandler = new DownloadHandlerImpl {this, downloadRequest};
+    auto downloadHandler = new DownloadHandlerImpl {downloadRequest, this};
     connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
     connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
     {
@@ -397,9 +398,8 @@ bool Net::operator==(const ServiceID &lhs, const ServiceID &rhs)
 
 namespace
 {
-    DownloadHandlerImpl::DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest)
-        : DownloadHandler {manager}
-        , m_manager {manager}
+    DownloadHandlerImpl::DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent)
+        : DownloadHandler {parent}
         , m_downloadRequest {downloadRequest}
     {
         m_result.url = url();
@@ -421,6 +421,7 @@ namespace
         if (m_downloadRequest.limit() > 0)
             connect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
         connect(m_reply, &QNetworkReply::finished, this, &DownloadHandlerImpl::processFinishedDownload);
+        connect(m_reply, &QNetworkReply::redirected, this, &DownloadHandlerImpl::handleRedirection);
     }
 
     // Returns original url
@@ -445,14 +446,6 @@ namespace
             qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
             setError(errorCodeToString(m_reply->error()));
             finish();
-            return;
-        }
-
-        // Check if the server ask us to redirect somewhere else
-        const QVariant redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-        if (redirection.isValid()) {
-            // We should redirect
-            handleRedirection(redirection.toUrl());
             return;
         }
 
@@ -491,12 +484,6 @@ namespace
 
     void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
     {
-        if (m_redirectionCounter >= MAX_REDIRECTIONS) {
-            setError(tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
-            finish();
-            return;
-        }
-
         // Resolve relative urls
         const QUrl resolvedUrl = newUrl.isRelative() ? m_reply->url().resolved(newUrl) : newUrl;
         const QString newUrlString = resolvedUrl.toString();
@@ -513,15 +500,7 @@ namespace
             return;
         }
 
-        auto redirected = static_cast<DownloadHandlerImpl *>(
-                              m_manager->download(Net::DownloadRequest(m_downloadRequest).url(newUrlString)));
-        redirected->m_redirectionCounter = (m_redirectionCounter + 1);
-        connect(redirected, &DownloadHandlerImpl::finished, this, [this](const Net::DownloadResult &result)
-        {
-            m_result = result;
-            m_result.url = url();
-            finish();
-        });
+        emit m_reply->redirectAllowed();
     }
 
     void DownloadHandlerImpl::setError(const QString &error)

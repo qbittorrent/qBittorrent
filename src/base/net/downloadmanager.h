@@ -119,8 +119,6 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
-
         template <typename Context, typename Func>
         void download(const DownloadRequest &downloadRequest, Context context, Func slot);
 
@@ -140,6 +138,7 @@ namespace Net
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
         void applyProxySettings();
         void handleReplyFinished(const QNetworkReply *reply);
 
