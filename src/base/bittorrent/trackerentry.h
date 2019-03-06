@@ -53,10 +53,15 @@ namespace BitTorrent
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
+        bool isWorking() const;
         Status status() const;
 
         int tier() const;
         void setTier(int value);
+
+        int numSeeds() const;
+        int numLeeches() const;
+        int numDownloaded() const;
 
         libtorrent::announce_entry nativeEntry() const;
 

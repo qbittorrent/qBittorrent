@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,47 +26,56 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_INFOHASH_H
-#define BITTORRENT_INFOHASH_H
+#pragma once
 
-#include <libtorrent/sha1_hash.hpp>
 #include <libtorrent/version.hpp>
 
-#include <QString>
-
-namespace BitTorrent
-{
-    class InfoHash
-    {
-    public:
-        InfoHash();
-        InfoHash(const libtorrent::sha1_hash &nativeHash);
-        InfoHash(const QString &hashString);
-        InfoHash(const InfoHash &other) = default;
-
-        static constexpr int length()
-        {
 #if (LIBTORRENT_VERSION_NUM < 10200)
-            return libtorrent::sha1_hash::size;
-#else
-            return libtorrent::sha1_hash::size();
-#endif
-        }
+namespace libtorrent
+{
+    class entry;
+    class session;
+    struct ip_filter;
+    struct settings_pack;
+    struct torrent_handle;
 
-        bool isValid() const;
-
-        operator libtorrent::sha1_hash() const;
-        operator QString() const;
-
-    private:
-        bool m_valid;
-        libtorrent::sha1_hash m_nativeHash;
-        QString m_hashString;
-    };
-
-    bool operator==(const InfoHash &left, const InfoHash &right);
-    bool operator!=(const InfoHash &left, const InfoHash &right);
-    uint qHash(const InfoHash &key, uint seed);
+    class alert;
+    struct add_torrent_alert;
+    struct external_ip_alert;
+    struct fastresume_rejected_alert;
+    struct file_completed_alert;
+    struct file_error_alert;
+    struct file_rename_failed_alert;
+    struct file_renamed_alert;
+    struct listen_failed_alert;
+    struct listen_succeeded_alert;
+    struct metadata_received_alert;
+    struct peer_ban_alert;
+    struct peer_blocked_alert;
+    struct portmap_alert;
+    struct portmap_error_alert;
+    struct save_resume_data_alert;
+    struct save_resume_data_failed_alert;
+    struct session_stats_alert;
+    struct state_update_alert;
+    struct stats_alert;
+    struct storage_moved_alert;
+    struct storage_moved_failed_alert;
+    struct torrent_alert;
+    struct torrent_checked_alert;
+    struct torrent_delete_failed_alert;
+    struct torrent_deleted_alert;
+    struct torrent_finished_alert;
+    struct torrent_paused_alert;
+    struct torrent_removed_alert;
+    struct torrent_resumed_alert;
+    struct tracker_error_alert;
+    struct tracker_reply_alert;
+    struct tracker_warning_alert;
+    struct url_seed_alert;
 }
 
-#endif // BITTORRENT_INFOHASH_H
+namespace lt = libtorrent;
+#else
+#include <libtorrent/fwd.hpp>
+#endif

@@ -42,7 +42,9 @@
 #include <QString>
 #include <QVector>
 
+#include "private/libtorrentfwd.h"
 #include "private/speedmonitor.h"
+#include "downloadpriority.h"
 #include "infohash.h"
 #include "torrentinfo.h"
 
@@ -52,29 +54,6 @@ class QBitArray;
 class QDateTime;
 class QStringList;
 class QUrl;
-
-namespace libtorrent
-{
-    class alert;
-    struct fastresume_rejected_alert;
-    struct file_completed_alert;
-    struct file_renamed_alert;
-    struct file_rename_failed_alert;
-    struct metadata_received_alert;
-    struct save_resume_data_alert;
-    struct save_resume_data_failed_alert;
-    struct stats_alert;
-    struct storage_moved_alert;
-    struct storage_moved_failed_alert;
-    struct torrent_checked_alert;
-    struct torrent_finished_alert;
-    struct torrent_paused_alert;
-    struct torrent_resumed_alert;
-    struct torrent_status;
-    struct tracker_error_alert;
-    struct tracker_reply_alert;
-    struct tracker_warning_alert;
-}
 
 namespace BitTorrent
 {
@@ -103,7 +82,7 @@ namespace BitTorrent
         int uploadLimit;
         int downloadLimit;
         // for new torrents
-        QVector<int> filePriorities;
+        QVector<DownloadPriority> filePriorities;
         // for restored torrents
         qreal ratioLimit;
         int seedingTimeLimit;
@@ -258,7 +237,7 @@ namespace BitTorrent
         qlonglong fileSize(int index) const;
         QStringList absoluteFilePaths() const;
         QStringList absoluteFilePathsUnwanted() const;
-        QVector<int> filePriorities() const;
+        QVector<DownloadPriority> filePriorities() const;
 
         TorrentInfo info() const;
         bool isSeed() const;
@@ -337,7 +316,7 @@ namespace BitTorrent
         void forceRecheck();
         void renameFile(int index, const QString &name);
         bool saveTorrentFile(const QString &path);
-        void prioritizeFiles(const QVector<int> &priorities);
+        void prioritizeFiles(const QVector<DownloadPriority> &priorities);
         void setRatioLimit(qreal limit);
         void setSeedingTimeLimit(int limit);
         void setUploadLimit(int limit);
@@ -410,7 +389,7 @@ namespace BitTorrent
         bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
-        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<int> &updatedFilePrio = {});
+        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         Session *const m_session;
         libtorrent::torrent_handle m_nativeHandle;

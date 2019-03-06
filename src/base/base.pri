@@ -3,12 +3,14 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/cachestatus.h \
-    $$PWD/bittorrent/filepriority.h \
+    $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/magneturi.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
+    $$PWD/bittorrent/private/libtorrentfwd.h \
+    $$PWD/bittorrent/private/portforwarderimpl.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/bittorrent/private/speedmonitor.h \
     $$PWD/bittorrent/private/statistics.h \
@@ -76,12 +78,13 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
-    $$PWD/bittorrent/filepriority.cpp \
+    $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
+    $$PWD/bittorrent/private/portforwarderimpl.cpp \
     $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
     $$PWD/bittorrent/private/speedmonitor.cpp \
     $$PWD/bittorrent/private/statistics.cpp \

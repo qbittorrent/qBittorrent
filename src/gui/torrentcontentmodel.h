@@ -43,15 +43,16 @@ class TorrentContentModelFile;
 class TorrentContentModel : public QAbstractItemModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TorrentContentModel)
 
 public:
     TorrentContentModel(QObject *parent = nullptr);
     ~TorrentContentModel() override;
 
     void updateFilesProgress(const QVector<qreal> &fp);
-    void updateFilesPriorities(const QVector<int> &fprio);
+    void updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio);
     void updateFilesAvailability(const QVector<qreal> &fa);
-    QVector<int> getFilePriorities() const;
+    QVector<BitTorrent::DownloadPriority> getFilePriorities() const;
     bool allFiltered() const;
     int columnCount(const QModelIndex &parent = {}) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;

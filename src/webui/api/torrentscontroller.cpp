@@ -39,7 +39,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 
-#include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -393,9 +393,9 @@ void TorrentsController::trackersAction()
             {KEY_TRACKER_STATUS, static_cast<int>(tracker.status())},
             {KEY_TRACKER_PEERS_COUNT, data.numPeers},
             {KEY_TRACKER_MSG, data.lastMessage.trimmed()},
-            {KEY_TRACKER_SEEDS_COUNT, tracker.nativeEntry().scrape_complete},
-            {KEY_TRACKER_LEECHES_COUNT, tracker.nativeEntry().scrape_incomplete},
-            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.nativeEntry().scrape_downloaded}
+            {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds()},
+            {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches()},
+            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded()}
         };
     }
 
@@ -446,14 +446,14 @@ void TorrentsController::filesAction()
         throw APIError(APIErrorType::NotFound);
 
     if (torrent->hasMetadata()) {
-        const QVector<int> priorities = torrent->filePriorities();
+        const QVector<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
         const QVector<qreal> fp = torrent->filesProgress();
         const QVector<qreal> fileAvailability = torrent->availableFileFractions();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (int i = 0; i < torrent->filesCount(); ++i) {
             QVariantMap fileDict;
             fileDict[KEY_FILE_PROGRESS] = fp[i];
-            fileDict[KEY_FILE_PRIORITY] = priorities[i];
+            fileDict[KEY_FILE_PRIORITY] = static_cast<int>(priorities[i]);
             fileDict[KEY_FILE_SIZE] = torrent->fileSize(i);
             fileDict[KEY_FILE_AVAILABILITY] = fileAvailability[i];
 
@@ -701,11 +701,11 @@ void TorrentsController::filePrioAction()
 
     const QString hash = params()["hash"];
     bool ok = false;
-    const int priority = params()["priority"].toInt(&ok);
+    const auto priority = static_cast<BitTorrent::DownloadPriority>(params()["priority"].toInt(&ok));
     if (!ok)
         throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
 
-    if (!BitTorrent::isValidFilePriority(static_cast<BitTorrent::FilePriority>(priority)))
+    if (!BitTorrent::isValidDownloadPriority(priority))
         throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
 
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
@@ -715,7 +715,7 @@ void TorrentsController::filePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent's metadata has not yet downloaded"));
 
     const int filesCount = torrent->filesCount();
-    QVector<int> priorities = torrent->filePriorities();
+    QVector<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
     bool priorityChanged = false;
     for (const QString &fileID : params()["id"].split('|')) {
         const int id = fileID.toInt(&ok);

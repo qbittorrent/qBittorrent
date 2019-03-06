@@ -367,9 +367,9 @@ void TrackerListWidget::loadTrackers()
         }
 
         item->setText(COL_PEERS, QString::number(data.numPeers));
-        item->setText(COL_SEEDS, (entry.nativeEntry().scrape_complete > -1) ? QString::number(entry.nativeEntry().scrape_complete) : tr("N/A"));
-        item->setText(COL_LEECHES, (entry.nativeEntry().scrape_incomplete > -1) ? QString::number(entry.nativeEntry().scrape_incomplete) : tr("N/A"));
-        item->setText(COL_DOWNLOADED, (entry.nativeEntry().scrape_downloaded > -1) ? QString::number(entry.nativeEntry().scrape_downloaded) : tr("N/A"));
+        item->setText(COL_SEEDS, (entry.numSeeds() > -1) ? QString::number(entry.numSeeds()) : tr("N/A"));
+        item->setText(COL_LEECHES, (entry.numLeeches() > -1) ? QString::number(entry.numLeeches()) : tr("N/A"));
+        item->setText(COL_DOWNLOADED, (entry.numDownloaded() > -1) ? QString::number(entry.numDownloaded()) : tr("N/A"));
 
         item->setTextAlignment(COL_TIER, (Qt::AlignRight | Qt::AlignVCenter));
         item->setTextAlignment(COL_PEERS, (Qt::AlignRight | Qt::AlignVCenter));

@@ -28,6 +28,7 @@
 
 #include "torrentinfo.h"
 
+#include <boost/optional.hpp>
 #include <libtorrent/error_code.hpp>
 
 #include <QByteArray>
@@ -42,12 +43,27 @@
 #include "infohash.h"
 #include "trackerentry.h"
 
+namespace
+{
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    using LTPieceIndex = int;
+    using LTFileIndex = int;
+#else
+    using LTPieceIndex = lt::piece_index_t;
+    using LTFileIndex = lt::file_index_t;
+#endif
+}
+
 namespace libt = libtorrent;
 using namespace BitTorrent;
 
 TorrentInfo::TorrentInfo(NativeConstPtr nativeInfo)
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     m_nativeInfo = boost::const_pointer_cast<libt::torrent_info>(nativeInfo);
+#else
+    m_nativeInfo = std::const_pointer_cast<libt::torrent_info>(nativeInfo);
+#endif
 }
 
 TorrentInfo::TorrentInfo(const TorrentInfo &other)
@@ -190,7 +206,7 @@ int TorrentInfo::pieceLength() const
 int TorrentInfo::pieceLength(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->piece_size(index);
+    return m_nativeInfo->piece_size(LTPieceIndex {index});
 }
 
 int TorrentInfo::piecesCount() const
@@ -202,7 +218,8 @@ int TorrentInfo::piecesCount() const
 QString TorrentInfo::filePath(const int index) const
 {
     if (!isValid()) return {};
-    return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->files().file_path(index)));
+    return Utils::Fs::fromNativePath(
+                QString::fromStdString(m_nativeInfo->files().file_path(LTFileIndex {index})));
 }
 
 QStringList TorrentInfo::filePaths() const
@@ -222,19 +239,20 @@ QString TorrentInfo::fileName(const int index) const
 QString TorrentInfo::origFilePath(const int index) const
 {
     if (!isValid()) return {};
-    return Utils::Fs::fromNativePath(QString::fromStdString(m_nativeInfo->orig_files().file_path(index)));
+    return Utils::Fs::fromNativePath(
+                QString::fromStdString(m_nativeInfo->orig_files().file_path(LTFileIndex {index})));
 }
 
 qlonglong TorrentInfo::fileSize(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->files().file_size(index);
+    return m_nativeInfo->files().file_size(LTFileIndex {index});
 }
 
 qlonglong TorrentInfo::fileOffset(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->files().file_offset(index);
+    return m_nativeInfo->files().file_offset(LTFileIndex {index});
 }
 
 QList<TrackerEntry> TorrentInfo::trackers() const
@@ -285,11 +303,12 @@ QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
         return {};
 
     const std::vector<libt::file_slice> files(
-        nativeInfo()->map_block(pieceIndex, 0, nativeInfo()->piece_size(pieceIndex)));
+                nativeInfo()->map_block(LTPieceIndex {pieceIndex}, 0
+                                        , nativeInfo()->piece_size(LTPieceIndex {pieceIndex})));
     QVector<int> res;
     res.reserve(int(files.size()));
     std::transform(files.begin(), files.end(), std::back_inserter(res),
-        [](const libt::file_slice &s) { return s.file_index; });
+        [](const libt::file_slice &s) { return static_cast<int>(s.file_index); });
 
     return res;
 }
@@ -304,7 +323,7 @@ QVector<QByteArray> TorrentInfo::pieceHashes() const
     hashes.reserve(count);
 
     for (int i = 0; i < count; ++i)
-        hashes += { m_nativeInfo->hash_for_piece_ptr(i), libtorrent::sha1_hash::size };
+        hashes += {m_nativeInfo->hash_for_piece_ptr(LTPieceIndex {i}), InfoHash::length()};
 
     return hashes;
 }
@@ -333,8 +352,8 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     }
 
     const libt::file_storage &files = nativeInfo()->files();
-    const auto fileSize = files.file_size(fileIndex);
-    const auto fileOffset = files.file_offset(fileIndex);
+    const auto fileSize = files.file_size(LTFileIndex {fileIndex});
+    const auto fileOffset = files.file_offset(LTFileIndex {fileIndex});
     return makeInterval(static_cast<int>(fileOffset / pieceLength()),
                         static_cast<int>((fileOffset + fileSize - 1) / pieceLength()));
 }
