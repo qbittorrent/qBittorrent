@@ -71,11 +71,7 @@ qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 #elif defined(Q_OS_MAC)
     return 1;
 #else
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
     return widget->devicePixelRatioF();
-#else
-    return widget->devicePixelRatio();
-#endif
 #endif // Q_OS_WIN
 }
 

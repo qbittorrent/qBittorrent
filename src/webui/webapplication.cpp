@@ -630,19 +630,7 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     }
 
     // try matching host header with local address
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
     const bool sameAddr = m_env.localAddress.isEqual(QHostAddress(requestHost));
-#else
-    const auto equal = [](const Q_IPV6ADDR &l, const Q_IPV6ADDR &r) -> bool
-    {
-        for (int i = 0; i < 16; ++i) {
-            if (l[i] != r[i])
-                return false;
-        }
-        return true;
-    };
-    const bool sameAddr = equal(m_env.localAddress.toIPv6Address(), QHostAddress(requestHost).toIPv6Address());
-#endif
 
     if (sameAddr)
         return true;

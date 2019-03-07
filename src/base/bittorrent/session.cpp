@@ -2179,16 +2179,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
 
     const QString changedInterface = cfg.name();
 
-    // workaround for QTBUG-52633: check interface IPs, react only if the IPs have changed
-    // seems to be present only with NetworkManager, hence Q_OS_LINUX
-#if defined Q_OS_LINUX && QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 7, 1)
-    static QStringList boundIPs = getListeningIPs();
-    const QStringList newBoundIPs = getListeningIPs();
-    if ((configuredInterfaceName == changedInterface) && (boundIPs != newBoundIPs)) {
-        boundIPs = newBoundIPs;
-#else
     if (configuredInterfaceName == changedInterface) {
-#endif
         Logger::instance()->addMessage(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
         configureListeningInterface();
     }
