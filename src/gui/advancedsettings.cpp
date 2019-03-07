@@ -303,18 +303,14 @@ void AdvancedSettings::loadAdvancedSettings()
     const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // add section headers
-    QFont boldFont;
-    boldFont.setBold(true);
-    addRow(QBITTORRENT_HEADER, tr("qBittorrent Section"), &labelQbtLink);
-    item(QBITTORRENT_HEADER, PROPERTY)->setFont(boldFont);
     labelQbtLink.setText(QString("<a href=\"%1\">%2</a>")
         .arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced", tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);
+    addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), &labelQbtLink);
 
-    addRow(LIBTORRENT_HEADER, tr("libtorrent Section"), &labelLibtorrentLink);
-    item(LIBTORRENT_HEADER, PROPERTY)->setFont(boldFont);
     labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
+    addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), &labelLibtorrentLink);
 
     // Async IO threads
     spinBoxAsyncIOThreads.setMinimum(1);
@@ -523,17 +519,20 @@ void AdvancedSettings::loadAdvancedSettings()
 }
 
 template <typename T>
-void AdvancedSettings::addRow(int row, const QString &rowText, T *widget)
+void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 {
-    setItem(row, PROPERTY, new QTableWidgetItem(rowText));
+    auto label = new QLabel(text);
+    label->setOpenExternalLinks(true);
+
+    setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
 
     if (std::is_same<T, QCheckBox>::value)
-        connect(widget, SIGNAL(stateChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(stateChanged(int)), this, SIGNAL(settingsChanged()));
     else if (std::is_same<T, QSpinBox>::value)
-        connect(widget, SIGNAL(valueChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(valueChanged(int)), this, SIGNAL(settingsChanged()));
     else if (std::is_same<T, QComboBox>::value)
-        connect(widget, SIGNAL(currentIndexChanged(int)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(currentIndexChanged(int)), this, SIGNAL(settingsChanged()));
     else if (std::is_same<T, QLineEdit>::value)
-        connect(widget, SIGNAL(textChanged(QString)), SIGNAL(settingsChanged()));
+        connect(widget, SIGNAL(textChanged(QString)), this, SIGNAL(settingsChanged()));
 }
