@@ -107,10 +107,6 @@
 #include "programupdater.h"
 #endif
 
-#ifdef Q_OS_MAC
-void qt_mac_set_dock_menu(QMenu *menu);
-#endif
-
 #define TIME_TRAY_BALLOON 5000
 #define PREVENT_SUSPEND_INTERVAL 60000
 
@@ -469,7 +465,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 #ifdef Q_OS_MAC
     setupDockClickHandler();
-    qt_mac_set_dock_menu(trayIconMenu());
+    trayIconMenu()->setAsDockMenu();
 #endif
 }
 
@@ -1130,7 +1126,7 @@ void MainWindow::showEvent(QShowEvent *e)
 
     // Make sure the window is initially centered
     if (!m_posInitialized) {
-        move(Utils::Misc::screenCenter(this));
+        move(Utils::Gui::screenCenter(this));
         m_posInitialized = true;
     }
 }
@@ -1815,7 +1811,6 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-
 void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser)
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;

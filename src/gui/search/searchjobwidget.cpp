@@ -35,10 +35,9 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QPalette>
-#include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
-#include <QTreeView>
+#include <QUrl>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"

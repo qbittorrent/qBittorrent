@@ -63,6 +63,7 @@
 #include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
 #include "updownratiodialog.h"
+#include "utils.h"
 
 #ifdef Q_OS_MAC
 #include "macutilities.h"
@@ -341,7 +342,7 @@ TransferListModel *TransferListWidget::getSourceModel() const
 
 void TransferListWidget::previewFile(const QString &filePath)
 {
-    Utils::Misc::openPath(filePath);
+    Utils::Gui::openPath(filePath);
 }
 
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
@@ -386,9 +387,9 @@ void TransferListWidget::torrentDoubleClicked()
         MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
 #else
         if (torrent->filesCount() == 1)
-            Utils::Misc::openFolderSelect(torrent->contentPath(true));
+            Utils::Gui::openFolderSelect(torrent->contentPath(true));
         else
-            Utils::Misc::openPath(torrent->contentPath(true));
+            Utils::Gui::openPath(torrent->contentPath(true));
 #endif
         break;
     }
@@ -592,9 +593,9 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         QString path = torrent->contentPath(true);
         if (!pathsList.contains(path)) {
             if (torrent->filesCount() == 1)
-                Utils::Misc::openFolderSelect(path);
+                Utils::Gui::openFolderSelect(path);
             else
-                Utils::Misc::openPath(path);
+                Utils::Gui::openPath(path);
         }
         pathsList.insert(path);
     }

@@ -30,12 +30,14 @@
 
 #include <QAction>
 #include <QDebug>
+#include <QDir>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QThread>
+#include <QUrl>
 
 #include "base/bittorrent/filepriority.h"
 #include "base/bittorrent/session.h"
@@ -527,7 +529,7 @@ void PropertiesWidget::openFile(const QModelIndex &index)
     qDebug("Trying to open file at %s", qUtf8Printable(filePath));
     // Flush data
     m_torrent->flushCache();
-    Utils::Misc::openPath(filePath);
+    Utils::Gui::openPath(filePath);
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolder)
@@ -563,9 +565,9 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
     MacUtils::openFiles(QSet<QString>{absolutePath});
 #else
     if (containingFolder)
-        Utils::Misc::openFolderSelect(absolutePath);
+        Utils::Gui::openFolderSelect(absolutePath);
     else
-        Utils::Misc::openPath(absolutePath);
+        Utils::Gui::openPath(absolutePath);
 #endif
 }
 

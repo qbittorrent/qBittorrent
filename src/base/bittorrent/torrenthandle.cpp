@@ -32,12 +32,9 @@
 #include <algorithm>
 #include <type_traits>
 
-#include <QBitArray>
-#include <QByteArray>
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QStringList>
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
@@ -47,17 +44,20 @@
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/time.hpp>
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
+#include <QBitArray>
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QStringList>
+#include <QUrl>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
+#include "base/tristatebool.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "peerinfo.h"
 #include "session.h"
 #include "trackerentry.h"

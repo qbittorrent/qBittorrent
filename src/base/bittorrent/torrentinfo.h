@@ -33,7 +33,6 @@
 
 #include <QCoreApplication>
 #include <QList>
-#include <QtGlobal>
 #include <QVector>
 
 #include "base/indexrange.h"

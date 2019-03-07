@@ -29,6 +29,7 @@
 #include "addnewtorrentdialog.h"
 
 #include <QDebug>
+#include <QDir>
 #include <QFile>
 #include <QMenu>
 #include <QPushButton>

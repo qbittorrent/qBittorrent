@@ -28,13 +28,13 @@
 
 #include "transferlistsortmodel.h"
 
+#include <QDateTime>
 #include <QStringList>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/types.h"
 #include "base/utils/string.h"
 #include "transferlistmodel.h"
-
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)

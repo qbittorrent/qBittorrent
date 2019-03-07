@@ -40,42 +40,24 @@
 #endif
 
 #ifdef Q_OS_MAC
-#include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
+#include <CoreServices/CoreServices.h>
 #endif
 
 #include <openssl/opensslv.h>
 
-#include <QByteArray>
-#include <QDebug>
-#include <QFileInfo>
-#include <QProcess>
-#include <QRegularExpression>
-#include <QSysInfo>
-#include <QUrl>
-
-#ifdef DISABLE_GUI
 #include <QCoreApplication>
-#else
-#include <QApplication>
-#include <QDesktopServices>
-#include <QScreen>
-#include <QStyle>
-#include <QWidget>
-#include <QWindow>
+#include <QRegularExpression>
+#include <QSet>
+#include <QSysInfo>
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
-#include <QDBusMessage>
 #endif
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-#include "base/utils/version.h"
-#endif
-#endif // DISABLE_GUI
 
-#include "base/logger.h"
+#include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
-#include "fs.h"
 
 namespace
 {
@@ -248,34 +230,6 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     Q_UNUSED(action);
 #endif
 }
-
-#ifndef DISABLE_GUI
-QPoint Utils::Misc::screenCenter(const QWidget *w)
-{
-    // Returns the QPoint which the widget will be placed center on screen (where parent resides)
-
-    if (!w)
-        return {};
-
-    QRect r = QGuiApplication::primaryScreen()->availableGeometry();
-    const QPoint primaryScreenCenter {(r.x() + (r.width() - w->frameSize().width()) / 2), (r.y() + (r.height() - w->frameSize().height()) / 2)};
-
-    const QWidget *parent = w->parentWidget();
-    if (!parent)
-        return primaryScreenCenter;
-
-    const QWindow *window = parent->window()->windowHandle();
-    if (!window)
-        return primaryScreenCenter;
-
-    const QScreen *screen = window->screen();
-    if (!screen)
-        return primaryScreenCenter;
-
-    r = screen->availableGeometry();
-    return {(r.x() + (r.width() - w->frameSize().width()) / 2), (r.y() + (r.height() - w->frameSize().height()) / 2)};
-}
-#endif
 
 QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
 {
@@ -492,73 +446,6 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
     result = "<p style=\"white-space: pre-wrap;\">" + result + "</p>";
     return result;
 }
-
-#ifndef DISABLE_GUI
-// Open the given path with an appropriate application
-void Utils::Misc::openPath(const QString &absolutePath)
-{
-    const QString path = Utils::Fs::fromNativePath(absolutePath);
-    // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.startsWith("//"))
-        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
-    else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
-}
-
-// Open the parent directory of the given path with a file manager and select
-// (if possible) the item at the given path
-void Utils::Misc::openFolderSelect(const QString &absolutePath)
-{
-    const QString path = Utils::Fs::fromNativePath(absolutePath);
-    // If the item to select doesn't exist, try to open its parent
-    if (!QFileInfo::exists(path)) {
-        openPath(path.left(path.lastIndexOf('/')));
-        return;
-    }
-#ifdef Q_OS_WIN
-    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
-    if (pidl) {
-        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
-        ::ILFree(pidl);
-    }
-    if ((hresult == S_OK) || (hresult == S_FALSE))
-        ::CoUninitialize();
-#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    QProcess proc;
-    proc.start("xdg-mime", {"query", "default", "inode/directory"});
-    proc.waitForFinished();
-    const QString output = proc.readLine().simplified();
-    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop")) {
-        proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
-    }
-    else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-                 || (output == "nautilus-folder-handler.desktop")) {
-        proc.start("nautilus", {"--version"});
-        proc.waitForFinished();
-        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
-        using NautilusVersion = Utils::Version<int, 3>;
-        if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
-            proc.startDetached("nautilus", {Utils::Fs::toNativePath(path)});
-        else
-            proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
-    }
-    else if (output == "nemo.desktop") {
-        proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
-    }
-    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop")) {
-        proc.startDetached("konqueror", {"--select", Utils::Fs::toNativePath(path)});
-    }
-    else {
-        // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.left(path.lastIndexOf('/')));
-    }
-#else
-    openPath(path.left(path.lastIndexOf('/')));
-#endif
-}
-
-#endif // DISABLE_GUI
 
 QString Utils::Misc::osName()
 {
