@@ -163,6 +163,8 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     QShortcut *enterHotkey = new QShortcut(Qt::Key_Return, m_ui->resultsBrowser, nullptr, nullptr, Qt::WidgetShortcut);
     connect(enterHotkey, &QShortcut::activated, this, &SearchJobWidget::downloadTorrents);
+
+    setStatusTip(statusText(m_status));
 }
 
 SearchJobWidget::~SearchJobWidget()
