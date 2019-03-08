@@ -53,7 +53,7 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
-    int m_maxLines;
+    const int m_maxLines;
     Log::MsgTypes m_types;
 };
 

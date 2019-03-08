@@ -66,10 +66,9 @@ FileLogger::~FileLogger()
 
 void FileLogger::changePath(const QString &newPath)
 {
-    QString tmpPath = Utils::Fs::fromNativePath(newPath);
-    QDir dir(tmpPath);
-    dir.mkpath(tmpPath);
-    tmpPath = dir.absoluteFilePath("qbittorrent.log");
+    const QDir dir(newPath);
+    dir.mkpath(newPath);
+    const QString tmpPath = dir.absoluteFilePath("qbittorrent.log");
 
     if (tmpPath != m_path) {
         m_path = tmpPath;
@@ -87,8 +86,10 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
     const QDateTime date = QDateTime::currentDateTime();
     const QDir dir(Utils::Fs::branchPath(m_path));
+    const QFileInfoList fileList = dir.entryInfoList(QStringList("qbittorrent.log.bak*")
+        , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
-    for (const QFileInfo &file : asConst(dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed))) {
+    for (const QFileInfo &file : fileList) {
         QDateTime modificationDate = file.lastModified();
         switch (ageType) {
         case DAYS:
@@ -106,7 +107,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
     }
 }
 
-void FileLogger::setBackup(bool value)
+void FileLogger::setBackup(const bool value)
 {
     m_backup = value;
 }
@@ -168,7 +169,7 @@ void FileLogger::openLogFile()
         || !m_logFile->setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
         delete m_logFile;
         m_logFile = nullptr;
-        Logger::instance()->addMessage(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+        LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }
 }
 
