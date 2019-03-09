@@ -315,10 +315,12 @@ void AdvancedSettings::loadAdvancedSettings()
             , tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);
     addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), &labelQbtLink);
+    static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     labelLibtorrentLink.setText(makeLink("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
     addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), &labelLibtorrentLink);
+    static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     // Async IO threads
     spinBoxAsyncIOThreads.setMinimum(1);
