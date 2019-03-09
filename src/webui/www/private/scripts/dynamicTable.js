@@ -1572,7 +1572,7 @@ var TorrentTrackersTable = new Class({
     Extends: DynamicTable,
 
     initColumns: function() {
-        this.newColumn('tier', '', 'QBT_TR(#)QBT_TR[CONTEXT=TrackerListWidget]', 35, true);
+        this.newColumn('tier', '', 'QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]', 35, true);
         this.newColumn('url', '', 'QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
         this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]', 125, true);
         this.newColumn('peers', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
