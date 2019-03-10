@@ -38,6 +38,11 @@
 using PluginVersion = Utils::Version<unsigned short, 2>;
 Q_DECLARE_METATYPE(PluginVersion)
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 struct PluginInfo
 {
     QString name;
@@ -104,10 +109,8 @@ private:
     void installPlugin_impl(const QString &name, const QString &path);
     bool isUpdateNeeded(const QString &pluginName, PluginVersion newVersion) const;
 
-    void versionInfoDownloaded(const QString &url, const QByteArray &data);
-    void versionInfoDownloadFailed(const QString &url, const QString &reason);
-    void pluginDownloaded(const QString &url, QString filePath);
-    void pluginDownloadFailed(const QString &url, const QString &reason);
+    void versionInfoDownloadFinished(const Net::DownloadResult &result);
+    void pluginDownloadFinished(const Net::DownloadResult &result);
 
     static QString pluginPath(const QString &name);
 

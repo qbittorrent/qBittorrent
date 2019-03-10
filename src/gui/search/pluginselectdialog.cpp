@@ -40,7 +40,6 @@
 #include <QTableView>
 
 #include "base/global.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
@@ -291,11 +290,9 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     else {
         // Icon is missing, we must download it
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true));
-        connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
-                , this, &PluginSelectDialog::iconDownloaded);
-        connect(handler, &DownloadHandler::downloadFailed, this, &PluginSelectDialog::iconDownloadFailed);
+        DownloadManager::instance()->download(
+                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true)
+                    , this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version);
 }
@@ -369,9 +366,14 @@ void PluginSelectDialog::askForLocalPlugin()
     }
 }
 
-void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
+void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
 {
-    filePath = Utils::Fs::fromNativePath(filePath);
+    if (result.status != Net::DownloadStatus::Success) {
+        qDebug("Could not download favicon: %s, reason: %s", qUtf8Printable(result.url), qUtf8Printable(result.errorString));
+        return;
+    }
+
+    const QString filePath = Utils::Fs::fromNativePath(result.filePath);
 
     // Icon downloaded
     QIcon icon(filePath);
@@ -379,7 +381,7 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (!invalid) {
-        for (QTreeWidgetItem *item : asConst(findItemsWithUrl(url))) {
+        for (QTreeWidgetItem *item : asConst(findItemsWithUrl(result.url))) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
@@ -387,7 +389,7 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
             QString iconPath = QString("%1/%2.%3")
                 .arg(SearchPluginManager::pluginsLocation()
                     , id
-                    , url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
+                    , result.url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
             if (QFile::copy(filePath, iconPath)) {
                 // This 2nd check is necessary. Some favicons (eg from piratebay)
                 // decode fine without an ext, but fail to do so when appending the ext
@@ -407,11 +409,6 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
     }
     // Delete tmp file
     Utils::Fs::forceRemove(filePath);
-}
-
-void PluginSelectDialog::iconDownloadFailed(const QString &url, const QString &reason)
-{
-    qDebug("Could not download favicon: %s, reason: %s", qUtf8Printable(url), qUtf8Printable(reason));
 }
 
 void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)

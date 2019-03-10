@@ -62,6 +62,11 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class MainWindow;
@@ -135,8 +140,7 @@ private slots:
     void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
-    void pythonDownloadSuccess(const QString &url, const QString &filePath);
-    void pythonDownloadFailure(const QString &url, const QString &error);
+    void pythonDownloadFinished(const Net::DownloadResult &result);
 #endif
     void addToolbarContextMenu();
     void manageCookies();

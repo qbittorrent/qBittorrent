@@ -39,12 +39,15 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslError>
+#include <QTemporaryFile>
 #include <QUrl>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "downloadhandler.h"
+#include "base/utils/fs.h"
+#include "base/utils/gzip.h"
+#include "base/utils/misc.h"
 #include "proxyconfigurationmanager.h"
 
 // Spoof Firefox 38 user agent to avoid web server banning
@@ -52,6 +55,8 @@ const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/
 
 namespace
 {
+    const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
+
     class NetworkCookieJar : public QNetworkCookieJar
     {
     public:
@@ -108,6 +113,33 @@ namespace
         }
     };
 
+    class DownloadHandlerImpl : public Net::DownloadHandler
+    {
+        Q_DISABLE_COPY(DownloadHandlerImpl)
+
+    public:
+        explicit DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent);
+        ~DownloadHandlerImpl() override;
+
+        QString url() const;
+        const Net::DownloadRequest downloadRequest() const;
+
+        void assignNetworkReply(QNetworkReply *reply);
+
+    private:
+        void processFinishedDownload();
+        void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+        void handleRedirection(const QUrl &newUrl);
+        void setError(const QString &error);
+        void finish();
+
+        static QString errorCodeToString(QNetworkReply::NetworkError status);
+
+        QNetworkReply *m_reply = nullptr;
+        const Net::DownloadRequest m_downloadRequest;
+        Net::DownloadResult m_result;
+    };
+
     QNetworkRequest createNetworkRequest(const Net::DownloadRequest &downloadRequest)
     {
         QNetworkRequest request {downloadRequest.url()};
@@ -122,7 +154,24 @@ namespace
         // Accept gzip
         request.setRawHeader("Accept-Encoding", "gzip");
 
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::UserVerifiedRedirectPolicy);
+        request.setMaximumRedirectsAllowed(MAX_REDIRECTIONS);
+
         return request;
+    }
+
+    bool saveToFile(const QByteArray &replyData, QString &filePath)
+    {
+        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
+        tmpfile.setAutoRemove(false);
+
+        if (!tmpfile.open())
+            return false;
+
+        filePath = tmpfile.fileName();
+
+        tmpfile.write(replyData);
+        return true;
     }
 }
 
@@ -164,20 +213,24 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     const QNetworkRequest request = createNetworkRequest(downloadRequest);
     const ServiceID id = ServiceID::fromURL(request.url());
     const bool isSequentialService = m_sequentialServices.contains(id);
+
+    auto downloadHandler = new DownloadHandlerImpl {downloadRequest, this};
+    connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
+    connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
+    {
+        m_waitingJobs[id].removeOne(downloadHandler);
+    });
+
     if (!isSequentialService || !m_busyServices.contains(id)) {
         qDebug("Downloading %s...", qUtf8Printable(downloadRequest.url()));
         if (isSequentialService)
             m_busyServices.insert(id);
-        return new DownloadHandler {
-            m_networkManager.get(request), this, downloadRequest};
+        downloadHandler->assignNetworkReply(m_networkManager.get(request));
+    }
+    else {
+        m_waitingJobs[id].enqueue(downloadHandler);
     }
 
-    auto *downloadHandler = new DownloadHandler {nullptr, this, downloadRequest};
-    connect(downloadHandler, &DownloadHandler::destroyed, this, [this, id, downloadHandler]()
-    {
-        m_waitingJobs[id].removeOne(downloadHandler);
-    });
-    m_waitingJobs[id].enqueue(downloadHandler);
     return downloadHandler;
 }
 
@@ -262,9 +315,9 @@ void Net::DownloadManager::handleReplyFinished(const QNetworkReply *reply)
         return;
     }
 
-    DownloadHandler *handler = waitingJobsIter.value().dequeue();
-    qDebug("Downloading %s...", qUtf8Printable(handler->m_downloadRequest.url()));
-    handler->assignNetworkReply(m_networkManager.get(createNetworkRequest(handler->m_downloadRequest)));
+    auto handler = static_cast<DownloadHandlerImpl *>(waitingJobsIter.value().dequeue());
+    qDebug("Downloading %s...", qUtf8Printable(handler->url()));
+    handler->assignNetworkReply(m_networkManager.get(createNetworkRequest(handler->downloadRequest())));
     handler->disconnect(this);
 }
 
@@ -328,17 +381,6 @@ Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
     return *this;
 }
 
-bool Net::DownloadRequest::handleRedirectToMagnet() const
-{
-    return m_handleRedirectToMagnet;
-}
-
-Net::DownloadRequest &Net::DownloadRequest::handleRedirectToMagnet(const bool value)
-{
-    m_handleRedirectToMagnet = value;
-    return *this;
-}
-
 Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
 {
     return {url.host(), url.port(80)};
@@ -352,4 +394,173 @@ uint Net::qHash(const ServiceID &serviceID, const uint seed)
 bool Net::operator==(const ServiceID &lhs, const ServiceID &rhs)
 {
     return ((lhs.hostName == rhs.hostName) && (lhs.port == rhs.port));
+}
+
+namespace
+{
+    DownloadHandlerImpl::DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent)
+        : DownloadHandler {parent}
+        , m_downloadRequest {downloadRequest}
+    {
+        m_result.url = url();
+        m_result.status = Net::DownloadStatus::Success;
+    }
+
+    DownloadHandlerImpl::~DownloadHandlerImpl()
+    {
+        if (m_reply)
+            delete m_reply;
+    }
+
+    void DownloadHandlerImpl::assignNetworkReply(QNetworkReply *reply)
+    {
+        Q_ASSERT(reply);
+
+        m_reply = reply;
+        m_reply->setParent(this);
+        if (m_downloadRequest.limit() > 0)
+            connect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
+        connect(m_reply, &QNetworkReply::finished, this, &DownloadHandlerImpl::processFinishedDownload);
+        connect(m_reply, &QNetworkReply::redirected, this, &DownloadHandlerImpl::handleRedirection);
+    }
+
+    // Returns original url
+    QString DownloadHandlerImpl::url() const
+    {
+        return m_downloadRequest.url();
+    }
+
+    const Net::DownloadRequest DownloadHandlerImpl::downloadRequest() const
+    {
+        return m_downloadRequest;
+    }
+
+    void DownloadHandlerImpl::processFinishedDownload()
+    {
+        const QString url = m_reply->url().toString();
+        qDebug("Download finished: %s", qUtf8Printable(url));
+
+        // Check if the request was successful
+        if (m_reply->error() != QNetworkReply::NoError) {
+            // Failure
+            qDebug("Download failure (%s), reason: %s", qUtf8Printable(url), qUtf8Printable(errorCodeToString(m_reply->error())));
+            setError(errorCodeToString(m_reply->error()));
+            finish();
+            return;
+        }
+
+        // Success
+        m_result.data = (m_reply->rawHeader("Content-Encoding") == "gzip")
+                        ? Utils::Gzip::decompress(m_reply->readAll())
+                        : m_reply->readAll();
+
+        if (m_downloadRequest.saveToFile()) {
+            QString filePath;
+            if (saveToFile(m_result.data, filePath))
+                m_result.filePath = filePath;
+            else
+                setError(tr("I/O Error"));
+        }
+
+        finish();
+    }
+
+    void DownloadHandlerImpl::checkDownloadSize(const qint64 bytesReceived, const qint64 bytesTotal)
+    {
+        if ((bytesTotal > 0) && (bytesTotal <= m_downloadRequest.limit())) {
+            // Total number of bytes is available
+            disconnect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
+            return;
+        }
+
+        if ((bytesTotal > m_downloadRequest.limit()) || (bytesReceived > m_downloadRequest.limit())) {
+            m_reply->abort();
+            setError(tr("The file size is %1. It exceeds the download limit of %2.")
+                     .arg(Utils::Misc::friendlyUnit(bytesTotal)
+                          , Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
+            finish();
+        }
+    }
+
+    void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
+    {
+        // Resolve relative urls
+        const QUrl resolvedUrl = newUrl.isRelative() ? m_reply->url().resolved(newUrl) : newUrl;
+        const QString newUrlString = resolvedUrl.toString();
+        qDebug("Redirecting from %s to %s...", qUtf8Printable(m_reply->url().toString()), qUtf8Printable(newUrlString));
+
+        // Redirect to magnet workaround
+        if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
+            qDebug("Magnet redirect detected.");
+            m_result.status = Net::DownloadStatus::RedirectedToMagnet;
+            m_result.magnet = newUrlString;
+            m_result.errorString = tr("Redirected to magnet URI.");
+
+            finish();
+            return;
+        }
+
+        emit m_reply->redirectAllowed();
+    }
+
+    void DownloadHandlerImpl::setError(const QString &error)
+    {
+        m_result.errorString = error;
+        m_result.status = Net::DownloadStatus::Failed;
+    }
+
+    void DownloadHandlerImpl::finish()
+    {
+        emit finished(m_result);
+    }
+
+    QString DownloadHandlerImpl::errorCodeToString(const QNetworkReply::NetworkError status)
+    {
+        switch (status) {
+        case QNetworkReply::HostNotFoundError:
+            return tr("The remote host name was not found (invalid hostname)");
+        case QNetworkReply::OperationCanceledError:
+            return tr("The operation was canceled");
+        case QNetworkReply::RemoteHostClosedError:
+            return tr("The remote server closed the connection prematurely, before the entire reply was received and processed");
+        case QNetworkReply::TimeoutError:
+            return tr("The connection to the remote server timed out");
+        case QNetworkReply::SslHandshakeFailedError:
+            return tr("SSL/TLS handshake failed");
+        case QNetworkReply::ConnectionRefusedError:
+            return tr("The remote server refused the connection");
+        case QNetworkReply::ProxyConnectionRefusedError:
+            return tr("The connection to the proxy server was refused");
+        case QNetworkReply::ProxyConnectionClosedError:
+            return tr("The proxy server closed the connection prematurely");
+        case QNetworkReply::ProxyNotFoundError:
+            return tr("The proxy host name was not found");
+        case QNetworkReply::ProxyTimeoutError:
+            return tr("The connection to the proxy timed out or the proxy did not reply in time to the request sent");
+        case QNetworkReply::ProxyAuthenticationRequiredError:
+            return tr("The proxy requires authentication in order to honor the request but did not accept any credentials offered");
+        case QNetworkReply::ContentAccessDenied:
+            return tr("The access to the remote content was denied (401)");
+        case QNetworkReply::ContentOperationNotPermittedError:
+            return tr("The operation requested on the remote content is not permitted");
+        case QNetworkReply::ContentNotFoundError:
+            return tr("The remote content was not found at the server (404)");
+        case QNetworkReply::AuthenticationRequiredError:
+            return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted");
+        case QNetworkReply::ProtocolUnknownError:
+            return tr("The Network Access API cannot honor the request because the protocol is not known");
+        case QNetworkReply::ProtocolInvalidOperationError:
+            return tr("The requested operation is invalid for this protocol");
+        case QNetworkReply::UnknownNetworkError:
+            return tr("An unknown network-related error was detected");
+        case QNetworkReply::UnknownProxyError:
+            return tr("An unknown proxy-related error was detected");
+        case QNetworkReply::UnknownContentError:
+            return tr("An unknown error related to the remote content was detected");
+        case QNetworkReply::ProtocolFailure:
+            return tr("A breakdown in protocol was detected");
+        default:
+            return tr("Unknown error");
+        }
+    }
 }

@@ -29,7 +29,6 @@ http/responsegenerator.h
 http/server.h
 http/types.h
 net/dnsupdater.h
-net/downloadhandler.h
 net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
@@ -100,7 +99,6 @@ http/responsebuilder.cpp
 http/responsegenerator.cpp
 http/server.cpp
 net/dnsupdater.cpp
-net/downloadhandler.cpp
 net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp

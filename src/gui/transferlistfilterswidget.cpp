@@ -42,7 +42,6 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
@@ -406,47 +405,42 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
-    Net::DownloadHandler *h = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(url).saveToFile(true));
-    using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
-    connect(h, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this
-            , &TrackerFiltersList::handleFavicoDownload);
-    connect(h, static_cast<Func>(&Net::DownloadHandler::downloadFailed), this
-            , &TrackerFiltersList::handleFavicoFailure);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(url).saveToFile(true)
+                , this, &TrackerFiltersList::handleFavicoDownloadFinished);
 }
 
-void TrackerFiltersList::handleFavicoDownload(const QString &url, const QString &filePath)
+void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult &result)
 {
-    const QString host = getHost(url);
+    if (result.status != Net::DownloadStatus::Success) {
+        if (result.url.endsWith(".ico", Qt::CaseInsensitive))
+            downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
+        return;
+    }
+
+    const QString host = getHost(result.url);
 
     if (!m_trackers.contains(host)) {
-        Utils::Fs::forceRemove(filePath);
+        Utils::Fs::forceRemove(result.filePath);
         return;
     }
 
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
     if (!trackerItem) return;
 
-    QIcon icon(filePath);
+    QIcon icon(result.filePath);
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid) {
-        if (url.endsWith(".ico", Qt::CaseInsensitive))
-            downloadFavicon(url.left(url.size() - 4) + ".png");
-        Utils::Fs::forceRemove(filePath);
+        if (result.url.endsWith(".ico", Qt::CaseInsensitive))
+            downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
+        Utils::Fs::forceRemove(result.filePath);
     }
     else {
-        trackerItem->setData(Qt::DecorationRole, QVariant(QIcon(filePath)));
-        m_iconPaths.append(filePath);
+        trackerItem->setData(Qt::DecorationRole, QVariant(QIcon(result.filePath)));
+        m_iconPaths.append(result.filePath);
     }
-}
-
-void TrackerFiltersList::handleFavicoFailure(const QString &url, const QString &error)
-{
-    Q_UNUSED(error)
-    if (url.endsWith(".ico", Qt::CaseInsensitive))
-        downloadFavicon(url.left(url.size() - 4) + ".png");
 }
 
 void TrackerFiltersList::showMenu(QPoint)
