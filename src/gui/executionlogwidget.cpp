@@ -40,8 +40,8 @@
 ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
     , m_ui(new Ui::ExecutionLogWidget)
-    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, types))
-    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
+    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, types, this))
+    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES, Log::ALL, this))
 {
     m_ui->setupUi(this);
 
@@ -63,8 +63,6 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
 
 ExecutionLogWidget::~ExecutionLogWidget()
 {
-    delete m_msgList;
-    delete m_peerList;
     delete m_ui;
 }
 
