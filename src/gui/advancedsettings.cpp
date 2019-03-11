@@ -102,7 +102,6 @@ enum AdvSettingsRows
     SEND_BUF_LOW_WATERMARK,
     SEND_BUF_WATERMARK_FACTOR,
     // ports
-    MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
     UTP_MIX_MODE,
@@ -189,8 +188,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Peer resolution
     pref->resolvePeerCountries(checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(checkBoxResolveHosts.isChecked());
-    // Max Half-Open connections
-    session->setMaxHalfOpenConnections(spinBoxMaxHalfOpen.value());
     // Super seeding
     session->setSuperSeedingEnabled(checkBoxSuperSeeding.isChecked());
     // Network interface
@@ -439,11 +436,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Resolve peer hosts
     checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &checkBoxResolveHosts);
-    // Max Half Open connections
-    spinBoxMaxHalfOpen.setMinimum(0);
-    spinBoxMaxHalfOpen.setMaximum(99999);
-    spinBoxMaxHalfOpen.setValue(session->maxHalfOpenConnections());
-    addRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spinBoxMaxHalfOpen);
     // Super seeding
     checkBoxSuperSeeding.setChecked(session->isSuperSeedingEnabled());
     addRow(SUPER_SEEDING, (tr("Strict super seeding") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#strict_super_seeding", "(?)"))
