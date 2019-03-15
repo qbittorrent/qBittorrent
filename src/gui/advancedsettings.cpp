@@ -43,6 +43,14 @@
 #include "gui/addnewtorrentdialog.h"
 #include "gui/mainwindow.h"
 
+namespace
+{
+    QString makeLink(const QString &url, const QString &linkLabel)
+    {
+         return QStringLiteral("<a href=\"%1\">%2</a>").arg(url, linkLabel);
+    }
+}
+
 enum AdvSettingsCols
 {
     PROPERTY,
@@ -94,7 +102,6 @@ enum AdvSettingsRows
     SEND_BUF_LOW_WATERMARK,
     SEND_BUF_WATERMARK_FACTOR,
     // ports
-    MAX_HALF_OPEN,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
     UTP_MIX_MODE,
@@ -181,8 +188,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Peer resolution
     pref->resolvePeerCountries(checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(checkBoxResolveHosts.isChecked());
-    // Max Half-Open connections
-    session->setMaxHalfOpenConnections(spinBoxMaxHalfOpen.value());
     // Super seeding
     session->setSuperSeedingEnabled(checkBoxSuperSeeding.isChecked());
     // Network interface
@@ -303,20 +308,23 @@ void AdvancedSettings::loadAdvancedSettings()
     const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // add section headers
-    labelQbtLink.setText(QString("<a href=\"%1\">%2</a>")
-        .arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced", tr("Open documentation")));
+    labelQbtLink.setText(makeLink("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced"
+            , tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);
     addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), &labelQbtLink);
+    static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
-    labelLibtorrentLink.setText(QString("<a href=\"%1\">%2</a>").arg("https://www.libtorrent.org/reference.html", tr("Open documentation")));
+    labelLibtorrentLink.setText(makeLink("https://www.libtorrent.org/reference.html", tr("Open documentation")));
     labelLibtorrentLink.setOpenExternalLinks(true);
     addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), &labelLibtorrentLink);
+    static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     // Async IO threads
     spinBoxAsyncIOThreads.setMinimum(1);
     spinBoxAsyncIOThreads.setMaximum(1024);
     spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
-    addRow(ASYNC_IO_THREADS, tr("Asynchronous I/O threads"), &spinBoxAsyncIOThreads);
+    addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
+            , &spinBoxAsyncIOThreads);
 
     // Checking Memory Usage
     spinBoxCheckingMemUsage.setMinimum(1);
@@ -329,7 +337,8 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     spinBoxCheckingMemUsage.setValue(session->checkingMemUsage());
     spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
-    addRow(CHECKING_MEM_USAGE, tr("Outstanding memory when checking torrents"), &spinBoxCheckingMemUsage);
+    addRow(CHECKING_MEM_USAGE, (tr("Outstanding memory when checking torrents") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#checking_mem_usage", "(?)"))
+            , &spinBoxCheckingMemUsage);
 
     // Disk write cache
     spinBoxCache.setMinimum(-1);
@@ -343,41 +352,50 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     spinBoxCache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(spinBoxCache.value());
-    addRow(DISK_CACHE, tr("Disk cache"), &spinBoxCache);
+    addRow(DISK_CACHE, (tr("Disk cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_size", "(?)"))
+            , &spinBoxCache);
     // Disk cache expiry
     spinBoxCacheTTL.setMinimum(15);
     spinBoxCacheTTL.setMaximum(600);
     spinBoxCacheTTL.setValue(session->diskCacheTTL());
     spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
-    addRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spinBoxCacheTTL);
+    addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_expiry", "(?)"))
+            , &spinBoxCacheTTL);
     // Enable OS cache
     checkBoxOsCache.setChecked(session->useOSCache());
-    addRow(OS_CACHE, tr("Enable OS cache"), &checkBoxOsCache);
+    addRow(OS_CACHE, (tr("Enable OS cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", "(?)"))
+            , &checkBoxOsCache);
     // Guided read cache
     checkBoxGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
-    addRow(GUIDED_READ_CACHE, tr("Guided read cache"), &checkBoxGuidedReadCache);
+    addRow(GUIDED_READ_CACHE, (tr("Guided read cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#guided_read_cache", "(?)"))
+            , &checkBoxGuidedReadCache);
     // Coalesce reads & writes
     checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
-    addRow(COALESCE_RW, tr("Coalesce reads & writes"), &checkBoxCoalesceRW);
+    addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))
+            , &checkBoxCoalesceRW);
     // Suggest mode
     checkBoxSuggestMode.setChecked(session->isSuggestModeEnabled());
-    addRow(SUGGEST_MODE, tr("Send upload piece suggestions"), &checkBoxSuggestMode);
+    addRow(SUGGEST_MODE, (tr("Send upload piece suggestions") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#suggest_mode", "(?)"))
+            , &checkBoxSuggestMode);
     // Send buffer watermark
     spinBoxSendBufferWatermark.setMinimum(1);
     spinBoxSendBufferWatermark.setMaximum(INT_MAX);
     spinBoxSendBufferWatermark.setSuffix(tr(" KiB"));
     spinBoxSendBufferWatermark.setValue(session->sendBufferWatermark());
-    addRow(SEND_BUF_WATERMARK, tr("Send buffer watermark"), &spinBoxSendBufferWatermark);
+    addRow(SEND_BUF_WATERMARK, (tr("Send buffer watermark") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark", "(?)"))
+            , &spinBoxSendBufferWatermark);
     spinBoxSendBufferLowWatermark.setMinimum(1);
     spinBoxSendBufferLowWatermark.setMaximum(INT_MAX);
     spinBoxSendBufferLowWatermark.setSuffix(tr(" KiB"));
     spinBoxSendBufferLowWatermark.setValue(session->sendBufferLowWatermark());
-    addRow(SEND_BUF_LOW_WATERMARK, tr("Send buffer low watermark"), &spinBoxSendBufferLowWatermark);
+    addRow(SEND_BUF_LOW_WATERMARK, (tr("Send buffer low watermark") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_low_watermark", "(?)"))
+            , &spinBoxSendBufferLowWatermark);
     spinBoxSendBufferWatermarkFactor.setMinimum(1);
     spinBoxSendBufferWatermarkFactor.setMaximum(INT_MAX);
     spinBoxSendBufferWatermarkFactor.setSuffix(" %");
     spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
-    addRow(SEND_BUF_WATERMARK_FACTOR, tr("Send buffer watermark factor"), &spinBoxSendBufferWatermarkFactor);
+    addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", "(?)"))
+            , &spinBoxSendBufferWatermarkFactor);
     // Save resume data interval
     spinBoxSaveResumeDataInterval.setMinimum(0);
     spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());
@@ -397,7 +415,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // uTP-TCP mixed mode
     comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
     comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
-    addRow(UTP_MIX_MODE, tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP), &comboBoxUtpMixedMode);
+    addRow(UTP_MIX_MODE, (tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP)
+            + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm", "(?)"))
+            , &comboBoxUtpMixedMode);
     // multiple connections per IP
     checkBoxMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
     addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &checkBoxMultiConnectionsPerIp);
@@ -416,14 +436,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Resolve peer hosts
     checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &checkBoxResolveHosts);
-    // Max Half Open connections
-    spinBoxMaxHalfOpen.setMinimum(0);
-    spinBoxMaxHalfOpen.setMaximum(99999);
-    spinBoxMaxHalfOpen.setValue(session->maxHalfOpenConnections());
-    addRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Unlimited]"), &spinBoxMaxHalfOpen);
     // Super seeding
     checkBoxSuperSeeding.setChecked(session->isSuperSeedingEnabled());
-    addRow(SUPER_SEEDING, tr("Strict super seeding"), &checkBoxSuperSeeding);
+    addRow(SUPER_SEEDING, (tr("Strict super seeding") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#strict_super_seeding", "(?)"))
+            , &checkBoxSuperSeeding);
     // Network interface
     comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString currentInterface = session->networkInterface();
@@ -487,11 +503,13 @@ void AdvancedSettings::loadAdvancedSettings()
     // Choking algorithm
     comboBoxChokingAlgorithm.addItems({tr("Fixed slots"), tr("Upload rate based")});
     comboBoxChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
-    addRow(CHOKING_ALGORITHM, tr("Upload slots behavior"), &comboBoxChokingAlgorithm);
+    addRow(CHOKING_ALGORITHM, (tr("Upload slots behavior") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#choking_algorithm", "(?)"))
+            , &comboBoxChokingAlgorithm);
     // Seed choking algorithm
     comboBoxSeedChokingAlgorithm.addItems({tr("Round-robin"), tr("Fastest upload"), tr("Anti-leech")});
     comboBoxSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
-    addRow(SEED_CHOKING_ALGORITHM, tr("Upload choking algorithm"), &comboBoxSeedChokingAlgorithm);
+    addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", "(?)"))
+            , &comboBoxSeedChokingAlgorithm);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     checkBoxUpdateCheck.setChecked(pref->isUpdateCheckEnabled());
