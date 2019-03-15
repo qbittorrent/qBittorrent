@@ -149,7 +149,9 @@ Application::Application(const QString &id, int &argc, char **argv)
 #if !defined(DISABLE_GUI)
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
     setQuitOnLastWindowClosed(false);
+#if !defined(Q_OS_WIN)
     setDesktopFileName("org.qbittorrent.qBittorrent");
+#endif
 #endif
 
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
