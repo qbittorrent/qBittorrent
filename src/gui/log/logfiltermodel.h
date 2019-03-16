@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,33 +26,23 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#pragma once
 
-#include <QWidget>
+#include <QSortFilterProxyModel>
 
 #include "base/logger.h"
 
-namespace Ui
-{
-    class ExecutionLogWidget;
-}
-class LogPeerWidget;
-class LogWidget;
-
-class ExecutionLogWidget : public QWidget
+class LogFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(LogFilterModel)
 
 public:
-    ExecutionLogWidget(QWidget *parent, Log::MsgTypes types);
-    void showMsgTypes(Log::MsgTypes types);
-    ~ExecutionLogWidget();
+    LogFilterModel(Log::MsgTypes types = Log::ALL, QObject *parent = nullptr);
+    void setMsgTypes(Log::MsgTypes types);
 
 private:
-    Ui::ExecutionLogWidget *m_ui;
-    LogWidget *m_msgList;
-    LogPeerWidget *m_peerList;
-};
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
-#endif // EXECUTIONLOGWIDGET_H
+    Log::MsgTypes m_types;
+};

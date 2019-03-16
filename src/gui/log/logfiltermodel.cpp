@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,33 +26,25 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#include "logfiltermodel.h"
 
-#include <QWidget>
 
-#include "base/logger.h"
+LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
+    : QSortFilterProxyModel(parent)
+    , m_types(types)
+{}
 
-namespace Ui
+void LogFilterModel::setMsgTypes(const Log::MsgTypes types)
 {
-    class ExecutionLogWidget;
+    m_types = types;
+    invalidateFilter();
 }
-class LogPeerWidget;
-class LogWidget;
 
-class ExecutionLogWidget : public QWidget
+bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    Q_OBJECT
+    const QAbstractItemModel *const sourceModel = this->sourceModel();
+    const QModelIndex index = sourceModel->index(sourceRow, 0, sourceParent);
+    const Log::MsgType type = static_cast<Log::MsgType>(sourceModel->data(index, Qt::UserRole).toInt());
 
-public:
-    ExecutionLogWidget(QWidget *parent, Log::MsgTypes types);
-    void showMsgTypes(Log::MsgTypes types);
-    ~ExecutionLogWidget();
-
-private:
-    Ui::ExecutionLogWidget *m_ui;
-    LogWidget *m_msgList;
-    LogPeerWidget *m_peerList;
-};
-
-#endif // EXECUTIONLOGWIDGET_H
+    return (m_types & type);
+}

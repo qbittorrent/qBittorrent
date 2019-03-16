@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,14 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#pragma once
 
-#include <QListWidget>
-#include "base/logger.h"
+#include <QString>
 
-class QKeyEvent;
+#include <base/logger.h>
 
-class LogListWidget : public QListWidget
+struct LogMessage
 {
-    Q_OBJECT
-
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
-
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
-
-protected slots:
-    void copySelection();
-
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private:
-    const int m_maxLines;
-    Log::MsgTypes m_types;
+    QString message;
+    Log::MsgType type;
 };
-
-#endif // LOGLISTWIDGET_H

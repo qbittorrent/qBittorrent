@@ -24,7 +24,12 @@ HEADERS += \
     $$PWD/guiiconprovider.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
-    $$PWD/loglistwidget.h \
+    $$PWD/log/logfiltermodel.h \
+    $$PWD/log/logmessage.h \
+    $$PWD/log/logmodel.h \
+    $$PWD/log/logpeermodel.h \
+    $$PWD/log/logpeerwidget.h \
+    $$PWD/log/logwidget.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
@@ -81,7 +86,11 @@ SOURCES += \
     $$PWD/fspathedit_p.cpp \
     $$PWD/guiiconprovider.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
-    $$PWD/loglistwidget.cpp \
+    $$PWD/log/logfiltermodel.cpp \
+    $$PWD/log/logmodel.cpp \
+    $$PWD/log/logpeermodel.cpp \
+    $$PWD/log/logpeerwidget.cpp \
+    $$PWD/log/logwidget.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
     $$PWD/previewselectdialog.cpp \

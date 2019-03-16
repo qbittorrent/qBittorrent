@@ -30,7 +30,12 @@ fspathedit_p.h
 guiiconprovider.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
-loglistwidget.h
+log/logfiltermodel.h
+log/logmessage.h
+log/logmodel.h
+log/logpeermodel.h
+log/logpeerwidget.h
+log/logwidget.h
 mainwindow.h
 optionsdialog.h
 previewlistdelegate.h
@@ -76,7 +81,11 @@ fspathedit.cpp
 fspathedit_p.cpp
 guiiconprovider.cpp
 ipsubnetwhitelistoptionsdialog.cpp
-loglistwidget.cpp
+log/logfiltermodel.cpp
+log/logmodel.cpp
+log/logpeermodel.cpp
+log/logpeerwidget.cpp
+log/logwidget.cpp
 mainwindow.cpp
 optionsdialog.cpp
 previewselectdialog.cpp

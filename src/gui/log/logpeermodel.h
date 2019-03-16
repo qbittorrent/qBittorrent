@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,33 +26,33 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#pragma once
 
-#include <QWidget>
+#include <QAbstractListModel>
+#include <QStringList>
 
-#include "base/logger.h"
-
-namespace Ui
+namespace Log
 {
-    class ExecutionLogWidget;
+    struct Peer;
 }
-class LogPeerWidget;
-class LogWidget;
 
-class ExecutionLogWidget : public QWidget
+class LogPeerModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(LogPeerModel)
 
 public:
-    ExecutionLogWidget(QWidget *parent, Log::MsgTypes types);
-    void showMsgTypes(Log::MsgTypes types);
-    ~ExecutionLogWidget();
+    explicit LogPeerModel(QObject *parent = nullptr);
+
+    int rowCount(const QModelIndex &parent = {}) const override;
+    int columnCount(const QModelIndex &parent = {}) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    void reset();
+
+private slots:
+    void appendLine(const Log::Peer &peer);
 
 private:
-    Ui::ExecutionLogWidget *m_ui;
-    LogWidget *m_msgList;
-    LogPeerWidget *m_peerList;
+    QStringList bulkPeerMessages();
+    QStringList m_items;
 };
-
-#endif // EXECUTIONLOGWIDGET_H
