@@ -29,10 +29,9 @@
 #ifndef FILELOGGER_H
 #define FILELOGGER_H
 
+#include <QFile>
 #include <QObject>
 #include <QTimer>
-
-class QFile;
 
 namespace Log
 {
@@ -71,7 +70,7 @@ private:
     QString m_path;
     bool m_backup;
     int m_maxSize;
-    QFile *m_logFile;
+    QFile m_logFile;
     QTimer m_flusher;
 };
 
