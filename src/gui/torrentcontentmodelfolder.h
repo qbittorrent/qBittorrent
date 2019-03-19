@@ -29,7 +29,7 @@
 #ifndef TORRENTCONTENTMODELFOLDER_H
 #define TORRENTCONTENTMODELFOLDER_H
 
-#include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/downloadpriority.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModelFolder : public TorrentContentModelItem
@@ -50,7 +50,7 @@ public:
     void recalculateAvailability();
     void updatePriority();
 
-    void setPriority(BitTorrent::FilePriority newPriority, bool updateParent = true) override;
+    void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
 
     void deleteAllChildren();
     const QList<TorrentContentModelItem*> &children() const;

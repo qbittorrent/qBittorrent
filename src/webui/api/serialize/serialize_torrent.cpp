@@ -92,7 +92,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     ret[KEY_TORRENT_PROGRESS] = torrent.progress();
     ret[KEY_TORRENT_DLSPEED] = torrent.downloadPayloadRate();
     ret[KEY_TORRENT_UPSPEED] = torrent.uploadPayloadRate();
-    ret[KEY_TORRENT_PRIORITY] = torrent.queuePosition();
+    ret[KEY_TORRENT_PRIORITY] = static_cast<int>(torrent.queuePosition());
     ret[KEY_TORRENT_SEEDS] = torrent.seedsCount();
     ret[KEY_TORRENT_NUM_COMPLETE] = torrent.totalSeedsCount();
     ret[KEY_TORRENT_LEECHS] = torrent.leechsCount();

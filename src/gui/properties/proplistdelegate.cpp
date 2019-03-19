@@ -40,7 +40,7 @@
 #include <QProxyStyle>
 #endif
 
-#include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/downloadpriority.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -93,7 +93,7 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             newopt.maximum = 100;
             newopt.minimum = 0;
             newopt.textVisible = true;
-            if (index.sibling(index.row(), PRIORITY).data().toInt() == static_cast<int>(BitTorrent::FilePriority::Ignored)) {
+            if (index.sibling(index.row(), PRIORITY).data().toInt() == static_cast<int>(BitTorrent::DownloadPriority::Ignored)) {
                 newopt.state &= ~QStyle::State_Enabled;
                 newopt.palette = progressBarDisabledPalette();
             }
@@ -111,17 +111,17 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case PRIORITY: {
             QString text = "";
-            switch (static_cast<BitTorrent::FilePriority>(index.data().toInt())) {
-            case BitTorrent::FilePriority::Mixed:
+            switch (static_cast<BitTorrent::DownloadPriority>(index.data().toInt())) {
+            case BitTorrent::DownloadPriority::Mixed:
                 text = tr("Mixed", "Mixed (priorities");
                 break;
-            case BitTorrent::FilePriority::Ignored:
+            case BitTorrent::DownloadPriority::Ignored:
                 text = tr("Not downloaded");
                 break;
-            case BitTorrent::FilePriority::High:
+            case BitTorrent::DownloadPriority::High:
                 text = tr("High", "High (priority)");
                 break;
-            case BitTorrent::FilePriority::Maximum:
+            case BitTorrent::DownloadPriority::Maximum:
                 text = tr("Maximum", "Maximum (priority)");
                 break;
             default:
@@ -155,14 +155,14 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
 {
     auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
-    switch (static_cast<BitTorrent::FilePriority>(index.data().toInt())) {
-    case BitTorrent::FilePriority::Ignored:
+    switch (static_cast<BitTorrent::DownloadPriority>(index.data().toInt())) {
+    case BitTorrent::DownloadPriority::Ignored:
         combobox->setCurrentIndex(0);
         break;
-    case BitTorrent::FilePriority::High:
+    case BitTorrent::DownloadPriority::High:
         combobox->setCurrentIndex(2);
         break;
-    case BitTorrent::FilePriority::Maximum:
+    case BitTorrent::DownloadPriority::Maximum:
         combobox->setCurrentIndex(3);
         break;
     default:
@@ -181,7 +181,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
             return nullptr;
     }
 
-    if (index.data().toInt() == static_cast<int>(BitTorrent::FilePriority::Mixed))
+    if (index.data().toInt() == static_cast<int>(BitTorrent::DownloadPriority::Mixed))
         return nullptr;
 
     auto *editor = new QComboBox(parent);
@@ -199,16 +199,16 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     int value = combobox->currentIndex();
     qDebug("PropListDelegate: setModelData(%d)", value);
 
-    BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal; // NORMAL
+    BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal; // NORMAL
     switch (value) {
     case 0:
-        prio = BitTorrent::FilePriority::Ignored; // IGNORED
+        prio = BitTorrent::DownloadPriority::Ignored; // IGNORED
         break;
     case 2:
-        prio = BitTorrent::FilePriority::High; // HIGH
+        prio = BitTorrent::DownloadPriority::High; // HIGH
         break;
     case 3:
-        prio = BitTorrent::FilePriority::Maximum; // MAX
+        prio = BitTorrent::DownloadPriority::Maximum; // MAX
         break;
     }
 

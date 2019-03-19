@@ -38,7 +38,7 @@ TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *pare
     : m_parentItem(parent)
     , m_size(0)
     , m_remaining(0)
-    , m_priority(BitTorrent::FilePriority::Normal)
+    , m_priority(BitTorrent::DownloadPriority::Normal)
     , m_progress(0)
     , m_availability(-1.)
 {
@@ -90,7 +90,7 @@ qreal TorrentContentModelItem::availability() const
     return (m_size > 0) ? m_availability : 0;
 }
 
-BitTorrent::FilePriority TorrentContentModelItem::priority() const
+BitTorrent::DownloadPriority TorrentContentModelItem::priority() const
 {
     Q_ASSERT(!isRootItem());
     return m_priority;

@@ -37,7 +37,7 @@
 #include <QUrl>
 #include <QVector>
 
-#include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -420,10 +420,10 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
     if (m_hasMetadata) {
         if (m_contentModel) {
-            const QVector<int> priorities = m_contentModel->model()->getFilePriorities();
+            const QVector<BitTorrent::DownloadPriority> priorities = m_contentModel->model()->getFilePriorities();
             Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
             for (int i = 0; i < priorities.size(); ++i)
-                if (priorities[i] > 0)
+                if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
                     torrentSize += m_torrentInfo.fileSize(i);
         }
         else {
@@ -612,13 +612,13 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
             renameSelectedFile();
         }
         else {
-            BitTorrent::FilePriority prio = BitTorrent::FilePriority::Normal;
+            BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
             if (act == m_ui->actionHigh)
-                prio = BitTorrent::FilePriority::High;
+                prio = BitTorrent::DownloadPriority::High;
             else if (act == m_ui->actionMaximum)
-                prio = BitTorrent::FilePriority::Maximum;
+                prio = BitTorrent::DownloadPriority::Maximum;
             else if (act == m_ui->actionNotDownloaded)
-                prio = BitTorrent::FilePriority::Ignored;
+                prio = BitTorrent::DownloadPriority::Ignored;
 
             qDebug("Setting files priority");
             for (const QModelIndex &index : selectedRows) {

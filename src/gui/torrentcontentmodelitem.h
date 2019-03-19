@@ -32,7 +32,7 @@
 #include <QList>
 #include <QVariant>
 
-#include "base/bittorrent/filepriority.h"
+#include "base/bittorrent/downloadpriority.h"
 
 class TorrentContentModelFolder;
 
@@ -72,8 +72,8 @@ public:
 
     qreal availability() const;
 
-    BitTorrent::FilePriority priority() const;
-    virtual void setPriority(BitTorrent::FilePriority newPriority, bool updateParent = true) = 0;
+    BitTorrent::DownloadPriority priority() const;
+    virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
 
     int columnCount() const;
     QVariant data(int column) const;
@@ -87,7 +87,7 @@ protected:
     QString m_name;
     qulonglong m_size;
     qulonglong m_remaining;
-    BitTorrent::FilePriority m_priority;
+    BitTorrent::DownloadPriority m_priority;
     qreal m_progress;
     qreal m_availability;
 };

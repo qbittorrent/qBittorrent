@@ -47,53 +47,11 @@
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
 #include "base/types.h"
+#include "private/libtorrentfwd.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
-
-namespace libtorrent
-{
-    class session;
-    struct torrent_handle;
-    class entry;
-    struct ip_filter;
-    struct settings_pack;
-
-    class alert;
-    struct torrent_alert;
-    struct state_update_alert;
-    struct stats_alert;
-    struct add_torrent_alert;
-    struct torrent_checked_alert;
-    struct torrent_finished_alert;
-    struct torrent_removed_alert;
-    struct torrent_deleted_alert;
-    struct torrent_delete_failed_alert;
-    struct torrent_paused_alert;
-    struct torrent_resumed_alert;
-    struct save_resume_data_alert;
-    struct save_resume_data_failed_alert;
-    struct file_renamed_alert;
-    struct storage_moved_alert;
-    struct storage_moved_failed_alert;
-    struct metadata_received_alert;
-    struct file_error_alert;
-    struct file_completed_alert;
-    struct tracker_error_alert;
-    struct tracker_reply_alert;
-    struct tracker_warning_alert;
-    struct portmap_error_alert;
-    struct portmap_alert;
-    struct peer_blocked_alert;
-    struct peer_ban_alert;
-    struct fastresume_rejected_alert;
-    struct url_seed_alert;
-    struct listen_succeeded_alert;
-    struct listen_failed_alert;
-    struct external_ip_alert;
-    struct session_stats_alert;
-}
 
 class QThread;
 class QTimer;
