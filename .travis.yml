@@ -8,20 +8,24 @@ dist: xenial
 
 env:
   matrix:
+    - libt_branch=RC_1_2 gui=true build_system=qmake
+    - libt_branch=RC_1_2 gui=false build_system=qmake
+    - libt_branch=RC_1_2 gui=true build_system=cmake
+    - libt_branch=RC_1_2 gui=false build_system=cmake
     - libt_branch=RC_1_1 gui=true build_system=qmake
     - libt_branch=RC_1_1 gui=false build_system=qmake
     - libt_branch=RC_1_1 gui=true build_system=cmake
     - libt_branch=RC_1_1 gui=false build_system=cmake
-    - libt_branch=RC_1_2 gui=true build_system=qmake
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
 
 matrix:
   allow_failures:
+    - env: libt_branch=RC_1_2 gui=true build_system=cmake
+    - env: libt_branch=RC_1_2 gui=false build_system=cmake
     - env: libt_branch=RC_1_1 gui=true build_system=cmake
     - env: libt_branch=RC_1_1 gui=false build_system=cmake
-    - env: libt_branch=RC_1_2 gui=true build_system=qmake
 
 branches:
   except:
@@ -75,7 +79,7 @@ addons:
 
 before_install:
   # only allow specific build for coverity scan, others will stop
-  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$libt_branch" = "RC_1_1" -a "$gui" = "true" -a "$build_system" = "qmake" ]; then exit ; fi
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$libt_branch" = "RC_1_2" -a "$gui" = "true" -a "$build_system" = "qmake" ]; then exit ; fi
 
   - shopt -s expand_aliases
   - alias make="colormake -j2" # Using nprocs/2 sometimes may fail (gcc is killed by system)
@@ -88,7 +92,7 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = "true" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
-      
+
       # Qt 5.9
       PATH=/opt/qt59/bin:${PATH}
       qmake_conf="$qmake_conf PKG_CONFIG_PATH=/opt/qt59/lib/pkgconfig:$PKG_CONFIG_PATH"
@@ -149,7 +153,7 @@ install:
         wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb
         wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb
       fi
-      
+
       sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb"
     fi
   - |
@@ -171,7 +175,7 @@ install:
       cp "$HOME/travis/brew/6e4eb13f70df35e8fc7ff41883fef3e5c7b535dd55c78cd2ce1eae3fb4288e21--libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
       brew uninstall libtorrent-rasterbar
       brew install "$HOME/travis/brew/libtorrent-rasterbar.rb"
-      
+
       # NOTE about the bottle name
       # The part before the "--" characters is a sha256 hash of the string
       # of the URL homebrew itself would use to download the bottle.
