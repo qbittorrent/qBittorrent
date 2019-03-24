@@ -8,7 +8,9 @@ AC_LANG(C++)
 AC_CANONICAL_HOST
 AM_INIT_AUTOMAKE
 
-
+# use compiler from env variables if available
+QBT_CC="$CC"
+QBT_CXX="$CXX"
 
 # Define --wth-* and --enable-* arguments
 
@@ -162,14 +164,13 @@ AS_CASE(["x$enable_qt_dbus"],
 
 
 AX_BOOST_BASE([1.35],
-              [AC_MSG_NOTICE([Boost CPPFLAGS: "$BOOST_CPPFLAGS"
-                Boost LDFLAGS: "$BOOST_LDFLAGS"])],
+              [AC_MSG_NOTICE([Boost CXXFLAGS: "$BOOST_CPPFLAGS"])
+               AC_MSG_NOTICE([Boost LDFLAGS: "$BOOST_LDFLAGS"])],
               [AC_MSG_ERROR([Could not find Boost])])
-CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+CXXFLAGS="$BOOST_CPPFLAGS $CXXFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 # add workaround for problematic boost version
-AC_LANG_PUSH(C++)
 # taken from ax_boost_base.m4
 m4_define([DETECT_BOOST_VERSION_PROGRAM],
     [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
@@ -177,7 +178,6 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
 
 AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
     [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
-AC_LANG_POP([C++])
 
 AX_BOOST_SYSTEM()
 AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
@@ -195,14 +195,51 @@ AS_CASE(["x$with_qtsingleapplication"],
         AC_MSG_ERROR([Unknown option "$with_qtsingleapplication". Use either "system" or "shipped".])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.0.6],
-                  [CPPFLAGS="$libtorrent_CFLAGS $CPPFLAGS"
+                  [libtorrent-rasterbar >= 1.1.10],
+                  [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
+
+PKG_CHECK_MODULES(openssl,
+                  [openssl >= 1.0],
+                  [CXXFLAGS="$openssl_CFLAGS $CXXFLAGS"
+                  LIBS="$openssl_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
                  [zlib >= 1.2.5.2],
-                 [CPPFLAGS="$zlib_CFLAGS $CPPFLAGS"
+                 [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
+
+# Check if already in >= C++14 mode because of the flags returned by one of the above packages
+AC_MSG_CHECKING([if compiler is using C++14 or later mode])
+AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+                  [AC_MSG_RESULT([yes])
+                   QBT_CXX14_FOUND="yes"],
+                  [AC_MSG_RESULT([no])
+                   QBT_CXX14_FOUND="no"])
+
+# In case of no, check if the compiler can support at least C++14
+# and if yes, enable it leaving a warning to the user
+AS_IF([test "x$QBT_CXX14_FOUND" = "xno"],
+      [AC_MSG_CHECKING([if compiler supports C++14])
+       TMP_CXXFLAGS="$CXXFLAGS"
+       CXXFLAGS="$CXXFLAGS -std=c++14"
+       AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+                        [AC_MSG_RESULT([yes])
+                         AC_MSG_CHECKING([if C++14 is disabled by the set compiler flags])
+                         # prepend the flag so it won't override conflicting user defined flags
+                         CXXFLAGS="-std=c++14 $TMP_CXXFLAGS"
+                         AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+                                           [AC_MSG_RESULT([no])
+                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++14"
+                                            AC_MSG_WARN([C++14 mode is now force enabled.
+Make sure you use the same C++ mode for qBittorrent and its dependencies.
+To explicitly set qBittorrent to a later mode use CXXFLAGS.
+Example: `CXXFLAGS="\$CXXFLAGS -std=c++14" ./configure`])],
+                                           [AC_MSG_RESULT([yes])
+                                            AC_MSG_ERROR([The compiler supports C++14 but the user or a dependency has explicitly enabled a lower mode.])])],
+                        [AC_MSG_RESULT([no])
+                         AC_MSG_ERROR([A compiler supporting C++14 is required.])])
+      ])
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
@@ -230,18 +267,20 @@ extract() {
   for i in $string; do
     case "$(echo "$i" | cut -c1)" in
       '') ;;
-      D) QBT_CONF_DEFINES="$(echo $i | cut -c2-) $QBT_CONF_DEFINES";;
-      I) QBT_CONF_INCLUDES="$(echo $i | cut -c2-) $QBT_CONF_INCLUDES";;
-      *) QBT_CONF_EXTRA_CFLAGS="-$i $QBT_CONF_EXTRA_CFLAGS";;
+      D) QBT_CONF_DEFINES="$QBT_CONF_DEFINES $(echo $i | cut -c2-)";;
+      I) QBT_CONF_INCLUDES="$QBT_CONF_INCLUDES $(echo $i | cut -c2-)";;
+      *) QBT_CONF_EXTRA_CFLAGS="$QBT_CONF_EXTRA_CFLAGS -$i";;
     esac
   done
   IFS=$SAVEIFS
 }
 
-extract "$CFLAGS $CPPFLAGS $CXXFLAGS"
+extract "$CFLAGS $CXXFLAGS"
 QBT_ADD_DEFINES="$QBT_ADD_DEFINES $QBT_CONF_DEFINES"
 
 # Substitute the values of these vars in conf.pri.in
+AC_SUBST(QBT_CC)
+AC_SUBST(QBT_CXX)
 AC_SUBST(QBT_CONF_INCLUDES)
 AC_SUBST(QBT_CONF_EXTRA_CFLAGS)
 AC_SUBST(QBT_ADD_CONFIG)
@@ -253,17 +292,14 @@ AC_OUTPUT(conf.pri)
 AS_IF([test "x$enable_systemd" = "xyes"],
       [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
 
-
-
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
-CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
-
-$QT_QMAKE -r [$CONFDIR]/qbittorrent.pro "QMAKE_LRELEASE=$QMAKE_LRELEASE"
-
-ret="$?"
+TOPDIR="$(cd "$(dirname "$0")" && pwd)"
+$QT_QMAKE -r "$TOPDIR/qbittorrent.pro" "QMAKE_LRELEASE=$QMAKE_LRELEASE"
+qmake_ret="$?"
 
 AS_ECHO()
-AS_IF([test "x$ret" = "x0"],
-      [AC_MSG_NOTICE([Good, your configure finished.])],
-      [AC_MSG_ERROR([Failed running $QT_QMAKE to generate the makefile])])
+AS_IF([test "x$qmake_ret" != "x0"],
+      [AC_MSG_ERROR([$QT_QMAKE failed to generate the makefile])])
+
+AC_MSG_NOTICE([Good, the configure finished.])
 AS_ECHO()

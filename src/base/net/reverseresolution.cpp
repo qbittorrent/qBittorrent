@@ -28,9 +28,6 @@
 
 #include "reverseresolution.h"
 
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/version.hpp>
-
 #include <QDebug>
 #include <QHostInfo>
 #include <QString>
@@ -65,17 +62,13 @@ void ReverseResolution::resolve(const QString &ip)
     }
     else {
         // Actually resolve the ip
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
         m_lookups.insert(QHostInfo::lookupHost(ip, this, &ReverseResolution::hostResolved), ip);
-#else
-        m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
-#endif
     }
 }
 
 void ReverseResolution::hostResolved(const QHostInfo &host)
 {
-    const QString &ip = m_lookups.take(host.lookupId());
+    const QString ip = m_lookups.take(host.lookupId());
     Q_ASSERT(!ip.isNull());
 
     if (host.error() != QHostInfo::NoError) {
@@ -83,7 +76,7 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
         return;
     }
 
-    const QString &hostname = host.hostName();
+    const QString hostname = host.hostName();
 
     qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
     m_cache.insert(ip, new QString(hostname));

@@ -53,7 +53,7 @@ public:
     explicit SearchSortModel(QObject *parent = nullptr);
 
     void enableNameFilter(bool enabled);
-    void setNameFilter(const QString &searchTerm = QString());
+    void setNameFilter(const QString &searchTerm = {});
 
     //! \brief Sets parameters for filtering by size
     //! \param minSize minimal size in bytes

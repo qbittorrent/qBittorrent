@@ -26,6 +26,8 @@
  * exception statement from your version.
  */
 
+#pragma once
+
 // This file must be encoded in "UTF-8 with BOM"
 #ifdef _MSC_VER
 #pragma execution_character_set("utf-8")

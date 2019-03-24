@@ -31,7 +31,6 @@
 
 #include <cmath>
 
-#include <QByteArray>
 #include <QCollator>
 #include <QLocale>
 #include <QRegExp>
@@ -152,7 +151,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
 }
 
 // to send numbers instead of strings with suffixes
-QString Utils::String::fromDouble(double n, int precision)
+QString Utils::String::fromDouble(const double n, const int precision)
 {
     /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
     ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
@@ -160,22 +159,8 @@ QString Utils::String::fromDouble(double n, int precision)
     ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
-    double prec = std::pow(10.0, precision);
+    const double prec = std::pow(10.0, precision);
     return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
-}
-
-// Implements constant-time comparison to protect against timing attacks
-// Taken from https://crackstation.net/hashing-security.htm
-bool Utils::String::slowEquals(const QByteArray &a, const QByteArray &b)
-{
-    int lengthA = a.length();
-    int lengthB = b.length();
-
-    int diff = lengthA ^ lengthB;
-    for (int i = 0; (i < lengthA) && (i < lengthB); ++i)
-        diff |= a[i] ^ b[i];
-
-    return (diff == 0);
 }
 
 // This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to

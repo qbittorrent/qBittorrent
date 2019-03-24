@@ -56,16 +56,16 @@ private slots:
 
 private:
     void loadAdvancedSettings();
-    template <typename T> void addRow(int row, const QString &rowText, T *widget);
+    template <typename T> void addRow(int row, const QString &text, T *widget);
 
     QLabel labelQbtLink, labelLibtorrentLink;
-    QSpinBox spinBoxAsyncIOThreads, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh, spinBoxMaxHalfOpen,
+    QSpinBox spinBoxAsyncIOThreads, spinBoxCheckingMemUsage, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh,
              spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,
              spinBoxSendBufferWatermarkFactor, spinBoxSavePathHistoryLength;
     QCheckBox checkBoxOsCache, checkBoxRecheckCompleted, checkBoxResolveCountries, checkBoxResolveHosts, checkBoxSuperSeeding,
               checkBoxProgramNotifications, checkBoxTorrentAddedNotifications, checkBoxTrackerFavicon, checkBoxTrackerStatus,
               checkBoxConfirmTorrentRecheck, checkBoxConfirmRemoveAllTags, checkBoxListenIPv6, checkBoxAnnounceAllTrackers, checkBoxAnnounceAllTiers,
-              checkBoxGuidedReadCache, checkBoxMultiConnectionsPerIp, checkBoxSuggestMode, checkBoxCoalesceRW;
+              checkBoxGuidedReadCache, checkBoxMultiConnectionsPerIp, checkBoxSuggestMode, checkBoxCoalesceRW, checkBoxSpeedWidgetEnabled;
     QComboBox comboBoxInterface, comboBoxInterfaceAddress, comboBoxUtpMixedMode, comboBoxChokingAlgorithm, comboBoxSeedChokingAlgorithm;
     QLineEdit lineEditAnnounceIP;
 

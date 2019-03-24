@@ -32,7 +32,6 @@
 
 #include <memory>
 
-#include <QScopedPointer>
 #include <QSettings>
 #include <QString>
 
@@ -78,8 +77,8 @@ private:
                                              bool convertPathsToProfileRelative);
     void ensureDirectoryExists(SpecialFolder folder);
 
-    QScopedPointer<Private::Profile> m_profileImpl;
-    QScopedPointer<Private::PathConverter> m_pathConverterImpl;
+    const std::unique_ptr<Private::Profile> m_profileImpl;
+    const std::unique_ptr<Private::PathConverter> m_pathConverterImpl;
     static Profile *m_instance;
 };
 

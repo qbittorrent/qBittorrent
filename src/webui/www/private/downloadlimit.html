@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/lib/mocha-yc.js"></script>
-    <script src="scripts/lib/parametrics.js"></script>
+    <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
+    <script src="scripts/speedslider.js?v=${VERSION}"></script>
 </head>
 
 <body>
@@ -22,8 +22,10 @@
             <div class="clear"></div>
         </div>
         <script>
+            'use strict';
+
             var hashes = new URI().getData('hashes').split('|');
-            setDlLimit = function() {
+            var setDlLimit = function() {
                 var limit = $("dllimitUpdatevalue").value.toInt() * 1024;
                 if (hashes[0] == "global") {
                     new Request({
@@ -53,10 +55,30 @@
                 }
             }
         </script>
-        <input type="button" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
     </div>
 
     <script>
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('applyButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        $('dllimitUpdatevalue').focus();
+
         MochaUI.addDlLimitSlider(hashes);
     </script>
 

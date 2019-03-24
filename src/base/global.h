@@ -31,18 +31,19 @@
 #include <type_traits>
 #include <QtGlobal>
 
-const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
-
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-template <typename T>
-constexpr typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
-
-// prevent rvalue arguments:
-template <typename T>
-void qAsConst(const T &&) = delete;
+#if (QT_POINTER_SIZE == 8)
+#define QBT_APP_64BIT
 #endif
 
-// returns a const object copy
+const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
+
 template <typename T>
-constexpr typename std::add_const<T>::type copyAsConst(T &&t) noexcept { return std::move(t); }
+constexpr typename std::add_const<T>::type &asConst(T &t) noexcept { return t; }
+
+// Forward rvalue as const
+template <typename T>
+constexpr typename std::add_const<T>::type asConst(T &&t) noexcept { return std::move(t); }
+
+// Prevent const rvalue arguments
+template <typename T>
+void asConst(const T &&) = delete;

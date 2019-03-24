@@ -30,12 +30,14 @@
 #include "transferlistmodel.h"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QIcon>
 #include <QPalette>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 
@@ -61,7 +63,7 @@ TransferListModel::TransferListModel(QObject *parent)
 {
     // Load the torrents
     using namespace BitTorrent;
-    foreach (TorrentHandle *const torrent, Session::instance()->torrents())
+    for (TorrentHandle *const torrent : asConst(Session::instance()->torrents()))
         addTorrent(torrent);
 
     // Listen for torrent changes
@@ -93,7 +95,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
             switch (section) {
-            case TR_PRIORITY: return "#";
+            case TR_PRIORITY: return QChar('#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Done", "% Done");
@@ -124,7 +126,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             default:
-                return QVariant();
+                return {};
             }
         }
         else if (role == Qt::TextAlignmentRole) {
@@ -155,15 +157,15 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant TransferListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid()) return QVariant();
+    if (!index.isValid()) return {};
 
     BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
-    if (!torrent) return QVariant();
+    if (!torrent) return {};
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
         return getIconByState(torrent->state());
@@ -172,7 +174,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         return getColorByState(torrent->state());
 
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
-        return QVariant();
+        return {};
 
     switch (index.column()) {
     case TR_NAME:
@@ -240,11 +242,9 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         return torrent->timeSinceActivity();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
-    default:
-        return QVariant();
     }
 
-    return QVariant();
+    return {};
 }
 
 bool TransferListModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -283,7 +283,7 @@ void TransferListModel::addTorrent(BitTorrent::TorrentHandle *const torrent)
 
 Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return Qt::NoItemFlags;
 
     // Explicitly mark as editable
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
@@ -291,7 +291,7 @@ Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 
 BitTorrent::TorrentHandle *TransferListModel::torrentHandle(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return nullptr;
 
     return m_torrents.value(index.row());
 }
@@ -344,9 +344,6 @@ QIcon getIconByState(BitTorrent::TorrentState state)
         return getQueuedIcon();
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
-#if LIBTORRENT_VERSION_NUM < 10100
-    case BitTorrent::TorrentState::QueuedForChecking:
-#endif
     case BitTorrent::TorrentState::CheckingResumeData:
     case BitTorrent::TorrentState::Moving:
         return getCheckingIcon();
@@ -370,111 +367,108 @@ QColor getColorByState(BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::ForcedDownloading:
     case BitTorrent::TorrentState::DownloadingMetadata:
         if (!dark)
-            return QColor(34, 139, 34); // Forest Green
+            return {34, 139, 34}; // Forest Green
         else
-            return QColor(50, 205, 50); // Lime Green
+            return {50, 205, 50}; // Lime Green
     case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
     case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
-            return QColor(0, 0, 0); // Black
+            return {0, 0, 0}; // Black
         else
-            return QColor(204, 204, 204); // Gray 80
+            return {204, 204, 204}; // Gray 80
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
         if (!dark)
-            return QColor(65, 105, 225); // Royal Blue
+            return {65, 105, 225}; // Royal Blue
         else
-            return QColor(99, 184, 255); // Steel Blue 1
+            return {99, 184, 255}; // Steel Blue 1
     case BitTorrent::TorrentState::PausedDownloading:
-        return QColor(250, 128, 114); // Salmon
+        return {250, 128, 114}; // Salmon
     case BitTorrent::TorrentState::PausedUploading:
         if (!dark)
-            return QColor(0, 0, 139); // Dark Blue
+            return {0, 0, 139}; // Dark Blue
         else
-            return QColor(79, 148, 205); // Steel Blue 3
+            return {79, 148, 205}; // Steel Blue 3
     case BitTorrent::TorrentState::Error:
     case BitTorrent::TorrentState::MissingFiles:
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
-#if LIBTORRENT_VERSION_NUM < 10100
-    case BitTorrent::TorrentState::QueuedForChecking:
-#endif
     case BitTorrent::TorrentState::CheckingResumeData:
     case BitTorrent::TorrentState::Moving:
         if (!dark)
-            return QColor(0, 128, 128); // Teal
+            return {0, 128, 128}; // Teal
         else
-            return QColor(0, 205, 205); // Cyan 3
+            return {0, 205, 205}; // Cyan 3
     case BitTorrent::TorrentState::Unknown:
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     default:
         Q_ASSERT(false);
-        return QColor(255, 0, 0); // red
+        return {255, 0, 0}; // red
     }
 }
 
 QIcon getPausedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/paused.png");
+    static QIcon cached = QIcon(":/icons/skin/paused.svg");
     return cached;
 }
 
 QIcon getQueuedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/queued.png");
+    static QIcon cached = QIcon(":/icons/skin/queued.svg");
     return cached;
 }
 
 QIcon getDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/downloading.png");
+    static QIcon cached = QIcon(":/icons/skin/downloading.svg");
     return cached;
 }
 
 QIcon getStalledDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.png");
+    static QIcon cached = QIcon(":/icons/skin/stalledDL.svg");
     return cached;
 }
 
 QIcon getUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/uploading.png");
+    static QIcon cached = QIcon(":/icons/skin/uploading.svg");
     return cached;
 }
 
 QIcon getStalledUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.png");
+    static QIcon cached = QIcon(":/icons/skin/stalledUP.svg");
     return cached;
 }
 
 QIcon getCompletedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/completed.png");
+    static QIcon cached = QIcon(":/icons/skin/completed.svg");
     return cached;
 }
 
 QIcon getCheckingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/checking.png");
+    static QIcon cached = QIcon(":/icons/skin/checking.svg");
     return cached;
 }
 
 QIcon getErrorIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/error.png");
+    static QIcon cached = QIcon(":/icons/skin/error.svg");
     return cached;
 }
 
 bool isDarkTheme()
 {
-    QPalette pal = QApplication::palette();
+    const QPalette pal = QApplication::palette();
     // QPalette::Base is used for the background of the Treeview
-    QColor color = pal.color(QPalette::Active, QPalette::Base);
+    const QColor &color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
 }

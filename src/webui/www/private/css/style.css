@@ -320,6 +320,9 @@ a.propButton img {
 
 #mochaToolbar {
     margin-top: 5px;
+    position: relative;
+    height: 29px;
+    overflow-y: hidden;
 }
 
 #mochaToolbar .divider {
@@ -334,6 +337,26 @@ a.propButton img {
     margin-left: -18px;
     margin-bottom: -3px;
     padding-right: 5px;
+}
+
+#mainWindowTabs {
+    float: right;
+    margin: 4px 5px 0 0;
+}
+
+#torrentsFilterToolbar {
+    float: right;
+    margin-right: 30px;
+    margin-right: 30px;
+}
+
+#torrentsFilterInput {
+    width: 160px;
+    padding-left: 2em;
+    background-image: url("../images/qbt-theme/edit-find.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: left;
 }
 
 /* Tri-state checkbox */
@@ -375,20 +398,8 @@ fieldset.settings label {
     padding: 2px;
 }
 
-fieldset.settings .leftLabelSmall {
-    width: 5em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
-}
-
-fieldset.settings .leftLabelLarge {
-    width: 14em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
+fieldset.settings + div.formRow {
+    margin-top: 10px;
 }
 
 div.formRow {
@@ -400,6 +411,22 @@ div.formRow {
     font-weight: bold;
     text-transform: uppercase;
     padding-left: 5px;
+    padding-top: 5px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.filterTitle img {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -3px;
+    padding: 0 5px;
+}
+
+.filterTitle img.rotate {
+    transform: rotate(270deg);
 }
 
 ul.filterList {
@@ -409,6 +436,9 @@ ul.filterList {
 
 ul.filterList a {
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 ul.filterList li:hover {
@@ -426,19 +456,13 @@ td.generalLabel {
     vertical-align: top;
 }
 
-#filesTable {
+#torrentFilesTableDiv {
     line-height: 20px;
 }
 
-#trackersTable,
+#torrentTrackersTableDiv,
 #webseedsTable {
     line-height: 25px;
-}
-
-#addTrackersPlus {
-    width: 16px;
-    cursor: pointer;
-    margin-bottom: -3px;
 }
 
 .unselectable {
@@ -522,4 +546,48 @@ td.statusBarSeparator {
 /* Statistics window */
 .statisticsValue {
     text-align: right;
+}
+
+/* Search tab */
+
+#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+    height: inherit;
+}
+
+#searchResults {
+    padding: 0 20px;
+    height: 100%;
+}
+
+#searchResultsTableContainer {
+    height: calc(100% - 140px);
+    -moz-height: calc(100% - 140px);
+    -webkit-height: calc(100% - 140px);
+    overflow: auto;
+}
+
+#searchResultsTableDiv {
+    height: calc(100% - 26px) !important;
+    -moz-height: calc(100% - 26px) !important;
+    -webkit-height: calc(100% - 26px) !important;
+}
+
+#searchResults .dynamicTable {
+    width: 100%;
+}
+
+#searchResults .numSearchResults {
+    font-style: italic;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.searchPluginsTableRow {
+    cursor: pointer;
 }

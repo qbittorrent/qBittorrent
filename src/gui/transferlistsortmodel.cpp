@@ -28,13 +28,13 @@
 
 #include "transferlistsortmodel.h"
 
+#include <QDateTime>
 #include <QStringList>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/types.h"
 #include "base/utils/string.h"
 #include "transferlistmodel.h"
-
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -104,8 +104,8 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             // In this case QSortFilterProxyModel::lessThan() converts other types to QString and
             // sorts them.
             // Thus we can't use the code in the default label.
-            const BitTorrent::TorrentState leftValue = left.data().value<BitTorrent::TorrentState>();
-            const BitTorrent::TorrentState rightValue = right.data().value<BitTorrent::TorrentState>();
+            const auto leftValue = left.data().value<BitTorrent::TorrentState>();
+            const auto rightValue = right.data().value<BitTorrent::TorrentState>();
             if (leftValue != rightValue)
                 return leftValue < rightValue;
 
@@ -160,8 +160,8 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
                 const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
                 if (isSeedingL)
                     return !isAscendingOrder;
-                else
-                    return isAscendingOrder;
+
+                return isAscendingOrder;
             }
 
             const qlonglong etaL = left.data().toLongLong();
@@ -171,35 +171,34 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             if (isInvalidL && isInvalidR) {
                 if (isSeedingL)  // Both seeding
                     return dateLessThan(TransferListModel::TR_SEED_DATE, left, right, true);
-                else
-                    return (prioL < prioR);
+
+                return (prioL < prioR);
             }
-            else if (!isInvalidL && !isInvalidR) {
+            if (!isInvalidL && !isInvalidR) {
                 return (etaL < etaR);
             }
-            else {
-                return !isInvalidL;
-            }
+
+            return !isInvalidL;
         }
 
     case TransferListModel::TR_LAST_ACTIVITY: {
-            const qlonglong vL = left.data().toLongLong();
-            const qlonglong vR = right.data().toLongLong();
+            const int vL = left.data().toInt();
+            const int vR = right.data().toInt();
 
-            if (vL == -1) return false;
-            if (vR == -1) return true;
+            if (vL < 0) return false;
+            if (vR < 0) return true;
 
-            return vL < vR;
+            return (vL < vR);
         }
 
     case TransferListModel::TR_RATIO_LIMIT: {
-            const qreal vL = left.data().toDouble();
-            const qreal vR = right.data().toDouble();
+            const qreal vL = left.data().toReal();
+            const qreal vR = right.data().toReal();
 
-            if (vL == -1) return false;
-            if (vR == -1) return true;
+            if (vL < 0) return false;
+            if (vR < 0) return true;
 
-            return vL < vR;
+            return (vL < vR);
         }
 
     default: {
@@ -221,8 +220,8 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
     if ((queueL > 0) || (queueR > 0)) {
         if ((queueL > 0) && (queueR > 0))
             return queueL < queueR;
-        else
-            return queueL != 0;
+
+        return queueL != 0;
     }
 
     // Sort according to TR_SEED_DATE
@@ -262,7 +261,7 @@ bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &s
 
 bool TransferListSortModel::matchFilter(int sourceRow, const QModelIndex &sourceParent) const
 {
-    TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+    auto *model = qobject_cast<TransferListModel *>(sourceModel());
     if (!model) return false;
 
     BitTorrent::TorrentHandle *const torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));

@@ -30,19 +30,20 @@
 
 #include "rss_feed.h"
 
+#include <algorithm>
+#include <vector>
+
 #include <QDebug>
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QScopedPointer>
 #include <QUrl>
 
 #include "../asyncfilestorage.h"
 #include "../global.h"
 #include "../logger.h"
-#include "../net/downloadhandler.h"
 #include "../net/downloadmanager.h"
 #include "../profile.h"
 #include "../utils/fs.h"
@@ -105,8 +106,8 @@ QList<Article *> Feed::articles() const
 
 void Feed::markAsRead()
 {
-    auto oldUnreadCount = m_unreadCount;
-    foreach (Article *article, m_articles) {
+    const int oldUnreadCount = m_unreadCount;
+    for (Article *article : asConst(m_articles)) {
         if (!article->isRead()) {
             article->disconnect(this);
             article->markAsRead();
@@ -128,11 +129,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({m_url});
-    connect(handler
-            , static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &Feed::handleDownloadFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &Feed::handleDownloadFailed);
+    Net::DownloadManager::instance()->download(m_url, this, &Feed::handleDownloadFinished);
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -173,19 +170,19 @@ Article *Feed::articleByGUID(const QString &guid) const
     return m_articles.value(guid);
 }
 
-void Feed::handleMaxArticlesPerFeedChanged(int n)
+void Feed::handleMaxArticlesPerFeedChanged(const int n)
 {
     while (m_articlesByDate.size() > n)
         removeOldestArticle();
     // We don't need store articles here
 }
 
-void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
+void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url);
-
-    m_iconPath = Utils::Fs::fromNativePath(filePath);
-    emit iconLoaded(this);
+    if (result.status == Net::DownloadStatus::Success) {
+        m_iconPath = Utils::Fs::fromNativePath(result.filePath);
+        emit iconLoaded(this);
+    }
 }
 
 bool Feed::hasError() const
@@ -193,69 +190,52 @@ bool Feed::hasError() const
     return m_hasError;
 }
 
-void Feed::handleDownloadFinished(const QString &url, const QByteArray &data)
+void Feed::handleDownloadFinished(const Net::DownloadResult &result)
 {
-    qDebug() << "Successfully downloaded RSS feed at" << url;
-    // Parse the download RSS
-    m_parser->parse(data);
-}
+    if (result.status == Net::DownloadStatus::Success) {
+        qDebug() << "Successfully downloaded RSS feed at" << result.url;
+        // Parse the download RSS
+        m_parser->parse(result.data);
+    }
+    else {
+        m_isLoading = false;
+        m_hasError = true;
 
-void Feed::handleDownloadFailed(const QString &url, const QString &error)
-{
-    m_isLoading = false;
-    m_hasError = true;
+        LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2")
+               .arg(result.url, result.errorString), Log::WARNING);
 
-    LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2").arg(url, error)
-           , Log::WARNING);
-
-    emit stateChanged(this);
+        emit stateChanged(this);
+    }
 }
 
 void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 {
     m_hasError = !result.error.isEmpty();
 
+    if (!result.title.isEmpty() && (title() != result.title)) {
+        m_title = result.title;
+        m_dirty = true;
+        emit titleChanged(this);
+    }
+
+    if (!result.lastBuildDate.isEmpty()) {
+        m_lastBuildDate = result.lastBuildDate;
+        m_dirty = true;
+    }
+
     // For some reason, the RSS feed may contain malformed XML data and it may not be
     // successfully parsed by the XML parser. We are still trying to load as many articles
     // as possible until we encounter corrupted data. So we can have some articles here
     // even in case of parsing error.
-    if (!m_hasError || !result.articles.isEmpty()) {
-        if (title() != result.title) {
-            m_title = result.title;
-            emit titleChanged(this);
-        }
-
-        m_lastBuildDate = result.lastBuildDate;
-
-        int newArticlesCount = 0;
-        const QDateTime now {QDateTime::currentDateTime()};
-        for (QVariantHash varHash : result.articles) {
-            // if article has no publication date we use feed update time as a fallback
-            QVariant &articleDate = varHash[Article::KeyDate];
-            if (!articleDate.toDateTime().isValid())
-                articleDate = now;
-
-            try {
-                auto article = new Article(this, varHash);
-                if (addArticle(article))
-                    ++newArticlesCount;
-                else
-                    delete article;
-            }
-            catch (const std::runtime_error&) {}
-        }
-
-        m_dirty = (newArticlesCount > 0);
-        store();
-
-        LogMsg(tr("RSS feed at '%1' updated. Added %2 new articles.")
-               .arg(m_url, QString::number(newArticlesCount)));
-    }
+    const int newArticlesCount = updateArticles(result.articles);
+    store();
 
     if (m_hasError) {
         LogMsg(tr("Failed to parse RSS feed at '%1'. Reason: %2").arg(m_url, result.error)
                , Log::WARNING);
     }
+    LogMsg(tr("RSS feed at '%1' updated. Added %2 new articles.")
+           .arg(url(), QString::number(newArticlesCount)));
 
     m_isLoading = false;
     emit stateChanged(this);
@@ -284,7 +264,7 @@ void Feed::load()
 void Feed::loadArticles(const QByteArray &data)
 {
     QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
         LogMsg(tr("Couldn't parse RSS Session data. Error: %1").arg(jsonError.errorString())
                , Log::WARNING);
@@ -296,9 +276,9 @@ void Feed::loadArticles(const QByteArray &data)
         return;
     }
 
-    QJsonArray jsonArr = jsonDoc.array();
+    const QJsonArray jsonArr = jsonDoc.array();
     int i = -1;
-    foreach (const QJsonValue &jsonVal, jsonArr) {
+    for (const QJsonValue &jsonVal : jsonArr) {
         ++i;
         if (!jsonVal.isObject()) {
             LogMsg(tr("Couldn't load RSS article '%1#%2'. Invalid data format.").arg(m_url).arg(i)
@@ -317,10 +297,10 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
-    QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
+    const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
-    foreach (const QVariant &var, allOldItems.value(m_url).toList()) {
+    for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
         auto hash = var.toHash();
         // update legacy keys
         hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));
@@ -343,7 +323,7 @@ void Feed::store()
     m_savingTimer.stop();
 
     QJsonArray jsonArr;
-    foreach (Article *article, m_articles)
+    for (Article *article :asConst(m_articles))
         jsonArr << article->toJsonObject();
 
     m_session->dataFileStorage()->store(m_dataFileName, QJsonDocument(jsonArr).toJson());
@@ -358,13 +338,11 @@ void Feed::storeDeferred()
 bool Feed::addArticle(Article *article)
 {
     Q_ASSERT(article);
-
-    if (m_articles.contains(article->guid()))
-        return false;
+    Q_ASSERT(!m_articles.contains(article->guid()));
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
-    auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
+    const auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
                                        , article->date(), Article::articleDateRecentThan);
     if ((lowerBound - m_articlesByDate.begin()) >= maxArticles)
         return false; // we reach max articles
@@ -375,6 +353,8 @@ bool Feed::addArticle(Article *article)
         increaseUnreadCount();
         connect(article, &Article::read, this, &Feed::handleArticleRead);
     }
+
+    m_dirty = true;
     emit newArticle(article);
 
     if (m_articlesByDate.size() > maxArticles)
@@ -390,7 +370,7 @@ void Feed::removeOldestArticle()
 
     m_articles.remove(oldestArticle->guid());
     m_articlesByDate.removeLast();
-    bool isRead = oldestArticle->isRead();
+    const bool isRead = oldestArticle->isRead();
     delete oldestArticle;
 
     if (!isRead)
@@ -416,12 +396,89 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(iconUrl).saveToFile(true));
-    connect(handler
-            , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &Feed::handleIconDownloadFinished);
+    const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    Net::DownloadManager::instance()->download(
+            Net::DownloadRequest(iconUrl).saveToFile(true)
+                , this, &Feed::handleIconDownloadFinished);
+}
+
+int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
+{
+    if (loadedArticles.empty())
+        return 0;
+
+    QDateTime dummyPubDate {QDateTime::currentDateTime()};
+    QVector<QVariantHash> newArticles;
+    newArticles.reserve(loadedArticles.size());
+    for (QVariantHash article : loadedArticles) {
+        QVariant &torrentURL = article[Article::KeyTorrentURL];
+        if (torrentURL.toString().isEmpty())
+            torrentURL = article[Article::KeyLink];
+
+        // If item does not have an ID, fall back to some other identifier.
+        QVariant &localId = article[Article::KeyId];
+        if (localId.toString().isEmpty())
+            localId = article.value(Article::KeyTorrentURL);
+        if (localId.toString().isEmpty())
+            localId = article.value(Article::KeyTitle);
+
+        if (localId.toString().isEmpty())
+            continue;
+
+        // If article has no publication date we use feed update time as a fallback.
+        // To prevent processing of "out-of-limit" articles we must not assign dates
+        // that are earlier than the dates of existing articles.
+        const Article *existingArticle = articleByGUID(localId.toString());
+        if (existingArticle) {
+            dummyPubDate = existingArticle->date().addMSecs(-1);
+            continue;
+        }
+
+        QVariant &articleDate = article[Article::KeyDate];
+        if (!articleDate.toDateTime().isValid())
+            articleDate = dummyPubDate;
+
+        newArticles.append(article);
+    }
+
+    if (newArticles.empty())
+        return 0;
+
+    using ArticleSortAdaptor = QPair<QDateTime, const QVariantHash *>;
+    std::vector<ArticleSortAdaptor> sortData;
+    const QList<Article *> existingArticles = articles();
+    sortData.reserve(existingArticles.size() + newArticles.size());
+    std::transform(existingArticles.begin(), existingArticles.end(), std::back_inserter(sortData)
+                   , [](const Article *article)
+    {
+        return qMakePair(article->date(), nullptr);
+    });
+    std::transform(newArticles.begin(), newArticles.end(), std::back_inserter(sortData)
+                   , [](const QVariantHash &article)
+    {
+        return qMakePair(article[Article::KeyDate].toDateTime(), &article);
+    });
+
+    // Sort article list in reverse chronological order
+    std::sort(sortData.begin(), sortData.end()
+              , [](const ArticleSortAdaptor &a1, const ArticleSortAdaptor &a2)
+    {
+        return (a1.first > a2.first);
+    });
+
+    if (sortData.size() > static_cast<uint>(m_session->maxArticlesPerFeed()))
+        sortData.resize(m_session->maxArticlesPerFeed());
+
+    int newArticlesCount = 0;
+    std::for_each(sortData.crbegin(), sortData.crend(), [this, &newArticlesCount](const ArticleSortAdaptor &a)
+    {
+        if (a.second) {
+            addArticle(new Article {this, *a.second});
+            ++newArticlesCount;
+        }
+    });
+
+    return newArticlesCount;
 }
 
 QString Feed::iconPath() const
@@ -429,7 +486,7 @@ QString Feed::iconPath() const
     return m_iconPath;
 }
 
-QJsonValue Feed::toJsonValue(bool withData) const
+QJsonValue Feed::toJsonValue(const bool withData) const
 {
     QJsonObject jsonObj;
     jsonObj.insert(KEY_UID, uid().toString());
@@ -442,7 +499,7 @@ QJsonValue Feed::toJsonValue(bool withData) const
         jsonObj.insert(KEY_HASERROR, hasError());
 
         QJsonArray jsonArr;
-        for (Article *article : qAsConst(m_articles))
+        for (Article *article : asConst(m_articles))
             jsonArr << article->toJsonObject();
         jsonObj.insert(KEY_ARTICLES, jsonArr);
     }
@@ -450,7 +507,7 @@ QJsonValue Feed::toJsonValue(bool withData) const
     return jsonObj;
 }
 
-void Feed::handleSessionProcessingEnabledChanged(bool enabled)
+void Feed::handleSessionProcessingEnabledChanged(const bool enabled)
 {
     if (enabled) {
         downloadIcon();

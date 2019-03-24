@@ -41,7 +41,6 @@ class QTreeView;
 
 class DownloadedPiecesBar;
 class LineEdit;
-class MainWindow;
 class PeerListWidget;
 class PieceAvailabilityBar;
 class PropListDelegate;
@@ -50,7 +49,6 @@ class SpeedWidget;
 class torrent_file;
 class TorrentContentFilterModel;
 class TrackerListWidget;
-class TransferListWidget;
 
 namespace Ui
 {
@@ -69,16 +67,17 @@ public:
         VISIBLE
     };
 
-    PropertiesWidget(QWidget *parent, MainWindow *mainWindow, TransferListWidget *transferList);
-    ~PropertiesWidget();
+    explicit PropertiesWidget(QWidget *parent);
+    ~PropertiesWidget() override;
+
     BitTorrent::TorrentHandle *getCurrentTorrent() const;
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
-    SpeedWidget *getSpeedWidget() const;
 
 public slots:
     void setVisibility(bool visible);
+    void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
     void loadDynamicData();
     void clear();
     void readSettings();
@@ -87,12 +86,7 @@ public slots:
     void openDoubleClickedFile(const QModelIndex &);
     void loadTrackers(BitTorrent::TorrentHandle *const torrent);
 
-protected:
-    QPushButton *getButtonFromIndex(int index);
-    void applyPriorities();
-
 protected slots:
-    void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
     void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
     void loadUrlSeeds();
     void askWebSeed();
@@ -108,24 +102,24 @@ protected slots:
     void openSelectedFile();
 
 private slots:
+    void configure();
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::TorrentHandle *const torrent);
 
 private:
+    QPushButton *getButtonFromIndex(int index);
+    void applyPriorities();
     void openFile(const QModelIndex &index);
     void openFolder(const QModelIndex &index, bool containingFolder);
 
     Ui::PropertiesWidget *m_ui;
-    TransferListWidget *m_transferList;
-    MainWindow *m_mainWindow;
     BitTorrent::TorrentHandle *m_torrent;
-    QTimer *m_refreshTimer;
     SlideState m_state;
     TorrentContentFilterModel *m_propListModel;
     PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
     TrackerListWidget *m_trackerList;
-    SpeedWidget *m_speedWidget;
+    QWidget *m_speedWidget = nullptr;
     QList<int> m_slideSizes;
     DownloadedPiecesBar *m_downloadedPieces;
     PieceAvailabilityBar *m_piecesAvailability;

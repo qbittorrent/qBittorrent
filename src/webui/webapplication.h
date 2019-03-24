@@ -34,16 +34,16 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
+#include <QTranslator>
 
 #include "api/isessionmanager.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
 #include "base/http/types.h"
+#include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 0, 1};
-constexpr int COMPAT_API_VERSION = 19;
-constexpr int COMPAT_API_VERSION_MIN = 18;
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 0};
 
 class APIController;
 class WebApplication;
@@ -108,6 +108,8 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
+    void translateDocument(QString &data);
+
     // Session management
     QString generateSid() const;
     void sessionInitialize();
@@ -127,13 +129,11 @@ private:
     QMap<QString, QString> m_params;
 
     const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
-    const QRegularExpression m_apiLegacyPathPattern {QLatin1String("^/(?<action>((sync|command|query)/[A-Za-z_][A-Za-z_0-9]*|login|logout))(/(?<hash>[^/]+))?$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
     QString m_rootFolder;
-    QStringList m_domainList;
 
     struct TranslatedFile
     {
@@ -142,9 +142,18 @@ private:
     };
     QMap<QString, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
+    QTranslator m_translator;
+    bool m_translationFileLoaded = false;
+
+    bool m_isLocalAuthEnabled;
+    bool m_isAuthSubnetWhitelistEnabled;
+    QList<Utils::Net::Subnet> m_authSubnetWhitelist;
 
     // security related
+    QStringList m_domainList;
     bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
+    bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+    QString m_contentSecurityPolicy;
 };

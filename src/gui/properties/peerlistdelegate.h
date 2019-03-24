@@ -63,7 +63,7 @@ public:
 
     PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
-    ~PeerListDelegate() {}
+    ~PeerListDelegate() override {}
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
@@ -100,7 +100,7 @@ public:
         case RELEVANCE: {
                 qreal progress = index.data().toDouble();
                 opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-                QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + "%");
+                QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + '%');
             }
             break;
         default:

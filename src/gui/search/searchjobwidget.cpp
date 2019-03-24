@@ -35,10 +35,9 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QPalette>
-#include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
-#include <QTreeView>
+#include <QUrl>
 
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
@@ -49,9 +48,11 @@
 #include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
+#include "lineedit.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+#include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
@@ -101,7 +102,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
         if (!m_ui->resultsBrowser->isColumnHidden(i)) {
             atLeastOne = true;
             break;
@@ -112,7 +113,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     // To also mitigate the above issue, we have to resize each column when
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
 
@@ -126,6 +127,13 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     updateFilter();
 
+    m_lineEditSearchResultsFilter = new LineEdit(this);
+    m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
+    m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
+    m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
+
+    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
     connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
@@ -151,6 +159,11 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     connect(searchHandler, &SearchHandler::searchFinished, this, &SearchJobWidget::searchFinished);
     connect(searchHandler, &SearchHandler::searchFailed, this, &SearchJobWidget::searchFailed);
     connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
+
+    QShortcut *enterHotkey = new QShortcut(Qt::Key_Return, m_ui->resultsBrowser, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(enterHotkey, &QShortcut::activated, this, &SearchJobWidget::downloadTorrents);
+
+    setStatusTip(statusText(m_status));
 }
 
 SearchJobWidget::~SearchJobWidget()
@@ -161,7 +174,6 @@ SearchJobWidget::~SearchJobWidget()
 
 void SearchJobWidget::onItemDoubleClicked(const QModelIndex &index)
 {
-    setRowColor(index.row(), QApplication::palette().color(QPalette::LinkVisited));
     downloadTorrent(index);
 }
 
@@ -188,6 +200,11 @@ SearchJobWidget::Status SearchJobWidget::status() const
 int SearchJobWidget::visibleResultsCount() const
 {
     return m_proxyModel->rowCount();
+}
+
+LineEdit *SearchJobWidget::lineEditSearchResultsFilter() const
+{
+    return m_lineEditSearchResultsFilter;
 }
 
 void SearchJobWidget::cancelSearch()
@@ -254,6 +271,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchJobWidget::addTorrentToSession);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
     }
+    setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
 }
 
 void SearchJobWidget::addTorrentToSession(const QString &source)
@@ -297,6 +315,8 @@ void SearchJobWidget::updateFilter()
 void SearchJobWidget::fillFilterComboBoxes()
 {
     using Utils::Misc::SizeUnit;
+    using Utils::Misc::unitString;
+
     QStringList unitStrings;
     unitStrings.append(unitString(SizeUnit::Byte));
     unitStrings.append(unitString(SizeUnit::KibiByte));
@@ -327,6 +347,31 @@ void SearchJobWidget::fillFilterComboBoxes()
     m_ui->filterMode->setCurrentIndex((index == -1) ? 0 : index);
 }
 
+void SearchJobWidget::filterSearchResults(const QString &name)
+{
+    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPatternForSearchJob()
+                    ? QRegExp::RegExp : QRegExp::WildcardUnix;
+    m_proxyModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
+    updateResultsCount();
+}
+
+void SearchJobWidget::showFilterContextMenu(const QPoint &)
+{
+    const Preferences *pref = Preferences::instance();
+
+    QMenu *menu = m_lineEditSearchResultsFilter->createStandardContextMenu();
+    menu->addSeparator();
+    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    useRegexAct->setCheckable(true);
+    useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
+    menu->addAction(useRegexAct);
+
+    connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
+    connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
+
+    menu->exec(QCursor::pos());
+}
+
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
 {
     switch (st) {
@@ -341,7 +386,7 @@ QString SearchJobWidget::statusText(SearchJobWidget::Status st)
     case Status::NoResults:
         return tr("Search returned no results");
     default:
-        return QString();
+        return {};
     }
 }
 
@@ -372,7 +417,7 @@ void SearchJobWidget::displayToggleColumnsMenu(const QPoint&)
         actions.append(myAct);
     }
     int visibleCols = 0;
-    for (unsigned int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
         if (!m_ui->resultsBrowser->isColumnHidden(i))
             ++visibleCols;
 

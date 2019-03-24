@@ -36,11 +36,11 @@
 
 class QHeaderView;
 class QModelIndex;
-class QStandardItem;
 class QStandardItemModel;
 
 template <typename T> class CachedSettingValue;
 
+class LineEdit;
 class SearchHandler;
 class SearchListDelegate;
 class SearchSortModel;
@@ -78,6 +78,7 @@ public:
 
     Status status() const;
     int visibleResultsCount() const;
+    LineEdit *lineEditSearchResultsFilter() const;
 
     void cancelSearch();
 
@@ -93,6 +94,8 @@ private:
     void loadSettings();
     void saveSettings() const;
     void updateFilter();
+    void filterSearchResults(const QString &name);
+    void showFilterContextMenu(const QPoint &);
     void displayToggleColumnsMenu(const QPoint&);
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
@@ -115,6 +118,7 @@ private:
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
     SearchListDelegate *m_searchDelegate;
+    LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;
 };

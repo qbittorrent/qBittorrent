@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,18 +39,23 @@ ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath
 {
 }
 
-void ResumeDataSavingManager::saveResumeData(QString infoHash, QByteArray data) const
+void ResumeDataSavingManager::save(const QString &filename, const QByteArray &data) const
 {
-    QString filename = QString("%1.fastresume").arg(infoHash);
-    QString filepath = m_resumeDataDir.absoluteFilePath(filename);
+    const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
-    qDebug() << "Saving resume data in" << filepath;
-    QSaveFile resumeFile(filepath);
-    if (resumeFile.open(QIODevice::WriteOnly)) {
-        resumeFile.write(data);
-        if (!resumeFile.commit()) {
-            Logger::instance()->addMessage(QString("Couldn't save resume data in %1. Error: %2")
-                                           .arg(filepath, resumeFile.errorString()), Log::WARNING);
+    QSaveFile file {filepath};
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(data);
+        if (!file.commit()) {
+            Logger::instance()->addMessage(QString("Couldn't save data in '%1'. Error: %2")
+                                           .arg(filepath, file.errorString()), Log::WARNING);
         }
     }
+}
+
+void ResumeDataSavingManager::remove(const QString &filename) const
+{
+    const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
+
+    Utils::Fs::forceRemove(filepath);
 }

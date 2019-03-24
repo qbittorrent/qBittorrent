@@ -54,22 +54,22 @@ public:
         COL_TIER,
         COL_URL,
         COL_STATUS,
-        COL_RECEIVED,
-        COL_SEEDS,
         COL_PEERS,
+        COL_SEEDS,
+        COL_LEECHES,
         COL_DOWNLOADED,
         COL_MSG,
 
         COL_COUNT
     };
 
-    TrackerListWidget(PropertiesWidget *properties);
+    explicit TrackerListWidget(PropertiesWidget *properties);
     ~TrackerListWidget();
 
     int visibleColumnsCount() const;
 
 public slots:
-    void setRowColor(int row, QColor color);
+    void setRowColor(int row, const QColor &color);
 
     void moveSelectionUp();
     void moveSelectionDown();

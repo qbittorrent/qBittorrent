@@ -41,7 +41,7 @@ class TorrentContentFilterModel : public QSortFilterProxyModel
 
 public:
     TorrentContentFilterModel(QObject *parent = nullptr);
-    virtual ~TorrentContentFilterModel();
+    ~TorrentContentFilterModel() override;
 
     TorrentContentModel *model() const;
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;

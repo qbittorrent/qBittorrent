@@ -1,3 +1,33 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2009  Christophe Dumez <chris@qbittorrent.org>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+'use strict';
+
 var lastShownContexMenu = null;
 var ContextMenu = new Class({
     //implements
@@ -245,18 +275,18 @@ var TorrentsTableContextMenu = new Class({
     Extends: ContextMenu,
 
     updateMenuItems: function() {
-        all_are_seq_dl = true;
-        there_are_seq_dl = false;
-        all_are_f_l_piece_prio = true;
-        there_are_f_l_piece_prio = false;
-        all_are_downloaded = true;
-        all_are_paused = true;
-        there_are_paused = false;
-        all_are_force_start = true;
-        there_are_force_start = false;
-        all_are_super_seeding = true;
-        all_are_auto_tmm = true;
-        there_are_auto_tmm = false;
+        var all_are_seq_dl = true;
+        var there_are_seq_dl = false;
+        var all_are_f_l_piece_prio = true;
+        var there_are_f_l_piece_prio = false;
+        var all_are_downloaded = true;
+        var all_are_paused = true;
+        var there_are_paused = false;
+        var all_are_force_start = true;
+        var there_are_force_start = false;
+        var all_are_super_seeding = true;
+        var all_are_auto_tmm = true;
+        var there_are_auto_tmm = false;
 
         var h = torrentsTable.selectedRowsIds();
         h.each(function(item, index) {
@@ -293,12 +323,12 @@ var TorrentsTableContextMenu = new Class({
                 all_are_auto_tmm = false;
         });
 
-        show_seq_dl = true;
+        var show_seq_dl = true;
 
         if (!all_are_seq_dl && there_are_seq_dl)
             show_seq_dl = false;
 
-        show_f_l_piece_prio = true;
+        var show_f_l_piece_prio = true;
 
         if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
             show_f_l_piece_prio = false;
@@ -345,10 +375,13 @@ var TorrentsTableContextMenu = new Class({
         else if (!there_are_paused && !there_are_force_start)
             this.hideItem('Start');
 
-        if (!all_are_auto_tmm && there_are_auto_tmm)
+        if (!all_are_auto_tmm && there_are_auto_tmm) {
             this.hideItem('AutoTorrentManagement');
-        else
+        }
+        else {
+            this.showItem('AutoTorrentManagement');
             this.setItemChecked('AutoTorrentManagement', all_are_auto_tmm);
+        }
 
     },
 
@@ -356,10 +389,10 @@ var TorrentsTableContextMenu = new Class({
         var categoryList = $('contextCategoryList');
         categoryList.empty();
         categoryList.appendChild(new Element('li', {
-            html: '<a href="javascript:torrentNewCategoryFN();"><img src="theme/list-add" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+            html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/qbt-theme/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
         }));
         categoryList.appendChild(new Element('li', {
-            html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="theme/edit-clear" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+            html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
         }));
 
         var sortedCategories = [];
@@ -372,7 +405,7 @@ var TorrentsTableContextMenu = new Class({
         Object.each(sortedCategories, function(categoryName) {
             var categoryHash = genHash(categoryName);
             var el = new Element('li', {
-                html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="theme/inode-directory"/> ' + escapeHtml(categoryName) + '</a>'
+                html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="images/qbt-theme/inode-directory.svg"/> ' + escapeHtml(categoryName) + '</a>'
             });
             if (first) {
                 el.addClass('separator');
@@ -387,9 +420,31 @@ var CategoriesFilterContextMenu = new Class({
     Extends: ContextMenu,
     updateMenuItems: function() {
         var id = this.options.element.id;
-        if (id != CATEGORIES_ALL && id != CATEGORIES_UNCATEGORIZED)
+        if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
+            this.showItem('EditCategory');
             this.showItem('DeleteCategory');
-        else
+        }
+        else {
+            this.hideItem('EditCategory');
             this.hideItem('DeleteCategory');
+        }
+    }
+});
+
+var SearchPluginsTableContextMenu = new Class({
+    Extends: ContextMenu,
+
+    updateMenuItems: function() {
+        var enabledColumnIndex = function(text) {
+            var columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
+            for (var i = 0; i < columns.length; ++i)
+                if (columns[i].get("html") === "Enabled")
+                    return i;
+        };
+
+        this.showItem('Enabled');
+        this.setItemChecked('Enabled', this.options.element.getChildren("td")[enabledColumnIndex()].get("html") === "Yes");
+
+        this.showItem('Uninstall');
     }
 });

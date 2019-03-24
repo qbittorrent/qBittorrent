@@ -30,6 +30,10 @@
 
 #include <cstring>
 
+#if defined(Q_OS_WIN)
+#include <memory>
+#endif
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
@@ -44,7 +48,7 @@
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -77,15 +81,15 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(QB_EXT);
-    const int pointIndex = ext.lastIndexOf(".");
+    const QString ext = QString(filename).remove(QB_EXT);
+    const int pointIndex = ext.lastIndexOf('.');
     return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
-    const int slashIndex = path.lastIndexOf("/");
+    const QString path = fromNativePath(filePath);
+    const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
     return path.mid(slashIndex + 1);
@@ -93,8 +97,8 @@ QString Utils::Fs::fileName(const QString &filePath)
 
 QString Utils::Fs::folderName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
-    const int slashIndex = path.lastIndexOf("/");
+    const QString path = fromNativePath(filePath);
+    const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
     return path.left(slashIndex);
@@ -110,7 +114,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     if (path.isEmpty() || !QDir(path).exists())
         return true;
 
-    static const QStringList deleteFilesList = {
+    const QStringList deleteFilesList = {
         // Windows
         "Thumbs.db",
         "desktop.ini",
@@ -121,25 +125,25 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
-    QStringList dirList(path + "/");  // get all sub directories paths
+    QStringList dirList(path + '/');  // get all sub directories paths
     QDirIterator iter(path, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
     while (iter.hasNext())
-        dirList << iter.next() + "/";
+        dirList << iter.next() + '/';
     // sort descending by directory depth
     std::sort(dirList.begin(), dirList.end()
-              , [](const QString &l, const QString &r) { return l.count("/") > r.count("/"); });
+              , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : qAsConst(dirList)) {
+    for (const QString &p : asConst(dirList)) {
         // remove unwanted files
         for (const QString &f : deleteFilesList) {
             forceRemove(p + f);
         }
 
         // remove temp files on linux (file ends with '~'), e.g. `filename~`
-        QDir dir(p);
-        QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QDir dir(p);
+        const QStringList tmpFileList = dir.entryList(QDir::Files);
         for (const QString &f : tmpFileList) {
-            if (f.endsWith("~"))
+            if (f.endsWith('~'))
                 forceRemove(p + f);
         }
 
@@ -184,7 +188,7 @@ void Utils::Fs::removeDirRecursive(const QString &path)
 qint64 Utils::Fs::computePathSize(const QString &path)
 {
     // Check if it is a file
-    QFileInfo fi(path);
+    const QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
 
@@ -217,7 +221,7 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     return true;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
+QString Utils::Fs::toValidFileSystemName(const QString &name, const bool allowSeparators, const QString &pad)
 {
     const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
@@ -228,7 +232,7 @@ QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparato
     return validName;
 }
 
-bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
+bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSeparators)
 {
     if (name.isEmpty()) return false;
 
@@ -246,9 +250,9 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
 {
     QString ret = fromNativePath(filePath);
-    if (ret.endsWith("/"))
+    if (ret.endsWith('/'))
         ret.chop(1);
-    const int slashIndex = ret.lastIndexOf("/");
+    const int slashIndex = ret.lastIndexOf('/');
     if (slashIndex >= 0) {
         if (removed)
             *removed = ret.mid(slashIndex + 1);
@@ -268,7 +272,7 @@ bool Utils::Fs::sameFileNames(const QString &first, const QString &second)
 
 QString Utils::Fs::expandPath(const QString &path)
 {
-    QString ret = path.trimmed();
+    const QString ret = path.trimmed();
     if (ret.isEmpty())
         return ret;
 
@@ -301,9 +305,17 @@ bool Utils::Fs::isRegularFile(const QString &path)
     return (st.st_mode & S_IFMT) == S_IFREG;
 }
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !defined Q_OS_HAIKU
 bool Utils::Fs::isNetworkFileSystem(const QString &path)
 {
+#if defined(Q_OS_WIN)
+    const std::wstring pathW {path.toStdWString()};
+    std::unique_ptr<wchar_t[]> volumePath {new wchar_t[path.length() + 1] {}};
+    if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
+        return false;
+
+    return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
+#elif defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -313,20 +325,32 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
 
-#ifdef Q_OS_MAC
     // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
-    return ((strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
-    // usually defined in /usr/include/linux/magic.h
-    const unsigned long CIFS_MAGIC_NUMBER = 0xFF534D42;
-    const unsigned long NFS_SUPER_MAGIC = 0x6969;
-    const unsigned long SMB_SUPER_MAGIC = 0x517B;
+#else // Q_OS_WIN
+    QString file = path;
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
 
-    return ((buf.f_type == CIFS_MAGIC_NUMBER)
-        || (buf.f_type == NFS_SUPER_MAGIC)
-        || (buf.f_type == SMB_SUPER_MAGIC));
-#endif
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
+    // Magic number references:
+    // 1. /usr/include/linux/magic.h
+    // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
+    switch (buf.f_type) {
+    case 0xFF534D42:  // CIFS_MAGIC_NUMBER
+    case 0x6969:  // NFS_SUPER_MAGIC
+    case 0x517B:  // SMB_SUPER_MAGIC
+    case 0xFE534D42:  // S_MAGIC_SMB2
+        return true;
+    default:
+        return false;
+    }
+#endif // Q_OS_WIN
 }
-#endif
+#endif // Q_OS_HAIKU

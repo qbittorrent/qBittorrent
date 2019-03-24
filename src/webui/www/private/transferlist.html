@@ -16,6 +16,8 @@
 </div>
 
 <script>
+    'use strict';
+
     //create a context menu
     var torrentsTableContextMenu = new TorrentsTableContextMenu({
         targets: '.torrentsTableContextMenuTarget',
@@ -61,7 +63,7 @@
             UploadLimit: function(element, ref) {
                 uploadLimitFN();
             },
-            ShareRatio : function (element, ref) {
+            ShareRatio: function(element, ref) {
                 shareRatioFN();
             },
 
@@ -77,6 +79,9 @@
             },
             ForceRecheck: function(element, ref) {
                 recheckFN();
+            },
+            ForceReannounce: function(element, ref) {
+                reannounceFN();
             },
 
             SuperSeeding: function(element, ref) {

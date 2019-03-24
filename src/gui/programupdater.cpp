@@ -32,23 +32,15 @@
 #include <QDesktopServices>
 #include <QRegularExpression>
 #include <QStringList>
+#include <QSysInfo>
 #include <QXmlStreamReader>
 
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 
 namespace
 {
-    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/software/feedqBittorent")};
-
-#ifdef Q_OS_MAC
-    const QString OS_TYPE {QStringLiteral("Mac OS X")};
-#elif defined(Q_OS_WIN) && (defined(__x86_64__) || defined(_M_X64))
-    const QString OS_TYPE {QStringLiteral("Windows x64")};
-#else
-    const QString OS_TYPE {QStringLiteral("Windows")};
-#endif
+    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml")};
 
     QString getStringValue(QXmlStreamReader &xml);
 }
@@ -63,21 +55,32 @@ void ProgramUpdater::checkForUpdates()
 {
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"));
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &ProgramUpdater::rssDownloadFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &ProgramUpdater::rssDownloadFailed);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+                , this, &ProgramUpdater::rssDownloadFinished);
 }
 
-void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
+void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url);
+
+    if (result.status != Net::DownloadStatus::Success) {
+        qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
+        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        return;
+    }
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
-    QString version;
 
-    QXmlStreamReader xml(data);
+#ifdef Q_OS_MAC
+    const QString OS_TYPE {"Mac OS X"};
+#elif defined(Q_OS_WIN)
+    const QString OS_TYPE {((QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7)
+            && QSysInfo::currentCpuArchitecture().endsWith("64"))
+        ? "Windows x64" : "Windows"};
+#endif
+
+    QString version;
+    QXmlStreamReader xml(result.data);
     bool inItem = false;
     QString updateLink;
     QString type;
@@ -118,14 +121,6 @@ void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &d
     emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
 }
 
-void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-
-    qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
-    emit updateCheckFinished(false, QString(), m_invokedByUser);
-}
-
 void ProgramUpdater::updateProgram()
 {
     Q_ASSERT(!m_updateUrl.isEmpty());
@@ -141,7 +136,7 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
         qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
         QStringList remoteParts = remoteVersion.split('.');
         QStringList localParts = localVersion.split('.');
-        for (int i = 0; i<qMin(remoteParts.size(), localParts.size()); ++i) {
+        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i) {
             if (remoteParts[i].toInt() > localParts[i].toInt())
                 return true;
             if (remoteParts[i].toInt() < localParts[i].toInt())
@@ -166,6 +161,6 @@ namespace
         if (xml.isCharacters() && !xml.isWhitespace())
             return xml.text().toString();
 
-        return QString();
+        return {};
     }
 }

@@ -2,9 +2,6 @@
 TEMPLATE = app
 CONFIG += qt thread silent
 
-# C++11 support
-CONFIG += c++11
-
 # Platform specific configuration
 win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
@@ -57,8 +54,9 @@ CONFIG(release, debug|release) {
 # VERSION DEFINES
 include(../version.pri)
 
+# Qt defines
+DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_NO_CAST_TO_ASCII
-# Efficient construction for QString & QByteArray (Qt >= 4.8)
 DEFINES += QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 
@@ -69,14 +67,32 @@ include(base/base.pri)
 !nogui: include(gui/gui.pri)
 !nowebui: include(webui/webui.pri)
 
+isEmpty(QMAKE_LRELEASE) {
+    win32: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease.exe
+    else: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+    unix {
+        equals(QT_MAJOR_VERSION, 5) {
+            !exists($$QMAKE_LRELEASE): QMAKE_LRELEASE = lrelease-qt5
+        }
+    }
+    else {
+        !exists($$QMAKE_LRELEASE): QMAKE_LRELEASE = lrelease
+    }
+}
+lrelease.input = TS_SOURCES
+lrelease.output = ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qm
+lrelease.commands = @echo "lrelease ${QMAKE_FILE_NAME}" && $$QMAKE_LRELEASE -silent ${QMAKE_FILE_NAME} -qm ${QMAKE_FILE_OUT}
+lrelease.CONFIG += no_link target_predeps
+QMAKE_EXTRA_COMPILERS += lrelease
+
+TRANSLATIONS = $$files($$PWD/lang/qbittorrent_*.ts)
+TS_SOURCES += $$TRANSLATIONS
+
 # Resource files
 QMAKE_RESOURCE_FLAGS += -compress 9 -threshold 5
 RESOURCES += \
     icons/icons.qrc \
     lang/lang.qrc \
     searchengine/searchengine.qrc
-
-# Translations
-include(lang/lang.pri)
 
 DESTDIR = .

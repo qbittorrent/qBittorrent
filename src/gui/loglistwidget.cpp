@@ -36,9 +36,10 @@
 #include <QListWidgetItem>
 #include <QRegularExpression>
 
+#include "base/global.h"
 #include "guiiconprovider.h"
 
-LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *parent)
+LogListWidget::LogListWidget(const int maxLines, const Log::MsgTypes &types, QWidget *parent)
     : QListWidget(parent)
     , m_maxLines(maxLines)
     , m_types(types)
@@ -46,8 +47,8 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     // Allow multiple selections
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     // Context menu
-    QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
-    QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
+    auto *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
+    auto *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
     connect(copyAct, &QAction::triggered, this, &LogListWidget::copySelection);
     connect(clearAct, &QAction::triggered, this, &LogListWidget::clear);
     addAction(copyAct);
@@ -77,10 +78,12 @@ void LogListWidget::keyPressEvent(QKeyEvent *event)
 
 void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 {
-    QListWidgetItem *item = new QListWidgetItem;
     // We need to use QLabel here to support rich text
-    QLabel *lbl = new QLabel(line);
+    auto *lbl = new QLabel(line);
+    lbl->setTextFormat(Qt::RichText);
     lbl->setContentsMargins(4, 2, 4, 2);
+
+    auto *item = new QListWidgetItem;
     item->setSizeHint(lbl->sizeHint());
     item->setData(Qt::UserRole, type);
     insertItem(0, item);
@@ -95,9 +98,10 @@ void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 
 void LogListWidget::copySelection()
 {
-    static const QRegularExpression htmlTag("<[^>]+>");
+    const QRegularExpression htmlTag("<[^>]+>");
+
     QStringList strings;
-    foreach (QListWidgetItem* it, selectedItems())
+    for (QListWidgetItem *it : asConst(selectedItems()))
         strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
 
     QApplication::clipboard()->setText(strings.join('\n'));

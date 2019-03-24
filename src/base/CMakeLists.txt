@@ -4,11 +4,14 @@ add_library(qbt_base STATIC
 # headers
 bittorrent/addtorrentparams.h
 bittorrent/cachestatus.h
+bittorrent/downloadpriority.h
 bittorrent/infohash.h
 bittorrent/magneturi.h
 bittorrent/peerinfo.h
 bittorrent/private/bandwidthscheduler.h
+bittorrent/private/libtorrentfwd.h
 bittorrent/private/filterparserthread.h
+bittorrent/private/portforwarderimpl.h
 bittorrent/private/resumedatasavingmanager.h
 bittorrent/private/speedmonitor.h
 bittorrent/private/statistics.h
@@ -28,7 +31,6 @@ http/responsegenerator.h
 http/server.h
 http/types.h
 net/dnsupdater.h
-net/downloadhandler.h
 net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
@@ -54,6 +56,7 @@ utils/fs.h
 utils/gzip.h
 utils/misc.h
 utils/net.h
+utils/password.h
 utils/random.h
 utils/string.h
 utils/version.h
@@ -76,11 +79,13 @@ types.h
 unicodestrings.h
 
 # sources
+bittorrent/downloadpriority.cpp
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
 bittorrent/private/bandwidthscheduler.cpp
 bittorrent/private/filterparserthread.cpp
+bittorrent/private/portforwarderimpl.cpp
 bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp
@@ -97,7 +102,6 @@ http/responsebuilder.cpp
 http/responsegenerator.cpp
 http/server.cpp
 net/dnsupdater.cpp
-net/downloadhandler.cpp
 net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp
@@ -123,6 +127,7 @@ utils/fs.cpp
 utils/gzip.cpp
 utils/misc.cpp
 utils/net.cpp
+utils/password.cpp
 utils/random.cpp
 utils/string.cpp
 asyncfilestorage.cpp

@@ -30,7 +30,7 @@
 
 #include <QtGlobal>
 
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>
@@ -40,6 +40,7 @@
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 
@@ -57,18 +58,14 @@ FileSystemWatcher::FileSystemWatcher(QObject *parent)
     m_partialTorrentTimer.setSingleShot(true);
     connect(&m_partialTorrentTimer, &QTimer::timeout, this, &FileSystemWatcher::processPartialTorrents);
 
-#ifndef Q_OS_WIN
     connect(&m_watchTimer, &QTimer::timeout, this, &FileSystemWatcher::scanNetworkFolders);
-#endif
 }
 
 QStringList FileSystemWatcher::directories() const
 {
     QStringList dirs = QFileSystemWatcher::directories();
-#ifndef Q_OS_WIN
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         dirs << dir.canonicalPath();
-#endif
     return dirs;
 }
 
@@ -76,15 +73,14 @@ void FileSystemWatcher::addPath(const QString &path)
 {
     if (path.isEmpty()) return;
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !defined Q_OS_HAIKU
     const QDir dir(path);
     if (!dir.exists()) return;
 
     // Check if the path points to a network file system or not
     if (Utils::Fs::isNetworkFileSystem(path)) {
         // Network mode
-        qDebug("Network folder detected: %s", qUtf8Printable(path));
-        qDebug("Using file polling mode instead of inotify...");
+        LogMsg(tr("Watching remote folder: \"%1\"").arg(Utils::Fs::toNativePath(path)));
         m_watchedFolders << dir;
 
         m_watchTimer.start(WATCH_INTERVAL);
@@ -93,20 +89,19 @@ void FileSystemWatcher::addPath(const QString &path)
 #endif
 
     // Normal mode
-    qDebug("FS Watcher is watching %s in normal mode", qUtf8Printable(path));
+    LogMsg(tr("Watching local folder: \"%1\"").arg(Utils::Fs::toNativePath(path)));
     QFileSystemWatcher::addPath(path);
     scanLocalFolder(path);
 }
 
 void FileSystemWatcher::removePath(const QString &path)
 {
-#ifndef Q_OS_WIN
     if (m_watchedFolders.removeOne(path)) {
         if (m_watchedFolders.isEmpty())
             m_watchTimer.stop();
         return;
     }
-#endif
+
     // Normal mode
     QFileSystemWatcher::removePath(path);
 }
@@ -116,13 +111,11 @@ void FileSystemWatcher::scanLocalFolder(const QString &path)
     QTimer::singleShot(2000, this, [this, path]() { processTorrentsInDir(path); });
 }
 
-#ifndef Q_OS_WIN
 void FileSystemWatcher::scanNetworkFolders()
 {
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         processTorrentsInDir(dir);
 }
-#endif
 
 void FileSystemWatcher::processPartialTorrents()
 {

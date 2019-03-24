@@ -22,6 +22,7 @@ qrc_*.cpp
 ui_*.h
 *.moc
 src/lang/qbittorrent_*.qm
+src/webui/www/translations/webui_*.qm
 .DS_Store
 .qmake.stash
 src/qbittorrent.app

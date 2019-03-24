@@ -6,29 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
     <link rel="icon" type="image/png" href="images/skin/qbittorrent32.png" />
-    <link rel="stylesheet" href="css/dynamicTable.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/dynamicTable.css?v=${VERSION}" />
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=${VERSION}" />
     <!--<link rel="stylesheet" type="text/css" href="css/Content.css" />-->
-    <link rel="stylesheet" type="text/css" href="css/Core.css" />
-    <link rel="stylesheet" type="text/css" href="css/Layout.css" />
-    <link rel="stylesheet" type="text/css" href="css/Window.css" />
-    <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
+    <link rel="stylesheet" type="text/css" href="css/Core.css?v=${VERSION}" />
+    <link rel="stylesheet" type="text/css" href="css/Layout.css?v=${VERSION}" />
+    <link rel="stylesheet" type="text/css" href="css/Window.css?v=${VERSION}" />
+    <link rel="stylesheet" type="text/css" href="css/Tabs.css?v=${VERSION}" />
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${VERSION}" />
+    </noscript>
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <!--[if IE]>
-        <script src="scripts/lib/excanvas-compressed.js"></script>
-    <![endif]-->
-    <script src="scripts/lib/mocha-yc.js"></script>
-    <script src="scripts/mocha-init.js"></script>
-    <script src="scripts/lib/clipboard.min.js"></script>
-    <script src="scripts/misc.js"></script>
-    <script src="scripts/progressbar.js"></script>
-    <script src="scripts/dynamicTable.js"></script>
-    <script src="scripts/client.js"></script>
-    <script src="scripts/contextmenu.js"></script>
+    <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
+    <script src="scripts/mocha-init.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/lib/clipboard-2.0.0.min.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/progressbar.js?v=${VERSION}"></script>
+    <script src="scripts/dynamicTable.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/client.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/contextmenu.js?locale=${LANG}&v=${VERSION}"></script>
 </head>
 
 <body>
+    <noscript id="noscript">
+        <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the Web UI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
+    </noscript>
     <div id="desktop">
         <div id="desktopHeader">
             <!--<div id="desktopTitlebar">
@@ -37,131 +40,163 @@
             <div id="desktopNavbar">
                 <ul>
                     <li>
-                        <a class="returnFalse">QBT_TR(&File)QBT_TR[CONTEXT=MainWindow]</a>
+                        <a class="returnFalse">QBT_TR(File)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="uploadLink"><img class="MyMenuIcon" alt="QBT_TR(&Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="theme/list-add" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="downloadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent &Link...)QBT_TR[CONTEXT=MainWindow]" src="theme/insert-link" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Add Torrent &Link...)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]" src="theme/system-log-out" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]</a></li>
-                            <li><a id="shutdownLink"><img class="MyMenuIcon" alt="QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]" src="theme/application-exit" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]</a></li>
+                            <li><a id="uploadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/list-add.svg" width="16" height="16"/>QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="downloadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/insert-link.svg" width="16" height="16"/>QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]" src="images/qbt-theme/system-log-out.svg" width="16" height="16"/>QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]</a></li>
+                            <li><a id="shutdownLink"><img class="MyMenuIcon" alt="QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]" src="images/qbt-theme/application-exit.svg" width="16" height="16"/>QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="returnFalse">QBT_TR(&Edit)QBT_TR[CONTEXT=MainWindow]</a>
+                        <a class="returnFalse">QBT_TR(Edit)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="resumeAllLink"><img class="MyMenuIcon" alt="QBT_TR(R&esume All)QBT_TR[CONTEXT=MainWindow]" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(R&esume All)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="pauseAllLink"><img class="MyMenuIcon" alt="QBT_TR(P&ause All)QBT_TR[CONTEXT=MainWindow]" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(P&ause All)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="QBT_TR(&Resume)QBT_TR[CONTEXT=MainWindow]" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Resume)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" alt="QBT_TR(&Pause)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Pause)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/list-remove" alt="QBT_TR(&Delete)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Delete)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li id="topPrioItem" class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="theme/go-top" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li id="increasePrioItem"><a id="increasePrioLink"><img class="MyMenuIcon" src="theme/go-up" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li id="decreasePrioItem"><a id="decreasePrioLink"><img class="MyMenuIcon" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li id="bottomPrioItem"><a id="bottomPrioLink"><img class="MyMenuIcon" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" alt="QBT_TR(Force Recheck)QBT_TR[CONTEXT=TransferListWidget]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                            <li><a id="resumeAllLink"><img class="MyMenuIcon" alt="QBT_TR(Resume All)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/media-playback-start.svg" width="16" height="16"/>QBT_TR(Resume All)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="pauseAllLink"><img class="MyMenuIcon" alt="QBT_TR(Pause All)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/media-playback-pause.svg" width="16" height="16"/>QBT_TR(Pause All)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="QBT_TR(Resume)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/media-playback-start.svg" width="16" height="16"/>QBT_TR(Resume)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="pauseLink"><img class="MyMenuIcon" src="images/qbt-theme/media-playback-pause.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Pause)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Delete)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="topPrioItem" class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="images/qbt-theme/go-top.svg" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="increasePrioItem"><a id="increasePrioLink"><img class="MyMenuIcon" src="images/qbt-theme/go-up.svg" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="decreasePrioItem"><a id="decreasePrioLink"><img class="MyMenuIcon" src="images/qbt-theme/go-down.svg" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li id="bottomPrioItem"><a id="bottomPrioLink"><img class="MyMenuIcon" src="images/qbt-theme/go-bottom.svg" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="recheckLink"><img class="MyMenuIcon" src="images/qbt-theme/document-edit-verify.svg" alt="QBT_TR(Force Recheck)QBT_TR[CONTEXT=TransferListWidget]" width="16" height="16"/>QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="returnFalse">QBT_TR(&View)QBT_TR[CONTEXT=MainWindow]</a>
+                        <a class="returnFalse">QBT_TR(View)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="showTopToolbarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(&Top Toolbar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Top Toolbar)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="showStatusBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(Status &Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Status &Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="theme/checked" alt="QBT_TR(S&peed in Title Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(S&peed in Title Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id=StatisticsLink><img class="MyMenuIcon" src="theme/view-statistics" alt="QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Statistics)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="showTopToolbarLink"><img class="MyMenuIcon" src="images/qbt-theme/checked.svg" alt="QBT_TR(Top Toolbar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Top Toolbar)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="showStatusBarLink"><img class="MyMenuIcon" src="images/qbt-theme/checked.svg" alt="QBT_TR(Status Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Status Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="speedInBrowserTitleBarLink"><img class="MyMenuIcon" src="images/qbt-theme/checked.svg" alt="QBT_TR(Speed in Title Bar)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Speed in Title Bar)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="showSearchEngineLink"><img class="MyMenuIcon" src="images/qbt-theme/checked.svg" alt="QBT_TR(Search Engine)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Search Engine)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="StatisticsLink"><img class="MyMenuIcon" src="images/qbt-theme/view-statistics.svg" alt="QBT_TR(Statistics)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Statistics)QBT_TR[CONTEXT=MainWindow]</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="returnFalse">QBT_TR(&Tools)QBT_TR[CONTEXT=MainWindow]</a>
+                        <a class="returnFalse">QBT_TR(Tools)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/configure" alt="QBT_TR(&Options...)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Options...)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="preferencesLink"><img class="MyMenuIcon" src="images/qbt-theme/configure.svg" alt="QBT_TR(Options...)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Options...)QBT_TR[CONTEXT=MainWindow]</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="returnFalse">QBT_TR(&Help)QBT_TR[CONTEXT=MainWindow]</a>
+                        <a class="returnFalse">QBT_TR(Help)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="docsLink" target="_blank" href="http://wiki.qbittorrent.org/"><img class="MyMenuIcon" src="theme/help-contents" alt="QBT_TR(&Documentation)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&Documentation)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li class="divider"><a id="bugLink" target="_blank" href="https://www.qbittorrent.org/donate"><img class="MyMenuIcon" src="theme/wallet-open" alt="QBT_TR(Do&nate!)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(Do&nate!)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="aboutLink"><img class="MyMenuIcon" src="theme/help-about" alt="QBT_TR(&About)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" onload="fixPNG(this)"/>QBT_TR(&About)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="docsLink" target="_blank" href="http://wiki.qbittorrent.org/"><img class="MyMenuIcon" src="images/qbt-theme/help-contents.svg" alt="QBT_TR(Documentation)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Documentation)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li class="divider"><a id="bugLink" target="_blank" href="https://www.qbittorrent.org/donate"><img class="MyMenuIcon" src="images/qbt-theme/wallet-open.svg" alt="QBT_TR(Donate!)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(Donate!)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="aboutLink"><img class="MyMenuIcon" src="images/qbt-theme/help-about.svg" alt="QBT_TR(About)QBT_TR[CONTEXT=MainWindow]" width="16" height="16"/>QBT_TR(About)QBT_TR[CONTEXT=MainWindow]</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div id="mochaToolbar">
                 &nbsp;&nbsp;
-                <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent &Link...)QBT_TR[CONTEXT=MainWindow]" src="theme/insert-link" alt="QBT_TR(Add Torrent &Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
-                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(&Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="theme/list-add" alt="QBT_TR(&Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
-                <a id="deleteButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]" src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" onload="fixPNG(this)"/></a>
-                <a id="resumeButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" src="theme/media-playback-start" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" onload="fixPNG(this)"/></a>
-                <a id="pauseButton"><img class="mochaToolButton" title="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" src="theme/media-playback-pause" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
+                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
+                <a id="deleteButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]" src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"/></a>
+                <a id="resumeButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" src="images/qbt-theme/media-playback-start.svg" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"/></a>
+                <a id="pauseButton"><img class="mochaToolButton" title="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" src="images/qbt-theme/media-playback-pause.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"/></a>
                 <span id="queueingButtons">
-                    <a id="topPrioButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" src="theme/go-top" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
-                    <a id="increasePrioButton"><img class="mochaToolButton" title="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" src="theme/go-up" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
-                    <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" src="theme/go-down" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
-                    <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" src="theme/go-bottom" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" onload="fixPNG(this)"/></a>
+                    <a id="topPrioButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/go-top.svg" alt="QBT_TR(Top Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
+                    <a id="increasePrioButton"><img class="mochaToolButton" title="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/go-up.svg" alt="QBT_TR(Increase Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
+                    <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/go-down.svg" alt="QBT_TR(Decrease Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
+                    <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" src="images/qbt-theme/go-bottom.svg" alt="QBT_TR(Minimum Priority)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"/></a>
                 </span>
-                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="theme/configure" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24" onload="fixPNG(this)"/></a>
+                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="images/qbt-theme/configure.svg" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24"/></a>
+                <div id="mainWindowTabs" class="toolbarTabs">
+                    <ul id="mainWindowTabsList" class="tab-menu">
+                        <li id="transfersTabLink" class="selected"><a class="tab">QBT_TR(Transfers)QBT_TR[CONTEXT=MainWindow]</a></li>
+                        <li id="searchTabLink"><a class="tab">QBT_TR(Search)QBT_TR[CONTEXT=MainWindow]</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div id="torrentsFilterToolbar">
+                    <input type="text" id="torrentsFilterInput" placeholder="QBT_TR(Filter torrent list...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none" />
+                </div>
             </div>
         </div>
         <div id="pageWrapper">
         </div>
     </div>
     <ul id="torrentsTableMenu" class="contextMenu">
-        <li><a href="#Start"><img src="theme/media-playback-start" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#Pause"><img src="theme/media-playback-pause" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#ForceStart"><img src="theme/media-seek-forward" alt="QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#Delete"><img src="theme/list-remove" alt="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#Start"><img src="images/qbt-theme/media-playback-start.svg" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#Pause"><img src="images/qbt-theme/media-playback-pause.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#ForceStart"><img src="images/qbt-theme/media-seek-forward.svg" alt="QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#Delete"><img src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Delete)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator">
-            <a href="#SetLocation"><img src="theme/inode-directory" alt="QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
-            <a href="#Rename"><img src="theme/edit-rename" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#SetLocation"><img src="images/qbt-theme/inode-directory.svg" alt="QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#Rename"><img src="images/qbt-theme/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
         <li>
-            <a href="#Category" class="arrow-right"><img src="theme/view-categories" alt="QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#Category" class="arrow-right"><img src="images/qbt-theme/view-categories.svg" alt="QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul id="contextCategoryList" class="scrollableMenu"></ul>
         </li>
         <li>
-            <a href="#AutoTorrentManagement"><img src="theme/checked" alt="QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#AutoTorrentManagement"><img src="images/qbt-theme/checked.svg" alt="QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
-        <li class="separator"><a href="#DownloadLimit"><img src="theme/kt-set-max-download-speed" alt="QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#UploadLimit"><img src="theme/kt-set-max-upload-speed" alt="QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#ShareRatio"><img src="images/skin/ratio.png" alt="QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#SuperSeeding"><img src="theme/checked" alt="QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#SequentialDownload"><img src="theme/checked" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#FirstLastPiecePrio"><img src="theme/checked" alt="QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#ForceRecheck"><img src="theme/document-edit-verify" alt="QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#DownloadLimit"><img src="images/qbt-theme/kt-set-max-download-speed.svg" alt="QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#UploadLimit"><img src="images/qbt-theme/kt-set-max-upload-speed.svg" alt="QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#ShareRatio"><img src="images/skin/ratio.svg" alt="QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#SuperSeeding"><img src="images/qbt-theme/checked.svg" alt="QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#SequentialDownload"><img src="images/qbt-theme/checked.svg" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#FirstLastPiecePrio"><img src="images/qbt-theme/checked.svg" alt="QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#ForceRecheck"><img src="images/qbt-theme/document-edit-verify.svg" alt="QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#ForceReannounce"><img src="images/qbt-theme/document-edit-verify.svg" alt="QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li id="queueingMenuItems" class="separator">
             <a href="#priority" class="arrow-right"><span style="display: inline-block; width:16px"></span> QBT_TR(Priority)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul>
-                <li><a href="#prioTop"><img src="theme/go-top" alt="QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#prioUp"><img src="theme/go-up" alt="QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#prioDown"><img src="theme/go-down" alt="QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#prioBottom"><img src="theme/go-bottom" alt="QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#prioTop"><img src="images/qbt-theme/go-top.svg" alt="QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#prioUp"><img src="images/qbt-theme/go-up.svg" alt="QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#prioDown"><img src="images/qbt-theme/go-down.svg" alt="QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#prioBottom"><img src="images/qbt-theme/go-bottom.svg" alt="QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]</a></li>
             </ul>
         </li>
-        <li class="separator"><a href="#" id="CopyName" class="copyToClipboard"><img src="theme/edit-copy" alt="QBT_TR(Copy name)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy name)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#" id="CopyHash" class="copyToClipboard"><img src="theme/edit-copy" alt="QBT_TR(Copy hash)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy hash)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#" id="CopyMagnetLink" class="copyToClipboard"><img src="theme/kt-magnet" alt="QBT_TR(Copy magnet link)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy magnet link)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#" id="CopyName" class="copyToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy name)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy name)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#" id="CopyHash" class="copyToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy hash)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy hash)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#" id="CopyMagnetLink" class="copyToClipboard"><img src="images/qbt-theme/kt-magnet.svg" alt="QBT_TR(Copy magnet link)QBT_TR[CONTEXT=TransferListWidget]"/>  QBT_TR(Copy magnet link)QBT_TR[CONTEXT=TransferListWidget]</a></li>
     </ul>
     <ul id="categoriesFilterMenu" class="contextMenu">
-        <li><a href="#CreateCategory"><img src="theme/list-add" alt="QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#DeleteCategory"><img src="theme/list-remove" alt="QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#DeleteUnusedCategories"><img src="theme/list-remove" alt="QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li class="separator"><a href="#StartTorrentsByCategory"><img src="theme/media-playback-start" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#PauseTorrentsByCategory"><img src="theme/media-playback-pause" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#DeleteTorrentsByCategory"><img src="theme/edit-delete" alt="QBT_TR(Delete torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Delete torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#CreateCategory"><img src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#EditCategory"><img src="images/qbt-theme/document-edit.svg" alt="QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#DeleteCategory"><img src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#DeleteUnusedCategories"><img src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li class="separator"><a href="#StartTorrentsByCategory"><img src="images/qbt-theme/media-playback-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#PauseTorrentsByCategory"><img src="images/qbt-theme/media-playback-pause.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#DeleteTorrentsByCategory"><img src="images/qbt-theme/edit-delete.svg" alt="QBT_TR(Delete torrents)QBT_TR[CONTEXT=CategoryFilterWidget]"/> QBT_TR(Delete torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+    </ul>
+    <ul id="torrentTrackersMenu" class="contextMenu">
+        <li><a href="#AddTracker"><img src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add a new tracker...)QBT_TR[CONTEXT=TrackerListWidget]"/> QBT_TR(Add a new tracker...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li class="separator"><a href="#EditTracker"><img src="images/qbt-theme/document-edit.svg" alt="QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]"/> QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#RemoveTracker"><img src="images/qbt-theme/list-remove.svg" alt="QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]"/> QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#CopyTrackerUrl" id="CopyTrackerUrl"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]"/> QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+    </ul>
+    <ul id="torrentFilesMenu" class="contextMenu">
+        <li class="separator">
+            <a href="#FilePrio" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Priority)QBT_TR[CONTEXT=PropertiesWidget]</a>
+            <ul>
+                <li><a href="#FilePrioIgnore"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]</a></li>
+                <li><a href="#FilePrioNormal"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]</a></li>
+                <li><a href="#FilePrioHigh"><span style="display: inline-block; width: 16px;"></span> QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]</a></li>
+                <li><a href="#FilePrioMaximum"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]</a></li>
+            </ul>
+        </li>
     </ul>
     <div id="desktopFooterWrapper">
         <div id="desktopFooter">
             <span id="error_div"></span>
             <table style="position: absolute; right: 5px;">
                 <tr>
+                    <td id="freeSpaceOnDisk"></td>
+                    <td class="statusBarSeparator"></td>
                     <td id="DHTNodes"></td>
                     <td class="statusBarSeparator"></td>
-                    <td><img id="connectionStatus" alt="Connection Status" src="images/skin/firewalled.png" style="height: 1.5em;" /></td>
+                    <td><img id="connectionStatus" alt="Connection Status" src="images/skin/firewalled.svg" style="height: 1.5em;" /></td>
                     <td class="statusBarSeparator"></td>
-                    <td style="cursor:pointer;"><img id="alternativeSpeedLimits" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]" src="images/slow_off.png" /></td>
+                    <td style="cursor:pointer;"><img id="alternativeSpeedLimits" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]" src="images/slow_off.svg" style="height: 1em;"/></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/skin/download.png" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
+                    <td class="speedLabel"><img src="images/skin/download.svg" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/skin/seeding.png" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td>
+                    <td class="speedLabel"><img src="images/skin/seeding.svg" alt="" style="height: 1.4em; padding-right: 5px; margin-bottom: -3px;"><span id="UpInfos"></span></td>
                 </tr>
             </table>
         </div>

@@ -30,7 +30,6 @@
 
 #include <fstream>
 
-#include <boost/bind.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/storage.hpp>
@@ -49,6 +48,12 @@
 
 namespace
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    using CreateFlags = int;
+#else
+    using CreateFlags = lt::create_flags_t;
+#endif
+
     // do not include files and folders whose
     // name starts with a .
     bool fileFilter(const std::string &f)
@@ -89,7 +94,7 @@ void TorrentCreatorThread::run()
     emit updateProgress(0);
 
     try {
-        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + "/";
+        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
 
         // Adding files to the torrent
         libt::file_storage fs;
@@ -108,9 +113,9 @@ void TorrentCreatorThread::run()
             std::sort(dirs.begin(), dirs.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
 
             QStringList fileNames;
-            QHash<QString, boost::int64_t> fileSizeMap;
+            QHash<QString, qint64> fileSizeMap;
 
-            for (const auto &dir : qAsConst(dirs)) {
+            for (const auto &dir : asConst(dirs)) {
                 QStringList tmpNames;  // natural sort files within each dir
 
                 QDirIterator fileIter(dir, QDir::Files);
@@ -126,29 +131,24 @@ void TorrentCreatorThread::run()
                 fileNames += tmpNames;
             }
 
-            for (const auto &fileName : qAsConst(fileNames))
+            for (const auto &fileName : asConst(fileNames))
                 fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
         }
 
         if (isInterruptionRequested()) return;
 
-#if LIBTORRENT_VERSION_NUM < 10100
         libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
-            , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize : 0));
-#else
-        libt::create_torrent newTorrent(fs, m_params.pieceSize, -1
-            , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0));
-#endif
+                                        , (m_params.isAlignmentOptimized ? libt::create_torrent::optimize_alignment : CreateFlags {}));
 
         // Add url seeds
-        foreach (QString seed, m_params.urlSeeds) {
+        for (QString seed : asConst(m_params.urlSeeds)) {
             seed = seed.trimmed();
             if (!seed.isEmpty())
                 newTorrent.add_url_seed(seed.toStdString());
         }
 
         int tier = 0;
-        foreach (const QString &tracker, m_params.trackers) {
+        for (const QString &tracker : asConst(m_params.trackers)) {
             if (tracker.isEmpty())
                 ++tier;
             else
@@ -209,11 +209,6 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
     libt::file_storage fs;
     libt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
 
-#if LIBTORRENT_VERSION_NUM < 10100
     return libt::create_torrent(fs, pieceSize, -1
-        , (isAlignmentOptimized ? libt::create_torrent::optimize : 0)).num_pieces();
-#else
-    return libt::create_torrent(fs, pieceSize, -1
-        , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : 0)).num_pieces();
-#endif
+                                , (isAlignmentOptimized ? libt::create_torrent::optimize_alignment : CreateFlags {})).num_pieces();
 }

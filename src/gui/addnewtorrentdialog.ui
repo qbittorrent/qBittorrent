@@ -181,6 +181,20 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="sequentialCheckBox">
+        <property name="text">
+         <string>Download in sequential order</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="firstLastCheckBox">
+        <property name="text">
+         <string>Download first and last pieces first</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

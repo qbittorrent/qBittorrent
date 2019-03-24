@@ -396,8 +396,8 @@ namespace
         if (!str.indexOf(rx)) {
             // Check that if date has '-' separators, both separators are '-'.
             parts = rx.capturedTexts();
-            bool h1 = (parts[3] == QLatin1String("-"));
-            bool h2 = (parts[5] == QLatin1String("-"));
+            const bool h1 = (parts[3] == QLatin1String("-"));
+            const bool h2 = (parts[5] == QLatin1String("-"));
             if (h1 != h2)
                 return QDateTime::currentDateTime();
         }
@@ -431,26 +431,26 @@ namespace
                 return QDateTime::currentDateTime();
         }
 
-        bool leapSecond = (second == 60);
+        const bool leapSecond = (second == 60);
         if (leapSecond)
             second = 59;   // apparently a leap second - validate below, once time zone is known
         int month = 0;
-        for ( ; (month < 12)  &&  (parts[nmonth] != shortMonth[month]); ++month);
+        for ( ; (month < 12) && (parts[nmonth] != shortMonth[month]); ++month);
         int dayOfWeek = -1;
         if (!parts[nwday].isEmpty()) {
             // Look up the weekday name
-            while (++dayOfWeek < 7 && (shortDay[dayOfWeek] != parts[nwday]));
+            while ((++dayOfWeek < 7) && (shortDay[dayOfWeek] != parts[nwday]));
             if (dayOfWeek >= 7)
-                for (dayOfWeek = 0; dayOfWeek < 7 && (longDay[dayOfWeek] != parts[nwday]); ++dayOfWeek);
+                for (dayOfWeek = 0; (dayOfWeek < 7) && (longDay[dayOfWeek] != parts[nwday]); ++dayOfWeek);
         }
 
         //       if (month >= 12 || dayOfWeek >= 7
         //       ||  (dayOfWeek < 0  &&  format == RFCDateDay))
         //         return QDateTime;
-        int i = parts[nyear].size();
+        const int i = parts[nyear].size();
         if (i < 4) {
             // It's an obsolete year specification with less than 4 digits
-            year += (i == 2  &&  year < 50) ? 2000 : 1900;
+            year += ((i == 2) && (year < 50)) ? 2000 : 1900;
         }
 
         // Parse the UTC offset part
@@ -462,9 +462,9 @@ namespace
                 // It's a UTC offset ±hhmm
                 parts = rx.capturedTexts();
                 offset = parts[2].toInt(&ok[0]) * 3600;
-                int offsetMin = parts[3].toInt(&ok[1]);
+                const int offsetMin = parts[3].toInt(&ok[1]);
                 if (!ok[0] || !ok[1] || offsetMin > 59)
-                    return QDateTime();
+                    return {};
                 offset += offsetMin * 60;
                 negOffset = (parts[1] == QLatin1String("-"));
                 if (negOffset)
@@ -472,18 +472,18 @@ namespace
             }
             else {
                 // Check for an obsolete time zone name
-                QByteArray zone = parts[10].toLatin1();
-                if (zone.length() == 1  &&  isalpha(zone[0])  &&  toupper(zone[0]) != 'J') {
+                const QByteArray zone = parts[10].toLatin1();
+                if ((zone.length() == 1) && (isalpha(zone[0])) && (toupper(zone[0]) != 'J')) {
                     negOffset = true;    // military zone: RFC 2822 treats as '-0000'
                 }
-                else if (zone != "UT" && zone != "GMT") { // treated as '+0000'
+                else if ((zone != "UT") && (zone != "GMT")) { // treated as '+0000'
                     offset = (zone == "EDT")
                             ? -4 * 3600
                             : ((zone == "EST") || (zone == "CDT"))
                               ? -5 * 3600
                               : ((zone == "CST") || (zone == "MDT"))
                                 ? -6 * 3600
-                                : (zone == "MST" || zone == "PDT")
+                                : ((zone == "MST") || (zone == "PDT"))
                                   ? -7 * 3600
                                   : (zone == "PST")
                                     ? -8 * 3600
@@ -494,7 +494,7 @@ namespace
                         for (int i = 0, end = zone.size(); (i < end) && !nonalpha; ++i)
                             nonalpha = !isalpha(zone[i]);
                         if (nonalpha)
-                            return QDateTime();
+                            return {};
                         // TODO: Attempt to recognize the time zone abbreviation?
                         negOffset = true;    // unknown time zone: RFC 2822 treats as '-0000'
                     }
@@ -502,12 +502,12 @@ namespace
             }
         }
 
-        QDate qdate(year, month + 1, day);   // convert date, and check for out-of-range
-        if (!qdate.isValid())
+        const QDate qDate(year, month + 1, day);   // convert date, and check for out-of-range
+        if (!qDate.isValid())
             return QDateTime::currentDateTime();
 
-        QTime qTime(hour, minute, second);
-        QDateTime result(qdate, qTime, Qt::UTC);
+        const QTime qTime(hour, minute, second);
+        QDateTime result(qDate, qTime, Qt::UTC);
         if (offset)
             result = result.addSecs(-offset);
         if (!result.isValid())
@@ -528,7 +528,7 @@ using namespace RSS::Private;
 
 const int ParsingResultTypeId = qRegisterMetaType<ParsingResult>();
 
-Parser::Parser(QString lastBuildDate)
+Parser::Parser(const QString lastBuildDate)
 {
     m_result.lastBuildDate = lastBuildDate;
 }
@@ -556,22 +556,20 @@ void Parser::parse_impl(const QByteArray &feedData)
                     foundChannel = true;
                     break;
                 }
-                else {
-                    qDebug() << "Skip rss item: " << xml.name();
-                    xml.skipCurrentElement();
-                }
+
+                qDebug() << "Skip rss item: " << xml.name();
+                xml.skipCurrentElement();
             }
             break;
         }
-        else if (xml.name() == "feed") { // Atom feed
+        if (xml.name() == "feed") { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;
             break;
         }
-        else {
-            qDebug() << "Skip root item: " << xml.name();
-            xml.skipCurrentElement();
-        }
+
+        qDebug() << "Skip root item: " << xml.name();
+        xml.skipCurrentElement();
     }
 
     if (!foundChannel) {
@@ -581,16 +579,6 @@ void Parser::parse_impl(const QByteArray &feedData)
         m_result.error = tr("%1 (line: %2, column: %3, offset: %4).")
                 .arg(xml.errorString()).arg(xml.lineNumber())
                 .arg(xml.columnNumber()).arg(xml.characterOffset());
-    }
-    else {
-        // Sort article list chronologically
-        // NOTE: We don't need to sort it here if articles are always
-        // sorted in fetched XML in reverse chronological order
-        std::sort(m_result.articles.begin(), m_result.articles.end()
-                  , [](const QVariantHash &a1, const QVariantHash &a2)
-        {
-            return a1["date"].toDateTime() < a2["date"].toDateTime();
-        });
     }
 
     emit finished(m_result);
@@ -654,7 +642,7 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
                 m_result.title = xml.readElementText();
             }
             else if (xml.name() == QLatin1String("lastBuildDate")) {
-                QString lastBuildDate = xml.readElementText();
+                const QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty()) {
                     if (m_result.lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
@@ -687,7 +675,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                 article[Article::KeyTitle] = xml.readElementText().trimmed();
             }
             else if (name == QLatin1String("link")) {
-                QString link = (xml.attributes().isEmpty()
+                const QString link = (xml.attributes().isEmpty()
                                 ? xml.readElementText().trimmed()
                                 : xml.attributes().value(QLatin1String("href")).toString());
 
@@ -708,7 +696,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
 
                 // Try to also parse broken articles, which don't use html '&' escapes
                 // Actually works great for non-broken content too
-                QString feedText = xml.readElementText(QXmlStreamReader::IncludeChildElements).trimmed();
+                const QString feedText = xml.readElementText(QXmlStreamReader::IncludeChildElements).trimmed();
                 if (!feedText.isEmpty()) {
                     article[Article::KeyDescription] = feedText;
                     doubleContent = true;
@@ -716,7 +704,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
             }
             else if (name == QLatin1String("updated")) {
                 // ATOM uses standard compliant date, don't do fancy stuff
-                QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
+                const QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
                 article[Article::KeyDate] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
             }
             else if (name == QLatin1String("author")) {
@@ -751,7 +739,7 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
                 m_result.title = xml.readElementText();
             }
             else if (xml.name() == QLatin1String("updated")) {
-                QString lastBuildDate = xml.readElementText();
+                const QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty()) {
                     if (m_result.lastBuildDate == lastBuildDate) {
                         qDebug() << "The RSS feed has not changed since last time, aborting parsing.";

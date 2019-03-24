@@ -31,18 +31,14 @@
 #define PREFERENCES_H
 
 #include <QDateTime>
-#include <QHostAddress>
 #include <QList>
 #include <QNetworkCookie>
-#include <QReadWriteLock>
 #include <QSize>
 #include <QStringList>
 #include <QTime>
-#include <QTimer>
 #include <QVariant>
 
 #include "base/utils/net.h"
-#include "types.h"
 
 enum SchedulerDays
 {
@@ -87,7 +83,7 @@ class Preferences : public QObject
 
     Preferences();
 
-    const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    const QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
     void setValue(const QString &key, const QVariant &value);
 
     static Preferences *m_instance;
@@ -123,8 +119,10 @@ public:
     void setStartMinimized(bool b);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
-    bool preventFromSuspend() const;
-    void setPreventFromSuspend(bool b);
+    bool preventFromSuspendWhenDownloading() const;
+    void setPreventFromSuspendWhenDownloading(bool b);
+    bool preventFromSuspendWhenSeeding() const;
+    void setPreventFromSuspendWhenSeeding(bool b);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
@@ -183,22 +181,24 @@ public:
     void setWebUiAuthSubnetWhitelist(QStringList subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
-    QString getWebUiPassword() const;
-    void setWebUiPassword(const QString &newPassword);
+    QByteArray getWebUIPassword() const;
+    void setWebUIPassword(const QByteArray &password);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
     void setWebUiClickjackingProtectionEnabled(bool enabled);
     bool isWebUiCSRFProtectionEnabled() const;
     void setWebUiCSRFProtectionEnabled(bool enabled);
+    bool isWebUIHostHeaderValidationEnabled() const;
+    void setWebUIHostHeaderValidationEnabled(bool enabled);
 
     // HTTPS
     bool isWebUiHttpsEnabled() const;
     void setWebUiHttpsEnabled(bool enabled);
-    QByteArray getWebUiHttpsCertificate() const;
-    void setWebUiHttpsCertificate(const QByteArray &data);
-    QByteArray getWebUiHttpsKey() const;
-    void setWebUiHttpsKey(const QByteArray &data);
+    QString getWebUIHttpsCertificatePath() const;
+    void setWebUIHttpsCertificatePath(const QString &path);
+    QString getWebUIHttpsKeyPath() const;
+    void setWebUIHttpsKeyPath(const QString &path);
     bool isAltWebUiEnabled() const;
     void setAltWebUiEnabled(bool enabled);
     QString getWebUiRootFolder() const;
@@ -217,9 +217,8 @@ public:
     void setDynDNSPassword(const QString &password);
 
     // Advanced settings
-    void setUILockPassword(const QString &clearPassword);
-    void clearUILockPassword();
-    QString getUILockPasswordMD5() const;
+    QByteArray getUILockPassword() const;
+    void setUILockPassword(const QByteArray &password);
     bool isUILocked() const;
     void setUILocked(bool locked);
     bool isAutoRunEnabled() const;
@@ -249,7 +248,6 @@ public:
     bool recursiveDownloadDisabled() const;
     void disableRecursiveDownload(bool disable = true);
 #ifdef Q_OS_WIN
-    static QString getPythonPath();
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
     static bool isTorrentFileAssocSet();
@@ -278,13 +276,17 @@ public:
 #ifndef Q_OS_MAC
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
+    bool minimizeToTrayNotified() const;
+    void setMinimizeToTrayNotified(bool b);
     bool minimizeToTray() const;
     void setMinimizeToTray(bool b);
     bool closeToTray() const;
     void setCloseToTray(bool b);
+    bool closeToTrayNotified() const;
+    void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
-#endif
+#endif // Q_OS_MAC
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.
@@ -293,7 +295,7 @@ public:
     QString getDNSLastIP() const;
     void setDNSLastIP(const QString &ip);
     bool getAcceptedLegal() const;
-    void setAcceptedLegal(const bool accepted);
+    void setAcceptedLegal(bool accepted);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
     QByteArray getMainVSplitterState() const;
@@ -311,9 +313,9 @@ public:
     QByteArray getPropFileListState() const;
     void setPropFileListState(const QByteArray &state);
     int getPropCurTab() const;
-    void setPropCurTab(const int &tab);
+    void setPropCurTab(int tab);
     bool getPropVisible() const;
-    void setPropVisible(const bool visible);
+    void setPropVisible(bool visible);
     QByteArray getPropTrackerListState() const;
     void setPropTrackerListState(const QByteArray &state);
     QSize getRssGeometrySize() const;
@@ -328,6 +330,8 @@ public:
     void setRssMainSplitterState(const QByteArray &state);
     QByteArray getSearchTabHeaderState() const;
     void setSearchTabHeaderState(const QByteArray &state);
+    bool getRegexAsFilteringPatternForSearchJob() const;
+    void setRegexAsFilteringPatternForSearchJob(bool checked);
     QStringList getSearchEngDisabled() const;
     void setSearchEngDisabled(const QStringList &engines);
     QString getTorImportLastContentDir() const;
@@ -339,27 +343,29 @@ public:
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;
     int getTransSelFilter() const;
-    void setTransSelFilter(const int &index);
+    void setTransSelFilter(int index);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
+    bool getRegexAsFilteringPatternForTransferList() const;
+    void setRegexAsFilteringPatternForTransferList(bool checked);
     int getToolbarTextPosition() const;
-    void setToolbarTextPosition(const int position);
+    void setToolbarTextPosition(int position);
 
     // From old RssSettings class
     bool isRSSWidgetEnabled() const;
-    void setRSSWidgetVisible(const bool enabled);
+    void setRSSWidgetVisible(bool enabled);
 
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;
     void setNetworkCookies(const QList<QNetworkCookie> &cookies);
 
     // SpeedWidget
+    bool isSpeedWidgetEnabled() const;
+    void setSpeedWidgetEnabled(bool enabled);
     int getSpeedWidgetPeriod() const;
-    void setSpeedWidgetPeriod(const int period);
+    void setSpeedWidgetPeriod(int period);
     bool getSpeedWidgetGraphEnable(int id) const;
-    void setSpeedWidgetGraphEnable(int id, const bool enable);
-
-    void upgrade();
+    void setSpeedWidgetGraphEnable(int id, bool enable);
 
 public slots:
     void setStatusFilterState(bool checked);

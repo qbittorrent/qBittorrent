@@ -48,7 +48,7 @@ class QSessionManager;
 typedef QtSingleCoreApplication BaseApplication;
 #endif // DISABLE_GUI
 
-#include "base/utils/misc.h"
+#include "base/types.h"
 #include "cmdoptions.h"
 
 #ifndef DISABLE_WEBUI
@@ -77,7 +77,7 @@ public:
     Application(const QString &id, int &argc, char **argv);
     ~Application() override;
 
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
+#if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
 #endif
     int exec(const QStringList &params);
@@ -99,18 +99,17 @@ public:
     bool isFileLoggerDeleteOld() const;
     void setFileLoggerDeleteOld(bool value);
     int fileLoggerMaxSize() const;
-    void setFileLoggerMaxSize(const int bytes);
+    void setFileLoggerMaxSize(int bytes);
     int fileLoggerAge() const;
-    void setFileLoggerAge(const int value);
+    void setFileLoggerAge(int value);
     int fileLoggerAgeType() const;
-    void setFileLoggerAgeType(const int value);
+    void setFileLoggerAgeType(int value);
 
 protected:
 #ifndef DISABLE_GUI
 #ifdef Q_OS_MAC
     bool event(QEvent *) override;
 #endif
-    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:

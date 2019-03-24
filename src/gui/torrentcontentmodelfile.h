@@ -29,6 +29,7 @@
 #ifndef TORRENTCONTENTMODELFILE_H
 #define TORRENTCONTENTMODELFILE_H
 
+#include "base/bittorrent/downloadpriority.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModelFile : public TorrentContentModelItem
@@ -38,7 +39,7 @@ public:
                             TorrentContentModelFolder *parent, int fileIndex);
 
     int fileIndex() const;
-    void setPriority(int newPriority, bool updateParent = true) override;
+    void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
     void setProgress(qreal progress);
     void setAvailability(qreal availability);
     ItemType itemType() const override;

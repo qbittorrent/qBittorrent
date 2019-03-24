@@ -45,7 +45,7 @@ namespace BitTorrent
         ushort port;
 
         PeerAddress();
-        PeerAddress(QHostAddress ip, ushort port);
+        PeerAddress(const QHostAddress &ip, ushort port);
     };
 
     class PeerInfo

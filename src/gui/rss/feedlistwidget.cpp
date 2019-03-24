@@ -33,6 +33,7 @@
 #include <QDropEvent>
 #include <QTreeWidgetItem>
 
+#include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
@@ -219,7 +220,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
                                : RSS::Session::instance()->rootFolder());
 
     // move as much items as possible
-    foreach (QTreeWidgetItem *srcItem, selectedItems()) {
+    for (QTreeWidgetItem *srcItem : asConst(selectedItems())) {
         auto rssItem = getRSSItem(srcItem);
         RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
     }
@@ -231,7 +232,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
 
 QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem;
+    auto *item = new QTreeWidgetItem;
     item->setData(0, Qt::DisplayRole, QString("%1  (%2)").arg(rssItem->name()).arg(rssItem->unreadCount()));
     item->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(rssItem));
     m_rssToTreeItemMapping[rssItem] = item;
@@ -264,7 +265,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
 
 void FeedListWidget::fill(QTreeWidgetItem *parent, RSS::Folder *rssParent)
 {
-    foreach (auto rssItem, rssParent->items()) {
+    for (const auto rssItem : asConst(rssParent->items())) {
         QTreeWidgetItem *item = createItem(rssItem, parent);
         // Recursive call if this is a folder.
         if (auto folder = qobject_cast<RSS::Folder *>(rssItem))

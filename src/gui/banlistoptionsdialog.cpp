@@ -41,10 +41,10 @@
 BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::BanListOptionsDialog)
+    , m_model(new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this))
     , m_modified(false)
 {
     m_ui->setupUi(this);
-    m_model = new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this);
 
     m_sortFilter = new QSortFilterProxyModel(this);
     m_sortFilter->setDynamicSortFilter(true);
@@ -107,8 +107,8 @@ void BanListOptionsDialog::on_buttonBanIP_clicked()
 
 void BanListOptionsDialog::on_buttonDeleteIP_clicked()
 {
-    QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
-    for (auto &i : selection)
+    const QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
+    for (const auto &i : selection)
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;

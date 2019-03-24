@@ -55,7 +55,7 @@ StatusBar::StatusBar(QWidget *parent)
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
     QWidget *container = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(container);
+    auto *layout = new QHBoxLayout(container);
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
@@ -63,14 +63,14 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setFlat(true);
     m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
-    m_connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.png"));
+    m_connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.svg"));
     m_connecStatusLblIcon->setToolTip(
         QString(QLatin1String("<b>%1</b><br><i>%2</i>")).arg(tr("Connection status:")
             , tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.png"));
+    m_dlSpeedLbl->setIcon(QIcon(":/icons/skin/download.svg"));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -79,7 +79,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.png"));
+    m_upSpeedLbl->setIcon(QIcon(":/icons/skin/seeding.svg"));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -174,17 +174,17 @@ void StatusBar::updateConnectionStatus()
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
     if (!BitTorrent::Session::instance()->isListening()) {
-        m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/disconnected.png")));
+        m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/disconnected.svg")));
         m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
         if (sessionStatus.hasIncomingConnections) {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/connected.png")));
+            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/connected.svg")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
         }
         else {
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/firewalled.png")));
+            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/skin/firewalled.svg")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
         }
     }
@@ -206,18 +206,19 @@ void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
-    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ")";
-    m_dlSpeedLbl->setText(speedLbl);
-    speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
-    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + "]";
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ")";
-    m_upSpeedLbl->setText(speedLbl);
+    QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
+    const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
+    if (dlSpeedLimit > 0)
+        dlSpeedLbl += " [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + ']';
+    dlSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
+    m_dlSpeedLbl->setText(dlSpeedLbl);
+
+    QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
+    const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
+    if (upSpeedLimit > 0)
+        upSpeedLbl += " [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + ']';
+    upSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
+    m_upSpeedLbl->setText(upSpeedLbl);
 }
 
 void StatusBar::refresh()
@@ -230,12 +231,12 @@ void StatusBar::refresh()
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative) {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.png"));
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.svg"));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.png"));
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.svg"));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

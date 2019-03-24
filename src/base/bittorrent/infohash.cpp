@@ -28,6 +28,7 @@
 
 #include "infohash.h"
 
+#include <QByteArray>
 #include <QHash>
 
 using namespace BitTorrent;
@@ -41,28 +42,24 @@ InfoHash::InfoHash(const libtorrent::sha1_hash &nativeHash)
     : m_valid(true)
     , m_nativeHash(nativeHash)
 {
-    char out[(libtorrent::sha1_hash::size * 2) + 1];
-    libtorrent::to_hex(reinterpret_cast<const char*>(&m_nativeHash[0]), libtorrent::sha1_hash::size, out);
-    m_hashString = QString(out);
+    const QByteArray raw = QByteArray::fromRawData(nativeHash.data(), length());
+    m_hashString = QString::fromLatin1(raw.toHex());
 }
 
 InfoHash::InfoHash(const QString &hashString)
     : m_valid(false)
-    , m_hashString(hashString)
 {
-    QByteArray raw = m_hashString.toLatin1();
-    if (raw.size() == 40)
-        m_valid = libtorrent::from_hex(raw.constData(), 40, reinterpret_cast<char*>(&m_nativeHash[0]));
+    if (hashString.size() != (length() * 2))
+        return;
+
+    const QByteArray raw = QByteArray::fromHex(hashString.toLatin1());
+    if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
+        return;
+
+    m_valid = true;
+    m_hashString = hashString;
+    m_nativeHash.assign(raw.constData());
 }
-
-
-InfoHash::InfoHash(const InfoHash &other)
-    : m_valid(other.m_valid)
-    , m_nativeHash(other.m_nativeHash)
-    , m_hashString(other.m_hashString)
-{
-}
-
 
 bool InfoHash::isValid() const
 {
@@ -74,25 +71,23 @@ InfoHash::operator libtorrent::sha1_hash() const
     return m_nativeHash;
 }
 
-
 InfoHash::operator QString() const
 {
     return m_hashString;
 }
 
-
-bool InfoHash::operator==(const InfoHash &other) const
+bool BitTorrent::operator==(const InfoHash &left, const InfoHash &right)
 {
-    return (m_nativeHash == other.m_nativeHash);
+    return (static_cast<libtorrent::sha1_hash>(left)
+            == static_cast<libtorrent::sha1_hash>(right));
 }
 
-
-bool InfoHash::operator!=(const InfoHash &other) const
+bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
 {
-    return (m_nativeHash != other.m_nativeHash);
+    return !(left == right);
 }
 
-uint BitTorrent::qHash(const InfoHash &key, uint seed)
+uint BitTorrent::qHash(const InfoHash &key, const uint seed)
 {
-    return qHash(static_cast<QString>(key), seed);
+    return ::qHash(static_cast<QString>(key), seed);
 }

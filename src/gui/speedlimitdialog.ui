@@ -22,11 +22,14 @@
      </item>
      <item>
       <widget class="QSpinBox" name="spinBandwidth">
+       <property name="specialValueText">
+        <string>∞</string>
+       </property>
+       <property name="suffix">
+        <string> KiB/s</string>
+       </property>
        <property name="maximum">
         <number>65535</number>
-       </property>
-       <property name="value">
-        <number>0</number>
        </property>
       </widget>
      </item>

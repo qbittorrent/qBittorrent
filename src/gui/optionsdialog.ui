@@ -479,9 +479,16 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
                <item>
-                <widget class="QCheckBox" name="checkPreventFromSuspend">
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenDownloading">
                  <property name="text">
-                  <string>Inhibit system sleep when torrents are active</string>
+                  <string>Inhibit system sleep when torrents are downloading</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkPreventFromSuspendWhenSeeding">
+                 <property name="text">
+                  <string>Inhibit system sleep when torrents are seeding</string>
                  </property>
                 </widget>
                </item>
@@ -934,7 +941,7 @@
                  <item row="3" column="0">
                   <widget class="QLabel" name="labelCategoryChanged">
                    <property name="text">
-                    <string>When Category changed:</string>
+                    <string>When Category Save Path changed:</string>
                    </property>
                   </widget>
                  </item>
@@ -1805,14 +1812,11 @@
               <layout class="QGridLayout" name="rateLimitBoxLayout">
                <item row="0" column="2">
                 <widget class="QSpinBox" name="spinUploadLimit">
-                 <property name="enabled">
-                  <bool>false</bool>
+                 <property name="specialValueText">
+                  <string>∞</string>
                  </property>
                  <property name="suffix">
                   <string> KiB/s</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
                  </property>
                  <property name="maximum">
                   <number>1000000</number>
@@ -1822,23 +1826,13 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QCheckBox" name="checkUploadLimit">
-                 <property name="text">
-                  <string>Upload:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="2">
                 <widget class="QSpinBox" name="spinDownloadLimit">
-                 <property name="enabled">
-                  <bool>false</bool>
+                 <property name="specialValueText">
+                  <string>∞</string>
                  </property>
                  <property name="suffix">
                   <string> KiB/s</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
                  </property>
                  <property name="maximum">
                   <number>1000000</number>
@@ -1850,13 +1844,6 @@
                </item>
                <item row="0" column="0" rowspan="2">
                 <widget class="QLabel" name="labelGlobalRate"/>
-               </item>
-               <item row="1" column="1">
-                <widget class="QCheckBox" name="checkDownloadLimit">
-                 <property name="text">
-                  <string>Download:</string>
-                 </property>
-                </widget>
                </item>
                <item row="0" column="3">
                 <spacer name="horizontalSpacer">
@@ -1871,6 +1858,20 @@
                  </property>
                 </spacer>
                </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Upload:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Download:</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -1880,6 +1881,22 @@
                <string>Alternative Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="spinDownloadLimitAlt">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
+                 <property name="maximum">
+                  <number>1000000</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="0" rowspan="2">
                 <widget class="QLabel" name="labelAltRate"/>
                </item>
@@ -2019,49 +2036,13 @@
                  </widget>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QCheckBox" name="checkUploadLimitAlt">
-                 <property name="text">
-                  <string>Upload:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QCheckBox" name="checkDownloadLimitAlt">
-                 <property name="text">
-                  <string>Download:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="2">
                 <widget class="QSpinBox" name="spinUploadLimitAlt">
-                 <property name="enabled">
-                  <bool>false</bool>
+                 <property name="specialValueText">
+                  <string>∞</string>
                  </property>
                  <property name="suffix">
                   <string> KiB/s</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>1000000</number>
-                 </property>
-                 <property name="value">
-                  <number>10</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QSpinBox" name="spinDownloadLimitAlt">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="suffix">
-                  <string> KiB/s</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
                  </property>
                  <property name="maximum">
                   <number>1000000</number>
@@ -2083,6 +2064,20 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_13">
+                 <property name="text">
+                  <string>Upload:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_14">
+                 <property name="text">
+                  <string>Download:</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2851,9 +2846,23 @@
             <item>
              <widget class="QGroupBox" name="groupRSSSmartEpisodeFilter">
               <property name="title">
-               <string>RSS Smart Episode Filters</string>
+               <string>RSS Smart Episode Filter</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
+               <item>
+                <widget class="QCheckBox" name="checkSmartFilterDownloadRepacks">
+                 <property name="text">
+                  <string>Download REPACK/PROPER episodes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Filters:</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QPlainTextEdit" name="textSmartEpisodeFilters"/>
                </item>
@@ -2961,28 +2970,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </layout>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_10">
-                 <item>
-                  <widget class="QLabel" name="labelServerDomains">
-                   <property name="text">
-                    <string>Server domains:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="textServerDomains">
-                   <property name="toolTip">
-                    <string>Whitelist for filtering HTTP Host header values.
-In order to defend against DNS rebinding attack,
-you should put in domain names used by WebUI server.
-
-Use ';' to split multiple entries. Can use wildcard '*'.</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkWebUIUPnP">
                  <property name="text">
                   <string>Use UPnP / NAT-PMP to forward the port from my router</string>
@@ -3004,10 +2991,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="lblSslCertStatus">
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="lblWebUiKey">
                     <property name="text">
-                     <string notr="true"/>
+                     <string>Key:</string>
                     </property>
                    </widget>
                   </item>
@@ -3016,75 +3003,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     <property name="text">
                      <string>Certificate:</string>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
                    </widget>
                   </item>
-                  <item row="0" column="2">
-                   <layout class="QHBoxLayout" name="horizontalLayout_4">
-                    <item>
-                     <widget class="QPushButton" name="btnWebUiCrt">
-                      <property name="text">
-                       <string>Import SSL Certificate</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_12">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>138</width>
-                        <height>28</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblSslCertStatus"/>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="lblSslKeyStatus">
-                    <property name="text">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="lblWebUiKey">
-                    <property name="text">
-                     <string>Key:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <layout class="QHBoxLayout" name="horizontalLayout_5">
-                    <item>
-                     <widget class="QPushButton" name="btnWebUiKey">
-                      <property name="text">
-                       <string>Import SSL Key</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_13">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                   <widget class="QLabel" name="lblSslKeyStatus"/>
                   </item>
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUIInfo">
@@ -3095,6 +3020,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                      <bool>true</bool>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsCert" native="true"/>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsKey" native="true"/>
                   </item>
                  </layout>
                 </widget>
@@ -3120,14 +3051,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   </item>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="textWebUiPassword">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="maxLength">
-                     <number>1000</number>
-                    </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Password</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Change current password</string>
                     </property>
                    </widget>
                   </item>
@@ -3201,17 +3129,60 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkClickjacking">
-                 <property name="text">
-                  <string>Enable clickjacking protection</string>
+                <widget class="QGroupBox" name="groupBox_3">
+                 <property name="title">
+                  <string>Security</string>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkCSRFProtection">
-                 <property name="text">
-                  <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
-                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_33">
+                  <item>
+                   <widget class="QCheckBox" name="checkClickjacking">
+                    <property name="text">
+                     <string>Enable clickjacking protection</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkCSRFProtection">
+                    <property name="text">
+                     <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupHostHeaderValidation">
+                    <property name="title">
+                     <string>Enable Host header validation</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_32">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_10">
+                       <item>
+                        <widget class="QLabel" name="labelServerDomains">
+                         <property name="text">
+                          <string>Server domains:</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="textServerDomains">
+                         <property name="toolTip">
+                          <string>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
                <item>
@@ -3394,7 +3365,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboTrayIcon</tabstop>
   <tabstop>checkAssociateTorrents</tabstop>
   <tabstop>checkAssociateMagnetLinks</tabstop>
-  <tabstop>checkPreventFromSuspend</tabstop>
+  <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
+  <tabstop>checkPreventFromSuspendWhenSeeding</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
@@ -3443,11 +3415,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkIpFilterTrackers</tabstop>
   <tabstop>scrollArea_9</tabstop>
   <tabstop>spinUploadLimit</tabstop>
-  <tabstop>checkUploadLimit</tabstop>
   <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>checkDownloadLimit</tabstop>
-  <tabstop>checkUploadLimitAlt</tabstop>
-  <tabstop>checkDownloadLimitAlt</tabstop>
   <tabstop>spinUploadLimitAlt</tabstop>
   <tabstop>spinDownloadLimitAlt</tabstop>
   <tabstop>checkScheduleEnable</tabstop>
@@ -3471,8 +3439,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboRatioLimitAct</tabstop>
   <tabstop>checkWebUIUPnP</tabstop>
   <tabstop>checkWebUiHttps</tabstop>
-  <tabstop>btnWebUiCrt</tabstop>
-  <tabstop>btnWebUiKey</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
   <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
   <tabstop>IPSubnetWhitelistButton</tabstop>
@@ -3485,38 +3451,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  </tabstops>
  <resources/>
  <connections>
-  <connection>
-   <sender>checkUploadLimit</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinUploadLimit</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>367</x>
-     <y>61</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>448</x>
-     <y>62</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkDownloadLimit</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinDownloadLimit</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>377</x>
-     <y>81</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>430</x>
-     <y>87</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>checkMaxConnecs</sender>
    <signal>toggled(bool)</signal>
@@ -3578,38 +3512,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
     <hint type="destinationlabel">
      <x>642</x>
      <y>414</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkDownloadLimitAlt</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinDownloadLimitAlt</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>547</x>
-     <y>415</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>815</x>
-     <y>413</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkUploadLimitAlt</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinUploadLimitAlt</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>271</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>272</y>
     </hint>
    </hints>
   </connection>

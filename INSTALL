@@ -1,54 +1,43 @@
-qBittorrent - A BitTorrent client in C++ / Qt4
+qBittorrent - A BitTorrent client in C++ / Qt
 ------------------------------------------
 
-1) Compile and install qBittorrent with Qt4 Graphical Interface
+1) Install these dependencies:
+
+  - Boost >= 1.35
+
+  - libtorrent-rasterbar >= 1.1.10 (by Arvid Norberg)
+      * https://www.libtorrent.org/
+      * Be careful: another library (the one used by rTorrent) uses a similar name
+
+  - OpenSSL >= 1.0
+
+  - Qt >= 5.9.0
+
+  - zlib >= 1.2.5.2
+
+  - pkg-config (compile-time only)
+
+  - Python >= 2.7.9 / 3.3.0 (optional, runtime only)
+      * Required by the internal search engine
+
+2a) Compile and install qBittorrent with Qt graphical interface
 
   $ ./configure
   $ make && make install
   $ qbittorrent
 
-  will install and execute qBittorrent hopefully without any problems.
+  will install and execute qBittorrent.
 
-  Dependencies:
-    - Qt >= 4.6.0 (libqtgui, libqtcore, libqtnetwork, libqtxml, libqtdbus/optional)
-
-    - pkg-config executable
-
-    - libtorrent-rasterbar by Arvid Norberg (>= 1.0.6)
-        -> http://www.libtorrent.net
-        Be careful: another library (the one used by rTorrent) uses a similar name.
-
-    - libboost >= 1.35.x (libboost-system)
-
-    - python >= 2.3 (needed by search engine)
-        * Run time only dependency
-
-    - geoip-database (optional)
-        * If qBittorrent cannot find this database, it will try to resolve countries using the Internet but it will be a lot slower.
-        * Run time only dependency
-
-2) Compile and install qBittorrent without Qt4 Graphical interface
+2b) Compile and install qBittorrent without Qt graphical interface
 
   $ ./configure --disable-gui
   $ make && make install
-  $ qbittorrent
+  $ qbittorrent-nox
 
-  will install and execute qBittorrent hopefully without any problems.
-
-  Dependencies:
-    - Qt >= 4.4.0 (libqt-devel, libqtcore, libqtnetwork)
-
-    - pkg-config executable
-
-    - libtorrent-rasterbar by Arvid Norberg (>= v1.0.6)
-        -> http://www.libtorrent.net
-        Be careful: another library (the one used by rTorrent) uses a similar name.
-
-    - libboost: libboost-filesystem, libboost-date-time, libboost-thread, libboost-serialization
-
+  will install and execute qBittorrent.
 
 DOCUMENTATION:
-Please note that there is a documentation with a "compiling howto" at http://wiki.qbittorrent.org.
+Please note that there is a "Compilation" section at http://wiki.qbittorrent.org.
 
 ------------------------------------------
-Christophe Dumez <chris@qbittorrent.org>
+sledgehammer999 <sledgehammer999@qbittorrent.org>

@@ -30,27 +30,33 @@
 #ifndef STACKTRACEDIALOG_H
 #define STACKTRACEDIALOG_H
 
-#include <QString>
 #include <QDialog>
+#include <QString>
 
 #include "base/utils/misc.h"
 #include "ui_stacktracedialog.h"
 
-class StacktraceDialog : public QDialog, private Ui::StacktraceDialog
+class StacktraceDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     StacktraceDialog(QWidget *parent = nullptr)
         : QDialog(parent)
+        , m_ui(new Ui::StacktraceDialog)
     {
-        setupUi(this);
+        m_ui->setupUi(this);
+    }
+
+    ~StacktraceDialog()
+    {
+        delete m_ui;
     }
 
     void setStacktraceString(const QString &sigName, const QString &trace)
     {
         // try to call Qt function as less as possible
-        QString htmlStr = QString(
+        const QString htmlStr = QString(
             "<p align=center><b><font size=7 color=red>"
             "qBittorrent has crashed"
             "</font></b></p>"
@@ -61,27 +67,29 @@ public:
             "</p></font>"
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
-#if defined(__x86_64__) || defined(_M_X64)
-            "qBittorrent version: " QBT_VERSION " (64-bit)<br/>"
-#else
-            "qBittorrent version: " QBT_VERSION " (32-bit)<br/>"
-#endif
-            "Libtorrent version: %1<br/>"
+            "qBittorrent version: " QBT_VERSION " (%1-bit)<br/>"
+            "Libtorrent version: %2<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %2<br/>"
-            "OS version: %3<br/><br/>"
-            "Caught signal: %4"
+            "Boost version: %3<br/>"
+            "OpenSSL version: %4<br/>"
+            "OS version: %5<br/><br/>"
+            "Caught signal: %6"
             "</font></p>"
-            "<pre><code>%5</code></pre>"
+            "<pre><code>%7</code></pre>"
             "<br/><hr><br/><br/>")
-                .arg(Utils::Misc::libtorrentVersionString())
-                .arg(Utils::Misc::boostVersionString())
-                .arg(Utils::Misc::osName())
-                .arg(sigName)
-                .arg(trace);
+                .arg(QString::number(QT_POINTER_SIZE * 8)
+                     , Utils::Misc::libtorrentVersionString()
+                     , Utils::Misc::boostVersionString()
+                     , Utils::Misc::opensslVersionString()
+                     , Utils::Misc::osName()
+                     , sigName
+                     , trace);
 
-        errorText->setHtml(htmlStr);
+        m_ui->errorText->setHtml(htmlStr);
     }
+
+private:
+    Ui::StacktraceDialog *m_ui;
 };
 
 #endif // STACKTRACEDIALOG_H

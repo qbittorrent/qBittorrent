@@ -1,3 +1,31 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2008  Christophe Dumez <chris@qbittorrent.org>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
 /* -----------------------------------------------------------------
 
     ATTACH MOCHA LINK EVENTS
@@ -8,6 +36,8 @@
     it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
+'use strict';
+
 /* Define localStorage object for older browsers */
 if (typeof localStorage == 'undefined') {
     window['localStorage'] = {
@@ -23,18 +53,49 @@ if (typeof localStorage == 'undefined') {
 }
 
 function getLocalStorageItem(name, defaultVal) {
-    val = localStorage.getItem(name);
+    var val = localStorage.getItem(name);
     if (val === null || val === undefined)
         val = defaultVal;
     return val;
 }
 
+var saveWindowSize = function() {};
+var loadWindowWidth = function() {};
+var loadWindowHeight = function() {};
+var showDownloadPage = function() {};
+var globalUploadLimitFN = function() {};
+var uploadLimitFN = function() {};
+var shareRatioFN = function() {};
+var toggleSequentialDownloadFN = function() {};
+var toggleFirstLastPiecePrioFN = function() {};
+var setSuperSeedingFN = function() {};
+var setForceStartFN = function() {};
+var globalDownloadLimitFN = function() {};
+var StatisticsLinkFN = function() {};
+var downloadLimitFN = function() {};
 var deleteFN = function() {};
-var startFN = function() {};
 var pauseFN = function() {};
+var startFN = function() {};
+var autoTorrentManagementFN = function() {};
+var recheckFN = function() {};
+var reannounceFN = function() {};
+var setLocationFN = function() {};
+var renameFN = function() {};
+var torrentNewCategoryFN = function() {};
+var torrentSetCategoryFN = function() {};
+var createCategoryFN = function() {};
+var editCategoryFN = function() {};
+var removeCategoryFN = function() {};
+var deleteUnusedCategoriesFN = function() {};
+var startTorrentsByCategoryFN = function() {};
+var pauseTorrentsByCategoryFN = function() {};
+var deleteTorrentsByCategoryFN = function() {};
+var copyNameFN = function() {};
+var copyMagnetLinkFN = function() {};
+var copyHashFN = function() {};
+var setPriorityFN = function() {};
 
-initializeWindows = function() {
-
+var initializeWindows = function() {
     saveWindowSize = function(windowId) {
         var size = $(windowId).getSize();
         localStorage.setItem('window_' + windowId + '_width', size.x);
@@ -59,12 +120,20 @@ initializeWindows = function() {
 
     addClickEvent('download', function(e) {
         new Event(e).stop();
+        showDownloadPage();
+    });
+
+    showDownloadPage = function(urls) {
         var id = 'downloadPage';
+        var contentUrl = 'download.html';
+        if (urls && urls.length)
+            contentUrl += '?urls=' + urls.join("|");
+
         new MochaUI.Window({
             id: id,
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: 'iframe',
-            contentURL: 'download.html',
+            contentURL: contentUrl,
             addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
@@ -78,7 +147,7 @@ initializeWindows = function() {
             }
         });
         updateMainData();
-    });
+    };
 
     addClickEvent('preferences', function(e) {
         new Event(e).stop();
@@ -98,7 +167,7 @@ initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 700),
-            height: loadWindowHeight(id, 300),
+            height: loadWindowHeight(id, 500),
             onResize: function() {
                 saveWindowSize(id);
             }
@@ -387,15 +456,27 @@ initializeWindows = function() {
     recheckFN = function() {
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            hashes.each(function(hash, index) {
-                new Request({
-                    url: 'api/v2/torrents/recheck',
-                    method: 'post',
-                    data: {
-                        hashes: hash
-                    }
-                }).send();
-            });
+            new Request({
+                url: 'api/v2/torrents/recheck',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    reannounceFN = function() {
+        var hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/reannounce',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
             updateMainData();
         }
     };
@@ -432,7 +513,7 @@ initializeWindows = function() {
                     id: 'renamePage',
                     title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
                     loadMethod: 'iframe',
-                    contentURL: 'rename.html?hash=' + hashes[0] + '&name=' + row.full_data.name,
+                    contentURL: 'rename.html?hash=' + hash + '&name=' + encodeURIComponent(row.full_data.name),
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,
@@ -446,20 +527,21 @@ initializeWindows = function() {
     };
 
     torrentNewCategoryFN = function() {
+        var action = "set";
         var hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'newCategoryPage',
                 title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: 'iframe',
-                contentURL: 'newcategory.html?hashes=' + hashes.join('|'),
+                contentURL: 'newcategory.html?action=' + action + '&hashes=' + hashes.join('|'),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 250,
-                height: 100
+                height: 150
             });
         }
     };
@@ -482,18 +564,39 @@ initializeWindows = function() {
     };
 
     createCategoryFN = function() {
+        var action = "create";
         new MochaUI.Window({
             id: 'newCategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: 'iframe',
-            contentURL: 'newcategory.html',
+            contentURL: 'newcategory.html?action=' + action,
             scrollbars: false,
             resizable: false,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 250,
-            height: 100
+            height: 150
+        });
+        updateMainData();
+    };
+
+    editCategoryFN = function(categoryHash) {
+        var action = "edit";
+        var categoryName = category_list[categoryHash].name;
+        var savePath = category_list[categoryHash].savePath;
+        new MochaUI.Window({
+            id: 'editCategoryPage',
+            title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: 'iframe',
+            contentURL: 'newcategory.html?action=' + action + '&categoryName=' + categoryName + '&savePath=' + savePath,
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 150
         });
         updateMainData();
     };
@@ -662,9 +765,14 @@ initializeWindows = function() {
         var id = 'aboutpage';
         new MochaUI.Window({
             id: id,
-            title: 'QBT_TR(About)QBT_TR[CONTEXT=AboutDlg]',
+            title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',
             loadMethod: 'xhr',
             contentURL: 'about.html',
+            require: {
+                css: ['css/Tabs.css']
+            },
+            toolbar: true,
+            toolbarURL: 'aboutToolbar.html',
             padding: 10,
             width: loadWindowWidth(id, 550),
             height: loadWindowHeight(id, 290),
@@ -691,7 +799,7 @@ initializeWindows = function() {
             new Request({
                 url: 'api/v2/app/shutdown',
                 onSuccess: function() {
-                    document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>QBT_TR(qBittorrent has been shutdown.)QBT_TR[CONTEXT=HttpServer]</h1></body></html>");
+                    document.write('<!doctype html><html lang="${LANG}"><head> <meta charset="utf-8"> <title>QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</title></head><body> <h1 style="text-align: center;">QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</h1></body></html>');
                     stop();
                 }
             }).send();

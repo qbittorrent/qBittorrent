@@ -38,6 +38,11 @@ class QDropEvent;
 class QStringList;
 class QTreeWidgetItem;
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class PluginSelectDialog;
@@ -46,13 +51,14 @@ namespace Ui
 class PluginSelectDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PluginSelectDialog)
 
 public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
-    ~PluginSelectDialog();
+    ~PluginSelectDialog() override;
 
-    QList<QTreeWidgetItem*> findItemsWithUrl(QString url);
-    QTreeWidgetItem *findItemWithID(QString id);
+    QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
+    QTreeWidgetItem *findItemWithID(const QString &id);
 
 protected:
     void dropEvent(QDropEvent *event) override;
@@ -64,13 +70,12 @@ private slots:
     void on_installButton_clicked();
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
-    void setRowColor(int row, QString color);
+    void setRowColor(int row, const QString &color);
     void displayContextMenu(const QPoint &pos);
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();
-    void iconDownloaded(const QString &url, QString filePath);
-    void iconDownloadFailed(const QString &url, const QString &reason);
+    void iconDownloadFinished(const Net::DownloadResult &result);
 
     void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
@@ -81,7 +86,7 @@ private slots:
 
 private:
     void loadSupportedSearchPlugins();
-    void addNewPlugin(QString pluginName);
+    void addNewPlugin(const QString &pluginName);
     void startAsyncOp();
     void finishAsyncOp();
     void finishPluginUpdate();

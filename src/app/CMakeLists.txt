@@ -7,6 +7,7 @@ application.cpp
 cmdoptions.cpp
 filelogger.cpp
 main.cpp
+upgrade.cpp
 )
 
 target_include_directories(qBittorrent PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -23,29 +24,19 @@ set_target_properties(qBittorrent
 )
 
 # translations
+include(QbtTranslations)
+
 file(GLOB QBT_TS_FILES ../lang/*.ts)
-get_filename_component(QBT_QM_FILES_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/../lang" ABSOLUTE)
-set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${QBT_QM_FILES_BINARY_DIR}")
+qbt_add_translations(qBittorrent QRC_FILE "../lang/lang.qrc" TS_FILES ${QBT_TS_FILES})
 
-find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
-qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES})
-
-get_filename_component(_lang_qrc_src "${CMAKE_CURRENT_SOURCE_DIR}/../lang/lang.qrc" ABSOLUTE)
-get_filename_component(_lang_qrc_dst "${CMAKE_CURRENT_BINARY_DIR}/../lang/lang.qrc" ABSOLUTE)
-get_filename_component(_lang_qrc_dst_dir "${CMAKE_CURRENT_BINARY_DIR}/../lang" ABSOLUTE)
-
-message(STATUS "copying ${_lang_qrc_src} -> ${_lang_qrc_dst}")
-file(COPY ${_lang_qrc_src} DESTINATION ${_lang_qrc_dst_dir})
-
-set_source_files_properties("${_lang_qrc_dst}" PROPERTIES GENERATED True)
-foreach(qm_file ${QBT_QM_FILES})
-    set_source_files_properties("${_lang_qrc_dst}" PROPERTIES OBJECT_DEPENDS ${qm_file})
-endforeach()
+if (WEBUI)
+    file(GLOB QBT_WEBUI_TS_FILES ../webui/www/translations/*.ts)
+    qbt_add_translations(qBittorrent QRC_FILE "../webui/www/translations/webui_translations.qrc" TS_FILES ${QBT_WEBUI_TS_FILES})
+endif()
 
 set(QBT_APP_RESOURCES
 ../icons/icons.qrc
 ../searchengine/searchengine.qrc
-"${_lang_qrc_dst}"
 )
 
 # With AUTORCC rcc is ran by cmake before language files are generated,

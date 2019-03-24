@@ -39,11 +39,6 @@
 #include <QTimer>
 #include <QTranslator>
 
-#ifndef QT_NO_OPENSSL
-#include <QSslCertificate>
-#include <QSslKey>
-#endif
-
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -52,8 +47,11 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
+#include "base/torrentfileguard.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/net.h"
+#include "base/utils/password.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()
@@ -64,6 +62,18 @@ void AppController::webapiVersionAction()
 void AppController::versionAction()
 {
     setResult(QBT_VERSION);
+}
+
+void AppController::buildInfoAction()
+{
+    const QJsonObject versions = {
+        {"qt", QT_VERSION_STR},
+        {"libtorrent", Utils::Misc::libtorrentVersionString()},
+        {"boost", Utils::Misc::boostVersionString()},
+        {"openssl", Utils::Misc::opensslVersionString()},
+        {"bitness", (QT_POINTER_SIZE * 8)}
+    };
+    setResult(versions);
 }
 
 void AppController::shutdownAction()
@@ -79,16 +89,27 @@ void AppController::shutdownAction()
 void AppController::preferencesAction()
 {
     const Preferences *const pref = Preferences::instance();
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
     QVariantMap data;
 
     // Downloads
-    // Hard Disk
+    // When adding a torrent
+    data["create_subfolder_enabled"] = session->isCreateTorrentSubfolder();
+    data["start_paused_enabled"] = session->isAddTorrentPaused();
+    data["auto_delete_mode"] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
+    data["preallocate_all"] = session->isPreallocationEnabled();
+    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    // Saving Management
+    data["auto_tmm_enabled"] = !session->isAutoTMMDisabledByDefault();
+    data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
+    data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
+    data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
     data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
     data["temp_path_enabled"] = session->isTempPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
-    data["preallocate_all"] = session->isPreallocationEnabled();
-    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
+    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
+    // Automatically add torrents from
     const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
     for (QVariantHash::const_iterator i = dirs.cbegin(), e = dirs.cend(); i != e; ++i) {
@@ -98,10 +119,9 @@ void AppController::preferencesAction()
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
     }
     data["scan_dirs"] = nativeDirs;
-    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
-    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
+    data["mail_notification_sender"] = pref->getMailNotificationSender();
     data["mail_notification_email"] = pref->getMailNotificationEmail();
     data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
     data["mail_notification_ssl_enabled"] = pref->getMailNotificationSMTPSSL();
@@ -124,7 +144,7 @@ void AppController::preferencesAction()
     data["max_uploads_per_torrent"] = session->maxUploadsPerTorrent();
 
     // Proxy Server
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     data["proxy_type"] = static_cast<int>(proxyConf.type);
     data["proxy_ip"] = proxyConf.ip;
@@ -147,11 +167,12 @@ void AppController::preferencesAction()
     // Global Rate Limits
     data["dl_limit"] = session->globalDownloadSpeedLimit();
     data["up_limit"] = session->globalUploadSpeedLimit();
+    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
+    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
     data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
     data["limit_utp_rate"] = session->isUTPRateLimited();
     data["limit_tcp_overhead"] = session->includeOverheadInLimits();
-    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
-    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
+    data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
 
@@ -168,6 +189,9 @@ void AppController::preferencesAction()
     data["max_active_torrents"] = session->maxActiveTorrents();
     data["max_active_uploads"] = session->maxActiveUploads();
     data["dont_count_slow_torrents"] = session->ignoreSlowTorrentsForQueueing();
+    data["slow_torrent_dl_rate_threshold"] = session->downloadRateForSlowTorrents();
+    data["slow_torrent_ul_rate_threshold"] = session->uploadRateForSlowTorrents();
+    data["slow_torrent_inactive_timer"] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
     data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
     data["max_ratio"] = session->globalMaxRatio();
@@ -187,20 +211,23 @@ void AppController::preferencesAction()
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
     data["use_https"] = pref->isWebUiHttpsEnabled();
-    data["ssl_key"] = QString::fromLatin1(pref->getWebUiHttpsKey());
-    data["ssl_cert"] = QString::fromLatin1(pref->getWebUiHttpsCertificate());
+    data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath();
+    data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath();
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
-    data["web_ui_password"] = pref->getWebUiPassword();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
     data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : copyAsConst(pref->getWebUiAuthSubnetWhitelist()))
+    for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
+    // Use alternative Web UI
+    data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
+    data["alternative_webui_path"] = pref->getWebUiRootFolder();
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
+    data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
     data["dyndns_service"] = pref->getDynDNSService();
@@ -224,19 +251,42 @@ void AppController::setPreferencesAction()
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
     const QVariantMap m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toMap();
+    QVariantMap::ConstIterator it;
 
     // Downloads
-    // Hard Disk
+    // When adding a torrent
+    if ((it = m.find(QLatin1String("create_subfolder_enabled"))) != m.constEnd())
+        session->setCreateTorrentSubfolder(it.value().toBool());
+    if ((it = m.find(QLatin1String("start_paused_enabled"))) != m.constEnd())
+        session->setAddTorrentPaused(it.value().toBool());
+    if ((it = m.find(QLatin1String("auto_delete_mode"))) != m.constEnd())
+        TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
+
+    if ((it = m.find(QLatin1String("preallocate_all"))) != m.constEnd())
+        session->setPreallocationEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("incomplete_files_ext"))) != m.constEnd())
+        session->setAppendExtensionEnabled(it.value().toBool());
+
+    // Saving Management
+    if ((it = m.find(QLatin1String("auto_tmm_enabled"))) != m.constEnd())
+        session->setAutoTMMDisabledByDefault(!it.value().toBool());
+    if ((it = m.find(QLatin1String("torrent_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("save_path_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
+    if ((it = m.find(QLatin1String("category_changed_tmm_enabled"))) != m.constEnd())
+        session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (m.contains("save_path"))
         session->setDefaultSavePath(m["save_path"].toString());
     if (m.contains("temp_path_enabled"))
         session->setTempPathEnabled(m["temp_path_enabled"].toBool());
     if (m.contains("temp_path"))
         session->setTempPath(m["temp_path"].toString());
-    if (m.contains("preallocate_all"))
-        session->setPreallocationEnabled(m["preallocate_all"].toBool());
-    if (m.contains("incomplete_files_ext"))
-        session->setAppendExtensionEnabled(m["incomplete_files_ext"].toBool());
+    if ((it = m.find(QLatin1String("export_dir"))) != m.constEnd())
+        session->setTorrentExportDirectory(it.value().toString());
+    if ((it = m.find(QLatin1String("export_dir_fin"))) != m.constEnd())
+        session->setFinishedTorrentExportDirectory(it.value().toString());
+    // Automatically add torrents from
     if (m.contains("scan_dirs")) {
         const QVariantMap nativeDirs = m["scan_dirs"].toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
@@ -272,7 +322,7 @@ void AppController::setPreferencesAction()
 
         // Update deleted folders
         for (auto i = oldScanDirs.cbegin(); i != oldScanDirs.cend(); ++i) {
-            QString folder = i.key();
+            const QString &folder = i.key();
             if (!scanDirs.contains(folder)) {
                 model->removePath(folder);
                 qDebug("Removed watched folder %s", qUtf8Printable(folder));
@@ -280,13 +330,11 @@ void AppController::setPreferencesAction()
         }
         pref->setScanDirs(scanDirs);
     }
-    if (m.contains("export_dir"))
-        session->setTorrentExportDirectory(m["export_dir"].toString());
-    if (m.contains("export_dir_fin"))
-        session->setFinishedTorrentExportDirectory(m["export_dir_fin"].toString());
     // Email notification upon download completion
     if (m.contains("mail_notification_enabled"))
         pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
+    if ((it = m.find(QLatin1String("mail_notification_sender"))) != m.constEnd())
+        pref->setMailNotificationSender(it.value().toString());
     if (m.contains("mail_notification_email"))
         pref->setMailNotificationEmail(m["mail_notification_email"].toString());
     if (m.contains("mail_notification_smtp"))
@@ -361,16 +409,18 @@ void AppController::setPreferencesAction()
         session->setGlobalDownloadSpeedLimit(m["dl_limit"].toInt());
     if (m.contains("up_limit"))
         session->setGlobalUploadSpeedLimit(m["up_limit"].toInt());
+    if (m.contains("alt_dl_limit"))
+        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
+    if (m.contains("alt_up_limit"))
+       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
     if (m.contains("bittorrent_protocol"))
         session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m["bittorrent_protocol"].toInt()));
     if (m.contains("limit_utp_rate"))
         session->setUTPRateLimited(m["limit_utp_rate"].toBool());
     if (m.contains("limit_tcp_overhead"))
         session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
-    if (m.contains("alt_dl_limit"))
-        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
-    if (m.contains("alt_up_limit"))
-       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
+    if ((it = m.find(QLatin1String("limit_lan_peers"))) != m.constEnd())
+        session->setIgnoreLimitsOnLAN(!it.value().toBool());
     // Scheduling
     if (m.contains("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
@@ -398,6 +448,12 @@ void AppController::setPreferencesAction()
         session->setMaxActiveUploads(m["max_active_uploads"].toInt());
     if (m.contains("dont_count_slow_torrents"))
         session->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
+    if ((it = m.find(QLatin1String("slow_torrent_dl_rate_threshold"))) != m.constEnd())
+        session->setDownloadRateForSlowTorrents(it.value().toInt());
+    if ((it = m.find(QLatin1String("slow_torrent_ul_rate_threshold"))) != m.constEnd())
+        session->setUploadRateForSlowTorrents(it.value().toInt());
+    if ((it = m.find(QLatin1String("slow_torrent_inactive_timer"))) != m.constEnd())
+        session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
     if (m.contains("max_ratio_enabled")) {
         if (m["max_ratio_enabled"].toBool())
@@ -422,10 +478,11 @@ void AppController::setPreferencesAction()
     if (m.contains("locale")) {
         QString locale = m["locale"].toString();
         if (pref->getLocale() != locale) {
-            QTranslator *translator = new QTranslator;
+            auto *translator = new QTranslator;
             if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale)) {
                 qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }else{
+            }
+            else {
                 qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
             }
             qApp->installTranslator(translator);
@@ -444,23 +501,15 @@ void AppController::setPreferencesAction()
         pref->setUPnPForWebUIPort(m["web_ui_upnp"].toBool());
     if (m.contains("use_https"))
         pref->setWebUiHttpsEnabled(m["use_https"].toBool());
-#ifndef QT_NO_OPENSSL
-    if (m.contains("ssl_key")) {
-        QByteArray raw_key = m["ssl_key"].toString().toLatin1();
-        if (!QSslKey(raw_key, QSsl::Rsa).isNull())
-            pref->setWebUiHttpsKey(raw_key);
-    }
-    if (m.contains("ssl_cert")) {
-        QByteArray raw_cert = m["ssl_cert"].toString().toLatin1();
-        if (!QSslCertificate(raw_cert).isNull())
-            pref->setWebUiHttpsCertificate(raw_cert);
-    }
-#endif
+    if ((it = m.find(QLatin1String("web_ui_https_cert_path"))) != m.constEnd())
+        pref->setWebUIHttpsCertificatePath(it.value().toString());
+    if ((it = m.find(QLatin1String("web_ui_https_key_path"))) != m.constEnd())
+        pref->setWebUIHttpsKeyPath(it.value().toString());
     // Authentication
     if (m.contains("web_ui_username"))
         pref->setWebUiUsername(m["web_ui_username"].toString());
     if (m.contains("web_ui_password"))
-        pref->setWebUiPassword(m["web_ui_password"].toString());
+        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(m["web_ui_password"].toByteArray()));
     if (m.contains("bypass_local_auth"))
         pref->setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
     if (m.contains("bypass_auth_subnet_whitelist_enabled"))
@@ -469,11 +518,18 @@ void AppController::setPreferencesAction()
         // recognize new lines and commas as delimiters
         pref->setWebUiAuthSubnetWhitelist(m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
+    // Use alternative Web UI
+    if ((it = m.find(QLatin1String("alternative_webui_enabled"))) != m.constEnd())
+        pref->setAltWebUiEnabled(it.value().toBool());
+    if ((it = m.find(QLatin1String("alternative_webui_path"))) != m.constEnd())
+        pref->setWebUiRootFolder(it.value().toString());
     // Security
     if (m.contains("web_ui_clickjacking_protection_enabled"))
         pref->setWebUiClickjackingProtectionEnabled(m["web_ui_clickjacking_protection_enabled"].toBool());
     if (m.contains("web_ui_csrf_protection_enabled"))
         pref->setWebUiCSRFProtectionEnabled(m["web_ui_csrf_protection_enabled"].toBool());
+    if (m.contains("web_ui_host_header_validation_enabled"))
+        pref->setWebUIHostHeaderValidationEnabled(m["web_ui_host_header_validation_enabled"].toBool());
     // Update my dynamic domain name
     if (m.contains("dyndns_enabled"))
         pref->setDynDNSEnabled(m["dyndns_enabled"].toBool());
@@ -489,7 +545,6 @@ void AppController::setPreferencesAction()
     // Save preferences
     pref->apply();
 
-    QVariantMap::ConstIterator it;
     if ((it = m.find(QLatin1String("rss_refresh_interval"))) != m.constEnd())
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
     if ((it = m.find(QLatin1String("rss_max_articles_per_feed"))) != m.constEnd())

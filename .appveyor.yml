@@ -45,8 +45,7 @@ before_build:
   - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
   # setup project
-  - COPY /Y "%CACHE_DIR%\winconf.pri" "%REPO_DIR%"
-  - COPY /Y "%CACHE_DIR%\winconf-msvc.pri" "%REPO_DIR%"
+  - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
   # workarounds
   - MKLINK /J "c:\qbt\base" "%CACHE_DIR%\base"
 

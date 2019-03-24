@@ -39,10 +39,9 @@
 #include <QMimeData>
 #include <QTableView>
 
-#include "base/net/downloadhandler.h"
+#include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "pluginsourcedialog.h"
@@ -110,7 +109,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 
     QStringList files;
     if (event->mimeData()->hasUrls()) {
-        foreach (const QUrl &url, event->mimeData()->urls()) {
+        for (const QUrl &url : asConst(event->mimeData()->urls())) {
             if (!url.isEmpty()) {
                 if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
                     files << url.toLocalFile();
@@ -125,7 +124,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 
     if (files.isEmpty()) return;
 
-    foreach (QString file, files) {
+    for (const QString &file : asConst(files)) {
         qDebug("dropped %s", qUtf8Printable(file));
         startAsyncOp();
         m_pluginManager->installPlugin(file);
@@ -135,8 +134,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 // Decode if we accept drag 'n drop or not
 void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
 {
-    QString mime;
-    foreach (mime, event->mimeData()->formats()) {
+    for (const QString &mime : asConst(event->mimeData()->formats())) {
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
@@ -188,7 +186,7 @@ void PluginSelectDialog::on_closeButton_clicked()
 void PluginSelectDialog::on_actionUninstall_triggered()
 {
     bool error = false;
-    foreach (QTreeWidgetItem *item, m_ui->pluginsTree->selectedItems()) {
+    for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -212,7 +210,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
 
 void PluginSelectDialog::enableSelection(bool enable)
 {
-    foreach (QTreeWidgetItem *item, m_ui->pluginsTree->selectedItems()) {
+    for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -229,7 +227,7 @@ void PluginSelectDialog::enableSelection(bool enable)
 }
 
 // Set the color of a row in data model
-void PluginSelectDialog::setRowColor(int row, QString color)
+void PluginSelectDialog::setRowColor(const int row, const QString &color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i) {
@@ -237,7 +235,7 @@ void PluginSelectDialog::setRowColor(int row, QString color)
     }
 }
 
-QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(QString url)
+QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
 {
     QList<QTreeWidgetItem*> res;
 
@@ -250,7 +248,7 @@ QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(QString url)
     return res;
 }
 
-QTreeWidgetItem *PluginSelectDialog::findItemWithID(QString id)
+QTreeWidgetItem *PluginSelectDialog::findItemWithID(const QString &id)
 {
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(i);
@@ -258,20 +256,20 @@ QTreeWidgetItem *PluginSelectDialog::findItemWithID(QString id)
             return item;
     }
 
-    return 0;
+    return nullptr;
 }
 
 void PluginSelectDialog::loadSupportedSearchPlugins()
 {
     // Some clean up first
     m_ui->pluginsTree->clear();
-    foreach (QString name, m_pluginManager->allPlugins())
+    for (const QString &name : asConst(m_pluginManager->allPlugins()))
         addNewPlugin(name);
 }
 
-void PluginSelectDialog::addNewPlugin(QString pluginName)
+void PluginSelectDialog::addNewPlugin(const QString &pluginName)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->pluginsTree);
+    auto *item = new QTreeWidgetItem(m_ui->pluginsTree);
     PluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
     item->setText(PLUGIN_NAME, plugin->fullName);
     item->setText(PLUGIN_URL, plugin->url);
@@ -292,11 +290,9 @@ void PluginSelectDialog::addNewPlugin(QString pluginName)
     else {
         // Icon is missing, we must download it
         using namespace Net;
-        DownloadHandler *handler = DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true));
-        connect(handler, static_cast<void (DownloadHandler::*)(const QString &, const QString &)>(&DownloadHandler::downloadFinished)
-                , this, &PluginSelectDialog::iconDownloaded);
-        connect(handler, &DownloadHandler::downloadFailed, this, &PluginSelectDialog::iconDownloadFailed);
+        DownloadManager::instance()->download(
+                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true)
+                    , this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version);
 }
@@ -327,7 +323,7 @@ void PluginSelectDialog::finishPluginUpdate()
 
 void PluginSelectDialog::on_installButton_clicked()
 {
-    PluginSourceDialog *dlg = new PluginSourceDialog(this);
+    auto *dlg = new PluginSourceDialog(this);
     connect(dlg, &PluginSourceDialog::askForLocalFile, this, &PluginSelectDialog::askForLocalPlugin);
     connect(dlg, &PluginSourceDialog::askForUrl, this, &PluginSelectDialog::askForPluginUrl);
 }
@@ -337,7 +333,7 @@ void PluginSelectDialog::askForPluginUrl()
     bool ok = false;
     QString clipTxt = qApp->clipboard()->text();
     QString defaultUrl = "http://";
-    if (Utils::Misc::isUrl(clipTxt) && clipTxt.endsWith(".py"))
+    if (Net::DownloadManager::hasSupportedScheme(clipTxt) && clipTxt.endsWith(".py"))
       defaultUrl = clipTxt;
     QString url = AutoExpandableDialog::getText(
                 this, tr("New search engine plugin URL"),
@@ -360,19 +356,24 @@ void PluginSelectDialog::askForPluginUrl()
 
 void PluginSelectDialog::askForLocalPlugin()
 {
-    QStringList pathsList = QFileDialog::getOpenFileNames(
-                0, tr("Select search plugins"), QDir::homePath(),
+    const QStringList pathsList = QFileDialog::getOpenFileNames(
+                nullptr, tr("Select search plugins"), QDir::homePath(),
                 tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
                 );
-    foreach (QString path, pathsList) {
+    for (const QString &path : pathsList) {
         startAsyncOp();
         m_pluginManager->installPlugin(path);
     }
 }
 
-void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
+void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
 {
-    filePath = Utils::Fs::fromNativePath(filePath);
+    if (result.status != Net::DownloadStatus::Success) {
+        qDebug("Could not download favicon: %s, reason: %s", qUtf8Printable(result.url), qUtf8Printable(result.errorString));
+        return;
+    }
+
+    const QString filePath = Utils::Fs::fromNativePath(result.filePath);
 
     // Icon downloaded
     QIcon icon(filePath);
@@ -380,7 +381,7 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (!invalid) {
-        foreach (QTreeWidgetItem *item, findItemsWithUrl(url)) {
+        for (QTreeWidgetItem *item : asConst(findItemsWithUrl(result.url))) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
@@ -388,7 +389,7 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
             QString iconPath = QString("%1/%2.%3")
                 .arg(SearchPluginManager::pluginsLocation()
                     , id
-                    , url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
+                    , result.url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
             if (QFile::copy(filePath, iconPath)) {
                 // This 2nd check is necessary. Some favicons (eg from piratebay)
                 // decode fine without an ext, but fail to do so when appending the ext
@@ -408,11 +409,6 @@ void PluginSelectDialog::iconDownloaded(const QString &url, QString filePath)
     }
     // Delete tmp file
     Utils::Fs::forceRemove(filePath);
-}
-
-void PluginSelectDialog::iconDownloadFailed(const QString &url, const QString &reason)
-{
-    qDebug("Could not download favicon: %s, reason: %s", qUtf8Printable(url), qUtf8Printable(reason));
 }
 
 void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)

@@ -4,66 +4,130 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="css/Window.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
+    <link rel="stylesheet" href="css/Window.css?v=${VERSION}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="scripts/download.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/download.js?v=${VERSION}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${VERSION}"></script>
 </head>
 
 <body>
     <iframe id="download_frame" name="download_frame" class="invisible" src="javascript:false;"></iframe>
-    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="downloadForm" style="text-align: center;" target="download_frame">
+    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="downloadForm" style="text-align: center;" target="download_frame" autocorrect="off" autocapitalize="none">
         <div style="text-align: center;">
             <br/>
             <h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR[CONTEXT=HttpServer]</h2>
             <textarea id="urls" rows="10" name="urls"></textarea>
             <p>QBT_TR(Only one link per line)QBT_TR[CONTEXT=HttpServer]</p>
-            <fieldset class="settings" style="border: 0; text-align: left;">
-                <div class="formRow" style="margin-top: 6px;">
-                    <label for="savepath" class="leftLabelLarge">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
-                    <input type="text" id="savepath" name="savepath" style="width: 16em;" />
-                </div>
-                <div class="formRow">
-                    <label for="cookie" class="leftLabelLarge">QBT_TR(Cookie:)QBT_TR[CONTEXT=HttpServer]</label>
-                    <input type="text" id="cookie" name="cookie" style="width: 16em;" />
-                </div>
-                <div class="formRow">
-                    <label for="rename" class="leftLabelLarge">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
-                    <input type="text" id="rename" name="rename" style="width: 16em;" />
-                </div>
-                <div class="formRow">
-                    <label for="category" class="leftLabelLarge">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                    <input type="text" id="category" name="category" style="width: 16em;" />
-                </div>
-                <div class="formRow">
-                    <label for="start_torrent" class="leftLabelLarge">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                    <input type="checkbox" id="start_torrent" checked="checked" />
-                    <input type="hidden" id="add_paused" name="paused" value="true" disabled="disabled" />
-                </div>
-                <div class="formRow">
-                    <label for="skip_checking" class="leftLabelLarge">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                    <input type="checkbox" id="skip_checking" name="skip_checking" value="true" />
-                </div>
-                <div class="formRow">
-                    <label for="root_folder" class="leftLabelLarge">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                    <input type="checkbox" id="root_folder" name="root_folder" value="true" checked="checked" />
-                </div>
-                <div class="formRow">
-                    <label for="sequentialDownload" class="leftLabelLarge">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
-                    <input type="checkbox" id="sequentialDownload" name="sequentialDownload" value="true" />
-                </div>
-                <div class="formRow">
-                    <label for="firstLastPiecePrio" class="leftLabelLarge">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
-                    <input type="checkbox" id="firstLastPiecePrio" name="firstLastPiecePrio" value="true" />
-                </div>
-                <div class="formRow">
-                    <label for="dlLimit" class="leftLabelLarge">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
-                    <input type="text" id="dlLimit" name="dlLimit" style="width: 16em;" placeholder="Bytes/s" />
-                </div>
-                <div class="formRow">
-                    <label for="upLimit" class="leftLabelLarge">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
-                    <input type="text" id="upLimit" name="upLimit" style="width: 16em;" placeholder="Bytes/s" />
-                </div>
+            <fieldset class="settings" style="border: 0; text-align: left; margin-top: 6px;">
+                <table style="margin: auto;">
+                    <tr>
+                        <td>
+                            <label for="autoTMM">QBT_TR(Torrent Management Mode:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <select id="autoTMM" name="autoTMM" onchange="changeTMM(this)">
+                                <option selected value="false">Manual</option>
+                                <option value="true">Automatic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="savepath">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="savepath" name="savepath" style="width: 16em;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="cookie">QBT_TR(Cookie:)QBT_TR[CONTEXT=HttpServer]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="cookie" name="cookie" style="width: 16em;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="rename">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="rename" name="rename" style="width: 16em;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="category">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <div class="select-watched-folder-editable">
+                                <select id="categorySelect" onchange="changeCategorySelect(this)">
+                                    <option selected value="\other"></option>
+                                </select>
+                                <input name="category" type="text" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="start_torrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="start_torrent" checked="checked" />
+                            <input type="hidden" id="add_paused" name="paused" value="false" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="skip_checking">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="skip_checking" name="skip_checking" value="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="root_folder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="root_folder" name="root_folder" value="true" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="sequentialDownload">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="sequentialDownload" name="sequentialDownload" value="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="firstLastPiecePrio">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="firstLastPiecePrio" name="firstLastPiecePrio" value="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="dlLimit">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="dlLimit" name="dlLimit" style="width: 16em;" placeholder="Bytes/s" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="upLimit">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="upLimit" name="upLimit" style="width: 16em;" placeholder="Bytes/s" />
+                        </td>
+                    </tr>
+                </table>
                 <div id="submitbutton" style="margin-top: 12px; text-align: center;">
                     <button type="submit" id="submitButton">QBT_TR(Download)QBT_TR[CONTEXT=downloadFromURL]</button>
                 </div>
@@ -71,6 +135,19 @@
         </div>
     </form>
     <script>
+        'use strict';
+
+        var encodedUrls = new URI().getData('urls');
+        if (encodedUrls) {
+            var urls = [];
+            encodedUrls.split('|').each(function(url) {
+                urls.push(decodeURIComponent(url));
+            });
+
+            if (urls.length)
+                $('urls').set('value', urls.join("\n"));
+        }
+
         var submitted = false;
 
         $('downloadForm').addEventListener("submit", function() {
@@ -84,7 +161,7 @@
         });
 
         $('start_torrent').addEventListener('change', function() {
-            $('add_paused').disabled = $('start_torrent').checked;
+            $('add_paused').value = !$('start_torrent').checked;
         });
     </script>
     <div id="download_spinner" class="mochaSpinner"></div>

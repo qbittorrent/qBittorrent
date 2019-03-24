@@ -31,6 +31,7 @@
 #include <QHostAddress>
 #include <QMessageBox>
 
+#include "base/global.h"
 #include "ui_peersadditiondialog.h"
 
 PeersAdditionDialog::PeersAdditionDialog(QWidget *parent)
@@ -61,7 +62,7 @@ void PeersAdditionDialog::validateInput()
                     QMessageBox::Ok);
         return;
     }
-    foreach (const QString &peer, m_ui->textEditPeers->toPlainText().trimmed().split('\n')) {
+    for (const QString &peer : asConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n'))) {
         BitTorrent::PeerAddress addr = parsePeer(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);

@@ -3,11 +3,14 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h  \
     $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/magneturi.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
+    $$PWD/bittorrent/private/libtorrentfwd.h \
+    $$PWD/bittorrent/private/portforwarderimpl.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/bittorrent/private/speedmonitor.h \
     $$PWD/bittorrent/private/statistics.h \
@@ -33,7 +36,6 @@ HEADERS += \
     $$PWD/indexrange.h \
     $$PWD/logger.h \
     $$PWD/net/dnsupdater.h \
-    $$PWD/net/downloadhandler.h \
     $$PWD/net/downloadmanager.h \
     $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
@@ -69,17 +71,20 @@ HEADERS += \
     $$PWD/utils/gzip.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/net.h \
+    $$PWD/utils/password.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
     $$PWD/utils/version.h
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
+    $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
+    $$PWD/bittorrent/private/portforwarderimpl.cpp \
     $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
     $$PWD/bittorrent/private/speedmonitor.cpp \
     $$PWD/bittorrent/private/statistics.cpp \
@@ -100,7 +105,6 @@ SOURCES += \
     $$PWD/iconprovider.cpp \
     $$PWD/logger.cpp \
     $$PWD/net/dnsupdater.cpp \
-    $$PWD/net/downloadhandler.cpp \
     $$PWD/net/downloadmanager.cpp \
     $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
@@ -133,5 +137,6 @@ SOURCES += \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/net.cpp \
+    $$PWD/utils/password.cpp \
     $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp

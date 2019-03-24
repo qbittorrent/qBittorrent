@@ -29,9 +29,6 @@
 #ifndef UTILS_MISC_H
 #define UTILS_MISC_H
 
-#include <ctime>
-#include <vector>
-
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
@@ -39,14 +36,10 @@
 #include <Windows.h>
 #endif
 
-#include <QDir>
-#include <QPoint>
-#include <QSize>
 #include <QString>
 #include <QStringList>
-#include <QUrl>
 
-#include "base/types.h"
+enum class ShutdownDialogAction;
 
 /*  Miscellaneous functions that can be useful */
 
@@ -71,19 +64,18 @@ namespace Utils
         };
 
         QString parseHtmlLinks(const QString &rawText);
-        bool isUrl(const QString &s);
 
         void shutdownComputer(const ShutdownDialogAction &action);
 
         QString osName();
         QString boostVersionString();
         QString libtorrentVersionString();
+        QString opensslVersionString();
 
-        QString unitString(SizeUnit unit);
+        QString unitString(SizeUnit unit, bool isSpeed = false);
 
         // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
         // value must be given in bytes
-        bool friendlyUnit(qint64 sizeInBytes, qreal &val, SizeUnit &unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
         int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
@@ -99,13 +91,6 @@ namespace Utils
         QStringList toStringList(const QList<bool> &l);
         QList<int> intListfromStringList(const QStringList &l);
         QList<bool> boolListfromStringList(const QStringList &l);
-
-#ifndef DISABLE_GUI
-        void openPath(const QString &absolutePath);
-        void openFolderSelect(const QString &absolutePath);
-
-        QPoint screenCenter(const QWidget *w);
-#endif
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();
@@ -125,7 +110,7 @@ namespace Utils
             return reinterpret_cast<T>(
                 ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
         }
-#endif
+#endif // Q_OS_WIN
     }
 }
 

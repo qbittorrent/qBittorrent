@@ -44,7 +44,7 @@ ScanFoldersDelegate::ScanFoldersDelegate(QObject *parent, QTreeView *foldersView
 
 void ScanFoldersDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    auto *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION)
         combobox->setCurrentIndex(4); // '4' is the index of the item after the separator in the QComboBox menu
@@ -54,9 +54,9 @@ void ScanFoldersDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
 QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
-    if (index.column() != ScanFoldersModel::DOWNLOAD) return 0;
+    if (index.column() != ScanFoldersModel::DOWNLOAD) return nullptr;
 
-    QComboBox *editor = new QComboBox(parent);
+    auto *editor = new QComboBox(parent);
 
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER));
@@ -75,7 +75,7 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
 void ScanFoldersDelegate::comboboxIndexChanged(int index)
 {
     if (index == ScanFoldersModel::CUSTOM_LOCATION) {
-        QWidget *w = static_cast<QWidget *>(sender());
+        auto *w = static_cast<QWidget *>(sender());
         if (w && w->parentWidget())
             w->parentWidget()->setFocus();
     }
@@ -83,7 +83,7 @@ void ScanFoldersDelegate::comboboxIndexChanged(int index)
 
 void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    auto *combobox = static_cast<QComboBox*>(editor);
     int value = combobox->currentIndex();
 
     switch (value) {
@@ -96,7 +96,7 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
         model->setData(
                     index,
                     QFileDialog::getExistingDirectory(
-                        0, tr("Select save location"),
+                        nullptr, tr("Select save location"),
                         index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
                             index.data().toString() :
                             BitTorrent::Session::instance()->defaultSavePath()),

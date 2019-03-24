@@ -36,25 +36,22 @@
 #include "ui_aboutdialog.h"
 #include "utils.h"
 
-class AboutDialog : public QDialog, private Ui::AboutDialog
+class AboutDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     AboutDialog(QWidget *parent)
         : QDialog(parent)
+        , m_ui(new Ui::AboutDialog)
     {
-        setupUi(this);
+        m_ui->setupUi(this);
         setAttribute(Qt::WA_DeleteOnClose);
 
         // Title
-#if defined(__x86_64__) || defined(_M_X64)
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
-#else
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
-#endif
+        m_ui->labelName->setText(QString("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
 
-        logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
+        m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
 
         // About
         QString aboutText = QString(
@@ -68,43 +65,52 @@ public:
             "</table>"
             "</p>")
             .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-                , tr("Copyright %1 2006-2018 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+                , tr("Copyright %1 2006-2019 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
                 , tr("Home Page:")
                 , tr("Forum:")
                 , tr("Bug Tracker:"));
-        labelAbout->setText(aboutText);
+        m_ui->labelAbout->setText(aboutText);
 
-        labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
+        m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
 
         // Thanks
         QFile thanksfile(":/thanks.html");
         if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
+            m_ui->textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
             thanksfile.close();
         }
 
         // Translation
         QFile translatorsfile(":/translators.html");
         if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
+            m_ui->textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
             translatorsfile.close();
         }
 
         // License
         QFile licensefile(":/gpl.html");
         if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
+            m_ui->textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
             licensefile.close();
         }
 
         // Libraries
-        labelQtVer->setText(QT_VERSION_STR);
-        labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
-        labelBoostVer->setText(Utils::Misc::boostVersionString());
+        m_ui->labelQtVer->setText(QT_VERSION_STR);
+        m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
+        m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
+        m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
 
         Utils::Gui::resize(this);
         show();
     }
+
+    ~AboutDialog()
+    {
+        delete m_ui;
+    }
+
+private:
+    Ui::AboutDialog *m_ui;
 };
 
 #endif // ABOUTDIALOG_H

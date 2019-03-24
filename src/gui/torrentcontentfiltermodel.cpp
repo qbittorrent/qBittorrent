@@ -66,10 +66,10 @@ int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
 
 QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 {
-    if (!child.isValid()) return QModelIndex();
+    if (!child.isValid()) return {};
 
     QModelIndex sourceParent = m_model->parent(mapToSource(child));
-    if (!sourceParent.isValid()) return QModelIndex();
+    if (!sourceParent.isValid()) return {};
 
     return mapFromSource(sourceParent);
 }
@@ -96,12 +96,11 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
                 const QString strR = right.data().toString();
                 return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
             }
-            else if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
+            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
                 return true;
             }
-            else {
-                return false;
-            }
+
+            return false;
         }
     default:
         return QSortFilterProxyModel::lessThan(left, right);
@@ -136,8 +135,7 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
         if (m_model->hasChildren(childIndex)) {
             if (hasFiltered(childIndex))
                 return true;
-            else
-                continue;
+            continue;
         }
         name = childIndex.data().toString();
         if (name.contains(filterRegExp()))

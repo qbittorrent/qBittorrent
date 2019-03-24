@@ -49,13 +49,18 @@ private slots:
     void resumeAction();
     void pauseAction();
     void recheckAction();
+    void reannounceAction();
     void renameAction();
     void setCategoryAction();
     void createCategoryAction();
+    void editCategoryAction();
     void removeCategoriesAction();
+    void categoriesAction();
     void addAction();
     void deleteAction();
     void addTrackersAction();
+    void editTrackerAction();
+    void removeTrackersAction();
     void filePrioAction();
     void uploadLimitAction();
     void downloadLimitAction();

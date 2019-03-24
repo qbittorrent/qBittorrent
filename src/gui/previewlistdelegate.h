@@ -36,7 +36,7 @@
 #include <QStyleOptionProgressBar>
 #include <QStyleOptionViewItem>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include <QProxyStyle>
 #endif
 
@@ -70,13 +70,13 @@ public:
                 QStyleOptionProgressBar newopt;
                 qreal progress = index.data().toDouble() * 100.;
                 newopt.rect = opt.rect;
-                newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+                newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
                 newopt.progress = static_cast<int>(progress);
                 newopt.maximum = 100;
                 newopt.minimum = 0;
                 newopt.state |= QStyle::State_Enabled;
                 newopt.textVisible = true;
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
                 QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
                 // XXX: To avoid having the progress text on the right of the bar

@@ -23,6 +23,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *e) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     QToolButton *m_searchButton;

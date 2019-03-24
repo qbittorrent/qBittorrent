@@ -29,8 +29,6 @@
 
 #include "profile.h"
 
-#include <QCoreApplication>
-
 #include "private/profile_p.h"
 
 Profile *Profile::m_instance = nullptr;
@@ -50,14 +48,14 @@ Profile::~Profile() = default;
 void Profile::initialize(const QString &rootProfilePath, const QString &configurationName,
                          bool convertPathsToProfileRelative)
 {
-    QScopedPointer<Private::Profile> profile(rootProfilePath.isEmpty()
+    std::unique_ptr<Private::Profile> profile(rootProfilePath.isEmpty()
                                              ? static_cast<Private::Profile *>(new Private::DefaultProfile(configurationName))
                                              : static_cast<Private::Profile *>(new Private::CustomProfile(rootProfilePath, configurationName)));
 
-    QScopedPointer<Private::PathConverter> converter(convertPathsToProfileRelative
+    std::unique_ptr<Private::PathConverter> converter(convertPathsToProfileRelative
                                                      ? static_cast<Private::PathConverter *>(new Private::Converter(profile->baseDirectory()))
                                                      : static_cast<Private::PathConverter *>(new Private::NoConvertConverter()));
-    m_instance = new Profile(profile.take(), converter.take());
+    m_instance = new Profile(profile.release(), converter.release());
 }
 
 const Profile &Profile::instance()
@@ -65,7 +63,7 @@ const Profile &Profile::instance()
     return *m_instance;
 }
 
-QString Profile::location(SpecialFolder folder) const
+QString Profile::location(const SpecialFolder folder) const
 {
     QString result;
     switch (folder) {
@@ -98,9 +96,9 @@ SettingsPtr Profile::applicationSettings(const QString &name) const
     return m_profileImpl->applicationSettings(name);
 }
 
-void Profile::ensureDirectoryExists(SpecialFolder folder)
+void Profile::ensureDirectoryExists(const SpecialFolder folder)
 {
-    QString locationPath = location(folder);
+    const QString locationPath = location(folder);
     if (!locationPath.isEmpty() && !QDir().mkpath(locationPath))
         qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath));
 }

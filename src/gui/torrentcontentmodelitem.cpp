@@ -38,7 +38,7 @@ TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *pare
     : m_parentItem(parent)
     , m_size(0)
     , m_remaining(0)
-    , m_priority(prio::NORMAL)
+    , m_priority(BitTorrent::DownloadPriority::Normal)
     , m_progress(0)
     , m_availability(-1.)
 {
@@ -74,9 +74,7 @@ qreal TorrentContentModelItem::progress() const
 {
     Q_ASSERT(!isRootItem());
 
-    if (m_size > 0) return m_progress;
-
-    return 1;
+    return (m_size > 0) ? m_progress : 1;
 }
 
 qulonglong TorrentContentModelItem::remaining() const
@@ -89,10 +87,10 @@ qreal TorrentContentModelItem::availability() const
 {
     Q_ASSERT(!isRootItem());
 
-    return m_size > 0 ? m_availability : 0.;
+    return (m_size > 0) ? m_availability : 0;
 }
 
-int TorrentContentModelItem::priority() const
+BitTorrent::DownloadPriority TorrentContentModelItem::priority() const
 {
     Q_ASSERT(!isRootItem());
     return m_priority;
@@ -112,7 +110,7 @@ QVariant TorrentContentModelItem::data(int column) const
     case COL_NAME:
         return m_name;
     case COL_PRIO:
-        return m_priority;
+        return static_cast<int>(m_priority);
     case COL_PROGRESS:
         return progress();
     case COL_SIZE:
@@ -123,7 +121,7 @@ QVariant TorrentContentModelItem::data(int column) const
         return availability();
     default:
         Q_ASSERT(false);
-        return QVariant();
+        return {};
     }
 }
 

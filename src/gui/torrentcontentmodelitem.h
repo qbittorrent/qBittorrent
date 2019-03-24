@@ -32,17 +32,7 @@
 #include <QList>
 #include <QVariant>
 
-namespace prio
-{
-    enum FilePriority
-    {
-        IGNORED=0,
-        NORMAL=1,
-        HIGH=6,
-        MAXIMUM=7,
-        MIXED=-1
-    };
-}
+#include "base/bittorrent/downloadpriority.h"
 
 class TorrentContentModelFolder;
 
@@ -66,7 +56,7 @@ public:
         FolderType
     };
 
-    TorrentContentModelItem(TorrentContentModelFolder *parent);
+    explicit TorrentContentModelItem(TorrentContentModelFolder *parent);
     virtual ~TorrentContentModelItem();
 
     bool isRootItem() const;
@@ -82,8 +72,8 @@ public:
 
     qreal availability() const;
 
-    int priority() const;
-    virtual void setPriority(int newPriority, bool updateParent = true) = 0;
+    BitTorrent::DownloadPriority priority() const;
+    virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
 
     int columnCount() const;
     QVariant data(int column) const;
@@ -97,7 +87,7 @@ protected:
     QString m_name;
     qulonglong m_size;
     qulonglong m_remaining;
-    int m_priority;
+    BitTorrent::DownloadPriority m_priority;
     qreal m_progress;
     qreal m_availability;
 };

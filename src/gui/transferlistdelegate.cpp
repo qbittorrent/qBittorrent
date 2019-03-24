@@ -33,7 +33,7 @@
 #include <QPainter>
 #include <QStyleOptionViewItem>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include <QProxyStyle>
 #endif
 
@@ -91,7 +91,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             qlonglong total = index.data(Qt::UserRole).toLongLong();
             if (hideValues && (!value && !total))
                 break;
-            QString display = QString::number(value) + " (" + QString::number(total) + ")";
+            QString display = QString::number(value) + " (" + QString::number(total) + ')';
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         }
@@ -104,7 +104,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_UPSPEED:
     case TransferListModel::TR_DLSPEED: {
-            const qulonglong speed = index.data().toULongLong();
+            const int speed = index.data().toInt();
             if (hideValues && !speed)
                 break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
@@ -160,13 +160,13 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionProgressBar newopt;
             qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + "%");
+            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
             newopt.progress = static_cast<int>(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;
             newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
             QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
             // XXX: To avoid having the progress text on the right of the bar
@@ -257,11 +257,6 @@ QString TransferListDelegate::getStatusString(const BitTorrent::TorrentState sta
     case BitTorrent::TorrentState::CheckingUploading:
         str = tr("Checking", "Torrent local data is being checked");
         break;
-#if LIBTORRENT_VERSION_NUM < 10100
-    case BitTorrent::TorrentState::QueuedForChecking:
-        str = tr("Queued for checking", "i.e. torrent is queued for hash checking");
-        break;
-#endif
     case BitTorrent::TorrentState::CheckingResumeData:
         str = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
         break;

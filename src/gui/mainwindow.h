@@ -62,6 +62,11 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class MainWindow;
@@ -84,7 +89,7 @@ public:
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
     int executionLogMsgTypes() const;
-    void setExecutionLogMsgTypes(const int value);
+    void setExecutionLogMsgTypes(int value);
 
     // Notifications properties
     bool isNotificationsEnabled() const;
@@ -99,19 +104,20 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBaloon(QString title, QString msg) const;
+    void showNotificationBaloon(const QString &title, const QString &msg) const;
 
 private slots:
+    void showFilterContextMenu(const QPoint &);
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
+    void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
+    void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
-    void defineUILockPassword();
+    bool defineUILockPassword();
     void clearUILockPassword();
     bool unlockUI();
-    void notifyOfUpdate(QString);
+    void notifyOfUpdate(const QString &);
     void showConnectionSettings();
     void minimizeWindow();
     // Keyboard shortcuts
@@ -123,7 +129,6 @@ private slots:
     void focusSearchFilter();
     void updateGUI();
     void loadPreferences(bool configureSession = true);
-    void addUnauthenticatedTracker(const QPair<BitTorrent::TorrentHandle *, QString> &tracker);
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
@@ -135,13 +140,11 @@ private slots:
     void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
-    void pythonDownloadSuccess(const QString &url, const QString &filePath);
-    void pythonDownloadFailure(const QString &url, const QString &error);
+    void pythonDownloadFinished(const Net::DownloadResult &result);
 #endif
     void addToolbarContextMenu();
     void manageCookies();
 
-    void trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent);
     void downloadFromURLList(const QStringList &urlList);
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
@@ -173,8 +176,8 @@ private slots:
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();
     void on_actionLock_triggered();
-    // Check for active torrents and set preventing from suspend state
-    void checkForActiveTorrents();
+    // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
+    void updatePowerManagementState();
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
@@ -200,7 +203,6 @@ private:
     QIcon getSystrayIcon() const;
 #endif
 #ifdef Q_OS_WIN
-    bool addPythonPathToEnv();
     void installPython();
 #endif
 
@@ -211,14 +213,12 @@ private:
     bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
-    void createTorrentTriggered(const QString &path = QString());
+    void createTorrentTriggered(const QString &path = {});
     void showStatusBar(bool show);
 
     Ui::MainWindow *m_ui;
 
     QFileSystemWatcher *m_executableWatcher;
-    // Bittorrent
-    QList<QPair<BitTorrent::TorrentHandle *, QString >> m_unauthenticatedTrackers; // Still needed?
     // GUI related
     bool m_posInitialized;
     QPointer<QTabWidget> m_tabs;

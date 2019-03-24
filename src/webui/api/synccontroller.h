@@ -28,7 +28,15 @@
 
 #pragma once
 
+#include <QElapsedTimer>
+
 #include "apicontroller.h"
+
+struct ISessionManager;
+
+class QThread;
+
+class FreeDiskSpaceChecker;
 
 class SyncController : public APIController
 {
@@ -38,7 +46,19 @@ class SyncController : public APIController
 public:
     using APIController::APIController;
 
+    explicit SyncController(ISessionManager *sessionManager, QObject *parent = nullptr);
+    ~SyncController() override;
+
 private slots:
     void maindataAction();
     void torrentPeersAction();
+    void freeDiskSpaceSizeUpdated(qint64 freeSpaceSize);
+
+private:
+    qint64 getFreeDiskSpace();
+
+    qint64 m_freeDiskSpace = 0;
+    FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
+    QThread *m_freeDiskSpaceThread = nullptr;
+    QElapsedTimer m_freeDiskSpaceElapsedTimer;
 };

@@ -81,7 +81,7 @@ QModelIndex TorrentContentTreeView::currentNameCell()
     QModelIndex current = currentIndex();
     if (!current.isValid()) {
         Q_ASSERT(false);
-        return QModelIndex();
+        return {};
     }
 
     return model()->index(current.row(), TorrentContentModelItem::COL_NAME, current.parent());

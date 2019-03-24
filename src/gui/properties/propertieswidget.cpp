@@ -30,14 +30,16 @@
 
 #include <QAction>
 #include <QDebug>
+#include <QDir>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QThread>
-#include <QTimer>
+#include <QUrl>
 
+#include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
@@ -48,7 +50,6 @@
 #include "downloadedpiecesbar.h"
 #include "guiiconprovider.h"
 #include "lineedit.h"
-#include "mainwindow.h"
 #include "peerlistwidget.h"
 #include "pieceavailabilitybar.h"
 #include "proplistdelegate.h"
@@ -58,7 +59,6 @@
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 #include "trackerlistwidget.h"
-#include "transferlistwidget.h"
 #include "utils.h"
 
 #include "ui_propertieswidget.h"
@@ -67,11 +67,9 @@
 #include "macutilities.h"
 #endif
 
-PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, TransferListWidget *transferList)
+PropertiesWidget::PropertiesWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::PropertiesWidget())
-    , m_transferList(transferList)
-    , m_mainWindow(mainWindow)
     , m_torrent(nullptr)
 {
     m_ui->setupUi(this);
@@ -102,7 +100,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openDoubleClickedFile);
     connect(m_propListModel, &TorrentContentFilterModel::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
     connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
-    connect(transferList, &TransferListWidget::currentTorrentChanged, this, &PropertiesWidget::loadTorrentInfos);
     connect(m_propListDelegate, &PropListDelegate::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
@@ -140,9 +137,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     // Peers list
     m_peerList = new PeerListWidget(this);
     m_ui->vBoxLayoutPeerPage->addWidget(m_peerList);
-    // Speed widget
-    m_speedWidget = new SpeedWidget(this);
-    m_ui->speedLayout->addWidget(m_speedWidget);
     // Tab bar
     m_tabBar = new PropTabBar();
     m_tabBar->setContentsMargins(0, 5, 0, 0);
@@ -151,10 +145,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_tabBar, &PropTabBar::tabChanged, this, &PropertiesWidget::saveSettings);
     connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::setVisibility);
     connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::saveSettings);
-    // Dynamic data refresher
-    m_refreshTimer = new QTimer(this);
-    connect(m_refreshTimer, &QTimer::timeout, this, &PropertiesWidget::loadDynamicData);
-    m_refreshTimer->start(3000); // 3sec
+
     m_editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_editHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::renameSelectedFile);
     m_editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
@@ -164,12 +155,14 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow *mainWindow, Tran
     connect(m_deleteHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
     m_openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(m_openHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
+
+    configure();
+    connect(Preferences::instance(), &Preferences::changed, this, &PropertiesWidget::configure);
 }
 
 PropertiesWidget::~PropertiesWidget()
 {
     qDebug() << Q_FUNC_INFO << "ENTER";
-    delete m_refreshTimer;
     delete m_trackerList;
     delete m_peerList;
     delete m_speedWidget;
@@ -207,7 +200,7 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
 void PropertiesWidget::setVisibility(bool visible)
 {
     if (!visible && (m_state == VISIBLE)) {
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         m_ui->stackedProperties->setVisible(false);
         m_slideSizes = hSplitter->sizes();
         hSplitter->handle(1)->setVisible(false);
@@ -220,7 +213,7 @@ void PropertiesWidget::setVisibility(bool visible)
 
     if (visible && (m_state == REDUCED)) {
         m_ui->stackedProperties->setVisible(true);
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->handle(1)->setDisabled(false);
         hSplitter->handle(1)->setVisible(true);
         hSplitter->setSizes(m_slideSizes);
@@ -288,11 +281,6 @@ QTreeView *PropertiesWidget::getFilesList() const
     return m_ui->filesList;
 }
 
-SpeedWidget *PropertiesWidget::getSpeedWidget() const
-{
-    return m_speedWidget;
-}
-
 void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
 {
     if (torrent == m_torrent)
@@ -358,7 +346,7 @@ void PropertiesWidget::readSettings()
     if (sizesStr.size() == 2) {
         m_slideSizes << sizesStr.first().toInt();
         m_slideSizes << sizesStr.last().toInt();
-        QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+        auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         hSplitter->setSizes(m_slideSizes);
     }
     const int currentTab = pref->getPropCurTab();
@@ -374,7 +362,7 @@ void PropertiesWidget::saveSettings()
     Preferences *const pref = Preferences::instance();
     pref->setPropVisible(m_state == VISIBLE);
     // Splitter sizes
-    QSplitter *hSplitter = static_cast<QSplitter *>(parentWidget());
+    auto *hSplitter = static_cast<QSplitter *>(parentWidget());
     QList<int> sizes;
     if (m_state == VISIBLE)
         sizes = hSplitter->sizes();
@@ -398,7 +386,7 @@ void PropertiesWidget::reloadPreferences()
 void PropertiesWidget::loadDynamicData()
 {
     // Refresh only if the torrent handle is valid and visible
-    if (!m_torrent || (m_mainWindow->currentTabWidget() != m_transferList) || (m_state != VISIBLE)) return;
+    if (!m_torrent || (m_state != VISIBLE)) return;
 
     // Transfer infos
     switch (m_ui->stackedProperties->currentIndex()) {
@@ -445,13 +433,15 @@ void PropertiesWidget::loadDynamicData()
                 .arg(QString::number(m_torrent->leechsCount())
                     , QString::number(m_torrent->totalLeechersCount())));
 
+            const int dlDuration = m_torrent->activeTime() - m_torrent->finishedTime();
+            const QString dlAvg = Utils::Misc::friendlyUnit((m_torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration)), true);
             m_ui->labelDlSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true)
-                    , Utils::Misc::friendlyUnit(m_torrent->totalDownload() / (1 + m_torrent->activeTime() - m_torrent->finishedTime()), true)));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true), dlAvg));
 
+            const int ulDuration = m_torrent->activeTime();
+            const QString ulAvg = Utils::Misc::friendlyUnit((m_torrent->totalUpload() / ((ulDuration == 0) ? -1 : ulDuration)), true);
             m_ui->labelUpSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true)
-                    , Utils::Misc::friendlyUnit(m_torrent->totalUpload() / (1 + m_torrent->activeTime()), true)));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true), ulAvg));
 
             m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
 
@@ -474,7 +464,7 @@ void PropertiesWidget::loadDynamicData()
 
                 // Progress
                 qreal progress = m_torrent->progress() * 100.;
-                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + "%");
+                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + '%');
                 m_downloadedPieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
             }
             else {
@@ -514,7 +504,7 @@ void PropertiesWidget::loadUrlSeeds()
     qDebug("Loading URL seeds");
     const QList<QUrl> hcSeeds = m_torrent->urlSeeds();
     // Add url seeds
-    foreach (const QUrl &hcSeed, hcSeeds) {
+    for (const QUrl &hcSeed : hcSeeds) {
         qDebug("Loading URL seed: %s", qUtf8Printable(hcSeed.toString()));
         new QListWidgetItem(hcSeed.toString(), m_ui->listWebSeeds);
     }
@@ -539,7 +529,7 @@ void PropertiesWidget::openFile(const QModelIndex &index)
     qDebug("Trying to open file at %s", qUtf8Printable(filePath));
     // Flush data
     m_torrent->flushCache();
-    Utils::Misc::openPath(filePath);
+    Utils::Gui::openPath(filePath);
 }
 
 void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolder)
@@ -575,9 +565,9 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
     MacUtils::openFiles(QSet<QString>{absolutePath});
 #else
     if (containingFolder)
-        Utils::Misc::openFolderSelect(absolutePath);
+        Utils::Gui::openFolderSelect(absolutePath);
     else
-        Utils::Misc::openPath(absolutePath);
+        Utils::Gui::openPath(absolutePath);
 #endif
 }
 
@@ -585,18 +575,18 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
 {
     if (!m_torrent) return;
 
-    QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
+    const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedRows.empty()) return;
 
-    QMenu myFilesLlistMenu;
+    QMenu myFilesListMenu;
     QAction *actOpen = nullptr;
     QAction *actOpenContainingFolder = nullptr;
     QAction *actRename = nullptr;
     if (selectedRows.size() == 1) {
-        actOpen = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
-        actOpenContainingFolder = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
-        myFilesLlistMenu.addSeparator();
+        actOpen = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
+        actOpenContainingFolder = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
+        actRename = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        myFilesListMenu.addSeparator();
     }
     QMenu subMenu;
     if (!m_torrent->isSeed()) {
@@ -605,15 +595,22 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         subMenu.addAction(m_ui->actionNormal);
         subMenu.addAction(m_ui->actionHigh);
         subMenu.addAction(m_ui->actionMaximum);
-        myFilesLlistMenu.addMenu(&subMenu);
+        myFilesListMenu.addMenu(&subMenu);
     }
-    // Call menu
-    const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
-    // The selected torrent might have disappeared during exec()
-    // from the current view thus leaving invalid indices.
-    const QModelIndex index = *(selectedRows.begin());
-    if (!index.isValid() || !act) return;
 
+    // The selected torrent might have disappeared during exec()
+    // so we just close menu when an appropriate model is reset
+    connect(m_ui->filesList->model(), &QAbstractItemModel::modelAboutToBeReset
+            , &myFilesListMenu, [&myFilesListMenu]()
+    {
+        myFilesListMenu.setActiveAction(nullptr);
+        myFilesListMenu.close();
+    });
+    // Call menu
+    const QAction *act = myFilesListMenu.exec(QCursor::pos());
+    if (!act) return;
+
+    const QModelIndex index = selectedRows[0];
     if (act == actOpen) {
         openDoubleClickedFile(index);
     }
@@ -624,18 +621,18 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         renameSelectedFile();
     }
     else {
-        int prio = prio::NORMAL;
+        BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
         if (act == m_ui->actionHigh)
-            prio = prio::HIGH;
+            prio = BitTorrent::DownloadPriority::High;
         else if (act == m_ui->actionMaximum)
-            prio = prio::MAXIMUM;
+            prio = BitTorrent::DownloadPriority::Maximum;
         else if (act == m_ui->actionNotDownloaded)
-            prio = prio::IGNORED;
+            prio = BitTorrent::DownloadPriority::Ignored;
 
         qDebug("Setting files priority");
-        foreach (QModelIndex index, selectedRows) {
-            qDebug("Setting priority(%d) for file at row %d", prio, index.row());
-            m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), prio);
+        for (const QModelIndex &index : selectedRows) {
+            qDebug("Setting priority(%d) for file at row %d", static_cast<int>(prio), index.row());
+            m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
         }
         // Save changes
         filteredFilesChanged();
@@ -685,8 +682,9 @@ void PropertiesWidget::renameSelectedFile()
 
     // Ask for new name
     bool ok = false;
-    QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal, modelIndex.data().toString(), &ok)
-                      .trimmed();
+    const bool isFile = (m_propListModel->itemType(modelIndex) == TorrentContentModelItem::FileType);
+    QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
+            , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
 
     if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
@@ -696,8 +694,7 @@ void PropertiesWidget::renameSelectedFile()
         return;
     }
 
-    if (m_propListModel->itemType(modelIndex) == TorrentContentModelItem::FileType) {
-        // renaming a file
+    if (isFile) {
         const int fileIndex = m_propListModel->getFileIndex(modelIndex);
 
         if (newName.endsWith(QB_EXT))
@@ -751,7 +748,7 @@ void PropertiesWidget::renameSelectedFile()
         if (!newPath.endsWith('/')) newPath += '/';
         // Check for overwriting
         for (int i = 0; i < m_torrent->filesCount(); ++i) {
-            const QString &currentName = m_torrent->filePath(i);
+            const QString currentName = m_torrent->filePath(i);
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
             if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
 #else
@@ -800,6 +797,29 @@ void PropertiesWidget::openSelectedFile()
     openDoubleClickedFile(selectedIndexes.first());
 }
 
+void PropertiesWidget::configure()
+{
+    // Speed widget
+    if (Preferences::instance()->isSpeedWidgetEnabled()) {
+        if (!m_speedWidget || !qobject_cast<SpeedWidget *>(m_speedWidget)) {
+            m_ui->speedLayout->removeWidget(m_speedWidget);
+            delete m_speedWidget;
+            m_speedWidget = new SpeedWidget {this};
+            m_ui->speedLayout->addWidget(m_speedWidget);
+        }
+    }
+    else {
+        if (!m_speedWidget || !qobject_cast<QLabel *>(m_speedWidget)) {
+            m_ui->speedLayout->removeWidget(m_speedWidget);
+            delete m_speedWidget;
+            auto *label = new QLabel(tr("<center><b>Speed graphs are disabled</b><p>You may change this setting in Advanced Options </center>"), this);
+            label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            m_speedWidget = label;
+            m_ui->speedLayout->addWidget(m_speedWidget);
+        }
+    }
+}
+
 void PropertiesWidget::askWebSeed()
 {
     bool ok;
@@ -827,7 +847,7 @@ void PropertiesWidget::deleteSelectedUrlSeeds()
     if (selectedItems.isEmpty()) return;
 
     QList<QUrl> urlSeeds;
-    foreach (const QListWidgetItem *item, selectedItems)
+    for (const QListWidgetItem *item : selectedItems)
         urlSeeds << item->text();
 
     m_torrent->removeUrlSeeds(urlSeeds);
@@ -841,7 +861,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const
     if (selectedItems.isEmpty()) return;
 
     QStringList urlsToCopy;
-    foreach (QListWidgetItem *item, selectedItems)
+    for (const QListWidgetItem *item : selectedItems)
         urlsToCopy << item->text();
 
     QApplication::clipboard()->setText(urlsToCopy.join('\n'));
@@ -874,11 +894,7 @@ void PropertiesWidget::editWebSeed()
 
 void PropertiesWidget::applyPriorities()
 {
-    qDebug("Saving files priorities");
-    const QVector<int> priorities = m_propListModel->model()->getFilePriorities();
-    // Prioritize the files
-    qDebug("prioritize files: %d", priorities[0]);
-    m_torrent->prioritizeFiles(priorities);
+    m_torrent->prioritizeFiles(m_propListModel->model()->getFilePriorities());
 }
 
 void PropertiesWidget::filteredFilesChanged()

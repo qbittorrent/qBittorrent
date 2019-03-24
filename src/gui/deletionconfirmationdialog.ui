@@ -66,9 +66,6 @@
        <property name="toolTip">
         <string>Remember choice</string>
        </property>
-       <property name="text">
-        <string notr="true"/>
-       </property>
        <property name="iconSize">
         <size>
          <width>24</width>

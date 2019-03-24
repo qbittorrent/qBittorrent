@@ -55,7 +55,7 @@ public:
     QString lookup(const QHostAddress &hostAddr) const;
 
 private:
-    GeoIPDatabase(quint32 size);
+    explicit GeoIPDatabase(quint32 size);
 
     bool parseMetadata(const QVariantHash &metadata, QString &error);
     bool loadDB(QString &error) const;

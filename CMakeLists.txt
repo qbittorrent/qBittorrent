@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
-message(WARNING "No official support for cmake build system. If it is broken, please submit patches!")
+message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FunctionReadVersion)
@@ -31,7 +31,9 @@ include(FeatureSummary)
 
 # version requirements
 set(requiredBoostVersion 1.35)
-set(requiredQtVersion 5.5.1)
+set(requiredQtVersion 5.9.0)
+set(requiredOpensslVersion 1.0)
+set(requiredLibtorrentVersion 1.1.10)
 
 if(WIN32)
     include(winconf)

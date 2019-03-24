@@ -4,24 +4,33 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/misc.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${VERSION}"></script>
     <script>
+        'use strict';
+
         var UseGlobalLimit = -2;
         var NoLimit = -1;
 
-        var keyboardEvents = new Keyboard({
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function(event) {
+                'Enter': function(event) {
                     $('save').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
                     event.preventDefault();
                 }
             }
-        });
-        keyboardEvents.activate();
+        }).activate();
 
         window.addEvent('domready', function() {
             var hashesList = new URI().getData('hashes').split('|');
@@ -150,12 +159,12 @@
 
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setRatio" class="leftLabelLarge">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" />
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setMinutes" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setMinutes" class="leftLabelLarge">QBT_TR(minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setMinutes">QBT_TR(minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="minutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" />
         </div>
         <div style="text-align: center; padding-top: 10px;">

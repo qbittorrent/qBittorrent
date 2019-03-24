@@ -28,11 +28,9 @@
 
 #include "authcontroller.h"
 
-#include <QCryptographicHash>
-
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "base/utils/string.h"
+#include "base/utils/password.h"
 #include "apierror.h"
 #include "isessionmanager.h"
 
@@ -58,17 +56,14 @@ void AuthController::loginAction()
                        , tr("Your IP address has been banned after too many failed authentication attempts."));
     }
 
-    const QString username {Preferences::instance()->getWebUiUsername()};
-    const QString password {Preferences::instance()->getWebUiPassword()};
+    const Preferences *pref = Preferences::instance();
 
-    QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(passwordFromWeb.toLocal8Bit());
-    const QString passwordFromWebHashed = md5.result().toHex();
+    const QString username {pref->getWebUiUsername()};
+    const QByteArray secret {pref->getWebUIPassword()};
+    const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
+    const bool passwordEqual = Utils::Password::PBKDF2::verify(secret, passwordFromWeb);
 
-    const bool equalUser = Utils::String::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
-    const bool equalPass = Utils::String::slowEquals(passwordFromWebHashed.toUtf8(), password.toUtf8());
-
-    if (equalUser && equalPass) {
+    if (usernameEqual && passwordEqual) {
         m_clientFailedLogins.remove(clientAddr);
 
         sessionManager()->sessionStart();
