@@ -5591,8 +5591,10 @@ $as_echo "yes" >&6; }
 fi
 
 # Check if already in >= C++14 mode because of the flags returned by one of the above packages
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler is using C++14 or later mode" >&5
-$as_echo_n "checking if compiler is using C++14 or later mode... " >&6; }
+TMP_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS=""
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler defaults to C++14 or later mode" >&5
+$as_echo_n "checking if compiler defaults to C++14 or later mode... " >&6; }
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -5626,8 +5628,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 if test "x$QBT_CXX14_FOUND" = "xno"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler supports C++14" >&5
 $as_echo_n "checking if compiler supports C++14... " >&6; }
-       TMP_CXXFLAGS="$CXXFLAGS"
-       CXXFLAGS="$CXXFLAGS -std=c++14"
+       CXXFLAGS="-std=c++14"
        cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -5672,15 +5673,9 @@ _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++14"
-                                            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: C++14 mode is now force enabled.
-Make sure you use the same C++ mode for qBittorrent and its dependencies.
-To explicitly set qBittorrent to a later mode use CXXFLAGS.
-Example: \`CXXFLAGS=\"\$CXXFLAGS -std=c++14\" ./configure\`" >&5
-$as_echo "$as_me: WARNING: C++14 mode is now force enabled.
-Make sure you use the same C++ mode for qBittorrent and its dependencies.
-To explicitly set qBittorrent to a later mode use CXXFLAGS.
-Example: \`CXXFLAGS=\"\$CXXFLAGS -std=c++14\" ./configure\`" >&2;}
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++14"
+                                            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&5
+$as_echo "$as_me: WARNING: C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&2;}
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
@@ -5695,6 +5690,7 @@ fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 fi
+CXXFLAGS="$TMP_CXXFLAGS"
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.

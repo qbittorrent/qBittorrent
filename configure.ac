@@ -210,7 +210,9 @@ PKG_CHECK_MODULES(zlib,
                  LIBS="$zlib_LIBS $LIBS"])
 
 # Check if already in >= C++14 mode because of the flags returned by one of the above packages
-AC_MSG_CHECKING([if compiler is using C++14 or later mode])
+TMP_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS=""
+AC_MSG_CHECKING([if compiler defaults to C++14 or later mode])
 AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                   [AC_MSG_RESULT([yes])
                    QBT_CXX14_FOUND="yes"],
@@ -221,8 +223,7 @@ AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
 # and if yes, enable it leaving a warning to the user
 AS_IF([test "x$QBT_CXX14_FOUND" = "xno"],
       [AC_MSG_CHECKING([if compiler supports C++14])
-       TMP_CXXFLAGS="$CXXFLAGS"
-       CXXFLAGS="$CXXFLAGS -std=c++14"
+       CXXFLAGS="-std=c++14"
        AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                         [AC_MSG_RESULT([yes])
                          AC_MSG_CHECKING([if C++14 is disabled by the set compiler flags])
@@ -230,16 +231,14 @@ AS_IF([test "x$QBT_CXX14_FOUND" = "xno"],
                          CXXFLAGS="-std=c++14 $TMP_CXXFLAGS"
                          AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
                                            [AC_MSG_RESULT([no])
-                                            CXXFLAGS="$TMP_CXXFLAGS -std=c++14"
-                                            AC_MSG_WARN([C++14 mode is now force enabled.
-Make sure you use the same C++ mode for qBittorrent and its dependencies.
-To explicitly set qBittorrent to a later mode use CXXFLAGS.
-Example: `CXXFLAGS="\$CXXFLAGS -std=c++14" ./configure`])],
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++14"
+                                            AC_MSG_WARN([C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors.])],
                                            [AC_MSG_RESULT([yes])
                                             AC_MSG_ERROR([The compiler supports C++14 but the user or a dependency has explicitly enabled a lower mode.])])],
                         [AC_MSG_RESULT([no])
                          AC_MSG_ERROR([A compiler supporting C++14 is required.])])
       ])
+CXXFLAGS="$TMP_CXXFLAGS"
 
 # These are required because autoconf doesn't expand these **particular**
 # vars automatically. And qmake cannot autoexpand them.
