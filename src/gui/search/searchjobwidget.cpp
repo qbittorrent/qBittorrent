@@ -33,6 +33,7 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QHeaderView>
+#include <QKeyEvent>
 #include <QMenu>
 #include <QPalette>
 #include <QStandardItemModel>
@@ -159,9 +160,6 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     connect(searchHandler, &SearchHandler::searchFinished, this, &SearchJobWidget::searchFinished);
     connect(searchHandler, &SearchHandler::searchFailed, this, &SearchJobWidget::searchFailed);
     connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
-
-    QShortcut *enterHotkey = new QShortcut(Qt::Key_Return, m_ui->resultsBrowser, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(enterHotkey, &QShortcut::activated, this, &SearchJobWidget::downloadTorrents);
 
     setStatusTip(statusText(m_status));
 }
@@ -478,4 +476,16 @@ CachedSettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFil
 {
     static CachedSettingValue<NameFilteringMode> setting("Search/FilteringMode", NameFilteringMode::OnlyNames);
     return setting;
+}
+
+void SearchJobWidget::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_Enter:
+    case Qt::Key_Return:
+        downloadTorrents();
+        break;
+    default:
+        QWidget::keyPressEvent(event);
+    }
 }
