@@ -91,6 +91,9 @@ signals:
     void resultsCountUpdated();
     void statusChanged();
 
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 private:
     void loadSettings();
     void saveSettings() const;
