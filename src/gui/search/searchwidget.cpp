@@ -42,7 +42,6 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QShortcut>
-#include <QSignalMapper>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTextStream>
@@ -83,7 +82,7 @@ namespace
         case SearchJobWidget::Status::NoResults:
             return QLatin1String("task-attention");
         default:
-            return QString();
+            return {};
         }
     }
 }
@@ -91,7 +90,6 @@ namespace
 SearchWidget::SearchWidget(MainWindow *mainWindow)
     : QWidget(mainWindow)
     , m_ui(new Ui::SearchWidget())
-    , m_tabStatusChangedMapper(new QSignalMapper(this))
     , m_mainWindow(mainWindow)
     , m_isNewQueryString(false)
 {
@@ -131,10 +129,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
 
-    connect(m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped)
-            , this, &SearchWidget::tabStatusChanged);
-
-    auto *searchManager = SearchPluginManager::instance();
+    const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
     {
         fillPluginComboBox();
@@ -280,7 +275,7 @@ void SearchWidget::on_pluginsButton_clicked()
     new PluginSelectDialog(SearchPluginManager::instance(), this);
 }
 
-void SearchWidget::searchTextEdited(QString)
+void SearchWidget::searchTextEdited(const QString &)
 {
     // Enable search button
     m_ui->searchButton->setText(tr("Search"));
@@ -342,9 +337,7 @@ void SearchWidget::on_searchButton_clicked()
     m_ui->tabWidget->setCurrentWidget(newTab);
 
     connect(newTab, &SearchJobWidget::resultsCountUpdated, this, &SearchWidget::resultsCountUpdated);
-    connect(newTab, &SearchJobWidget::statusChanged
-            , m_tabStatusChangedMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-    m_tabStatusChangedMapper->setMapping(newTab, newTab);
+    connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });
 
     m_ui->searchButton->setText(tr("Stop"));
     m_activeSearchTab = newTab;

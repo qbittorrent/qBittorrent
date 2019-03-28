@@ -7,6 +7,7 @@
         <file>private/css/Core.css</file>
         <file>private/css/dynamicTable.css</file>
         <file>private/css/Layout.css</file>
+        <file>private/css/noscript.css</file>
         <file>private/css/style.css</file>
         <file>private/css/Tabs.css</file>
         <file>private/css/Window.css</file>
@@ -48,7 +49,8 @@
         <file>private/upload.html</file>
         <file>private/uploadlimit.html</file>
         <file>public/css/login.css</file>
+        <file>public/css/noscript.css</file>
         <file>public/login.html</file>
-        <file>public/scripts/lib/mootools-1.2-core-yc.js</file>
+        <file>public/scripts/login.js</file>
     </qresource>
 </RCC>

@@ -62,6 +62,11 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class MainWindow;
@@ -84,7 +89,7 @@ public:
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
     int executionLogMsgTypes() const;
-    void setExecutionLogMsgTypes(const int value);
+    void setExecutionLogMsgTypes(int value);
 
     // Notifications properties
     bool isNotificationsEnabled() const;
@@ -99,20 +104,20 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBaloon(QString title, QString msg) const;
+    void showNotificationBaloon(const QString &title, const QString &msg) const;
 
 private slots:
     void showFilterContextMenu(const QPoint &);
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const;
-    void handleDownloadFromUrlFailure(QString, QString) const;
+    void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
+    void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
     bool unlockUI();
-    void notifyOfUpdate(QString);
+    void notifyOfUpdate(const QString &);
     void showConnectionSettings();
     void minimizeWindow();
     // Keyboard shortcuts
@@ -135,8 +140,7 @@ private slots:
     void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
-    void pythonDownloadSuccess(const QString &url, const QString &filePath);
-    void pythonDownloadFailure(const QString &url, const QString &error);
+    void pythonDownloadFinished(const Net::DownloadResult &result);
 #endif
     void addToolbarContextMenu();
     void manageCookies();
@@ -209,7 +213,7 @@ private:
     bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
-    void createTorrentTriggered(const QString &path = QString());
+    void createTorrentTriggered(const QString &path = {});
     void showStatusBar(bool show);
 
     Ui::MainWindow *m_ui;

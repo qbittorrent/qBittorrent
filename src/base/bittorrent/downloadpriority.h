@@ -30,14 +30,15 @@
 
 namespace BitTorrent
 {
-    enum class FilePriority : int
+    enum class DownloadPriority : int
     {
         Ignored = 0,
         Normal = 1,
         High = 6,
         Maximum = 7,
+
         Mixed = -1
     };
 
-    bool isValidFilePriority(BitTorrent::FilePriority priority);
+    bool isValidDownloadPriority(DownloadPriority priority);
 }

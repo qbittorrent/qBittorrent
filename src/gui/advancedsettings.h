@@ -56,10 +56,10 @@ private slots:
 
 private:
     void loadAdvancedSettings();
-    template <typename T> void addRow(int row, const QString &rowText, T *widget);
+    template <typename T> void addRow(int row, const QString &text, T *widget);
 
     QLabel labelQbtLink, labelLibtorrentLink;
-    QSpinBox spinBoxAsyncIOThreads, spinBoxCheckingMemUsage, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh, spinBoxMaxHalfOpen,
+    QSpinBox spinBoxAsyncIOThreads, spinBoxCheckingMemUsage, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh,
              spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,
              spinBoxSendBufferWatermarkFactor, spinBoxSavePathHistoryLength;
     QCheckBox checkBoxOsCache, checkBoxRecheckCompleted, checkBoxResolveCountries, checkBoxResolveHosts, checkBoxSuperSeeding,

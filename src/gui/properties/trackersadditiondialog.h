@@ -39,6 +39,11 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 namespace Ui
 {
     class TrackersAdditionDialog;
@@ -57,8 +62,7 @@ public:
 
 public slots:
     void on_uTorrentListButton_clicked();
-    void parseUTorrentList(const QString &, const QByteArray &data);
-    void getTrackerError(const QString &, const QString &error);
+    void torrentListDownloadFinished(const Net::DownloadResult &result);
 
 private:
     Ui::TrackersAdditionDialog *m_ui;

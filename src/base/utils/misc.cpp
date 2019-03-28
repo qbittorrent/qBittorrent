@@ -40,40 +40,24 @@
 #endif
 
 #ifdef Q_OS_MAC
-#include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
+#include <CoreServices/CoreServices.h>
 #endif
 
 #include <openssl/opensslv.h>
 
-#include <QByteArray>
-#include <QDebug>
-#include <QFileInfo>
-#include <QProcess>
-#include <QRegularExpression>
-#include <QSysInfo>
-#include <QUrl>
-
-#ifdef DISABLE_GUI
 #include <QCoreApplication>
-#else
-#include <QApplication>
-#include <QDesktopServices>
-#include <QDesktopWidget>
-#include <QStyle>
+#include <QRegularExpression>
+#include <QSet>
+#include <QSysInfo>
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
-#include <QDBusMessage>
 #endif
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-#include "base/utils/version.h"
-#endif
-#endif // DISABLE_GUI
 
-#include "base/logger.h"
+#include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
-#include "fs.h"
 
 namespace
 {
@@ -97,7 +81,7 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        qreal rawVal = static_cast<qreal>(sizeInBytes);
+        auto rawVal = static_cast<qreal>(sizeInBytes);
 
         while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
             rawVal /= 1024.;
@@ -247,19 +231,6 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 #endif
 }
 
-#ifndef DISABLE_GUI
-QPoint Utils::Misc::screenCenter(const QWidget *w)
-{
-    // Returns the QPoint which the widget will be placed center on screen (where parent resides)
-
-    QWidget *parent = w->parentWidget();
-    QDesktopWidget *desktop = QApplication::desktop();
-    int scrn = desktop->screenNumber(parent);  // fallback to `primaryScreen` when parent is invalid
-    QRect r = desktop->availableGeometry(scrn);
-    return QPoint(r.x() + (r.width() - w->frameSize().width()) / 2, r.y() + (r.height() - w->frameSize().height()) / 2);
-}
-#endif
-
 QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
 {
     const auto &unitString = units[static_cast<int>(unit)];
@@ -269,7 +240,7 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     return ret;
 }
 
-QString Utils::Misc::friendlyUnit(qint64 bytesValue, bool isSpeed)
+QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
 {
     SizeUnit unit;
     qreal friendlyVal;
@@ -285,11 +256,11 @@ int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
     // friendlyUnit's number of digits after the decimal point
     if (unit == SizeUnit::Byte) return 0;
     if (unit <= SizeUnit::MebiByte) return 1;
-    else if (unit == SizeUnit::GibiByte) return 2;
-    else return 3;
+    if (unit == SizeUnit::GibiByte) return 2;
+    return 3;
 }
 
-qlonglong Utils::Misc::sizeInBytes(qreal size, Utils::Misc::SizeUnit unit)
+qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
 {
     for (int i = 0; i < static_cast<int>(unit); ++i)
         size *= 1024;
@@ -347,7 +318,7 @@ bool Utils::Misc::isPreviewable(const QString &extension)
 
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
 {
     if ((seconds < 0) || (seconds >= MAX_ETA))
         return QString::fromUtf8(C_INFINITY);
@@ -475,73 +446,6 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
     result = "<p style=\"white-space: pre-wrap;\">" + result + "</p>";
     return result;
 }
-
-#ifndef DISABLE_GUI
-// Open the given path with an appropriate application
-void Utils::Misc::openPath(const QString &absolutePath)
-{
-    const QString path = Utils::Fs::fromNativePath(absolutePath);
-    // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.startsWith("//"))
-        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
-    else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
-}
-
-// Open the parent directory of the given path with a file manager and select
-// (if possible) the item at the given path
-void Utils::Misc::openFolderSelect(const QString &absolutePath)
-{
-    const QString path = Utils::Fs::fromNativePath(absolutePath);
-    // If the item to select doesn't exist, try to open its parent
-    if (!QFileInfo::exists(path)) {
-        openPath(path.left(path.lastIndexOf('/')));
-        return;
-    }
-#ifdef Q_OS_WIN
-    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
-    if (pidl) {
-        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
-        ::ILFree(pidl);
-    }
-    if ((hresult == S_OK) || (hresult == S_FALSE))
-        ::CoUninitialize();
-#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    QProcess proc;
-    proc.start("xdg-mime", {"query", "default", "inode/directory"});
-    proc.waitForFinished();
-    QString output = proc.readLine().simplified();
-    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop")) {
-        proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
-    }
-    else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-                 || (output == "nautilus-folder-handler.desktop")) {
-        proc.start("nautilus", {"--version"});
-        proc.waitForFinished();
-        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
-        using NautilusVersion = Utils::Version<int, 3>;
-        if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
-            proc.startDetached("nautilus", {Utils::Fs::toNativePath(path)});
-        else
-            proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
-    }
-    else if (output == "nemo.desktop") {
-        proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
-    }
-    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop")) {
-        proc.startDetached("konqueror", {"--select", Utils::Fs::toNativePath(path)});
-    }
-    else {
-        // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.left(path.lastIndexOf('/')));
-    }
-#else
-    openPath(path.left(path.lastIndexOf('/')));
-#endif
-}
-
-#endif // DISABLE_GUI
 
 QString Utils::Misc::osName()
 {

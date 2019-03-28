@@ -90,7 +90,7 @@ QIcon GuiIconProvider::getIcon(const QString &iconId, const QString &fallback) c
 
 QIcon GuiIconProvider::getFlagIcon(const QString &countryIsoCode) const
 {
-    if (countryIsoCode.isEmpty()) return QIcon();
+    if (countryIsoCode.isEmpty()) return {};
     return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
 }
 

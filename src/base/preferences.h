@@ -83,7 +83,7 @@ class Preferences : public QObject
 
     Preferences();
 
-    const QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    const QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
     void setValue(const QString &key, const QVariant &value);
 
     static Preferences *m_instance;
@@ -303,7 +303,7 @@ public:
     QString getDNSLastIP() const;
     void setDNSLastIP(const QString &ip);
     bool getAcceptedLegal() const;
-    void setAcceptedLegal(const bool accepted);
+    void setAcceptedLegal(bool accepted);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
     QByteArray getMainVSplitterState() const;
@@ -321,9 +321,9 @@ public:
     QByteArray getPropFileListState() const;
     void setPropFileListState(const QByteArray &state);
     int getPropCurTab() const;
-    void setPropCurTab(const int &tab);
+    void setPropCurTab(int tab);
     bool getPropVisible() const;
-    void setPropVisible(const bool visible);
+    void setPropVisible(bool visible);
     QByteArray getPropTrackerListState() const;
     void setPropTrackerListState(const QByteArray &state);
     QSize getRssGeometrySize() const;
@@ -351,17 +351,17 @@ public:
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;
     int getTransSelFilter() const;
-    void setTransSelFilter(const int &index);
+    void setTransSelFilter(int index);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
     bool getRegexAsFilteringPatternForTransferList() const;
     void setRegexAsFilteringPatternForTransferList(bool checked);
     int getToolbarTextPosition() const;
-    void setToolbarTextPosition(const int position);
+    void setToolbarTextPosition(int position);
 
     // From old RssSettings class
     bool isRSSWidgetEnabled() const;
-    void setRSSWidgetVisible(const bool enabled);
+    void setRSSWidgetVisible(bool enabled);
 
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;
@@ -371,9 +371,9 @@ public:
     bool isSpeedWidgetEnabled() const;
     void setSpeedWidgetEnabled(bool enabled);
     int getSpeedWidgetPeriod() const;
-    void setSpeedWidgetPeriod(const int period);
+    void setSpeedWidgetPeriod(int period);
     bool getSpeedWidgetGraphEnable(int id) const;
-    void setSpeedWidgetGraphEnable(int id, const bool enable);
+    void setSpeedWidgetGraphEnable(int id, bool enable);
 
 public slots:
     void setStatusFilterState(bool checked);

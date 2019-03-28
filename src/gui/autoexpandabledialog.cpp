@@ -71,7 +71,7 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     if (ok)
         *ok = res;
 
-    if (!res) return QString();
+    if (!res) return {};
 
     return d.m_ui->textEdit->text();
 }

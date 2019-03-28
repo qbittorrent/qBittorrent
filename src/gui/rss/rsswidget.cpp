@@ -150,7 +150,7 @@ void RSSWidget::displayRSSListMenu(const QPoint &pos)
         m_feedListWidget->clearSelection();
     QMenu myRSSListMenu(this);
     QList<QTreeWidgetItem *> selectedItems = m_feedListWidget->selectedItems();
-    if (selectedItems.size() > 0) {
+    if (!selectedItems.isEmpty()) {
         myRSSListMenu.addAction(m_ui->actionUpdate);
         myRSSListMenu.addAction(m_ui->actionMarkItemsRead);
         myRSSListMenu.addSeparator();

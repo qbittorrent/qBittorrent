@@ -30,7 +30,6 @@
 
 #include <QDateTime>
 #include <QDir>
-#include <QFile>
 #include <QTextStream>
 
 #include "base/global.h"
@@ -40,7 +39,6 @@
 FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType)
     : m_backup(backup)
     , m_maxSize(maxSize)
-    , m_logFile(nullptr)
 {
     m_flusher.setInterval(0);
     m_flusher.setSingleShot(true);
@@ -59,36 +57,32 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
 
 FileLogger::~FileLogger()
 {
-    if (!m_logFile) return;
     closeLogFile();
-    delete m_logFile;
 }
 
 void FileLogger::changePath(const QString &newPath)
 {
-    QString tmpPath = Utils::Fs::fromNativePath(newPath);
-    QDir dir(tmpPath);
-    dir.mkpath(tmpPath);
-    tmpPath = dir.absoluteFilePath("qbittorrent.log");
+    const QDir dir(newPath);
+    dir.mkpath(newPath);
+    const QString tmpPath = dir.absoluteFilePath("qbittorrent.log");
 
     if (tmpPath != m_path) {
         m_path = tmpPath;
 
-        if (m_logFile) {
-            closeLogFile();
-            delete m_logFile;
-        }
-        m_logFile = new QFile(m_path);
+        closeLogFile();
+        m_logFile.setFileName(m_path);
         openLogFile();
     }
 }
 
 void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
-    QDateTime date = QDateTime::currentDateTime();
-    QDir dir(Utils::Fs::branchPath(m_path));
+    const QDateTime date = QDateTime::currentDateTime();
+    const QDir dir(Utils::Fs::branchPath(m_path));
+    const QFileInfoList fileList = dir.entryInfoList(QStringList("qbittorrent.log.bak*")
+        , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
-    for (const QFileInfo &file : asConst(dir.entryInfoList(QStringList("qbittorrent.log.bak*"), QDir::Files | QDir::Writable, QDir::Time | QDir::Reversed))) {
+    for (const QFileInfo &file : fileList) {
         QDateTime modificationDate = file.lastModified();
         switch (ageType) {
         case DAYS:
@@ -106,21 +100,21 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
     }
 }
 
-void FileLogger::setBackup(bool value)
+void FileLogger::setBackup(const bool value)
 {
     m_backup = value;
 }
 
-void FileLogger::setMaxSize(int value)
+void FileLogger::setMaxSize(const int value)
 {
     m_maxSize = value;
 }
 
 void FileLogger::addLogMessage(const Log::Msg &msg)
 {
-    if (!m_logFile) return;
+    if (!m_logFile.isOpen()) return;
 
-    QTextStream str(m_logFile);
+    QTextStream str(&m_logFile);
 
     switch (msg.type) {
     case Log::INFO:
@@ -138,7 +132,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     str << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
 
-    if (m_backup && (m_logFile->size() >= m_maxSize)) {
+    if (m_backup && (m_logFile.size() >= m_maxSize)) {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";
@@ -158,22 +152,21 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
 void FileLogger::flushLog()
 {
-    if (m_logFile)
-        m_logFile->flush();
+    if (m_logFile.isOpen())
+        m_logFile.flush();
 }
 
 void FileLogger::openLogFile()
 {
-    if (!m_logFile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
-        || !m_logFile->setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
-        delete m_logFile;
-        m_logFile = nullptr;
-        Logger::instance()->addMessage(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+    if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
+        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
+        m_logFile.close();
+        LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }
 }
 
 void FileLogger::closeLogFile()
 {
     m_flusher.stop();
-    m_logFile->close();
+    m_logFile.close();
 }

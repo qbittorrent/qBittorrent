@@ -28,6 +28,8 @@
 
 #include "synccontroller.h"
 
+#include <algorithm>
+
 #include <QJsonObject>
 #include <QThread>
 #include <QTimer>
@@ -133,9 +135,12 @@ namespace
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-        quint32 peers = 0;
-        for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-            peers += torrent->peersCount();
+        const auto torrents = BitTorrent::Session::instance()->torrents();
+        const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
+        {
+            return (acc + torrent->peersCount());
+        });
+
         map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
         map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
 
@@ -429,9 +434,9 @@ void SyncController::maindataAction()
     data["torrents"] = torrents;
 
     QVariantHash categories;
-    const auto categoriesList = session->categories();
+    const auto &categoriesList = session->categories();
     for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
-        const auto key = it.key();
+        const auto &key = it.key();
         categories[key] = QVariantMap {
             {"name", key},
             {"savePath", it.value()}

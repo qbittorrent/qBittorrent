@@ -282,7 +282,7 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
     SettingsPtr settings = Profile::instance().applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
-        return QString();
+        return {};
 
     // Copy everything into memory. This means even keys inserted in the file manually
     // or that we don't touch directly in this code (eg disabled by ifdef). This ensures
@@ -314,5 +314,5 @@ QString TransactionalSettings::serialize(const QString &name, const QVariantHash
         Logger::instance()->addMessage(QObject::tr("An unknown error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;
     }
-    return QString();
+    return {};
 }

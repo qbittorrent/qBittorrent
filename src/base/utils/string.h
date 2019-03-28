@@ -63,7 +63,7 @@ namespace Utils
             return str;
         }
 
-        bool parseBool(const QString &string, const bool defaultValue);
+        bool parseBool(const QString &string, bool defaultValue);
         TriStateBool parseTriStateBool(const QString &string);
     }
 }

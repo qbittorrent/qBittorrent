@@ -4,12 +4,14 @@ add_library(qbt_base STATIC
 # headers
 bittorrent/addtorrentparams.h
 bittorrent/cachestatus.h
-bittorrent/filepriority.h
+bittorrent/downloadpriority.h
 bittorrent/infohash.h
 bittorrent/magneturi.h
 bittorrent/peerinfo.h
 bittorrent/private/bandwidthscheduler.h
+bittorrent/private/libtorrentfwd.h
 bittorrent/private/filterparserthread.h
+bittorrent/private/portforwarderimpl.h
 bittorrent/private/resumedatasavingmanager.h
 bittorrent/private/speedmonitor.h
 bittorrent/private/statistics.h
@@ -29,7 +31,6 @@ http/responsegenerator.h
 http/server.h
 http/types.h
 net/dnsupdater.h
-net/downloadhandler.h
 net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
@@ -78,12 +79,13 @@ types.h
 unicodestrings.h
 
 # sources
-bittorrent/filepriority.cpp
+bittorrent/downloadpriority.cpp
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
 bittorrent/peerinfo.cpp
 bittorrent/private/bandwidthscheduler.cpp
 bittorrent/private/filterparserthread.cpp
+bittorrent/private/portforwarderimpl.cpp
 bittorrent/private/resumedatasavingmanager.cpp
 bittorrent/private/speedmonitor.cpp
 bittorrent/private/statistics.cpp
@@ -100,7 +102,6 @@ http/responsebuilder.cpp
 http/responsegenerator.cpp
 http/server.cpp
 net/dnsupdater.cpp
-net/downloadhandler.cpp
 net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp

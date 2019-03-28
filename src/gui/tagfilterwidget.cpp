@@ -60,7 +60,7 @@ namespace
 TagFilterWidget::TagFilterWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    TagFilterProxyModel *proxyModel = new TagFilterProxyModel(this);
+    auto *proxyModel = new TagFilterProxyModel(this);
     proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setSourceModel(new TagFilterModel(this));
     setModel(proxyModel);
@@ -90,7 +90,7 @@ TagFilterWidget::TagFilterWidget(QWidget *parent)
 QString TagFilterWidget::currentTag() const
 {
     QModelIndex current;
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.isEmpty())
         current = selectedRows.first();
 
@@ -113,7 +113,7 @@ void TagFilterWidget::showMenu(QPoint)
         , tr("Add tag..."));
     connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
 
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
         QAction *removeAct = menu.addAction(
             GuiIconProvider::instance()->getIcon("list-remove")
@@ -212,7 +212,7 @@ void TagFilterWidget::addTag()
 
 void TagFilterWidget::removeTag()
 {
-    auto selectedRows = selectionModel()->selectedRows();
+    const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
         BitTorrent::Session::instance()->removeTag(
             static_cast<TagFilterProxyModel *>(model())->tag(selectedRows.first()));

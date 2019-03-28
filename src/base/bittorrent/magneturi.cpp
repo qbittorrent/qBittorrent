@@ -35,6 +35,8 @@
 
 #include <QRegularExpression>
 
+#include "infohash.h"
+
 namespace
 {
     bool isBitTorrentInfoHash(const QString &string)
@@ -44,8 +46,8 @@ namespace
         //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
         // 2. 32 chars Base32 encoded string
         //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
-        const int SHA1_HEX_SIZE = libtorrent::sha1_hash::size * 2;
-        const int SHA1_BASE32_SIZE = libtorrent::sha1_hash::size * 1.6;
+        const int SHA1_HEX_SIZE = BitTorrent::InfoHash::length() * 2;
+        const int SHA1_BASE32_SIZE = BitTorrent::InfoHash::length() * 1.6;
 
         return ((((string.size() == SHA1_HEX_SIZE))
                 && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]"))))
@@ -75,7 +77,7 @@ MagnetUri::MagnetUri(const QString &source)
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
     for (const std::string &tracker : m_addTorrentParams.trackers)
-        m_trackers.append(TrackerEntry(tracker));
+        m_trackers.append(libtorrent::announce_entry {tracker});
 
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)
         m_urlSeeds.append(QUrl(QString::fromStdString(urlSeed)));

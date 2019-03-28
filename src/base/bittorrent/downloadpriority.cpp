@@ -26,18 +26,18 @@
  * exception statement from your version.
  */
 
-#include "filepriority.h"
+#include "downloadpriority.h"
 
 namespace BitTorrent
 {
-    bool isValidFilePriority(const BitTorrent::FilePriority priority)
+    bool isValidDownloadPriority(const DownloadPriority priority)
     {
         switch (priority) {
-        case BitTorrent::FilePriority::Ignored:
-        case BitTorrent::FilePriority::Normal:
-        case BitTorrent::FilePriority::High:
-        case BitTorrent::FilePriority::Maximum:
-        case BitTorrent::FilePriority::Mixed:
+        case BitTorrent::DownloadPriority::Ignored:
+        case BitTorrent::DownloadPriority::Normal:
+        case BitTorrent::DownloadPriority::High:
+        case BitTorrent::DownloadPriority::Maximum:
+        case BitTorrent::DownloadPriority::Mixed:
             return true;
         default:
             return false;

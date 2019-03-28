@@ -89,7 +89,7 @@ void AppController::shutdownAction()
 void AppController::preferencesAction()
 {
     const Preferences *const pref = Preferences::instance();
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
     QVariantMap data;
 
     // Downloads
@@ -144,7 +144,7 @@ void AppController::preferencesAction()
     data["max_uploads_per_torrent"] = session->maxUploadsPerTorrent();
 
     // Proxy Server
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     data["proxy_type"] = static_cast<int>(proxyConf.type);
     data["proxy_ip"] = proxyConf.ip;
@@ -329,7 +329,7 @@ void AppController::setPreferencesAction()
 
         // Update deleted folders
         for (auto i = oldScanDirs.cbegin(); i != oldScanDirs.cend(); ++i) {
-            QString folder = i.key();
+            const QString &folder = i.key();
             if (!scanDirs.contains(folder)) {
                 model->removePath(folder);
                 qDebug("Removed watched folder %s", qUtf8Printable(folder));
@@ -491,10 +491,11 @@ void AppController::setPreferencesAction()
     if (m.contains("locale")) {
         QString locale = m["locale"].toString();
         if (pref->getLocale() != locale) {
-            QTranslator *translator = new QTranslator;
+            auto *translator = new QTranslator;
             if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale)) {
                 qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }else{
+            }
+            else {
                 qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
             }
             qApp->installTranslator(translator);

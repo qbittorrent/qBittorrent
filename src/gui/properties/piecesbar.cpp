@@ -118,7 +118,7 @@ PiecesBar::PiecesBar(QWidget *parent)
     setMouseTracking(true);
 }
 
-void PiecesBar::setTorrent(BitTorrent::TorrentHandle *torrent)
+void PiecesBar::setTorrent(const BitTorrent::TorrentHandle *torrent)
 {
     m_torrent = torrent;
     if (!m_torrent)
@@ -147,9 +147,8 @@ bool PiecesBar::event(QEvent *e)
         showToolTip(static_cast<QHelpEvent *>(e));
         return true;
     }
-    else {
-        return base::event(e);
-    }
+
+    return base::event(e);
 }
 
 void PiecesBar::enterEvent(QEvent *e)

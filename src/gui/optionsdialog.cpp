@@ -454,7 +454,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     // disable mouse wheel event on widgets to avoid mis-selection
-    WheelEventEater *wheelEventEater = new WheelEventEater(this);
+    auto *wheelEventEater = new WheelEventEater(this);
     for (QComboBox *widget : asConst(findChildren<QComboBox *>()))
         widget->installEventFilter(wheelEventEater);
     for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
@@ -548,7 +548,7 @@ void OptionsDialog::saveOptions()
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale) {
-        QTranslator *translator = new QTranslator;
+        auto *translator = new QTranslator;
         if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale))
             qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
         else
@@ -592,7 +592,7 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
-    Application *const app = static_cast<Application*>(QCoreApplication::instance());
+    auto *const app = static_cast<Application *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
@@ -846,7 +846,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
     m_ui->spinRSSMaxArticlesPerFeed->setValue(RSS::Session::instance()->maxArticlesPerFeed());
 
-    auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     // Downloads preferences
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
@@ -974,7 +974,7 @@ void OptionsDialog::loadOptions()
         m_ui->spinMaxUploadsPerTorrent->setEnabled(false);
     }
 
-    auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
     using Net::ProxyType;
     bool useProxyAuth = false;
@@ -1209,32 +1209,32 @@ int OptionsDialog::getMaxConnecs() const
 {
     if (!m_ui->checkMaxConnecs->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxConnec->value();
+
+    return m_ui->spinMaxConnec->value();
 }
 
 int OptionsDialog::getMaxConnecsPerTorrent() const
 {
     if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxConnecPerTorrent->value();
+
+    return m_ui->spinMaxConnecPerTorrent->value();
 }
 
 int OptionsDialog::getMaxUploads() const
 {
     if (!m_ui->checkMaxUploads->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxUploads->value();
+
+    return m_ui->spinMaxUploads->value();
 }
 
 int OptionsDialog::getMaxUploadsPerTorrent() const
 {
     if (!m_ui->checkMaxUploadsPerTorrent->isChecked())
         return -1;
-    else
-        return m_ui->spinMaxUploadsPerTorrent->value();
+
+    return m_ui->spinMaxUploadsPerTorrent->value();
 }
 
 void OptionsDialog::on_buttonBox_accepted()
@@ -1447,14 +1447,14 @@ QString OptionsDialog::getTorrentExportDir() const
 {
     if (m_ui->checkExportDir->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDir->selectedPath());
-    return QString();
+    return {};
 }
 
 QString OptionsDialog::getFinishedTorrentExportDir() const
 {
     if (m_ui->checkExportDirFin->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
-    return QString();
+    return {};
 }
 
 // Return action on double-click on a downloading torrent set in options
@@ -1645,7 +1645,7 @@ QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
     case QLocale::English: {
         if (locale.country() == QLocale::Australia)
             return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
-        else if (locale.country() == QLocale::UnitedKingdom)
+        if (locale.country() == QLocale::UnitedKingdom)
             return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
         return QString::fromUtf8(C_LOCALE_ENGLISH);
     }

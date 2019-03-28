@@ -41,6 +41,7 @@
 
 #include <QAtomicInt>
 #include <QDebug>
+#include <QDir>
 #include <QLibraryInfo>
 #include <QProcess>
 
@@ -55,6 +56,7 @@
 #endif // Q_OS_MAC
 #include "addnewtorrentdialog.h"
 #include "gui/guiiconprovider.h"
+#include "gui/utils.h"
 #include "mainwindow.h"
 #include "shutdownconfirmdialog.h"
 #else // DISABLE_GUI
@@ -125,9 +127,10 @@ Application::Application(const QString &id, int &argc, char **argv)
     qRegisterMetaType<Log::Msg>("Log::Msg");
 
     setApplicationName("qBittorrent");
+    setOrganizationDomain("qbittorrent.org");
     validateCommandLineParameters();
 
-    QString profileDir = m_commandLineArgs.portableMode
+    const QString profileDir = m_commandLineArgs.portableMode
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
 
@@ -146,6 +149,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 #if !defined(DISABLE_GUI)
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
     setQuitOnLastWindowClosed(false);
+    setDesktopFileName("org.qbittorrent.qBittorrent");
 #endif
 
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
@@ -185,7 +189,7 @@ bool Application::isFileLoggerEnabled() const
     return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();
 }
 
-void Application::setFileLoggerEnabled(bool value)
+void Application::setFileLoggerEnabled(const bool value)
 {
     if (value && !m_fileLogger)
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
@@ -212,7 +216,7 @@ bool Application::isFileLoggerBackup() const
     return settings()->loadValue(KEY_FILELOGGER_BACKUP, true).toBool();
 }
 
-void Application::setFileLoggerBackup(bool value)
+void Application::setFileLoggerBackup(const bool value)
 {
     if (m_fileLogger)
         m_fileLogger->setBackup(value);
@@ -224,7 +228,7 @@ bool Application::isFileLoggerDeleteOld() const
     return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true).toBool();
 }
 
-void Application::setFileLoggerDeleteOld(bool value)
+void Application::setFileLoggerDeleteOld(const bool value)
 {
     if (value && m_fileLogger)
         m_fileLogger->deleteOld(fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
@@ -233,13 +237,13 @@ void Application::setFileLoggerDeleteOld(bool value)
 
 int Application::fileLoggerMaxSize() const
 {
-    int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE).toInt();
     return std::min(std::max(val, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
 }
 
 void Application::setFileLoggerMaxSize(const int bytes)
 {
-    int clampedValue = std::min(std::max(bytes, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
+    const int clampedValue = std::min(std::max(bytes, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
     if (m_fileLogger)
         m_fileLogger->setMaxSize(clampedValue);
     settings()->storeValue(KEY_FILELOGGER_MAXSIZEBYTES, clampedValue);
@@ -247,7 +251,7 @@ void Application::setFileLoggerMaxSize(const int bytes)
 
 int Application::fileLoggerAge() const
 {
-    int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1).toInt();
     return std::min(std::max(val, 1), 365);
 }
 
@@ -258,7 +262,7 @@ void Application::setFileLoggerAge(const int value)
 
 int Application::fileLoggerAgeType() const
 {
-    int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
     return ((val < 0) || (val > 2)) ? 1 : val;
 }
 
@@ -269,7 +273,7 @@ void Application::setFileLoggerAgeType(const int value)
 
 void Application::processMessage(const QString &message)
 {
-    QStringList params = message.split(PARAMS_SEPARATOR, QString::SkipEmptyParts);
+    const QStringList params = message.split(PARAMS_SEPARATOR, QString::SkipEmptyParts);
     // If Application is not running (i.e., other
     // components are not ready) store params
     if (m_running)
@@ -345,7 +349,7 @@ void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent
 
     // Send the notification email
     const Preferences *pref = Preferences::instance();
-    Net::Smtp *smtp = new Net::Smtp(this);
+    auto *smtp = new Net::Smtp(this);
     smtp->sendMail(pref->getMailNotificationSender(),
                      pref->getMailNotificationEmail(),
                      tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
@@ -529,7 +533,7 @@ int Application::exec(const QStringList &params)
         msgBox.setText(tr("Application failed to start."));
         msgBox.setInformativeText(err.message());
         msgBox.show(); // Need to be shown or to moveToCenter does not work
-        msgBox.move(Utils::Misc::screenCenter(&msgBox));
+        msgBox.move(Utils::Gui::screenCenter(&msgBox));
         msgBox.exec();
 #endif
         return 1;
@@ -572,7 +576,7 @@ int Application::exec(const QStringList &params)
 #ifdef Q_OS_WIN
 bool Application::isRunning()
 {
-    bool running = BaseApplication::isRunning();
+    const bool running = BaseApplication::isRunning();
     QSharedMemory *sharedMem = new QSharedMemory(id() + QLatin1String("-shared-memory-key"), this);
     if (!running) {
         // First instance creates shared memory and store PID
@@ -622,7 +626,7 @@ void Application::initializeTranslation()
 {
     Preferences *const pref = Preferences::instance();
     // Load translation
-    QString localeStr = pref->getLocale();
+    const QString localeStr = pref->getLocale();
 
     if (m_qtTranslator.load(QLatin1String("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
         m_qtTranslator.load(QLatin1String("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))

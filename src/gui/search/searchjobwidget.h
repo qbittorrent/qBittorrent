@@ -36,7 +36,6 @@
 
 class QHeaderView;
 class QModelIndex;
-class QStandardItem;
 class QStandardItemModel;
 
 template <typename T> class CachedSettingValue;
@@ -90,6 +89,9 @@ public:
 signals:
     void resultsCountUpdated();
     void statusChanged();
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     void loadSettings();

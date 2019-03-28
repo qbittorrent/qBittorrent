@@ -39,13 +39,11 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QScopedPointer>
 #include <QUrl>
 
 #include "../asyncfilestorage.h"
 #include "../global.h"
 #include "../logger.h"
-#include "../net/downloadhandler.h"
 #include "../net/downloadmanager.h"
 #include "../profile.h"
 #include "../utils/fs.h"
@@ -108,7 +106,7 @@ QList<Article *> Feed::articles() const
 
 void Feed::markAsRead()
 {
-    auto oldUnreadCount = m_unreadCount;
+    const int oldUnreadCount = m_unreadCount;
     for (Article *article : asConst(m_articles)) {
         if (!article->isRead()) {
             article->disconnect(this);
@@ -131,11 +129,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(m_url);
-    connect(handler
-            , static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &Feed::handleDownloadFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &Feed::handleDownloadFailed);
+    Net::DownloadManager::instance()->download(m_url, this, &Feed::handleDownloadFinished);
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -176,19 +170,19 @@ Article *Feed::articleByGUID(const QString &guid) const
     return m_articles.value(guid);
 }
 
-void Feed::handleMaxArticlesPerFeedChanged(int n)
+void Feed::handleMaxArticlesPerFeedChanged(const int n)
 {
     while (m_articlesByDate.size() > n)
         removeOldestArticle();
     // We don't need store articles here
 }
 
-void Feed::handleIconDownloadFinished(const QString &url, const QString &filePath)
+void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url);
-
-    m_iconPath = Utils::Fs::fromNativePath(filePath);
-    emit iconLoaded(this);
+    if (result.status == Net::DownloadStatus::Success) {
+        m_iconPath = Utils::Fs::fromNativePath(result.filePath);
+        emit iconLoaded(this);
+    }
 }
 
 bool Feed::hasError() const
@@ -196,22 +190,22 @@ bool Feed::hasError() const
     return m_hasError;
 }
 
-void Feed::handleDownloadFinished(const QString &url, const QByteArray &data)
+void Feed::handleDownloadFinished(const Net::DownloadResult &result)
 {
-    qDebug() << "Successfully downloaded RSS feed at" << url;
-    // Parse the download RSS
-    m_parser->parse(data);
-}
+    if (result.status == Net::DownloadStatus::Success) {
+        qDebug() << "Successfully downloaded RSS feed at" << result.url;
+        // Parse the download RSS
+        m_parser->parse(result.data);
+    }
+    else {
+        m_isLoading = false;
+        m_hasError = true;
 
-void Feed::handleDownloadFailed(const QString &url, const QString &error)
-{
-    m_isLoading = false;
-    m_hasError = true;
+        LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2")
+               .arg(result.url, result.errorString), Log::WARNING);
 
-    LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2").arg(url, error)
-           , Log::WARNING);
-
-    emit stateChanged(this);
+        emit stateChanged(this);
+    }
 }
 
 void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
@@ -270,7 +264,7 @@ void Feed::load()
 void Feed::loadArticles(const QByteArray &data)
 {
     QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
         LogMsg(tr("Couldn't parse RSS Session data. Error: %1").arg(jsonError.errorString())
                , Log::WARNING);
@@ -303,7 +297,7 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
     const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
@@ -348,7 +342,7 @@ bool Feed::addArticle(Article *article)
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
-    auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
+    const auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
                                        , article->date(), Article::articleDateRecentThan);
     if ((lowerBound - m_articlesByDate.begin()) >= maxArticles)
         return false; // we reach max articles
@@ -376,7 +370,7 @@ void Feed::removeOldestArticle()
 
     m_articles.remove(oldestArticle->guid());
     m_articlesByDate.removeLast();
-    bool isRead = oldestArticle->isRead();
+    const bool isRead = oldestArticle->isRead();
     delete oldestArticle;
 
     if (!isRead)
@@ -402,12 +396,10 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(iconUrl).saveToFile(true));
-    connect(handler
-            , static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &Feed::handleIconDownloadFinished);
+    const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    Net::DownloadManager::instance()->download(
+            Net::DownloadRequest(iconUrl).saveToFile(true)
+                , this, &Feed::handleIconDownloadFinished);
 }
 
 int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
@@ -494,7 +486,7 @@ QString Feed::iconPath() const
     return m_iconPath;
 }
 
-QJsonValue Feed::toJsonValue(bool withData) const
+QJsonValue Feed::toJsonValue(const bool withData) const
 {
     QJsonObject jsonObj;
     jsonObj.insert(KEY_UID, uid().toString());
@@ -515,7 +507,7 @@ QJsonValue Feed::toJsonValue(bool withData) const
     return jsonObj;
 }
 
-void Feed::handleSessionProcessingEnabledChanged(bool enabled)
+void Feed::handleSessionProcessingEnabledChanged(const bool enabled)
 {
     if (enabled) {
         downloadIcon();

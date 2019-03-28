@@ -54,8 +54,9 @@ CONFIG(release, debug|release) {
 # VERSION DEFINES
 include(../version.pri)
 
+# Qt defines
+DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_NO_CAST_TO_ASCII
-# Efficient construction for QString & QByteArray (Qt >= 4.8)
 DEFINES += QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 

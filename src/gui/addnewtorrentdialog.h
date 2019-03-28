@@ -29,8 +29,9 @@
 #ifndef ADDNEWTORRENTDIALOG_H
 #define ADDNEWTORRENTDIALOG_H
 
+#include <memory>
+
 #include <QDialog>
-#include <QScopedPointer>
 #include <QShortcut>
 
 #include "base/bittorrent/addtorrentparams.h"
@@ -40,6 +41,11 @@
 namespace BitTorrent
 {
     class MagnetUri;
+}
+
+namespace Net
+{
+    struct DownloadResult;
 }
 
 namespace Ui
@@ -54,12 +60,13 @@ class TorrentFileGuard;
 class AddNewTorrentDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AddNewTorrentDialog)
 
 public:
     static const int minPathHistoryLength = 0;
     static const int maxPathHistoryLength = 99;
 
-    ~AddNewTorrentDialog();
+    ~AddNewTorrentDialog() override;
 
     static bool isEnabled();
     static void setEnabled(bool value);
@@ -78,9 +85,7 @@ private slots:
     void onSavePathChanged(const QString &newPath);
     void renameSelectedFile();
     void updateMetadata(const BitTorrent::TorrentInfo &info);
-    void handleDownloadFailed(const QString &url, const QString &reason);
-    void handleRedirectedToMagnet(const QString &url, const QString &magnetUri);
-    void handleDownloadFinished(const QString &url, const QString &filePath);
+    void handleDownloadFinished(const Net::DownloadResult &result);
     void TMMChanged(int index);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
@@ -90,14 +95,15 @@ private slots:
 
 private:
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    bool loadTorrent(const QString &torrentPath);
+    bool loadTorrentFile(const QString &torrentPath);
+    bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePathComboBox();
     void saveSavePathHistory() const;
     int indexOfSavePath(const QString &savePath);
     void loadState();
     void saveState();
-    void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
+    void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void setCommentText(const QString &str) const;
     void setSavePath(const QString &newPath);
@@ -108,12 +114,11 @@ private:
     TorrentContentFilterModel *m_contentModel;
     PropListDelegate *m_contentDelegate;
     bool m_hasMetadata;
-    QString m_filePath;
     BitTorrent::InfoHash m_hash;
     BitTorrent::TorrentInfo m_torrentInfo;
     QByteArray m_headerState;
     int m_oldIndex;
-    QScopedPointer<TorrentFileGuard> m_torrentGuard;
+    std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 };
 

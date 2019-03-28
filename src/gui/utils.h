@@ -29,11 +29,11 @@
 #ifndef UTILS_GUI_H
 #define UTILS_GUI_H
 
-#include <QtGlobal>
-#include <QPixmap>
 #include <QSize>
 
 class QIcon;
+class QPixmap;
+class QPoint;
 class QWidget;
 
 namespace Utils
@@ -49,12 +49,17 @@ namespace Utils
             return (size * screenScalingFactor(widget));
         }
 
-        QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, const int height);
-        QPixmap scaledPixmap(const QString &path, const QWidget *widget, const int height = 0);
-        QPixmap scaledPixmapSvg(const QString &path, const QWidget *widget, const int baseHeight);
+        QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
+        QPixmap scaledPixmap(const QString &path, const QWidget *widget, int height = 0);
+        QPixmap scaledPixmapSvg(const QString &path, const QWidget *widget, int baseHeight);
         QSize smallIconSize(const QWidget *widget = nullptr);
         QSize mediumIconSize(const QWidget *widget = nullptr);
         QSize largeIconSize(const QWidget *widget = nullptr);
+
+        QPoint screenCenter(const QWidget *w);
+
+        void openPath(const QString &absolutePath);
+        void openFolderSelect(const QString &absolutePath);
     }
 }
 

@@ -35,6 +35,7 @@
 #include <QMutableListIterator>
 #include <QNetworkProxy>
 #include <QSslCipher>
+#include <QSslConfiguration>
 #include <QSslSocket>
 #include <QStringList>
 #include <QTimer>
@@ -50,22 +51,16 @@ namespace
 
     QList<QSslCipher> safeCipherList()
     {
-        const QStringList badCiphers = {"idea", "rc4"};
-        const QList<QSslCipher> allCiphers = QSslSocket::supportedCiphers();
+        const QStringList badCiphers {"idea", "rc4"};
+        const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
-        for (const QSslCipher &cipher : allCiphers) {
-            bool isSafe = true;
-            for (const QString &badCipher : badCiphers) {
-                if (cipher.name().contains(badCipher, Qt::CaseInsensitive)) {
-                    isSafe = false;
-                    break;
-                }
-            }
-
-            if (isSafe)
-                safeCiphers += cipher;
-        }
-
+        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
+        {
+            return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
+            {
+                return cipher.name().contains(badCipher, Qt::CaseInsensitive);
+            });
+        });
         return safeCiphers;
     }
 }
@@ -78,14 +73,17 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     , m_https(false)
 {
     setProxy(QNetworkProxy::NoProxy);
-    QSslSocket::setDefaultCiphers(safeCipherList());
 
-    QTimer *dropConnectionTimer = new QTimer(this);
+    QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
+    sslConf.setCiphers(safeCipherList());
+    QSslConfiguration::setDefaultConfiguration(sslConf);
+
+    auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
     dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
 }
 
-void Server::incomingConnection(qintptr socketDescriptor)
+void Server::incomingConnection(const qintptr socketDescriptor)
 {
     if (m_connections.size() >= CONNECTIONS_LIMIT) return;
 
@@ -108,7 +106,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
         static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
     }
 
-    Connection *c = new Connection(serverSocket, m_requestHandler, this);
+    auto *c = new Connection(serverSocket, m_requestHandler, this);
     m_connections.append(c);
 }
 
@@ -116,7 +114,7 @@ void Server::dropTimedOutConnection()
 {
     QMutableListIterator<Connection *> i(m_connections);
     while (i.hasNext()) {
-        auto connection = i.next();
+        const auto *connection = i.next();
         if (connection->isClosed() || connection->hasExpired(KEEP_ALIVE_DURATION)) {
             delete connection;
             i.remove();

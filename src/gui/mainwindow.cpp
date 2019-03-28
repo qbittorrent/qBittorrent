@@ -97,7 +97,6 @@
 #include "utils.h"
 
 #ifdef Q_OS_WIN
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 #endif
 #ifdef Q_OS_MAC
@@ -105,10 +104,6 @@
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 #include "programupdater.h"
-#endif
-
-#ifdef Q_OS_MAC
-void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 
 #define TIME_TRAY_BALLOON 5000
@@ -199,7 +194,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
-    QMenu *lockMenu = new QMenu(this);
+    auto *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
     connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
     QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
@@ -222,7 +217,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_splitter = new QSplitter(Qt::Horizontal, this);
     // vSplitter->setChildrenCollapsible(false);
 
-    QSplitter *hSplitter = new QSplitter(Qt::Vertical, this);
+    auto *hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setFrameShape(QFrame::NoFrame);
 
@@ -380,7 +375,7 @@ MainWindow::MainWindow(QWidget *parent)
         QTimer::singleShot(0, this, &MainWindow::on_actionSearchWidget_triggered);
 
     // Auto shutdown actions
-    QActionGroup *autoShutdownGroup = new QActionGroup(this);
+    auto *autoShutdownGroup = new QActionGroup(this);
     autoShutdownGroup->setExclusive(true);
     autoShutdownGroup->addAction(m_ui->actionAutoShutdownDisabled);
     autoShutdownGroup->addAction(m_ui->actionAutoExit);
@@ -469,7 +464,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 #ifdef Q_OS_MAC
     setupDockClickHandler();
-    qt_mac_set_dock_menu(trayIconMenu());
+    trayIconMenu()->setAsDockMenu();
 #endif
 }
 
@@ -555,7 +550,7 @@ void MainWindow::addToolbarContextMenu()
     m_toolbarMenu->addAction(textBesideIcons);
     m_toolbarMenu->addAction(textUnderIcons);
     m_toolbarMenu->addAction(followSystemStyle);
-    QActionGroup *textPositionGroup = new QActionGroup(m_toolbarMenu);
+    auto *textPositionGroup = new QActionGroup(m_toolbarMenu);
     textPositionGroup->addAction(iconsOnly);
     iconsOnly->setCheckable(true);
     textPositionGroup->addAction(textOnly);
@@ -567,7 +562,7 @@ void MainWindow::addToolbarContextMenu()
     textPositionGroup->addAction(followSystemStyle);
     followSystemStyle->setCheckable(true);
 
-    const Qt::ToolButtonStyle buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
+    const auto buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
     if ((buttonStyle >= Qt::ToolButtonIconOnly) && (buttonStyle <= Qt::ToolButtonFollowStyle))
         m_ui->toolBar->setToolButtonStyle(buttonStyle);
     switch (buttonStyle) {
@@ -758,9 +753,8 @@ void MainWindow::tabChanged(int newTab)
         m_searchFilterAction->setVisible(true);
         return;
     }
-    else {
-        m_searchFilterAction->setVisible(false);
-    }
+    m_searchFilterAction->setVisible(false);
+
     if (m_tabs->currentWidget() == m_searchWidget) {
         qDebug("Changed tab to search engine, giving focus to search input");
         m_searchWidget->giveFocusToSearchInput();
@@ -796,7 +790,7 @@ void MainWindow::cleanup()
 #endif
 
     // remove all child widgets
-    while (QWidget *w = findChild<QWidget * >())
+    while (auto *w = findChild<QWidget *>())
         delete w;
 }
 
@@ -850,7 +844,7 @@ void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, QString msg) const
+void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const
 {
     showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
         , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
@@ -964,7 +958,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHand
     confirmBox->show();
 }
 
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
+void MainWindow::handleDownloadFromUrlFailure(const QString &url, const QString &reason) const
 {
     // Display a message box
     showNotificationBaloon(tr("URL download error")
@@ -1062,7 +1056,7 @@ bool MainWindow::unlockUI()
     return true;
 }
 
-void MainWindow::notifyOfUpdate(QString)
+void MainWindow::notifyOfUpdate(const QString &)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
@@ -1131,7 +1125,7 @@ void MainWindow::showEvent(QShowEvent *e)
 
     // Make sure the window is initially centered
     if (!m_posInitialized) {
-        move(Utils::Misc::screenCenter(this));
+        move(Utils::Gui::screenCenter(this));
         m_posInitialized = true;
     }
 }
@@ -1569,7 +1563,7 @@ void MainWindow::updateGUI()
     }
 }
 
-void MainWindow::showNotificationBaloon(QString title, QString msg) const
+void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
 {
     if (!isNotificationsEnabled()) return;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
@@ -1816,7 +1810,6 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-
 void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser)
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
@@ -2019,28 +2012,33 @@ void MainWindow::installPython()
     const QString installerURL = ((QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
                                   ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
                                   : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
-    Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                                        Net::DownloadRequest(installerURL).saveToFile(true));
-
-    using Func = void (Net::DownloadHandler::*)(const QString &, const QString &);
-    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFinished), this, &MainWindow::pythonDownloadSuccess);
-    connect(handler, static_cast<Func>(&Net::DownloadHandler::downloadFailed), this, &MainWindow::pythonDownloadFailure);
+    Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(installerURL).saveToFile(true)
+                , this, &MainWindow::pythonDownloadFinished);
 }
 
-void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePath)
+void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 {
-    Q_UNUSED(url)
+    if (result.status != Net::DownloadStatus::Success) {
+        setCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::warning(
+                    this, tr("Download error")
+                    , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
+                    .arg(result.errorString));
+        return;
+    }
+
     setCursor(QCursor(Qt::ArrowCursor));
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
-        QFile::rename(filePath, filePath + ".exe");
-        installer.start('"' + Utils::Fs::toNativePath(filePath) + ".exe\" /passive");
+        QFile::rename(result.filePath, result.filePath + ".exe");
+        installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
     }
     else {
-        QFile::rename(filePath, filePath + ".msi");
-        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(filePath) + ".msi\"");
+        QFile::rename(result.filePath, result.filePath + ".msi");
+        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(result.filePath) + ".msi\"");
     }
 
     // Wait for setup to complete
@@ -2051,21 +2049,13 @@ void MainWindow::pythonDownloadSuccess(const QString &url, const QString &filePa
     qDebug("Setup should be complete!");
     // Delete temp file
     if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-        Utils::Fs::forceRemove(filePath + ".exe");
+        Utils::Fs::forceRemove(result.filePath + ".exe");
     else
-        Utils::Fs::forceRemove(filePath + ".msi");
+        Utils::Fs::forceRemove(result.filePath + ".msi");
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion()) {
         m_ui->actionSearchWidget->setChecked(true);
         displaySearchTab(true);
     }
 }
-
-void MainWindow::pythonDownloadFailure(const QString &url, const QString &error)
-{
-    Q_UNUSED(url)
-    setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::warning(this, tr("Download error"), tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.").arg(error));
-}
-
 #endif // Q_OS_WIN

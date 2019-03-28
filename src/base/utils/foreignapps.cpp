@@ -119,7 +119,7 @@ namespace
         return keys;
     }
 
-    QString getRegValue(const HKEY handle, const QString &name = QString())
+    QString getRegValue(const HKEY handle, const QString &name = {})
     {
         QString result;
 
@@ -227,7 +227,7 @@ namespace
                 return path;
         }
 
-        return QString();
+        return {};
     }
 #endif // Q_OS_WIN
 }

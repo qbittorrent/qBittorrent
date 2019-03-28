@@ -10,9 +10,6 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string notr="true">Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>

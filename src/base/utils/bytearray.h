@@ -40,6 +40,6 @@ namespace Utils
 
         // Mimic QByteArray::mid(pos, len) but instead of returning a full-copy,
         // we only return a partial view
-        const QByteArray midView(const QByteArray &in, const int pos, const int len = -1);
+        const QByteArray midView(const QByteArray &in, int pos, int len = -1);
     }
 }

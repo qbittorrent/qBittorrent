@@ -33,6 +33,7 @@
 #include <QVector>
 
 #include "../tristatebool.h"
+#include "downloadpriority.h"
 
 namespace BitTorrent
 {
@@ -47,7 +48,7 @@ namespace BitTorrent
         bool firstLastPiecePriority = false;
         TriStateBool addForced;
         TriStateBool addPaused;
-        QVector<int> filePriorities; // used if TorrentInfo is set
+        QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool ignoreShareLimits = false;
         bool skipChecking = false;
         TriStateBool createSubfolder;

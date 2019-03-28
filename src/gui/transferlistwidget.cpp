@@ -31,6 +31,7 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QFileDialog>
+#include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegExp>
@@ -62,6 +63,7 @@
 #include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
 #include "updownratiodialog.h"
+#include "utils.h"
 
 #ifdef Q_OS_MAC
 #include "macutilities.h"
@@ -101,7 +103,7 @@ namespace
     QSize CheckBoxIconHelper::sizeHint() const
     {
         const int dim = QCheckBox::sizeHint().height();
-        return QSize(dim, dim);
+        return {dim, dim};
     }
 
     void CheckBoxIconHelper::initStyleOption(QStyleOptionButton *opt) const
@@ -153,7 +155,7 @@ namespace
         }
         m_checkBoxOffset.setWidth(layoutPadding.width());
 
-        QHBoxLayout *layout = new QHBoxLayout(this);
+        auto *layout = new QHBoxLayout(this);
         layout->addWidget(m_checkBox);
         layout->addStretch();
         layout->setContentsMargins(layoutPadding.width(), layoutPadding.height(), layoutPadding.width(), layoutPadding.height());
@@ -338,9 +340,9 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
-void TransferListWidget::previewFile(QString filePath)
+void TransferListWidget::previewFile(const QString &filePath)
 {
-    Utils::Misc::openPath(filePath);
+    Utils::Gui::openPath(filePath);
 }
 
 inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
@@ -385,9 +387,9 @@ void TransferListWidget::torrentDoubleClicked()
         MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
 #else
         if (torrent->filesCount() == 1)
-            Utils::Misc::openFolderSelect(torrent->contentPath(true));
+            Utils::Gui::openFolderSelect(torrent->contentPath(true));
         else
-            Utils::Misc::openPath(torrent->contentPath(true));
+            Utils::Gui::openPath(torrent->contentPath(true));
 #endif
         break;
     }
@@ -591,9 +593,9 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         QString path = torrent->contentPath(true);
         if (!pathsList.contains(path)) {
             if (torrent->filesCount() == 1)
-                Utils::Misc::openFolderSelect(path);
+                Utils::Gui::openFolderSelect(path);
             else
-                Utils::Misc::openPath(path);
+                Utils::Gui::openPath(path);
         }
         pathsList.insert(path);
     }
@@ -812,7 +814,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
         const QString tagsInput = AutoExpandableDialog::getText(
             this, dialogTitle, tr("Comma-separated tags:"), QLineEdit::Normal, "", &ok).trimmed();
         if (!ok || tagsInput.isEmpty())
-            return QStringList();
+            return {};
         tags = tagsInput.split(',', QString::SkipEmptyParts);
         for (QString &tag : tags) {
             tag = tag.trimmed();
@@ -854,7 +856,7 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
-void TransferListWidget::setSelectionCategory(QString category)
+void TransferListWidget::setSelectionCategory(const QString &category)
 {
     for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
         m_listModel->setData(m_listModel->index(mapToSource(index).row(), TransferListModel::TR_CATEGORY), category, Qt::DisplayRole);
@@ -878,7 +880,7 @@ void TransferListWidget::clearSelectionTags()
 void TransferListWidget::displayListMenu(const QPoint&)
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.size() == 0) return;
+    if (selectedIndexes.isEmpty()) return;
 
     // Create actions
     QAction actionStart(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), nullptr);
@@ -1173,7 +1175,7 @@ void TransferListWidget::currentChanged(const QModelIndex &current, const QModel
     emit currentTorrentChanged(torrent);
 }
 
-void TransferListWidget::applyCategoryFilter(QString category)
+void TransferListWidget::applyCategoryFilter(const QString &category)
 {
     if (category.isNull())
         m_sortFilterModel->disableCategoryFilter();

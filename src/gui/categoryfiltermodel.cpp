@@ -176,7 +176,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     , m_rootItem(new CategoryModelItem)
 {
     using namespace BitTorrent;
-    auto session = Session::instance();
+    const auto *session = Session::instance();
 
     connect(session, &Session::categoryAdded, this, &CategoryFilterModel::categoryAdded);
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
@@ -207,9 +207,9 @@ int CategoryFilterModel::columnCount(const QModelIndex &) const
 
 QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid()) return QVariant();
+    if (!index.isValid()) return {};
 
-    auto item = static_cast<CategoryModelItem *>(index.internalPointer());
+    auto item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
         return GuiIconProvider::instance()->getIcon("inode-directory");
@@ -224,7 +224,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
         return item->torrentsCount();
     }
 
-    return QVariant();
+    return {};
 }
 
 Qt::ItemFlags CategoryFilterModel::flags(const QModelIndex &index) const
@@ -240,32 +240,32 @@ QVariant CategoryFilterModel::headerData(int section, Qt::Orientation orientatio
         if (section == 0)
             return tr("Categories");
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex CategoryFilterModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (column > 0)
-        return QModelIndex();
+        return {};
 
     if (parent.isValid() && (parent.column() != 0))
-        return QModelIndex();
+        return {};
 
     auto parentItem = parent.isValid() ? static_cast<CategoryModelItem *>(parent.internalPointer())
                                        : m_rootItem;
     if (row < parentItem->childCount())
         return createIndex(row, column, parentItem->childAt(row));
 
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex CategoryFilterModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
     auto item = static_cast<CategoryModelItem *>(index.internalPointer());
-    if (!item) return QModelIndex();
+    if (!item) return {};
 
     return this->index(item->parent());
 }
@@ -291,13 +291,13 @@ QModelIndex CategoryFilterModel::index(const QString &categoryName) const
 
 QString CategoryFilterModel::categoryName(const QModelIndex &index) const
 {
-    if (!index.isValid()) return QString();
+    if (!index.isValid()) return {};
     return static_cast<CategoryModelItem *>(index.internalPointer())->fullName();
 }
 
 QModelIndex CategoryFilterModel::index(CategoryModelItem *item) const
 {
-    if (!item || !item->parent()) return QModelIndex();
+    if (!item || !item->parent()) return {};
 
     return index(item->pos(), 0, index(item->parent()));
 }
@@ -384,8 +384,8 @@ void CategoryFilterModel::populate()
 {
     m_rootItem->clear();
 
-    auto session = BitTorrent::Session::instance();
-    auto torrents = session->torrents();
+    const auto *session = BitTorrent::Session::instance();
+    const auto torrents = session->torrents();
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
     const QString UID_ALL;
@@ -413,7 +413,7 @@ void CategoryFilterModel::populate()
                 if (!parent->hasChild(subcatName)) {
                     new CategoryModelItem(
                                 parent, subcatName
-                                , std::count_if(torrents.begin(), torrents.end()
+                                , std::count_if(torrents.cbegin(), torrents.cend()
                                                 , [subcat](Torrent *torrent) { return torrent->category() == subcat; }));
                 }
                 parent = parent->child(subcatName);

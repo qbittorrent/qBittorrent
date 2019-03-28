@@ -40,8 +40,8 @@
 ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
     , m_ui(new Ui::ExecutionLogWidget)
-    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types)))
-    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
+    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, types, this))
+    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES, Log::ALL, this))
 {
     m_ui->setupUi(this);
 
@@ -63,8 +63,6 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
 
 ExecutionLogWidget::~ExecutionLogWidget()
 {
-    delete m_msgList;
-    delete m_peerList;
     delete m_ui;
 }
 
@@ -75,38 +73,35 @@ void ExecutionLogWidget::showMsgTypes(const Log::MsgTypes &types)
 
 void ExecutionLogWidget::addLogMessage(const Log::Msg &msg)
 {
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-    QColor color;
-
+    QString colorName;
     switch (msg.type) {
     case Log::INFO:
-        color.setNamedColor("blue");
+        colorName = QLatin1String("blue");
         break;
     case Log::WARNING:
-        color.setNamedColor("orange");
+        colorName = QLatin1String("orange");
         break;
     case Log::CRITICAL:
-        color.setNamedColor("red");
+        colorName = QLatin1String("red");
         break;
     default:
-        color = QApplication::palette().color(QPalette::WindowText);
+        colorName = QApplication::palette().color(QPalette::WindowText).name();
     }
 
-    text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+    const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+    const QString text = QString(QLatin1String("<font color='grey'>%1</font> - <font color='%2'>%3</font>"))
+        .arg(time.toString(Qt::SystemLocaleShortDate), colorName, msg.message);
     m_msgList->appendLine(text, msg.type);
 }
 
 void ExecutionLogWidget::addPeerMessage(const Log::Peer &peer)
 {
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+    const QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+    const QString msg = QString(QLatin1String("<font color='grey'>%1</font> - <font color='red'>%2</font>"))
+        .arg(time.toString(Qt::SystemLocaleShortDate), peer.ip);
 
-    if (peer.blocked)
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - "
-            + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip, peer.reason);
-    else
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
-
+    const QString text = peer.blocked
+        ? tr("%1 was blocked %2", "0.0.0.0 was blocked due to reason").arg(msg, peer.reason)
+        : tr("%1 was banned", "0.0.0.0 was banned").arg(msg);
     m_peerList->appendLine(text, Log::NORMAL);
 }

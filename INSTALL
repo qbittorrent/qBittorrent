@@ -1,7 +1,26 @@
 qBittorrent - A BitTorrent client in C++ / Qt
 ------------------------------------------
 
-1) Compile and install qBittorrent with Qt graphical interface
+1) Install these dependencies:
+
+  - Boost >= 1.35
+
+  - libtorrent-rasterbar >= 1.1.10 (by Arvid Norberg)
+      * https://www.libtorrent.org/
+      * Be careful: another library (the one used by rTorrent) uses a similar name
+
+  - OpenSSL >= 1.0
+
+  - Qt >= 5.9.0
+
+  - zlib >= 1.2.5.2
+
+  - pkg-config (compile-time only)
+
+  - Python >= 2.7.9 / 3.3.0 (optional, runtime only)
+      * Required by the internal search engine
+
+2a) Compile and install qBittorrent with Qt graphical interface
 
   $ ./configure
   $ make && make install
@@ -9,38 +28,13 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   will install and execute qBittorrent.
 
-  Dependencies:
-    - Qt >= 5.5.1
-
-    - pkg-config
-
-    - libtorrent-rasterbar >= 1.0.6 (by Arvid Norberg)
-        * https://www.libtorrent.org/
-        * Be careful: another library (the one used by rTorrent) uses a similar name
-
-    - Boost >= 1.35
-
-    - Python >= 2.7.9 / 3.3.0 (optional, runtime only)
-        * Required by the internal search engine
-
-2) Compile and install qBittorrent without Qt graphical interface
+2b) Compile and install qBittorrent without Qt graphical interface
 
   $ ./configure --disable-gui
   $ make && make install
   $ qbittorrent-nox
 
   will install and execute qBittorrent.
-
-  Dependencies:
-    - Qt >= 5.5.1
-
-    - pkg-config
-
-    - libtorrent-rasterbar >= 1.0.6 (by Arvid Norberg)
-        * https://www.libtorrent.org/
-        * Be careful: another library (the one used by rTorrent) uses a similar name
-
-    - Boost >= 1.35
 
 DOCUMENTATION:
 Please note that there is a "Compilation" section at http://wiki.qbittorrent.org.

@@ -37,14 +37,30 @@
 #include <QQueue>
 #include <QSet>
 
-class QNetworkReply;
 class QNetworkCookie;
+class QNetworkReply;
 class QSslError;
 class QUrl;
 
 namespace Net
 {
-    class DownloadHandler;
+    struct ServiceID
+    {
+        QString hostName;
+        int port;
+
+        static ServiceID fromURL(const QUrl &url);
+    };
+
+    uint qHash(const ServiceID &serviceID, uint seed);
+    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
+
+    enum class DownloadStatus
+    {
+        Success,
+        RedirectedToMagnet,
+        Failed
+    };
 
     class DownloadRequest
     {
@@ -64,23 +80,33 @@ namespace Net
         bool saveToFile() const;
         DownloadRequest &saveToFile(bool value);
 
-        bool handleRedirectToMagnet() const;
-        DownloadRequest &handleRedirectToMagnet(bool value);
-
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
         bool m_saveToFile = false;
-        bool m_handleRedirectToMagnet = false;
     };
 
-    struct ServiceID
+    struct DownloadResult
     {
-        QString hostName;
-        int port;
+        QString url;
+        DownloadStatus status;
+        QString errorString;
+        QByteArray data;
+        QString filePath;
+        QString magnet;
+    };
 
-        static ServiceID fromURL(const QUrl &url);
+    class DownloadHandler : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(DownloadHandler)
+
+    public:
+        using QObject::QObject;
+
+    signals:
+        void finished(const DownloadResult &result);
     };
 
     class DownloadManager : public QObject
@@ -93,7 +119,8 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
+        template <typename Context, typename Func>
+        void download(const DownloadRequest &downloadRequest, Context context, Func slot);
 
         void registerSequentialService(const ServiceID &serviceID);
 
@@ -106,15 +133,14 @@ namespace Net
         static bool hasSupportedScheme(const QString &url);
 
     private slots:
-    #ifndef QT_NO_OPENSSL
         void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);
-    #endif
 
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
         void applyProxySettings();
-        void handleReplyFinished(QNetworkReply *reply);
+        void handleReplyFinished(const QNetworkReply *reply);
 
         static DownloadManager *m_instance;
         QNetworkAccessManager m_networkManager;
@@ -124,8 +150,12 @@ namespace Net
         QHash<ServiceID, QQueue<DownloadHandler *>> m_waitingJobs;
     };
 
-    uint qHash(const ServiceID &serviceID, uint seed);
-    bool operator==(const ServiceID &lhs, const ServiceID &rhs);
+    template <typename Context, typename Func>
+    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func slot)
+    {
+        const DownloadHandler *handler = download(downloadRequest);
+        connect(handler, &DownloadHandler::finished, context, slot);
+    }
 }
 
 #endif // NET_DOWNLOADMANAGER_H

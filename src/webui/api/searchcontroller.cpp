@@ -109,7 +109,7 @@ void SearchController::stopAction()
     const int id = params()["id"].toInt();
     ISession *const session = sessionManager()->session();
 
-    auto searchHandlers = session->getData<SearchHandlerDict>(SEARCH_HANDLERS);
+    const auto searchHandlers = session->getData<SearchHandlerDict>(SEARCH_HANDLERS);
     if (!searchHandlers.contains(id))
         throw APIError(APIErrorType::NotFound);
 

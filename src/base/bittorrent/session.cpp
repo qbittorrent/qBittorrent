@@ -62,14 +62,13 @@
 #include <libtorrent/session_stats.hpp>
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 
 #include "base/algorithm.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
-#include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/profile.h"
 #include "base/torrentfileguard.h"
@@ -83,6 +82,7 @@
 #include "magneturi.h"
 #include "private/bandwidthscheduler.h"
 #include "private/filterparserthread.h"
+#include "private/portforwarderimpl.h"
 #include "private/resumedatasavingmanager.h"
 #include "private/statistics.h"
 #include "torrenthandle.h"
@@ -107,6 +107,16 @@ using namespace BitTorrent;
 
 namespace
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    using LTSessionFlags = int;
+    using LTStatusFlags = int;
+    using LTString = std::string;
+#else
+    using LTSessionFlags = lt::session_flags_t;
+    using LTStatusFlags = lt::status_flags_t;
+    using LTString = lt::string_view;
+#endif
+
     bool readFile(const QString &path, QByteArray &buf);
     bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &prio, MagnetUri &magnetUri);
 
@@ -135,13 +145,19 @@ namespace
         return result;
     }
 
+    template <typename LTStr>
+    QString fromLTString(const LTStr &str)
+    {
+        return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
+    }
+
     template <typename Entry>
     QSet<QString> entryListToSetImpl(const Entry &entry)
     {
         Q_ASSERT(entry.type() == Entry::list_t);
         QSet<QString> output;
         for (int i = 0; i < entry.list_size(); ++i) {
-            const QString tag = QString::fromStdString(entry.list_string_value_at(i));
+            const QString tag = fromLTString(entry.list_string_value_at(i));
             if (Session::isValidTag(tag))
                 output.insert(tag);
             else
@@ -225,7 +241,7 @@ namespace
     template <typename T>
     std::function<T (const T&)> clampValue(const T lower, const T upper)
     {
-        // TODO: change return type to `auto` when using C++14
+        // TODO: change return type to `auto` when using C++17
         return [lower, upper](const T value) -> T
         {
             if (value < lower)
@@ -288,7 +304,6 @@ Session::Session(QObject *parent)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_isSuperSeedingEnabled(BITTORRENT_SESSION_KEY("SuperSeedingEnabled"), false)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
-    , m_maxHalfOpenConnections(BITTORRENT_SESSION_KEY("MaxHalfOpenConnections"), 20, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), -1, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
@@ -407,7 +422,7 @@ Session::Session(QObject *parent)
     pack.set_bool(libt::settings_pack::upnp_ignore_nonrouters, true);
     configure(pack);
 
-    m_nativeSession = new libt::session(pack, 0);
+    m_nativeSession = new lt::session {pack, LTSessionFlags {0}};
     m_nativeSession->set_alert_notify([this]()
     {
         QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
@@ -492,7 +507,7 @@ Session::Session(QObject *parent)
     }
 
     // initialize PortForwarder instance
-    Net::PortForwarder::initInstance(m_nativeSession);
+    new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
     m_statsUpdateTimer.start();
@@ -520,7 +535,7 @@ bool Session::isLSDEnabled() const
     return m_isLSDEnabled;
 }
 
-void Session::setLSDEnabled(bool enabled)
+void Session::setLSDEnabled(const bool enabled)
 {
     if (enabled != m_isLSDEnabled) {
         m_isLSDEnabled = enabled;
@@ -536,7 +551,7 @@ bool Session::isPeXEnabled() const
     return m_isPeXEnabled;
 }
 
-void Session::setPeXEnabled(bool enabled)
+void Session::setPeXEnabled(const bool enabled)
 {
     m_isPeXEnabled = enabled;
     if (m_wasPexEnabled != enabled)
@@ -548,7 +563,7 @@ bool Session::isTempPathEnabled() const
     return m_isTempPathEnabled;
 }
 
-void Session::setTempPathEnabled(bool enabled)
+void Session::setTempPathEnabled(const bool enabled)
 {
     if (enabled != isTempPathEnabled()) {
         m_isTempPathEnabled = enabled;
@@ -562,7 +577,7 @@ bool Session::isAppendExtensionEnabled() const
     return m_isAppendExtensionEnabled;
 }
 
-void Session::setAppendExtensionEnabled(bool enabled)
+void Session::setAppendExtensionEnabled(const bool enabled)
 {
     if (isAppendExtensionEnabled() != enabled) {
         // append or remove .!qB extension for incomplete files
@@ -578,7 +593,7 @@ uint Session::refreshInterval() const
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(uint value)
+void Session::setRefreshInterval(const uint value)
 {
     if (value != refreshInterval()) {
         m_refreshTimer->setInterval(value);
@@ -591,7 +606,7 @@ bool Session::isPreallocationEnabled() const
     return m_isPreallocationEnabled;
 }
 
-void Session::setPreallocationEnabled(bool enabled)
+void Session::setPreallocationEnabled(const bool enabled)
 {
     m_isPreallocationEnabled = enabled;
 }
@@ -674,7 +689,7 @@ const QStringMap &Session::categories() const
 
 QString Session::categorySavePath(const QString &categoryName) const
 {
-    QString basePath = m_defaultSavePath;
+    const QString basePath = m_defaultSavePath;
     if (categoryName.isEmpty()) return basePath;
 
     QString path = m_categories.value(categoryName);
@@ -768,7 +783,7 @@ bool Session::isSubcategoriesEnabled() const
     return m_isSubcategoriesEnabled;
 }
 
-void Session::setSubcategoriesEnabled(bool value)
+void Session::setSubcategoriesEnabled(const bool value)
 {
     if (isSubcategoriesEnabled() == value) return;
 
@@ -833,7 +848,7 @@ bool Session::isAutoTMMDisabledByDefault() const
     return m_isAutoTMMDisabledByDefault;
 }
 
-void Session::setAutoTMMDisabledByDefault(bool value)
+void Session::setAutoTMMDisabledByDefault(const bool value)
 {
     m_isAutoTMMDisabledByDefault = value;
 }
@@ -843,7 +858,7 @@ bool Session::isDisableAutoTMMWhenCategoryChanged() const
     return m_isDisableAutoTMMWhenCategoryChanged;
 }
 
-void Session::setDisableAutoTMMWhenCategoryChanged(bool value)
+void Session::setDisableAutoTMMWhenCategoryChanged(const bool value)
 {
     m_isDisableAutoTMMWhenCategoryChanged = value;
 }
@@ -853,7 +868,7 @@ bool Session::isDisableAutoTMMWhenDefaultSavePathChanged() const
     return m_isDisableAutoTMMWhenDefaultSavePathChanged;
 }
 
-void Session::setDisableAutoTMMWhenDefaultSavePathChanged(bool value)
+void Session::setDisableAutoTMMWhenDefaultSavePathChanged(const bool value)
 {
     m_isDisableAutoTMMWhenDefaultSavePathChanged = value;
 }
@@ -863,7 +878,7 @@ bool Session::isDisableAutoTMMWhenCategorySavePathChanged() const
     return m_isDisableAutoTMMWhenCategorySavePathChanged;
 }
 
-void Session::setDisableAutoTMMWhenCategorySavePathChanged(bool value)
+void Session::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
 {
     m_isDisableAutoTMMWhenCategorySavePathChanged = value;
 }
@@ -873,7 +888,7 @@ bool Session::isAddTorrentPaused() const
     return m_isAddTorrentPaused;
 }
 
-void Session::setAddTorrentPaused(bool value)
+void Session::setAddTorrentPaused(const bool value)
 {
     m_isAddTorrentPaused = value;
 }
@@ -883,7 +898,7 @@ bool Session::isTrackerEnabled() const
     return m_isTrackerEnabled;
 }
 
-void Session::setTrackerEnabled(bool enabled)
+void Session::setTrackerEnabled(const bool enabled)
 {
     if (isTrackerEnabled() != enabled) {
         enableTracker(enabled);
@@ -938,7 +953,7 @@ Session::~Session()
 
     // We must delete PortForwarderImpl before
     // we delete libtorrent::session
-    Net::PortForwarder::freeInstance();
+    delete Net::PortForwarder::instance();
 
     qDebug("Deleting the session");
     delete m_nativeSession;
@@ -1011,7 +1026,7 @@ void Session::processBannedIPs(libt::ip_filter &filter)
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.value())) {
         boost::system::error_code ec;
-        libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+        const libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (!ec)
             filter.add_rule(addr, addr, libt::ip_filter::blocked);
@@ -1021,8 +1036,8 @@ void Session::processBannedIPs(libt::ip_filter &filter)
 void Session::adjustLimits(libt::settings_pack &settingsPack)
 {
     // Internally increase the queue limits to ensure that the magnet is started
-    int maxDownloads = maxActiveDownloads();
-    int maxActive = maxActiveTorrents();
+    const int maxDownloads = maxActiveDownloads();
+    const int maxActive = maxActiveTorrents();
 
     settingsPack.set_int(libt::settings_pack::active_downloads
                          , maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads);
@@ -1125,7 +1140,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
 
     if (m_listenInterfaceChanged) {
         const ushort port = this->port();
-        std::pair<int, int> ports(port, port);
+        const std::pair<int, int> ports(port, port);
         settingsPack.set_int(libt::settings_pack::max_retry_port_bind, ports.second - ports.first);
         for (QString ip : getListeningIPs()) {
             libt::error_code ec;
@@ -1143,7 +1158,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
                 break;
             }
 
-            libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+            const libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
             if (!ec) {
                 interfacesStr = std::string((addr.is_v6() ? QString("[%1]:%2") : QString("%1:%2"))
                                             .arg(ip).arg(port).toLatin1().constData());
@@ -1164,7 +1179,7 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
         // the interface's Luid and not the GUID.
         // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
         if (!networkInterface().isEmpty()) {
-            QString guid = convertIfaceNameToGuid(networkInterface());
+            const QString guid = convertIfaceNameToGuid(networkInterface());
             if (!guid.isEmpty()) {
                 settingsPack.set_str(libt::settings_pack::outgoing_interfaces, guid.toStdString());
             }
@@ -1199,8 +1214,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
         settingsPack.set_int(libt::settings_pack::in_enc_policy, libt::settings_pack::pe_disabled);
     }
 
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
-    Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    const auto proxyManager = Net::ProxyConfigurationManager::instance();
+    const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
         if (proxyConfig.type != Net::ProxyType::None) {
             settingsPack.set_str(libt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
@@ -1444,7 +1459,7 @@ void Session::configurePeerClasses()
     m_nativeSession->set_peer_class_type_filter(peerClassTypeFilter);
 }
 
-void Session::enableTracker(bool enable)
+void Session::enableTracker(const bool enable)
 {
     Logger *const logger = Logger::instance();
 
@@ -1542,22 +1557,21 @@ void Session::processShareLimits()
     }
 }
 
-void Session::handleDownloadFailed(const QString &url, const QString &reason)
-{
-    emit downloadFromUrlFailed(url, reason);
-}
-
-void Session::handleRedirectedToMagnet(const QString &url, const QString &magnetUri)
-{
-    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url)), MagnetUri(magnetUri));
-}
-
 // Add to BitTorrent session the downloaded torrent file
-void Session::handleDownloadFinished(const QString &url, const QByteArray &data)
+void Session::handleDownloadFinished(const Net::DownloadResult &result)
 {
-    emit downloadFromUrlFinished(url);
-    addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(url))
-                    , MagnetUri(), TorrentInfo::load(data));
+    switch (result.status) {
+    case Net::DownloadStatus::Success:
+        emit downloadFromUrlFinished(result.url);
+        addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(result.url))
+                        , MagnetUri(), TorrentInfo::load(result.data));
+        break;
+    case Net::DownloadStatus::RedirectedToMagnet:
+        addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(result.url)), MagnetUri(result.magnet));
+        break;
+    default:
+        emit downloadFromUrlFailed(result.url, result.errorString);
+    }
 }
 
 // Return the torrent handle, given its hash
@@ -1596,7 +1610,7 @@ void Session::banIP(const QString &ip)
     if (!bannedIPs.contains(ip)) {
         libt::ip_filter filter = m_nativeSession->get_ip_filter();
         boost::system::error_code ec;
-        libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
+        const libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec) return;
         filter.add_rule(addr, addr, libt::ip_filter::blocked);
@@ -1610,7 +1624,7 @@ void Session::banIP(const QString &ip)
 
 // Delete a torrent from the session, given its hash
 // deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
-bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
+bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
 {
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
@@ -1620,7 +1634,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
 
     // Remove it from session
     if (deleteLocalFiles) {
-        QString rootPath = torrent->rootPath(true);
+        const QString rootPath = torrent->rootPath(true);
         if (!rootPath.isEmpty())
             // torrent with root folder
             m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteLocalFiles};
@@ -1648,7 +1662,7 @@ bool Session::deleteTorrent(const QString &hash, bool deleteLocalFiles)
     }
 
     // Remove it from torrent resume directory
-    QDir resumeDataDir(m_resumeFolderPath);
+    const QDir resumeDataDir(m_resumeFolderPath);
     QStringList filters;
     filters << QString("%1.*").arg(torrent->hash());
     const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -1665,10 +1679,10 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
     if (!m_loadedMetadata.contains(hash)) return false;
 
     m_loadedMetadata.remove(hash);
-    libt::torrent_handle torrent = m_nativeSession->find_torrent(hash);
+    const libt::torrent_handle torrent = m_nativeSession->find_torrent(hash);
     if (!torrent.is_valid()) return false;
 
-    if (!torrent.status(0).has_metadata) {
+    if (!torrent.status(LTStatusFlags {0}).has_metadata) {
         // if hidden torrent is still loading metadata...
         --m_extraLimit;
         adjustLimits();
@@ -1795,13 +1809,9 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        Net::DownloadHandler *handler =
-                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */).handleRedirectToMagnet(true));
-        connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-                , this, &Session::handleDownloadFinished);
-        connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::handleDownloadFailed);
-        connect(handler, &Net::DownloadHandler::redirectedToMagnet, this, &Session::handleRedirectedToMagnet);
-        m_downloadedTorrents[handler->url()] = params;
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */)
+                                                   , this, &Session::handleDownloadFinished);
+        m_downloadedTorrents[source] = params;
         return true;
     }
 
@@ -1937,11 +1947,21 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     if (!fromMagnetUri) {
         if (params.restored) {
             // Set torrent fast resume data
-            p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
+            p.resume_data = std::vector<char> {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
             p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
         }
         else {
-            p.file_priorities = {params.filePriorities.begin(), params.filePriorities.end()};
+            Q_ASSERT(p.file_priorities.empty());
+            std::transform(params.filePriorities.cbegin(), params.filePriorities.cend()
+                           , std::back_inserter(p.file_priorities), [](DownloadPriority priority)
+            {
+#if (LIBTORRENT_VERSION_NUM < 10200)
+                return static_cast<boost::uint8_t>(priority);
+#else
+                return static_cast<lt::download_priority_t>(
+                            static_cast<lt::download_priority_t::underlying_type>(priority));
+#endif
+            });
         }
     }
 
@@ -1999,8 +2019,8 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
 {
     if (!magnetUri.isValid()) return false;
 
-    InfoHash hash = magnetUri.hash();
-    QString name = magnetUri.name();
+    const InfoHash hash = magnetUri.hash();
+    const QString name = magnetUri.name();
 
     // We should not add torrent if it's already
     // processed or adding to session
@@ -2052,11 +2072,11 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     Q_ASSERT(((folder == TorrentExportFolder::Regular) && !torrentExportDirectory().isEmpty()) ||
              ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
 
-    QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
-    QString torrentFilename = QString("%1.torrent").arg(torrent->hash());
+    const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
+    const QString torrentFilename = QString("%1.torrent").arg(torrent->hash());
     QString torrentExportFilename = QString("%1.torrent").arg(validName);
-    QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
-    QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
+    const QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
+    const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
         QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         int counter = 0;
@@ -2071,7 +2091,7 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
     }
 }
 
-void Session::generateResumeData(bool final)
+void Session::generateResumeData(const bool final)
 {
     for (TorrentHandle *const torrent : asConst(m_torrents)) {
         if (!torrent->isValid()) continue;
@@ -2179,16 +2199,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
 
     const QString changedInterface = cfg.name();
 
-    // workaround for QTBUG-52633: check interface IPs, react only if the IPs have changed
-    // seems to be present only with NetworkManager, hence Q_OS_LINUX
-#if defined Q_OS_LINUX && QT_VERSION >= QT_VERSION_CHECK(5, 0, 0) && QT_VERSION < QT_VERSION_CHECK(5, 7, 1)
-    static QStringList boundIPs = getListeningIPs();
-    const QStringList newBoundIPs = getListeningIPs();
-    if ((configuredInterfaceName == changedInterface) && (boundIPs != newBoundIPs)) {
-        boundIPs = newBoundIPs;
-#else
     if (configuredInterfaceName == changedInterface) {
-#endif
         Logger::instance()->addMessage(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
         configureListeningInterface();
     }
@@ -2406,7 +2417,7 @@ bool Session::isBandwidthSchedulerEnabled() const
     return m_isBandwidthSchedulerEnabled;
 }
 
-void Session::setBandwidthSchedulerEnabled(bool enabled)
+void Session::setBandwidthSchedulerEnabled(const bool enabled)
 {
     if (enabled != isBandwidthSchedulerEnabled()) {
         m_isBandwidthSchedulerEnabled = enabled;
@@ -2446,7 +2457,7 @@ int Session::port() const
     return m_port;
 }
 
-void Session::setPort(int port)
+void Session::setPort(const int port)
 {
     if (port != this->port()) {
         m_port = port;
@@ -2459,7 +2470,7 @@ bool Session::useRandomPort() const
     return m_useRandomPort;
 }
 
-void Session::setUseRandomPort(bool value)
+void Session::setUseRandomPort(const bool value)
 {
     m_useRandomPort = value;
 }
@@ -2505,7 +2516,7 @@ bool Session::isIPv6Enabled() const
     return m_isIPv6Enabled;
 }
 
-void Session::setIPv6Enabled(bool enabled)
+void Session::setIPv6Enabled(const bool enabled)
 {
     if (enabled != isIPv6Enabled()) {
         m_isIPv6Enabled = enabled;
@@ -2518,7 +2529,7 @@ int Session::encryption() const
     return m_encryption;
 }
 
-void Session::setEncryption(int state)
+void Session::setEncryption(const int state)
 {
     if (state != encryption()) {
         m_encryption = state;
@@ -2535,7 +2546,7 @@ bool Session::isForceProxyEnabled() const
     return m_isForceProxyEnabled;
 }
 
-void Session::setForceProxyEnabled(bool enabled)
+void Session::setForceProxyEnabled(const bool enabled)
 {
     if (enabled != isForceProxyEnabled()) {
         m_isForceProxyEnabled = enabled;
@@ -2548,7 +2559,7 @@ bool Session::isProxyPeerConnectionsEnabled() const
     return m_isProxyPeerConnectionsEnabled;
 }
 
-void Session::setProxyPeerConnectionsEnabled(bool enabled)
+void Session::setProxyPeerConnectionsEnabled(const bool enabled)
 {
     if (enabled != isProxyPeerConnectionsEnabled()) {
         m_isProxyPeerConnectionsEnabled = enabled;
@@ -2561,7 +2572,7 @@ ChokingAlgorithm Session::chokingAlgorithm() const
     return m_chokingAlgorithm;
 }
 
-void Session::setChokingAlgorithm(ChokingAlgorithm mode)
+void Session::setChokingAlgorithm(const ChokingAlgorithm mode)
 {
     if (mode == m_chokingAlgorithm) return;
 
@@ -2574,7 +2585,7 @@ SeedChokingAlgorithm Session::seedChokingAlgorithm() const
     return m_seedChokingAlgorithm;
 }
 
-void Session::setSeedChokingAlgorithm(SeedChokingAlgorithm mode)
+void Session::setSeedChokingAlgorithm(const SeedChokingAlgorithm mode)
 {
     if (mode == m_seedChokingAlgorithm) return;
 
@@ -2587,7 +2598,7 @@ bool Session::isAddTrackersEnabled() const
     return m_isAddTrackersEnabled;
 }
 
-void Session::setAddTrackersEnabled(bool enabled)
+void Session::setAddTrackersEnabled(const bool enabled)
 {
     m_isAddTrackersEnabled = enabled;
 }
@@ -2610,7 +2621,7 @@ bool Session::isIPFilteringEnabled() const
     return m_isIPFilteringEnabled;
 }
 
-void Session::setIPFilteringEnabled(bool enabled)
+void Session::setIPFilteringEnabled(const bool enabled)
 {
     if (enabled != m_isIPFilteringEnabled) {
         m_isIPFilteringEnabled = enabled;
@@ -2722,7 +2733,7 @@ bool Session::announceToAllTrackers() const
     return m_announceToAllTrackers;
 }
 
-void Session::setAnnounceToAllTrackers(bool val)
+void Session::setAnnounceToAllTrackers(const bool val)
 {
     if (val != m_announceToAllTrackers) {
         m_announceToAllTrackers = val;
@@ -2735,7 +2746,7 @@ bool Session::announceToAllTiers() const
     return m_announceToAllTiers;
 }
 
-void Session::setAnnounceToAllTiers(bool val)
+void Session::setAnnounceToAllTiers(const bool val)
 {
     if (val != m_announceToAllTiers) {
         m_announceToAllTiers = val;
@@ -2806,7 +2817,7 @@ int Session::diskCacheTTL() const
     return m_diskCacheTTL;
 }
 
-void Session::setDiskCacheTTL(int ttl)
+void Session::setDiskCacheTTL(const int ttl)
 {
     if (ttl != m_diskCacheTTL) {
         m_diskCacheTTL = ttl;
@@ -2819,7 +2830,7 @@ bool Session::useOSCache() const
     return m_useOSCache;
 }
 
-void Session::setUseOSCache(bool use)
+void Session::setUseOSCache(const bool use)
 {
     if (use != m_useOSCache) {
         m_useOSCache = use;
@@ -2832,7 +2843,7 @@ bool Session::isGuidedReadCacheEnabled() const
     return m_guidedReadCacheEnabled;
 }
 
-void Session::setGuidedReadCacheEnabled(bool enabled)
+void Session::setGuidedReadCacheEnabled(const bool enabled)
 {
     if (enabled == m_guidedReadCacheEnabled) return;
 
@@ -2845,7 +2856,7 @@ bool Session::isCoalesceReadWriteEnabled() const
     return m_coalesceReadWriteEnabled;
 }
 
-void Session::setCoalesceReadWriteEnabled(bool enabled)
+void Session::setCoalesceReadWriteEnabled(const bool enabled)
 {
     if (enabled == m_coalesceReadWriteEnabled) return;
 
@@ -2858,7 +2869,7 @@ bool Session::isSuggestModeEnabled() const
     return m_isSuggestMode;
 }
 
-void Session::setSuggestMode(bool mode)
+void Session::setSuggestMode(const bool mode)
 {
     if (mode == m_isSuggestMode) return;
 
@@ -2871,7 +2882,7 @@ int Session::sendBufferWatermark() const
     return m_sendBufferWatermark;
 }
 
-void Session::setSendBufferWatermark(int value)
+void Session::setSendBufferWatermark(const int value)
 {
     if (value == m_sendBufferWatermark) return;
 
@@ -2884,7 +2895,7 @@ int Session::sendBufferLowWatermark() const
     return m_sendBufferLowWatermark;
 }
 
-void Session::setSendBufferLowWatermark(int value)
+void Session::setSendBufferLowWatermark(const int value)
 {
     if (value == m_sendBufferLowWatermark) return;
 
@@ -2897,7 +2908,7 @@ int Session::sendBufferWatermarkFactor() const
     return m_sendBufferWatermarkFactor;
 }
 
-void Session::setSendBufferWatermarkFactor(int value)
+void Session::setSendBufferWatermarkFactor(const int value)
 {
     if (value == m_sendBufferWatermarkFactor) return;
 
@@ -2910,7 +2921,7 @@ bool Session::isAnonymousModeEnabled() const
     return m_isAnonymousModeEnabled;
 }
 
-void Session::setAnonymousModeEnabled(bool enabled)
+void Session::setAnonymousModeEnabled(const bool enabled)
 {
     if (enabled != m_isAnonymousModeEnabled) {
         m_isAnonymousModeEnabled = enabled;
@@ -2926,7 +2937,7 @@ bool Session::isQueueingSystemEnabled() const
     return m_isQueueingEnabled;
 }
 
-void Session::setQueueingSystemEnabled(bool enabled)
+void Session::setQueueingSystemEnabled(const bool enabled)
 {
     if (enabled != m_isQueueingEnabled) {
         m_isQueueingEnabled = enabled;
@@ -2986,7 +2997,7 @@ bool Session::ignoreSlowTorrentsForQueueing() const
     return m_ignoreSlowTorrentsForQueueing;
 }
 
-void Session::setIgnoreSlowTorrentsForQueueing(bool ignore)
+void Session::setIgnoreSlowTorrentsForQueueing(const bool ignore)
 {
     if (ignore != m_ignoreSlowTorrentsForQueueing) {
         m_ignoreSlowTorrentsForQueueing = ignore;
@@ -2999,7 +3010,7 @@ int Session::downloadRateForSlowTorrents() const
     return m_downloadRateForSlowTorrents;
 }
 
-void Session::setDownloadRateForSlowTorrents(int rateInKibiBytes)
+void Session::setDownloadRateForSlowTorrents(const int rateInKibiBytes)
 {
     if (rateInKibiBytes == m_downloadRateForSlowTorrents)
         return;
@@ -3013,7 +3024,7 @@ int Session::uploadRateForSlowTorrents() const
     return m_uploadRateForSlowTorrents;
 }
 
-void Session::setUploadRateForSlowTorrents(int rateInKibiBytes)
+void Session::setUploadRateForSlowTorrents(const int rateInKibiBytes)
 {
     if (rateInKibiBytes == m_uploadRateForSlowTorrents)
         return;
@@ -3027,7 +3038,7 @@ int Session::slowTorrentsInactivityTimer() const
     return m_slowTorrentsInactivityTimer;
 }
 
-void Session::setSlowTorrentsInactivityTimer(int timeInSeconds)
+void Session::setSlowTorrentsInactivityTimer(const int timeInSeconds)
 {
     if (timeInSeconds == m_slowTorrentsInactivityTimer)
         return;
@@ -3041,7 +3052,7 @@ int Session::outgoingPortsMin() const
     return m_outgoingPortsMin;
 }
 
-void Session::setOutgoingPortsMin(int min)
+void Session::setOutgoingPortsMin(const int min)
 {
     if (min != m_outgoingPortsMin) {
         m_outgoingPortsMin = min;
@@ -3054,7 +3065,7 @@ int Session::outgoingPortsMax() const
     return m_outgoingPortsMax;
 }
 
-void Session::setOutgoingPortsMax(int max)
+void Session::setOutgoingPortsMax(const int max)
 {
     if (max != m_outgoingPortsMax) {
         m_outgoingPortsMax = max;
@@ -3067,7 +3078,7 @@ bool Session::ignoreLimitsOnLAN() const
     return m_ignoreLimitsOnLAN;
 }
 
-void Session::setIgnoreLimitsOnLAN(bool ignore)
+void Session::setIgnoreLimitsOnLAN(const bool ignore)
 {
     if (ignore != m_ignoreLimitsOnLAN) {
         m_ignoreLimitsOnLAN = ignore;
@@ -3080,7 +3091,7 @@ bool Session::includeOverheadInLimits() const
     return m_includeOverheadInLimits;
 }
 
-void Session::setIncludeOverheadInLimits(bool include)
+void Session::setIncludeOverheadInLimits(const bool include)
 {
     if (include != m_includeOverheadInLimits) {
         m_includeOverheadInLimits = include;
@@ -3106,7 +3117,7 @@ bool Session::isSuperSeedingEnabled() const
     return m_isSuperSeedingEnabled;
 }
 
-void Session::setSuperSeedingEnabled(bool enabled)
+void Session::setSuperSeedingEnabled(const bool enabled)
 {
     if (enabled != m_isSuperSeedingEnabled) {
         m_isSuperSeedingEnabled = enabled;
@@ -3124,20 +3135,6 @@ void Session::setMaxConnections(int max)
     max = (max > 0) ? max : -1;
     if (max != m_maxConnections) {
         m_maxConnections = max;
-        configureDeferred();
-    }
-}
-
-int Session::maxHalfOpenConnections() const
-{
-    return m_maxHalfOpenConnections;
-}
-
-void Session::setMaxHalfOpenConnections(int max)
-{
-    max = (max > 0) ? max : -1;
-    if (max != m_maxHalfOpenConnections) {
-        m_maxHalfOpenConnections = max;
         configureDeferred();
     }
 }
@@ -3161,7 +3158,7 @@ BTProtocol Session::btProtocol() const
     return m_btProtocol;
 }
 
-void Session::setBTProtocol(BTProtocol protocol)
+void Session::setBTProtocol(const BTProtocol protocol)
 {
     if ((protocol < BTProtocol::Both) || (BTProtocol::UTP < protocol))
         return;
@@ -3177,7 +3174,7 @@ bool Session::isUTPRateLimited() const
     return m_isUTPRateLimited;
 }
 
-void Session::setUTPRateLimited(bool limited)
+void Session::setUTPRateLimited(const bool limited)
 {
     if (limited != m_isUTPRateLimited) {
         m_isUTPRateLimited = limited;
@@ -3190,7 +3187,7 @@ MixedModeAlgorithm Session::utpMixedMode() const
     return m_utpMixedMode;
 }
 
-void Session::setUtpMixedMode(MixedModeAlgorithm mode)
+void Session::setUtpMixedMode(const MixedModeAlgorithm mode)
 {
     if (mode == m_utpMixedMode) return;
 
@@ -3203,7 +3200,7 @@ bool Session::multiConnectionsPerIpEnabled() const
     return m_multiConnectionsPerIpEnabled;
 }
 
-void Session::setMultiConnectionsPerIpEnabled(bool enabled)
+void Session::setMultiConnectionsPerIpEnabled(const bool enabled)
 {
     if (enabled == m_multiConnectionsPerIpEnabled) return;
 
@@ -3216,7 +3213,7 @@ bool Session::isTrackerFilteringEnabled() const
     return m_isTrackerFilteringEnabled;
 }
 
-void Session::setTrackerFilteringEnabled(bool enabled)
+void Session::setTrackerFilteringEnabled(const bool enabled)
 {
     if (enabled != m_isTrackerFilteringEnabled) {
         m_isTrackerFilteringEnabled = enabled;
@@ -3234,7 +3231,7 @@ MaxRatioAction Session::maxRatioAction() const
     return static_cast<MaxRatioAction>(m_maxRatioAction.value());
 }
 
-void Session::setMaxRatioAction(MaxRatioAction act)
+void Session::setMaxRatioAction(const MaxRatioAction act)
 {
     m_maxRatioAction = static_cast<int>(act);
 }
@@ -3460,24 +3457,24 @@ void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QS
 
 bool Session::hasPerTorrentRatioLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->ratioLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->ratioLimit() >= 0);
+    });
 }
 
 bool Session::hasPerTorrentSeedingTimeLimit() const
 {
-    for (TorrentHandle *const torrent : asConst(m_torrents))
-        if (torrent->seedingTimeLimit() >= 0) return true;
-
-    return false;
+    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentHandle *torrent)
+    {
+        return (torrent->seedingTimeLimit() >= 0);
+    });
 }
 
 void Session::initResumeFolder()
 {
     m_resumeFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER);
-    QDir resumeFolderDir(m_resumeFolderPath);
+    const QDir resumeFolderDir(m_resumeFolderPath);
     if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath())) {
         m_resumeFolderLock.setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
         if (!m_resumeFolderLock.open(QFile::WriteOnly)) {
@@ -3519,7 +3516,7 @@ void Session::disableIPFilter()
 {
     qDebug("Disabling IPFilter");
     if (m_filterParser) {
-        disconnect(m_filterParser.data(), 0, this, 0);
+        disconnect(m_filterParser.data(), nullptr, this, nullptr);
         delete m_filterParser;
     }
 
@@ -3585,7 +3582,7 @@ void Session::startUpTorrents()
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, logger, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
     {
-        QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
+        const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
             logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
@@ -3706,7 +3703,7 @@ void Session::refresh()
     m_nativeSession->post_session_stats();
 }
 
-void Session::handleIPFilterParsed(int ruleCount)
+void Session::handleIPFilterParsed(const int ruleCount)
 {
     if (m_filterParser) {
         libt::ip_filter filter = m_filterParser->IPfilter();
@@ -3727,7 +3724,7 @@ void Session::handleIPFilterError()
     emit IPFilterParsed(true, 0);
 }
 
-void Session::getPendingAlerts(std::vector<libt::alert *> &out, ulong time)
+void Session::getPendingAlerts(std::vector<libt::alert *> &out, const ulong time)
 {
     Q_ASSERT(out.empty());
 
@@ -3741,7 +3738,7 @@ bool Session::isCreateTorrentSubfolder() const
     return m_isCreateTorrentSubfolder;
 }
 
-void Session::setCreateTorrentSubfolder(bool value)
+void Session::setCreateTorrentSubfolder(const bool value)
 {
     m_isCreateTorrentSubfolder = value;
 }
@@ -3756,7 +3753,7 @@ void Session::readAlerts()
         handleAlert(a);
 }
 
-void Session::handleAlert(libt::alert *a)
+void Session::handleAlert(const libt::alert *a)
 {
     try {
         switch (a->type()) {
@@ -3778,53 +3775,53 @@ void Session::handleAlert(libt::alert *a)
             dispatchTorrentAlert(a);
             break;
         case libt::metadata_received_alert::alert_type:
-            handleMetadataReceivedAlert(static_cast<libt::metadata_received_alert*>(a));
+            handleMetadataReceivedAlert(static_cast<const libt::metadata_received_alert*>(a));
             dispatchTorrentAlert(a);
             break;
         case libt::state_update_alert::alert_type:
-            handleStateUpdateAlert(static_cast<libt::state_update_alert*>(a));
+            handleStateUpdateAlert(static_cast<const libt::state_update_alert*>(a));
             break;
         case libt::session_stats_alert::alert_type:
-            handleSessionStatsAlert(static_cast<libt::session_stats_alert*>(a));
+            handleSessionStatsAlert(static_cast<const libt::session_stats_alert*>(a));
             break;
         case libt::file_error_alert::alert_type:
-            handleFileErrorAlert(static_cast<libt::file_error_alert*>(a));
+            handleFileErrorAlert(static_cast<const libt::file_error_alert*>(a));
             break;
         case libt::add_torrent_alert::alert_type:
-            handleAddTorrentAlert(static_cast<libt::add_torrent_alert*>(a));
+            handleAddTorrentAlert(static_cast<const libt::add_torrent_alert*>(a));
             break;
         case libt::torrent_removed_alert::alert_type:
-            handleTorrentRemovedAlert(static_cast<libt::torrent_removed_alert*>(a));
+            handleTorrentRemovedAlert(static_cast<const libt::torrent_removed_alert*>(a));
             break;
         case libt::torrent_deleted_alert::alert_type:
-            handleTorrentDeletedAlert(static_cast<libt::torrent_deleted_alert*>(a));
+            handleTorrentDeletedAlert(static_cast<const libt::torrent_deleted_alert*>(a));
             break;
         case libt::torrent_delete_failed_alert::alert_type:
-            handleTorrentDeleteFailedAlert(static_cast<libt::torrent_delete_failed_alert*>(a));
+            handleTorrentDeleteFailedAlert(static_cast<const libt::torrent_delete_failed_alert*>(a));
             break;
         case libt::portmap_error_alert::alert_type:
-            handlePortmapWarningAlert(static_cast<libt::portmap_error_alert*>(a));
+            handlePortmapWarningAlert(static_cast<const libt::portmap_error_alert*>(a));
             break;
         case libt::portmap_alert::alert_type:
-            handlePortmapAlert(static_cast<libt::portmap_alert*>(a));
+            handlePortmapAlert(static_cast<const libt::portmap_alert*>(a));
             break;
         case libt::peer_blocked_alert::alert_type:
-            handlePeerBlockedAlert(static_cast<libt::peer_blocked_alert*>(a));
+            handlePeerBlockedAlert(static_cast<const libt::peer_blocked_alert*>(a));
             break;
         case libt::peer_ban_alert::alert_type:
-            handlePeerBanAlert(static_cast<libt::peer_ban_alert*>(a));
+            handlePeerBanAlert(static_cast<const libt::peer_ban_alert*>(a));
             break;
         case libt::url_seed_alert::alert_type:
-            handleUrlSeedAlert(static_cast<libt::url_seed_alert*>(a));
+            handleUrlSeedAlert(static_cast<const libt::url_seed_alert*>(a));
             break;
         case libt::listen_succeeded_alert::alert_type:
-            handleListenSucceededAlert(static_cast<libt::listen_succeeded_alert*>(a));
+            handleListenSucceededAlert(static_cast<const libt::listen_succeeded_alert*>(a));
             break;
         case libt::listen_failed_alert::alert_type:
-            handleListenFailedAlert(static_cast<libt::listen_failed_alert*>(a));
+            handleListenFailedAlert(static_cast<const libt::listen_failed_alert*>(a));
             break;
         case libt::external_ip_alert::alert_type:
-            handleExternalIPAlert(static_cast<libt::external_ip_alert*>(a));
+            handleExternalIPAlert(static_cast<const libt::external_ip_alert*>(a));
             break;
         }
     }
@@ -3833,9 +3830,9 @@ void Session::handleAlert(libt::alert *a)
     }
 }
 
-void Session::dispatchTorrentAlert(libt::alert *a)
+void Session::dispatchTorrentAlert(const libt::alert *a)
 {
-    TorrentHandle *const torrent = m_torrents.value(static_cast<libt::torrent_alert*>(a)->handle.info_hash());
+    TorrentHandle *const torrent = m_torrents.value(static_cast<const libt::torrent_alert*>(a)->handle.info_hash());
     if (torrent)
         torrent->handleAlert(a);
 }
@@ -3845,14 +3842,14 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
     // Magnet added for preload its metadata
     if (!m_addingTorrents.contains(nativeHandle.info_hash())) return;
 
-    CreateTorrentParams params = m_addingTorrents.take(nativeHandle.info_hash());
+    const CreateTorrentParams params = m_addingTorrents.take(nativeHandle.info_hash());
 
     TorrentHandle *const torrent = new TorrentHandle(this, nativeHandle, params);
     m_torrents.insert(torrent->hash(), torrent);
 
     Logger *const logger = Logger::instance();
 
-    bool fromMagnetUri = !torrent->hasMetadata();
+    const bool fromMagnetUri = !torrent->hasMetadata();
 
     if (params.restored) {
         logger->addMessage(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
@@ -3895,7 +3892,7 @@ void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
         emit torrentNew(torrent);
 }
 
-void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
+void Session::handleAddTorrentAlert(const libt::add_torrent_alert *p)
 {
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
@@ -3908,7 +3905,7 @@ void Session::handleAddTorrentAlert(libt::add_torrent_alert *p)
     }
 }
 
-void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
+void Session::handleTorrentRemovedAlert(const libt::torrent_removed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3924,7 +3921,7 @@ void Session::handleTorrentRemovedAlert(libt::torrent_removed_alert *p)
     }
 }
 
-void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
+void Session::handleTorrentDeletedAlert(const libt::torrent_deleted_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3936,7 +3933,7 @@ void Session::handleTorrentDeletedAlert(libt::torrent_deleted_alert *p)
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
 }
 
-void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *p)
+void Session::handleTorrentDeleteFailedAlert(const libt::torrent_delete_failed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
@@ -3952,7 +3949,7 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
            , Log::CRITICAL);
 }
 
-void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
+void Session::handleMetadataReceivedAlert(const libt::metadata_received_alert *p)
 {
     const InfoHash hash {p->handle.info_hash()};
 
@@ -3964,7 +3961,7 @@ void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
     }
 }
 
-void Session::handleFileErrorAlert(libt::file_error_alert *p)
+void Session::handleFileErrorAlert(const libt::file_error_alert *p)
 {
     qDebug() << Q_FUNC_INFO;
     // NOTE: Check this function!
@@ -3982,21 +3979,25 @@ void Session::handleFileErrorAlert(libt::file_error_alert *p)
     }
 }
 
-void Session::handlePortmapWarningAlert(libt::portmap_error_alert *p)
+void Session::handlePortmapWarningAlert(const libt::portmap_error_alert *p)
 {
     Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
-void Session::handlePortmapAlert(libt::portmap_alert *p)
+void Session::handlePortmapAlert(const libt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
     Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
-void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
+void Session::handlePeerBlockedAlert(const libt::peer_blocked_alert *p)
 {
     boost::system::error_code ec;
-    std::string ip = p->ip.to_string(ec);
+#if LIBTORRENT_VERSION_NUM < 10200
+    const std::string ip = p->ip.to_string(ec);
+#else
+    const std::string ip = p->endpoint.address().to_string(ec);
+#endif
     QString reason;
     switch (p->reason) {
     case libt::peer_blocked_alert::ip_filter:
@@ -4012,7 +4013,7 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
         reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
         break;
     case libt::peer_blocked_alert::utp_disabled:
-        reason = trUtf8("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
+        reason = tr("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case libt::peer_blocked_alert::tcp_disabled:
         reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
@@ -4023,22 +4024,22 @@ void Session::handlePeerBlockedAlert(libt::peer_blocked_alert *p)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
 }
 
-void Session::handlePeerBanAlert(libt::peer_ban_alert *p)
+void Session::handlePeerBanAlert(const libt::peer_ban_alert *p)
 {
     boost::system::error_code ec;
-    std::string ip = p->ip.address().to_string(ec);
+    const std::string ip = p->ip.address().to_string(ec);
     if (!ec)
         Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), false);
 }
 
-void Session::handleUrlSeedAlert(libt::url_seed_alert *p)
+void Session::handleUrlSeedAlert(const libt::url_seed_alert *p)
 {
     Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2")
                                    .arg(QString::fromStdString(p->server_url()))
                                    .arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
-void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
+void Session::handleListenSucceededAlert(const libt::listen_succeeded_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
@@ -4061,7 +4062,7 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
         it->force_reannounce();
 }
 
-void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
+void Session::handleListenFailedAlert(const libt::listen_failed_alert *p)
 {
     boost::system::error_code ec;
     QString proto = "TCP";
@@ -4084,15 +4085,15 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         , Log::CRITICAL);
 }
 
-void Session::handleExternalIPAlert(libt::external_ip_alert *p)
+void Session::handleExternalIPAlert(const libt::external_ip_alert *p)
 {
     boost::system::error_code ec;
     Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
-void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
+void Session::handleSessionStatsAlert(const libt::session_stats_alert *p)
 {
-    qreal interval = m_statsUpdateTimer.restart() / 1000.;
+    const qreal interval = m_statsUpdateTimer.restart() / 1000.;
 
     m_status.hasIncomingConnections = static_cast<bool>(p->values[m_metricIndices.net.hasIncomingConnections]);
 
@@ -4107,7 +4108,7 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
     const auto dhtDownload = p->values[m_metricIndices.dht.dhtBytesIn];
     const auto dhtUpload = p->values[m_metricIndices.dht.dhtBytesOut];
 
-    auto calcRate = [interval](quint64 previous, quint64 current)
+    auto calcRate = [interval](const quint64 previous, const quint64 current)
     {
         Q_ASSERT(current >= previous);
         return static_cast<quint64>((current - previous) / interval);
@@ -4147,7 +4148,7 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
     m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max(numBlocksCacheHits + numBlocksRead, 1);
     m_cacheStatus.jobQueueLength = p->values[m_metricIndices.disk.queuedDiskJobs];
 
-    quint64 totalJobs = p->values[m_metricIndices.disk.writeJobs] + p->values[m_metricIndices.disk.readJobs]
+    const quint64 totalJobs = p->values[m_metricIndices.disk.writeJobs] + p->values[m_metricIndices.disk.readJobs]
                   + p->values[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = totalJobs > 0
                                    ? (p->values[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
@@ -4155,7 +4156,7 @@ void Session::handleSessionStatsAlert(libt::session_stats_alert *p)
     emit statsUpdated();
 }
 
-void Session::handleStateUpdateAlert(libt::state_update_alert *p)
+void Session::handleStateUpdateAlert(const libt::state_update_alert *p)
 {
     for (const libt::torrent_status &status : p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
@@ -4212,31 +4213,31 @@ namespace
         if (ec || (fast.type() != libt::bdecode_node::dict_t)) return false;
 
         torrentParams.savePath = Profile::instance().fromPortablePath(
-            Utils::Fs::fromNativePath(QString::fromStdString(fast.dict_find_string_value("qBt-savePath"))));
+            Utils::Fs::fromNativePath(fromLTString(fast.dict_find_string_value("qBt-savePath"))));
 
-        std::string ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
+        LTString ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
         if (ratioLimitString.empty())
             torrentParams.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
         else
-            torrentParams.ratioLimit = QString::fromStdString(ratioLimitString).toDouble();
+            torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
         torrentParams.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-label"));
+        torrentParams.category = fromLTString(fast.dict_find_string_value("qBt-label"));
         if (torrentParams.category.isEmpty())
         // **************************************************************************************
-            torrentParams.category = QString::fromStdString(fast.dict_find_string_value("qBt-category"));
+            torrentParams.category = fromLTString(fast.dict_find_string_value("qBt-category"));
         // auto because the return type depends on the #if above.
         const auto tagsEntry = fast.dict_find_list("qBt-tags");
         if (isList(tagsEntry))
             torrentParams.tags = entryListToSet(tagsEntry);
-        torrentParams.name = QString::fromStdString(fast.dict_find_string_value("qBt-name"));
+        torrentParams.name = fromLTString(fast.dict_find_string_value("qBt-name"));
         torrentParams.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
         torrentParams.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
         torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
 
-        magnetUri = MagnetUri(QString::fromStdString(fast.dict_find_string_value("qBt-magnetUri")));
+        magnetUri = MagnetUri(fromLTString(fast.dict_find_string_value("qBt-magnetUri")));
         const bool isAutoManaged = fast.dict_find_int_value("auto_managed");
         const bool isPaused = fast.dict_find_int_value("paused");
         torrentParams.paused = fast.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
@@ -4299,21 +4300,21 @@ namespace
 
         using PCONVERTIFACENAMETOLUID = NETIO_STATUS (WINAPI *)(const WCHAR *, PNET_LUID);
         const auto ConvertIfaceNameToLuid = Utils::Misc::loadWinAPI<PCONVERTIFACENAMETOLUID>("Iphlpapi.dll", "ConvertInterfaceNameToLuidW");
-        if (!ConvertIfaceNameToLuid) return QString();
+        if (!ConvertIfaceNameToLuid) return {};
 
         using PCONVERTIFACELUIDTOGUID = NETIO_STATUS (WINAPI *)(const NET_LUID *, GUID *);
         const auto ConvertIfaceLuidToGuid = Utils::Misc::loadWinAPI<PCONVERTIFACELUIDTOGUID>("Iphlpapi.dll", "ConvertInterfaceLuidToGuid");
-        if (!ConvertIfaceLuidToGuid) return QString();
+        if (!ConvertIfaceLuidToGuid) return {};
 
         NET_LUID luid;
-        LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
+        const LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
         if (res == 0) {
             GUID guid;
             if (ConvertIfaceLuidToGuid(&luid, &guid) == 0)
                 return QUuid(guid).toString().toUpper();
         }
 
-        return QString();
+        return {};
     }
 #endif
 }

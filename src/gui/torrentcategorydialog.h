@@ -41,7 +41,7 @@ class TorrentCategoryDialog : public QDialog
     Q_DISABLE_COPY(TorrentCategoryDialog)
 
 public:
-    static QString createCategory(QWidget *parent, const QString &parentCategoryName = QString());
+    static QString createCategory(QWidget *parent, const QString &parentCategoryName = {});
     static void editCategory(QWidget *parent, const QString &categoryName);
 
     explicit TorrentCategoryDialog(QWidget *parent = nullptr);

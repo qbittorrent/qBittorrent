@@ -42,9 +42,15 @@ namespace BitTorrent
     class TrackerEntry;
 }
 
+namespace Net
+{
+    struct DownloadResult;
+}
+
 class BaseFilterWidget : public QListWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(BaseFilterWidget)
 
 public:
     BaseFilterWidget(QWidget *parent, TransferListWidget *transferList);
@@ -68,6 +74,7 @@ private slots:
 class StatusFilterWidget : public BaseFilterWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(StatusFilterWidget)
 
 public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
@@ -88,6 +95,7 @@ private:
 class TrackerFiltersList : public BaseFilterWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TrackerFiltersList)
 
 public:
     TrackerFiltersList(QWidget *parent, TransferListWidget *transferList);
@@ -105,8 +113,7 @@ public slots:
     void trackerWarning(const QString &hash, const QString &tracker);
 
 private slots:
-    void handleFavicoDownload(const QString &url, const QString &filePath);
-    void handleFavicoFailure(const QString &url, const QString &error);
+    void handleFavicoDownloadFinished(const Net::DownloadResult &result);
 
 private:
     // These 4 methods are virtual slots in the base class.
