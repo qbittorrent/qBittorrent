@@ -617,7 +617,7 @@ void TorrentHandle::removeAllTags()
 
 QDateTime TorrentHandle::addedTime() const
 {
-    return QDateTime::fromTime_t(m_nativeStatus.added_time);
+    return QDateTime::fromSecsSinceEpoch(m_nativeStatus.added_time);
 }
 
 qreal TorrentHandle::ratioLimit() const
@@ -1086,7 +1086,7 @@ int TorrentHandle::incompleteCount() const
 QDateTime TorrentHandle::lastSeenComplete() const
 {
     if (m_nativeStatus.last_seen_complete > 0)
-        return QDateTime::fromTime_t(m_nativeStatus.last_seen_complete);
+        return QDateTime::fromSecsSinceEpoch(m_nativeStatus.last_seen_complete);
     else
         return {};
 }
@@ -1094,7 +1094,7 @@ QDateTime TorrentHandle::lastSeenComplete() const
 QDateTime TorrentHandle::completedTime() const
 {
     if (m_nativeStatus.completed_time > 0)
-        return QDateTime::fromTime_t(m_nativeStatus.completed_time);
+        return QDateTime::fromSecsSinceEpoch(m_nativeStatus.completed_time);
     else
         return {};
 }
