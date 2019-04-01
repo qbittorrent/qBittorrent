@@ -28,7 +28,10 @@
 
 #include "torrentinfo.h"
 
+#if (LIBTORRENT_VERSION_NUM < 10200)
 #include <boost/optional.hpp>
+#endif
+
 #include <libtorrent/error_code.hpp>
 
 #include <QByteArray>
@@ -164,8 +167,14 @@ QString TorrentInfo::name() const
 QDateTime TorrentInfo::creationDate() const
 {
     if (!isValid()) return {};
-    const boost::optional<time_t> t = m_nativeInfo->creation_date();
-    return t ? QDateTime::fromTime_t(*t) : QDateTime();
+
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    const boost::optional<time_t> date = m_nativeInfo->creation_date();
+    return (date ? QDateTime::fromSecsSinceEpoch(*date) : QDateTime());
+#else
+    const std::time_t date = m_nativeInfo->creation_date();
+    return ((date != 0) ? QDateTime::fromSecsSinceEpoch(date) : QDateTime());
+#endif
 }
 
 QString TorrentInfo::creator() const
