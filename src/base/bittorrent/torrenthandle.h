@@ -266,9 +266,9 @@ namespace BitTorrent
         QString error() const;
         qlonglong totalDownload() const;
         qlonglong totalUpload() const;
-        int activeTime() const;
-        int finishedTime() const;
-        int seedingTime() const;
+        qlonglong activeTime() const;
+        qlonglong finishedTime() const;
+        qlonglong seedingTime() const;
         qulonglong eta() const;
         QVector<qreal> filesProgress() const;
         int seedsCount() const;
@@ -281,9 +281,9 @@ namespace BitTorrent
         int incompleteCount() const;
         QDateTime lastSeenComplete() const;
         QDateTime completedTime() const;
-        int timeSinceUpload() const;
-        int timeSinceDownload() const;
-        int timeSinceActivity() const;
+        qlonglong timeSinceUpload() const;
+        qlonglong timeSinceDownload() const;
+        qlonglong timeSinceActivity() const;
         int downloadLimit() const;
         int uploadLimit() const;
         bool superSeeding() const;
@@ -304,7 +304,7 @@ namespace BitTorrent
         qlonglong nextAnnounce() const;
 
         void setName(const QString &name);
-        void setSequentialDownload(bool b);
+        void setSequentialDownload(bool enable);
         void toggleSequentialDownload();
         void setFirstLastPiecePriority(bool enabled);
         void toggleFirstLastPiecePriority();
@@ -380,6 +380,8 @@ namespace BitTorrent
         void resume_impl(bool forced);
         bool isMoveInProgress() const;
         QString nativeActualSavePath() const;
+        bool isAutoManaged() const;
+        void setAutoManaged(bool enable);
 
         void adjustActualSavePath();
         void adjustActualSavePath_impl();
