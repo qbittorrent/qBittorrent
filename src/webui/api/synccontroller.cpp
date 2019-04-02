@@ -29,8 +29,8 @@
 #include "synccontroller.h"
 
 #include <QJsonObject>
+#include <QMetaObject>
 #include <QThread>
-#include <QTimer>
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -330,7 +330,7 @@ SyncController::SyncController(ISessionManager *sessionManager, QObject *parent)
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, &SyncController::freeDiskSpaceSizeUpdated);
 
     m_freeDiskSpaceThread->start();
-    QTimer::singleShot(0, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+    invokeChecker();
     m_freeDiskSpaceElapsedTimer.start();
 }
 
@@ -516,7 +516,7 @@ void SyncController::torrentPeersAction()
 qint64 SyncController::getFreeDiskSpace()
 {
     if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT)) {
-        QTimer::singleShot(0, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+        invokeChecker();
         m_freeDiskSpaceElapsedTimer.restart();
     }
 
@@ -526,4 +526,13 @@ qint64 SyncController::getFreeDiskSpace()
 void SyncController::freeDiskSpaceSizeUpdated(qint64 freeSpaceSize)
 {
     m_freeDiskSpace = freeSpaceSize;
+}
+
+void SyncController::invokeChecker() const
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check, Qt::QueuedConnection);
+#else
+    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, "check", Qt::QueuedConnection);
+#endif
 }
