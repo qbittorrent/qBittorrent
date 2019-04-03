@@ -518,7 +518,7 @@ void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
 
 bool MainWindow::isDownloadTrackerFavicon() const
 {
-    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, true).toBool();
+    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, false).toBool();
 }
 
 void MainWindow::setDownloadTrackerFavicon(bool value)
