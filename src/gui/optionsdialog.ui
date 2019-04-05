@@ -2646,7 +2646,7 @@
                </sizepolicy>
               </property>
               <property name="title">
-               <string>A&amp;utomatically add these trackers to new downloads:</string>
+               <string>A&amp;utomatically add these trackers to new downloads:  More trackers can be obtained from newtrackon.com</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
