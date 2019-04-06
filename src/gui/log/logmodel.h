@@ -29,10 +29,11 @@
 #pragma once
 
 #include <QAbstractListModel>
-#include <QList>
-#include <QString>
 
-#include "logmessage.h"
+namespace Log
+{
+    struct Msg;
+}
 
 class LogModel : public QAbstractListModel
 {
@@ -51,6 +52,5 @@ private slots:
     void appendLine(const Log::Msg &msg);
 
 private:
-    QList<LogMessage> bulkLogMessages();
-    QList<LogMessage> m_items;
+    std::pair<int, int> m_items;
 };

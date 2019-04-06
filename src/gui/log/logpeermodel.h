@@ -29,7 +29,6 @@
 #pragma once
 
 #include <QAbstractListModel>
-#include <QStringList>
 
 namespace Log
 {
@@ -53,6 +52,5 @@ private slots:
     void appendLine(const Log::Peer &peer);
 
 private:
-    QStringList bulkPeerMessages();
-    QStringList m_items;
+    std::pair<int, int> m_items;
 };

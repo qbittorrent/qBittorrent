@@ -82,8 +82,12 @@ public:
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);
     void addPeer(const QString &ip, bool blocked, const QString &reason = {});
+    const Log::Msg& getMessage(int id) const;
+    const Log::Peer& getPeer(int id) const;
     QVector<Log::Msg> getMessages(int lastKnownId = -1) const;
     QVector<Log::Peer> getPeers(int lastKnownId = -1) const;
+    std::pair<int, int> getMessagesRange(int lastKnownId = -1) const;
+    std::pair<int, int> getPeersRange(int lastKnownId = -1) const;
 
 signals:
     void newLogMessage(const Log::Msg &message);

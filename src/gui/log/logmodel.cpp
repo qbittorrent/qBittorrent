@@ -32,20 +32,22 @@
 #include <QDateTime>
 #include <QColor>
 #include <QPalette>
-#include <QStringList>
 
 #include <base/logger.h>
 
 LogModel::LogModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_items(bulkLogMessages())
+    , m_items(Logger::instance()->getMessagesRange())
 {
     connect(Logger::instance(), &Logger::newLogMessage, this, &LogModel::appendLine);
 }
 
 int LogModel::rowCount(const QModelIndex &) const
 {
-    return m_items.size();
+    if ((m_items.first < 0) || (m_items.second < 0) || (m_items.second < m_items.first))
+        return 0;
+    else
+        return m_items.second - m_items.first + 1;
 }
 
 int LogModel::columnCount(const QModelIndex &) const
@@ -57,11 +59,17 @@ QVariant LogModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    const LogMessage &msg = m_items.at(m_items.size() - index.row() - 1);
+    const int id = m_items.second - index.row();
+    const Log::Msg &msg = Logger::instance()->getMessage(id);
+
+    if (msg.id != id)
+        return {};
 
     switch (role) {
-    case Qt::DisplayRole:
-        return msg.message;
+    case Qt::DisplayRole: {
+        const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+        return QString("%1 - %2").arg(time.toString(Qt::SystemLocaleShortDate), msg.message);
+    }
     case Qt::ForegroundRole:
         switch (msg.type) {
         // The RGB QColor constructor is used for performance
@@ -83,16 +91,16 @@ QVariant LogModel::data(const QModelIndex &index, const int role) const
 
 void LogModel::appendLine(const Log::Msg &msg)
 {
-    const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-    const QString text = QString("%1 - %2").arg(time.toString(Qt::SystemLocaleShortDate), msg.message);
     beginInsertRows(QModelIndex(), 0, 0);
-    m_items.append({text, msg.type});
+    m_items.second = msg.id;
+    if (m_items.first < 0)
+        m_items.first = msg.id;
     endInsertRows();
 
     const int count = rowCount();
     if (count > MAX_LOG_MESSAGES) {
         beginRemoveRows(QModelIndex(), count - 1, count - 1);
-        m_items.removeFirst();
+        m_items.first++;
         endRemoveRows();
     }
 }
@@ -100,21 +108,7 @@ void LogModel::appendLine(const Log::Msg &msg)
 void LogModel::reset()
 {
     beginResetModel();
-    m_items.clear();
+    m_items.first = -1;
+    m_items.second = -1;
     endResetModel();
-}
-
-QList<LogMessage> LogModel::bulkLogMessages()
-{
-    const Logger *const logger = Logger::instance();
-    const QVector<Log::Msg> messages = logger->getMessages();
-    QList<LogMessage> list;
-    list.reserve(messages.size());
-    for (const Log::Msg &msg : messages) {
-        const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-        const QString text = QString("%1 - %2").arg(time.toString(Qt::SystemLocaleShortDate), msg.message);
-        list.append({text, msg.type});
-    }
-
-    return list;
 }

@@ -35,14 +35,17 @@
 
 LogPeerModel::LogPeerModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_items(bulkPeerMessages())
+    , m_items(Logger::instance()->getPeersRange())
 {
     connect(Logger::instance(), &Logger::newLogPeer, this, &LogPeerModel::appendLine);
 }
 
 int LogPeerModel::rowCount(const QModelIndex &) const
 {
-    return m_items.size();
+    if ((m_items.first < 0) || (m_items.second < 0) || (m_items.second < m_items.first))
+        return 0;
+    else
+        return m_items.second - m_items.first + 1;
 }
 
 int LogPeerModel::columnCount(const QModelIndex &) const
@@ -54,49 +57,13 @@ QVariant LogPeerModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    if (role == Qt::DisplayRole)
-        return m_items.at(m_items.size() - index.row() - 1);
+    const int id = m_items.second - index.row();
+    const Log::Peer& peer = Logger::instance()->getPeer(id);
 
-    return {};
-}
+    if (peer.id != id)
+        return {};
 
-void LogPeerModel::appendLine(const Log::Peer &peer)
-{
-    const QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
-    QString text = QString("%1 - ").arg(time.toString(Qt::SystemLocaleShortDate));
-
-    if (peer.blocked)
-        text.append(tr("%1 was blocked %2", "x.y.z.w was blocked").arg(peer.ip, peer.reason));
-    else
-        text.append(tr("%1 was banned", "x.y.z.w was banned").arg(peer.ip));
-
-
-    beginInsertRows(QModelIndex(), 0, 0);
-    m_items.append(text);
-    endInsertRows();
-
-    const int count = rowCount();
-    if (count > MAX_LOG_MESSAGES) {
-        beginRemoveRows(QModelIndex(), count - 1, count - 1);
-        m_items.removeFirst();
-        endRemoveRows();
-    }
-}
-
-void LogPeerModel::reset()
-{
-    beginResetModel();
-    m_items.clear();
-    endResetModel();
-}
-
-QStringList LogPeerModel::bulkPeerMessages()
-{
-    const Logger *const logger = Logger::instance();
-    const QVector<Log::Peer> peers = logger->getPeers();
-    QStringList list;
-    list.reserve(peers.size());
-    for (const Log::Peer &peer : asConst(logger->getPeers())) {
+    if (role == Qt::DisplayRole) {
         const QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
         QString text = QString("%1 - ").arg(time.toString(Qt::SystemLocaleShortDate));
 
@@ -105,8 +72,32 @@ QStringList LogPeerModel::bulkPeerMessages()
         else
             text.append(tr("%1 was banned", "x.y.z.w was banned").arg(peer.ip));
 
-        list.append(text);
+        return text;
     }
 
-    return list;
+    return {};
+}
+
+void LogPeerModel::appendLine(const Log::Peer &peer)
+{
+    beginInsertRows(QModelIndex(), 0, 0);
+    m_items.second = peer.id;
+    if (m_items.first < 0)
+        m_items.first = peer.id;
+    endInsertRows();
+
+    const int count = rowCount();
+    if (count > MAX_LOG_MESSAGES) {
+        beginRemoveRows(QModelIndex(), count - 1, count - 1);
+        m_items.first++;
+        endRemoveRows();
+    }
+}
+
+void LogPeerModel::reset()
+{
+    beginResetModel();
+    m_items.first = -1;
+    m_items.second = -1;
+    endResetModel();
 }

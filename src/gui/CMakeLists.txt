@@ -31,7 +31,6 @@ guiiconprovider.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
 log/logfiltermodel.h
-log/logmessage.h
 log/logmodel.h
 log/logpeermodel.h
 log/logpeerwidget.h

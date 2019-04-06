@@ -79,6 +79,8 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
     const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
     m_messages.push_back(temp);
 
+    locker.unlock();
+
     emit newLogMessage(temp);
 }
 
@@ -89,7 +91,37 @@ void Logger::addPeer(const QString &ip, const bool blocked, const QString &reaso
     const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
     m_peers.push_back(temp);
 
+    locker.unlock();
+
     emit newLogPeer(temp);
+}
+
+const Log::Msg& Logger::getMessage(const int id) const
+{
+    QReadLocker locker(&m_lock);
+
+    const int start = m_msgCounter - m_messages.size();
+    const int end = m_msgCounter - 1;
+    const bool inRange = ((start <= id) && (id <= end));
+
+    if (!inRange)
+        return {-1, -1, Log::CRITICAL, ""};
+
+    return m_messages.at(id - start);
+}
+
+const Log::Peer& Logger::getPeer(const int id) const
+{
+    QReadLocker locker(&m_lock);
+
+    const int start = m_peerCounter - m_peers.size();
+    const int end = m_peerCounter - 1;
+    const bool inRange = ((start <= id) && (id <= end));
+
+    if (!inRange)
+        return {-1, -1, "", false, ""};
+
+    return m_peers.at(id - start);
 }
 
 QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
@@ -122,6 +154,45 @@ QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
         return {};
 
     return loadFromBuffer(m_peers, (size - diff));
+}
+
+std::pair<int, int> Logger::getMessagesRange(const int lastKnownId) const
+{
+    QReadLocker locker(&m_lock);
+
+    if (m_msgCounter == 0)
+        return std::make_pair(-1, -1);
+
+    const int diff = m_msgCounter - lastKnownId - 1;
+    const int size = m_messages.size();
+
+    if ((lastKnownId == -1) || (diff >= size))
+        return std::make_pair(m_msgCounter - size, m_msgCounter - 1);
+
+    if (diff <= 0)
+        return std::make_pair(m_msgCounter - 1 , m_msgCounter - 1);
+
+    return std::make_pair(m_msgCounter - (size - diff), m_msgCounter - 1);
+}
+
+std::pair<int, int> Logger::getPeersRange(const int lastKnownId) const
+{
+    QReadLocker locker(&m_lock);
+
+    const int diff = m_peerCounter - lastKnownId - 1;
+    const int size = m_peers.size();
+
+    if ((lastKnownId == -1) || (diff >= size))
+        return std::make_pair(m_peerCounter - size, m_peerCounter - 1);
+
+    if (diff <= 0) {
+        if (m_peerCounter == 0)
+            return std::make_pair(-1, -1);
+        else
+            return std::make_pair(m_peerCounter - 1 , m_peerCounter - 1);
+    }
+
+    return std::make_pair(m_peerCounter - (size - diff), m_peerCounter - 1);
 }
 
 void LogMsg(const QString &message, const Log::MsgType &type)

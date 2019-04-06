@@ -25,7 +25,6 @@ HEADERS += \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/log/logfiltermodel.h \
-    $$PWD/log/logmessage.h \
     $$PWD/log/logmodel.h \
     $$PWD/log/logpeermodel.h \
     $$PWD/log/logpeerwidget.h \
