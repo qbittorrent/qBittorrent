@@ -108,7 +108,7 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
 
     if (file.size() > MAX_TORRENT_SIZE) {
         if (error)
-            *error = tr("File size exceeds max limit %1").arg(MAX_TORRENT_SIZE);
+            *error = tr("File size exceeds max limit %1").arg(Utils::Misc::friendlyUnit(MAX_TORRENT_SIZE));
         return TorrentInfo();
     }
 
