@@ -39,6 +39,7 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "base/global.h"
 #include "base/utils/fs.h"
 #include "infohash.h"
 #include "trackerentry.h"
@@ -116,10 +117,9 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
         return TorrentInfo();
     }
 
-    const qint64 fileSizeLimit = 100 * 1024 * 1024;  // 100 MB
-    if (file.size() > fileSizeLimit) {
+    if (file.size() > MAX_TORRENT_SIZE) {
         if (error)
-            *error = tr("File size exceeds max limit %1").arg(fileSizeLimit);
+            *error = tr("File size exceeds max limit %1").arg(MAX_TORRENT_SIZE);
         return TorrentInfo();
     }
 

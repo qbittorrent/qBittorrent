@@ -238,7 +238,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         // Launch downloader
         Net::DownloadManager::instance()->download(
-                    Net::DownloadRequest(source).limit(10485760 /* 10MB */)
+                    Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
                     , dlg, &AddNewTorrentDialog::handleDownloadFinished);
         return;
     }
