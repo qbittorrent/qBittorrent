@@ -67,15 +67,6 @@ addons:
       - zlib1g-dev
       # required for Qt 5.9 from 'beineri' PPA
       - libgl1-mesa-dev
-  homebrew:
-    update: true
-    packages:
-      - [ccache, colormake]
-      - boost
-      - libtorrent-rasterbar
-      - openssl
-      - qt
-      - zlib
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -125,8 +116,8 @@ install:
       # dependencies
       PATH="/usr/local/opt/ccache/libexec:$PATH"
 
-      brew outdated cmake || brew upgrade cmake
-      brew outdated pkg-config || brew upgrade pkg-config
+      brew update > /dev/null
+      brew install ccache colormake boost libtorrent-rasterbar openssl qt zlib
       brew link --force qt zlib
 
       if [ "$build_system" = "cmake" ]; then
