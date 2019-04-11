@@ -1809,7 +1809,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
     if (Net::DownloadManager::hasSupportedScheme(source)) {
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */)
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
                                                    , this, &Session::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
