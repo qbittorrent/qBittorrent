@@ -338,6 +338,7 @@ var DynamicTable = new Class({
     newColumn: function(name, style, caption, defaultWidth, defaultVisible) {
         var column = {};
         column['name'] = name;
+        column['title'] = name;
         column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, defaultVisible ? '1' : '0');
         column['force_hide'] = false;
         column['caption'] = caption;
@@ -357,7 +358,9 @@ var DynamicTable = new Class({
             else return 0;
         };
         column['updateTd'] = function(td, row) {
-            td.innerHTML = this.getRowValue(row);
+            const value = this.getRowValue(row)
+            td.innerHTML = value;
+            td.title = value;
         };
         column['onResize'] = null;
         this.columns.push(column);
@@ -875,13 +878,16 @@ var TorrentsTable = new Class({
 
             if (td.getChildren('img').length) {
                 var img = td.getChildren('img')[0];
-                if (img.src.indexOf(img_path) < 0)
+                if (img.src.indexOf(img_path) < 0) {
                     img.set('src', img_path);
+                    img.set('title', state);
+                }
             }
             else
                 td.adopt(new Element('img', {
                     'src': img_path,
-                    'class': 'stateIcon'
+                    'class': 'stateIcon',
+                    'title': state
                 }));
         };
 
@@ -948,12 +954,15 @@ var TorrentsTable = new Class({
             }
 
             td.set('html', status);
+            td.set('title', status);
         };
 
         // priority
         this.columns['priority'].updateTd = function(td, row) {
-            var priority = this.getRowValue(row);
-            td.set('html', priority < 1 ? '*' : priority);
+            const priority = this.getRowValue(row);
+            const formattedPriority = (priority < 1) ? '*' : priority;
+            td.set('html', formattedPriority);
+            td.set('title', formattedPriority);
         };
 
         this.columns['priority'].compareRows = function(row1, row2) {
@@ -972,14 +981,17 @@ var TorrentsTable = new Class({
 
         // name, category
         this.columns['name'].updateTd = function(td, row) {
-            td.set('html', escapeHtml(this.getRowValue(row)));
+            const name = escapeHtml(this.getRowValue(row))
+            td.set('html', name);
+            td.set('title', name);
         };
         this.columns['category'].updateTd = this.columns['name'].updateTd;
 
         // size
         this.columns['size'].updateTd = function(td, row) {
-            var size = this.getRowValue(row);
-            td.set('html', friendlyUnit(size, false));
+            const size = friendlyUnit(this.getRowValue(row), false);
+            td.set('html', size);
+            td.set('title', size);
         };
 
         // progress
@@ -1029,6 +1041,7 @@ var TorrentsTable = new Class({
             if (num_complete != -1)
                 html += ' (' + num_complete + ')';
             td.set('html', html);
+            td.set('title', html);
         };
         this.columns['num_seeds'].compareRows = function(row1, row2) {
             var num_seeds1 = this.getRowValue(row1, 0);
@@ -1054,8 +1067,9 @@ var TorrentsTable = new Class({
 
         // dlspeed
         this.columns['dlspeed'].updateTd = function(td, row) {
-            var speed = this.getRowValue(row);
-            td.set('html', friendlyUnit(speed, true));
+            const speed = friendlyUnit(this.getRowValue(row), true);
+            td.set('html', speed);
+            td.set('title', speed);
         };
 
         // upspeed
@@ -1063,8 +1077,9 @@ var TorrentsTable = new Class({
 
         // eta
         this.columns['eta'].updateTd = function(td, row) {
-            var eta = this.getRowValue(row);
-            td.set('html', friendlyDuration(eta));
+            const eta = friendlyDuration(this.getRowValue(row));
+            td.set('html', eta);
+            td.set('title', eta);
         };
 
         // ratio
@@ -1076,6 +1091,7 @@ var TorrentsTable = new Class({
             else
                 html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
             td.set('html', html);
+            td.set('title', html);
         };
 
         // tags
@@ -1085,16 +1101,20 @@ var TorrentsTable = new Class({
         this.columns['added_on'].updateTd = function(td, row) {
             var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
             td.set('html', date);
+            td.set('title', date);
         };
 
         // completion_on
         this.columns['completion_on'].updateTd = function(td, row) {
             var val = this.getRowValue(row);
-            if (val === 0xffffffff || val < 0)
+            if ((val === 0xffffffff) || (val < 0)) {
                 td.set('html', '');
+                td.set('title', '');
+            }
             else {
                 var date = new Date(this.getRowValue(row) * 1000).toLocaleString();
                 td.set('html', date);
+                td.set('title', date);
             }
         };
 
@@ -1104,10 +1124,15 @@ var TorrentsTable = new Class({
         //  dl_limit, up_limit
         this.columns['dl_limit'].updateTd = function(td, row) {
             var speed = this.getRowValue(row);
-            if (speed === 0)
+            if (speed === 0) {
                 td.set('html', '∞');
-            else
-                td.set('html', friendlyUnit(speed, true));
+                td.set('title', '∞');
+            }
+            else {
+                const formattedSpeed = friendlyUnit(speed, true);
+                td.set('html', formattedSpeed);
+                td.set('title', formattedSpeed);
+            }
         };
 
         this.columns['up_limit'].updateTd = this.columns['dl_limit'].updateTd;
@@ -1132,16 +1157,22 @@ var TorrentsTable = new Class({
         // last_activity
         this.columns['last_activity'].updateTd = function(td, row) {
             var val = this.getRowValue(row);
-            if (val < 1)
+            if (val < 1) {
                 td.set('html', '∞');
-            else
-                td.set('html', 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val)));
+                td.set('title', '∞');
+            }
+            else {
+                const formattedVal = 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', friendlyDuration((new Date()) / 1000 - val));
+                td.set('html', formattedVal);
+                td.set('title', formattedVal);
+            }
         };
 
         // time active
         this.columns['time_active'].updateTd = function(td, row) {
-            var time = this.getRowValue(row);
-            td.set('html', friendlyDuration(time));
+            const time = friendlyDuration(this.getRowValue(row));
+            td.set('html', time);
+            td.set('title', time);
         };
     },
 
@@ -1365,6 +1396,7 @@ var TorrentPeersTable = new Class({
                 progressFormated = 99.9;
             progressFormated += "%";
             td.set('html', progressFormated);
+            td.set('title', progressFormated);
         };
 
         this.columns['relevance'].updateTd = this.columns['progress'].updateTd;
@@ -1373,10 +1405,15 @@ var TorrentPeersTable = new Class({
 
         this.columns['dl_speed'].updateTd = function(td, row) {
             var speed = this.getRowValue(row);
-            if (speed === 0)
+            if (speed === 0) {
                 td.set('html', '');
-            else
-                td.set('html', friendlyUnit(speed, true));
+                td.set('title', '');
+            }
+            else {
+                const formattedSpeed = friendlyUnit(speed, true);
+                td.set('html', formattedSpeed);
+                td.set('title', formattedSpeed);
+            }
         };
 
         this.columns['up_speed'].updateTd = this.columns['dl_speed'].updateTd;
@@ -1384,8 +1421,9 @@ var TorrentPeersTable = new Class({
         // downloaded, uploaded
 
         this.columns['downloaded'].updateTd = function(td, row) {
-            var downloaded = this.getRowValue(row);
-            td.set('html', friendlyUnit(downloaded, false));
+            const downloaded = friendlyUnit(this.getRowValue(row), false);
+            td.set('html', downloaded);
+            td.set('title', downloaded);
         };
 
         this.columns['uploaded'].updateTd = this.columns['downloaded'].updateTd;
@@ -1422,16 +1460,20 @@ var SearchResultsTable = new Class({
 
     initColumnsFunctions: function() {
         var displayText = function(td, row) {
-            var value = this.getRowValue(row);
-            td.set('html', escapeHtml(value));
+            var value = escapeHtml(this.getRowValue(row));
+            td.set('html', value);
+            td.set('title', value);
         }
         var displaySize = function(td, row) {
-            var size = this.getRowValue(row);
-            td.set('html', friendlyUnit(size, false));
+            const size = friendlyUnit(this.getRowValue(row), false);
+            td.set('html', size);
+            td.set('title', size);
         }
         var displayNum = function(td, row) {
             var value = escapeHtml(this.getRowValue(row));
-            td.set('html', (value === "-1") ? "Unknown" : value);
+            const formattedValue = (value === "-1") ? "Unknown" : value;
+            td.set('html', formattedValue);
+            td.set('title', formattedValue);
         }
 
         this.columns['fileName'].updateTd = displayText;
@@ -1541,8 +1583,9 @@ var SearchPluginsTable = new Class({
 
     initColumnsFunctions: function() {
         var displayText = function(td, row) {
-            var value = this.getRowValue(row);
-            td.set('html', escapeHtml(value));
+            const value = escapeHtml(this.getRowValue(row));
+            td.set('html', value);
+            td.set('title', value);
         }
 
         this.columns['fullName'].updateTd = displayText;
@@ -1552,11 +1595,13 @@ var SearchPluginsTable = new Class({
             var value = this.getRowValue(row);
             if (value) {
                 td.set('html', "Yes");
+                td.set('title', "Yes");
                 td.getParent("tr").addClass("green");
                 td.getParent("tr").removeClass("red");
             }
             else {
                 td.set('html', "No");
+                td.set('title', "No");
                 td.getParent("tr").addClass("red");
                 td.getParent("tr").removeClass("green");
             }
@@ -1600,12 +1645,14 @@ var TorrentFilesTable = new Class({
 
     initColumnsFunctions: function() {
         var displaySize = function(td, row) {
-            var size = this.getRowValue(row);
-            td.set('html', friendlyUnit(size, false));
+            const size = friendlyUnit(this.getRowValue(row), false);
+            td.set('html', size);
+            td.set('title', size);
         }
         var displayPercentage = function(td, row) {
-            var value = this.getRowValue(row);
-            td.set('html', friendlyPercentage(value));
+            const value = friendlyPercentage(this.getRowValue(row));
+            td.set('html', value);
+            td.set('title', value);
         };
 
         this.columns['checked'].updateTd = function(td, row) {
