@@ -235,7 +235,7 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
         // Launch downloader
         // TODO: Don't save loaded torrent to file, just use downloaded data!
         Net::DownloadHandler *handler = Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(source).limit(10485760 /* 10MB */).handleRedirectToMagnet(true).saveToFile(true));
+                Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE).handleRedirectToMagnet(true).saveToFile(true));
         connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QString &)>(&Net::DownloadHandler::downloadFinished)
                 , dlg, &AddNewTorrentDialog::handleDownloadFinished);
         connect(handler, &Net::DownloadHandler::downloadFailed, dlg, &AddNewTorrentDialog::handleDownloadFailed);

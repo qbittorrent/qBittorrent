@@ -2100,7 +2100,7 @@ bool Session::addTorrent(QString source, const AddTorrentParams &params)
         LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
         // Launch downloader
         Net::DownloadHandler *handler =
-                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(10485760 /* 10MB */).handleRedirectToMagnet(true));
+                Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE).handleRedirectToMagnet(true));
         connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
                 , this, &Session::handleDownloadFinished);
         connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::handleDownloadFailed);
