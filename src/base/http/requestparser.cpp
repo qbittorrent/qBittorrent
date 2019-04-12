@@ -205,7 +205,10 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
     // application/x-www-form-urlencoded
     if (contentTypeLower.startsWith(CONTENT_TYPE_FORM_ENCODED)) {
-        QListIterator<QStringPair> i(QUrlQuery(data).queryItems(QUrl::FullyDecoded));
+        // [URL Standard] 5.1 application/x-www-form-urlencoded parsing
+        const QByteArray processedData = QByteArray(data).replace('+', ' ');
+
+        QListIterator<QStringPair> i(QUrlQuery(processedData).queryItems(QUrl::FullyDecoded));
         while (i.hasNext()) {
             const QStringPair pair = i.next();
             m_request.posts[pair.first] = pair.second;
