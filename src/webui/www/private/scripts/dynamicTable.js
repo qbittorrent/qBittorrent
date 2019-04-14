@@ -59,6 +59,7 @@ var DynamicTable = new Class({
         this.setupHeaderEvents();
         this.setupHeaderMenu();
         this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === '1'));
+        this.trackers = {};
     },
 
     setupCommonEvents: function() {
@@ -1184,7 +1185,29 @@ var TorrentsTable = new Class({
                     return false;
                 break;
             case 'notracker':
-                if (row.full_data.tracker != '') return false;
+                var trackers = this.trackers;
+                if (!trackers.hasOwnProperty(row.rowId)) {
+                    var url = new URI('api/v2/torrents/trackers');
+                    url.setData('hash', row.rowId);
+
+                    new Request.JSON({
+                        url: url,
+                        noCache: true,
+                        method: 'get',
+                        onSuccess: function (response) {
+                            trackers[row.rowId] = true;
+                            response.forEach(function(tracker) {
+                                if (tracker.status === 2) {
+                                    trackers[row.rowId] = false;
+                                }
+                            });
+                        }
+                    }).send();
+
+                    return false;
+                }
+
+                return trackers[row.rowId]
                 break;
             case 'errored':
                 if (state != 'error' && state != "unknown" && state != "missingFiles")
