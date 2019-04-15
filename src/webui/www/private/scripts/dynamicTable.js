@@ -60,6 +60,7 @@ var DynamicTable = new Class({
         this.setupHeaderMenu();
         this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === '1'));
         this.trackers = {};
+        this.trackerRequestQueue = [];
     },
 
     setupCommonEvents: function() {
@@ -1182,32 +1183,15 @@ var TorrentsTable = new Class({
                 else
                     r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
                 if (r == inactive)
-                    return false;
+                    return false;r
                 break;
             case 'notracker':
-                var trackers = this.trackers;
-                if (!trackers.hasOwnProperty(row.rowId)) {
-                    var url = new URI('api/v2/torrents/trackers');
-                    url.setData('hash', row.rowId);
-
-                    new Request.JSON({
-                        url: url,
-                        noCache: true,
-                        method: 'get',
-                        onSuccess: function (response) {
-                            trackers[row.rowId] = true;
-                            response.forEach(function(tracker) {
-                                if (tracker.status === 2) {
-                                    trackers[row.rowId] = false;
-                                }
-                            });
-                        }
-                    }).send();
-
-                    return false;
+                if (!this.trackers.hasOwnProperty(row.rowId)) {
+                    this.queueTrackerStatusRequest(row.rowId);
+                    this.trackers[row.rowId] = false;
                 }
 
-                return trackers[row.rowId]
+                return this.trackers[row.rowId];
                 break;
             case 'errored':
                 if (state != 'error' && state != "unknown" && state != "missingFiles")
@@ -1238,6 +1222,39 @@ var TorrentsTable = new Class({
         }
 
         return true;
+    },
+
+    trackerStatusRequest: function() {
+        var hash = this.trackerRequestQueue[0];
+        var url = new URI('api/v2/torrents/trackers');
+        url.setData('hash', hash);
+
+        new Request.JSON({
+            url: url,
+            noCache: true,
+            method: 'get',
+            onSuccess: function(response) {
+                var trackers = this.trackers;
+                trackers[hash] = true;
+                response.forEach(function(tracker) {
+                    if (tracker.status === 2) {
+                        trackers[hash] = false;
+                    }
+                });
+                this.trackerRequestQueue = this.trackerRequestQueue.filter(h => h != hash);
+                if (this.trackerRequestQueue.length > 0) {
+                    this.trackerStatusRequest(this.trackerRequestQueue[0])
+                }
+            }.bind(this)
+        }).send();
+    },
+
+    queueTrackerStatusRequest: function(hash) {
+        this.trackerRequestQueue.push(hash);
+        if (this.trackerRequestQueue.length === 1) {
+            this.trackerStatusRequest();
+        }
+        
     },
 
     getFilteredTorrentsNumber: function(filterName, categoryHash) {
