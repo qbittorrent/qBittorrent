@@ -31,6 +31,7 @@
 #ifndef HTTP_SERVER_H
 #define HTTP_SERVER_H
 
+#include <QSet>
 #include <QTcpServer>
 
 #ifndef QT_NO_OPENSSL
@@ -66,7 +67,7 @@ namespace Http
         void removeConnection(Connection *connection);
 
         IRequestHandler *m_requestHandler;
-        QList<Connection *> m_connections;  // for tracking persistent connections
+        QSet<Connection *> m_connections;  // for tracking persistent connections
 
 #ifndef QT_NO_OPENSSL
         QList<QSslCipher> safeCipherList() const;
