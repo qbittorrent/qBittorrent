@@ -63,6 +63,7 @@ namespace Http
 
     private:
         void incomingConnection(qintptr socketDescriptor);
+        void removeConnection(Connection *connection);
 
         IRequestHandler *m_requestHandler;
         QList<Connection *> m_connections;  // for tracking persistent connections

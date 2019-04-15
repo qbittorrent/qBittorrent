@@ -98,15 +98,22 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
     Connection *c = new Connection(serverSocket, m_requestHandler, this);
     m_connections.append(c);
+    connect(serverSocket, &QAbstractSocket::disconnected, this, [c, this]() { removeConnection(c); });
+}
+
+void Server::removeConnection(Connection *connection)
+{
+    m_connections.removeOne(connection);
+    connection->deleteLater();
 }
 
 void Server::dropTimedOutConnection()
 {
     QMutableListIterator<Connection *> i(m_connections);
     while (i.hasNext()) {
-        auto connection = i.next();
-        if (connection->isClosed() || connection->hasExpired(KEEP_ALIVE_DURATION)) {
-            delete connection;
+        Connection *connection = i.next();
+        if (connection->hasExpired(KEEP_ALIVE_DURATION)) {
+            connection->deleteLater();
             i.remove();
         }
     }
