@@ -20,9 +20,9 @@
    </div>\
 </script>\
 <script id="feeds-template" type="text/html">\
-    <div data-bind="foreach: feeds">\
-        <h2><!--ko text: name --><!--/ko--><a data-bind="click: downloadSelected, visible: anySelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
-        <ul data-bind="foreach: torrents"><li><label><input data-bind="checked: selected" type="checkbox"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
+    <div data-name="feeds">\
+        <h2><!--ko text: name --><!--/ko--><a data-name="anySelected" data-bind="click: downloadSelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
+        <ul data-name="torrents"><li><label><input data-name="selected"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
     </div>\
 </script>';
     
@@ -198,7 +198,7 @@
     };
 
     var Torrent = function(data) {
-        this.selected = ko.observable();
+        this.selected = ko.observable(false);
         this.name = data.title;
         this.downloadLink = data.torrentURL;
     }
@@ -293,12 +293,12 @@
 
 
     var tabsTemplate = '<div class="toolbarTabs">\
-        <ul class="tab-menu" data-bind="foreach: tabs">\
-            <li data-bind="css: { selected: selected }"><a data-bind="text: caption, click: $parent.select.bind($parent)"></a></li>\
+        <ul class="tab-menu" data-name="tabs">\
+            <li data-bind="css: { selected: selected }"><a data-name="caption" data-bind="click: $parent.select.bind($parent)"></a></li>\
         </ul>\
         <div class="clear"></div>\
         </div>\
-        <div data-bind="foreach: tabs">\
-            <div data-bind="visible: selected, template: { name: template, data: model }"></div>\
+        <div data-name="tabs">\
+            <div data-name="selected" data-bind="template: { name: template, data: model }"></div>\
         </div>';
 })();
