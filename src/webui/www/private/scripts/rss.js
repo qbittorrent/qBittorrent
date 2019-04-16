@@ -45,7 +45,7 @@
                 //TODO: error handling
             },
             onSuccess: function (response) {
-                feeds = Object.keys(response).map(function (key) { return { name: key, data: response[key] }; })
+                feeds = Object.keys(response).map(key => ({ name: key, data: response[key] }));
                 if (callback) callback(feeds);
             }
         }).send();
@@ -59,7 +59,7 @@
     });
 
     var Model = function () {
-        this.modal = ko.observable().extend({ notify: 'always' });;
+        this.modal = ko.observable().extend({ notify: 'always' });
     };
 
     Model.prototype = {
@@ -76,13 +76,13 @@
     };
 
     var FeedsModel = function() {
-        this.feeds = ko.observable(feeds.map(function(f) { return new FeedDownloadsModel(f); }));
+        this.feeds = ko.observable(feeds.map(f => new FeedDownloadsModel(f)));
     };
 
     var FeedDownloadsModel = function(feed) {
         this.name = feed.name;
-        this.torrents = feed.data.articles.map(a => new Torrent(a))
-        this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) != null)
+        this.torrents = feed.data.articles.map(a => new Torrent(a));
+        this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) !== null);
     };
 
     FeedDownloadsModel.prototype = {
@@ -92,19 +92,19 @@
         }
     };
 
-    var RssRuleModel = function () {
+    var RssRuleModel = function() {
         this.rules = ko.observableArray();
         this.selectedRule = ko.observable();
 
         this.listRules();
-        this.canDeleteSelectedRule = ko.computed(function () { return this.selectedRule() != null }, this);
+        this.canDeleteSelectedRule = ko.computed(() => this.selectedRule() !== null, this);
         this.days = [...Array(14).keys()];
-    }
+    };
 
     RssRuleModel.prototype = {
         listRules: function () {
             var url = new URI('api/v2/rss/rules');
-            var request = new Request.JSON({
+            new Request.JSON({
                 url: url,
                 noCache: true,
                 method: 'get',
@@ -112,8 +112,8 @@
                     //TODO: error handling
                 },
                 onSuccess: function (response) {
-                    var rules = Object.keys(response).map(function (key) { return new Rule(key, response[key]); });
-                    this.paths = rules.map(function (rule) { return rule.savePath(); }).filter(function (value, index, arr) { return arr.indexOf(value) === index; });
+                    var rules = Object.keys(response).map(key => new Rule(key, response[key]));
+                    this.paths = rules.map(rule => rule.savePath()).filter((value, index, arr) => arr.indexOf(value) === index);
                     this.rules(rules);
                 }.bind(this)
             }).send();
@@ -142,8 +142,6 @@
         }
     };
 
-
-
     var Rule = function (name, data) {
         this.name = ko.observable(name);
         this.enabled = data.enabled;
@@ -151,11 +149,11 @@
         this.mustNotContain = data.mustNotContain;
         this.savePath = ko.observable(data.savePath);
         this.ignoreDays = data.ignoreDays;
-        this.feeds = feeds.map(function (f) { return new Feed(f, data.affectedFeeds.indexOf(f.data.url) >= 0) });
+        this.feeds = feeds.map(f => new Feed(f, data.affectedFeeds.indexOf(f.data.url) >= 0));
 
         this.data = data;
         this.selectedPath = ko.observable(data.savePath);
-        this.selectedPath.subscribe(function (path) { this.savePath(path); }, this);
+        this.selectedPath.subscribe(path => this.savePath(path), this);
 
         this.canSave = ko.observable(true);
     };
@@ -170,7 +168,7 @@
                 }
             }
 
-            toSave.affectedFeeds = this.feeds.filter(function (f) { return f.enabled; }).map(function (f) { return f.url; });
+            toSave.affectedFeeds = this.feeds.filter(f => f.enabled).map(f => f.url);
             var json = ko.toJSON(toSave);
             var dirty = ko.toJSON(this.data) !== json;
 
@@ -201,7 +199,7 @@
         this.selected = ko.observable(false);
         this.name = data.title;
         this.downloadLink = data.torrentURL;
-    }
+    };
 
     var Feed = function (feed, enabled) {
         this.name = feed.name;
@@ -216,7 +214,7 @@
         orgOptionsApply(name, element, bindings, options, type, data, viewModel);
 
         if (options.length === 0 || options[0]["name"]) {
-            bindings.optionsText = function () { return "name"; };
+            bindings.optionsText = () => "name";
         }
     };
 
@@ -287,10 +285,7 @@
     };
 
     var stringTemplateEngine = new ko.nativeTemplateEngine();
-    stringTemplateEngine.makeTemplateSource = function (template) {
-        return new stringTemplateSource(template);
-    };
-
+    stringTemplateEngine.makeTemplateSource = template => new stringTemplateSource(template);
 
     var tabsTemplate = '<div class="toolbarTabs">\
         <ul class="tab-menu" data-name="tabs">\
