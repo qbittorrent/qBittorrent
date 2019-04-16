@@ -22,7 +22,7 @@
 <script id="feeds-template" type="text/html">\
     <div data-name="feeds">\
         <h2><!--ko text: name --><!--/ko--><a data-name="anySelected" data-bind="click: downloadSelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
-        <ul data-name="torrents"><li><label><input data-name="selected"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
+        <ul data-name="torrents"><li><label data-bind="attr: { title: date.toLocaleString() }"><input data-name="selected"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
     </div>\
 </script>';
     
@@ -81,7 +81,7 @@
 
     var FeedDownloadsModel = function(feed) {
         this.name = feed.name;
-        this.torrents = feed.data.articles.map(a => new Torrent(a));
+        this.torrents = feed.data.articles.map(a => new Torrent(a)).sort((a, b) => b.date - a.date);
         this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) !== null);
     };
 
@@ -199,6 +199,7 @@
         this.selected = ko.observable(false);
         this.name = data.title;
         this.downloadLink = data.torrentURL;
+        this.date = new Date(data.date);
     };
 
     var Feed = function (feed, enabled) {
