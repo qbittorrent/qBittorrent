@@ -82,7 +82,7 @@
     var FeedDownloadsModel = function(feed) {
         this.name = feed.name;
         this.torrents = feed.data.articles.map(a => new Torrent(a)).sort((a, b) => b.date - a.date);
-        this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) !== null);
+        this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) != null);
     };
 
     FeedDownloadsModel.prototype = {
