@@ -77,6 +77,25 @@ function getSyncMainDataInterval() {
     return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
 }
 
+const fetchQbtVersion = function() {
+    new Request({
+        url: 'api/v2/app/version',
+        method: 'get',
+        onSuccess: function(info) {
+            if (!info) return;
+            sessionStorage.setItem('qbtVersion', info);
+        }
+    }).send();
+};
+fetchQbtVersion();
+
+const qbtVersion = function() {
+    const version = sessionStorage.getItem('qbtVersion');
+    if (!version)
+        return '';
+    return version;
+};
+
 window.addEvent('load', function() {
 
     var saveColumnSizes = function() {
@@ -454,11 +473,11 @@ window.addEvent('load', function() {
         transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
-            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", "${VERSION}");
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion());
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }
         else
-            document.title = "qBittorrent ${VERSION} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
+            document.title = ("qBittorrent " + qbtVersion() + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
         $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", friendlyUnit(serverState.free_space_on_disk)));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
