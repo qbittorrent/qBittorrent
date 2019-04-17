@@ -788,7 +788,7 @@ var initializeWindows = function() {
             url: 'api/v2/auth/logout',
             method: 'post',
             onSuccess: function() {
-                window.location.reload();
+                window.location.reload(true);
             }
         }).send();
     });
