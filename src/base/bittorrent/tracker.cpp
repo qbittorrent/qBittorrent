@@ -267,21 +267,21 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 
 void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
 {
-//    // Prepare the entry for bencoding
-//    libtorrent::entry::dictionary_type replyDict;
-//    replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
-//
-//    libtorrent::entry::list_type peerList;
-//    for (const Peer &p : m_torrents.value(announceReq.infoHash))
-//        peerList.push_back(p.toEntry(announceReq.noPeerId));
-//    replyDict["peers"] = libtorrent::entry(peerList);
-//
-//    const libtorrent::entry replyEntry(replyDict);
-//    // bencode
-//    QByteArray reply;
-//    libtorrent::bencode(std::back_inserter(reply), replyEntry);
-//    qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
-//
-//    // HTTP reply
-//    print(reply, Http::CONTENT_TYPE_TXT);
+    // Prepare the entry for bencoding
+    libtorrent::entry::dictionary_type replyDict;
+    replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
+
+    libtorrent::entry::list_type peerList;
+    for (const Peer &p : m_torrents.value(announceReq.infoHash))
+        peerList.push_back(p.toEntry(announceReq.noPeerId));
+    replyDict["peers"] = libtorrent::entry(peerList);
+
+    const libtorrent::entry replyEntry(replyDict);
+    // bencode
+    QByteArray reply;
+    libtorrent::bencode(std::back_inserter(reply), replyEntry);
+    qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
+
+    // HTTP reply
+    print(reply, Http::CONTENT_TYPE_TXT);
 }
