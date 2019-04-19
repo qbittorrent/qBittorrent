@@ -65,13 +65,15 @@ QString Peer::uid() const
 
 libtorrent::entry Peer::toEntry(const bool noPeerId) const
 {
-    libtorrent::entry::dictionary_type peerMap;
+    libtorrent::entry dict;
+    auto & peerMap = dict.dict();
+
     if (!noPeerId)
         peerMap["id"] = libtorrent::entry(peerId.toStdString());
     peerMap["ip"] = libtorrent::entry(ip.toString().toStdString());
     peerMap["port"] = libtorrent::entry(port);
 
-    return libtorrent::entry(peerMap);
+    return dict;
 }
 
 // Tracker
@@ -265,21 +267,21 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 
 void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
 {
-    // Prepare the entry for bencoding
-    libtorrent::entry::dictionary_type replyDict;
-    replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
-
-    libtorrent::entry::list_type peerList;
-    for (const Peer &p : m_torrents.value(announceReq.infoHash))
-        peerList.push_back(p.toEntry(announceReq.noPeerId));
-    replyDict["peers"] = libtorrent::entry(peerList);
-
-    const libtorrent::entry replyEntry(replyDict);
-    // bencode
-    QByteArray reply;
-    libtorrent::bencode(std::back_inserter(reply), replyEntry);
-    qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
-
-    // HTTP reply
-    print(reply, Http::CONTENT_TYPE_TXT);
+//    // Prepare the entry for bencoding
+//    libtorrent::entry::dictionary_type replyDict;
+//    replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
+//
+//    libtorrent::entry::list_type peerList;
+//    for (const Peer &p : m_torrents.value(announceReq.infoHash))
+//        peerList.push_back(p.toEntry(announceReq.noPeerId));
+//    replyDict["peers"] = libtorrent::entry(peerList);
+//
+//    const libtorrent::entry replyEntry(replyDict);
+//    // bencode
+//    QByteArray reply;
+//    libtorrent::bencode(std::back_inserter(reply), replyEntry);
+//    qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
+//
+//    // HTTP reply
+//    print(reply, Http::CONTENT_TYPE_TXT);
 }
