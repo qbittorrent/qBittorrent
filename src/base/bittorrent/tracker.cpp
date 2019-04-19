@@ -65,15 +65,15 @@ QString Peer::uid() const
 
 libtorrent::entry Peer::toEntry(const bool noPeerId) const
 {
-    libtorrent::entry dict;
-    auto & peerMap = dict.dict();
+    libtorrent::entry entry;
+    auto &peerMap = entry.dict();
 
     if (!noPeerId)
         peerMap["id"] = libtorrent::entry(peerId.toStdString());
     peerMap["ip"] = libtorrent::entry(ip.toString().toStdString());
     peerMap["port"] = libtorrent::entry(port);
 
-    return dict;
+    return entry;
 }
 
 // Tracker
@@ -268,7 +268,8 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
 {
     // Prepare the entry for bencoding
-    libtorrent::entry::dictionary_type replyDict;
+    libtorrent::entry entry;
+    auto &replyDict = entry.dict();
     replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
 
     libtorrent::entry::list_type peerList;
@@ -276,10 +277,9 @@ void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
         peerList.push_back(p.toEntry(announceReq.noPeerId));
     replyDict["peers"] = libtorrent::entry(peerList);
 
-    const libtorrent::entry replyEntry(replyDict);
     // bencode
     QByteArray reply;
-    libtorrent::bencode(std::back_inserter(reply), replyEntry);
+    libtorrent::bencode(std::back_inserter(reply), entry);
     qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
 
     // HTTP reply
