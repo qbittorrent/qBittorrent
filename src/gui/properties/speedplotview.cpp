@@ -327,11 +327,11 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.drawLine(fullRect.left(), rect.top() + 0.75 * rect.height(), rect.right(), rect.top() + 0.75 * rect.height());
     painter.drawLine(fullRect.left(), rect.bottom(), rect.right(), rect.bottom());
 
-    painter.drawLine(rect.left(), fullRect.top(), rect.left(), fullRect.bottom());
-    painter.drawLine(rect.left() + 0.2 * rect.width(), fullRect.top(), rect.left() + 0.2 * rect.width(), fullRect.bottom());
-    painter.drawLine(rect.left() + 0.4 * rect.width(), fullRect.top(), rect.left() + 0.4 * rect.width(), fullRect.bottom());
-    painter.drawLine(rect.left() + 0.6 * rect.width(), fullRect.top(), rect.left() + 0.6 * rect.width(), fullRect.bottom());
-    painter.drawLine(rect.left() + 0.8 * rect.width(), fullRect.top(), rect.left() + 0.8 * rect.width(), fullRect.bottom());
+    const int TIME_AXIS_DIVISIONS = 6;
+    for (int i = 0; i < TIME_AXIS_DIVISIONS; ++i) {
+        const int x = rect.left() + (i * rect.width()) / TIME_AXIS_DIVISIONS;
+        painter.drawLine(x, fullRect.top(), x, fullRect.bottom());
+    }
 
     // Set antialiasing for graphs
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
