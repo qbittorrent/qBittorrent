@@ -375,7 +375,7 @@ Session::Session(QObject *parent)
     , m_extraLimit(0)
     , m_recentErroredTorrentsTimer(new QTimer(this))
 {
-    if (useRandomPort() || (port() < 0))
+    if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
 
     initResumeFolder();
@@ -1149,9 +1149,10 @@ void Session::configure(lt::settings_pack &settingsPack)
     QString chosenIP;
 #endif
     if (m_listenInterfaceChanged) {
-        const ushort port = this->port();
-        const std::pair<int, int> ports(port, port);
-        settingsPack.set_int(lt::settings_pack::max_retry_port_bind, ports.second - ports.first);
+        const int port = useRandomPort() ? 0 : this->port();
+        if (port > 0)  // user specified port
+            settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
+
         for (QString ip : getListeningIPs()) {
             lt::error_code ec;
             std::string interfacesStr;
