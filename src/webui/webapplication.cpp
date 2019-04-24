@@ -117,6 +117,7 @@ namespace
 
 WebApplication::WebApplication(QObject *parent)
     : QObject(parent)
+    , m_cacheID {QString::number(Utils::Random::rand(), 36)}
 {
     registerAPIController(QLatin1String("app"), new AppController(this, this));
     registerAPIController(QLatin1String("auth"), new AuthController(this, this));
@@ -225,7 +226,7 @@ void WebApplication::translateDocument(QString &data)
         }
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
-        data.replace(QLatin1String("${VERSION}"), QBT_VERSION);
+        data.replace(QLatin1String("${CACHEID}"), m_cacheID);
     }
 }
 
