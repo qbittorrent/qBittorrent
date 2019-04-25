@@ -36,13 +36,9 @@
 #include <QFile>
 #include <QHash>
 #include <QList>
-#include <QMap>
 #include <QNetworkConfigurationManager>
 #include <QPointer>
 #include <QSet>
-#include <QStringList>
-#include <QVector>
-#include <QWaitCondition>
 
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
@@ -55,8 +51,8 @@
 
 class QThread;
 class QTimer;
-class QStringList;
 class QString;
+class QStringList;
 class QUrl;
 
 class FilterParserThread;
