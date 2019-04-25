@@ -30,7 +30,6 @@
 
 #include <QDateTime>
 #include <QHash>
-#include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
@@ -120,7 +119,7 @@ private:
     bool validateHostHeader(const QStringList &domains) const;
 
     // Persistent data
-    QMap<QString, WebSession *> m_sessions;
+    QHash<QString, WebSession *> m_sessions;
 
     // Current data
     WebSession *m_currentSession = nullptr;
@@ -141,7 +140,7 @@ private:
         QByteArray data;
         QDateTime lastModified;
     };
-    QMap<QString, TranslatedFile> m_translatedFiles;
+    QHash<QString, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;

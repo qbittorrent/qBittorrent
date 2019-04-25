@@ -34,7 +34,6 @@
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
-#include <QMap>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
