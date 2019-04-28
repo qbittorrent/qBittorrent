@@ -64,7 +64,9 @@ public:
         MIN1 = 0,
         MIN5,
         MIN30,
-        HOUR6
+        HOUR6,
+        HOUR12,
+        HOUR24
     };
 
     struct PointData
@@ -76,7 +78,7 @@ public:
     explicit SpeedPlotView(QWidget *parent = nullptr);
 
     void setGraphEnable(GraphID id, bool enable);
-    void setViewableLastPoints(TimePeriod period);
+    void setPeriod(TimePeriod period);
 
     void pushPoint(const PointData &point);
 
@@ -116,8 +118,13 @@ private:
     boost::circular_buffer<PointData> m_data5Min;
     boost::circular_buffer<PointData> m_data30Min;
     boost::circular_buffer<PointData> m_data6Hour;
+    boost::circular_buffer<PointData> m_data12Hour;
+    boost::circular_buffer<PointData> m_data24Hour;
+    boost::circular_buffer<PointData> *m_currentData;
     Averager m_averager30Min;
     Averager m_averager6Hour;
+    Averager m_averager12Hour;
+    Averager m_averager24Hour;
 
     QMap<GraphID, GraphProperties> m_properties;
 
