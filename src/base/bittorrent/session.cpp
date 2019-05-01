@@ -34,13 +34,16 @@
 #include <queue>
 #include <string>
 
-#include <QCoreApplication>
+#ifdef Q_OS_WIN
+#include <wincrypt.h>
+#include <iphlpapi.h>
+#endif
+
 #include <QDebug>
 #include <QDir>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
 #include <QNetworkInterface>
-#include <QProcess>
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
@@ -50,12 +53,10 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
-#include <libtorrent/disk_io_thread.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
-#include <libtorrent/identify_client.hpp>
 #include <libtorrent/ip_filter.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
@@ -78,7 +79,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
-#include "base/utils/string.h"
 #include "magneturi.h"
 #include "private/bandwidthscheduler.h"
 #include "private/filterparserthread.h"
@@ -88,11 +88,6 @@
 #include "torrenthandle.h"
 #include "tracker.h"
 #include "trackerentry.h"
-
-#ifdef Q_OS_WIN
-#include <wincrypt.h>
-#include <iphlpapi.h>
-#endif
 
 #if defined(Q_OS_WIN) && (_WIN32_WINNT < 0x0600)
 using NETIO_STATUS = LONG;

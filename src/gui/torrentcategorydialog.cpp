@@ -28,7 +28,6 @@
 
 #include "torrentcategorydialog.h"
 
-#include <QMap>
 #include <QMessageBox>
 
 #include "base/bittorrent/session.h"
