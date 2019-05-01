@@ -60,11 +60,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="start_torrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        <label for="startTorrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                     </td>
                     <td>
-                        <input type="checkbox" id="start_torrent" checked="checked" />
-                        <input type="hidden" id="add_paused" name="paused" value="false" readonly />
+                        <input type="hidden" id="startTorrentHidden" name="paused" />
+                        <input type="checkbox" id="startTorrent" />
                     </td>
                 </tr>
                 <tr>
@@ -77,10 +77,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="root_folder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        <label for="rootFolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                     </td>
                     <td>
-                        <input type="checkbox" id="root_folder" name="root_folder" value="true" checked="checked" />
+                        <input type="hidden" id="rootFolderHidden" name="root_folder" />
+                        <input type="checkbox" id="rootFolder" />
                     </td>
                 </tr>
                 <tr>
@@ -127,6 +128,9 @@
         var submitted = false;
 
         $('uploadForm').addEventListener("submit", function() {
+            $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
+            $('rootFolderHidden').value = $('rootFolder').checked ? 'true' : 'false';
+
             $('upload_spinner').style.display = "block";
             submitted = true;
         });
@@ -134,10 +138,6 @@
         $('upload_frame').addEventListener("load", function() {
             if (submitted)
                 window.parent.closeWindows();
-        });
-
-        $('start_torrent').addEventListener('change', function() {
-            $('add_paused').value = !$('start_torrent').checked;
         });
     </script>
     <div id="upload_spinner" class="mochaSpinner"></div>
