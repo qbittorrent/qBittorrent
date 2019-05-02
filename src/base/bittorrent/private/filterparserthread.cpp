@@ -35,6 +35,10 @@
 
 #include "base/logger.h"
 
+#ifdef BOOST_ASIO_SEPARATE_COMPILATION 
+#include <boost/asio/impl/src.hpp>
+#endif
+
 namespace libt = libtorrent;
 
 namespace
