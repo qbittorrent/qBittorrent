@@ -55,19 +55,20 @@ var getPreferences = function() {
             alert("Could not contact qBittorrent");
         },
         onSuccess: function(pref) {
-            if (pref) {
-                defaultSavePath = pref.save_path;
-                $('savepath').setProperty('value', defaultSavePath);
-                $('root_folder').checked = pref.create_subfolder_enabled;
-                $('start_torrent').checked = !pref.start_paused_enabled;
+            if (!pref)
+                return;
 
-                if (pref.auto_tmm_enabled == 1) {
-                    $('autoTMM').selectedIndex = 1;
-                    $('savepath').disabled = true;
-                }
-                else {
-                    $('autoTMM').selectedIndex = 0;
-                }
+            defaultSavePath = pref.save_path;
+            $('savepath').setProperty('value', defaultSavePath);
+            $('rootFolder').checked = pref.create_subfolder_enabled;
+            $('startTorrent').checked = !pref.start_paused_enabled;
+
+            if (pref.auto_tmm_enabled == 1) {
+                $('autoTMM').selectedIndex = 1;
+                $('savepath').disabled = true;
+            }
+            else {
+                $('autoTMM').selectedIndex = 0;
             }
         }
     }).send();
