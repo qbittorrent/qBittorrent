@@ -98,7 +98,7 @@ class TrackerFiltersList : public BaseFilterWidget
     Q_DISABLE_COPY(TrackerFiltersList)
 
 public:
-    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList);
+    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
@@ -144,7 +144,7 @@ class TransferListFiltersWidget : public QFrame
     Q_OBJECT
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
+    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     void setDownloadTrackerFavicon(bool value);
 
 public slots:

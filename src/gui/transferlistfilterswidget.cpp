@@ -192,10 +192,10 @@ void StatusFilterWidget::handleNewTorrent(BitTorrent::TorrentHandle *const) {}
 
 void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) {}
 
-TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList)
+TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : BaseFilterWidget(parent, transferList)
     , m_totalTorrents(0)
-    , m_downloadTrackerFavicon(true)
+    , m_downloadTrackerFavicon(downloadFavicon)
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
@@ -545,7 +545,7 @@ QStringList TrackerFiltersList::getHashes(int row)
      return m_trackers.value(trackerFromRow(row));
 }
 
-TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList)
+TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : QFrame(parent)
     , m_transferList(transferList)
 {
@@ -625,7 +625,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     trackerLabel->setFont(font);
     frameLayout->addWidget(trackerLabel);
 
-    m_trackerFilters = new TrackerFiltersList(this, transferList);
+    m_trackerFilters = new TrackerFiltersList(this, transferList, downloadFavicon);
     frameLayout->addWidget(m_trackerFilters);
 
     connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
