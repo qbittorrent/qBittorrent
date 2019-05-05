@@ -1,3 +1,23 @@
+* Sun May 05 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.6
+    - BUGFIX: Force recheck multiple torrents one by one in all possible cases. Closes #9120 (glassez)
+    - BUGFIX: Don't query Google for tracker favicons, for privacy reasons (sledgehammer999)
+    - BUGFIX: Work around the crash occurred in QTimer. Closes #9985 (Chocobo1)
+    - BUGFIX: Increase the .torrent file download size limit to 100 MiB (thalieht)
+    - BUGFIX: Disable downloading tracker favicons by default. Works around reported crashes in Linux. Closes #9667 (Chocobo1)
+    - WEBUI: Separate URL components before percent-decoding. Allow special characters in query string parameters. Closes #9116 (glassez)
+    - WEBUI: Prevent login credential appearing in URL. Closes #10221 (Chocobo1)
+    - WEBUI: Display warning when Javascript is disabled (Chocobo1)
+    - WEBUI: Fix translatable strings (Chocobo1)
+    - WEBUI: Correctly handle '+' sign in x-www-form-urlencoded data. Closes #10451 (Chocobo1)
+    - WEBUI: Remove closed connections immediately. Closes #10487 (Chocobo1)
+    - WEBUI: Fix "Create subfolder" option is not working. Closes ##10392 (Chocobo1)
+    - SEARCH: Make num enter key work the same as return in searchjobwidget (thalieht)
+    - LINUX: Make window title bar icon work in Wayland (Peter Eszlari)
+    - LINUX: Update appdata.xml file (Chocobo1)
+    - MACOS: Fix progress bar drawing by using different style than native (Nick Korotysh)
+    - MACOS: Updated and cleaned up fields in Info.plist (Nick Korotysh)
+    - OTHER: Mention more translators in the about tab. Closes #10043 (sledgehammer999)
+
 * Mon Dec 24 2018 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.5
     - FEATURE: Add checking_mem_usage option to AdvancedSettings (FranciscoPombal)
     - FEATURE: Save torrents queue in separate file. Now a new file named 'queue' is created, saving on each line the infohash of each queued torrent in sorted order. (glassez)
