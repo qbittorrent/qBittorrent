@@ -293,10 +293,6 @@
         <translation>Клиент qBittorrent недоступен</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent был выключен.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Общее ограничение соотношения отдачи должно быть больше 0 или отключено.</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent выключен</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>Фильтровать список торрентов…</translation>
+        <translation>Фильтр торрентов…</translation>
     </message>
     <message>
         <source>Search</source>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Сообщать об окончании загрузки по почте</translation>
+        <translation>Оповещать об окончании загрузки по почте</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>

@@ -293,10 +293,6 @@
         <translation>O cliente qBittorrent encontra-se inacessível</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">O qBittorrent foi desligado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>O número global do limite de slots para upload deverá ser superior a 0 ou estar desativado.</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>O qBittorrent foi desligado.</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Ny kategori</translation>
     </message>
     <message>
         <source>Edit category...</source>
@@ -293,10 +293,6 @@
         <translation>qBittorrent er ikke oppnåelig</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent har blitt avslått.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation type="unfinished" />
     </message>
@@ -306,7 +302,7 @@
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Kunne ikke opprette kategori</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -466,7 +466,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Søkemotor</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -474,7 +474,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Søk</translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -919,7 +919,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutter</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -967,7 +967,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Ikke start nedlastingen automatisk</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -987,7 +987,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 betyr ubegrenset</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1003,7 +1003,7 @@
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>Sikkerhet</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
@@ -1015,7 +1015,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>sekunder</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1674,7 +1674,7 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Deaktivert</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -1682,7 +1682,7 @@
     </message>
     <message>
         <source>#</source>
-        <translation type="unfinished" />
+        <translation>#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1749,7 +1749,7 @@
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Fullført</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -1785,7 +1785,7 @@
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>Mangler filer</translation>
     </message>
     <message>
         <source>Queued for checking</source>
@@ -1953,7 +1953,7 @@
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Nytt navn</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -1965,7 +1965,7 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Rediger kategori</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2030,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Slettingsbekreftelse - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2127,7 +2127,7 @@
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2143,7 +2143,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
@@ -2162,11 +2162,11 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>stopp</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Søk</translation>
     </message>
     <message>
         <source>Search plugins...</source>
@@ -2221,7 +2221,7 @@
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Avinstaller</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -2233,7 +2233,7 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Lukk</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
@@ -2260,11 +2260,11 @@
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Størrelse</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2272,7 +2272,7 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Søkemotor</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -2283,7 +2283,7 @@
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Url</source>
@@ -2295,7 +2295,7 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Versjon</translation>
     </message>
 </context>
 </TS>

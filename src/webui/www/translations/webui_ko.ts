@@ -293,10 +293,6 @@
         <translation>큐빗토런트 클라이언트에 접근할 수 없습니다</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">큐빗토런트를 종료했습니다.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>전역 업로드 슬롯 제한은 0보다 높거나 비활성화되어야 합니다.</translation>
     </message>
@@ -314,11 +310,11 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>편집</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>여유 공간: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -326,7 +322,7 @@
     </message>
     <message>
         <source>Saving Management</source>
-        <translation type="unfinished" />
+        <translation>저장 관리</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>큐빗토런트를 종료했습니다</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -462,19 +462,19 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>대체 속도 제한</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>검색 엔진</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>토런트 목록 필터하기...</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>검색</translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -919,19 +919,19 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>분</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/초</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>클릭 재킹 보호 활성화</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>크로스 사이트 요청 위조 (CSRF) 보호 활성화</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -951,7 +951,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>자동</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -959,7 +959,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>기본 저장 경로:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>

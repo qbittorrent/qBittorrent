@@ -293,10 +293,6 @@
         <translation>无法访问 qBittorrent 客户端</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent 已经关闭。</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>全局上传种子数量限制必须大于 0 或禁用。</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent已经关闭。</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: 标签 (用逗号分隔)</translation>
+        <translation>%G: 标签 （用逗号分隔）</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>

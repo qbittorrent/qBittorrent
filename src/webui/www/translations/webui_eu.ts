@@ -293,10 +293,6 @@
         <translation>qBittorrent bezeroa erdietsiezina da</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent itzali egin da.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Igoera slot kopuru orokorraren muga 0 baino handiagoa edo ezgaituta izan behar da.</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent itzali egin da</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>

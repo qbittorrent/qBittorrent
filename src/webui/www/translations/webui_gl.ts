@@ -293,10 +293,6 @@
         <translation>O cliente qBittorrent non está accesíbel</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">O qBittorrent foi pechado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Global number of upload slots limit must be greater than 0 or disabled.</translation>
     </message>
@@ -335,6 +331,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>O qBittorrent foi pechado.</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>

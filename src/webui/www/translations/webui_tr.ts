@@ -293,10 +293,6 @@
         <translation>qBittorrent istemcisine ulaşılamıyor</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent kapatıldı.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Genel gönderme yuvası sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent kapatıldı</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -401,7 +401,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Tümüne Devam Et</translation>
+        <translation>Tümüne Devam</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -669,7 +669,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Hiçbiri)</translation>
+        <translation>(Yok)</translation>
     </message>
     <message>
         <source>SOCKS4</source>

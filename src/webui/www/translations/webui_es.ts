@@ -293,10 +293,6 @@
         <translation>Imposible conectar a qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent se ha cerrado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>El máximo número de puestos de subida debe ser mayor que 0 o estar inhabilitado.</translation>
     </message>
@@ -334,6 +330,10 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent ha sido cerrado</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -963,7 +963,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>La ubicación de archivos de la Interfaz de Usuario alternativa no puede estar vacía.</translation>
+        <translation>La ubicación de los archivos de la Interfaz de Usuario Web alternativa no puede estar vacía.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1011,7 +1011,7 @@
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation>Crear una sub-carpeta para torrentes con múltiples archivos</translation>
+        <translation>Crear una sub-carpeta para torrents con múltiples archivos</translation>
     </message>
     <message>
         <source>seconds</source>

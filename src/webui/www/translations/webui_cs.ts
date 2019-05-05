@@ -293,17 +293,12 @@
         <translation>Klient qBittorrent není dostupný</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent byl ukončen.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Celkový počet nahrávacích slotů musí být větší než 0 nebo být vypnutý.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Neplatný název kategorie:
-Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
+        <translation>Neplatný název kategorie:\nProsím nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -335,6 +330,10 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent byl ukončen</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -570,7 +569,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Aktualizovat můj dynamické doménový název (DDNS)</translation>
+        <translation>Aktualizovat můj dynamický doménový název (DDNS)</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>

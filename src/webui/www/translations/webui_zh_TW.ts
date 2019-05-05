@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>編輯分類...</translation>
+        <translation>編輯分類…</translation>
     </message>
 </context>
 <context>
@@ -85,23 +85,23 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>一線僅一連結</translation>
+        <translation>每行一連結</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>全域上傳速度限制必須大於 0 或停用。</translation>
+        <translation>全域上傳速率限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>全域下載速度限制必須大於 0 或停用。</translation>
+        <translation>全域下載速率限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>額外的上傳速度限制必須大於 0 或停用。</translation>
+        <translation>替補的上傳速率限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>額外的下載速度限制必須大於 0 或停用。</translation>
+        <translation>替補的下載速率限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -125,7 +125,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>每個 torrent 上傳位置的最大數限制必須大於 0 或停用。</translation>
+        <translation>每個 torrent 上傳通道的最大數限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -141,19 +141,19 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>分享速率限制必須在 0 到 9998 間。</translation>
+        <translation>分享速率限制必須在 0 到 9998 之間。</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>做種時間限制必須在 0 到 525600 分鐘間。</translation>
+        <translation>做種時間限制必須在 0 到 525600 分鐘之間。</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>連入的連線埠號必須介於 1 到 65535 間。</translation>
+        <translation>連入的連線埠號必須在 1 到 65535 之間。</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Web UI 所使用的埠號必須介於 1 與 65535 間。</translation>
+        <translation>Web UI 使用的埠號必須在 1 到 65535 之間。</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -190,7 +190,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>上傳 Torrents</translation>
+        <translation>上傳 torrent</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>在此輸入資料夾</translation>
+        <translation>在這裡輸入資料夾</translation>
     </message>
     <message>
         <source>More information</source>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>從他們的 URL 或磁性連結下載 torrent</translation>
+        <translation>從他們的 URL 或磁力連結下載 torrent</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>您確定要刪除在傳輸清單中所選擇的 torrent 嗎？</translation>
+        <translation>您確定要刪除在傳輸清單中選定的 torrent 嗎？</translation>
     </message>
     <message>
         <source>Save</source>
@@ -293,12 +293,8 @@
         <translation>連接不到 qBittorrent 客戶端</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent 已經關閉。</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>全域上傳數量限制必須大於 0 或停用。</translation>
+        <translation>全域上傳通道數量限制必須大於 0 或停用。</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -310,7 +306,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation>上傳速度閾值必須大於 0。</translation>
+        <translation>上傳速率閾值必須大於 0。</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -330,10 +326,14 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation>下載速度閾值必須大於 0。</translation>
+        <translation>下載速率閾值必須大於 0。</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent 已經關閉</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -393,7 +393,7 @@
     </message>
     <message>
         <source>Speed in Title Bar</source>
-        <translation>在標題列的速度</translation>
+        <translation>在標題列的速率</translation>
     </message>
     <message>
         <source>Donate!</source>
@@ -445,11 +445,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>全域上傳速度限制</translation>
+        <translation>全域上傳速率限制</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>全域下載速度限制</translation>
+        <translation>全域下載速率限制</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -462,7 +462,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>替代速度限制</translation>
+        <translation>替補速率限制</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>Speed</source>
-        <translation>速度</translation>
+        <translation>速率</translation>
     </message>
     <message>
         <source>BitTorrent</source>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>下載完成時使用 Email 通知</translation>
+        <translation>下載完成時使用電子郵件通知</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>
@@ -529,11 +529,11 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>排程使用額外的速度限制</translation>
+        <translation>預約使用替補速率限制</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation>torrent 排程</translation>
+        <translation>Torrent 佇列</translation>
     </message>
     <message>
         <source>Seed torrents until their seeding time reaches</source>
@@ -545,7 +545,7 @@
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Web UI（遠端控制）</translation>
+        <translation>Web UI (遠端控制)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -633,7 +633,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>從我的路由器使用 UPnP／NAT-PMP 連接埠轉送</translation>
+        <translation>使用從路由器轉送的 UPnP／NAT-PMP 連接埠</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
@@ -653,7 +653,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>每個 torrent 上傳位置的最大數：</translation>
+        <translation>每個 torrent 上傳通道的最大數：</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -709,7 +709,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>手動封鎖 IP 位置...</translation>
+        <translation>手動封鎖 IP 位置…</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -717,7 +717,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>全域分享率限制</translation>
+        <translation>全域速率限制</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -729,7 +729,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>替代速率限制</translation>
+        <translation>替補速率限制</translation>
     </message>
     <message>
         <source>From:</source>
@@ -763,7 +763,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>套用速度限制至傳輸負載</translation>
+        <translation>套用速率限制至傳輸負載</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -807,19 +807,19 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>最活躍的下載數：</translation>
+        <translation>最大活躍的下載數：</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>最活躍的上傳數：</translation>
+        <translation>最大活躍的上傳數：</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>最活躍的 torrent：</translation>
+        <translation>最大活躍的 torrent 數：</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>在這些限制中不要計算速度慢的 torrent</translation>
+        <translation>在這些限制中不要計算速率慢的 torrent</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
@@ -843,7 +843,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>從我的路由器使用 UPnP／NAT-PMP 連接埠轉送</translation>
+        <translation>使用 UPnP／NAT-PMP 轉送路由器連接埠</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G：標籤（以逗號分隔）</translation>
+        <translation>%G：標籤 (以逗號分隔)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -891,7 +891,7 @@
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation>%C：檔案數量</translation>
+        <translation>%C：檔案數</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
@@ -907,7 +907,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>提示：將參數以引號包起來以避免被空白切斷 (例如："%N")</translation>
+        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如："%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -923,7 +923,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation> KiB/秒</translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -939,11 +939,11 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation>下載速度閾值：</translation>
+        <translation>下載速率閾值：</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation>上傳速度閾值：</translation>
+        <translation>上傳速率閾值：</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -955,7 +955,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>使用替代 Web UI</translation>
+        <translation>使用替補 Web UI</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -963,7 +963,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>替代的 Web UI 檔案位置不能為空。</translation>
+        <translation>替補的 Web UI 檔案位置不應該為空白。</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -975,7 +975,7 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>當 Torrent 分類變更時：</translation>
+        <translation>當 torrent 分類變更時：</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -999,7 +999,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>啟用主機標頭驗證</translation>
+        <translation>啟用主機檔頭驗證</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1019,7 +1019,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>切換受影響的 torrents 至手動模式</translation>
+        <translation>切換受影響的 torrent 至手動模式</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1073,12 +1073,12 @@
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>下載速度</translation>
+        <translation>下載速率</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>上傳速度</translation>
+        <translation>上傳速率</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -1175,11 +1175,11 @@
     </message>
     <message>
         <source>Download Speed:</source>
-        <translation>下載速度：</translation>
+        <translation>下載速率：</translation>
     </message>
     <message>
         <source>Upload Speed:</source>
-        <translation>上傳速度：</translation>
+        <translation>上傳速率：</translation>
     </message>
     <message>
         <source>Peers:</source>
@@ -1215,7 +1215,7 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>重新公告於：</translation>
+        <translation>重新發佈於：</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1264,7 +1264,7 @@
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation>%1 (此作業階段 %2)</translation>
+        <translation>%1 (今期 %2)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
@@ -1328,7 +1328,7 @@
     </message>
     <message>
         <source>Cache statistics</source>
-        <translation>緩存的統計資料</translation>
+        <translation>快取的統計資料</translation>
     </message>
     <message>
         <source>Read cache hits:</source>
@@ -1336,7 +1336,7 @@
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation>在隊列中的平均時間：</translation>
+        <translation>在佇列的平均時間：</translation>
     </message>
     <message>
         <source>Connected peers:</source>
@@ -1344,19 +1344,19 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>全時間分享速率：</translation>
+        <translation>合計總分享率：</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>全時間下載：</translation>
+        <translation>合計總下載：</translation>
     </message>
     <message>
         <source>Session waste:</source>
-        <translation>工作階段丟棄：</translation>
+        <translation>今期丟棄：</translation>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>全時間上傳：</translation>
+        <translation>合計總上傳：</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -1368,7 +1368,7 @@
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>隊列的 I/O 任務：</translation>
+        <translation>佇列的 I/O 任務：</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -1380,7 +1380,7 @@
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation>總隊列大小：</translation>
+        <translation>總佇列大小：</translation>
     </message>
 </context>
 <context>
@@ -1528,12 +1528,12 @@
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>下載速度</translation>
+        <translation>下載速率</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>上傳速度</translation>
+        <translation>上傳速率</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -1590,12 +1590,12 @@
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>作業期間已下載</translation>
+        <translation>今期下載</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>作業期間已上傳</translation>
+        <translation>今期上傳</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -1662,11 +1662,11 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>Tracker URL：</translation>
+        <translation>追蹤者 URL：</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>正在更新……</translation>
+        <translation>正在更新…</translation>
     </message>
     <message>
         <source>Working</source>
@@ -1702,19 +1702,19 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>增加新 tracker……</translation>
+        <translation>新增追蹤者…</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>編輯追蹤者 URL……</translation>
+        <translation>編輯追蹤者 URL…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Tracker 編輯</translation>
+        <translation>編輯追蹤者</translation>
     </message>
     <message>
         <source>Leeches</source>
-        <translation>水蛭</translation>
+        <translation>蝗族</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -1729,7 +1729,7 @@
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>要增加的追蹤者清單 (一行一個)：</translation>
+        <translation>要增加的追蹤者清單 (每行一個)：</translation>
     </message>
 </context>
 <context>
@@ -1757,7 +1757,7 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[F] 做種</translation>
+        <translation>強制做種</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -1773,11 +1773,11 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation>[F] 下載</translation>
+        <translation>強制下載</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>正在下載詮釋資料</translation>
+        <translation>正在下載中介資料</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -1793,7 +1793,7 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation>正在下載</translation>
+        <translation>下載中</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -1819,11 +1819,11 @@
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Torrent 下載速度限制</translation>
+        <translation>Torrent 下載速率限制</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Torrent 上傳速度限制</translation>
+        <translation>Torrent 上傳速率限制</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -1855,11 +1855,11 @@
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>限制上傳速度…</translation>
+        <translation>限制上傳速率…</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>限制下載速度…</translation>
+        <translation>限制下載速率…</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -1925,7 +1925,7 @@
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>複製磁性連結</translation>
+        <translation>複製磁力連結</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -1941,7 +1941,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>強迫重新檢查</translation>
+        <translation>強制重新檢查</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -1976,7 +1976,7 @@
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent 上傳╱下載比率限制</translation>
+        <translation>Torrent 分享限制</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -1992,7 +1992,7 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation>分享率</translation>
+        <translation>上傳╱下載比率</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -2022,7 +2022,7 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>確認刪除</translation>
+        <translation>刪除確認</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
@@ -2045,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>新增 torrent 連結</translation>
+        <translation>增加 torrent 連結</translation>
     </message>
 </context>
 <context>
@@ -2120,7 +2120,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>儲存路徑為空</translation>
+        <translation>儲存路徑為空白</translation>
     </message>
 </context>
 <context>
@@ -2139,7 +2139,7 @@
     </message>
     <message>
         <source>Install plugin</source>
-        <translation>安裝外掛程式</translation>
+        <translation>安裝外掛</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2154,7 +2154,7 @@
     </message>
     <message>
         <source>All plugins</source>
-        <translation>所有外掛程式</translation>
+        <translation>所有外掛</translation>
     </message>
     <message>
         <source>Size:</source>
@@ -2170,7 +2170,7 @@
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>搜尋外寡程式……</translation>
+        <translation>搜尋外掛…</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2190,7 +2190,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>結果顯示</translation>
+        <translation>搜尋結果 (顯示</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2225,11 +2225,11 @@
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation>安裝新的外掛程式</translation>
+        <translation>安裝新的外掛</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>您可以在此取得新的搜尋外掛程式：</translation>
+        <translation>您可以在這裡取得新的搜尋引擎外掛：</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2237,7 +2237,7 @@
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation>已安裝的搜尋外掛程式：</translation>
+        <translation>已安裝的搜尋外掛：</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -2253,7 +2253,7 @@
     </message>
     <message>
         <source>Search plugins</source>
-        <translation>搜尋外掛程式</translation>
+        <translation>搜尋外掛</translation>
     </message>
 </context>
 <context>
@@ -2268,7 +2268,7 @@
     </message>
     <message>
         <source>Leechers</source>
-        <translation>不完整種子</translation>
+        <translation>下載者</translation>
     </message>
     <message>
         <source>Search engine</source>

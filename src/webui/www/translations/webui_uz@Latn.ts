@@ -336,6 +336,10 @@
         <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
