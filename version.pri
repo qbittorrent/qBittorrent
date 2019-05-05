@@ -4,7 +4,7 @@ PROJECT_NAME = qbittorrent
 # Define version numbers here
 VER_MAJOR = 4
 VER_MINOR = 1
-VER_BUGFIX = 5
+VER_BUGFIX = 6
 VER_BUILD = 0
 VER_STATUS = # Should be empty for stable releases!
 
