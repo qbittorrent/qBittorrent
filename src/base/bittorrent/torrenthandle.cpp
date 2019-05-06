@@ -65,7 +65,6 @@
 
 const QString QB_EXT {QStringLiteral(".!qB")};
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 namespace
@@ -92,7 +91,7 @@ namespace
         return out;
     }
 
-    using ListType = libt::entry::list_type;
+    using ListType = lt::entry::list_type;
 
     ListType setToEntryList(const QSet<QString> &input)
     {
@@ -371,7 +370,7 @@ bool TorrentHandle::isAutoManaged() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.auto_managed;
 #else
-    return (m_nativeStatus.flags & libt::torrent_flags::auto_managed);
+    return (m_nativeStatus.flags & lt::torrent_flags::auto_managed);
 #endif
 }
 
@@ -381,18 +380,18 @@ void TorrentHandle::setAutoManaged(const bool enable)
     m_nativeHandle.auto_managed(enable);
 #else
     if (enable)
-        m_nativeHandle.set_flags(libt::torrent_flags::auto_managed);
+        m_nativeHandle.set_flags(lt::torrent_flags::auto_managed);
     else
-        m_nativeHandle.unset_flags(libt::torrent_flags::auto_managed);
+        m_nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 #endif
 }
 
 QList<TrackerEntry> TorrentHandle::trackers() const
 {
     QList<TrackerEntry> entries;
-    const std::vector<libt::announce_entry> announces = m_nativeHandle.trackers();
+    const std::vector<lt::announce_entry> announces = m_nativeHandle.trackers();
 
-    for (const libt::announce_entry &tracker : announces)
+    for (const lt::announce_entry &tracker : announces)
         entries << tracker;
 
     return entries;
@@ -420,7 +419,7 @@ void TorrentHandle::replaceTrackers(const QList<TrackerEntry> &trackers)
     QList<TrackerEntry> existingTrackers = this->trackers();
     QList<TrackerEntry> addedTrackers;
 
-    std::vector<libt::announce_entry> announces;
+    std::vector<lt::announce_entry> announces;
     for (const TrackerEntry &tracker : trackers) {
         announces.push_back(tracker.nativeEntry());
         if (!existingTrackers.contains(tracker))
@@ -505,8 +504,8 @@ bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
 
 bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
 {
-    libt::error_code ec;
-    const libt::address addr = libt::address::from_string(peerAddress.ip.toString().toStdString(), ec);
+    lt::error_code ec;
+    const lt::address addr = lt::address::from_string(peerAddress.ip.toString().toStdString(), ec);
     if (ec) return false;
 
     const boost::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
@@ -709,7 +708,7 @@ bool TorrentHandle::isPaused() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return (m_nativeStatus.paused && !isAutoManaged());
 #else
-    return ((m_nativeStatus.flags & libt::torrent_flags::paused)
+    return ((m_nativeStatus.flags & lt::torrent_flags::paused)
             && !isAutoManaged());
 #endif
 }
@@ -724,15 +723,15 @@ bool TorrentHandle::isQueued() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return (m_nativeStatus.paused && isAutoManaged());
 #else
-    return ((m_nativeStatus.flags & libt::torrent_flags::paused)
+    return ((m_nativeStatus.flags & lt::torrent_flags::paused)
             && isAutoManaged());
 #endif
 }
 
 bool TorrentHandle::isChecking() const
 {
-    return ((m_nativeStatus.state == libt::torrent_status::checking_files)
-            || (m_nativeStatus.state == libt::torrent_status::checking_resume_data));
+    return ((m_nativeStatus.state == lt::torrent_status::checking_files)
+            || (m_nativeStatus.state == lt::torrent_status::checking_resume_data));
 }
 
 bool TorrentHandle::isDownloading() const
@@ -798,8 +797,8 @@ bool TorrentHandle::isSeed() const
     // May suffer from approximation problems
     //return (progress() == 1.);
     // This looks safe
-    return ((m_nativeStatus.state == libt::torrent_status::finished)
-            || (m_nativeStatus.state == libt::torrent_status::seeding));
+    return ((m_nativeStatus.state == lt::torrent_status::finished)
+            || (m_nativeStatus.state == lt::torrent_status::seeding));
 }
 
 bool TorrentHandle::isForced() const
@@ -807,7 +806,7 @@ bool TorrentHandle::isForced() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return (!m_nativeStatus.paused && !isAutoManaged());
 #else
-    return (!(m_nativeStatus.flags & libt::torrent_flags::paused)
+    return (!(m_nativeStatus.flags & lt::torrent_flags::paused)
             && !isAutoManaged());
 #endif
 }
@@ -817,7 +816,7 @@ bool TorrentHandle::isSequentialDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.sequential_download;
 #else
-    return (m_nativeStatus.flags & libt::torrent_flags::sequential_download);
+    return (m_nativeStatus.flags & lt::torrent_flags::sequential_download);
 #endif
 }
 
@@ -851,7 +850,7 @@ TorrentState TorrentHandle::state() const
 
 void TorrentHandle::updateState()
 {
-    if (m_nativeStatus.state == libt::torrent_status::checking_resume_data) {
+    if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
     }
     else if (isMoveInProgress()) {
@@ -871,23 +870,23 @@ void TorrentHandle::updateState()
         }
         else {
             switch (m_nativeStatus.state) {
-            case libt::torrent_status::finished:
-            case libt::torrent_status::seeding:
+            case lt::torrent_status::finished:
+            case lt::torrent_status::seeding:
                 if (isForced())
                     m_state = TorrentState::ForcedUploading;
                 else
                     m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
                 break;
-            case libt::torrent_status::allocating:
+            case lt::torrent_status::allocating:
                 m_state = TorrentState::Allocating;
                 break;
-            case libt::torrent_status::checking_files:
+            case lt::torrent_status::checking_files:
                 m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
                 break;
-            case libt::torrent_status::downloading_metadata:
+            case lt::torrent_status::downloading_metadata:
                 m_state = TorrentState::DownloadingMetadata;
                 break;
-            case libt::torrent_status::downloading:
+            case lt::torrent_status::downloading:
                 if (isForced())
                     m_state = TorrentState::ForcedDownloading;
                 else
@@ -916,7 +915,7 @@ bool TorrentHandle::hasError() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return (m_nativeStatus.paused && m_nativeStatus.errc);
 #else
-    return ((m_nativeStatus.flags & libt::torrent_flags::paused)
+    return ((m_nativeStatus.flags & lt::torrent_flags::paused)
             && m_nativeStatus.errc);
 #endif
 }
@@ -961,7 +960,7 @@ qlonglong TorrentHandle::activeTime() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.active_time;
 #else
-    return libt::total_seconds(m_nativeStatus.active_duration);
+    return lt::total_seconds(m_nativeStatus.active_duration);
 #endif
 }
 
@@ -970,7 +969,7 @@ qlonglong TorrentHandle::finishedTime() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.finished_time;
 #else
-    return libt::total_seconds(m_nativeStatus.finished_duration);
+    return lt::total_seconds(m_nativeStatus.finished_duration);
 #endif
 }
 
@@ -979,7 +978,7 @@ qlonglong TorrentHandle::seedingTime() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.seeding_time;
 #else
-    return libt::total_seconds(m_nativeStatus.seeding_duration);
+    return lt::total_seconds(m_nativeStatus.seeding_duration);
 #endif
 }
 
@@ -1024,7 +1023,7 @@ qulonglong TorrentHandle::eta() const
 QVector<qreal> TorrentHandle::filesProgress() const
 {
     std::vector<boost::int64_t> fp;
-    m_nativeHandle.file_progress(fp, libt::torrent_handle::piece_granularity);
+    m_nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
 
     const int count = static_cast<int>(fp.size());
     QVector<qreal> result;
@@ -1104,7 +1103,7 @@ qlonglong TorrentHandle::timeSinceUpload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_upload;
 #else
-    return libt::total_seconds(libt::clock_type::now() - m_nativeStatus.last_upload);
+    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_upload);
 #endif
 }
 
@@ -1113,7 +1112,7 @@ qlonglong TorrentHandle::timeSinceDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_download;
 #else
-    return libt::total_seconds(libt::clock_type::now() - m_nativeStatus.last_download);
+    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_download);
 #endif
 }
 
@@ -1141,18 +1140,18 @@ bool TorrentHandle::superSeeding() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.super_seeding;
 #else
-    return (m_nativeStatus.flags & libt::torrent_flags::super_seeding);
+    return (m_nativeStatus.flags & lt::torrent_flags::super_seeding);
 #endif
 }
 
 QList<PeerInfo> TorrentHandle::peers() const
 {
     QList<PeerInfo> peers;
-    std::vector<libt::peer_info> nativePeers;
+    std::vector<lt::peer_info> nativePeers;
 
     m_nativeHandle.get_peer_info(nativePeers);
 
-    for (const libt::peer_info &peer : nativePeers)
+    for (const lt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
 
     return peers;
@@ -1172,11 +1171,11 @@ QBitArray TorrentHandle::downloadingPieces() const
 {
     QBitArray result(piecesCount());
 
-    std::vector<libt::partial_piece_info> queue;
+    std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);
 
-    std::vector<libt::partial_piece_info>::const_iterator it = queue.begin();
-    std::vector<libt::partial_piece_info>::const_iterator itend = queue.end();
+    std::vector<lt::partial_piece_info>::const_iterator it = queue.begin();
+    std::vector<lt::partial_piece_info>::const_iterator itend = queue.end();
     for (; it != itend; ++it)
         result.setBit(it->piece_index);
 
@@ -1258,7 +1257,7 @@ int TorrentHandle::connectionsLimit() const
 
 qlonglong TorrentHandle::nextAnnounce() const
 {
-    return libt::total_seconds(m_nativeStatus.next_announce);
+    return lt::total_seconds(m_nativeStatus.next_announce);
 }
 
 void TorrentHandle::setName(const QString &name)
@@ -1339,7 +1338,7 @@ void TorrentHandle::forceRecheck()
 #if (LIBTORRENT_VERSION_NUM < 10200)
         m_nativeHandle.stop_when_ready(true);
 #else
-        m_nativeHandle.set_flags(libt::torrent_flags::stop_when_ready);
+        m_nativeHandle.set_flags(lt::torrent_flags::stop_when_ready);
 #endif
         resume_impl(false);
     }
@@ -1352,12 +1351,12 @@ void TorrentHandle::setSequentialDownload(const bool enable)
     m_nativeStatus.sequential_download = enable;  // prevent return cached value
 #else
     if (enable) {
-        m_nativeHandle.set_flags(libt::torrent_flags::sequential_download);
-        m_nativeStatus.flags |= libt::torrent_flags::sequential_download;  // prevent return cached value
+        m_nativeHandle.set_flags(lt::torrent_flags::sequential_download);
+        m_nativeStatus.flags |= lt::torrent_flags::sequential_download;  // prevent return cached value
     }
     else {
-        m_nativeHandle.unset_flags(libt::torrent_flags::sequential_download);
-        m_nativeStatus.flags &= ~libt::torrent_flags::sequential_download;  // prevent return cached value
+        m_nativeHandle.unset_flags(lt::torrent_flags::sequential_download);
+        m_nativeStatus.flags &= ~lt::torrent_flags::sequential_download;  // prevent return cached value
     }
 #endif
 }
@@ -1468,10 +1467,10 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
         // Actually move the storage
 #if (LIBTORRENT_VERSION_NUM < 10200)
         m_nativeHandle.move_storage(newPath.toUtf8().constData()
-                                    , (overwrite ? libt::always_replace_files : libt::dont_replace));
+                                    , (overwrite ? lt::always_replace_files : lt::dont_replace));
 #else
         m_nativeHandle.move_storage(newPath.toUtf8().constData()
-                                    , (overwrite ? libt::move_flags_t::always_replace_files : libt::move_flags_t::dont_replace));
+                                    , (overwrite ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
 #endif
         m_moveStorageInfo.oldPath = oldPath;
         m_moveStorageInfo.newPath = newPath;
@@ -1490,14 +1489,14 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
 {
     if (!m_torrentInfo.isValid()) return false;
 #if (LIBTORRENT_VERSION_NUM < 10200)
-    const libt::create_torrent torrentCreator = libt::create_torrent(*(m_torrentInfo.nativeInfo()), true);
+    const lt::create_torrent torrentCreator = lt::create_torrent(*(m_torrentInfo.nativeInfo()), true);
 #else
-    const libt::create_torrent torrentCreator = libt::create_torrent(*(m_torrentInfo.nativeInfo()));
+    const lt::create_torrent torrentCreator = lt::create_torrent(*(m_torrentInfo.nativeInfo()));
 #endif
-    const libt::entry torrentEntry = torrentCreator.generate();
+    const lt::entry torrentEntry = torrentCreator.generate();
 
     QVector<char> out;
-    libt::bencode(std::back_inserter(out), torrentEntry);
+    lt::bencode(std::back_inserter(out), torrentEntry);
     QFile torrentFile(path);
     if (!out.empty() && torrentFile.open(QIODevice::WriteOnly))
         return (torrentFile.write(&out[0], out.size()) == out.size());
@@ -1505,7 +1504,7 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
     return false;
 }
 
-void TorrentHandle::handleStateUpdate(const libt::torrent_status &nativeStatus)
+void TorrentHandle::handleStateUpdate(const lt::torrent_status &nativeStatus)
 {
     updateStatus(nativeStatus);
 }
@@ -1725,7 +1724,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
 {
     // if torrent has no metadata we should save dummy fastresume data
     // containing Magnet URI and qBittorrent own resume data only
-    if (p->error.value() == libt::errors::no_metadata)
+    if (p->error.value() == lt::errors::no_metadata)
         handleSaveResumeDataAlert(nullptr);
     else
         m_session->handleTorrentResumeDataFailed(this);
@@ -1733,7 +1732,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
 
 void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p)
 {
-    if (p->error.value() == libt::errors::mismatching_file_size) {
+    if (p->error.value() == lt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
         m_hasMissingFiles = true;
         LogMsg(tr("File sizes mismatch for torrent '%1', pausing it.").arg(name()), Log::CRITICAL);
@@ -1804,12 +1803,12 @@ void TorrentHandle::handleFileCompletedAlert(const libtorrent::file_completed_al
 void TorrentHandle::handleStatsAlert(const libtorrent::stats_alert *p)
 {
     Q_ASSERT(p->interval >= 1000);
-    const SpeedSample transferred(p->transferred[libt::stats_alert::download_payload] * 1000LL / p->interval,
-            p->transferred[libt::stats_alert::upload_payload] * 1000LL / p->interval);
+    const SpeedSample transferred(p->transferred[lt::stats_alert::download_payload] * 1000LL / p->interval,
+            p->transferred[lt::stats_alert::upload_payload] * 1000LL / p->interval);
     m_speedMonitor.addSample(transferred);
 }
 
-void TorrentHandle::handleMetadataReceivedAlert(const libt::metadata_received_alert *p)
+void TorrentHandle::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
@@ -1858,56 +1857,56 @@ void TorrentHandle::handleAppendExtensionToggled()
 void TorrentHandle::handleAlert(const libtorrent::alert *a)
 {
     switch (a->type()) {
-    case libt::stats_alert::alert_type:
-        handleStatsAlert(static_cast<const libt::stats_alert*>(a));
+    case lt::stats_alert::alert_type:
+        handleStatsAlert(static_cast<const lt::stats_alert*>(a));
         break;
-    case libt::file_renamed_alert::alert_type:
-        handleFileRenamedAlert(static_cast<const libt::file_renamed_alert*>(a));
+    case lt::file_renamed_alert::alert_type:
+        handleFileRenamedAlert(static_cast<const lt::file_renamed_alert*>(a));
         break;
-    case libt::file_rename_failed_alert::alert_type:
-        handleFileRenameFailedAlert(static_cast<const libt::file_rename_failed_alert*>(a));
+    case lt::file_rename_failed_alert::alert_type:
+        handleFileRenameFailedAlert(static_cast<const lt::file_rename_failed_alert*>(a));
         break;
-    case libt::file_completed_alert::alert_type:
-        handleFileCompletedAlert(static_cast<const libt::file_completed_alert*>(a));
+    case lt::file_completed_alert::alert_type:
+        handleFileCompletedAlert(static_cast<const lt::file_completed_alert*>(a));
         break;
-    case libt::torrent_finished_alert::alert_type:
-        handleTorrentFinishedAlert(static_cast<const libt::torrent_finished_alert*>(a));
+    case lt::torrent_finished_alert::alert_type:
+        handleTorrentFinishedAlert(static_cast<const lt::torrent_finished_alert*>(a));
         break;
-    case libt::save_resume_data_alert::alert_type:
-        handleSaveResumeDataAlert(static_cast<const libt::save_resume_data_alert*>(a));
+    case lt::save_resume_data_alert::alert_type:
+        handleSaveResumeDataAlert(static_cast<const lt::save_resume_data_alert*>(a));
         break;
-    case libt::save_resume_data_failed_alert::alert_type:
-        handleSaveResumeDataFailedAlert(static_cast<const libt::save_resume_data_failed_alert*>(a));
+    case lt::save_resume_data_failed_alert::alert_type:
+        handleSaveResumeDataFailedAlert(static_cast<const lt::save_resume_data_failed_alert*>(a));
         break;
-    case libt::storage_moved_alert::alert_type:
-        handleStorageMovedAlert(static_cast<const libt::storage_moved_alert*>(a));
+    case lt::storage_moved_alert::alert_type:
+        handleStorageMovedAlert(static_cast<const lt::storage_moved_alert*>(a));
         break;
-    case libt::storage_moved_failed_alert::alert_type:
-        handleStorageMovedFailedAlert(static_cast<const libt::storage_moved_failed_alert*>(a));
+    case lt::storage_moved_failed_alert::alert_type:
+        handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert*>(a));
         break;
-    case libt::torrent_paused_alert::alert_type:
-        handleTorrentPausedAlert(static_cast<const libt::torrent_paused_alert*>(a));
+    case lt::torrent_paused_alert::alert_type:
+        handleTorrentPausedAlert(static_cast<const lt::torrent_paused_alert*>(a));
         break;
-    case libt::torrent_resumed_alert::alert_type:
-        handleTorrentResumedAlert(static_cast<const libt::torrent_resumed_alert*>(a));
+    case lt::torrent_resumed_alert::alert_type:
+        handleTorrentResumedAlert(static_cast<const lt::torrent_resumed_alert*>(a));
         break;
-    case libt::tracker_error_alert::alert_type:
-        handleTrackerErrorAlert(static_cast<const libt::tracker_error_alert*>(a));
+    case lt::tracker_error_alert::alert_type:
+        handleTrackerErrorAlert(static_cast<const lt::tracker_error_alert*>(a));
         break;
-    case libt::tracker_reply_alert::alert_type:
-        handleTrackerReplyAlert(static_cast<const libt::tracker_reply_alert*>(a));
+    case lt::tracker_reply_alert::alert_type:
+        handleTrackerReplyAlert(static_cast<const lt::tracker_reply_alert*>(a));
         break;
-    case libt::tracker_warning_alert::alert_type:
-        handleTrackerWarningAlert(static_cast<const libt::tracker_warning_alert*>(a));
+    case lt::tracker_warning_alert::alert_type:
+        handleTrackerWarningAlert(static_cast<const lt::tracker_warning_alert*>(a));
         break;
-    case libt::metadata_received_alert::alert_type:
-        handleMetadataReceivedAlert(static_cast<const libt::metadata_received_alert*>(a));
+    case lt::metadata_received_alert::alert_type:
+        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
         break;
-    case libt::fastresume_rejected_alert::alert_type:
-        handleFastResumeRejectedAlert(static_cast<const libt::fastresume_rejected_alert*>(a));
+    case lt::fastresume_rejected_alert::alert_type:
+        handleFastResumeRejectedAlert(static_cast<const lt::fastresume_rejected_alert*>(a));
         break;
-    case libt::torrent_checked_alert::alert_type:
-        handleTorrentCheckedAlert(static_cast<const libt::torrent_checked_alert*>(a));
+    case lt::torrent_checked_alert::alert_type:
+        handleTorrentCheckedAlert(static_cast<const lt::torrent_checked_alert*>(a));
         break;
     }
 }
@@ -2050,9 +2049,9 @@ void TorrentHandle::setSuperSeeding(const bool enable)
     m_nativeHandle.super_seeding(enable);
 #else
     if (enable)
-        m_nativeHandle.set_flags(libt::torrent_flags::super_seeding);
+        m_nativeHandle.set_flags(lt::torrent_flags::super_seeding);
     else
-        m_nativeHandle.unset_flags(libt::torrent_flags::super_seeding);
+        m_nativeHandle.unset_flags(lt::torrent_flags::super_seeding);
 #endif
 }
 
@@ -2063,7 +2062,7 @@ void TorrentHandle::flushCache()
 
 QString TorrentHandle::toMagnetUri() const
 {
-    return QString::fromStdString(libt::make_magnet_uri(m_nativeHandle));
+    return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
 }
 
 void TorrentHandle::prioritizeFiles(const QVector<DownloadPriority> &priorities)
