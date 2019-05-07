@@ -56,7 +56,6 @@ namespace
     }
 }
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 MagnetUri::MagnetUri(const QString &source)
@@ -68,8 +67,8 @@ MagnetUri::MagnetUri(const QString &source)
     if (isBitTorrentInfoHash(source))
         m_url = QLatin1String("magnet:?xt=urn:btih:") + source;
 
-    libt::error_code ec;
-    libt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);
+    lt::error_code ec;
+    lt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);
     if (ec) return;
 
     m_valid = true;
