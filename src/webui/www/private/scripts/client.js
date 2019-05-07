@@ -696,6 +696,7 @@ window.addEvent('load', function() {
         loadMethod: 'xhr',
         contentURL: 'transferlist.html',
         onContentLoaded: function() {
+            handleDownloadParam();
             updateMainData();
         },
         column: 'mainColumn',
@@ -800,7 +801,47 @@ window.addEvent('load', function() {
         addMainWindowTabsEventListener();
         addSearchPanel();
     }
+
+    registerMagnetHandler();
 });
+
+function registerMagnetHandler() {
+    if (typeof navigator.registerProtocolHandler !== 'function')
+        return;
+
+    const hashParams = getHashParamsFromUrl();
+    hashParams.download = '';
+
+    const templateHashString = Object.toQueryString(hashParams).replace('download=', 'download=%s');
+
+    const templateUrl = location.origin + location.pathname
+        + location.search + '#' + templateHashString;
+
+    navigator.registerProtocolHandler('magnet', templateUrl,
+        'qBittorrent WebUI magnet handler');
+}
+
+function handleDownloadParam() {
+    // Extract torrent URL from download param in WebUI URL hash
+    const hashParams = getHashParamsFromUrl();
+    const url = hashParams.download;
+    if (!url)
+        return;
+
+    // Remove the download param from WebUI URL hash
+    delete hashParams.download;
+    let newHash = Object.toQueryString(hashParams);
+    newHash = newHash ? ('#' + newHash) : '';
+    history.replaceState('', document.title,
+        (location.pathname + location.search + newHash));
+
+    showDownloadPage([url]);
+}
+
+function getHashParamsFromUrl() {
+    const hashString = location.hash ? location.hash.replace(/^#/, '') : '';
+    return (hashString.length > 0) ? String.parseQueryString(hashString) : {};
+}
 
 function closeWindows() {
     MochaUI.closeAll();
