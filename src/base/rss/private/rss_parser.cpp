@@ -588,6 +588,7 @@ void Parser::parse_impl(const QByteArray &feedData)
 void Parser::parseRssArticle(QXmlStreamReader &xml)
 {
     QVariantHash article;
+    QString altTorrentUrl;
 
     while (!xml.atEnd()) {
         xml.readNext();
@@ -603,6 +604,8 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
             else if (name == QLatin1String("enclosure")) {
                 if (xml.attributes().value("type") == QLatin1String("application/x-bittorrent"))
                     article[Article::KeyTorrentURL] = xml.attributes().value(QLatin1String("url")).toString();
+                else if (xml.attributes().value("type").isEmpty())
+                    altTorrentUrl = xml.attributes().value(QLatin1String("url")).toString();
             }
             else if (name == QLatin1String("link")) {
                 const QString text {xml.readElementText().trimmed()};
@@ -628,6 +631,9 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
             }
         }
     }
+
+    if (article[Article::KeyTorrentURL].toString().isEmpty())
+        article[Article::KeyTorrentURL] = altTorrentUrl;
 
     m_result.articles.prepend(article);
 }
