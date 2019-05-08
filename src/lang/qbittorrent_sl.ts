@@ -89,7 +89,7 @@
     <message>
         <location filename="../gui/aboutdialog.h" line="71"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation>Avtorske pravice %1 2006-2018 The qBittorrent project</translation>
+        <translation>Avtorske pravice %1 2006–2018 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.h" line="72"/>
@@ -122,7 +122,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="104"/>
         <source>Torrent settings</source>
-        <translation>Torrent nastavitve</translation>
+        <translation>Nastavitve torrenta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="110"/>
@@ -172,7 +172,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
         <source>Torrent Management Mode:</source>
-        <translation>Način Upravljanja Torrenta:</translation>
+        <translation>Način upravljanja torrenta:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
@@ -887,7 +887,7 @@ Napaka: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="28"/>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Samodejni prenos RSS torentov je zdaj onemogočen! Omgočite ga lahko v nastavitvah aplikacije.</translation>
+        <translation>Samodejni prejem torentov RSS je zdaj onemogočen! Omogočite ga lahko v nastavitvah programa.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="59"/>
@@ -1730,7 +1730,7 @@ Podpora formatov: S01E01, 1x1, 2017.01.01 in 01.01.2017 (Datumski format podpira
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="402"/>
         <source>Uncategorized</source>
-        <translation>Ne kategorizirani</translation>
+        <translation>Nekategorizirani</translation>
     </message>
 </context>
 <context>
@@ -2456,7 +2456,7 @@ Podpora formatov: S01E01, 1x1, 2017.01.01 in 01.01.2017 (Datumski format podpira
     <message>
         <location filename="../gui/mainwindow.cpp" line="235"/>
         <source>Filter torrent list...</source>
-        <translation>Filtriraj seznam torrenta ...</translation>
+        <translation>Filtriraj seznam torrentov ...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="206"/>
@@ -3036,7 +3036,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../base/net/downloadhandler.cpp" line="248"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznana napaka</translation>
     </message>
 </context>
 <context>
@@ -3045,7 +3045,7 @@ Namestite Python ročno.</translation>
         <location filename="../base/net/geoipmanager.cpp" line="104"/>
         <location filename="../base/net/geoipmanager.cpp" line="434"/>
         <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
-        <translation>GeoIP podatkovna zbirka naložena. Vrsta: %1. Čas izgradnje: %2.</translation>
+        <translation>Podatkovna zbirka GeoIP naložena. Vrsta: %1. Čas izgradnje: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="108"/>
@@ -3056,7 +3056,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Venezuela, Bolivarian Republic of</source>
-        <translation>Venezuela, Bolivarska republika </translation>
+        <translation>Venezuela, Bolivarska republika</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="384"/>
@@ -3077,7 +3077,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="145"/>
         <source>United Arab Emirates</source>
-        <translation>Združeni Arabski Emirati</translation>
+        <translation>Združeni arabski emirati</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="146"/>
@@ -3817,7 +3817,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Norfolk Island</source>
-        <translation>Norfolk otok</translation>
+        <translation>Otok Norfolk</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="307"/>
@@ -4515,7 +4515,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Run e&amp;xternal program on torrent completion</source>
-        <translation>Ko se torrent zaključi za&amp;ženi zunanji program</translation>
+        <translation>Ko se torrent zaključi, za&amp;ženi zunanji program</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1706"/>
@@ -4730,7 +4730,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="581"/>
         <source>Delete backup logs older than:</source>
-        <translation>Izbriši varnostne kopije dnevnikov starejše od:</translation>
+        <translation>Izbriši varnostne kopije dnevnikov, starejše od:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="605"/>
@@ -4758,7 +4758,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="707"/>
         <source>Bring torrent dialog to the front</source>
-        <translation>Prikaži torrent pogovorno okno v ospredju</translation>
+        <translation>Prikaži pogovorno okno torrenta v ospredju</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="730"/>
@@ -4774,7 +4774,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="752"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation>Izbriši tudi .torrent datoteke katerih dodajanje je bilo preklicano</translation>
+        <translation>Izbriši tudi datoteke .torrent, katerih dodajanje je bilo preklicano</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="755"/>
@@ -4794,7 +4794,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="821"/>
         <source>Default Torrent Management Mode:</source>
-        <translation>Privzet Način Upravljanja Torrentov:</translation>
+        <translation>Privzeti način upravljanja torrentov:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="833"/>
@@ -4881,7 +4881,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="720"/>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation>Ustvari podmapo za torrente z večimi datotekami</translation>
+        <translation>Ustvari podmapo za torrente z več datotekami</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="740"/>
@@ -5038,7 +5038,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="1508"/>
         <source>Type:</source>
-        <translation>Tip:</translation>
+        <translation>Vrsta:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1516"/>
@@ -5124,7 +5124,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="1745"/>
         <source>Manually banned IP addresses...</source>
-        <translation>Ročno izločeni IP naslovi...</translation>
+        <translation>Ročno izločeni IP-naslovi ...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1752"/>
@@ -5233,17 +5233,17 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="2147"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Omogočite DHT (decentralizirano omrežje) da najdete več soležnikov</translation>
+        <translation>Omogoči DHT (decentralizirano omrežje) za iskanje več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2157"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze, ...)</translation>
+        <translation>Izmenjaj soležnike z združljivimi odjemalci Bittorrent (µTorrent, Vuze ...)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2160"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Omogočite Izmenjavo soležnikov (PeX) da najdete več soležnikov</translation>
+        <translation>Omogoči izmenjavo soležnikov (PeX) za iskanje več soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2170"/>
@@ -5308,18 +5308,18 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="2431"/>
         <source>Upload rate threshold:</source>
-        <translation>Omejitev hitrosti pošiljanja:</translation>
+        <translation>Meja hitrosti pošiljanja:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2438"/>
         <source>Download rate threshold:</source>
-        <translation>Omejitev hitrosti prejemanja:</translation>
+        <translation>Meja hitrosti prejemanja:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2471"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation>sec</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2487"/>
@@ -5329,7 +5329,7 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="2500"/>
         <source>Share Ratio Limiting</source>
-        <translation>Omejevanje  razmerja izmenjave</translation>
+        <translation>Omejevanje razmerja izmenjave</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2506"/>
@@ -7745,7 +7745,7 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
         <source>You can cancel the action within %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dejanje lahko prekličete v %1 sekundah.</translation>
     </message>
 </context>
 <context>
@@ -8067,17 +8067,17 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="138"/>
         <source>Downloading (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>V prejemanju (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="141"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>V sejanju (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="144"/>
         <source>Completed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončani (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="147"/>
@@ -8092,17 +8092,17 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="153"/>
         <source>Active (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dejavni (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="156"/>
         <source>Inactive (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedejavni (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="159"/>
         <source>Errored (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Z napako (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="176"/>
@@ -8112,17 +8112,17 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="177"/>
         <source>Downloading (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>V prejemanju (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="178"/>
         <source>Seeding (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>V sejanju (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="179"/>
         <source>Completed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončani (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="180"/>
@@ -8137,17 +8137,17 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="182"/>
         <source>Active (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dejavni (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
         <source>Inactive (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedejavni (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="184"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Z napako (%1)</translation>
     </message>
 </context>
 <context>
@@ -8282,7 +8282,7 @@ Ime kategorije ne sme vsebovati zaporedja &apos;//&apos;.</translation>
         <source>Category with the given name already exists.
 Please choose a different name and try again.</source>
         <translation>Kategorija z danim imenom že obstaja.
-Prosimo da izberete drugo ime in poizkusite znova.</translation>
+Izberite drugačno ime in poskusite znova.</translation>
     </message>
 </context>
 <context>
@@ -8712,7 +8712,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="262"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="352"/>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Deluje</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="263"/>
@@ -8723,17 +8723,17 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="284"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="161"/>
         <source>This torrent is private</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ta torrent je zaseben</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="356"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodabljanje ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="360"/>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne deluje</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="364"/>
@@ -8750,48 +8750,48 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="457"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Urejanje sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="457"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL sledilnika:</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="472"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Urejanje sledilnika ni uspelo</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vneseni URL sledilnika je neveljaven.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="472"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL sledilnika že obstaja.</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="526"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nov sledilnik ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="531"/>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi URL sledilnika ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="532"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrani sledilnik</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="533"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj URL sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="538"/>
@@ -8806,7 +8806,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="587"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="588"/>
@@ -8816,12 +8816,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="590"/>
         <source>Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Semen</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="589"/>
         <source>Peers</source>
-        <translation type="unfinished">Soležniki</translation>
+        <translation type="unfinished">Soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="591"/>
@@ -8836,7 +8836,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="593"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sporočilo</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="613"/>
@@ -9002,7 +9002,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="278"/>
         <source>Missing Files</source>
-        <translation>Mankajoče Datoteke</translation>
+        <translation>Manjkajoče datoteke</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="281"/>
@@ -9064,7 +9064,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="100"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dokončano</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="101"/>
@@ -9076,13 +9076,13 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="102"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Semen</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="103"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Soležniki</translation>
+        <translation type="unfinished">Soležnikov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="104"/>
@@ -9100,7 +9100,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="106"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished"></translation>
+        <translation>Razmerje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="107"/>
@@ -9163,13 +9163,13 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="117"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prejeto to sejo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="118"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poslano to sejo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="119"/>
@@ -9211,13 +9211,13 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zadnja dejavnost</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="126"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skupna velikost</translation>
     </message>
 </context>
 <context>
