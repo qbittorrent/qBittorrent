@@ -143,8 +143,8 @@ void Tracker::respondToAnnounceRequest()
         const QByteArray nameComponent = midView(param, 0, sepPos);
         const QByteArray valueComponent = midView(param, (sepPos + 1));
 
-        const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-        const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent);
+        const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent).replace('+', ' '));
+        const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent).replace('+', ' ');
         queryParams[paramName] = paramValue;
     }
 

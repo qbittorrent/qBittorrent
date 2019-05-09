@@ -526,6 +526,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     m_request = request;
     m_env = env;
     m_params.clear();
+
     if (m_request.method == Http::METHOD_GET) {
         // Parse GET parameters
         using namespace Utils::ByteArray;
@@ -536,8 +537,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             const QByteArray nameComponent = midView(param, 0, sepPos);
             const QByteArray valueComponent = midView(param, (sepPos + 1));
 
-            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent));
+            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent).replace('+', ' '));
+            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent).replace('+', ' '));
             m_params[paramName] = paramValue;
         }
     }
