@@ -32,6 +32,8 @@
 
 #include <vector>
 
+#include <libtorrent/fwd.hpp>
+
 #include <QElapsedTimer>
 #include <QFile>
 #include <QHash>
@@ -43,7 +45,6 @@
 #include "base/settingvalue.h"
 #include "base/tristatebool.h"
 #include "base/types.h"
-#include "private/libtorrentfwd.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "sessionstatus.h"

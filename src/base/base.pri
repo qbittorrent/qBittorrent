@@ -9,7 +9,6 @@ HEADERS += \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
-    $$PWD/bittorrent/private/libtorrentfwd.h \
     $$PWD/bittorrent/private/portforwarderimpl.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/bittorrent/private/speedmonitor.h \

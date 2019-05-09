@@ -29,6 +29,7 @@
 #ifndef BITTORRENT_TORRENTINFO_H
 #define BITTORRENT_TORRENTINFO_H
 
+#include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
@@ -37,7 +38,6 @@
 #include <QVector>
 
 #include "base/indexrange.h"
-#include "private/libtorrentfwd.h"
 
 class QByteArray;
 class QDateTime;

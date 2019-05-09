@@ -32,6 +32,7 @@
 
 #include <functional>
 
+#include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
 
@@ -42,7 +43,6 @@
 #include <QString>
 #include <QVector>
 
-#include "private/libtorrentfwd.h"
 #include "private/speedmonitor.h"
 #include "downloadpriority.h"
 #include "infohash.h"

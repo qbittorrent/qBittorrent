@@ -29,10 +29,13 @@
 #pragma once
 
 #include <vector>
+
+#include <libtorrent/fwd.hpp>
+#include <libtorrent/version.hpp>
+
 #include <QHash>
 
 #include "base/net/portforwarder.h"
-#include "libtorrentfwd.h"
 
 #if (LIBTORRENT_VERSION_NUM < 10200)
 using LTPortMapping = int;
