@@ -52,7 +52,7 @@ namespace BitTorrent
         QList<QUrl> urlSeeds() const;
         QString url() const;
 
-        libtorrent::add_torrent_params addTorrentParams() const;
+        lt::add_torrent_params addTorrentParams() const;
 
     private:
         bool m_valid;
@@ -61,7 +61,7 @@ namespace BitTorrent
         QString m_name;
         QList<TrackerEntry> m_trackers;
         QList<QUrl> m_urlSeeds;
-        libtorrent::add_torrent_params m_addTorrentParams;
+        lt::add_torrent_params m_addTorrentParams;
     };
 }
 

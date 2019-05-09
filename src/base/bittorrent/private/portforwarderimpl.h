@@ -60,6 +60,6 @@ private:
     void stop();
 
     bool m_active;
-    libtorrent::session *m_provider;
+    lt::session *m_provider;
     QHash<quint16, std::vector<LTPortMapping>> m_mappedPorts;
 };

@@ -945,12 +945,12 @@ Session::~Session()
     saveResumeData();
 
     // We must delete FilterParserThread
-    // before we delete libtorrent::session
+    // before we delete lt::session
     if (m_filterParser)
         delete m_filterParser;
 
     // We must delete PortForwarderImpl before
-    // we delete libtorrent::session
+    // we delete lt::session
     delete Net::PortForwarder::instance();
 
     qDebug("Deleting the session");
@@ -1043,7 +1043,7 @@ void Session::adjustLimits(lt::settings_pack &settingsPack)
                          , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
 }
 
-void Session::applyBandwidthLimits(libtorrent::settings_pack &settingsPack)
+void Session::applyBandwidthLimits(lt::settings_pack &settingsPack)
 {
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     settingsPack.set_int(lt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
@@ -1128,7 +1128,7 @@ void Session::initMetrics()
     Q_ASSERT(m_metricIndices.disk.diskJobTime >= 0);
 }
 
-void Session::configure(libtorrent::settings_pack &settingsPack)
+void Session::configure(lt::settings_pack &settingsPack)
 {
     Logger *const logger = Logger::instance();
 
@@ -3449,12 +3449,12 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const libtorrent::entry &data)
+void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const lt::entry &data)
 {
     --m_numResumeData;
 
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
-    // Encoding data in parallel while doing IO saves time. Copying libtorrent::entry objects around
+    // Encoding data in parallel while doing IO saves time. Copying lt::entry objects around
     // isn't cheap too.
 
     QByteArray out;
@@ -3531,7 +3531,7 @@ void Session::enableIPFilter()
 {
     qDebug("Enabling IPFilter");
     // 1. Parse the IP filter
-    // 2. In the slot add the manually banned IPs to the provided libtorrent::ip_filter
+    // 2. In the slot add the manually banned IPs to the provided lt::ip_filter
     // 3. Set the ip_filter in one go so there isn't a time window where there isn't an ip_filter
     //    set between clearing the old one and setting the new one.
     if (!m_filterParser) {

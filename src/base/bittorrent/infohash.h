@@ -40,27 +40,27 @@ namespace BitTorrent
     {
     public:
         InfoHash();
-        InfoHash(const libtorrent::sha1_hash &nativeHash);
+        InfoHash(const lt::sha1_hash &nativeHash);
         InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
 
         static constexpr int length()
         {
 #if (LIBTORRENT_VERSION_NUM < 10200)
-            return libtorrent::sha1_hash::size;
+            return lt::sha1_hash::size;
 #else
-            return libtorrent::sha1_hash::size();
+            return lt::sha1_hash::size();
 #endif
         }
 
         bool isValid() const;
 
-        operator libtorrent::sha1_hash() const;
+        operator lt::sha1_hash() const;
         operator QString() const;
 
     private:
         bool m_valid;
-        libtorrent::sha1_hash m_nativeHash;
+        lt::sha1_hash m_nativeHash;
         QString m_hashString;
     };
 

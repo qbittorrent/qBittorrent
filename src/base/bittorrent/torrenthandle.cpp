@@ -165,7 +165,7 @@ const int TorrentHandle::NO_SEEDING_TIME_LIMIT = -1;
 const qreal TorrentHandle::MAX_RATIO = 9999.;
 const int TorrentHandle::MAX_SEEDING_TIME = 525600;
 
-TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle &nativeHandle,
+TorrentHandle::TorrentHandle(Session *session, const lt::torrent_handle &nativeHandle,
                                      const CreateTorrentParams &params)
     : QObject(session)
     , m_session(session)
@@ -1509,7 +1509,7 @@ void TorrentHandle::handleStateUpdate(const lt::torrent_status &nativeStatus)
     updateStatus(nativeStatus);
 }
 
-void TorrentHandle::handleStorageMovedAlert(const libtorrent::storage_moved_alert *p)
+void TorrentHandle::handleStorageMovedAlert(const lt::storage_moved_alert *p)
 {
     if (!isMoveInProgress()) {
         qWarning() << "Unexpected " << Q_FUNC_INFO << " call.";
@@ -1550,7 +1550,7 @@ void TorrentHandle::handleStorageMovedAlert(const libtorrent::storage_moved_aler
         m_moveFinishedTriggers.takeFirst()();
 }
 
-void TorrentHandle::handleStorageMovedFailedAlert(const libtorrent::storage_moved_failed_alert *p)
+void TorrentHandle::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
 {
     if (!isMoveInProgress()) {
         qWarning() << "Unexpected " << Q_FUNC_INFO << " call.";
@@ -1572,7 +1572,7 @@ void TorrentHandle::handleStorageMovedFailedAlert(const libtorrent::storage_move
         m_moveFinishedTriggers.takeFirst()();
 }
 
-void TorrentHandle::handleTrackerReplyAlert(const libtorrent::tracker_reply_alert *p)
+void TorrentHandle::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
 {
     const QString trackerUrl(p->tracker_url());
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
@@ -1583,7 +1583,7 @@ void TorrentHandle::handleTrackerReplyAlert(const libtorrent::tracker_reply_aler
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
 
-void TorrentHandle::handleTrackerWarningAlert(const libtorrent::tracker_warning_alert *p)
+void TorrentHandle::handleTrackerWarningAlert(const lt::tracker_warning_alert *p)
 {
     const QString trackerUrl = p->tracker_url();
     const QString message = p->warning_message();
@@ -1594,7 +1594,7 @@ void TorrentHandle::handleTrackerWarningAlert(const libtorrent::tracker_warning_
     m_session->handleTorrentTrackerWarning(this, trackerUrl);
 }
 
-void TorrentHandle::handleTrackerErrorAlert(const libtorrent::tracker_error_alert *p)
+void TorrentHandle::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 {
     const QString trackerUrl = p->tracker_url();
     const QString message = p->error_message();
@@ -1604,7 +1604,7 @@ void TorrentHandle::handleTrackerErrorAlert(const libtorrent::tracker_error_aler
     m_session->handleTorrentTrackerError(this, trackerUrl);
 }
 
-void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_alert *p)
+void TorrentHandle::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
 {
     Q_UNUSED(p);
     qDebug("\"%s\" have just finished checking", qUtf8Printable(name()));
@@ -1638,7 +1638,7 @@ void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_
     m_session->handleTorrentChecked(this);
 }
 
-void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finished_alert *p)
+void TorrentHandle::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p)
 {
     Q_UNUSED(p);
     qDebug("Got a torrent finished alert for \"%s\"", qUtf8Printable(name()));
@@ -1665,7 +1665,7 @@ void TorrentHandle::handleTorrentFinishedAlert(const libtorrent::torrent_finishe
     }
 }
 
-void TorrentHandle::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p)
+void TorrentHandle::handleTorrentPausedAlert(const lt::torrent_paused_alert *p)
 {
     Q_UNUSED(p);
 
@@ -1676,7 +1676,7 @@ void TorrentHandle::handleTorrentPausedAlert(const libtorrent::torrent_paused_al
     }
 }
 
-void TorrentHandle::handleTorrentResumedAlert(const libtorrent::torrent_resumed_alert *p)
+void TorrentHandle::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
 {
     Q_UNUSED(p);
 
@@ -1686,12 +1686,12 @@ void TorrentHandle::handleTorrentResumedAlert(const libtorrent::torrent_resumed_
         m_startupState = Started;
 }
 
-void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data_alert *p)
+void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
     const bool useDummyResumeData = !(p && p->resume_data);
-    libtorrent::entry dummyEntry;
+    lt::entry dummyEntry;
 
-    libtorrent::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
+    lt::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
     if (useDummyResumeData) {
         resumeData["qBt-magnetUri"] = toMagnetUri().toStdString();
         resumeData["qBt-paused"] = isPaused();
@@ -1720,7 +1720,7 @@ void TorrentHandle::handleSaveResumeDataAlert(const libtorrent::save_resume_data
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }
 
-void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resume_data_failed_alert *p)
+void TorrentHandle::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)
 {
     // if torrent has no metadata we should save dummy fastresume data
     // containing Magnet URI and qBittorrent own resume data only
@@ -1730,7 +1730,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
         m_session->handleTorrentResumeDataFailed(this);
 }
 
-void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p)
+void TorrentHandle::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
 {
     if (p->error.value() == lt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
@@ -1743,7 +1743,7 @@ void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_r
     }
 }
 
-void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert *p)
+void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 {
     const QString newName = Utils::Fs::fromNativePath(p->new_name());
 
@@ -1773,7 +1773,7 @@ void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert 
         m_moveFinishedTriggers.takeFirst()();
 }
 
-void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_failed_alert *p)
+void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     Q_UNUSED(p);
 
@@ -1782,7 +1782,7 @@ void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_fa
         m_moveFinishedTriggers.takeFirst()();
 }
 
-void TorrentHandle::handleFileCompletedAlert(const libtorrent::file_completed_alert *p)
+void TorrentHandle::handleFileCompletedAlert(const lt::file_completed_alert *p)
 {
     // We don't really need to call updateStatus() in this place.
     // All we need to do is make sure we have a valid instance of the TorrentInfo object.
@@ -1800,7 +1800,7 @@ void TorrentHandle::handleFileCompletedAlert(const libtorrent::file_completed_al
     }
 }
 
-void TorrentHandle::handleStatsAlert(const libtorrent::stats_alert *p)
+void TorrentHandle::handleStatsAlert(const lt::stats_alert *p)
 {
     Q_ASSERT(p->interval >= 1000);
     const SpeedSample transferred(p->transferred[lt::stats_alert::download_payload] * 1000LL / p->interval,
@@ -1854,7 +1854,7 @@ void TorrentHandle::handleAppendExtensionToggled()
     manageIncompleteFiles();
 }
 
-void TorrentHandle::handleAlert(const libtorrent::alert *a)
+void TorrentHandle::handleAlert(const lt::alert *a)
 {
     switch (a->type()) {
     case lt::stats_alert::alert_type:
@@ -1965,7 +1965,7 @@ void TorrentHandle::adjustActualSavePath_impl()
     moveStorage(Utils::Fs::toNativePath(path), true);
 }
 
-libtorrent::torrent_handle TorrentHandle::nativeHandle() const
+lt::torrent_handle TorrentHandle::nativeHandle() const
 {
     return m_nativeHandle;
 }
@@ -1992,7 +1992,7 @@ void TorrentHandle::updateStatus()
     updateStatus(m_nativeHandle.status());
 }
 
-void TorrentHandle::updateStatus(const libtorrent::torrent_status &nativeStatus)
+void TorrentHandle::updateStatus(const lt::torrent_status &nativeStatus)
 {
     m_nativeStatus = nativeStatus;
 

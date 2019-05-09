@@ -37,7 +37,7 @@
 
 const QString KEY_ENABLED = QStringLiteral("Network/PortForwardingEnabled");
 
-PortForwarderImpl::PortForwarderImpl(libtorrent::session *provider, QObject *parent)
+PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
     : Net::PortForwarder {parent}
     , m_active {SettingsStorage::instance()->loadValue(KEY_ENABLED, true).toBool()}
     , m_provider {provider}

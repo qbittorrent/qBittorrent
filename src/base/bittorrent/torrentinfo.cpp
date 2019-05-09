@@ -413,7 +413,7 @@ void TorrentInfo::stripRootFolder()
 {
     if (!hasRootFolder()) return;
 
-    libtorrent::file_storage files = m_nativeInfo->files();
+    lt::file_storage files = m_nativeInfo->files();
 
     // Solution for case of renamed root folder
     const std::string testName = filePath(0).split('/').value(0).toStdString();
