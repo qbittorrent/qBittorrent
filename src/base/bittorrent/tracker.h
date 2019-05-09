@@ -36,7 +36,6 @@
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
-#include "base/http/types.h"
 
 namespace libtorrent
 {
