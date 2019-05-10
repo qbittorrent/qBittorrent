@@ -49,7 +49,7 @@ FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize
         this->deleteOld(age, ageType);
 
     const Logger *const logger = Logger::instance();
-    for (const Log::Msg &msg : asConst(logger->getMessages()))
+    for (const Log::Msg &msg : asConstMove(logger->getMessages()))
         addLogMessage(msg);
 
     connect(logger, &Logger::newLogMessage, this, &FileLogger::addLogMessage);

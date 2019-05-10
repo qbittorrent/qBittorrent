@@ -101,7 +101,7 @@ void LogListWidget::copySelection()
     const QRegularExpression htmlTag("<[^>]+>");
 
     QStringList strings;
-    for (QListWidgetItem *it : asConst(selectedItems()))
+    for (QListWidgetItem *it : asConstMove(selectedItems()))
         strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
 
     QApplication::clipboard()->setText(strings.join('\n'));

@@ -109,7 +109,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 
     QStringList files;
     if (event->mimeData()->hasUrls()) {
-        for (const QUrl &url : asConst(event->mimeData()->urls())) {
+        for (const QUrl &url : asConstMove(event->mimeData()->urls())) {
             if (!url.isEmpty()) {
                 if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
                     files << url.toLocalFile();
@@ -134,7 +134,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 // Decode if we accept drag 'n drop or not
 void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
 {
-    for (const QString &mime : asConst(event->mimeData()->formats())) {
+    for (const QString &mime : asConstMove(event->mimeData()->formats())) {
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
@@ -186,7 +186,7 @@ void PluginSelectDialog::on_closeButton_clicked()
 void PluginSelectDialog::on_actionUninstall_triggered()
 {
     bool error = false;
-    for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems())) {
+    for (QTreeWidgetItem *item : asConstMove(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -210,7 +210,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
 
 void PluginSelectDialog::enableSelection(bool enable)
 {
-    for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems())) {
+    for (QTreeWidgetItem *item : asConstMove(m_ui->pluginsTree->selectedItems())) {
         int index = m_ui->pluginsTree->indexOfTopLevelItem(item);
         Q_ASSERT(index != -1);
         QString id = item->text(PLUGIN_ID);
@@ -263,7 +263,7 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
 {
     // Some clean up first
     m_ui->pluginsTree->clear();
-    for (const QString &name : asConst(m_pluginManager->allPlugins()))
+    for (const QString &name : asConstMove(m_pluginManager->allPlugins()))
         addNewPlugin(name);
 }
 
@@ -381,7 +381,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (!invalid) {
-        for (QTreeWidgetItem *item : asConst(findItemsWithUrl(result.url))) {
+        for (QTreeWidgetItem *item : asConstMove(findItemsWithUrl(result.url))) {
             QString id = item->text(PLUGIN_ID);
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;

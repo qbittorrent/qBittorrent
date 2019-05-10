@@ -289,7 +289,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
     };
 
     if (ifaceName.isEmpty()) {
-        for (const QHostAddress &ip : asConst(QNetworkInterface::allAddresses()))
+        for (const QHostAddress &ip : asConstMove(QNetworkInterface::allAddresses()))
             populateCombo(ip.toString(), ip.protocol());
     }
     else {
@@ -445,7 +445,7 @@ void AdvancedSettings::loadAdvancedSettings()
     const QString currentInterface = session->networkInterface();
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
-    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces())) {
+    for (const QNetworkInterface &iface : asConstMove(QNetworkInterface::allInterfaces())) {
         // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
         // Tested in Qt 5.6.0. For more info see:
         // https://github.com/qbittorrent/qBittorrent/issues/5131

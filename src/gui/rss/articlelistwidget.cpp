@@ -69,7 +69,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-        for (const auto article : asConst(rssItem->articles())) {
+        for (const auto article : asConstMove(rssItem->articles())) {
             if (!(m_unreadOnly && article->isRead())) {
                 auto item = createItem(article);
                 addItem(item);

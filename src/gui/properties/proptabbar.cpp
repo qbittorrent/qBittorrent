@@ -103,7 +103,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     connect(m_btnGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
             , this, &PropTabBar::setCurrentIndex);
     // Disable buttons focus
-    for (QAbstractButton *btn : asConst(m_btnGroup->buttons()))
+    for (QAbstractButton *btn : asConstMove(m_btnGroup->buttons()))
         btn->setFocusPolicy(Qt::NoFocus);
 }
 

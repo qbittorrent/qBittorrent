@@ -1222,7 +1222,7 @@ bool MainWindow::event(QEvent *e)
                 qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
                 bool hasModalWindow = false;
-                for (QWidget *widget : asConst(QApplication::allWidgets())) {
+                for (QWidget *widget : asConstMove(QApplication::allWidgets())) {
                     if (widget->isModal()) {
                         hasModalWindow = true;
                         break;
@@ -1268,7 +1268,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     // remove scheme
     QStringList files;
     if (event->mimeData()->hasUrls()) {
-        for (const QUrl &url : asConst(event->mimeData()->urls())) {
+        for (const QUrl &url : asConstMove(event->mimeData()->urls())) {
             if (url.isEmpty())
                 continue;
 
@@ -1316,7 +1316,7 @@ void MainWindow::dropEvent(QDropEvent *event)
 // Decode if we accept drag 'n drop or not
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    for (const QString &mime : asConst(event->mimeData()->formats()))
+    for (const QString &mime : asConstMove(event->mimeData()->formats()))
         qDebug("mimeData: %s", mime.toLocal8Bit().data());
     if (event->mimeData()->hasFormat("text/plain") || event->mimeData()->hasFormat("text/uri-list"))
         event->acceptProposedAction();

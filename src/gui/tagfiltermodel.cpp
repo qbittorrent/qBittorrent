@@ -248,7 +248,7 @@ void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const to
     if (torrent->tags().isEmpty())
         untaggedItem()->decreaseTorrentsCount();
 
-    for (TagModelItem *item : asConst(findItems(torrent->tags())))
+    for (TagModelItem *item : asConstMove(findItems(torrent->tags())))
         item->decreaseTorrentsCount();
 }
 
@@ -275,7 +275,7 @@ void TagFilterModel::populate()
                                              [](Torrent *torrent) { return torrent->tags().isEmpty(); });
     addToModel(getSpecialUntaggedTag(), untaggedCount);
 
-    for (const QString &tag : asConst(session->tags())) {
+    for (const QString &tag : asConstMove(session->tags())) {
         const int count = std::count_if(torrents.cbegin(), torrents.cend(),
                                         [tag](Torrent *torrent) { return torrent->hasTag(tag); });
         addToModel(tag, count);

@@ -464,7 +464,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     QStringList feedURLs;
     if (feedsVal.isString())
         feedURLs << feedsVal.toString();
-    else for (const QJsonValue &urlVal : asConst(feedsVal.toArray()))
+    else for (const QJsonValue &urlVal : asConstMove(feedsVal.toArray()))
         feedURLs << urlVal.toString();
     rule.setFeedURLs(feedURLs);
 
@@ -474,7 +474,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
         previouslyMatched << previouslyMatchedVal.toString();
     }
     else {
-        for (const QJsonValue &val : asConst(previouslyMatchedVal.toArray()))
+        for (const QJsonValue &val : asConstMove(previouslyMatchedVal.toArray()))
             previouslyMatched << val.toString();
     }
     rule.setPreviouslyMatchedEpisodes(previouslyMatched);

@@ -194,7 +194,7 @@ bool RequestParser::parseRequestLine(const QString &line)
 
         // [rfc3986] 2.4 When to Encode or Decode
         // URL components should be separated before percent-decoding
-        for (const QByteArray &param : asConst(splitToViews(query, "&"))) {
+        for (const QByteArray &param : asConstMove(splitToViews(query, "&"))) {
             const int eqCharPos = param.indexOf('=');
             if (eqCharPos <= 0) continue;  // ignores params without name
 

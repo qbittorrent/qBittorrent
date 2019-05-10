@@ -46,7 +46,7 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
+    for (const Utils::Net::Subnet &subnet : asConstMove(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     m_model = new QStringListModel(authSubnetWhitelistStringList, this);
 
@@ -99,7 +99,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 
 void IPSubnetWhitelistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
 {
-    for (const auto &i : asConst(m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes()))
+    for (const auto &i : asConstMove(m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes()))
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;

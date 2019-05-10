@@ -119,7 +119,7 @@ namespace
     void applyToTorrents(const QStringList &hashes, const std::function<void (BitTorrent::TorrentHandle *torrent)> &func)
     {
         if ((hashes.size() == 1) && (hashes[0] == QLatin1String("all"))) {
-            for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+            for (BitTorrent::TorrentHandle *const torrent : asConstMove(BitTorrent::Session::instance()->torrents()))
                 func(torrent);
         }
         else {
@@ -134,7 +134,7 @@ namespace
     QVariantList getStickyTrackers(const BitTorrent::TorrentHandle *const torrent)
     {
         uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
-        for (const BitTorrent::PeerInfo &peer : asConst(torrent->peers())) {
+        for (const BitTorrent::PeerInfo &peer : asConstMove(torrent->peers())) {
             if (peer.isConnecting()) continue;
 
             if (peer.isSeed()) {
@@ -239,7 +239,7 @@ void TorrentsController::infoAction()
 
     QVariantList torrentList;
     TorrentFilter torrentFilter(filter, (hashSet.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(BitTorrent::Session::instance()->torrents())) {
         if (torrentFilter.match(torrent))
             torrentList.append(serialize(*torrent));
     }
@@ -384,7 +384,7 @@ void TorrentsController::trackersAction()
     QVariantList trackerList = getStickyTrackers(torrent);
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
-    for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
+    for (const BitTorrent::TrackerEntry &tracker : asConstMove(torrent->trackers())) {
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
 
         trackerList << QVariantMap {
@@ -416,7 +416,7 @@ void TorrentsController::webseedsAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    for (const QUrl &webseed : asConst(torrent->urlSeeds())) {
+    for (const QUrl &webseed : asConstMove(torrent->urlSeeds())) {
         QVariantMap webSeedDict;
         webSeedDict[KEY_WEBSEED_URL] = webseed.toString();
         webSeedList.append(webSeedDict);
@@ -570,7 +570,7 @@ void TorrentsController::addAction()
     params.useAutoTMM = autoTMM;
 
     bool partialSuccess = false;
-    for (QString url : asConst(urls.split('\n'))) {
+    for (QString url : asConstMove(urls.split('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty()) {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
@@ -605,7 +605,7 @@ void TorrentsController::addTrackersAction()
         throw APIError(APIErrorType::NotFound);
 
     QList<BitTorrent::TrackerEntry> trackers;
-    for (const QString &urlStr : asConst(params()["urls"].split('\n'))) {
+    for (const QString &urlStr : asConstMove(params()["urls"].split('\n'))) {
         const QUrl url {urlStr.trimmed()};
         if (url.isValid())
             trackers << url.toString();

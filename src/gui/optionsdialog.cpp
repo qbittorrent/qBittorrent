@@ -455,9 +455,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // disable mouse wheel event on widgets to avoid mis-selection
     auto *wheelEventEater = new WheelEventEater(this);
-    for (QComboBox *widget : asConst(findChildren<QComboBox *>()))
+    for (QComboBox *widget : asConstMove(findChildren<QComboBox *>()))
         widget->installEventFilter(wheelEventEater);
-    for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
+    for (QSpinBox *widget : asConstMove(findChildren<QSpinBox *>()))
         widget->installEventFilter(wheelEventEater);
 
     loadWindowState();

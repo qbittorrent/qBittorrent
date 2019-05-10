@@ -49,7 +49,7 @@ Folder::~Folder()
 {
     emit aboutToBeDestroyed(this);
 
-    for (auto item : asConst(items()))
+    for (auto item : asConstMove(items()))
         delete item;
 }
 
@@ -57,7 +57,7 @@ QList<Article *> Folder::articles() const
 {
     QList<Article *> news;
 
-    for (Item *item : asConst(items())) {
+    for (Item *item : asConstMove(items())) {
         int n = news.size();
         news << item->articles();
         std::inplace_merge(news.begin(), news.begin() + n, news.end()
@@ -80,13 +80,13 @@ int Folder::unreadCount() const
 
 void Folder::markAsRead()
 {
-    for (Item *item : asConst(items()))
+    for (Item *item : asConstMove(items()))
         item->markAsRead();
 }
 
 void Folder::refresh()
 {
-    for (Item *item : asConst(items()))
+    for (Item *item : asConstMove(items()))
         item->refresh();
 }
 
@@ -98,7 +98,7 @@ QList<Item *> Folder::items() const
 QJsonValue Folder::toJsonValue(bool withData) const
 {
     QJsonObject jsonObj;
-    for (Item *item : asConst(items()))
+    for (Item *item : asConstMove(items()))
         jsonObj.insert(item->name(), item->toJsonValue(withData));
 
     return jsonObj;
@@ -111,7 +111,7 @@ void Folder::handleItemUnreadCountChanged()
 
 void Folder::cleanup()
 {
-    for (Item *item : asConst(items()))
+    for (Item *item : asConstMove(items()))
         item->cleanup();
 }
 
@@ -126,7 +126,7 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
-    for (auto article : asConst(item->articles()))
+    for (auto article : asConstMove(item->articles()))
         emit newArticle(article);
 
     if (item->unreadCount() > 0)
@@ -137,7 +137,7 @@ void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
 
-    for (auto article : asConst(item->articles()))
+    for (auto article : asConstMove(item->articles()))
         emit articleAboutToBeRemoved(article);
 
     item->disconnect(this);

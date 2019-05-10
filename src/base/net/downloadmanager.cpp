@@ -65,7 +65,7 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-            for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies())) {
+            for (const QNetworkCookie &cookie : asConstMove(Preferences::instance()->getNetworkCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -77,7 +77,7 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();
-            for (const QNetworkCookie &cookie : asConst(allCookies())) {
+            for (const QNetworkCookie &cookie : asConstMove(allCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -92,7 +92,7 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-            for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url))) {
+            for (const QNetworkCookie &cookie : asConstMove(QNetworkCookieJar::cookiesForUrl(url))) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }

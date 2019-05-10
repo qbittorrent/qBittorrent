@@ -398,7 +398,7 @@ void TransferListWidget::torrentDoubleClicked()
 QList<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
 {
     QList<BitTorrent::TorrentHandle *> torrents;
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
+    for (const QModelIndex &index : asConstMove(selectionModel()->selectedRows()))
         torrents << m_listModel->torrentHandle(mapToSource(index));
 
     return torrents;
@@ -429,25 +429,25 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
 void TransferListWidget::pauseAllTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(BitTorrent::Session::instance()->torrents()))
         torrent->pause();
 }
 
 void TransferListWidget::resumeAllTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(BitTorrent::Session::instance()->torrents()))
         torrent->resume();
 }
 
 void TransferListWidget::startSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->resume();
 }
 
 void TransferListWidget::forceStartSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->resume(true);
 }
 
@@ -462,7 +462,7 @@ void TransferListWidget::startVisibleTorrents()
 
 void TransferListWidget::pauseSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->pause();
 }
 
@@ -545,7 +545,7 @@ void TransferListWidget::bottomPrioSelectedTorrents()
 void TransferListWidget::copySelectedMagnetURIs() const
 {
     QStringList magnetUris;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         magnetUris << torrent->toMagnetUri();
 
     qApp->clipboard()->setText(magnetUris.join('\n'));
@@ -554,7 +554,7 @@ void TransferListWidget::copySelectedMagnetURIs() const
 void TransferListWidget::copySelectedNames() const
 {
     QStringList torrentNames;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrentNames << torrent->name();
 
     qApp->clipboard()->setText(torrentNames.join('\n'));
@@ -563,7 +563,7 @@ void TransferListWidget::copySelectedNames() const
 void TransferListWidget::copySelectedHashes() const
 {
     QStringList torrentHashes;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrentHashes << torrent->hash();
 
     qApp->clipboard()->setText(torrentHashes.join('\n'));
@@ -583,13 +583,13 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 #ifdef Q_OS_MAC
     // On macOS you expect both the files and folders to be opened in their parent
     // folders prehilighted for opening, so we use a custom method.
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents())) {
         QString path = torrent->contentPath(true);
         pathsList.insert(path);
     }
     MacUtils::openFiles(pathsList);
 #else
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents())) {
         QString path = torrent->contentPath(true);
         if (!pathsList.contains(path)) {
             if (torrent->filesCount() == 1)
@@ -604,7 +604,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 
 void TransferListWidget::previewSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents())) {
         if (torrentContainsPreviewableFiles(torrent))
             new PreviewSelectDialog(this, torrent);
         else
@@ -615,7 +615,7 @@ void TransferListWidget::previewSelectedTorrents()
 void TransferListWidget::setDlLimitSelectedTorrents()
 {
     QList<BitTorrent::TorrentHandle *> torrentsList;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents())) {
         if (torrent->isSeed())
             continue;
         torrentsList += torrent;
@@ -705,13 +705,13 @@ void TransferListWidget::recheckSelectedTorrents()
         if (ret != QMessageBox::Yes) return;
     }
 
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->forceRecheck();
 }
 
 void TransferListWidget::reannounceSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->forceReannounce();
 }
 
@@ -757,7 +757,7 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
 
 void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents())) {
         if (torrent->hasMetadata())
             torrent->setSuperSeeding(!torrent->superSeeding());
     }
@@ -765,19 +765,19 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const
 
 void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->toggleSequentialDownload();
 }
 
 void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->toggleFirstLastPiecePriority();
 }
 
 void TransferListWidget::setSelectedAutoTMMEnabled(bool enabled) const
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(getSelectedTorrents()))
         torrent->setAutoTMMEnabled(enabled);
 }
 
@@ -830,7 +830,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
 
 void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows())) {
+    for (const QModelIndex &index : asConstMove(selectionModel()->selectedRows())) {
         BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(index));
         Q_ASSERT(torrent);
         fn(torrent);
@@ -858,7 +858,7 @@ void TransferListWidget::renameSelectedTorrent()
 
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
+    for (const QModelIndex &index : asConstMove(selectionModel()->selectedRows()))
         m_listModel->setData(m_listModel->index(mapToSource(index).row(), TransferListModel::TR_CATEGORY), category, Qt::DisplayRole);
 }
 

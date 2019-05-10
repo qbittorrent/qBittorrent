@@ -300,7 +300,7 @@ void Feed::loadArticlesLegacy()
     const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
     const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
-    for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
+    for (const QVariant &var : asConstMove(allOldItems.value(m_url).toList())) {
         auto hash = var.toHash();
         // update legacy keys
         hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));

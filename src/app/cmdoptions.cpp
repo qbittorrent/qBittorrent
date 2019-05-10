@@ -501,7 +501,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
 
-    for (const QString &word : asConst(words.mid(1))) {
+    for (const QString &word : asConstMove(words.mid(1))) {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength) {
             lines.last().append(' ' + word);
         }

@@ -415,7 +415,7 @@ void SyncController::maindataAction()
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    for (BitTorrent::TorrentHandle *const torrent : asConst(session->torrents())) {
+    for (BitTorrent::TorrentHandle *const torrent : asConstMove(session->torrents())) {
         QVariantMap map = serialize(*torrent);
         map.remove(KEY_TORRENT_HASH);
 
