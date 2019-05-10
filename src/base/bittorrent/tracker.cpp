@@ -29,16 +29,11 @@
 
 #include "tracker.h"
 
-#include <vector>
-
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
-#include "base/global.h"
 #include "base/http/server.h"
 #include "base/preferences.h"
-#include "base/utils/bytearray.h"
-#include "base/utils/string.h"
 
 // static limits
 static const int MAX_TORRENTS = 100;
@@ -133,21 +128,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
 void Tracker::respondToAnnounceRequest()
 {
-    QMap<QString, QByteArray> queryParams;
-    // Parse GET parameters
-    using namespace Utils::ByteArray;
-    for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
-        const int sepPos = param.indexOf('=');
-        if (sepPos <= 0) continue; // ignores params without name
-
-        const QByteArray nameComponent = midView(param, 0, sepPos);
-        const QByteArray valueComponent = midView(param, (sepPos + 1));
-
-        const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-        const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent);
-        queryParams[paramName] = paramValue;
-    }
-
+    const QMap<QString, QByteArray> &queryParams = m_request.query;
     TrackerAnnounceRequest announceReq;
 
     // IP
