@@ -275,7 +275,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_prioSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopPriority);
 
 #ifdef Q_OS_MAC
-    for (QAction *action : asCosntMove(m_ui->toolBar->actions())) {
+    for (QAction *action : asConstMove(m_ui->toolBar->actions())) {
         if (action->isSeparator()) {
             QWidget *spacer = new QWidget(this);
             spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
