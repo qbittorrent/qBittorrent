@@ -565,8 +565,8 @@ void TorrentsController::addAction()
     params.savePath = savepath;
     params.category = category;
     params.name = torrentName;
-    params.uploadLimit = (upLimit > 0) ? upLimit : -1;
-    params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
+    params.uploadLimit = (upLimit > 0) ? (upLimit * 1024) : -1;
+    params.downloadLimit = (dlLimit > 0) ? (dlLimit * 1024) : -1;
     params.useAutoTMM = autoTMM;
 
     bool partialSuccess = false;
