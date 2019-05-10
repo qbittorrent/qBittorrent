@@ -43,7 +43,7 @@ constexpr typename std::add_const<T>::type &asConst(T &t) noexcept { return t; }
 
 // Forward rvalue as const
 template <typename T>
-constexpr typename std::add_const<T>::type asConst(T &&t) noexcept { return std::move(t); }
+constexpr typename std::add_const<T>::type asConstMove(T &&t) noexcept { return std::move(t); }
 
 // Prevent const rvalue arguments
 template <typename T>

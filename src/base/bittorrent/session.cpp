@@ -194,7 +194,7 @@ namespace
 
         for (auto i = categories.cbegin(); i != categories.cend(); ++i) {
             const QString &category = i.key();
-            for (const QString &subcat : asConst(Session::expandCategory(category))) {
+            for (const QString &subcat : asConstMove(Session::expandCategory(category))) {
                 if (!expanded.contains(subcat))
                     expanded[subcat] = "";
             }
@@ -704,7 +704,7 @@ bool Session::addCategory(const QString &name, const QString &savePath)
         return false;
 
     if (isSubcategoriesEnabled()) {
-        for (const QString &parent : asConst(expandCategory(name))) {
+        for (const QString &parent : asConstMove(expandCategory(name))) {
             if ((parent != name) && !m_categories.contains(parent)) {
                 m_categories[parent] = "";
                 emit categoryAdded(parent);
@@ -727,12 +727,12 @@ bool Session::editCategory(const QString &name, const QString &savePath)
     m_categories[name] = savePath;
     m_storedCategories = map_cast(m_categories);
     if (isDisableAutoTMMWhenCategorySavePathChanged()) {
-        for (TorrentHandle *const torrent : asConst(torrents()))
+        for (TorrentHandle *const torrent : asConstMove(torrents()))
             if (torrent->category() == name)
                 torrent->setAutoTMMEnabled(false);
     }
     else {
-        for (TorrentHandle *const torrent : asConst(torrents()))
+        for (TorrentHandle *const torrent : asConstMove(torrents()))
             if (torrent->category() == name)
                 torrent->handleCategorySavePathChanged();
     }
@@ -742,7 +742,7 @@ bool Session::editCategory(const QString &name, const QString &savePath)
 
 bool Session::removeCategory(const QString &name)
 {
-    for (TorrentHandle *const torrent : asConst(torrents()))
+    for (TorrentHandle *const torrent : asConstMove(torrents()))
         if (torrent->belongsToCategory(name))
             torrent->setCategory("");
 
@@ -829,7 +829,7 @@ bool Session::addTag(const QString &tag)
 bool Session::removeTag(const QString &tag)
 {
     if (m_tags.remove(tag)) {
-        for (TorrentHandle *const torrent : asConst(torrents()))
+        for (TorrentHandle *const torrent : asConstMove(torrents()))
             torrent->removeTag(tag);
         m_storedTags = m_tags.toList();
         emit tagRemoved(tag);
@@ -1019,7 +1019,7 @@ void Session::configure()
 void Session::processBannedIPs(libt::ip_filter &filter)
 {
     // First, import current filter
-    for (const QString &ip : asConst(m_bannedIPs.value())) {
+    for (const QString &ip : asConstMove(m_bannedIPs.value())) {
         boost::system::error_code ec;
         const libt::address addr = libt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
@@ -1487,7 +1487,7 @@ void Session::enableBandwidthScheduler()
 void Session::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
-    for (QString tracker : asConst(additionalTrackers().split('\n'))) {
+    for (QString tracker : asConstMove(additionalTrackers().split('\n'))) {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
             m_additionalTrackerList << tracker;
@@ -1498,7 +1498,7 @@ void Session::processShareLimits()
 {
     qDebug("Processing share limits...");
 
-    for (TorrentHandle *const torrent : asConst(torrents())) {
+    for (TorrentHandle *const torrent : asConstMove(torrents())) {
         if (torrent->isSeed() && !torrent->isForced()) {
             if (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT) {
                 const qreal ratio = torrent->realRatio();
@@ -2132,7 +2132,7 @@ void Session::saveResumeData()
 void Session::saveTorrentsQueue()
 {
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
-    for (const TorrentHandle *torrent : asConst(torrents())) {
+    for (const TorrentHandle *torrent : asConstMove(torrents())) {
         // We require actual (non-cached) queue position here!
         const int queuePos = torrent->nativeHandle().queue_position();
         if (queuePos >= 0)
@@ -2162,10 +2162,10 @@ void Session::setDefaultSavePath(QString path)
     m_defaultSavePath = path;
 
     if (isDisableAutoTMMWhenDefaultSavePathChanged())
-        for (TorrentHandle *const torrent : asConst(torrents()))
+        for (TorrentHandle *const torrent : asConstMove(torrents()))
             torrent->setAutoTMMEnabled(false);
     else
-        for (TorrentHandle *const torrent : asConst(torrents()))
+        for (TorrentHandle *const torrent : asConstMove(torrents()))
             torrent->handleCategorySavePathChanged();
 }
 
