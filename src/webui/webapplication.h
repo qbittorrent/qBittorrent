@@ -55,9 +55,11 @@ class WebSession : public ISession
     friend class WebApplication;
 
 public:
-    explicit WebSession(const QString &sid);
+    explicit WebSession(const QString &sid, const bool persistent = false);
 
     QString id() const override;
+    bool persistent() const;
+    qint64 createTime() const;
     qint64 timestamp() const;
 
     QVariant getData(const QString &id) const override;
@@ -67,6 +69,8 @@ private:
     void updateTimestamp();
 
     const QString m_sid;
+    const bool m_persistent;
+    qint64 m_createTime;
     qint64 m_timestamp;
     QVariantHash m_data;
 };

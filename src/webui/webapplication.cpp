@@ -639,8 +639,10 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
 
 // WebSession
 
-WebSession::WebSession(const QString &sid)
+WebSession::WebSession(const QString &sid, const bool persistent)
     : m_sid {sid}
+    , m_persistent {persistent}
+    , m_createTime {QDateTime::currentMSecsSinceEpoch() / 1000}
 {
     updateTimestamp();
 }
@@ -648,6 +650,16 @@ WebSession::WebSession(const QString &sid)
 QString WebSession::id() const
 {
     return m_sid;
+}
+
+bool WebSession::persistent() const
+{
+    return m_persistent;
+}
+
+qint64 WebSession::createTime() const
+{
+    return m_createTime;
 }
 
 qint64 WebSession::timestamp() const
