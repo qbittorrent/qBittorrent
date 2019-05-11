@@ -50,5 +50,6 @@ struct ISessionManager
     virtual QString clientId() const = 0;
     virtual ISession *session() = 0;
     virtual void sessionStart() = 0;
+    virtual void sessionStartPermanently() = 0;
     virtual void sessionEnd() = 0;
 };

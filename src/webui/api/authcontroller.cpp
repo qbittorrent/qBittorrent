@@ -47,6 +47,7 @@ void AuthController::loginAction()
     const QString clientAddr {sessionManager()->clientId()};
     const QString usernameFromWeb {params()["username"]};
     const QString passwordFromWeb {params()["password"]};
+    const bool rememberFromWeb {static_cast<bool>(params()["remember"].toInt())};
 
     if (isBanned()) {
         LogMsg(tr("WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2")
@@ -66,7 +67,10 @@ void AuthController::loginAction()
     if (usernameEqual && passwordEqual) {
         m_clientFailedLogins.remove(clientAddr);
 
-        sessionManager()->sessionStart();
+        if (rememberFromWeb)
+            sessionManager()->sessionStartPermanently();
+        else
+            sessionManager()->sessionStart();
         setResult(QLatin1String("Ok."));
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }

@@ -59,7 +59,8 @@ function submitLoginForm() {
 
     var usernameElement = document.getElementById('username');
     var passwordElement = document.getElementById('password');
-    var queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
+    var rememberElement = document.getElementById('remember');
+    var queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value) + '&remember=' + encodeURIComponent(rememberElement.checked ? 1 : 0);
     xhr.send(queryString);
 
     // clear the field

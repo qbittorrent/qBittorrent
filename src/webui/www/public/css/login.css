@@ -16,6 +16,10 @@ body {
     margin-bottom: 5px;
 }
 
+.clearfix {
+    overflow: auto;
+}
+
 #main {
     margin-left: auto;
     margin-right: auto;
@@ -28,8 +32,16 @@ body {
     padding: 10px;
 }
 
+#username, #password {
+    width: 12em;
+}
+
 #error_msg {
     color: #f00;
+}
+
+#remember_group {
+    float: left;
 }
 
 #login {

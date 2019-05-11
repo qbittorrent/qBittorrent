@@ -49,6 +49,7 @@ class WebApplication;
 
 constexpr char C_SID[] = "SID"; // name of session id cookie
 constexpr int INACTIVE_TIME = 900; // Session inactive time (in secs = 15 min.)
+constexpr int PERSISTENCE_AVAILABLE_TIME = 31536000; // Persistent session available time (should be a large number; here is 1 year.)
 
 class WebSession : public ISession
 {
@@ -96,12 +97,15 @@ public:
     QString clientId() const override;
     WebSession *session() override;
     void sessionStart() override;
+    void sessionStartPermanently() override;
     void sessionEnd() override;
 
     const Http::Request &request() const;
     const Http::Environment &env() const;
 
 private:
+    void doSessionStart(const bool persistence);
+
     void doProcessRequest();
     void configure();
 
@@ -117,6 +121,7 @@ private:
     QString generateSid() const;
     void sessionInitialize();
     bool isAuthNeeded();
+    bool isSessionExpired(const WebSession *session) const;
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
     bool isCrossSiteRequest(const Http::Request &request) const;

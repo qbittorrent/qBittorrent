@@ -474,8 +474,7 @@ void WebApplication::sessionInitialize()
     if (!sessionId.isEmpty()) {
         m_currentSession = m_sessions.value(sessionId);
         if (m_currentSession) {
-            const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-            if ((now - m_currentSession->m_lastActiveTime) > INACTIVE_TIME) {
+            if (isSessionExpired(m_currentSession)) {
                 // session is outdated - removing it
                 delete m_sessions.take(sessionId);
                 m_currentSession = nullptr;
@@ -516,6 +515,15 @@ bool WebApplication::isAuthNeeded()
     return true;
 }
 
+bool WebApplication::isSessionExpired(const WebSession *session) const
+{
+    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
+    if (session->persistent())
+        return (now - session->createTime()) > PERSISTENCE_AVAILABLE_TIME;
+    else
+        return (now - session->lastActiveTime()) > INACTIVE_TIME;
+}
+
 bool WebApplication::isPublicAPI(const QString &scope, const QString &action) const
 {
     return m_publicAPIs.contains(QString::fromLatin1("%1/%2").arg(scope, action));
@@ -523,17 +531,26 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
 
 void WebApplication::sessionStart()
 {
+    doSessionStart(false);
+}
+
+void WebApplication::sessionStartPermanently()
+{
+    doSessionStart(true);
+}
+
+void WebApplication::doSessionStart(const bool persistence)
+{
     Q_ASSERT(!m_currentSession);
 
     // remove outdated sessions
-    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
     const QHash<QString, WebSession *> sessionsCopy {m_sessions};
     for (const auto session : sessionsCopy) {
-        if ((now - session->lastActiveTime()) > INACTIVE_TIME)
+        if (isSessionExpired(session))
             delete m_sessions.take(session->id());
     }
 
-    m_currentSession = new WebSession(generateSid());
+    m_currentSession = new WebSession(generateSid(), persistence);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
@@ -542,6 +559,11 @@ void WebApplication::sessionStart()
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
+    if (persistence) {
+        auto expires = QDateTime::currentDateTimeUtc().addSecs(PERSISTENCE_AVAILABLE_TIME);
+        cookieRawForm.append(QString("; expires=%1").arg(expires.toString(QString("ddd, yy-MMM-yyyy hh:mm:ss t"))).toLatin1());
+        cookieRawForm.append(QString("; Max-Age=%1").arg(PERSISTENCE_AVAILABLE_TIME).toLatin1());
+    }
     header(Http::HEADER_SET_COOKIE, cookieRawForm);
 }
 
