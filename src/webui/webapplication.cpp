@@ -475,13 +475,13 @@ void WebApplication::sessionInitialize()
         m_currentSession = m_sessions.value(sessionId);
         if (m_currentSession) {
             const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-            if ((now - m_currentSession->m_timestamp) > INACTIVE_TIME) {
+            if ((now - m_currentSession->m_lastActiveTime) > INACTIVE_TIME) {
                 // session is outdated - removing it
                 delete m_sessions.take(sessionId);
                 m_currentSession = nullptr;
             }
             else {
-                m_currentSession->updateTimestamp();
+                m_currentSession->updateLastActiveTime();
             }
         }
         else {
@@ -529,7 +529,7 @@ void WebApplication::sessionStart()
     const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
     const QHash<QString, WebSession *> sessionsCopy {m_sessions};
     for (const auto session : sessionsCopy) {
-        if ((now - session->timestamp()) > INACTIVE_TIME)
+        if ((now - session->lastActiveTime()) > INACTIVE_TIME)
             delete m_sessions.take(session->id());
     }
 
@@ -644,7 +644,7 @@ WebSession::WebSession(const QString &sid, const bool persistent)
     , m_persistent {persistent}
     , m_createTime {QDateTime::currentMSecsSinceEpoch() / 1000}
 {
-    updateTimestamp();
+    updateLastActiveTime();
 }
 
 QString WebSession::id() const
@@ -662,9 +662,9 @@ qint64 WebSession::createTime() const
     return m_createTime;
 }
 
-qint64 WebSession::timestamp() const
+qint64 WebSession::lastActiveTime() const
 {
-    return m_timestamp;
+    return m_lastActiveTime;
 }
 
 QVariant WebSession::getData(const QString &id) const
@@ -677,7 +677,7 @@ void WebSession::setData(const QString &id, const QVariant &data)
     m_data[id] = data;
 }
 
-void WebSession::updateTimestamp()
+void WebSession::updateLastActiveTime()
 {
-    m_timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
+    m_lastActiveTime = QDateTime::currentMSecsSinceEpoch() / 1000;
 }

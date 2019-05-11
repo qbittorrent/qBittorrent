@@ -60,18 +60,18 @@ public:
     QString id() const override;
     bool persistent() const;
     qint64 createTime() const;
-    qint64 timestamp() const;
+    qint64 lastActiveTime() const;
 
     QVariant getData(const QString &id) const override;
     void setData(const QString &id, const QVariant &data) override;
 
 private:
-    void updateTimestamp();
+    void updateLastActiveTime();
 
     const QString m_sid;
     const bool m_persistent;
     qint64 m_createTime;
-    qint64 m_timestamp;
+    qint64 m_lastActiveTime;
     QVariantHash m_data;
 };
 
