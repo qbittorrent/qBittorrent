@@ -531,15 +531,15 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
 
 void WebApplication::sessionStart()
 {
-    doSessionStart(false);
+    startSession(false);
 }
 
 void WebApplication::sessionStartPermanently()
 {
-    doSessionStart(true);
+    startSession(true);
 }
 
-void WebApplication::doSessionStart(const bool persistence)
+void WebApplication::startSession(const bool persistence)
 {
     Q_ASSERT(!m_currentSession);
 

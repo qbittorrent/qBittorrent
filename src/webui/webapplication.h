@@ -104,7 +104,7 @@ public:
     const Http::Environment &env() const;
 
 private:
-    void doSessionStart(const bool persistence);
+    void startSession(const bool persistence);
 
     void doProcessRequest();
     void configure();
