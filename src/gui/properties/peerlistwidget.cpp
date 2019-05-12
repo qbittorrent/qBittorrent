@@ -364,9 +364,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
         }
     }
     // Delete peers that are gone
-    QSetIterator<QString> it(oldPeersSet);
-    while (it.hasNext()) {
-        const QString &ip = it.next();
+    for (const QString &ip : oldPeersSet) {
         m_missingFlags.remove(ip);
         m_peerAddresses.remove(ip);
         QStandardItem *item = m_peerItems.take(ip);
