@@ -48,7 +48,7 @@ namespace BitTorrent
         };
 
         TrackerEntry(const QString &url);
-        TrackerEntry(const libtorrent::announce_entry &nativeEntry);
+        TrackerEntry(const lt::announce_entry &nativeEntry);
         TrackerEntry(const TrackerEntry &other) = default;
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
@@ -63,10 +63,10 @@ namespace BitTorrent
         int numLeeches() const;
         int numDownloaded() const;
 
-        libtorrent::announce_entry nativeEntry() const;
+        lt::announce_entry nativeEntry() const;
 
     private:
-        libtorrent::announce_entry m_nativeEntry;
+        lt::announce_entry m_nativeEntry;
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);

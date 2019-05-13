@@ -59,15 +59,14 @@ namespace
 #endif
 }
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 TorrentInfo::TorrentInfo(NativeConstPtr nativeInfo)
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
-    m_nativeInfo = boost::const_pointer_cast<libt::torrent_info>(nativeInfo);
+    m_nativeInfo = boost::const_pointer_cast<lt::torrent_info>(nativeInfo);
 #else
-    m_nativeInfo = std::const_pointer_cast<libt::torrent_info>(nativeInfo);
+    m_nativeInfo = std::const_pointer_cast<lt::torrent_info>(nativeInfo);
 #endif
 }
 
@@ -88,9 +87,9 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
     // used in `torrent_info()` constructor
     const int depthLimit = 100;
     const int tokenLimit = 10000000;
-    libt::error_code ec;
+    lt::error_code ec;
 
-    libt::bdecode_node node;
+    lt::bdecode_node node;
     bdecode(data.constData(), (data.constData() + data.size()), node, ec
         , nullptr, depthLimit, tokenLimit);
     if (ec) {
@@ -99,7 +98,7 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
         return TorrentInfo();
     }
 
-    TorrentInfo info {NativePtr(new libt::torrent_info(node, ec))};
+    TorrentInfo info {NativePtr(new lt::torrent_info(node, ec))};
     if (ec) {
         if (error)
             *error = QString::fromStdString(ec.message());
@@ -270,7 +269,7 @@ QList<TrackerEntry> TorrentInfo::trackers() const
     if (!isValid()) return {};
 
     QList<TrackerEntry> trackers;
-    for (const libt::announce_entry &tracker : m_nativeInfo->trackers())
+    for (const lt::announce_entry &tracker : m_nativeInfo->trackers())
         trackers.append(tracker);
 
     return trackers;
@@ -281,8 +280,8 @@ QList<QUrl> TorrentInfo::urlSeeds() const
     if (!isValid()) return {};
 
     QList<QUrl> urlSeeds;
-    for (const libt::web_seed_entry &webSeed : m_nativeInfo->web_seeds())
-        if (webSeed.type == libt::web_seed_entry::url_seed)
+    for (const lt::web_seed_entry &webSeed : m_nativeInfo->web_seeds())
+        if (webSeed.type == lt::web_seed_entry::url_seed)
             urlSeeds.append(QUrl(webSeed.url.c_str()));
 
     return urlSeeds;
@@ -312,13 +311,13 @@ QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
     if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
         return {};
 
-    const std::vector<libt::file_slice> files(
+    const std::vector<lt::file_slice> files(
                 nativeInfo()->map_block(LTPieceIndex {pieceIndex}, 0
                                         , nativeInfo()->piece_size(LTPieceIndex {pieceIndex})));
     QVector<int> res;
     res.reserve(int(files.size()));
     std::transform(files.begin(), files.end(), std::back_inserter(res),
-        [](const libt::file_slice &s) { return static_cast<int>(s.file_index); });
+        [](const lt::file_slice &s) { return static_cast<int>(s.file_index); });
 
     return res;
 }
@@ -361,7 +360,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
         return {};
     }
 
-    const libt::file_storage &files = nativeInfo()->files();
+    const lt::file_storage &files = nativeInfo()->files();
     const auto fileSize = files.file_size(LTFileIndex {fileIndex});
     const auto fileOffset = files.file_offset(LTFileIndex {fileIndex});
     return makeInterval(static_cast<int>(fileOffset / pieceLength()),
@@ -414,7 +413,7 @@ void TorrentInfo::stripRootFolder()
 {
     if (!hasRootFolder()) return;
 
-    libtorrent::file_storage files = m_nativeInfo->files();
+    lt::file_storage files = m_nativeInfo->files();
 
     // Solution for case of renamed root folder
     const std::string testName = filePath(0).split('/').value(0).toStdString();

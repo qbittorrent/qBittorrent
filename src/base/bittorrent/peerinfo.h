@@ -53,7 +53,7 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(PeerInfo)
 
     public:
-        PeerInfo(const TorrentHandle *torrent, const libtorrent::peer_info &nativeInfo);
+        PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo);
 
         bool fromDHT() const;
         bool fromPeX() const;
@@ -105,7 +105,7 @@ namespace BitTorrent
         void calcRelevance(const TorrentHandle *torrent);
         void determineFlags();
 
-        libtorrent::peer_info m_nativeInfo;
+        lt::peer_info m_nativeInfo;
         qreal m_relevance;
         QString m_flags;
         QString m_flagsDescription;

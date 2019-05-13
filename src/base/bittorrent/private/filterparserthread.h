@@ -43,7 +43,7 @@ public:
     FilterParserThread(QObject *parent = nullptr);
     ~FilterParserThread();
     void processFilterFile(const QString &filePath);
-    libtorrent::ip_filter IPfilter();
+    lt::ip_filter IPfilter();
 
 signals:
     void IPFilterParsed(int ruleCount);
@@ -62,7 +62,7 @@ private:
 
     bool m_abort;
     QString m_filePath;
-    libtorrent::ip_filter m_filter;
+    lt::ip_filter m_filter;
 };
 
 #endif // BITTORRENT_FILTERPARSERTHREAD_H

@@ -33,7 +33,6 @@
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 // PeerAddress
@@ -51,7 +50,7 @@ PeerAddress::PeerAddress(const QHostAddress &ip, ushort port)
 
 // PeerInfo
 
-PeerInfo::PeerInfo(const TorrentHandle *torrent, const libt::peer_info &nativeInfo)
+PeerInfo::PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
 {
     calcRelevance(torrent);
@@ -60,17 +59,17 @@ PeerInfo::PeerInfo(const TorrentHandle *torrent, const libt::peer_info &nativeIn
 
 bool PeerInfo::fromDHT() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::dht);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::dht);
 }
 
 bool PeerInfo::fromPeX() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::pex);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::pex);
 }
 
 bool PeerInfo::fromLSD() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::lsd);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::lsd);
 }
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
@@ -82,102 +81,102 @@ QString PeerInfo::country() const
 
 bool PeerInfo::isInteresting() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::interesting);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::interesting);
 }
 
 bool PeerInfo::isChocked() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::choked);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::choked);
 }
 
 bool PeerInfo::isRemoteInterested() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::remote_interested);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::remote_interested);
 }
 
 bool PeerInfo::isRemoteChocked() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::remote_choked);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::remote_choked);
 }
 
 bool PeerInfo::isSupportsExtensions() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::supports_extensions);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::supports_extensions);
 }
 
 bool PeerInfo::isLocalConnection() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::local_connection);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::local_connection);
 }
 
 bool PeerInfo::isHandshake() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::handshake);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::handshake);
 }
 
 bool PeerInfo::isConnecting() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::connecting);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::connecting);
 }
 
 bool PeerInfo::isOnParole() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::on_parole);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::on_parole);
 }
 
 bool PeerInfo::isSeed() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::seed);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::seed);
 }
 
 bool PeerInfo::optimisticUnchoke() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::optimistic_unchoke);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::optimistic_unchoke);
 }
 
 bool PeerInfo::isSnubbed() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::snubbed);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::snubbed);
 }
 
 bool PeerInfo::isUploadOnly() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::upload_only);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::upload_only);
 }
 
 bool PeerInfo::isEndgameMode() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::endgame_mode);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::endgame_mode);
 }
 
 bool PeerInfo::isHolepunched() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::holepunched);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::holepunched);
 }
 
 bool PeerInfo::useI2PSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::i2p_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::i2p_socket);
 }
 
 bool PeerInfo::useUTPSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::utp_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::utp_socket);
 }
 
 bool PeerInfo::useSSLSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::ssl_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::ssl_socket);
 }
 
 bool PeerInfo::isRC4Encrypted() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::rc4_encrypted);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::rc4_encrypted);
 }
 
 bool PeerInfo::isPlaintextEncrypted() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::plaintext_encrypted);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::plaintext_encrypted);
 }
 
 PeerAddress PeerInfo::address() const
@@ -229,13 +228,13 @@ QBitArray PeerInfo::pieces() const
 
 QString PeerInfo::connectionType() const
 {
-    if (m_nativeInfo.flags & libt::peer_info::utp_socket)
+    if (m_nativeInfo.flags & lt::peer_info::utp_socket)
         return QString::fromUtf8(C_UTP);
 
     QString connection;
     switch (m_nativeInfo.connection_type) {
-    case libt::peer_info::http_seed:
-    case libt::peer_info::web_seed:
+    case lt::peer_info::http_seed:
+    case lt::peer_info::web_seed:
         connection = "Web";
         break;
     default:

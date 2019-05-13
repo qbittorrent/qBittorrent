@@ -29,6 +29,7 @@
 #ifndef BITTORRENT_TORRENTINFO_H
 #define BITTORRENT_TORRENTINFO_H
 
+#include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
@@ -37,7 +38,6 @@
 #include <QVector>
 
 #include "base/indexrange.h"
-#include "private/libtorrentfwd.h"
 
 class QByteArray;
 class QDateTime;
@@ -56,11 +56,11 @@ namespace BitTorrent
 
     public:
 #if (LIBTORRENT_VERSION_NUM < 10200)
-        using NativeConstPtr = boost::shared_ptr<const libtorrent::torrent_info>;
-        using NativePtr = boost::shared_ptr<libtorrent::torrent_info>;
+        using NativeConstPtr = boost::shared_ptr<const lt::torrent_info>;
+        using NativePtr = boost::shared_ptr<lt::torrent_info>;
 #else
-        using NativeConstPtr = std::shared_ptr<const libtorrent::torrent_info>;
-        using NativePtr = std::shared_ptr<libtorrent::torrent_info>;
+        using NativeConstPtr = std::shared_ptr<const lt::torrent_info>;
+        using NativePtr = std::shared_ptr<lt::torrent_info>;
 #endif
 
         explicit TorrentInfo(NativeConstPtr nativeInfo = {});

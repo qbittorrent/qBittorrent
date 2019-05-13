@@ -35,8 +35,6 @@
 
 #include "base/logger.h"
 
-namespace libt = libtorrent;
-
 namespace
 {
     class IPv4Parser
@@ -79,24 +77,24 @@ namespace
             return false;
         }
 
-        libt::address_v4::bytes_type parsed() const
+        lt::address_v4::bytes_type parsed() const
         {
             return m_buf;
         }
 
     private:
-        libt::address_v4::bytes_type m_buf;
+        lt::address_v4::bytes_type m_buf;
     };
 
-    bool parseIPAddress(const char *data, libt::address &address)
+    bool parseIPAddress(const char *data, lt::address &address)
     {
         IPv4Parser parser;
         boost::system::error_code ec;
 
         if (parser.tryParse(data))
-            address = libt::address_v4(parser.parsed());
+            address = lt::address_v4(parser.parsed());
         else
-            address = libt::address_v6::from_string(data, ec);
+            address = lt::address_v6::from_string(data, ec);
 
         return !ec;
     }
@@ -214,7 +212,7 @@ int FilterParserThread::parseDATFilterFile()
                 continue;
             }
 
-            libt::address startAddr;
+            lt::address startAddr;
             int newStart = trim(buffer.data(), start, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
                 ++parseErrorCount;
@@ -223,7 +221,7 @@ int FilterParserThread::parseDATFilterFile()
                 continue;
             }
 
-            libt::address endAddr;
+            lt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfIPRange);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
                 ++parseErrorCount;
@@ -244,7 +242,7 @@ int FilterParserThread::parseDATFilterFile()
 
             // Now Add to the filter
             try {
-                m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
+                m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
             catch (std::exception &e) {
@@ -353,7 +351,7 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
-            libt::address startAddr;
+            lt::address startAddr;
             int newStart = trim(buffer.data(), partsDelimiter + 1, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
                 ++parseErrorCount;
@@ -362,7 +360,7 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
-            libt::address endAddr;
+            lt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfLine);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
                 ++parseErrorCount;
@@ -382,7 +380,7 @@ int FilterParserThread::parseP2PFilterFile()
             start = endOfLine;
 
             try {
-                m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
+                m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
             catch (std::exception &e) {
@@ -463,11 +461,11 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            const libt::address_v4 first(ntohl(start));
-            const libt::address_v4 last(ntohl(end));
+            const lt::address_v4 first(ntohl(start));
+            const lt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
-                m_filter.add_rule(first, last, libt::ip_filter::blocked);
+                m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
             catch (std::exception &) {}
@@ -513,11 +511,11 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            const libt::address_v4 first(ntohl(start));
-            const libt::address_v4 last(ntohl(end));
+            const lt::address_v4 first(ntohl(start));
+            const lt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
-                m_filter.add_rule(first, last, libt::ip_filter::blocked);
+                m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
             catch (std::exception &) {}
@@ -547,12 +545,12 @@ void FilterParserThread::processFilterFile(const QString &filePath)
 
     m_abort = false;
     m_filePath = filePath;
-    m_filter = libt::ip_filter();
+    m_filter = lt::ip_filter();
     // Run it
     start();
 }
 
-libt::ip_filter FilterParserThread::IPfilter()
+lt::ip_filter FilterParserThread::IPfilter()
 {
     return m_filter;
 }
