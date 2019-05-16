@@ -363,8 +363,13 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     const lt::file_storage &files = nativeInfo()->files();
     const auto fileSize = files.file_size(LTFileIndex {fileIndex});
     const auto fileOffset = files.file_offset(LTFileIndex {fileIndex});
-    return makeInterval(static_cast<int>(fileOffset / pieceLength()),
-                        static_cast<int>((fileOffset + fileSize - 1) / pieceLength()));
+
+    const int beginIdx = (fileOffset / pieceLength());
+    const int endIdx = ((fileOffset + fileSize - 1) / pieceLength());
+
+    if (fileSize <= 0)
+        return {beginIdx, 0};
+    return makeInterval(beginIdx, endIdx);
 }
 
 void TorrentInfo::renameFile(const int index, const QString &newPath)
