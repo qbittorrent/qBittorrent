@@ -31,8 +31,6 @@
 
 #include <QCoreApplication>
 
-#include "base/utils/fs.h"
-
 Private::Profile::Profile(const QString &configurationName)
     : m_configurationSuffix {configurationName.isEmpty() ? QString() : QLatin1Char('_') + configurationName}
 {

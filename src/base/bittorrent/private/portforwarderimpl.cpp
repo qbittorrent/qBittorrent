@@ -28,9 +28,9 @@
 
 #include "portforwarderimpl.h"
 
-#include <QDebug>
-
 #include <libtorrent/session.hpp>
+
+#include <QDebug>
 
 #include "base/logger.h"
 #include "base/settingsstorage.h"

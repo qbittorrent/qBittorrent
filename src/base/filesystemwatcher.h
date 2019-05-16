@@ -32,8 +32,10 @@
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QHash>
-#include <QStringList>
+#include <QList>
 #include <QTimer>
+
+class QStringList;
 
 /*
  * Subclassing QFileSystemWatcher in order to support Network File

@@ -29,6 +29,7 @@
 #include "optionsdialog.h"
 
 #include <cstdlib>
+#include <limits>
 
 #include <QApplication>
 #include <QCloseEvent>
@@ -62,8 +63,8 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
-#include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
+#include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "ui_optionsdialog.h"

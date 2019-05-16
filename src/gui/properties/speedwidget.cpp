@@ -28,13 +28,12 @@
 
 #include "speedwidget.h"
 
-#include <QVBoxLayout>
+#include <QDateTime>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
 #include <QTimer>
-
-#include <libtorrent/session_status.hpp>
+#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"

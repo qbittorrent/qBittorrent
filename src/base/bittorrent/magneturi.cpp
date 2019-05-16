@@ -34,6 +34,7 @@
 #include <libtorrent/sha1_hash.hpp>
 
 #include <QRegularExpression>
+#include <QUrl>
 
 #include "infohash.h"
 

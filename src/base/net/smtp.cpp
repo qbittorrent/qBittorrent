@@ -33,10 +33,12 @@
 #include "smtp.h"
 
 #include <QCryptographicHash>
+#include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
 #include <QStringList>
 #include <QTextCodec>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else

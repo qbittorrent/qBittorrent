@@ -37,6 +37,7 @@
 #include <QSaveFile>
 #include <QThread>
 #include <QTimer>
+#include <QUrl>
 #include <QVariant>
 #include <QVector>
 

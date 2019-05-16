@@ -28,6 +28,7 @@
 
 #include "resumedatasavingmanager.h"
 
+#include <QByteArray>
 #include <QDebug>
 #include <QSaveFile>
 

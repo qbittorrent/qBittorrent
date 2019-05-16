@@ -29,10 +29,6 @@
 #include "webapplication.h"
 
 #include <algorithm>
-#include <functional>
-#include <queue>
-#include <stdexcept>
-#include <vector>
 
 #include <QDateTime>
 #include <QDebug>
@@ -41,13 +37,13 @@
 #include <QJsonDocument>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QNetworkCookie>
 #include <QRegExp>
 #include <QUrl>
 
 #include "base/algorithm.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/bytearray.h"

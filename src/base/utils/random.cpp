@@ -43,6 +43,8 @@
 #include <cstdio>
 #endif
 
+#include <QString>
+
 #include "misc.h"
 
 namespace

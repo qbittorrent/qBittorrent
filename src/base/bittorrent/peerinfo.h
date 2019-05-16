@@ -29,11 +29,11 @@
 #ifndef BITTORRENT_PEERINFO_H
 #define BITTORRENT_PEERINFO_H
 
+#include <libtorrent/peer_info.hpp>
+
 #include <QBitArray>
 #include <QCoreApplication>
 #include <QHostAddress>
-
-#include <libtorrent/peer_info.hpp>
 
 namespace BitTorrent
 {

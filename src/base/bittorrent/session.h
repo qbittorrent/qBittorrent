@@ -43,7 +43,6 @@
 #include <QSet>
 
 #include "base/settingvalue.h"
-#include "base/tristatebool.h"
 #include "base/types.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"

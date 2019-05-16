@@ -33,6 +33,7 @@
 
 #include <QDate>
 #include <QTime>
+#include <QTimer>
 
 #include "base/preferences.h"
 

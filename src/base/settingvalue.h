@@ -33,7 +33,6 @@
 
 #include <QMetaEnum>
 #include <QString>
-#include <QVariant>
 
 #include "settingsstorage.h"
 
