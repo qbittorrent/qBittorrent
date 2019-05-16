@@ -28,9 +28,6 @@
 
 #include "misc.h"
 
-#include <boost/version.hpp>
-#include <libtorrent/version.hpp>
-
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <Shlobj.h>
@@ -44,7 +41,9 @@
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include <boost/version.hpp>
 #include <openssl/opensslv.h>
+#include <libtorrent/version.hpp>
 
 #include <QCoreApplication>
 #include <QRegularExpression>
@@ -359,30 +358,6 @@ QString Utils::Misc::getUserIDString()
     uid = QString::number(getuid());
 #endif
     return uid;
-}
-
-QStringList Utils::Misc::toStringList(const QList<bool> &l)
-{
-    QStringList ret;
-    for (const bool b : l)
-        ret << (b ? "1" : "0");
-    return ret;
-}
-
-QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
-{
-    QList<int> ret;
-    for (const QString &s : l)
-        ret << s.toInt();
-    return ret;
-}
-
-QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
-{
-    QList<bool> ret;
-    for (const QString &s : l)
-        ret << (s == "1");
-    return ret;
 }
 
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
