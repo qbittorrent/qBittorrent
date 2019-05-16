@@ -245,7 +245,7 @@ int FilterParserThread::parseDATFilterFile()
                 m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &e) {
+            catch (const std::exception &e) {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
@@ -383,7 +383,7 @@ int FilterParserThread::parseP2PFilterFile()
                 m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &e) {
+            catch (const std::exception &e) {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
@@ -468,7 +468,7 @@ int FilterParserThread::parseP2BFilterFile()
                 m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &) {}
+            catch (const std::exception &) {}
         }
     }
     else if (version == 3) {
@@ -518,7 +518,7 @@ int FilterParserThread::parseP2BFilterFile()
                 m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &) {}
+            catch (const std::exception &) {}
 
             if (m_abort) return ruleCount;
         }
@@ -577,7 +577,7 @@ void FilterParserThread::run()
     try {
         emit IPFilterParsed(ruleCount);
     }
-    catch (std::exception &) {
+    catch (const std::exception &) {
         emit IPFilterError();
     }
 

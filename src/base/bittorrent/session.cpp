@@ -1400,7 +1400,7 @@ void Session::configurePeerClasses()
                    , lt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << lt::session::global_peer_class_id);
     }
-    catch (std::exception &) {}
+    catch (const std::exception &) {}
 #endif // TORRENT_USE_IPV6
     if (ignoreLimitsOnLAN()) {
         // local networks
@@ -1439,7 +1439,7 @@ void Session::configurePeerClasses()
                        , lt::address_v6::from_string("::1")
                        , 1 << lt::session::local_peer_class_id);
         }
-        catch (std::exception &) {}
+        catch (const std::exception &) {}
 #endif // TORRENT_USE_IPV6
     }
     m_nativeSession->set_peer_class_filter(f);
@@ -1870,7 +1870,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 #endif
                 handle.pause();
             }
-            catch (std::exception &) {}
+            catch (const std::exception &) {}
 
             adjustLimits();
 
@@ -3856,7 +3856,7 @@ void Session::handleAlert(const lt::alert *a)
             break;
         }
     }
-    catch (std::exception &exc) {
+    catch (const std::exception &exc) {
         qWarning() << "Caught exception in " << Q_FUNC_INFO << ": " << QString::fromStdString(exc.what());
     }
 }
@@ -4374,7 +4374,7 @@ namespace
         try {
             handle.queue_position_up();
         }
-        catch (std::exception &exc) {
+        catch (const std::exception &exc) {
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
@@ -4384,7 +4384,7 @@ namespace
         try {
             handle.queue_position_down();
         }
-        catch (std::exception &exc) {
+        catch (const std::exception &exc) {
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
@@ -4394,7 +4394,7 @@ namespace
         try {
             handle.queue_position_top();
         }
-        catch (std::exception &exc) {
+        catch (const std::exception &exc) {
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
@@ -4404,7 +4404,7 @@ namespace
         try {
             handle.queue_position_bottom();
         }
-        catch (std::exception &exc) {
+        catch (const std::exception &exc) {
             qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
         }
     }
