@@ -122,7 +122,7 @@ void FileSystemWatcher::processPartialTorrents()
     QStringList noLongerPartial;
 
     // Check which torrents are still partial
-    Dict::removeIf(m_partialTorrents, [&noLongerPartial](const QString &torrentPath, int &value)
+    Algorithm::removeIf(m_partialTorrents, [&noLongerPartial](const QString &torrentPath, int &value)
     {
         if (!QFile::exists(torrentPath))
             return true;

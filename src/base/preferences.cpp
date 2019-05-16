@@ -31,7 +31,6 @@
 
 #include <QDir>
 #include <QLocale>
-#include <QMutableListIterator>
 #include <QSettings>
 
 #ifndef DISABLE_GUI
@@ -49,6 +48,7 @@
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include "algorithm.h"
 #include "global.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
@@ -516,13 +516,12 @@ QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 
 void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
-    QMutableListIterator<QString> i(subnets);
-    while (i.hasNext()) {
+    Algorithm::removeIf(subnets, [](const QString &subnet)
+    {
         bool ok = false;
-        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(i.next().trimmed(), &ok);
-        if (!ok)
-            i.remove();
-    }
+        Utils::Net::parseSubnet(subnet.trimmed(), &ok);
+        return !ok;
+    });
 
     setValue("Preferences/WebUI/AuthSubnetWhitelist", subnets);
 }

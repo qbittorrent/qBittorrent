@@ -44,6 +44,7 @@
 #include <QRegExp>
 #include <QUrl>
 
+#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/iconprovider.h"
@@ -527,11 +528,14 @@ void WebApplication::sessionStart()
 
     // remove outdated sessions
     const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    const QHash<QString, WebSession *> sessionsCopy {m_sessions};
-    for (const auto session : sessionsCopy) {
-        if ((now - session->timestamp()) > INACTIVE_TIME)
-            delete m_sessions.take(session->id());
-    }
+    Algorithm::removeIf(m_sessions, [now](const QString &, const WebSession *session)
+    {
+        if ((now - session->timestamp()) <= INACTIVE_TIME)
+            return false;
+
+        delete session;
+        return true;
+    });
 
     m_currentSession = new WebSession(generateSid());
     m_sessions[m_currentSession->id()] = m_currentSession;

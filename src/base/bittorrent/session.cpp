@@ -754,7 +754,7 @@ bool Session::removeCategory(const QString &name)
     if (isSubcategoriesEnabled()) {
         // remove subcategories
         const QString test = name + '/';
-        Dict::removeIf(m_categories, [this, &test, &result](const QString &category, const QString &)
+        Algorithm::removeIf(m_categories, [this, &test, &result](const QString &category, const QString &)
         {
             if (category.startsWith(test)) {
                 result = true;
