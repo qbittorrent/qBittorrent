@@ -1577,8 +1577,7 @@ void TorrentHandle::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
     const QString trackerUrl(p->tracker_url());
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
-    m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
-    m_trackerInfos[trackerUrl].numPeers = p->num_peers;
+    m_trackerInfos[trackerUrl] = {{}, p->num_peers};
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
