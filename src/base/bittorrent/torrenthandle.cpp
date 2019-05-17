@@ -1174,10 +1174,8 @@ QBitArray TorrentHandle::downloadingPieces() const
     std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);
 
-    std::vector<lt::partial_piece_info>::const_iterator it = queue.begin();
-    std::vector<lt::partial_piece_info>::const_iterator itend = queue.end();
-    for (; it != itend; ++it)
-        result.setBit(it->piece_index);
+    for (const lt::partial_piece_info &info : queue)
+        result.setBit(info.piece_index);
 
     return result;
 }
