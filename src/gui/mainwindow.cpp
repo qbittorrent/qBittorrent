@@ -144,7 +144,14 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
     , m_hasPython(false)
 {
-    m_ui->setupUi(this);
+		{
+			QFile styleQss("style.qss");
+			if (styleQss.open(QIODevice::ReadOnly)) {
+				setStyleSheet(styleQss.readAll());
+			}
+		}
+    
+		m_ui->setupUi(this);
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
