@@ -267,9 +267,7 @@
         <file>qbt-theme/document-properties.svg</file>
         <file>qbt-theme/document-save.svg</file>
         <file>qbt-theme/download.svg</file>
-        <file>qbt-theme/drop-down.svg</file>
-        <file>qbt-theme/drop-up.svg</file>
-				<file>qbt-theme/edit-clear-history.svg</file>
+        <file>qbt-theme/edit-clear-history.svg</file>
         <file>qbt-theme/edit-clear.svg</file>
         <file>qbt-theme/edit-copy.svg</file>
         <file>qbt-theme/edit-cut.svg</file>
@@ -348,6 +346,7 @@
         <file>skin/download.svg</file>
         <file>skin/downloading.svg</file>
         <file>skin/error.svg</file>
+        <file>skin/expand.svg</file>
         <file>skin/filteractive.svg</file>
         <file>skin/filterall.svg</file>
         <file>skin/filterinactive.svg</file>

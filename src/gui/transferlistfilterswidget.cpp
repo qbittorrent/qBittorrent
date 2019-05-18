@@ -574,27 +574,25 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     scroll->setWidget(frame);
     vLayout->addWidget(scroll);
     setLayout(vLayout);
-		
-		auto IconCheckBox = [&](auto &&name) {
-			QCheckBox *c = new QCheckBox(name, this);
-			c->setStyleSheet("QCheckBox::indicator { width: 16px; height: 16px; }"
-											 "QCheckBox::indicator:checked { image: url(:icons/qbt-theme/drop-down.svg); }"
-											 "QCheckBox::indicator:unchecked { image: url(:icons/qbt-theme/drop-up.svg); }"
-											);
-			return c;
-		};
+    
+    const char * checkBoxStyleSheet = 
+                    "QCheckBox::indicator { width: 14px; height: 14px; }"
+                    "QCheckBox::indicator:checked { image: url(:icons/skin/collapse.svg); }"
+                    "QCheckBox::indicator:unchecked { image: url(:icons/skin/expand.svg); }";
 
-    QCheckBox *statusLabel = IconCheckBox(tr("Status"));
+    QCheckBox *statusLabel = new QCheckBox(tr("Status"),this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
+    statusLabel->setStyleSheet(checkBoxStyleSheet);
     frameLayout->addWidget(statusLabel);
 
     auto *statusFilters = new StatusFilterWidget(this, transferList);
     frameLayout->addWidget(statusFilters);
 
-    QCheckBox *categoryLabel = IconCheckBox(tr("Categories"));
+    QCheckBox *categoryLabel = new QCheckBox(tr("Categories"),this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
     categoryLabel->setFont(font);
+    categoryLabel->setStyleSheet(checkBoxStyleSheet);
     connect(categoryLabel, &QCheckBox::toggled, this
             , &TransferListFiltersWidget::onCategoryFilterStateChanged);
     frameLayout->addWidget(categoryLabel);
@@ -611,9 +609,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     toggleCategoryFilter(pref->getCategoryFilterState());
     frameLayout->addWidget(m_categoryFilterWidget);
 
-    QCheckBox *tagsLabel = IconCheckBox(tr("Tags"));
+    QCheckBox *tagsLabel = new QCheckBox(tr("Tags"),this);
     tagsLabel->setChecked(pref->getTagFilterState());
     tagsLabel->setFont(font);
+    tagsLabel->setStyleSheet(checkBoxStyleSheet);
     connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
     frameLayout->addWidget(tagsLabel);
 
@@ -629,9 +628,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     toggleTagFilter(pref->getTagFilterState());
     frameLayout->addWidget(m_tagFilterWidget);
 
-    QCheckBox *trackerLabel = IconCheckBox(tr("Trackers"));
+    QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"),this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
+    trackerLabel->setStyleSheet(checkBoxStyleSheet);
     frameLayout->addWidget(trackerLabel);
 
     m_trackerFilters = new TrackerFiltersList(this, transferList, downloadFavicon);
