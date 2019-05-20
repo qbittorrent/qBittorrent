@@ -29,12 +29,14 @@
 #include "propertieswidget.h"
 
 #include <QAction>
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QSplitter>
+#include <QShortcut>
 #include <QStackedWidget>
 #include <QThread>
 #include <QUrl>

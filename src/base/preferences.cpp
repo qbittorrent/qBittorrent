@@ -29,9 +29,21 @@
 
 #include "preferences.h"
 
+#ifdef Q_OS_MAC
+#include <CoreServices/CoreServices.h>
+#endif
+#ifdef Q_OS_WIN
+#include <shlobj.h>
+#endif
+
+#include <QDateTime>
 #include <QDir>
 #include <QLocale>
+#include <QNetworkCookie>
 #include <QSettings>
+#include <QSize>
+#include <QTime>
+#include <QVariant>
 
 #ifndef DISABLE_GUI
 #include <QApplication>
@@ -40,12 +52,7 @@
 #endif
 
 #ifdef Q_OS_WIN
-#include <shlobj.h>
 #include <QRegularExpression>
-#endif
-
-#ifdef Q_OS_MAC
-#include <CoreServices/CoreServices.h>
 #endif
 
 #include "algorithm.h"

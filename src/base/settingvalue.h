@@ -33,7 +33,6 @@
 
 #include <QMetaEnum>
 #include <QString>
-#include <QVariant>
 
 #include "settingsstorage.h"
 
@@ -51,7 +50,7 @@ public:
     // T proxyFunc(const T &a);
     template <typename ProxyFunc>
     explicit CachedSettingValue(const char *keyName, const T &defaultValue
-                                , ProxyFunc proxyFunc)
+                                , ProxyFunc &&proxyFunc)
         : m_keyName(QLatin1String(keyName))
         , m_value(proxyFunc(loadValue(defaultValue)))
     {

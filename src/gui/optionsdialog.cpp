@@ -29,6 +29,7 @@
 #include "optionsdialog.h"
 
 #include <cstdlib>
+#include <limits>
 
 #include <QApplication>
 #include <QCloseEvent>
@@ -62,8 +63,8 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
-#include "ipsubnetwhitelistoptionsdialog.h"
 #include "guiiconprovider.h"
+#include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "ui_optionsdialog.h"
@@ -297,7 +298,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
-            , tr("%G: Tags (seperated by comma)")
+            , tr("%G: Tags (separated by comma)")
             , tr("%F: Content path (same as root path for multifile torrent)")
             , tr("%R: Root path (first torrent subdirectory path)")
             , tr("%D: Save path")

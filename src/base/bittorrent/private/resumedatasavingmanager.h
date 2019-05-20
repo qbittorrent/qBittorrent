@@ -28,9 +28,10 @@
 
 #pragma once
 
-#include <QByteArray>
 #include <QDir>
 #include <QObject>
+
+class QByteArray;
 
 class ResumeDataSavingManager : public QObject
 {

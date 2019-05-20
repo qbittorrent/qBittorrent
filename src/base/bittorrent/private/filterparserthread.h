@@ -29,9 +29,9 @@
 #ifndef FILTERPARSERTHREAD_H
 #define FILTERPARSERTHREAD_H
 
-#include <QThread>
-
 #include <libtorrent/ip_filter.hpp>
+
+#include <QThread>
 
 class QDataStream;
 

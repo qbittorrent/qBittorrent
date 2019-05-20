@@ -33,8 +33,8 @@
 #include <memory>
 
 #include <QSettings>
-#include <QString>
 
+class QString;
 class Application;
 
 namespace Private

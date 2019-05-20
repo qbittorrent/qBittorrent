@@ -31,7 +31,8 @@
 #define ICONPROVIDER_H
 
 #include <QObject>
-#include <QString>
+
+class QString;
 
 class IconProvider : public QObject
 {

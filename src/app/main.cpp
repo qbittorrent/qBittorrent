@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
 
         return app->exec(params.paramList());
     }
-    catch (CommandLineParameterError &er) {
+    catch (const CommandLineParameterError &er) {
         displayBadArgMessage(er.messageForUser());
         return EXIT_FAILURE;
     }

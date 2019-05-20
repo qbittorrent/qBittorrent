@@ -69,9 +69,8 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
 
     const QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
 
-    for (QModelIndexList::const_iterator i = selection.begin(); i != selection.end(); ++i) {
-        QModelIndex index = *i;
-        Q_ASSERT(i->column() == TorrentContentModelItem::COL_NAME);
+    for (const QModelIndex &index : selection) {
+        Q_ASSERT(index.column() == TorrentContentModelItem::COL_NAME);
         model()->setData(index, state, Qt::CheckStateRole);
     }
 }

@@ -253,7 +253,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QList<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
+        QVector<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
         if (multipart.isEmpty()) {
             qWarning() << Q_FUNC_INFO << "multipart empty";
             return false;
@@ -275,7 +275,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
 bool RequestParser::parseFormData(const QByteArray &data)
 {
-    const QList<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
+    const QVector<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
 
     if (list.size() != 2) {
         qWarning() << Q_FUNC_INFO << "multipart/form-data format error";

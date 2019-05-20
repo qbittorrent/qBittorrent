@@ -50,7 +50,7 @@ namespace Algorithm
     // To be used with associative array types, such as QMap, QHash and it's variants
     template <typename T, typename BinaryPredicate
         , typename std::enable_if_t<HasMappedType<T>::value, int> = 0>
-    void removeIf(T &dict, BinaryPredicate p)
+    void removeIf(T &dict, BinaryPredicate &&p)
     {
         auto it = dict.begin();
         while (it != dict.end())
@@ -60,7 +60,7 @@ namespace Algorithm
     // To be used with set types, such as QSet, std::set
     template <typename T, typename UnaryPredicate
         , typename std::enable_if_t<!HasMappedType<T>::value, int> = 0>
-    void removeIf(T &set, UnaryPredicate p)
+    void removeIf(T &set, UnaryPredicate &&p)
     {
         auto it = set.begin();
         while (it != set.end())

@@ -112,7 +112,7 @@ void AppController::preferencesAction()
     // Automatically add torrents from
     const QVariantHash dirs = pref->getScanDirs();
     QVariantMap nativeDirs;
-    for (QVariantHash::const_iterator i = dirs.cbegin(), e = dirs.cend(); i != e; ++i) {
+    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
         if (i.value().type() == QVariant::Int)
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), i.value().toInt());
         else
@@ -299,7 +299,7 @@ void AppController::setPreferencesAction()
         QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
-        for (QVariantMap::const_iterator i = nativeDirs.cbegin(), e = nativeDirs.cend(); i != e; ++i) {
+        for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i) {
             QString folder = Utils::Fs::fromNativePath(i.key());
             int downloadType;
             QString downloadPath;

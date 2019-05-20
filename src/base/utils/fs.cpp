@@ -34,15 +34,6 @@
 #include <memory>
 #endif
 
-#include <QCoreApplication>
-#include <QDebug>
-#include <QDir>
-#include <QDirIterator>
-#include <QFile>
-#include <QFileInfo>
-#include <QStorageInfo>
-#include <QRegularExpression>
-
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -57,6 +48,15 @@
 #include <sys/vfs.h>
 #include <unistd.h>
 #endif
+
+#include <QCoreApplication>
+#include <QDebug>
+#include <QDir>
+#include <QDirIterator>
+#include <QFile>
+#include <QFileInfo>
+#include <QStorageInfo>
+#include <QRegularExpression>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"

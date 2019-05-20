@@ -29,7 +29,6 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QButtonGroup>
 #include <QDialog>
 
 class QAbstractButton;

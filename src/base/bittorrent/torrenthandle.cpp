@@ -1174,10 +1174,8 @@ QBitArray TorrentHandle::downloadingPieces() const
     std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);
 
-    std::vector<lt::partial_piece_info>::const_iterator it = queue.begin();
-    std::vector<lt::partial_piece_info>::const_iterator itend = queue.end();
-    for (; it != itend; ++it)
-        result.setBit(it->piece_index);
+    for (const lt::partial_piece_info &info : queue)
+        result.setBit(info.piece_index);
 
     return result;
 }
@@ -1577,8 +1575,7 @@ void TorrentHandle::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
     const QString trackerUrl(p->tracker_url());
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
-    m_trackerInfos[trackerUrl].lastMessage.clear(); // Reset error/warning message
-    m_trackerInfos[trackerUrl].numPeers = p->num_peers;
+    m_trackerInfos[trackerUrl] = {{}, p->num_peers};
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }

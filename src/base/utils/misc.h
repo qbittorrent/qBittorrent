@@ -36,9 +36,7 @@
 #include <Windows.h>
 #endif
 
-#include <QString>
-#include <QStringList>
-
+class QString;
 enum class ShutdownDialogAction;
 
 /*  Miscellaneous functions that can be useful */
@@ -86,11 +84,6 @@ namespace Utils
         // time duration like "1d 2h 10m".
         QString userFriendlyDuration(qlonglong seconds);
         QString getUserIDString();
-
-        // Convert functions
-        QStringList toStringList(const QList<bool> &l);
-        QList<int> intListfromStringList(const QStringList &l);
-        QList<bool> boolListfromStringList(const QStringList &l);
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();

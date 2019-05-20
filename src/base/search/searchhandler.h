@@ -32,6 +32,7 @@
 #include <QByteArray>
 #include <QList>
 #include <QObject>
+#include <QString>
 
 class QProcess;
 class QTimer;

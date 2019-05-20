@@ -30,15 +30,16 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QDateTime>
 #include <QList>
-#include <QNetworkCookie>
-#include <QSize>
 #include <QStringList>
-#include <QTime>
-#include <QVariant>
 
 #include "base/utils/net.h"
+
+class QDateTime;
+class QNetworkCookie;
+class QSize;
+class QTime;
+class QVariant;
 
 enum SchedulerDays
 {
@@ -73,8 +74,6 @@ namespace DNS
         NONE = -1
     };
 }
-
-class SettingsStorage;
 
 class Preferences : public QObject
 {

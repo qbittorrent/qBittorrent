@@ -29,14 +29,15 @@
 #ifndef BITTORRENT_MAGNETURI_H
 #define BITTORRENT_MAGNETURI_H
 
+#include <libtorrent/add_torrent_params.hpp>
+
 #include <QList>
 #include <QString>
-#include <QUrl>
-
-#include <libtorrent/add_torrent_params.hpp>
 
 #include "infohash.h"
 #include "trackerentry.h"
+
+class QUrl;
 
 namespace BitTorrent
 {

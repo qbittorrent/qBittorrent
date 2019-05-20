@@ -29,6 +29,7 @@
 #include "transferlistdelegate.h"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QModelIndex>
 #include <QPainter>
 #include <QStyleOptionViewItem>
@@ -37,7 +38,6 @@
 #include <QProxyStyle>
 #endif
 
-#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/types.h"

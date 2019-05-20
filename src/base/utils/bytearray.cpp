@@ -28,15 +28,17 @@
 
 #include "bytearray.h"
 
-#include <QList>
+#include <QByteArray>
 
-QList<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const QString::SplitBehavior behavior)
+QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const QString::SplitBehavior behavior)
 {
     if (sep.isEmpty())
         return {in};
 
-    QList<QByteArray> ret;
-
+    QVector<QByteArray> ret;
+    ret.reserve((behavior == QString::KeepEmptyParts)
+                ? (1 + (in.size() / sep.size()))
+                : (1 + (in.size() / (sep.size() + 1))));
     int head = 0;
     while (head < in.size()) {
         int end = in.indexOf(sep, head);

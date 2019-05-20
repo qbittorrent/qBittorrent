@@ -341,7 +341,7 @@ void ScanFoldersModel::configure()
 {
     const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
-    for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
+    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
         if (i.value().type() == QVariant::Int)
             addPath(i.key(), static_cast<PathType>(i.value().toInt()), QString());
         else

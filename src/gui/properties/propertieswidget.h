@@ -29,14 +29,13 @@
 #ifndef PROPERTIESWIDGET_H
 #define PROPERTIESWIDGET_H
 
-#include <QShortcut>
+#include <QList>
 #include <QWidget>
 
 #include "base/bittorrent/torrenthandle.h"
 
-class QAction;
 class QPushButton;
-class QTimer;
+class QShortcut;
 class QTreeView;
 
 class DownloadedPiecesBar;
@@ -45,8 +44,6 @@ class PeerListWidget;
 class PieceAvailabilityBar;
 class PropListDelegate;
 class PropTabBar;
-class SpeedWidget;
-class torrent_file;
 class TorrentContentFilterModel;
 class TrackerListWidget;
 
