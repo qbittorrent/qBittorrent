@@ -76,6 +76,7 @@ MagnetUri::MagnetUri(const QString &source)
     m_hash = m_addTorrentParams.info_hash;
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
+    m_trackers.reserve(m_addTorrentParams.trackers.size());
     for (const std::string &tracker : m_addTorrentParams.trackers)
         m_trackers.append(lt::announce_entry {tracker});
 
@@ -98,7 +99,7 @@ QString MagnetUri::name() const
     return m_name;
 }
 
-QList<TrackerEntry> MagnetUri::trackers() const
+QVector<TrackerEntry> MagnetUri::trackers() const
 {
     return m_trackers;
 }

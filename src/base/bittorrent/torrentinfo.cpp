@@ -264,15 +264,18 @@ qlonglong TorrentInfo::fileOffset(const int index) const
     return m_nativeInfo->files().file_offset(LTFileIndex {index});
 }
 
-QList<TrackerEntry> TorrentInfo::trackers() const
+QVector<TrackerEntry> TorrentInfo::trackers() const
 {
     if (!isValid()) return {};
 
-    QList<TrackerEntry> trackers;
-    for (const lt::announce_entry &tracker : m_nativeInfo->trackers())
-        trackers.append(tracker);
+    const std::vector<lt::announce_entry> trackers = m_nativeInfo->trackers();
 
-    return trackers;
+    QVector<TrackerEntry> ret;
+    ret.reserve(trackers.size());
+
+    for (const lt::announce_entry &tracker : trackers)
+        ret.append(tracker);
+    return ret;
 }
 
 QList<QUrl> TorrentInfo::urlSeeds() const

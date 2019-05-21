@@ -47,6 +47,7 @@ namespace BitTorrent
             NotWorking = 4
         };
 
+        TrackerEntry() = default;
         TrackerEntry(const QString &url);
         TrackerEntry(const lt::announce_entry &nativeEntry);
         TrackerEntry(const TrackerEntry &other) = default;

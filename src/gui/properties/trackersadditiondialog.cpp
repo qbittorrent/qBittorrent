@@ -89,12 +89,11 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         return;
     }
 
-    // Load from torrent handle
-    QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
-    // Load from current user list
-    const QStringList tmp = m_ui->textEditTrackersList->toPlainText().split('\n');
-    for (const QString &userURL : tmp) {
-        BitTorrent::TrackerEntry userTracker(userURL);
+    const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split('\n');
+    QVector<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
+    existingTrackers.reserve(trackersFromUser.size());
+    for (const QString &userURL : trackersFromUser) {
+        const BitTorrent::TrackerEntry userTracker(userURL);
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;
     }

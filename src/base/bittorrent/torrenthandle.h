@@ -37,6 +37,7 @@
 #include <libtorrent/torrent_status.hpp>
 
 #include <QHash>
+#include <QList>
 #include <QObject>
 #include <QQueue>
 #include <QSet>
@@ -260,7 +261,7 @@ namespace BitTorrent
         bool hasError() const;
         bool hasFilteredPieces() const;
         int queuePosition() const;
-        QList<TrackerEntry> trackers() const;
+        QVector<TrackerEntry> trackers() const;
         QHash<QString, TrackerInfo> trackerInfos() const;
         QList<QUrl> urlSeeds() const;
         QString error() const;
@@ -323,8 +324,8 @@ namespace BitTorrent
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
         void flushCache();
-        void addTrackers(const QList<TrackerEntry> &trackers);
-        void replaceTrackers(const QList<TrackerEntry> &trackers);
+        void addTrackers(const QVector<TrackerEntry> &trackers);
+        void replaceTrackers(const QVector<TrackerEntry> &trackers);
         void addUrlSeeds(const QList<QUrl> &urlSeeds);
         void removeUrlSeeds(const QList<QUrl> &urlSeeds);
         bool connectPeer(const PeerAddress &peerAddress);
@@ -388,7 +389,6 @@ namespace BitTorrent
         void move_impl(QString path, bool overwrite);
         void moveStorage(const QString &newPath, bool overwrite);
         void manageIncompleteFiles();
-        bool addTracker(const TrackerEntry &tracker);
         bool addUrlSeed(const QUrl &urlSeed);
         bool removeUrlSeed(const QUrl &urlSeed);
         void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});

@@ -604,7 +604,7 @@ void TorrentsController::addTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QList<BitTorrent::TrackerEntry> trackers;
+    QVector<BitTorrent::TrackerEntry> trackers;
     for (const QString &urlStr : asConst(params()["urls"].split('\n'))) {
         const QUrl url {urlStr.trimmed()};
         if (url.isValid())
@@ -632,7 +632,7 @@ void TorrentsController::editTrackerAction()
     if (!newTrackerUrl.isValid())
         throw APIError(APIErrorType::BadParams, "New tracker URL is invalid");
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     bool match = false;
     for (BitTorrent::TrackerEntry &tracker : trackers) {
         const QUrl trackerUrl(tracker.url());
@@ -649,6 +649,7 @@ void TorrentsController::editTrackerAction()
         throw APIError(APIErrorType::Conflict, "Tracker not found");
 
     torrent->replaceTrackers(trackers);
+
     if (!torrent->isPaused())
         torrent->forceReannounce();
 }
@@ -664,8 +665,9 @@ void TorrentsController::removeTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QList<BitTorrent::TrackerEntry> remainingTrackers;
-    const QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    QVector<BitTorrent::TrackerEntry> remainingTrackers;
+    remainingTrackers.reserve(trackers.size());
     for (const BitTorrent::TrackerEntry &entry : trackers) {
         if (!urls.contains(entry.url()))
             remainingTrackers.push_back(entry);
@@ -675,6 +677,7 @@ void TorrentsController::removeTrackersAction()
         throw APIError(APIErrorType::Conflict, "No trackers were removed");
 
     torrent->replaceTrackers(remainingTrackers);
+
     if (!torrent->isPaused())
         torrent->forceReannounce();
 }

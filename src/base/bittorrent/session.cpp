@@ -3336,7 +3336,7 @@ void Session::handleTorrentSavingModeChanged(TorrentHandle *const torrent)
     emit torrentSavingModeChanged(torrent);
 }
 
-void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers)
+void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QVector<TrackerEntry> &newTrackers)
 {
     saveTorrentResumeData(torrent);
 
@@ -3348,7 +3348,7 @@ void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QLi
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QList<TrackerEntry> &deletedTrackers)
+void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QVector<TrackerEntry> &deletedTrackers)
 {
     saveTorrentResumeData(torrent);
 
