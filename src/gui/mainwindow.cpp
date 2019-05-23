@@ -1158,8 +1158,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #else
     const bool goToSystrayOnExit = pref->closeToTray();
     if (!m_forceExit && m_systrayIcon && goToSystrayOnExit && !this->isHidden()) {
-        hide();
-        e->accept();
+        e->ignore();
+        QTimer::singleShot(0, this, &QWidget::hide);
         if (!pref->closeToTrayNotified()) {
             showNotificationBaloon(tr("qBittorrent is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
             pref->setCloseToTrayNotified(true);

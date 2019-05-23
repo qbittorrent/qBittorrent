@@ -526,20 +526,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     m_request = request;
     m_env = env;
     m_params.clear();
+
     if (m_request.method == Http::METHOD_GET) {
-        // Parse GET parameters
-        using namespace Utils::ByteArray;
-        for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
-            const int sepPos = param.indexOf('=');
-            if (sepPos <= 0) continue; // ignores params without name
-
-            const QByteArray nameComponent = midView(param, 0, sepPos);
-            const QByteArray valueComponent = midView(param, (sepPos + 1));
-
-            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent));
-            m_params[paramName] = paramValue;
-        }
+        for (auto iter = m_request.query.cbegin(); iter != m_request.query.cend(); ++iter)
+            m_params[iter.key()] = QString::fromUtf8(iter.value());
     }
     else {
         m_params = m_request.posts;

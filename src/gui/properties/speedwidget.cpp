@@ -72,6 +72,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("5 Minutes"));
     m_periodCombobox->addItem(tr("30 Minutes"));
     m_periodCombobox->addItem(tr("6 Hours"));
+    m_periodCombobox->addItem(tr("12 Hours"));
+    m_periodCombobox->addItem(tr("24 Hours"));
 
     connect(m_periodCombobox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
         , this, &SpeedWidget::onPeriodChange);
@@ -154,7 +156,7 @@ void SpeedWidget::update()
 
 void SpeedWidget::onPeriodChange(int period)
 {
-    m_plot->setViewableLastPoints(static_cast<SpeedPlotView::TimePeriod>(period));
+    m_plot->setPeriod(static_cast<SpeedPlotView::TimePeriod>(period));
 }
 
 void SpeedWidget::onGraphChange(int id)
