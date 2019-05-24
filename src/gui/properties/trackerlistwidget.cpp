@@ -184,9 +184,10 @@ void TrackerListWidget::moveSelectionUp()
 
     setSelectionModel(selection);
     // Update torrent trackers
-    QList<BitTorrent::TrackerEntry> trackers;
+    QVector<BitTorrent::TrackerEntry> trackers;
+    trackers.reserve(topLevelItemCount());
     for (int i = NB_STICKY_ITEM; i < topLevelItemCount(); ++i) {
-        QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
+        const QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
         BitTorrent::TrackerEntry e(trackerURL);
         e.setTier(i - NB_STICKY_ITEM);
         trackers.append(e);
@@ -225,9 +226,10 @@ void TrackerListWidget::moveSelectionDown()
 
     setSelectionModel(selection);
     // Update torrent trackers
-    QList<BitTorrent::TrackerEntry> trackers;
+    QVector<BitTorrent::TrackerEntry> trackers;
+    trackers.reserve(topLevelItemCount());
     for (int i = NB_STICKY_ITEM; i < topLevelItemCount(); ++i) {
-        QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
+        const QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
         BitTorrent::TrackerEntry e(trackerURL);
         e.setTier(i - NB_STICKY_ITEM);
         trackers.append(e);
@@ -388,7 +390,7 @@ void TrackerListWidget::askForTrackers()
     BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    QList<BitTorrent::TrackerEntry> trackers;
+    QVector<BitTorrent::TrackerEntry> trackers;
     for (const QString &tracker : asConst(TrackersAdditionDialog::askForTrackers(this, torrent)))
         trackers << tracker;
 
@@ -430,14 +432,17 @@ void TrackerListWidget::deleteSelectedTrackers()
     }
 
     // Iterate over the trackers and remove the selected ones
-    QList<BitTorrent::TrackerEntry> remainingTrackers;
-    const QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    QVector<BitTorrent::TrackerEntry> remainingTrackers;
+    remainingTrackers.reserve(trackers.size());
+
     for (const BitTorrent::TrackerEntry &entry : trackers) {
         if (!urlsToRemove.contains(entry.url()))
             remainingTrackers.push_back(entry);
     }
 
     torrent->replaceTrackers(remainingTrackers);
+
     if (!torrent->isPaused())
         torrent->forceReannounce();
 }
@@ -451,10 +456,10 @@ void TrackerListWidget::editSelectedTracker()
     if (selectedTrackerItems.isEmpty()) return;
 
     // During multi-select only process item selected last
-    QUrl trackerURL = selectedTrackerItems.last()->text(COL_URL);
+    const QUrl trackerURL = selectedTrackerItems.last()->text(COL_URL);
 
     bool ok;
-    QUrl newTrackerURL = AutoExpandableDialog::getText(this, tr("Tracker editing"), tr("Tracker URL:"),
+    const QUrl newTrackerURL = AutoExpandableDialog::getText(this, tr("Tracker editing"), tr("Tracker URL:"),
                                                          QLineEdit::Normal, trackerURL.toString(), &ok).trimmed();
     if (!ok) return;
 
@@ -464,23 +469,24 @@ void TrackerListWidget::editSelectedTracker()
     }
     if (newTrackerURL == trackerURL) return;
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     bool match = false;
-    for (auto &entry : trackers) {
+    for (BitTorrent::TrackerEntry &entry : trackers) {
         if (newTrackerURL == QUrl(entry.url())) {
             QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
             return;
         }
 
-        if (trackerURL == QUrl(entry.url()) && !match) {
+        if (!match && (trackerURL == QUrl(entry.url()))) {
+            match = true;
             BitTorrent::TrackerEntry newEntry(newTrackerURL.toString());
             newEntry.setTier(entry.tier());
-            match = true;
             entry = newEntry;
         }
     }
 
     torrent->replaceTrackers(trackers);
+
     if (!torrent->isPaused())
         torrent->forceReannounce();
 }
@@ -493,7 +499,7 @@ void TrackerListWidget::reannounceSelected()
     BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
 
     for (const QTreeWidgetItem *item : selItems) {
         // DHT case

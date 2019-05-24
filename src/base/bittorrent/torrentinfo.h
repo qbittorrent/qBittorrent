@@ -88,7 +88,7 @@ namespace BitTorrent
         QString origFilePath(int index) const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QList<TrackerEntry> trackers() const;
+        QVector<TrackerEntry> trackers() const;
         QList<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;

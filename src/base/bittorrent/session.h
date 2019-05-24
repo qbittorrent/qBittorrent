@@ -436,8 +436,8 @@ namespace BitTorrent
         void handleTorrentResumed(TorrentHandle *const torrent);
         void handleTorrentChecked(TorrentHandle *const torrent);
         void handleTorrentFinished(TorrentHandle *const torrent);
-        void handleTorrentTrackersAdded(TorrentHandle *const torrent, const QList<TrackerEntry> &newTrackers);
-        void handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QList<TrackerEntry> &deletedTrackers);
+        void handleTorrentTrackersAdded(TorrentHandle *const torrent, const QVector<TrackerEntry> &newTrackers);
+        void handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QVector<TrackerEntry> &deletedTrackers);
         void handleTorrentTrackersChanged(TorrentHandle *const torrent);
         void handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds);
@@ -474,8 +474,8 @@ namespace BitTorrent
         void recursiveTorrentDownloadPossible(BitTorrent::TorrentHandle *const torrent);
         void speedLimitModeChanged(bool alternative);
         void IPFilterParsed(bool error, int ruleCount);
-        void trackersAdded(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-        void trackersRemoved(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+        void trackersAdded(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
+        void trackersRemoved(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
         void trackersChanged(BitTorrent::TorrentHandle *const torrent);
         void trackerlessStateChanged(BitTorrent::TorrentHandle *const torrent, bool trackerless);
         void downloadFromUrlFailed(const QString &url, const QString &reason);
@@ -669,7 +669,7 @@ namespace BitTorrent
 
         int m_numResumeData;
         int m_extraLimit;
-        QList<BitTorrent::TrackerEntry> m_additionalTrackerList;
+        QVector<BitTorrent::TrackerEntry> m_additionalTrackerList;
         QString m_resumeFolderPath;
         QFile m_resumeFolderLock;
         bool m_useProxy;

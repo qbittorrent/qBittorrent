@@ -386,14 +386,14 @@ void TorrentHandle::setAutoManaged(const bool enable)
 #endif
 }
 
-QList<TrackerEntry> TorrentHandle::trackers() const
+QVector<TrackerEntry> TorrentHandle::trackers() const
 {
-    QList<TrackerEntry> entries;
     const std::vector<lt::announce_entry> announces = m_nativeHandle.trackers();
 
+    QVector<TrackerEntry> entries;
+    entries.reserve(announces.size());
     for (const lt::announce_entry &tracker : announces)
         entries << tracker;
-
     return entries;
 }
 
@@ -402,51 +402,53 @@ QHash<QString, TrackerInfo> TorrentHandle::trackerInfos() const
     return m_trackerInfos;
 }
 
-void TorrentHandle::addTrackers(const QList<TrackerEntry> &trackers)
+void TorrentHandle::addTrackers(const QVector<TrackerEntry> &trackers)
 {
-    QList<TrackerEntry> addedTrackers;
+    const QVector<TrackerEntry> currentTrackers = this->trackers();
+
+    QVector<TrackerEntry> newTrackers;
+    newTrackers.reserve(trackers.size());
+
     for (const TrackerEntry &tracker : trackers) {
-        if (addTracker(tracker))
-            addedTrackers << tracker;
+        if (!currentTrackers.contains(tracker)) {
+            m_nativeHandle.add_tracker(tracker.nativeEntry());
+            newTrackers << tracker;
+        }
     }
 
-    if (!addedTrackers.isEmpty())
-        m_session->handleTorrentTrackersAdded(this, addedTrackers);
+    if (!newTrackers.isEmpty())
+        m_session->handleTorrentTrackersAdded(this, newTrackers);
 }
 
-void TorrentHandle::replaceTrackers(const QList<TrackerEntry> &trackers)
+void TorrentHandle::replaceTrackers(const QVector<TrackerEntry> &trackers)
 {
-    QList<TrackerEntry> existingTrackers = this->trackers();
-    QList<TrackerEntry> addedTrackers;
+    QVector<TrackerEntry> currentTrackers = this->trackers();
+
+    QVector<TrackerEntry> newTrackers;
+    newTrackers.reserve(trackers.size());
 
     std::vector<lt::announce_entry> announces;
+
     for (const TrackerEntry &tracker : trackers) {
-        announces.push_back(tracker.nativeEntry());
-        if (!existingTrackers.contains(tracker))
-            addedTrackers << tracker;
-        else
-            existingTrackers.removeOne(tracker);
+        announces.emplace_back(tracker.nativeEntry());
+
+        if (!currentTrackers.removeOne(tracker))
+            newTrackers << tracker;
     }
 
     m_nativeHandle.replace_trackers(announces);
-    if (addedTrackers.isEmpty() && existingTrackers.isEmpty()) {
+
+    if (newTrackers.isEmpty() && currentTrackers.isEmpty()) {
+        // when existing tracker reorders
         m_session->handleTorrentTrackersChanged(this);
     }
     else {
-        if (!existingTrackers.isEmpty())
-            m_session->handleTorrentTrackersRemoved(this, existingTrackers);
-        if (!addedTrackers.isEmpty())
-            m_session->handleTorrentTrackersAdded(this, addedTrackers);
+        if (!currentTrackers.isEmpty())
+            m_session->handleTorrentTrackersRemoved(this, currentTrackers);
+
+        if (!newTrackers.isEmpty())
+            m_session->handleTorrentTrackersAdded(this, newTrackers);
     }
-}
-
-bool TorrentHandle::addTracker(const TrackerEntry &tracker)
-{
-    if (trackers().contains(tracker))
-        return false;
-
-    m_nativeHandle.add_tracker(tracker.nativeEntry());
-    return true;
 }
 
 QList<QUrl> TorrentHandle::urlSeeds() const

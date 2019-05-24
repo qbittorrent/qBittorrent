@@ -148,8 +148,8 @@ public:
     void setDownloadTrackerFavicon(bool value);
 
 public slots:
-    void addTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void addTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
+    void removeTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void changeTrackerless(BitTorrent::TorrentHandle *const torrent, bool trackerless);
     void trackerSuccess(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
     void trackerWarning(BitTorrent::TorrentHandle *const torrent, const QString &tracker);

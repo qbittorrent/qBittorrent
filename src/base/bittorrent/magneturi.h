@@ -33,6 +33,7 @@
 
 #include <QList>
 #include <QString>
+#include <QVector>
 
 #include "infohash.h"
 #include "trackerentry.h"
@@ -49,7 +50,7 @@ namespace BitTorrent
         bool isValid() const;
         InfoHash hash() const;
         QString name() const;
-        QList<TrackerEntry> trackers() const;
+        QVector<TrackerEntry> trackers() const;
         QList<QUrl> urlSeeds() const;
         QString url() const;
 
@@ -60,7 +61,7 @@ namespace BitTorrent
         QString m_url;
         InfoHash m_hash;
         QString m_name;
-        QList<TrackerEntry> m_trackers;
+        QVector<TrackerEntry> m_trackers;
         QList<QUrl> m_urlSeeds;
         lt::add_torrent_params m_addTorrentParams;
     };
