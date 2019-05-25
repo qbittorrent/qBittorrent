@@ -116,11 +116,10 @@ int TrackerEntry::numSeeds() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_complete;
 #else
-    int max = -1;
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_incomplete;
+    int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
-        max = std::max(max, endpoint.scrape_complete);
-    return max;
+        value = std::max(value, endpoint.scrape_complete);
+    return value;
 #endif
 }
 
@@ -129,11 +128,10 @@ int TrackerEntry::numLeeches() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_incomplete;
 #else
-    int max = -1;
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_incomplete;
+    int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
-        max = std::max(max, endpoint.scrape_incomplete);
-    return max;
+        value = std::max(value, endpoint.scrape_incomplete);
+    return value;
 #endif
 }
 
@@ -142,11 +140,10 @@ int TrackerEntry::numDownloaded() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_downloaded;
 #else
-    int max = -1;
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_incomplete;
+    int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
-        max = std::max(max, endpoint.scrape_downloaded);
-    return max;
+        value = std::max(value, endpoint.scrape_downloaded);
+    return value;
 #endif
 }
 
