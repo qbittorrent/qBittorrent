@@ -30,10 +30,13 @@
 
 #include <QCheckBox>
 #include <QDebug>
+#include <QGuiApplication>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
+#include <QPainter>
 #include <QScrollArea>
+#include <QStyleOptionButton>
 #include <QUrl>
 #include <QVBoxLayout>
 
@@ -66,6 +69,30 @@ namespace
             scheme = "http";
         return scheme;
     }
+
+    class ArrowCheckBox : public QCheckBox
+    {
+    public:
+        using QCheckBox::QCheckBox;
+
+    private:
+        void paintEvent(QPaintEvent *) override
+        {
+            QPainter painter(this);
+
+            QStyleOption indicatorOption;
+            indicatorOption.initFrom(this);
+            indicatorOption.rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &indicatorOption, this);
+            style()->drawPrimitive((isChecked() ? QStyle::PE_IndicatorArrowDown
+                                                : (QGuiApplication::isLeftToRight() ? QStyle::PE_IndicatorArrowRight : QStyle::PE_IndicatorArrowLeft))
+                                   , &indicatorOption, &painter, this);
+
+            QStyleOptionButton labelOption;
+            initStyleOption(&labelOption);
+            labelOption.rect = style()->subElementRect(QStyle::SE_CheckBoxContents, &labelOption, this);
+            style()->drawControl(QStyle::CE_CheckBoxLabel, &labelOption, &painter, this);
+        }
+    };
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -575,7 +602,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->addWidget(scroll);
     setLayout(vLayout);
 
-    QCheckBox *statusLabel = new QCheckBox(tr("Status"), this);
+    QCheckBox *statusLabel = new ArrowCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
     frameLayout->addWidget(statusLabel);
@@ -583,7 +610,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     auto *statusFilters = new StatusFilterWidget(this, transferList);
     frameLayout->addWidget(statusFilters);
 
-    QCheckBox *categoryLabel = new QCheckBox(tr("Categories"), this);
+    QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
     categoryLabel->setFont(font);
     connect(categoryLabel, &QCheckBox::toggled, this
@@ -602,7 +629,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     toggleCategoryFilter(pref->getCategoryFilterState());
     frameLayout->addWidget(m_categoryFilterWidget);
 
-    QCheckBox *tagsLabel = new QCheckBox(tr("Tags"), this);
+    QCheckBox *tagsLabel = new ArrowCheckBox(tr("Tags"), this);
     tagsLabel->setChecked(pref->getTagFilterState());
     tagsLabel->setFont(font);
     connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
@@ -620,7 +647,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     toggleTagFilter(pref->getTagFilterState());
     frameLayout->addWidget(m_tagFilterWidget);
 
-    QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
+    QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
     frameLayout->addWidget(trackerLabel);
