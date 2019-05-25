@@ -64,7 +64,7 @@ namespace BitTorrent
         int numLeeches() const;
         int numDownloaded() const;
 
-        lt::announce_entry nativeEntry() const;
+        const lt::announce_entry &nativeEntry() const;
 
     private:
         lt::announce_entry m_nativeEntry;
