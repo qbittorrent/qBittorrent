@@ -11,6 +11,7 @@
 
 #include <algorithm>
 
+#include <QGuiApplication>
 #include <QResizeEvent>
 #include <QStyle>
 #include <QToolButton>
@@ -38,7 +39,10 @@ LineEdit::LineEdit(QWidget *parent)
 void LineEdit::resizeEvent(QResizeEvent *e)
 {
     const int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-    m_searchButton->move(frameWidth, (e->size().height() - m_searchButton->sizeHint().height()) / 2);
+    const int xPos = QGuiApplication::isLeftToRight()
+                     ? frameWidth
+                     : (e->size().width() - m_searchButton->sizeHint().width() - frameWidth);
+    m_searchButton->move(xPos, (e->size().height() - m_searchButton->sizeHint().height()) / 2);
 }
 
 void LineEdit::keyPressEvent(QKeyEvent *event)

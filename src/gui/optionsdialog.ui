@@ -257,19 +257,10 @@
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_7">
-                 <property name="font">
-                  <font>
-                   <weight>50</weight>
-                   <bold>false</bold>
-                  </font>
-                 </property>
                  <property name="title">
                   <string>Action on double-click</string>
                  </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QFormLayout" name="formLayout_3">
+                 <layout class="QGridLayout" name="gridLayout_14">
                   <item row="0" column="0">
                    <widget class="QLabel" name="lblDlList_2">
                     <property name="text">
@@ -279,12 +270,6 @@
                   </item>
                   <item row="0" column="1">
                    <widget class="QComboBox" name="actionTorrentDlOnDblClBox">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
                     <property name="currentIndex">
                      <number>0</number>
                     </property>
@@ -330,6 +315,19 @@
                      </property>
                     </item>
                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_12">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -414,15 +412,15 @@
                    </widget>
                   </item>
                   <item>
-                   <layout class="QFormLayout" name="formLayout_4">
-                    <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <item>
                      <widget class="QLabel" name="labelTrayIconStyle">
                       <property name="text">
                        <string>Tray icon style:</string>
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="1">
+                    <item>
                      <widget class="QComboBox" name="comboTrayIcon">
                       <item>
                        <property name="text">
@@ -440,6 +438,19 @@
                        </property>
                       </item>
                      </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_13">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
                     </item>
                    </layout>
                   </item>
@@ -1278,12 +1289,6 @@
              <layout class="QHBoxLayout" name="horizontalLayout_12">
               <item>
                <widget class="QLabel" name="label_24">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
                 <property name="text">
                  <string>Enabled protocol:</string>
                 </property>
@@ -1307,6 +1312,19 @@
                  </property>
                 </item>
                </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_23">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </item>
@@ -2335,34 +2353,8 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="2">
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
                <item row="0" column="2">
                 <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="2">
-                <spacer name="horizontalSpacer_11">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2386,19 +2378,6 @@
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_13">
-                  <item row="2" column="2">
-                   <spacer name="horizontalSpacer_21">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
                   <item row="0" column="1">
                    <widget class="QSpinBox" name="spinDownloadRateForSlowTorrents">
                     <property name="suffix">
@@ -2452,19 +2431,6 @@
                     </property>
                    </spacer>
                   </item>
-                  <item row="1" column="2">
-                   <spacer name="horizontalSpacer_15">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
                   <item row="2" column="1">
                    <widget class="QSpinBox" name="spinSlowTorrentsInactivityTimer">
                     <property name="suffix">
@@ -2500,76 +2466,7 @@
                <string>Share Ratio Limiting</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_91">
-               <item row="0" column="0" rowspan="3" colspan="3">
-                <widget class="QCheckBox" name="checkMaxRatio">
-                 <property name="text">
-                  <string>Seed torrents until their ratio reaches</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="6" rowspan="2">
-                <spacer name="horizontalSpacer_161">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>109</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="4" column="2">
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>then</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="6">
-                <spacer name="horizontalSpacer_20">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>121</width>
-                   <height>28</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="4" column="1">
-                <spacer name="horizontalSpacer_171">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>100</width>
-                   <height>42</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="3" column="6">
-                <spacer name="horizontalSpacer_191">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="3" column="4">
+               <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxSeedingMinutes">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2588,36 +2485,24 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="4">
-                <widget class="QDoubleSpinBox" name="spinMaxRatio">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignHCenter</set>
-                 </property>
-                 <property name="minimum">
-                  <double>0.000000000000000</double>
-                 </property>
-                 <property name="maximum">
-                  <double>9998.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.050000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>1.000000000000000</double>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0" colspan="4">
+               <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxSeedingMinutes">
                  <property name="text">
                   <string>Seed torrents until their seeding time reaches</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="4">
+               <item row="3" column="0">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>then</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2634,17 +2519,50 @@
                  </item>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkMaxRatio">
+                 <property name="text">
+                  <string>Seed torrents until their ratio reaches</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDoubleSpinBox" name="spinMaxRatio">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignHCenter</set>
+                 </property>
+                 <property name="maximum">
+                  <double>9998.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.050000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
               </layout>
              </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="checkEnableAddTrackers">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="title">
                <string>A&amp;utomatically add these trackers to new downloads:</string>
               </property>
@@ -2736,8 +2654,15 @@
                    <property name="text">
                     <string>Feeds refresh interval:</string>
                    </property>
-                   <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                   <property name="maximum">
+                    <number>9999</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
                    </property>
                   </widget>
                  </item>
@@ -2745,9 +2670,6 @@
                   <widget class="QLabel" name="label_12">
                    <property name="text">
                     <string>Maximum number of articles per feed:</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -2767,17 +2689,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
-                   <property name="maximum">
-                    <number>9999</number>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
+                 <item row="0" column="2">
                   <spacer name="horizontalSpacer_6">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -3011,44 +2923,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <string>Authentication</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_10">
-                  <item row="0" column="1" rowspan="3">
-                   <widget class="QLineEdit" name="textWebUiUsername">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="maxLength">
-                     <number>1000</number>
-                    </property>
-                    <property name="echoMode">
-                     <enum>QLineEdit::Normal</enum>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="textWebUiPassword">
-                    <property name="echoMode">
-                     <enum>QLineEdit::Password</enum>
-                    </property>
-                    <property name="placeholderText">
-                     <string>Change current password</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBypassLocalAuth">
-                    <property name="text">
-                     <string>Bypass authentication for clients on localhost</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBypassAuthSubnetWhitelist">
-                    <property name="text">
-                     <string>Bypass authentication for clients in whitelisted IP subnets</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
+                  <item row="5" column="1">
                    <widget class="QPushButton" name="IPSubnetWhitelistButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -3061,19 +2936,46 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0" rowspan="3">
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="textWebUiPassword">
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Change current password</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBypassLocalAuth">
+                    <property name="text">
+                     <string>Bypass authentication for clients on localhost</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBypassAuthSubnetWhitelist">
+                    <property name="text">
+                     <string>Bypass authentication for clients in whitelisted IP subnets</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" rowspan="2">
                    <widget class="QLabel" name="lblWebUiUsername">
                     <property name="text">
                      <string>Username:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="2" column="0">
                    <widget class="QLabel" name="lblWebUiPassword">
                     <property name="text">
                      <string>Password:</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="1" rowspan="2">
+                   <widget class="QLineEdit" name="textWebUiUsername"/>
                   </item>
                  </layout>
                 </widget>
@@ -3089,15 +2991,15 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_8">
-                  <item row="0" column="0">
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <item>
                    <widget class="QLabel" name="labelWebUIRootFolder">
                     <property name="text">
                      <string>Files location:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
+                  <item>
                    <widget class="FileSystemPathLineEdit" name="textWebUIRootFolder" native="true"/>
                   </item>
                  </layout>
@@ -3337,7 +3239,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkShowSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>
   <tabstop>checkCloseToSystray</tabstop>
-  <tabstop>comboTrayIcon</tabstop>
   <tabstop>checkAssociateTorrents</tabstop>
   <tabstop>checkAssociateMagnetLinks</tabstop>
   <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
@@ -3409,11 +3310,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>spinMaxActiveDownloads</tabstop>
   <tabstop>spinMaxActiveUploads</tabstop>
   <tabstop>spinMaxActiveTorrents</tabstop>
-  <tabstop>checkMaxRatio</tabstop>
-  <tabstop>spinMaxRatio</tabstop>
-  <tabstop>checkMaxSeedingMinutes</tabstop>
-  <tabstop>spinMaxSeedingMinutes</tabstop>
-  <tabstop>comboRatioLimitAct</tabstop>
   <tabstop>checkWebUIUPnP</tabstop>
   <tabstop>checkWebUiHttps</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
