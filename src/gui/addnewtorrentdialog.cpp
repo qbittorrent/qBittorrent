@@ -402,11 +402,9 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
         }
     }
 
-    QString sizeString = torrentSize ? Utils::Misc::friendlyUnit(torrentSize) : QString(tr("Not Available", "This size is unavailable."));
-    sizeString += " (";
-    sizeString += tr("Free space on disk: %1").arg(Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(
-                                                                   m_ui->savePath->selectedPath())));
-    sizeString += ')';
+    const QString sizeString = tr("%1 (Free space on disk: %2)").arg(
+        ((torrentSize > 0) ? Utils::Misc::friendlyUnit(torrentSize) : tr("Not available", "This size is unavailable."))
+        , Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(m_ui->savePath->selectedPath())));
     m_ui->labelSizeData->setText(sizeString);
 }
 

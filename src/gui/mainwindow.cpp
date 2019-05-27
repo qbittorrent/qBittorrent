@@ -1529,20 +1529,23 @@ void MainWindow::updateGUI()
 #ifndef Q_OS_MAC
     if (m_systrayIcon) {
 #ifdef Q_OS_UNIX
-        QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
-        html += "qBittorrent";
-        html += "</div>";
-        html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
-        html += "</div>";
-        html += "<div style='vertical-align: baseline; height: 18px;'>";
-        html += "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;" + tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
-        html += "</div>";
+        const QString html = QString(QLatin1String(
+                "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>"
+                "qBittorrent"
+                "</div>"
+                "<div style='vertical-align: baseline; height: 18px;'>"
+                "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;%1"
+                "</div>"
+                "<div style='vertical-align: baseline; height: 18px;'>"
+                "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
+                "</div>"))
+            .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #else
         // OSes such as Windows do not support html here
-        QString html = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
-        html += '\n';
-        html += tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
+        const QString html = QString("%1\n%2").arg(
+            tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+            , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #endif // Q_OS_UNIX
         m_systrayIcon->setToolTip(html); // tray icon
     }

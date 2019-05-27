@@ -448,15 +448,15 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
     auto article = m_articleListWidget->getRSSArticle(currentItem);
     Q_ASSERT(article);
 
-    QString html;
-    html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
-    html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>" + article->title() + "</div>";
+    QString html =
+        "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>"
+        "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>" + article->title() + "</div>";
     if (article->date().isValid())
         html += "<div style='background-color: #efefef;'><b>" + tr("Date: ") + "</b>" + article->date().toLocalTime().toString(Qt::SystemLocaleLongDate) + "</div>";
     if (!article->author().isEmpty())
         html += "<div style='background-color: #efefef;'><b>" + tr("Author: ") + "</b>" + article->author() + "</div>";
-    html += "</div>";
-    html += "<div style='margin-left: 5px; margin-right: 5px;'>";
+    html += "</div>"
+            "<div style='margin-left: 5px; margin-right: 5px;'>";
     if (Qt::mightBeRichText(article->description())) {
         html += article->description();
     }
