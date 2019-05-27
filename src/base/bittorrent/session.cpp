@@ -386,7 +386,6 @@ Session::Session(QObject *parent)
                     | lt::alert::status_notification
                     | lt::alert::ip_block_notification
                     | lt::alert::performance_warning
-                    | lt::alert::stats_notification
                     | lt::alert::file_progress_notification;
 
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
@@ -4280,12 +4279,15 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
     for (const lt::torrent_status &status : p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
-        if (torrent)
-            torrent->handleStateUpdate(status);
+
+        if (!torrent)
+            continue;
+
+        torrent->handleStateUpdate(status);
     }
 
     m_torrentStatusReport = TorrentStatusReport();
-    for (TorrentHandle *const torrent : asConst(m_torrents)) {
+    for (const TorrentHandle *torrent : asConst(m_torrents)) {
         if (torrent->isDownloading())
             ++m_torrentStatusReport.nbDownloading;
         if (torrent->isUploading())
