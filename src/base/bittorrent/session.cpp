@@ -385,8 +385,9 @@ Session::Session(QObject *parent)
                     | lt::alert::tracker_notification
                     | lt::alert::status_notification
                     | lt::alert::ip_block_notification
-                    | lt::alert::file_progress_notification
-                    | lt::alert::stats_notification;
+                    | lt::alert::performance_warning
+                    | lt::alert::stats_notification
+                    | lt::alert::file_progress_notification;
 
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
     lt::settings_pack pack;
