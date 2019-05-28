@@ -30,7 +30,6 @@
 
 #include <QCheckBox>
 #include <QDebug>
-#include <QGuiApplication>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -80,12 +79,12 @@ namespace
         {
             QPainter painter(this);
 
-            QStyleOption indicatorOption;
+            QStyleOptionViewItem indicatorOption;
             indicatorOption.initFrom(this);
             indicatorOption.rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &indicatorOption, this);
-            style()->drawPrimitive((isChecked() ? QStyle::PE_IndicatorArrowDown
-                                                : (QGuiApplication::isLeftToRight() ? QStyle::PE_IndicatorArrowRight : QStyle::PE_IndicatorArrowLeft))
-                                   , &indicatorOption, &painter, this);
+            indicatorOption.state |= (QStyle::State_Children
+                                      | (isChecked() ? QStyle::State_Open : QStyle::State_None));
+            style()->drawPrimitive(QStyle::PE_IndicatorBranch, &indicatorOption, &painter, this);
 
             QStyleOptionButton labelOption;
             initStyleOption(&labelOption);
