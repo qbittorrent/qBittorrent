@@ -97,18 +97,29 @@ namespace
                 }
                 else if (leftChar.isDigit() && rightChar.isDigit()) {
                     // Both are digits, compare the numbers
-                    const auto consumeNumber = [](const QString &str, int &pos) -> int
+
+                    const auto numberView = [](const QString &str, int &pos) -> QStringRef
                     {
                         const int start = pos;
                         while ((pos < str.size()) && str[pos].isDigit())
                             ++pos;
-                        return str.midRef(start, (pos - start)).toInt();
+                        return str.midRef(start, (pos - start));
                     };
 
-                    const int numL = consumeNumber(left, posL);
-                    const int numR = consumeNumber(right, posR);
-                    if (numL != numR)
-                        return (numL - numR);
+                    const QStringRef numViewL = numberView(left, posL);
+                    const QStringRef numViewR = numberView(right, posR);
+
+                    if (numViewL.length() != numViewR.length())
+                        return (numViewL.length() - numViewR.length());
+
+                    // both string/view has the same length
+                    for (int i = 0; i < numViewL.length(); ++i) {
+                        const QChar numL = numViewL.at(i);
+                        const QChar numR = numViewR.at(i);
+
+                        if (numL != numR)
+                            return (numL.unicode() - numR.unicode());
+                    }
 
                     // String + digits do match and we haven't hit the end of both strings
                     // then continue to consume the remainings
