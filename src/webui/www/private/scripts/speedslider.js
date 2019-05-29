@@ -31,11 +31,9 @@
 MochaUI.extend({
     addUpLimitSlider: function(hashes) {
         if ($('uplimitSliderarea')) {
-            const windowOptions = MochaUI.Windows.windowOptions;
-            const sliderFirst = true;
             // Get global upload limit
             let maximum = 500;
-            const req = new Request({
+            new Request({
                 url: 'api/v2/transfer/uploadLimit',
                 method: 'post',
                 data: {},
@@ -58,7 +56,7 @@ MochaUI.extend({
                         let up_limit = maximum;
                         if (up_limit < 0) up_limit = 0;
                         maximum = 10000;
-                        const mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
+                        new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
                             steps: maximum,
                             offset: 0,
                             initialStep: up_limit.round(),
@@ -84,7 +82,7 @@ MochaUI.extend({
                         }
                     }
                     else {
-                        const req = new Request.JSON({
+                        new Request.JSON({
                             url: 'api/v2/torrents/uploadLimit',
                             noCache : true,
                             method: 'post',
@@ -100,7 +98,7 @@ MochaUI.extend({
                                             break;
                                         }
                                     if (up_limit < 0) up_limit = 0;
-                                    const mochaSlide = new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
+                                    new Slider($('uplimitSliderarea'), $('uplimitSliderknob'), {
                                         steps: maximum,
                                         offset: 0,
                                         initialStep: (up_limit / 1024.0).round(),
@@ -135,11 +133,9 @@ MochaUI.extend({
 
     addDlLimitSlider: function(hashes) {
         if ($('dllimitSliderarea')) {
-            const windowOptions = MochaUI.Windows.windowOptions;
-            const sliderFirst = true;
             // Get global upload limit
             let maximum = 500;
-            const req = new Request({
+            new Request({
                 url: 'api/v2/transfer/downloadLimit',
                 method: 'post',
                 data: {},
@@ -162,7 +158,7 @@ MochaUI.extend({
                         let dl_limit = maximum;
                         if (dl_limit < 0) dl_limit = 0;
                         maximum = 10000;
-                        const mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
+                        new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
                             steps: maximum,
                             offset: 0,
                             initialStep: dl_limit.round(),
@@ -188,7 +184,7 @@ MochaUI.extend({
                         }
                     }
                     else {
-                        const req = new Request.JSON({
+                        new Request.JSON({
                             url: 'api/v2/torrents/downloadLimit',
                             noCache : true,
                             method: 'post',
@@ -204,7 +200,7 @@ MochaUI.extend({
                                             break;
                                         }
                                     if (dl_limit < 0) dl_limit = 0;
-                                    const mochaSlide = new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
+                                    new Slider($('dllimitSliderarea'), $('dllimitSliderknob'), {
                                         steps: maximum,
                                         offset: 0,
                                         initialStep: (dl_limit / 1024.0).round(),

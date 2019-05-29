@@ -346,8 +346,6 @@ const torrentFilesContextMenu = new ContextMenu({
         y: 2
     },
     onShow: function() {
-        var selectedRows = torrentFilesTable.selectedRowsIds();
-
         if (is_seed)
             this.hideItem('FilePrio');
         else
