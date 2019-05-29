@@ -28,7 +28,7 @@
 
 'use strict';
 
-let lastShownContexMenu = null;
+let lastShownContextMenu = null;
 const ContextMenu = new Class({
     //implements
     Implements: [Options, Events],
@@ -214,12 +214,12 @@ const ContextMenu = new Class({
 
     //show menu
     show: function(trigger) {
-        if (lastShownContexMenu && lastShownContexMenu != this)
-            lastShownContexMenu.hide();
+        if (lastShownContextMenu && lastShownContextMenu != this)
+            lastShownContextMenu.hide();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
-        lastShownContexMenu = this;
+        lastShownContextMenu = this;
         return this;
     },
 

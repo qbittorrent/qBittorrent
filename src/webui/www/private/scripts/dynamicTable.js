@@ -455,7 +455,7 @@ const DynamicTable = new Class({
         }
     },
 
-    getSortedColunn: function() {
+    getSortedColumn: function() {
         return localStorage.getItem('sorted_column_' + this.dynamicTableDivId);
     },
 

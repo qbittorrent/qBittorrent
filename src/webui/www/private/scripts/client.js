@@ -401,12 +401,12 @@ window.addEvent('load', function() {
         const categoryList = $('categoryFilterList');
         if (!categoryList)
             return;
-        const childrens = categoryList.childNodes;
-        for (let i = 0; i < childrens.length; ++i) {
-            if (childrens[i].id == selected_category)
-                childrens[i].className = "selectedFilter";
+        const children = categoryList.childNodes;
+        for (let i = 0; i < children.length; ++i) {
+            if (children[i].id == selected_category)
+                children[i].className = "selectedFilter";
             else
-                childrens[i].className = "";
+                children[i].className = "";
         }
     };
 

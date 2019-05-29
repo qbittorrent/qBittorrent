@@ -369,5 +369,5 @@ if (tableHeaders.length > 0) {
 }
 
 // default sort by name column
-if (torrentFilesTable.getSortedColunn() === null)
+if (torrentFilesTable.getSortedColumn() === null)
     torrentFilesTable.setSortedColumn('name');
