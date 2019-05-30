@@ -245,7 +245,7 @@ void Net::DownloadManager::applyProxySettings()
 
 void Net::DownloadManager::handleReplyFinished(QNetworkReply *reply)
 {
-    const ServiceID id = ServiceID::fromURL(reply->url());
+    const ServiceID id = ServiceID::fromURL(reply->request().url());
     auto waitingJobsIter = m_waitingJobs.find(id);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty()) {
         m_busyServices.remove(id);
