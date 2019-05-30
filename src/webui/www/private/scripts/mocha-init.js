@@ -53,43 +53,43 @@ if (typeof localStorage == 'undefined') {
 }
 
 function getLocalStorageItem(name, defaultVal) {
-    var val = localStorage.getItem(name);
+    let val = localStorage.getItem(name);
     if (val === null || val === undefined)
         val = defaultVal;
     return val;
 }
 
-var saveWindowSize = function() {};
-var loadWindowWidth = function() {};
-var loadWindowHeight = function() {};
-var showDownloadPage = function() {};
-var globalUploadLimitFN = function() {};
-var uploadLimitFN = function() {};
-var shareRatioFN = function() {};
-var toggleSequentialDownloadFN = function() {};
-var toggleFirstLastPiecePrioFN = function() {};
-var setSuperSeedingFN = function() {};
-var setForceStartFN = function() {};
-var globalDownloadLimitFN = function() {};
-var StatisticsLinkFN = function() {};
-var downloadLimitFN = function() {};
-var deleteFN = function() {};
-var pauseFN = function() {};
-var startFN = function() {};
-var autoTorrentManagementFN = function() {};
-var recheckFN = function() {};
-var reannounceFN = function() {};
-var setLocationFN = function() {};
-var renameFN = function() {};
-var torrentNewCategoryFN = function() {};
-var torrentSetCategoryFN = function() {};
-var createCategoryFN = function() {};
-var editCategoryFN = function() {};
-var removeCategoryFN = function() {};
-var deleteUnusedCategoriesFN = function() {};
-var startTorrentsByCategoryFN = function() {};
-var pauseTorrentsByCategoryFN = function() {};
-var deleteTorrentsByCategoryFN = function() {};
+let saveWindowSize = function() {};
+let loadWindowWidth = function() {};
+let loadWindowHeight = function() {};
+let showDownloadPage = function() {};
+let globalUploadLimitFN = function() {};
+let uploadLimitFN = function() {};
+let shareRatioFN = function() {};
+let toggleSequentialDownloadFN = function() {};
+let toggleFirstLastPiecePrioFN = function() {};
+let setSuperSeedingFN = function() {};
+let setForceStartFN = function() {};
+let globalDownloadLimitFN = function() {};
+let StatisticsLinkFN = function() {};
+let downloadLimitFN = function() {};
+let deleteFN = function() {};
+let pauseFN = function() {};
+let startFN = function() {};
+let autoTorrentManagementFN = function() {};
+let recheckFN = function() {};
+let reannounceFN = function() {};
+let setLocationFN = function() {};
+let renameFN = function() {};
+let torrentNewCategoryFN = function() {};
+let torrentSetCategoryFN = function() {};
+let createCategoryFN = function() {};
+let editCategoryFN = function() {};
+let removeCategoryFN = function() {};
+let deleteUnusedCategoriesFN = function() {};
+let startTorrentsByCategoryFN = function() {};
+let pauseTorrentsByCategoryFN = function() {};
+let deleteTorrentsByCategoryFN = function() {};
 let torrentAddTagsFN = function() {};
 let torrentSetTagsFN = function() {};
 let torrentRemoveAllTagsFN = function() {};
@@ -99,14 +99,14 @@ let deleteUnusedTagsFN = function() {};
 let startTorrentsByTagFN = function() {};
 let pauseTorrentsByTagFN = function() {};
 let deleteTorrentsByTagFN = function() {};
-var copyNameFN = function() {};
-var copyMagnetLinkFN = function() {};
-var copyHashFN = function() {};
-var setQueuePositionFN = function() {};
+let copyNameFN = function() {};
+let copyMagnetLinkFN = function() {};
+let copyHashFN = function() {};
+let setQueuePositionFN = function() {};
 
-var initializeWindows = function() {
+const initializeWindows = function() {
     saveWindowSize = function(windowId) {
-        var size = $(windowId).getSize();
+        const size = $(windowId).getSize();
         localStorage.setItem('window_' + windowId + '_width', size.x);
         localStorage.setItem('window_' + windowId + '_height', size.y);
     };
@@ -133,8 +133,8 @@ var initializeWindows = function() {
     });
 
     showDownloadPage = function(urls) {
-        var id = 'downloadPage';
-        var contentUrl = 'download.html';
+        const id = 'downloadPage';
+        let contentUrl = 'download.html';
         if (urls && urls.length)
             contentUrl += '?urls=' + urls.join("|");
 
@@ -160,7 +160,7 @@ var initializeWindows = function() {
 
     addClickEvent('preferences', function(e) {
         new Event(e).stop();
-        var id = 'preferencesPage';
+        const id = 'preferencesPage';
         new MochaUI.Window({
             id: id,
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
@@ -185,7 +185,7 @@ var initializeWindows = function() {
 
     addClickEvent('upload', function(e) {
         new Event(e).stop();
-        var id = 'uploadPage';
+        const id = 'uploadPage';
         new MochaUI.Window({
             id: id,
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
@@ -222,7 +222,7 @@ var initializeWindows = function() {
     };
 
     uploadLimitFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'uploadLimitPage',
@@ -241,16 +241,16 @@ var initializeWindows = function() {
     };
 
     shareRatioFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            var shareRatio = null;
-            var torrentsHaveSameShareRatio = true;
+            let shareRatio = null;
+            let torrentsHaveSameShareRatio = true;
 
             // check if all selected torrents have same share ratio
-            for (var i = 0; i < hashes.length; ++i) {
-                var hash = hashes[i];
-                var row = torrentsTable.rows[hash].full_data;
-                var origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.max_ratio + "|" + row.max_seeding_time;
+            for (let i = 0; i < hashes.length; ++i) {
+                const hash = hashes[i];
+                const row = torrentsTable.rows[hash].full_data;
+                const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.max_ratio + "|" + row.max_seeding_time;
 
                 // initialize value
                 if (shareRatio === null)
@@ -263,7 +263,7 @@ var initializeWindows = function() {
             }
 
             // if all torrents have same share ratio, display that share ratio. else use the default
-            var orig = torrentsHaveSameShareRatio ? shareRatio : "";
+            const orig = torrentsHaveSameShareRatio ? shareRatio : "";
             new MochaUI.Window({
                 id: 'shareRatioPage',
                 title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
@@ -280,7 +280,7 @@ var initializeWindows = function() {
     };
 
     toggleSequentialDownloadFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/toggleSequentialDownload',
@@ -294,7 +294,7 @@ var initializeWindows = function() {
     };
 
     toggleFirstLastPiecePrioFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/toggleFirstLastPiecePrio',
@@ -308,7 +308,7 @@ var initializeWindows = function() {
     };
 
     setSuperSeedingFN = function(val) {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/setSuperSeeding',
@@ -323,7 +323,7 @@ var initializeWindows = function() {
     };
 
     setForceStartFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/setForceStart',
@@ -354,7 +354,7 @@ var initializeWindows = function() {
     };
 
     StatisticsLinkFN = function() {
-        var id = 'statisticspage';
+        const id = 'statisticspage';
         new MochaUI.Window({
             id: id,
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
@@ -371,7 +371,7 @@ var initializeWindows = function() {
     };
 
     downloadLimitFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'downloadLimitPage',
@@ -390,7 +390,7 @@ var initializeWindows = function() {
     };
 
     deleteFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -414,7 +414,7 @@ var initializeWindows = function() {
     });
 
     pauseFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -428,7 +428,7 @@ var initializeWindows = function() {
     };
 
     startFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/resume',
@@ -442,11 +442,11 @@ var initializeWindows = function() {
     };
 
     autoTorrentManagementFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            var enable = false;
+            let enable = false;
             hashes.each(function(hash, index) {
-                var row = torrentsTable.rows[hash];
+                const row = torrentsTable.rows[hash];
                 if (!row.full_data.auto_tmm)
                     enable = true;
             });
@@ -463,7 +463,7 @@ var initializeWindows = function() {
     };
 
     recheckFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/recheck',
@@ -477,7 +477,7 @@ var initializeWindows = function() {
     };
 
     reannounceFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/reannounce',
@@ -491,11 +491,11 @@ var initializeWindows = function() {
     };
 
     setLocationFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            var hash = hashes[0];
-            var row = torrentsTable.rows[hash];
-            var path = encodeURIComponent(row.full_data.save_path);
+            const hash = hashes[0];
+            const row = torrentsTable.rows[hash];
+            const path = encodeURIComponent(row.full_data.save_path);
             new MochaUI.Window({
                 id: 'setLocationPage',
                 title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
@@ -513,10 +513,10 @@ var initializeWindows = function() {
     };
 
     renameFN = function() {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length == 1) {
-            var hash = hashes[0];
-            var row = torrentsTable.rows[hash];
+            const hash = hashes[0];
+            const row = torrentsTable.rows[hash];
             if (row) {
                 new MochaUI.Window({
                     id: 'renamePage',
@@ -536,8 +536,8 @@ var initializeWindows = function() {
     };
 
     torrentNewCategoryFN = function() {
-        var action = "set";
-        var hashes = torrentsTable.selectedRowsIds();
+        const action = "set";
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'newCategoryPage',
@@ -556,10 +556,10 @@ var initializeWindows = function() {
     };
 
     torrentSetCategoryFN = function(categoryHash) {
-        var categoryName = '';
+        let categoryName = '';
         if (categoryHash != 0)
             categoryName = category_list[categoryHash].name;
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/setCategory',
@@ -573,7 +573,7 @@ var initializeWindows = function() {
     };
 
     createCategoryFN = function() {
-        var action = "create";
+        const action = "create";
         new MochaUI.Window({
             id: 'newCategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
@@ -591,9 +591,9 @@ var initializeWindows = function() {
     };
 
     editCategoryFN = function(categoryHash) {
-        var action = "edit";
-        var categoryName = category_list[categoryHash].name;
-        var savePath = category_list[categoryHash].savePath;
+        const action = "edit";
+        const categoryName = category_list[categoryHash].name;
+        const savePath = category_list[categoryHash].savePath;
         new MochaUI.Window({
             id: 'editCategoryPage',
             title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
@@ -611,7 +611,7 @@ var initializeWindows = function() {
     };
 
     removeCategoryFN = function(categoryHash) {
-        var categoryName = category_list[categoryHash].name;
+        const categoryName = category_list[categoryHash].name;
         new Request({
             url: 'api/v2/torrents/removeCategories',
             method: 'post',
@@ -623,8 +623,8 @@ var initializeWindows = function() {
     };
 
     deleteUnusedCategoriesFN = function() {
-        var categories = [];
-        for (var hash in category_list) {
+        const categories = [];
+        for (const hash in category_list) {
             if (torrentsTable.getFilteredTorrentsNumber('all', hash, TAGS_ALL) === 0)
                 categories.push(category_list[hash].name);
         }
@@ -639,7 +639,7 @@ var initializeWindows = function() {
     };
 
     startTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/resume',
@@ -653,7 +653,7 @@ var initializeWindows = function() {
     };
 
     pauseTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -667,7 +667,7 @@ var initializeWindows = function() {
     };
 
     deleteTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -827,12 +827,12 @@ var initializeWindows = function() {
     };
 
     copyNameFN = function() {
-        var selectedRows = torrentsTable.selectedRowsIds();
-        var names = [];
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const names = [];
         if (selectedRows.length) {
-            var rows = torrentsTable.getFilteredAndSortedRows();
-            for (var i = 0; i < selectedRows.length; ++i) {
-                var hash = selectedRows[i];
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (let i = 0; i < selectedRows.length; ++i) {
+                const hash = selectedRows[i];
                 names.push(rows[hash].full_data.name);
             }
         }
@@ -840,12 +840,12 @@ var initializeWindows = function() {
     };
 
     copyMagnetLinkFN = function() {
-        var selectedRows = torrentsTable.selectedRowsIds();
-        var magnets = [];
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const magnets = [];
         if (selectedRows.length) {
-            var rows = torrentsTable.getFilteredAndSortedRows();
-            for (var i = 0; i < selectedRows.length; ++i) {
-                var hash = selectedRows[i];
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (let i = 0; i < selectedRows.length; ++i) {
+                const hash = selectedRows[i];
                 magnets.push(rows[hash].full_data.magnet_uri);
             }
         }
@@ -873,7 +873,7 @@ var initializeWindows = function() {
     ['pause', 'resume', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
-            var hashes = torrentsTable.selectedRowsIds();
+            const hashes = torrentsTable.selectedRowsIds();
             if (hashes.length) {
                 hashes.each(function(hash, index) {
                     new Request({
@@ -897,7 +897,7 @@ var initializeWindows = function() {
     });
 
     setQueuePositionFN = function(cmd) {
-        var hashes = torrentsTable.selectedRowsIds();
+        const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/' + cmd,
@@ -912,7 +912,7 @@ var initializeWindows = function() {
 
     addClickEvent('about', function(e) {
         new Event(e).stop();
-        var id = 'aboutpage';
+        const id = 'aboutpage';
         new MochaUI.Window({
             id: id,
             title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',

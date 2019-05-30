@@ -32,7 +32,7 @@
             $('trackersUrls').focus();
             $('addTrackersButton').addEvent('click', function(e) {
                 new Event(e).stop();
-                var hash = new URI().getData('hash');
+                const hash = new URI().getData('hash');
                 new Request({
                     url: 'api/v2/torrents/addTrackers',
                     method: 'post',

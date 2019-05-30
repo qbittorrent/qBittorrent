@@ -153,42 +153,42 @@
 <script>
     'use strict';
 
-    var loadSearchResultsTimer;
-    var loadSearchPluginsTimer;
-    var searchResultsRowId = 0;
-    var searchRunning = false;
-    var requestCount = 0;
-    var searchPlugins = [];
-    var prevSearchPluginsResponse;
-    var searchPattern = "";
-    var searchFilterPattern = "";
-    var searchSeedsFilter = {
+    let loadSearchResultsTimer;
+    let loadSearchPluginsTimer;
+    let searchResultsRowId = 0;
+    let searchRunning = false;
+    let requestCount = 0;
+    let searchPlugins = [];
+    let prevSearchPluginsResponse;
+    let searchPattern = "";
+    let searchFilterPattern = "";
+    const searchSeedsFilter = {
         min: 0,
         max: 0
     };
-    var searchSizeFilter = {
+    const searchSizeFilter = {
         min: 0.00,
         minUnit: 2, // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
         max: 0.00,
         maxUnit: 3
     };
-    var prevNameFilterValue;
-    var selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
-    var selectedPlugin = "all";
-    var prevSelectedPlugin;
-    var activeSearchId = null;
+    let prevNameFilterValue;
+    let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
+    let selectedPlugin = "all";
+    let prevSelectedPlugin;
+    let activeSearchId = null;
 
-    var initSearchTab = function() {
+    const initSearchTab = function() {
         // load "Search in" preference from local storage
         $('searchInTorrentName').set('value', (localStorage.getItem('search_in_filter') === "names") ? "names" : "everywhere");
 
         searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', null);
         getPlugins();
 
-        var searchInNameFilterTimer = null;
+        let searchInNameFilterTimer = null;
         // listen for changes to searchInNameFilter
         $('searchInNameFilter').addEvent('input', function() {
-            var value = $('searchInNameFilter').get("value");
+            const value = $('searchInNameFilter').get("value");
             if (value !== prevNameFilterValue) {
                 prevNameFilterValue = value;
                 clearTimeout(searchInNameFilterTimer);
@@ -206,7 +206,7 @@
                     // accept enter key as a click
                     new Event(e).stop();
 
-                    var elem = e.event.srcElement;
+                    const elem = e.event.srcElement;
                     if (elem.className.contains("searchInputField")) {
                         $('startSearchButton').click();
                         return;
@@ -231,7 +231,7 @@
         }).activate();
     };
 
-    var startSearch = function(pattern, category, plugins) {
+    const startSearch = function(pattern, category, plugins) {
         clearTimeout(loadSearchResultsTimer);
         searchResultsTable.clear();
         $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
@@ -239,7 +239,7 @@
         searchResultsRowId = 0;
         requestCount = 0;
 
-        var url = new URI('api/v2/search/start');
+        const url = new URI('api/v2/search/start');
         new Request.JSON({
             url: url,
             noCache: true,
@@ -258,8 +258,8 @@
         }).send();
     };
 
-    var stopSearch = function() {
-        var url = new URI('api/v2/search/stop');
+    const stopSearch = function() {
+        const url = new URI('api/v2/search/stop');
         new Request({
             url: url,
             noCache: true,
@@ -273,11 +273,11 @@
         }).send();
     };
 
-    var startStopSearch = function() {
+    const startStopSearch = function() {
         if (!searchRunning || !activeSearchId) {
-            var pattern = $('searchPattern').getProperty('value').trim();
-            var category = $('categorySelect').getProperty('value');
-            var plugins = $('pluginsSelect').getProperty('value');
+            const pattern = $('searchPattern').getProperty('value').trim();
+            let category = $('categorySelect').getProperty('value');
+            const plugins = $('pluginsSelect').getProperty('value');
 
             if (!pattern || !category || !plugins) return;
             if (category === "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]")
@@ -293,22 +293,22 @@
         }
     };
 
-    var openSearchTorrentDescription = function() {
+    const openSearchTorrentDescription = function() {
         searchResultsTable.selectedRowsIds().each(function(rowId) {
             window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
         });
     };
 
-    var copySearchTorrentUrl = function() {
-        var urls = [];
+    const copySearchTorrentUrl = function() {
+        const urls = [];
         searchResultsTable.selectedRowsIds().each(function(rowId) {
             urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
         });
         return urls.join("\n");
     };
 
-    var downloadSearchTorrent = function() {
-        var urls = [];
+    const downloadSearchTorrent = function() {
+        const urls = [];
         searchResultsTable.selectedRowsIds().each(function(rowId) {
             urls.push(encodeURIComponent(searchResultsTable.rows.get(rowId).full_data.fileUrl));
         });
@@ -319,8 +319,8 @@
         showDownloadPage(urls);
     };
 
-    var manageSearchPlugins = function() {
-        var id = 'searchPlugins';
+    const manageSearchPlugins = function() {
+        const id = 'searchPlugins';
         if (!$(id))
             new MochaUI.Window({
                 id: id,
@@ -345,16 +345,16 @@
             });
     };
 
-    var loadSearchPlugins = function() {
+    const loadSearchPlugins = function() {
         getPlugins();
         loadSearchPluginsTimer = loadSearchPlugins.delay(2000);
     };
 
-    var categorySelected = function() {
+    const categorySelected = function() {
         selectedCategory = $("categorySelect").get("value");
     };
 
-    var pluginSelected = function() {
+    const pluginSelected = function() {
         selectedPlugin = $("pluginsSelect").get("value");
 
         if (selectedPlugin !== prevSelectedPlugin) {
@@ -363,23 +363,23 @@
         }
     };
 
-    var reselectCategory = function() {
-        for (var i = 0; i < $("categorySelect").options.length; ++i)
+    const reselectCategory = function() {
+        for (let i = 0; i < $("categorySelect").options.length; ++i)
             if ($("categorySelect").options[i].get("value") === selectedCategory)
                 $("categorySelect").options[i].selected = true;
 
         categorySelected();
     };
 
-    var reselectPlugin = function() {
-        for (var i = 0; i < $("pluginsSelect").options.length; ++i)
+    const reselectPlugin = function() {
+        for (let i = 0; i < $("pluginsSelect").options.length; ++i)
             if ($("pluginsSelect").options[i].get("value") === selectedPlugin)
                 $("pluginsSelect").options[i].selected = true;
 
         pluginSelected();
     };
 
-    var resetSearchState = function() {
+    const resetSearchState = function() {
         clearTimeout(loadSearchResultsTimer);
         $('startSearchButton').set('text', 'QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]');
         searchResultsRowId = 0;
@@ -387,9 +387,9 @@
         activeSearchId = null;
     };
 
-    var getSearchCategories = function() {
-        var populateCategorySelect = function(categories) {
-            var categoryHtml = [];
+    const getSearchCategories = function() {
+        const populateCategorySelect = function(categories) {
+            const categoryHtml = [];
             categories.each(function(category) {
                 categoryHtml.push("<option>" + category + "</option>");
             });
@@ -402,9 +402,9 @@
             $('categorySelect').set('html', categoryHtml.join(""));
         };
 
-        var selectedPlugin = $('pluginsSelect').get("value");
+        const selectedPlugin = $('pluginsSelect').get("value");
         if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
-            var url = new URI('api/v2/search/categories');
+            const url = new URI('api/v2/search/categories');
             url.setData('name', selectedPlugin);
             new Request.JSON({
                 url: url,
@@ -416,8 +416,8 @@
             }).send();
         }
         else {
-            var plugins = ["QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]"];
-            var plugin = getPlugin(selectedPlugin);
+            let plugins = ["QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]"];
+            const plugin = getPlugin(selectedPlugin);
             if (plugin !== null)
                 plugins = plugins.concat(plugin.supportedCategories);
 
@@ -427,7 +427,7 @@
         reselectCategory();
     };
 
-    var getPlugins = function() {
+    const getPlugins = function() {
         new Request.JSON({
             url: new URI('api/v2/search/plugins'),
             noCache: true,
@@ -437,11 +437,11 @@
                     prevSearchPluginsResponse = response;
                     searchPlugins = response;
 
-                    var pluginsHtml = [];
+                    const pluginsHtml = [];
                     pluginsHtml.push('<option value="enabled">QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
                     pluginsHtml.push('<option value="all">QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
 
-                    var searchPluginsEmpty = (searchPlugins.length === 0);
+                    const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (searchPluginsEmpty) {
                         $('searchResultsNoPlugins').style.display = "block";
                         $('searchResultsFilters').style.display = "none";
@@ -453,9 +453,9 @@
                         $('searchResultsTableContainer').style.display = "block";
 
                         // sort plugins alphabetically
-                        var allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
-                            var a = pluginA.fullName.toLowerCase();
-                            var b = pluginB.fullName.toLowerCase();
+                        const allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
+                            const a = pluginA.fullName.toLowerCase();
+                            const b = pluginB.fullName.toLowerCase();
                             if (a < b) return -1;
                             if (a > b) return 1;
                             return 0;
@@ -489,15 +489,15 @@
         }).send();
     };
 
-    var getPlugin = function(name) {
-        for (var i = 0; i < searchPlugins.length; ++i)
+    const getPlugin = function(name) {
+        for (let i = 0; i < searchPlugins.length; ++i)
             if (searchPlugins[i].name === name)
                 return searchPlugins[i];
 
         return null;
     };
 
-    var searchInTorrentName = function() {
+    const searchInTorrentName = function() {
         if ($('searchInTorrentName').get('value') === "names")
             localStorage.setItem('search_in_filter', "names");
         else
@@ -506,7 +506,7 @@
         searchFilterChanged();
     };
 
-    var resetFilters = function() {
+    const resetFilters = function() {
         // reset filters
         $('searchMinSeedsFilter').set('value', '0');
         $('searchMaxSeedsFilter').set('value', '0');
@@ -516,14 +516,14 @@
         $('searchMaxSizePrefix').set('value', '3'); // GiB
     };
 
-    var searchSeedsFilterChanged = function() {
+    const searchSeedsFilterChanged = function() {
         searchSeedsFilter.min = $('searchMinSeedsFilter').get('value');
         searchSeedsFilter.max = $('searchMaxSeedsFilter').get('value');
 
         searchFilterChanged();
     };
 
-    var searchSizeFilterChanged = function() {
+    const searchSizeFilterChanged = function() {
         searchSizeFilter.min = $('searchMinSizeFilter').get('value');
         searchSizeFilter.minUnit = $('searchMinSizePrefix').get('value');
         searchSizeFilter.max = $('searchMaxSizeFilter').get('value');
@@ -532,17 +532,17 @@
         searchFilterChanged();
     };
 
-    var searchSizeFilterPrefixChanged = function() {
+    const searchSizeFilterPrefixChanged = function() {
         if (($('searchMinSizeFilter').get('value') != 0) || ($('searchMaxSizeFilter').get('value') != 0))
             searchSizeFilterChanged();
     };
 
-    var searchFilterChanged = function() {
+    const searchFilterChanged = function() {
         searchResultsTable.updateTable();
         $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
     };
 
-    var setupSearchTableEvents = function(enable) {
+    const setupSearchTableEvents = function(enable) {
         if (enable)
             $$(".searchTableRow").each(function(target) {
                 target.addEventListener('dblclick', downloadSearchTorrent, false);
@@ -553,9 +553,9 @@
             });
     };
 
-    var loadSearchResultsData = function() {
-        var maxResults = 500;
-        var url = new URI('api/v2/search/results');
+    const loadSearchResultsData = function() {
+        const maxResults = 500;
+        const url = new URI('api/v2/search/results');
         new Request.JSON({
             url: url,
             noCache: true,
@@ -589,10 +589,10 @@
                     setupSearchTableEvents(false);
 
                     if (response.results) {
-                        var results = response.results;
-                        for (var i = 0; i < results.length; ++i) {
-                            var result = results[i];
-                            var row = {
+                        const results = response.results;
+                        for (let i = 0; i < results.length; ++i) {
+                            const result = results[i];
+                            const row = {
                                 rowId: searchResultsRowId,
                                 descrLink: result.descrLink,
                                 fileName: result.fileName,
@@ -622,7 +622,7 @@
                     setupSearchTableEvents(true);
                 }
 
-                var timeout = 1000;
+                let timeout = 1000;
                 if (requestCount > 30)
                     timeout = 3000;
                 else if (requestCount > 10)
@@ -635,7 +635,7 @@
         }).send();
     };
 
-    var updateSearchResultsData = function() {
+    const updateSearchResultsData = function() {
         clearTimeout(loadSearchResultsTimer);
         loadSearchResultsTimer = loadSearchResultsData.delay(500);
     };

@@ -29,7 +29,7 @@
 <script>
     'use strict';
 
-    var initInstallSearchPlugin = function() {
+    this.initInstallSearchPlugin = function() {
         new Keyboard({
             defaultEventType: 'keydown',
             events: {
@@ -37,7 +37,7 @@
                     // accept enter key as a click
                     new Event(e).stop();
 
-                    var elem = e.event.srcElement;
+                    const elem = e.event.srcElement;
                     if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))
                         newPluginOk();
                     else if (elem.id === "newPluginCancel")
@@ -49,8 +49,8 @@
         $('newPluginPath').select();
     };
 
-    var newPluginOk = function() {
-        var path = $("newPluginPath").get("value").trim();
+    this.newPluginOk = function() {
+        const path = $("newPluginPath").get("value").trim();
         if (path)
             new Request({
                 url: 'api/v2/search/installPlugin',

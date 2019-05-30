@@ -32,7 +32,7 @@
  * JS counterpart of the function in src/misc.cpp
  */
 function friendlyUnit(value, isSpeed) {
-    var units = [
+    const units = [
         "QBT_TR(B)QBT_TR[CONTEXT=misc]",
         "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
         "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
@@ -45,7 +45,7 @@ function friendlyUnit(value, isSpeed) {
     if ((value === undefined) || (value === null) || (value < 0))
         return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
-    var i = 0;
+    let i = 0;
     while (value >= 1024.0 && i < 6) {
         value /= 1024.0;
         ++i;
@@ -57,12 +57,12 @@ function friendlyUnit(value, isSpeed) {
         else return 3; // TiB, PiB, EiB
     }
 
-    var ret;
+    let ret;
     if (i === 0)
         ret = value + " " + units[i];
     else {
-        var precision = friendlyUnitPrecision(i);
-        var offset = Math.pow(10, precision);
+        const precision = friendlyUnitPrecision(i);
+        const offset = Math.pow(10, precision);
         // Don't round up
         ret = (Math.floor(offset * value) / offset).toFixed(precision) + " " + units[i];
     }
@@ -76,21 +76,21 @@ function friendlyUnit(value, isSpeed) {
  * JS counterpart of the function in src/misc.cpp
  */
 function friendlyDuration(seconds) {
-    var MAX_ETA = 8640000;
+    const MAX_ETA = 8640000;
     if (seconds < 0 || seconds >= MAX_ETA)
         return "∞";
     if (seconds === 0)
         return "0";
     if (seconds < 60)
         return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
-    var minutes = seconds / 60;
+    let minutes = seconds / 60;
     if (minutes < 60)
         return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(minutes));
-    var hours = minutes / 60;
+    let hours = minutes / 60;
     minutes = minutes % 60;
     if (hours < 24)
         return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes));
-    var days = hours / 24;
+    const days = hours / 24;
     hours = hours % 24;
     if (days < 100)
         return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours));
@@ -98,7 +98,7 @@ function friendlyDuration(seconds) {
 }
 
 function friendlyPercentage(value) {
-    var percentage = (value * 100).round(1);
+    let percentage = (value * 100).round(1);
     if (isNaN(percentage) || (percentage < 0))
         percentage = 0;
     if (percentage > 100)
@@ -141,12 +141,12 @@ if (!Date.prototype.toISOString) {
  * JS counterpart of the function in src/misc.cpp
  */
 function parseHtmlLinks(text) {
-    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
     return text.replace(exp, "<a target='_blank' href='$1'>$1</a>");
 }
 
 function escapeHtml(str) {
-    var div = document.createElement('div');
+    const div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
 }

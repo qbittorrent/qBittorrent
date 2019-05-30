@@ -79,11 +79,11 @@
 <script>
     'use strict';
 
-    var searchPluginsTableContextMenu;
-    var prevOffsetLeft;
-    var prevOffsetTop;
+    this.searchPluginsTableContextMenu = undefined;
+    this.prevOffsetLeft = undefined;
+    this.prevOffsetTop = undefined;
 
-    var initSearchPlugins = function() {
+    this.initSearchPlugins = function() {
         searchPluginsTableContextMenu = new SearchPluginsTableContextMenu({
             targets: '.searchPluginsTableRow',
             menu: 'searchPluginsTableMenu',
@@ -97,11 +97,11 @@
         updateSearchPluginsTable();
     };
 
-    var closeSearchWindow = function(id) {
+    this.closeSearchWindow = function(id) {
         window.parent.MochaUI.closeWindow(window.parent.$(id));
     };
 
-    var installPlugin = function(path) {
+    this.installPlugin = function(path) {
         new MochaUI.Window({
             id: 'installSearchPlugin',
             title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
@@ -117,9 +117,9 @@
         });
     };
 
-    var uninstallPlugin = function() {
-        var plugins = searchPluginsTable.selectedRowsIds().join('|');
-        var url = new URI('api/v2/search/uninstallPlugin');
+    this.uninstallPlugin = function() {
+        const plugins = searchPluginsTable.selectedRowsIds().join('|');
+        const url = new URI('api/v2/search/uninstallPlugin');
         new Request({
             url: url,
             noCache: true,
@@ -130,13 +130,13 @@
         }).send();
     };
 
-    var enablePlugin = function() {
-        var plugins = searchPluginsTable.selectedRowsIds();
-        var enable = true;
+    this.enablePlugin = function() {
+        const plugins = searchPluginsTable.selectedRowsIds();
+        let enable = true;
         if (plugins && plugins.length)
             enable = !getPlugin(plugins[0]).enabled;
 
-        var url = new URI('api/v2/search/enablePlugin');
+        const url = new URI('api/v2/search/enablePlugin');
         new Request({
             url: url,
             noCache: true,
@@ -148,8 +148,8 @@
         }).send();
     };
 
-    var checkForUpdates = function() {
-        var url = new URI('api/v2/search/updatePlugins');
+    this.checkForUpdates = function() {
+        const url = new URI('api/v2/search/updatePlugins');
         new Request({
             url: url,
             noCache: true,
@@ -157,7 +157,7 @@
         }).send();
     };
 
-    var calculateContextMenuOffsets = function() {
+    this.calculateContextMenuOffsets = function() {
         prevOffsetLeft = document.getElementById("searchPlugins").getBoundingClientRect().left;
         prevOffsetTop = document.getElementById("searchPlugins").getBoundingClientRect().top;
 
@@ -167,13 +167,13 @@
         };
     };
 
-    var updateSearchPluginsTableContextMenuOffset = function() {
+    this.updateSearchPluginsTableContextMenuOffset = function() {
         // only re-calculate if window has moved
         if ((prevOffsetLeft !== document.getElementById("searchPlugins").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("searchPlugins").getBoundingClientRect().top))
             searchPluginsTableContextMenu.options.offsets = calculateContextMenuOffsets();
     };
 
-    var setupSearchPluginTableEvents = function(enable) {
+    this.setupSearchPluginTableEvents = function(enable) {
         if (enable)
             $$(".searchPluginsTableRow").each(function(target) {
                 target.addEventListener('dblclick', enablePlugin, false);
@@ -186,15 +186,15 @@
             });
     };
 
-    var updateSearchPluginsTable = function() {
+    this.updateSearchPluginsTable = function() {
         // clear event listeners
         setupSearchPluginTableEvents(false);
 
-        var oldPlugins = Object.keys(searchPluginsTable.rows);
+        const oldPlugins = Object.keys(searchPluginsTable.rows);
         // remove old rows from the table
-        for (var i = 0; i < oldPlugins.length; ++i) {
-            var found = false;
-            for (var j = 0; j < searchPlugins.length; ++j) {
+        for (let i = 0; i < oldPlugins.length; ++i) {
+            let found = false;
+            for (let j = 0; j < searchPlugins.length; ++j) {
                 if (searchPlugins[j].name === oldPlugins[i]) {
                     found = true;
                     break;
@@ -204,7 +204,7 @@
                 searchPluginsTable.removeRow(oldPlugins[i]);
         }
 
-        for (var i = 0; i < searchPlugins.length; ++i) {
+        for (let i = 0; i < searchPlugins.length; ++i) {
             searchPlugins[i].rowId = searchPlugins[i].name;
             searchPluginsTable.updateRowData(searchPlugins[i]);
         }

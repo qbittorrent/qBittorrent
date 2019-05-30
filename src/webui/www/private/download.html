@@ -140,9 +140,9 @@
     <script>
         'use strict';
 
-        var encodedUrls = new URI().getData('urls');
+        const encodedUrls = new URI().getData('urls');
         if (encodedUrls) {
-            var urls = [];
+            const urls = [];
             encodedUrls.split('|').each(function(url) {
                 urls.push(decodeURIComponent(url));
             });
@@ -151,7 +151,7 @@
                 $('urls').set('value', urls.join("\n"));
         }
 
-        var submitted = false;
+        let submitted = false;
 
         $('downloadForm').addEventListener("submit", function() {
             $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
