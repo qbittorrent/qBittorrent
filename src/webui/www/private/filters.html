@@ -21,6 +21,13 @@
     <ul class="filterList" id="categoryFilterList">
     </ul>
 </div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('tag');">
+        <img src="images/qbt-theme/go-down.svg">QBT_TR(Tags)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="tagFilterList">
+    </ul>
+</div>
 
 <script>
     'use strict';
@@ -60,9 +67,44 @@
         }
     });
 
+    const tagsFilterContextMenu = new TagsFilterContextMenu({
+        targets: '.tagsFilterContextMenuTarget',
+        menu: 'tagsFilterMenu',
+        actions: {
+            createTag: function(element, ref) {
+                createTagFN();
+            },
+            deleteTag: function(element, ref) {
+                removeTagFN(element.id);
+            },
+            deleteUnusedTags: function(element, ref) {
+                deleteUnusedTagsFN();
+            },
+            startTorrentsByTag: function(element, ref) {
+                startTorrentsByTagFN(element.id);
+            },
+            pauseTorrentsByTag: function(element, ref) {
+                pauseTorrentsByTagFN(element.id);
+            },
+            deleteTorrentsByTag: function(element, ref) {
+                deleteTorrentsByTagFN(element.id);
+            }
+        },
+        offsets: {
+            x: -15,
+            y: 2
+        },
+        onShow: function() {
+            this.options.element.firstChild.click();
+        }
+    });
+
     if (localStorage.getItem('filter_status_collapsed') === "true")
         toggleFilterDisplay('status');
 
     if (localStorage.getItem('filter_category_collapsed') === "true")
         toggleFilterDisplay('category');
+
+    if (localStorage.getItem('filter_tag_collapsed') === "true")
+        toggleFilterDisplay('tag');
 </script>

@@ -18,6 +18,7 @@
         <file>private/index.html</file>
         <file>private/installsearchplugin.html</file>
         <file>private/newcategory.html</file>
+        <file>private/newtag.html</file>
         <file>private/preferences.html</file>
         <file>private/preferences_content.html</file>
         <file>private/properties.html</file>

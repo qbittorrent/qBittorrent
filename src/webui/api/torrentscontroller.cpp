@@ -1041,3 +1041,67 @@ void TorrentsController::categoriesAction()
 
     setResult(categories);
 }
+
+void TorrentsController::addTagsAction()
+{
+    checkParams({"hashes", "tags"});
+
+    const QStringList hashes {params()["hashes"].split('|')};
+    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+
+    for (const QString &tag : tags) {
+        const QString tagTrimmed {tag.trimmed()};
+        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::TorrentHandle *const torrent)
+        {
+            torrent->addTag(tagTrimmed);
+        });
+    }
+}
+
+void TorrentsController::removeTagsAction()
+{
+    checkParams({"hashes"});
+
+    const QStringList hashes {params()["hashes"].split('|')};
+    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+
+    for (const QString &tag : tags) {
+        const QString tagTrimmed {tag.trimmed()};
+        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::TorrentHandle *const torrent)
+        {
+            torrent->removeTag(tagTrimmed);
+        });
+    }
+
+    if (tags.isEmpty()) {
+        applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent)
+        {
+            torrent->removeAllTags();
+        });
+    }
+}
+
+void TorrentsController::createTagsAction()
+{
+    checkParams({"tags"});
+
+    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+
+    for (const QString &tag : tags)
+        BitTorrent::Session::instance()->addTag(tag.trimmed());
+}
+
+void TorrentsController::deleteTagsAction()
+{
+    checkParams({"tags"});
+
+    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+    for (const QString &tag : tags)
+        BitTorrent::Session::instance()->removeTag(tag.trimmed());
+}
+
+void TorrentsController::tagsAction()
+{
+    const QStringList tags = BitTorrent::Session::instance()->tags().toList();
+    setResult(QJsonArray::fromStringList(tags));
+}

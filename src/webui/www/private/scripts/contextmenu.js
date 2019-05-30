@@ -293,6 +293,7 @@ var TorrentsTableContextMenu = new Class({
         var all_are_super_seeding = true;
         var all_are_auto_tmm = true;
         var there_are_auto_tmm = false;
+        const tagsSelectionState = Object.clone(tagList);
 
         var h = torrentsTable.selectedRowsIds();
         h.each(function(item, index) {
@@ -327,6 +328,18 @@ var TorrentsTableContextMenu = new Class({
                 there_are_auto_tmm = true;
             else
                 all_are_auto_tmm = false;
+
+            const torrentTags = data['tags'].split(', ');
+            for (const key in tagsSelectionState) {
+                const tag = tagsSelectionState[key];
+                const tagExists = torrentTags.contains(tag.name);
+                if ((tag.checked !== undefined) && (tag.checked != tagExists))
+                    tag.indeterminate = true;
+                if (tag.checked === undefined)
+                    tag.checked = tagExists;
+                else
+                    tag.checked = tag.checked && tagExists;
+            }
         });
 
         var show_seq_dl = true;
@@ -389,6 +402,13 @@ var TorrentsTableContextMenu = new Class({
             this.setItemChecked('autoTorrentManagement', all_are_auto_tmm);
         }
 
+        const contextTagList = $('contextTagList');
+        for (const tagHash in tagList) {
+            const checkbox = contextTagList.getElement('a[href=#Tag/' + tagHash + '] input[type=checkbox]');
+            const checkboxState = tagsSelectionState[tagHash];
+            checkbox.indeterminate = checkboxState.indeterminate;
+            checkbox.checked = checkboxState.checked;
+        }
     },
 
     updateCategoriesSubMenu: function(category_list) {
@@ -419,6 +439,43 @@ var TorrentsTableContextMenu = new Class({
             }
             categoryList.appendChild(el);
         });
+    },
+
+    updateTagsSubMenu: function(tagList) {
+        const contextTagList = $('contextTagList');
+        while (contextTagList.firstChild !== null)
+            contextTagList.removeChild(contextTagList.firstChild);
+
+        contextTagList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentAddTagsFN();">'
+                + '<img src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                + ' QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]'
+                + '</a>'
+        }));
+        contextTagList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentRemoveAllTagsFN();">'
+                + '<img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                + ' QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]'
+                + '</a>'
+        }));
+
+        const sortedTags = [];
+        for (const key in tagList)
+            sortedTags.push(tagList[key].name);
+        sortedTags.sort();
+
+        for (let i = 0; i < sortedTags.length; ++i) {
+            const tagName = sortedTags[i];
+            const tagHash = genHash(tagName);
+            const el = new Element('li', {
+                html: '<a href="#Tag/' + tagHash + '" onclick="event.preventDefault(); torrentSetTagsFN(\'' + tagHash + '\', !event.currentTarget.getElement(\'input[type=checkbox]\').checked);">'
+                    + '<input type="checkbox" onclick="this.checked = !this.checked;"> ' + escapeHtml(tagName)
+                    + '</a>'
+            });
+            if (i === 0)
+                el.addClass('separator');
+            contextTagList.appendChild(el);
+        }
     }
 });
 
@@ -434,6 +491,17 @@ var CategoriesFilterContextMenu = new Class({
             this.hideItem('editCategory');
             this.hideItem('deleteCategory');
         }
+    }
+});
+
+const TagsFilterContextMenu = new Class({
+    Extends: ContextMenu,
+    updateMenuItems: function() {
+        const id = this.options.element.id;
+        if ((id !== TAGS_ALL.toString()) && (id !== TAGS_UNTAGGED.toString()))
+            this.showItem('deleteTag');
+        else
+            this.hideItem('deleteTag');
     }
 });
 

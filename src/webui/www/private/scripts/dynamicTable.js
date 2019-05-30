@@ -1183,7 +1183,7 @@ var TorrentsTable = new Class({
         };
     },
 
-    applyFilter: function(row, filterName, categoryHash, filterTerms) {
+    applyFilter: function(row, filterName, categoryHash, tagHash, filterTerms) {
         var state = row['full_data'].state;
         var name = row['full_data'].name.toLowerCase();
         var inactive = false;
@@ -1242,6 +1242,28 @@ var TorrentsTable = new Class({
             }
         }
 
+        const tagHashInt = parseInt(tagHash);
+        const isNumber = !isNaN(tagHashInt);
+        if (isNumber) {
+            switch (tagHashInt) {
+                case TAGS_ALL:
+                    break;  // do nothing
+
+                case TAGS_UNTAGGED:
+                    if (row['full_data'].tags.length !== 0)
+                        return false;
+                    break;  // do nothing
+
+                default:
+                    let rowTags = row['full_data'].tags.split(', ');
+                    rowTags = rowTags.map(function(tag) {
+                        return genHash(tag);
+                    });
+                    if (!rowTags.contains(tagHashInt))
+                        return false;
+            }
+        }
+
         if (filterTerms) {
             for (var i = 0; i < filterTerms.length; ++i) {
                 if (name.indexOf(filterTerms[i]) === -1)
@@ -1252,21 +1274,21 @@ var TorrentsTable = new Class({
         return true;
     },
 
-    getFilteredTorrentsNumber: function(filterName, categoryHash) {
+    getFilteredTorrentsNumber: function(filterName, categoryHash, tagHash) {
         var cnt = 0;
         var rows = this.rows.getValues();
 
         for (var i = 0; i < rows.length; ++i)
-            if (this.applyFilter(rows[i], filterName, categoryHash, null)) ++cnt;
+            if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, null)) ++cnt;
         return cnt;
     },
 
-    getFilteredTorrentsHashes: function(filterName, categoryHash) {
+    getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash) {
         var rowsHashes = [];
         var rows = this.rows.getValues();
 
         for (var i = 0; i < rows.length; ++i)
-            if (this.applyFilter(rows[i], filterName, categoryHash, null))
+            if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, null))
                 rowsHashes.push(rows[i]['rowId']);
 
         return rowsHashes;
@@ -1280,7 +1302,7 @@ var TorrentsTable = new Class({
         var filterTerms = (filterText.length > 0) ? filterText.split(" ") : null;
 
         for (var i = 0; i < rows.length; ++i) {
-            if (this.applyFilter(rows[i], selected_filter, selected_category, filterTerms)) {
+            if (this.applyFilter(rows[i], selected_filter, selected_category, selectedTag, filterTerms)) {
                 filteredRows.push(rows[i]);
                 filteredRows[rows[i].rowId] = rows[i];
             }

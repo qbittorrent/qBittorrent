@@ -90,6 +90,15 @@ var deleteUnusedCategoriesFN = function() {};
 var startTorrentsByCategoryFN = function() {};
 var pauseTorrentsByCategoryFN = function() {};
 var deleteTorrentsByCategoryFN = function() {};
+let torrentAddTagsFN = function() {};
+let torrentSetTagsFN = function() {};
+let torrentRemoveAllTagsFN = function() {};
+let createTagFN = function() {};
+let removeTagFN = function() {};
+let deleteUnusedTagsFN = function() {};
+let startTorrentsByTagFN = function() {};
+let pauseTorrentsByTagFN = function() {};
+let deleteTorrentsByTagFN = function() {};
 var copyNameFN = function() {};
 var copyMagnetLinkFN = function() {};
 var copyHashFN = function() {};
@@ -616,7 +625,7 @@ var initializeWindows = function() {
     deleteUnusedCategoriesFN = function() {
         var categories = [];
         for (var hash in category_list) {
-            if (torrentsTable.getFilteredTorrentsNumber('all', hash) === 0)
+            if (torrentsTable.getFilteredTorrentsNumber('all', hash, TAGS_ALL) === 0)
                 categories.push(category_list[hash].name);
         }
         new Request({
@@ -630,7 +639,7 @@ var initializeWindows = function() {
     };
 
     startTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/resume',
@@ -644,7 +653,7 @@ var initializeWindows = function() {
     };
 
     pauseTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -658,7 +667,148 @@ var initializeWindows = function() {
     };
 
     deleteTorrentsByCategoryFN = function(categoryHash) {
-        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash);
+        var hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        if (hashes.length) {
+            new MochaUI.Window({
+                id: 'confirmDeletionPage',
+                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                loadMethod: 'iframe',
+                contentURL: 'confirmdeletion.html?hashes=' + hashes.join("|"),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                padding: 10,
+                width: 424,
+                height: 140
+            });
+            updateMainData();
+        }
+    };
+
+    torrentAddTagsFN = function() {
+        const action = "set";
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new MochaUI.Window({
+                id: 'newTagPage',
+                title: "QBT_TR(Add Tags)QBT_TR[CONTEXT=TransferListWidget]",
+                loadMethod: 'iframe',
+                contentURL: 'newtag.html?action=' + action + '&hashes=' + hashes.join('|'),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 250,
+                height: 100
+            });
+        }
+    };
+
+    torrentSetTagsFN = function(tagHash, isSet) {
+        const tagName = ((tagHash === '0') ? '' : tagList[tagHash].name);
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new Request({
+                url: (isSet ? 'api/v2/torrents/addTags' : 'api/v2/torrents/removeTags'),
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                    tags: tagName,
+                }
+            }).send();
+        }
+    };
+
+    torrentRemoveAllTagsFN = function() {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            new Request({
+                url: ('api/v2/torrents/removeTags'),
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|"),
+                }
+            }).send();
+        }
+    };
+
+    createTagFN = function() {
+        const action = "create";
+        new MochaUI.Window({
+            id: 'newTagPage',
+            title: "QBT_TR(New Tag)QBT_TR[CONTEXT=TagFilterWidget]",
+            loadMethod: 'iframe',
+            contentURL: 'newtag.html?action=' + action,
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 100
+        });
+        updateMainData();
+    };
+
+    removeTagFN = function(tagHash) {
+        const tagName = tagList[tagHash].name;
+        new Request({
+            url: 'api/v2/torrents/deleteTags',
+            method: 'post',
+            data: {
+                tags: tagName
+            }
+        }).send();
+        setTagFilter(TAGS_ALL);
+    };
+
+    deleteUnusedTagsFN = function() {
+        const tags = [];
+        for (const hash in tagList) {
+            if (torrentsTable.getFilteredTorrentsNumber('all', CATEGORIES_ALL, hash) === 0)
+                tags.push(tagList[hash].name);
+        }
+        new Request({
+            url: 'api/v2/torrents/deleteTags',
+            method: 'post',
+            data: {
+                tags: tags.join(',')
+            }
+        }).send();
+        setTagFilter(TAGS_ALL);
+    };
+
+    startTorrentsByTagFN = function(tagHash) {
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/resume',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    pauseTorrentsByTagFN = function(tagHash) {
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/pause',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    deleteTorrentsByTagFN = function(tagHash) {
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
