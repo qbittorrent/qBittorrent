@@ -1835,6 +1835,12 @@ void TorrentHandle::handleMetadataReceivedAlert(const lt::metadata_received_aler
     }
 }
 
+void TorrentHandle::handlePerformanceAlert(const lt::performance_alert *p) const
+{
+    LogMsg((tr("Performance alert: ") + QString::fromStdString(p->message()))
+           , Log::INFO);
+}
+
 void TorrentHandle::handleTempPathChanged()
 {
     adjustActualSavePath();
@@ -1906,6 +1912,9 @@ void TorrentHandle::handleAlert(const lt::alert *a)
         break;
     case lt::torrent_checked_alert::alert_type:
         handleTorrentCheckedAlert(static_cast<const lt::torrent_checked_alert*>(a));
+        break;
+    case lt::performance_alert::alert_type:
+        handlePerformanceAlert(static_cast<const lt::performance_alert*>(a));
         break;
     }
 }

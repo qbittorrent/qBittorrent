@@ -360,23 +360,24 @@ namespace BitTorrent
         void updateState();
         void updateTorrentInfo();
 
+        void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
+        void handleFileCompletedAlert(const lt::file_completed_alert *p);
+        void handleFileRenamedAlert(const lt::file_renamed_alert *p);
+        void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
+        void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
+        void handlePerformanceAlert(const lt::performance_alert *p) const;
+        void handleSaveResumeDataAlert(const lt::save_resume_data_alert *p);
+        void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p);
+        void handleStatsAlert(const lt::stats_alert *p);
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
-        void handleTrackerReplyAlert(const lt::tracker_reply_alert *p);
-        void handleTrackerWarningAlert(const lt::tracker_warning_alert *p);
-        void handleTrackerErrorAlert(const lt::tracker_error_alert *p);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *p);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *p);
         void handleTorrentPausedAlert(const lt::torrent_paused_alert *p);
         void handleTorrentResumedAlert(const lt::torrent_resumed_alert *p);
-        void handleSaveResumeDataAlert(const lt::save_resume_data_alert *p);
-        void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p);
-        void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
-        void handleFileRenamedAlert(const lt::file_renamed_alert *p);
-        void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
-        void handleFileCompletedAlert(const lt::file_completed_alert *p);
-        void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
-        void handleStatsAlert(const lt::stats_alert *p);
+        void handleTrackerErrorAlert(const lt::tracker_error_alert *p);
+        void handleTrackerReplyAlert(const lt::tracker_reply_alert *p);
+        void handleTrackerWarningAlert(const lt::tracker_warning_alert *p);
 
         void resume_impl(bool forced);
         bool isMoveInProgress() const;
