@@ -1799,14 +1799,6 @@ void TorrentHandle::handleFileCompletedAlert(const lt::file_completed_alert *p)
     }
 }
 
-void TorrentHandle::handleStatsAlert(const lt::stats_alert *p)
-{
-    Q_ASSERT(p->interval >= 1000);
-    const SpeedSample transferred(p->transferred[lt::stats_alert::download_payload] * 1000LL / p->interval,
-            p->transferred[lt::stats_alert::upload_payload] * 1000LL / p->interval);
-    m_speedMonitor.addSample(transferred);
-}
-
 void TorrentHandle::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
@@ -1862,9 +1854,6 @@ void TorrentHandle::handleAppendExtensionToggled()
 void TorrentHandle::handleAlert(const lt::alert *a)
 {
     switch (a->type()) {
-    case lt::stats_alert::alert_type:
-        handleStatsAlert(static_cast<const lt::stats_alert*>(a));
-        break;
     case lt::file_renamed_alert::alert_type:
         handleFileRenamedAlert(static_cast<const lt::file_renamed_alert*>(a));
         break;
@@ -2013,6 +2002,9 @@ void TorrentHandle::updateStatus(const lt::torrent_status &nativeStatus)
         m_unchecked = false;
     else if (isDownloading())
         m_unchecked = true;
+
+    m_speedMonitor.addSample({nativeStatus.download_payload_rate
+        , nativeStatus.upload_payload_rate});
 }
 
 void TorrentHandle::setRatioLimit(qreal limit)

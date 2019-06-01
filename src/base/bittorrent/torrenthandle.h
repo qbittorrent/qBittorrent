@@ -368,7 +368,6 @@ namespace BitTorrent
         void handlePerformanceAlert(const lt::performance_alert *p) const;
         void handleSaveResumeDataAlert(const lt::save_resume_data_alert *p);
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p);
-        void handleStatsAlert(const lt::stats_alert *p);
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *p);
