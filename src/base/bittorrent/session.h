@@ -520,7 +520,7 @@ namespace BitTorrent
         void configure(lt::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(lt::settings_pack &settingsPack);
-        void applyBandwidthLimits(lt::settings_pack &settingsPack);
+        void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
         void initMetrics();
         void adjustLimits();
         void applyBandwidthLimits();

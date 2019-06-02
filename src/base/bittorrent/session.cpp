@@ -1042,7 +1042,7 @@ void Session::adjustLimits(lt::settings_pack &settingsPack)
                          , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
 }
 
-void Session::applyBandwidthLimits(lt::settings_pack &settingsPack)
+void Session::applyBandwidthLimits(lt::settings_pack &settingsPack) const
 {
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     settingsPack.set_int(lt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
@@ -1390,17 +1390,19 @@ void Session::configurePeerClasses()
     f.add_rule(lt::address_v4::any()
                , lt::address_v4::broadcast()
                , 1 << lt::session::global_peer_class_id);
-#if TORRENT_USE_IPV6
+
+#if (LIBTORRENT_VERSION_NUM >= 10200) || TORRENT_USE_IPV6
     // IPv6 may not be available on OS and the parsing
     // would result in an exception -> abnormal program termination
     // Affects Windows XP
     try {
-        f.add_rule(lt::address_v6::from_string("::0")
+        f.add_rule(lt::address_v6::any()
                    , lt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << lt::session::global_peer_class_id);
     }
     catch (const std::exception &) {}
-#endif // TORRENT_USE_IPV6
+#endif
+
     if (ignoreLimitsOnLAN()) {
         // local networks
         f.add_rule(lt::address_v4::from_string("10.0.0.0")
@@ -1420,7 +1422,8 @@ void Session::configurePeerClasses()
         f.add_rule(lt::address_v4::from_string("127.0.0.0")
                    , lt::address_v4::from_string("127.255.255.255")
                    , 1 << lt::session::local_peer_class_id);
-#if TORRENT_USE_IPV6
+
+#if (LIBTORRENT_VERSION_NUM >= 10200) || TORRENT_USE_IPV6
         // IPv6 may not be available on OS and the parsing
         // would result in an exception -> abnormal program termination
         // Affects Windows XP
@@ -1434,12 +1437,12 @@ void Session::configurePeerClasses()
                        , lt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                        , 1 << lt::session::local_peer_class_id);
             // loopback
-            f.add_rule(lt::address_v6::from_string("::1")
-                       , lt::address_v6::from_string("::1")
+            f.add_rule(lt::address_v6::loopback()
+                       , lt::address_v6::loopback()
                        , 1 << lt::session::local_peer_class_id);
         }
         catch (const std::exception &) {}
-#endif // TORRENT_USE_IPV6
+#endif
     }
     m_nativeSession->set_peer_class_filter(f);
 
