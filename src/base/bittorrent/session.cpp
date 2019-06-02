@@ -508,7 +508,6 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
-    m_statsUpdateTimer.start();
 
     qDebug("* BitTorrent Session constructed");
 }
@@ -3788,7 +3787,6 @@ void Session::handleAlert(const lt::alert *a)
 {
     try {
         switch (a->type()) {
-        case lt::stats_alert::alert_type:
         case lt::file_renamed_alert::alert_type:
         case lt::file_completed_alert::alert_type:
         case lt::torrent_finished_alert::alert_type:
@@ -4207,7 +4205,9 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 {
-    const qreal interval = m_statsUpdateTimer.restart() / 1000.;
+    const qreal interval = lt::total_milliseconds(p->timestamp() - m_statsLastTimestamp) / 1000.;
+    m_statsLastTimestamp = p->timestamp();
+
 #if (LIBTORRENT_VERSION_NUM < 10200)
     const auto &stats = p->values;
 #else

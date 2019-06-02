@@ -34,7 +34,6 @@
 
 #include <libtorrent/fwd.hpp>
 
-#include <QElapsedTimer>
 #include <QFile>
 #include <QHash>
 #include <QList>
@@ -701,7 +700,7 @@ namespace BitTorrent
         QTimer *m_recentErroredTorrentsTimer;
 
         SessionMetricIndices m_metricIndices;
-        QElapsedTimer m_statsUpdateTimer;
+        lt::time_point m_statsLastTimestamp = lt::clock_type::now();
 
         SessionStatus m_status;
         CacheStatus m_cacheStatus;
