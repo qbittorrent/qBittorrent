@@ -30,7 +30,6 @@
 
 #include <algorithm>
 
-#include <QDir>
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
@@ -51,8 +50,8 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/global.h"
-#include "base/utils/misc.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
@@ -64,12 +63,6 @@
 
 namespace
 {
-    QIcon getDirectoryIcon()
-    {
-        static QIcon cached = GuiIconProvider::instance()->getIcon("inode-directory");
-        return cached;
-    }
-
     class UnifiedFileIconProvider : public QFileIconProvider
     {
     public:
@@ -359,7 +352,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
-            return getDirectoryIcon();
+            return m_fileIconProvider->icon(QFileIconProvider::Folder);
 
         return m_fileIconProvider->icon(QFileInfo(item->name()));
     }
