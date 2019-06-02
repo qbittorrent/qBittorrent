@@ -59,6 +59,7 @@
 #include "base/profile.h"
 #include "base/tristatebool.h"
 #include "base/utils/fs.h"
+#include "downloadpriority.h"
 #include "peerinfo.h"
 #include "session.h"
 #include "trackerentry.h"

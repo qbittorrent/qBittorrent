@@ -37,6 +37,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QShortcut>
 #include <QStandardItemModel>
 #include <QString>
 

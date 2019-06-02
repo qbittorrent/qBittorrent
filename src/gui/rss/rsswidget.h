@@ -32,8 +32,9 @@
 #define RSSWIDGET_H
 
 #include <QPointer>
-#include <QShortcut>
+#include <QWidget>
 
+class QShortcut;
 class ArticleListWidget;
 class FeedListWidget;
 class QListWidgetItem;

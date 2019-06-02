@@ -30,14 +30,14 @@
 #define CATEGORYFILTERMODEL_H
 
 #include <QAbstractItemModel>
-#include <QModelIndex>
+
+class QModelIndex;
+class CategoryModelItem;
 
 namespace BitTorrent
 {
     class TorrentHandle;
 }
-
-class CategoryModelItem;
 
 class CategoryFilterModel : public QAbstractItemModel
 {

@@ -28,6 +28,8 @@
 
 #include "searchcontroller.h"
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QSharedPointer>
 
 #include "base/global.h"
@@ -37,6 +39,7 @@
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "apierror.h"
+#include "isessionmanager.h"
 
 class SearchPluginManager;
 

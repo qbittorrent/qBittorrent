@@ -31,13 +31,13 @@
 #define PREFERENCES_H
 
 #include <QList>
-#include <QStringList>
 
 #include "base/utils/net.h"
 
 class QDateTime;
 class QNetworkCookie;
 class QSize;
+class QStringList;
 class QTime;
 class QVariant;
 

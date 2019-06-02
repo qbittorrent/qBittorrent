@@ -29,6 +29,7 @@
 #include "propertieswidget.h"
 
 #include <QAction>
+#include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>

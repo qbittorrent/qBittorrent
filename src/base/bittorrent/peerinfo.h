@@ -31,9 +31,10 @@
 
 #include <libtorrent/peer_info.hpp>
 
-#include <QBitArray>
 #include <QCoreApplication>
 #include <QHostAddress>
+
+class QBitArray;
 
 namespace BitTorrent
 {

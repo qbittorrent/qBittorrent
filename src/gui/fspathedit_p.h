@@ -29,20 +29,19 @@
 #ifndef QBT_GUI_FSPATHEDIT_P_H
 #define QBT_GUI_FSPATHEDIT_P_H
 
-#include <QAction>
 #include <QComboBox>
-#include <QCompleter>
-#include <QContextMenuEvent>
 #include <QFileIconProvider>
-#include <QFileSystemModel>
-#include <QKeyEvent>
 #include <QLineEdit>
-#include <QMenu>
-#include <QStringRef>
 #include <QValidator>
 #include <QVector>
 
+class QAction;
+class QCompleter;
+class QContextMenuEvent;
+class QFileSystemModel;
+class QKeyEvent;
 class QStringList;
+class QStringRef;
 
 namespace Private
 {

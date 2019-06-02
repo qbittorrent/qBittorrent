@@ -31,8 +31,9 @@
 #include <QMap>
 #include <QObject>
 #include <QSet>
-#include <QString>
 #include <QVariant>
+
+class QString;
 
 struct ISessionManager;
 using StringMap = QMap<QString, QString>;

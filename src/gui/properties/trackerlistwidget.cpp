@@ -30,12 +30,14 @@
 
 #include <QAction>
 #include <QApplication>
+#include <QClipboard>
 #include <QColor>
 #include <QDebug>
 #include <QHash>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
+#include <QShortcut>
 #include <QStringList>
 #include <QTableView>
 #include <QTreeWidgetItem>

@@ -49,6 +49,7 @@
 #endif
 
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"

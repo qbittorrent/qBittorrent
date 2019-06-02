@@ -29,8 +29,12 @@
 #ifndef TORRENTCONTENTMODELFOLDER_H
 #define TORRENTCONTENTMODELFOLDER_H
 
-#include "base/bittorrent/downloadpriority.h"
 #include "torrentcontentmodelitem.h"
+
+namespace BitTorrent
+{
+    enum class DownloadPriority;
+}
 
 class TorrentContentModelFolder : public TorrentContentModelItem
 {

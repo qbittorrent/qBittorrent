@@ -29,6 +29,7 @@
 #include "searchsortmodel.h"
 
 #include "base/global.h"
+#include "base/utils/string.h"
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)

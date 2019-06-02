@@ -31,8 +31,8 @@
 #define UTILS_STRING_H
 
 #include <QLatin1String>
-#include <QString>
 
+class QString;
 class TriStateBool;
 
 namespace Utils

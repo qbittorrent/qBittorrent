@@ -45,7 +45,6 @@
 #include <QVector>
 
 #include "private/speedmonitor.h"
-#include "downloadpriority.h"
 #include "infohash.h"
 #include "torrentinfo.h"
 
@@ -58,6 +57,7 @@ class QUrl;
 
 namespace BitTorrent
 {
+    enum class DownloadPriority;
     class PeerInfo;
     class Session;
     class TrackerEntry;

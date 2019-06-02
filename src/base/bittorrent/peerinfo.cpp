@@ -28,6 +28,8 @@
 
 #include "peerinfo.h"
 
+#include <QBitArray>
+
 #include "base/bittorrent/torrenthandle.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
