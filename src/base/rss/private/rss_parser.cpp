@@ -583,6 +583,7 @@ void Parser::parse_impl(const QByteArray &feedData)
 
     emit finished(m_result);
     m_result.articles.clear(); // clear articles only
+    m_articleIDs.clear();
 }
 
 void Parser::parseRssArticle(QXmlStreamReader &xml)
@@ -774,6 +775,20 @@ void Parser::addArticle(QVariantHash article)
     if (localId.toString().isEmpty())
         localId = article.value(Article::KeyTitle);
 
-    if (!localId.toString().isEmpty())
-        m_result.articles.prepend(article);
+    if (localId.toString().isEmpty()) {
+        // The article could not be uniquely identified
+        // since it has no appropriate data.
+        // Just ignore it.
+        return;
+    }
+
+    if (m_articleIDs.contains(localId.toString())) {
+        // The article could not be uniquely identified
+        // since the Feed has duplicate identifiers.
+        // Just ignore it.
+        return;
+    }
+
+    m_articleIDs.insert(localId.toString());
+    m_result.articles.prepend(article);
 }
