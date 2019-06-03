@@ -31,7 +31,6 @@
 #ifndef RSSWIDGET_H
 #define RSSWIDGET_H
 
-#include <QPointer>
 #include <QWidget>
 
 class QShortcut;

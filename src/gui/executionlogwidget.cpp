@@ -28,7 +28,6 @@
 
 #include "executionlogwidget.h"
 
-#include <QColor>
 #include <QDateTime>
 #include <QPalette>
 

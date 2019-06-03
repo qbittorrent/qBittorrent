@@ -30,7 +30,6 @@
 #include "geoipmanager.h"
 
 #include <QDateTime>
-#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QHostAddress>

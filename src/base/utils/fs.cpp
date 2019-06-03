@@ -49,7 +49,6 @@
 #include <unistd.h>
 #endif
 
-#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QDirIterator>

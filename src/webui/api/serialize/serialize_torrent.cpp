@@ -30,10 +30,8 @@
 
 #include <QDateTime>
 
-#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/utils/fs.h"
-#include "base/utils/string.h"
 
 namespace
 {

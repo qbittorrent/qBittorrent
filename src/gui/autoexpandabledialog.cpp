@@ -28,9 +28,6 @@
 
 #include "autoexpandabledialog.h"
 
-#include <QDesktopWidget>
-
-#include "mainwindow.h"
 #include "ui_autoexpandabledialog.h"
 #include "utils.h"
 

@@ -29,7 +29,6 @@
 #include "categoryfilterwidget.h"
 
 #include <QAction>
-#include <QHeaderView>
 #include <QMenu>
 
 #include "base/bittorrent/session.h"

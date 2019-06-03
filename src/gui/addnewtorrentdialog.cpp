@@ -43,7 +43,6 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
-#include "base/preferences.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileguard.h"
 #include "base/utils/fs.h"

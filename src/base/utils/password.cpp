@@ -37,7 +37,6 @@
 
 #include "bytearray.h"
 #include "random.h"
-#include "string.h"
 
 namespace Utils
 {

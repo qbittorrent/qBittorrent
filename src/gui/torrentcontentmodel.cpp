@@ -52,7 +52,6 @@
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"

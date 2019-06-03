@@ -31,14 +31,12 @@
 #include "rsswidget.h"
 
 #include <QClipboard>
-#include <QDebug>
 #include <QDesktopServices>
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QShortcut>
-#include <QStandardItemModel>
 #include <QString>
 
 #include "base/bittorrent/session.h"

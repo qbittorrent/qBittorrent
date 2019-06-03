@@ -32,7 +32,6 @@
 
 #include <QHash>
 #include <QNetworkAccessManager>
-#include <QNetworkRequest>
 #include <QObject>
 #include <QQueue>
 #include <QSet>

@@ -36,8 +36,6 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "guiiconprovider.h"
 #include "ui_trackersadditiondialog.h"
 

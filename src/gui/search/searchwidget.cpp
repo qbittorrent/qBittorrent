@@ -36,30 +36,18 @@
 #endif
 
 #include <QDebug>
-#include <QHeaderView>
 #include <QMessageBox>
-#include <QMimeData>
-#include <QProcess>
 #include <QRegularExpression>
 #include <QShortcut>
-#include <QSortFilterProxyModel>
-#include <QStandardItemModel>
 #include <QTextStream>
-#include <QTreeView>
 
-#include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "base/preferences.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/search/searchhandler.h"
 #include "base/utils/foreignapps.h"
-#include "base/utils/fs.h"
-#include "addnewtorrentdialog.h"
 #include "guiiconprovider.h"
 #include "mainwindow.h"
 #include "pluginselectdialog.h"
-#include "searchlistdelegate.h"
-#include "searchsortmodel.h"
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
 
