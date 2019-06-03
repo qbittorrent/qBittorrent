@@ -583,6 +583,7 @@ void Parser::parse_impl(const QByteArray &feedData)
 
     emit finished(m_result);
     m_result.articles.clear(); // clear articles only
+    m_articleIDs.clear();
 }
 
 void Parser::parseRssArticle(QXmlStreamReader &xml)
@@ -635,7 +636,7 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
     if (article[Article::KeyTorrentURL].toString().isEmpty())
         article[Article::KeyTorrentURL] = altTorrentUrl;
 
-    m_result.articles.prepend(article);
+    addArticle(article);
 }
 
 void Parser::parseRSSChannel(QXmlStreamReader &xml)
@@ -730,7 +731,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
         }
     }
 
-    m_result.articles.prepend(article);
+    addArticle(article);
 }
 
 void Parser::parseAtomChannel(QXmlStreamReader &xml)
@@ -759,4 +760,35 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
             }
         }
     }
+}
+
+void Parser::addArticle(QVariantHash article)
+{
+    QVariant &torrentURL = article[Article::KeyTorrentURL];
+    if (torrentURL.toString().isEmpty())
+        torrentURL = article[Article::KeyLink];
+
+    // If item does not have an ID, fall back to some other identifier.
+    QVariant &localId = article[Article::KeyId];
+    if (localId.toString().isEmpty())
+        localId = article.value(Article::KeyTorrentURL);
+    if (localId.toString().isEmpty())
+        localId = article.value(Article::KeyTitle);
+
+    if (localId.toString().isEmpty()) {
+        // The article could not be uniquely identified
+        // since it has no appropriate data.
+        // Just ignore it.
+        return;
+    }
+
+    if (m_articleIDs.contains(localId.toString())) {
+        // The article could not be uniquely identified
+        // since the Feed has duplicate identifiers.
+        // Just ignore it.
+        return;
+    }
+
+    m_articleIDs.insert(localId.toString());
+    m_result.articles.prepend(article);
 }
