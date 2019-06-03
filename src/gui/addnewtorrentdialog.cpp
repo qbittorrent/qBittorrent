@@ -615,9 +615,6 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
 void AddNewTorrentDialog::accept()
 {
-    if (!m_hasMetadata)
-        disconnect(this, SLOT(updateMetadata(const BitTorrent::TorrentInfo&)));
-
     // TODO: Check if destination actually exists
     m_torrentParams.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
 
@@ -663,7 +660,6 @@ void AddNewTorrentDialog::accept()
 void AddNewTorrentDialog::reject()
 {
     if (!m_hasMetadata) {
-        disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
         setMetadataProgressIndicator(false);
         BitTorrent::Session::instance()->cancelLoadMetadata(m_hash);
     }
@@ -675,7 +671,8 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
 {
     if (info.hash() != m_hash) return;
 
-    disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+
     if (!info.isValid()) {
         RaisedMessageBox::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));
