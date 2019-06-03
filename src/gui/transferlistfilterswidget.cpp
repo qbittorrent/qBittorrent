@@ -203,7 +203,7 @@ void StatusFilterWidget::updateTorrentNumbers()
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, QVariant(tr("Errored (%1)").arg(report.nbErrored)));
 }
 
-void StatusFilterWidget::showMenu(QPoint) {}
+void StatusFilterWidget::showMenu(const QPoint &) {}
 
 void StatusFilterWidget::applyFilter(int row)
 {
@@ -465,24 +465,21 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     }
 }
 
-void TrackerFiltersList::showMenu(QPoint)
+void TrackerFiltersList::showMenu(const QPoint &)
 {
-    QMenu menu(this);
-    QAction *startAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
-    QAction *pauseAct = menu.addAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
-    QAction *deleteTorrentsAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete torrents"));
-    QAction *act = nullptr;
-    act = menu.exec(QCursor::pos());
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (!act)
-        return;
+    const QAction *startAct = menu->addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
+    connect(startAct, &QAction::triggered, transferList, &TransferListWidget::startVisibleTorrents);
 
-    if (act == startAct)
-        transferList->startVisibleTorrents();
-    else if (act == pauseAct)
-        transferList->pauseVisibleTorrents();
-    else if (act == deleteTorrentsAct)
-        transferList->deleteVisibleTorrents();
+    const QAction *pauseAct = menu->addAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
+    connect(pauseAct, &QAction::triggered, transferList, &TransferListWidget::pauseVisibleTorrents);
+
+    const QAction *deleteTorrentsAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete torrents"));
+    connect(deleteTorrentsAct, &QAction::triggered, transferList, &TransferListWidget::deleteVisibleTorrents);
+
+    menu->popup(QCursor::pos());
 }
 
 void TrackerFiltersList::applyFilter(int row)

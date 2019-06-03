@@ -66,7 +66,7 @@ protected:
     TransferListWidget *transferList;
 
 private slots:
-    virtual void showMenu(QPoint) = 0;
+    virtual void showMenu(const QPoint &) = 0;
     virtual void applyFilter(int row) = 0;
     virtual void handleNewTorrent(BitTorrent::TorrentHandle *const) = 0;
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) = 0;
@@ -87,7 +87,7 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    void showMenu(QPoint) override;
+    void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
     void handleNewTorrent(BitTorrent::TorrentHandle *const) override;
     void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override;
@@ -119,7 +119,7 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    void showMenu(QPoint) override;
+    void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
     void handleNewTorrent(BitTorrent::TorrentHandle *const torrent) override;
     void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent) override;

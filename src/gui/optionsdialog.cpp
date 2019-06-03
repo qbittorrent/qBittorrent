@@ -423,7 +423,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkSmartFilterDownloadRepacks, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSRefreshInterval, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSMaxArticlesPerFeed, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
-    connect(m_ui->btnEditRules, &QPushButton::clicked, this, [this]() { AutomatedRssDownloader(this).exec(); });
+    connect(m_ui->btnEditRules, &QPushButton::clicked, this, [this]()
+    {
+        auto *downloader = new AutomatedRssDownloader(this);
+        downloader->setAttribute(Qt::WA_DeleteOnClose);
+        downloader->open();
+    });
 
     // Disable apply Button
     m_applyButton->setEnabled(false);

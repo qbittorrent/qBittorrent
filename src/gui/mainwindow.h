@@ -181,7 +181,7 @@ private slots:
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
-    void toolbarMenuRequested(QPoint);
+    void toolbarMenuRequested(const QPoint &point);
     void toolbarIconsOnly();
     void toolbarTextOnly();
     void toolbarTextBeside();

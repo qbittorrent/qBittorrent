@@ -48,8 +48,9 @@ ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
 
 void ComboBoxMenuButton::showPopup()
 {
-    QPoint p = mapToGlobal(QPoint(0, height()));
-    m_menu->exec(p);
+    const QPoint p = mapToGlobal(QPoint(0, height()));
+    m_menu->popup(p);
+
     QComboBox::hidePopup();
 }
 

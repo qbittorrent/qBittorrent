@@ -163,19 +163,22 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     }
 }
 
-void PluginSelectDialog::displayContextMenu(const QPoint&)
+void PluginSelectDialog::displayContextMenu(const QPoint &)
 {
-    QMenu myContextMenu(this);
     // Enable/disable pause/start action given the DL state
-    QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
+    const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
     if (items.isEmpty()) return;
 
-    QString firstID = items.first()->text(PLUGIN_ID);
+    QMenu *myContextMenu = new QMenu(this);
+    myContextMenu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QString firstID = items.first()->text(PLUGIN_ID);
     m_ui->actionEnable->setChecked(m_pluginManager->pluginInfo(firstID)->enabled);
-    myContextMenu.addAction(m_ui->actionEnable);
-    myContextMenu.addSeparator();
-    myContextMenu.addAction(m_ui->actionUninstall);
-    myContextMenu.exec(QCursor::pos());
+    myContextMenu->addAction(m_ui->actionEnable);
+    myContextMenu->addSeparator();
+    myContextMenu->addAction(m_ui->actionUninstall);
+
+    myContextMenu->popup(QCursor::pos());
 }
 
 void PluginSelectDialog::on_closeButton_clicked()

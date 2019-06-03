@@ -153,41 +153,45 @@ PeerListWidget::~PeerListWidget()
 
 void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
 {
-    QMenu hideshowColumn(this);
-    hideshowColumn.setTitle(tr("Column visibility"));
-    QList<QAction *> actions;
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setTitle(tr("Column visibility"));
+
     for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
-        if ((i == PeerListDelegate::COUNTRY) && !Preferences::instance()->resolvePeerCountries()) {
-            actions.append(nullptr); // keep the index in sync
+        if ((i == PeerListDelegate::COUNTRY) && !Preferences::instance()->resolvePeerCountries())
             continue;
-        }
-        QAction *myAct = hideshowColumn.addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+
+        QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!isColumnHidden(i));
-        actions.append(myAct);
-    }
-    int visibleCols = 0;
-    for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
-        if (!isColumnHidden(i))
-            ++visibleCols;
-
-        if (visibleCols > 1)
-            break;
+        myAct->setData(i);
     }
 
-    // Call menu
-    QAction *act = hideshowColumn.exec(QCursor::pos());
-    if (act) {
-        int col = actions.indexOf(act);
-        Q_ASSERT(col >= 0);
-        Q_ASSERT(visibleCols > 0);
+    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    {
+        int visibleCols = 0;
+        for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
+            if (!isColumnHidden(i))
+                ++visibleCols;
+
+            if (visibleCols > 1)
+                break;
+        }
+
+        const int col = action->data().toInt();
+
         if (!isColumnHidden(col) && (visibleCols == 1))
             return;
+
         setColumnHidden(col, !isColumnHidden(col));
+
         if (!isColumnHidden(col) && (columnWidth(col) <= 5))
             resizeColumnToContents(col);
+
         saveSettings();
-    }
+    });
+
+    menu->popup(QCursor::pos());
 }
 
 void PeerListWidget::updatePeerHostNameResolutionState()
@@ -222,56 +226,49 @@ void PeerListWidget::updatePeerCountryResolutionState()
 
 void PeerListWidget::showPeerListMenu(const QPoint &)
 {
-    QMenu menu;
-    bool emptyMenu = true;
     BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    // Add Peer Action
-    QAction *addPeerAct = nullptr;
-    if (!torrent->isQueued() && !torrent->isChecking()) {
-        addPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
-        emptyMenu = false;
-    }
-    QAction *banAct = nullptr;
-    QAction *copyPeerAct = nullptr;
-    if (!selectionModel()->selectedRows().isEmpty()) {
-        copyPeerAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
-        menu.addSeparator();
-        banAct = menu.addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
-        emptyMenu = false;
-    }
-    if (emptyMenu) return;
-    QAction *act = menu.exec(QCursor::pos());
-    if (!act) return;
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (act == addPeerAct) {
-        const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
-        int peerCount = 0;
-        for (const BitTorrent::PeerAddress &addr : peersList) {
-            if (torrent->connectPeer(addr)) {
-                qDebug("Adding peer %s...", qUtf8Printable(addr.ip.toString()));
-                Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
-                ++peerCount;
+    // Add Peer Action
+    if (!torrent->isQueued() && !torrent->isChecking()) {
+        const QAction *addPeerAct = menu->addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
+        connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
+        {
+            const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+            int peerCount = 0;
+            for (const BitTorrent::PeerAddress &addr : peersList) {
+                if (torrent->connectPeer(addr)) {
+                    Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
+                    ++peerCount;
+                }
+                else {
+                    Logger::instance()->addMessage(tr("The peer '%1' could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
+                }
             }
-            else {
-                Logger::instance()->addMessage(tr("The peer '%1' could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
-            }
-        }
-        if (peerCount < peersList.length())
-            QMessageBox::information(this, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
-        else if (peerCount > 0)
-            QMessageBox::information(this, tr("Peer addition"), tr("The peers were added to this torrent."));
-        return;
+            if (peerCount < peersList.length())
+                QMessageBox::information(this, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
+            else if (peerCount > 0)
+                QMessageBox::information(this, tr("Peer addition"), tr("The peers were added to this torrent."));
+        });
     }
-    if (act == banAct) {
-        banSelectedPeers();
-        return;
+
+    if (!selectionModel()->selectedRows().isEmpty()) {
+        const QAction *copyPeerAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
+        connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
+
+        menu->addSeparator();
+
+        const QAction *banAct = menu->addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
+        connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
     }
-    if (act == copyPeerAct) {
-        copySelectedPeers();
-        return;
-    }
+
+    if (menu->isEmpty())
+        delete menu;
+    else
+        menu->popup(QCursor::pos());
 }
 
 void PeerListWidget::banSelectedPeers()

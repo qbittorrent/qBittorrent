@@ -521,59 +521,45 @@ void TrackerListWidget::reannounceSelected()
     loadTrackers();
 }
 
-void TrackerListWidget::showTrackerListMenu(QPoint)
+void TrackerListWidget::showTrackerListMenu(const QPoint &)
 {
     BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
-    QMenu menu;
-    // Add actions
-    QAction *addAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-    QAction *copyAct = nullptr;
-    QAction *delAct = nullptr;
-    QAction *editAct = nullptr;
-    if (!getSelectedTrackerItems().isEmpty()) {
-        editAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
-        delAct = menu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
-        copyAct = menu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
-    }
-    QAction *reannounceSelAct = nullptr;
-    QAction *reannounceAllAct = nullptr;
-    if (!torrent->isPaused()) {
-        reannounceSelAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
-        menu.addSeparator();
-        reannounceAllAct = menu.addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
-    }
-    QAction *act = menu.exec(QCursor::pos());
-    if (act == nullptr) return;
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (act == addAct) {
-        askForTrackers();
-        return;
+    // Add actions
+    const QAction *addAct = menu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
+    connect(addAct, &QAction::triggered, this, &TrackerListWidget::askForTrackers);
+
+    if (!getSelectedTrackerItems().isEmpty()) {
+        const QAction *editAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
+        connect(editAct, &QAction::triggered, this, &TrackerListWidget::editSelectedTracker);
+
+        const QAction *delAct = menu->addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
+        connect(delAct, &QAction::triggered, this, &TrackerListWidget::deleteSelectedTrackers);
+
+        const QAction *copyAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
+        connect(copyAct, &QAction::triggered, this, &TrackerListWidget::copyTrackerUrl);
     }
-    if (act == copyAct) {
-        copyTrackerUrl();
-        return;
+
+    if (!torrent->isPaused()) {
+        const QAction *reannounceSelAct = menu->addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
+        connect(reannounceSelAct, &QAction::triggered, this, &TrackerListWidget::reannounceSelected);
+
+        menu->addSeparator();
+
+        const QAction *reannounceAllAct = menu->addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+        connect(reannounceAllAct, &QAction::triggered, this, [this]()
+        {
+            BitTorrent::TorrentHandle *h = m_properties->getCurrentTorrent();
+            h->forceReannounce();
+            h->forceDHTAnnounce();
+        });
     }
-    if (act == delAct) {
-        deleteSelectedTrackers();
-        return;
-    }
-    if (act == reannounceSelAct) {
-        reannounceSelected();
-        return;
-    }
-    if (act == reannounceAllAct) {
-        BitTorrent::TorrentHandle *h = m_properties->getCurrentTorrent();
-        h->forceReannounce();
-        h->forceDHTAnnounce();
-        return;
-    }
-    if (act == editAct) {
-        editSelectedTracker();
-        return;
-    }
+
+    menu->popup(QCursor::pos());
 }
 
 void TrackerListWidget::loadSettings()
@@ -615,25 +601,32 @@ int TrackerListWidget::visibleColumnsCount() const
 
 void TrackerListWidget::displayToggleColumnsMenu(const QPoint &)
 {
-    QMenu hideshowColumn(this);
-    hideshowColumn.setTitle(tr("Column visibility"));
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setTitle(tr("Column visibility"));
+
     for (int i = 0; i < COL_COUNT; ++i) {
-        QAction *myAct = hideshowColumn.addAction(headerLabels().at(i));
+        QAction *myAct = menu->addAction(headerLabels().at(i));
         myAct->setCheckable(true);
         myAct->setChecked(!isColumnHidden(i));
         myAct->setData(i);
     }
 
-    // Call menu
-    QAction *act = hideshowColumn.exec(QCursor::pos());
-    if (!act) return;
+    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    {
+        const int col = action->data().toInt();
+        Q_ASSERT(visibleColumnsCount() > 0);
 
-    int col = act->data().toInt();
-    Q_ASSERT(visibleColumnsCount() > 0);
-    if (!isColumnHidden(col) && (visibleColumnsCount() == 1))
-        return;
-    setColumnHidden(col, !isColumnHidden(col));
-    if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-        resizeColumnToContents(col);
-    saveSettings();
+        if (!isColumnHidden(col) && (visibleColumnsCount() == 1))
+            return;
+
+        setColumnHidden(col, !isColumnHidden(col));
+
+        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
+            resizeColumnToContents(col);
+
+        saveSettings();
+    });
+
+    menu->popup(QCursor::pos());
 }

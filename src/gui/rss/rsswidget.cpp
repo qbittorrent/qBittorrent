@@ -147,38 +147,45 @@ void RSSWidget::displayRSSListMenu(const QPoint &pos)
     if (!m_feedListWidget->indexAt(pos).isValid())
         // No item under the mouse, clear selection
         m_feedListWidget->clearSelection();
-    QMenu myRSSListMenu(this);
-    QList<QTreeWidgetItem *> selectedItems = m_feedListWidget->selectedItems();
+
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QList<QTreeWidgetItem *> selectedItems = m_feedListWidget->selectedItems();
     if (!selectedItems.isEmpty()) {
-        myRSSListMenu.addAction(m_ui->actionUpdate);
-        myRSSListMenu.addAction(m_ui->actionMarkItemsRead);
-        myRSSListMenu.addSeparator();
+        menu->addAction(m_ui->actionUpdate);
+        menu->addAction(m_ui->actionMarkItemsRead);
+        menu->addSeparator();
+
         if (selectedItems.size() == 1) {
             if (selectedItems.first() != m_feedListWidget->stickyUnreadItem()) {
-                myRSSListMenu.addAction(m_ui->actionRename);
-                myRSSListMenu.addAction(m_ui->actionDelete);
-                myRSSListMenu.addSeparator();
+                menu->addAction(m_ui->actionRename);
+                menu->addAction(m_ui->actionDelete);
+                menu->addSeparator();
                 if (m_feedListWidget->isFolder(selectedItems.first()))
-                    myRSSListMenu.addAction(m_ui->actionNewFolder);
+                    menu->addAction(m_ui->actionNewFolder);
             }
         }
         else {
-            myRSSListMenu.addAction(m_ui->actionDelete);
-            myRSSListMenu.addSeparator();
+            menu->addAction(m_ui->actionDelete);
+            menu->addSeparator();
         }
-        myRSSListMenu.addAction(m_ui->actionNewSubscription);
+
+        menu->addAction(m_ui->actionNewSubscription);
+
         if (m_feedListWidget->isFeed(selectedItems.first())) {
-            myRSSListMenu.addSeparator();
-            myRSSListMenu.addAction(m_ui->actionCopyFeedURL);
+            menu->addSeparator();
+            menu->addAction(m_ui->actionCopyFeedURL);
         }
     }
     else {
-        myRSSListMenu.addAction(m_ui->actionNewSubscription);
-        myRSSListMenu.addAction(m_ui->actionNewFolder);
-        myRSSListMenu.addSeparator();
-        myRSSListMenu.addAction(m_ui->actionUpdateAllFeeds);
+        menu->addAction(m_ui->actionNewSubscription);
+        menu->addAction(m_ui->actionNewFolder);
+        menu->addSeparator();
+        menu->addAction(m_ui->actionUpdateAllFeeds);
     }
-    myRSSListMenu.exec(QCursor::pos());
+
+    menu->popup(QCursor::pos());
 }
 
 void RSSWidget::displayItemsListMenu(const QPoint &)
@@ -197,13 +204,16 @@ void RSSWidget::displayItemsListMenu(const QPoint &)
             break;
     }
 
-    QMenu myItemListMenu(this);
+    QMenu *myItemListMenu = new QMenu(this);
+    myItemListMenu->setAttribute(Qt::WA_DeleteOnClose);
+
     if (hasTorrent)
-        myItemListMenu.addAction(m_ui->actionDownloadTorrent);
+        myItemListMenu->addAction(m_ui->actionDownloadTorrent);
     if (hasLink)
-        myItemListMenu.addAction(m_ui->actionOpenNewsURL);
-    if (hasTorrent || hasLink)
-        myItemListMenu.exec(QCursor::pos());
+        myItemListMenu->addAction(m_ui->actionOpenNewsURL);
+
+    if (!myItemListMenu->isEmpty())
+        myItemListMenu->popup(QCursor::pos());
 }
 
 void RSSWidget::askNewFolder()
@@ -516,7 +526,9 @@ void RSSWidget::updateRefreshInterval(uint val)
 
 void RSSWidget::on_rssDownloaderBtn_clicked()
 {
-    AutomatedRssDownloader(this).exec();
+    auto *downloader = new AutomatedRssDownloader(this);
+    downloader->setAttribute(Qt::WA_DeleteOnClose);
+    downloader->open();
 }
 
 void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
