@@ -198,3 +198,14 @@ TriStateBool Utils::String::parseTriStateBool(const QString &string)
         return TriStateBool::False;
     return TriStateBool::Undefined;
 }
+
+QString Utils::String::join(const QVector<QStringRef> &strings, const QString &separator)
+{
+    if (strings.empty())
+        return {};
+
+    QString ret = strings[0].toString();
+    for (int i = 1; i < strings.count(); ++i)
+        ret += (separator + strings[i]);
+    return ret;
+}
