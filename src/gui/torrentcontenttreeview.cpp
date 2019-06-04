@@ -205,15 +205,6 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
         if (needForceRecheck)
             torrent->forceRecheck();
 
-        // Remove old folder
-        const QString oldFullPath = torrent->savePath(true) + oldPath;
-        int timeout = 10;
-        while (!QDir().rmpath(oldFullPath) && (timeout > 0)) {
-            // FIXME: We should not sleep here (freezes the UI for 1 second)
-            QThread::msleep(100);
-            --timeout;
-        }
-
         model->setData(modelIndex, newName);
     }
 }

@@ -1402,6 +1402,7 @@ void TorrentHandle::setTrackerLogin(const QString &username, const QString &pass
 
 void TorrentHandle::renameFile(int index, const QString &name)
 {
+    m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     qDebug() << Q_FUNC_INFO << index << name;
     m_nativeHandle.rename_file(index, Utils::Fs::toNativePath(name).toStdString());
@@ -1685,32 +1686,41 @@ void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_r
 
 void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert *p)
 {
-#if LIBTORRENT_VERSION_NUM < 10100
-    QString newName = Utils::Fs::fromNativePath(QString::fromStdString(p->name));
-#else
-    QString newName = Utils::Fs::fromNativePath(p->new_name());
-#endif
-
-    // TODO: Check this!
-    if (filesCount() > 1) {
-        // Check if folders were renamed
-        QStringList oldPathParts = m_torrentInfo.origFilePath(p->index).split('/');
-        oldPathParts.removeLast();
-        QString oldPath = oldPathParts.join('/');
-        QStringList newPathParts = newName.split('/');
-        newPathParts.removeLast();
-        QString newPath = newPathParts.join('/');
-        if (!newPathParts.isEmpty() && (oldPath != newPath)) {
-            qDebug("oldPath(%s) != newPath(%s)", qUtf8Printable(oldPath), qUtf8Printable(newPath));
-            oldPath = QString("%1/%2").arg(savePath(true), oldPath);
-            qDebug("Detected folder renaming, attempt to delete old folder: %s", qUtf8Printable(oldPath));
-            QDir().rmpath(oldPath);
-        }
-    }
-
     // We don't really need to call updateStatus() in this place.
     // All we need to do is make sure we have a valid instance of the TorrentInfo object.
     m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
+
+    // remove empty leftover folders
+    // for example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
+    // be removed if they are empty
+    const QString oldFilePath = m_oldPath[LTFileIndex {p->index}].takeFirst();
+    const QString newFilePath = Utils::Fs::fromNativePath(p->new_name());
+
+    if (m_oldPath[LTFileIndex {p->index}].isEmpty())
+        m_oldPath.remove(LTFileIndex {p->index});
+
+    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', QString::SkipEmptyParts);
+    oldPathParts.removeLast();  // drop file name part
+    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', QString::SkipEmptyParts);
+    newPathParts.removeLast();  // drop file name part
+
+#if defined(Q_OS_WIN)
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+
+    int pathIdx = 0;
+    while ((pathIdx < oldPathParts.size()) && (pathIdx < newPathParts.size())) {
+        if (oldPathParts[pathIdx].compare(newPathParts[pathIdx], caseSensitivity) != 0)
+            break;
+        ++pathIdx;
+    }
+
+    for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i) {
+        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QLatin1String("/")));
+        oldPathParts.removeLast();
+    }
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
@@ -1719,7 +1729,13 @@ void TorrentHandle::handleFileRenamedAlert(const libtorrent::file_renamed_alert 
 
 void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_failed_alert *p)
 {
-    Q_UNUSED(p);
+    LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
+        .arg(name(), filePath(p->index)
+             , QString::fromStdString(p->error.message())), Log::WARNING);
+
+    m_oldPath[LTFileIndex {p->index}].removeFirst();
+    if (m_oldPath[LTFileIndex {p->index}].isEmpty())
+        m_oldPath.remove(LTFileIndex {p->index});
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
