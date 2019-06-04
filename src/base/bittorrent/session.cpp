@@ -1865,7 +1865,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 #if (LIBTORRENT_VERSION_NUM < 10200)
                 handle.auto_managed(false);
 #else
-                handle.set_flags(lt::torrent_flags::auto_managed);
+                handle.unset_flags(lt::torrent_flags::auto_managed);
 #endif
                 handle.pause();
             }
