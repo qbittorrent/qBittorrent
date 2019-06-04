@@ -101,9 +101,10 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
     if (!model) return;
 
+    const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
+
     // Ask for new name
     bool ok = false;
-    const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
     QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
             , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
@@ -151,62 +152,69 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
     }
     else {
         // renaming a folder
-        QStringList pathItems;
-        pathItems << modelIndex.data().toString();
-        QModelIndex parent = model->parent(modelIndex);
-        while (parent.isValid()) {
-            pathItems.prepend(parent.data().toString());
-            parent = model->parent(parent);
-        }
-        const QString oldPath = pathItems.join('/');
-        pathItems.removeLast();
-        pathItems << newName;
-        QString newPath = pathItems.join('/');
-        if (Utils::Fs::sameFileNames(oldPath, newPath)) {
-            qDebug("Name did not change");
-            return;
-        }
-        if (!newPath.endsWith('/')) newPath += '/';
+
+        const QString oldName = modelIndex.data().toString();
+        if (newName == oldName)
+            return;  // Name did not change
+
+        QString parentPath;
+        for (QModelIndex idx = model->parent(modelIndex); idx.isValid(); idx = model->parent(idx))
+            parentPath.prepend(idx.data().toString() + '/');
+
+        const QString oldPath {parentPath + oldName + '/'};
+        const QString newPath {parentPath + newName + '/'};
+
         // Check for overwriting
-        for (int i = 0; i < torrent->filesCount(); ++i) {
-            const QString currentName = torrent->filePath(i);
-#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-            if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
+#if defined(Q_OS_WIN)
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
 #else
-            if (currentName.startsWith(newPath, Qt::CaseInsensitive)) {
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
 #endif
-                QMessageBox::warning(this, tr("The folder could not be renamed"),
-                                     tr("This name is already in use in this folder. Please use a different name."),
-                                     QMessageBox::Ok);
+
+        for (int i = 0; i < torrent->filesCount(); ++i) {
+            const QString currentPath = torrent->filePath(i);
+
+            if (currentPath.startsWith(oldPath))
+                continue;
+
+            if (currentPath.startsWith(newPath, caseSensitivity)) {
+                RaisedMessageBox::warning(this, tr("The folder could not be renamed"),
+                                          tr("This name is already in use. Please use a different name."),
+                                          QMessageBox::Ok);
                 return;
             }
         }
-        bool forceRecheck = false;
+
         // Replace path in all files
+        bool needForceRecheck = false;
+
         for (int i = 0; i < torrent->filesCount(); ++i) {
-            const QString currentName = torrent->filePath(i);
-            if (currentName.startsWith(oldPath)) {
-                QString newName = currentName;
-                newName.replace(0, oldPath.length(), newPath);
-                if (!forceRecheck && QDir(torrent->savePath(true)).exists(newName))
-                    forceRecheck = true;
-                newName = Utils::Fs::expandPath(newName);
-                qDebug("Rename %s to %s", qUtf8Printable(currentName), qUtf8Printable(newName));
-                torrent->renameFile(i, newName);
+            const QString currentPath = torrent->filePath(i);
+
+            if (currentPath.startsWith(oldPath)) {
+                const QString path {newPath + currentPath.mid(oldPath.length())};
+
+                if (!needForceRecheck && QFile::exists(path))
+                    needForceRecheck = true;
+
+                torrent->renameFile(i, path);
             }
         }
+
         // Force recheck
-        if (forceRecheck) torrent->forceRecheck();
-        // Rename folder in torrent files model too
-        model->setData(modelIndex, newName);
+        if (needForceRecheck)
+            torrent->forceRecheck();
+
         // Remove old folder
-        const QDir oldFolder(torrent->savePath(true) + '/' + oldPath);
+        const QString oldFullPath = torrent->savePath(true) + oldPath;
         int timeout = 10;
-        while (!QDir().rmpath(oldFolder.absolutePath()) && (timeout > 0)) {
+        while (!QDir().rmpath(oldFullPath) && (timeout > 0)) {
             // FIXME: We should not sleep here (freezes the UI for 1 second)
             QThread::msleep(100);
             --timeout;
         }
+
+        model->setData(modelIndex, newName);
     }
 }
 
@@ -221,9 +229,10 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
     if (!model) return;
 
+    const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
+
     // Ask for new name
     bool ok = false;
-    const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
     QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
             , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
@@ -267,49 +276,49 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
     }
     else {
         // renaming a folder
-        QStringList pathItems;
-        pathItems << modelIndex.data().toString();
-        QModelIndex parent = model->parent(modelIndex);
-        while (parent.isValid()) {
-            pathItems.prepend(parent.data().toString());
-            parent = model->parent(parent);
-        }
-        const QString oldPath = pathItems.join('/');
-        pathItems.removeLast();
-        pathItems << newName;
-        QString newPath = pathItems.join('/');
-        if (Utils::Fs::sameFileNames(oldPath, newPath)) {
-            qDebug("Name did not change");
-            return;
-        }
-        if (!newPath.endsWith('/')) newPath += '/';
+
+        const QString oldName = modelIndex.data().toString();
+        if (newName == oldName)
+            return;  // Name did not change
+
+        QString parentPath;
+        for (QModelIndex idx = model->parent(modelIndex); idx.isValid(); idx = model->parent(idx))
+            parentPath.prepend(idx.data().toString() + '/');
+
+        const QString oldPath {parentPath + oldName + '/'};
+        const QString newPath {parentPath + newName + '/'};
+
         // Check for overwriting
-        for (int i = 0; i < torrent.filesCount(); ++i) {
-            const QString currentName = torrent.filePath(i);
-#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
-            if (currentName.startsWith(newPath, Qt::CaseSensitive)) {
+#if defined(Q_OS_WIN)
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
 #else
-            if (currentName.startsWith(newPath, Qt::CaseInsensitive)) {
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
 #endif
+
+        for (int i = 0; i < torrent.filesCount(); ++i) {
+            const QString currentPath = torrent.filePath(i);
+
+            if (currentPath.startsWith(oldPath))
+                continue;
+
+            if (currentPath.startsWith(newPath, caseSensitivity)) {
                 RaisedMessageBox::warning(this, tr("The folder could not be renamed"),
-                                          tr("This name is already in use in this folder. Please use a different name."),
+                                          tr("This name is already in use. Please use a different name."),
                                           QMessageBox::Ok);
                 return;
             }
         }
+
         // Replace path in all files
         for (int i = 0; i < torrent.filesCount(); ++i) {
-            const QString currentName = torrent.filePath(i);
-            if (currentName.startsWith(oldPath)) {
-                QString newName = currentName;
-                newName.replace(0, oldPath.length(), newPath);
-                newName = Utils::Fs::expandPath(newName);
-                qDebug("Rename %s to %s", qUtf8Printable(currentName), qUtf8Printable(newName));
-                torrent.renameFile(i, newName);
+            const QString currentPath = torrent.filePath(i);
+
+            if (currentPath.startsWith(oldPath)) {
+                const QString path {newPath + currentPath.mid(oldPath.length())};
+                torrent.renameFile(i, path);
             }
         }
 
-        // Rename folder in torrent files model too
         model->setData(modelIndex, newName);
     }
 }
