@@ -1865,10 +1865,13 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             --m_extraLimit;
 
             try {
+                // Preloaded torrent is in "Upload mode" so we need to disable it
+                // otherwise the torrent never be downloaded (until application restart)
 #if (LIBTORRENT_VERSION_NUM < 10200)
                 handle.auto_managed(false);
+                handle.set_upload_mode(false);
 #else
-                handle.set_flags(lt::torrent_flags::auto_managed);
+                handle.unset_flags(lt::torrent_flags::auto_managed | lt::torrent_flags::upload_mode);
 #endif
                 handle.pause();
             }
@@ -1962,7 +1965,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 #else
         p.flags &= ~lt::torrent_flags::seed_mode;
 #endif
-}
+    }
 
     if (!fromMagnetUri) {
         if (params.restored) {
