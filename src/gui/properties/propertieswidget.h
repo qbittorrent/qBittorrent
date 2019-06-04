@@ -95,7 +95,6 @@ protected slots:
     void filteredFilesChanged();
     void showPiecesDownloaded(bool show);
     void showPiecesAvailability(bool show);
-    void renameSelectedFile();
     void openSelectedFile();
 
 private slots:
