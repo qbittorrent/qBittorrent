@@ -31,6 +31,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QSet>
 #include <QString>
 #include <QVariantHash>
 
@@ -65,9 +66,11 @@ namespace RSS
             void parseRSSChannel(QXmlStreamReader &xml);
             void parseAtomArticle(QXmlStreamReader &xml);
             void parseAtomChannel(QXmlStreamReader &xml);
+            void addArticle(QVariantHash article);
 
             QString m_baseUrl;
             ParsingResult m_result;
+            QSet<QString> m_articleIDs;
         };
     }
 }
