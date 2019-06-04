@@ -31,6 +31,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QSet>
 #include <QString>
 #include <QVariantHash>
 
@@ -69,6 +70,7 @@ namespace RSS
 
             QString m_baseUrl;
             ParsingResult m_result;
+            QSet<QString> m_articleIDs;
         };
     }
 }
