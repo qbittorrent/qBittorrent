@@ -419,24 +419,10 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     QVector<QVariantHash> newArticles;
     newArticles.reserve(loadedArticles.size());
     for (QVariantHash article : loadedArticles) {
-        QVariant &torrentURL = article[Article::KeyTorrentURL];
-        if (torrentURL.toString().isEmpty())
-            torrentURL = article[Article::KeyLink];
-
-        // If item does not have an ID, fall back to some other identifier.
-        QVariant &localId = article[Article::KeyId];
-        if (localId.toString().isEmpty())
-            localId = article.value(Article::KeyTorrentURL);
-        if (localId.toString().isEmpty())
-            localId = article.value(Article::KeyTitle);
-
-        if (localId.toString().isEmpty())
-            continue;
-
         // If article has no publication date we use feed update time as a fallback.
         // To prevent processing of "out-of-limit" articles we must not assign dates
         // that are earlier than the dates of existing articles.
-        const Article *existingArticle = articleByGUID(localId.toString());
+        const Article *existingArticle = articleByGUID(article[Article::KeyId].toString());
         if (existingArticle) {
             dummyPubDate = existingArticle->date().addMSecs(-1);
             continue;
