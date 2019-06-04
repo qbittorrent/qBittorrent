@@ -33,6 +33,7 @@
 #include <QList>
 
 class QStringList;
+
 class FileSystemWatcher;
 
 class ScanFoldersModel : public QAbstractListModel

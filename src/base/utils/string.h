@@ -33,6 +33,7 @@
 #include <QLatin1String>
 
 class QString;
+
 class TriStateBool;
 
 namespace Utils

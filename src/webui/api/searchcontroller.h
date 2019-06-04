@@ -37,6 +37,7 @@
 class QJsonArray;
 class QJsonObject;
 class QStringList;
+
 struct ISession;
 struct SearchResult;
 

@@ -68,6 +68,7 @@
 #include <QTimer>
 
 class QThread;
+
 class Application;
 class AsyncFileStorage;
 

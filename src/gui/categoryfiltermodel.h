@@ -32,6 +32,7 @@
 #include <QAbstractItemModel>
 
 class QModelIndex;
+
 class CategoryModelItem;
 
 namespace BitTorrent

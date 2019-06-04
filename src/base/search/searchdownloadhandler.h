@@ -31,6 +31,7 @@
 #include <QObject>
 
 class QProcess;
+
 class SearchPluginManager;
 
 class SearchDownloadHandler : public QObject

@@ -34,6 +34,7 @@
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
+
 class AdvancedSettings;
 
 // actions on double-click on torrents

@@ -35,18 +35,18 @@
 #include <QShortcut>
 #include <QTreeView>
 
-namespace Net
-{
-    class ReverseResolution;
-}
+class QSortFilterProxyModel;
+class QStandardItem;
+class QStandardItemModel;
 
 class PeerListDelegate;
 class PeerListSortModel;
 class PropertiesWidget;
 
-class QSortFilterProxyModel;
-class QStandardItem;
-class QStandardItemModel;
+namespace Net
+{
+    class ReverseResolution;
+}
 
 namespace BitTorrent
 {

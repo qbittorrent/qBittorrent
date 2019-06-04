@@ -34,6 +34,7 @@
 #include "base/bittorrent/downloadpriority.h"
 
 class QVariant;
+
 class TorrentContentModelFolder;
 
 class TorrentContentModelItem

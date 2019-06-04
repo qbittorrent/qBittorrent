@@ -37,6 +37,7 @@
 class QFileIconProvider;
 class QModelIndex;
 class QVariant;
+
 class TorrentContentModelFile;
 
 namespace BitTorrent

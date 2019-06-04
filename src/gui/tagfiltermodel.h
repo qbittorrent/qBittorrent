@@ -34,6 +34,7 @@
 #include <QVector>
 
 class QModelIndex;
+
 class TagModelItem;
 
 namespace BitTorrent
