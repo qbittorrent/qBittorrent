@@ -2155,6 +2155,9 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
             try {
                 handle.auto_managed(false);
+                // Preloaded torrent is in "Upload mode" so we need to disable it
+                // otherwise the torrent never be downloaded (until application restart)
+                handle.set_upload_mode(false);
                 handle.pause();
             }
             catch (std::exception &) {}
