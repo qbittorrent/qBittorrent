@@ -1959,7 +1959,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 #else
         p.flags &= ~lt::torrent_flags::seed_mode;
 #endif
-}
+    }
 
     if (!fromMagnetUri) {
         if (params.restored) {
