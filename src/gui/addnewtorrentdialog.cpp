@@ -93,16 +93,13 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
 
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
     m_ui->savePath->setMaxVisibleItems(20);
-
-#ifdef Q_OS_MAC
-    setModal(true);
-#endif
 
     const auto *session = BitTorrent::Session::instance();
 
@@ -241,7 +238,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         : dlg->loadTorrentFile(source);
 
     if (isLoaded)
-        dlg->open();
+        dlg->QDialog::show();
     else
         delete dlg;
 }
