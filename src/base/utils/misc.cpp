@@ -250,13 +250,20 @@ QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
            + unitString(unit, isSpeed);
 }
 
-int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
+int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
-    if (unit == SizeUnit::Byte) return 0;
-    if (unit <= SizeUnit::MebiByte) return 1;
-    if (unit == SizeUnit::GibiByte) return 2;
-    return 3;
+    switch (unit) {
+    case SizeUnit::Byte:
+        return 0;
+    case SizeUnit::KibiByte:
+    case SizeUnit::MebiByte:
+        return 1;
+    case SizeUnit::GibiByte:
+        return 2;
+    default:
+        return 3;
+    }
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
