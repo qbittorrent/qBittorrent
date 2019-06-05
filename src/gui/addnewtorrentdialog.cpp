@@ -95,6 +95,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
 
@@ -244,11 +245,7 @@ void AddNewTorrentDialog::show(QString source, const BitTorrent::AddTorrentParam
             ok = dlg->loadTorrent(source);
 
         if (ok)
-#ifdef Q_OS_MAC
-            dlg->exec();
-#else
-            dlg->open();
-#endif
+            dlg->QDialog::show();
         else
             delete dlg;
     }
