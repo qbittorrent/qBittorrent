@@ -80,13 +80,13 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        auto rawVal = static_cast<qreal>(sizeInBytes);
+        val = static_cast<qreal>(sizeInBytes);
 
-        while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
-            rawVal /= 1024.;
+        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
+            val /= 1024.;
             ++i;
         }
-        val = rawVal;
+
         unit = static_cast<Utils::Misc::SizeUnit>(i);
         return true;
     }
