@@ -29,8 +29,11 @@
 #include "fspathedit_p.h"
 
 #include <QCompleter>
+#include <QContextMenuEvent>
 #include <QDir>
 #include <QFileInfo>
+#include <QFileSystemModel>
+#include <QMenu>
 #include <QStringList>
 #include <QStyle>
 

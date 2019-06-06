@@ -31,9 +31,7 @@
 
 #include <QHash>
 #include <QIcon>
-#include <QVector>
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-#include <QDir>
 #include <QFile>
 #endif
 

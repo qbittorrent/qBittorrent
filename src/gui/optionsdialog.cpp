@@ -35,7 +35,6 @@
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
-#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QEvent>
 #include <QFileDialog>
@@ -45,7 +44,6 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "base/http/server.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"

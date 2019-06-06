@@ -45,7 +45,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "propertieswidget.h"
-#include "torrentcontentmodelitem.h"
 
 namespace
 {

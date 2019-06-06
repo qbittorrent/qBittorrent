@@ -38,7 +38,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
-#include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);

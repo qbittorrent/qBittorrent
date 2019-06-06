@@ -31,7 +31,8 @@
 
 #include <QDialog>
 #include <QLineEdit>
-#include <QString>
+
+class QString;
 
 namespace Ui
 {

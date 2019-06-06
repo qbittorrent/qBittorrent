@@ -31,7 +31,6 @@
 
 #include <memory>
 
-#include <QDebug>
 #include <QDir>
 #include <QDirIterator>
 #include <QDomDocument>

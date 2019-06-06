@@ -29,12 +29,12 @@
 #ifndef TRACKERLIST_H
 #define TRACKERLIST_H
 
-#include <QClipboard>
 #include <QList>
-#include <QShortcut>
 #include <QTreeWidget>
 
 #include "propertieswidget.h"
+
+class QShortcut;
 
 #define NB_STICKY_ITEM 3
 

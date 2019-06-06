@@ -30,12 +30,14 @@
 
 #include <QAction>
 #include <QApplication>
+#include <QClipboard>
 #include <QColor>
 #include <QDebug>
 #include <QHash>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
+#include <QShortcut>
 #include <QStringList>
 #include <QTableView>
 #include <QTreeWidgetItem>
@@ -47,7 +49,6 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/preferences.h"
-#include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
 #include "guiiconprovider.h"
 #include "propertieswidget.h"

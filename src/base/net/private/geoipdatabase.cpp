@@ -32,7 +32,6 @@
 #include <QHostAddress>
 #include <QVariant>
 
-#include "base/types.h"
 #include "geoipdatabase.h"
 
 namespace

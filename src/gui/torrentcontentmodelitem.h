@@ -30,9 +30,10 @@
 #define TORRENTCONTENTMODELITEM_H
 
 #include <QList>
-#include <QVariant>
 
 #include "base/bittorrent/downloadpriority.h"
+
+class QVariant;
 
 class TorrentContentModelFolder;
 

@@ -29,7 +29,6 @@
 #include "transferlistfilterswidget.h"
 
 #include <QCheckBox>
-#include <QDebug>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -49,12 +48,9 @@
 #include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "autoexpandabledialog.h"
 #include "categoryfilterwidget.h"
 #include "guiiconprovider.h"
 #include "tagfilterwidget.h"
-#include "transferlistdelegate.h"
-#include "transferlistmodel.h"
 #include "transferlistwidget.h"
 #include "utils.h"
 

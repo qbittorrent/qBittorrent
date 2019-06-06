@@ -37,11 +37,9 @@
 #endif
 
 #include "base/algorithm.h"
-#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/preferences.h"
 #include "base/utils/fs.h"
 
 namespace

@@ -28,7 +28,6 @@
 
 #include "mainwindow.h"
 
-#include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
@@ -38,7 +37,6 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
-#include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
@@ -71,7 +69,6 @@
 #include "base/utils/password.h"
 #include "aboutdialog.h"
 #include "addnewtorrentdialog.h"
-#include "application.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
 #include "downloadfromurldialog.h"
@@ -96,9 +93,6 @@
 #include "ui_mainwindow.h"
 #include "utils.h"
 
-#ifdef Q_OS_WIN
-#include "base/net/downloadmanager.h"
-#endif
 #ifdef Q_OS_MAC
 #include "macutilities.h"
 #endif

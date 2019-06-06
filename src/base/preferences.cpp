@@ -59,7 +59,6 @@
 #include "global.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
-#include "utils/misc.h"
 
 Preferences *Preferences::m_instance = nullptr;
 

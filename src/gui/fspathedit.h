@@ -29,7 +29,6 @@
 #ifndef QBT_FSPATHEDIT_H
 #define QBT_FSPATHEDIT_H
 
-#include <QScopedPointer>
 #include <QWidget>
 
 namespace Private

@@ -35,6 +35,7 @@
 #include <QSettings>
 
 class QString;
+
 class Application;
 
 namespace Private

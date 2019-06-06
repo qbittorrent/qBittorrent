@@ -31,13 +31,14 @@
 #ifndef RSSWIDGET_H
 #define RSSWIDGET_H
 
-#include <QPointer>
-#include <QShortcut>
+#include <QWidget>
+
+class QListWidgetItem;
+class QShortcut;
+class QTreeWidgetItem;
 
 class ArticleListWidget;
 class FeedListWidget;
-class QListWidgetItem;
-class QTreeWidgetItem;
 
 namespace Ui
 {

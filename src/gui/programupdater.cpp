@@ -36,7 +36,6 @@
 #include <QXmlStreamReader>
 
 #include "base/net/downloadmanager.h"
-#include "base/utils/fs.h"
 
 namespace
 {

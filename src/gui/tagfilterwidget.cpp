@@ -29,8 +29,6 @@
 #include "tagfilterwidget.h"
 
 #include <QAction>
-#include <QDebug>
-#include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 

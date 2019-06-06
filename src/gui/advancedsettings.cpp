@@ -30,7 +30,6 @@
 
 #include <limits>
 
-#include <QFont>
 #include <QHeaderView>
 #include <QHostAddress>
 #include <QNetworkInterface>

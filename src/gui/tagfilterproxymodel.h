@@ -30,7 +30,8 @@
 #define TAGFILTERPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
-#include <QString>
+
+class QString;
 
 class TagFilterProxyModel : public QSortFilterProxyModel
 {

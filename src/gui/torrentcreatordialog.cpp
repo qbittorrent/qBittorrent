@@ -30,7 +30,6 @@
 #include "torrentcreatordialog.h"
 
 #include <QCloseEvent>
-#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMimeData>

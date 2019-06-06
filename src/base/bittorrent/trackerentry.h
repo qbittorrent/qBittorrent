@@ -30,7 +30,6 @@
 #define BITTORRENT_TRACKERENTRY_H
 
 #include <libtorrent/announce_entry.hpp>
-#include <libtorrent/torrent_info.hpp>
 
 class QString;
 

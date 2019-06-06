@@ -32,7 +32,6 @@
 #include <algorithm>
 
 #include <QDebug>
-#include <QDir>
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>

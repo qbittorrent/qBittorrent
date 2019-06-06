@@ -34,6 +34,7 @@
 
 class QCheckBox;
 class QResizeEvent;
+
 class TransferListWidget;
 
 namespace BitTorrent

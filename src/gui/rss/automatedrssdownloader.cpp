@@ -30,7 +30,6 @@
 #include "automatedrssdownloader.h"
 
 #include <QCursor>
-#include <QDebug>
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>

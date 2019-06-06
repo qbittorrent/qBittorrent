@@ -30,15 +30,20 @@
 #define TORRENTCONTENTMODEL_H
 
 #include <QAbstractItemModel>
-#include <QModelIndex>
-#include <QVariant>
 #include <QVector>
 
-#include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
 class QFileIconProvider;
+class QModelIndex;
+class QVariant;
+
 class TorrentContentModelFile;
+
+namespace BitTorrent
+{
+    class TorrentInfo;
+}
 
 class TorrentContentModel : public QAbstractItemModel
 {

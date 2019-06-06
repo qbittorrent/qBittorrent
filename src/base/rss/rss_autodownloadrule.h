@@ -35,6 +35,7 @@
 class QDateTime;
 class QJsonObject;
 class QRegularExpression;
+
 class TriStateBool;
 
 namespace RSS

@@ -37,6 +37,7 @@
 #endif
 
 class QString;
+
 enum class ShutdownDialogAction;
 
 /*  Miscellaneous functions that can be useful */
