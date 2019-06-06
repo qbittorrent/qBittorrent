@@ -92,16 +92,13 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
 
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
     m_ui->savePath->setMaxVisibleItems(20);
-
-#ifdef Q_OS_MAC
-    setModal(true);
-#endif
 
     const auto *session = BitTorrent::Session::instance();
 
@@ -240,7 +237,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         : dlg->loadTorrentFile(source);
 
     if (isLoaded)
-        dlg->open();
+        dlg->QDialog::show();
     else
         delete dlg;
 }
@@ -599,9 +596,6 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
 void AddNewTorrentDialog::accept()
 {
-    if (!m_hasMetadata)
-        disconnect(this, SLOT(updateMetadata(const BitTorrent::TorrentInfo&)));
-
     // TODO: Check if destination actually exists
     m_torrentParams.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
 
@@ -647,7 +641,6 @@ void AddNewTorrentDialog::accept()
 void AddNewTorrentDialog::reject()
 {
     if (!m_hasMetadata) {
-        disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
         setMetadataProgressIndicator(false);
         BitTorrent::Session::instance()->cancelLoadMetadata(m_hash);
     }
@@ -659,7 +652,8 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
 {
     if (info.hash() != m_hash) return;
 
-    disconnect(this, SLOT(updateMetadata(BitTorrent::TorrentInfo)));
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+
     if (!info.isValid()) {
         RaisedMessageBox::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));

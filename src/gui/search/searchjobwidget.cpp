@@ -261,7 +261,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
     const QString siteUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
 
-    if (torrentUrl.startsWith("bc://bt/", Qt::CaseInsensitive) || torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
+    if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
         addTorrentToSession(torrentUrl);
     }
     else {
