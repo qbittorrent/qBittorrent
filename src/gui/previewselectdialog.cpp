@@ -96,7 +96,6 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
         }
     }
 
-    connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
     m_previewListModel->sort(NAME);
     m_ui->previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
     m_ui->previewList->selectionModel()->select(m_previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);

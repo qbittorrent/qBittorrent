@@ -605,10 +605,13 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 void TransferListWidget::previewSelectedTorrents()
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
-        if (torrentContainsPreviewableFiles(torrent))
-            new PreviewSelectDialog(this, torrent);
-        else
+        if (torrentContainsPreviewableFiles(torrent)) {
+            const auto *dialog = new PreviewSelectDialog(this, torrent);
+            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
+        }
+        else {
             QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent does not contain previewable files"));
+        }
     }
 }
 
