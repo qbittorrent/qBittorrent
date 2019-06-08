@@ -147,7 +147,7 @@ install:
 
       sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb"
     fi
-    - |
+  - |
     if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
       wget https://builds.shiki.hu/travis/brew/1_1/version
       if ! cmp --quiet "version" "$HOME/travis/brew/1_1/version" ; then
