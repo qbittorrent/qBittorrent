@@ -1665,10 +1665,14 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
 {
     // if torrent has no metadata we should save dummy fastresume data
     // containing Magnet URI and qBittorrent own resume data only
-    if (p->error.value() == libt::errors::no_metadata)
+    if (p->error.value() == libt::errors::no_metadata) {
         handleSaveResumeDataAlert(nullptr);
-    else
+    }
+    else {
+        LogMsg(tr("Save resume data failed. Torrent: \"%1\", error: \"%2\"")
+            .arg(name(), QString::fromStdString(p->error.message())), Log::CRITICAL);
         m_session->handleTorrentResumeDataFailed(this);
+    }
 }
 
 void TorrentHandle::handleFastResumeRejectedAlert(const libtorrent::fastresume_rejected_alert *p)
