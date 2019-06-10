@@ -44,6 +44,7 @@
 #include <boost/version.hpp>
 #include <openssl/opensslv.h>
 #include <libtorrent/version.hpp>
+#include <zlib.h>
 
 #include <QCoreApplication>
 #include <QRegularExpression>
@@ -461,6 +462,13 @@ QString Utils::Misc::opensslVersionString()
 {
     const QString version {OPENSSL_VERSION_TEXT};
     return version.split(' ', QString::SkipEmptyParts)[1];
+}
+
+QString Utils::Misc::zlibVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString version {ZLIB_VERSION};
+    return version;
 }
 
 #ifdef Q_OS_WIN

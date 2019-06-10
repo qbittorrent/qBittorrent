@@ -72,15 +72,17 @@ public:
             "Qt version: " QT_VERSION_STR "<br/>"
             "Boost version: %3<br/>"
             "OpenSSL version: %4<br/>"
-            "OS version: %5<br/><br/>"
-            "Caught signal: %6"
+            "zlib version: %5<br/>"
+            "OS version: %6<br/><br/>"
+            "Caught signal: %7"
             "</font></p>"
-            "<pre><code>%7</code></pre>"
+            "<pre><code>%8</code></pre>"
             "<br/><hr><br/><br/>")
                 .arg(QString::number(QT_POINTER_SIZE * 8)
                      , Utils::Misc::libtorrentVersionString()
                      , Utils::Misc::boostVersionString()
                      , Utils::Misc::opensslVersionString()
+                     , Utils::Misc::zlibVersionString()
                      , Utils::Misc::osName()
                      , sigName
                      , trace);
