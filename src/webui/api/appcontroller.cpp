@@ -258,44 +258,50 @@ void AppController::setPreferencesAction()
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
     const QVariantMap m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toMap();
+
     QVariantMap::ConstIterator it;
+    const auto hasKey = [&it, &m](const char *key) -> bool
+    {
+        it = m.find(QLatin1String(key));
+        return (it != m.constEnd());
+    };
 
     // Downloads
     // When adding a torrent
-    if ((it = m.find(QLatin1String("create_subfolder_enabled"))) != m.constEnd())
+    if (hasKey("create_subfolder_enabled"))
         session->setCreateTorrentSubfolder(it.value().toBool());
-    if ((it = m.find(QLatin1String("start_paused_enabled"))) != m.constEnd())
+    if (hasKey("start_paused_enabled"))
         session->setAddTorrentPaused(it.value().toBool());
-    if ((it = m.find(QLatin1String("auto_delete_mode"))) != m.constEnd())
+    if (hasKey("auto_delete_mode"))
         TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
 
-    if ((it = m.find(QLatin1String("preallocate_all"))) != m.constEnd())
+    if (hasKey("preallocate_all"))
         session->setPreallocationEnabled(it.value().toBool());
-    if ((it = m.find(QLatin1String("incomplete_files_ext"))) != m.constEnd())
+    if (hasKey("incomplete_files_ext"))
         session->setAppendExtensionEnabled(it.value().toBool());
 
     // Saving Management
-    if ((it = m.find(QLatin1String("auto_tmm_enabled"))) != m.constEnd())
+    if (hasKey("auto_tmm_enabled"))
         session->setAutoTMMDisabledByDefault(!it.value().toBool());
-    if ((it = m.find(QLatin1String("torrent_changed_tmm_enabled"))) != m.constEnd())
+    if (hasKey("torrent_changed_tmm_enabled"))
         session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
-    if ((it = m.find(QLatin1String("save_path_changed_tmm_enabled"))) != m.constEnd())
+    if (hasKey("save_path_changed_tmm_enabled"))
         session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
-    if ((it = m.find(QLatin1String("category_changed_tmm_enabled"))) != m.constEnd())
+    if (hasKey("category_changed_tmm_enabled"))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
-    if (m.contains("save_path"))
-        session->setDefaultSavePath(m["save_path"].toString());
-    if (m.contains("temp_path_enabled"))
-        session->setTempPathEnabled(m["temp_path_enabled"].toBool());
-    if (m.contains("temp_path"))
-        session->setTempPath(m["temp_path"].toString());
-    if ((it = m.find(QLatin1String("export_dir"))) != m.constEnd())
+    if (hasKey("save_path"))
+        session->setDefaultSavePath(it.value().toString());
+    if (hasKey("temp_path_enabled"))
+        session->setTempPathEnabled(it.value().toBool());
+    if (hasKey("temp_path"))
+        session->setTempPath(it.value().toString());
+    if (hasKey("export_dir"))
         session->setTorrentExportDirectory(it.value().toString());
-    if ((it = m.find(QLatin1String("export_dir_fin"))) != m.constEnd())
+    if (hasKey("export_dir_fin"))
         session->setFinishedTorrentExportDirectory(it.value().toString());
     // Automatically add torrents from
-    if (m.contains("scan_dirs")) {
-        const QVariantMap nativeDirs = m["scan_dirs"].toMap();
+    if (hasKey("scan_dirs")) {
+        const QVariantMap nativeDirs = it.value().toMap();
         QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
@@ -338,158 +344,158 @@ void AppController::setPreferencesAction()
         pref->setScanDirs(scanDirs);
     }
     // Email notification upon download completion
-    if (m.contains("mail_notification_enabled"))
-        pref->setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
-    if ((it = m.find(QLatin1String("mail_notification_sender"))) != m.constEnd())
+    if (hasKey("mail_notification_enabled"))
+        pref->setMailNotificationEnabled(it.value().toBool());
+    if (hasKey("mail_notification_sender"))
         pref->setMailNotificationSender(it.value().toString());
-    if (m.contains("mail_notification_email"))
-        pref->setMailNotificationEmail(m["mail_notification_email"].toString());
-    if (m.contains("mail_notification_smtp"))
-        pref->setMailNotificationSMTP(m["mail_notification_smtp"].toString());
-    if (m.contains("mail_notification_ssl_enabled"))
-        pref->setMailNotificationSMTPSSL(m["mail_notification_ssl_enabled"].toBool());
-    if (m.contains("mail_notification_auth_enabled"))
-        pref->setMailNotificationSMTPAuth(m["mail_notification_auth_enabled"].toBool());
-    if (m.contains("mail_notification_username"))
-        pref->setMailNotificationSMTPUsername(m["mail_notification_username"].toString());
-    if (m.contains("mail_notification_password"))
-        pref->setMailNotificationSMTPPassword(m["mail_notification_password"].toString());
+    if (hasKey("mail_notification_email"))
+        pref->setMailNotificationEmail(it.value().toString());
+    if (hasKey("mail_notification_smtp"))
+        pref->setMailNotificationSMTP(it.value().toString());
+    if (hasKey("mail_notification_ssl_enabled"))
+        pref->setMailNotificationSMTPSSL(it.value().toBool());
+    if (hasKey("mail_notification_auth_enabled"))
+        pref->setMailNotificationSMTPAuth(it.value().toBool());
+    if (hasKey("mail_notification_username"))
+        pref->setMailNotificationSMTPUsername(it.value().toString());
+    if (hasKey("mail_notification_password"))
+        pref->setMailNotificationSMTPPassword(it.value().toString());
     // Run an external program on torrent completion
-    if (m.contains("autorun_enabled"))
-        pref->setAutoRunEnabled(m["autorun_enabled"].toBool());
-    if (m.contains("autorun_program"))
-        pref->setAutoRunProgram(m["autorun_program"].toString());
+    if (hasKey("autorun_enabled"))
+        pref->setAutoRunEnabled(it.value().toBool());
+    if (hasKey("autorun_program"))
+        pref->setAutoRunProgram(it.value().toString());
 
     // Connection
     // Listening Port
-    if (m.contains("listen_port"))
-        session->setPort(m["listen_port"].toInt());
-    if (m.contains("upnp"))
-        Net::PortForwarder::instance()->setEnabled(m["upnp"].toBool());
-    if (m.contains("random_port"))
-        session->setUseRandomPort(m["random_port"].toBool());
+    if (hasKey("listen_port"))
+        session->setPort(it.value().toInt());
+    if (hasKey("upnp"))
+        Net::PortForwarder::instance()->setEnabled(it.value().toBool());
+    if (hasKey("random_port"))
+        session->setUseRandomPort(it.value().toBool());
     // Connections Limits
-    if (m.contains("max_connec"))
-        session->setMaxConnections(m["max_connec"].toInt());
-    if (m.contains("max_connec_per_torrent"))
-        session->setMaxConnectionsPerTorrent(m["max_connec_per_torrent"].toInt());
-    if (m.contains("max_uploads"))
-        session->setMaxUploads(m["max_uploads"].toInt());
-    if (m.contains("max_uploads_per_torrent"))
-        session->setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
+    if (hasKey("max_connec"))
+        session->setMaxConnections(it.value().toInt());
+    if (hasKey("max_connec_per_torrent"))
+        session->setMaxConnectionsPerTorrent(it.value().toInt());
+    if (hasKey("max_uploads"))
+        session->setMaxUploads(it.value().toInt());
+    if (hasKey("max_uploads_per_torrent"))
+        session->setMaxUploadsPerTorrent(it.value().toInt());
 
     // Proxy Server
     auto proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
-    if (m.contains("proxy_type"))
-        proxyConf.type = static_cast<Net::ProxyType>(m["proxy_type"].toInt());
-    if (m.contains("proxy_ip"))
-        proxyConf.ip = m["proxy_ip"].toString();
-    if (m.contains("proxy_port"))
-        proxyConf.port = m["proxy_port"].toUInt();
-    if (m.contains("proxy_username"))
-        proxyConf.username = m["proxy_username"].toString();
-    if (m.contains("proxy_password"))
-        proxyConf.password = m["proxy_password"].toString();
+    if (hasKey("proxy_type"))
+        proxyConf.type = static_cast<Net::ProxyType>(it.value().toInt());
+    if (hasKey("proxy_ip"))
+        proxyConf.ip = it.value().toString();
+    if (hasKey("proxy_port"))
+        proxyConf.port = it.value().toUInt();
+    if (hasKey("proxy_username"))
+        proxyConf.username = it.value().toString();
+    if (hasKey("proxy_password"))
+        proxyConf.password = it.value().toString();
     proxyManager->setProxyConfiguration(proxyConf);
 
-    if (m.contains("proxy_peer_connections"))
-        session->setProxyPeerConnectionsEnabled(m["proxy_peer_connections"].toBool());
-    if (m.contains("force_proxy"))
-        session->setForceProxyEnabled(m["force_proxy"].toBool());
-    if (m.contains("proxy_torrents_only"))
-        proxyManager->setProxyOnlyForTorrents(m["proxy_torrents_only"].toBool());
+    if (hasKey("proxy_peer_connections"))
+        session->setProxyPeerConnectionsEnabled(it.value().toBool());
+    if (hasKey("force_proxy"))
+        session->setForceProxyEnabled(it.value().toBool());
+    if (hasKey("proxy_torrents_only"))
+        proxyManager->setProxyOnlyForTorrents(it.value().toBool());
 
     // IP Filtering
-    if (m.contains("ip_filter_enabled"))
-        session->setIPFilteringEnabled(m["ip_filter_enabled"].toBool());
-    if (m.contains("ip_filter_path"))
-        session->setIPFilterFile(m["ip_filter_path"].toString());
-    if (m.contains("ip_filter_trackers"))
-        session->setTrackerFilteringEnabled(m["ip_filter_trackers"].toBool());
-    if (m.contains("banned_IPs"))
-        session->setBannedIPs(m["banned_IPs"].toString().split('\n'));
+    if (hasKey("ip_filter_enabled"))
+        session->setIPFilteringEnabled(it.value().toBool());
+    if (hasKey("ip_filter_path"))
+        session->setIPFilterFile(it.value().toString());
+    if (hasKey("ip_filter_trackers"))
+        session->setTrackerFilteringEnabled(it.value().toBool());
+    if (hasKey("banned_IPs"))
+        session->setBannedIPs(it.value().toString().split('\n'));
 
     // Speed
     // Global Rate Limits
-    if (m.contains("dl_limit"))
-        session->setGlobalDownloadSpeedLimit(m["dl_limit"].toInt());
-    if (m.contains("up_limit"))
-        session->setGlobalUploadSpeedLimit(m["up_limit"].toInt());
-    if (m.contains("alt_dl_limit"))
-        session->setAltGlobalDownloadSpeedLimit(m["alt_dl_limit"].toInt());
-    if (m.contains("alt_up_limit"))
-       session->setAltGlobalUploadSpeedLimit(m["alt_up_limit"].toInt());
-    if (m.contains("bittorrent_protocol"))
-        session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m["bittorrent_protocol"].toInt()));
-    if (m.contains("limit_utp_rate"))
-        session->setUTPRateLimited(m["limit_utp_rate"].toBool());
-    if (m.contains("limit_tcp_overhead"))
-        session->setIncludeOverheadInLimits(m["limit_tcp_overhead"].toBool());
-    if ((it = m.find(QLatin1String("limit_lan_peers"))) != m.constEnd())
+    if (hasKey("dl_limit"))
+        session->setGlobalDownloadSpeedLimit(it.value().toInt());
+    if (hasKey("up_limit"))
+        session->setGlobalUploadSpeedLimit(it.value().toInt());
+    if (hasKey("alt_dl_limit"))
+        session->setAltGlobalDownloadSpeedLimit(it.value().toInt());
+    if (hasKey("alt_up_limit"))
+       session->setAltGlobalUploadSpeedLimit(it.value().toInt());
+    if (hasKey("bittorrent_protocol"))
+        session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(it.value().toInt()));
+    if (hasKey("limit_utp_rate"))
+        session->setUTPRateLimited(it.value().toBool());
+    if (hasKey("limit_tcp_overhead"))
+        session->setIncludeOverheadInLimits(it.value().toBool());
+    if (hasKey("limit_lan_peers"))
         session->setIgnoreLimitsOnLAN(!it.value().toBool());
     // Scheduling
-    if (m.contains("scheduler_enabled"))
-        session->setBandwidthSchedulerEnabled(m["scheduler_enabled"].toBool());
+    if (hasKey("scheduler_enabled"))
+        session->setBandwidthSchedulerEnabled(it.value().toBool());
     if (m.contains("schedule_from_hour") && m.contains("schedule_from_min"))
         pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(), m["schedule_from_min"].toInt()));
     if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
         pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
-    if (m.contains("scheduler_days"))
-        pref->setSchedulerDays(SchedulerDays(m["scheduler_days"].toInt()));
+    if (hasKey("scheduler_days"))
+        pref->setSchedulerDays(SchedulerDays(it.value().toInt()));
 
     // Bittorrent
     // Privacy
-    if (m.contains("dht"))
-        session->setDHTEnabled(m["dht"].toBool());
-    if (m.contains("pex"))
-        session->setPeXEnabled(m["pex"].toBool());
-    if (m.contains("lsd"))
-        session->setLSDEnabled(m["lsd"].toBool());
-    if (m.contains("encryption"))
-        session->setEncryption(m["encryption"].toInt());
-    if (m.contains("anonymous_mode"))
-        session->setAnonymousModeEnabled(m["anonymous_mode"].toBool());
+    if (hasKey("dht"))
+        session->setDHTEnabled(it.value().toBool());
+    if (hasKey("pex"))
+        session->setPeXEnabled(it.value().toBool());
+    if (hasKey("lsd"))
+        session->setLSDEnabled(it.value().toBool());
+    if (hasKey("encryption"))
+        session->setEncryption(it.value().toInt());
+    if (hasKey("anonymous_mode"))
+        session->setAnonymousModeEnabled(it.value().toBool());
     // Torrent Queueing
-    if (m.contains("queueing_enabled"))
-        session->setQueueingSystemEnabled(m["queueing_enabled"].toBool());
-    if (m.contains("max_active_downloads"))
-        session->setMaxActiveDownloads(m["max_active_downloads"].toInt());
-    if (m.contains("max_active_torrents"))
-        session->setMaxActiveTorrents(m["max_active_torrents"].toInt());
-    if (m.contains("max_active_uploads"))
-        session->setMaxActiveUploads(m["max_active_uploads"].toInt());
-    if (m.contains("dont_count_slow_torrents"))
-        session->setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
-    if ((it = m.find(QLatin1String("slow_torrent_dl_rate_threshold"))) != m.constEnd())
+    if (hasKey("queueing_enabled"))
+        session->setQueueingSystemEnabled(it.value().toBool());
+    if (hasKey("max_active_downloads"))
+        session->setMaxActiveDownloads(it.value().toInt());
+    if (hasKey("max_active_torrents"))
+        session->setMaxActiveTorrents(it.value().toInt());
+    if (hasKey("max_active_uploads"))
+        session->setMaxActiveUploads(it.value().toInt());
+    if (hasKey("dont_count_slow_torrents"))
+        session->setIgnoreSlowTorrentsForQueueing(it.value().toBool());
+    if (hasKey("slow_torrent_dl_rate_threshold"))
         session->setDownloadRateForSlowTorrents(it.value().toInt());
-    if ((it = m.find(QLatin1String("slow_torrent_ul_rate_threshold"))) != m.constEnd())
+    if (hasKey("slow_torrent_ul_rate_threshold"))
         session->setUploadRateForSlowTorrents(it.value().toInt());
-    if ((it = m.find(QLatin1String("slow_torrent_inactive_timer"))) != m.constEnd())
+    if (hasKey("slow_torrent_inactive_timer"))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
-    if (m.contains("max_ratio_enabled")) {
-        if (m["max_ratio_enabled"].toBool())
+    if (hasKey("max_ratio_enabled")) {
+        if (it.value().toBool())
             session->setGlobalMaxRatio(m["max_ratio"].toReal());
         else
             session->setGlobalMaxRatio(-1);
     }
-    if (m.contains("max_seeding_time_enabled")) {
-        if (m["max_seeding_time_enabled"].toBool())
+    if (hasKey("max_seeding_time_enabled")) {
+        if (it.value().toBool())
             session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
         else
             session->setGlobalMaxSeedingMinutes(-1);
     }
-    if (m.contains("max_ratio_act"))
-        session->setMaxRatioAction(static_cast<MaxRatioAction>(m["max_ratio_act"].toInt()));
+    if (hasKey("max_ratio_act"))
+        session->setMaxRatioAction(static_cast<MaxRatioAction>(it.value().toInt()));
     // Add trackers
     session->setAddTrackersEnabled(m["add_trackers_enabled"].toBool());
     session->setAdditionalTrackers(m["add_trackers"].toString());
 
     // Web UI
     // Language
-    if (m.contains("locale")) {
-        QString locale = m["locale"].toString();
+    if (hasKey("locale")) {
+        QString locale = it.value().toString();
         if (pref->getLocale() != locale) {
             auto *translator = new QTranslator;
             if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale)) {
@@ -504,67 +510,67 @@ void AppController::setPreferencesAction()
         }
     }
     // HTTP Server
-    if (m.contains("web_ui_domain_list"))
-        pref->setServerDomains(m["web_ui_domain_list"].toString());
-    if (m.contains("web_ui_address"))
-        pref->setWebUiAddress(m["web_ui_address"].toString());
-    if (m.contains("web_ui_port"))
-        pref->setWebUiPort(m["web_ui_port"].toUInt());
-    if (m.contains("web_ui_upnp"))
-        pref->setUPnPForWebUIPort(m["web_ui_upnp"].toBool());
-    if (m.contains("use_https"))
-        pref->setWebUiHttpsEnabled(m["use_https"].toBool());
-    if ((it = m.find(QLatin1String("web_ui_https_cert_path"))) != m.constEnd())
+    if (hasKey("web_ui_domain_list"))
+        pref->setServerDomains(it.value().toString());
+    if (hasKey("web_ui_address"))
+        pref->setWebUiAddress(it.value().toString());
+    if (hasKey("web_ui_port"))
+        pref->setWebUiPort(it.value().toUInt());
+    if (hasKey("web_ui_upnp"))
+        pref->setUPnPForWebUIPort(it.value().toBool());
+    if (hasKey("use_https"))
+        pref->setWebUiHttpsEnabled(it.value().toBool());
+    if (hasKey("web_ui_https_cert_path"))
         pref->setWebUIHttpsCertificatePath(it.value().toString());
-    if ((it = m.find(QLatin1String("web_ui_https_key_path"))) != m.constEnd())
+    if (hasKey("web_ui_https_key_path"))
         pref->setWebUIHttpsKeyPath(it.value().toString());
     // Authentication
-    if (m.contains("web_ui_username"))
-        pref->setWebUiUsername(m["web_ui_username"].toString());
-    if (m.contains("web_ui_password"))
-        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(m["web_ui_password"].toByteArray()));
-    if (m.contains("bypass_local_auth"))
-        pref->setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
-    if (m.contains("bypass_auth_subnet_whitelist_enabled"))
-        pref->setWebUiAuthSubnetWhitelistEnabled(m["bypass_auth_subnet_whitelist_enabled"].toBool());
-    if (m.contains("bypass_auth_subnet_whitelist")) {
+    if (hasKey("web_ui_username"))
+        pref->setWebUiUsername(it.value().toString());
+    if (hasKey("web_ui_password"))
+        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
+    if (hasKey("bypass_local_auth"))
+        pref->setWebUiLocalAuthEnabled(!it.value().toBool());
+    if (hasKey("bypass_auth_subnet_whitelist_enabled"))
+        pref->setWebUiAuthSubnetWhitelistEnabled(it.value().toBool());
+    if (hasKey("bypass_auth_subnet_whitelist")) {
         // recognize new lines and commas as delimiters
-        pref->setWebUiAuthSubnetWhitelist(m["bypass_auth_subnet_whitelist"].toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
+        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
     // Use alternative Web UI
-    if ((it = m.find(QLatin1String("alternative_webui_enabled"))) != m.constEnd())
+    if (hasKey("alternative_webui_enabled"))
         pref->setAltWebUiEnabled(it.value().toBool());
-    if ((it = m.find(QLatin1String("alternative_webui_path"))) != m.constEnd())
+    if (hasKey("alternative_webui_path"))
         pref->setWebUiRootFolder(it.value().toString());
     // Security
-    if (m.contains("web_ui_clickjacking_protection_enabled"))
-        pref->setWebUiClickjackingProtectionEnabled(m["web_ui_clickjacking_protection_enabled"].toBool());
-    if (m.contains("web_ui_csrf_protection_enabled"))
-        pref->setWebUiCSRFProtectionEnabled(m["web_ui_csrf_protection_enabled"].toBool());
-    if (m.contains("web_ui_host_header_validation_enabled"))
-        pref->setWebUIHostHeaderValidationEnabled(m["web_ui_host_header_validation_enabled"].toBool());
+    if (hasKey("web_ui_clickjacking_protection_enabled"))
+        pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
+    if (hasKey("web_ui_csrf_protection_enabled"))
+        pref->setWebUiCSRFProtectionEnabled(it.value().toBool());
+    if (hasKey("web_ui_host_header_validation_enabled"))
+        pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
     // Update my dynamic domain name
-    if (m.contains("dyndns_enabled"))
-        pref->setDynDNSEnabled(m["dyndns_enabled"].toBool());
-    if (m.contains("dyndns_service"))
-        pref->setDynDNSService(m["dyndns_service"].toInt());
-    if (m.contains("dyndns_username"))
-        pref->setDynDNSUsername(m["dyndns_username"].toString());
-    if (m.contains("dyndns_password"))
-        pref->setDynDNSPassword(m["dyndns_password"].toString());
-    if (m.contains("dyndns_domain"))
-        pref->setDynDomainName(m["dyndns_domain"].toString());
+    if (hasKey("dyndns_enabled"))
+        pref->setDynDNSEnabled(it.value().toBool());
+    if (hasKey("dyndns_service"))
+        pref->setDynDNSService(it.value().toInt());
+    if (hasKey("dyndns_username"))
+        pref->setDynDNSUsername(it.value().toString());
+    if (hasKey("dyndns_password"))
+        pref->setDynDNSPassword(it.value().toString());
+    if (hasKey("dyndns_domain"))
+        pref->setDynDomainName(it.value().toString());
 
     // Save preferences
     pref->apply();
 
-    if ((it = m.find(QLatin1String("rss_refresh_interval"))) != m.constEnd())
+    if (hasKey("rss_refresh_interval"))
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
-    if ((it = m.find(QLatin1String("rss_max_articles_per_feed"))) != m.constEnd())
+    if (hasKey("rss_max_articles_per_feed"))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
-    if ((it = m.find(QLatin1String("rss_processing_enabled"))) != m.constEnd())
+    if (hasKey("rss_processing_enabled"))
         RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
-    if ((it = m.find(QLatin1String("rss_auto_downloading_enabled"))) != m.constEnd())
+    if (hasKey("rss_auto_downloading_enabled"))
         RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
 }
 
