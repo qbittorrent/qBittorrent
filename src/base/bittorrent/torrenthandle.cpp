@@ -1479,10 +1479,9 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
     }
 }
 
-void TorrentHandle::renameFile(int index, const QString &name)
+void TorrentHandle::renameFile(const int index, const QString &name)
 {
     ++m_renameCount;
-    qDebug() << Q_FUNC_INFO << index << name;
     m_nativeHandle.rename_file(index, Utils::Fs::toNativePath(name).toStdString());
 }
 
@@ -1776,6 +1775,10 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     Q_UNUSED(p);
+
+    LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
+        .arg(name(), filePath(p->index)
+             , QString::fromStdString(p->error.message())), Log::WARNING);
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
