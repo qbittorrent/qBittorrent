@@ -1657,7 +1657,7 @@ bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
             Utils::Fs::forceRemove(unwantedFile);
             const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
             qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
-            QDir().rmpath(parentFolder);
+            QDir().rmdir(parentFolder);
         }
     }
 
