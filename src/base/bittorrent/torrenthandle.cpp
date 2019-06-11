@@ -1789,6 +1789,9 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
+
+    if (isPaused() && (m_renameCount == 0))
+        saveResumeData();  // otherwise the new path will not be saved
 }
 
 void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
@@ -1804,6 +1807,9 @@ void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_ale
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
+
+    if (isPaused() && (m_renameCount == 0))
+        saveResumeData();  // otherwise the new path will not be saved
 }
 
 void TorrentHandle::handleFileCompletedAlert(const lt::file_completed_alert *p)
