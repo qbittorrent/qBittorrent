@@ -671,6 +671,10 @@
             <td>OpenSSL:</td>
             <td><span id="opensslVersion"></span></td>
         </tr>
+        <tr>
+            <td>zlib:</td>
+            <td><span id="zlibVersion"></span></td>
+        </tr>
     </table>
 </div>
 
@@ -691,6 +695,7 @@
             $('libtorrentVersion').textContent = info.libtorrent;
             $('boostVersion').textContent = info.boost;
             $('opensslVersion').textContent = info.openssl;
+            $('zlibVersion').textContent = info.zlib;
             $('qbittorrentVersion').textContent += " (" + info.bitness + "-bit)";
         }
     }).send();

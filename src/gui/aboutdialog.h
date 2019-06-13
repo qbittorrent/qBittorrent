@@ -99,6 +99,7 @@ public:
         m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
         m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
         m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
+        m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
 
         Utils::Gui::resize(this);
         show();
