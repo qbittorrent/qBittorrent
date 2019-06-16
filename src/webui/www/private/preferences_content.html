@@ -731,6 +731,12 @@
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
                 <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
             </div>
+            <table>
+                <tr>
+                    <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="webUISessionTimeoutInput" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
+                </tr>
+            </table>
         </fieldset>
 
         <fieldset class="settings">
@@ -1340,6 +1346,7 @@
                     $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
                     $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
                     updateBypasssAuthSettings();
+                    $('webUISessionTimeoutInput').setProperty('value', pref.web_ui_session_timeout.toInt());
 
                     // Use alternative Web UI
                     $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
@@ -1667,6 +1674,7 @@
         settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
         settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+        settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));
 
         // Use alternative Web UI
         var alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');

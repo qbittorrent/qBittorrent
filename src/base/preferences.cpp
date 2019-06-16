@@ -598,6 +598,16 @@ void Preferences::setWebUIPassword(const QByteArray &password)
     setValue("Preferences/WebUI/Password_PBKDF2", password);
 }
 
+int Preferences::getWebUISessionTimeout() const
+{
+    return value("Preferences/WebUI/SessionTimeout", 3600).toInt();
+}
+
+void Preferences::setWebUISessionTimeout(const int timeout)
+{
+    setValue("Preferences/WebUI/SessionTimeout", timeout);
+}
+
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
 {
     return value("Preferences/WebUI/ClickjackingProtection", true).toBool();

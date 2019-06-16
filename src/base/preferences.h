@@ -190,6 +190,8 @@ public:
     void setWebUiUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    int getWebUISessionTimeout() const;
+    void setWebUISessionTimeout(int timeout);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

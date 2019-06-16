@@ -332,6 +332,7 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
@@ -471,8 +472,7 @@ void WebApplication::sessionInitialize()
     if (!sessionId.isEmpty()) {
         m_currentSession = m_sessions.value(sessionId);
         if (m_currentSession) {
-            const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-            if ((now - m_currentSession->m_timestamp) > INACTIVE_TIME) {
+            if (m_currentSession->hasExpired(m_sessionTimeout)) {
                 // session is outdated - removing it
                 delete m_sessions.take(sessionId);
                 m_currentSession = nullptr;
@@ -523,14 +523,14 @@ void WebApplication::sessionStart()
     Q_ASSERT(!m_currentSession);
 
     // remove outdated sessions
-    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    Algorithm::removeIf(m_sessions, [now](const QString &, const WebSession *session)
+    Algorithm::removeIf(m_sessions, [this](const QString &, const WebSession *session)
     {
-        if ((now - session->timestamp()) <= INACTIVE_TIME)
-            return false;
+        if (session->hasExpired(m_sessionTimeout)) {
+            delete session;
+            return true;
+        }
 
-        delete session;
-        return true;
+        return false;
     });
 
     m_currentSession = new WebSession(generateSid());
@@ -650,9 +650,16 @@ QString WebSession::id() const
     return m_sid;
 }
 
-qint64 WebSession::timestamp() const
+bool WebSession::hasExpired(const qint64 seconds) const
 {
-    return m_timestamp;
+    if (seconds <= 0)
+        return false;
+    return m_timer.hasExpired(seconds * 1000);
+}
+
+void WebSession::updateTimestamp()
+{
+    m_timer.start();
 }
 
 QVariant WebSession::getData(const QString &id) const
@@ -663,9 +670,4 @@ QVariant WebSession::getData(const QString &id) const
 void WebSession::setData(const QString &id, const QVariant &data)
 {
     m_data[id] = data;
-}
-
-void WebSession::updateTimestamp()
-{
-    m_timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
 }
