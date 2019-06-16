@@ -671,7 +671,6 @@ namespace BitTorrent
         QVector<BitTorrent::TrackerEntry> m_additionalTrackerList;
         QString m_resumeFolderPath;
         QFile m_resumeFolderLock;
-        bool m_useProxy;
 
         QTimer *m_refreshTimer;
         QTimer *m_seedingLimitTimer;

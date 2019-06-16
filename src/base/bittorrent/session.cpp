@@ -362,7 +362,6 @@ Session::Session(QObject *parent)
     , m_wasPexEnabled(m_isPeXEnabled)
     , m_numResumeData(0)
     , m_extraLimit(0)
-    , m_useProxy(false)
     , m_recentErroredTorrentsTimer(new QTimer(this))
 {
     Logger *const logger = Logger::instance();
@@ -1211,42 +1210,44 @@ void Session::configure(lt::settings_pack &settingsPack)
         settingsPack.set_int(lt::settings_pack::in_enc_policy, lt::settings_pack::pe_disabled);
     }
 
+    // proxy
     const auto proxyManager = Net::ProxyConfigurationManager::instance();
     const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-    if (m_useProxy || (proxyConfig.type != Net::ProxyType::None)) {
-        if (proxyConfig.type != Net::ProxyType::None) {
-            settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
-            settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
-            if (proxyManager->isAuthenticationRequired()) {
-                settingsPack.set_str(lt::settings_pack::proxy_username, proxyConfig.username.toStdString());
-                settingsPack.set_str(lt::settings_pack::proxy_password, proxyConfig.password.toStdString());
-            }
-            settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
-        }
 
-        switch (proxyConfig.type) {
-        case Net::ProxyType::HTTP:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
-            break;
-        case Net::ProxyType::HTTP_PW:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
-            break;
-        case Net::ProxyType::SOCKS4:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
-            break;
-        case Net::ProxyType::SOCKS5:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
-            break;
-        case Net::ProxyType::SOCKS5_PW:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
-            break;
-        default:
-            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-        }
-
-        m_useProxy = (proxyConfig.type != Net::ProxyType::None);
+    switch (proxyConfig.type) {
+    case Net::ProxyType::HTTP:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
+        break;
+    case Net::ProxyType::HTTP_PW:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
+        break;
+    case Net::ProxyType::SOCKS4:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
+        break;
+    case Net::ProxyType::SOCKS5:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
+        break;
+    case Net::ProxyType::SOCKS5_PW:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
+        break;
+    case Net::ProxyType::None:
+    default:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
     }
-    settingsPack.set_bool(lt::settings_pack::force_proxy, m_useProxy ? isForceProxyEnabled() : false);
+
+    if (proxyConfig.type != Net::ProxyType::None) {
+        settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
+        settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
+
+        if (proxyManager->isAuthenticationRequired()) {
+            settingsPack.set_str(lt::settings_pack::proxy_username, proxyConfig.username.toStdString());
+            settingsPack.set_str(lt::settings_pack::proxy_password, proxyConfig.password.toStdString());
+        }
+
+        settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
+    }
+    settingsPack.set_bool(lt::settings_pack::force_proxy
+        , ((proxyConfig.type == Net::ProxyType::None) ? false : isForceProxyEnabled()));
 
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
