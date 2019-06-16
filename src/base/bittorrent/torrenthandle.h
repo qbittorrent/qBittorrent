@@ -355,6 +355,12 @@ namespace BitTorrent
     private:
         typedef std::function<void ()> EventTrigger;
 
+#if (LIBTORRENT_VERSION_NUM < 10200)
+        using LTFileIndex = int;
+#else
+        using LTFileIndex = lt::file_index_t;
+#endif
+
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
@@ -416,6 +422,10 @@ namespace BitTorrent
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
         int m_renameCount;
+
+        // Until libtorrent provide an "old_name" field in `file_renamed_alert`
+        // we will rely on this workaround to remove empty leftover folders
+        QHash<LTFileIndex, QVector<QString>> m_oldPath;
 
         bool m_useAutoTMM;
 
