@@ -31,6 +31,7 @@
 #define UTILS_STRING_H
 
 #include <QString>
+#include <QVector>
 
 class QByteArray;
 class QLatin1String;
@@ -70,6 +71,8 @@ namespace Utils
 
         bool parseBool(const QString &string, const bool defaultValue);
         TriStateBool parseTriStateBool(const QString &string);
+
+        QString join(const QVector<QStringRef> &strings, const QString &separator);
     }
 }
 
