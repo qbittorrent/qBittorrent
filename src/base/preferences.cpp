@@ -303,12 +303,12 @@ void Preferences::setWinStartup(const bool b)
 // Downloads
 QString Preferences::lastLocationPath() const
 {
-    return Utils::Fs::fromNativePath(value("Preferences/Downloads/LastLocationPath").toString());
+    return Utils::Fs::toUniformPath(value("Preferences/Downloads/LastLocationPath").toString());
 }
 
 void Preferences::setLastLocationPath(const QString &path)
 {
-    setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::fromNativePath(path));
+    setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::toUniformPath(path));
 }
 
 QVariantHash Preferences::getScanDirs() const
@@ -324,12 +324,12 @@ void Preferences::setScanDirs(const QVariantHash &dirs)
 
 QString Preferences::getScanDirsLastPath() const
 {
-    return Utils::Fs::fromNativePath(value("Preferences/Downloads/ScanDirsLastPath").toString());
+    return Utils::Fs::toUniformPath(value("Preferences/Downloads/ScanDirsLastPath").toString());
 }
 
 void Preferences::setScanDirsLastPath(const QString &path)
 {
-    setValue("Preferences/Downloads/ScanDirsLastPath", Utils::Fs::fromNativePath(path));
+    setValue("Preferences/Downloads/ScanDirsLastPath", Utils::Fs::toUniformPath(path));
 }
 
 bool Preferences::isMailNotificationEnabled() const

@@ -313,9 +313,9 @@ QString TorrentHandle::currentTracker() const
 QString TorrentHandle::savePath(bool actual) const
 {
     if (actual)
-        return Utils::Fs::fromNativePath(nativeActualSavePath());
+        return Utils::Fs::toUniformPath(nativeActualSavePath());
     else
-        return Utils::Fs::fromNativePath(m_savePath);
+        return Utils::Fs::toUniformPath(m_savePath);
 }
 
 QString TorrentHandle::rootPath(bool actual) const
@@ -1296,7 +1296,7 @@ void TorrentHandle::move(QString path)
     m_useAutoTMM = false;
     m_session->handleTorrentSavingModeChanged(this);
 
-    path = Utils::Fs::fromNativePath(path.trimmed());
+    path = Utils::Fs::toUniformPath(path.trimmed());
     if (path.isEmpty())
         path = m_session->defaultSavePath();
     if (!path.endsWith('/'))
@@ -1758,7 +1758,7 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // for example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
     const QString oldFilePath = m_oldPath[LTFileIndex {p->index}].takeFirst();
-    const QString newFilePath = Utils::Fs::fromNativePath(p->new_name());
+    const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
     if (m_oldPath[LTFileIndex {p->index}].isEmpty())
         m_oldPath.remove(LTFileIndex {p->index});

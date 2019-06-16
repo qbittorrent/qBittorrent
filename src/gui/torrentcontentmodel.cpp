@@ -469,7 +469,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     // Iterate over files
     for (int i = 0; i < filesCount; ++i) {
         currentParent = m_rootItem;
-        QString path = Utils::Fs::fromNativePath(info.filePath(i));
+        QString path = Utils::Fs::toUniformPath(info.filePath(i));
         // Iterate of parts of the path to create necessary folders
         QStringList pathFolders = path.split('/', QString::SkipEmptyParts);
         pathFolders.removeLast();

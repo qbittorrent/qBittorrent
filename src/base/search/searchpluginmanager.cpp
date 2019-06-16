@@ -368,7 +368,7 @@ void SearchPluginManager::versionInfoDownloadFinished(const Net::DownloadResult 
 void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success) {
-        const QString filePath = Utils::Fs::fromNativePath(result.filePath);
+        const QString filePath = Utils::Fs::toUniformPath(result.filePath);
 
         QString pluginName = Utils::Fs::fileName(result.url);
         pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.')); // Remove extension

@@ -1368,9 +1368,9 @@ void MainWindow::on_actionOpen_triggered()
         }
 
         // Save last dir to remember it
-        QStringList topDir = Utils::Fs::fromNativePath(pathsList.at(0)).split('/');
+        QStringList topDir = Utils::Fs::toUniformPath(pathsList.at(0)).split('/');
         topDir.removeLast();
-        pref->setMainLastDir(Utils::Fs::fromNativePath(topDir.join('/')));
+        pref->setMainLastDir(Utils::Fs::toUniformPath(topDir.join('/')));
     }
 }
 

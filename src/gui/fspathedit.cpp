@@ -201,7 +201,7 @@ FileSystemPathEdit::~FileSystemPathEdit()
 
 QString FileSystemPathEdit::selectedPath() const
 {
-    return Utils::Fs::fromNativePath(editWidgetText());
+    return Utils::Fs::toUniformPath(editWidgetText());
 }
 
 void FileSystemPathEdit::setSelectedPath(const QString &val)
@@ -347,7 +347,7 @@ int FileSystemPathComboEdit::count() const
 
 QString FileSystemPathComboEdit::item(int index) const
 {
-    return Utils::Fs::fromNativePath(editWidget<WidgetType>()->itemText(index));
+    return Utils::Fs::toUniformPath(editWidget<WidgetType>()->itemText(index));
 }
 
 void FileSystemPathComboEdit::addItem(const QString &text)

@@ -308,13 +308,13 @@ void AppController::setPreferencesAction()
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
         for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i) {
-            QString folder = Utils::Fs::fromNativePath(i.key());
+            QString folder = Utils::Fs::toUniformPath(i.key());
             int downloadType;
             QString downloadPath;
             ScanFoldersModel::PathStatus ec;
             if (i.value().type() == QVariant::String) {
                 downloadType = ScanFoldersModel::CUSTOM_LOCATION;
-                downloadPath = Utils::Fs::fromNativePath(i.value().toString());
+                downloadPath = Utils::Fs::toUniformPath(i.value().toString());
             }
             else {
                 downloadType = i.value().toInt();
