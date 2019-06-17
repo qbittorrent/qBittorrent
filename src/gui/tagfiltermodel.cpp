@@ -216,15 +216,15 @@ void TagFilterModel::torrentTagAdded(BitTorrent::TorrentHandle *const torrent, c
 
 void TagFilterModel::torrentTagRemoved(BitTorrent::TorrentHandle *const torrent, const QString &tag)
 {
-    Q_ASSERT(torrent->tags().count() >= 0);
-    if (torrent->tags().count() == 0)
+    if (torrent->tags().empty())
         untaggedItem()->increaseTorrentsCount();
 
     const int row = findRow(tag);
-    Q_ASSERT(isValidRow(row));
-    TagModelItem &item = m_tagItems[row];
+    if (row < 0)
+        return;
 
-    item.decreaseTorrentsCount();
+    m_tagItems[row].decreaseTorrentsCount();
+
     const QModelIndex i = index(row, 0, QModelIndex());
     emit dataChanged(i, i);
 }
