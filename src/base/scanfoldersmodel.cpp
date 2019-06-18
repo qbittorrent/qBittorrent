@@ -329,9 +329,9 @@ void ScanFoldersModel::makePersistent()
 
     for (const PathData *pathData : asConst(m_pathList)) {
         if (pathData->downloadType == CUSTOM_LOCATION)
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), Utils::Fs::fromNativePath(pathData->downloadPath));
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), Utils::Fs::toUniformPath(pathData->downloadPath));
         else
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), pathData->downloadType);
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), pathData->downloadType);
     }
 
     Preferences::instance()->setScanDirs(dirs);

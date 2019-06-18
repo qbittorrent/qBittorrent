@@ -180,7 +180,7 @@ void Feed::handleMaxArticlesPerFeedChanged(const int n)
 void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success) {
-        m_iconPath = Utils::Fs::fromNativePath(result.filePath);
+        m_iconPath = Utils::Fs::toUniformPath(result.filePath);
         emit iconLoaded(this);
     }
 }

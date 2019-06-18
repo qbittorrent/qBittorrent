@@ -172,7 +172,7 @@ namespace
 
     QString normalizePath(const QString &path)
     {
-        QString tmp = Utils::Fs::fromNativePath(path.trimmed());
+        QString tmp = Utils::Fs::toUniformPath(path.trimmed());
         if (!tmp.isEmpty() && !tmp.endsWith('/'))
             return tmp + '/';
         return tmp;
@@ -182,7 +182,7 @@ namespace
     {
         path = path.trimmed();
         if (path.isEmpty())
-            path = Utils::Fs::fromNativePath(defaultPath.trimmed());
+            path = Utils::Fs::toUniformPath(defaultPath.trimmed());
 
         return normalizePath(path);
     }
@@ -610,36 +610,36 @@ void Session::setPreallocationEnabled(const bool enabled)
 
 QString Session::torrentExportDirectory() const
 {
-    return Utils::Fs::fromNativePath(m_torrentExportDirectory);
+    return Utils::Fs::toUniformPath(m_torrentExportDirectory);
 }
 
 void Session::setTorrentExportDirectory(QString path)
 {
-    path = Utils::Fs::fromNativePath(path);
+    path = Utils::Fs::toUniformPath(path);
     if (path != torrentExportDirectory())
         m_torrentExportDirectory = path;
 }
 
 QString Session::finishedTorrentExportDirectory() const
 {
-    return Utils::Fs::fromNativePath(m_finishedTorrentExportDirectory);
+    return Utils::Fs::toUniformPath(m_finishedTorrentExportDirectory);
 }
 
 void Session::setFinishedTorrentExportDirectory(QString path)
 {
-    path = Utils::Fs::fromNativePath(path);
+    path = Utils::Fs::toUniformPath(path);
     if (path != finishedTorrentExportDirectory())
         m_finishedTorrentExportDirectory = path;
 }
 
 QString Session::defaultSavePath() const
 {
-    return Utils::Fs::fromNativePath(m_defaultSavePath);
+    return Utils::Fs::toUniformPath(m_defaultSavePath);
 }
 
 QString Session::tempPath() const
 {
-    return Utils::Fs::fromNativePath(m_tempPath);
+    return Utils::Fs::toUniformPath(m_tempPath);
 }
 
 QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
@@ -2672,12 +2672,12 @@ void Session::setIPFilteringEnabled(const bool enabled)
 
 QString Session::IPFilterFile() const
 {
-    return Utils::Fs::fromNativePath(m_IPFilterFile);
+    return Utils::Fs::toUniformPath(m_IPFilterFile);
 }
 
 void Session::setIPFilterFile(QString path)
 {
-    path = Utils::Fs::fromNativePath(path);
+    path = Utils::Fs::toUniformPath(path);
     if (path != IPFilterFile()) {
         m_IPFilterFile = path;
         m_IPFilteringChanged = true;
@@ -4345,7 +4345,7 @@ namespace
         if (ec || (fast.type() != lt::bdecode_node::dict_t)) return false;
 
         torrentParams.savePath = Profile::instance().fromPortablePath(
-            Utils::Fs::fromNativePath(fromLTString(fast.dict_find_string_value("qBt-savePath"))));
+            Utils::Fs::toUniformPath(fromLTString(fast.dict_find_string_value("qBt-savePath"))));
 
         LTString ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
         if (ratioLimitString.empty())

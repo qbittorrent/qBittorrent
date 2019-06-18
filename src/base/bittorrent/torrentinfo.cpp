@@ -227,7 +227,7 @@ int TorrentInfo::piecesCount() const
 QString TorrentInfo::filePath(const int index) const
 {
     if (!isValid()) return {};
-    return Utils::Fs::fromNativePath(
+    return Utils::Fs::toUniformPath(
                 QString::fromStdString(m_nativeInfo->files().file_path(LTFileIndex {index})));
 }
 
@@ -248,7 +248,7 @@ QString TorrentInfo::fileName(const int index) const
 QString TorrentInfo::origFilePath(const int index) const
 {
     if (!isValid()) return {};
-    return Utils::Fs::fromNativePath(
+    return Utils::Fs::toUniformPath(
                 QString::fromStdString(m_nativeInfo->orig_files().file_path(LTFileIndex {index})));
 }
 

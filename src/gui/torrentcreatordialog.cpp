@@ -139,7 +139,7 @@ void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 // Main function that create a .torrent file
 void TorrentCreatorDialog::onCreateButtonClicked()
 {
-    QString input = Utils::Fs::fromNativePath(m_ui->textInputPath->text()).trimmed();
+    QString input = Utils::Fs::toUniformPath(m_ui->textInputPath->text()).trimmed();
 
     // test if readable
     const QFileInfo fi(input);

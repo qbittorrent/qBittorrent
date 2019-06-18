@@ -373,7 +373,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         return;
     }
 
-    const QString filePath = Utils::Fs::fromNativePath(result.filePath);
+    const QString filePath = Utils::Fs::toUniformPath(result.filePath);
 
     // Icon downloaded
     QIcon icon(filePath);
