@@ -323,11 +323,11 @@ bool Utils::Misc::isPreviewable(const QString &extension)
     return multimediaExtensions.contains(extension.toUpper());
 }
 
-// Take a number of seconds and return an user-friendly
-// time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
 {
-    if ((seconds < 0) || (seconds >= MAX_ETA))
+    if (seconds < 0)
+        return QString::fromUtf8(C_INFINITY);
+    if ((maxCap >= 0) && (seconds >= maxCap))
         return QString::fromUtf8(C_INFINITY);
 
     if (seconds == 0)
@@ -336,21 +336,25 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
 
-    qlonglong minutes = seconds / 60;
+    qlonglong minutes = (seconds / 60);
     if (minutes < 60)
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
 
-    qlonglong hours = minutes / 60;
-    minutes -= hours * 60;
-    if (hours < 24)
+    qlonglong hours = (minutes / 60);
+    if (hours < 24) {
+        minutes -= (hours * 60);
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
+    }
 
-    qlonglong days = hours / 24;
-    hours -= days * 24;
-    if (days < 100)
+    qlonglong days = (hours / 24);
+    if (days < 365) {
+        hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+    }
 
-    return QString::fromUtf8(C_INFINITY);
+    qlonglong years = (days / 365);
+    days -= (years * 365);
+    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2years 10days").arg(QString::number(years), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()

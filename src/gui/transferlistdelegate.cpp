@@ -82,7 +82,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_ETA: {
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
+        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong(), MAX_ETA));
         break;
     }
     case TransferListModel::TR_SEEDS:

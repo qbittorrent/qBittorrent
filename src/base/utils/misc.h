@@ -84,7 +84,7 @@ namespace Utils
 
         // Take a number of seconds and return a user-friendly
         // time duration like "1d 2h 10m".
-        QString userFriendlyDuration(qlonglong seconds);
+        QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1);
         QString getUserIDString();
 
 #ifdef Q_OS_WIN
