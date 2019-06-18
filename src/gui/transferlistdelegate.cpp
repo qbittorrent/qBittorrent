@@ -121,8 +121,8 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_TIME_ELAPSED: {
-            const int elapsedTime = index.data().toInt();
-            const int seedingTime = index.data(Qt::UserRole).toInt();
+            const qlonglong elapsedTime = index.data().toLongLong();
+            const qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
             const QString txt = (seedingTime > 0)
                 ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                     .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
