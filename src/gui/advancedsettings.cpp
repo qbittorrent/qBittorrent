@@ -341,7 +341,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
     // These macros may not be available on compilers other than MSVC and GCC
 #if defined(__x86_64__) || defined(_M_X64)
-    spinBoxCache.setMaximum(4096);
+    spinBoxCache.setMaximum(33554431);  // 32768GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
     spinBoxCache.setMaximum(1536);
