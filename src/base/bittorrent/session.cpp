@@ -422,7 +422,11 @@ Session::Session(QObject *parent)
     m_nativeSession = new lt::session {pack, LTSessionFlags {0}};
     m_nativeSession->set_alert_notify([this]()
     {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        QMetaObject::invokeMethod(this, &Session::readAlerts, Qt::QueuedConnection);
+#else
         QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
+#endif
     });
 
     configurePeerClasses();
@@ -2190,14 +2194,24 @@ void Session::saveTorrentsQueue()
         data += (hash.toLatin1() + '\n');
 
     const QString filename = QLatin1String {"queue"};
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataSavingManager
+        , [this, data, filename]() { m_resumeDataSavingManager->save(filename, data); });
+#else
     QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
                               , Q_ARG(QString, filename), Q_ARG(QByteArray, data));
+#endif
 }
 
 void Session::removeTorrentsQueue()
 {
     const QString filename = QLatin1String {"queue"};
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataSavingManager
+        , [this, filename]() { m_resumeDataSavingManager->remove(filename); });
+#else
     QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, filename));
+#endif
 }
 
 void Session::setDefaultSavePath(QString path)
@@ -3471,8 +3485,13 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
     lt::bencode(std::back_inserter(out), data);
 
     const QString filename = QString("%1.fastresume").arg(torrent->hash());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataSavingManager
+        , [this, filename, out]() { m_resumeDataSavingManager->save(filename, out); });
+#else
     QMetaObject::invokeMethod(m_resumeDataSavingManager, "save",
                               Q_ARG(QString, filename), Q_ARG(QByteArray, out));
+#endif
 }
 
 void Session::handleTorrentResumeDataFailed(TorrentHandle *const torrent)
@@ -3530,7 +3549,13 @@ void Session::initResumeFolder()
 void Session::configureDeferred()
 {
     if (!m_deferredConfigureScheduled) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        QMetaObject::invokeMethod(this
+            , static_cast<void (Session::*)()>(&Session::configure)
+            , Qt::QueuedConnection);
+#else
         QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);
+#endif
         m_deferredConfigureScheduled = true;
     }
 }
