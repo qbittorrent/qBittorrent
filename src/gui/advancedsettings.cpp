@@ -353,8 +353,8 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(DISK_CACHE, (tr("Disk cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_size", "(?)"))
             , &spinBoxCache);
     // Disk cache expiry
-    spinBoxCacheTTL.setMinimum(15);
-    spinBoxCacheTTL.setMaximum(600);
+    spinBoxCacheTTL.setMinimum(1);
+    spinBoxCacheTTL.setMaximum(std::numeric_limits<int>::max());
     spinBoxCacheTTL.setValue(session->diskCacheTTL());
     spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
     addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_expiry", "(?)"))
