@@ -28,7 +28,6 @@
 
 #include "random.h"
 
-#include <limits>
 #include <random>
 
 #include <QtGlobal>

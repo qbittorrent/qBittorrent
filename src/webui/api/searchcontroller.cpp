@@ -28,6 +28,8 @@
 
 #include "searchcontroller.h"
 
+#include <limits>
+
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QSharedPointer>
@@ -293,7 +295,7 @@ int SearchController::generateSearchId() const
 
     while (true)
     {
-        const auto id = Utils::Random::rand(1, INT_MAX);
+        const int id = Utils::Random::rand(1, std::numeric_limits<int>::max());
         if (!searchHandlers.contains(id))
             return id;
     }
