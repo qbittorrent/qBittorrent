@@ -342,9 +342,8 @@ void AdvancedSettings::loadAdvancedSettings()
     // Disk write cache
     spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
-    // These macros may not be available on compilers other than MSVC and GCC
 #ifdef QBT_APP_64BIT
-    spinBoxCache.setMaximum(4096);
+    spinBoxCache.setMaximum(33554431);  // 32768GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
     spinBoxCache.setMaximum(1536);
