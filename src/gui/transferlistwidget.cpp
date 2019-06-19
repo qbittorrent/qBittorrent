@@ -688,17 +688,22 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
         useGlobalValue = (torrents[0]->ratioLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_RATIO)
                 && (torrents[0]->seedingTimeLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME);
 
-    UpDownRatioDialog dlg(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
+    auto dialog = new UpDownRatioDialog(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
                        currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);
-    if (dlg.exec() != QDialog::Accepted) return;
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, torrents]()
+    {
+        for (BitTorrent::TorrentHandle *const torrent : torrents) {
+            const qreal ratio = (dialog->useDefault()
+                ? BitTorrent::TorrentHandle::USE_GLOBAL_RATIO : dialog->ratio());
+            torrent->setRatioLimit(ratio);
 
-    for (BitTorrent::TorrentHandle *const torrent : torrents) {
-        qreal ratio = (dlg.useDefault() ? BitTorrent::TorrentHandle::USE_GLOBAL_RATIO : dlg.ratio());
-        torrent->setRatioLimit(ratio);
-
-        int seedingTime = (dlg.useDefault() ? BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME : dlg.seedingTime());
-        torrent->setSeedingTimeLimit(seedingTime);
-    }
+            const int seedingTime = (dialog->useDefault()
+                ? BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME : dialog->seedingTime());
+            torrent->setSeedingTimeLimit(seedingTime);
+        }
+    });
+    dialog->open();
 }
 
 void TransferListWidget::recheckSelectedTorrents()
@@ -721,41 +726,45 @@ void TransferListWidget::reannounceSelectedTorrents()
 // hide/show columns menu
 void TransferListWidget::displayDLHoSMenu(const QPoint&)
 {
-    QMenu hideshowColumn(this);
-    hideshowColumn.setTitle(tr("Column visibility"));
-    QList<QAction*> actions;
+    auto menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setTitle(tr("Column visibility"));
+
     for (int i = 0; i < m_listModel->columnCount(); ++i) {
-        if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && (i == TransferListModel::TR_PRIORITY)) {
-            actions.append(nullptr);
+        if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && (i == TransferListModel::TR_PRIORITY))
             continue;
-        }
-        QAction *myAct = hideshowColumn.addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+
+        QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!isColumnHidden(i));
-        actions.append(myAct);
-    }
-    int visibleCols = 0;
-    for (int i = 0; i < TransferListModel::NB_COLUMNS; ++i) {
-        if (!isColumnHidden(i))
-            ++visibleCols;
-
-        if (visibleCols > 1)
-            break;
+        myAct->setData(i);
     }
 
-    // Call menu
-    QAction *act = hideshowColumn.exec(QCursor::pos());
-    if (act) {
-        int col = actions.indexOf(act);
-        Q_ASSERT(col >= 0);
-        Q_ASSERT(visibleCols > 0);
+    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    {
+        int visibleCols = 0;
+        for (int i = 0; i < TransferListModel::NB_COLUMNS; ++i) {
+            if (!isColumnHidden(i))
+                ++visibleCols;
+
+            if (visibleCols > 1)
+                break;
+        }
+
+        const int col = action->data().toInt();
+
         if (!isColumnHidden(col) && visibleCols == 1)
             return;
+
         setColumnHidden(col, !isColumnHidden(col));
+
         if (!isColumnHidden(col) && columnWidth(col) <= 5)
             resizeColumnToContents(col);
+
         saveSettings();
-    }
+    });
+
+    menu->popup(QCursor::pos());
 }
 
 void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const

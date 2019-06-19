@@ -99,7 +99,7 @@ private:
     void updateFilter();
     void filterSearchResults(const QString &name);
     void showFilterContextMenu(const QPoint &);
-    void displayToggleColumnsMenu(const QPoint&);
+    void displayToggleColumnsMenu(const QPoint &);
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
     void searchFailed();

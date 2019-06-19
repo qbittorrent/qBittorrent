@@ -89,13 +89,16 @@ void TorrentCategoryDialog::editCategory(QWidget *parent, const QString &categor
 
     Q_ASSERT(Session::instance()->categories().contains(categoryName));
 
-    TorrentCategoryDialog dialog(parent);
-    dialog.setCategoryNameEditable(false);
-    dialog.setCategoryName(categoryName);
-    dialog.setSavePath(Session::instance()->categories()[categoryName]);
-    if (dialog.exec() == TorrentCategoryDialog::Accepted) {
-        Session::instance()->editCategory(categoryName, dialog.savePath());
-    }
+    auto dialog = new TorrentCategoryDialog(parent);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setCategoryNameEditable(false);
+    dialog->setCategoryName(categoryName);
+    dialog->setSavePath(Session::instance()->categories()[categoryName]);
+    connect(dialog, &TorrentCategoryDialog::accepted, parent, [dialog, categoryName]()
+    {
+        Session::instance()->editCategory(categoryName, dialog->savePath());
+    });
+    dialog->open();
 }
 
 void TorrentCategoryDialog::setCategoryNameEditable(bool editable)

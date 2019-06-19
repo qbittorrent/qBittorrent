@@ -1754,14 +1754,16 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 
 void OptionsDialog::on_banListButton_clicked()
 {
-    // call dialog window
-    if (BanListOptionsDialog(this).exec() == QDialog::Accepted)
-        enableApplyButton();
+    auto dialog = new BanListOptionsDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
+    dialog->open();
 }
 
 void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
 {
-    // call dialog window
-    if (IPSubnetWhitelistOptionsDialog(this).exec() == QDialog::Accepted)
-        enableApplyButton();
+    auto dialog = new IPSubnetWhitelistOptionsDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
+    dialog->open();
 }
