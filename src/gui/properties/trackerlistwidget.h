@@ -82,7 +82,7 @@ public slots:
     void reannounceSelected();
     void deleteSelectedTrackers();
     void editSelectedTracker();
-    void showTrackerListMenu(QPoint);
+    void showTrackerListMenu(const QPoint &);
     void displayToggleColumnsMenu(const QPoint &);
     void loadSettings();
     void saveSettings() const;

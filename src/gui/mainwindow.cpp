@@ -578,12 +578,14 @@ void MainWindow::addToolbarContextMenu()
 
 void MainWindow::manageCookies()
 {
-    CookiesDialog(this).exec();
+    auto *cookieDialog = new CookiesDialog(this);
+    cookieDialog->setAttribute(Qt::WA_DeleteOnClose);
+    cookieDialog->open();
 }
 
-void MainWindow::toolbarMenuRequested(QPoint point)
+void MainWindow::toolbarMenuRequested(const QPoint &point)
 {
-    m_toolbarMenu->exec(m_ui->toolBar->mapToGlobal(point));
+    m_toolbarMenu->popup(m_ui->toolBar->mapToGlobal(point));
 }
 
 void MainWindow::toolbarIconsOnly()
@@ -688,7 +690,9 @@ void MainWindow::showFilterContextMenu(const QPoint &)
     const Preferences *pref = Preferences::instance();
 
     QMenu *menu = m_searchFilter->createStandardContextMenu();
+    menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
+
     QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForTransferList());
@@ -697,7 +701,7 @@ void MainWindow::showFilterContextMenu(const QPoint &)
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForTransferList);
     connect(useRegexAct, &QAction::toggled, this, [this]() { m_transferListWidget->applyNameFilter(m_searchFilter->text()); });
 
-    menu->exec(QCursor::pos());
+    menu->popup(QCursor::pos());
 }
 
 void MainWindow::displaySearchTab(bool enable)

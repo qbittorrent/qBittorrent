@@ -457,42 +457,57 @@ void AddNewTorrentDialog::populateSavePathComboBox()
 
 void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 {
-    QMenu myFilesLlistMenu;
     const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
-    QAction *actRename = nullptr;
-    if (selectedRows.size() == 1) {
-        actRename = myFilesLlistMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
-        myFilesLlistMenu.addSeparator();
-    }
-    QMenu subMenu;
-    subMenu.setTitle(tr("Priority"));
-    subMenu.addAction(m_ui->actionNotDownloaded);
-    subMenu.addAction(m_ui->actionNormal);
-    subMenu.addAction(m_ui->actionHigh);
-    subMenu.addAction(m_ui->actionMaximum);
-    myFilesLlistMenu.addMenu(&subMenu);
-    // Call menu
-    QAction *act = myFilesLlistMenu.exec(QCursor::pos());
-    if (act) {
-        if (act == actRename) {
-            m_ui->contentTreeView->renameSelectedFile(m_torrentInfo);
-        }
-        else {
-            BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
-            if (act == m_ui->actionHigh)
-                prio = BitTorrent::DownloadPriority::High;
-            else if (act == m_ui->actionMaximum)
-                prio = BitTorrent::DownloadPriority::Maximum;
-            else if (act == m_ui->actionNotDownloaded)
-                prio = BitTorrent::DownloadPriority::Ignored;
 
-            qDebug("Setting files priority");
-            for (const QModelIndex &index : selectedRows) {
-                qDebug("Setting priority(%d) for file at row %d", static_cast<int>(prio), index.row());
-                m_contentModel->setData(m_contentModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
-            }
+    const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
+    {
+        for (const QModelIndex &index : selectedRows) {
+            m_contentModel->setData(
+                m_contentModel->index(index.row(), PRIORITY, index.parent())
+                , static_cast<int>(prio));
         }
+    };
+
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    if (selectedRows.size() == 1) {
+        QAction *actRename = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        connect(actRename, &QAction::triggered, this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
+
+        menu->addSeparator();
     }
+
+    QMenu *subMenu = new QMenu(menu);
+    subMenu->setTitle(tr("Priority"));
+
+    connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Ignored);
+    });
+    subMenu->addAction(m_ui->actionNotDownloaded);
+
+    connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Normal);
+    });
+    subMenu->addAction(m_ui->actionNormal);
+
+    connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+    {
+        applyPriorities(BitTorrent::DownloadPriority::High);
+    });
+    subMenu->addAction(m_ui->actionHigh);
+
+    connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Maximum);
+    });
+    subMenu->addAction(m_ui->actionMaximum);
+
+    menu->addMenu(subMenu);
+
+    menu->popup(QCursor::pos());
 }
 
 void AddNewTorrentDialog::accept()

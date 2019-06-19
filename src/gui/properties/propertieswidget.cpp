@@ -582,96 +582,105 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedRows.empty()) return;
 
-    QMenu myFilesListMenu;
-    QAction *actOpen = nullptr;
-    QAction *actOpenContainingFolder = nullptr;
-    QAction *actRename = nullptr;
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
     if (selectedRows.size() == 1) {
-        actOpen = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
-        actOpenContainingFolder = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        actRename = myFilesListMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
-        myFilesListMenu.addSeparator();
+        const QModelIndex index = selectedRows[0];
+
+        const QAction *actOpen = menu->addAction(GuiIconProvider::instance()->getIcon("folder-documents"), tr("Open"));
+        connect(actOpen, &QAction::triggered, this, [this, index]() { openDoubleClickedFile(index); });
+
+        const QAction *actOpenContainingFolder = menu->addAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
+        connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openFolder(index, true); });
+
+        const QAction *actRename = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
+
+        menu->addSeparator();
     }
-    QMenu subMenu;
+
+    QMenu *subMenu = new QMenu(menu);
+
     if (!m_torrent->isSeed()) {
-        subMenu.setTitle(tr("Priority"));
-        subMenu.addAction(m_ui->actionNotDownloaded);
-        subMenu.addAction(m_ui->actionNormal);
-        subMenu.addAction(m_ui->actionHigh);
-        subMenu.addAction(m_ui->actionMaximum);
-        myFilesListMenu.addMenu(&subMenu);
+        subMenu->setTitle(tr("Priority"));
+
+        const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
+        {
+            for (const QModelIndex &index : selectedRows) {
+                m_propListModel->setData(
+                    m_propListModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
+            }
+
+            // Save changes
+            filteredFilesChanged();
+        };
+
+        connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Ignored);
+        });
+        subMenu->addAction(m_ui->actionNotDownloaded);
+
+        connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal);
+        });
+        subMenu->addAction(m_ui->actionNormal);
+
+        connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::High);
+        });
+        subMenu->addAction(m_ui->actionHigh);
+
+        connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Maximum);
+        });
+        subMenu->addAction(m_ui->actionMaximum);
+
+        menu->addMenu(subMenu);
     }
 
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset
     connect(m_ui->filesList->model(), &QAbstractItemModel::modelAboutToBeReset
-            , &myFilesListMenu, [&myFilesListMenu]()
+            , menu, [&menu]()
     {
-        myFilesListMenu.setActiveAction(nullptr);
-        myFilesListMenu.close();
+        menu->setActiveAction(nullptr);
+        menu->close();
     });
-    // Call menu
-    const QAction *act = myFilesListMenu.exec(QCursor::pos());
-    if (!act) return;
 
-    const QModelIndex index = selectedRows[0];
-    if (act == actOpen) {
-        openDoubleClickedFile(index);
-    }
-    else if (act == actOpenContainingFolder) {
-        openFolder(index, true);
-    }
-    else if (act == actRename) {
-        m_ui->filesList->renameSelectedFile(m_torrent);
-    }
-    else {
-        BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
-        if (act == m_ui->actionHigh)
-            prio = BitTorrent::DownloadPriority::High;
-        else if (act == m_ui->actionMaximum)
-            prio = BitTorrent::DownloadPriority::Maximum;
-        else if (act == m_ui->actionNotDownloaded)
-            prio = BitTorrent::DownloadPriority::Ignored;
-
-        qDebug("Setting files priority");
-        for (const QModelIndex &index : selectedRows) {
-            qDebug("Setting priority(%d) for file at row %d", static_cast<int>(prio), index.row());
-            m_propListModel->setData(m_propListModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
-        }
-        // Save changes
-        filteredFilesChanged();
-    }
+    menu->popup(QCursor::pos());
 }
 
 void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
 {
     if (!m_torrent) return;
 
-    QMenu seedMenu;
-    QModelIndexList rows = m_ui->listWebSeeds->selectionModel()->selectedRows();
-    QAction *actAdd = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
-    QAction *actDel = nullptr;
-    QAction *actCpy = nullptr;
-    QAction *actEdit = nullptr;
+    const QModelIndexList rows = m_ui->listWebSeeds->selectionModel()->selectedRows();
+
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAction *actAdd = menu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
+    connect(actAdd, &QAction::triggered, this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty()) {
-        actDel = seedMenu.addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
-        seedMenu.addSeparator();
-        actCpy = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
-        actEdit = seedMenu.addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+        const QAction *actDel = menu->addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+        connect(actDel, &QAction::triggered, this, &PropertiesWidget::deleteSelectedUrlSeeds);
+
+        menu->addSeparator();
+
+        const QAction *actCpy = menu->addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
+        connect(actCpy, &QAction::triggered, this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
+
+        const QAction *actEdit = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+        connect(actEdit, &QAction::triggered, this, &PropertiesWidget::editWebSeed);
     }
 
-    const QAction *act = seedMenu.exec(QCursor::pos());
-    if (!act) return;
-
-    if (act == actAdd)
-        askWebSeed();
-    else if (act == actDel)
-        deleteSelectedUrlSeeds();
-    else if (act == actCpy)
-        copySelectedWebSeedsToClipboard();
-    else if (act == actEdit)
-        editWebSeed();
+    menu->popup(QCursor::pos());
 }
 
 void PropertiesWidget::openSelectedFile()

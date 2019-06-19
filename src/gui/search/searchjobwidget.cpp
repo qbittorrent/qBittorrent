@@ -358,7 +358,9 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     const Preferences *pref = Preferences::instance();
 
     QMenu *menu = m_lineEditSearchResultsFilter->createStandardContextMenu();
+    menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
+
     QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
@@ -367,7 +369,7 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
     connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
 
-    menu->exec(QCursor::pos());
+    menu->popup(QCursor::pos());
 }
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
