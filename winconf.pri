@@ -1,4 +1,3 @@
-DEFINES += BOOST_ASIO_HASH_MAP_BUCKETS=1021
 # After 1.55 some Windows users reported regular UI freezes.
 # This makes ASIO use the pre-1.56 way of doing things. See issue #2003
 DEFINES += BOOST_ASIO_DISABLE_CONNECTEX

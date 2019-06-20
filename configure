@@ -4729,10 +4729,10 @@ BOOST_CPPFLAGS=""
 if test "x$want_boost" = "xyes"; then :
 
 
-  if test "x1.35" = "x"; then :
+  if test "x1.40" = "x"; then :
   _AX_BOOST_BASE_TONUMERICVERSION_req="1.20.0"
 else
-  _AX_BOOST_BASE_TONUMERICVERSION_req="1.35"
+  _AX_BOOST_BASE_TONUMERICVERSION_req="1.40"
 fi
   _AX_BOOST_BASE_TONUMERICVERSION_req_shorten=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '\([0-9]*\.[0-9]*\)'`
   _AX_BOOST_BASE_TONUMERICVERSION_req_major=`expr $_AX_BOOST_BASE_TONUMERICVERSION_req : '\([0-9]*\)'`
@@ -4774,16 +4774,16 @@ esac
 
                 if test "x$_AX_BOOST_BASE_boost_path" != "x"; then :
 
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"" >&5
-$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"... " >&6; }
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.40 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"" >&5
+$as_echo_n "checking for boostlib >= 1.40 ($WANT_BOOST_VERSION) includes in \"$_AX_BOOST_BASE_boost_path/include\"... " >&6; }
          if test -d "$_AX_BOOST_BASE_boost_path/include" && test -r "$_AX_BOOST_BASE_boost_path/include"; then :
 
            { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
            BOOST_CPPFLAGS="-I$_AX_BOOST_BASE_boost_path/include"
            for _AX_BOOST_BASE_boost_path_tmp in $multiarch_libsubdir $libsubdirs; do
-                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"" >&5
-$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"... " >&6; }
+                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.40 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"" >&5
+$as_echo_n "checking for boostlib >= 1.40 ($WANT_BOOST_VERSION) lib path in \"$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp\"... " >&6; }
                 if test -d "$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp" && test -r "$_AX_BOOST_BASE_boost_path/$_AX_BOOST_BASE_boost_path_tmp" ; then :
 
                         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
@@ -4826,8 +4826,8 @@ fi
   BOOST_LDFLAGS="-L$_AX_BOOST_BASE_boost_lib_path"
 fi
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.35 ($WANT_BOOST_VERSION)" >&5
-$as_echo_n "checking for boostlib >= 1.35 ($WANT_BOOST_VERSION)... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for boostlib >= 1.40 ($WANT_BOOST_VERSION)" >&5
+$as_echo_n "checking for boostlib >= 1.40 ($WANT_BOOST_VERSION)... " >&6; }
     CPPFLAGS_SAVED="$CPPFLAGS"
     CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"
     export CPPFLAGS
@@ -4996,8 +4996,8 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
     if test "x$succeeded" != "xyes" ; then
         if test "x$_version" = "x0" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
-$as_echo "$as_me: We could not detect the boost libraries (version 1.35 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
+            { $as_echo "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.40 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
+$as_echo "$as_me: We could not detect the boost libraries (version 1.40 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
         else
             { $as_echo "$as_me:${as_lineno-$LINENO}: Your boost libraries seems to old (version $_version)." >&5
 $as_echo "$as_me: Your boost libraries seems to old (version $_version)." >&6;}

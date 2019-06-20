@@ -30,7 +30,7 @@ include(GNUInstallDirs)
 include(FeatureSummary)
 
 # version requirements
-set(requiredBoostVersion 1.35)
+set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
 set(requiredOpensslVersion 1.0)
 set(requiredLibtorrentVersion 1.1.10)
