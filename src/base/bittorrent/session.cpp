@@ -1539,7 +1539,7 @@ void Session::processShareLimits()
                     seedingTimeLimit = globalMaxSeedingMinutes();
 
                 if (seedingTimeLimit >= 0) {
-                    qDebug("Seeding Time: %d (limit: %d)", seedingTimeInMinutes, seedingTimeLimit);
+                    qDebug("Seeding Time: %lld (limit: %d)", seedingTimeInMinutes, seedingTimeLimit);
 
                     if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit)) {
                         Logger *const logger = Logger::instance();
