@@ -462,10 +462,10 @@ void PeerListWidget::handleSortColumnChanged(int col)
 
 void PeerListWidget::wheelEvent(QWheelEvent *event)
 {
-    event->accept();
-
     if (event->modifiers() & Qt::ShiftModifier) {
         // Shift + scroll = horizontal scroll
+        event->accept();
+
         QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
         QTreeView::wheelEvent(&scrollHEvent);
         return;
