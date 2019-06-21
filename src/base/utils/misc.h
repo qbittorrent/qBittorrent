@@ -36,7 +36,7 @@
 #include <Windows.h>
 #endif
 
-class QString;
+#include <QString>
 
 enum class ShutdownDialogAction;
 
