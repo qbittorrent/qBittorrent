@@ -1,7 +1,7 @@
 if (STACKTRACE)
-    if ("${WINXXBITS}" NOT STREQUAL "Win64")
+    if (NOT "${WINXXBITS}" STREQUAL "Win64")
         add_compile_options(-fno-omit-frame-pointer)
-    endif ("${WINXXBITS}" NOT STREQUAL "Win64")
+    endif (NOT "${WINXXBITS}" STREQUAL "Win64")
     link_libraries(libdbghelp  -Wl,--export-all-symbols)
 endif (STACKTRACE)
 
