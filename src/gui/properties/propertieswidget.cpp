@@ -600,10 +600,8 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         menu->addSeparator();
     }
 
-    QMenu *subMenu = new QMenu(menu);
-
     if (!m_torrent->isSeed()) {
-        subMenu->setTitle(tr("Priority"));
+        QMenu *subMenu = menu->addMenu(tr("Priority"));
 
         const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
         {
@@ -639,8 +637,6 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
             applyPriorities(BitTorrent::DownloadPriority::Maximum);
         });
         subMenu->addAction(m_ui->actionMaximum);
-
-        menu->addMenu(subMenu);
     }
 
     // The selected torrent might have disappeared during exec()

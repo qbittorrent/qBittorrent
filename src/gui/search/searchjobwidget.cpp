@@ -361,11 +361,9 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
 
-    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    QAction *useRegexAct = menu->addAction(tr("Use regular expressions"));
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
-    menu->addAction(useRegexAct);
-
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
     connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
 
