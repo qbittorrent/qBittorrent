@@ -13,7 +13,6 @@ DEFINES += _WIN32
 DEFINES += WIN32_LEAN_AND_MEAN
 DEFINES += _CRT_SECURE_NO_DEPRECATE
 DEFINES += _SCL_SECURE_NO_DEPRECATE
-DEFINES += _FILE_OFFSET_BITS=64
 DEFINES += NOMINMAX
 
 CONFIG(debug, debug|release) {
@@ -29,7 +28,9 @@ win32-g++* {
         QMAKE_LFLAGS -= -Wl,--dynamicbase
     }
 
+    DEFINES += _FILE_OFFSET_BITS=64
     DEFINES += __USE_W32_SOCKETS
+
     RC_FILE = qbittorrent_mingw.rc
 
     LIBS += libadvapi32 libshell32 libuser32 libole32 libwsock32 libws2_32
