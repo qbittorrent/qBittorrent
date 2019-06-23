@@ -370,6 +370,28 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     menu->popup(QCursor::pos());
 }
 
+void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    auto *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAction *downloadAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("download"), tr("Download"));
+    connect(downloadAction, &QAction::triggered, this, &SearchJobWidget::downloadTorrents);
+
+    menu->addSeparator();
+
+    const QAction *openDescriptionAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Go to description page"));
+    connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
+
+    const QAction *copyDescriptionAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy description page URL"));
+    connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
+
+    menu->popup(event->globalPos());
+}
+
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
 {
     switch (st) {
