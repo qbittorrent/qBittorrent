@@ -889,7 +889,7 @@ void TransferListWidget::clearSelectionTags()
     applyToSelectedTorrents([](BitTorrent::TorrentHandle *const torrent) { torrent->removeAllTags(); });
 }
 
-void TransferListWidget::displayListMenu(const QPoint&)
+void TransferListWidget::displayListMenu(const QPoint &)
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.isEmpty()) return;
@@ -927,11 +927,11 @@ void TransferListWidget::displayListMenu(const QPoint&)
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     QAction *actionForceReannounce = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), this);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
-    QAction *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Copy magnet link"), this);
+    QAction *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Magnet link"), this);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
-    QAction *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), this);
+    QAction *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"), this);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    QAction *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), this);
+    QAction *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Hash"), this);
     connect(actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
     QAction *actionSuperSeedingMode = new QAction(tr("Super seeding mode"), this);
     actionSuperSeedingMode->setCheckable(true);
@@ -1160,10 +1160,12 @@ void TransferListWidget::displayListMenu(const QPoint&)
         prioMenu->addAction(actionDecreasePriority);
         prioMenu->addAction(actionBottomPriority);
     }
-    listMenu->addSeparator();
-    listMenu->addAction(actionCopyName);
-    listMenu->addAction(actionCopyHash);
-    listMenu->addAction(actionCopyMagnetLink);
+
+    QMenu *copySubMenu = listMenu->addMenu(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"));
+    copySubMenu->addAction(actionCopyName);
+    copySubMenu->addAction(actionCopyHash);
+    copySubMenu->addAction(actionCopyMagnetLink);
 
     listMenu->popup(QCursor::pos());
 }
