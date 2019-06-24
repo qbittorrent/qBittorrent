@@ -24,7 +24,7 @@
             var name = new URI().getData('name');
             // set text field to current value
             if (name)
-                $('rename').value = escapeHtml(name);
+                $('rename').value = decodeURIComponent(name);
 
             $('rename').focus();
             $('renameButton').addEvent('click', function(e) {

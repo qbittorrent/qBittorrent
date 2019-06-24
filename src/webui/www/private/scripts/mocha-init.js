@@ -452,7 +452,7 @@ initializeWindows = function() {
                     id: 'renamePage',
                     title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
                     loadMethod: 'iframe',
-                    contentURL: 'rename.html?hash=' + hashes[0] + '&name=' + row.full_data.name,
+                    contentURL: 'rename.html?hash=' + hash + '&name=' + encodeURIComponent(row.full_data.name),
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,
