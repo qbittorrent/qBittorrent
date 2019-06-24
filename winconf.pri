@@ -1,4 +1,3 @@
-DEFINES += BOOST_ASIO_HASH_MAP_BUCKETS=1021
 # After 1.55 some Windows users reported regular UI freezes.
 # This makes ASIO use the pre-1.56 way of doing things. See issue #2003
 DEFINES += BOOST_ASIO_DISABLE_CONNECTEX
@@ -12,10 +11,6 @@ DEFINES += _UNICODE
 DEFINES += WIN32
 DEFINES += _WIN32
 DEFINES += WIN32_LEAN_AND_MEAN
-DEFINES += _CRT_SECURE_NO_DEPRECATE
-DEFINES += _SCL_SECURE_NO_DEPRECATE
-DEFINES += __USE_W32_SOCKETS
-DEFINES += _FILE_OFFSET_BITS=64
 DEFINES += NOMINMAX
 
 CONFIG(debug, debug|release) {
@@ -30,6 +25,9 @@ win32-g++* {
         # Make sure binary is not relocatable, otherwise debugging will fail
         QMAKE_LFLAGS -= -Wl,--dynamicbase
     }
+
+    DEFINES += _FILE_OFFSET_BITS=64
+    DEFINES += __USE_W32_SOCKETS
 
     RC_FILE = qbittorrent_mingw.rc
 

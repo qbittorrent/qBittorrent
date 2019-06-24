@@ -163,7 +163,7 @@ AS_CASE(["x$enable_qt_dbus"],
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
 
 
-AX_BOOST_BASE([1.35],
+AX_BOOST_BASE([1.40],
               [AC_MSG_NOTICE([Boost CXXFLAGS: "$BOOST_CPPFLAGS"])
                AC_MSG_NOTICE([Boost LDFLAGS: "$BOOST_LDFLAGS"])],
               [AC_MSG_ERROR([Could not find Boost])])
