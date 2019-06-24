@@ -342,9 +342,8 @@ void AdvancedSettings::loadAdvancedSettings()
     // Disk write cache
     spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
-    // These macros may not be available on compilers other than MSVC and GCC
 #ifdef QBT_APP_64BIT
-    spinBoxCache.setMaximum(4096);
+    spinBoxCache.setMaximum(33554431);  // 32768GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
     spinBoxCache.setMaximum(1536);
@@ -354,8 +353,8 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(DISK_CACHE, (tr("Disk cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_size", "(?)"))
             , &spinBoxCache);
     // Disk cache expiry
-    spinBoxCacheTTL.setMinimum(15);
-    spinBoxCacheTTL.setMaximum(600);
+    spinBoxCacheTTL.setMinimum(1);
+    spinBoxCacheTTL.setMaximum(std::numeric_limits<int>::max());
     spinBoxCacheTTL.setValue(session->diskCacheTTL());
     spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
     addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_expiry", "(?)"))
@@ -378,19 +377,19 @@ void AdvancedSettings::loadAdvancedSettings()
             , &checkBoxSuggestMode);
     // Send buffer watermark
     spinBoxSendBufferWatermark.setMinimum(1);
-    spinBoxSendBufferWatermark.setMaximum(INT_MAX);
+    spinBoxSendBufferWatermark.setMaximum(std::numeric_limits<int>::max());
     spinBoxSendBufferWatermark.setSuffix(tr(" KiB"));
     spinBoxSendBufferWatermark.setValue(session->sendBufferWatermark());
     addRow(SEND_BUF_WATERMARK, (tr("Send buffer watermark") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark", "(?)"))
             , &spinBoxSendBufferWatermark);
     spinBoxSendBufferLowWatermark.setMinimum(1);
-    spinBoxSendBufferLowWatermark.setMaximum(INT_MAX);
+    spinBoxSendBufferLowWatermark.setMaximum(std::numeric_limits<int>::max());
     spinBoxSendBufferLowWatermark.setSuffix(tr(" KiB"));
     spinBoxSendBufferLowWatermark.setValue(session->sendBufferLowWatermark());
     addRow(SEND_BUF_LOW_WATERMARK, (tr("Send buffer low watermark") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_low_watermark", "(?)"))
             , &spinBoxSendBufferLowWatermark);
     spinBoxSendBufferWatermarkFactor.setMinimum(1);
-    spinBoxSendBufferWatermarkFactor.setMaximum(INT_MAX);
+    spinBoxSendBufferWatermarkFactor.setMaximum(std::numeric_limits<int>::max());
     spinBoxSendBufferWatermarkFactor.setSuffix(" %");
     spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", "(?)"))

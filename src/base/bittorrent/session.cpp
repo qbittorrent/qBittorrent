@@ -2840,22 +2840,19 @@ void Session::setCheckingMemUsage(int size)
 
 int Session::diskCacheSize() const
 {
-    int size = m_diskCacheSize;
-    // These macros may not be available on compilers other than MSVC and GCC
 #ifdef QBT_APP_64BIT
-    size = qMin(size, 4096);  // 4GiB
+    return qMin(m_diskCacheSize.value(), 33554431);  // 32768GiB
 #else
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    size = qMin(size, 1536);
+    return qMin(m_diskCacheSize.value(), 1536);
 #endif
-    return size;
 }
 
 void Session::setDiskCacheSize(int size)
 {
 #ifdef QBT_APP_64BIT
-    size = qMin(size, 4096);  // 4GiB
+    size = qMin(size, 33554431);  // 32768GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
     size = qMin(size, 1536);
