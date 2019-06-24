@@ -28,6 +28,8 @@
 
 #include "transferlistwidget.h"
 
+#include <algorithm>
+
 #include <QClipboard>
 #include <QDebug>
 #include <QFileDialog>
@@ -36,6 +38,7 @@
 #include <QMessageBox>
 #include <QRegExp>
 #include <QRegularExpression>
+#include <QSet>
 #include <QShortcut>
 #include <QStylePainter>
 #include <QTableView>
@@ -44,6 +47,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -59,6 +63,7 @@
 #include "previewselectdialog.h"
 #include "speedlimitdialog.h"
 #include "torrentcategorydialog.h"
+#include "trackerentriesdialog.h"
 #include "transferlistdelegate.h"
 #include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
@@ -807,6 +812,39 @@ void TransferListWidget::askAddTagsForSelection()
         addSelectionTag(tag);
 }
 
+void TransferListWidget::editTorrentTrackers()
+{
+    const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    QList<BitTorrent::TrackerEntry> commonTrackers;
+
+    if (!torrents.empty()) {
+        commonTrackers = torrents[0]->trackers();
+
+        for (const BitTorrent::TorrentHandle *torrent : torrents) {
+            QSet<BitTorrent::TrackerEntry> trackerSet;
+
+            for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers()))
+                trackerSet.insert(entry);
+
+            commonTrackers.erase(std::remove_if(commonTrackers.begin(), commonTrackers.end()
+                , [&trackerSet](const BitTorrent::TrackerEntry &entry) { return !trackerSet.contains(entry); })
+                , commonTrackers.end());
+        }
+    }
+
+    auto trackerDialog = new TrackerEntriesDialog(this);
+    trackerDialog->setAttribute(Qt::WA_DeleteOnClose);
+    trackerDialog->setTrackers(commonTrackers);
+
+    connect(trackerDialog, &QDialog::accepted, this, [torrents, trackerDialog]()
+    {
+        for (BitTorrent::TorrentHandle *torrent : torrents)
+            torrent->replaceTrackers(trackerDialog->trackers());
+    });
+
+    trackerDialog->open();
+}
+
 void TransferListWidget::confirmRemoveAllTagsForSelection()
 {
     QMessageBox::StandardButton response = QMessageBox::question(
@@ -951,6 +989,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     actionAutoTMM->setCheckable(true);
     actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
+    QAction *actionEditTracker = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
+    connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     // End of actions
 
     // Enable/disable pause/start action given the DL state
@@ -1046,6 +1086,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     listMenu->addAction(actionSetTorrentPath);
     if (selectedIndexes.size() == 1)
         listMenu->addAction(actionRename);
+    listMenu->addAction(actionEditTracker);
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories().keys();

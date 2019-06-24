@@ -154,5 +154,11 @@ const lt::announce_entry &TrackerEntry::nativeEntry() const
 
 bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
 {
-    return (QUrl(left.url()) == QUrl(right.url()));
+    return ((left.tier() == right.tier())
+        && QUrl(left.url()) == QUrl(right.url()));
+}
+
+uint BitTorrent::qHash(const TrackerEntry &key, const uint seed)
+{
+    return (::qHash(key.url(), seed) ^ key.tier());
 }
