@@ -691,7 +691,7 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
     auto dialog = new UpDownRatioDialog(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
                        currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dialog, &QDialog::accepted, this, [this, dialog, torrents]()
+    connect(dialog, &QDialog::accepted, this, [dialog, torrents]()
     {
         for (BitTorrent::TorrentHandle *const torrent : torrents) {
             const qreal ratio = (dialog->useDefault()
