@@ -129,7 +129,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Go to description page</string>
+        <string>Open description page</string>
        </property>
       </widget>
      </item>

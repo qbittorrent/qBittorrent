@@ -382,7 +382,7 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     menu->addSeparator();
 
     const QAction *openDescriptionAction = menu->addAction(
-        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Go to description page"));
+        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
     connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
 
     const QAction *copyDescriptionAction = menu->addAction(
