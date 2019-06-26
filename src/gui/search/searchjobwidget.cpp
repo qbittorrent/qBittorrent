@@ -361,15 +361,35 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
 
-    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    QAction *useRegexAct = menu->addAction(tr("Use regular expressions"));
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
-    menu->addAction(useRegexAct);
-
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
     connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
 
     menu->popup(QCursor::pos());
+}
+
+void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    auto *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAction *downloadAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("download"), tr("Download"));
+    connect(downloadAction, &QAction::triggered, this, &SearchJobWidget::downloadTorrents);
+
+    menu->addSeparator();
+
+    const QAction *openDescriptionAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Go to description page"));
+    connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
+
+    const QAction *copyDescriptionAction = menu->addAction(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy description page URL"));
+    connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
+
+    menu->popup(event->globalPos());
 }
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)

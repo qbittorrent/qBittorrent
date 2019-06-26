@@ -691,7 +691,7 @@ void TransferListWidget::setMaxRatioSelectedTorrents()
     auto dialog = new UpDownRatioDialog(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
                        currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dialog, &QDialog::accepted, this, [this, dialog, torrents]()
+    connect(dialog, &QDialog::accepted, this, [dialog, torrents]()
     {
         for (BitTorrent::TorrentHandle *const torrent : torrents) {
             const qreal ratio = (dialog->useDefault()
@@ -889,62 +889,65 @@ void TransferListWidget::clearSelectionTags()
     applyToSelectedTorrents([](BitTorrent::TorrentHandle *const torrent) { torrent->removeAllTags(); });
 }
 
-void TransferListWidget::displayListMenu(const QPoint&)
+void TransferListWidget::displayListMenu(const QPoint &)
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.isEmpty()) return;
 
+    QMenu *listMenu = new QMenu(this);
+    listMenu->setAttribute(Qt::WA_DeleteOnClose);
+
     // Create actions
-    QAction *actionStart = new QAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), this);
+    QAction *actionStart = new QAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
-    QAction *actionPause = new QAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), this);
+    QAction *actionPause = new QAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), listMenu);
     connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
-    QAction *actionForceStart = new QAction(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), this);
+    QAction *actionForceStart = new QAction(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
-    QAction *actionDelete = new QAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), this);
+    QAction *actionDelete = new QAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
-    QAction *actionPreviewFile = new QAction(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), this);
+    QAction *actionPreviewFile = new QAction(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    QAction *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), this);
+    QAction *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), listMenu);
     connect(actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
-    QAction *actionSetUploadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), this);
+    QAction *actionSetUploadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), listMenu);
     connect(actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
-    QAction *actionSetDownloadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), this);
+    QAction *actionSetDownloadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), listMenu);
     connect(actionSetDownloadLimit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
-    QAction *actionOpenDestinationFolder = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), this);
+    QAction *actionOpenDestinationFolder = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
-    QAction *actionIncreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), this);
+    QAction *actionIncreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
     connect(actionIncreasePriority, &QAction::triggered, this, &TransferListWidget::increasePrioSelectedTorrents);
-    QAction *actionDecreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), this);
+    QAction *actionDecreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), listMenu);
     connect(actionDecreasePriority, &QAction::triggered, this, &TransferListWidget::decreasePrioSelectedTorrents);
-    QAction *actionTopPriority = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), this);
+    QAction *actionTopPriority = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), listMenu);
     connect(actionTopPriority, &QAction::triggered, this, &TransferListWidget::topPrioSelectedTorrents);
-    QAction *actionBottomPriority = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), this);
+    QAction *actionBottomPriority = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
     connect(actionBottomPriority, &QAction::triggered, this, &TransferListWidget::bottomPrioSelectedTorrents);
-    QAction *actionSetTorrentPath = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), this);
+    QAction *actionSetTorrentPath = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
-    QAction *actionForceRecheck = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), this);
+    QAction *actionForceRecheck = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
-    QAction *actionForceReannounce = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), this);
+    QAction *actionForceReannounce = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
-    QAction *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Copy magnet link"), this);
+    QAction *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
-    QAction *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy name"), this);
+    QAction *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"), listMenu);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    QAction *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy hash"), this);
+    QAction *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Hash"), listMenu);
     connect(actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
-    QAction *actionSuperSeedingMode = new QAction(tr("Super seeding mode"), this);
+    QAction *actionSuperSeedingMode = new QAction(tr("Super seeding mode"), listMenu);
     actionSuperSeedingMode->setCheckable(true);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSuperSeeding);
-    QAction *actionRename = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), this);
+    QAction *actionRename = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), listMenu);
     connect(actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
-    QAction *actionSequentialDownload = new QAction(tr("Download in sequential order"), this);
+    QAction *actionSequentialDownload = new QAction(tr("Download in sequential order"), listMenu);
     actionSequentialDownload->setCheckable(true);
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSequentialDownload);
-    QAction *actionFirstLastPiecePrio = new QAction(tr("Download first and last pieces first"), this);
+    QAction *actionFirstLastPiecePrio = new QAction(tr("Download first and last pieces first"), listMenu);
     actionFirstLastPiecePrio->setCheckable(true);
     connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::toggleSelectedFirstLastPiecePrio);
-    QAction *actionAutoTMM = new QAction(tr("Automatic Torrent Management"), this);
+    QAction *actionAutoTMM = new QAction(tr("Automatic Torrent Management"), listMenu);
     actionAutoTMM->setCheckable(true);
     actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
@@ -1030,9 +1033,6 @@ void TransferListWidget::displayListMenu(const QPoint&)
             break;
         }
     }
-
-    QMenu *listMenu = new QMenu(this);
-    listMenu->setAttribute(Qt::WA_DeleteOnClose);
 
     if (needsStart)
         listMenu->addAction(actionStart);
@@ -1160,10 +1160,12 @@ void TransferListWidget::displayListMenu(const QPoint&)
         prioMenu->addAction(actionDecreasePriority);
         prioMenu->addAction(actionBottomPriority);
     }
-    listMenu->addSeparator();
-    listMenu->addAction(actionCopyName);
-    listMenu->addAction(actionCopyHash);
-    listMenu->addAction(actionCopyMagnetLink);
+
+    QMenu *copySubMenu = listMenu->addMenu(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"));
+    copySubMenu->addAction(actionCopyName);
+    copySubMenu->addAction(actionCopyHash);
+    copySubMenu->addAction(actionCopyMagnetLink);
 
     listMenu->popup(QCursor::pos());
 }

@@ -478,8 +478,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
         menu->addSeparator();
     }
 
-    QMenu *subMenu = new QMenu(menu);
-    subMenu->setTitle(tr("Priority"));
+    QMenu *subMenu = menu->addMenu(tr("Priority"));
 
     connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
     {
@@ -504,8 +503,6 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
         applyPriorities(BitTorrent::DownloadPriority::Maximum);
     });
     subMenu->addAction(m_ui->actionMaximum);
-
-    menu->addMenu(subMenu);
 
     menu->popup(QCursor::pos());
 }

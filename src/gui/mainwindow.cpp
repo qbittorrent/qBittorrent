@@ -528,21 +528,17 @@ void MainWindow::addToolbarContextMenu()
     m_ui->toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_ui->toolBar, &QWidget::customContextMenuRequested, this, &MainWindow::toolbarMenuRequested);
 
-    QAction *iconsOnly = new QAction(tr("Icons Only"), m_toolbarMenu);
+    QAction *iconsOnly = m_toolbarMenu->addAction(tr("Icons Only"));
     connect(iconsOnly, &QAction::triggered, this, &MainWindow::toolbarIconsOnly);
-    QAction *textOnly = new QAction(tr("Text Only"), m_toolbarMenu);
+    QAction *textOnly = m_toolbarMenu->addAction(tr("Text Only"));
     connect(textOnly, &QAction::triggered, this, &MainWindow::toolbarTextOnly);
-    QAction *textBesideIcons = new QAction(tr("Text Alongside Icons"), m_toolbarMenu);
+    QAction *textBesideIcons =  m_toolbarMenu->addAction(tr("Text Alongside Icons"));
     connect(textBesideIcons, &QAction::triggered, this, &MainWindow::toolbarTextBeside);
-    QAction *textUnderIcons = new QAction(tr("Text Under Icons"), m_toolbarMenu);
+    QAction *textUnderIcons = m_toolbarMenu->addAction(tr("Text Under Icons"));
     connect(textUnderIcons, &QAction::triggered, this, &MainWindow::toolbarTextUnder);
-    QAction *followSystemStyle = new QAction(tr("Follow System Style"), m_toolbarMenu);
+    QAction *followSystemStyle = m_toolbarMenu->addAction(tr("Follow System Style"));
     connect(followSystemStyle, &QAction::triggered, this, &MainWindow::toolbarFollowSystem);
-    m_toolbarMenu->addAction(iconsOnly);
-    m_toolbarMenu->addAction(textOnly);
-    m_toolbarMenu->addAction(textBesideIcons);
-    m_toolbarMenu->addAction(textUnderIcons);
-    m_toolbarMenu->addAction(followSystemStyle);
+
     auto *textPositionGroup = new QActionGroup(m_toolbarMenu);
     textPositionGroup->addAction(iconsOnly);
     iconsOnly->setCheckable(true);
@@ -693,11 +689,9 @@ void MainWindow::showFilterContextMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
 
-    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+    QAction *useRegexAct = menu->addAction(tr("Use regular expressions"));
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForTransferList());
-    menu->addAction(useRegexAct);
-
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForTransferList);
     connect(useRegexAct, &QAction::toggled, this, [this]() { m_transferListWidget->applyNameFilter(m_searchFilter->text()); });
 
