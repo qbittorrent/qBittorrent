@@ -114,36 +114,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
    <item>
     <layout class="QHBoxLayout" name="layout2">
      <item>
-      <widget class="QPushButton" name="downloadButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Download</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="goToDescBtn">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Open description page</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="copyURLBtn">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Copy description page URL</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="spacer2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

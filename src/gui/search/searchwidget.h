@@ -57,15 +57,11 @@ public:
 
 private slots:
     void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
     void on_pluginsButton_clicked();
 
 private:
     void tabChanged(int index);
     void closeTab(int index);
-    void resultsCountUpdated();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
@@ -74,7 +70,6 @@ private:
     void fillPluginComboBox();
     void selectActivePage();
     void searchTextEdited(const QString &);
-    void updateButtons();
 
     QString selectedCategory() const;
     QString selectedPlugin() const;
