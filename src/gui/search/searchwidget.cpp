@@ -40,6 +40,7 @@
 #include <QRegularExpression>
 #include <QShortcut>
 #include <QTextStream>
+#include <QVector>
 
 #include "base/global.h"
 #include "base/search/searchpluginmanager.h"
@@ -146,7 +147,7 @@ void SearchWidget::fillCatCombobox()
     m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), QVariant("all"));
 
     using QStrPair = QPair<QString, QString>;
-    QList<QStrPair> tmpList;
+    QVector<QStrPair> tmpList;
     for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
         tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
@@ -168,7 +169,7 @@ void SearchWidget::fillPluginComboBox()
     m_ui->selectPlugin->addItem(tr("Select..."), QVariant("multi"));
 
     using QStrPair = QPair<QString, QString>;
-    QList<QStrPair> tmpList;
+    QVector<QStrPair> tmpList;
     for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
