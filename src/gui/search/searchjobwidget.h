@@ -82,10 +82,6 @@ public:
 
     void cancelSearch();
 
-    void downloadTorrents();
-    void openTorrentPages();
-    void copyTorrentURLs();
-
 signals:
     void resultsCountUpdated();
     void statusChanged();
@@ -113,6 +109,13 @@ private:
     NameFilteringMode filteringMode() const;
     QHeaderView *header() const;
     void setRowColor(int row, const QColor &color);
+
+    void downloadTorrents();
+    void openTorrentPages() const;
+    void copyTorrentURLs() const;
+    void copyTorrentDownloadLinks() const;
+    void copyTorrentNames() const;
+    void copyField(int column) const;
 
     static QString statusText(Status st);
     static CachedSettingValue<NameFilteringMode> &nameFilteringModeSetting();
