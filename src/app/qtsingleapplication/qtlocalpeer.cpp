@@ -101,6 +101,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 #endif
 
     server = new QLocalServer(this);
+    server->setSocketOptions(QLocalServer::UserAccessOption);
     QString lockName = QDir(QDir::tempPath()).absolutePath()
                        + QLatin1Char('/') + socketName
                        + QLatin1String("-lockfile");
