@@ -191,6 +191,12 @@ void QtLocalPeer::receiveConnection()
     QByteArray uMsg;
     quint32 remaining;
     ds >> remaining;
+    if (remaining > 65535) {
+        // drop suspiciously large data
+        delete socket;
+        return;
+    }
+
     uMsg.resize(remaining);
     int got = 0;
     char* uMsgBuf = uMsg.data();
