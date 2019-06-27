@@ -78,7 +78,7 @@ namespace
 {
     using ToggleFn = std::function<void (Qt::CheckState)>;
 
-    QStringList extractHashes(const QList<BitTorrent::TorrentHandle *> &torrents)
+    QStringList extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
     {
         QStringList hashes;
         for (BitTorrent::TorrentHandle *const torrent : torrents)
@@ -400,9 +400,9 @@ void TransferListWidget::torrentDoubleClicked()
     }
 }
 
-QList<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
+QVector<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
 {
-    QList<BitTorrent::TorrentHandle *> torrents;
+    QVector<BitTorrent::TorrentHandle *> torrents;
     for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
         torrents << m_listModel->torrentHandle(mapToSource(index));
 
@@ -411,7 +411,7 @@ QList<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() con
 
 void TransferListWidget::setSelectedTorrentsLocation()
 {
-    const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.isEmpty()) return;
 
     const QString oldLocation = torrents[0]->savePath();
@@ -494,7 +494,7 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
 {
     if (m_mainWindow->currentTabWidget() != this) return;
 
-    const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
     if (Preferences::instance()->confirmTorrentDeletion()
@@ -508,7 +508,7 @@ void TransferListWidget::deleteVisibleTorrents()
 {
     if (m_sortFilterModel->rowCount() <= 0) return;
 
-    QList<BitTorrent::TorrentHandle *> torrents;
+    QVector<BitTorrent::TorrentHandle *> torrents;
     for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
         torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
 
@@ -622,7 +622,7 @@ void TransferListWidget::previewSelectedTorrents()
 
 void TransferListWidget::setDlLimitSelectedTorrents()
 {
-    QList<BitTorrent::TorrentHandle *> torrentsList;
+    QVector<BitTorrent::TorrentHandle *> torrentsList;
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
         if (torrent->isSeed())
             continue;
@@ -652,7 +652,7 @@ void TransferListWidget::setDlLimitSelectedTorrents()
 
 void TransferListWidget::setUpLimitSelectedTorrents()
 {
-    QList<BitTorrent::TorrentHandle *> torrentsList = getSelectedTorrents();
+    QVector<BitTorrent::TorrentHandle *> torrentsList = getSelectedTorrents();
     if (torrentsList.empty()) return;
 
     int oldLimit = torrentsList.first()->uploadLimit();
@@ -677,7 +677,7 @@ void TransferListWidget::setUpLimitSelectedTorrents()
 
 void TransferListWidget::setMaxRatioSelectedTorrents()
 {
-    const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.isEmpty()) return;
 
     qreal currentMaxRatio = BitTorrent::Session::instance()->globalMaxRatio();
@@ -814,8 +814,8 @@ void TransferListWidget::askAddTagsForSelection()
 
 void TransferListWidget::editTorrentTrackers()
 {
-    const QList<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
-    QList<BitTorrent::TrackerEntry> commonTrackers;
+    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    QVector<BitTorrent::TrackerEntry> commonTrackers;
 
     if (!torrents.empty()) {
         commonTrackers = torrents[0]->trackers();
