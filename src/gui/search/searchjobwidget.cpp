@@ -217,7 +217,7 @@ void SearchJobWidget::downloadTorrents()
         downloadTorrent(rowIndex);
 }
 
-void SearchJobWidget::openTorrentPages()
+void SearchJobWidget::openTorrentPages() const
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
     for (const QModelIndex &rowIndex : rows) {
@@ -228,21 +228,35 @@ void SearchJobWidget::openTorrentPages()
     }
 }
 
-void SearchJobWidget::copyTorrentURLs()
+void SearchJobWidget::copyTorrentURLs() const
+{
+    copyField(SearchSortModel::DESC_LINK);
+}
+
+void SearchJobWidget::copyTorrentDownloadLinks() const
+{
+    copyField(SearchSortModel::DL_LINK);
+}
+
+void SearchJobWidget::copyTorrentNames() const
+{
+    copyField(SearchSortModel::NAME);
+}
+
+void SearchJobWidget::copyField(const int column) const
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
-    QStringList urls;
+    QStringList list;
+
     for (const QModelIndex &rowIndex : rows) {
-        const QString descrLink = m_proxyModel->data(
-                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
-        if (!descrLink.isEmpty())
-            urls << descrLink;
+        const QString field = m_proxyModel->data(
+            m_proxyModel->index(rowIndex.row(), column)).toString();
+        if (!field.isEmpty())
+            list << field;
     }
 
-    if (!urls.empty()) {
-        QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setText(urls.join('\n'));
-    }
+    if (!list.empty())
+        QApplication::clipboard()->setText(list.join('\n'));
 }
 
 void SearchJobWidget::setStatus(Status value)
@@ -382,11 +396,23 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     menu->addSeparator();
 
     const QAction *openDescriptionAction = menu->addAction(
-        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Go to description page"));
+        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
     connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
 
-    const QAction *copyDescriptionAction = menu->addAction(
-        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy description page URL"));
+    QMenu *copySubMenu = menu->addMenu(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"));
+
+    const QAction *copyNamesAction = copySubMenu->addAction(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"));
+    connect(copyNamesAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentNames);
+
+    const QAction *copyDownloadLinkAction = copySubMenu->addAction(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Download link"));
+    connect(copyDownloadLinkAction, &QAction::triggered
+        , this, &SearchJobWidget::copyTorrentDownloadLinks);
+
+    const QAction *copyDescriptionAction = copySubMenu->addAction(
+        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Description page URL"));
     connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());
