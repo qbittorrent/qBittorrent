@@ -1861,29 +1861,22 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         hash = magnetUri.hash();
 
         if (m_loadedMetadata.contains(hash)) {
-            // Adding preloaded torrent
-            m_loadedMetadata.remove(hash);
-            lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
-            --m_extraLimit;
+            // Adding preloaded torrent...
+            m_addingTorrents.insert(hash, params);
 
+            lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
+            // We need to pause it first to create TorrentHandle within the same
+            // underlying state as in other cases.
             try {
-                // Preloaded torrent is in "Upload mode" so we need to disable it
-                // otherwise the torrent never be downloaded (until application restart)
 #if (LIBTORRENT_VERSION_NUM < 10200)
                 handle.auto_managed(false);
-                handle.set_upload_mode(false);
 #else
-                handle.unset_flags(lt::torrent_flags::auto_managed | lt::torrent_flags::upload_mode);
+                handle.unset_flags(lt::torrent_flags::auto_managed);
 #endif
                 handle.pause();
             }
             catch (const std::exception &) {}
 
-            adjustLimits();
-
-            // use common 2nd step of torrent addition
-            m_addingTorrents.insert(hash, params);
-            createTorrentHandle(handle);
             return true;
         }
 
@@ -1923,8 +1916,15 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     if (!fromMagnetUri) {
         if (params.restored) {  // load from existing fastresume
 #if (LIBTORRENT_VERSION_NUM < 10200)
-            p.resume_data = std::vector<char> {fastresumeData.constData()
-                , (fastresumeData.constData() + fastresumeData.size())};
+            // Make sure the torrent will be initially checked and then paused
+            // to perform some service jobs on it. We will start it if needed.
+            // (Workaround to easily support libtorrent-1.1
+            QByteArray patchedFastresumeData = fastresumeData;
+            patchedFastresumeData.replace("6:pausedi0e", "6:pausedi1e");
+            patchedFastresumeData.replace("12:auto_managedi0e", "12:auto_managedi1e");
+
+            p.resume_data = std::vector<char> {patchedFastresumeData.constData()
+                , (patchedFastresumeData.constData() + patchedFastresumeData.size())};
             p.flags |= lt::add_torrent_params::flag_use_resume_save_path;
 
             // Still setup the default parameters and let libtorrent handle
@@ -1975,18 +1975,25 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         p.ti = torrentInfo.nativeInfo();
     }
 
-    if (!hasCompleteFastresume) {
-        // Common
+    // Common
 #if (LIBTORRENT_VERSION_NUM < 10200)
-        p.flags |= lt::add_torrent_params::flag_paused; // Start in pause
-        p.flags &= ~lt::add_torrent_params::flag_auto_managed; // Because it is added in paused state
-        p.flags &= ~lt::add_torrent_params::flag_duplicate_is_error; // Already checked
+    p.flags &= ~lt::add_torrent_params::flag_duplicate_is_error; // Already checked
 #else
-        p.flags |= lt::torrent_flags::paused; // Start in pause
-        p.flags &= ~lt::torrent_flags::auto_managed; // Because it is added in paused state
-        p.flags &= ~lt::torrent_flags::duplicate_is_error; // Already checked
+    p.flags &= ~lt::torrent_flags::duplicate_is_error; // Already checked
+#endif
+    // Make sure the torrent will be initially checked and then paused
+    // to perform some service jobs on it. We will start it if needed.
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    p.flags |= lt::add_torrent_params::flag_paused;
+    p.flags |= lt::add_torrent_params::flag_auto_managed;
+    p.flags |= lt::add_torrent_params::flag_stop_when_ready;
+#else
+    p.flags |= lt::torrent_flags::paused;
+    p.flags |= lt::torrent_flags::auto_managed;
+    p.flags |= lt::torrent_flags::stop_when_ready;
 #endif
 
+    if (!hasCompleteFastresume) {
         // Limits
         p.max_connections = maxConnectionsPerTorrent();
         p.max_uploads = maxUploadsPerTorrent();
@@ -2012,16 +2019,6 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             p.flags &= ~lt::add_torrent_params::flag_seed_mode;
 #else
             p.flags &= ~lt::torrent_flags::seed_mode;
-#endif
-        }
-
-        if (params.restored && !params.paused) {
-            // Make sure the torrent will restored in "paused" state
-            // Then we will start it if needed
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            p.flags |= lt::add_torrent_params::flag_stop_when_ready;
-#else
-            p.flags |= lt::torrent_flags::stop_when_ready;
 #endif
         }
     }
@@ -2105,6 +2102,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.flags &= ~lt::torrent_flags::paused;
     p.flags &= ~lt::torrent_flags::auto_managed;
 #endif
+
     // Solution to avoid accidental file writes
 #if (LIBTORRENT_VERSION_NUM < 10200)
     p.flags |= lt::add_torrent_params::flag_upload_mode;
@@ -3872,10 +3870,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::tracker_warning_alert::alert_type:
         case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
-            dispatchTorrentAlert(a);
-            break;
         case lt::metadata_received_alert::alert_type:
-            handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
             dispatchTorrentAlert(a);
             break;
         case lt::state_update_alert::alert_type:
@@ -3933,8 +3928,19 @@ void Session::handleAlert(const lt::alert *a)
 void Session::dispatchTorrentAlert(const lt::alert *a)
 {
     TorrentHandle *const torrent = m_torrents.value(static_cast<const lt::torrent_alert*>(a)->handle.info_hash());
-    if (torrent)
+    if (torrent) {
         torrent->handleAlert(a);
+        return;
+    }
+
+    switch (a->type()) {
+    case lt::torrent_paused_alert::alert_type:
+        handleTorrentPausedAlert(static_cast<const lt::torrent_paused_alert*>(a));
+        break;
+    case lt::metadata_received_alert::alert_type:
+        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
+        break;
+    }
 }
 
 void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
@@ -4061,6 +4067,32 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
         adjustLimits();
         m_loadedMetadata[hash] = TorrentInfo(p->handle.torrent_file());
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
+    }
+}
+
+void Session::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p)
+{
+    const InfoHash hash {p->handle.info_hash()};
+
+    if (m_loadedMetadata.contains(hash)) {
+        // Adding preloaded torrent
+        m_loadedMetadata.remove(hash);
+        lt::torrent_handle handle = p->handle;
+        --m_extraLimit;
+
+        // Preloaded torrent is in "Upload mode" so we need to disable it
+        // otherwise the torrent never be downloaded (until application restart)
+#if (LIBTORRENT_VERSION_NUM < 10200)
+        handle.set_upload_mode(false);
+        handle.auto_managed(true);
+#else
+        handle.unset_flags(lt::torrent_flags::upload_mode);
+        handle.set_flags(lt::torrent_flags::auto_managed);
+#endif
+
+        adjustLimits();
+        // use common 2nd step of torrent addition
+        createTorrentHandle(handle);
     }
 }
 
