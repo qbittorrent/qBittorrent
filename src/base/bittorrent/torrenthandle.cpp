@@ -45,6 +45,10 @@
 #include <libtorrent/time.hpp>
 #include <libtorrent/version.hpp>
 
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+#include <libtorrent/write_resume_data.hpp>
+#endif
+
 #include <QBitArray>
 #include <QDateTime>
 #include <QDebug>
@@ -1689,10 +1693,17 @@ void TorrentHandle::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p
 
 void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     const bool useDummyResumeData = !(p && p->resume_data);
     lt::entry dummyEntry;
 
     lt::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
+#else
+    const bool useDummyResumeData = !p;
+
+    lt::entry resumeData = useDummyResumeData ? lt::entry() : lt::write_resume_data(p->params);
+#endif
+
     if (useDummyResumeData) {
         resumeData["qBt-magnetUri"] = toMagnetUri().toStdString();
         resumeData["qBt-paused"] = isPaused();
