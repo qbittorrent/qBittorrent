@@ -1285,6 +1285,8 @@ void TorrentHandle::setSequentialDownload(bool b)
         m_nativeHandle.set_sequential_download(b);
         m_nativeStatus.sequential_download = b; // prevent return cached value
     }
+
+    saveResumeData();
 }
 
 void TorrentHandle::toggleSequentialDownload()
@@ -1331,6 +1333,8 @@ void TorrentHandle::setFirstLastPiecePriorityImpl(const bool enabled, const QVec
 
     LogMsg(tr("Download first and last piece first: %1, torrent: '%2'")
         .arg((enabled ? tr("On") : tr("Off")), name()));
+
+    saveResumeData();
 }
 
 void TorrentHandle::toggleFirstLastPiecePriority()
