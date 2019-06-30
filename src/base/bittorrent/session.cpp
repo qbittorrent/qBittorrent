@@ -4042,9 +4042,14 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
     // so we remove the directory ourselves
     Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
 
-    LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-           .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
-           , Log::CRITICAL);
+    if (p->error) {
+        LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
+                .arg(tmpRemovingTorrentData.name, QString::fromStdString(p->error.message()))
+            , Log::WARNING);
+    }
+    else {
+        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+    }
 }
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
