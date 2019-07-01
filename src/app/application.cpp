@@ -82,6 +82,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "applicationinstancemanager.h"
 #include "filelogger.h"
 
 #ifndef DISABLE_WEBUI
@@ -116,7 +117,8 @@ namespace
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
-    : BaseApplication(id, argc, argv)
+    : BaseApplication(argc, argv)
+    , m_instanceManager(new ApplicationInstanceManager {id, this})
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
@@ -156,7 +158,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
 
-    connect(this, &Application::messageReceived, this, &Application::processMessage);
+    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
     connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
 
     if (isFileLoggerEnabled())
@@ -417,7 +419,7 @@ void Application::allTorrentsFinished()
 
 bool Application::sendParams(const QStringList &params)
 {
-    return sendMessage(params.join(PARAMS_SEPARATOR));
+    return m_instanceManager->sendMessage(params.join(PARAMS_SEPARATOR));
 }
 
 // As program parameters, we can get paths or urls.
@@ -572,34 +574,12 @@ int Application::exec(const QStringList &params)
     return BaseApplication::exec();
 }
 
-#ifndef DISABLE_GUI
-#ifdef Q_OS_WIN
 bool Application::isRunning()
 {
-    const bool running = BaseApplication::isRunning();
-    QSharedMemory *sharedMem = new QSharedMemory(id() + QLatin1String("-shared-memory-key"), this);
-    if (!running) {
-        // First instance creates shared memory and store PID
-        if (sharedMem->create(sizeof(DWORD)) && sharedMem->lock()) {
-            *(static_cast<DWORD*>(sharedMem->data())) = ::GetCurrentProcessId();
-            sharedMem->unlock();
-        }
-    }
-    else {
-        // Later instances attach to shared memory and retrieve PID
-        if (sharedMem->attach() && sharedMem->lock()) {
-            ::AllowSetForegroundWindow(*(static_cast<DWORD*>(sharedMem->data())));
-            sharedMem->unlock();
-        }
-    }
-
-    if (!sharedMem->isAttached())
-        qWarning() << "Failed to initialize shared memory: " << sharedMem->errorString();
-
-    return running;
+    return !m_instanceManager->isFirstInstance();
 }
-#endif // Q_OS_WIN
 
+#ifndef DISABLE_GUI
 #ifdef Q_OS_MAC
 bool Application::event(QEvent *ev)
 {
@@ -740,11 +720,11 @@ void Application::cleanup()
 #ifndef DISABLE_GUI
     if (m_window) {
 #ifdef Q_OS_WIN
-        typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
+        using PSHUTDOWNBRDESTROY = BOOL (WINAPI *)(HWND);
         const auto shutdownBRDestroy = Utils::Misc::loadWinAPI<PSHUTDOWNBRDESTROY>("User32.dll", "ShutdownBlockReasonDestroy");
         // Only available on Vista+
         if (shutdownBRDestroy)
-            shutdownBRDestroy((HWND)m_window->effectiveWinId());
+            shutdownBRDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
         delete m_window;
     }

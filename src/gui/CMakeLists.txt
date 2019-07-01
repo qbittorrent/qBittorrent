@@ -130,7 +130,6 @@ target_link_libraries(qbt_gui
     PRIVATE
         qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
         qbt_base
-        QtSingleApplication::QtSingleApplication
 )
 
 target_include_directories(qbt_gui

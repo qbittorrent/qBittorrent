@@ -719,7 +719,6 @@ ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
 enable_silent_rules
-with_qtsingleapplication
 enable_debug
 enable_stacktrace
 enable_gui
@@ -1399,9 +1398,6 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-qtsingleapplication=[system|shipped]
-                          Use the shipped qtsingleapplication library or the
-                          system one (default=shipped)
   --with-boost[=ARG]      use Boost library from a standard location
                           (ARG=yes), from the specified location (ARG=<path>),
                           or disable it (ARG=no) [ARG=yes]
@@ -4187,14 +4183,6 @@ QBT_CXX="$CXX"
 # Define --wth-* and --enable-* arguments
 
 
-# Check whether --with-qtsingleapplication was given.
-if test "${with_qtsingleapplication+set}" = set; then :
-  withval=$with_qtsingleapplication;
-else
-  with_qtsingleapplication=shipped
-fi
-
-
 # Check whether --enable-debug was given.
 if test "${enable_debug+set}" = set; then :
   enableval=$enable_debug;
@@ -5293,23 +5281,6 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: Boost.System LIB: \"$BOOST_SYSTEM_LIB\"" >&5
 $as_echo "$as_me: Boost.System LIB: \"$BOOST_SYSTEM_LIB\"" >&6;}
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking which qtsingleapplication to use" >&5
-$as_echo_n "checking which qtsingleapplication to use... " >&6; }
-case "x$with_qtsingleapplication" in #(
-  "xshipped") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: shipped" >&5
-$as_echo "shipped" >&6; }
-                   QBT_REMOVE_CONFIG="$QBT_REMOVE_CONFIG usesystemqtsingleapplication" ;; #(
-  "xsystem") :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: system" >&5
-$as_echo "system" >&6; }
-                  QBT_ADD_CONFIG="$QBT_ADD_CONFIG usesystemqtsingleapplication" ;; #(
-  *) :
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_qtsingleapplication" >&5
-$as_echo "$with_qtsingleapplication" >&6; }
-        as_fn_error $? "Unknown option \"$with_qtsingleapplication\". Use either \"system\" or \"shipped\"." "$LINENO" 5 ;;
-esac
 
 
 pkg_failed=no
