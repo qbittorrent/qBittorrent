@@ -40,7 +40,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QStri
     , m_downloadProcess {new QProcess {this}}
 {
     m_downloadProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(m_downloadProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished)
+    connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchDownloadHandler::downloadProcessFinished);
     const QStringList params {
         Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2dl.py"),
