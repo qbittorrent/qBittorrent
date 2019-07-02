@@ -282,6 +282,7 @@ Session::Session(QObject *parent)
     , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY("SendBufferWatermarkFactor"), 50)
+    , m_socketBacklogSize(BITTORRENT_SESSION_KEY("SocketBacklogSize"), 30)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
@@ -1127,10 +1128,13 @@ void Session::initMetrics()
 
 void Session::configure(lt::settings_pack &settingsPack)
 {
+    // from libtorrent doc:
+    // It will not take affect until the listen_interfaces settings is updated
+    settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
+
 #ifdef Q_OS_WIN
     QString chosenIP;
 #endif
-
     if (m_listenInterfaceChanged) {
         const ushort port = this->port();
         const std::pair<int, int> ports(port, port);
@@ -2952,6 +2956,19 @@ void Session::setSendBufferWatermarkFactor(const int value)
     if (value == m_sendBufferWatermarkFactor) return;
 
     m_sendBufferWatermarkFactor = value;
+    configureDeferred();
+}
+
+int Session::socketBacklogSize() const
+{
+    return m_socketBacklogSize;
+}
+
+void Session::setSocketBacklogSize(const int value)
+{
+    if (value == m_socketBacklogSize) return;
+
+    m_socketBacklogSize = value;
     configureDeferred();
 }
 

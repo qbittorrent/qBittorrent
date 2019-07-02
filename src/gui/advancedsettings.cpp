@@ -100,7 +100,8 @@ enum AdvSettingsRows
     SEND_BUF_WATERMARK,
     SEND_BUF_LOW_WATERMARK,
     SEND_BUF_WATERMARK_FACTOR,
-    // ports
+    // networking & ports
+    SOCKET_BACKLOG_SIZE,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
     UTP_MIX_MODE,
@@ -171,6 +172,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setSendBufferWatermark(spinBoxSendBufferWatermark.value());
     session->setSendBufferLowWatermark(spinBoxSendBufferLowWatermark.value());
     session->setSendBufferWatermarkFactor(spinBoxSendBufferWatermarkFactor.value());
+    // Socket listen backlog size
+    session->setSocketBacklogSize(spinBoxSocketBacklogSize.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(spinBoxSaveResumeDataInterval.value());
     // Outgoing ports
@@ -394,6 +397,12 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", "(?)"))
             , &spinBoxSendBufferWatermarkFactor);
+    // Socket listen backlog size
+    spinBoxSocketBacklogSize.setMinimum(1);
+    spinBoxSocketBacklogSize.setMaximum(std::numeric_limits<int>::max());
+    spinBoxSocketBacklogSize.setValue(session->socketBacklogSize());
+    addRow(SOCKET_BACKLOG_SIZE, (tr("Socket backlog size") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#listen_queue_size", "(?)"))
+            , &spinBoxSocketBacklogSize);
     // Save resume data interval
     spinBoxSaveResumeDataInterval.setMinimum(0);
     spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());

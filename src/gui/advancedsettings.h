@@ -61,7 +61,7 @@ private:
     QLabel labelQbtLink, labelLibtorrentLink;
     QSpinBox spinBoxAsyncIOThreads, spinBoxCheckingMemUsage, spinBoxCache, spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh,
              spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,
-             spinBoxSendBufferWatermarkFactor, spinBoxSavePathHistoryLength;
+             spinBoxSendBufferWatermarkFactor, spinBoxSocketBacklogSize, spinBoxSavePathHistoryLength;
     QCheckBox checkBoxOsCache, checkBoxRecheckCompleted, checkBoxResolveCountries, checkBoxResolveHosts, checkBoxSuperSeeding,
               checkBoxProgramNotifications, checkBoxTorrentAddedNotifications, checkBoxTrackerFavicon, checkBoxTrackerStatus,
               checkBoxConfirmTorrentRecheck, checkBoxConfirmRemoveAllTags, checkBoxListenIPv6, checkBoxAnnounceAllTrackers, checkBoxAnnounceAllTiers,
