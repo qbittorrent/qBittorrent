@@ -341,7 +341,11 @@ void showSplashScreen()
     const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
+#else
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+#endif
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
     QTimer::singleShot(1500, splash, &QObject::deleteLater);

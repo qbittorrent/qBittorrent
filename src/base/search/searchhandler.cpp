@@ -76,7 +76,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);
-    connect(m_searchProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished)
+    connect(m_searchProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchHandler::processFinished);
 
     m_searchTimeout->setSingleShot(true);
