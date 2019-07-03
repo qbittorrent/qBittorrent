@@ -89,6 +89,7 @@ enum AdvSettingsRows
     // libtorrent section
     LIBTORRENT_HEADER,
     ASYNC_IO_THREADS,
+    FILE_POOL_SIZE,
     CHECKING_MEM_USAGE,
     // cache
     DISK_CACHE,
@@ -155,6 +156,8 @@ void AdvancedSettings::saveAdvancedSettings()
 
     // Async IO threads
     session->setAsyncIOThreads(spinBoxAsyncIOThreads.value());
+    // File pool size
+    session->setFilePoolSize(spinBoxFilePoolSize.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(spinBoxCheckingMemUsage.value());
     // Disk write cache
@@ -327,6 +330,13 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &spinBoxAsyncIOThreads);
+
+    // File pool size
+    spinBoxFilePoolSize.setMinimum(1);
+    spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
+    spinBoxFilePoolSize.setValue(session->filePoolSize());
+    addRow(FILE_POOL_SIZE, (tr("File pool size") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#file_pool_size", "(?)"))
+        , &spinBoxFilePoolSize);
 
     // Checking Memory Usage
     spinBoxCheckingMemUsage.setMinimum(1);

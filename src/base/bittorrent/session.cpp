@@ -268,6 +268,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
+    , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 16)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
@@ -1254,6 +1255,8 @@ void Session::configure(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
+
+    settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
@@ -2811,6 +2814,20 @@ void Session::setAsyncIOThreads(const int num)
         return;
 
     m_asyncIOThreads = num;
+    configureDeferred();
+}
+
+int Session::filePoolSize() const
+{
+    return m_filePoolSize;
+}
+
+void Session::setFilePoolSize(const int size)
+{
+    if (size == m_filePoolSize)
+        return;
+
+    m_filePoolSize = size;
     configureDeferred();
 }
 
