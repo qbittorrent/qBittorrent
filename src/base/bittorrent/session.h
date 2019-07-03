@@ -320,6 +320,8 @@ namespace BitTorrent
         void setAnnounceToAllTiers(bool val);
         int asyncIOThreads() const;
         void setAsyncIOThreads(int num);
+        int filePoolSize() const;
+        void setFilePoolSize(int size);
         int checkingMemUsage() const;
         void setCheckingMemUsage(int size);
         int diskCacheSize() const;
@@ -340,6 +342,8 @@ namespace BitTorrent
         void setSendBufferLowWatermark(int value);
         int sendBufferWatermarkFactor() const;
         void setSendBufferWatermarkFactor(int value);
+        int socketBacklogSize() const;
+        void setSocketBacklogSize(int value);
         bool isAnonymousModeEnabled() const;
         void setAnonymousModeEnabled(bool enabled);
         bool isQueueingSystemEnabled() const;
@@ -585,6 +589,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<bool> m_announceToAllTiers;
         CachedSettingValue<int> m_asyncIOThreads;
+        CachedSettingValue<int> m_filePoolSize;
         CachedSettingValue<int> m_checkingMemUsage;
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
@@ -595,6 +600,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_sendBufferWatermark;
         CachedSettingValue<int> m_sendBufferLowWatermark;
         CachedSettingValue<int> m_sendBufferWatermarkFactor;
+        CachedSettingValue<int> m_socketBacklogSize;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
         CachedSettingValue<int> m_maxActiveDownloads;

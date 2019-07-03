@@ -268,6 +268,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
+    , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 16)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
@@ -282,6 +283,7 @@ Session::Session(QObject *parent)
     , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY("SendBufferWatermarkFactor"), 50)
+    , m_socketBacklogSize(BITTORRENT_SESSION_KEY("SocketBacklogSize"), 30)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), true)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY("MaxActiveDownloads"), 3, lowerLimited(-1))
@@ -364,8 +366,6 @@ Session::Session(QObject *parent)
     , m_extraLimit(0)
     , m_recentErroredTorrentsTimer(new QTimer(this))
 {
-    Logger *const logger = Logger::instance();
-
     initResumeFolder();
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
@@ -438,15 +438,14 @@ Session::Session(QObject *parent)
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
     m_nativeSession->add_extension(&lt::create_smart_ban_plugin);
 
-    logger->addMessage(tr("Peer ID: ") + QString::fromStdString(peerId));
-    logger->addMessage(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
-    logger->addMessage(tr("DHT support [%1]").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    logger->addMessage(tr("Local Peer Discovery support [%1]").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    logger->addMessage(tr("PeX support [%1]").arg(isPeXEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    logger->addMessage(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    logger->addMessage(tr("Encryption support [%1]")
-                       .arg(encryption() == 0 ? tr("ON") : encryption() == 1 ? tr("FORCED") : tr("OFF"))
-                       , Log::INFO);
+    LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
+    LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
+    LogMsg(tr("DHT support [%1]").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Local Peer Discovery support [%1]").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("PeX support [%1]").arg(isPeXEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Encryption support [%1]").arg((encryption() == 0) ? tr("ON") :
+        ((encryption() == 1) ? tr("FORCED") : tr("OFF"))), Log::INFO);
 
     if (isBandwidthSchedulerEnabled())
         enableBandwidthScheduler();
@@ -525,8 +524,7 @@ void Session::setDHTEnabled(bool enabled)
     if (enabled != m_isDHTEnabled) {
         m_isDHTEnabled = enabled;
         configureDeferred();
-        Logger::instance()->addMessage(
-                    tr("DHT support [%1]").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
+        LogMsg(tr("DHT support [%1]").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
     }
 }
 
@@ -540,9 +538,8 @@ void Session::setLSDEnabled(const bool enabled)
     if (enabled != m_isLSDEnabled) {
         m_isLSDEnabled = enabled;
         configureDeferred();
-        Logger::instance()->addMessage(
-                    tr("Local Peer Discovery support [%1]").arg(enabled ? tr("ON") : tr("OFF"))
-                    , Log::INFO);
+        LogMsg(tr("Local Peer Discovery support [%1]").arg(enabled ? tr("ON") : tr("OFF"))
+            , Log::INFO);
     }
 }
 
@@ -555,7 +552,7 @@ void Session::setPeXEnabled(const bool enabled)
 {
     m_isPeXEnabled = enabled;
     if (m_wasPexEnabled != enabled)
-        Logger::instance()->addMessage(tr("Restart is required to toggle PeX support"), Log::WARNING);
+        LogMsg(tr("Restart is required to toggle PeX support"), Log::WARNING);
 }
 
 bool Session::isTempPathEnabled() const
@@ -1132,12 +1129,13 @@ void Session::initMetrics()
 
 void Session::configure(lt::settings_pack &settingsPack)
 {
-    Logger *const logger = Logger::instance();
+    // from libtorrent doc:
+    // It will not take affect until the listen_interfaces settings is updated
+    settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
 
 #ifdef Q_OS_WIN
     QString chosenIP;
 #endif
-
     if (m_listenInterfaceChanged) {
         const ushort port = this->port();
         const std::pair<int, int> ports(port, port);
@@ -1149,10 +1147,10 @@ void Session::configure(lt::settings_pack &settingsPack)
             if (ip.isEmpty()) {
                 ip = QLatin1String("0.0.0.0");
                 interfacesStr = std::string((QString("%1:%2").arg(ip).arg(port)).toLatin1().constData());
-                logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1"
-                                      , "e.g: qBittorrent is trying to listen on any interface port: TCP/6881")
-                                   .arg(QString::number(port))
-                                   , Log::INFO);
+                LogMsg(tr("qBittorrent is trying to listen on any interface port: %1"
+                            , "e.g: qBittorrent is trying to listen on any interface port: TCP/6881")
+                        .arg(QString::number(port))
+                    , Log::INFO);
 
                 settingsPack.set_str(lt::settings_pack::listen_interfaces, interfacesStr);
                 break;
@@ -1162,10 +1160,10 @@ void Session::configure(lt::settings_pack &settingsPack)
             if (!ec) {
                 interfacesStr = std::string((addr.is_v6() ? QString("[%1]:%2") : QString("%1:%2"))
                                             .arg(ip).arg(port).toLatin1().constData());
-                logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2"
-                                      , "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881")
-                                   .arg(ip).arg(port)
-                                   , Log::INFO);
+                LogMsg(tr("qBittorrent is trying to listen on interface %1 port: %2"
+                            , "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881")
+                        .arg(ip).arg(port)
+                    , Log::INFO);
                 settingsPack.set_str(lt::settings_pack::listen_interfaces, interfacesStr);
 #ifdef Q_OS_WIN
                 chosenIP = ip;
@@ -1257,6 +1255,8 @@ void Session::configure(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
+
+    settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
@@ -1466,19 +1466,17 @@ void Session::configurePeerClasses()
 
 void Session::enableTracker(const bool enable)
 {
-    Logger *const logger = Logger::instance();
-
     if (enable) {
         if (!m_tracker)
             m_tracker = new Tracker(this);
 
         if (m_tracker->start())
-            logger->addMessage(tr("Embedded Tracker [ON]"), Log::INFO);
+            LogMsg(tr("Embedded Tracker [ON]"), Log::INFO);
         else
-            logger->addMessage(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
+            LogMsg(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
     }
     else {
-        logger->addMessage(tr("Embedded Tracker [OFF]"), Log::INFO);
+        LogMsg(tr("Embedded Tracker [OFF]"), Log::INFO);
         if (m_tracker)
             delete m_tracker;
     }
@@ -1521,14 +1519,13 @@ void Session::processShareLimits()
                     qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
 
                     if ((ratio <= TorrentHandle::MAX_RATIO) && (ratio >= ratioLimit)) {
-                        Logger *const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
-                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
+                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
                         else if (!torrent->isPaused()) {
                             torrent->pause();
-                            logger->addMessage(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
+                            LogMsg(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
                         }
                         continue;
                     }
@@ -1545,14 +1542,13 @@ void Session::processShareLimits()
 
                 if (seedingTimeLimit >= 0) {
                     if ((seedingTimeInMinutes <= TorrentHandle::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit)) {
-                        Logger *const logger = Logger::instance();
                         if (m_maxRatioAction == Remove) {
-                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
+                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
                         else if (!torrent->isPaused()) {
                             torrent->pause();
-                            logger->addMessage(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
+                            LogMsg(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
                         }
                     }
                 }
@@ -2241,7 +2237,7 @@ void Session::setTempPath(QString path)
 
 void Session::networkOnlineStateChanged(const bool online)
 {
-    Logger::instance()->addMessage(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
+    LogMsg(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
 }
 
 void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
@@ -2254,14 +2250,13 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
     const QString changedInterface = cfg.name();
 
     if (configuredInterfaceName == changedInterface) {
-        Logger::instance()->addMessage(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
+        LogMsg(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
         configureListeningInterface();
     }
 }
 
 const QStringList Session::getListeningIPs()
 {
-    Logger *const logger = Logger::instance();
     QStringList IPs;
 
     const QString ifaceName = networkInterface();
@@ -2271,7 +2266,7 @@ const QStringList Session::getListeningIPs()
     if (!ifaceAddr.isEmpty()) {
         QHostAddress addr(ifaceAddr);
         if (addr.isNull()) {
-            logger->addMessage(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.1568.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
+            LogMsg(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.1568.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
             IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
             return IPs;
         }
@@ -2290,7 +2285,7 @@ const QStringList Session::getListeningIPs()
     const QNetworkInterface networkIFace = QNetworkInterface::interfaceFromName(ifaceName);
     if (!networkIFace.isValid()) {
         qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
-        logger->addMessage(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
+        LogMsg(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
         return IPs;
     }
@@ -2324,7 +2319,9 @@ const QStringList Session::getListeningIPs()
     // Make sure there is at least one IP
     // At this point there was a valid network interface, with no suitable IP.
     if (IPs.size() == 0) {
-        logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
+        LogMsg(tr("qBittorrent didn't find an %1 local address to listen on"
+                , "qBittorrent didn't find an IPv4 local address to listen on")
+            .arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
         return IPs;
     }
@@ -2588,10 +2585,9 @@ void Session::setEncryption(const int state)
     if (state != encryption()) {
         m_encryption = state;
         configureDeferred();
-        Logger::instance()->addMessage(
-                    tr("Encryption support [%1]")
-                    .arg(state == 0 ? tr("ON") : state == 1 ? tr("FORCED") : tr("OFF"))
-                    , Log::INFO);
+        LogMsg(tr("Encryption support [%1]").arg(
+            state == 0 ? tr("ON") : ((state == 1) ? tr("FORCED") : tr("OFF")))
+            , Log::INFO);
     }
 }
 
@@ -2713,10 +2709,9 @@ void Session::setBannedIPs(const QStringList &newList)
             filteredList << QHostAddress(ip).toString();
         }
         else {
-            Logger::instance()->addMessage(
-                        tr("%1 is not a valid IP address and was rejected while applying the list of banned addresses.")
-                        .arg(ip)
-                        , Log::WARNING);
+            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned addresses.")
+                   .arg(ip)
+                , Log::WARNING);
         }
     }
     // now we have to sort IPs and make them unique
@@ -2819,6 +2814,20 @@ void Session::setAsyncIOThreads(const int num)
         return;
 
     m_asyncIOThreads = num;
+    configureDeferred();
+}
+
+int Session::filePoolSize() const
+{
+    return m_filePoolSize;
+}
+
+void Session::setFilePoolSize(const int size)
+{
+    if (size == m_filePoolSize)
+        return;
+
+    m_filePoolSize = size;
     configureDeferred();
 }
 
@@ -2967,6 +2976,19 @@ void Session::setSendBufferWatermarkFactor(const int value)
     configureDeferred();
 }
 
+int Session::socketBacklogSize() const
+{
+    return m_socketBacklogSize;
+}
+
+void Session::setSocketBacklogSize(const int value)
+{
+    if (value == m_socketBacklogSize) return;
+
+    m_socketBacklogSize = value;
+    configureDeferred();
+}
+
 bool Session::isAnonymousModeEnabled() const
 {
     return m_isAnonymousModeEnabled;
@@ -2977,9 +2999,8 @@ void Session::setAnonymousModeEnabled(const bool enabled)
     if (enabled != m_isAnonymousModeEnabled) {
         m_isAnonymousModeEnabled = enabled;
         configureDeferred();
-        Logger::instance()->addMessage(
-                    tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF"))
-                    , Log::INFO);
+        LogMsg(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF"))
+            , Log::INFO);
     }
 }
 
@@ -3456,7 +3477,7 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
             }
             else {
                 qDebug("Caught error loading torrent");
-                Logger::instance()->addMessage(tr("Unable to decode '%1' torrent file.").arg(Utils::Fs::toNativePath(torrentFullpath)), Log::CRITICAL);
+                LogMsg(tr("Unable to decode '%1' torrent file.").arg(Utils::Fs::toNativePath(torrentFullpath)), Log::CRITICAL);
             }
         }
     }
@@ -3598,10 +3619,9 @@ void Session::recursiveTorrentDownload(const InfoHash &hash)
     for (int i = 0; i < torrent->filesCount(); ++i) {
         const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent")) {
-            Logger::instance()->addMessage(
-                        tr("Recursive download of file '%1' embedded in torrent '%2'"
-                           , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
-                        .arg(Utils::Fs::toNativePath(torrentRelpath), torrent->name()));
+            LogMsg(tr("Recursive download of file '%1' embedded in torrent '%2'"
+                    , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
+                .arg(Utils::Fs::toNativePath(torrentRelpath), torrent->name()));
             const QString torrentFullpath = torrent->savePath() + '/' + torrentRelpath;
 
             AddTorrentParams params;
@@ -3631,8 +3651,6 @@ void Session::startUpTorrents()
     QStringList fastresumes = resumeDataDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
-    Logger *const logger = Logger::instance();
-
     typedef struct
     {
         QString hash;
@@ -3642,13 +3660,13 @@ void Session::startUpTorrents()
     } TorrentResumeData;
 
     int resumedTorrentsCount = 0;
-    const auto startupTorrent = [this, logger, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
+    const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
     {
         const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
-            logger->addMessage(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                               .arg(params.hash), Log::CRITICAL);
+            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                .arg(params.hash), Log::CRITICAL);
 
         // process add torrent messages before message queue overflow
         if ((resumedTorrentsCount % 100) == 0) readAlerts();
@@ -3704,9 +3722,8 @@ void Session::startUpTorrents()
             }
 
             if (numOfRemappedFiles > 0) {
-                logger->addMessage(
-                            QString(tr("Queue positions were corrected in %1 resume files")).arg(numOfRemappedFiles),
-                            Log::CRITICAL);
+                LogMsg(QString(tr("Queue positions were corrected in %1 resume files"))
+                    .arg(numOfRemappedFiles), Log::CRITICAL);
             }
 
             // starting up downloading torrents (queue position > 0)
@@ -3725,7 +3742,7 @@ void Session::startUpTorrents()
         }
         else {
             LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-                   .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
+                .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
         }
 
         if (!queue.empty())
@@ -3772,7 +3789,7 @@ void Session::handleIPFilterParsed(const int ruleCount)
         processBannedIPs(filter);
         m_nativeSession->set_ip_filter(filter);
     }
-    Logger::instance()->addMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+    LogMsg(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     emit IPFilterParsed(false, ruleCount);
 }
 
@@ -3782,7 +3799,7 @@ void Session::handleIPFilterError()
     processBannedIPs(filter);
     m_nativeSession->set_ip_filter(filter);
 
-    Logger::instance()->addMessage(tr("Error: Failed to parse the provided IP filter."), Log::CRITICAL);
+    LogMsg(tr("Error: Failed to parse the provided IP filter."), Log::CRITICAL);
     emit IPFilterParsed(true, 0);
 }
 
@@ -3908,12 +3925,10 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
     TorrentHandle *const torrent = new TorrentHandle(this, nativeHandle, params);
     m_torrents.insert(torrent->hash(), torrent);
 
-    Logger *const logger = Logger::instance();
-
     const bool fromMagnetUri = !torrent->hasMetadata();
 
     if (params.restored) {
-        logger->addMessage(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
+        LogMsg(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
     }
     else {
         // The following is useless for newly added magnet
@@ -3927,15 +3942,15 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
                     exportTorrentFile(torrent);
             }
             else {
-                logger->addMessage(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
+                LogMsg(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
             }
         }
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
             torrent->addTrackers(m_additionalTrackerList);
 
-        logger->addMessage(tr("'%1' added to download list.", "'torrent name' was added to download list.")
-                           .arg(torrent->name()));
+        LogMsg(tr("'%1' added to download list.", "'torrent name' was added to download list.")
+            .arg(torrent->name()));
 
         // In case of crash before the scheduled generation
         // of the fastresumes.
@@ -3958,7 +3973,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
     if (p->error) {
         qDebug("/!\\ Error: Failed to add torrent!");
         QString msg = QString::fromStdString(p->message());
-        Logger::instance()->addMessage(tr("Couldn't add torrent. Reason: %1").arg(msg), Log::WARNING);
+        LogMsg(tr("Couldn't add torrent. Reason: %1").arg(msg), Log::WARNING);
         emit addTorrentFailed(msg);
     }
     else {
@@ -4045,13 +4060,13 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 
 void Session::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
 {
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
+    LogMsg(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
 void Session::handlePortmapAlert(const lt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
-    Logger::instance()->addMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
+    LogMsg(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
@@ -4103,9 +4118,9 @@ void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
-    Logger::instance()->addMessage(tr("URL seed lookup failed for URL: '%1', message: %2")
-                                   .arg(QString::fromStdString(p->server_url()))
-                                   .arg(QString::fromStdString(p->message())), Log::CRITICAL);
+    LogMsg(tr("URL seed lookup failed for URL: '%1', message: %2")
+        .arg(QString::fromStdString(p->server_url()), QString::fromStdString(p->message()))
+        , Log::CRITICAL);
 }
 
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
@@ -4235,7 +4250,7 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
     boost::system::error_code ec;
-    Logger::instance()->addMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+    LogMsg(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)

@@ -89,6 +89,7 @@ enum AdvSettingsRows
     // libtorrent section
     LIBTORRENT_HEADER,
     ASYNC_IO_THREADS,
+    FILE_POOL_SIZE,
     CHECKING_MEM_USAGE,
     // cache
     DISK_CACHE,
@@ -100,7 +101,8 @@ enum AdvSettingsRows
     SEND_BUF_WATERMARK,
     SEND_BUF_LOW_WATERMARK,
     SEND_BUF_WATERMARK_FACTOR,
-    // ports
+    // networking & ports
+    SOCKET_BACKLOG_SIZE,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
     UTP_MIX_MODE,
@@ -154,6 +156,8 @@ void AdvancedSettings::saveAdvancedSettings()
 
     // Async IO threads
     session->setAsyncIOThreads(spinBoxAsyncIOThreads.value());
+    // File pool size
+    session->setFilePoolSize(spinBoxFilePoolSize.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(spinBoxCheckingMemUsage.value());
     // Disk write cache
@@ -171,6 +175,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setSendBufferWatermark(spinBoxSendBufferWatermark.value());
     session->setSendBufferLowWatermark(spinBoxSendBufferLowWatermark.value());
     session->setSendBufferWatermarkFactor(spinBoxSendBufferWatermarkFactor.value());
+    // Socket listen backlog size
+    session->setSocketBacklogSize(spinBoxSocketBacklogSize.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(spinBoxSaveResumeDataInterval.value());
     // Outgoing ports
@@ -325,6 +331,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &spinBoxAsyncIOThreads);
 
+    // File pool size
+    spinBoxFilePoolSize.setMinimum(1);
+    spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
+    spinBoxFilePoolSize.setValue(session->filePoolSize());
+    addRow(FILE_POOL_SIZE, (tr("File pool size") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#file_pool_size", "(?)"))
+        , &spinBoxFilePoolSize);
+
     // Checking Memory Usage
     spinBoxCheckingMemUsage.setMinimum(1);
     // When build as 32bit binary, set the maximum value lower to prevent crashes.
@@ -394,6 +407,12 @@ void AdvancedSettings::loadAdvancedSettings()
     spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", "(?)"))
             , &spinBoxSendBufferWatermarkFactor);
+    // Socket listen backlog size
+    spinBoxSocketBacklogSize.setMinimum(1);
+    spinBoxSocketBacklogSize.setMaximum(std::numeric_limits<int>::max());
+    spinBoxSocketBacklogSize.setValue(session->socketBacklogSize());
+    addRow(SOCKET_BACKLOG_SIZE, (tr("Socket backlog size") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#listen_queue_size", "(?)"))
+            , &spinBoxSocketBacklogSize);
     // Save resume data interval
     spinBoxSaveResumeDataInterval.setMinimum(0);
     spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());
