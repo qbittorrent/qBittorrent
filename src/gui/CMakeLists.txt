@@ -35,6 +35,7 @@ mainwindow.h
 optionsdialog.h
 previewlistdelegate.h
 previewselectdialog.h
+private/tristatewidget.h
 raisedmessagebox.h
 scanfoldersdelegate.h
 shutdownconfirmdialog.h
@@ -58,6 +59,7 @@ transferlistfilterswidget.h
 transferlistmodel.h
 transferlistsortmodel.h
 transferlistwidget.h
+tristateaction.h
 uithememanager.h
 updownratiodialog.h
 utils.h
@@ -82,6 +84,7 @@ loglistwidget.cpp
 mainwindow.cpp
 optionsdialog.cpp
 previewselectdialog.cpp
+private/tristatewidget.cpp
 raisedmessagebox.cpp
 scanfoldersdelegate.cpp
 shutdownconfirmdialog.cpp
@@ -105,6 +108,7 @@ transferlistfilterswidget.cpp
 transferlistmodel.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
+tristateaction.cpp
 uithememanager.cpp
 updownratiodialog.cpp
 utils.cpp

@@ -40,10 +40,8 @@
 #include <QRegularExpression>
 #include <QSet>
 #include <QShortcut>
-#include <QStylePainter>
 #include <QTableView>
 #include <QWheelEvent>
-#include <QWidgetAction>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -67,6 +65,7 @@
 #include "transferlistdelegate.h"
 #include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
+#include "tristateaction.h"
 #include "updownratiodialog.h"
 #include "utils.h"
 
@@ -76,8 +75,6 @@
 
 namespace
 {
-    using ToggleFn = std::function<void (Qt::CheckState)>;
-
     QStringList extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
     {
         QStringList hashes;
@@ -86,126 +83,6 @@ namespace
 
         return hashes;
     }
-
-    // Helper for setting style parameters when painting check box primitives.
-    class CheckBoxIconHelper : public QCheckBox
-    {
-    public:
-        explicit CheckBoxIconHelper(QWidget *parent);
-        QSize sizeHint() const override;
-        void initStyleOption(QStyleOptionButton *opt) const;
-
-    protected:
-        void paintEvent(QPaintEvent *) override {}
-    };
-
-    CheckBoxIconHelper::CheckBoxIconHelper(QWidget *parent)
-        : QCheckBox(parent)
-    {
-        setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    }
-
-    QSize CheckBoxIconHelper::sizeHint() const
-    {
-        const int dim = QCheckBox::sizeHint().height();
-        return {dim, dim};
-    }
-
-    void CheckBoxIconHelper::initStyleOption(QStyleOptionButton *opt) const
-    {
-        QCheckBox::initStyleOption(opt);
-    }
-
-    // Tristate checkbox styled for use in menus.
-    class MenuCheckBox : public QWidget
-    {
-    public:
-        MenuCheckBox(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState);
-        QSize sizeHint() const override;
-
-    protected:
-        void paintEvent(QPaintEvent *e) override;
-        void mousePressEvent(QMouseEvent *) override;
-
-    private:
-        CheckBoxIconHelper *const m_checkBox;
-        const QString m_text;
-        QSize m_sizeHint;
-        QSize m_checkBoxOffset;
-    };
-
-    MenuCheckBox::MenuCheckBox(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState)
-        : m_checkBox(new CheckBoxIconHelper(this))
-        , m_text(text)
-        , m_sizeHint(QCheckBox(m_text).sizeHint())
-    {
-        m_checkBox->setCheckState(initialState);
-        connect(m_checkBox, &QCheckBox::stateChanged, this, [this, onToggle](int newState)
-        {
-            m_checkBox->setTristate(false);
-            onToggle(static_cast<Qt::CheckState>(newState));
-        });
-        setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        setMouseTracking(true);
-
-        // We attempt to mimic the amount of vertical whitespace padding around a QCheckBox.
-        QSize layoutPadding(3, 0);
-        const int sizeHintMargin = (m_sizeHint.height() - m_checkBox->sizeHint().height()) / 2;
-        if (sizeHintMargin > 0) {
-            m_checkBoxOffset.setHeight(sizeHintMargin);
-        }
-        else {
-            layoutPadding.setHeight(1);
-            m_checkBoxOffset.setHeight(1);
-        }
-        m_checkBoxOffset.setWidth(layoutPadding.width());
-
-        auto *layout = new QHBoxLayout(this);
-        layout->addWidget(m_checkBox);
-        layout->addStretch();
-        layout->setContentsMargins(layoutPadding.width(), layoutPadding.height(), layoutPadding.width(), layoutPadding.height());
-        setLayout(layout);
-    }
-
-    QSize MenuCheckBox::sizeHint() const
-    {
-        return m_sizeHint;
-    }
-
-    void MenuCheckBox::paintEvent(QPaintEvent *e)
-    {
-        if (!rect().intersects(e->rect()))
-            return;
-        QStylePainter painter(this);
-        QStyleOptionMenuItem menuOpt;
-        menuOpt.initFrom(this);
-        menuOpt.menuItemType = QStyleOptionMenuItem::Normal;
-        menuOpt.text = m_text;
-        QStyleOptionButton checkBoxOpt;
-        m_checkBox->initStyleOption(&checkBoxOpt);
-        checkBoxOpt.rect.translate(m_checkBoxOffset.width(), m_checkBoxOffset.height());
-        if (rect().contains(mapFromGlobal(QCursor::pos()))) {
-            menuOpt.state |= QStyle::State_Selected;
-            checkBoxOpt.state |= QStyle::State_MouseOver;
-        }
-        painter.drawControl(QStyle::CE_MenuItem, menuOpt);
-        painter.drawPrimitive(QStyle::PE_IndicatorCheckBox, checkBoxOpt);
-    }
-
-    void MenuCheckBox::mousePressEvent(QMouseEvent *)
-    {
-        m_checkBox->click();
-    }
-
-    class CheckBoxMenuItem : public QWidgetAction
-    {
-    public:
-        CheckBoxMenuItem(const QString &text, const ToggleFn &onToggle, Qt::CheckState initialState, QObject *parent)
-            : QWidgetAction(parent)
-        {
-            setDefaultWidget(new MenuCheckBox(text, onToggle, initialState));
-        }
-    };
 
     bool torrentContainsPreviewableFiles(const BitTorrent::TorrentHandle *const torrent)
     {
@@ -772,27 +649,27 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&)
     menu->popup(QCursor::pos());
 }
 
-void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const
+void TransferListWidget::setSelectedTorrentsSuperSeeding(const bool enabled) const
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
         if (torrent->hasMetadata())
-            torrent->setSuperSeeding(!torrent->superSeeding());
+            torrent->setSuperSeeding(enabled);
     }
 }
 
-void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const
+void TransferListWidget::setSelectedTorrentsSequentialDownload(const bool enabled) const
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-        torrent->toggleSequentialDownload();
+        torrent->setSequentialDownload(enabled);
 }
 
-void TransferListWidget::toggleSelectedFirstLastPiecePrio() const
+void TransferListWidget::setSelectedFirstLastPiecePrio(const bool enabled) const
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-        torrent->toggleFirstLastPiecePriority();
+        torrent->setFirstLastPiecePriority(enabled);
 }
 
-void TransferListWidget::setSelectedAutoTMMEnabled(bool enabled) const
+void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled) const
 {
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
         torrent->setAutoTMMEnabled(enabled);
@@ -932,61 +809,57 @@ void TransferListWidget::displayListMenu(const QPoint &)
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.isEmpty()) return;
 
-    QMenu *listMenu = new QMenu(this);
+    auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Create actions
-    QAction *actionStart = new QAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), listMenu);
+    auto *actionStart = new QAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
-    QAction *actionPause = new QAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), listMenu);
+    auto *actionPause = new QAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), listMenu);
     connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
-    QAction *actionForceStart = new QAction(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), listMenu);
+    auto *actionForceStart = new QAction(GuiIconProvider::instance()->getIcon("media-seek-forward"), tr("Force Resume", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
-    QAction *actionDelete = new QAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), listMenu);
+    auto *actionDelete = new QAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete", "Delete the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
-    QAction *actionPreviewFile = new QAction(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), listMenu);
+    auto *actionPreviewFile = new QAction(GuiIconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    QAction *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), listMenu);
+    auto *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), listMenu);
     connect(actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
-    QAction *actionSetUploadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), listMenu);
+    auto *actionSetUploadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), listMenu);
     connect(actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
-    QAction *actionSetDownloadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), listMenu);
+    auto *actionSetDownloadLimit = new QAction(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), listMenu);
     connect(actionSetDownloadLimit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
-    QAction *actionOpenDestinationFolder = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
+    auto *actionOpenDestinationFolder = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
-    QAction *actionIncreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
+    auto *actionIncreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
     connect(actionIncreasePriority, &QAction::triggered, this, &TransferListWidget::increasePrioSelectedTorrents);
-    QAction *actionDecreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), listMenu);
+    auto *actionDecreasePriority = new QAction(GuiIconProvider::instance()->getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), listMenu);
     connect(actionDecreasePriority, &QAction::triggered, this, &TransferListWidget::decreasePrioSelectedTorrents);
-    QAction *actionTopPriority = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), listMenu);
+    auto *actionTopPriority = new QAction(GuiIconProvider::instance()->getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), listMenu);
     connect(actionTopPriority, &QAction::triggered, this, &TransferListWidget::topPrioSelectedTorrents);
-    QAction *actionBottomPriority = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
+    auto *actionBottomPriority = new QAction(GuiIconProvider::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
     connect(actionBottomPriority, &QAction::triggered, this, &TransferListWidget::bottomPrioSelectedTorrents);
-    QAction *actionSetTorrentPath = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
+    auto *actionSetTorrentPath = new QAction(GuiIconProvider::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
-    QAction *actionForceRecheck = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
+    auto *actionForceRecheck = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
-    QAction *actionForceReannounce = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), listMenu);
+    auto *actionForceReannounce = new QAction(GuiIconProvider::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
-    QAction *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Magnet link"), listMenu);
+    auto *actionCopyMagnetLink = new QAction(GuiIconProvider::instance()->getIcon("kt-magnet"), tr("Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
-    QAction *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"), listMenu);
+    auto *actionCopyName = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"), listMenu);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    QAction *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Hash"), listMenu);
+    auto *actionCopyHash = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Hash"), listMenu);
     connect(actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
-    QAction *actionSuperSeedingMode = new QAction(tr("Super seeding mode"), listMenu);
-    actionSuperSeedingMode->setCheckable(true);
-    connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSuperSeeding);
-    QAction *actionRename = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), listMenu);
+    auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
+    connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
+    auto *actionRename = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), listMenu);
     connect(actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
-    QAction *actionSequentialDownload = new QAction(tr("Download in sequential order"), listMenu);
-    actionSequentialDownload->setCheckable(true);
-    connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::toggleSelectedTorrentsSequentialDownload);
-    QAction *actionFirstLastPiecePrio = new QAction(tr("Download first and last pieces first"), listMenu);
-    actionFirstLastPiecePrio->setCheckable(true);
-    connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::toggleSelectedFirstLastPiecePrio);
-    QAction *actionAutoTMM = new QAction(tr("Automatic Torrent Management"), listMenu);
-    actionAutoTMM->setCheckable(true);
+    auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
+    connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
+    auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
+    connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
+    auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
     actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     QAction *actionEditTracker = new QAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
@@ -1028,6 +901,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         else {
             tagsInAll.intersect(torrent->tags());
         }
+
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
             allSameAutoTMM = false;
 
@@ -1111,8 +985,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
             cat->setChecked(true);
         }
 
-        categoryMenu->addAction(cat);
         connect(cat, &QAction::triggered, this, [this, category]() { setSelectionCategory(category); });
+        categoryMenu->addAction(cat);
     }
 
     // Tag Menu
@@ -1136,34 +1010,39 @@ void TransferListWidget::displayListMenu(const QPoint &)
     tagsMenu->addSeparator();
 
     for (const QString &tag : asConst(tags)) {
+        auto *action = new TriStateAction(tag, tagsMenu);
+        action->setCloseOnTriggered(false);
+
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
                                             : tagsInAny.contains(tag) ? Qt::PartiallyChecked
                                             : Qt::Unchecked;
+        action->setCheckState(initialState);
 
-        const ToggleFn onToggle = [this, tag](Qt::CheckState newState)
+        connect(action, &QAction::triggered, this, [this, tag](const bool checked)
         {
-            Q_ASSERT(newState == Qt::CheckState::Checked || newState == Qt::CheckState::Unchecked);
-            if (newState == Qt::CheckState::Checked)
+            if (checked)
                 addSelectionTag(tag);
             else
                 removeSelectionTag(tag);
-        };
+        });
 
-        tagsMenu->addAction(new CheckBoxMenuItem(tag, onToggle, initialState, tagsMenu));
+        tagsMenu->addAction(action);
     }
 
-    if (allSameAutoTMM) {
-        actionAutoTMM->setChecked(firstAutoTMM);
-        listMenu->addAction(actionAutoTMM);
-    }
+    actionAutoTMM->setCheckState(allSameAutoTMM
+        ? (firstAutoTMM ? Qt::Checked : Qt::Unchecked)
+        : Qt::PartiallyChecked);
+    listMenu->addAction(actionAutoTMM);
 
     listMenu->addSeparator();
     if (oneNotSeed)
         listMenu->addAction(actionSetDownloadLimit);
     listMenu->addAction(actionSetUploadLimit);
     listMenu->addAction(actionSetMaxRatio);
-    if (!oneNotSeed && allSameSuperSeeding && oneHasMetadata) {
-        actionSuperSeedingMode->setChecked(superSeedingMode);
+    if (!oneNotSeed && oneHasMetadata) {
+        actionSuperSeedingMode->setCheckState(allSameSuperSeeding
+            ? (superSeedingMode ? Qt::Checked : Qt::Unchecked)
+            : Qt::PartiallyChecked);
         listMenu->addAction(actionSuperSeedingMode);
     }
     listMenu->addSeparator();
@@ -1173,16 +1052,17 @@ void TransferListWidget::displayListMenu(const QPoint &)
         addedPreviewAction = true;
     }
     if (oneNotSeed) {
-        if (allSameSequentialDownloadMode) {
-            actionSequentialDownload->setChecked(sequentialDownloadMode);
-            listMenu->addAction(actionSequentialDownload);
-            addedPreviewAction = true;
-        }
-        if (allSamePrioFirstlast) {
-            actionFirstLastPiecePrio->setChecked(prioritizeFirstLast);
-            listMenu->addAction(actionFirstLastPiecePrio);
-            addedPreviewAction = true;
-        }
+        actionSequentialDownload->setCheckState(allSameSequentialDownloadMode
+            ? (sequentialDownloadMode ? Qt::Checked : Qt::Unchecked)
+            : Qt::PartiallyChecked);
+        listMenu->addAction(actionSequentialDownload);
+
+        actionFirstLastPiecePrio->setCheckState(allSamePrioFirstlast
+            ? (prioritizeFirstLast ? Qt::Checked : Qt::Unchecked)
+            : Qt::PartiallyChecked);
+        listMenu->addAction(actionFirstLastPiecePrio);
+
+        addedPreviewAction = true;
     }
 
     if (addedPreviewAction)
