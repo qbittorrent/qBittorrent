@@ -108,6 +108,7 @@
      <addaction name="actionInformationMessages"/>
      <addaction name="actionWarningMessages"/>
      <addaction name="actionCriticalMessages"/>
+     <addaction name="actionInternalMessages"/>
     </widget>
     <addaction name="separator"/>
     <addaction name="actionTopToolBar"/>
@@ -465,6 +466,14 @@
    </property>
    <property name="text">
     <string>Critical Messages</string>
+   </property>
+  </action>
+  <action name="actionInternalMessages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Internal Messages</string>
    </property>
   </action>
   <action name="actionCloseWindow">

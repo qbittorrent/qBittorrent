@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QDateTime>
+#include <QtGlobal>
 
 namespace
 {
@@ -42,6 +43,13 @@ namespace
         std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
         return ret;
     }
+
+    void qbtMessageHandler(QtMsgType type, const QMessageLogContext &context
+                           , const QString &msg)
+    {
+        LogMsg(QString("%1 (%2:%3, %4)").arg(msg, context.file, QString::number(context.line), context.function)
+               , Log::INTERNAL);
+    }
 }
 
 Logger *Logger::m_instance = nullptr;
@@ -51,6 +59,12 @@ Logger::Logger()
     , m_peers(MAX_LOG_MESSAGES)
     , m_lock(QReadWriteLock::Recursive)
 {
+    qInstallMessageHandler(qbtMessageHandler);
+}
+
+Logger::~Logger()
+{
+    qInstallMessageHandler(0);
 }
 
 Logger *Logger::instance()

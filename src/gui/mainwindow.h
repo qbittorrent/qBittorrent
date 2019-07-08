@@ -161,6 +161,7 @@ private slots:
     void on_actionInformationMessages_triggered(bool checked);
     void on_actionWarningMessages_triggered(bool checked);
     void on_actionCriticalMessages_triggered(bool checked);
+    void on_actionInternalMessages_triggered(bool checked);
     void on_actionAutoExit_toggled(bool);
     void on_actionAutoSuspend_toggled(bool);
     void on_actionAutoHibernate_toggled(bool);

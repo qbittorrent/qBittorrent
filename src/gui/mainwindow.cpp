@@ -357,6 +357,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionInformationMessages->setChecked(flags & Log::INFO);
     m_ui->actionWarningMessages->setChecked(flags & Log::WARNING);
     m_ui->actionCriticalMessages->setChecked(flags & Log::CRITICAL);
+    m_ui->actionInternalMessages->setChecked(flags & Log::INTERNAL);
 
     displayRSSTab(m_ui->actionRSSReader->isChecked());
     on_actionExecutionLogs_triggered(m_ui->actionExecutionLogs->isChecked());
@@ -1915,6 +1916,15 @@ void MainWindow::on_actionCriticalMessages_triggered(bool checked)
 
     Log::MsgTypes flags(executionLogMsgTypes());
     checked ? (flags |= Log::CRITICAL) : (flags &= ~Log::CRITICAL);
+    setExecutionLogMsgTypes(flags);
+}
+
+void MainWindow::on_actionInternalMessages_triggered(bool checked) {
+    if (!m_executionLog)
+        return;
+
+    Log::MsgTypes flags(executionLogMsgTypes());
+    checked ? (flags |= Log::INTERNAL) : (flags &= ~Log::INTERNAL);
     setExecutionLogMsgTypes(flags);
 }
 

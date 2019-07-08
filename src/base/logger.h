@@ -46,7 +46,8 @@ namespace Log
         NORMAL = 0x1,
         INFO = 0x2,
         WARNING = 0x4,
-        CRITICAL = 0x8 // ERROR is defined by libtorrent and results in compiler error
+        CRITICAL = 0x8, // ERROR is defined by libtorrent and results in compiler error
+        INTERNAL = 0x10
     };
     Q_DECLARE_FLAGS(MsgTypes, MsgType)
 
@@ -91,7 +92,7 @@ signals:
 
 private:
     Logger();
-    ~Logger() = default;
+    ~Logger();
 
     static Logger *m_instance;
     boost::circular_buffer_space_optimized<Log::Msg> m_messages;
