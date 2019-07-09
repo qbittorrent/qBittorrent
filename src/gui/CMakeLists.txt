@@ -57,6 +57,7 @@ transferlistfilterswidget.h
 transferlistmodel.h
 transferlistsortmodel.h
 transferlistwidget.h
+uithememanager.h
 updownratiodialog.h
 utils.h
 
@@ -102,6 +103,7 @@ transferlistfilterswidget.cpp
 transferlistmodel.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
+uithememanager.cpp
 updownratiodialog.cpp
 utils.cpp
 
