@@ -56,6 +56,7 @@
 #endif // Q_OS_MAC
 #include "addnewtorrentdialog.h"
 #include "gui/guiiconprovider.h"
+#include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "mainwindow.h"
 #include "shutdownconfirmdialog.h"
@@ -558,7 +559,9 @@ int Application::exec(const QStringList &params)
     }
 #endif // DISABLE_WEBUI
 #else
+    UIThemeManager::initInstance();
     m_window = new MainWindow;
+    UIThemeManager::instance()->applyStyleSheet();
 #endif // DISABLE_GUI
 
     m_running = true;
@@ -727,6 +730,7 @@ void Application::cleanup()
             shutdownBRDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
         delete m_window;
+        UIThemeManager::freeInstance();
     }
 #endif // DISABLE_GUI
 

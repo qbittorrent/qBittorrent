@@ -98,6 +98,10 @@ public:
     // General options
     QString getLocale() const;
     void setLocale(const QString &locale);
+    bool useCustomUITheme() const;
+    void setUseCustomUITheme(bool use);
+    QString customUIThemePath() const;
+    void setCustomUIThemePath(const QString &path);
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;

@@ -62,6 +62,7 @@ HEADERS += \
     $$PWD/transferlistmodel.h \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
+    $$PWD/uithememanager.h \
     $$PWD/updownratiodialog.h \
     $$PWD/utils.h
 
@@ -118,6 +119,7 @@ SOURCES += \
     $$PWD/transferlistmodel.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
+    $$PWD/uithememanager.cpp \
     $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
 

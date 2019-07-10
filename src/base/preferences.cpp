@@ -105,6 +105,27 @@ void Preferences::setLocale(const QString &locale)
     setValue("Preferences/General/Locale", locale);
 }
 
+bool Preferences::useCustomUITheme() const
+{
+    return value("Preferences/General/UseCustomUITheme", false).toBool()
+           && !customUIThemePath().isEmpty();
+}
+
+void Preferences::setUseCustomUITheme(const bool use)
+{
+    setValue("Preferences/General/UseCustomUITheme", use);
+}
+
+QString Preferences::customUIThemePath() const
+{
+    return value("Preferences/General/CustomUIThemePath").toString();
+}
+
+void Preferences::setCustomUIThemePath(const QString &path)
+{
+    setValue("Preferences/General/CustomUIThemePath", path);
+}
+
 bool Preferences::deleteTorrentFilesAsDefault() const
 {
     return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
