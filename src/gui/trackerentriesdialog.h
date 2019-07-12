@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,53 +26,39 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TRACKERENTRY_H
-#define BITTORRENT_TRACKERENTRY_H
+#pragma once
 
-#include <libtorrent/announce_entry.hpp>
+#include <QDialog>
+#include <QVector>
 
-#include <QtGlobal>
-
-class QString;
+#include "base/settingvalue.h"
 
 namespace BitTorrent
 {
-    class TrackerEntry
-    {
-    public:
-        enum Status
-        {
-            NotContacted = 1,
-            Working = 2,
-            Updating = 3,
-            NotWorking = 4
-        };
-
-        TrackerEntry() = default;
-        TrackerEntry(const QString &url);
-        TrackerEntry(const lt::announce_entry &nativeEntry);
-        TrackerEntry(const TrackerEntry &other) = default;
-        TrackerEntry &operator=(const TrackerEntry &other) = default;
-
-        QString url() const;
-        bool isWorking() const;
-        Status status() const;
-
-        int tier() const;
-        void setTier(int value);
-
-        int numSeeds() const;
-        int numLeeches() const;
-        int numDownloaded() const;
-
-        const lt::announce_entry &nativeEntry() const;
-
-    private:
-        lt::announce_entry m_nativeEntry;
-    };
-
-    bool operator==(const TrackerEntry &left, const TrackerEntry &right);
-    uint qHash(const TrackerEntry &key, uint seed);
+    class TrackerEntry;
 }
 
-#endif // BITTORRENT_TRACKERENTRY_H
+namespace Ui
+{
+    class TrackerEntriesDialog;
+}
+
+class TrackerEntriesDialog : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(TrackerEntriesDialog)
+
+public:
+    explicit TrackerEntriesDialog(QWidget *parent);
+    ~TrackerEntriesDialog() override;
+
+    void setTrackers(const QVector<BitTorrent::TrackerEntry> &trackers);
+    QVector<BitTorrent::TrackerEntry> trackers() const;
+
+private:
+    void saveSettings();
+    void loadSettings();
+
+    Ui::TrackerEntriesDialog *m_ui;
+    CachedSettingValue<QSize> m_storeDialogSize;
+};

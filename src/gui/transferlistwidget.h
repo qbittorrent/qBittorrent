@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <QTreeView>
+#include <QVector>
 
 namespace BitTorrent
 {
@@ -99,7 +100,7 @@ protected:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QList<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
+    QVector<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
 
 protected slots:
     void torrentDoubleClicked();
@@ -118,6 +119,7 @@ signals:
 private:
     void wheelEvent(QWheelEvent *event) override;
     void askAddTagsForSelection();
+    void editTorrentTrackers();
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
