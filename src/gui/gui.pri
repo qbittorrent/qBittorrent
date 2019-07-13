@@ -29,6 +29,7 @@ HEADERS += \
     $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/private/tristatewidget.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
@@ -63,6 +64,7 @@ HEADERS += \
     $$PWD/transferlistmodel.h \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
+    $$PWD/tristateaction.h \
     $$PWD/uithememanager.h \
     $$PWD/updownratiodialog.h \
     $$PWD/utils.h
@@ -87,6 +89,7 @@ SOURCES += \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/private/tristatewidget.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
@@ -121,6 +124,7 @@ SOURCES += \
     $$PWD/transferlistmodel.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
+    $$PWD/tristateaction.cpp \
     $$PWD/uithememanager.cpp \
     $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
