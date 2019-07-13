@@ -32,8 +32,6 @@
 #include <QList>
 #include <QWidget>
 
-#include "base/bittorrent/torrenthandle.h"
-
 class QPushButton;
 class QTreeView;
 
@@ -45,6 +43,11 @@ class PropListDelegate;
 class PropTabBar;
 class TorrentContentFilterModel;
 class TrackerListWidget;
+
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 namespace Ui
 {

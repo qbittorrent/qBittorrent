@@ -42,16 +42,16 @@ class PeerListDelegate;
 class PeerListSortModel;
 class PropertiesWidget;
 
-namespace Net
-{
-    class ReverseResolution;
-}
-
 namespace BitTorrent
 {
     class TorrentHandle;
     class PeerInfo;
     struct PeerAddress;
+}
+
+namespace Net
+{
+    class ReverseResolution;
 }
 
 class PeerListWidget : public QTreeView

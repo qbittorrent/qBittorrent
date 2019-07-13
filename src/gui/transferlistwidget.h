@@ -33,15 +33,15 @@
 #include <QTreeView>
 #include <QVector>
 
-namespace BitTorrent
-{
-    class TorrentHandle;
-}
-
 class MainWindow;
 class TransferListDelegate;
 class TransferListModel;
 class TransferListSortModel;
+
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 class TransferListWidget : public QTreeView
 {

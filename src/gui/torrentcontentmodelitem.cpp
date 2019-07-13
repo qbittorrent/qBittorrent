@@ -28,6 +28,8 @@
 
 #include "torrentcontentmodelitem.h"
 
+#include <QVariant>
+
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)

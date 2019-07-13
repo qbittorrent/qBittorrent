@@ -28,6 +28,8 @@
 
 #include "torrentcontentmodelfolder.h"
 
+#include <QVariant>
+
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 

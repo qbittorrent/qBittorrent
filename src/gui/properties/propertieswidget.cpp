@@ -44,6 +44,7 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
