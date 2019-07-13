@@ -39,7 +39,7 @@ target_link_libraries(qbt_properties
     PRIVATE
         qbt_gui_headers
     PUBLIC
-        qbt_base qbt_lineedit Qt5::Widgets
+        qbt_base Qt5::Widgets
 )
 
 target_include_directories(qbt_properties

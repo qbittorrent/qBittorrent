@@ -29,5 +29,5 @@ target_link_libraries(qbt_searchengine
     PUBLIC
         qbt_base
     PRIVATE
-        qbt_lineedit qbt_gui_headers
+        qbt_gui_headers
 )
