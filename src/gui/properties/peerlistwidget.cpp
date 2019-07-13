@@ -34,6 +34,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QSet>
+#include <QShortcut>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
@@ -133,8 +134,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     connect(header(), &QHeaderView::sectionResized, this, &PeerListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &PeerListWidget::saveSettings);
     handleSortColumnChanged(header()->sortIndicatorSection());
-    m_copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_copyHotkey, &QShortcut::activated, this, &PeerListWidget::copySelectedPeers);
+    const auto *copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(copyHotkey, &QShortcut::activated, this, &PeerListWidget::copySelectedPeers);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777

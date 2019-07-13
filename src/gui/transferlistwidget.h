@@ -38,8 +38,6 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class QShortcut;
-
 class MainWindow;
 class TransferListDelegate;
 class TransferListModel;
@@ -128,11 +126,6 @@ private:
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;
     MainWindow *m_mainWindow;
-    QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
-    QShortcut *m_permDeleteHotkey;
-    QShortcut *m_doubleClickHotkey;
-    QShortcut *m_recheckHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

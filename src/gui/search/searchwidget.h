@@ -33,7 +33,6 @@
 #include <QPointer>
 #include <QWidget>
 
-class QShortcut;
 class QTabWidget;
 
 class MainWindow;
@@ -80,5 +79,4 @@ private:
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
-    QShortcut *m_focusSearchHotkey;
 };

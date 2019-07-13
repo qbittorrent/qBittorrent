@@ -32,7 +32,6 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <QShortcut>
 #include <QTreeView>
 
 class QSortFilterProxyModel;
@@ -92,7 +91,6 @@ private:
     QPointer<Net::ReverseResolution> m_resolver;
     PropertiesWidget *m_properties;
     bool m_resolveCountries;
-    QShortcut *m_copyHotkey;
 };
 
 #endif // PEERLISTWIDGET_H

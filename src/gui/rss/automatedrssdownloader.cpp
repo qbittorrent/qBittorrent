@@ -121,12 +121,12 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->listRules, &QListWidget::itemSelectionChanged, this, &AutomatedRssDownloader::updateRuleDefinitionBox);
     connect(m_ui->listRules, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleRuleCheckStateChange);
 
-    m_editHotkey = new QShortcut(Qt::Key_F2, m_ui->listRules, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::renameSelectedRule);
-    connect(m_ui->listRules, &QAbstractItemView::doubleClicked, this, &AutomatedRssDownloader::renameSelectedRule);
+    const auto *editHotkey = new QShortcut(Qt::Key_F2, m_ui->listRules, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(editHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::renameSelectedRule);
+    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, m_ui->listRules, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(deleteHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
 
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, m_ui->listRules, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_deleteHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
+    connect(m_ui->listRules, &QAbstractItemView::doubleClicked, this, &AutomatedRssDownloader::renameSelectedRule);
 
     loadFeedList();
 
@@ -149,8 +149,6 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
     saveEditedRule();
     saveSettings();
 
-    delete m_editHotkey;
-    delete m_deleteHotkey;
     delete m_ui;
     delete m_episodeRegex;
 }

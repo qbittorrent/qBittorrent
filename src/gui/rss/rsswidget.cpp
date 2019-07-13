@@ -93,10 +93,10 @@ RSSWidget::RSSWidget(QWidget *parent)
     loadFoldersOpenState();
     m_feedListWidget->setCurrentItem(m_feedListWidget->stickyUnreadItem());
 
-    m_editHotkey = new QShortcut(Qt::Key_F2, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkey, &QShortcut::activated, this, &RSSWidget::renameSelectedRSSItem);
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_deleteHotkey, &QShortcut::activated, this, &RSSWidget::deleteSelectedItems);
+    const auto *editHotkey = new QShortcut(Qt::Key_F2, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(editHotkey, &QShortcut::activated, this, &RSSWidget::renameSelectedRSSItem);
+    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, m_feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(deleteHotkey, &QShortcut::activated, this, &RSSWidget::deleteSelectedItems);
 
     // Feeds list actions
     connect(m_ui->actionDelete, &QAction::triggered, this, &RSSWidget::deleteSelectedItems);
@@ -135,8 +135,6 @@ RSSWidget::~RSSWidget()
 
     saveFoldersOpenState();
 
-    delete m_editHotkey;
-    delete m_deleteHotkey;
     delete m_feedListWidget;
     delete m_ui;
 }

@@ -149,16 +149,17 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::setVisibility);
     connect(m_tabBar, &PropTabBar::visibilityToggled, this, &PropertiesWidget::saveSettings);
 
-    m_editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkeyFile, &QShortcut::activated
+    const auto *editHotkeyFile = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(editHotkeyFile, &QShortcut::activated
             , this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
-    m_editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::editWebSeed);
+    const auto *editHotkeyWeb = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(editHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::editWebSeed);
+    const auto *deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(deleteHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
+    const auto *openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(openHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
+
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
-    m_deleteHotkeyWeb = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_deleteHotkeyWeb, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
-    m_openHotkeyFile = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_openHotkeyFile, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &PropertiesWidget::configure);
@@ -175,10 +176,6 @@ PropertiesWidget::~PropertiesWidget()
     delete m_propListModel;
     delete m_propListDelegate;
     delete m_tabBar;
-    delete m_editHotkeyFile;
-    delete m_editHotkeyWeb;
-    delete m_deleteHotkeyWeb;
-    delete m_openHotkeyFile;
     delete m_ui;
     qDebug() << Q_FUNC_INFO << "EXIT";
 }

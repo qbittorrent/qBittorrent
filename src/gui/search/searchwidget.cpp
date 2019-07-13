@@ -137,8 +137,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::fillCatCombobox);
 
-    m_focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
-    connect(m_focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
+    const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
+    connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 }
 
 void SearchWidget::fillCatCombobox()
